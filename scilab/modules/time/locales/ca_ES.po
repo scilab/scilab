@@ -50,8 +50,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser > %d.\n"
+msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser > %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real expected.\n"
@@ -143,8 +142,7 @@ msgstr ""
 "(m * 3) o de (m * 6).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: %s ha de ser entre %d i "
 "%d.\n"
@@ -191,8 +189,7 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format

@@ -114,8 +114,7 @@ msgid "%s: setgmn return with state %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
 
 #, c-format
@@ -170,8 +169,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
 
 #, c-format
@@ -229,8 +227,8 @@ msgid ""
 msgstr ""
 "\n"
 "clcg2 中指定的亂數種子錯有誤,  s1 必須是在 [1, 2147483562] \n"
-"                                                     且 s2 是在 [1, 2147483562] "
-" 的整數值範圍.\n"
+"                                                     且 s2 是在 [1, "
+"2147483562]  的整數值範圍.\n"
 
 msgid ""
 "\n"
@@ -241,11 +239,12 @@ msgid ""
 msgstr ""
 "\n"
 " clcg4 中的亂數種子有誤, s1必須是介於 [1, 2147483646] 的整數範圍.\n"
-"                                              s2必須是介於 [1, 2147483646] "
-"的整數範圍.\n"
-"                                              s3必須是介於 [1, 2147483646] "
-"的整數範圍.\n"
-"                                              s4必須是介於[1, 2147483646] 的整數範圍."
+"                                              s2必須是介於 [1, 2147483646] 的"
+"整數範圍.\n"
+"                                              s3必須是介於 [1, 2147483646] 的"
+"整數範圍.\n"
+"                                              s4必須是介於[1, 2147483646] 的"
+"整數範圍."
 
 #, c-format
 msgid "WARNING: %s\n"

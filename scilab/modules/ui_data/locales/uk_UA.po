@@ -20,8 +20,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -30,8 +29,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"

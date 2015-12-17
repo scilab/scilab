@@ -32,8 +32,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une matrice réelle ou 'readonly' "
 "attendu.\n"
@@ -466,8 +465,7 @@ msgstr "Onglet précédent"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
-msgstr ""
-"Enregistrez vos modifications avant d'exécuter ce fichier dans Scilab."
+msgstr "Enregistrez vos modifications avant d'exécuter ce fichier dans Scilab."
 
 msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"
@@ -1096,8 +1094,7 @@ msgid "Underlined"
 msgstr "Souligné"
 
 msgid "Highlight corresponding keywords (e.g. if ... end)"
-msgstr ""
-"Mettre en surbrillance les mots-clés correspondants (e.g. if ... end)"
+msgstr "Mettre en surbrillance les mots-clés correspondants (e.g. if ... end)"
 
 msgid "Tabulation and Indentation"
 msgstr "Tabulation et indentation"

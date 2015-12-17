@@ -23,8 +23,7 @@ msgstr "%s: Não foi possível ler o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento %d: esperava-se um escalar real.\n"
+msgstr "%s: Tipo incorreto para o argumento %d: esperava-se um escalar real.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"

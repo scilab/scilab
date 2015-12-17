@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-21 17:21+0100\n"
+"Revision-Date: 2015-12-17 09:34+0100\n"
 
 #
 # File: modules/signal_processing/sci_gateway/c/sci_conv2.c, line: 39
@@ -252,37 +252,37 @@ msgid "%s: error in function syredi.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 78
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 139
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 79
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 140
 #, c-format
 msgid "Undefined function '%ls'.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 89
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 150
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 90
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 151
 #, c-format
 msgid "User function '%s' have not been setted.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 120
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 163
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 121
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 164
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 207
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 300
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 208
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 301
 #, c-format
 msgid "%ls: error while calling user function.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 240
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 248
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 333
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 341
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 241
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 249
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 334
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 342
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
 msgstr ""
@@ -637,159 +637,159 @@ msgid "%s: Elements of %dth argument must be in increasing order.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 53
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 59
 msgid "&File"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 54
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 60
 msgid "&Tools"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 55
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 61
 msgid "&Edit"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 56
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 62
 msgid "&?"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 62
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 68
 msgid "WFIR settings"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 86
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 92
 msgid "Filter type"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 113
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 119
 msgid "Band pass"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 113
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 119
 msgid "High pass"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 113
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 119
 msgid "Low pass"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 113
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 119
 msgid "Stop Band"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 135
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 141
 msgid "Window type"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 162
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 168
 msgid "Hanning"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 162
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 168
 msgid "Rectangular"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 162
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 168
 msgid "Triangular"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 163
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 169
 msgid "Chebychev main lobe"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 163
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 169
 msgid "Chebychev side lobe"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 163
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 169
 msgid "Hamming"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 163
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 169
 msgid "Kaiser"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 192
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 198
 msgid "Sampling Frequency (Hz)"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 226
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 232
 msgid "Filter Order"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 281
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 287
 msgid "Low cutoff frequency (Hz)"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 335
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 341
 msgid "High cutoff frequency (Hz)"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 390
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 396
 msgid "Parameter"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 447
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 453
 msgid "View"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 475
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 481
 msgid "Ok"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 490
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 496
 msgid "Cancel"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 505
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 511
 msgid "Help"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 660
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 666
 msgid "Window main lobe width"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 673
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 679
 msgid "maximum side-lobe height"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 700
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 803
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 706
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 809
 msgid "frequency (Hz)"
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 701
-# File: modules/signal_processing/macros/wfir_gui.sci, line: 804
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 707
+# File: modules/signal_processing/macros/wfir_gui.sci, line: 810
 msgid "Magnitude (dB)"
 msgstr ""
 

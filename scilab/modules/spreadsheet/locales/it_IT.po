@@ -117,8 +117,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
 "stringa '%s' o '%s'.\n"
@@ -333,8 +332,7 @@ msgstr "%s:%d: OLE_get_block:ERROR: fallimento nella ricerca (block=%d%d)"
 
 #, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
-msgstr ""
-"%s:%d: Discordanza nella lettura dei byte. Richiesto %d, ottenuto %d\n"
+msgstr "%s:%d: Discordanza nella lettura dei byte. Richiesto %d, ottenuto %d\n"
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
@@ -425,8 +423,7 @@ msgstr ""
 "%s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d: OLEUNWRAP_save_stream:ERROR: non è possibile aprire %s per la "
 "scrittura (%s)\n"

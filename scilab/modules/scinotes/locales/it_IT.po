@@ -30,8 +30,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Memoria esaurita.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 
 #, c-format
@@ -125,8 +124,7 @@ msgid "Print"
 msgstr "Stam_pa"
 
 msgid "An error occurred when exporting the code using FOP"
-msgstr ""
-"Si è verificato un errore durante l'esportazione del codice usando FOP"
+msgstr "Si è verificato un errore durante l'esportazione del codice usando FOP"
 
 msgid "An error occurred when printing"
 msgstr "Si è verificato un errore durante la stampa"

@@ -289,8 +289,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
@@ -298,8 +297,7 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice carrée attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire ou une chaîne de "
 "caractères attendu.\n"

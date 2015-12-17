@@ -117,8 +117,7 @@ msgstr ""
 "řádkový vektor.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řádku řetězců.\n"
 
@@ -195,8 +194,7 @@ msgstr "%s: Nelze otevřít soubor: %s\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
-msgstr ""
-"%s: Špatná verze formátu souboru SOD. Očekáváno max: %d Nalezeno: %d\n"
+msgstr "%s: Špatná verze formátu souboru SOD. Očekáváno max: %d Nalezeno: %d\n"
 
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"

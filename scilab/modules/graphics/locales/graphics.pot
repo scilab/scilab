@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-21 17:22+0100\n"
+"Revision-Date: 2015-12-17 09:34+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 80
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 219
@@ -29,7 +29,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_glue.c, line: 84
 # File: modules/graphics/sci_gateway/c/sci_glue.c, line: 92
 # File: modules/graphics/sci_gateway/c/sci_glue.c, line: 167
-# File: modules/graphics/sci_gateway/c/sci_light.c, line: 180
+# File: modules/graphics/sci_gateway/c/sci_light.c, line: 152
 # File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 66
 # File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 121
 # File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 151
@@ -155,22 +155,22 @@ msgstr ""
 # File: modules/graphics/src/c/Champ.c, line: 123
 # File: modules/graphics/src/c/Contour.c, line: 449
 # File: modules/graphics/src/c/Contour.c, line: 526
-# File: modules/graphics/src/c/FeC.c, line: 231
-# File: modules/graphics/src/c/Format.c, line: 864
-# File: modules/graphics/src/c/Format.c, line: 870
-# File: modules/graphics/src/c/Format.c, line: 1089
-# File: modules/graphics/src/c/Format.c, line: 1121
-# File: modules/graphics/src/c/Format.c, line: 1158
-# File: modules/graphics/src/c/Format.c, line: 1236
-# File: modules/graphics/src/c/Gray.c, line: 205
-# File: modules/graphics/src/c/Gray.c, line: 356
-# File: modules/graphics/src/c/Gray.c, line: 509
-# File: modules/graphics/src/c/Gray.c, line: 549
-# File: modules/graphics/src/c/Gray.c, line: 584
+# File: modules/graphics/src/c/FeC.c, line: 232
+# File: modules/graphics/src/c/Format.c, line: 865
+# File: modules/graphics/src/c/Format.c, line: 871
+# File: modules/graphics/src/c/Format.c, line: 1090
+# File: modules/graphics/src/c/Format.c, line: 1122
+# File: modules/graphics/src/c/Format.c, line: 1159
+# File: modules/graphics/src/c/Format.c, line: 1237
+# File: modules/graphics/src/c/Gray.c, line: 206
+# File: modules/graphics/src/c/Gray.c, line: 357
+# File: modules/graphics/src/c/Gray.c, line: 510
+# File: modules/graphics/src/c/Gray.c, line: 550
+# File: modules/graphics/src/c/Gray.c, line: 585
 # File: modules/graphics/src/c/InitObjects.c, line: 157
-# File: modules/graphics/src/c/Plo2dn.c, line: 401
-# File: modules/graphics/src/c/Plo2dn.c, line: 433
-# File: modules/graphics/src/c/Plo2dn.c, line: 455
+# File: modules/graphics/src/c/Plo2dn.c, line: 402
+# File: modules/graphics/src/c/Plo2dn.c, line: 434
+# File: modules/graphics/src/c/Plo2dn.c, line: 456
 # File: modules/graphics/src/c/SetProperty.c, line: 309
 # File: modules/graphics/src/c/SetProperty.c, line: 506
 # File: modules/graphics/src/c/SetProperty.c, line: 589
@@ -182,8 +182,8 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/get_links_property.c, line: 58
 # File: modules/graphics/src/c/getHandleProperty/get_tight_limits_property.c, line: 74
 # File: modules/graphics/src/c/getHandleProperty/set_links_property.c, line: 75
-# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 72
-# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 82
+# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 73
+# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 83
 # File: modules/graphics/src/c/getHandleProperty/set_segs_color_property.c, line: 76
 # File: modules/graphics/src/c/getHandleProperty/set_triangles_property.c, line: 72
 # File: modules/graphics/src/c/getHandleProperty/set_triangles_property.c, line: 81
@@ -641,7 +641,19 @@ msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_light.c, line: 63
+# File: modules/graphics/sci_gateway/c/sci_light.c, line: 55
+# File: modules/graphics/sci_gateway/c/sci_light.c, line: 61
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/c/sci_move.c, line: 126
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
+msgstr ""
+
+#
 # File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 88
 # File: modules/graphics/sci_gateway/c/sci_set.c, line: 64
 # File: modules/graphics/sci_gateway/c/sci_set.c, line: 131
@@ -653,19 +665,6 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_set.c, line: 427
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
-
-#
-# File: modules/graphics/sci_gateway/c/sci_light.c, line: 73
-# File: modules/graphics/sci_gateway/c/sci_light.c, line: 79
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/sci_gateway/c/sci_move.c, line: 126
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr ""
 
 #
@@ -1234,66 +1233,66 @@ msgid "%s is only made to compute level curves and not display them.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/DrawObjects.c, line: 97
+# File: modules/graphics/src/c/DrawObjects.c, line: 98
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/DrawObjects.c, line: 110
+# File: modules/graphics/src/c/DrawObjects.c, line: 111
 msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/DrawObjects.c, line: 123
+# File: modules/graphics/src/c/DrawObjects.c, line: 124
 msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/FeC.c, line: 216
-# File: modules/graphics/src/c/Gray.c, line: 195
-# File: modules/graphics/src/c/Gray.c, line: 346
-# File: modules/graphics/src/c/Gray.c, line: 499
-# File: modules/graphics/src/c/Plo2dn.c, line: 391
+# File: modules/graphics/src/c/FeC.c, line: 217
+# File: modules/graphics/src/c/Gray.c, line: 196
+# File: modules/graphics/src/c/Gray.c, line: 347
+# File: modules/graphics/src/c/Gray.c, line: 500
+# File: modules/graphics/src/c/Plo2dn.c, line: 392
 msgid "Warning: Nax does not work with logarithmic scaling.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 347
+# File: modules/graphics/src/c/Format.c, line: 348
 msgid "Internal Error: Loop in graduate1\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 348
+# File: modules/graphics/src/c/Format.c, line: 349
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 848
+# File: modules/graphics/src/c/Format.c, line: 849
 msgid "Error: ComputeFormat must be used with AXIS objects\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 987
+# File: modules/graphics/src/c/Format.c, line: 988
 #, c-format
 msgid "%s: Wrong type argument %s.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 1108
-# File: modules/graphics/src/c/Format.c, line: 1145
+# File: modules/graphics/src/c/Format.c, line: 1109
+# File: modules/graphics/src/c/Format.c, line: 1146
 #, c-format
 msgid "Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 1113
-# File: modules/graphics/src/c/Format.c, line: 1150
+# File: modules/graphics/src/c/Format.c, line: 1114
+# File: modules/graphics/src/c/Format.c, line: 1151
 #, c-format
 msgid "%s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 1227
+# File: modules/graphics/src/c/Format.c, line: 1228
 #, c-format
 msgid "Bad size in %s: you must first increase the size of the %s.\n"
 msgstr ""
@@ -1662,9 +1661,9 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_background_property.c, line: 55
 # File: modules/graphics/src/c/getHandleProperty/set_bar_width_property.c, line: 56
 # File: modules/graphics/src/c/getHandleProperty/set_border_property.c, line: 158
-# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 97
-# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 128
-# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 135
+# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 98
+# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 129
+# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 136
 # File: modules/graphics/src/c/getHandleProperty/set_callback_property.c, line: 102
 # File: modules/graphics/src/c/getHandleProperty/set_callback_property.c, line: 108
 # File: modules/graphics/src/c/getHandleProperty/set_callback_type_property.c, line: 66
@@ -1676,7 +1675,7 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_color_flag_property.c, line: 86
 # File: modules/graphics/src/c/getHandleProperty/set_color_map_property.c, line: 58
 # File: modules/graphics/src/c/getHandleProperty/set_color_mode_property.c, line: 54
-# File: modules/graphics/src/c/getHandleProperty/set_color_range_property.c, line: 71
+# File: modules/graphics/src/c/getHandleProperty/set_color_range_property.c, line: 72
 # File: modules/graphics/src/c/getHandleProperty/set_colored_property.c, line: 54
 # File: modules/graphics/src/c/getHandleProperty/set_colors_property.c, line: 52
 # File: modules/graphics/src/c/getHandleProperty/set_colors_property.c, line: 62
@@ -1758,9 +1757,9 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_line_width_property.c, line: 55
 # File: modules/graphics/src/c/getHandleProperty/set_links_property.c, line: 61
 # File: modules/graphics/src/c/getHandleProperty/set_links_property.c, line: 126
-# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 168
-# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 196
-# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 291
+# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 169
+# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 197
+# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 292
 # File: modules/graphics/src/c/getHandleProperty/set_margins_property.c, line: 60
 # File: modules/graphics/src/c/getHandleProperty/set_mark_background_property.c, line: 75
 # File: modules/graphics/src/c/getHandleProperty/set_mark_foreground_property.c, line: 75
@@ -1771,7 +1770,7 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_material_shininess_property.c, line: 51
 # File: modules/graphics/src/c/getHandleProperty/set_menubar_property.c, line: 53
 # File: modules/graphics/src/c/getHandleProperty/set_menubar_property.c, line: 73
-# File: modules/graphics/src/c/getHandleProperty/set_outside_colors_property.c, line: 71
+# File: modules/graphics/src/c/getHandleProperty/set_outside_colors_property.c, line: 72
 # File: modules/graphics/src/c/getHandleProperty/set_pixel_drawing_mode_property.c, line: 62
 # File: modules/graphics/src/c/getHandleProperty/set_polyline_style_property.c, line: 60
 # File: modules/graphics/src/c/getHandleProperty/set_position_property.c, line: 74
@@ -1780,7 +1779,7 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_position_property.c, line: 126
 # File: modules/graphics/src/c/getHandleProperty/set_rect_property.c, line: 67
 # File: modules/graphics/src/c/getHandleProperty/set_resize_property.c, line: 45
-# File: modules/graphics/src/c/getHandleProperty/set_rotation_angles_property.c, line: 52
+# File: modules/graphics/src/c/getHandleProperty/set_rotation_angles_property.c, line: 58
 # File: modules/graphics/src/c/getHandleProperty/set_rotation_style_property.c, line: 67
 # File: modules/graphics/src/c/getHandleProperty/set_screen_position_property.c, line: 65
 # File: modules/graphics/src/c/getHandleProperty/set_scrollable_property.c, line: 38
@@ -1878,7 +1877,7 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_axes_reverse_property.c, line: 99
 # File: modules/graphics/src/c/getHandleProperty/set_axes_visible_property.c, line: 63
 # File: modules/graphics/src/c/getHandleProperty/set_axes_visible_property.c, line: 98
-# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 116
+# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 117
 # File: modules/graphics/src/c/getHandleProperty/set_rotation_style_property.c, line: 55
 # File: modules/graphics/src/c/getHandleProperty/set_tight_limits_property.c, line: 121
 #, c-format
@@ -1890,7 +1889,7 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_alignment_property.c, line: 41
 # File: modules/graphics/src/c/getHandleProperty/set_anti_aliasing_property.c, line: 43
 # File: modules/graphics/src/c/getHandleProperty/set_arc_drawing_method_property.c, line: 41
-# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 47
+# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 48
 # File: modules/graphics/src/c/getHandleProperty/set_cdata_mapping_property.c, line: 44
 # File: modules/graphics/src/c/getHandleProperty/set_clip_state_property.c, line: 43
 # File: modules/graphics/src/c/getHandleProperty/set_data_mapping_property.c, line: 46
@@ -1908,7 +1907,7 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_layout_property.c, line: 38
 # File: modules/graphics/src/c/getHandleProperty/set_legend_location_property.c, line: 50
 # File: modules/graphics/src/c/getHandleProperty/set_light_type_property.c, line: 35
-# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 144
+# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 145
 # File: modules/graphics/src/c/getHandleProperty/set_mark_size_unit_property.c, line: 42
 # File: modules/graphics/src/c/getHandleProperty/set_menubar_property.c, line: 33
 # File: modules/graphics/src/c/getHandleProperty/set_pixel_drawing_mode_property.c, line: 42
@@ -1957,7 +1956,7 @@ msgstr ""
 #
 # File: modules/graphics/src/c/getHandleProperty/set_alignment_property.c, line: 59
 # File: modules/graphics/src/c/getHandleProperty/set_anti_aliasing_property.c, line: 69
-# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 85
+# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 86
 # File: modules/graphics/src/c/getHandleProperty/set_clip_state_property.c, line: 61
 # File: modules/graphics/src/c/getHandleProperty/set_color_flag_property.c, line: 76
 # File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 130
@@ -1980,7 +1979,7 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_axes_size_property.c, line: 44
 # File: modules/graphics/src/c/getHandleProperty/set_clip_box_property.c, line: 46
 # File: modules/graphics/src/c/getHandleProperty/set_color_map_property.c, line: 40
-# File: modules/graphics/src/c/getHandleProperty/set_color_range_property.c, line: 42
+# File: modules/graphics/src/c/getHandleProperty/set_color_range_property.c, line: 43
 # File: modules/graphics/src/c/getHandleProperty/set_colors_property.c, line: 40
 # File: modules/graphics/src/c/getHandleProperty/set_data_bounds_property.c, line: 101
 # File: modules/graphics/src/c/getHandleProperty/set_diffuse_color_property.c, line: 34
@@ -2018,14 +2017,14 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_ambient_color_property.c, line: 40
 # File: modules/graphics/src/c/getHandleProperty/set_axes_bounds_property.c, line: 49
 # File: modules/graphics/src/c/getHandleProperty/set_clip_box_property.c, line: 53
-# File: modules/graphics/src/c/getHandleProperty/set_color_range_property.c, line: 48
+# File: modules/graphics/src/c/getHandleProperty/set_color_range_property.c, line: 49
 # File: modules/graphics/src/c/getHandleProperty/set_diffuse_color_property.c, line: 40
 # File: modules/graphics/src/c/getHandleProperty/set_direction_property.c, line: 50
 # File: modules/graphics/src/c/getHandleProperty/set_figure_size_property.c, line: 48
 # File: modules/graphics/src/c/getHandleProperty/set_links_property.c, line: 67
 # File: modules/graphics/src/c/getHandleProperty/set_margins_property.c, line: 46
 # File: modules/graphics/src/c/getHandleProperty/set_material_shininess_property.c, line: 39
-# File: modules/graphics/src/c/getHandleProperty/set_outside_colors_property.c, line: 47
+# File: modules/graphics/src/c/getHandleProperty/set_outside_colors_property.c, line: 48
 # File: modules/graphics/src/c/getHandleProperty/set_position_property.c, line: 108
 # File: modules/graphics/src/c/getHandleProperty/set_rect_property.c, line: 49
 # File: modules/graphics/src/c/getHandleProperty/set_screen_position_property.c, line: 50
@@ -2115,11 +2114,11 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_hidden_color_property.c, line: 40
 # File: modules/graphics/src/c/getHandleProperty/set_label_font_style_property.c, line: 46
 # File: modules/graphics/src/c/getHandleProperty/set_labels_font_color_property.c, line: 46
-# File: modules/graphics/src/c/getHandleProperty/set_line_style_property.c, line: 38
+# File: modules/graphics/src/c/getHandleProperty/set_line_style_property.c, line: 39
 # File: modules/graphics/src/c/getHandleProperty/set_mark_background_property.c, line: 44
 # File: modules/graphics/src/c/getHandleProperty/set_mark_foreground_property.c, line: 44
 # File: modules/graphics/src/c/getHandleProperty/set_mark_style_property.c, line: 47
-# File: modules/graphics/src/c/getHandleProperty/set_outside_colors_property.c, line: 41
+# File: modules/graphics/src/c/getHandleProperty/set_outside_colors_property.c, line: 42
 # File: modules/graphics/src/c/getHandleProperty/set_polyline_style_property.c, line: 41
 # File: modules/graphics/src/c/getHandleProperty/set_tics_color_property.c, line: 42
 #, c-format
@@ -2133,7 +2132,7 @@ msgid "Wrong type for '%s' property: An empty matrix or a tlist expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 80
+# File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 81
 #, c-format
 msgid ""
 "WARNING !!!\n"
@@ -2204,8 +2203,8 @@ msgid "Wrong dimension for '%s' property: The number of columns must be 3.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_color_range_property.c, line: 60
-# File: modules/graphics/src/c/getHandleProperty/set_outside_colors_property.c, line: 60
+# File: modules/graphics/src/c/getHandleProperty/set_color_range_property.c, line: 61
+# File: modules/graphics/src/c/getHandleProperty/set_outside_colors_property.c, line: 61
 #, c-format
 msgid ""
 "WARNING: Wrong value for '%s' property: indices outside the colormap will be "
@@ -2358,25 +2357,25 @@ msgid "Wrong value for '%s' property: 'directional' or 'point' expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_line_style_property.c, line: 46
 # File: modules/graphics/src/c/getHandleProperty/set_line_style_property.c, line: 47
 # File: modules/graphics/src/c/getHandleProperty/set_line_style_property.c, line: 48
+# File: modules/graphics/src/c/getHandleProperty/set_line_style_property.c, line: 49
 #, c-format
 msgid "WARNING: %s\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_line_style_property.c, line: 46
+# File: modules/graphics/src/c/getHandleProperty/set_line_style_property.c, line: 47
 msgid "{0,1} values are equivalent for line_style property."
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_line_style_property.c, line: 47
+# File: modules/graphics/src/c/getHandleProperty/set_line_style_property.c, line: 48
 msgid "0 will be removed after Scilab 5.4.0."
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_line_style_property.c, line: 48
+# File: modules/graphics/src/c/getHandleProperty/set_line_style_property.c, line: 49
 msgid "Please use 1 instead."
 msgstr ""
 
@@ -2408,21 +2407,21 @@ msgid "%s: Input argument and the legend must have the same parent axes.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 150
+# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 151
 #, c-format
 msgid "Wrong size for '%s' property: Must be %s or %s.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 160
+# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 161
 #, c-format
 msgid "%s: Wrong value for argument: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 203
-# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 223
-# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 251
+# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 204
+# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 224
+# File: modules/graphics/src/c/getHandleProperty/set_log_flags_property.c, line: 252
 #, c-format
 msgid ""
 "Error: data_bounds on %s axis must be strictly positive to switch to "
@@ -2465,6 +2464,12 @@ msgstr ""
 #
 # File: modules/graphics/src/c/getHandleProperty/set_parent_property.c, line: 142
 msgid "Parent property can not be modified directly.\n"
+msgstr ""
+
+#
+# File: modules/graphics/src/c/getHandleProperty/set_rotation_angles_property.c, line: 46
+#, c-format
+msgid "Wrong size for '%s' property: Row vector of size %d expected.\n"
 msgstr ""
 
 #

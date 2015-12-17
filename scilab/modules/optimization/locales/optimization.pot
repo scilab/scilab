@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-21 17:21+0100\n"
+"Revision-Date: 2015-12-17 09:34+0100\n"
 
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 86
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 112
@@ -25,18 +25,18 @@ msgstr ""
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 230
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 271
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 308
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 98
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 123
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 152
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 199
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 225
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 99
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 124
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 153
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 200
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 226
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
 
 #
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 94
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 106
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 107
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr ""
@@ -46,8 +46,8 @@ msgstr ""
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 172
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 213
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 253
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 131
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 207
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 132
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 208
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
@@ -66,11 +66,11 @@ msgstr ""
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 344
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 354
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 362
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 249
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 257
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 265
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 273
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 281
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 250
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 258
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 266
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 274
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 282
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -100,14 +100,14 @@ msgid "%s: The constraints are inconsistent.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 182
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 183
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %d column(s) expected for matrix %s.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 239
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 240
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an integer in the range 0 "
@@ -115,27 +115,27 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 290
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 315
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 324
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 291
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 316
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 325
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 361
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 362
 #, c-format
 msgid "%s: The minimization problem has no solution.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 365
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 366
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 378
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 379
 #, c-format
 msgid ""
 "\n"
@@ -145,7 +145,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 385
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 386
 #, c-format
 msgid ""
 "\n"

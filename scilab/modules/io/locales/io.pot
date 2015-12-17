@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-21 17:21+0100\n"
+"Revision-Date: 2015-12-17 09:34+0100\n"
 
 # File: modules/io/sci_gateway/c/sci_getenv.c, line: 50
 # File: modules/io/sci_gateway/c/sci_getenv.c, line: 67
@@ -209,7 +209,7 @@ msgstr ""
 # File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 158
 # File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 165
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A sclar boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar boolean expected.\n"
 msgstr ""
 
 #
@@ -225,26 +225,32 @@ msgid "%ls: Cannot open file ''%ls''.\n"
 msgstr ""
 
 #
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 262
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 237
+#, c-format
+msgid "%s: Cannot open file ''%s''.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 271
 #, c-format
 msgid "%ls: Processing file: %ls\n"
 msgstr ""
 
 #
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 274
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 283
 #, c-format
 msgid "%ls: Error in file %ls.\n"
 msgstr ""
 
 #
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 315
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 324
 #, c-format
 msgid ""
 "%ls: Warning: %ls information cannot be added to file %ls. File ignored\n"
 msgstr ""
 
 #
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 340
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 349
 # File: modules/io/sci_gateway/cpp/sci_lib.cpp, line: 73
 # File: modules/io/sci_gateway/cpp/sci_load.cpp, line: 84
 msgid "Redefining permanent variable.\n"
@@ -387,7 +393,7 @@ msgstr ""
 msgid "unmanaged error by v2cunit.\n"
 msgstr ""
 
-# File: modules/io/macros/%_sodload.sci, line: 376
+# File: modules/io/macros/%_sodload.sci, line: 386
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr ""

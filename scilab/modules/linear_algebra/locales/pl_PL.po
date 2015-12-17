@@ -286,8 +286,7 @@ msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 
 #, c-format

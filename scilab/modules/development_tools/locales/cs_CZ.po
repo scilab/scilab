@@ -123,8 +123,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean matrix expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána booleovská matice.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána booleovská matice.\n"
 
 #, c-format
 msgid "%s: Assertion failed: found false entry in condition = %s"
@@ -169,8 +168,7 @@ msgstr ""
 "%d."
 
 #, c-format
-msgid ""
-"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 "%s: Očekáváno %d řad ve vstupním argumentu #%d, ale místo toho nalezeno %d "
 "řad."

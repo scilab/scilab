@@ -78,8 +78,7 @@ msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 
 #, c-format
@@ -87,8 +86,7 @@ msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 
 #, c-format
@@ -142,7 +140,9 @@ msgstr "%s: 第 #%d 輸入參數錯誤: 應該是字串.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "%s: 第 #%d 輸入參數的數值錯誤: 應該是 '%s', '%s', '%s', '%s', '%s' 或 '%s' .\n"
+msgstr ""
+"%s: 第 #%d 輸入參數的數值錯誤: 應該是 '%s', '%s', '%s', '%s', '%s' 或 "
+"'%s' .\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
@@ -173,8 +173,7 @@ msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 
 #, c-format

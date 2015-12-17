@@ -19,8 +19,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
-msgstr ""
-"%s: Questa caratteristica non è stata sviluppata in questa modalità.\n"
+msgstr "%s: Questa caratteristica non è stata sviluppata in questa modalità.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double scalar expected.\n"

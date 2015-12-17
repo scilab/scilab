@@ -66,8 +66,7 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
@@ -219,8 +218,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván vektor nebo skalár.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor nebo skalár.\n"
 
 #, c-format
 msgid ""
@@ -310,8 +308,7 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 
 #, c-format
@@ -344,8 +341,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekávána velikost %s.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekávána velikost %s.\n"
 
 #, c-format
 msgid "%s: Graph demand out of bounds.\n"
@@ -368,8 +364,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu %d: Očekáváno '%s', '%s', %d nebo %d.\n"
 

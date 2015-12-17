@@ -39,8 +39,7 @@ msgstr "%s: Nie zrealizowane w tym trybie.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano skalara.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano skalara.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"

@@ -163,8 +163,7 @@ msgstr "Impossibile invocare su oggetti nulli"
 
 #, c-format
 msgid "Wrong type for input argument #%d: A List expected."
-msgstr ""
-"L'argomento in ingresso #%d è di tipo sbagliato: era attesa una lista."
+msgstr "L'argomento in ingresso #%d è di tipo sbagliato: era attesa una lista."
 
 #, c-format
 msgid "Wrong type for input argument #%d: An Integer32 expected."

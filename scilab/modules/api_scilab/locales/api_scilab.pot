@@ -15,546 +15,546 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-21 17:22+0100\n"
+"Revision-Date: 2015-12-17 09:34+0100\n"
 
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 43
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 74
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 40
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 96
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 345
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 489
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 603
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 611
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 626
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 124
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 226
-# File: modules/api_scilab/src/cpp/api_handle.cpp, line: 37
-# File: modules/api_scilab/src/cpp/api_handle.cpp, line: 68
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 220
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 248
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 288
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 336
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 368
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 390
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 420
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 440
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 460
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 480
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 500
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 520
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 540
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 560
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 580
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 600
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 39
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 132
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 664
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 282
-# File: modules/api_scilab/src/cpp/api_pointer.cpp, line: 34
-# File: modules/api_scilab/src/cpp/api_pointer.cpp, line: 61
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 46
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 95
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 175
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 54
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 157
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 55
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 103
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 243
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 288
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 43
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 74
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 40
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 96
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 346
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 490
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 604
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 612
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 627
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 124
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 226
+# File: modules/api_scilab/src/cpp/api_stack_handle.cpp, line: 37
+# File: modules/api_scilab/src/cpp/api_stack_handle.cpp, line: 68
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 220
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 248
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 288
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 336
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 368
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 390
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 420
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 440
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 460
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 480
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 500
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 520
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 540
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 560
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 580
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 600
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 39
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 132
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 664
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 282
+# File: modules/api_scilab/src/cpp/api_stack_pointer.cpp, line: 34
+# File: modules/api_scilab/src/cpp/api_stack_pointer.cpp, line: 61
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 46
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 95
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 175
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 54
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 157
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 55
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 103
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 243
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 288
 #, c-format
 msgid "%s: Invalid argument address"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 50
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 145
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 131
-# File: modules/api_scilab/src/cpp/api_handle.cpp, line: 44
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 45
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 876
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 111
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 240
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 306
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 361
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 404
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 439
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 516
-# File: modules/api_scilab/src/cpp/api_pointer.cpp, line: 47
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 52
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 108
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 67
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 68
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 256
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 50
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 146
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 131
+# File: modules/api_scilab/src/cpp/api_stack_handle.cpp, line: 44
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 45
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 876
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 111
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 240
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 306
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 361
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 404
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 439
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 516
+# File: modules/api_scilab/src/cpp/api_stack_pointer.cpp, line: 47
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 52
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 108
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 67
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 68
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 256
 #, c-format
 msgid "%s: Invalid argument type, %s expected"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 50
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 50
 msgid "boolean matrix"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 57
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 234
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 47
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 54
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 256
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 65
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 138
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 560
-# File: modules/api_scilab/src/cpp/api_handle.cpp, line: 51
-# File: modules/api_scilab/src/cpp/api_handle.cpp, line: 136
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 182
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 200
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 139
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 145
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 152
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1133
-# File: modules/api_scilab/src/cpp/api_pointer.cpp, line: 41
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 102
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 121
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 386
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 401
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 473
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 483
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 506
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 61
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 81
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 428
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 62
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 75
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 250
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 263
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 57
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 234
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 47
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 54
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 256
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 65
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 138
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 560
+# File: modules/api_scilab/src/cpp/api_stack_handle.cpp, line: 51
+# File: modules/api_scilab/src/cpp/api_stack_handle.cpp, line: 136
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 182
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 200
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 139
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 145
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 152
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1133
+# File: modules/api_scilab/src/cpp/api_stack_pointer.cpp, line: 41
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 102
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 121
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 386
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 401
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 473
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 483
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 506
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 61
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 81
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 428
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 62
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 75
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 250
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 263
 #, c-format
 msgid "%s: Unable to get argument #%d"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 85
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 94
-# File: modules/api_scilab/src/cpp/api_handle.cpp, line: 79
-# File: modules/api_scilab/src/cpp/api_handle.cpp, line: 88
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 702
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 840
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1268
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 203
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 141
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 85
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 94
+# File: modules/api_scilab/src/cpp/api_stack_handle.cpp, line: 79
+# File: modules/api_scilab/src/cpp/api_stack_handle.cpp, line: 88
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 702
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 840
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1268
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 203
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 141
 #, c-format
 msgid "%s: No more memory to allocated variable"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 112
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 120
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 145
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 293
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 308
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 124
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 135
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 164
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1463
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1479
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 162
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 179
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 195
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 211
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 292
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 310
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 329
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 348
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 367
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 384
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 654
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 682
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 710
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 744
-# File: modules/api_scilab/src/cpp/api_handle.cpp, line: 105
-# File: modules/api_scilab/src/cpp/api_handle.cpp, line: 113
-# File: modules/api_scilab/src/cpp/api_handle.cpp, line: 163
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 200
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 208
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 227
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 235
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 254
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 262
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 280
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 300
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 308
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 327
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 335
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 354
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 362
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 383
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 391
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 412
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 422
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 442
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 452
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 473
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 483
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 505
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 515
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 536
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 546
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 566
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 576
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 596
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 606
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 627
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 637
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 657
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 771
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1286
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1299
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1312
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1327
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1341
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1354
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1367
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1381
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1395
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1408
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1421
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1435
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1449
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1462
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1475
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1489
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 646
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 931
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1067
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1255
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1362
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 189
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 255
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 234
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 247
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 285
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 130
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 175
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 310
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 325
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 352
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 112
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 120
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 145
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 293
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 308
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 124
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 135
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 164
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1464
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1480
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 162
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 179
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 195
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 211
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 292
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 310
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 329
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 348
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 367
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 384
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 654
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 682
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 710
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 744
+# File: modules/api_scilab/src/cpp/api_stack_handle.cpp, line: 105
+# File: modules/api_scilab/src/cpp/api_stack_handle.cpp, line: 113
+# File: modules/api_scilab/src/cpp/api_stack_handle.cpp, line: 163
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 200
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 208
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 227
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 235
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 254
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 262
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 280
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 300
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 308
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 327
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 335
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 354
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 362
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 383
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 391
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 412
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 422
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 442
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 452
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 473
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 483
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 505
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 515
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 536
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 546
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 566
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 576
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 596
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 606
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 627
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 637
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 657
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 771
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1286
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1299
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1312
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1327
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1341
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1354
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1367
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1381
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1395
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1408
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1421
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1435
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1449
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1462
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1475
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1489
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 646
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 931
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1067
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1255
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1362
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 189
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 255
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 234
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 247
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 285
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 130
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 175
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 310
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 325
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 352
 #, c-format
 msgid "%s: Unable to create variable in Scilab memory"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 135
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 152
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 153
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 171
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1532
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 412
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 445
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 762
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 219
-# File: modules/api_scilab/src/cpp/api_pointer.cpp, line: 98
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 246
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 268
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 274
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 292
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 166
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 185
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 341
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 360
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 135
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 152
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 153
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 171
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1533
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 412
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 445
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 762
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 219
+# File: modules/api_scilab/src/cpp/api_stack_pointer.cpp, line: 98
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 246
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 268
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 274
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 292
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 166
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 185
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 341
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 360
 #, c-format
 msgid "%s: Invalid variable name: %s."
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 159
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 178
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 301
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 159
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 178
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 301
 #, c-format
 msgid "%s: Unable to create %s named \"%s\""
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 159
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 159
 msgid "matrix of boolean"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 176
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 195
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1547
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 434
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 474
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 855
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 272
-# File: modules/api_scilab/src/cpp/api_pointer.cpp, line: 115
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 300
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 317
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 207
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 380
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 176
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 195
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1548
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 434
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 474
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 855
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 272
+# File: modules/api_scilab/src/cpp/api_stack_pointer.cpp, line: 115
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 300
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 317
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 207
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 380
 msgid "Redefining permanent variable.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 191
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 198
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 210
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 581
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 500
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 507
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 968
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 975
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 355
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 368
-# File: modules/api_scilab/src/cpp/api_pointer.cpp, line: 130
-# File: modules/api_scilab/src/cpp/api_pointer.cpp, line: 137
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 322
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 337
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 345
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 360
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 219
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 226
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 392
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 399
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 191
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 198
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 210
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 582
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 500
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 507
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 968
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 975
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 355
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 368
+# File: modules/api_scilab/src/cpp/api_stack_pointer.cpp, line: 130
+# File: modules/api_scilab/src/cpp/api_stack_pointer.cpp, line: 137
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 322
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 337
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 345
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 360
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 219
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 226
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 392
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 399
 #, c-format
 msgid "%s: Unable to get variable \"%s\""
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 241
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 567
-# File: modules/api_scilab/src/cpp/api_handle.cpp, line: 143
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1125
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 378
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 241
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 567
+# File: modules/api_scilab/src/cpp/api_stack_handle.cpp, line: 143
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1125
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 378
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 265
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 278
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 289
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 618
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1273
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 438
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 529
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 539
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 562
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 472
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 489
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 265
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 278
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 289
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 618
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1273
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 438
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 529
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 539
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 562
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 472
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 489
 #, c-format
 msgid "%s: Unable to get argument \"%s\""
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean.cpp, line: 272
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 610
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 1265
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 430
+# File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 272
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 610
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1265
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 430
 #, c-format
 msgid "%s: Wrong type for input argument \"%s\": A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 178
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 178
 msgid "boolean sparse matrix"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_boolean_sparse.cpp, line: 217
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 217
 msgid "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 129
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 130
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 133
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 134
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 145
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 146
 msgid "matrix"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 164
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 165
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 178
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 179
 #, c-format
 msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 194
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 195
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 198
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 199
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 214
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 215
 #, c-format
 msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 228
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 229
 #, c-format
 msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 349
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 84
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 350
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 84
 #, c-format
 msgid "%s: matrix argument expected"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 364
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 371
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 365
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 372
 #, c-format
 msgid "%s: Unable to get dimension of variable \"%s\""
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 394
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 409
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 434
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 395
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 410
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 435
 #, c-format
 msgid "%s: bad call to %s! (1rst argument).\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 472
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 473
 #, c-format
 msgid "%s: Unable to get address of variable \"%s\""
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 588
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 589
 #, c-format
 msgid "%s: Unable to get type of variable \"%s\""
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 703
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 751
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 860
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1059
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1086
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1118
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1145
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1207
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1234
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1266
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1293
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1325
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1352
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 704
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 752
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 861
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1060
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1087
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1119
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1146
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1208
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1235
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1267
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1294
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1326
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1353
 #, c-format
 msgid "%s: Unable to get argument dimension"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 711
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 712
 #, c-format
 msgid "%s: Unable to get variable address"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 718
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 831
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 719
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 832
 #, c-format
 msgid "%s: Unable to get argument type"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 729
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 765
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 773
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 847
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 887
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 900
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 913
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 926
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 939
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 952
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 966
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 979
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 435
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 445
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 471
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 481
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 494
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 505
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 528
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 541
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 552
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 582
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 606
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 616
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 641
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 651
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 664
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 674
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 698
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 715
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 725
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 750
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 763
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 812
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 825
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 838
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 730
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 766
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 774
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 848
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 888
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 901
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 914
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 927
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 940
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 953
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 967
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 980
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 435
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 445
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 471
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 481
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 494
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 505
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 528
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 541
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 552
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 582
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 606
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 616
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 641
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 651
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 664
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 674
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 698
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 715
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 725
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 750
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 763
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 812
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 825
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 838
 #, c-format
 msgid "%s: Unable to get argument data"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 735
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 757
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 866
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 736
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 758
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 867
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 782
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 783
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 813
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 814
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 839
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 840
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 874
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 875
 #, c-format
 msgid "%s: Unable to get argument precision"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 990
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 991
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
@@ -562,247 +562,247 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1005
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1013
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1006
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1014
 #, c-format
 msgid "%s: Unable to get dimension from variable \"%s\""
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1566
-# File: modules/api_scilab/src/cpp/api_common.cpp, line: 1590
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1567
+# File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1591
 #, c-format
 msgid "Invalid type pointer in '%s'\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 131
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 131
 msgid "double matrix"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 251
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 246
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 312
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 522
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 660
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 945
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1081
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1434
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1840
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2040
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2215
-# File: modules/api_scilab/src/cpp/api_pointer.cpp, line: 81
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 251
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 246
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 312
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 522
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 660
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 945
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1081
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1434
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1840
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2040
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2215
+# File: modules/api_scilab/src/cpp/api_stack_pointer.cpp, line: 81
 #, c-format
 msgid "%s: %ls"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 257
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 266
-# File: modules/api_scilab/src/cpp/api_double.cpp, line: 275
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 252
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 318
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 528
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 556
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 577
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 666
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 673
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 682
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 951
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1087
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1094
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1440
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1846
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2046
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2209
-# File: modules/api_scilab/src/cpp/api_pointer.cpp, line: 75
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 787
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 795
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 257
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 266
+# File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 275
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 252
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 318
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 528
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 556
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 577
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 666
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 673
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 682
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 951
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1087
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1094
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1440
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1846
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2046
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2209
+# File: modules/api_scilab/src/cpp/api_stack_pointer.cpp, line: 75
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 787
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 795
 #, c-format
 msgid "%s: No more memory to allocate variable"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_error.cpp, line: 75
-# File: modules/api_scilab/src/cpp/api_error.cpp, line: 80
+# File: modules/api_scilab/src/cpp/api_stack_error.cpp, line: 75
+# File: modules/api_scilab/src/cpp/api_stack_error.cpp, line: 80
 msgid "API Error:\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_error.cpp, line: 76
-# File: modules/api_scilab/src/cpp/api_error.cpp, line: 84
+# File: modules/api_scilab/src/cpp/api_stack_error.cpp, line: 76
+# File: modules/api_scilab/src/cpp/api_stack_error.cpp, line: 84
 #, c-format
 msgid "\tin %s\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_handle.cpp, line: 44
+# File: modules/api_scilab/src/cpp/api_stack_handle.cpp, line: 44
 msgid "handle matrix"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_hypermat.cpp, line: 296
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 114
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 73
+# File: modules/api_scilab/src/cpp/api_stack_hypermat.cpp, line: 296
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 114
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 73
 #, c-format
 msgid "%s: Bad call to get a non complex matrix"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 45
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 876
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 45
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 876
 msgid "int matrix"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_int.cpp, line: 867
+# File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 867
 #, c-format
 msgid "%s: Unable to get precision of variable \"%s\""
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 98
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 98
 #, c-format
 msgid "%s: Unable to get item number of list"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 111
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 240
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 306
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 516
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 111
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 240
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 306
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 516
 msgid "list"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 154
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 398
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 606
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 613
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 879
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 886
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1016
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1023
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1192
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1561
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1568
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1890
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1897
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2080
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2087
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2157
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2164
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 154
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 398
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 606
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 613
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 879
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 886
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1016
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1023
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1192
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1561
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1568
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1890
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1897
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2080
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2087
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2157
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2164
 #, c-format
 msgid "%s: Unable to get address of item #%d in argument #%d"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 160
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 716
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 733
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 770
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 789
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1039
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1111
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1499
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1628
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1853
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2053
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 160
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 716
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 733
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 770
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 789
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1039
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1111
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1499
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1628
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1853
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2053
 #, c-format
 msgid "%s: Unable to create list item #%d in Scilab memory"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 433
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 830
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 843
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 850
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 978
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 991
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 998
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1137
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1150
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1157
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1315
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1328
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1335
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1697
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1710
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1717
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1930
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1943
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1950
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2108
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2121
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2128
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2237
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2250
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 2257
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 433
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 830
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 843
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 850
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 978
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 991
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 998
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1137
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1150
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1157
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1315
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1328
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1335
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1697
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1710
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1717
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1930
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1943
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1950
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2108
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2121
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2128
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2237
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2250
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 2257
 #, c-format
 msgid "%s: Unable to get address of item #%d in variable \"%s\""
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_list.cpp, line: 1199
+# File: modules/api_scilab/src/cpp/api_stack_list.cpp, line: 1199
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_optional.cpp, line: 57
+# File: modules/api_scilab/src/cpp/api_stack_optional.cpp, line: 58
 #, c-format
 msgid "%ls: Unrecognized optional arguments %ls.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_optional.cpp, line: 162
+# File: modules/api_scilab/src/cpp/api_stack_optional.cpp, line: 163
 msgid "Optional argument list is empty.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_optional.cpp, line: 166
+# File: modules/api_scilab/src/cpp/api_stack_optional.cpp, line: 167
 msgid "Optional arguments list: \n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_optional.cpp, line: 172
+# File: modules/api_scilab/src/cpp/api_stack_optional.cpp, line: 173
 #, c-format
 msgid "and %s.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_pointer.cpp, line: 47
+# File: modules/api_scilab/src/cpp/api_stack_pointer.cpp, line: 47
 msgid "pointer"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 52
-# File: modules/api_scilab/src/cpp/api_poly.cpp, line: 108
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 52
+# File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 108
 msgid "polynomial matrix"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 67
-# File: modules/api_scilab/src/cpp/api_sparse.cpp, line: 301
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 67
+# File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 301
 msgid "sparse matrix"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 68
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 256
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 68
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 256
 msgid "string matrix"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 427
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 463
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 427
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 463
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 598
-# File: modules/api_scilab/src/cpp/api_string.cpp, line: 633
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 598
+# File: modules/api_scilab/src/cpp/api_stack_string.cpp, line: 633
 #, c-format
 msgid "%s: Wrong type for input argument \"%s\": A single string expected.\n"
 msgstr ""

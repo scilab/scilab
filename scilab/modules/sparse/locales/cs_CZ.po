@@ -33,8 +33,7 @@ msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments %d: A vector of size %d expected.\n"
+msgid "%s: Wrong size for input arguments %d: A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -127,8 +126,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -409,8 +407,7 @@ msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"

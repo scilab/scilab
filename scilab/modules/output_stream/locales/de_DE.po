@@ -88,8 +88,7 @@ msgstr ""
 "schliessen.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Fehler, kann Tagebuch nicht "
 "schliessen %d.\n"
@@ -101,8 +100,7 @@ msgstr ""
 "pausieren.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Fehler, kann Tagebuch nicht "
 "pausieren %d.\n"
@@ -199,8 +197,7 @@ msgstr ""
 "wird erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 "%s: Falscher Typ des Eingangsarguments #%d: Zustandsraummodell wird "
 "erwartet.\n"

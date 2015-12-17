@@ -172,11 +172,10 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Ocorreu um erro: não há suporte para %s.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
-"%s: Ocorreu um erro: o formato do arquivo é inválido. Erro ao ler o pedaço "
-"<%s>.\n"
+"%s: Ocorreu um erro: o formato do arquivo é inválido. Erro ao ler o pedaço <"
+"%s>.\n"
 
 msgid "Invalid .wav file: found data before format information."
 msgstr "Arquivo .wav inválido: achou dados antes da informação de formato."

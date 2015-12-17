@@ -302,8 +302,8 @@ msgstr "%s: Неправильный формат файла CHAPTER в стро
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
 "заканчивается на .last_successful_build.\n"

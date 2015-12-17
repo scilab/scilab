@@ -58,8 +58,8 @@ msgstr "%s: Funzione non disponibile in modalità NWNI.\n"
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
 msgstr ""
-"%s: Il numero della figura deve essere indicato quando non è in modalità "
-"\"%s\".\n"
+"%s: Il numero della figura deve essere indicato quando non è in modalità \"%s"
+"\".\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -322,8 +322,7 @@ msgstr ""
 "gestore \"%s\".\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un valido "
 "gestore '%s'.\n"
@@ -395,13 +394,11 @@ msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: string or macro name expected.\n"
+msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
@@ -426,8 +423,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -591,8 +587,7 @@ msgstr ""
 "%s: L'argomento in ingresso #%d è sbagliato: era atteso \"%s\" o \"%s\".\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso il "
 "valore \"pos\" o \"gdi\".\n"
@@ -802,8 +797,7 @@ msgstr ""
 "un valore numerico.\n"
 
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "La proprietà '%s' è di tipo sbagliato: era atteso un vettore riga reale o "
 "una stringa.\n"
@@ -820,8 +814,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr ""
-"La proprietà '%s' è di tipo sbagliato: era atteso '%s', '%s' o '%s'.\n"
+msgstr "La proprietà '%s' è di tipo sbagliato: era atteso '%s', '%s' o '%s'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
@@ -2285,8 +2278,7 @@ msgstr "Impossibile aprire: "
 msgid "Restoration error"
 msgstr ""
 
-msgid ""
-"The configuration file has been corrupted and reset to the default one."
+msgid "The configuration file has been corrupted and reset to the default one."
 msgstr ""
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
@@ -2374,8 +2366,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -2451,8 +2442,7 @@ msgstr ""
 "almeno %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 
 #, c-format
@@ -2502,8 +2492,8 @@ msgstr "%s: Non è stato trovato nessun risultato.\n"
 #, c-format
 msgid "%s: No results found for property '%s' and value '%s'.\n"
 msgstr ""
-"%s: Non è stato trovato alcun valore per la proprietà \"%s\" e il valore "
-"\"%s\".\n"
+"%s: Non è stato trovato alcun valore per la proprietà \"%s\" e il valore \"%s"
+"\".\n"
 
 #, c-format
 msgid "%s:  #%d matching parent nodes.\n"
@@ -2528,8 +2518,7 @@ msgstr "%s: %s è di tipo sbagliato: era attesa una stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
-msgstr ""
-"%s: %s è di tipo sbagliato: era atteso un vettore riga di stringhe.\n"
+msgstr "%s: %s è di tipo sbagliato: era atteso un vettore riga di stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong size for %s: A row vector of strings expected.\n"

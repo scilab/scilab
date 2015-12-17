@@ -65,8 +65,7 @@ msgid "Unique id of a shared library expected."
 msgstr "共用程式庫之 id 必須唯一."
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 
 #
@@ -213,8 +212,7 @@ msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: 第 #%d個參數型別有誤:  matrix of strings 才對.\n"
 
 #, c-format
@@ -335,8 +333,8 @@ msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
-"%s: 注意: Scilab 還沒發現Scilab 的源碼所在. 請提交 bug report on "
-"http://bugzilla.scilab.org/\n"
+"%s: 注意: Scilab 還沒發現Scilab 的源碼所在. 請提交 bug report on http://"
+"bugzilla.scilab.org/\n"
 
 #, c-format
 msgid "%s: Build command: %s\n"
@@ -460,7 +458,9 @@ msgstr "   stderr: %s\n"
 msgid ""
 "%s: An error occurred during the detection of the compiler(s). Set "
 "ilib_verbose(2) for more information.\n"
-msgstr "%s:  偵測 the compiler(s)時，有錯誤發生. 設定 ilib_verbose(2) 以取得更多資訊.\n"
+msgstr ""
+"%s:  偵測 the compiler(s)時，有錯誤發生. 設定 ilib_verbose(2) 以取得更多資"
+"訊.\n"
 
 # File: macros/ilib_gen_gateway.sci, line: 54
 #, c-format

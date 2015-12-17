@@ -114,8 +114,7 @@ msgid "%s: setgmn return with state %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
 
 #, c-format
@@ -170,8 +169,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
 
 #, c-format

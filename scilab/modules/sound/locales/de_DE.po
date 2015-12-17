@@ -169,15 +169,13 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: ein Fehler ist aufgetreten: %s wird nicht unterstützt.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: ein Fehler ist aufgetreten: ungültiges Dateiformat: Fehler beim Lesen "
 "des <%s> Stücks.\n"
 
 msgid "Invalid .wav file: found data before format information."
-msgstr ""
-"Ungültige .wav-Datei gefunden: Daten beginnen vor Formatinformationen."
+msgstr "Ungültige .wav-Datei gefunden: Daten beginnen vor Formatinformationen."
 
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Inkorrekte Information der Blockgröße in RIFF Datei,"

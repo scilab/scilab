@@ -62,8 +62,7 @@ msgid "Unsupported language '%ls'.\n"
 msgstr ""
 
 msgid "The language for menus cannot be changed on a running console.\n"
-msgstr ""
-"Zmiana języka menu nie może być wykonana przy uruchomionej konsoli.\n"
+msgstr "Zmiana języka menu nie może być wykonana przy uruchomionej konsoli.\n"
 
 msgid "Restart Scilab to apply to menus.\n"
 msgstr "Zrestartuj Scilab, aby zastosować zmiany w menu.\n"

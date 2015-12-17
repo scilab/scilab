@@ -178,4 +178,5 @@ msgstr "変数が無効です: データ型を取得できませんでした"
 
 #, c-format
 msgid "%s: Wrong argument type at position %i: Double expected\n"
-msgstr "%s: 位置 %i にある引数の型が間違っています:] double を指定してください\n"
+msgstr ""
+"%s: 位置 %i にある引数の型が間違っています:] double を指定してください\n"

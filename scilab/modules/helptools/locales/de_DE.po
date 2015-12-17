@@ -296,11 +296,11 @@ msgstr "%s: die Kapiteldatei ist nicht gut formatiert in Zeile %d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: eine Zeichenkette, die mit "
-".last_sucessfull_build endet, wird erwartet.\n"
+"%s: falscher Wert für Eingangsargument #%d: eine Zeichenkette, die mit ."
+"last_sucessfull_build endet, wird erwartet.\n"
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formated at line %d\n"

@@ -31,8 +31,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 "#%s: помилковий тип параметра №%d: слід використовувати матрицю дійсних "
 "значень або рядок «readonly».\n"
@@ -538,8 +537,7 @@ msgid "%s is a directory."
 msgstr "%s — це каталог."
 
 msgid "Your modifications will be lost, change encoding anyway?"
-msgstr ""
-"Внесені вами зміни буде втрачено. Попри це бажаєте змінити кодування?"
+msgstr "Внесені вами зміни буде втрачено. Попри це бажаєте змінити кодування?"
 
 msgid "Continue ?"
 msgstr "Продовжити?"
@@ -999,8 +997,7 @@ msgid "Completion"
 msgstr "Доповнення"
 
 msgid "Auto-complete brackets when cursor is at the end of a line"
-msgstr ""
-"Автоматично доповнювати дужки, коли курсор перебуває наприкінці рядка"
+msgstr "Автоматично доповнювати дужки, коли курсор перебуває наприкінці рядка"
 
 msgid "General display options"
 msgstr "Загальні параметри показу"

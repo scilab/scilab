@@ -92,8 +92,7 @@ msgstr ""
 "el diario.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: error no se puede cerrar "
 "el diario %d.\n"
@@ -105,8 +104,7 @@ msgstr ""
 "el diario.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: error no se puede pausar "
 "el diario %d.\n"
@@ -207,8 +205,7 @@ msgstr ""
 "caracteres.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un modelo "
 "estado-espacio.\n"

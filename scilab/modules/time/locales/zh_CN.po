@@ -127,8 +127,7 @@ msgid ""
 msgstr "%s：输入参数#%d的大小错误：应该为一个 mx3 矩阵或 mx6矩阵。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr "%s：输入参数#%d的值错误：%s必须介于%d与%d之间。\n"
 
 msgid "Month"
@@ -171,8 +170,7 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format

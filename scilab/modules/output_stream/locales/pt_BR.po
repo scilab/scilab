@@ -27,8 +27,7 @@ msgstr "%s: Não foi possível ler o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se 0.\n"
+msgstr "%s: Valor incorreto para o argumento de entrada #%d: esperava-se 0.\n"
 
 #, c-format
 msgid "%s: error can not create diary: %s.\n"
@@ -89,8 +88,7 @@ msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 
 #, c-format
@@ -98,8 +96,7 @@ msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 
 #, c-format
@@ -189,8 +186,7 @@ msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 
 #, c-format

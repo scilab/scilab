@@ -110,8 +110,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", "
-"\"%s\" \n"
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", \"%s"
+"\" \n"
 msgstr ""
 
 #, c-format
@@ -245,8 +245,7 @@ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: očekávána hodnota '%s'.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: očekávána hodnota '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"

@@ -168,13 +168,11 @@ msgstr "%s: помилковий тип вхідного параметра №%
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -368,8 +366,7 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr "%s: виявлено NaN-и, скористайтеся краще %s().\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано невід’ємні "
 "значення.\n"
@@ -433,8 +430,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути «%s», «%s», %d або "
 "%d.\n"

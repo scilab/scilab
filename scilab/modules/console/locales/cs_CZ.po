@@ -42,8 +42,7 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáván skalár (>= 0).\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván skalár (>= 0).\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"

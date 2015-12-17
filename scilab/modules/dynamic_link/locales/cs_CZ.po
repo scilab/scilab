@@ -61,8 +61,7 @@ msgid "Unique id of a shared library expected."
 msgstr "Očekáváno jedinečné id sdílené knihovny."
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -196,8 +195,7 @@ msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
 #, c-format
@@ -209,8 +207,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
-msgstr ""
-"%s: Pro vstupní argument #%d je očekávána spravovaná přípona souboru."
+msgstr "%s: Pro vstupní argument #%d je očekávána spravovaná přípona souboru."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
@@ -373,8 +370,7 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
 
 #, c-format
 msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
-msgstr ""
-"   %s: Kopírovat soubory kompilace (Makefile*, libtool...) do DOČSLO\n"
+msgstr "   %s: Kopírovat soubory kompilace (Makefile*, libtool...) do DOČSLO\n"
 
 #, c-format
 msgid "   %s: Copy %s to TMPDIR\n"
@@ -383,8 +379,7 @@ msgstr "   %s: Kopírovat %s do DOČSLO\n"
 #, c-format
 msgid ""
 "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
-msgstr ""
-"   %s: Nezkopírováno %s: Zdrojové a cílové složky jsou stejné (%s).\n"
+msgstr "   %s: Nezkopírováno %s: Zdrojové a cílové složky jsou stejné (%s).\n"
 
 #, c-format
 msgid ""

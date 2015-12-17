@@ -156,8 +156,7 @@ msgstr "%s: помилковий тип параметра %d: мало бути
 
 #, c-format
 msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
-msgstr ""
-"%s: m-списки типу %s не можна записувати до бінарних файлів Matlab.\n"
+msgstr "%s: m-списки типу %s не можна записувати до бінарних файлів Matlab.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"

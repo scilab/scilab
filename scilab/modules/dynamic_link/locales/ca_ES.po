@@ -65,8 +65,7 @@ msgid "Unique id of a shared library expected."
 msgstr "Ha de ser un identificador únic d'una llibreria compartida."
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -198,8 +197,7 @@ msgstr ""
 "text.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
 "de cadenes de caràcters.\n"

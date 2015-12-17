@@ -101,8 +101,7 @@ msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
 
 #, c-format
@@ -152,8 +151,7 @@ msgstr "Wybrałeś instalację Scilaba z modułem fft."
 msgid "This module requires: "
 msgstr "Ten moduł wymaga: "
 
-msgid ""
-"Scilab will use standard fft by default until you install this library."
+msgid "Scilab will use standard fft by default until you install this library."
 msgstr ""
 "Scilab używa domyślnie standardowej biblioteki fft dopóki nie zostanie "
 "zainstalowana ta biblioteka."

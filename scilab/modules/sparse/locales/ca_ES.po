@@ -34,8 +34,7 @@ msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments %d: A vector of size %d expected.\n"
+msgid "%s: Wrong size for input arguments %d: A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -128,8 +127,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
 msgstr ""
 
 #, c-format

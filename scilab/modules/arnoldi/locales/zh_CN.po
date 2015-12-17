@@ -63,8 +63,7 @@ msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 
 #, c-format
@@ -175,8 +174,7 @@ msgid "%s: Error with %s: info = %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 
 #, c-format

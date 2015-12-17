@@ -69,8 +69,7 @@ msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: The XML Document has not an URI and there is no second argument.\n"
+msgid "%s: The XML Document has not an URI and there is no second argument.\n"
 msgstr ""
 
 #, c-format
@@ -98,8 +97,7 @@ msgid "%s: XMLList does not exist.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数的值出错：应该为‘%s’、‘%s’或‘%s’。\n"
 
 #, c-format

@@ -56,8 +56,7 @@ msgstr "%s: Aquesta funció no està disponible en el mode NWNI.\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr ""
-"%s: S'ha de donar el número de figura si no s'està en el mode '%s'.\n"
+msgstr "%s: S'ha de donar el número de figura si no s'està en el mode '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -182,13 +181,11 @@ msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Els arguments d'entrada són incorrectes: Han de ser '%s' o '%s'.\n"
+msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser > %d.\n"
+msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser > %d.\n"
 
 #, c-format
 msgid ""
@@ -317,8 +314,7 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un tractament "
 "'%s' vàlid.\n"
@@ -389,13 +385,11 @@ msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: string or macro name expected.\n"
+msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
@@ -420,8 +414,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -582,8 +575,7 @@ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
@@ -676,8 +668,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr ""
-"La propietat '%s' té una mida incorrecta: Ha de ser un nombre real.\n"
+msgstr "La propietat '%s' té una mida incorrecta: Ha de ser un nombre real.\n"
 
 #, c-format
 msgid ""
@@ -708,8 +699,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
-msgstr ""
-"La propietat '%s' té un valor incorrecte: Ha de ser un nombre real.\n"
+msgstr "La propietat '%s' té un valor incorrecte: Ha de ser un nombre real.\n"
 
 #, c-format
 msgid ""
@@ -790,8 +780,7 @@ msgstr ""
 "valor numèric.\n"
 
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser un vector fila de "
 "nombres reals o una cadena de text.\n"
@@ -2272,8 +2261,7 @@ msgstr ""
 msgid "Restoration error"
 msgstr ""
 
-msgid ""
-"The configuration file has been corrupted and reset to the default one."
+msgid "The configuration file has been corrupted and reset to the default one."
 msgstr ""
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
@@ -2310,8 +2298,7 @@ msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser %s o %s.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
-msgstr ""
-"%s: Els arguments d'entrada són incorrectes: Han de ser %s, %s o %s.\n"
+msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser %s, %s o %s.\n"
 
 #, c-format
 msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
@@ -2357,8 +2344,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -2431,8 +2417,7 @@ msgstr ""
 "%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 
 #, c-format

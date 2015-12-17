@@ -65,12 +65,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Sigma musí být reálné číslo.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Sigma musí být reálné číslo.\n"
 
 #, c-format
-msgid ""
-"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 "%s: B není pozitivně definitivní. Zkuste použít sigma='SM' nebo "
 "sigma=scalar.\n"
@@ -207,8 +205,7 @@ msgid "%s: Error with %s: info = %d.\n"
 msgstr "%s: Chyba s %s: info = %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: n musí být kladné celé číslo.\n"
 

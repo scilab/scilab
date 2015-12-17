@@ -53,8 +53,7 @@ msgstr ""
 "соответствуют содержимому ячеек.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s: Следующая функциональность не реализована: поддержка гиперматриц.\n"
 
@@ -99,8 +98,7 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась квадратная матрица.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось %s, %s, «%s» или "
 "«%s».\n"
@@ -188,8 +186,7 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: В Scilab нет второстепенной сетки.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s» или "
 "«%s».\n"

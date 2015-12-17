@@ -122,11 +122,11 @@ msgstr "%s: \n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", "
-"\"%s\" \n"
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", \"%s"
+"\" \n"
 msgstr ""
-"%s: помилкове значення параметра №%d: мало бути «%s», «%s», «%s», «%s», «%s» "
-"\n"
+"%s: помилкове значення параметра №%d: мало бути «%s», «%s», «%s», «%s», "
+"«%s» \n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
