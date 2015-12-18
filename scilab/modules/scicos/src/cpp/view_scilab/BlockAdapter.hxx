@@ -61,12 +61,12 @@ private:
     types::InternalType* doc_content;
 
     // The following content represents the child diagram (in 'model.rpar')
-    // Child elements info
-    types::List* list_objects;
 
     // Child links info
     std::vector<link_t> from_vec;
     std::vector<link_t> to_vec;
+    // Child elements info
+    types::List* list_objects;
     // child diagram info
     types::InternalType* contrib_content;
 };
