@@ -70,6 +70,8 @@ public final class SuperBlock extends BasicBlock {
 
     public SuperBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
         super(controller, uid, kind, value, geometry, style, id);
+
+        controller.setObjectProperty(uid, kind, ObjectProperties.SIM_FUNCTION_NAME, SIMULATION_NAME);
     }
 
     /**

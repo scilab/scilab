@@ -32,16 +32,16 @@ import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
 /**
  * List the specific block interface function name. <BR>
  * <BR>
- * <EM>Specific instance must be registered before generic ones in order
+ * <EM>Specific instance must be registered after the most generic one in order
  * to serialized all the non-default values.</EM>
  */
 public enum BlockInterFunction {
     /** @see TextBlock */
     TEXT_f(TextBlock.class),
     /** @see SuperBlock */
-    DSUPER(SuperBlock.class),
-    /** @see SuperBlock */
     SUPER_f(SuperBlock.class),
+    /** @see SuperBlock */
+    DSUPER(SuperBlock.class),
     /** @see AfficheBlock */
     AFFICH_m(AfficheBlock.class),
     /** @see ExplicitInBlock */
