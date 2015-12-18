@@ -19,7 +19,10 @@ fi
 #
 # Configuration check
 #
-XMLINDENT="$(git config --get hooks.xmlindent)"
+if test ! -x "$XMLINDENT"
+then
+    XMLINDENT="$(git config --get hooks.xmlindent)"
+fi
 if test ! -x "$XMLINDENT"
 then
     echo "Unable to find xmlindent executable on the configuration."
@@ -45,7 +48,10 @@ else
     XMLINDENT_IGNORED="$(find $(git config --get-all xmlindent.ignored))"
 fi
 
-ASTYLE="$(git config --get hooks.astyle)"
+if test ! -x "$ASTYLE"
+then
+    ASTYLE="$(git config --get hooks.astyle)"
+fi
 if test ! -x "$ASTYLE"
 then
     echo "Unable to find astyle executable on the configuration."
