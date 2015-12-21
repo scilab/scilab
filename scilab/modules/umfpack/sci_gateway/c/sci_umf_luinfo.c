@@ -63,7 +63,7 @@
 
 extern CellAdr *ListNumeric;
 
-int sci_umf_luinfo(char* fname, unsigned long l)
+int sci_umf_luinfo(char* fname, void* pvApiCtx)
 {
     SciErr sciErr;
     void * Numeric  = NULL;

@@ -51,10 +51,6 @@
         <para>NOTA: você deve clicar no item "Exit" na janela de gráficos para
             sair de "plotprofile".
         </para>
-        <para>
-            O código da função é gerado com <literal>fun2string</literal> e
-            guardado em um arquivo temporário.
-        </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -83,9 +79,6 @@ plotprofile(foo) // clique em Exit para sair
             </member>
             <member>
                 <link linkend="showprofile">showprofile</link>
-            </member>
-            <member>
-                <link linkend="fun2string">fun2string</link>
             </member>
         </simplelist>
     </refsection>

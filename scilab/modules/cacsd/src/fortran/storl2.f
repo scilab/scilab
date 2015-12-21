@@ -46,6 +46,7 @@ C!
       dimension tq(0:*), tabc(mxsol,0:*), ntback(iback),
      &          tback(mxsol,0:*), xx(1),tg(ng+1),w(*)
 C
+cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
       common /sortie/ io,info,ll
 C
       ierr = 0

@@ -43,7 +43,7 @@ function getd(path,option)
         return ;
     end
 
-    nold = size(who("get"),"*")
+    old = who("get");
     //prot = funcprot();funcprot(0)
 
     for k=1:size(lst,"*");
@@ -56,7 +56,14 @@ function getd(path,option)
 
     //funcprot(prot);
     new = who("get");
-    new = new(1:(size(new,"*")-nold-2));  // -4 becomes -2: fix the fix for bug 2807
+    for i=1:size(old, "*")
+        b = find(new == old(i));
+        if isempty(b) == %f then
+            new(b) = [];
+        end
+    end
+
+    //new = new(1:(size(new,"*")-nold-2));  // -4 becomes -2: fix the fix for bug 2807
     if new<>[] then
         execstr("["+strcat(new,",")+"]=resume("+strcat(new,",")+")")
     end

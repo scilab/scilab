@@ -26,13 +26,13 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "HandleManagement.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_title_property(void* _pvCtx, int iObjUID)
+void* get_title_property(void* _pvCtx, int iObjUID)
 {
     int iLabelUID = 0;
     int* piLabelUID = &iLabelUID;
@@ -45,13 +45,13 @@ int get_title_property(void* _pvCtx, int iObjUID)
     if (piType == NULL)
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "type");
-        return -1;
+        return NULL;
     }
 
     if (iType != __GO_AXES__)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "title");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(iObjUID, __GO_TITLE__, jni_int, (void **)&piLabelUID);
@@ -59,11 +59,11 @@ int get_title_property(void* _pvCtx, int iObjUID)
     if (iLabelUID == 0)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "title");
-        return -1;
+        return NULL;
     }
 
     labelHandle = getHandle(iLabelUID);
 
-    return sciReturnHandle(_pvCtx, labelHandle);
+    return sciReturnHandle(labelHandle);
 }
 /*------------------------------------------------------------------------*/

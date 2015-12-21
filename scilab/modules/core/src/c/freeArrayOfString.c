@@ -11,7 +11,7 @@
  */
 #include <stdlib.h>
 #include "freeArrayOfString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*---------------------------------------------------------------------------*/
 BOOL freeArrayOfString(char **Str, int dim)
 {

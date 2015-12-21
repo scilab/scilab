@@ -1,37 +1,38 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2010 - Sylvestre Ledru
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 
 /* ScilabCommons.i */
-/** 
- * Windows: swig -java -package org.scilab.modules.commons -outdir ../java/org/scilab/modules/commons/ ScilabCommons.i 
+/**
+ * Windows: swig -java -package org.scilab.modules.commons -outdir ../java/org/scilab/modules/commons/ ScilabCommons.i
  * Other: Use the option --enable-build-swig to the configure
 */
 %module ScilabCommons
 %{
-#include "../../../core/includes/SCIHOME.h"
-#include "../../../core/includes/tmpdir.h"
-#include "../../../fileio/includes/createtempfilename.h"
-#include "../../../localization/includes/setgetlanguage.h"
-#include "../../../core/includes/getversion.h"
-#include "../../../core/includes/setieee.h"
-#include "../../../core/includes/setformat.h"
+#include "sci_malloc.h"
+#include "sci_home.h"
+#include "sci_tmpdir.h"
+#include "createtempfilename.h"
+#include "setgetlanguage.h"
+#include "getversion.h"
+#include "configvariable_interface.h"
+#include "setformat.h"
 %}
 
 /* JavaDoc for ScilabCommonsJNI class */
 %pragma(java) jniclassclassmodifiers=%{
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
- /** 
+ /**
    * Some commons values from Scilab engine to Java
    * @author Sylvestre LEDRU
    * @copyright DIGITEO 2010
@@ -46,7 +47,7 @@ public class%}
   protected ScilabCommonsJNI() {
     throw new UnsupportedOperationException();
   }";
-  
+
 /* static load of library */
 %pragma(java) jniclasscode=%{
   static {
@@ -69,10 +70,15 @@ public class%}
   }
 %}
 
+%typemap(out, noblock=1) char * {if ($1)
+{
+    $result = JCALL1(NewStringUTF, jenv, (const char *)$1);
+    FREE($1);
+}}
 
 /* JavaDoc for ScilabCommons class */
 %pragma(java) moduleclassmodifiers="
- /** 
+ /**
    * Some commons values from Scilab engine to Java
    * @author Sylvestre LEDRU
    * @copyright DIGITEO 2010
@@ -133,7 +139,7 @@ char *createtempfilename(const char* prefix, int bShortFormat);
 /* JavaDoc */
 %javamethodmodifiers getScilabIeeeMode() "
  /**
-   * returns the Scilab ieee mode 
+   * returns the Scilab ieee mode
    * @return ieee mode
    */
 public";
@@ -142,7 +148,7 @@ int getieee(void);
 /* JavaDoc */
 %javamethodmodifiers setScilabIeeeMode(int) "
  /**
-   * Set the Scilab ieee mode 
+   * Set the Scilab ieee mode
    */
 public";
 void setieee(int);
@@ -150,7 +156,7 @@ void setieee(int);
 /* JavaDoc */
 %javamethodmodifiers setformat(const char *, int) "
  /**
-   * Set the Scilab ieee mode 
+   * Set the Scilab ieee mode
    */
 public";
 void setformat(const char * format, int width);
@@ -158,7 +164,7 @@ void setformat(const char * format, int width);
 /* JavaDoc */
 %javamethodmodifiers getformat() "
  /**
-   * returns the Scilab format (\"v\" or \"e\") 
+   * returns the Scilab format (\"v\" or \"e\")
    * @return format
    */
 public";
@@ -167,7 +173,7 @@ char * getformat();
 /* JavaDoc */
 %javamethodmodifiers getformatwidth() "
  /**
-   * returns the Scilab format width 
+   * returns the Scilab format width
    * @return format
    */
 public";
@@ -176,7 +182,7 @@ int getformatwidth();
 /* JavaDoc */
 %javamethodmodifiers getScilabVersionMajor() "
  /**
-   * returns the Scilab version major number 
+   * returns the Scilab version major number
    * @return version major
    */
 public";
@@ -185,7 +191,7 @@ int getScilabVersionMajor();
 /* JavaDoc */
 %javamethodmodifiers getScilabVersionMinor() "
  /**
-   * returns the Scilab version minor number 
+   * returns the Scilab version minor number
    * @return version minor
    */
 public";
@@ -194,7 +200,7 @@ int getScilabVersionMinor();
 /* JavaDoc */
 %javamethodmodifiers getScilabVersionMaintenance() "
  /**
-   * returns the Scilab version maintenance number 
+   * returns the Scilab version maintenance number
    * @return version maintenance
    */
 public";
@@ -203,7 +209,7 @@ int getScilabVersionMaintenance();
 /* JavaDoc */
 %javamethodmodifiers getScilabVersionTimestamp() "
  /**
-   * returns the Scilab version timestamp number 
+   * returns the Scilab version timestamp number
    * @return version timestamp
    */
 public";
@@ -217,3 +223,11 @@ int getScilabVersionTimestamp();
    */
 public";
 char* getScilabVersionAsString();
+/* JavaDoc */
+%javamethodmodifiers setRecursionLimit() "
+ /**
+   * returns the Scilab version as string
+   * @return version Scilab version as a string
+   */
+public";
+int setRecursionLimit(int);

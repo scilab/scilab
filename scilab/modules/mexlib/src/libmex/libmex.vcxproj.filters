@@ -13,15 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
     </Filter>
-    <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{b4f6f14e-5c21-48ed-9301-c70d1842b175}</UniqueIdentifier>
+    <Filter Include="localization">
+      <UniqueIdentifier>{4fdc94d6-aa4f-4d05-aacf-7238c272d8f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\c\mexlib.c">
+    <ClCompile Include="..\cpp\sci_gateway.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_gateway.c">
+    <ClCompile Include="..\cpp\mexlib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -39,9 +39,9 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\mexlib.iss" />
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
+    <None Include="..\..\locales\en_US\messages.pot">
+      <Filter>localization</Filter>
     </None>
+    <None Include="..\..\mexlib.iss" />
   </ItemGroup>
 </Project>

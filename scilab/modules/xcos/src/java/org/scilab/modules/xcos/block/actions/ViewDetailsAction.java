@@ -3,6 +3,7 @@
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,10 +16,8 @@
 package org.scilab.modules.xcos.block.actions;
 
 import java.awt.event.ActionEvent;
-import java.util.logging.Logger;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
@@ -26,7 +25,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -99,27 +97,10 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
      *            the selected block
      */
     private void viewDetails(BasicBlock data) {
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        if (handler == null) {
-            return;
-        }
-
-        try {
-            /*
-             * Export data
-             */
-            handler.writeBlock(data);
-
-            /*
-             * Build and execute the command
-             */
-            final String cmd = "tree_show(" + ScilabDirectHandler.BLK + ");";
-            ScilabInterpreterManagement.synchronousScilabExec(cmd);
-
-        } catch (InterpreterException e1) {
-            Logger.getLogger(ViewDetailsAction.class.getName()).severe(e1.toString());
-        } finally {
-            handler.release();
-        }
+        /*
+         * Build and execute the command
+         */
+        final String cmd = "tree_show(scicos_new(\"0x" + Long.toHexString(data.getUID()) + "\"));";
+        ScilabInterpreterManagement.requestScilabExec(cmd);
     }
 }

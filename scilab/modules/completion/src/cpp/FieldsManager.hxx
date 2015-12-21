@@ -40,6 +40,7 @@ public :
      * @param getter a pointer to a FieldGetter
      */
     static void addFieldsGetter(const std::string & typeName, FieldsGetter * getter);
+    static void clearFieldsGetter();
 
     /**
      * Retrieve the fields name for a given type and a given mlist

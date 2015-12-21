@@ -92,7 +92,7 @@
         <para>Nyquist plot i.e Imaginary part versus Real part of the
             frequency response of <literal>sl</literal>. If the
             <literal>symmetry</literal> argument is true or omitted the
-            Nyquist plot displays the symetric graph (positive and negative
+            Nyquist plot displays the symmetric graph (positive and negative
             frequencies).
         </para>
         <para>
@@ -202,7 +202,7 @@
     clf();
     nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
     hallchart(colors=color('light gray')*[1 1])
-    //move the caption in the lower rigth corner
+    //move the caption in the lower right corner
     ax=gca();Leg=ax.children(1);
     Leg.legend_location="in_upper_left";
     ]]></programlisting>

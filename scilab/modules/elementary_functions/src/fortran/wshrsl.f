@@ -19,7 +19,7 @@ c
 c!calling sequence
 c
 c      subroutine wshrsl(ar,ai,br,bi,cr,ci,m,n,na,nb,nc,eps,rmax,fail)
-c   ar,ai  a doubly subscripted array containg the matrix a in
+c   ar,ai  a doubly subscripted array containing the matrix a in
 c          lower triangular form
 c
 c   br,bi  a doubly subscripted array containing tbe matrix br,bi

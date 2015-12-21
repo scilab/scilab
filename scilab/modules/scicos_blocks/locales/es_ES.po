@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: es\n"
 
 msgid "overflow error"
@@ -24,8 +24,50 @@ msgid "Trigger block must have discrete time input."
 msgstr "El bloque de disparo debe tener entradas de tiempo discreto."
 
 #, c-format
+msgid ""
+"The LU factorization has been completed, but the factor U is exactly "
+"singular : U(%d,%d) is exactly zero."
+msgstr ""
+
+msgid "Read error!\n"
+msgstr "¡Error de lectura!\n"
+
+msgid "Could not open the file!\n"
+msgstr "¡No se pudo abrir el archivo!\n"
+
+msgid "Read error\n"
+msgstr "Error de lectura\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr ""
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr ""
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "¡El tamaño del buffer o de la entrada a cambiado!\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr ""
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr ""
+
+msgid "Could not open /dev/audio!\n"
+msgstr "¡No se pudo abrir /dev/audio!\n"
+
+#, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr "La variable '%s' no existe.\n"
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
+msgstr ""
+
+msgid "Erroneous saved file.\n"
+msgstr ""
 
 msgid "Invalid variable type.\n"
 msgstr "Tipo de variable inválido.\n"
@@ -64,59 +106,25 @@ msgstr "La salida debe ser un entero sin signo de 16bits (uint16).\n"
 msgid "Output should be of uint32 type.\n"
 msgstr "La salida debe ser un entero sin signo de 32bits (uint32).\n"
 
-#, c-format
-msgid ""
-"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgid "Cannot read the values field.\n"
 msgstr ""
 
 msgid "The Time vector type is not double.\n"
 msgstr "El vector Tiempo no es double.\n"
 
-msgid "The time vector should be an increasing vector.\n"
-msgstr "El vector tiempo debe ser un vector creciente.\n"
-
-msgid "Allocation problem in spline.\n"
-msgstr "Problema de asignacion en spline.\n"
-
-msgid "Invalid variable type : error in hypermat scilab coding.\n"
+msgid "The Time vector type is complex.\n"
 msgstr ""
-"Tipo de variable inválido : error en la codificación de la hypermatriz "
-"scilab.\n"
 
 #, c-format
 msgid ""
-"The LU factorization has been completed, but the factor U is exactly "
-"singular : U(%d,%d) is exactly zero."
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
 msgstr ""
 
-msgid "Read error!\n"
-msgstr "¡Error de lectura!\n"
-
-msgid "Could not open the file!\n"
-msgstr "¡No se pudo abrir el archivo!\n"
-
-msgid "Read error\n"
-msgstr "Error de lectura\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f \n"
+msgid "Cannot read the time field.\n"
 msgstr ""
 
-msgid "Consider increasing the length of buffer in delay block \n"
-msgstr ""
-
-msgid "Size of buffer or input size have changed!\n"
-msgstr "¡El tamaño del buffer o de la entrada a cambiado!\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f\n"
-msgstr ""
-
-msgid "Consider increasing the length of buffer in variable delay block\n"
-msgstr ""
-
-msgid "Could not open /dev/audio!\n"
-msgstr "¡No se pudo abrir /dev/audio!\n"
+msgid "The time vector should be an increasing vector.\n"
+msgstr "El vector tiempo debe ser un vector creciente.\n"
 
 msgid "Clear a bit"
 msgstr "Limpiar un bit"
@@ -824,8 +832,4 @@ msgid "'Initial Value' and 'Final Value': incompatible sizes: %d and %d."
 msgstr ""
 
 msgid "Same sizes expected."
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""

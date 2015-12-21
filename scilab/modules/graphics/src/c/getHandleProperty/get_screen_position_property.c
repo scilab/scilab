@@ -25,7 +25,7 @@
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
-int get_screen_position_property(void* _pvCtx, int iObjUID)
+void* get_screen_position_property(void* _pvCtx, int iObjUID)
 {
     return get_figure_position_property(_pvCtx, iObjUID);
 }

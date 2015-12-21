@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,7 +26,6 @@ import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -88,7 +88,6 @@ public final class SaveAsAction extends DefaultAction {
         final XcosDiagram graph = (XcosDiagram) getGraph(null);
         if (graph.saveDiagramAs(null)) {
             graph.setModified(false);
-            Xcos.getInstance().addDiagram(graph.getSavedFile(), graph);
         }
 
     }

@@ -35,13 +35,13 @@ int set_tag_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, in
 
     if (valueType != sci_strings)
     {
-        Scierror(999, _("Wrong type for '%s' property: A string expected.\n"), "Tag");
+        Scierror(999, _("Wrong type for '%s' property: string expected.\n"), "Tag");
         return SET_PROPERTY_ERROR;
     }
 
     if (nbCol != 1)
     {
-        Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Tag");
+        Scierror(999, _("Wrong size for '%s' property: string expected.\n"), "Tag");
         return SET_PROPERTY_ERROR;
     }
 

@@ -67,10 +67,11 @@ function y = permute(x, dims)
     execstr("clear "+strsubst(xlist, ",", " "))
 
     // Permutation
-    if typeof(x) == "ce"
-        y = x
-        y.dims = int32(s)
-        y(LI2).entries = x(LI).entries
+    if typeof(x) == "ce" then
+        y = cell(s);
+        for i=1:size(LI2,2)
+            y{LI2(i)} = x{LI(i)};
+        end
     else
         y(LI2) = x(LI)
         y = matrix(y, s)

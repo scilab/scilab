@@ -61,7 +61,7 @@
 
 extern CellAdr *ListCholFactors;
 
-int sci_taucs_chinfo(char* fname, unsigned long l)
+int sci_taucs_chinfo(char* fname, void* pvApiCtx)
 {
     SciErr sciErr;
     taucs_handle_factors * pC;

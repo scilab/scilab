@@ -22,7 +22,7 @@
 #include <string.h>
 #include <hdf5.h>
 #include <stdlib.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sci_types.h"
 #include "h5_attributeConstants.h"
 #include "h5_readDataFromFile_v1.h"
@@ -1163,10 +1163,6 @@ int getScilabTypeFromDataSet_v1(int _iDatasetId)
     else if (strcmp(pstScilabClass, g_SCILAB_CLASS_STRING) == 0)
     {
         iVarType = sci_strings;
-    }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
-    {
-        iVarType = sci_boolean;
     }
     else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
     {

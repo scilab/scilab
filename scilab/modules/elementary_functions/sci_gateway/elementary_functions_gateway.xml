@@ -53,7 +53,6 @@
     <PRIMITIVE gatewayId="6" primitiveId="16" primitiveName="max" />
     <PRIMITIVE gatewayId="6" primitiveId="17" primitiveName="min" />
     <PRIMITIVE gatewayId="6" primitiveId="18" primitiveName="kron" />
-    <PRIMITIVE gatewayId="6" primitiveId="21" primitiveName="matrix" />
     <PRIMITIVE gatewayId="6" primitiveId="22" primitiveName="sin" />
     <PRIMITIVE gatewayId="6" primitiveId="23" primitiveName="cos" />
     <PRIMITIVE gatewayId="6" primitiveId="24" primitiveName="atan" />

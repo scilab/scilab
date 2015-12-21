@@ -17,6 +17,7 @@ package org.scilab.modules.types;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.util.Arrays;
 
 /**
  * This class provides a representation on the Scilab boolean datatype<br>
@@ -197,6 +198,11 @@ public class ScilabBoolean implements ScilabType {
     @Override
     public boolean isEmpty() {
         return data == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.deepHashCode(data);
     }
 
     /**

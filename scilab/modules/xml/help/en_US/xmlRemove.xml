@@ -34,7 +34,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Detach one or several elements from their parents. The detached elements are definitly lost.</para>
+        <para>Detach one or several elements from their parents. The detached elements are definitely lost.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

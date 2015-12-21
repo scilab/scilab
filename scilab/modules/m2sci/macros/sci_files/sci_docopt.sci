@@ -14,5 +14,5 @@ function [tree]=sci_docopt(tree)
     // Ouput: tree = Scilab equivalent for tree
 
     tree=Variable("%browsehelp",Infer(list(1,Unknown),Type(String,Real)))
-    insert(Equal(list(),Funcall("global",1,list(Cste(tree.name)),list())))
+    m2sci_insert(Equal(list(),Funcall("global",1,list(Cste(tree.name)),list())))
 endfunction

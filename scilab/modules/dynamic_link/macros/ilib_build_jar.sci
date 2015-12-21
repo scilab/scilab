@@ -141,10 +141,10 @@ function ilib_build_jar(jarFilePath, packageNames, sourcePaths, classPaths, mani
 
     // Input argument 1: jar file path
     if type(jarFilePath) <> 10 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "ilib_build_jar", 1));
+        error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_build_jar", 1));
     end
     if size(jarFilePath, "*") <> 1 then
-        error(999, msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "ilib_build_jar", 1));
+        error(999, msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "ilib_build_jar", 1));
         return;
     end
 

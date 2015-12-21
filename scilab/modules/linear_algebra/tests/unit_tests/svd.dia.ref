@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -9,7 +10,7 @@ function r=Err(x)
 endfunction
 rand('normal')
 //==========================================================================
-//==============================     svd      ==============================
+//==============================     svd      ============================== 
 //==========================================================================
 //Empty matrix
 A=[];
@@ -83,7 +84,7 @@ if Err(svd(Ac)-diag(S))> 10000*%eps then bugmes();quit;end
 [U,S,V]=svd(Ac,"e");
 if Err(U*S*V'-Ac)>10000*%eps then bugmes();quit;end
 //==========================================================================
-//==============================     svd part II     =======================
+//==============================     svd part II     ======================= 
 //==========================================================================
 //Empty matrix
 if svd([])<>[] then bugmes();quit;end
@@ -103,10 +104,10 @@ A=rand(3,5);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
 if gsort(S)<>S  then bugmes();quit;end
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>200*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>10*%eps  then bugmes();quit;end
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>200*%eps  then bugmes();quit;end
 if Err(U1'*U1-eye())>200*%eps  then bugmes();quit;end
 [U1,S1,V]=svd(A);
@@ -127,10 +128,10 @@ A=rand(5,3);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
 if gsort(S)<>S  then bugmes();quit;end
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>200*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>200*%eps  then bugmes();quit;end
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>200*%eps  then bugmes();quit;end
 if Err(U1'*U1-eye())>200*%eps  then bugmes();quit;end
 [U1,S1,V]=svd(A);
@@ -151,10 +152,10 @@ A=rand(3,5)+%i*rand(3,5);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
 if gsort(S)<>S  then bugmes();quit;end
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>200*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>200*%eps  then bugmes();quit;end
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>200*%eps  then bugmes();quit;end
 if Err(U1'*U1-eye())>200*%eps  then bugmes();quit;end
 [U1,S1,V]=svd(A);
@@ -175,10 +176,10 @@ A=rand(5,3)+%i*rand(5,3);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
 if gsort(S)<>S  then bugmes();quit;end
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>200*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>200*%eps  then bugmes();quit;end
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>200*%eps  then bugmes();quit;end
 if Err(U1'*U1-eye())>200*%eps  then bugmes();quit;end
 [U1,S1,V]=svd(A);
@@ -200,10 +201,10 @@ A=rand(30,50);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
 if gsort(S)<>S  then bugmes();quit;end
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>1000*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>1000*%eps  then bugmes();quit;end
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>1000*%eps  then bugmes();quit;end
 if Err(U1'*U1-eye())>1000*%eps  then bugmes();quit;end
 [U1,S1,V]=svd(A);
@@ -224,10 +225,10 @@ A=rand(50,30);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
 if gsort(S)<>S  then bugmes();quit;end
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>5000*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>5000*%eps  then bugmes();quit;end
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>5000*%eps  then bugmes();quit;end
 if Err(U1'*U1-eye())>5000*%eps  then bugmes();quit;end
 [U1,S1,V]=svd(A);
@@ -248,10 +249,10 @@ A=rand(30,50)+%i*rand(30,50);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
 if gsort(S)<>S  then bugmes();quit;end
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>5000*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>5000*%eps  then bugmes();quit;end
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>5000*%eps  then bugmes();quit;end
 if Err(U1'*U1-eye())>5000*%eps  then bugmes();quit;end
 [U1,S1,V]=svd(A);
@@ -272,10 +273,10 @@ A=rand(50,30)+%i*rand(50,30);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
 if gsort(S)<>S  then bugmes();quit;end
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>5000*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>5000*%eps  then bugmes();quit;end
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>5000*%eps  then bugmes();quit;end
 if Err(U1'*U1-eye())>5000*%eps  then bugmes();quit;end
 [U1,S1,V]=svd(A);

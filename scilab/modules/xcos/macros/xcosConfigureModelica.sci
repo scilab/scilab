@@ -11,7 +11,7 @@
 //
 //
 
-function xcosConfigureModelica()
+function xcosConfigureModelica(scs_m)
     // Configure the current diagram with the modelica setting UI.
     //
     // Description

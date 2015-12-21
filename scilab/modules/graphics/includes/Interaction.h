@@ -45,7 +45,7 @@ GRAPHICS_IMPEXP int Objmove(int iObjUID, double d[], int m, BOOL opt); /* INTERA
  * @param pFigure figure on which to apply the rubber box
  * @param isClick specify whether the rubber box is selected by mouse click
  *        or a sequence of press/release.
- * @param intialRect if not null, specify the initial rectangle to use
+ * @param initialRect if not null, specify the initial rectangle to use
  * @param[out] endRect array containing the coordinates of two opposite corners of
  *                     the rubber box
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
@@ -58,7 +58,7 @@ GRAPHICS_IMPEXP void pixelRubberBox(int iFigure, BOOL isClick,
  * @param pFigure figure on which to apply the rubber box
  * @param isClick specify whether the rubber box is selected by mouse click
  *        or a sequence of press/release.
- * @param intialRect if not null, specify the initial rectangle [x,y,w,h] to use
+ * @param initialRect if not null, specify the initial rectangle [x,y,w,h] to use
  * @param[out] endRect array containing the [x,y,w,h] of the selected rectangle
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */

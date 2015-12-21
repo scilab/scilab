@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
+ * Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,17 +13,22 @@
  */
 /*--------------------------------------------------------------------------*/
 
-#ifndef __DISPLAY_TREE__
-#define __DISPLAY_TREE__
+#ifndef __DISPLAYTREE__
+#define __DISPLAYTREE__
 
 #include <vector>
-#include <sstream>
 #include <string>
+#include <sstream>
 
-using namespace std;
+#include "dynlib_gui.h"
+#include "list.hxx"
 
-#define TREE_REF_NAME "uitree"
+#define TREE_REF_NAME L"uitree"
 
-bool bParseListItem(void* _pvApiCtx, int *_piCurrentItem, int icountItem, std::vector<std::string> *_pvStructList, std::string _szLevel);
+static const std::wstring Label(L"label");
+static const std::wstring Icon(L"icon");
+static const std::wstring Callback(L"callback");
 
-#endif /* __DISPLAY_TREE__ */
+GUI_IMPEXP bool parseListItem(types::List* pIn, int icountItem, std::vector<std::string> &_pvStructList, const std::string& _szLevel);
+
+#endif /* __DISPLAYTREE__ */

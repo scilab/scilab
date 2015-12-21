@@ -20,7 +20,7 @@
 //
 
 function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
-    // cor    ; correspondance table with initial block ordering
+    // cor    ; correspondence table with initial block ordering
     //
     // bllst: list with nblk elts where nblk denotes number of blocks.
     //        Each element must be a list with 16 elements:
@@ -438,6 +438,10 @@ endfunction
 
 function uni=merge_mat(m1,m2)
     // for  m1 and m2 with two columns containing >=0 values
+    if isempty(m1) & isempty(m2) then
+        uni=[];
+        return;
+    end
     uni=[m1;m2]
     n=max(uni(:,2))+1;
     [j,ind]=unique(uni(:,1)*n+uni(:,2))
@@ -502,7 +506,11 @@ function ok=is_alg_event_loop(typ_l,clkconnect)
     while i<=n
         i=i+1
         oldvec=vec  // not optimal to use large v
-        vec(lclkconnect(:,2))=vec(lclkconnect(:,1))+1
+        if isempty(vec(lclkconnect(:,1))) then
+            vec(lclkconnect(:,2))=1
+        else
+            vec(lclkconnect(:,2))=vec(lclkconnect(:,1))+1
+        end
         if and(vec==oldvec) then
             ok=%t
             return
@@ -521,7 +529,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
     //testing event algebraic loops
     ok=is_alg_event_loop(typ_l,clkconnect)
     if ~ok then
-        disp(mprintf("%s: alg_event_loop failed", "c_pass2"));
+        disp(msprintf("%s: alg_event_loop failed", "c_pass2"));
         messagebox(_("Algebraic loop on events."),"modal","error");
         return
     end
@@ -562,7 +570,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
 
                     [balg,vec]=ini_ordo3(primary)
                     if balg then
-                        disp(mprintf("%s: ini_ordo (3) failed", "c_pass2"));
+                        disp(msprintf("%s: ini_ordo (3) failed", "c_pass2"));
                         messagebox(_("Algebraic loop."),"modal","error"),
                         ok=%f
                         return
@@ -597,7 +605,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
                             if show_comment then mprintf("found non convergence\n"),pause,end
                             i=lp(1)  // first typ_l
                             if i==[] then
-                                disp(mprintf("%s: ini_ordo (2) failed", "c_pass2"));
+                                disp(msprintf("%s: ini_ordo (2) failed", "c_pass2"));
                                 messagebox(_("Algebraic loop."),"modal","error")
                                 ok=%f
                                 return
@@ -989,7 +997,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
     end
     //
     if ~ok then
-        disp(mprintf("%s: scheduling failed", "c_pass2"));
+        disp(msprintf("%s: scheduling failed", "c_pass2"));
         messagebox(_("Algebraic loop."),"modal","error");
         iord=[],oord=[],zord=[],critev=[]
         return,
@@ -1064,14 +1072,23 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
     //critev: vecteur indiquant si evenement est important pour tcrit
     //Donc les blocks indiques sont des blocks susceptibles de produire
     //des discontinuites quand l'evenement se produit
-    maX=max([ext_cord1(:,2);ordclk(:,2)])+1;
-    cordX=ext_cord1(:,1)*maX+ext_cord1(:,2);
+    if isempty(ext_cord1) then
+        if isempty(ordclk) then
+            maX=1;
+        else
+            maX=max(ordclk(:,2))+1;
+        end
+        cordX = [];
+    else
+        maX=max([ext_cord1(:,2);ordclk(:,2)])+1;
+        cordX=ext_cord1(:,1)*maX+ext_cord1(:,2);
+    end
 
     // 1: important; 0:non
     //n=clkptr(nblk+1)-1 //nb d'evenement
     n=size(ordptr,"*")-1 //nb d'evenement
 
-    //a priori tous les evenemets sont non-importants
+    //a priori tous les evenements sont non-importants
     //critev=zeros(n,1)
     for i=1:n
         for hh=ordptr(i):ordptr(i+1)-1
@@ -1093,7 +1110,7 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
         for i=1:nb
             if vec(i)==j-1&typ_l(i)<>-1 then
                 if j==nb+2 then
-                    disp(mprintf("%s: tree (3) failed", "c_pass2"));
+                    disp(msprintf("%s: tree (3) failed", "c_pass2"));
                     messagebox(_("Algebraic loop."),"modal","error");ok=%f;ord=[];return;
                 end
                 if typ_l(i)==1 then
@@ -1269,11 +1286,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
         end
 
         //real paramaters
-        if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10005) then //sciblocks
-            if ll.rpar==[] then rpark=[]; else rpark=var2vec(ll.rpar);end
-        else
-            rpark=ll.rpar(:)
-        end
+        rpark=ll.rpar(:)
         rpar=[rpar;rpark]
         rpptr(i+1)=rpptr(i)+size(rpark,"*")
 
@@ -1345,7 +1358,11 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
 
     clkconnect=clkconnect(find(clkconnect(:,1)<>0),:);
 
-    con=clkptr(clkconnect(:,1))+clkconnect(:,2)-1;
+    if isempty(clkconnect) then
+        con=-1;
+    else
+        con=clkptr(clkconnect(:,1))+clkconnect(:,2)-1;
+    end
     [junk,ind]=gsort(-con);con=-junk;
     clkconnect=clkconnect(ind,:);
     //
@@ -1480,7 +1497,7 @@ function [ord,ok]=tree2(vec,outoin,outoinptr,dep_ut)
         for i=1:nb
             if vec(i)==j-1 then
                 if j==nb+2 then
-                    disp(mprintf("%s: tree (2) failed", "c_pass2"));
+                    disp(msprintf("%s: tree (2) failed", "c_pass2"));
                     messagebox(_("Algebraic loop."),"modal","error");ok=%f;ord=[];return;
                 end
                 for k=outoinptr(i):outoinptr(i+1)-1
@@ -2050,8 +2067,8 @@ function id = getBlockIds(path)
     k = path(:);
     for i = k
         b = scs_m.objs(i);
-        if typeof(b) == "Block" &  size(scs_m.objs(i).doc) >= 1 then
-            id($ + 1) = scs_m.objs(i).doc(1);
+        if typeof(b) == "Block" &  length(scs_m.objs(i).model.uid) >= 1 then
+            id($ + 1) = scs_m.objs(i).model.uid;
         end
         if typeof(b.model.rpar) == "diagram" then
             scs_m = b.model.rpar;
@@ -2170,8 +2187,12 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
     if show_trace then mprintf("c_pass4445:\t%f\n", timer()),end
 
     [clkr,clkc]=size(clkconnect);
-    mm=max(clkconnect(:,2))+1;
-    cll=clkconnect(:,1)*mm+clkconnect(:,2);
+    if isempty(clkconnect) then
+        cll=[];
+    else
+        mm=max(clkconnect(:,2))+1;
+        cll=clkconnect(:,1)*mm+clkconnect(:,2);
+    end
     [cll,ind]=gsort(-cll);
     clkconnect=clkconnect(ind,:);
     if cll<>[] then mcll=max(-cll)+1, else mcll=1;end
@@ -2410,7 +2431,11 @@ function  [r,ok]=newc_tree3(vec,dep_u,dep_uptr,typ_l)
 endfunction
 
 function  [r,ok]=new_tree4(vec,outoin,outoinptr,typ_r)
-    nd=zeros(size(vec,"*"),(max(outoin(:,2))+1));
+    if isempty(outoin) then
+        nd=zeros(size(vec,"*"),1);
+    else
+        nd=zeros(size(vec,"*"),(max(outoin(:,2))+1));
+    end
     ddd=zeros(typ_r);ddd(typ_r)=1;
     [r1,r2]=sci_tree4(vec,outoin,outoinptr,nd,ddd)
     r=[r1',r2']
@@ -2418,7 +2443,11 @@ function  [r,ok]=new_tree4(vec,outoin,outoinptr,typ_r)
 endfunction
 
 function  [r,ok]=newc_tree4(vec,outoin,outoinptr,typ_r)
-    nd=zeros(size(vec,"*"),(max(outoin(:,2))+1));
+    if isempty(outoin) then
+        nd=zeros(size(vec,"*"),1);
+    else
+        nd=zeros(size(vec,"*"),(max(outoin(:,2))+1));
+    end
     ddd=zeros(typ_r);ddd(typ_r)=1;
     [r1,r2]=ctree4(vec,outoin,outoinptr,nd,ddd)
     r=[r1',r2']
@@ -2427,6 +2456,11 @@ endfunction
 
 function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
     typ_l,typ_zx,outoin,outoinptr,clkptr)
+
+    if isempty(clkconnect) then
+        critev = [];
+        return
+    end
 
     typ_c=typ_l<>typ_l;
     typ_r=typ_r|dep_t

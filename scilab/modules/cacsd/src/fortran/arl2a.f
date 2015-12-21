@@ -46,6 +46,9 @@ C      iw :29+nall**2+4*nall+2*mxsol
       dimension ta(mxsol,*), f(nf), w(*), iw(*), x(1)
       integer dgmax
 C
+cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
+cDEC$ ATTRIBUTES DLLIMPORT:: /no2f/
+cDEC$ ATTRIBUTES DLLIMPORT:: /comall/
       common /sortie/ io,info,ll
       common /no2f/ gnrm
       common /comall/ nall1

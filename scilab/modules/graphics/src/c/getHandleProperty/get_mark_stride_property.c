@@ -26,7 +26,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_stride_property(void* _pvCtx, int iObjUID)
+void* get_mark_stride_property(void* _pvCtx, int iObjUID)
 {
     int iMarkStride = 0;
     int* piMarkStride = &iMarkStride;
@@ -36,9 +36,9 @@ int get_mark_stride_property(void* _pvCtx, int iObjUID)
     if (piMarkStride == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_stride");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, iMarkStride);
+    return sciReturnDouble(iMarkStride);
 }
 /*------------------------------------------------------------------------*/

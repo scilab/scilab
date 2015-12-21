@@ -16,10 +16,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import javax.swing.SwingUtilities;
 
 /**
  * Basic utils
@@ -154,20 +157,47 @@ public final class ScilabCommonsUtils {
      * @param str the action
      */
     public static void loadOnUse(String str) {
+        final String finalStr = str;
         try {
-            Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
-            Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
-            loadOnUseMethod.invoke(null, str);
-        } catch (java.lang.ClassNotFoundException ex) {
-            System.err.println("Could not find the Scilab class to load dependency: " + ex);
-        } catch (java.lang.NoSuchMethodException ex) {
-            System.err.println("Could not find the Scilab method to load dependency: " + ex);
-        } catch (java.lang.IllegalAccessException ex) {
-            System.err.println("Could not access to the Scilab method to load dependency: " + ex);
-        } catch (java.lang.reflect.InvocationTargetException ex) {
-            System.err.println("Could not invoke the Scilab method to load dependency: " + ex);
+            if (SwingUtilities.isEventDispatchThread()) {
+                try {
+                    Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
+                    Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
+                    loadOnUseMethod.invoke(null, finalStr);
+                } catch (java.lang.ClassNotFoundException ex) {
+                    System.err.println("Could not find the Scilab class to load dependency: " + ex);
+                } catch (java.lang.NoSuchMethodException ex) {
+                    System.err.println("Could not find the Scilab method to load dependency: " + ex);
+                } catch (java.lang.IllegalAccessException ex) {
+                    System.err.println("Could not access to the Scilab method to load dependency: " + ex);
+                } catch (java.lang.reflect.InvocationTargetException ex) {
+                    System.err.println("Could not invoke the Scilab method to load dependency: " + ex);
+                }
+            } else {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
+                            Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
+                            loadOnUseMethod.invoke(null, finalStr);
+                        } catch (java.lang.ClassNotFoundException ex) {
+                            System.err.println("Could not find the Scilab class to load dependency: " + ex);
+                        } catch (java.lang.NoSuchMethodException ex) {
+                            System.err.println("Could not find the Scilab method to load dependency: " + ex);
+                        } catch (java.lang.IllegalAccessException ex) {
+                            System.err.println("Could not access to the Scilab method to load dependency: " + ex);
+                        } catch (java.lang.reflect.InvocationTargetException ex) {
+                            System.err.println("Could not invoke the Scilab method to load dependency: " + ex);
+                        }
+                    }
+                });
+            }
+        } catch (final InterruptedException e) {
+        } catch (final InvocationTargetException e) {
         }
     }
+
 
     /**
      * Set the scilab thread as the current thread

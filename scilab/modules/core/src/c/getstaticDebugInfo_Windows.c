@@ -18,12 +18,11 @@
 #include <xmlversion.h>
 #include <tcl.h>
 #include <tk.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getstaticDebugInfo_Windows.h"
 #include "localization.h"
 #include "version.h"
 #include "getversion.h"
-#include "dynamic_tclsci.h"
 #include "..\..\..\..\libs\pcre\pcre.h"
 #include "getBlasType.h"
 /*--------------------------------------------------------------------------*/

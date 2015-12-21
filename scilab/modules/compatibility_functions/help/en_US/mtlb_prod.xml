@@ -23,7 +23,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    When called with one input: Matlab <literal>prod</literal> threts the values along the first
+                    When called with one input: Matlab <literal>prod</literal> treats the values along the first
                     non-singleton dimension of input while Scilab <literal>prod</literal> threats all values of input.
                 </para>
             </listitem>

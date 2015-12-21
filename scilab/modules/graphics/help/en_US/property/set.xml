@@ -68,7 +68,7 @@
         <title>Description</title>
         <para>This routine can be used to modify the value of a specified property from a
             graphics entity or a GUI object. In this case it is equivalent to use the dot operator on a handle.
-            For exemple, <literal>set(h,"background",5)</literal> is equivalent to <literal>h.background = 5</literal>.
+            For example, <literal>set(h,"background",5)</literal> is equivalent to <literal>h.background = 5</literal>.
         </para>
         <para>Property names are character strings. The type of the set values depends on the handle type and property.
         </para>
@@ -123,7 +123,7 @@
             <programlisting role="example"><![CDATA[
 clf()
 set("auto_clear","off") ;
-// Exemple of a Plot 2D
+// Example of a Plot 2D
 x=[-.2:0.1:2*%pi]';
 plot2d(x-.3,[sin(x-1) cos(2*x)],[1 2] );
 a=get("current_axes");

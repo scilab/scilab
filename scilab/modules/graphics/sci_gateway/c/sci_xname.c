@@ -30,7 +30,7 @@
 #include "setGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xname(char *fname, unsigned long fname_len)
+int sci_xname(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -52,7 +52,7 @@ int sci_xname(char *fname, unsigned long fname_len)
     // Retrieve a matrix of double at position 1.
     if (getAllocatedSingleString(pvApiCtx, piAddrl1, &l1))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
         return 1;
     }
 

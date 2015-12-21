@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH ATOMS -->
-//
+// <-- CLI SHELL MODE -->
 // <-- LINUX ONLY -->
 //
 // <-- Non-regression test for bug 13674 -->
@@ -31,8 +31,7 @@ mclose(fd);
 status = atomsGetConfig("useProxy");
 atomsSetConfig("useProxy", "False");
 atomsSystemUpdate();
-Scanning repository http://atoms.scilab.org/5.5 ... Done
-
+Scanning repository http://atoms.scilab.org/6.0 ... Done
 // Restore values
 atomsSetConfig("useProxy", status);
 if restoreUserConfig then

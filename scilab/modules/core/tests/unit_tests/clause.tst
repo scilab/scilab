@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -39,7 +40,7 @@ if t(1)<>0 then pause,end
 if t(-1)<>1 then pause,end
 //
 t1=t;
-comp(t1)
+
 if t(0)-t1(0)<>0 then pause,end
 if t(1)-t1(1)<>0 then pause,end
 if t(-1)-t1(-1)<>0 then pause,end
@@ -108,7 +109,7 @@ deff('[k]=tt1()',[
 if tt1()<>4 then pause,end
 if tt1()<>4 then pause,end
 //
-// keyboard mode 
+// keyboard mode
 //------------------------
 k=0;while k<10 ,k=k+1;if k==3 then break,end,end,k=k+1;
 if k<>4 then pause,end
@@ -159,11 +160,7 @@ if or(c<>[1 2 3 4]) then pause,end
 deff('c=foo(n)','c=[];for k=1:5,if k==n then continue,end,c=[c,k],end','n')
 if or(foo(3)<>[1 2 4 5]) then pause,end
 if or(foo(5)<>[1 2 3 4]) then pause,end
-comp(foo)
-if or(foo(3)<>[1 2 4 5]) then pause,end
-if or(foo(5)<>[1 2 3 4]) then pause,end
 
- 
 n=3;
 c=[];for i=1:3,for k=1:4,if k==n&i==2 then continue,end,c=[c,k];end;end
 if or(c<>[1,2,3,4, 1,2,4, 1,2,3,4]) then pause,end
@@ -174,10 +171,6 @@ if or(c<> [1,2,3,4, 1,2,3, 1,2,3,4]) then pause,end
 deff('c=foo(n)','c=[];for i=1:3,for k=1:4,if k==n&i==2 then continue,end,c=[c,k];end;end','n')
 if or(foo(3)<>[1,2,3,4, 1,2,4, 1,2,3,4]) then pause,end
 if or(foo(4)<>[1,2,3,4, 1,2,3, 1,2,3,4]) then pause,end
-comp(foo)
-if or(foo(3)<>[1,2,3,4, 1,2,4, 1,2,3,4]) then pause,end
-if or(foo(4)<>[1,2,3,4, 1,2,3, 1,2,3,4]) then pause,end
-
 
 //in a while
 //----------
@@ -192,10 +185,6 @@ deff('c=foo(n)','c=[];k=0;while k<5,k=k+1;if k==n then continue,end,c=[c,k],end'
 if or(foo(3)<>[1 2 4 5]) then pause,end
 if or(foo(5)<>[1 2 3 4]) then pause,end
 
-comp(foo)
-if or(foo(3)<>[1 2 4 5]) then pause,end
-if or(foo(5)<>[1 2 3 4]) then pause,end
-
 n=3;
 c=[];for i=1:3,k=0;while k<4,k=k+1;if k==n&i==2 then continue,end,c=[c,k];end;end
 if or(c<>[1,2,3,4, 1,2,4, 1,2,3,4]) then pause,end
@@ -205,8 +194,5 @@ if or(c<> [1,2,3,4, 1,2,3, 1,2,3,4]) then pause,end
 
 clear foo
 deff('c=foo(n)','c=[];for i=1:3,k=0;while k<4,k=k+1;if k==n&i==2 then continue,end,c=[c,k];end;end','n')
-if or(foo(3)<>[1,2,3,4, 1,2,4, 1,2,3,4]) then pause,end
-if or(foo(4)<>[1,2,3,4, 1,2,3, 1,2,3,4]) then pause,end
-comp(foo)
 if or(foo(3)<>[1,2,3,4, 1,2,4, 1,2,3,4]) then pause,end
 if or(foo(4)<>[1,2,3,4, 1,2,3, 1,2,3,4]) then pause,end

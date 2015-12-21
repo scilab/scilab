@@ -23,7 +23,7 @@
 * @param[in] filename destination
 * @return TRUE or FALSE
 */
-BOOL AppendMessageToLog(wchar_t *Message, wchar_t *FullFilename);
+BOOL AppendMessageToLog(wchar_t *Message,wchar_t *FullFilename);
 
 /**
 * get current date and time

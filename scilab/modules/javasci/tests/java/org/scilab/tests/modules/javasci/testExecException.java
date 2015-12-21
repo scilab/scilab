@@ -62,7 +62,7 @@ public class testExecException {
         assertEquals(b.getHeight(), 10);
         assertEquals(b.getWidth(), 10);
 
-        /* Check results of the addition of two matrixes */
+        /* Check results of the addition of two matrices */
         sci.execException("c = [42, 12; 32, 32] + [2, 1; 3, 2]; sumMatrix = sum(c);");
         ScilabType c = sci.get("c");
 

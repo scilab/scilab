@@ -9,6 +9,82 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [flag,errmsg] = assert_checkalmostequal ( varargin )
+    // Returns the indices where
+    //  * kpinf : x(kpinf) == +%inf,
+    //  * kninf : x(kninf) == -%inf,
+    //  * knan : x(knan) is a %nan
+    //  * kreg : x(kreg) is not an infinity, not a nan
+    //  * xreg = x(kreg)
+    // These 4 sets of indices have no intersection.
+    //
+    // Example :
+    // x = [1 2 3 -%inf %inf %nan %inf %nan -%inf 4 5 6]
+    // [kpinf , kninf , knan , kreg , xreg] = infnanindices ( x )
+    // xreg = [1 2 3 4 5 6]
+    // kreg = [1 2 3 10 11 12]
+    // knan = [6 8]
+    // kninf = [4 9]
+    // kpinf = [5 7]
+    function [kpinf , kninf , knan , kreg , xreg] = infnanindices ( x )
+        kpinf = find(x==%inf)
+        kninf = find(x==-%inf)
+        knan = find(isnan(x))
+        kreg = find(abs(x)<>%inf & ~isnan(x))
+        xreg = x(kreg)
+    endfunction
+
+
+    function areequal = assert_arealmostequal ( computed , expected , reltol , abstol , comptype )
+        //
+        // Decompose the expected value into nan indices, inf indices and regular indices
+        // This allows to solve the following issue:
+        // if computed is %inf and expected is %inf, the difference is %nan,
+        // which makes the computations fail.
+        if ( computed == [] & expected == []) then
+            areequal = %t
+            return
+        end
+        [kcpinf , kcninf , kcnan , kcreg , creg] = infnanindices ( computed )
+        [kepinf , keninf , kenan , kereg , ereg] = infnanindices ( expected )
+        //
+        if ( comptype == "matrix" ) then
+            areclose = ( norm ( creg - ereg ) <= reltol * max(norm(ereg),norm(creg) ) + abstol )
+        else
+            if (creg==[]&ereg==[]) then
+                areclose=%t
+            elseif (creg<>[]&ereg==[]) then
+                areclose=%f
+            elseif (creg==[]&ereg<>[]) then
+                areclose=%f
+            else
+                entries = ( abs(creg-ereg) <= reltol * max(abs(ereg),abs(creg)) + abstol )
+                // Compute the global condition from the entries conditions
+                areclose = and(entries)
+            end
+        end
+        // The regular values must be almost equal and
+        // * the +%inf must be at the same place,
+        // * the -%inf must be at the same place,
+        // * the %nan must be at the same place.
+        areequal = ( areclose & and(kcpinf == kepinf) & and(kcninf == keninf) & and(kcnan == kenan) )
+    endfunction
+
+    function argin = assert_argindefault ( rhs , vararglist , ivar , default )
+        // Returns the value of the input argument #ivar.
+        // If this argument was not provided, or was equal to the
+        // empty matrix, returns the default value.
+        if ( rhs < ivar ) then
+            argin = default
+        else
+            if ( vararglist(ivar) <> [] ) then
+                argin = vararglist(ivar)
+            else
+                argin = default
+            end
+        end
+    endfunction
+
+
     //  Check that computed and expected are numerically close.
 
     [lhs,rhs]=argn()
@@ -20,9 +96,9 @@ function [flag,errmsg] = assert_checkalmostequal ( varargin )
     // Get arguments
     computed = varargin(1)
     expected = varargin(2)
-    reltol = argindefault ( rhs , varargin , 3 , sqrt(%eps) )
-    abstol = argindefault ( rhs , varargin , 4 , 0 )
-    comptype = argindefault ( rhs , varargin , 5 , "element" )
+    reltol = assert_argindefault ( rhs , varargin , 3 , sqrt(%eps) )
+    abstol = assert_argindefault ( rhs , varargin , 4 , 0 )
+    comptype = assert_argindefault ( rhs , varargin , 5 , "element" )
     //
     // Check types of variables
     if ( and(typeof(computed) <> ["constant" "sparse" "hypermat"]) ) then
@@ -114,78 +190,3 @@ function [flag,errmsg] = assert_checkalmostequal ( varargin )
         end
     end
 endfunction
-
-// Returns the indices where
-//  * kpinf : x(kpinf) == +%inf,
-//  * kninf : x(kninf) == -%inf,
-//  * knan : x(knan) is a %nan
-//  * kreg : x(kreg) is not an infinity, not a nan
-//  * xreg = x(kreg)
-// These 4 sets of indices have no intersection.
-//
-// Example :
-// x = [1 2 3 -%inf %inf %nan %inf %nan -%inf 4 5 6]
-// [kpinf , kninf , knan , kreg , xreg] = infnanindices ( x )
-// xreg = [1 2 3 4 5 6]
-// kreg = [1 2 3 10 11 12]
-// knan = [6 8]
-// kninf = [4 9]
-// kpinf = [5 7]
-function [kpinf , kninf , knan , kreg , xreg] = infnanindices ( x )
-    kpinf = find(x==%inf)
-    kninf = find(x==-%inf)
-    knan = find(isnan(x))
-    kreg = find(abs(x)<>%inf & ~isnan(x))
-    xreg = x(kreg)
-endfunction
-
-
-function areequal = assert_arealmostequal ( computed , expected , reltol , abstol , comptype )
-    //
-    // Decompose the expected value into nan indices, inf indices and regular indices
-    // This allows to solve the following issue:
-    // if computed is %inf and expected is %inf, the difference is %nan,
-    // which makes the computations fail.
-    if ( computed == [] & expected == []) then
-        areequal = %t
-        return
-    end
-    [kcpinf , kcninf , kcnan , kcreg , creg] = infnanindices ( computed )
-    [kepinf , keninf , kenan , kereg , ereg] = infnanindices ( expected )
-    //
-    if ( comptype == "matrix" ) then
-        areclose = ( norm ( creg - ereg ) <= reltol * max(norm(ereg),norm(creg) ) + abstol )
-    else
-        if (creg==[]&ereg==[]) then
-            areclose=%t
-        elseif (creg<>[]&ereg==[]) then
-            areclose=%f
-        elseif (creg==[]&ereg<>[]) then
-            areclose=%f
-        else
-            entries = ( abs(creg-ereg) <= reltol * max(abs(ereg),abs(creg)) + abstol )
-            // Compute the global condition from the entries conditions
-            areclose = and(entries)
-        end
-    end
-    // The regular values must be almost equal and
-    // * the +%inf must be at the same place,
-    // * the -%inf must be at the same place,
-    // * the %nan must be at the same place.
-    areequal = ( areclose & and(kcpinf == kepinf) & and(kcninf == keninf) & and(kcnan == kenan) )
-endfunction
-function argin = argindefault ( rhs , vararglist , ivar , default )
-    // Returns the value of the input argument #ivar.
-    // If this argument was not provided, or was equal to the
-    // empty matrix, returns the default value.
-    if ( rhs < ivar ) then
-        argin = default
-    else
-        if ( vararglist(ivar) <> [] ) then
-            argin = vararglist(ivar)
-        else
-            argin = default
-        end
-    end
-endfunction
-

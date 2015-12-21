@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,6 +13,9 @@
 
 package org.scilab.modules.xcos.port.output;
 
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.PortKind;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 
@@ -23,20 +27,17 @@ import org.scilab.modules.xcos.port.Orientation;
  * connected to an {@link org.scilab.modules.xcos.port.input.InputPort} .
  */
 public abstract class OutputPort extends BasicPort {
-
-    private static final long serialVersionUID = -8098437925667788997L;
+    private static final long serialVersionUID = 0L;
 
     /**
      * Default constructor
-     *
-     * @param type
-     *            The string port name ("ExplicitOutputPort" or
-     *            "ImplicitOutputPort")
      */
-    public OutputPort(String type) {
-        super(type);
-        setOrientation(Orientation.EAST);
+    public OutputPort(JavaController controller, long uid, Kind kind, Object value, String style, String id, boolean isImplicit) {
+        super(controller, uid, kind, value, style, id, Orientation.EAST, isImplicit, PortKind.PORT_OUT);
+    }
 
-        setDefaultValues();
+    @Override
+    public PortKind getPortKind() {
+        return PortKind.PORT_OUT;
     }
 }

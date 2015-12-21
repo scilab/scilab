@@ -5,7 +5,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="acot" xml:lang="en">
     <refnamediv>
         <refname>acot</refname>
-        <refpurpose>computes the element-wise inverse cotangeant of the
+        <refpurpose>computes the element-wise inverse cotangent of the
             argument.
         </refpurpose>
     </refnamediv>
@@ -33,7 +33,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Computes the element-wise inverse cotangeant of the argument. For
+            Computes the element-wise inverse cotangent of the argument. For
             real argument the result is real.
         </para>
         <para>

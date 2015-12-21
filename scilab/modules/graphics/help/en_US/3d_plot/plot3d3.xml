@@ -216,7 +216,7 @@
                         together with <literal>type</literal> in <literal>flag</literal> : if it is set
                         to <literal>1</literal>, <literal>3</literal> or <literal>5</literal> (see above to
                         see the corresponding behaviour). If <literal>flag</literal> is missing,
-                        <literal>ebox</literal> is not taken into acoount. Note that, when
+                        <literal>ebox</literal> is not taken into account. Note that, when
                         specified, the <literal>ebox</literal> argument acts on the
                         <literal>data_bounds</literal> field that can also be reset through the
                         axes entity properties (see <link linkend="axes_properties">axes_properties</link>).

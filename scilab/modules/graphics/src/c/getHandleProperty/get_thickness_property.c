@@ -32,19 +32,19 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_thickness_property(void* _pvCtx, int iObjUID)
+void* get_thickness_property(void* _pvCtx, int iObjUID)
 {
     double lineThickness = 0.0;
-    double *pdblLineThickness = &lineThickness;
+    void* pdblLineThickness = &lineThickness;
 
     getGraphicObjectProperty(iObjUID, __GO_LINE_THICKNESS__, jni_double, (void**)(&pdblLineThickness));
 
     if (pdblLineThickness == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "thickness");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, lineThickness);
+    return sciReturnDouble( lineThickness);
 }
 /*------------------------------------------------------------------------*/

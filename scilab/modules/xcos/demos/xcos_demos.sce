@@ -14,8 +14,8 @@
 function demo_xcos()
 
     bResumeSomeVariables = %t;
-    // check if some variables used by demo_gui already exist
-    if isdef("demo_gui_update") & isdef("resize_gui") then
+    // Check if some variables used by demo_gui already exist
+    if isdef("demo_gui_update") then
         bResumeSomeVariables = %f;
     end
 
@@ -27,16 +27,16 @@ function demo_xcos()
 
     // Select Xcos
     allitems = frame1.string;
-    xcosItem = find(allitems == gettext("Xcos"));
+    xcosItem = grep(allitems, gettext("Xcos"));
     frame1.value = xcosItem;
 
     // Exec callback to display Xcos demos list
     gcbo = frame1;
     execstr(frame1.callback, "errcatch");
 
-    // resume some variables
+    // Resume some variables
     if bResumeSomeVariables then
-        [demo_gui_update, resize_gui] = resume(demo_gui_update, resize_gui);
+        demo_gui_update = resume(demo_gui_update);
     end
 
 endfunction

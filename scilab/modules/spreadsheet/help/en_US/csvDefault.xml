@@ -79,7 +79,7 @@
     <refsection>
         <title>Description</title>
         
-        <para>This function allows to quiery or configure the options of the csv
+        <para>This function allows to query or configure the options of the csv
             files. These options are used by the read and write function when the user
             does not specify them in the calling sequence.
         </para>
@@ -180,7 +180,7 @@
                     
                     <para>Possible values are "linux", "windows", "macos9".</para>
                     
-                    <para>by default, this value is platform-dependant.</para>
+                    <para>by default, this value is platform-dependent.</para>
                 </listitem>
                 
                 <listitem>

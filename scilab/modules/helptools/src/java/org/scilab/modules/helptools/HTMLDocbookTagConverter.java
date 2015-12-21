@@ -848,6 +848,23 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     }
 
     /**
+     * Handle a literallayout
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleLiterallayout(final Map<String, String> attributes, final String contents) throws SAXException {
+        
+        //replace \n by <br>
+        String s = contents.replace("\n", "<BR>");
+        //replace spaces by &nbsp;
+        s = s.replace(" ", "&nbsp;");
+        
+        return encloseContents("code", "literallayout", s);
+    }
+
+    /**
      * Handle a varname
      * @param attributes the tag attributes
      * @param contents the tag contents
@@ -1015,6 +1032,22 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refsection", contents);
         } else {
             return encloseContents("div", "refsection", contents);
+        }
+    }
+
+    /**
+     * Handle an anchor
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleAnchor(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\">" + contents + "</a>";
+        } else {
+            return contents;
         }
     }
 

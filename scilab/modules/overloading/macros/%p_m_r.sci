@@ -54,7 +54,7 @@ function f2=%p_m_r(n1,f2)
         [num,den]=simp(num,den),
     else
         sz=size(num)
-        [num,den]=simp(num.entries,den.entries),
+        [num,den]=simp(num(:),den(:)),
         num=matrix(num,sz)
         den=matrix(den,sz)
     end

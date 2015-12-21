@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_auto_clear_property(void* _pvCtx, int iObjUID)
+void* get_auto_clear_property(void* _pvCtx, int iObjUID)
 {
     int iAutoClear = 0;
     int* piAutoClear = &iAutoClear;
@@ -39,16 +39,16 @@ int get_auto_clear_property(void* _pvCtx, int iObjUID)
     if (piAutoClear == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_clear");
-        return -1;
+        return NULL;
     }
 
     if (iAutoClear)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 }
 

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,7 +20,11 @@ import java.util.List;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.graph.model.BlockInterFunction;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
@@ -29,20 +34,22 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeExceptio
  */
 public final class LabelElement extends AbstractElement<TextBlock> {
     protected static final List<String> DATA_FIELD_NAMES = asList("Text", "graphics", "model", "void", "gui");
+    private static final int INTERFUNCTION_INDEX = DATA_FIELD_NAMES.indexOf("gui");
 
     /** Mutable field to easily get the data through methods */
     private ScilabMList data;
 
     /** Element used to decode/encode Scicos model part into a BasicBlock */
-    private final BlockModelElement modelElement = new BlockModelElement(null);
+    private final BlockModelElement modelElement = new BlockModelElement(controller, null);
 
     /** Element used to decode/encode Scicos model part into a BasicBlock */
-    private final BlockGraphicElement graphicElement = new BlockGraphicElement(null, 1.0);
+    private final BlockGraphicElement graphicElement = new BlockGraphicElement(controller, null, 1.0);
 
     /**
      * Default constructor
      */
-    public LabelElement() {
+    public LabelElement(final JavaController controller) {
+        super(controller);
     }
 
     /**
@@ -65,8 +72,10 @@ public final class LabelElement extends AbstractElement<TextBlock> {
 
         validate();
 
+        final String interfunction = ((ScilabString) data.get(INTERFUNCTION_INDEX)).getData()[0][0];
         if (into == null) {
-            block = new TextBlock();
+            BlockInterFunction func = XcosCellFactory.lookForInterfunction(interfunction);
+            block = (TextBlock) XcosCellFactory.createBlock(controller, func, interfunction, controller.createObject(Kind.ANNOTATION), Kind.ANNOTATION);
         }
 
         block = beforeDecode(element, block);
@@ -85,16 +94,6 @@ public final class LabelElement extends AbstractElement<TextBlock> {
 
         // doc, do nothing
         field++;
-
-        /*
-         * Fill Jgraphx properties
-         */
-        if (isEmptyField(block.getRealParameters())) {
-            block.setValue("");
-        } else {
-            final String text = ((ScilabString) block.getRealParameters()).getData()[0][0];
-            block.setValue(text);
-        }
 
         block = afterDecode(element, block);
 
@@ -194,21 +193,4 @@ public final class LabelElement extends AbstractElement<TextBlock> {
         final String type = ((ScilabString) data.get(0)).getData()[0][0];
         return type.equals(DATA_FIELD_NAMES.get(0));
     }
-
-    /**
-     * Not implemented yet
-     *
-     * @param from
-     *            not used
-     * @param element
-     *            not used
-     * @return always null
-     * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object,
-     *      org.scilab.modules.types.ScilabType)
-     */
-    @Override
-    public ScilabType encode(TextBlock from, ScilabType element) {
-        return null;
-    }
-
 }

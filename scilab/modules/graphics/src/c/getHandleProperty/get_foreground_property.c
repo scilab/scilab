@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_foreground_property(void* _pvCtx, int iObjUID)
+void* get_foreground_property(void* _pvCtx, int iObjUID)
 {
     int iLineColor = 0;
     int *piLineColor = &iLineColor;
@@ -41,9 +41,9 @@ int get_foreground_property(void* _pvCtx, int iObjUID)
     if (piLineColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "foreground");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, iLineColor);
+    return sciReturnDouble(iLineColor);
 }
 /*------------------------------------------------------------------------*/

@@ -31,11 +31,11 @@ function ilib_build(ilib_name, ..
     end
 
     if type(ilib_name) <> 10 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "ilib_build", 1));
+        error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_build", 1));
     end
 
     if size(ilib_name,"*") <> 1 then
-        error(999, msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "ilib_build", 1));
+        error(999, msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "ilib_build", 1));
     end
 
     if type(table) <> 10 then
@@ -74,7 +74,7 @@ function ilib_build(ilib_name, ..
 
     if getos() == "Windows" then
         if ~isdef("makename") | (makename == "") | (makename == []) then
-            // Load dynamic_link Internal lib if it"s not already loaded
+            // Load dynamic_link Internal lib if it's not already loaded
             if ~exists("dynamic_linkwindowslib") then
                 load("SCI/modules/dynamic_link/macros/windows/lib");
             end
@@ -127,7 +127,7 @@ function ilib_build(ilib_name, ..
     if ( ilib_verbose() <> 0 ) then
         mprintf(_("   Generate a cleaner file\n"));
     end
-    ilib_gen_cleaner(makename, "loader.sce", [libn; file_gw_name]);
+    ilib_gen_cleaner(makename, "loader.sce", [libn; file_gw_name']);
 
 endfunction
 //=============================================================================

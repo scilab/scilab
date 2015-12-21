@@ -16,7 +16,7 @@
 #endif
 #include <stdio.h>
 #include "more.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
 #include "sciprint.h"
 #include "GetCharWithoutOutput.h"

@@ -20,17 +20,21 @@ import java.util.PriorityQueue;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.DiagramComparator;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 
 public class DiagramComparatorTest {
+    private JavaController controller;
 
     @Before
     public void loadLibrary() {
         System.loadLibrary("scilab");
+        controller = new JavaController();
     }
 
     @Test
@@ -39,14 +43,14 @@ public class DiagramComparatorTest {
             return;
         }
 
-        final PriorityQueue<XcosDiagram> sorted = new PriorityQueue<XcosDiagram>(1, DiagramComparator.getInstance());
+        final PriorityQueue<XcosDiagram> sorted = new PriorityQueue<XcosDiagram>(1, new DiagramComparator());
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
 
         /*
          * Init test vector
          */
         for (int i = 0; i < 20; i++) {
-            testVector.add(new XcosDiagram());
+            testVector.add(new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM));
         }
 
         /*
@@ -72,14 +76,15 @@ public class DiagramComparatorTest {
             return;
         }
 
-        final PriorityQueue<XcosDiagram> sorted = new PriorityQueue<XcosDiagram>(1, DiagramComparator.getInstance());
+        final PriorityQueue<XcosDiagram> sorted = new PriorityQueue<XcosDiagram>(1, new DiagramComparator());
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
 
         /*
          * Init test vector
          */
         for (int i = 0; i < 20; i++) {
-            testVector.add(new SuperBlockDiagram());
+            SuperBlock blk = new SuperBlock(controller.createObject(Kind.BLOCK));
+            testVector.add(new XcosDiagram(blk.getUID(), blk.getKind()));
         }
 
         /*
@@ -109,27 +114,25 @@ public class DiagramComparatorTest {
         /*
          * Init test vector
          */
-        XcosDiagram root1 = new XcosDiagram();
+        XcosDiagram root1 = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
         root1.installListeners();
-        XcosDiagram root2 = new XcosDiagram();
+        XcosDiagram root2 = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
         root2.installListeners();
 
         /*
          * First child
          */
-        SuperBlock r1b1 = new SuperBlock();
+        SuperBlock r1b1 = new SuperBlock(controller.createObject(Kind.BLOCK));
         root1.addCell(r1b1);
 
-        SuperBlockDiagram r1diag1 = new SuperBlockDiagram(r1b1);
+        XcosDiagram r1diag1 = new XcosDiagram(r1b1.getUID(), r1b1.getKind());
         r1diag1.installListeners();
-        r1diag1.installSuperBlockListeners();
 
-        SuperBlock r1diag1b1 = new SuperBlock();
+        SuperBlock r1diag1b1 = new SuperBlock(controller.createObject(Kind.BLOCK));
         r1diag1.addCell(r1diag1b1);
 
-        SuperBlockDiagram r1diag1b1diag1 = new SuperBlockDiagram(r1diag1b1);
+        XcosDiagram r1diag1b1diag1 = new XcosDiagram(r1diag1b1.getUID(), r1diag1b1.getKind());
         r1diag1b1diag1.installListeners();
-        r1diag1b1diag1.installSuperBlockListeners();
 
         /*
          * test vector
@@ -164,9 +167,16 @@ public class DiagramComparatorTest {
         for (XcosDiagram d : diags) {
             int currentDepth = 0;
 
-            while (d instanceof SuperBlockDiagram) {
+            long uid = d.getUID();
+            Kind kind = d.getKind();
+            while (kind == Kind.BLOCK) {
                 currentDepth++;
-                d = ((SuperBlockDiagram) d).getContainer().getParentDiagram();
+
+                long[] refUID = new long[1];
+                controller.getObjectProperty(uid, kind, ObjectProperties.PARENT_BLOCK, refUID);
+
+                uid = refUID[0];
+                kind = controller.getKind(refUID[0]);
             }
 
             assert currentDepth >= depth;
@@ -186,40 +196,36 @@ public class DiagramComparatorTest {
         /*
          * Init test vector
          */
-        XcosDiagram root1 = new XcosDiagram();
+        XcosDiagram root1 = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
         root1.installListeners();
-        XcosDiagram root2 = new XcosDiagram();
+        XcosDiagram root2 = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
         root2.installListeners();
 
         /*
          * First child
          */
-        SuperBlock r1b1 = new SuperBlock();
+        SuperBlock r1b1 = new SuperBlock(controller.createObject(Kind.BLOCK));
         root1.addCell(r1b1);
-        SuperBlock r2b1 = new SuperBlock();
+        SuperBlock r2b1 = new SuperBlock(controller.createObject(Kind.BLOCK));
         root1.addCell(r2b1);
 
-        SuperBlockDiagram r1diag1 = new SuperBlockDiagram(r1b1);
+        XcosDiagram r1diag1 = new XcosDiagram(r1b1.getUID(), r1b1.getKind());
         r1diag1.installListeners();
-        r1diag1.installSuperBlockListeners();
-        SuperBlockDiagram r2diag1 = new SuperBlockDiagram(r2b1);
+        XcosDiagram r2diag1 = new XcosDiagram(r2b1.getUID(), r2b1.getKind());
         r2diag1.installListeners();
-        r2diag1.installSuperBlockListeners();
 
         /*
          * Second child
          */
-        SuperBlock r1b2 = new SuperBlock();
+        SuperBlock r1b2 = new SuperBlock(controller.createObject(Kind.BLOCK));
         root1.addCell(r1b2);
-        SuperBlock r2b2 = new SuperBlock();
+        SuperBlock r2b2 = new SuperBlock(controller.createObject(Kind.BLOCK));
         root1.addCell(r2b2);
 
-        SuperBlockDiagram r1diag2 = new SuperBlockDiagram(r1b2);
+        XcosDiagram r1diag2 = new XcosDiagram(r1b2.getUID(), r1b2.getKind());
         r1diag2.installListeners();
-        r1diag2.installSuperBlockListeners();
-        SuperBlockDiagram r2diag2 = new SuperBlockDiagram(r2b2);
+        XcosDiagram r2diag2 = new XcosDiagram(r2b2.getUID(), r2b2.getKind());
         r2diag2.installListeners();
-        r2diag2.installSuperBlockListeners();
 
         /*
          * test vector
@@ -265,7 +271,7 @@ public class DiagramComparatorTest {
 
         while (it.hasNext()) {
             XcosDiagram diag = it.next();
-            assert diag instanceof SuperBlockDiagram;
+            assert diag.getKind() == Kind.BLOCK;
         }
     }
 
@@ -281,28 +287,26 @@ public class DiagramComparatorTest {
         /*
          * Init test vector
          */
-        XcosDiagram root = new XcosDiagram();
+        XcosDiagram root = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
         root.installListeners();
 
         /*
          * First child
          */
-        SuperBlock b1 = new SuperBlock();
+        SuperBlock b1 = new SuperBlock(controller.createObject(Kind.BLOCK));
         root.addCell(b1);
 
-        SuperBlockDiagram diag1 = new SuperBlockDiagram(b1);
+        XcosDiagram diag1 = new XcosDiagram(b1.getUID(), b1.getKind());
         diag1.installListeners();
-        diag1.installSuperBlockListeners();
 
         /*
          * Second child
          */
-        SuperBlock b2 = new SuperBlock();
+        SuperBlock b2 = new SuperBlock(controller.createObject(Kind.BLOCK));
         root.addCell(b2);
 
-        SuperBlockDiagram diag2 = new SuperBlockDiagram(b2);
+        XcosDiagram diag2 = new XcosDiagram(b2.getUID(), b2.getKind());
         diag2.installListeners();
-        diag2.installSuperBlockListeners();
 
         /*
          * test vector

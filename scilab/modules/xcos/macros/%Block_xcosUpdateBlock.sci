@@ -23,9 +23,10 @@ function %Block_xcosUpdateBlock(blk)
 
     // export to hdf5
     blk = blk;
-    if export_to_hdf5(tempfile, "blk") then
+    try
+        save(tempfile, "blk")
         xcosUpdateBlock(tempfile)
-    else
+    catch
         error(msprintf(gettext("%s: Unable to export %s to %s.\n"), "xcosUpdateBlock", "`blk''", tempfile));
     end
 

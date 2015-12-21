@@ -121,17 +121,14 @@ B = 100*rand(nb_row,1);
 assert_checkfalse(execstr("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B);","errcatch")     == 0);
 refMsg = msprintf(_("%s: Wrong number of input arguments: data doesn''t fit with format.\n"), "msprintf");
 assert_checkerror("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B);", refMsg);
-assert_checkfalse(execstr("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B,B,B);","errcatch")     == 0);
-refMsg = msprintf(_("%s: Wrong number of input arguments: at most %d expected.\n"), "msprintf", 4);
-assert_checkerror("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B,B,B);", refMsg);
 // No arg
 assert_checkfalse(execstr("msprintf();","errcatch")     == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "msprintf", 1, 1000);
+refMsg = msprintf(_("%s: Wrong number of input arguments: at least %d expected.\n"), "msprintf", 1);
 assert_checkerror("msprintf();", refMsg);
 // overload: Arg not managed
 s=poly(0,"s");
 p=1+s+2*s^2;
-assert_checkfalse(execstr("msprintf(""plop"",p);","errcatch") <> 246);
+assert_checkfalse(execstr("msprintf(""plop"",p);","errcatch") <> 999);
 assert_checkfalse(execstr("msprintf(""%s %s"",""plop"");","errcatch")     <> 999);
 refMsg = msprintf(_("%s: Wrong number of input arguments: data doesn''t fit with format.\n"), "msprintf");
 assert_checkerror("msprintf(""%s %s"",""plop"");", refMsg);

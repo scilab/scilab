@@ -42,9 +42,6 @@
     <ClCompile Include="src\jni\ScilabJavaObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_external_objects_java.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_jallowClassReloading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

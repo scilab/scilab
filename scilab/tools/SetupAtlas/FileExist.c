@@ -15,13 +15,13 @@
 /*--------------------------------------------------------------------------*/
 BOOL FileExist(wchar_t  *wcfilename)
 {
-    WIN32_FIND_DATAW FindFileData;
-    HANDLE handle = FindFirstFileW (wcfilename, &FindFileData);
-    if (handle != INVALID_HANDLE_VALUE)
-    {
-        FindClose (handle);
-        return TRUE;
-    }
-    return FALSE;
+	WIN32_FIND_DATAW FindFileData;
+	HANDLE handle = FindFirstFileW (wcfilename, &FindFileData);
+	if (handle != INVALID_HANDLE_VALUE)
+	{
+		FindClose (handle);
+		return TRUE;
+	}
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/

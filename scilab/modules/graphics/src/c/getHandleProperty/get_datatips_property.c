@@ -19,7 +19,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "HandleManagement.h"
@@ -27,10 +27,10 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
-int get_datatips_property(void* _pvCtx, int iObjUID)
+void* get_datatips_property(void* _pvCtx, int iObjUID)
 {
     int i = 0;
-    int status = 0;
+    void* status = 0;
     int iDatatipCount = 0;
     int* piDatatipCount = &iDatatipCount;
     int* piDatatip = NULL;
@@ -39,7 +39,7 @@ int get_datatips_property(void* _pvCtx, int iObjUID)
     getGraphicObjectProperty(iObjUID, __GO_DATATIPS_COUNT__, jni_int, (void **)&piDatatipCount);
     if (piDatatipCount == NULL || iDatatipCount == 0)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
 
     getGraphicObjectProperty(iObjUID, __GO_DATATIPS__, jni_int_vector, (void **)&piDatatip);
@@ -50,7 +50,7 @@ int get_datatips_property(void* _pvCtx, int iObjUID)
         plDatatip[i] = getHandle(piDatatip[i]);
     }
 
-    status = sciReturnColHandleVector(_pvCtx, plDatatip, iDatatipCount);
+    status = sciReturnColHandleVector(plDatatip, iDatatipCount);
     FREE(plDatatip);
 
     return status;

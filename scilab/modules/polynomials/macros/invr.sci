@@ -9,7 +9,7 @@
 
 
 function [f,d]=invr(h,flag)
-    //if h is a scalar, polynomial or rational fonction matrix, invr
+    //if h is a scalar, polynomial or rational function matrix, invr
     //computes h^(-1).
     //!
     if argn(2)==1 then

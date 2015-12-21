@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,6 +17,7 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.block.BasicBlock;
 
 /**
@@ -37,7 +39,8 @@ abstract class BlockPartsElement extends AbstractElement<BasicBlock> {
     /**
      * Default constructor
      */
-    protected BlockPartsElement() {
+    protected BlockPartsElement(final JavaController controller) {
+        super(controller);
     }
 
     /**

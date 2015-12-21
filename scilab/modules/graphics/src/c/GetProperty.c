@@ -35,10 +35,10 @@
 #include "BasicAlgos.h"
 #include "localization.h"
 #include "Axes.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "HandleManagement.h"
 
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
@@ -88,6 +88,8 @@ BOOL sciisTextEmpty(int iObjUID)
 
     nbElements = dimensions[0] * dimensions[1];
 
+    releaseGraphicObjectProperty(__GO_TEXT_ARRAY_DIMENSIONS__, dimensions, jni_int_vector, 2);
+
     if (nbElements == 0)
     {
         return TRUE;
@@ -96,18 +98,21 @@ BOOL sciisTextEmpty(int iObjUID)
     if (nbElements == 1)
     {
         char** textMatrix = NULL;
+        BOOL ret = FALSE;
         getGraphicObjectProperty(iObjUID, __GO_TEXT_STRINGS__, jni_string_vector, (void **) &textMatrix);
 
         if (textMatrix[0] == NULL)
         {
-            return TRUE;
+            ret = TRUE;
         }
         else if (strcmp(textMatrix[0], "") == 0)
         {
             /* empty string */
-            return TRUE;
+            ret = TRUE;
         }
 
+        releaseGraphicObjectProperty(__GO_TEXT_STRINGS__, textMatrix, jni_string_vector, nbElements);
+        return ret;
     }
 
     return FALSE;

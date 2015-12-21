@@ -13,15 +13,14 @@
 #include "gw_mpi.h"
 #include "sci_mpi.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /**
  * This function returns the rank of a process
  */
-int sci_mpi_comm_size(char *fname, unsigned long fname_len)
+int sci_mpi_comm_size(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int comm_size;

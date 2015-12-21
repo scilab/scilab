@@ -18,13 +18,10 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <ctype.h>
-#include "stricmp.h"
 
 #include "setGetHashTable.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 /* see http://www.cse.yorku.ca/~oz/hash.html */
 /* like in hashtable_localization by Allan Cornet */
@@ -73,7 +70,7 @@ int insertGetHashtable(GetPropertyHashTable * hashTable, char * key, getProperty
 {
     /* allocate a new key because the hashtable claims ownership */
     /* and will free it when destroyed */
-    char * copyKey  =  strdup(key);
+    char * copyKey  =  os_strdup(key);
     if (copyKey == NULL)
     {
         return 0 ;
@@ -101,7 +98,7 @@ int insertSetHashtable(SetPropertyHashTable * hashTable, char * key, setProperty
 {
     /* allocate a new key because the hashtable claims ownership */
     /* and will free it when destroyed */
-    char * copyKey   = strdup(key);
+    char * copyKey   = os_strdup(key);
     if (copyKey == NULL)
     {
         return 0 ;

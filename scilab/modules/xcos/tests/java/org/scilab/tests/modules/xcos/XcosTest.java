@@ -14,6 +14,7 @@ package org.scilab.tests.modules.xcos;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.scilab.modules.xcos.Xcos;
 
@@ -22,12 +23,17 @@ import org.scilab.modules.xcos.Xcos;
  */
 public class XcosTest {
 
+    @Before
+    public void loadLibrary() {
+        System.loadLibrary("scilab");
+    }
+
     /**
      * Be careful when modifying the tradename and version.
      */
     @Test
     public void checkVersion() {
         assertTrue(Xcos.TRADENAME.compareTo("Xcos") == 0);
-        assertTrue(Xcos.VERSION.compareTo("1.0") == 0);
+        assertTrue(Xcos.VERSION.compareTo("2.0") == 0);
     }
 }

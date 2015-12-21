@@ -1,0 +1,9 @@
+LIBRARY    output_stream.dll
+
+
+EXPORTS
+sciprint
+Scierror
+scilabWriteW
+scilabErrorW
+Sciwarning

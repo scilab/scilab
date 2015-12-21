@@ -84,7 +84,7 @@ int set_tight_limits_property(void* _pvCtx, int iObjUID, void* _pvData, int valu
 
         if (valueType != sci_strings)
         {
-            Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "tight_limits");
+            Scierror(999, _("Wrong type for '%s' property: string expected.\n"), "tight_limits");
             return SET_PROPERTY_ERROR;
         }
 

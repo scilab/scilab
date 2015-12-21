@@ -13,6 +13,12 @@
 #include <windows.h>
 #include "dynlib_commons.h"
 /*--------------------------------------------------------------------------*/
+//for Visual Leak Detector in debug compilation mode
+//#define DEBUG_VLD
+#if defined(DEBUG_VLD) && defined(_DEBUG)
+#include <vld.h>
+#endif
+/*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../../../bin/libintl.lib")
 /*--------------------------------------------------------------------------*/
 COMMONS_IMPEXP int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)

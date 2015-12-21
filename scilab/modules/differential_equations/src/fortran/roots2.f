@@ -5,6 +5,7 @@ clll. optimize
       dimension g0(ng), g1(ng), gx(ng), jroot(ng)
       integer iownd3, imax, last, idum3
       double precision alpha, x2, rdum3
+cDEC$ ATTRIBUTES DLLIMPORT:: /lsr001/
       common /lsr001/ alpha, x2, rdum3(3),
      1   iownd3(3), imax, last, idum3(4)
 c!purpose

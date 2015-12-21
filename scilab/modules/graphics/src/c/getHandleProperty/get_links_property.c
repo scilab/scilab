@@ -23,19 +23,19 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "HandleManagement.h"
 
 /*------------------------------------------------------------------------*/
-int get_links_property(void* _pvCtx, int iObjUID)
+void* get_links_property(void* _pvCtx, int iObjUID)
 {
     int i = 0;
     long *handles = NULL;
     int* links = NULL;
-    int status = 0;
+    void* status = 0;
     int iLinksCount = 0;
     int* piLinksCount = &iLinksCount;
 
@@ -44,19 +44,19 @@ int get_links_property(void* _pvCtx, int iObjUID)
     if (piLinksCount == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "links");
-        return -1;
+        return NULL;
     }
 
     if (iLinksCount == 0)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
 
     handles = (long *)MALLOC(iLinksCount * sizeof(long));
     if (handles == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "get_links_property");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(iObjUID, __GO_LINKS__, jni_int_vector, (void **) &links);
@@ -65,7 +65,7 @@ int get_links_property(void* _pvCtx, int iObjUID)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "links");
         FREE(handles);
-        return -1;
+        return NULL;
     }
 
     for (i = 0; i < iLinksCount; i++)
@@ -73,8 +73,7 @@ int get_links_property(void* _pvCtx, int iObjUID)
         handles[i] = getHandle(links[i]);
     }
 
-    status = sciReturnRowHandleVector(_pvCtx, handles, iLinksCount);
-
+    status = sciReturnRowHandleVector(handles, iLinksCount);
     FREE(handles);
 
     return status;

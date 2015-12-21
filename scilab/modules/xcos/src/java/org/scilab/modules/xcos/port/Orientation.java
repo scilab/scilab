@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,12 +13,9 @@
 
 package org.scilab.modules.xcos.port;
 
-import java.util.NoSuchElementException;
-
+import com.mxgraph.util.mxConstants;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-
-import com.mxgraph.util.mxConstants;
 
 /**
  * Represent a port orientation related to the associated block. These
@@ -50,10 +48,9 @@ public enum Orientation {
      *            The block mirror state
      * @return The value of the angle.
      */
-    public int getRelativeAngle(int blockAngle,
-    Class <? extends BasicPort > klass, boolean flipped, boolean mirrored) {
-        final int orientation = getOrientationAngle();
-        final int base = getBaseAngle(klass, orientation);
+    public double getRelativeAngle(double blockAngle, Class <? extends BasicPort > klass, boolean flipped, boolean mirrored) {
+        final double orientation = getOrientationAngle();
+        final double base = getBaseAngle(klass, orientation);
 
         return getFlippedAndMirroredAngle(base + blockAngle, flipped, mirrored);
     }
@@ -67,10 +64,10 @@ public enum Orientation {
      *            the mirror status
      * @return the real angle
      */
-    public int getAbsoluteAngle(Class <? extends BasicPort > klass,
+    public double getAbsoluteAngle(Class <? extends BasicPort > klass,
     boolean flipped, boolean mirrored) {
-        final int orientation = getOrientationAngle();
-        final int base = getBaseAngle(klass, orientation);
+        final double orientation = getOrientationAngle();
+        final double base = getBaseAngle(klass, orientation);
 
         return getFlippedAndMirroredAngle(base, flipped, mirrored);
     }
@@ -86,9 +83,8 @@ public enum Orientation {
      *            the mirror status
      * @return the updated angle.
      */
-    private int getFlippedAndMirroredAngle(int base, boolean flipped,
-    boolean mirrored) {
-        int angle = base;
+    private double getFlippedAndMirroredAngle(double base, boolean flipped, boolean mirrored) {
+        double angle = base;
 
         switch (this) {
             case NORTH:
@@ -106,7 +102,7 @@ public enum Orientation {
                 break;
 
             default:
-                throw new NoSuchElementException();
+                break;
         }
 
         /* Calculate angle */
@@ -130,8 +126,7 @@ public enum Orientation {
      *            calculated orientation angle
      * @return updated angle
      */
-    private int getBaseAngle(Class <? extends BasicPort > klass,
-                             int orientationAngle) {
+    private double getBaseAngle(Class <? extends BasicPort > klass, double orientationAngle) {
         final boolean isOutput = OutputPort.class.isAssignableFrom(klass)
                                  || CommandPort.class.isAssignableFrom(klass);
 

@@ -1,10 +1,11 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA - Serge Steer
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-h=syslin('c',1/%s)
+h=syslin('c',1/%s);
 
 if norm(freq(h.num,h.den,1:3)-[1 1/2 1/3])>1d-15 then pause,end
 if norm(freq(h.num,h.den,%i*(1:3))+%i*[1 1/2 1/3])>1d-15 then pause,end

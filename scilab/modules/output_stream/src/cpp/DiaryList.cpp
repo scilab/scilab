@@ -12,7 +12,12 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "DiaryList.hxx"
-#include "getFullFilename.hxx"
+
+extern "C"
+{
+#include "getFullFilename.h"
+#include "sci_malloc.h"
+}
 /*--------------------------------------------------------------------------*/
 DiaryList::DiaryList()
 {
@@ -23,12 +28,12 @@ DiaryList::~DiaryList()
     closeAllDiaries();
 }
 /*--------------------------------------------------------------------------*/
-int DiaryList::openDiary(std::wstring _wfilename, bool autorename)
+int DiaryList::openDiary(const std::wstring& _wfilename, bool autorename)
 {
     return openDiary(_wfilename, 0, autorename);
 }
 /*--------------------------------------------------------------------------*/
-int DiaryList::openDiary(std::wstring _wfilename, int _mode, bool autorename)
+int DiaryList::openDiary(const std::wstring& _wfilename, int _mode, bool autorename)
 {
     int ID = -1;
     Diary newDiary(_wfilename, _mode, findFreeID(), autorename);
@@ -99,29 +104,23 @@ std::wstring DiaryList::getFilename(int ID_diary)
     return wFilename;
 }
 /*--------------------------------------------------------------------------*/
-std::wstring * DiaryList::getFilenames(int *sizeFilenames)
+std::list<std::wstring> DiaryList::getFilenames()
 {
-    std::wstring *wFilenames = NULL;
-    *sizeFilenames = 0;
-
     LSTDIARY.sort(compareDiary);
+    int size = (int)LSTDIARY.size();
+    std::list<std::wstring> wFilenames(size);
 
-    *sizeFilenames = (int)LSTDIARY.size();
-    if (*sizeFilenames > 0)
+    if (size > 0)
     {
-        int i = 0;
-        std::list<Diary>::iterator iter;
-        wFilenames = new std::wstring[*sizeFilenames];
-
-        for ( iter = LSTDIARY.begin(); iter != LSTDIARY.end(); iter++)
+        for (auto& iter : LSTDIARY)
         {
-            wFilenames[i++] = iter->getFilename();
+            wFilenames.push_back(iter.getFilename());
         }
     }
     return wFilenames;
 }
 /*--------------------------------------------------------------------------*/
-void DiaryList::write(std::wstring _wstr, bool bInput)
+void DiaryList::write(const std::wstring& _wstr, bool bInput)
 {
     std::list<Diary>::iterator i;
     for ( i = LSTDIARY.begin(); i != LSTDIARY.end(); i++)
@@ -130,7 +129,7 @@ void DiaryList::write(std::wstring _wstr, bool bInput)
     }
 }
 /*--------------------------------------------------------------------------*/
-void DiaryList::writeln(std::wstring _wstr, bool bInput)
+void DiaryList::writeln(const std::wstring& _wstr, bool bInput)
 {
     std::list<Diary>::iterator i;
     for ( i = LSTDIARY.begin(); i != LSTDIARY.end(); i++)
@@ -152,12 +151,15 @@ bool DiaryList::exists(int ID_diary)
     return false;
 }
 /*--------------------------------------------------------------------------*/
-bool DiaryList::exists(std::wstring _wfilename)
+bool DiaryList::exists(const std::wstring& _wfilename)
 {
     std::list<Diary>::iterator i;
     for ( i = LSTDIARY.begin(); i != LSTDIARY.end(); i++)
     {
-        if ( i->getFilename().compare(getFullFilename(_wfilename)) == 0 )
+        wchar_t* wc = getFullFilenameW(_wfilename.data());
+        int comp = i->getFilename().compare(wc);
+        FREE(wc);
+        if (comp == 0)
         {
             return true;
         }
@@ -240,12 +242,15 @@ bool DiaryList::getSuspendWrite(int  ID_diary)
     return false;
 }
 /*--------------------------------------------------------------------------*/
-int DiaryList::getID(std::wstring _wfilename)
+int DiaryList::getID(const std::wstring& _wfilename)
 {
     std::list<Diary>::iterator i;
     for ( i = LSTDIARY.begin(); i != LSTDIARY.end(); i++)
     {
-        if ( i->getFilename().compare(getFullFilename(_wfilename)) == 0 )
+        wchar_t* ws = getFullFilenameW(_wfilename.data());
+        int comp = i->getFilename().compare(ws);
+        FREE(ws);
+        if (comp == 0)
         {
             return i->getID();
         }

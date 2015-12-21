@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2013-06-12 20:57+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
@@ -14,83 +14,89 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-
-msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
-msgstr "Varování: Problém(y) s rozhraním TCL/TK. Rozhraní není povoleno.\n"
-
-msgid "Tcl/TK interface disabled in -nogui mode.\n"
-msgstr "Rozhraní Tcl/TK zakázáno v režimu -nogui.\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Error main TCL interpreter not initialized.\n"
-msgstr "%s: Chyba: Hlavní převaděč TCL není zaveden.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No such slave interpreter.\n"
-msgstr "%s: Žádný takový podřazený převaděč.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: File %s not found.\n"
-msgstr "%s: Soubor %s nenalezen.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s, at line %i of file %s\n"
 "\t%s.\n"
 msgstr ""
-"%s, v řádku %i souboru %s\n"
-"\t%s.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String or vector of strings "
 "expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo vektor "
-"řetězců.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: Není více paměti.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not read Tcl Variable.\n"
-msgstr "%s: Nelze přečíst Proměnou Tcl.\n"
+msgstr ""
 
 msgid "Alpha Release"
-msgstr "Vydání Alfa"
+msgstr ""
 
 msgid "Beta Release"
-msgstr "Vydání Beta"
+msgstr ""
 
 msgid "Final Release"
-msgstr "Konečné vydání"
+msgstr ""
 
 msgid "Unknown Release"
-msgstr "Neznámé Vydání"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván '%s'.\n"
+msgstr ""
 
 msgid "This function doesn't work with Complex.\n"
-msgstr "Tato funkce nefunguje s komplexními čísly.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
 
 msgid "[] doesn't work with Tcl/Tk.\n"
-msgstr "[] nefunguje v Tcl/Tk.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d nebo #%d: Očekáván řetězec.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -152,43 +158,6 @@ msgstr ""
 "Chyba Tcl: Chyba při zaváděcím procesu Scilab/TK. Chyba při načítání %s: %s\n"
 
 #, c-format
-msgid "TCL_EvalScilabCmd %s"
-msgstr "TCL_EvalScilabCmd %s"
-
-#, c-format
-msgid "Execution starts for %s"
-msgstr "Spuštění pro %s začíná"
-
-#, c-format
-msgid "Execution ends for %s"
-msgstr "Spuštění pro %s končí"
-
-msgid " Flushing starts for queued commands.\n"
-msgstr " Pro příkazy ve frontě začíná mazání.\n"
-
-msgid "Warning: Too many callbacks in queue!\n"
-msgstr "Varování: Příliš mnoho zpětných volání ve frontě!\n"
-
-#, c-format
-msgid "Flushed execution starts for %s - No option"
-msgstr "Vyčištěné puštění pro %s začíná - Žádná možnost"
-
-#, c-format
-msgid "Flushed execution starts for %s - seq"
-msgstr "Vyčištěné puštění pro %s začíná - seq"
-
-#, c-format
-msgid "Flushed execution ends for %s"
-msgstr "Vyčištěné puštění pro %s končí"
-
-msgid "Flushing ends\n"
-msgstr "Vyčištění končí\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáván alespoň jeden.\n"
-
-#, c-format
 msgid "Tcl Error : %s\n"
 msgstr "Chyba Tcl : %s\n"
 
@@ -203,23 +172,12 @@ msgstr "Proměnná příliš dlouhá.\n"
 msgid "%s: Error TCL interpreter not initialized.\n"
 msgstr "%s: Chyba: Převaděč TCL není zaveden.\n"
 
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least one expected.\n"
+msgstr ""
+
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Scilab modul TCL/TK není nainstalován.\n"
-
-msgid "Tcl/Tk"
-msgstr "Tcl/Tk"
-
-msgid "Color"
-msgstr "Barva"
-
-msgid "Puzzle"
-msgstr "Zmást"
-
-msgid "Scroll"
-msgstr "Posunout"
-
-msgid "Scale"
-msgstr "Změnit velikost"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

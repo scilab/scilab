@@ -15,17 +15,17 @@
 */
 
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "BuildObjects.h"
 #include "gw_gui.h"
 #include "localization.h"
-#include "stack-c.h"
 #include "GetProperty.h"
 #include "sciprint.h"
 #include "SetPropertyStatus.h"
 #include "SetHashTable.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "CreateUimenu.h"
 #include "createGraphicObject.h"
 #include "setGraphicObjectProperty.h"
@@ -35,9 +35,7 @@
 #include "api_scilab.h"
 #include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
-// callSetProperty get a stack pointer in input argument.
-/*--------------------------------------------------------------------------*/
-int sci_uimenu(char *fname, unsigned long fname_len)
+int sci_uimenu(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int nbRow = 0, nbCol = 0;
@@ -102,7 +100,7 @@ int sci_uimenu(char *fname, unsigned long fname_len)
             if (iParentUID != 0)
             {
                 getGraphicObjectProperty(iParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
-                if (iParentType == __GO_FIGURE__ && iParentType == __GO_UIMENU__)
+                if (iParentType != __GO_FIGURE__ && iParentType != __GO_UIMENU__)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"), fname, 1, "Figure", "Uimenu");
                     return FALSE;
@@ -148,7 +146,7 @@ int sci_uimenu(char *fname, unsigned long fname_len)
         /* Read property name */
         if ((!checkInputArgumentType(pvApiCtx, inputIndex, sci_strings)))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, inputIndex);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, inputIndex);
             return FALSE;
         }
         else
@@ -162,7 +160,7 @@ int sci_uimenu(char *fname, unsigned long fname_len)
 
             if (getAllocatedSingleString(pvApiCtx, piAddrProperty, &propertyName))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, inputIndex);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, inputIndex);
                 return 1;
             }
 
@@ -211,7 +209,7 @@ int sci_uimenu(char *fname, unsigned long fname_len)
                     char* pstValue = NULL;
                     if (getAllocatedSingleString(pvApiCtx, piAddrValue, &pstValue))
                     {
-                        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, iPropertyValuePositionIndex);
+                        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, iPropertyValuePositionIndex);
                         return 1;
                     }
 

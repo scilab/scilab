@@ -16,5 +16,5 @@
 // and display a incorrect error
 
 A(3,3)=%s;
-ierr = execstr('A(:)=%z;','errcatch');
-if ierr <> 278 then pause,end
+ierr = execstr("A(:)=%z;","errcatch");
+assert_checktrue(ierr <> 0);

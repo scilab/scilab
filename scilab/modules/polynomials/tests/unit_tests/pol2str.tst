@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
+warning("off"); // WARNING_EMPTY_OPS
 assert_checkequal(pol2str(%z), "z");
 assert_checkequal(pol2str([%z %z]), ["z", "z"]);
 

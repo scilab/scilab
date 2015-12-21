@@ -78,6 +78,9 @@ function test_run_result = test_run(varargin)
         params.wanted_mode  = assign_option(option_mat, "mode_nwni", "NWNI", params.wanted_mode);
         option_mat          = clean_option(option_mat, "mode_nwni");
 
+        params.wanted_mode  = assign_option(option_mat, "mode_nwni_profiling", ["NWNI" "PROFILING"], params.wanted_mode);
+        option_mat          = clean_option(option_mat, "mode_nwni_profiling");
+
         // Reference
         params.reference    = assign_option(option_mat, "no_check_ref", "skip", params.reference);
         option_mat          = clean_option(option_mat, "no_check_ref");
@@ -448,6 +451,7 @@ function status = test_module(_params)
         result = test_single(_params, tests(i,1), tests(i,2));
         elapsedTimeAfter=toc();
 
+
         testsuite.tests = testsuite.tests + 1
 
         testsuite.testcase(i).name=tests(i,2);
@@ -481,6 +485,10 @@ function status = test_module(_params)
                 test_skipped_count = test_skipped_count + 1;
             end
         end
+
+        if ~isempty(result.warning) then
+            warning(result.warning);
+        end
     end
 
     status.totalTime = toc();
@@ -512,7 +520,8 @@ function status = test_single(_module, _testPath, _testName)
     execMode      = "";
     platform      = "all";
     language      = "any";
-    try_catch     = %T;
+    //try_catch     = %T; // Scilab 5.4.0
+    try_catch     = %f; // see comment about "dia(find(dia == '')) = [];" (~line 890)
     error_output  = "check";
     reference     = "check";
     xcosNeeded    = %F;
@@ -523,6 +532,7 @@ function status = test_single(_module, _testPath, _testName)
     tmp_res     = pathconvert( TMPDIR + "/" + _testName + ".res", %F);
     tmp_err     = pathconvert( TMPDIR + "/" + _testName + ".err", %F);
     path_dia    = pathconvert( TMPDIR + "/" + _testName + ".dia", %F);
+    tmp_prof    = pathconvert( TMPDIR + "/" + _testName + ".prof", %F);
 
     path_dia_ref  = _testPath + _testName + ".dia.ref";
     // Reference file management OS by OS
@@ -556,6 +566,7 @@ function status = test_single(_module, _testPath, _testName)
     status.id = 0;
     status.message = "";
     status.details = "";
+    status.warning = "";
 
     //Reset standard globals
     rand("seed",0);
@@ -617,7 +628,7 @@ function status = test_single(_module, _testPath, _testName)
     end
 
     if ~isempty(grep(sciFile, "<-- TEST WITH GRAPHIC -->")) then
-        if _module.wanted_mode == "NWNI" then
+        if or(_module.wanted_mode == "NWNI") then
             status.id = 10;
             status.message = "skipped: Test with graphic";
             return;
@@ -628,7 +639,19 @@ function status = test_single(_module, _testPath, _testName)
         execMode = "NW";
     end
 
-    if (~isempty(grep(sciFile, "<-- JVM NOT MANDATORY -->")) | ~isempty(grep(sciFile, "<-- CLI SHELL MODE -->"))) then
+    if or(_module.wanted_mode == "NWNI") & isempty(grep(sciFile, "<-- CLI SHELL MODE -->")) then
+        status.id = 10;
+        status.message = "skipped: not CLI SHELL MODE test";
+        return;
+    end
+
+    if ~isempty(grep(sciFile, "<-- JVM NOT MANDATORY -->")) then
+        status.warning = _("option ""JVM NOT MANDATORY"" is deprecated, please use ""CLI SHELL MODE"" instead");
+        jvm = %F;
+        execMode = "NWNI";
+    end
+
+    if ~isempty(grep(sciFile, "<-- CLI SHELL MODE -->")) then
         jvm = %F;
         execMode = "NWNI";
     end
@@ -647,7 +670,7 @@ function status = test_single(_module, _testPath, _testName)
     clear MPITestPos
 
     if ~isempty(grep(sciFile, "<-- XCOS TEST -->")) then
-        if _module.wanted_mode == "NWNI" then
+        if or(_module.wanted_mode == "NWNI") then
             status.id = 10;
             status.message = "skipped: Test with xcos";
             return;
@@ -690,7 +713,7 @@ function status = test_single(_module, _testPath, _testName)
     sciFile = strsubst(sciFile, "pause; end", "bugmes();quit;end");
 
     //to avoid suppression of input --> with prompts
-    sciFile = strsubst(sciFile, "-->", "@#>");
+    sciFile = strsubst(sciFile, "--> ", "@#> ");
     //remove halt calls
     sciFile = strsubst(sciFile, "halt();", "");
 
@@ -764,12 +787,19 @@ function status = test_single(_module, _testPath, _testName)
     end
 
     //mode
+    valgrind_opt = "";
+    winbin = "wscilex.exe";
     if _module.wanted_mode == "NW" then
         mode_arg = "-nw";
     elseif _module.wanted_mode == "NWNI" then
+        winbin = "scilex.exe";
         mode_arg = "-nwni";
+    elseif _module.wanted_mode == ["NWNI" "PROFILING"] && getos() == "Linux" then
+        mode_arg = "-nwni -profiling";
+        valgrind_opt = "SCILAB_VALGRIND_OPT=""--log-file=" + tmp_prof + " """;
     else
         if execMode == "NWNI" then
+            winbin = "scilex.exe";
             mode_arg = "-nwni";
         elseif execMode == "NW" then
             mode_arg = "-nw";
@@ -788,10 +818,8 @@ function status = test_single(_module, _testPath, _testName)
     //language
     if language == "any" then
         language_arg = "";
-    elseif getos() == "Windows" then
-        language_arg = "-l "+ language;
     else
-        language_arg = "LANG=" + language + " ";
+        language_arg = "-l "+ language;
     end
 
     loader_path = pathconvert(fullfile(_module.moduleName, "loader.sce"), %f);
@@ -799,15 +827,15 @@ function status = test_single(_module, _testPath, _testName)
     // Build final command
     if getos() == "Windows" then
         if (isdir(_module.moduleName) & isfile(loader_path)) // external module not in Scilab
-            test_cmd = "( """ + SCI_BIN + "\bin\scilex.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"");"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         else // standard module
-            test_cmd = "( """ + SCI_BIN + "\bin\scilex.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -f """ + tmp_tst + """ > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         end
     else
         if (isdir(_module.moduleName) & isfile(loader_path))
-            test_cmd = "( " + language_arg + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + valgrind_opt + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + " -nb -e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
         else
-            test_cmd = "( " + language_arg + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + valgrind_opt + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
         end
     end
 
@@ -844,11 +872,12 @@ function status = test_single(_module, _testPath, _testName)
     if (error_output == "check") & (_module.error_output == "check") then
         if getos() == "Darwin" then
             tmp_errfile_info = fileinfo(tmp_err);
-            msg = "JavaVM: requested Java version (1.5) not available. Using Java at ""/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"" instead."
+            msg = "Picked up _JAVA_OPTIONS:"; // When -Djava.awt.headless=false is forced for example
 
             if ~isempty(tmp_errfile_info) then
                 txt = mgetl(tmp_err);
-                txt(txt==msg) = [];
+                toRemove = grep(txt, msg);
+                txt(toRemove) = [];
                 if isempty(txt) then
                     deletefile(tmp_err);
                 else // Remove messages due to JOGL2 RC8
@@ -905,6 +934,19 @@ function status = test_single(_module, _testPath, _testName)
             end
         end
 
+        if isfile(tmp_prof) then
+            txt = mgetl(tmp_prof);
+            if grep(txt($), "ERROR SUMMARY: 0 errors from 0 contexts") then
+                deletefile(tmp_prof);
+            else
+                status.id = 5;
+                status.message = "failed: Valgrind error detected";
+                status.details = checkthefile(tmp_prof);
+                return;
+            end
+        end
+
+
         tmp_errfile_info = fileinfo(tmp_err);
 
         if isfile(tmp_err) & tmp_errfile_info(1) <> 0 then
@@ -947,6 +989,17 @@ function status = test_single(_module, _testPath, _testName)
 
     // Remove Header and Footer
     dia = remove_headers(dia);
+
+    // Remove empty lines
+    // In scilab 5, the test is executed in a try/catch
+    // which remove empty lines.
+    // In scilab 6, we can't execute the test in a try/catch
+    // because it will be parsed first then executed
+    // so the diary will contain all the script followed by the display
+    // of the execution.
+    // The try/catch is desactived ~line 513 by "try_catch     = %f;"
+    // and the following line remove empty lines to reproduce the old operation.
+    dia(find(dia == "")) = [];
 
     //Check for execution errors
     dia_tmp = dia;
@@ -1003,7 +1056,7 @@ function status = test_single(_module, _testPath, _testName)
     if ( (reference=="check") & (_module.reference=="check") ) | (_module.reference=="create") then
         //  Do some modification in  dia file
 
-        dia(grep(dia, "write(%io(2), tmpdirToPrint")) = [];
+        dia(grep(dia, "printf(''%s\n'',tmpdirToPrint);")) = [];
         dia(grep(dia, "TMPDIR1")) = [];
         dia(grep(dia, "diary(0)")) = [];
 
@@ -1035,9 +1088,9 @@ function status = test_single(_module, _testPath, _testName)
         end
 
         //suppress the prompts
-        dia = strsubst(dia, "-->", "");
-        dia = strsubst(dia, "@#>", "-->");
-        dia = strsubst(dia, "-1->", "");
+        dia = strsubst(dia, "--> ", "");
+        dia = strsubst(dia, "@#> ", "--> ");
+        dia = strsubst(dia, "-1-> ", "");
 
         //standardise  number display
 
@@ -1107,6 +1160,7 @@ function msg = checkthefile( filename )
     if params.show_error == %t then
         msg=[msg; mgetl(filename)]
     end
+
 endfunction
 
 // launchthecommand

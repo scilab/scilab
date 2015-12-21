@@ -31,12 +31,13 @@
 #include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "Sciwarning.h"
 
 /*--------------------------------------------------------------------------*/
 char ** ReBuildUserTicks(char old_logflag, char new_logflag, double* u_xgrads, int *u_nxgrads, char ** u_xlabels);
@@ -56,7 +57,7 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
     {
         if (u_xgrads[i] <= 0)
         {
-            sciprint("Warning: graduation number %d is ignored : when switching to logarithmic scale, we must have strictly positive graduations!\n", i);
+            Sciwarning("Warning: graduation number %d is ignored : when switching to logarithmic scale, we must have strictly positive graduations!\n", i);
         }
         else
         {

@@ -20,7 +20,7 @@
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "sciCall.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -33,7 +33,7 @@
 #include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xstring(char *fname, unsigned long fname_len)
+int sci_xstring(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -70,7 +70,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
     // Retrieve a matrix of string at position 3.
     if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m3, &n3, &Str))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
         return 1;
     }
 

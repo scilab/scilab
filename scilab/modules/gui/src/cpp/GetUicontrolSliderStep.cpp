@@ -16,22 +16,22 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-int GetUicontrolSliderStep(void* _pvCtx, int iObjUID)
+void* GetUicontrolSliderStep(void* _pvCtx, int iObjUID)
 {
     double *sliderStep = NULL;
-    int status = FALSE;
+    void* status = NULL;
 
     getGraphicObjectProperty(iObjUID, __GO_UI_SLIDERSTEP__, jni_double_vector, (void**) &sliderStep);
 
     if (sliderStep != NULL)
     {
-        status = sciReturnRowVector(_pvCtx, sliderStep, 2);
+        status = sciReturnRowVector(sliderStep, 2);
         delete[] sliderStep;
         return status;
     }
     else
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "SliderStep");
-        return FALSE;
+        return NULL;
     }
 }

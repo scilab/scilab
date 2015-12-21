@@ -56,7 +56,7 @@ function sd = stdev(x, o, m)
         end
     end
 
-    if typeof(x) == "hypermat" then
+    if (length(size(x)) > 2) then
         if rhs == 3 then
             sd = %hm_stdev(x, o, m);
         else

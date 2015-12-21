@@ -45,7 +45,11 @@ function [Q,Z,Ec,Ac,Qd,Zd,numbeps]=quaskro(E,A,tol)
         tol=0
     end
     [Ac,Ec,Q,Z,nlbcks,muk,nuk,muk0,nuk0,mnei]=fstair(A,E,Q,Z,stair,rk,tol)
-    numbeps=muk0(1:nlbcks)-nuk0(1:nlbcks);
+    if nlbcks > 0 then
+        numbeps=muk0(1:nlbcks)-nuk0(1:nlbcks);
+    else
+        numbeps = [];
+    end
     Qd=[mnei(1),mnei(3),na-mnei(1)-mnei(3)];
     Zd=[mnei(2),mnei(3),ma-mnei(2)-mnei(3)];
 

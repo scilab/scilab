@@ -17,7 +17,6 @@ import static org.scilab.modules.xcos.modelica.TerminalAccessor.FIXED;
 import static org.scilab.modules.xcos.modelica.TerminalAccessor.WEIGHT;
 import static org.scilab.modules.xcos.modelica.TerminalAccessor.getData;
 
-import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -27,7 +26,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import javax.lang.model.element.Element;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
@@ -150,6 +148,7 @@ public final class MainPanel extends JPanel {
     private TreeModel createTreeModel() {
         final DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(
         controller.getRoot()) {
+            @Override
             public String toString() {
                 return ((Model) getUserObject()).getName();
             };
@@ -172,6 +171,7 @@ public final class MainPanel extends JPanel {
      */
     private MutableTreeNode createNodes(Struct struct) {
         DefaultMutableTreeNode structNode = new DefaultMutableTreeNode(struct) {
+            @Override
             public String toString() {
                 return ((Struct) getUserObject()).getName();
             };

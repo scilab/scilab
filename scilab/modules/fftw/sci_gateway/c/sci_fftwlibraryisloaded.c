@@ -17,7 +17,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_fftwlibraryisloaded(char *fname, unsigned long fname_len)
+int sci_fftwlibraryisloaded(char *fname, void* pvApiCtx)
 {
     int iErr;
 

@@ -258,7 +258,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_EXTRACT">
+    <refsection id="Example2_EXTRACT">
         <title>Example</title>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/EXTRACT_Example.zcos">

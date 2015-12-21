@@ -35,14 +35,14 @@ function [x,fx,ci,lambda,info,iter]=sqp(x,objf,cif,lb,ub,ni,maxiter,tol)
     x = min(x,ub);
     iter = 0;
     fx = objf(x);
-    g = numdiff(objf,x)';
+    g = numderivative(objf,x)';
     H = eye(n,n);
     if (ni > 0) then
         ci = cif(x)
         if (length(ci) ~= ni) then
             error("Ci pas de longueur ni")
         end
-        A = numdiff(cif,x)
+        A = numderivative(cif,x)
     else
         ci = [];
         A = [];
@@ -103,10 +103,10 @@ function [x,fx,ci,lambda,info,iter]=sqp(x,objf,cif,lb,ub,ni,maxiter,tol)
 
         lambda = lambda + alpha*(lambda_qp(1:ni) - lambda);
 
-        g_new = numdiff(objf,x_new)';
+        g_new = numderivative(objf,x_new)';
 
         if(ni>0) then
-            A_new = numdiff(cif,x_new);
+            A_new = numderivative(cif,x_new);
         else
             A_new = [];
         end

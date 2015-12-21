@@ -13,7 +13,7 @@
 extern "C" {
 #include "Scierror.h"
 #include "gw_external_objects_java.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 #include "ScilabJavaEnvironment.hxx"
@@ -21,7 +21,7 @@ extern "C" {
 using namespace org_scilab_modules_external_objects_java;
 using namespace org_modules_external_objects;
 
-int sci_jcreatejar(char *fname, unsigned long fname_len)
+int sci_jcreatejar(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int res = 1;
@@ -36,7 +36,7 @@ int sci_jcreatejar(char *fname, unsigned long fname_len)
     char *jarFilePath = NULL;
     if (getAllocatedSingleString(pvApiCtx, addr1, &jarFilePath))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
         return 1;
     }
 
@@ -93,7 +93,7 @@ int sci_jcreatejar(char *fname, unsigned long fname_len)
         {
             freeAllocatedSingleString(jarFilePath);
             freeAllocatedMatrixOfString(nbRow, nbCol, filePaths);
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
             return 1;
         }
     }
@@ -110,7 +110,7 @@ int sci_jcreatejar(char *fname, unsigned long fname_len)
             freeAllocatedSingleString(jarFilePath);
             freeAllocatedMatrixOfString(nbRow, nbCol, filePaths);
             freeAllocatedSingleString(filesRootPath);
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 4);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 4);
             return 1;
         }
     }

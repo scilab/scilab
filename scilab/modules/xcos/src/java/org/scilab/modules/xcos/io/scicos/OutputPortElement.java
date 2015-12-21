@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,6 +13,7 @@
 
 package org.scilab.modules.xcos.io.scicos;
 
+import java.rmi.server.UID;
 import java.util.List;
 
 import org.scilab.modules.graph.utils.StyleMap;
@@ -19,8 +21,10 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
-import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.port.BasicPort.DataType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfInt;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
@@ -66,7 +70,9 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
      * @param element
      *            the Scicos block parameters used by this element.
      */
-    public OutputPortElement(ScilabType element) {
+    public OutputPortElement(final JavaController controller, ScilabType element) {
+        super(controller);
+
         data = (ScilabMList) element;
         graphics = (ScilabMList) data.get(GRAPHICS_INDEX);
         model = (ScilabMList) data.get(MODEL_INDEX);
@@ -99,6 +105,7 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
         data = (ScilabMList) element;
 
         port = allocatePort();
+        port.setId(new UID().toString());
 
         port = beforeDecode(element, port);
 
@@ -125,7 +132,7 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
          * backward compatibility, use explicit as default.
          */
         if (graphics.size() <= GRAPHICS_OUTIMPL_INDEX) {
-            return new ExplicitOutputPort();
+            return new ExplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
         ScilabType outImpl = graphics.get(GRAPHICS_OUTIMPL_INDEX);
 
@@ -133,7 +140,7 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
          * backward compatibility, use explicit as default.
          */
         if (isEmptyField(outImpl)) {
-            return new ExplicitOutputPort();
+            return new ExplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
 
         final ScilabString outImplicit = (ScilabString) outImpl;
@@ -142,7 +149,7 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
          * backward compatibility, use explicit as default.
          */
         if (isEmptyField(outImplicit)) {
-            return new ExplicitOutputPort();
+            return new ExplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
 
         final boolean isColumnDominant = outImplicit.getHeight() >= outImplicit.getWidth();
@@ -157,12 +164,12 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
          * typed port otherwise.
          */
         if (isSet && outimpl[indexes[0]][indexes[1]].equals(EXPLICIT)) {
-            ret = new ExplicitOutputPort();
+            ret = new ExplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         } else if (isSet && outimpl[indexes[0]][indexes[1]].equals(IMPLICIT)) {
-            ret = new ImplicitOutputPort();
+            ret = new ImplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         } else {
             // when not specified, use explicit
-            ret = new ExplicitOutputPort();
+            ret = new ExplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
 
         return ret;
@@ -186,7 +193,6 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
         } else {
             nbLines = 1;
         }
-        port.setDataLines(nbLines);
 
         // The number of column of the port
         int nbColumns;
@@ -199,20 +205,24 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
         } else {
             nbColumns = 1;
         }
-        port.setDataColumns(nbColumns);
 
         // port scilab type
+        int type;
         if (dataType.getRealPart() != null) {
-            int type;
-
             try {
                 type = (int) dataType.getRealPart()[alreadyDecodedCount][0];
             } catch (ArrayIndexOutOfBoundsException e) {
                 type = 1;
             }
-
-            port.setDataType(DataType.convertScilabValue(type));
+        } else {
+            type = 1;
         }
+
+        VectorOfInt v = new VectorOfInt(3);
+        v.set(0, nbLines);
+        v.set(1, nbColumns);
+        v.set(2, type);
+        controller.setObjectProperty(port.getUID(), port.getKind(), ObjectProperties.DATATYPE, v);
     }
 
     /**
@@ -270,134 +280,5 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
 
         final String type = ((ScilabString) data.get(0)).getData()[0][0];
         return type.equals(DATA_FIELD_NAMES.get(0)) && getNumberOfOutputPort() > alreadyDecodedCount;
-    }
-
-    /**
-     * Encode the instance into the element
-     *
-     * @param from
-     *            the source instance
-     * @param element
-     *            the previously allocated element.
-     * @return the element parameter
-     * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object,
-     *      org.scilab.modules.types.ScilabType)
-     */
-    @Override
-    public ScilabType encode(OutputPort from, ScilabType element) {
-        data = (ScilabMList) element;
-
-        if (data == null) {
-            throw new IllegalArgumentException();
-        }
-
-        data = (ScilabMList) beforeEncode(from, data);
-
-        encodeModel(from);
-        encodeGraphics(from);
-
-        // Update the index counter
-        alreadyDecodedCount++;
-
-        data = (ScilabMList) afterEncode(from, data);
-
-        return data;
-    }
-
-    /**
-     * Encode the data into the model fields.
-     *
-     * This method fills :
-     * <ul>
-     * <li>Block.model.out</li>
-     * <li>Block.model.out2</li>
-     * <li>Block.model.outtyp</li>
-     * </ul>
-     *
-     * @param from
-     *            the source data
-     */
-    private void encodeModel(OutputPort from) {
-        ScilabDouble sciValues;
-        double[][] values;
-
-        // out
-        sciValues = (ScilabDouble) model.get(MODEL_OUT_DATALINE_INDEX);
-        values = sciValues.getRealPart();
-        int datalines = from.getDataLines();
-        values[alreadyDecodedCount][0] = datalines;
-
-        // out2
-        sciValues = (ScilabDouble) model.get(MODEL_OUT_DATACOL_INDEX);
-        values = sciValues.getRealPart();
-        int datacolumns = from.getDataColumns();
-        if (datacolumns == 0) {
-            datacolumns = 1;
-        } else {
-            allColumnsAreZeros = false;
-        }
-        values[alreadyDecodedCount][0] = datacolumns;
-
-        // outtyp
-        sciValues = (ScilabDouble) model.get(MODEL_OUT_DATATYPE_INDEX);
-        values = sciValues.getRealPart();
-        values[alreadyDecodedCount][0] = from.getDataType().getAsDouble();
-    }
-
-    /**
-     * Encode the data into the graphic fields.
-     *
-     * This method fills :
-     * <ul>
-     * <li>Block.graphics.pout</li>
-     * <li>Block.graphics.out_implicit</li>
-     * </ul>
-     *
-     * @param from
-     *            the source data
-     */
-    private void encodeGraphics(OutputPort from) {
-        ScilabDouble sciValues;
-        ScilabString sciStrings;
-        double[][] values;
-        String[][] strings;
-
-        // pout
-        sciValues = (ScilabDouble) graphics.get(GRAPHICS_POUT_INDEX);
-        values = sciValues.getRealPart();
-        if (from.getEdgeCount() == 1) {
-            // only set on valid connection
-            values[alreadyDecodedCount][0] = ((BasicLink) from.getEdgeAt(0)).getOrdering();
-        } else {
-            values[alreadyDecodedCount][0] = 0.0;
-        }
-
-        // out_implicit
-        sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTIMPL_INDEX);
-        strings = sciStrings.getData();
-        strings[alreadyDecodedCount][0] = from.getType().getAsString();
-
-        // out_style
-        sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTSTYLE_INDEX);
-        strings = sciStrings.getData();
-        strings[alreadyDecodedCount][0] = from.getStyle();
-
-        // out_label
-        sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTLABEL_INDEX);
-        strings = sciStrings.getData();
-        if (from.getValue() != null) {
-            strings[alreadyDecodedCount][0] = from.getValue().toString();
-        } else {
-            strings[alreadyDecodedCount][0] = "";
-        }
-    }
-
-    /**
-     * Clear Block.model.out2 if it contains only zeros.
-     */
-    public void afterEncode() {
-        if (allColumnsAreZeros) {
-            model.set(MODEL_OUT_DATACOL_INDEX, new ScilabDouble());
-        }
     }
 }

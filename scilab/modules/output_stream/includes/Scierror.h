@@ -15,13 +15,14 @@
 #define __SCIERROR__
 
 #include <stdarg.h>
+#include <wchar.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 #include "do_error_number.h"
 
-
+#define bsiz 4096
     /*
     * as sciprint but with an added first argument
     * which is ignored (used in do_printf)
@@ -30,6 +31,8 @@ extern "C" {
     * @param ...
     */
     int  Scierror(int iv, const char *fmt, ...);
+    //int  ScierrorW(int iv, const wchar_t *fmt,...);
+
 
 #ifdef __cplusplus
 }

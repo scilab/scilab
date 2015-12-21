@@ -64,14 +64,15 @@
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "localization.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
+#include "Sciwarning.h"
 
 CellAdr *ListNumeric = NULL;
 CellAdr *ListCholFactors = NULL;
 
 /* RAJOUTER un controle sur la taille du pivot */
 
-int sci_umf_lufact(char* fname, unsigned long l)
+int sci_umf_lufact(char* fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int stat = 0;
@@ -129,6 +130,13 @@ int sci_umf_lufact(char* fname, unsigned long l)
 
     if (sciErr.iErr)
     {
+        FREE(piNbItemRow);
+        FREE(piColPos);
+        FREE(pdblSpReal);
+        if (pdblSpImg)
+        {
+            FREE(pdblSpImg);
+        }
         printError(&sciErr, 0);
         return 1;
     }
@@ -145,11 +153,26 @@ int sci_umf_lufact(char* fname, unsigned long l)
 
     if (nA <= 0 || mA <= 0)
     {
+        FREE(piNbItemRow);
+        FREE(piColPos);
+        FREE(pdblSpReal);
+        if (pdblSpImg)
+        {
+            FREE(pdblSpImg);
+        }
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
         return 1;
     }
 
     SciSparseToCcsSparse(&AA, &A);
+
+    FREE(piNbItemRow);
+    FREE(piColPos);
+    FREE(pdblSpReal);
+    if (pdblSpImg)
+    {
+        FREE(pdblSpImg);
+    }
 
     /* symbolic factorization */
     if (A.it == 1)
@@ -198,7 +221,7 @@ int sci_umf_lufact(char* fname, unsigned long l)
     {
         if (getWarningMode())
         {
-            sciprint("\n%s:%s\n", _("Warning"), _("The (square) matrix appears to be singular."));
+            Sciwarning("\n%s:%s\n", _("Warning"), _("The (square) matrix appears to be singular."));
         }
     }
 

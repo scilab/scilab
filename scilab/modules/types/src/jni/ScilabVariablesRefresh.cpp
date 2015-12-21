@@ -39,7 +39,7 @@ knowledge of the CeCILL-B license and that you accept its terms.
 namespace org_scilab_modules_types {
 
                 // Static declarations (if any)
-                
+
 // Returns the current env
 
 JNIEnv * ScilabVariablesRefresh::getCurrentEnv() {
@@ -94,7 +94,7 @@ localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
 if(localInstance == NULL){
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
 }
- 
+
 this->instance = curEnv->NewGlobalRef(localInstance) ;
 if(this->instance == NULL){
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
@@ -185,7 +185,7 @@ delete[] arrayOfString;
 }
 curEnv->DeleteLocalRef(res);
 return arrayOfString;
- } else { 
+ } else {
 curEnv->DeleteLocalRef(res);
 return NULL;
 }

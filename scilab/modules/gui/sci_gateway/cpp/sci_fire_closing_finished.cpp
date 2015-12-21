@@ -25,7 +25,7 @@ extern "C"
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-int sci_fire_closing_finished(char *fname, unsigned long fname_len)
+int sci_fire_closing_finished(char *fname, void* pvApiCtx)
 {
     CheckInputArgument(pvApiCtx, 0, 0);
 

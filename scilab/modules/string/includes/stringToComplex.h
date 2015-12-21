@@ -14,6 +14,7 @@
 #ifndef __STRINGTOCOMPLEX_H__
 #define __STRINGTOCOMPLEX_H__
 
+#include <wchar.h>
 #include "doublecomplex.h"
 #include "complex_array.h"
 #include "BOOL.h"
@@ -37,6 +38,11 @@ extern "C" {
                                   const char *decimal,
                                   BOOL bConvertByNAN,
                                   stringToComplexError *ierr);
+
+    doublecomplex stringToComplexW(const wchar_t *pSTR,
+                                   const wchar_t *decimal,
+                                   BOOL bConvertByNAN,
+                                   stringToComplexError *ierr);
 
     STRING_IMPEXP  complexArray *stringsToComplexArray(const char **pSTRs, int nbElements,
             const char *decimal,

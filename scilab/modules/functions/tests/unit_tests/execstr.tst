@@ -22,13 +22,13 @@ execstr(['if %t then';
          'end'])
 
 ierr = execstr('a=zzzzzzz','errcatch');
-if ierr <> 4 then pause,end 
+if ierr <> 999 then pause,end 
 
 ierr = execstr('a=1?02','errcatch');
-if ierr <> 276 then pause,end
+if ierr <> 999 then pause,end
 
 ierr = execstr('a=[1 2 3)','errcatch');
-if ierr <> 2 then pause,end
+if ierr <> 999 then pause,end
 
 // variable1 does not exist
 if execstr('variable1;','errcatch')<>0 then disp("Trigger an error"),end

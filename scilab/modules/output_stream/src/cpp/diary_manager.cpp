@@ -13,7 +13,7 @@
 #include "diary_manager.hxx"
 #include "DiaryList.hxx"
 #include "diary.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 static DiaryList *SCIDIARY = NULL;
 /*--------------------------------------------------------------------------*/
@@ -60,14 +60,17 @@ wchar_t **getDiaryFilenames(int *array_size)
     *array_size = 0;
     if (SCIDIARY)
     {
-        std::wstring * wstringFilenames = SCIDIARY->getFilenames(array_size);
+        std::list<std::wstring> wstringFilenames = SCIDIARY->getFilenames();
+        *array_size = (int)wstringFilenames.size();
         if (array_size > 0)
         {
             wchar_t **wcFilenames = (wchar_t **) MALLOC (sizeof(wchar_t*) * (*array_size));
-            for (int i = 0; i < *array_size; i++)
+            int i = 0;
+            for (const auto& filename : wstringFilenames)
             {
-                wcFilenames[i] = (wchar_t*) MALLOC(sizeof(wchar_t) * (wstringFilenames[i].length() + 1));
-                wcscpy(wcFilenames[i], wstringFilenames[i].c_str());
+                wcFilenames[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (filename.length() + 1));
+                wcscpy(wcFilenames[i], filename.data());
+                ++i;
             }
             return wcFilenames;
         }
@@ -260,7 +263,7 @@ int diaryAppend(wchar_t *filename)
     return -1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryWrite(wchar_t *wstr, BOOL bInput)
+int diaryWrite(const wchar_t *wstr, BOOL bInput)
 {
     if (SCIDIARY)
     {
@@ -277,7 +280,7 @@ int diaryWrite(wchar_t *wstr, BOOL bInput)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryWriteln(wchar_t *wstr, BOOL bInput)
+int diaryWriteln(const wchar_t *wstr, BOOL bInput)
 {
     if (SCIDIARY)
     {

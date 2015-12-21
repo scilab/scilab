@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{4e9e94ca-4458-49dd-a93e-3598a2c78b73}</UniqueIdentifier>
+      <UniqueIdentifier>{d96170e3-eaaa-4df9-9fd0-84ff659780d1}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{0774a05c-ad04-43f5-8004-de88991774a4}</UniqueIdentifier>
+      <UniqueIdentifier>{3ca6dee7-81c1-4410-990d-214e0439d460}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{defc5a4b-7d6f-473a-87d8-aea74f042446}</UniqueIdentifier>
+      <UniqueIdentifier>{a439130c-2b8b-460d-a9cf-cca4078c0eee}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{146a5c37-44c3-4724-933c-3542c836c09b}</UniqueIdentifier>
+      <UniqueIdentifier>{d826342a-c371-47c0-be4f-7e69e9b96756}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Import">
-      <UniqueIdentifier>{c5b425cc-15be-4410-a562-341d3975b69b}</UniqueIdentifier>
+      <UniqueIdentifier>{ffe7c626-1cd8-4213-aed8-6ef9ca6d4683}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{3b983f3e-dc46-44b9-9331-c758b5530d77}</UniqueIdentifier>
+      <UniqueIdentifier>{988f9698-09c2-413c-b182-af6f0a78957c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -366,9 +366,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="foriterator.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fromws_c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gain.c">
@@ -977,6 +974,9 @@
     <ClCompile Include="..\cpp\HelpersJNI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\fromws_c.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\AfficheBlock.hxx">
@@ -1017,13 +1017,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Import</Filter>
-    </None>
     <None Include="Linear_algebra_f_Import.def">
-      <Filter>Libraries Dependencies\Import</Filter>
-    </None>
-    <None Include="Output_stream_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
     <None Include="Scicos_Import.def">
@@ -1040,7 +1034,13 @@
     <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
+    <None Include="..\..\locales\scicos_blocks.pot">
+      <Filter>localization</Filter>
+    </None>
     <None Include="polynomials_f_Import.def">
+      <Filter>Libraries Dependencies\Import</Filter>
+    </None>
+    <None Include="core_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
   </ItemGroup>

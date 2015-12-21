@@ -11,8 +11,6 @@
 
 // <-- BENCH NB RUN : 10 -->
 
-stacksize("max");
-
 foo1 = zeros(4096,4096);
 foo2 = zeros(4096,4096);
 foo3 = [];

@@ -26,7 +26,7 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "stricmp.h"
+#include "os_string.h"
 
 #include "Matplot.h"
 

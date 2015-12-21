@@ -35,10 +35,11 @@ typedef enum
     sci_list = 15,
     sci_tlist = 16,
     sci_mlist = 17,
+    sci_struct = 18,
+    sci_cell = 19,
     sci_pointer = 128, /* pointer */
     sci_implicit_poly = 129,
     sci_intrinsic_function = 130
-
 } sci_types;
 
 

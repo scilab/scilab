@@ -8,10 +8,10 @@
 #include <stdlib.h>
 #include <api_scilab.h>
 #include <Scierror.h>
-#include <MALLOC.h>
 #include <localization.h>
+
 // =============================================================================
-int sci_bug_11093(char *fname)
+int sci_bug_11093(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;

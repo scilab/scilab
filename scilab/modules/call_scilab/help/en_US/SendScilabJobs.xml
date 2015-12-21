@@ -21,7 +21,7 @@
     <refsection>
         <title>Description</title>
         <para>This fonction is provided in call_scilab. This function send many
-            tasks which will be proccessed by the Scilab engine.
+            tasks which will be processed by the Scilab engine.
         </para>
         <para>
             <note>
@@ -77,9 +77,6 @@ SendScilabJob("disp(c);"); // Will display   4.
         <simplelist type="inline">
             <member>
                 <link linkend="call_scilab">Call_Scilab</link>
-            </member>
-            <member>
-                <link linkend="api_scilab">api Scilab</link>
             </member>
             <member>
                 <link linkend="SendScilabJob">SendScilabJob</link>

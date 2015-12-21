@@ -15,10 +15,10 @@
 // <-- Short Description -->
 // GetRhsVar(..., STRING_DATATYPE did not check size of input argument
 
-msgerr = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "with_module", 1);
+msgerr = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "with_module", 1);
 assert_checkerror("with_module([""ffa"", ""ff""])", msgerr);
 
-msgerr = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "clearfun", 1);
+msgerr = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "clearfun", 1);
 assert_checkerror("clearfun([""myfuncA"", ""myfuncB""])", msgerr);
 
 msgerr = msprintf(_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"), "format", 1, "e", "v");

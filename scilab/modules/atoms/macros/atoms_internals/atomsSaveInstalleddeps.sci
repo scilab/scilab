@@ -47,11 +47,11 @@ function  atomsSaveInstalleddeps(child_deps,section)
     end
 
     if type(section) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsSaveInstalleddeps",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsSaveInstalleddeps",2));
     end
 
     if size(section,"*")<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsSaveInstalleddeps",2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsSaveInstalleddeps",2));
     end
 
     if and(section<>["user","allusers"]) then
@@ -171,9 +171,6 @@ function  atomsSaveInstalleddeps(child_deps,section)
     // =========================================================================
 
     mputl(string_matrix,installed_deps_txt);
-    wMode = warning("query");
-    warning("off");
-    save(installed_deps_bin, child_deps, parent_deps);
-    warning(wMode);
+    save(installed_deps_bin, "child_deps", "parent_deps");
 
 endfunction

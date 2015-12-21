@@ -40,7 +40,7 @@ MY_assert_equal ( ierr , 10000 );
 //
 instr = "[o1,o2,o3]=assert_checkfilesequal ( ""foo.txt"" , ""foo.txt"" )";
 ierr=execstr(instr,"errcatch");
-MY_assert_equal ( ierr , 59 );
+MY_assert_equal ( ierr , 999 );
 //
 //////////////////////////////////////////
 //

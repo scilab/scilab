@@ -1,0 +1,25 @@
+// ============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - DIGITEO - Antoine ELIAS
+//
+//  This file is distributed under the same license as the Scilab package.
+// ============================================================================
+// <-- CLI SHELL MODE -->
+r = 2;
+R = [1,2;3,4];
+R3(:,:,1) = R;
+R3(:,:,2) = R';
+// double < double
+assert_checkfalse(r < r);
+assert_checkfalse(r > r);
+assert_checktrue(r >= r);
+assert_checktrue(r <= r);
+// DOUBLE < DOUBLE
+assert_checkfalse(R < R);
+assert_checkfalse(R > R);
+assert_checktrue(R >= R);
+assert_checktrue(R <= R);
+assert_checkfalse(R3 < R3);
+assert_checkfalse(R3 > R3);
+assert_checktrue(R3 <= R3);
+assert_checktrue(R3 >= R3);

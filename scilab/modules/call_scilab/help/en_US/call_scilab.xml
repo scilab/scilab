@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -38,12 +38,12 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="c"><![CDATA[ 
-// A simple call_scilab example 
+        <programlisting role="c"><![CDATA[
+// A simple call_scilab example
 
 #include <stdio.h> /* stderr */
 
-#include "stack-c.h" /* Provide functions to access to the memory of Scilab */
+#include "api_scilab.h" /* Provide functions to access to the memory of Scilab */
 #include "call_scilab.h" /* Provide functions to call Scilab engine */
 
 // Filename: simple_call_scilab.c
@@ -65,7 +65,7 @@ int main(void)
 
  SendScilabJob("myMatrix=['sample','for the help']");
  SendScilabJob("disp(myMatrix);"); // Will display !sample  for the help  !
- SendScilabJob("disp([2,3]+[-44,39]);"); // Will display   - 42.    42.  
+ SendScilabJob("disp([2,3]+[-44,39]);"); // Will display   - 42.    42.
 
 /****** TERMINATION **********/
  if ( TerminateScilab(NULL) == FALSE ) {

@@ -12,6 +12,8 @@
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=4228
 //
+warning("off")
 ierr = 999;
-ierr = execstr('mclearerr(10000);','errcatch');
+ierr = execstr("mclearerr(10000);","errcatch");
 if ierr <> 0 then pause,end
+warning("on")

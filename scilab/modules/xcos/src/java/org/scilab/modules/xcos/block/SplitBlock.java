@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,19 +14,12 @@ package org.scilab.modules.xcos.block;
 
 import java.util.logging.Logger;
 
-import org.scilab.modules.types.ScilabDouble;
-import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.port.BasicPort;
-import org.scilab.modules.xcos.port.BasicPort.Type;
-import org.scilab.modules.xcos.port.command.CommandPort;
-import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.ExplicitInputPort;
-import org.scilab.modules.xcos.port.input.ImplicitInputPort;
-import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
-import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 
 /**
  * A SplitBlock is used on a junction between links.
@@ -37,60 +31,11 @@ public final class SplitBlock extends BasicBlock {
     /** The default color value */
     public static final int DEFAULT_COLOR = 7;
 
-    private static final long serialVersionUID = 5817243367840540106L;
-
     /**
      * Constructor
      */
-    public SplitBlock() {
-        super();
-    }
-
-    /**
-     * Add connection port depending on the type of the source.
-     *
-     * @param source
-     *            the type of the split
-     */
-    public void addConnection(BasicPort source) {
-        if (source.getType() == Type.EXPLICIT) {
-            addPort(new ExplicitInputPort());
-            addPort(new ExplicitOutputPort());
-            addPort(new ExplicitOutputPort());
-
-            setInterfaceFunctionName("SPLIT_f");
-        } else if (source.getType() == Type.IMPLICIT) {
-            addPort(new ImplicitInputPort());
-            addPort(new ImplicitOutputPort());
-            addPort(new ImplicitOutputPort());
-
-            setInterfaceFunctionName("IMPSPLIT_f");
-        } else {
-            addPort(new ControlPort());
-            addPort(new CommandPort());
-            addPort(new CommandPort());
-
-            setInterfaceFunctionName("CLKSPLIT_f");
-        }
-
-        getChildAt(0).setVisible(false);
-        getChildAt(1).setVisible(false);
-        getChildAt(2).setVisible(false);
-    }
-
-    /**
-     * Initialize the block with the default values
-     */
-    @Override
-    protected void setDefaultValues() {
-        super.setDefaultValues();
-        setInterfaceFunctionName("SPLIT_f");
-        setStyle(getInterfaceFunctionName());
-        setSimulationFunctionName("lsplit");
-        setRealParameters(new ScilabDouble());
-        setIntegerParameters(new ScilabDouble());
-        setObjectsParameters(new ScilabList());
-        setExprs(new ScilabDouble());
+    public SplitBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, new mxGeometry(geometry == null ? DEFAULT_POSITION_X : geometry.getX(), geometry == null ? DEFAULT_POSITION_Y : geometry.getY(), DEFAULT_SIZE, DEFAULT_SIZE), style, id);
     }
 
     /**
@@ -111,7 +56,6 @@ public final class SplitBlock extends BasicBlock {
      * @return input port
      */
     public BasicPort getIn() {
-        sortChildren();
         return (BasicPort) getChildAt(0);
     }
 
@@ -119,7 +63,6 @@ public final class SplitBlock extends BasicBlock {
      * @return first output port
      */
     public BasicPort getOut1() {
-        sortChildren();
         return (BasicPort) getChildAt(1);
     }
 
@@ -127,7 +70,6 @@ public final class SplitBlock extends BasicBlock {
      * @return second output port
      */
     public BasicPort getOut2() {
-        sortChildren();
         return (BasicPort) getChildAt(2);
     }
 
@@ -142,17 +84,6 @@ public final class SplitBlock extends BasicBlock {
         if (geometry != null) {
             geometry.setWidth(DEFAULT_SIZE);
             geometry.setHeight(DEFAULT_SIZE);
-
-            /*
-             * Align the geometry on the grid
-             */
-            if (getParentDiagram() != null && getParentDiagram().isGridEnabled()) {
-                final double cx = getParentDiagram().snap(geometry.getCenterX());
-                final double cy = getParentDiagram().snap(geometry.getCenterY());
-
-                geometry.setX(cx - (DEFAULT_SIZE / 2));
-                geometry.setY(cy - (DEFAULT_SIZE / 2));
-            }
         }
 
         super.setGeometry(geometry);

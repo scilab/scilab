@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include "scicos_block4.h"
 #include "matz_cath.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void mat_cath(scicos_block *block, int flag)

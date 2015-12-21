@@ -16,15 +16,12 @@
 #include <libxml/xmlreader.h>
 #include "getScilabPreference.h"
 #include "GetXmlFileEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "FileExist.h"
-#include "stricmp.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "getshortpathname.h"
 #include "BOOL.h"
-#include "SCIHOME.h"
+#include "sci_home.h"
 
 #define XCONF "%s/XConfiguration.xml"
 
@@ -61,6 +58,7 @@ void initPrefs()
     scilabPref.startup_dir_use = NULL;
     scilabPref.startup_dir_default = NULL;
     scilabPref.startup_dir_previous = NULL;
+    scilabPref.recursionlimit = NULL;
 }
 /*--------------------------------------------------------------------------*/
 void reloadScilabPreferences()
@@ -133,6 +131,10 @@ void clearScilabPreferences()
         {
             FREE((void*)scilabPref.startup_dir_previous);
         }
+        if (scilabPref.recursionlimit)
+        {
+            FREE((void*)scilabPref.recursionlimit);
+        }
         initPrefs();
     }
     isInit = 0;
@@ -153,21 +155,22 @@ void getPrefs()
             return;
         }
 
-        scilabPref.heapSize = strdup(getAttribute(doc, xpathCtxt, HEAPSIZE_XPATH));
-        scilabPref.adaptToDisplay = strdup(getAttribute(doc, xpathCtxt, ADAPTTODISPLAY_XPATH));
-        scilabPref.columnsToDisplay = strdup(getAttribute(doc, xpathCtxt, COLUMNSTODISPLAY_XPATH));
-        scilabPref.linesToDisplay = strdup(getAttribute(doc, xpathCtxt, LINESTODISPLAY_XPATH));
-        scilabPref.historySaveAfter = strdup(getAttribute(doc, xpathCtxt, HISTORYSAVEAFTER_XPATH));
-        scilabPref.historyFile = strdup(getAttribute(doc, xpathCtxt, HISTORYFILE_XPATH));
-        scilabPref.historyLines = strdup(getAttribute(doc, xpathCtxt, HISTORYLINES_XPATH));
-        scilabPref.historyEnable = strdup(getAttribute(doc, xpathCtxt, HISTORYENABLE_XPATH));
-        scilabPref.ieee = strdup(getAttribute(doc, xpathCtxt, IEEE_XPATH));
-        scilabPref.format = strdup(getAttribute(doc, xpathCtxt, FORMAT_XPATH));
-        scilabPref.formatWidth = strdup(getAttribute(doc, xpathCtxt, FORMATWIDTH_XPATH));
-        scilabPref.language = strdup(getAttribute(doc, xpathCtxt, LANGUAGE_XPATH));
-        scilabPref.startup_dir_use = strdup(getAttribute(doc, xpathCtxt, STARTUP_DIR_USE_XPATH));
-        scilabPref.startup_dir_default = strdup(getAttribute(doc, xpathCtxt, STARTUP_DIR_DEFAULT_XPATH));
-        scilabPref.startup_dir_previous = strdup(getAttribute(doc, xpathCtxt, STARTUP_DIR_PREVIOUS_XPATH));
+        scilabPref.heapSize = os_strdup(getAttribute(doc, xpathCtxt, (char*)HEAPSIZE_XPATH));
+        scilabPref.adaptToDisplay = os_strdup(getAttribute(doc, xpathCtxt, (char*)ADAPTTODISPLAY_XPATH));
+        scilabPref.columnsToDisplay = os_strdup(getAttribute(doc, xpathCtxt, (char*)COLUMNSTODISPLAY_XPATH));
+        scilabPref.linesToDisplay = os_strdup(getAttribute(doc, xpathCtxt, (char*)LINESTODISPLAY_XPATH));
+        scilabPref.historySaveAfter = os_strdup(getAttribute(doc, xpathCtxt, (char*)HISTORYSAVEAFTER_XPATH));
+        scilabPref.historyFile = os_strdup(getAttribute(doc, xpathCtxt, (char*)HISTORYFILE_XPATH));
+        scilabPref.historyLines = os_strdup(getAttribute(doc, xpathCtxt, (char*)HISTORYLINES_XPATH));
+        scilabPref.historyEnable = os_strdup(getAttribute(doc, xpathCtxt, (char*)HISTORYENABLE_XPATH));
+        scilabPref.ieee = os_strdup(getAttribute(doc, xpathCtxt, (char*)IEEE_XPATH));
+        scilabPref.format = os_strdup(getAttribute(doc, xpathCtxt, (char*)FORMAT_XPATH));
+        scilabPref.formatWidth = os_strdup(getAttribute(doc, xpathCtxt, (char*)FORMATWIDTH_XPATH));
+        scilabPref.language = os_strdup(getAttribute(doc, xpathCtxt, (char*)LANGUAGE_XPATH));
+        scilabPref.startup_dir_use = os_strdup(getAttribute(doc, xpathCtxt, (char*)STARTUP_DIR_USE_XPATH));
+        scilabPref.startup_dir_default = os_strdup(getAttribute(doc, xpathCtxt, (char*)STARTUP_DIR_DEFAULT_XPATH));
+        scilabPref.startup_dir_previous = os_strdup(getAttribute(doc, xpathCtxt, (char*)STARTUP_DIR_PREVIOUS_XPATH));
+        scilabPref.recursionlimit = os_strdup(getAttribute(doc, xpathCtxt, (char*)RECURSIONLIMIT_XPATH));
 
         xmlXPathFreeContext(xpathCtxt);
         xmlFreeDoc(doc);
@@ -278,7 +281,7 @@ char * getPrefAttributeValue(const char * xpath, const char * attribute)
     sprintf(query, "%s/@%s", xpath, attribute);
     query[xlen + alen + 2] = '\0';
 
-    ret = strdup(getAttribute(doc, xpathCtxt, (const xmlChar*)query));
+    ret = os_strdup(getAttribute(doc, xpathCtxt, (const xmlChar*)query));
     FREE(query);
 
     xmlXPathFreeContext(xpathCtxt);
@@ -324,7 +327,7 @@ char ** getPrefAttributesValues(const char * xpath, const char ** attributes, co
             xmlAttr * attrs = xmlHasProp(node, (const xmlChar *)attributes[i]);
             if (attrs)
             {
-                ret[i] = strdup((const char *)attrs->children->content);
+                ret[i] = os_strdup((const char *)attrs->children->content);
             }
 
             if (!attrs || !ret[i])

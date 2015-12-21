@@ -11,15 +11,11 @@
  */
 #include <string.h>
 #include "completion_generic.h"
-#include "MALLOC.h"
-#if _MSC_VER
-#include "strdup_windows.h"
-#endif
-#include "stricmp.h"
-
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 char **completion_generic(char **dictionary, int sizedictionary,
-                          char *somechars, int *sizeArrayReturned)
+                          const char *somechars, int *sizeArrayReturned)
 {
     char **results = NULL;
     int nbElements = 0;
@@ -44,7 +40,7 @@ char **completion_generic(char **dictionary, int sizedictionary,
                 }
 
                 results[nbElements] = NULL; /* Last element set to NULL */
-                results[nbElements - 1] = strdup(dictionary[i]);
+                results[nbElements - 1] = os_strdup(dictionary[i]);
             }
         }
     }

@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlRemove(char *fname, unsigned long fname_len)
+int sci_xmlRemove(char *fname, void* pvApiCtx)
 {
     XMLRemovable *rem;
     SciErr err;

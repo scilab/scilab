@@ -97,7 +97,7 @@
         <para>Data entry specification :</para>
         <para>
             In this paragraph and to be more clear, we won't mention
-            <varname>GlobalProperty</varname> optional arguments as they do not interfer
+            <varname>GlobalProperty</varname> optional arguments as they do not interfere
             with entry data (except for <literal>"Xdata"</literal>,
             <literal>"Ydata"</literal> and <literal>"Zdata"</literal>
             property, see <link linkend="GlobalProperty">GlobalProperty</link>). It is
@@ -113,7 +113,7 @@
     <refsection>
         <title>Remarks</title>
         <para>
-            To enable the tranparency mode you should set the 
+            To enable the transparency mode you should set the
             <literal>color_mode</literal> option to 0.
         </para>
     </refsection>

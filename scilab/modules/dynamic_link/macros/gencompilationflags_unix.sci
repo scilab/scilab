@@ -22,8 +22,25 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"gencompilationflags_unix",5));
         return
     end
+    if isempty(ldflags)
+        ldflags = ""
+    end
+    if isempty(cflags)
+        cflags = ""
+    end
+    if isempty(fflags)
+        fflags = ""
+    end
+    if isempty(cc)
+        cc = ""
+    end
+    if isempty(flagsType)
+        flagsType = ""
+    end
 
     cmd = "";
+
+    ScilabTreeFound=%f;
     tbxFlag = " -D__SCILAB_TOOLBOX__ ";
     envFlag = "";
 
@@ -31,7 +48,8 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
         envFlag = " -D__USE_DEPRECATED_STACK_FUNCTIONS__ ";
     end
 
-    if getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "YES" then
+    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK", "");
+    if (val == "" & isDebug()) | val == "YES" then
         envFlag = envFlag + " -g ";
     end
 

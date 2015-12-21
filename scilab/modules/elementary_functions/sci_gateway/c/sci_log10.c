@@ -17,13 +17,14 @@
 #include "gw_elementary_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
-#include "msgs.h"
-#include "setieee.h"
+#include "sciprint.h"
+#include "configvariable_interface.h"
+#include "Sciwarning.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_log10(char *fname, unsigned long fname_len)
+int sci_log10(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int i = 0;
@@ -93,13 +94,13 @@ int sci_log10(char *fname, unsigned long fname_len)
     {
         if (getieee() == 0)
         {
-            SciError(32);
+            Scierror(999, "Singularity of log or tan function.\n");
             return 0;
         }
 
         if (getieee() == 1)
         {
-            Msgs(64, 0);
+            Sciwarning(_("Warning : singularity of 'log' or 'tan' function.\n"));
         }
     }
 

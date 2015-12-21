@@ -16,18 +16,21 @@
 //
 // <-- Short Description -->
 // createNamedXXX did not check length of variable name
+//
+// Modified for Scilab 6 : no limit for variable name size
+//
 
 BUGNAME = "bug_9708";
 ilib_verbose(0);
-if haveacompiler() then
-  cd TMPDIR;
-  mkdir(BUGNAME);
-  cd(BUGNAME);
-  DEST = TMPDIR + "/" + BUGNAME + "/" + BUGNAME + ".c";
-  copyfile(SCI + "/modules/api_scilab/tests/nonreg_tests/" + BUGNAME + ".c", DEST);
-  assert_checkequal(isfile(DEST), %T);
-  ilib_build("lib" + BUGNAME,[BUGNAME,"sci_" + BUGNAME], BUGNAME + ".c", []);
-  exec loader.sce;
-  assert_checkequal(execstr("bug_9708()", "errcatch"), 999);
-end
+
+cd TMPDIR;
+mkdir(BUGNAME);
+cd(BUGNAME);
+DEST = TMPDIR + "/" + BUGNAME + "/" + BUGNAME + ".c";
+copyfile(SCI + "/modules/api_scilab/tests/nonreg_tests/" + BUGNAME + ".c", DEST);
+assert_checkequal(isfile(DEST), %T);
+ilib_build("lib" + BUGNAME,[BUGNAME,"sci_" + BUGNAME], BUGNAME + ".c", []);
+exec loader.sce;
+assert_checkequal(execstr("bug_9708()", "errcatch"), 0);
+
 

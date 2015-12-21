@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-11-08 14:50+0000\n"
 "Last-Translator: Grzegorz Szostek <Unknown>\n"
@@ -14,67 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 msgid "overflow error"
 msgstr "błąd przepełnienia"
 
 msgid "Trigger block must have discrete time input."
-msgstr ""
-
-#, c-format
-msgid "The '%s' variable does not exist.\n"
-msgstr "Zmienna '%s' nie istnieje.\n"
-
-msgid "Invalid variable type.\n"
-msgstr "Nieprawidłowy typ zmiennej.\n"
-
-#, c-format
-msgid ""
-"Data dimensions are inconsistent:\n"
-" Variable size=[%d,%d] \n"
-"Block output size=[%d,%d].\n"
-msgstr ""
-
-msgid "Output should be of Real type.\n"
-msgstr ""
-
-msgid "Output should be of complex type.\n"
-msgstr ""
-
-msgid "Output should be of int8 type.\n"
-msgstr ""
-
-msgid "Output should be of int16 type.\n"
-msgstr ""
-
-msgid "Output should be of int32 type.\n"
-msgstr ""
-
-msgid "Output should be of uint8 type.\n"
-msgstr ""
-
-msgid "Output should be of uint16 type.\n"
-msgstr ""
-
-msgid "Output should be of uint32 type.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
-msgstr ""
-
-msgid "The Time vector type is not double.\n"
-msgstr ""
-
-msgid "The time vector should be an increasing vector.\n"
-msgstr ""
-
-msgid "Allocation problem in spline.\n"
-msgstr ""
-
-msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr ""
 
 #, c-format
@@ -110,6 +55,71 @@ msgid "Consider increasing the length of buffer in variable delay block\n"
 msgstr ""
 
 msgid "Could not open /dev/audio!\n"
+msgstr ""
+
+#, c-format
+msgid "The '%s' variable does not exist.\n"
+msgstr "Zmienna '%s' nie istnieje.\n"
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
+msgstr ""
+
+msgid "Erroneous saved file.\n"
+msgstr ""
+
+msgid "Invalid variable type.\n"
+msgstr "Nieprawidłowy typ zmiennej.\n"
+
+#, c-format
+msgid ""
+"Data dimensions are inconsistent:\n"
+" Variable size=[%d,%d] \n"
+"Block output size=[%d,%d].\n"
+msgstr ""
+
+msgid "Output should be of Real type.\n"
+msgstr ""
+
+msgid "Output should be of complex type.\n"
+msgstr ""
+
+msgid "Output should be of int8 type.\n"
+msgstr ""
+
+msgid "Output should be of int16 type.\n"
+msgstr ""
+
+msgid "Output should be of int32 type.\n"
+msgstr ""
+
+msgid "Output should be of uint8 type.\n"
+msgstr ""
+
+msgid "Output should be of uint16 type.\n"
+msgstr ""
+
+msgid "Output should be of uint32 type.\n"
+msgstr ""
+
+msgid "Cannot read the values field.\n"
+msgstr ""
+
+msgid "The Time vector type is not double.\n"
+msgstr ""
+
+msgid "The Time vector type is complex.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgstr ""
+
+msgid "Cannot read the time field.\n"
+msgstr ""
+
+msgid "The time vector should be an increasing vector.\n"
 msgstr ""
 
 msgid "Clear a bit"
@@ -815,7 +825,3 @@ msgstr ""
 
 msgid "Same sizes expected."
 msgstr "Oczekiwano takich samych rozmiarów."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At most %d expected.\n"
-msgstr ""

@@ -13,10 +13,11 @@
 #ifndef __TERMREADANDPROCESS_H__
 #define __TERMREADANDPROCESS_H__
 
+#include "dynlib_console.h"
 /**
 * read line from commandline
 */
 
-char *getCmdLine(void);
+CONSOLE_IMPEXP char *getCmdLine(void);
 
 #endif /* __TERMREADANDPROCESS_H__ */

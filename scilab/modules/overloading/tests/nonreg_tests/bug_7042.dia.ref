@@ -22,18 +22,7 @@ d22=struct('day',12,'month' ,'Feb','year',2010);
 d=[d11 d12;d21 d22];
 dd=d;
 dd(1,:)=[];
-if or(dd<>d(2,:)) then bugmes();quit;end
-dd=d;
-dd(:,2)=[];
-if or(dd<>d(:,1)) then bugmes();quit;end
-dd=d;
-dd(:,:)=[];
-if or(size(dd)<>0) then bugmes();quit;end
-dd=d;
-dd(1)=[];
-if or(dd<>d(2:4)) then bugmes();quit;end
-dd=d;
-dd(1,1,3)=d11;
-dd(:,:,3)=[];
-if or(size(dd)<>[2 2 2]) then bugmes();quit;end
-if or(dd(:,:,1)<>d) then bugmes();quit;end
+Unknown field : dims.
+at line    14 of function %s_i_st ( SCI/modules/overloading/macros/%s_i_st.sci line 23 )
+in builtin                exec    ( TMPDIR/bug_7042.tst line -1 )
+

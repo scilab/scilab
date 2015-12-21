@@ -17,7 +17,7 @@
 //   data : user-defined data
 //
 function [ this , data ] = optimsimplex_compsomefv ( varargin )
-    function argin = argindefault ( rhs , vararglist , ivar , default )
+    function argin = optim_argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
         // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
@@ -42,8 +42,8 @@ function [ this , data ] = optimsimplex_compsomefv ( varargin )
     end
     this = varargin(1)
     fun = varargin(2)
-    indices = argindefault ( rhs , varargin , 3 , this.nbve )
-    data = argindefault ( rhs , varargin , 4 , [] )
+    indices = optim_argindefault ( rhs , varargin , 3 , this.nbve )
+    data = optim_argindefault ( rhs , varargin , 4 , [] )
     if ( typeof(data)=="constant" ) then
         if ( data==[] ) then
             for j = indices;

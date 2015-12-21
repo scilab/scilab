@@ -15,18 +15,17 @@
 #define __GW_TIME_H__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_time.h"
+#include "dynlib_time_gw.h"
 /*--------------------------------------------------------------------------*/
 TIME_IMPEXP int gw_time(void);
 /*--------------------------------------------------------------------------*/
-/* interface for the previous function Table */
-/*--------------------------------------------------------------------------*/
-TIME_IMPEXP int sci_getdate(char *fname, unsigned long fname_len);
-TIME_IMPEXP int sci_calendar(char *fname, unsigned long fname_len);
-TIME_IMPEXP int sci_timer(char *fname, unsigned long fname_len);
-TIME_IMPEXP int sci_sleep(char *fname, unsigned long fname_len);
-TIME_IMPEXP int sci_xpause(char *fname, unsigned long fname_len);
-TIME_IMPEXP int sci_realtimeinit(char *fname, unsigned long fname_len);
-TIME_IMPEXP int sci_realtime(char *fname, unsigned long fname_len);
+int sci_xpause(char *fname, void* pvApiCtx);
+int sci_sleep(char *fname, void* pvApiCtx);
+int sci_realtimeinit(char *fname, void* pvApiCtx);
+int sci_realtime(char *fname, void* pvApiCtx);
+int sci_getdate(char *fname, void* pvApiCtx);
+int sci_calendar(char *fname, void* pvApiCtx);
+int sci_timer(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_TIME_H__ */
 /*--------------------------------------------------------------------------*/

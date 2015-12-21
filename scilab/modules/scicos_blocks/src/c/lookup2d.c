@@ -22,7 +22,7 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "scicos_indexfinder.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 #define InterpExtrapBlin  1

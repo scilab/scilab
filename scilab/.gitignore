@@ -50,6 +50,8 @@ lib
 #
 # windows files
 #
+vld.ini
+modules/windows_tools/src/c/WScilex/memory_leak_report.txt
 
 #
 # Innosetup files (Windows)
@@ -112,6 +114,10 @@ workspace/
 .project
 .cproject
 .settings/
+
+# vim files
+/tags
+*.swp
 
 # MacOS files
 .DS_Store

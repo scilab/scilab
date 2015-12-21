@@ -18,16 +18,16 @@ extern "C"
 }
 
 /*------------------------------------------------------------------------*/
-int GetUicontrolIcon(void* _pvCtx, int iObjUID)
+void* GetUicontrolIcon(void* _pvCtx, int iObjUID)
 {
     char* psticon = NULL;
     getGraphicObjectProperty(iObjUID, __GO_UI_ICON__, jni_string, (void **)&psticon);
     if (psticon == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "icon");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnString(_pvCtx, psticon);
+    return sciReturnString(psticon);
 }
 /*------------------------------------------------------------------------*/

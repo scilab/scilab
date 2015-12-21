@@ -23,7 +23,7 @@ function r=%i_p_i(a,n)
                 if size(a,1)==size(a,2) then
                     for i=2:n,r=r*a,end
                 else
-                    mprintf(gettext("Warning: Syntax \""vector ^ scalar\"" is obsolete. It will be removed in Scilab 6.0.\n  Use \""vector .^ scalar\"" instead.\n"));
+                    mprintf(gettext("Warning: Syntax ""vector ^ scalar"" is obsolete. It will be removed in Scilab 6.0.\n  Use ""vector .^ scalar"" instead.\n"));
                     for i=2:n,r=r.*a,end
                 end
             end

@@ -14,13 +14,13 @@
 
 #ifdef _MSC_VER
 #include <Windows.h>
-#include "strdup_windows.h"
 #define usleep(micro) Sleep(micro/1000)
 #else
 #include <unistd.h>
 #endif
 
-#include "MALLOC.h"
+#include "os_string.h"
+#include "sci_malloc.h"
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"
 
@@ -121,6 +121,7 @@ static void evaluateTclFile()
 */
 void startTclLoop()
 {
+    __threadKey key;
     __threadId sleepThreadId;
 
     __InitLock(&singleExecutionLock);
@@ -130,7 +131,7 @@ void startTclLoop()
     __InitSignal(&workIsDone);
     __InitSignalLock(&launchCommand);
 
-    __CreateThread(&sleepThreadId, sleepAndSignal);
+    __CreateThread(&sleepThreadId, &key, sleepAndSignal);
 
     __LockSignal(&InterpReadyLock);
     __Signal(&InterpReady);
@@ -164,6 +165,7 @@ void startTclLoop()
             /* Reinit local interpreter,
                default is the biggest one. */
             LocalTCLinterp = getTclInterp();
+            releaseTclInterp();
 
             /* Check if it's supposed to be run in root or slave */
             if (TclSlave != NULL)
@@ -190,7 +192,7 @@ void startTclLoop()
             /* Update return value and result */
             if (Tcl_GetStringResult(LocalTCLinterp) && strlen(Tcl_GetStringResult(LocalTCLinterp)) != 0)
             {
-                TclInterpResult = strdup(Tcl_GetStringResult(LocalTCLinterp));
+                TclInterpResult = os_strdup(Tcl_GetStringResult(LocalTCLinterp));
             }
             else
             {
@@ -243,10 +245,10 @@ int sendTclFileToSlave(char* file, char* slave)
     __Lock(&singleExecutionLock);
     {
         __LockSignal(&launchCommand);
-        TclFile = strdup(file);
+        TclFile = os_strdup(file);
         if (slave != NULL)
         {
-            TclSlave = strdup(slave);
+            TclSlave = os_strdup(slave);
         }
         else
         {
@@ -292,10 +294,10 @@ int sendTclCommandToSlave(char* command, char* slave)
         __Lock(&singleExecutionLock);
 
         __LockSignal(&launchCommand);
-        TclCommand = strdup(command);
+        TclCommand = os_strdup(command);
         if (slave != NULL)
         {
-            TclSlave = strdup(slave);
+            TclSlave = os_strdup(slave);
         }
         else
         {
@@ -328,10 +330,10 @@ int sendTclCommandToSlave(char* command, char* slave)
         /*
         ** File Evaluation in progress
         */
-        TclCommand = strdup(command);
+        TclCommand = os_strdup(command);
         if (slave != NULL)
         {
-            TclSlave = strdup(slave);
+            TclSlave = os_strdup(slave);
         }
         else
         {
@@ -375,9 +377,9 @@ char *getTclCommandResult(void)
 #endif
     if (TclInterpResult != NULL)
     {
-        char *result = strdup(TclInterpResult);
+        char *result = os_strdup(TclInterpResult);
         TclInterpResult = NULL;
         return result;
     }
-    return strdup("\0");
+    return os_strdup("\0");
 }

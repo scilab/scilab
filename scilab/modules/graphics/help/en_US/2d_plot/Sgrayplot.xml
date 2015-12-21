@@ -91,7 +91,7 @@
                                     <varlistentry>
                                         <term>y=0</term>
                                         <listitem>
-                                            <para>no computation, the plot use the previus (or
+                                            <para>no computation, the plot use the previous (or
                                                 default) scale
                                             </para>
                                         </listitem>
@@ -141,7 +141,7 @@
                                     <varlistentry>
                                         <term>y=7</term>
                                         <listitem>
-                                            <para>like y=1 but the previus plot(s) are redrawn to
+                                            <para>like y=1 but the previous plot(s) are redrawn to
                                                 use the new scale
                                             </para>
                                         </listitem>
@@ -149,7 +149,7 @@
                                     <varlistentry>
                                         <term>y=8</term>
                                         <listitem>
-                                            <para>like y=2 but the previus plot(s) are redrawn to
+                                            <para>like y=2 but the previous plot(s) are redrawn to
                                                 use the new scale
                                             </para>
                                         </listitem>

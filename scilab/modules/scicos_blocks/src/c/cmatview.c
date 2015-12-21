@@ -17,7 +17,7 @@
 #include "dynlib_scicos_blocks.h"
 #include "scoUtils.h"
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "core_math.h"
 #include "elementary_functions.h"
 
@@ -33,9 +33,7 @@
 #include "math.h"
 
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 
 #include "FigureList.h"
 #include "BuildObjects.h"

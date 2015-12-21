@@ -63,7 +63,7 @@
             <literal>xstring</literal> draws n strings at location <literal>(x[i], y[i])</literal> in the current graphic scale.
         </para>
         <para>
-            If <literal>str</literal> contain n elements, these n elements are the n drawed strings.
+            If <literal>str</literal> contain n elements, these n elements are the n drawn strings.
         </para>
         <para>Otherwise, each row of the matrix stands for a line of text and row elements stand for words separated by a white space.</para>
         <para>

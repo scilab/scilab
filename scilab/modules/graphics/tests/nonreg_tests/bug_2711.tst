@@ -15,12 +15,12 @@
 // <-- Short Description -->
 // The plot obtained with "champ" function is bad
 
-  	
+
 
 function yprim=f(t,y); yprim=y^2-t; endfunction
 t=-3:5; y=-3:3; nt=length(t); ny=length(y);
 ft=ones(nt,ny); fy=feval(t,y,f);
-champ(t,y,ft,fy)		
+champ(t,y,ft,fy);
 
 a = gca();
 

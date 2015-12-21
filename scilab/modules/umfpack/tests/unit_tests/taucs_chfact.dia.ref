@@ -8,9 +8,9 @@
 // Example #1 : a small linear test system 
 // whom solution must be [1;2;3;4;5]
 A = sparse( [ 2 -1  0  0  0;
-             -1  2 -1  0  0;
-              0 -1  2 -1  0;
-              0  0 -1  2 -1;
+             -1  2 -1  0  0; 
+              0 -1  2 -1  0; 
+              0  0 -1  2 -1; 
               0  0  0 -1  2] );
 b = [0 ; 0; 0; 0; 6];
 Cp = taucs_chfact(A);

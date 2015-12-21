@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "machine.h" /* C2F */
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 #include "dmmul.h"
 /*--------------------------------------------------------------------------*/

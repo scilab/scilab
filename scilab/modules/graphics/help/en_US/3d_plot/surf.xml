@@ -89,7 +89,7 @@
         </para>
         <para>Data entry specification :</para>
         <para>In this paragraph and to be more clear, we won't mention
-            <literal>GlobalProperty</literal> optional arguments as they do not interfer
+            <literal>GlobalProperty</literal> optional arguments as they do not interfere
             with entry data (except for <literal>"Xdata"</literal>, <literal>"Ydata"</literal> and
             <literal>"Zdata"</literal> property, see <link linkend="GlobalProperty">GlobalProperty</link>). It is
             assumed that all those optional arguments could be present too.
@@ -175,7 +175,7 @@
         </para>
         <para/>
         <para>
-            The <literal>GlobalProperty</literal> arguments sould be used to customize
+            The <literal>GlobalProperty</literal> arguments should be used to customize
             the surface. Here is a brief description on how it works:
         </para>
         <variablelist>

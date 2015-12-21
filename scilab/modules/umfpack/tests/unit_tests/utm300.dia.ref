@@ -11,12 +11,10 @@ warning("off");
 [A, dsc]=ReadHBSparse(SCI+"/modules/umfpack/examples/utm300.rua");
 if dsc <> "utm300" then bugmes();quit;end
 [nl,nc] = size(A)
- nc  =
- 
-    300.  
- nl  =
- 
-    300.  
+ nc  = 
+    300.
+ nl  = 
+    300.
 if nl <> 300 then bugmes();quit;end
 if nc <> 300 then bugmes();quit;end
 if nnz(A) <> 3155 then bugmes();quit;end

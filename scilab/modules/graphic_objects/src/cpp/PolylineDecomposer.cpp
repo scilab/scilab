@@ -764,9 +764,33 @@ void PolylineDecomposer::fillColors(int id, float* buffer, int bufferLength, int
         int * piNumColors = &numColors;
         int min;
 
-        getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_COLORS__, jni_int, (void**) &piNumColors);
-        getGraphicObjectProperty(id, __GO_DATA_MODEL_COLORS__, jni_int_vector, (void**) &colors);
-        if (!colors)
+		getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_COLORS__, jni_int, (void**) &piNumColors);
+		if (numColors > 0) 
+		{
+	        getGraphicObjectProperty(id, __GO_DATA_MODEL_COLORS__, jni_int_vector, (void**) &colors);
+		}
+
+		if (numColors == 0 || colors == NULL)
+		{
+			// try to load mark background colors 
+			getGraphicObjectProperty(id, __GO_NUM_MARK_BACKGROUNDS__, jni_int, (void**) &piNumColors);
+			if (numColors > 0) 
+			{
+			    getGraphicObjectProperty(id, __GO_MARK_BACKGROUNDS__, jni_int_vector, (void**) &colors);
+			}
+		}
+
+		if (numColors == 0 || colors == NULL)
+		{
+			// try to load mark foreground colors 
+			getGraphicObjectProperty(id, __GO_NUM_MARK_FOREGROUNDS__, jni_int, (void**) &piNumColors);
+			if (numColors > 0) 
+			{
+			    getGraphicObjectProperty(id, __GO_MARK_FOREGROUNDS__, jni_int_vector, (void**) &colors);
+			}
+		}
+
+		if (!colors)
         {
             buffer[bufferOffset + 3] = 1.0;
         }

@@ -70,7 +70,7 @@ h5dump(a, "/DS3")
 // Free all the resources
 h5close(a)
 
-// We can dump without explicitely open the file
+// We can dump without explicitly open the file
 h5dump(TMPDIR + "/test.h5");
 
 // ... or only the third dataset

@@ -30,7 +30,7 @@
 #include "HandleManagement.h"
 #include "Axes.h"
 
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"

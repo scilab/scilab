@@ -24,5 +24,5 @@ fd = diary(FILENAME_DIARY, 'new','prefix=YYYY-MM-DD hh:mm:ss');
 warning("i like pizza very much")
 diary(fd, 'close');
 txt = mgetl(FILENAME_DIARY);
-s = strsplit(txt(2),' ');
+s = strsplit(txt(3),' ');
 assert_checkequal(s($), 'much');

@@ -159,14 +159,14 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
     }
 
     /**
-     * @param onOrOff set wether the swap buffer mode is on or off.
+     * @param onOrOff set whether the swap buffer mode is on or off.
      */
     public void setAutoSwapBufferMode(boolean onOrOff) {
         ScilabBridge.setAutoSwapBufferMode(this, onOrOff);
     }
 
     /**
-     * @return set wether the swap buffer mode is on or off.
+     * @return set whether the swap buffer mode is on or off.
      */
     public boolean getAutoSwapBufferMode() {
         return ScilabBridge.getAutoSwapBufferMode(this);

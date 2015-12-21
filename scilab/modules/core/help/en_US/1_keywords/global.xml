@@ -39,7 +39,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-//first: calling environnment and a function share a variable
+//first: calling environment and a function share a variable
 global a
 a=1
 deff('y=f1(x)','global a,a=x^2,y=a^2')
@@ -65,9 +65,6 @@ letsgo1()
             </member>
             <member>
                 <link linkend="clearglobal">clearglobal</link>
-            </member>
-            <member>
-                <link linkend="gstacksize">gstacksize</link>
             </member>
             <member>
                 <link linkend="resume">resume</link>

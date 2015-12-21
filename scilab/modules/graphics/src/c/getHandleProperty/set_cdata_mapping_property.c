@@ -20,7 +20,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
-#include "stricmp.h"
+#include "os_string.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -28,7 +28,7 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BasicAlgos.h"
 
 #include "setGraphicObjectProperty.h"

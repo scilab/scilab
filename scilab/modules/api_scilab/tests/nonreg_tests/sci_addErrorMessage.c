@@ -15,7 +15,7 @@
 #include "api_int.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_addErrorMessage(char *fname, unsigned long fname_len)
+int sci_addErrorMessage(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;

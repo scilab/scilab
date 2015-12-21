@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -79,7 +80,7 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            Xcos.getInstance().open(recentFile.getCanonicalPath(), null);
+            Xcos.getInstance().open(recentFile.getCanonicalPath(), 0);
         } catch (IOException e1) {
             e1.printStackTrace();
         }

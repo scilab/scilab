@@ -15,7 +15,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 int addColor(int _iFig, double* _pdblNewColor)
 {
@@ -68,8 +68,9 @@ int addColor(int _iFig, double* _pdblNewColor)
             pdblNewColorMap[i * (iColorMapSize + 1) + iColorMapSize] = _pdblNewColor[i];
         }
 
+        releaseGraphicObjectProperty(__GO_COLORMAP__, pdblColorMap, jni_double_vector, iColorMapSize * COLOR_COMPONENT);
         setGraphicObjectProperty(_iFig, __GO_COLORMAP__, pdblNewColorMap, jni_double_vector, iNewColorMapSize);
-
+        FREE(pdblNewColorMap);
         iColorIndex = iColorMapSize + 1;
     }
     return iColorIndex;

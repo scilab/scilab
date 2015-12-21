@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_line_mode_property(void* _pvCtx, int iObjUID)
+void* get_line_mode_property(void* _pvCtx, int iObjUID)
 {
     int iLineMode = 0;
     int* lineMode = &iLineMode;
@@ -42,16 +42,16 @@ int get_line_mode_property(void* _pvCtx, int iObjUID)
     if (lineMode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "line_mode");
-        return -1;
+        return NULL;
     }
 
     if (iLineMode)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 }
 /*------------------------------------------------------------------------*/

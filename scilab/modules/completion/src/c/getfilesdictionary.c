@@ -16,12 +16,12 @@
 #include "PATH_MAX.h"
 #include "scicurdir.h" /* scigetcwd */
 #include "findfiles.h" /* findfiles */
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "expandPathVariable.h"
 #include "machine.h"
 #include "isdir.h"
 /*--------------------------------------------------------------------------*/
-static void splitpath(char *composite,  char *path,  char *fname);
+static void mysplitpath(char *composite,  char *path,  char *fname);
 static char **addPath(char **dictionary, int sizearray, char *path);
 static char **addDirSeparator(char **dictionary, int sizearray, char *path);
 /*--------------------------------------------------------------------------*/
@@ -47,7 +47,7 @@ char **getfilesdictionary(char *somechars, int *sizearray, BOOL fullpath)
         char *pathextended = NULL;
 
 
-        splitpath(somechars, pathname, filename);
+        mysplitpath(somechars, pathname, filename);
 
         if ( strcmp(pathname, "") == 0 )
         {
@@ -102,7 +102,7 @@ char **getfilesdictionary(char *somechars, int *sizearray, BOOL fullpath)
         {
             dictionary = (char**)REALLOC(dictionary, sizeof(char*) * (sizeListReturned + 1));
             dictionary[sizeListReturned] = NULL;
-            qsort(dictionary, sizeof dictionary / sizeof dictionary[0], sizeof dictionary[0], cmpfiles);
+            qsort(dictionary, *sizearray, sizeof dictionary[0], cmpfiles);
         }
     }
     else
@@ -112,7 +112,7 @@ char **getfilesdictionary(char *somechars, int *sizearray, BOOL fullpath)
     return dictionary;
 }
 /*--------------------------------------------------------------------------*/
-static void splitpath(char *composite,  char *path,  char *fname)
+static void mysplitpath(char *composite,  char *path,  char *fname)
 {
     if (composite && path && fname)
     {

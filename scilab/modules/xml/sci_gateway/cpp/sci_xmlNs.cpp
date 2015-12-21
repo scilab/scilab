@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlNs(char *fname, unsigned long fname_len)
+int sci_xmlNs(char *fname, void *pvApiCtx)
 {
     int *addr = 0;
     SciErr err;
@@ -81,7 +81,7 @@ int sci_xmlNs(char *fname, unsigned long fname_len)
     }
     else
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return 0;
     }
 
@@ -103,7 +103,7 @@ int sci_xmlNs(char *fname, unsigned long fname_len)
         {
             freeAllocatedSingleString(prefix);
         }
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
         return 0;
     }
 

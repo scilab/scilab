@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="setdefaultlanguage" xml:lang="en">
     <refnamediv>
         <refname>setdefaultlanguage</refname>
-        <refpurpose>sets and saves the internal LANGUAGE value.</refpurpose>
+        <refpurpose>Permanently changes the language of Scilab's user interface.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>language</term>
                 <listitem>
-                    <para>a string, can have following values: 'fr', 'en', 'ru_RU', 'zh_TW', ...</para>
+                    <para>a string made of a two-letter, lower-case, ISO Language Code, optionally followed by an underscore and a two-letter, upper-case, ISO country code), such as: 'fr', 'en', 'en_US', 'ru_RU', 'zh_TW'...</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,16 +33,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>setdefaultlanguage(language)</literal> changes current
-            language and saves this value in Scilab.
+            <literal>setdefaultlanguage(language)</literal> changes the language used by Scilab user interface, including help, error messages, and saves this changes as the default for subsequent runs of Scilab.
         </para>
-        <para>You have to restart Scilab, if you want to use menus.</para>
+        <para>Menus will only be changed to the new language once Scilab is restarted.</para>
         <para>
-            <literal>setdefaultlanguage('')</literal> resets language to the system value.
+            <literal>setdefaultlanguage('')</literal> resets the language to the system value.
         </para>
         <para>
-            <literal>setdefaultlanguage</literal> is used only Windows. On others operating systems 
-            it returns always <literal>%f</literal>. 
+            <literal>setdefaultlanguage</literal> only works on Windows. On others operating systems, it does nothing and always returns <literal>%f</literal>. 
         </para>
     </refsection>
     <refsection>

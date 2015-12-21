@@ -63,7 +63,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <link linkend="M_freq">Example</link>
+                            <link linkend="Example_M_freq">Example</link>
                         </para>
                     </listitem>
                     <listitem>
@@ -240,7 +240,7 @@ When t=2 we loop back to 0.
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_M_freq">
+    <refsection id="Example2_M_freq">
         <title>Multiple frequency example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/M_freq_Example.zcos">
             <inlinemediaobject>

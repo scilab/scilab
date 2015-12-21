@@ -9,13 +9,13 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function y = acot(x)
-    //Inverse cotangeant.
+    //Inverse cotangent.
 
     rhs = argn(2);
     if rhs <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "acot", 1));
     end
-    
+
     if type(x) <> 1 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"), "acot", 1));
     end

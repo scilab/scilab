@@ -16,13 +16,13 @@
 #include "sci_mpi.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "serialization.h"
 
 #define TAG 0
 
 
-int sci_mpi_isend(char *fname, unsigned long fname_len)
+int sci_mpi_isend(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iRet = 0;

@@ -190,7 +190,7 @@ c decimal places
       x = x - dx
       go to 160
   180 bnd = x
-c compute the derivative as the intial k polynomial
+c compute the derivative as the initial k polynomial
 c and do 5 steps with no shift
       nm1 = n - 1
       do 190 i=2,n

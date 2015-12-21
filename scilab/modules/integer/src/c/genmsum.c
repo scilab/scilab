@@ -70,9 +70,7 @@ int C2F(genmsum)(int *typ, int *job, int *a, int *na, int *m, int *n, int *v, in
 /* sum of int returning a double */
 #define MSUM_DOUBLE(Type) {\
 Type *A;\
-double *V;\
     A=(Type *)a;\
-    V=(Type *)v;\
     iv = 0;\
     if (*job == 0) {\
 	t = 0.0;\

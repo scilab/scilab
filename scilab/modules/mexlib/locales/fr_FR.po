@@ -14,81 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
-
-msgid "mexPutFull failed\n"
-msgstr "Échec de mexPutFull\n"
-
-msgid "No more memory available: increase stacksize"
-msgstr "Plus de mémoire disponible : augmentez stacksize"
-
-msgid "Routine mxIsSingle not implemented.\n"
-msgstr "La fonction mxIsSingle n'est pas implémentée.\n"
-
-msgid "Variable is not logical."
-msgstr "La variable n'est pas de type logical."
-
-msgid "No more memory available: increase stacksize."
-msgstr "Plus de mémoire disponible : augmentez stacksize."
 
 msgid "Warning: "
 msgstr "Avertissement : "
-
-msgid "mexCallSCILAB: invalid pointer passed to called function."
-msgstr "mexCallSCILAB : Pointeur invalide demandé à la fonction appelée."
-
-msgid "mexCallSCILAB: evaluation failed. "
-msgstr "mexCallSCILAB : Échec de l'évaluation. "
-
-msgid "GetElementSize error."
-msgstr "Erreur GetElementSize."
-
-msgid "Function mexPutArray is obsolete, use mexPutVariable!\n"
-msgstr ""
-"La fonction mexPutArray est obsolète, utilisez mexPutVariable à la place !\n"
-
-msgid "Routine mxSetName not implemented !\n"
-msgstr "La fonction mxSetName n'est pas implémentée !\n"
-
-msgid "Routine mxSetData not implemented.\n"
-msgstr "La fonction mxSetData n'est pas implémentée.\n"
-
-msgid "Last warning"
-msgstr "Dernier avertissement"
-
-msgid "Warning"
-msgstr "Attention"
-
-#, c-format
-msgid "%s: mxSetPr overwriting destination by %i bytes.\n"
-msgstr "%s : mxSetPr écrasement de la destination de %i octets.\n"
-
-#, c-format
-msgid "%s: mxSetPi overwriting destination by %i bytes.\n"
-msgstr "%s : mxSetPi écrasement de la destination de %i octets.\n"
-
-msgid "Routine mxGetName not implemented.\n"
-msgstr "La fonction mxGetName n'est pas implémentée.\n"
-
-msgid "Routine mxSetDimensions not implemented.\n"
-msgstr "La fonction mxSetDimensions n'est pas implémentée.\n"
-
-msgid "Invalid string matrix (at most one column!)"
-msgstr ""
-"Matrice de chaîne de caractères invalide (au moins une colonne est "
-"nécessaire)"
-
-msgid "Column length of string matrix must agree!"
-msgstr ""
-"La longueur des colonnes de la matrice de chaîne de caractères doit "
-"correspondre !"
-
-msgid "Use mtlb_sparse(sparse( ))!"
-msgstr "Utilisez mtlb_sparse(sparse( ))!"
-
-msgid "Invalid input"
-msgstr "Entrée invalide"
-
-msgid "No more memory"
-msgstr "Plus de mémoire disponible"

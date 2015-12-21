@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -116,14 +116,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"hypermat"</term>
-                <listitem>
-                    <para>se o objeto é uma hipermatriz (array N-dimensional N
-                        &gt;=3).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>"st"</term>
                 <listitem>
                     <para>se o objeto é um array de estrutura</para>
@@ -158,7 +150,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"size implicit"</term>
+                <term>"implicitlist"</term>
                 <listitem>
                     <para>se o objeto é um polinômio de tamanho implícito para
                         indexação.
@@ -169,7 +161,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 typeof(1)
 typeof(poly(0,'x'))
 

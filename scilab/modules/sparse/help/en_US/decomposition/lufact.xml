@@ -44,7 +44,7 @@
                 <term>prec</term>
                 <listitem>
                     <para>
-                        a vector of size two <literal>prec=[eps,reps]</literal> giving the absolute and relative  thresolds.
+                        a vector of size two <literal>prec=[eps,reps]</literal> giving the absolute and relative thresholds.
                     </para>
                 </listitem>
             </varlistentry>

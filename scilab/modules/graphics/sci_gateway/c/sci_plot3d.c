@@ -18,18 +18,18 @@
 /*------------------------------------------------------------------------*/
 
 #include <stdio.h>
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "BuildObjects.h"
 #include "GetCommandArg.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sciCall.h"
 #include "localization.h"
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_plot3d(char * fname, unsigned long fname_len)
+int sci_plot3d(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
     static double  ebox_def [6] = { 0, 1, 0, 1, 0, 1};
@@ -74,7 +74,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
     */
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
 
@@ -92,7 +92,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (nbInputArgument(pvApiCtx) != 1 && FirstOpt() < 4)
+    if (nbInputArgument(pvApiCtx) != 1 && FirstOpt(pvApiCtx) < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 4);
         return -1;

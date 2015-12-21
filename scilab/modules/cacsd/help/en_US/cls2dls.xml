@@ -39,7 +39,7 @@
             <varlistentry>
                 <term>fp</term>
                 <listitem>
-                    <para>pre-warping frequency in hertz</para>
+                    <para>pre-warning frequency in hertz</para>
                 </listitem>
             </varlistentry>
         </variablelist>

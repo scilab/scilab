@@ -130,7 +130,7 @@ z = g(t,y)
             for <literal>f</literal> apply (see <link linkend="ode">ode</link> help).
         </para>
         <para>
-            Ouput <literal>rd</literal> is a <literal>1 x k</literal> vector.
+            Output <literal>rd</literal> is a <literal>1 x k</literal> vector.
             The first entry contains the stopping time. Other entries indicate which
             components of <literal>g</literal> have changed sign. <literal>k</literal>
             larger than 2 indicates that more than one surface

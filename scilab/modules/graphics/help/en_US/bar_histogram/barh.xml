@@ -34,7 +34,7 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>a real scalar, vector of size N, or a matrice N*M.</para>
+                    <para>a real scalar, vector of size N, or a matrix N*M.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -108,7 +108,7 @@
         </para>
         <para>
             If there are several bar calls, the <literal>barhomogenize</literal> function
-            allows to homegenize the width and style of all bars (i.e polylines of
+            allows to homogenize the width and style of all bars (i.e polylines of
             type 6) included in the current working axes.
         </para>
     </refsection>

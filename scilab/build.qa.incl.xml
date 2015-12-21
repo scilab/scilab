@@ -28,6 +28,7 @@
     
     <path id="unittest.classpath">
         <pathelement location="${junit4.jar}"/>
+        <pathelement location="${hamcrest-all.jar}"/>
     </path>
     <path id="cobertura_classpath">
         <pathelement location="${cobertura.jar}"/>

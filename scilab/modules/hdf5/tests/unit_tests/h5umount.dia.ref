@@ -13,7 +13,7 @@ assert_checkerror("h5umount(42)",msgerr,77);
 msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A H5Object expected.\n"), "h5umount", 1);
 assert_checkerror("h5umount(42,42)",msgerr,999);
 a = h5open(TMPDIR + "/test.h5", "w");
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5umount", 2);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5umount", 2);
 assert_checkerror("h5umount(a,42)",msgerr,999);
 msgerr = msprintf(gettext("%s: %s\n"), "h5umount", msprintf(gettext("Cannot unmount the file at location: %s"), "42"));
 msgerr($+1) = gettext("HDF5 description") + ": " + "object ''42'' doesn''t exist.";

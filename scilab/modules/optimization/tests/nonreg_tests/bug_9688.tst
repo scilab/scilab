@@ -36,7 +36,7 @@ function [ f , g , ind ] = woodFG ( x , ind )
 endfunction
 x0 = [-3 -1 -3 -1];
 
-refMsg = msprintf(_("Variable returned by scilab argument function is incorrect."));
+refMsg = msprintf(_("%s: Wrong type for output argument #%d: Real scalar expected.\n"), "woodFG", 1);
 assert_checkerror("[ fopt, xopt, gopt ] = optim ( woodFG, x0, ""qn"", imp=-1);", refMsg);
 assert_checkerror("[ fopt, xopt, gopt ] = optim ( woodFG, x0, ""gc"", imp=-1);", refMsg);
 assert_checkerror("[ fopt, xopt, gopt ] = optim ( woodFG, x0, ""nd"", imp=-1);", refMsg);

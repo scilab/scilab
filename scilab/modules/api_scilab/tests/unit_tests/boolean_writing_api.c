@@ -14,9 +14,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
-int write_boolean(char *fname, unsigned long fname_len)
+int write_boolean(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int i, j;
@@ -34,7 +34,7 @@ int write_boolean(char *fname, unsigned long fname_len)
     ************************/
 
     //alloc array of data in OS memory
-    pboolOutput1 = (int*)malloc(sizeof(int) * iRows1 * iCols1);
+    pboolOutput1 = (int*)MALLOC(sizeof(int) * iRows1 * iCols1);
     //fill array with incremental values
     //[ %t  %f  %t  %f
     //  %t  %f  %t  %f
@@ -55,13 +55,13 @@ int write_boolean(char *fname, unsigned long fname_len)
     //create a variable from a existing data array
 
     sciErr = createMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows1, iCols1, pboolOutput1);
+    //after creation, we can free memory.
+    FREE(pboolOutput1);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
-    //after creation, we can free memory.
-    free(pboolOutput1);
 
 
     /*************************

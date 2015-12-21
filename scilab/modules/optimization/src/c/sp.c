@@ -17,7 +17,8 @@
 #include "spd.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
+#include "numericconstants_interface.h"
 /*--------------------------------------------------------------------------*/
 /* BLAS 1 */
 extern double F2C(dnrm2)( );
@@ -39,7 +40,6 @@ extern void F2C(dspgst)( );
 extern void F2C(dspev)( );
 extern void F2C(dspgv)( );
 extern void F2C(dtrcon)( );
-extern double F2C(dlamch)( );
 /*--------------------------------------------------------------------------*/
 /*
  * if itype = 1, computes C = B*A*B', otherwise, computes C = B'*A*B
@@ -170,8 +170,8 @@ int C2F(spf)(
     int *info            /* status on termination */
 )
 {
-    return(sp(*m, *L, F, blck_szs, c, x, Z, ul, *nu, *abstol, *reltol, *tv, iters, work,
-              *lwork, iwork, info));
+    return (sp(*m, *L, F, blck_szs, c, x, Z, ul, *nu, *abstol, *reltol, *tv, iters, work,
+               *lwork, iwork, info));
 }
 /*--------------------------------------------------------------------------*/
 int sp(
@@ -778,7 +778,7 @@ int sp(
          * check corners of feasible rectangle
          */
 
-        dbl_epsilon = F2C(dlamch)("e");
+        dbl_epsilon = nc_eps();
         if (nrmx > SIGTOL * nrmmax)
             if (ZdX < 0.0)
             {

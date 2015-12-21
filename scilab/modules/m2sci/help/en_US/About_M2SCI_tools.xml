@@ -103,7 +103,7 @@
             The contents of these tlists is described in corresponding help pages.
         </para>
         <para>
-            Operations are converted using a fonction named <literal>%&lt;opcode&gt;2sci</literal> with opcode
+            Operations are converted using a function named <literal>%&lt;opcode&gt;2sci</literal> with opcode
             the Scilab code for this operator. See help page for overloading to have these codes. All
             these functions are already written and are in directory SCI/modules/m2sci/macros/percent/.
         </para>

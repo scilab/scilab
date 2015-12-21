@@ -13,15 +13,15 @@
 #include <stdio.h>
 #include <stdlib.h> /* _MAX_ENV */
 #include "gw_io.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "api_scilab.h"
 #include "getenvc.h"
 #include "PATH_MAX.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_getenv(char *fname, unsigned long fname_len)
+int sci_getenv(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int ierr = 0;
@@ -36,12 +36,12 @@ int sci_getenv(char *fname, unsigned long fname_len)
 
     int iflag = 0;
 
-    Rhs = Max(Rhs, 0);
+    int iRhs = nbInputArgument(pvApiCtx);
 
     CheckRhs(1, 2);
     CheckLhs(1, 1);
 
-    if (Rhs == 2)
+    if (iRhs == 2)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
         if (sciErr.iErr)
@@ -53,7 +53,7 @@ int sci_getenv(char *fname, unsigned long fname_len)
 
         if (isStringType(pvApiCtx, piAddressVarTwo) == 0 || isScalar(pvApiCtx, piAddressVarTwo) == 0)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -72,6 +72,10 @@ int sci_getenv(char *fname, unsigned long fname_len)
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
     {
+        if (pStVarTwo)
+        {
+            freeAllocatedSingleString(pStVarTwo);
+        }
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
@@ -79,7 +83,11 @@ int sci_getenv(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        if (pStVarTwo)
+        {
+            freeAllocatedSingleString(pStVarTwo);
+        }
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return 0;
     }
 
@@ -99,14 +107,12 @@ int sci_getenv(char *fname, unsigned long fname_len)
         return 0;
     }
 
-
-    C2F(getenvc)(&ierr, pStVarOne, NULL, &length_env, &iflag);
-
+    getenvc(&ierr, pStVarOne, NULL, &length_env, &iflag);
     if (ierr)
     {
         if (pStVarTwo)
         {
-            if (createSingleString(pvApiCtx, Rhs + 1, pStVarTwo))
+            if (createSingleString(pvApiCtx, iRhs + 1, pStVarTwo))
             {
                 freeAllocatedSingleString(pStVarOne);
                 freeAllocatedSingleString(pStVarTwo);
@@ -115,8 +121,10 @@ int sci_getenv(char *fname, unsigned long fname_len)
             }
             else
             {
-                LhsVar(1) = Rhs + 1;
-                PutLhsVar();
+                freeAllocatedSingleString(pStVarOne);
+                freeAllocatedSingleString(pStVarTwo);
+                LhsVar(1) = iRhs + 1;
+                ReturnArguments(pvApiCtx);
                 return 0;
             }
         }
@@ -139,10 +147,11 @@ int sci_getenv(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    C2F(getenvc)(&ierr, pStVarOne, env_value, &length_env, &iflag);
+    getenvc(&ierr, pStVarOne, env_value, &length_env, &iflag);
+    freeAllocatedSingleString(pStVarOne);
 
     //create variable on stack and return it.
-    if (createSingleString(pvApiCtx, Rhs + 1, env_value))
+    if (createSingleString(pvApiCtx, iRhs + 1, env_value))
     {
         FREE(env_value);
         printError(&sciErr, 0);
@@ -151,8 +160,8 @@ int sci_getenv(char *fname, unsigned long fname_len)
     }
 
     FREE(env_value);
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
+    ReturnArguments(pvApiCtx);
 
 
     return 0;

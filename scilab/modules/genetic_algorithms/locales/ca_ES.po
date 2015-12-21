@@ -14,27 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ca\n"
-
-#, c-format
-msgid "%s: optimization starting, please wait ...\n"
-msgstr "%s: S'està iniciant l'optimització, espereu ...\n"
-
-msgid "Genetic algorithms"
-msgstr "Algorismes genètics"
-
-msgid "Genetic algorithms and Ising problem"
-msgstr "Algorismes genètics i el problema d'Ising"
-
-msgid "MultiObjective Genetic Algorithm"
-msgstr "Algorisme genètic multiobjectiu"
-
-msgid "Niched Sharing Genetic Algorithm"
-msgstr "Algorisme genètic amb nínxol compartit"
-
-msgid "Niched Sharing Genetic Algorithm II"
-msgstr "Algorisme genètic amb nínxol compartit II"
 
 #, c-format
 msgid "%s: wrong direction"

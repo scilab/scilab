@@ -19,7 +19,7 @@
 #include "Scierror.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int sci_x_mdialog(char *fname, unsigned long fname_len)
+int sci_x_mdialog(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -60,7 +60,7 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
         // Retrieve a matrix of string at position 1.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrlabelsAdr, &nbRow, &nbCol, &labelsAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
     }
@@ -80,7 +80,7 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
     freeAllocatedMatrixOfString(nbRow, nbCol, labelsAdr);
 
     /* READ THE LINE LABELS */
-    if (VarType(2) ==  sci_strings)
+    if (checkInputArgumentType(pvApiCtx, 2, sci_strings))
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrlineLabelsAdr);
         if (sciErr.iErr)
@@ -92,7 +92,7 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
         // Retrieve a matrix of string at position 2.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrlineLabelsAdr, &nbRowLineLabels, &nbColLineLabels, &lineLabelsAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
             return 1;
         }
 
@@ -112,7 +112,7 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
     }
 
     /* READ THE COLUMN LABELS or DEFAULT VALUES */
-    if (VarType(3) ==  sci_strings)
+    if (checkInputArgumentType(pvApiCtx, 3, sci_strings))
     {
         if (nbInputArgument(pvApiCtx) == 3)
         {
@@ -126,7 +126,7 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
             // Retrieve a matrix of string at position 3.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrdefaultValuesAdr, &nbRowDefaultValues, &nbColDefaultValues, &defaultValuesAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
                 return 1;
             }
 
@@ -158,7 +158,7 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
             // Retrieve a matrix of string at position 3.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrcolumnLabelsAdr, &nbRowColumnLabels, &nbColColumnLabels, &columnLabelsAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
                 return 1;
             }
 
@@ -181,7 +181,7 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
     if (nbInputArgument(pvApiCtx) == 4)
     {
         /* READ  DEFAULT VALUES */
-        if (VarType(4) ==  sci_strings)
+        if (checkInputArgumentType(pvApiCtx, 4, sci_strings))
         {
             sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddrdefaultValuesAdr);
             if (sciErr.iErr)
@@ -194,7 +194,7 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
             // DO NOT FORGET TO RELEASE MEMORY via freeAllocatedMatrixOfString(nbRowDefaultValues, nbColDefaultValues, defaultValuesAdr).
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrdefaultValuesAdr, &nbRowDefaultValues, &nbColDefaultValues, &defaultValuesAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 4);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 4);
                 return 1;
             }
 
@@ -242,7 +242,9 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
         {
             nbColDefaultValues = nbColColumnLabels * nbRowColumnLabels;
         }
-        CreateVarFromPtr(nbInputArgument(pvApiCtx) + 1, MATRIX_OF_STRING_DATATYPE, &nbRowDefaultValues, &nbColDefaultValues, userValue);
+
+        createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRowDefaultValues, nbColDefaultValues, userValue);
+        freeArrayOfString(userValue, userValueSize);
         /* TO DO : delete of userValue */
     }
 

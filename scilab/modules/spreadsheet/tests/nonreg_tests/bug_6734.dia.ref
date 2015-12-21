@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
@@ -15,7 +16,6 @@
 ierr = execstr("M = read_csv(''doesnotexist.txt'')", "errcatch");
 assert_checkequal(ierr,999)
  ans  =
- 
-  T  
+  T
 L = lasterror();
 assert_checkequal(grep(L(1),"doesnotexist.txt"), 1);

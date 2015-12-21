@@ -44,12 +44,6 @@ scs_m.objs(1)=scicos_block(..
                        gr_i=list(..
                        ["dx=sz(1)/5;dy=sz(2)/10;";
 tmpFileName = TMPDIR + "/bug_9478_scs_m.sod";
-assert_checktrue(export_to_hdf5(tmpFileName, "scs_m"))
- ans  =
- 
-  T  
-assert_checktrue(isfile(tmpFileName))
- ans  =
- 
-  T  
+err = execstr("save(tmpFileName, ""scs_m"")", "errcatch");
+assert_checktrue(err, 0);
 xcos(tmpFileName)

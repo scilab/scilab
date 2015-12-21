@@ -32,7 +32,7 @@ function ret = createConstraints(constType, varargin)
 
         arg1 = varargin(1);
         if typeof(arg1) <> "string" | size(arg1, "*") <> 1 then
-            error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "createConstraints", 2));
+            error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createConstraints", 2));
         end
 
         if size(varargin) > 1 then
@@ -70,14 +70,14 @@ function ret = createConstraints(constType, varargin)
         if size(varargin) > 2 then
             arg3 = varargin(3);
             if typeof(arg3) <> "string" | size(arg3, "*") <> 1 then
-                error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "createConstraints", 4));
+                error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createConstraints", 4));
             end
         end
 
         if size(varargin) > 3 then
             arg4 = varargin(4);
             if typeof(arg4) <> "string" | size(arg4, "*") <> 1 then
-                error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "createConstraints", 5));
+                error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createConstraints", 5));
             end
         end
 

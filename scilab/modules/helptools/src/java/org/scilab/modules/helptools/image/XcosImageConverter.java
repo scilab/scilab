@@ -13,6 +13,7 @@
 package org.scilab.modules.helptools.image;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
@@ -73,7 +74,11 @@ public class XcosImageConverter implements ExternalImageConverter {
          */
         final Class<?> export = Class.forName("org.scilab.modules.xcos.utils.XcosDelegates");
         final Method convertToPNG = export.getDeclaredMethod("convertToPNG", String.class, String.class, File.class, String.class);
-        convertToPNG.invoke(null, helpID, xcosFile, imageFile, imageName);
+        try {
+            convertToPNG.invoke(null, helpID, xcosFile, imageFile, imageName);
+        } catch (InvocationTargetException e) {
+            e.getCause().printStackTrace();
+        }
 
         return conv.generateImageCode(xcosFile, conv.getBaseImagePath() + imageName, attributes);
     }

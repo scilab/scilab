@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,6 +12,9 @@
  */
 
 package org.scilab.modules.xcos.port.output;
+
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 
 /**
  * An implicit output port is a port where the input characteristic does not
@@ -26,8 +30,8 @@ public class ImplicitOutputPort extends OutputPort {
     private static final long serialVersionUID = 4210196486062437007L;
 
     /** Default constructor */
-    public ImplicitOutputPort() {
-        super("ImplicitOutputPort");
+    public ImplicitOutputPort(JavaController controller, long uid, Kind kind, Object value, String style, String id) {
+        super(controller, uid, kind, value, style == null || style.isEmpty() ? "ImplicitOutputPort" : style, id, true);
     }
 
     /** @return always Type.IMPLICIT */

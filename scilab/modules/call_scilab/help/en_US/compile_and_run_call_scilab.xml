@@ -193,7 +193,7 @@ all: simple_call_scilab.c
                 </itemizedlist>
             </listitem>
         </itemizedlist>
-        <para>Note that two environnement variables are taken in account for
+        <para>Note that two environment variables are taken in account for
             specific needs:
         </para>
         <itemizedlist>
@@ -239,9 +239,6 @@ $ ./myExample
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="api_scilab">api Scilab</link>
-            </member>
             <member>
                 <link linkend="call_scilab">call_scilab</link>
             </member>

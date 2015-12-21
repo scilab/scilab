@@ -34,7 +34,7 @@
 #include <math.h>
 #include "taucs_scilab.h"
 #include "machine.h"   /* F2C macro */
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 #include "sciprint.h"
 #include "localization.h"
@@ -2686,8 +2686,6 @@ int taucs_get_nnz_from_supernodal_factor(void* vL)
     supernodal_factor_matrix* L = (supernodal_factor_matrix*) vL;
     int nnz = 0;
     int jp = 0, sn = 0;
-
-    nnz = 0;
 
     for (sn = 0; sn < L->n_sn; sn++)
         for (jp = 0; jp < (L->sn_size)[sn]; jp++)

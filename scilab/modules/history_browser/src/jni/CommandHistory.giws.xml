@@ -1,4 +1,4 @@
-    <package name="org.scilab.modules.history_browser">
+        <package name="org.scilab.modules.history_browser">
     <object name="CommandHistory">
         <method name="appendLine" returnType="void" modifier="static">
             <parameter type="String" name="lineToAppend"/>

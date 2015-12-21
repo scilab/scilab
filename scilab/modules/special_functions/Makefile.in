@@ -107,9 +107,10 @@ DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/special_functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
+	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
+	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -181,19 +182,18 @@ am__v_lt_1 =
 libscispecial_functions_la_DEPENDENCIES =  \
 	libscispecial_functions-algo.la
 am__objects_4 =  \
-	sci_gateway/c/libscispecial_functions_la-sci_dlgamma.lo \
 	sci_gateway/c/libscispecial_functions_la-sci_bessely.lo \
 	sci_gateway/c/libscispecial_functions_la-sci_beta.lo \
-	sci_gateway/c/libscispecial_functions_la-sci_gamma.lo \
 	sci_gateway/c/libscispecial_functions_la-sci_legendre.lo \
 	sci_gateway/c/libscispecial_functions_la-sci_besselh.lo \
 	sci_gateway/c/libscispecial_functions_la-sci_besseli.lo \
 	sci_gateway/c/libscispecial_functions_la-sci_besselj.lo \
-	sci_gateway/c/libscispecial_functions_la-sci_besselk.lo \
-	sci_gateway/c/libscispecial_functions_la-gw_special_functions.lo \
-	sci_gateway/c/libscispecial_functions_la-sci_lgamma.lo
+	sci_gateway/c/libscispecial_functions_la-sci_besselk.lo
 am__objects_5 =  \
-	sci_gateway/cpp/libscispecial_functions_la-sci_faddeeva.lo
+	sci_gateway/cpp/libscispecial_functions_la-sci_faddeeva.lo \
+	sci_gateway/cpp/libscispecial_functions_la-sci_gamma.lo \
+	sci_gateway/cpp/libscispecial_functions_la-sci_lgamma.lo \
+	sci_gateway/cpp/libscispecial_functions_la-sci_dlgamma.lo
 am_libscispecial_functions_la_OBJECTS = $(am__objects_4) \
 	$(am__objects_5)
 libscispecial_functions_la_OBJECTS =  \
@@ -313,6 +313,7 @@ AUTOMAKE = @AUTOMAKE@
 AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
+BLAS_CFLAGS = @BLAS_CFLAGS@
 BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCACHE = @CCACHE@
@@ -347,6 +348,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 ECJ = @ECJ@
 EGREP = @EGREP@
+EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
@@ -370,6 +372,8 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAMCREST = @HAMCREST@
+HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
@@ -406,6 +410,9 @@ LAPACK_LIBS = @LAPACK_LIBS@
 LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
+LEX = @LEX@
+LEXLIB = @LEXLIB@
+LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
 LIBM = @LIBM@
@@ -503,6 +510,8 @@ UMFPACK_CFLAGS = @UMFPACK_CFLAGS@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 USE_NLS = @USE_NLS@
+VALGRIND_CFLAGS = @VALGRIND_CFLAGS@
+VALGRIND_LIBS = @VALGRIND_LIBS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
@@ -521,6 +530,8 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
+YACC = @YACC@
+YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -576,51 +587,64 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+yacc_present = @yacc_present@
 SPECIAL_FUNCTIONS_C_SOURCES = src/c/zbeshv.c
 
 # List of the cpp files
 SPECIAL_FUNCTIONS_CXX_SOURCES = \
-src/cpp/faddeeva.cpp
+    src/cpp/faddeeva.cpp
 
 SPECIAL_FUNCTIONS_FORTRAN_SOURCES = \
-src/fortran/dbesig.f \
-src/fortran/dbesjg.f \
-src/fortran/dbeskg.f \
-src/fortran/dbesyg.f \
-src/fortran/psi.f \
-src/fortran/zbesig.f \
-src/fortran/zbesjg.f \
-src/fortran/zbeskg.f \
-src/fortran/zbesyg.f
+    src/fortran/dbesig.f \
+    src/fortran/dbesjg.f \
+    src/fortran/dbeskg.f \
+    src/fortran/dbesyg.f \
+    src/fortran/psi.f \
+    src/fortran/zbesig.f \
+    src/fortran/zbesjg.f \
+    src/fortran/zbeskg.f \
+    src/fortran/zbesyg.f
 
 GATEWAY_C_SOURCES = \
-sci_gateway/c/sci_dlgamma.c \
-sci_gateway/c/sci_bessely.c \
-sci_gateway/c/sci_beta.c \
-sci_gateway/c/sci_gamma.c \
-sci_gateway/c/sci_legendre.c \
-sci_gateway/c/sci_besselh.c \
-sci_gateway/c/sci_besseli.c \
-sci_gateway/c/sci_besselj.c \
-sci_gateway/c/sci_besselk.c \
-sci_gateway/c/gw_special_functions.c \
-sci_gateway/c/sci_lgamma.c
+    sci_gateway/c/sci_bessely.c \
+    sci_gateway/c/sci_beta.c \
+    sci_gateway/c/sci_legendre.c \
+    sci_gateway/c/sci_besselh.c \
+    sci_gateway/c/sci_besseli.c \
+    sci_gateway/c/sci_besselj.c \
+    sci_gateway/c/sci_besselk.c
 
 GATEWAY_CXX_SOURCES = \
-sci_gateway/cpp/sci_faddeeva.cpp
+    sci_gateway/cpp/sci_faddeeva.cpp \
+    sci_gateway/cpp/sci_gamma.cpp \
+    sci_gateway/cpp/sci_lgamma.cpp \
+    sci_gateway/cpp/sci_dlgamma.cpp
 
 
 # Includes need for the compilation
-libscispecial_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(srcdir)/src/cpp/ \
--I$(srcdir)/sci_gateway/cpp/ \
--I$(top_srcdir)/modules/core/src/c/ \
--I$(top_srcdir)/modules/elementary_functions/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/localization/includes/ \
-$(AM_CPPFLAGS)
+libscispecial_functions_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/sci_gateway/cpp/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/core/src/c/ \
+    -I$(top_srcdir)/modules/elementary_functions/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/console/includes/ \
+    $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscispecial_functions.la
 noinst_LTLIBRARIES = libscispecial_functions-algo.la
@@ -850,16 +874,10 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscispecial_functions_la-sci_dlgamma.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscispecial_functions_la-sci_bessely.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscispecial_functions_la-sci_beta.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscispecial_functions_la-sci_gamma.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscispecial_functions_la-sci_legendre.lo:  \
@@ -877,12 +895,6 @@ sci_gateway/c/libscispecial_functions_la-sci_besselj.lo:  \
 sci_gateway/c/libscispecial_functions_la-sci_besselk.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscispecial_functions_la-gw_special_functions.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscispecial_functions_la-sci_lgamma.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp
 	@: > sci_gateway/cpp/$(am__dirstamp)
@@ -890,6 +902,15 @@ sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
 	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscispecial_functions_la-sci_faddeeva.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscispecial_functions_la-sci_gamma.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscispecial_functions_la-sci_lgamma.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscispecial_functions_la-sci_dlgamma.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
@@ -912,18 +933,17 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-gw_special_functions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_besselh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_besseli.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_besselj.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_besselk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_bessely.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_beta.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_dlgamma.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_gamma.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_legendre.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_lgamma.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_dlgamma.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_faddeeva.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_gamma.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_lgamma.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscispecial_functions_algo_la-zbeshv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscispecial_functions_algo_la-faddeeva.Plo@am__quote@
 
@@ -958,13 +978,6 @@ src/c/libscispecial_functions_algo_la-zbeshv.lo: src/c/zbeshv.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscispecial_functions_algo_la-zbeshv.lo `test -f 'src/c/zbeshv.c' || echo '$(srcdir)/'`src/c/zbeshv.c
 
-sci_gateway/c/libscispecial_functions_la-sci_dlgamma.lo: sci_gateway/c/sci_dlgamma.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscispecial_functions_la-sci_dlgamma.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_dlgamma.Tpo -c -o sci_gateway/c/libscispecial_functions_la-sci_dlgamma.lo `test -f 'sci_gateway/c/sci_dlgamma.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dlgamma.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_dlgamma.Tpo sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_dlgamma.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_dlgamma.c' object='sci_gateway/c/libscispecial_functions_la-sci_dlgamma.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscispecial_functions_la-sci_dlgamma.lo `test -f 'sci_gateway/c/sci_dlgamma.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dlgamma.c
-
 sci_gateway/c/libscispecial_functions_la-sci_bessely.lo: sci_gateway/c/sci_bessely.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscispecial_functions_la-sci_bessely.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_bessely.Tpo -c -o sci_gateway/c/libscispecial_functions_la-sci_bessely.lo `test -f 'sci_gateway/c/sci_bessely.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bessely.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_bessely.Tpo sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_bessely.Plo
@@ -978,13 +991,6 @@ sci_gateway/c/libscispecial_functions_la-sci_beta.lo: sci_gateway/c/sci_beta.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_beta.c' object='sci_gateway/c/libscispecial_functions_la-sci_beta.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscispecial_functions_la-sci_beta.lo `test -f 'sci_gateway/c/sci_beta.c' || echo '$(srcdir)/'`sci_gateway/c/sci_beta.c
-
-sci_gateway/c/libscispecial_functions_la-sci_gamma.lo: sci_gateway/c/sci_gamma.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscispecial_functions_la-sci_gamma.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_gamma.Tpo -c -o sci_gateway/c/libscispecial_functions_la-sci_gamma.lo `test -f 'sci_gateway/c/sci_gamma.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gamma.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_gamma.Tpo sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_gamma.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_gamma.c' object='sci_gateway/c/libscispecial_functions_la-sci_gamma.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscispecial_functions_la-sci_gamma.lo `test -f 'sci_gateway/c/sci_gamma.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gamma.c
 
 sci_gateway/c/libscispecial_functions_la-sci_legendre.lo: sci_gateway/c/sci_legendre.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscispecial_functions_la-sci_legendre.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_legendre.Tpo -c -o sci_gateway/c/libscispecial_functions_la-sci_legendre.lo `test -f 'sci_gateway/c/sci_legendre.c' || echo '$(srcdir)/'`sci_gateway/c/sci_legendre.c
@@ -1020,20 +1026,6 @@ sci_gateway/c/libscispecial_functions_la-sci_besselk.lo: sci_gateway/c/sci_besse
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_besselk.c' object='sci_gateway/c/libscispecial_functions_la-sci_besselk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscispecial_functions_la-sci_besselk.lo `test -f 'sci_gateway/c/sci_besselk.c' || echo '$(srcdir)/'`sci_gateway/c/sci_besselk.c
-
-sci_gateway/c/libscispecial_functions_la-gw_special_functions.lo: sci_gateway/c/gw_special_functions.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscispecial_functions_la-gw_special_functions.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-gw_special_functions.Tpo -c -o sci_gateway/c/libscispecial_functions_la-gw_special_functions.lo `test -f 'sci_gateway/c/gw_special_functions.c' || echo '$(srcdir)/'`sci_gateway/c/gw_special_functions.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-gw_special_functions.Tpo sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-gw_special_functions.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_special_functions.c' object='sci_gateway/c/libscispecial_functions_la-gw_special_functions.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscispecial_functions_la-gw_special_functions.lo `test -f 'sci_gateway/c/gw_special_functions.c' || echo '$(srcdir)/'`sci_gateway/c/gw_special_functions.c
-
-sci_gateway/c/libscispecial_functions_la-sci_lgamma.lo: sci_gateway/c/sci_lgamma.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscispecial_functions_la-sci_lgamma.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_lgamma.Tpo -c -o sci_gateway/c/libscispecial_functions_la-sci_lgamma.lo `test -f 'sci_gateway/c/sci_lgamma.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lgamma.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_lgamma.Tpo sci_gateway/c/$(DEPDIR)/libscispecial_functions_la-sci_lgamma.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_lgamma.c' object='sci_gateway/c/libscispecial_functions_la-sci_lgamma.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscispecial_functions_la-sci_lgamma.lo `test -f 'sci_gateway/c/sci_lgamma.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lgamma.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -1072,6 +1064,27 @@ sci_gateway/cpp/libscispecial_functions_la-sci_faddeeva.lo: sci_gateway/cpp/sci_
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_faddeeva.cpp' object='sci_gateway/cpp/libscispecial_functions_la-sci_faddeeva.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscispecial_functions_la-sci_faddeeva.lo `test -f 'sci_gateway/cpp/sci_faddeeva.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_faddeeva.cpp
+
+sci_gateway/cpp/libscispecial_functions_la-sci_gamma.lo: sci_gateway/cpp/sci_gamma.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscispecial_functions_la-sci_gamma.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_gamma.Tpo -c -o sci_gateway/cpp/libscispecial_functions_la-sci_gamma.lo `test -f 'sci_gateway/cpp/sci_gamma.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_gamma.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_gamma.Tpo sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_gamma.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_gamma.cpp' object='sci_gateway/cpp/libscispecial_functions_la-sci_gamma.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscispecial_functions_la-sci_gamma.lo `test -f 'sci_gateway/cpp/sci_gamma.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_gamma.cpp
+
+sci_gateway/cpp/libscispecial_functions_la-sci_lgamma.lo: sci_gateway/cpp/sci_lgamma.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscispecial_functions_la-sci_lgamma.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_lgamma.Tpo -c -o sci_gateway/cpp/libscispecial_functions_la-sci_lgamma.lo `test -f 'sci_gateway/cpp/sci_lgamma.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_lgamma.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_lgamma.Tpo sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_lgamma.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_lgamma.cpp' object='sci_gateway/cpp/libscispecial_functions_la-sci_lgamma.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscispecial_functions_la-sci_lgamma.lo `test -f 'sci_gateway/cpp/sci_lgamma.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_lgamma.cpp
+
+sci_gateway/cpp/libscispecial_functions_la-sci_dlgamma.lo: sci_gateway/cpp/sci_dlgamma.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscispecial_functions_la-sci_dlgamma.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_dlgamma.Tpo -c -o sci_gateway/cpp/libscispecial_functions_la-sci_dlgamma.lo `test -f 'sci_gateway/cpp/sci_dlgamma.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_dlgamma.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_dlgamma.Tpo sci_gateway/cpp/$(DEPDIR)/libscispecial_functions_la-sci_dlgamma.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_dlgamma.cpp' object='sci_gateway/cpp/libscispecial_functions_la-sci_dlgamma.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscispecial_functions_la-sci_dlgamma.lo `test -f 'sci_gateway/cpp/sci_dlgamma.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_dlgamma.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<

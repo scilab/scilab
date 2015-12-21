@@ -12,6 +12,9 @@
 
 #ifndef __SETENVC_H__
 #define __SETENVC_H__
+
+#include <wchar.h>
+
 #include "dynlib_io.h"
 #include "BOOL.h"
 
@@ -22,6 +25,7 @@
  * @return FALSE if there is a problem otherwise TRUE
  */
 IO_IMPEXP BOOL setenvc(const char *string, const char *value);
+IO_IMPEXP BOOL setenvcW(const wchar_t *string, const wchar_t *value);
 
 #endif /* __SETENVC_H__ */
 /*--------------------------------------------------------------------------*/

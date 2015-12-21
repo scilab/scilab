@@ -5,9 +5,9 @@
 #include <api_scilab.h>
 #include <BOOL.h>
 #include <Scierror.h>
-#include <MALLOC.h>
+#include <sci_malloc.h>
 /* ========================================================================== */
-int sci_readDoubles(char *fname)
+int sci_readDoubles(char *fname, void* pvApiCtx)
 {
 #define NAME_MATRIX_TO_READ "REF_TEST_MATRIX"
 #define REF_SIZE_COLS 3
@@ -43,6 +43,7 @@ int sci_readDoubles(char *fname)
         printError(&sciErr, 0);
     }
 
+    FREE(matrixOfDouble);
     LhsVar(1) = Rhs + 1;
     return 0;
 }

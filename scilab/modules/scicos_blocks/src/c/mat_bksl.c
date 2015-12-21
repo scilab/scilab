@@ -22,17 +22,17 @@
 #include <stdio.h>
 #include <math.h>
 #include "machine.h" /* C2F */
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos.h"
 #include "core_math.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
+#include "numericconstants_interface.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(dgetrf)(int *m, int *n, double *a, int *
                        lda, int *ipiv, int *info);
-extern double C2F(dlamch)(char *cmach);
 extern double C2F(dlange)(char *norm, int *m, int *n, double *a, int
                           *lda, double *work);
 extern int C2F(dlacpy)(char *uplo, int *m, int *n, double *
@@ -191,7 +191,7 @@ SCICOS_BLOCKS_IMPEXP void mat_bksl(scicos_block *block, int flag)
     else
     {
         ptr = *work;
-        EPS = C2F(dlamch)("e");
+        EPS = nc_eps();
         ANORM = C2F(dlange)("1", &mu, &nu1, u1, &mu, ptr->dwork);
         C2F(dlacpy)("F", &mu, &nu1, u1, &mu, ptr->LA, &mu);
         if (mu == nu1)

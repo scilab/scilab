@@ -1,5 +1,0 @@
-LIBRARY    sparse_f.dll
-
-
-EXPORTS
-spreshape_

@@ -253,7 +253,7 @@ int putUnsignedInt(char* variableName, unsigned int *variable, int nbRow, int nb
  * @param[out] nbCol Number of cols
  * @return The matrix of long (column sorted)
  */
-long * getLong(char* variableName, int *nbRow, int *nbCol);
+long long * getLong(char* variableName, int *nbRow, int *nbCol);
 
 /**
  * Set a matrix of long (int64)

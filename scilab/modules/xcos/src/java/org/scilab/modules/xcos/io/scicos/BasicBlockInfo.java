@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,6 +14,7 @@
 package org.scilab.modules.xcos.io.scicos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +28,7 @@ import org.scilab.modules.xcos.port.Orientation;
 import com.mxgraph.model.mxICell;
 
 /**
- * Convert BasicBlock pure objects to a mixed BasicBlock objects (update the
- * scicos information)
+ * Convert BasicBlock pure objects to a mixed BasicBlock objects (update the scicos information)
  */
 public final class BasicBlockInfo {
     /**
@@ -43,7 +44,7 @@ public final class BasicBlockInfo {
      *            the ports
      * @return array of links id
      */
-    protected static ScilabDouble getAllLinkId(List <? extends BasicPort > ports) {
+    protected static ScilabDouble getAllLinkId(List<? extends BasicPort> ports) {
         if (ports.isEmpty()) {
             return new ScilabDouble();
         }
@@ -57,25 +58,6 @@ public final class BasicBlockInfo {
             } else {
                 data[i][0] = 0;
             }
-        }
-
-        return new ScilabDouble(data);
-    }
-
-    /**
-     * Get all the port data lines.
-     *
-     * @param ports
-     *            the ports
-     * @return array of ports data lines
-     */
-    protected static ScilabDouble getAllPortsDataLines(List <? extends BasicPort > ports) {
-        if (ports.isEmpty()) {
-            return new ScilabDouble();
-        }
-        double[][] data = new double[ports.size()][1];
-        for (int i = 0; i < ports.size(); ++i) {
-            data[i][0] = ((BasicPort) ports.get(i)).getDataLines();
         }
 
         return new ScilabDouble(data);
@@ -116,12 +98,12 @@ public final class BasicBlockInfo {
                 // There we are sure that the cell is an instance of the type
                 // class. Thus we can safely cast it and add it to the result
                 // vector.
-                if (revert) {
-                    data.add(0, (T) cell);
-                } else {
-                    data.add((T) cell);
-                }
+                data.add((T) cell);
             }
+        }
+
+        if (revert) {
+            Collections.reverse(data);
         }
 
         return data;
@@ -130,8 +112,7 @@ public final class BasicBlockInfo {
     /**
      * Get the n-th port for a n position.
      *
-     * This method assume that the port are sorted and that the
-     * {@link BasicPort#getOrdering()} is filled with the right value.
+     * This method assume that the port are sorted and that the {@link BasicPort#getOrdering()} is filled with the right value.
      *
      * @param block
      *            the block
@@ -150,9 +131,10 @@ public final class BasicBlockInfo {
             final mxICell cell = block.getChildAt(i);
             if (cell instanceof BasicPort) {
                 final BasicPort p = ((BasicPort) cell);
-                if (p.getOrdering() == position) {
-                    data.add(p);
-                }
+                // FIXME is it really needed
+                // if (p.getOrdering() == position) {
+                data.add(p);
+                // }
             }
         }
 

@@ -12,9 +12,13 @@ c!
       double precision rsav
       double precision rls, rlsa, rlsr
       dimension rsav(*), isav(*)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rls(219), ils(39)
+cDEC$ ATTRIBUTES DLLIMPORT:: /lsa001/
       common /lsa001/ rlsa(22), ilsa(9)
+cDEC$ ATTRIBUTES DLLIMPORT:: /lsr001/
       common /lsr001/ rlsr(5),ilsr(9)
+cDEC$ ATTRIBUTES DLLIMPORT:: /eh0001/
       common /eh0001/ ieh(2)
       data lenrls/219/, lenils/39/, lenrla/22/, lenila/9/
       data lenrlr/5/,lenilr/9/

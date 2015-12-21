@@ -28,10 +28,10 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_callback_property(void* _pvCtx, int iObjUID)
+void* get_callback_property(void* _pvCtx, int iObjUID)
 {
     char* callback = NULL;
-    int status = 0;
+    void* status = NULL;
 
     getGraphicObjectProperty(iObjUID,  __GO_CALLBACK__, jni_string, (void**) &callback);
 
@@ -42,7 +42,7 @@ int get_callback_property(void* _pvCtx, int iObjUID)
     }
     else
     {
-        status = sciReturnString(_pvCtx, callback);
+        status = sciReturnString(callback);
         free(callback);
         return status;
     }

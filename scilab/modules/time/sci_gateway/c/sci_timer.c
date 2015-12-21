@@ -13,12 +13,12 @@
 
 /*--------------------------------------------------------------------------*/
 #include "gw_time.h"
+#include "api_scilab.h"
 #include "timer.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int sci_timer(char *fname, unsigned long fname_len)
+int sci_timer(char *fname, void* pvApiCtx)
 {
     double timerval = 0;
 
@@ -30,10 +30,13 @@ int sci_timer(char *fname, unsigned long fname_len)
 
     if (timerval >= 0.)
     {
-        int l1 = 0, n1 = 1;
+        SciErr sciErr;
+        int n1 = 1;
+        double * pDblReal = NULL;
 
-        CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &n1, &n1, &l1);
-        *stk(l1) = (double)timerval;
+        sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, n1, n1, &pDblReal);
+
+        *pDblReal = (double)timerval;
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();

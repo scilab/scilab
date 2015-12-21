@@ -17,7 +17,7 @@
 /* file: sci_xpoly.c                                                      */
 /* desc : interface for xpoly routine                                     */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "sciCall.h"
@@ -35,7 +35,7 @@
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xpoly(char * fname, unsigned long fname_len)
+int sci_xpoly(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -115,18 +115,16 @@ int sci_xpoly(char * fname, unsigned long fname_len)
         // Retrieve a matrix of double at position 3.
         if (getAllocatedSingleString(pvApiCtx, piAddrl3, &l3))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
             return 1;
         }
 
         if (strcmp((l3), "lines") == 0)
         {
-            strcpy(C2F(cha1).buf, "xlines");
             mark = 1; /* NG */
         }
         else if (strcmp((l3), "marks") == 0)
         {
-            strcpy(C2F(cha1).buf, "xmarks");
             mark = 0; /* NG */
         }
         else
@@ -137,7 +135,6 @@ int sci_xpoly(char * fname, unsigned long fname_len)
     }
     else
     {
-        strcpy(C2F(cha1).buf, "xlines");
         mark = 1; /* NG */
     }
 

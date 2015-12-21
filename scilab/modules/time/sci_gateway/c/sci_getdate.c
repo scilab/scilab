@@ -14,13 +14,13 @@
 #include <stdio.h>
 #include <string.h>
 #include "gw_time.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getdate.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_getdate(char *fname, unsigned long fname_len)
+int sci_getdate(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -108,7 +108,7 @@ int sci_getdate(char *fname, unsigned long fname_len)
             }
             else
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
                 return 0;
             }
         }

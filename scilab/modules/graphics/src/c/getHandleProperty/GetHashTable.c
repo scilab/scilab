@@ -20,7 +20,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "getDictionaryGetProperties.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /**
  * use for the singleton to know if the hashtable has already be created.
  */
@@ -253,8 +253,7 @@ static getHashTableCouple propertyGetTable[] =
     {"marks_count", get_marks_count_property},
     {"ticks_format", get_ticks_format_property},
     {"ticks_st", get_ticks_st_property},
-    {"colors", get_colors_property},
-    {"sizes", get_sizes_property}
+    {"colors", get_colors_property}
 };
 
 /*--------------------------------------------------------------------------*/
@@ -290,14 +289,15 @@ GetPropertyHashTable *createScilabGetHashTable(void)
 }
 
 /*--------------------------------------------------------------------------*/
-int callGetProperty(void* _pvCtx, int iObjUID, char *propertyName)
+
+void* callGetProperty(void* _pvCtx, int iObjUID, char *propertyName)
 {
     getPropertyFunc accessor = searchGetHashtable(getHashTable, propertyName);
 
     if (accessor == NULL)
     {
         Scierror(999, _("Unknown property: %s.\n"), propertyName);
-        return -1;
+        return NULL;
     }
     return accessor(_pvCtx, iObjUID);
 }

@@ -25,7 +25,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlDocument(char *fname, unsigned long fname_len)
+int sci_xmlDocument(char *fname, void* pvApiCtx)
 {
     int *addr = 0;
     SciErr err;
@@ -51,7 +51,7 @@ int sci_xmlDocument(char *fname, unsigned long fname_len)
 
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, i + 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, i + 1);
             return 0;
         }
 

@@ -12,7 +12,7 @@
  *
  */
 #include "fftw_utilities.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "callfftw.h"
 #include <math.h>
 int check_1D_symmetry(double *Ar, double *Ai, int nA, int iA);
@@ -102,6 +102,7 @@ int FreeFFTWPlan(FFTW_Plan_struct *Sci_Plan)
         FREE(Sci_Plan->gdim.howmany_dims);
         Sci_Plan->gdim.howmany_dims = NULL;
     }
+
     return (1);
 }
 /*--------------------------------------------------------------------------*/
@@ -175,6 +176,7 @@ fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
             }
         }
     }
+
     if (gdim->howmany_rank != 0)
     {
         Sci_Plan->gdim.howmany_rank = gdim->howmany_rank;
@@ -232,6 +234,7 @@ fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
     {
         *errflag = 2;
     }
+
     return (Sci_Plan->p);
 }
 /*--------------------------------------------------------------------------*/
@@ -1328,7 +1331,13 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
 
 int withMKL(void)
 {
-    return (call_fftw_export_wisdom_to_string() == NULL);
+    char* str = call_fftw_export_wisdom_to_string();
+    int iWithMKL = (int)(str == NULL);
+    if (iWithMKL != 0)
+    {
+        FREE(str);
+    }
+    return iWithMKL;
 }
 /*--------------------------------------------------------------------------*/
 

@@ -11,9 +11,8 @@
  */
 
 #include "api_scilab.h"
-#include "MALLOC.h"
 
-int sci_deleteNamedVariable(char *fname, unsigned long fname_len)
+int sci_deleteNamedVariable(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iRet = 0;
@@ -41,6 +40,7 @@ int sci_deleteNamedVariable(char *fname, unsigned long fname_len)
         iRet = deleteNamedVariable(pvApiCtx, pstVarName);
     }
 
+    freeAllocatedSingleString(pstVarName);
     createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
     AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;
     return 0;

@@ -16,11 +16,11 @@
 #include "gw_io.h"
 #include "api_scilab.h"
 #include "setenvc.h"
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_setenv(char *fname, unsigned long fname_len)
+int sci_setenv(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -32,7 +32,6 @@ int sci_setenv(char *fname, unsigned long fname_len)
 
     int ret = 0;
 
-    Rhs = Max(0, Rhs);
     CheckRhs(2, 2);
     CheckLhs(0, 1);
 
@@ -46,7 +45,7 @@ int sci_setenv(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, piAddr1) == 0 || isScalar(pvApiCtx, piAddr1) == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
         return 0;
     }
 
@@ -60,7 +59,7 @@ int sci_setenv(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, piAddr2) == 0 || isScalar(pvApiCtx, piAddr2) == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
         return 0;
     }
 

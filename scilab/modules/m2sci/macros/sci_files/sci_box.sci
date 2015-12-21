@@ -20,10 +20,10 @@ function [tree]=sci_box(tree)
     elseif rhs==1 then
         if typeof(tree.rhs(1))=="cste" then
             a=gettempvar()
-            insert(Equal(list(a),Funcall("gca",1,list(),list())))
+            m2sci_insert(Equal(list(a),Funcall("gca",1,list(),list())))
 
             LHS=Operation("ins",list(a,Cste("box")),list())
-            insert(Equal(list(LHS),Cste(convstr(tree.rhs(1).value,"l"))))
+            m2sci_insert(Equal(list(LHS),Cste(convstr(tree.rhs(1).value,"l"))))
 
             tree=list()
         else
@@ -34,7 +34,7 @@ function [tree]=sci_box(tree)
     else
         if typeof(tree.rhs(2))=="cste" then
             LHS=Operation("ins",list(tree.rhs(1),Cste("box")),list())
-            insert(Equal(list(LHS),Cste(convstr(tree.rhs(2).value,"l"))))
+            m2sci_insert(Equal(list(LHS),Cste(convstr(tree.rhs(2).value,"l"))))
 
             tree=list()
         else

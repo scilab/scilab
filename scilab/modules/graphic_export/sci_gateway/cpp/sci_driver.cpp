@@ -33,7 +33,7 @@ extern "C"
 #endif
 
 /*--------------------------------------------------------------------------*/
-int sci_driver(char * fname, unsigned long fname_len )
+int sci_driver(char * fname, void *pvApiCtx)
 {
     SciErr err;
     int * addr = NULL;
@@ -60,7 +60,7 @@ int sci_driver(char * fname, unsigned long fname_len )
 
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
 

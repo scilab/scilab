@@ -15,9 +15,9 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
+#include <ctype.h>
 #include <wchar.h>
 #include <wctype.h>
-#include "gw_string.h"
 #include "convstr.h"
 /*--------------------------------------------------------------------------*/
 void convstr(wchar_t **Input_Matrix, wchar_t **Output_Matrix, char typ, int mn)

@@ -21,7 +21,7 @@ extern "C" {
 using namespace org_scilab_modules_external_objects_java;
 using namespace org_modules_external_objects;
 
-int sci_jinvoke_db(char * fname, unsigned long fname_len)
+int sci_jinvoke_db(char * fname, void* pvApiCtx)
 {
     try
     {

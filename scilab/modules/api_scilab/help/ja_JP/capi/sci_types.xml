@@ -108,7 +108,7 @@
         <programlisting role="code_gateway"><![CDATA[
 #include "api_scilab.h"
 #include "sciprint.h"
-int sci_mysci_typesrhs(char * fname, unsigned long fname_len)
+int sci_mysci_typesrhs(char * fname, void* pvApiCtx)
 {
     int         iType = 0;
     int*        piAddr = NULL;

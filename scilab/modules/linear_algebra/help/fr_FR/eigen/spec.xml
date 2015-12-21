@@ -158,7 +158,7 @@ A=diag([1,2,3]);X=rand(3,3);A=inv(X)*A*X;
 spec(A)
 
 x=poly(0,'x');
-pol=det(x*eye()-A)
+pol=det(x*eye(3,3)-A)
 roots(pol)
 
 [S,X]=bdiag(A);

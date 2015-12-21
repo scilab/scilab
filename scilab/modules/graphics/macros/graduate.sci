@@ -17,7 +17,7 @@ function [xi,xa,np]=graduate( xmi, xma,n1,n2)
     // xi , xa  : real scalars
     // np       :integer scalar
     //%Description
-    // graduate looks for the mimimum interval [xi,xa] and a number of tics np
+    // graduate looks for the minimum interval [xi,xa] and a number of tics np
     // such that:
     //           xi <= xmi <= xma <= xa
     //           xa - xi / np  =  k(10**n)  k in [1 3 5]   for an integer n

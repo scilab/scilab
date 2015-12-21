@@ -17,7 +17,7 @@ extern "C" {
 #include "./../../jvm/includes/getScilabObject.h"
 #include "../../../jvm/includes/getScilabJNIEnv.h"
 }
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "GetCharWithoutOutput.hxx"
 /*--------------------------------------------------------------------------*/
 #include "CallScilabBridge.hxx"

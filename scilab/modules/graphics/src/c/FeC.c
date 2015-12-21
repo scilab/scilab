@@ -39,6 +39,7 @@
 #include "graphicObjectProperties.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
+#include "Sciwarning.h"
 
 /**
  * Before Scilab 5.1, default colout was [-1, -1].
@@ -213,7 +214,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
         }
         else
         {
-            sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+            Sciwarning(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
     }
 

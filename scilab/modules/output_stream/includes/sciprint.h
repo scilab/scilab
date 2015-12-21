@@ -15,6 +15,7 @@
 #define __SCIPRINT_H__
 
 #include <stdarg.h>
+#include <wchar.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,7 +27,8 @@ extern "C" {
      * @param fmt Format of the format string
      * @param ...
      */
-    void sciprint(const char *fmt, ...) ;
+    void sciprint(const char *fmt, ...);
+    //void sciprintW(wchar_t* fmt, ...);
 
 
     /**
@@ -38,7 +40,8 @@ extern "C" {
     * @return nb characters
     */
 
-    int scivprint(const char *fmt, va_list args);
+    int scivprint(const char* fmt, va_list args);
+    //int scivprintW(wchar_t* fmt, va_list args);
 
 #ifdef __cplusplus
 }

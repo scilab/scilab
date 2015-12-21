@@ -4,14 +4,10 @@
 EXPORTS
 ;
 ;elementary_functions_f
-dtild_
-wscal_
 dset_
-ivimp_
 iset_
 dadd_
 wwdiv_
 wmul_
 ddif_
-israt_
 

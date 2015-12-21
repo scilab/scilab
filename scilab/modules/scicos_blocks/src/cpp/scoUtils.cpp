@@ -13,7 +13,7 @@
 extern "C"
 {
 #include "machine.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 
 #include "getGraphicObjectProperty.h"
@@ -35,8 +35,8 @@ int findChildWithKindAt(int parent, int type, const int position)
 {
     int child = 0;
 
-    int childrenCount;
-    int*children;
+    int childrenCount = 0;
+    int*children = NULL;
 
     int i;
     int iChildType = -1;

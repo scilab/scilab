@@ -17,17 +17,27 @@
 // <-- Short Description -->
 // optim(): option "imp"=5 could crash Scilab
 //
-
 function f = rosenbrock(x)
     f = 100.0 * (x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
-function [f, g, ind] = rosenbrockCost(x, ind)
+function [f, g, ind] = rosenbrockCostFixedStep(x, ind)
+    // Test based on old 'derivative' function
     if ((ind == 1) | (ind == 4)) then
         f = rosenbrock ( x );
     end
     if ((ind == 1) | (ind == 4)) then
-        g = derivative ( rosenbrock , x(:) );
+        g = numderivative ( rosenbrock , x(:) , %eps^(1/3));
+    end
+endfunction
+
+function [f, g, ind] = rosenbrockCostVariableStep(x, ind)
+    // Test based on old 'derivative' function
+    if ((ind == 1) | (ind == 4)) then
+        f = rosenbrock ( x );
+    end
+    if ((ind == 1) | (ind == 4)) then
+        g = numderivative ( rosenbrock , x(:) );
     end
 endfunction
 
@@ -35,5 +45,9 @@ x0 = [-1.2 1.0];
 lines(0);
 
 for impval = 1:5
-    [ fopt , xopt ] = optim ( rosenbrockCost , x0 , "gc" , imp=impval);
+    [ fopt , xopt ] = optim ( rosenbrockCostFixedStep , x0 , "gc" , imp=impval);
+end
+
+for impval = 1:5
+    [ fopt , xopt ] = optim ( rosenbrockCostVariableStep , x0 , "gc" , imp=impval);
 end

@@ -11,7 +11,7 @@ mkdir(pathconvert(TMPDIR+"/read_write_boolean_api"));
 cd(pathconvert(TMPDIR+"/read_write_boolean_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/read_write_boolean_api.c",pathconvert(TMPDIR+"/read_write_boolean_api/read_write_boolean_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("read_write_boolean",["read_write_boolean","read_write_boolean"],"read_write_boolean_api.c",[],"","",cflags);
+ilib_build("gw_read_write_boolean",["read_write_boolean","read_write_boolean"],"read_write_boolean_api.c",[],"","",cflags);
 exec("loader.sce");
 
 a = [%t, %f, %t ; %f, %t, %f ; %t, %f, %t];

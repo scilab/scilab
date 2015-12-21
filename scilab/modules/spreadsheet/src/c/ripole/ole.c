@@ -22,7 +22,7 @@
 #define OLE_SECTORID_SAT	-3 /** Sector used by sector allocation Table  **/
 #define OLE_SECTORID_MSAT	-4 /** Sector used by master sector allocation Table **/
 
-#include "MALLOC.h"             /* MALLOC */
+#include "sci_malloc.h"             /* MALLOC */
 
 /* Main header accessors*/
 #define header_id(x)						((x) +0)
@@ -166,7 +166,7 @@ int OLE_dir_init(struct OLE_directory_entry *dir)
     dir->right_child = 0;
     dir->root = 0;
 
-    dir->class[0] = '\0';
+    dir->_class[0] = '\0';
     dir->userflags = 0;
     dir->timestamps[0] = '\0';
     dir->start_sector = 0;
@@ -848,7 +848,7 @@ int OLE_convert_directory(struct OLE_object *ole, unsigned char *buf, struct OLE
     **/
     dir->root = get_4byte_value(buf + 0x4c);
 
-    memcpy(dir->class, buf + 0x50, 16);
+    memcpy(dir->_class, buf + 0x50, 16);
     dir->userflags = get_4byte_value(buf + 0x60);
     memcpy(dir->timestamps, buf + 0x64, 16);  /** Actually consists of 2 8 byte stamps **/
 

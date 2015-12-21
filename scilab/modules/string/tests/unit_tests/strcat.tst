@@ -32,7 +32,7 @@ if strcat([])<>'' then pause,end
 //===============================
 if strcat([],'')<>'' then pause,end
 //===============================
-if execstr('strcat([],3)','errcatch') <> 246  then pause,end
+if execstr('strcat([],3)','errcatch') == 0  then pause,end
 //===============================
 if strcat([],'3') <> '' then pause,end
 //===============================

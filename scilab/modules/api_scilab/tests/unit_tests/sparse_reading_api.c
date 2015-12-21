@@ -14,9 +14,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
 
-int read_sparse(char *fname, unsigned long fname_len)
+int read_sparse(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int i, j, k;
@@ -70,6 +69,11 @@ int read_sparse(char *fname, unsigned long fname_len)
             k++;
         }
     }
+
+    FREE(piNbItemRow);
+    FREE(piColPos);
+    FREE(pdblReal);
+    FREE(pdblImg);
 
     //assign allocated variables to Lhs position
     AssignOutputVariable(pvApiCtx, 1) = 0;

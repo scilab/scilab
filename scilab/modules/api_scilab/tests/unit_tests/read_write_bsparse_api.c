@@ -14,9 +14,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
-int read_write_bsparse(char *fname, unsigned long fname_len)
+int read_write_bsparse(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int i                   = 0;
@@ -85,12 +85,18 @@ int read_write_bsparse(char *fname, unsigned long fname_len)
         iCol += piNbItemRow[i];
     }
 
+    FREE(piNbItemRow);
+    FREE(piColPos);
+
     sciErr = createBooleanSparseMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, iNewItem, piNewRow, piNewCol);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
+
+    FREE(piNewRow);
+    FREE(piNewCol);
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;

@@ -10,6 +10,9 @@
  *
  */
 
+#include "mlist.hxx"
+#include "int.hxx"
+
 #include "H5Exception.hxx"
 #include "HDF5Scilab.hxx"
 #include "H5Object.hxx"
@@ -30,10 +33,10 @@ using namespace org_modules_hdf5;
   Scilab prototype:
   - h5close()
   - h5close(obj)
-/*
+*/
 
 /*--------------------------------------------------------------------------*/
-int sci_h5close(char *fname, unsigned long fname_len)
+int sci_h5close(char *fname, int* pvApiCtx)
 {
     int id;
     SciErr err;
@@ -70,7 +73,9 @@ int sci_h5close(char *fname, unsigned long fname_len)
                      * so modify mlist contents will have effect on Scilab side.
                      * Why 28 ?? because it is the good value where the _id is located
                      */
-                    addr[28] = invalid;
+
+                    types::MList* m = (types::MList*)addr;
+                    m->set(L"_id", new types::Int32(invalid));
                 }
                 else
                 {

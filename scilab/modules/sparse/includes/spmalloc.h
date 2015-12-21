@@ -14,7 +14,7 @@
 #define __SPMALLOC_H__
 
 #include <stdlib.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #define SPMALLOC(x) MALLOC(((size_t) x))
 #define SPALLOC(type,number)  ((type *)SPMALLOC((unsigned)(sizeof(type)*(number))))
 #define SPREALLOC(ptr,type,number)  \

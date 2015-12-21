@@ -16,6 +16,7 @@ package org.scilab.modules.types;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.util.Arrays;
 
 /**
  * This class provides a representation on the Scilab Integer datatype<br>
@@ -729,6 +730,18 @@ public class ScilabInteger implements ScilabType {
                 setLongElement(i, j, x);
                 break;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + Arrays.deepHashCode(byteData);
+        result = prime * result + Arrays.deepHashCode(intData);
+        result = prime * result + Arrays.deepHashCode(longData);
+        result = prime * result + ((precision == null) ? 0 : precision.hashCode());
+        result = prime * result + Arrays.deepHashCode(shortData);
+        return result;
     }
 
     /**

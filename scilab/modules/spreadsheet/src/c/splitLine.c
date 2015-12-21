@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include "splitLine.h"
 #include "strsubst.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 
 #define EMPTYFIELD "__EMPTY_FIELD_CSV__"
@@ -167,7 +167,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
                             else
                             {
                                 *toks = 0;
-                                freeArrayOfString(retstr, strlen(substitutedstring));
+                                freeArrayOfString(retstr, (int)strlen(substitutedstring));
                                 FREE(substitutedstring);
                                 return NULL;
                             }
@@ -203,7 +203,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
             {
                 idxTmp++;
             }
-            nbDoubleQuotes = idxTmp - idx;
+            nbDoubleQuotes = (int)(idxTmp - idx);
 
             // if it is odd, we enter or leave a double quoted field
             if (nbDoubleQuotes % 2 == 1)
@@ -226,7 +226,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
         if (!addToken(retstr, &curr_str, (char*)(idx - len), len))
         {
             *toks = 0;
-            freeArrayOfString(retstr, strlen(substitutedstring));
+            freeArrayOfString(retstr, (int)strlen(substitutedstring));
             FREE(substitutedstring);
             return NULL;
         }

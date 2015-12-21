@@ -14,12 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ja\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無効です.\n"
 
 msgid "History loading in progress..."
 msgstr "履歴をロード中です."
@@ -68,7 +64,3 @@ msgstr "現在のセッション開始行を削除できません"
 
 msgid "History preferences"
 msgstr "履歴設定"
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Scilabモジュール '%s' はインストールされていません.\n"

@@ -43,12 +43,12 @@ public interface Canvas extends Dockable {
 
 
     /**
-     * @param onOrOff set wether the swap buffer mode is on or off.
+     * @param onOrOff set whether the swap buffer mode is on or off.
      */
     void setAutoSwapBufferMode(boolean onOrOff);
 
     /**
-     * @return set wether the swap buffer mode is on or off.
+     * @return set whether the swap buffer mode is on or off.
      */
     boolean getAutoSwapBufferMode();
 

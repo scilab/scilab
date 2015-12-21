@@ -15,7 +15,7 @@
 #include "ScilabGateway.hxx"
 
 extern "C" {
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "Scierror.h"
 #include "gw_external_objects_java.h"
 }
@@ -23,7 +23,7 @@ extern "C" {
 using namespace org_scilab_modules_external_objects_java;
 using namespace org_modules_external_objects;
 
-int sci_jconvMatrixMethod(char * fname, unsigned long fname_len)
+int sci_jconvMatrixMethod(char * fname, void* pvApiCtx)
 {
     int envId;
     char * type = 0;

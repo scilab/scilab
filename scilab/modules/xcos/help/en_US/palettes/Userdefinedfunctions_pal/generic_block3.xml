@@ -147,9 +147,9 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Iutput port sizes</emphasis>
+                    <emphasis role="bold">Output port sizes</emphasis>
                 </para>
-                <para> Number of regular input ports.</para>
+                <para> Number of regular output ports.</para>
                 <para> Properties : Type 'mat' of size [-1,2] </para>
             </listitem>
             <listitem>
@@ -247,7 +247,7 @@
                 <para>
                     <emphasis role="bold">Time dependence </emphasis>
                 </para>
-                <para> Time dependance : character "y" or "n", specifies if block output depends explicitly on time.</para>
+                <para> Time dependence : character "y" or "n", specifies if block output depends explicitly on time.</para>
                 <para> Properties : Type 'vec' of size 1</para>
             </listitem>
         </itemizedlist>

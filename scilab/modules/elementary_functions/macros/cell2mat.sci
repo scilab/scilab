@@ -28,18 +28,18 @@ function y= cell2mat(c)
         if typeof(c) <> "ce" then //input argument must be a cell
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Cell expected.\n"),"cell2mat",1));
         end
-        cecomptype=typeof(c(1).entries) //cecomptype is the type of the first component of the cell
+        cecomptype=typeof(c{1}) //cecomptype is the type of the first component of the cell
         for i=1:prod(size(c))
-            if typeof(c(i).entries) <> cecomptype then //all components of input cell must have the same type
+            if typeof(c{i}) <> cecomptype then //all components of input cell must have the same type
                 error(msprintf(gettext("%s: Wrong type for input argument #%d: Same type expected for all cell contents"),"cell2mat",1));
             end
         end
         if  0 < size(size(c),"*") & size(size(c),"*") <= 2 then //size of cell is least or equal to 2
             ytemp=list(1:size(c,1));
             for i=1:size(c,1)
-                ytemp(i)=c(i,1).entries;
+                ytemp(i)=c{i,1};
                 for j=2:size(c,2)
-                    ytemp(i)=[ytemp(i) c(i,j).entries];
+                    ytemp(i)=[ytemp(i) c{i,j}];
                 end
                 if i==1 then
                     y=ytemp(i);
@@ -60,9 +60,9 @@ function y= cell2mat(c)
             for l=1:csizeprod/(size(c,1)*size(c,2))
                 ylist=list(1:size(c,1))
                 for i=1:size(c,1)
-                    ylist(i)=c(i,1,l).entries;
+                    ylist(i)=c{i,1,l};
                     for j=2:size(c,2)
-                        ylist(i)=[ylist(i) c(i,j,l).entries];
+                        ylist(i)=[ylist(i) c{i,j,l}];
                     end
                     if i==1 then
                         ytemp(l)=ylist(i);

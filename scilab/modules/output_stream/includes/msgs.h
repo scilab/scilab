@@ -15,6 +15,7 @@
 #define __MSGS_H__
 
 #include "dynlib_output_stream.h"
+#include "machine.h" // C2F
 
 /**
  * @TODO : comment
@@ -24,15 +25,22 @@
  * @return <ReturnValue>
  */
 OUTPUT_STREAM_IMPEXP int C2F(msgs)(int *n, int *ierr);
-
-
-/**
-* @TODO : add comment
-*
-* @param n
-* @param ierr
-*/
+/*
+ * print a message
+ * @param n int message number see modules/output_stream/src/c/msgs.c
+ * for the list of messages
+ * some message append a buffer to the message (@see printToBuffer)
+ */
 OUTPUT_STREAM_IMPEXP void Msgs(int n, int ierr);
 
+
+/*
+ * print to the char buffer used to add custom info to some messages
+ * (@see Msgs). Buffer is of size bsize as #defined in stack-def.h (i.e. 4096)
+ *
+ * @param same as sprintf
+ * @return same as sprintf
+ */
+int printToBuffer(const char* format, ...);
 
 #endif /* __MSGS_H__ */

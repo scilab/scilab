@@ -15,7 +15,7 @@
 #include <wchar.h>
 #include <wctype.h>
 #include "isletter.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "isdigit.h"
 /*--------------------------------------------------------------------------*/
 BOOL *IsDigitW(wchar_t *input_string, int *returnedSizeArray)

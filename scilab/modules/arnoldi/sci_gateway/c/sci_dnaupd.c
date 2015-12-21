@@ -24,7 +24,7 @@ extern int C2F(dnaupd)(int *ido, char *bmat, int *n, char *which, int *nev,
                        double *workl, int *lworkl, int *info,
                        unsigned long bmat_len, unsigned long which_len);
 /*--------------------------------------------------------------------------*/
-int sci_dnaupd(char *fname, unsigned long fname_len)
+int sci_dnaupd(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -58,9 +58,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     int* pINFO          = NULL;
 
     int IDO,   mIDO,   nIDO;
-    int mBMAT,  nBMAT;
     int mN,     nN;
-    int mWHICH, nWHICH;
     int mNEV,   nNEV;
     int mTOL,   nTOL;
     int RESID, mRESID, nRESID;
@@ -344,7 +342,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     // Retrieve a matrix of double at position 2.
     if (getAllocatedSingleString(pvApiCtx, piAddrpBMAT, &pBMAT))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -360,7 +358,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (getAllocatedSingleString(pvApiCtx, piAddrpWHICH, &pWHICH))
     {
         freeAllocatedSingleString(pBMAT);
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 4);
         return 1;
     }
 
@@ -375,7 +373,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
 
     if (*pINFO < 0)
     {
-        C2F(errorinfo)("dnaupd", (int*)(pINFO), 6L);
+        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
         return 0;
     }
 

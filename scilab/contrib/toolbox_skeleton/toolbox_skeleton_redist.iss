@@ -35,7 +35,7 @@ Source: etc\toolbox_skeleton.quit; DestDir: {app}\etc
 Source: etc\toolbox_skeleton.start; DestDir: {app}\etc
 Source: macros\buildmacros.sce; DestDir: {app}\macros
 Source: macros\lib; DestDir: {app}\macros
-Source: macros\names; DestDir: {app}\macros
+;Source: macros\names; DestDir: {app}\macros
 Source: macros\*.sci; DestDir: {app}\macros
 Source: macros\*.bin; DestDir: {app}\macros
 Source: sci_gateway\loader_gateway.sce; DestDir: {app}\sci_gateway

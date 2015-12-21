@@ -46,7 +46,7 @@ int set_auto_ticks_property(void* _pvCtx, int iObjUID, void* _pvData, int valueT
 
     if (valueType != sci_strings)
     {
-        Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "auto_ticks");
+        Scierror(999, _("Wrong type for '%s' property: string expected.\n"), "auto_ticks");
         return SET_PROPERTY_ERROR;
     }
 

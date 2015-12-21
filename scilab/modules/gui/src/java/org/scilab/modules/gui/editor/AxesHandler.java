@@ -266,7 +266,7 @@ public class AxesHandler {
         Axes clone = (Axes)GraphicController.getController().getObjectFromId(cloneUID);
         Axes axesFrom = (Axes)GraphicController.getController().getObjectFromId(axesFromUID);
 
-        //Cloning the Axes does not clone the labels/title, so we need do it manualy
+        //Cloning the Axes does not clone the labels/title, so we need do it manually
 
         Integer xLabelUID = GraphicController.getController().cloneObject(axesFrom.getXAxisLabel());
         Integer yLabelUID = GraphicController.getController().cloneObject(axesFrom.getYAxisLabel());

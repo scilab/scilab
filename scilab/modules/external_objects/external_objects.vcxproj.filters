@@ -72,11 +72,11 @@
     <ClInclude Include="includes\ScilabStream.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\cpp\EOType.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sci_gateway\c\gw_external_objects.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_doubleExclam_invoke_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -311,6 +311,9 @@
     <ClCompile Include="src\cpp\invoke_asref.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\EOType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\libintl.lib" />
@@ -319,14 +322,14 @@
     <None Include="core_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="core_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="external_objects.iss" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="external_objects.rc">
       <Filter>Resource File</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="sci_gateway\external_objects_gateway.xml" />
   </ItemGroup>
 </Project>

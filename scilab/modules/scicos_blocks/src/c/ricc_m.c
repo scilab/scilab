@@ -20,7 +20,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "machine.h" /* C2F */
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos.h"
 #include "core_math.h"
 #include "scicos_malloc.h"

@@ -23,6 +23,7 @@ c!
       dimension gpp(ngp+1),beta(*),w(*)
       logical fail
       integer ierr
+cDEC$ ATTRIBUTES DLLIMPORT:: /arl2c/
       common /arl2c/ info,i1
 c
 c     decoupage du tableau de travail

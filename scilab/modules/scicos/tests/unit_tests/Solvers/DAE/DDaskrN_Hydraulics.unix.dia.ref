@@ -23,7 +23,6 @@ scs_m.props.tol(6) = 101;       // Solver
 scicos_simulate(scs_m);   // DDaskr
 --------------------------------------------\
  Main Modelica : TMPDIR/Hydraulics_im.mo
-
  Flat Modelica : TMPDIR/Hydraulics_imf.mo
  Simulation C code :TMPDIR/Hydraulics_im.c
 ddaskrval = res.values;         // Results
@@ -32,7 +31,6 @@ scs_m.props.tol(6) = 100;       // Solver
 scicos_simulate(scs_m);   // IDA
 --------------------------------------------\
  Main Modelica : TMPDIR/Hydraulics_im.mo
-
  Flat Modelica : TMPDIR/Hydraulics_imf.mo
  Simulation C code :TMPDIR/Hydraulics_im.c
 idaval = res.values;            // Results

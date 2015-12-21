@@ -23,19 +23,19 @@ mkdir(TMPDIR + "/bug_11544");
 cd(TMPDIR + "/bug_11544");
 
 src = [
-   '#include ""api_scilab.h""'
-   'int sci_bug_11544(char* fname, int len)' 
-   '{'
-   '    AssignOutputVariable(pvApiCtx, 0) = 1;'
-   '    return 0;'
-   '}'];
+"#include ""api_scilab.h"""
+"int sci_bug_11544(char* fname, int len)"
+"{"
+"    AssignOutputVariable(pvApiCtx, 0) = 1;"
+"    return 0;"
+"}"];
 
-mputl(src, "bug_11544.c');
+mputl(src, "bug_11544.c");
 
 
 //Release mode
 setenv("DEBUG_SCILAB_DYNAMIC_LINK", "NO");
-ilib_build('gw_bug_11544', ['bug_11544', 'sci_bug_11544'], 'bug_11544.c', []);
+ilib_build("gw_bug_11544", ["bug_11544", "sci_bug_11544"], "bug_11544.c", []);
 
 exec loader.sce;
 bug_11544();
@@ -47,7 +47,7 @@ assert_checkfalse(or(ls() == "Release"));
 
 //Debug mode
 setenv("DEBUG_SCILAB_DYNAMIC_LINK", "YES");
-ilib_build('gw_bug_11544', ['bug_11544', 'sci_bug_11544'], 'bug_11544.c', []);
+ilib_build("gw_bug_11544", ["bug_11544", "sci_bug_11544"], "bug_11544.c", []);
 
 exec loader.sce;
 bug_11544();

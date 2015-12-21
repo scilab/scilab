@@ -14,9 +14,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
 
-int write_sparse(char *fname, unsigned long fname_len)
+int write_sparse(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int piNbItemRow[]	= {1, 2, 1};

@@ -22,11 +22,11 @@
 #include <string.h>
 #include <hdf5.h>
 #include <stdlib.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sci_types.h"
-#include "stack3.h"
 #include "h5_attributeConstants.h"
 #include "h5_readDataFromFile.h"
+#include "doublecomplex.h"
 
 //#define TIME_DEBUG
 
@@ -275,7 +275,7 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
     if (_piDims != 0 && *_iDims != 0)
     {
         int i = 0;
-        hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) * *_iDims);
+        hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) **_iDims);
         if (H5Sget_simple_extent_dims(space, dims, NULL) < 0)
         {
             FREE(dims);
@@ -411,9 +411,22 @@ int getVariableNames(int _iFile, char **pstNameList)
     return iNbItem;
 }
 
-int getDataSetIdFromName(int _iFile, char *_pstName)
+int getDataSetIdFromName(int _iFile, const char *_pstName)
 {
-    return H5Dopen(_iFile, _pstName, H5P_DEFAULT);
+    H5O_info_t info;
+    htri_t ret = H5Lexists(_iFile, _pstName, H5P_DEFAULT);
+    if (ret == 1)
+    {
+        H5Oget_info_by_name(_iFile, _pstName, &info, H5P_DEFAULT);
+        if (info.type == H5O_TYPE_GROUP)
+        {
+            return H5Gopen(_iFile, _pstName, H5P_DEFAULT);
+        }
+
+        return H5Dopen(_iFile, _pstName, H5P_DEFAULT);
+    }
+
+    return -1;
 }
 
 void closeDataSet(int _id)
@@ -617,6 +630,11 @@ int freeStringMatrix(int _iDatasetId, char** _pstData)
     herr_t status;
     hid_t typeId;
     hid_t space;
+
+    if (_iDatasetId == -1)
+    {
+        return 0;
+    }
 
     typeId = H5Tcopy(H5T_C_S1);
     status = H5Tset_size(typeId, H5T_VARIABLE);
@@ -1065,10 +1083,6 @@ int getScilabTypeFromDataSet(int _iDatasetId)
     {
         iVarType = sci_boolean;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
-    {
-        iVarType = sci_boolean;
-    }
     else if (strcmp(pstScilabClass, g_SCILAB_CLASS_POLY) == 0)
     {
         iVarType = sci_poly;
@@ -1160,4 +1174,62 @@ int deleteListItemReferences(int _iDatasetId, void *_piItemRef)
     }
 
     return 0;
+}
+
+//Scilab 6
+char* getScilabTypeFromDataSet6(int dataset)
+{
+    return readAttribute(dataset, g_SCILAB_CLASS);
+}
+
+int getListDims6(int dataset, int* items)
+{
+    H5G_info_t group_info;
+    herr_t status = H5Gget_info(dataset, &group_info);
+    if (status < 0)
+    {
+        *items = 0;
+        return -1;
+    }
+
+    *items = (int)group_info.nlinks;
+    return 0;
+}
+
+int getVariableNames6(int _iFile, char **names)
+{
+    hsize_t i = 0;
+    hsize_t iCount = 0;
+    herr_t status = 0;
+    int iNbItem = 0;
+    H5O_info_t oinfo;
+    H5G_info_t ginfo;
+
+    status = H5Gget_info(_iFile, &ginfo);
+    if (status != 0)
+    {
+        return 0;
+    }
+
+    iCount = ginfo.nlinks;
+    for (i = 0; i < iCount; i++)
+    {
+        status = H5Oget_info_by_idx(_iFile, ".", H5_INDEX_NAME, H5_ITER_NATIVE, i, &oinfo, H5P_DEFAULT);
+        if (status < 0)
+        {
+            return 0;
+        }
+
+        if (oinfo.type == H5O_TYPE_DATASET || oinfo.type == H5O_TYPE_GROUP)
+        {
+            if (names != NULL)
+            {
+                ssize_t iLen = H5Lget_name_by_idx(_iFile, ".", H5_INDEX_NAME, H5_ITER_INC, i, 0, 0, H5P_DEFAULT) + 1;
+                names[iNbItem] = (char*)MALLOC(sizeof(char) * iLen);
+                H5Lget_name_by_idx(_iFile, ".", H5_INDEX_NAME, H5_ITER_INC, i, names[iNbItem], iLen, H5P_DEFAULT);
+            }
+            iNbItem++;
+        }
+    }
+    return iNbItem;
 }

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -80,18 +81,19 @@ public class SumPortLabelingListener implements PropertyChangeListener,
         /**
          * Set the ports labels
          */
-        for (InputPort port : ports) {
-            final double gain;
-
-            if (data.isEmpty()
-                    || data.getRealPart().length < port.getOrdering()) {
-                gain = 1;
-            } else {
-                gain = data.getRealPart()[port.getOrdering() - 1][0];
-            }
-
-            port.setValue(getLabel(gain));
-        }
+        // FIXME
+        //        for (InputPort port : ports) {
+        //            final double gain;
+        //
+        //            if (data.isEmpty()
+        //                    || data.getRealPart().length < port.getOrdering()) {
+        //                gain = 1;
+        //            } else {
+        //                gain = data.getRealPart()[port.getOrdering() - 1][0];
+        //            }
+        //
+        //            port.setValue(getLabel(gain));
+        //        }
 
         /**
          * Check if all the values are equal to the default one.

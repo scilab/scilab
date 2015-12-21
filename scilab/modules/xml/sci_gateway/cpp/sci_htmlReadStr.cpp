@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_htmlReadStr(char *fname, unsigned long fname_len)
+int sci_htmlReadStr(char *fname, void* pvApiCtx)
 {
     org_modules_xml::XMLDocument * doc;
     SciErr err;
@@ -49,7 +49,7 @@ int sci_htmlReadStr(char *fname, unsigned long fname_len)
 
     if (!isStringType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return 0;
     }
 

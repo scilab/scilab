@@ -128,7 +128,7 @@ src = ['#include <math.h>'
 ''
 '  if (iType1 != sci_matrix)'
 '  {'
-'  Scierror(999,_(""%s: Wrong type for input argument #%d: A string expected.\n""), fname, 1);'
+'  Scierror(999,_(""%s: Wrong type for input argument #%d: string expected.\n""), fname, 1);'
 '  return 0;'
 '  }'
 ''
@@ -187,16 +187,13 @@ clear list_functions;
                 <link linkend="link">link</link>
             </member>
             <member>
-                <link linkend="intersci">intersci</link>
-            </member>
-            <member>
                 <link linkend="newfun">newfun</link>
             </member>
             <member>
                 <link linkend="clearfun">clearfun</link>
             </member>
             <member>
-                <link linkend="api_scilab">api_scilab</link>
+                <link linkend="api_scilab_legacy">api_scilab</link>
             </member>
         </simplelist>
     </refsection>

@@ -90,7 +90,7 @@
         <para>Data entry specification :</para>
         <para>In this paragraph and to be more clear, we won't mention
             <literal>LineSpec</literal> nor <literal>GlobalProperty</literal> optional arguments
-            as they do not interfer with entry data (except for <literal>"Xdata"</literal>,
+            as they do not interfere with entry data (except for <literal>"Xdata"</literal>,
             <literal>"Ydata"</literal> and <literal>"Zdata"</literal> property, see
             <link linkend="GlobalProperty">GlobalProperty</link>). It is assumed that all those optional
             arguments could be present too.
@@ -144,7 +144,7 @@
         </para>
         <para>
             The <literal>LineSpec</literal> and <literal>GlobalProperty</literal> arguments
-            sould be used to customize the plot. Here is a complete list of the
+            should be used to customize the plot. Here is a complete list of the
             available options.
         </para>
         <variablelist>
@@ -206,7 +206,7 @@
             Otherwise, the box is enabled.
         </para>
         <para>
-            For more information about box property and axis positionning see <link linkend="axes_properties">axes_properties</link>
+            For more information about box property and axis positioning see <link linkend="axes_properties">axes_properties</link>
         </para>
         <para>A default color table is used to color plotted curves if you do not
             specify a color. When drawing multiple lines, the plot command
@@ -325,7 +325,7 @@ a.isoview='on';
 a.children // list the children of the axes : here it is an Compound child composed of 2 entities
 poly1= a.children.children(2); //store polyline handle into poly1
 poly1.foreground = 4; // another way to change the style...
-poly1.thickness = 3;  // ...and the tickness of a curve.
+poly1.thickness = 3;  // ...and the thickness of a curve.
 poly1.clip_state='off' // clipping control
 a.isoview='off';
  ]]></programlisting>
@@ -424,7 +424,7 @@ xtitle("sin(t)'' versus t")
 subplot(223)
 plot(t',sin(t))
 a=gca();
-a.data_bounds=[0 -1;7 1]; // to see the vertical line hiddden by the y axis
+a.data_bounds=[0 -1;7 1]; // to see the vertical line hidden by the y axis
 xtitle("sin(t) versus t''")
 subplot(224)
 plot(t',sin(t)')
@@ -446,7 +446,7 @@ xtitle("sin(t)'' versus t''")
             subplot(223)
             plot(t',sin(t))
             a=gca();
-            a.data_bounds=[0 -1;7 1]; // to see the vertical line hiddden by the y axis
+            a.data_bounds=[0 -1;7 1]; // to see the vertical line hidden by the y axis
             xtitle("sin(t) versus t''")
             subplot(224)
             plot(t',sin(t)')

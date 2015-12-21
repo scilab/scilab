@@ -61,7 +61,7 @@ int SetUicontrolValue(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
         if (nbCol > 1)
         {
             /* Wrong value size */
-            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "Value");
+            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string expected.\n")), "Value");
             return SET_PROPERTY_ERROR;
         }
 

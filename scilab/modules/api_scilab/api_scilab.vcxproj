@@ -28,23 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -79,42 +79,51 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../windows_tools/includes;../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../elementary_functions/includes;../threads/includes;../console/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>cd $(IntDir) &gt;nul
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
+
+cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n api_scilab.dll %%f &gt;nul
 copy *.def api_scilabtmp.def &gt;nul
 copy ..\api_scilab_header.def+api_scilabtmp.def  ..\api_scilab_export.def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul</Command>
+cd .. &gt;nul
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;string.lib;scilocalization.lib;scilab_windows.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreBuildEvent>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
-      <Message>Make dependencies</Message>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -123,87 +132,108 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../windows_tools/includes;../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../elementary_functions/includes;../threads/includes;../console/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>cd $(IntDir) &gt;nul
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
+
+cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n api_scilab.dll %%f &gt;nul
 copy *.def api_scilabtmp.def &gt;nul
 copy ..\api_scilab_header.def+api_scilabtmp.def  ..\api_scilab_export.def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul</Command>
+cd .. &gt;nul
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;string.lib;scilocalization.lib;scilab_windows.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreBuildEvent>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
-      <Message>Make dependencies</Message>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../windows_tools/includes;../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../elementary_functions/includes;../threads/includes;../console/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>cd $(IntDir) &gt;nul
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
+
+cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n api_scilab.dll %%f &gt;nul
 copy *.def api_scilabtmp.def &gt;nul
 copy ..\api_scilab_header.def+api_scilabtmp.def  ..\api_scilab_export.def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul</Command>
+cd .. &gt;nul
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;string.lib;scilocalization.lib;scilab_windows.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreBuildEvent>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
-      <Message>Make dependencies</Message>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -211,107 +241,166 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../windows_tools/includes;../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../elementary_functions/includes;../threads/includes;../console/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>cd $(IntDir) &gt;nul
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
+
+cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n api_scilab.dll %%f &gt;nul
 copy *.def api_scilabtmp.def &gt;nul
 copy ..\api_scilab_header.def+api_scilabtmp.def  ..\api_scilab_export.def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul</Command>
+cd .. &gt;nul
+</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;string.lib;scilocalization.lib;scilab_windows.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreBuildEvent>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
-      <Message>Make dependencies</Message>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\api_boolean.cpp" />
-    <ClCompile Include="src\cpp\api_boolean_sparse.cpp" />
-    <ClCompile Include="src\cpp\api_common.cpp" />
-    <ClCompile Include="src\cpp\api_double.cpp" />
+    <ClCompile Include="src\cpp\api_stack_boolean.cpp" />
+    <ClCompile Include="src\cpp\api_boolean_cpp.cpp" />
+    <ClCompile Include="src\cpp\api_stack_boolean_sparse.cpp" />
+    <ClCompile Include="src\cpp\api_template_safe.cpp" />
+    <ClCompile Include="src\cpp\api_stack_common.cpp" />
+    <ClCompile Include="src\cpp\api_common_cpp.cpp" />
     <ClCompile Include="src\cpp\api_error.cpp" />
-    <ClCompile Include="src\cpp\api_handle.cpp" />
-    <ClCompile Include="src\cpp\api_hypermat.cpp" />
-    <ClCompile Include="src\cpp\api_int.cpp" />
-    <ClCompile Include="src\cpp\api_list.cpp" />
-    <ClCompile Include="src\cpp\api_optional.cpp" />
-    <ClCompile Include="src\cpp\api_pointer.cpp" />
-    <ClCompile Include="src\cpp\api_poly.cpp" />
-    <ClCompile Include="src\cpp\api_sparse.cpp" />
-    <ClCompile Include="src\cpp\api_string.cpp" />
+    <ClCompile Include="src\cpp\api_stack_double.cpp" />
+    <ClCompile Include="src\cpp\api_double_cpp.cpp" />
+    <ClCompile Include="src\cpp\api_stack_error.cpp" />
+    <ClCompile Include="src\cpp\api_stack_handle.cpp" />
+    <ClCompile Include="src\cpp\api_handle_cpp.cpp" />
+    <ClCompile Include="src\cpp\api_stack_hypermat.cpp" />
+    <ClCompile Include="src\cpp\api_stack_int.cpp" />
+    <ClCompile Include="src\cpp\api_int_cpp.cpp" />
+    <ClCompile Include="src\cpp\api_stack_list.cpp" />
+    <ClCompile Include="src\cpp\api_list_cpp.cpp" />
+    <ClCompile Include="src\cpp\api_stack_optional.cpp" />
+    <ClCompile Include="src\cpp\api_stack_pointer.cpp" />
+    <ClCompile Include="src\cpp\api_pointer_cpp.cpp" />
+    <ClCompile Include="src\cpp\api_stack_poly.cpp" />
+    <ClCompile Include="src\cpp\api_stack_sparse.cpp" />
+    <ClCompile Include="src\cpp\api_sparse_cpp.cpp" />
+    <ClCompile Include="src\cpp\api_stack_string.cpp" />
+    <ClCompile Include="src\cpp\api_string_cpp.cpp" />
+    <ClCompile Include="src\cpp\api_template_unsafe.cpp" />
+    <ClCompile Include="src\cpp\returnProperty.cpp" />
+    <ClCompile Include="src\cpp\returnPropertyList.cpp" />
     <ClCompile Include="src\c\DllmainApi_scilab.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\api_boolean.h" />
-    <ClInclude Include="includes\api_boolean_sparse.h" />
     <ClInclude Include="includes\api_common.h" />
+    <ClInclude Include="includes\api_handle.h" />
+    <ClInclude Include="includes\api_int.h" />
+    <ClInclude Include="includes\api_list.h" />
+    <ClInclude Include="includes\api_optional.h" />
+    <ClInclude Include="includes\api_poly.h" />
+    <ClInclude Include="includes\api_stack_boolean.h" />
+    <ClInclude Include="includes\api_boolean.hxx" />
+    <ClInclude Include="includes\api_stack_boolean_sparse.h" />
+    <ClInclude Include="includes\api_cell.h" />
+    <ClInclude Include="includes\api_stack_common.h" />
+    <ClInclude Include="includes\api_common.hxx" />
     <ClInclude Include="includes\api_double.h" />
     <ClInclude Include="includes\api_error.h" />
-    <ClInclude Include="includes\api_handle.h" />
-    <ClInclude Include="includes\api_hypermat.h" />
-    <ClInclude Include="includes\api_int.h" />
-    <ClInclude Include="includes\api_internal_handle.h" />
-    <ClInclude Include="includes\api_optional.h" />
-    <ClInclude Include="src\cpp\api_internal_boolean.h" />
+    <ClInclude Include="includes\api_stack_double.h" />
+    <ClInclude Include="includes\api_double.hxx" />
+    <ClInclude Include="includes\api_stack_error.h" />
+    <ClInclude Include="includes\api_stack_handle.h" />
+    <ClInclude Include="includes\api_handle.hxx" />
+    <ClInclude Include="includes\api_stack_hypermat.h" />
+    <ClInclude Include="includes\api_stack_int.h" />
+    <ClInclude Include="includes\api_int.hxx" />
+    <ClInclude Include="includes\api_list.hxx" />
+    <ClInclude Include="includes\api_stack_optional.h" />
+    <ClInclude Include="includes\api_pointer.hxx" />
+    <ClInclude Include="includes\api_scilab.hxx" />
+    <ClInclude Include="includes\api_sparse.hxx" />
+    <ClInclude Include="includes\api_string.h" />
+    <ClInclude Include="includes\api_string.hxx" />
+    <ClInclude Include="includes\api_struct.h" />
+    <ClInclude Include="includes\api_pointer.h" />
+    <ClInclude Include="includes\api_variable.hxx" />
+    <ClInclude Include="includes\returnProperty.h" />
+    <ClInclude Include="includes\returnPropertyList.h" />
     <ClInclude Include="src\cpp\api_internal_boolean_sparse.h" />
     <ClInclude Include="src\cpp\api_internal_common.h" />
     <ClInclude Include="src\cpp\api_internal_double.h" />
+    <ClInclude Include="src\cpp\api_internal_error.hxx" />
     <ClInclude Include="src\cpp\api_internal_int.h" />
     <ClInclude Include="src\cpp\api_internal_pointer.h" />
     <ClInclude Include="src\cpp\api_internal_poly.h" />
     <ClInclude Include="src\cpp\api_internal_sparse.h" />
-    <ClInclude Include="src\cpp\api_internal_string.h" />
-    <ClInclude Include="includes\api_list.h" />
-    <ClInclude Include="includes\api_pointer.h" />
-    <ClInclude Include="includes\api_poly.h" />
+    <ClInclude Include="includes\api_stack_list.h" />
+    <ClInclude Include="includes\api_stack_pointer.h" />
+    <ClInclude Include="includes\api_stack_poly.h" />
     <ClInclude Include="includes\api_scilab.h" />
-    <ClInclude Include="includes\api_sparse.h" />
-    <ClInclude Include="includes\api_string.h" />
+    <ClInclude Include="includes\api_stack_sparse.h" />
+    <ClInclude Include="includes\api_stack_string.h" />
     <ClInclude Include="includes\dynlib_api_scilab.h" />
+    <ClInclude Include="src\cpp\template\api_cell.hpp" />
+    <ClInclude Include="src\cpp\template\api_common.hpp" />
+    <ClInclude Include="src\cpp\template\api_double.hpp" />
+    <ClInclude Include="src\cpp\template\api_handle.hpp" />
+    <ClInclude Include="src\cpp\template\api_int.hpp" />
+    <ClInclude Include="src\cpp\template\api_list.hpp" />
+    <ClInclude Include="src\cpp\template\api_optional.hpp" />
+    <ClInclude Include="src\cpp\template\api_poly.hpp" />
+    <ClInclude Include="src\cpp\template\api_string.hpp" />
+    <ClInclude Include="src\cpp\template\api_struct.hpp" />
+    <ClInclude Include="src\cpp\template\api_template.h" />
+    <ClInclude Include="src\cpp\template\api_boolean.hpp" />
+    <ClInclude Include="src\cpp\template\api_pointer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\api_scilab.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Core_f_Import.def" />
     <None Include="core_import.def" />
     <None Include="elementary_functions_f_Import.def" />
     <None Include="linpack_f_Import.def" />
     <None Include="locales\api_scilab.pot" />
-    <None Include="Localization_Import.def" />
-    <None Include="Scilab_windows_Import.def" />
-    <None Include="String_Import.def" />
     <None Include="api_scilab_export.def" />
     <None Include="api_scilab_header.def" />
     <None Include="api_scilab.iss" />
@@ -321,6 +410,12 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ProjectReference Include="..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
     </ProjectReference>
     <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>

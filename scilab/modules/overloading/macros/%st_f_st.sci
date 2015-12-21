@@ -8,7 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function R=%st_f_st(M1,M2)
-
-    //R=[M1' M2']'
-    R=%st_t(%st_c_st(%st_t(M1),%st_t(M2)))
+    R=[M1' M2']';
 endfunction

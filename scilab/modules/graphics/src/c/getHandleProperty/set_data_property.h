@@ -15,6 +15,8 @@
 #ifndef __SET_DATA_PROPERTY_H__
 #define __SET_DATA_PROPERTY_H__
 
+#include "getPropertyAssignedValue.h"
+
 int setchampdata(void* _pvCtx, int iObjUID, AssignedList * tlist);
 
 int setgrayplotdata(void* _pvCtx, int iObjUID, AssignedList * tlist);

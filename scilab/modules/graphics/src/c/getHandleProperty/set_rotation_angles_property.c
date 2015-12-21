@@ -40,6 +40,12 @@ int set_rotation_angles_property(void* _pvCtx, int iObjUID, void* _pvData, int v
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "rotation_angles");
         return SET_PROPERTY_ERROR;
     }
+    
+    if (nbRow != 1 || nbCol != 2)
+    {
+        Scierror(999, _("Wrong size for '%s' property: Row vector of size %d expected.\n"), "rotation_angles", 2);
+        return SET_PROPERTY_ERROR;
+    }
 
     status = setGraphicObjectProperty(iObjUID, __GO_ROTATION_ANGLES__, values, jni_double_vector, 2);
 

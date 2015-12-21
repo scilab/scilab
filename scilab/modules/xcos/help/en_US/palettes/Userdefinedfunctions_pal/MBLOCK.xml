@@ -110,7 +110,7 @@
                 <para>
                     <emphasis role="bold">Input variables</emphasis>
                 </para>
-                <para> In this filed, the ports connected to the left hand side of the block are defined. If the port is an explicit port, it will be an input port. In this case, the variable should be declared in the Modelica program as Real. If the port is an implicit port, the variable desinating this port should be a "connector". Remind that for implicit port, the notion of input and output does not exist and specifying an implicit variable in this filed is just placing the port at the left hend side of the block. </para>
+                <para> In this filed, the ports connected to the left hand side of the block are defined. If the port is an explicit port, it will be an input port. In this case, the variable should be declared in the Modelica program as Real. If the port is an implicit port, the variable designating this port should be a "connector". Remind that for implicit port, the notion of input and output does not exist and specifying an implicit variable in this filed is just placing the port at the left hend side of the block. </para>
             </listitem>
             <listitem>
                 <para>

@@ -19,7 +19,7 @@
 #endif
 #include "fullpath.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "machine.h"
 #include "PATH_MAX.h"
 #include "strsubst.h"
@@ -84,9 +84,10 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
             int ierr = 0;
             char* pstCurrentPath = scigetcwd(&ierr);
             //alloc buffer + 2, 1 for '/' and 1 for null termination
-            pstWorkingPath = (char*)MALLOC(sizeof(char) * (lenPath + strlen(pstCurrentPath) + 2));
+            pstWorkingPath = (char*)CALLOC(sizeof(char), (lenPath + strlen(pstCurrentPath) + 2));
             sprintf(pstWorkingPath, "%s/%s", pstCurrentPath, _Path);
             lenPath = strlen(pstWorkingPath);
+            FREE(pstCurrentPath);
         }
         else
         {

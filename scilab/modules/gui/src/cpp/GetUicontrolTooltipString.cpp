@@ -16,22 +16,25 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-int GetUicontrolTooltipString(void* _pvCtx, int iObjUID)
+void* GetUicontrolTooltipString(void* _pvCtx, int iObjUID)
 {
     int iNbStrings = 0;
     int *piNbStrings = &iNbStrings;
     char **pstString = NULL;
+    void* ret = NULL;
 
     getGraphicObjectProperty(iObjUID, __GO_UI_TOOLTIPSTRING_SIZE__, jni_int, (void **) &piNbStrings);
     getGraphicObjectProperty(iObjUID, __GO_UI_TOOLTIPSTRING__, jni_string_vector, (void **) &pstString);
 
     if (pstString != NULL)
     {
-        return sciReturnStringMatrix(_pvCtx, pstString, 1, iNbStrings);
+        ret = sciReturnStringMatrix(pstString, 1, iNbStrings);
+        releaseGraphicObjectProperty(__GO_UI_TOOLTIPSTRING__, pstString, jni_string_vector, iNbStrings);
+        return ret;
     }
     else
     {
         Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "TooltipString");
-        return FALSE;
+        return NULL;
     }
 }

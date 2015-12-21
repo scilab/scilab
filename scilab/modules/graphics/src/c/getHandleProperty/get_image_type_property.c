@@ -29,7 +29,7 @@
 #include "Matplot.h"
 
 /*------------------------------------------------------------------------*/
-int get_image_type_property(void* _pvCtx, int iObjUID)
+void* get_image_type_property(void* _pvCtx, int iObjUID)
 {
     int imagetype = 0;
     int * piImagetype = &imagetype;
@@ -39,7 +39,7 @@ int get_image_type_property(void* _pvCtx, int iObjUID)
     if (piImagetype == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "image_type");
-        return -1;
+        return NULL;
     }
 
     itype = (ImageType)imagetype;
@@ -47,34 +47,34 @@ int get_image_type_property(void* _pvCtx, int iObjUID)
     switch (itype)
     {
         case MATPLOT_RGB :
-            return sciReturnString(_pvCtx, "rgb");
+            return sciReturnString("rgb");
         case MATPLOT_RGBA :
-            return sciReturnString(_pvCtx, "rgba");
+            return sciReturnString("rgba");
         case MATPLOT_GRAY :
-            return sciReturnString(_pvCtx, "gray");
+            return sciReturnString("gray");
         case MATPLOT_INDEX :
-            return sciReturnString(_pvCtx, "index");
+            return sciReturnString("index");
         case MATPLOT_RED :
-            return sciReturnString(_pvCtx, "red");
+            return sciReturnString("red");
         case MATPLOT_GREEN :
-            return sciReturnString(_pvCtx, "green");
+            return sciReturnString("green");
         case MATPLOT_BLUE :
-            return sciReturnString(_pvCtx, "blue");
+            return sciReturnString("blue");
         case MATPLOT_RGB_332 :
-            return sciReturnString(_pvCtx, "rgb332");
+            return sciReturnString("rgb332");
         case MATPLOT_RGB_444 :
-            return sciReturnString(_pvCtx, "rgb444");
+            return sciReturnString("rgb444");
         case MATPLOT_RGBA_4444 :
-            return sciReturnString(_pvCtx, "rgba444");
+            return sciReturnString("rgba444");
         case MATPLOT_RGB_555 :
-            return sciReturnString(_pvCtx, "rgb555");
+            return sciReturnString("rgb555");
         case MATPLOT_RGBA_5551 :
-            return sciReturnString(_pvCtx, "rgba5551");
+            return sciReturnString("rgba5551");
         case MATPLOT_ARGB :
-            return sciReturnString(_pvCtx, "argb");
+            return sciReturnString("argb");
         default :
             Scierror(999, _("Wrong value for '%s' property.\n"), "image_type");
-            return -1;
+            return NULL;
     }
 }
 /*------------------------------------------------------------------------*/

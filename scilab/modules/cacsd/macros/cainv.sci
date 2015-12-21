@@ -60,7 +60,7 @@ function [X,dims,J,Y,k,Z]=cainv(Sl,Alfa,Beta,flag)
             error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"cainv",4));
         end
         if size(flag,"*")<>1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"cainv",4));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"cainv",4));
         end
     end
     [X,ddims,F,U,k,Z]=abinv(Sl',Beta,Alfa,flag);

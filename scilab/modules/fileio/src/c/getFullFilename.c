@@ -12,14 +12,14 @@
 /*--------------------------------------------------------------------------*/
 #include "getFullFilename.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "splitpath.h"
 #include "PATH_MAX.h"
 #include "scicurdir.h"
 #include "isdir.h"
 #include "fullpath.h"
 /*--------------------------------------------------------------------------*/
-wchar_t *getFullFilenameW(wchar_t* FilenameInput)
+wchar_t *getFullFilenameW(const wchar_t* FilenameInput)
 {
     wchar_t *pStwcFullFilename = NULL;
 
@@ -118,7 +118,7 @@ wchar_t *getFullFilenameW(wchar_t* FilenameInput)
 
 }
 /*--------------------------------------------------------------------------*/
-char *getFullFilename(char* Filename)
+char *getFullFilename(const char* Filename)
 {
     char *pStFullFilename = NULL;
     if (Filename)

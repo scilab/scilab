@@ -46,7 +46,7 @@ title('Analog Elliptic filter');
             </imageobject>
         </mediaobject>
         <para>If you want to design a highpass, bandpass or bandstop filter, you
-            can first design a lowpass and then transfrom this lowpass filter using
+            can first design a lowpass and then transform this lowpass filter using
             the <link linkend="trans">trans</link> function.
         </para>
     </refsection>
@@ -135,7 +135,7 @@ xtitle('Obtained Frequency Response (Phase in degree)');
         </mediaobject>
         <para>To represent the filter in phase and magnitude, we need first to
             convert the discrete impulse response into magnitude and phase using the
-            <link linkend="dbphi">dbphi</link> function. This convertion is done using
+            <link linkend="dbphi">dbphi</link> function. This conversion is done using
             a set of normalized frequencies.
         </para>
     </refsection>

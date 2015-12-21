@@ -18,13 +18,15 @@ msgerror = msprintf(gettext("Undefined variable: %s\n"), "%p");
 assert_checkerror ( "%p" , msgerror );
 if with_module("umfpack") then
   // assert_checkerror does not manage multiline error, see bug 9572 
+  
   msgerror = gettext("Undefined operation for the given operands.\n");
   msgerror = strsubst(msgerror, "\n", "");
   msgerror = [msgerror; msprintf(gettext("check or define function %s for overloading.\n"), "%ptr_f_ptr")];
   A = sparse( [ 2  3  0  0  0]);
   Lup = umf_lufact(A);
-  if execstr("B = [Lup; Lup];", "errcatch") <> 144 then bugmes();quit;end
+  if execstr("B = [Lup; Lup];", "errcatch") <> 999 then bugmes();quit;end
   msg = lasterror();
+  
   if ~and(msg == msgerror) then bugmes();quit;end
 end
 ierr = execstr("error(""%p"")", "errcatch");

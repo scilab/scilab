@@ -41,7 +41,7 @@
         <title>Description</title>
         <para>
             <warning>
-                This function is obsolete and will be removed in Scilab 6.0.0, use preferabily the <link linkend="jautoTranspose">jautoTranspose</link> function.
+                This function is obsolete and will be removed in Scilab 6.0.0, use preferably the <link linkend="jautoTranspose">jautoTranspose</link> function.
             </warning>
         </para>
         <para>

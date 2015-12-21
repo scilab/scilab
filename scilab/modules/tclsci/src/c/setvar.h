@@ -45,7 +45,7 @@ BOOL SetVarAString(Tcl_Interp *TCLinterpreter, char *VarName, char **Str);
 * @param n col
 * @return TRUE or FALSE
 */
-BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter, char *VarName, int ptrValues, int m, int n);
+BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter, char *VarName, double* MatrixDouble, int m, int n);
 
 /**
 * Set a scalar in TCL

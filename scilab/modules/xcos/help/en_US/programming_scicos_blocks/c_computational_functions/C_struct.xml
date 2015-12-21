@@ -163,7 +163,7 @@ boxht=Dim1start.ht * 0.5;
                     </textobject>
                 </mediaobject>
                 <para>
-                    Do the difference here in the type numbers defined at the <emphasis role="bold">Scilab level</emphasis> (2,1,3) and the type numbers defined at the <emphasis role="bold">C level</emphasis> (84,11,10). The following table gives the correspondance for all Scicos type:
+                    Do the difference here in the type numbers defined at the <emphasis role="bold">Scilab level</emphasis> (2,1,3) and the type numbers defined at the <emphasis role="bold">C level</emphasis> (84,11,10). The following table gives the correspondence for all Scicos type:
                 </para>
                 <informaltable border="1" cellpadding="3">
                     <tr>
@@ -798,7 +798,7 @@ model.ipar = [A_sz;B_sz]
 model.rpar = [A;B]
 ]]></programlisting>
                 <para>
-                    the array of real parameters (parametrized by <literal>ipar</literal>) can be retrieved in the correspondig C computational function with :
+                    the array of real parameters (parametrized by <literal>ipar</literal>) can be retrieved in the corresponding C computational function with :
                 </para>
                 <programlisting role="c"><![CDATA[
 #include "scicos_block4.h"
@@ -1095,7 +1095,7 @@ void mycomputfunc(scicos_block *block,int flag)
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">block->nx :</emphasis> Integer that gives the length of the continus state register.
+                    <emphasis role="bold">block->nx :</emphasis> Integer that gives the length of the continuous state register.
                 </para>
                 <para>
                     One can't override the index <literal>block->nx-1</literal> when reading or writing data in the array , or with a C computational function.
@@ -1134,7 +1134,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     <emphasis role="bold">block->xd :</emphasis> Array of double of size [nx,1] corresponding to the derivative of the continuous state register.
                 </para>
                 <para>
-                    When systems are explicitly given in terms of Ordinary Differential Equations (ODE), it can be explicitly expressed or implicitly used in the residual vector <literal>res</literal> when systems are expressed in terms of Differantial Algebraic Equations (DAE).
+                    When systems are explicitly given in terms of Ordinary Differential Equations (ODE), it can be explicitly expressed or implicitly used in the residual vector <literal>res</literal> when systems are expressed in terms of Differential Algebraic Equations (DAE).
                 </para>
                 <para>
                     Both systems must be programmed with <literal>flag=0</literal>.

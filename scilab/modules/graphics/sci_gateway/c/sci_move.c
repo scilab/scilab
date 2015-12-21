@@ -18,7 +18,7 @@
 /*------------------------------------------------------------------------*/
 
 #include <stdio.h>
-
+#include <string.h>
 #include "api_scilab.h"
 #include "gw_graphics.h"
 #include "Interaction.h"
@@ -28,7 +28,7 @@
 #include "getPropertyAssignedValue.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_move(char * fname, unsigned long fname_len)
+int sci_move(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -60,7 +60,7 @@ int sci_move(char * fname, unsigned long fname_len)
         // Retrieve a matrix of double at position 3.
         if (getAllocatedSingleString(pvApiCtx, piAddrl3, &l3))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
             return 1;
         }
 

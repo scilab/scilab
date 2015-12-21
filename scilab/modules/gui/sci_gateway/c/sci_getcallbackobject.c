@@ -20,7 +20,7 @@
 #include "api_scilab.h"
 #include "gw_gui.h"
 /*--------------------------------------------------------------------------*/
-int sci_getcallbackobject(char *fname, unsigned long fname_len)
+int sci_getcallbackobject(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -51,7 +51,7 @@ int sci_getcallbackobject(char *fname, unsigned long fname_len)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return FALSE;
     }
 

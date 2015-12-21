@@ -18,10 +18,8 @@
 /*--------------------------------------------------------------------------*/
 #include "CreateUIControl.h"
 #include "HandleManagement.h"
-#include "MALLOC.h"             /* MALLOC */
+#include "sci_malloc.h"             /* MALLOC */
 #include "localization.h"
-#include "stricmp.h"
-#include "stack-c.h"
 #include "SetPropertyStatus.h"
 #include "SetHashTable.h"
 #include "Scierror.h"
@@ -36,9 +34,7 @@
 #include "api_scilab.h"
 #include "createGraphicObject.h"
 #include "expandPathVariable.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 
 static const char* propertiesNames[] =
 {
@@ -97,7 +93,7 @@ static int tooltipstring_property = -1;
 /*--------------------------------------------------------------------------*/
 void init_property_index();
 /*--------------------------------------------------------------------------*/
-int sci_uicontrol(char *fname, unsigned long fname_len)
+int sci_uicontrol(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -174,7 +170,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
             if (isScalar(pvApiCtx, piAddr) == 0)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
                 return FALSE;
             }
 
@@ -403,7 +399,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             /* Read property name */
             if ((!checkInputArgumentType(pvApiCtx, inputIndex, sci_strings)))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, inputIndex);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, inputIndex);
                 return FALSE;
             }
             else
@@ -418,7 +414,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
                 if (getAllocatedSingleString(pvApiCtx, piAddr, &propertyName))
                 {
-                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, inputIndex);
+                    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, inputIndex);
                     return 1;
                 }
 
@@ -439,6 +435,8 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                         }
                     }
                 }
+
+                freeAllocatedSingleString(propertyName);
 
                 if (found == 0)
                 {
@@ -462,7 +460,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
                 if (getAllocatedSingleString(pvApiCtx, piAddr, &styleProperty))
                 {
-                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, propertiesValuesIndices[style_property]);
+                    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, propertiesValuesIndices[style_property]);
                     return 1;
                 }
 
@@ -482,7 +480,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
                         if (isStringType(pvApiCtx, piAddr) == 0 && isBooleanType(pvApiCtx, piAddr) == 0 && isScalar(pvApiCtx, piAddr) == 0)
                         {
-                            Scierror(202, _("%s: Wrong type for argument #%d: A string or boolean expected.\n"), fname, propertiesValuesIndices[scrollable_property]);
+                            Scierror(202, _("%s: Wrong type for argument #%d: string or boolean expected.\n"), fname, propertiesValuesIndices[scrollable_property]);
                             return 1;
                         }
 
@@ -490,7 +488,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                         {
                             if (getAllocatedSingleString(pvApiCtx, piAddr, &pstScroll))
                             {
-                                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, propertiesValuesIndices[scrollable_property]);
+                                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, propertiesValuesIndices[scrollable_property]);
                                 return 1;
                             }
 
@@ -505,7 +503,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                         {
                             if (getScalarBoolean(pvApiCtx, piAddr, &iScroll))
                             {
-                                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, propertiesValuesIndices[scrollable_property]);
+                                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, propertiesValuesIndices[scrollable_property]);
                                 return 1;
                             }
                         }
@@ -513,7 +511,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                         if (iScroll)
                         {
                             freeAllocatedSingleString(styleProperty);
-                            styleProperty = strdup("framescrollable");
+                            styleProperty = os_strdup("framescrollable");
                         }
 
                         propertiesValuesIndices[scrollable_property] = NOT_FOUND;
@@ -522,7 +520,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, propertiesValuesIndices[style_property]);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, propertiesValuesIndices[style_property]);
                 return FALSE;
             }
         }
@@ -602,7 +600,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                                 char** pstValue = NULL;
                                 if (getAllocatedMatrixOfString(pvApiCtx, piAddr, &nbRow, &nbCol, &pstValue))
                                 {
-                                    Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                                    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, propertiesValuesIndices[inputIndex]);
                                     return 1;
                                 }
 
@@ -614,7 +612,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                                 char* pstValue = NULL;
                                 if (getAllocatedSingleString(pvApiCtx, piAddr, &pstValue))
                                 {
-                                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                                    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, propertiesValuesIndices[inputIndex]);
                                     return 1;
                                 }
 
@@ -683,6 +681,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
         getGraphicObjectProperty(iUicontrol, __GO_POSITION__, jni_double_vector, (void**) &pdblPosition);
         setGraphicObjectProperty(iUicontrol, __GO_POSITION__, pdblPosition, jni_double_vector, 4);
+        releaseGraphicObjectProperty(__GO_POSITION__, pdblPosition, jni_double_vector, 4);
     }
 
     if ((nbInputArgument(pvApiCtx) < 2) || (propertiesValuesIndices[visible_property] == NOT_FOUND))    /* Visible property not set */

@@ -28,8 +28,7 @@ endfunction
 //call %_myscifun
 bug_11046();
 Overload call macro
- 
- OK default overload called.   
+ OK default overload called.
 function [x] = call_overload(a, b)
     bug_11046();
     x = 2;
@@ -39,5 +38,4 @@ endfunction
 //try to call %s_bug_11046
 call_overload2(1, call_overload(1,2));
 Overload call macro
- 
- OK default overload called.   
+ OK default overload called.

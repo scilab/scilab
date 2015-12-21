@@ -19,5 +19,5 @@
 
 xcos("SCI/modules/xcos/tests/nonreg_tests/bug_13758.zcos");
 
-// Double-clic on SampleCLK block (top left block)
-// In parameters dialog, check that "Sample time" is a text field containing T and not a checkbox.
+// Double-click on SampleCLK block (top left block)
+// In the parameters dialog, check that "Sample time" is a text field containing T and not a checkbox.

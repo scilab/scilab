@@ -29,6 +29,14 @@ function y = nthroot(x,n)
     if (size(n,"*")>1 & size(n,"*")<>size(x,"*")) then
         error(msprintf(gettext("%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"),"nthroot", 1, 2));
     end
+    if isempty(x)
+        y = [];
+        return
+    end
+    if isempty(n)
+        y = x;
+        return
+    end
 
     reste = modulo(n,2);
     // Making 'reste' one element

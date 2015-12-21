@@ -21,6 +21,11 @@
 #include "OptionsHelper.hxx"
 #include "dynlib_external_objects_scilab.h"
 
+extern "C" {
+#include "api_scilab.h"
+#include "localization.h"
+}
+
 namespace org_modules_external_objects
 {
 class EXTERNAL_OBJECTS_SCILAB_IMPEXP ScilabObjects
@@ -29,9 +34,8 @@ class EXTERNAL_OBJECTS_SCILAB_IMPEXP ScilabObjects
     static const char * _EOBJ[];
     static const char * _ECLASS[];
     static const char * _EVOID[];
-    static const char * _INVOKE_;
-
 public:
+    static const wchar_t * _INVOKE_;
 
     static void initialization(ScilabAbstractEnvironment & env, void * pvApiCtx);
 
@@ -39,7 +43,7 @@ public:
 
     static void createEnvironmentObjectAtPos(int type, int pos, int id, const int envId, void * pvApiCtx);
 
-    static void copyInvocationMacroToStack(int pos, ScilabAbstractEnvironment & env, void * pvApiCtx);
+    static void copyInvocationMacroToStack(int pos, const int envId, bool isNew, void * pvApiCtx);
 
     static void removeTemporaryVars(const int envId, int * tmpvar);
 

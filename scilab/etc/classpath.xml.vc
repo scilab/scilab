@@ -31,7 +31,7 @@ The option is "disableUnderMode" and can be:
     <path value="$SCILAB/thirdparty/flexdock-1.2.4.jar"/>
     <path value="$SCILAB/thirdparty/skinlf.jar"/>
     <path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
-    <path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
+    <path value="$SCILAB/thirdparty/commons-logging.jar"/>
     <path value="$SCILAB/thirdparty/jhall.jar"/>
     <path value="$SCILAB/thirdparty/lucene-core-5.2.1.jar"/>
     <path value="$SCILAB/thirdparty/lucene-analyzers-common-5.2.1.jar"/>
@@ -101,7 +101,7 @@ The option is "disableUnderMode" and can be:
     <path value="$SCILAB/thirdparty/saxon9he.jar" load="onUse">
         <load on="documentationGeneration"/>
     </path>
-    <path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">
+    <path value="$SCILAB/thirdparty/batik-all.jar" load="onUse">
         <load on="documentationGeneration"/>
         <load on="graphics_mathml_textrendering"/>
         <load on="svg_graphic_export"/>
@@ -123,7 +123,7 @@ The option is "disableUnderMode" and can be:
     </path>
 
     <!-- PDF doc generation (dep of jeuclid) -->
-    <path value="$SCILAB/thirdparty/xmlgraphics-commons-1.4.jar" load="onUse">
+    <path value="$SCILAB/thirdparty/xmlgraphics-commons.jar" load="onUse">
         <load on="documentationGeneration"/>
         <load on="graphics_mathml_textrendering"/>
         <load on="pdf_ps_eps_graphic_export"/>

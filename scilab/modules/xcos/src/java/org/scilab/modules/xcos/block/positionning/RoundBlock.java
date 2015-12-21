@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2010-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,13 +13,14 @@
 
 package org.scilab.modules.xcos.block.positionning;
 
+import com.mxgraph.model.mxGeometry;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.listener.ProdPortLabelingListener;
-import org.scilab.modules.xcos.block.listener.SumPortLabelingListener;
 import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.input.InputPort;
 
 import com.mxgraph.model.mxICell;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 
 /**
  * Implement a round block with inputs spread around the block.
@@ -28,48 +30,8 @@ public class RoundBlock extends BasicBlock {
     /**
      * Default constructor
      */
-    public RoundBlock() {
-        /*
-         * Default value of the round block, for more information refers to
-         * BlockFactory instantiation order.
-         */
-        this("CLKSOMV_f");
-    }
-
-    /**
-     * Set default values
-     *
-     * @param interFunction
-     *            the interfunction (label) string
-     */
-    public RoundBlock(String interFunction) {
-        super();
-        setInterfaceFunctionName(interFunction);
-    }
-
-    /**
-     * Reinstall the property change listener when the interfunction change.
-     *
-     * @param interfaceFunctionName
-     *            the new name
-     * @see org.scilab.modules.xcos.block.BasicBlock#setInterfaceFunctionName(java.lang.String)
-     */
-    @Override
-    public void setInterfaceFunctionName(String interfaceFunctionName) {
-        getParametersPCS().removePropertyChangeListener(
-            SumPortLabelingListener.getInstance());
-        getParametersPCS().removePropertyChangeListener(
-            ProdPortLabelingListener.getInstance());
-
-        super.setInterfaceFunctionName(interfaceFunctionName);
-
-        if (interfaceFunctionName.equals("SUM_f")) {
-            getParametersPCS().addPropertyChangeListener("integerParameters",
-                    SumPortLabelingListener.getInstance());
-        } else if (interfaceFunctionName.equals("PROD_f")) {
-            getParametersPCS().addPropertyChangeListener("realParameters",
-                    ProdPortLabelingListener.getInstance());
-        }
+    public RoundBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
     }
 
     /**
@@ -88,7 +50,7 @@ public class RoundBlock extends BasicBlock {
          */
         if (child instanceof InputPort) {
             final InputPort port = (InputPort) child;
-            port.setOrientation(getPortOrientation(port.getOrdering()));
+            port.setOrientation(getPortOrientation(index));
 
         }
 

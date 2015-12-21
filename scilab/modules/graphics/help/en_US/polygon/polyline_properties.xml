@@ -66,7 +66,7 @@
             <varlistentry>
                 <term>closed: </term>
                 <listitem>
-                    <para>This field determines wether the polyline is closed or not: its
+                    <para>This field determines whether the polyline is closed or not: its
                         value can be <literal>"on"</literal> or <literal>"off"</literal> (no default
                         value, it depends on the primitive used to create the polyline).
                     </para>
@@ -268,7 +268,7 @@
                         The <literal>mark_size</literal> property is used to select the type of
                         size of the marks when <literal>mark_mode</literal> property is
                         <literal>"on"</literal>. Its value should be an integer between 0 and 5
-                        whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
+                        with stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
                     </para>
                 </listitem>
             </varlistentry>
@@ -278,7 +278,7 @@
                     <para>
                         This field contains the <literal>mark_foreground</literal> property
                         value which is the marks' edge color. Its value should be a color
-                        index (relative to the current color_map) or 0 for transparant edge.
+                        index (relative to the current color_map) or 0 for transparent edge.
                     </para>
                 </listitem>
             </varlistentry>
@@ -288,7 +288,7 @@
                     <para>
                         This field contains the <literal>mark_background</literal> property
                         value which is the marks' face color. Its value should be a color
-                        index (relative to the current color_map) or 0 for transparant face.
+                        index (relative to the current color_map) or 0 for transparent face.
                     </para>
                 </listitem>
             </varlistentry>

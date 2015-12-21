@@ -32,6 +32,7 @@ import java.util.Locale;
 import java.util.ServiceLoader;
 import java.util.logging.Level;
 
+import javax.swing.SwingUtilities;
 import javax.tools.Diagnostic;
 import javax.tools.DiagnosticCollector;
 import javax.tools.FileObject;
@@ -96,7 +97,7 @@ public class ScilabJavaCompiler {
 
             if (compiler == null) {
                 if (ecjLoaded) {
-                    throw new ScilabJavaException("No java compiler in the classpath\nCheck for tools.jar (comes from JDK) or ecj-3.6.x.jar (Eclipse Compiler for Java)");
+                    throw new ScilabJavaException("No java compiler in the classpath\nCheck for tools.jar (comes from JDK) or ecj-4.4.x.jar (Eclipse Compiler for Java)");
                 }
 
                 // Compiler should be in thirdparty so we load it
@@ -116,7 +117,29 @@ public class ScilabJavaCompiler {
      * @return an integer corresponding to the compiled and loaded class.
      */
     public static int compileCode(String className, String[] code) throws ScilabJavaException {
-        findCompiler();
+        if (SwingUtilities.isEventDispatchThread()) {
+            findCompiler();
+        } else {
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            findCompiler();
+                        } catch (ScilabJavaException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            } catch (InvocationTargetException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 
         DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
         StandardJavaFileManager stdFileManager = compiler.getStandardFileManager(null, Locale.getDefault(), null);

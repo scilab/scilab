@@ -78,6 +78,9 @@
 /* Define to 1 if you have the <curses.h> header file. */
 #undef HAVE_CURSES_H
 
+/* define if the compiler supports basic C++11 syntax */
+#undef HAVE_CXX11
+
 /* Define if the GNU dcgettext() function is already present or preinstalled.
    */
 #undef HAVE_DCGETTEXT
@@ -485,6 +488,9 @@
 /* Extension of a shared library */
 #undef SHARED_LIB_EXT
 
+/* Extension of a shared library ( wide string ) */
+#undef SHARED_LIB_EXTW
+
 /* The size of `int', as computed by sizeof. */
 #undef SIZEOF_INT
 
@@ -503,8 +509,14 @@
 /* If it is UMFPACK/Suitesparse or UMFPACK standalone */
 #undef UMFPACK_SUITESPARSE
 
+/* Enable valgrind specific tweaks */
+#undef VALGRIND_ENABLE
+
 /* Version number of package */
 #undef VERSION
+
+/* With the EIGEN library */
+#undef WITH_EIGEN
 
 /* With the FFTW library */
 #undef WITH_FFTW
@@ -539,6 +551,10 @@
 /* Define to 1 if the X Window System is missing or not being used. */
 #undef X_DISPLAY_MISSING
 
+/* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
+   `char[]'. */
+#undef YYTEXT_POINTER
+
 /* Enable large inode numbers on Mac OS X 10.5.  */
 #ifndef _DARWIN_USE_64_BIT_INODE
 # define _DARWIN_USE_64_BIT_INODE 1
@@ -571,6 +587,13 @@
        #undef DIR_SEPARATOR
 #endif
 #define DIR_SEPARATOR "/"
+
+#ifdef DIR_SEPARATORW
+	   #undef DIR_SEPARATORW
+#endif
+#define DIR_SEPARATORW L"/"
+
+#define bsiz 4096
 
 #endif /* MACHINE_H  */
 

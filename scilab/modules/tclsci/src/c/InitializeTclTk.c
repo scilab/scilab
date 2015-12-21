@@ -12,7 +12,7 @@
 
 #include "InitializeTclTk.h"
 #include "InitTclTk.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 BOOL InitializeTclTk(void)
 {

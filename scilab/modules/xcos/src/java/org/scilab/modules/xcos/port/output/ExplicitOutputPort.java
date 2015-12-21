@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,6 +13,9 @@
 
 package org.scilab.modules.xcos.port.output;
 
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+
 /**
  * An explicit output port is a port where the transfer of information has a
  * 'OUT' direction.
@@ -20,9 +24,8 @@ public class ExplicitOutputPort extends OutputPort {
 
     private static final long serialVersionUID = -8199491929829046860L;
 
-    /** Default constructor */
-    public ExplicitOutputPort() {
-        super("ExplicitOutputPort");
+    public ExplicitOutputPort(JavaController controller, long uid, Kind kind, Object value, String style, String id) {
+        super(controller, uid, kind, value, style == null || style.isEmpty() ? "ExplicitOutputPort" : style, id, false);
     }
 
     /**

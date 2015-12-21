@@ -9,7 +9,5 @@
 a    = 33;
 bbb  = -1;
 vars = who("get");
-assert_checkequal(vars(1:2), ["bbb";"a"])
- ans  =
- 
-  T  
+assert_checktrue(find(vars == "bbb") <> []);
+assert_checktrue(find(vars == "a") <> []);

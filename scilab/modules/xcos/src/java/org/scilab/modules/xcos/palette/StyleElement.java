@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) Scilab Enterprises - 2011 - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -48,6 +49,7 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
      * Default constructor
      */
     public StyleElement() {
+        super(null);
     }
 
     /**
@@ -234,22 +236,4 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
     }
-
-    /**
-     * Not used
-     *
-     * @param from
-     *            Not used
-     * @param element
-     *            Not used
-     * @return null
-     * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object,
-     *      org.scilab.modules.types.ScilabType)
-     */
-    @Override
-    @Deprecated
-    public ScilabType encode(mxStylesheet from, ScilabType element) {
-        return null;
-    }
-
 }

@@ -27,7 +27,7 @@ extern int C2F(dseupd)(int *rvec, char *howmny, int *select, double *d,
                        unsigned long howmany_length,
                        unsigned long bmat_length, unsigned long which_len);
 /*--------------------------------------------------------------------------*/
-int sci_dseupd(char *fname, unsigned long fname_len)
+int sci_dseupd(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -71,14 +71,11 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     int* pINFO          = NULL;
 
     int mRVEC,     nRVEC;
-    int mHOWMANY,  nHOWMANY;
     int mSELECT,   nSELECT;
     int D,        mD,        nD;
     int Z,        mZ,        nZ;
     int mSIGMA,    nSIGMA;
-    int mBMAT,     nBMAT;
     int mN,        nN;
-    int mWHICH,    nWHICH;
     int mNEV,      nNEV;
     int mTOL,      nTOL;
     int RESID,    mRESID,    nRESID;
@@ -439,7 +436,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     // Retrieve a matrix of double at position 2.
     if (getAllocatedSingleString(pvApiCtx, piAddrpHOWMANY, &pHOWMANY))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -455,7 +452,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (getAllocatedSingleString(pvApiCtx, piAddrpBMAT, &pBMAT))
     {
         freeAllocatedSingleString(pHOWMANY);
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 7);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 7);
         return 1;
     }
 
@@ -474,7 +471,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     {
         freeAllocatedSingleString(pBMAT);
         freeAllocatedSingleString(pHOWMANY);
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 9);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 9);
         return 1;
     }
 
@@ -492,7 +489,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
 
     if (pINFO[0] < 0)
     {
-        C2F(errorinfo)("dseupd", pINFO, 6L);
+        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
         return 0;
     }
 

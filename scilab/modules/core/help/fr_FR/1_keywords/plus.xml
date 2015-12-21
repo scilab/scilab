@@ -34,11 +34,11 @@
     <refsection>
         <title>Description</title>
         <para>
-            Addition. 
+            Addition.
         </para>
         <para>
             Pour des opérandes numériques l'addition a la signification habituelle.
-            Si l'un des opérandes est une matrice et l'autre un scalaire, ce dernier est ajouté à tous les termes de la matrice. Si l'un des opérandes est une matrice vide, le résultat est égal à l'autre opérande (ce comportement par défaut peut être modifié avec <literal>mtlb_mode</literal>). 
+            Si l'un des opérandes est une matrice et l'autre un scalaire, ce dernier est ajouté à tous les termes de la matrice. Si l'un des opérandes est une matrice vide, le résultat est égal à l'autre opérande (ce comportement par défaut peut être modifié avec <literal>mtlb_mode</literal>).
         </para>
         <para>
             Pour les chaînes de caractères <literal>+</literal> désigne la concaténation.
@@ -49,7 +49,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [1,2]+1
 []+2
 s=poly(0,"s");
@@ -61,9 +61,6 @@ s+2
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="addf">addf</link>
-            </member>
             <member>
                 <link linkend="mtlb_mode">mtlb_mode</link>
             </member>

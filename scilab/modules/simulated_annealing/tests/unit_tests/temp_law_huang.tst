@@ -1,4 +1,3 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
 //
@@ -8,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-// <-- JVM_NOT_MANDATORY -->
+//<-- CLI SHELL MODE -->
 
 T = temp_law_huang(10, 9, 8, 7, 6, []);
 

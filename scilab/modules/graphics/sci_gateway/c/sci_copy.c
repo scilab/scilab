@@ -19,7 +19,7 @@
 /*------------------------------------------------------------------------*/
 
 #include <stdlib.h>
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "GetProperty.h"
@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 #include "createGraphicObject.h"
 /*--------------------------------------------------------------------------*/
-int sci_copy(char *fname, unsigned long fname_len)
+int sci_copy(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -48,14 +48,13 @@ int sci_copy(char *fname, unsigned long fname_len)
     int iType = -1;
     int *piType = &iType;
     int m1 = 0, n1 = 0;
-    int numrow = 0, numcol = 0, lw = 0;
+    int numrow = 0, numcol = 0;
     int isPolyline = 0;
 
     CheckInputArgument(pvApiCtx, 1, 2);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
     /*  set or create a graphic window*/
-    lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
     if (sciErr.iErr)
     {
@@ -74,7 +73,7 @@ int sci_copy(char *fname, unsigned long fname_len)
 
     if (m1 != 1 || n1 != 1)
     {
-        C2F(overload)(&lw, "copy", 4);
+        OverLoad(1);
         return 0;
     }
 
@@ -93,7 +92,7 @@ int sci_copy(char *fname, unsigned long fname_len)
             iType != __GO_POLYLINE__ &&
             iType != __GO_RECTANGLE__)
     {
-        C2F(overload)(&lw, "copy", 4);
+        OverLoad(1);
         return 0;
     }
 

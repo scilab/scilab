@@ -50,18 +50,34 @@ function txt=%p_string(p)
                 if knz(1)>1 then
                     C=C+s
                 else
-                    C(2:$)=C(2:$)+s
+                    if ~isempty(s) && (size(C, "*") >= 2)
+                        C(2:$)=C(2:$)+s
+                    end
                 end
 
-                i=min(find(knz>2))
-                blank=" "
-                e=blank(ones(1,i-1))
-                if size(knz,"*")>=i then e=[e string(knz(i:$)-1)],end
+                i=min(find(knz>2));
+                blank=" ";
+                if ~isempty(i)
+                    e=blank(ones(1,i-1));
+                else
+                    e = [];
+                end
+                if size(knz,"*")>=i then
+                    e=[e string(knz(i:$)-1)];
+                end
 
                 lc=cumsum(length(C))
                 C=strcat(C)
                 E="";
-                for i=1:size(c,"*"),E=E+part(" ",1:(lc(i)-length(E)))+e(i);end
+                if isempty(e)
+                    for i=1:size(c,"*")
+                        E = E + part(" ", 1:(lc(i) - length(E)));
+                    end
+                else
+                    for i=1:size(c,"*")
+                        E = E + part(" ", 1:(lc(i) - length(E))) + e(i);
+                    end
+                end
                 txt(2*l-1:2*l,k)=[E;C];
             end
         end

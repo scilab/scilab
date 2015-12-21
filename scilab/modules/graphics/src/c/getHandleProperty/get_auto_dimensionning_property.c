@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_auto_dimensionning_property(void* _pvCtx, int iObjUID)
+void* get_auto_dimensionning_property(void* _pvCtx, int iObjUID)
 {
     int iAutoDimensioning = 0;
     int* piAutoDimensioning = &iAutoDimensioning;
@@ -40,16 +40,16 @@ int get_auto_dimensionning_property(void* _pvCtx, int iObjUID)
     if (piAutoDimensioning == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_dimensionning");
-        return -1;
+        return NULL;
     }
 
     if (iAutoDimensioning)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 
 }

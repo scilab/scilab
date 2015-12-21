@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,11 +36,12 @@ import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
@@ -53,6 +55,7 @@ import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxGraphView;
 import com.mxgraph.view.mxStylesheet;
+import org.scilab.modules.xcos.ObjectProperties;
 
 /**
  * Utility class which is the entry point from Scilab for palette related
@@ -499,7 +502,7 @@ public final class Palette {
      *             on error
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void generatePaletteIcon(final String iconPath) throws Exception {
+    public static void generatePaletteIcon(final long uid, final String iconPath) throws Exception {
         /*
          * If the env. is headless does nothing
          */
@@ -508,14 +511,20 @@ public final class Palette {
             return;
         }
 
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        try {
-            final BasicBlock block = handler.readBlock();
+        JavaController controller = new JavaController();
+        Kind kind = controller.getKind(uid);
 
-            generateIcon(block, iconPath);
-        } finally {
-            handler.release();
-        }
+        String[] strUID = new String[] { "" };
+        controller.getObjectProperty(uid, kind, ObjectProperties.UID, strUID);
+
+        String[] label = new String[] { "" };
+        controller.getObjectProperty(uid, kind, ObjectProperties.LABEL, label);
+
+        String[] style = new String[] { "" };
+        controller.getObjectProperty(uid, kind, ObjectProperties.STYLE, style);
+
+        final BasicBlock block = new BasicBlock(new JavaController(), uid, kind, label[0], null, style[0], strUID[0]);
+        generateIcon(block, iconPath);
 
         if (LOG.isLoggable(Level.FINEST)) {
             LOG.finest(iconPath + " updated.");
@@ -537,13 +546,15 @@ public final class Palette {
         block.getGeometry().setX(blockSize.width);
         block.getGeometry().setY(blockSize.height);
 
-        final XcosDiagram graph = new XcosDiagram();
+        JavaController controller = new JavaController();
+
+        final XcosDiagram graph = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
         graph.installListeners();
 
         graph.addCell(block);
         graph.selectAll();
 
-        BlockPositioning.updateBlockView(block);
+        BlockPositioning.updateBlockView(graph, block);
 
         /*
          * Render
@@ -570,5 +581,8 @@ public final class Palette {
 
         final String extension = iconPath.substring(iconPath.lastIndexOf('.') + 1);
         ImageIO.write(image, extension, new File(iconPath));
+
+
+        controller.deleteObject(graph.getUID());
     }
 }

@@ -109,7 +109,7 @@ voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NU
 voidremovejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NULL;
 voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
-voidgeneratePaletteIconjstringjava_lang_StringID=NULL;
+voidgeneratePaletteIconjlonglongjstringjava_lang_StringID=NULL;
 voidgetjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 
 
@@ -139,7 +139,7 @@ voidaddCategoryjobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NU
 voidremovejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NULL;
 voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
-voidgeneratePaletteIconjstringjava_lang_StringID=NULL;
+voidgeneratePaletteIconjlonglongjstringjava_lang_StringID=NULL;
 voidgetjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 
 
@@ -443,7 +443,7 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void Palette::generatePaletteIcon (JavaVM * jvm_, char const* iconPath){
+void Palette::generatePaletteIcon (JavaVM * jvm_, long long uid, char const* iconPath){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
@@ -452,8 +452,8 @@ if ( cls == NULL) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 
-static jmethodID voidgeneratePaletteIconjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "generatePaletteIcon", "(Ljava/lang/String;)V" ) ;
-if (voidgeneratePaletteIconjstringjava_lang_StringID == NULL) {
+static jmethodID voidgeneratePaletteIconjlonglongjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "generatePaletteIcon", "(JLjava/lang/String;)V" ) ;
+if (voidgeneratePaletteIconjlonglongjstringjava_lang_StringID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "generatePaletteIcon");
 }
 
@@ -464,7 +464,7 @@ throw GiwsException::JniBadAllocException(curEnv);
 }
 
 
-                         curEnv->CallStaticVoidMethod(cls, voidgeneratePaletteIconjstringjava_lang_StringID ,iconPath_);
+                         curEnv->CallStaticVoidMethod(cls, voidgeneratePaletteIconjlonglongjstringjava_lang_StringID ,uid, iconPath_);
                         curEnv->DeleteLocalRef(iconPath_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);

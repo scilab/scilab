@@ -25,11 +25,11 @@ function tbx_build_help(moduletitle, path)
     // → name
 
     if type(moduletitle) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "tbx_build_help", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "tbx_build_help", 1));
     end
 
     if size(moduletitle,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "tbx_build_help", 1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "tbx_build_help", 1));
     end
 
     // Input argument N°2
@@ -39,11 +39,11 @@ function tbx_build_help(moduletitle, path)
         path = pwd();
     else
         if type(path) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "tbx_build_help", 2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "tbx_build_help", 2));
         end
 
         if size(path,"*") <> 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "tbx_build_help", 2));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "tbx_build_help", 2));
         end
 
         if ~isdir(path) then

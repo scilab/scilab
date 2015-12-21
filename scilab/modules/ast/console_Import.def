@@ -1,0 +1,8 @@
+LIBRARY    sciconsole.dll
+
+
+EXPORTS
+linesmore
+scilabRead
+SetTemporaryPrompt
+ClearTemporaryPrompt

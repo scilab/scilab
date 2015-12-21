@@ -22,7 +22,7 @@
             <varlistentry>
                 <term>propertyValue</term>
                 <listitem>
-                    <para>string character specify the value the tested propoerty should be equal to (case sensitive).</para>
+                    <para>string character specify the value the tested property should be equal to (case sensitive).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

@@ -89,47 +89,49 @@ public class TextManager {
 
         Integer parentAxesId = text.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
-        double[][] factors = parentAxes.getScaleTranslateFactors();
-        Double[] pos = text.getPosition();
-        pos[0] = pos[0] * factors[0][0] + factors[1][0];
-        pos[1] = pos[1] * factors[0][1] + factors[1][1];
-        pos[2] = pos[2] * factors[0][2] + factors[1][2];
+        if (parentAxes != null) {
+            double[][] factors = parentAxes.getScaleTranslateFactors();
+            Double[] pos = text.getPosition();
+            pos[0] = pos[0] * factors[0][0] + factors[1][0];
+            pos[1] = pos[1] * factors[0][1] + factors[1][1];
+            pos[2] = pos[2] * factors[0][2] + factors[1][2];
 
-        Vector3d textPosition = new Vector3d(pos);
+            Vector3d textPosition = new Vector3d(pos);
 
-        /* Compute the text box vectors and the text box to texture dimension ratios */
-        Vector3d[] textBoxVectors =  computeTextBoxVectors(projection, text, texture.getDataProvider().getTextureSize(), parentAxes);
-        double[] ratios = computeRatios(projection, text, textBoxVectors, texture.getDataProvider().getTextureSize(), spriteDims);
+            /* Compute the text box vectors and the text box to texture dimension ratios */
+            Vector3d[] textBoxVectors =  computeTextBoxVectors(projection, text, texture.getDataProvider().getTextureSize(), parentAxes);
+            double[] ratios = computeRatios(projection, text, textBoxVectors, texture.getDataProvider().getTextureSize(), spriteDims);
 
-        /* If text box mode is equal to filled, the texture must be updated */
-        if (text.getTextBoxMode() == 2 && ratios[0] != 1.0) {
-            texture = updateSprite(colorMap, text, ratios[0], ratios[1]);
+            /* If text box mode is equal to filled, the texture must be updated */
+            if (text.getTextBoxMode() == 2 && ratios[0] != 1.0) {
+                texture = updateSprite(colorMap, text, ratios[0], ratios[1]);
+            }
+
+            /* Compute the text texture's actual position, which depends on the object's text box mode property */
+            Vector3d[] cornerPositions = computeTextPosition(projection, text, textBoxVectors, texture.getDataProvider().getTextureSize());
+
+            /* Draw in window coordinates */
+            drawingTools.getTransformationManager().useWindowCoordinate();
+
+            /* The Text object's rotation direction convention is opposite to the standard one, its angle is expressed in radians. */
+            drawingTools.draw(texture, AnchorPosition.LOWER_LEFT, cornerPositions[0], -180.0 * text.getFontAngle() / Math.PI);
+
+            drawingTools.getTransformationManager().useSceneCoordinate();
+
+            /* Compute the corners of the text's bounding box in window coordinates */
+            Vector3d[] projCorners;
+            if (text.getTextBoxMode() == 2) {
+                projCorners = computeProjTextBoxCorners(cornerPositions[1], text.getFontAngle(), textBoxVectors);
+            } else {
+                projCorners = computeProjCorners(cornerPositions[0], text.getFontAngle(), texture.getDataProvider().getTextureSize());
+            }
+
+            Vector3d[] corners = computeCorners(projection, projCorners, parentAxes);
+            Double[] coordinates = cornersToCoordinateArray(corners);
+
+            /* Set the computed coordinates */
+            text.setCorners(coordinates);
         }
-
-        /* Compute the text texture's actual position, which depends on the object's text box mode property */
-        Vector3d[] cornerPositions = computeTextPosition(projection, text, textBoxVectors, texture.getDataProvider().getTextureSize());
-
-        /* Draw in window coordinates */
-        drawingTools.getTransformationManager().useWindowCoordinate();
-
-        /* The Text object's rotation direction convention is opposite to the standard one, its angle is expressed in radians. */
-        drawingTools.draw(texture, AnchorPosition.LOWER_LEFT, cornerPositions[0], -180.0 * text.getFontAngle() / Math.PI);
-
-        drawingTools.getTransformationManager().useSceneCoordinate();
-
-        /* Compute the corners of the text's bounding box in window coordinates */
-        Vector3d[] projCorners;
-        if (text.getTextBoxMode() == 2) {
-            projCorners = computeProjTextBoxCorners(cornerPositions[1], text.getFontAngle(), textBoxVectors);
-        } else {
-            projCorners = computeProjCorners(cornerPositions[0], text.getFontAngle(), texture.getDataProvider().getTextureSize());
-        }
-
-        Vector3d[] corners = computeCorners(projection, projCorners, parentAxes);
-        Double[] coordinates = cornersToCoordinateArray(corners);
-
-        /* Set the computed coordinates */
-        text.setCorners(coordinates);
     }
 
     /**

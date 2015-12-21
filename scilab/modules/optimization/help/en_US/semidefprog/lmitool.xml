@@ -95,7 +95,7 @@ exec("prob.sci", -1);
 
 X = prob(A1, A2) // Run optimization, X = [1.0635042 0; 0 2.0784841]
 
-[Y, Z, c] = prob_eval(X); // Check evaluaton function value at the point found
+[Y, Z, c] = prob_eval(X); // Check evaluation function value at the point found
 // Y = 0
 // Z = list([0.0731600 0.7080179; 0.7080179 0.7186999], [0.1154910 0.5345239; 0.5345239 1.4843684])
 // c = -1.0635042

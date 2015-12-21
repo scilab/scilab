@@ -1,6 +1,0 @@
-	LIBRARY    fileio.dll
-
-
-EXPORTS
-; fileio
-getshortpathname_ 

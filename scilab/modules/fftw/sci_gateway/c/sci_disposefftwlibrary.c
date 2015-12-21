@@ -19,7 +19,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_disposefftwlibrary(char *fname, unsigned long fname_len)
+int sci_disposefftwlibrary(char *fname, void* pvApiCtx)
 {
     int iErr;
 

@@ -22,12 +22,12 @@ extern "C"
 #include "HandleManagement.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "stricmp.h"
+#include "os_string.h"
 }
 
 using namespace org_scilab_modules_gui_datatip;
 
-int sci_datatip_set_orient(char *fname, unsigned long fname_len)
+int sci_datatip_set_orient(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 2, 2);
@@ -184,13 +184,13 @@ int sci_datatip_set_orient(char *fname, unsigned long fname_len)
                     }
                     else
                     {
-                        Scierror(999, _("%s: Wrong dimension for input argument #%d: A string expected.\n"), fname, 2);
+                        Scierror(999, _("%s: Wrong dimension for input argument #%d: string expected.\n"), fname, 2);
                         return 1;
                     }
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
                     return 1;
                 }
             }

@@ -35,7 +35,7 @@ function  atomsAutoloadSave(autoloaded_mat,section)
     // =========================================================================
 
     if type(section) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsAutoloadSave",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsAutoloadSave",2));
     end
 
     if and(section<>["user","allusers"]) then
@@ -84,9 +84,6 @@ function  atomsAutoloadSave(autoloaded_mat,section)
     // =========================================================================
 
     mputl( autoloaded_str , autoloaded_txt);
-    wMode = warning("query");
-    warning("off");
-    save( autoloaded_bin  , autoloaded_mat);
-    warning(wMode);
+    save( autoloaded_bin  , "autoloaded_mat");
 
 endfunction

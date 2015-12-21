@@ -33,7 +33,7 @@ function [status, msg]=mkdir(varargin)
         end
 
         if size(NewDirName, "*") <> 1 then
-            error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "mkdir", 1));
+            error(999, msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "mkdir", 1));
         end
 
         NewDirName   = stripblanks(NewDirName, %T);
@@ -51,16 +51,16 @@ function [status, msg]=mkdir(varargin)
         end
 
         if size(DirName, "*") <> 1 then
-            error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "mkdir", 1));
+            error(999, msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "mkdir", 1));
         end
 
         NewDirName   = varargin(2);
         if type(NewDirName) <> 10 then
-            error(999, msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "mkdir", 2));
+            error(999, msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "mkdir", 2));
         end
 
         if size(NewDirName, "*") <> 1 then
-            error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "mkdir", 2));
+            error(999, msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "mkdir", 2));
         end
 
         NewDirName   = stripblanks(NewDirName, %T);

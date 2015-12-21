@@ -18,7 +18,7 @@
 #include "GetProperty.h"
 #include "BOOL.h"
 #include "TitlePositionType.h"
-#include "stricmp.h"
+#include "os_string.h"
 
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"

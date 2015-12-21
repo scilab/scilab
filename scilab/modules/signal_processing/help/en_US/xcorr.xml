@@ -146,7 +146,7 @@ http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
             the first and last values of <literal>c</literal> are zero.
         </para>
         <para>
-            The <literal>scaling</literal> argument decribes how
+            The <literal>scaling</literal> argument describes how
             <latex>C(k)</latex> is normalized before being returned in
             <literal>c</literal>: 
             <itemizedlist>

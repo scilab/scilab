@@ -23,11 +23,11 @@ function tbx_build_localization(tbx_name, tbx_path)
         tbx_path = pwd();
     else
         if type(tbx_path) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_localization",2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_localization",2));
         end
 
         if size(tbx_path,"*") <> 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_build_localization",2));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"tbx_build_localization",2));
         end
 
         if ~isdir(tbx_path) then

@@ -10,10 +10,9 @@
  *
  */
 
-#include <signal.h> /* for SIGINT */
 #include "InterpreterManagement.h"
 #include "storeCommand.h"
-#include "sigbas.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {
@@ -21,20 +20,19 @@ int putCommandInScilabQueue(char *command)
 }
 /*--------------------------------------------------------------------------*/
 /*
- * requestScilabExec
- *
- * WARNING : if the command is taking some time, scilab will not do anything else
- * before the command returns.
- */
+* requestScilabExec
+*
+* WARNING : if the command is taking some time, scilab will not do anything else
+* before the command returns.
+*/
 int requestScilabExec(char *command)
 {
-    return StoreCommandWithFlag(command, 1);
+    return StorePrioritaryCommand(command);
 }
 /*--------------------------------------------------------------------------*/
 int interruptScilab(void)
 {
-    int scilabSignal = SIGINT;
-    C2F(sigbas)(&scilabSignal);
+    setExecutionBreak();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

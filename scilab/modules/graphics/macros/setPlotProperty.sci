@@ -98,7 +98,7 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
                 Curves.line_mode = "off";
             end
         else
-            warning(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"setPlotProperty",2));
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"setPlotProperty",2));
             ResetFigureDDM(current_figure, cur_draw_mode);
             return;
         end
@@ -168,7 +168,7 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
             end
 
         else
-            warning(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"setPlotProperty"));
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"setPlotProperty"));
             ResetFigureDDM(current_figure, cur_draw_mode);
             return;
         end

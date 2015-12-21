@@ -12,32 +12,33 @@
 
 package org.scilab.modules.xcos.io.codec;
 
+import static org.scilab.modules.xcos.io.codec.XcosCodec.LOG;
+
 import java.util.Map;
 
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
-import org.scilab.modules.xcos.link.explicit.ExplicitLink;
-import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.link.CommandControlLink;
+import org.scilab.modules.xcos.link.ExplicitLink;
+import org.scilab.modules.xcos.link.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 
-import static org.scilab.modules.xcos.io.codec.XcosCodec.LOG;
-
 public class BasicLinkCodec extends XcosObjectCodec {
 
     public static void register() {
-        BasicLinkCodec explicitlinkCodec = new BasicLinkCodec(
-            new ExplicitLink(), null, REFS, null);
+        JavaController controller = new JavaController();
+
+        BasicLinkCodec explicitlinkCodec = new BasicLinkCodec(new ExplicitLink(controller, controller.createObject(Kind.LINK), Kind.LINK, null, null, null, null), null, REFS, null);
         mxCodecRegistry.register(explicitlinkCodec);
-        BasicLinkCodec implicitlinkCodec = new BasicLinkCodec(
-            new ImplicitLink(), null, REFS, null);
+        BasicLinkCodec implicitlinkCodec = new BasicLinkCodec(new ImplicitLink(controller, controller.createObject(Kind.LINK), Kind.LINK, null, null, null, null), null, REFS, null);
         mxCodecRegistry.register(implicitlinkCodec);
-        BasicLinkCodec commandControllinkCodec = new BasicLinkCodec(
-            new CommandControlLink(), null, REFS, null);
+        BasicLinkCodec commandControllinkCodec = new BasicLinkCodec(new CommandControlLink(controller, controller.createObject(Kind.LINK), Kind.LINK, null, null, null, null), null, REFS, null);
         mxCodecRegistry.register(commandControllinkCodec);
     }
 

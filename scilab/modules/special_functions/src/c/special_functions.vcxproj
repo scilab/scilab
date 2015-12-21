@@ -28,23 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../elementary_functions/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../special_functions/includes;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../libs/intl;.;../cpp;../../includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/system_env;../../../ast/includes/operations;../../../ast/includes/symbol;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../dynamic_link/includes;../../../string/includes;../../../threads/includes;../../../console/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPECIAL_FUNCTIONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -110,7 +110,7 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../elementary_functions/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../special_functions/includes;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../libs/intl;.;../cpp;../../includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/system_env;../../../ast/includes/operations;../../../ast/includes/symbol;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../dynamic_link/includes;../../../string/includes;../../../threads/includes;../../../console/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPECIAL_FUNCTIONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -138,7 +138,7 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../elementary_functions/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../special_functions/includes;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../libs/intl;.;../cpp;../../includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/system_env;../../../ast/includes/operations;../../../ast/includes/symbol;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../dynamic_link/includes;../../../string/includes;../../../threads/includes;../../../console/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPECIAL_FUNCTIONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -173,7 +173,7 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../elementary_functions/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../special_functions/includes;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../libs/intl;.;../cpp;../../includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/system_env;../../../ast/includes/operations;../../../ast/includes/symbol;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../dynamic_link/includes;../../../string/includes;../../../threads/includes;../../../console/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPECIAL_FUNCTIONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -202,25 +202,25 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_dlgamma.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_faddeeva.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_gamma.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_lgamma.cpp" />
     <ClCompile Include="..\cpp\faddeeva.cpp" />
     <ClCompile Include="DllmainSpecial_functions.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_special_functions.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_besselh.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_besseli.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_besselj.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_besselk.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_bessely.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_beta.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_dlgamma.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_gamma.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_legendre.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_lgamma.c" />
     <ClCompile Include="zbeshv.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_special_functions.h" />
     <ClInclude Include="..\..\includes\gw_special_functions.h" />
+    <ClInclude Include="..\..\includes\special_functions_gw.hxx" />
     <ClInclude Include="..\..\sci_gateway\cpp\sci_faddeeva.hxx" />
     <ClInclude Include="..\cpp\faddeeva.h" />
     <ClInclude Include="zbeshv.h" />
@@ -246,6 +246,9 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </ProjectReference>
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\elementary_functions\src\c\elementary_functions.vcxproj">
       <Project>{5b110267-7c18-437c-b87d-dba2b50729e9}</Project>

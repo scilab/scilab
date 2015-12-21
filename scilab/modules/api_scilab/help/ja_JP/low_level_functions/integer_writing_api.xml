@@ -184,7 +184,7 @@
         <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
-int read_integer(char *fname,unsigned long fname_len)
+int read_integer(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	// 出力変数の情報

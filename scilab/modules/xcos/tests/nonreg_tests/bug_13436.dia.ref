@@ -18,7 +18,7 @@
 //
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_13436.zcos"));
 xcos_simulate(scs_m, 4);
-// step = 0 without the delay 
+// step = 0 without the delay
 assert_checkequal(res.values(:,1), ones(300, 1));
 // step = 0 with the delay = 1
 assert_checkequal(res.values(:,2), [zeros(10, 1); ones(290, 1)]);

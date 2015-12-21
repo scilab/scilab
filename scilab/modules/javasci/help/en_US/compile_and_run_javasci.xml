@@ -117,7 +117,7 @@
         </para>
         <para>(With these arguments, javasci is started with same initial options like the standard scilab).
         </para>
-        <para>Note that two environnement variables are taken in account for specific needs:
+        <para>Note that two environment variables are taken in account for specific needs:
         </para>
         <itemizedlist>
             <listitem>

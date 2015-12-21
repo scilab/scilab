@@ -55,7 +55,7 @@
 // We create a file
 a = h5open(TMPDIR + "/test_group.h5", "a");
 
-// We create a set of 10 groups containg 10 subgroups
+// We create a set of 10 groups containing 10 subgroups
 // Firstly, we create the names
 gnames = "Group_" + string(1:10);
 sgnames = "SubGroup_" + string(1:10);

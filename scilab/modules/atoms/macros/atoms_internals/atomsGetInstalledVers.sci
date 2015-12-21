@@ -26,11 +26,11 @@ function res = atomsGetInstalledVers(name,section)
     // =========================================================================
 
     if type(name) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsGetInstalledVers",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsGetInstalledVers",1));
     end
 
     if size(name,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsGetInstalledVers",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsGetInstalledVers",1));
     end
 
     // Allusers/user management

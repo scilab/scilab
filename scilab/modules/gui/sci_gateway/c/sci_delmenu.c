@@ -17,11 +17,11 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "InitUIMenu.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 #include "FigureList.h"
 #include "getConsoleIdentifier.h"
 /*--------------------------------------------------------------------------*/
-int sci_delmenu(char *fname, unsigned long fname_len)
+int sci_delmenu(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -56,14 +56,14 @@ int sci_delmenu(char *fname, unsigned long fname_len)
         // Unset a Menu of Scilab Main Window
         if ((!checkInputArgumentType(pvApiCtx, 1, sci_strings)))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return FALSE;
         }
 
         // Retrieve a matrix of double at position 1.
         if (getAllocatedSingleString(pvApiCtx, piAddr1, &strAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
 
@@ -97,7 +97,7 @@ int sci_delmenu(char *fname, unsigned long fname_len)
 
         if ((!checkInputArgumentType(pvApiCtx, 2, sci_strings)))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return FALSE;
         }
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
@@ -110,7 +110,7 @@ int sci_delmenu(char *fname, unsigned long fname_len)
         // Retrieve a matrix of double at position 2.
         if (getAllocatedSingleString(pvApiCtx, piAddr2, &strAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
             return 1;
         }
 

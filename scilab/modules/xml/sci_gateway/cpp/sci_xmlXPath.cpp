@@ -30,7 +30,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlXPath(char *fname, unsigned long fname_len)
+int sci_xmlXPath(char* fname, void* pvApiCtx)
 {
     int id;
     SciErr err;
@@ -98,7 +98,7 @@ int sci_xmlXPath(char *fname, unsigned long fname_len)
 
     if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return 0;
     }
 
@@ -122,7 +122,7 @@ int sci_xmlXPath(char *fname, unsigned long fname_len)
         if (!isStringType(pvApiCtx, addr))
         {
             freeAllocatedSingleString(query);
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 

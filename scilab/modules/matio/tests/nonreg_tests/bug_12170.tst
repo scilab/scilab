@@ -22,7 +22,7 @@ C = "foo";
 D = "bar";
 
 filename=TMPDIR+"/test_matfile.mat";
-savematfile(filename,'A','B','C','D','-v6');
+savematfile(filename,"A","B","C","D","-v6");
 
 clear();
 
@@ -31,10 +31,10 @@ filename=TMPDIR+"/test_matfile.mat";
 fd = matfile_open(filename, "w");
 
 //Checking if matfile_listvar generates an error on a "w" opened file
-if execstr('[name, classes, types]=matfile_listvar(fd)','errcatch','n')<>0
-   genErr = %t //matfile_listvar generated an error 
+if execstr("[name, classes, types]=matfile_listvar(fd)","errcatch","n")<>0
+    genErr = %t; //matfile_listvar generated an error
 else
-   genErr = %f //matfile_listvar did not generate an error
+    genErr = %f; //matfile_listvar did not generate an error
 end
 
 assert_checkfalse(genErr);

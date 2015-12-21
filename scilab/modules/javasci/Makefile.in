@@ -114,9 +114,10 @@ DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/javasci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
+	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
+	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -262,6 +263,7 @@ AUTOMAKE = @AUTOMAKE@
 AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
+BLAS_CFLAGS = @BLAS_CFLAGS@
 BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCACHE = @CCACHE@
@@ -296,6 +298,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 ECJ = @ECJ@
 EGREP = @EGREP@
+EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
@@ -319,6 +322,8 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAMCREST = @HAMCREST@
+HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
@@ -355,6 +360,9 @@ LAPACK_LIBS = @LAPACK_LIBS@
 LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
+LEX = @LEX@
+LEXLIB = @LEXLIB@
+LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
 LIBM = @LIBM@
@@ -452,6 +460,8 @@ UMFPACK_CFLAGS = @UMFPACK_CFLAGS@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 USE_NLS = @USE_NLS@
+VALGRIND_CFLAGS = @VALGRIND_CFLAGS@
+VALGRIND_LIBS = @VALGRIND_LIBS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
@@ -470,6 +480,8 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
+YACC = @YACC@
+YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -525,6 +537,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+yacc_present = @yacc_present@
 
 #### Target ######
 modulename = javasci
@@ -535,15 +548,18 @@ libjavasci2_la_root_DATA = license.txt
 
 #### javasci : init scripts ####
 libjavasci2_la_etcdir = $(mydatadir)/etc
-libjavasci2_la_etc_DATA = etc/javasci.quit etc/javasci.start
+libjavasci2_la_etc_DATA = \
+    etc/javasci.quit \
+    etc/javasci.start
+
 
 ### All the compilation process of java is deleguated to ant
 
 #### Javasci : sources ####
 @JAVASCI_TRUE@JAVASCI_V2_C_SOURCES = \
-@JAVASCI_TRUE@src/jni/call_scilab_wrap.c \
-@JAVASCI_TRUE@src/jni/putLists.c \
-@JAVASCI_TRUE@src/c/javasci2_helper.c
+@JAVASCI_TRUE@    src/jni/call_scilab_wrap.c \
+@JAVASCI_TRUE@    src/jni/putLists.c \
+@JAVASCI_TRUE@    src/c/javasci2_helper.c
 
 @JAVASCI_TRUE@pkglib_LTLIBRARIES = libjavasci2.la
 @JAVASCI_TRUE@libjavasci2_la_SOURCES = $(JAVASCI_V2_C_SOURCES)
@@ -551,18 +567,28 @@ libjavasci2_la_etc_DATA = etc/javasci.quit etc/javasci.start
 # For the code check (splint)
 @JAVASCI_TRUE@CHECK_SRC = $(JAVASCI_C_SOURCES)
 @JAVASCI_TRUE@INCLUDE_FLAGS = $(libjavasci2_la_CPPFLAGS)
-@JAVASCI_TRUE@libjavasci2_la_CPPFLAGS = -I$(srcdir)/includes/ \
-@JAVASCI_TRUE@			-I$(srcdir)/src/c/ \
-@JAVASCI_TRUE@			$(JAVA_JNI_INCLUDE) \
-@JAVASCI_TRUE@			$(TCL_INC_PATH) \
-@JAVASCI_TRUE@			$(TK_INC_PATH) \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes/ \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/call_scilab/includes/ \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/fileio/includes/ \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
-@JAVASCI_TRUE@			$(AM_CPPFLAGS)
+@JAVASCI_TRUE@libjavasci2_la_CPPFLAGS = \
+@JAVASCI_TRUE@    -I$(srcdir)/includes/ \
+@JAVASCI_TRUE@    -I$(srcdir)/src/c/ \
+@JAVASCI_TRUE@    $(JAVA_JNI_INCLUDE) \
+@JAVASCI_TRUE@    $(TCL_INC_PATH) \
+@JAVASCI_TRUE@    $(TK_INC_PATH) \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/ast/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/exps/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/operations/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/parse/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/types/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/tclsci/includes \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/graphic_objects/includes \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/call_scilab/includes \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/api_scilab/includes \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/fileio/includes/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/localization/includes/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/output_stream/includes/ \
+@JAVASCI_TRUE@    $(AM_CPPFLAGS)
 
 @JAVASCI_TRUE@libjavasci2_la_LIBADD = \
 @JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
@@ -979,10 +1005,10 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@JAVASCI_FALSE@install-data-local:
-@JAVASCI_FALSE@install-html-local:
 @JAVASCI_FALSE@distclean-local:
 @JAVASCI_FALSE@clean-local:
+@JAVASCI_FALSE@install-html-local:
+@JAVASCI_FALSE@install-data-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \

@@ -31,6 +31,8 @@ C
       double precision x,phi0,phi,gnrm
       dimension w(*), iw(*), xx(1)
       integer dgmax
+cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
+cDEC$ ATTRIBUTES DLLIMPORT:: /no2f/
       common /sortie/ io,info,ll
       common /no2f/ gnrm
 C

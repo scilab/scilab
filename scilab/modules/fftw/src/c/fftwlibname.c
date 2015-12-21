@@ -12,10 +12,8 @@
 #include <string.h>
 #include "stdlib.h"
 #include "fftwlibname.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static char *fftwlibname = NULL;
 /*--------------------------------------------------------------------------*/
@@ -28,7 +26,7 @@ void setfftwlibname(char *libname)
             FREE(fftwlibname);
             fftwlibname = NULL;
         }
-        fftwlibname = strdup(libname);
+        fftwlibname = os_strdup(libname);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -38,7 +36,7 @@ char *getfftwlibname(void)
 
     if (fftwlibname)
     {
-        name = strdup(fftwlibname);
+        name = os_strdup(fftwlibname);
     }
 
     return name;

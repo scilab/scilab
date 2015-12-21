@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ca\n"
 
 #, c-format
@@ -33,18 +33,6 @@ msgstr ""
 msgid "%s: Wrong value for input arguments: Must be > %d.\n"
 msgstr ""
 "%s: Els arguments d'entrada tenen un valor incorrecte: Han de ser > %d.\n"
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: no es pot llegir el paràmetre d'entrada #%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: A matrix expected.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -74,6 +62,18 @@ msgstr ""
 #, c-format
 msgid "%s: error number %d\n"
 msgstr "%s: Error número %d\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: no es pot llegir el paràmetre d'entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"

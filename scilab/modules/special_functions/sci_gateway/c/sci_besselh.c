@@ -17,10 +17,10 @@
 #include "Scierror.h"
 #include "msgs.h"
 #include "zbeshv.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_besselh(char *fname, unsigned long fname_len)
+int sci_besselh(char *fname, void* pvApiCtx)
 {
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     int rhs1 = 0, nw = 0;
@@ -232,16 +232,17 @@ int sci_besselh(char *fname, unsigned long fname_len)
 
     if (ierr == 2)
     {
-        if ( C2F(errgst).ieee == 0)
-        {
-            ierr = 69;
-            SciError(ierr);
-        }
-        else if (C2F(errgst).ieee == 1)
-        {
-            ierr = 63;
-            C2F(msgs)(&ierr, &un);
-        }
+        // FIX ME
+        //        if ( C2F(errgst).ieee == 0)
+        //        {
+        //            ierr = 69;
+        //            SciError(ierr);
+        //        }
+        //        else if (C2F(errgst).ieee == 1)
+        //        {
+        //            ierr = 63;
+        //            C2F(msgs)(&ierr, &un);
+        //        }
     }
     else if (ierr == 3)
     {
@@ -251,16 +252,17 @@ int sci_besselh(char *fname, unsigned long fname_len)
     }
     else if (ierr == 4 || ierr == 5)
     {
-        if ( C2F(errgst).ieee == 0)
-        {
-            ierr = 69;
-            SciError(ierr);
-        }
-        else if ( C2F(errgst).ieee == 1)
-        {
-            ierr = 107;
-            C2F(msgs)(&ierr, &un);
-        }
+        // FIX ME
+        //        if ( C2F(errgst).ieee == 0)
+        //        {
+        //            ierr = 69;
+        //            SciError(ierr);
+        //        }
+        //        else if ( C2F(errgst).ieee == 1)
+        //        {
+        //            ierr = 107;
+        //            C2F(msgs)(&ierr, &un);
+        //        }
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArg + 1;

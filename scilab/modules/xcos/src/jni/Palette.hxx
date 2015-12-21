@@ -83,7 +83,7 @@ jmethodID voidaddCategoryjobjectArray_java_lang_Stringjava_lang_Stringjbooleanbo
 jmethodID voidremovejobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
 jmethodID voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID; // cache method id
 jmethodID voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-jmethodID voidgeneratePaletteIconjstringjava_lang_StringID; // cache method id
+jmethodID voidgeneratePaletteIconjlonglongjstringjava_lang_StringID; // cache method id
 jmethodID voidgetjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
 
 
@@ -156,7 +156,7 @@ static void enable(JavaVM * jvm_, char const* const* name, int nameSize, bool st
 
 static void move(JavaVM * jvm_, char const* const* source, int sourceSize, char const* const* target, int targetSize);
 
-static void generatePaletteIcon(JavaVM * jvm_, char const* iconPath);
+static void generatePaletteIcon(JavaVM * jvm_, long long uid, char const* iconPath);
 
 static void get(JavaVM * jvm_, char const* const* path, int pathSize);
 

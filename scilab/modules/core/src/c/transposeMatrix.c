@@ -12,10 +12,8 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "transposeMatrix.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
-#include "MALLOC.h"
+#include "os_string.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 double *transposeMatrixDouble(int C, int L, double *MatrixDouble)
 {
@@ -57,23 +55,24 @@ int *transposeMatrixInt(int C, int L, int *MatrixInt)
     return buffer;
 }
 /*--------------------------------------------------------------------------*/
-char **transposeMatrixStrings(int C, int L, char **MatrixStr)
+/*char **transposeMatrixStrings(int C,int L,char **MatrixStr)
 {
-    char **buffer = NULL;
-    if (MatrixStr)
-    {
-        buffer = (char **)MALLOC( (C * L) * sizeof(char*) );
-        if (buffer)
-        {
-            int i = 0;
-            int j = 0;
+	char **buffer = NULL;
+	if (MatrixStr)
+	{
+		buffer = (char **)MALLOC( (C*L)*sizeof(char*) );
+		if (buffer)
+		{
+			int i = 0;
+			int j = 0;
 
-            for (i = 0; i < C; i++) for (j = 0; j <  L; j++)
-                {
-                    buffer[ i * L + j ] = strdup(MatrixStr[ j * C + i ]);
-                }
-        }
-    }
-    return buffer;
+			for (i = 0; i < C; i++) for (j = 0; j <  L; j++)
+			{
+				buffer[ i*L+j ] = os_strdup(MatrixStr[ j*C+i ]);
+			}
+		}
+	}
+	return buffer;
 }
+*/
 /*--------------------------------------------------------------------------*/

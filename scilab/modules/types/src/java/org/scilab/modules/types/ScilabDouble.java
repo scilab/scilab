@@ -17,6 +17,7 @@ package org.scilab.modules.types;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.util.Arrays;
 
 /**
  * This class provides a representation on the Scilab Double datatype<br>
@@ -352,6 +353,15 @@ public class ScilabDouble implements ScilabType {
         }
 
         return realPart[0].length;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + Arrays.deepHashCode(imaginaryPart);
+        result = prime * result + Arrays.deepHashCode(realPart);
+        return result;
     }
 
     /**

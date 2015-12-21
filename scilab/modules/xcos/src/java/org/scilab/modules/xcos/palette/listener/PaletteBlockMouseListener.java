@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2015 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
@@ -67,7 +68,6 @@ public final class PaletteBlockMouseListener implements MouseListener {
      * @param cmd event
      * @return ContextMenu
      */
-    @SuppressWarnings("serial")
     private ContextMenu createContextMenu(final PaletteBlockCtrl ctrl, final String cmd) {
         final List<XcosDiagram> allDiagrams = getOpenedDiagrams();
 
@@ -80,6 +80,8 @@ public final class PaletteBlockMouseListener implements MouseListener {
 
             final XcosDiagram theDiagram = allDiagrams.get(0);
             addTo.setCallback(new CommonCallBack(cmd) {
+                private static final long serialVersionUID = 0L;
+
                 @Override
                 public void callBack() {
                     ctrl.getPaletteCtrl().addSelectedBlocks(theDiagram);
@@ -96,6 +98,8 @@ public final class PaletteBlockMouseListener implements MouseListener {
                 final XcosDiagram theDiagram = allDiagrams.get(i);
                 diagram.setText(XcosTab.get(allDiagrams.get(i)).getName());
                 diagram.setCallback(new CommonCallBack(cmd) {
+                    private static final long serialVersionUID = 0L;
+
                     @Override
                     public void callBack() {
                         ctrl.getPaletteCtrl().addSelectedBlocks(theDiagram);
@@ -111,6 +115,8 @@ public final class PaletteBlockMouseListener implements MouseListener {
         MenuItem help = ScilabMenuItem.createMenuItem();
         help.setText("Block help");
         help.setCallback(new CommonCallBack(cmd) {
+            private static final long serialVersionUID = 0L;
+
             @Override
             public void callBack() {
                 try {

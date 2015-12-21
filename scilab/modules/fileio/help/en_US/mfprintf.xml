@@ -86,7 +86,7 @@
         </para>
         <para>
             The <function>mfprintf</function> function writes formatted operands
-            to the file specified by the file desciptor <varname>fd</varname>. The
+            to the file specified by the file descriptor <varname>fd</varname>. The
             argument operands are formatted under control of the 
             <varname>format</varname> operand.
         </para>

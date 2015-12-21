@@ -6,7 +6,7 @@ EXPORTS
 callFunctionFromGateway
 com_
 StoreCommand
-StoreCommandWithFlag
+StorePrioritaryCommand
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree

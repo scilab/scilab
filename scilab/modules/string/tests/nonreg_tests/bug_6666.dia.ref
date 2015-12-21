@@ -14,11 +14,11 @@
 //
 // <-- Short Description -->
 // emptystr() gave a wrong result instead of complaining about hypermatrix.
-//======================================================================================== 
+//========================================================================================
 M = rand(7, 3);
 T = emptystr(M);
 if or(size(T) <> [ 7 3 ]) then bugmes();quit;end
 M = rand(2, 2, 2);
 ierr = execstr("T = emptystr(M);","errcatch");
-if ierr == 0 then bugmes();quit;end
-//======================================================================================== 
+if ierr <> 0 then bugmes();quit;end
+//========================================================================================

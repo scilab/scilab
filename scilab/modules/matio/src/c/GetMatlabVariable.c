@@ -67,13 +67,24 @@ matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matf
             break;
         case sci_mlist:
             /* Only cells structs and hypermatrices are managed */
-            if (item_position > 0)
+            if (isCell(pvApiCtx, var_addr))
             {
-                tmp_res = GetMlistVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
+                tmp_res = GetCellVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
+            }
+            else if (isStruct(pvApiCtx, var_addr))
+            {
+                tmp_res = GetStructVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
             }
             else
             {
-                tmp_res = GetMlistVariable(pvApiCtx, iVar, name, matfile_version, parent, -1);
+                if (item_position > 0)
+                {
+                    tmp_res = GetMlistVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
+                }
+                else
+                {
+                    tmp_res = GetMlistVariable(pvApiCtx, iVar, name, matfile_version, parent, -1);
+                }
             }
             break;
         case sci_sparse:

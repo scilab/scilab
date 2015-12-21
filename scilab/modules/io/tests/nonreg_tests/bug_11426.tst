@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // Save function showed warning message in case of "save environment".
 
-oldMode = warning("query');
+oldMode = warning("query");
 warning("on");
 save(TMPDIR + "/saveenv.dat");
 warning(oldMode);

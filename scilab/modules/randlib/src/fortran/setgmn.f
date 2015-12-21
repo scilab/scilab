@@ -48,7 +48,6 @@ C
 C**********************************************************************
 C     .. Scalar Arguments ..
 C      INTEGER p
-      include 'stack.h'
       INTEGER p, ldcovm
 C     ..
 C     .. Array Arguments ..
@@ -80,7 +79,7 @@ C      CALL dpofa(covm,p,p,info)
       CALL dpofa(covm,ldcovm,p,info)
       ierr=0
       IF (.NOT. (info.NE.0)) GO TO 30
-      call basout(io,wte,"Rand: COV not positive definite")
+      call basout(io,6,"Rand: COV not positive definite")
       ierr=1
       return
    30 icount = p + 1

@@ -25,7 +25,7 @@
 
 #include <stdlib.h> /* bsearch / strtoul */
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getmemory.h"
 #include "getdynamicdebuginfo.h"
 #include "api_scilab.h"
@@ -276,12 +276,12 @@ nextline:
 /*****************************************************************/
 #endif
 
-char **getDynamicDebugInfo(int *sizeArray)
+char **getDynamicDebugInfo(int *sizeArray, int* pvApiCtx)
 {
+    int i = 0;
     char *value = NULL;
     char **outputDynamicList = NULL;
-    int i, position = 0;
-    SciErr sciErr;
+    int position = 0;
     int iType = 0;
     static debug_message dynamicDebug[NB_DEBUG_ELEMENT];
 
@@ -289,6 +289,7 @@ char **getDynamicDebugInfo(int *sizeArray)
     /* Stuff for the function meminfo() */
     int shift = 10;
     unsigned KLONG buffers_plus_cached = 0;
+    SciErr sciErr;
 #endif
 
 #ifdef _MSC_VER

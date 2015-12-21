@@ -35,7 +35,7 @@ using namespace org_modules_hdf5;
 */
 
 /*--------------------------------------------------------------------------*/
-int sci_h5rm(char *fname, unsigned long fname_len)
+int sci_h5rm(char *fname, int* pvApiCtx)
 {
     H5Object * hobj = 0;
     SciErr err;
@@ -70,7 +70,7 @@ int sci_h5rm(char *fname, unsigned long fname_len)
     {
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string or H5Object expected.\n"), fname, 1);
             return 0;
         }
 
@@ -102,7 +102,7 @@ int sci_h5rm(char *fname, unsigned long fname_len)
 
         if (!isStringType(pvApiCtx, addr))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -134,13 +134,22 @@ int sci_h5rm(char *fname, unsigned long fname_len)
     }
     catch (const std::exception & e)
     {
+        if (strs)
+        {
+            freeAllocatedMatrixOfString(row, col, strs);
+        }
+
         Scierror(999, _("%s: %s\n"), fname, e.what());
         return 0;
     }
 
+    if (strs)
+    {
+        freeAllocatedMatrixOfString(row, col, strs);
+    }
+
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
-
     return 0;
 }
 

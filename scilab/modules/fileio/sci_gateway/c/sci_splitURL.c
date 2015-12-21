@@ -14,11 +14,11 @@
 #include "sciprint.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 
 /* ==================================================================== */
-int sci_splitURL(char *fname, int fname_len)
+int sci_splitURL(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int length = 0;
@@ -49,7 +49,7 @@ int sci_splitURL(char *fname, int fname_len)
     if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &url))
     {
         freeAllocatedSingleString(url);
-        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
         return 0;
     }
 

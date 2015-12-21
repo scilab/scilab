@@ -120,7 +120,7 @@ function  y = cat(dims, varargin)
             lj = size(varargin(j),"*")/prod(sizevarless(j));
             if typeof(permutevarj)=="ce" then
                 for k=1+lj*(i-1):lj*i
-                    ytemp(size(ytemp,"*")+1).entries = permutevarj(k).entries;
+                    ytemp{size(ytemp,"*")+1} = permutevarj{k};
                 end
             else
                 ytemp= [ytemp (permutevarj(1+lj*(i-1):lj*i)).'];
@@ -146,7 +146,7 @@ function  y = cat(dims, varargin)
         if typeof(ytemp)=="ce"
             ceindex = (1:ydimsize*prodxdimless)+ydimsize*prodxdimless*(i);
             for k=1:size(index,"*")
-                y(index(k)).entries = ytemp(ceindex(k)).entries;
+                y{index(k)} = ytemp{ceindex(k)};
             end
         else
             y(index) = ytemp((1:ydimsize*prodxdimless)+ydimsize*prodxdimless*(i));

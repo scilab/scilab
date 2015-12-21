@@ -98,7 +98,7 @@
                                                 <literal>"-mode"</literal> ; the boundary of the facet is not
                                                 drawn.
                                             </para>
-                                            <para>Note that the surface color treatement can be done
+                                            <para>Note that the surface color treatment can be done
                                                 using <literal>color_mode</literal> and
                                                 <literal>color_flag</literal> options through the surface
                                                 entity properties (see
@@ -240,7 +240,7 @@
                         together with <literal>type</literal> in <literal>flag</literal> : if it is set
                         to <literal>1</literal>, <literal>3</literal> or <literal>5</literal> (see above to
                         see the corresponding behaviour). If <literal>flag</literal> is missing,
-                        <literal>ebox</literal> is not taken into acoount. 
+                        <literal>ebox</literal> is not taken into account.
                     </para>
                     <para>
                         Note that, when specified, the <literal>ebox</literal> argument acts on

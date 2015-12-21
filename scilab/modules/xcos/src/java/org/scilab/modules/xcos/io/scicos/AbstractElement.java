@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,6 +17,7 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
 
 /**
  * Root implementation for any Element.
@@ -27,10 +29,14 @@ import org.scilab.modules.types.ScilabType;
  *
  */
 public abstract class AbstractElement<T> implements Element<T> {
+    final JavaController controller;
+
     /**
      * Default constructor
+     * @param controller the shared controller
      */
-    protected AbstractElement() {
+    protected AbstractElement(final JavaController controller) {
+        this.controller = controller;
     }
 
     /**
@@ -64,6 +70,20 @@ public abstract class AbstractElement<T> implements Element<T> {
     public ScilabType encode(T from) {
         return encode(from, null);
     };
+
+    /**
+     * Disable the encode for all sub-classes by encoding nothing
+     *
+     * @param from the associated Java object
+     * @param element a scilab type to encode
+     * @param from
+     *            the source instance
+     * @return the element parameter
+     */
+    @Override
+    public ScilabType encode(T from, ScilabType element) {
+        return element;
+    }
 
     /**
      * Default implementation is empty.

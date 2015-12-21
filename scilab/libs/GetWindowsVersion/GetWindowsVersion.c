@@ -11,6 +11,7 @@
  *
  */
 
+#include <windows.h>
 #include "GetWindowsVersion.h"
 /*-----------------------------------------------------------------------------------*/
 typedef BOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);

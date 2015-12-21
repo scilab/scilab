@@ -232,7 +232,9 @@ function [nb, loc] = members(A, S, varargin)
                 loc = I;
                 loc(k) = kS(I(k));
                 if last then
-                    loc(k) = length(S)-loc(k)+1;
+                    if ~isempty(k)
+                        loc(k) = length(S)-loc(k)+1;
+                    end
                 end
                 loc = matrix(loc, size(A));
             end
@@ -277,26 +279,9 @@ function [nb, loc] = members(A, S, varargin)
             //    available and needed memory
             function j = set_j(i, LS, memS, rA)
                 // rA : remaining unprocessed part of A
-                [memA2, memS2, memtmp] = varspace("A2", "S2", "tmp");
-                // Available memory [bytes]:
-                m = stacksize();
-                avail = (m(1) - m(2))*8 + memA2 + memS2 + memtmp - 16*(i-1); // [bytes]
-                avail = 0.15*avail;  // A lot of memory is used as Intermediate memory
-                // Diadic loop on e = j-i+1 (slice's thickness):
-                // Init
                 e = size(rA, "*");
                 Vtest = rA(1:e);
                 memrA = varspace("Vtest");   // [bytes]
-                // Loop fitting the slice's thickness e for the available memory
-                while e*(memS+8*LS+16)+LS*memrA > avail & e > 1
-                    e = ceil(e/2);   // Remaining thickness => divided by 2
-                    Vtest = rA(1:e);
-                    memrA = varspace("Vtest");
-                end
-                if (e*(memS+8*LS+16)+LS*memrA > avail) then
-                    msg = _("%s: not enough memory to proceed\n");
-                    error(sprintf(msg, "members"));
-                end
                 j = i+e-1;
             endfunction
 
@@ -341,7 +326,9 @@ function [nb, loc] = members(A, S, varargin)
             if lhs > 1
                 if ~last
                     k = loc~=0;
-                    loc(k) = LS - loc(k) + 1;
+                    if ~isempty(loc(k))
+                        loc(k) = LS - loc(k) + 1;
+                    end
                 end
                 loc = matrix(loc, sA);
             end

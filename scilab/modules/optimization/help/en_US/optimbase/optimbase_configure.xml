@@ -202,7 +202,7 @@
                     <para>
                         The minimum bounds for the parameters. A n-by-1 matrix of doubles where n 
                         is the number of variables (default <literal>-boundsmin</literal> = [],
-                        i.e. there are no minimim bounds).
+                        i.e. there are no minimum bounds).
                     </para>
                 </listitem>
             </varlistentry>

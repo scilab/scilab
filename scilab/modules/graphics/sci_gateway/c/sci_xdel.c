@@ -30,7 +30,7 @@
 #include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xdel(char *fname, unsigned long fname_len)
+int sci_xdel(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 

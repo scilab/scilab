@@ -271,7 +271,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     case 10 then
         [mWHICH, nWHICH] = size(which);
         if(mWHICH * nWHICH <> 1)
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "eigs", 4));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "eigs", 4));
         end
         if(strcmp(which,"LM") ~= 0 & strcmp(which,"SM") ~= 0  & strcmp(which,"LR") ~= 0 & strcmp(which,"SR") ~= 0 & strcmp(which,"LI") ~= 0 & strcmp(which,"SI") ~= 0 & strcmp(which,"LA") ~= 0 & strcmp(which,"SA") ~= 0 & strcmp(which,"BE") ~= 0)
             if(Areal & Breal & Asym)

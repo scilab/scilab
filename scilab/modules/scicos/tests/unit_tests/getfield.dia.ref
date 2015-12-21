@@ -1,0 +1,76 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+loadXcosLibs();
+// Diagram
+scs_m = scicos_diagram();
+fields = getfield(1, scs_m);
+fieldsRef = ["diagram" "props" "objs" "version" "contrib"];
+assert_checkequal(fields, fieldsRef);
+props = getfield(2, scs_m);
+assert_checkequal(props, scs_m.props);
+objs = getfield(3, scs_m);
+assert_checkequal(objs, scs_m.objs);
+version = getfield(4, scs_m);
+assert_checkequal(version, scs_m.version);
+contrib = getfield(5, scs_m);
+assert_checkequal(contrib, scs_m.contrib);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: At most %d expected.\n"), "getfield", 1, 5);
+assert_checkerror("getfield(6, scs_m)", refMsg);
+// Block
+b = scicos_block();
+fields = getfield(1, b);
+fieldsRef = ["Block" "graphics" "model" "gui" "doc"];
+assert_checkequal(fields, fieldsRef);
+graphics = getfield(2, b);
+assert_checkequal(graphics, b.graphics);
+model = getfield(3, b);
+assert_checkequal(model, b.model);
+gui = getfield(4, b);
+assert_checkequal(gui, b.gui);
+doc = getfield(5, b);
+assert_checkequal(doc, b.doc);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: At most %d expected.\n"), "getfield", 1, 5);
+assert_checkerror("getfield(6, b)", refMsg);
+// Annotation
+t = TEXT_f("define");
+fields = getfield(1, t);
+fieldsRef = ["Text" "graphics" "model" "void" "gui"];
+assert_checkequal(fields, fieldsRef);
+graphics = getfield(2, t);
+assert_checkequal(graphics, t.graphics);
+model = getfield(3, t);
+assert_checkequal(model, t.model);
+void = getfield(4, t);
+assert_checkequal(void, t.void);
+gui = getfield(5, t);
+assert_checkequal(gui, t.gui);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: At most %d expected.\n"), "getfield", 1, 5);
+assert_checkerror("getfield(6, t)", refMsg);
+// Link
+l = scicos_link();
+fields = getfield(1, l);
+fieldsRef = ["Link" "xx" "yy" "id" "thick" "ct" "from" "to"];
+assert_checkequal(fields, fieldsRef);
+xx = getfield(2, l);
+assert_checkequal(xx, l.xx);
+yy = getfield(3, l);
+assert_checkequal(yy, l.yy);
+id = getfield(4, l);
+assert_checkequal(id, l.id);
+thick = getfield(5, l);
+assert_checkequal(thick, l.thick);
+ct = getfield(6, l);
+assert_checkequal(ct, l.ct);
+from = getfield(7, l);
+assert_checkequal(from, l.from);
+to = getfield(8, l);
+assert_checkequal(to, l.to);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: At most %d expected.\n"), "getfield", 1, 8);
+assert_checkerror("getfield(9, l)", refMsg);

@@ -16,6 +16,7 @@ import java.awt.Color;
 
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
+import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.io.XcosFileType;
 
@@ -137,15 +138,19 @@ public class XcosOptions {
                          final String toleranceOnTime, final String maxIntegrationTimeInterval, final String realTimeScaling, final int solver,
                          final String maximumStepSize, final int debugLevel) {
 
-            ScicosParameters.FINAL_INTEGRATION_TIME = Double.parseDouble(finalIntegrationTime);
-            ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE = Double.parseDouble(integratorAbsoluteTolerance);
-            ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE = Double.parseDouble(integratorRelativeTolerance);
-            ScicosParameters.TOLERANCE_ON_TIME = Double.parseDouble(toleranceOnTime);
-            ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL = Double.parseDouble(maxIntegrationTimeInterval);
-            ScicosParameters.REAL_TIME_SCALING = Double.parseDouble(realTimeScaling);
-            ScicosParameters.SOLVER = solver;
-            ScicosParameters.MAXIMUM_STEP_SIZE = Double.parseDouble(maximumStepSize);
-            ScicosParameters.DEBUG_LEVEL = debugLevel;
+            VectorOfDouble defaultValues = new VectorOfDouble(8);
+            defaultValues.set(ScicosParameters.FINAL_INTEGRATION_TIME, Double.parseDouble(finalIntegrationTime));
+            defaultValues.set(ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE, Double.parseDouble(integratorAbsoluteTolerance));
+            defaultValues.set(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE, Double.parseDouble(integratorRelativeTolerance));
+            defaultValues.set(ScicosParameters.TOLERANCE_ON_TIME, Double.parseDouble(toleranceOnTime));
+            defaultValues.set(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL, Double.parseDouble(maxIntegrationTimeInterval));
+            defaultValues.set(ScicosParameters.MAXIMUM_STEP_SIZE, Double.parseDouble(maximumStepSize));
+            defaultValues.set(ScicosParameters.REAL_TIME_SCALING, Double.parseDouble(realTimeScaling));
+            defaultValues.set(ScicosParameters.SOLVER, solver);
+
+            ScicosParameters.DEFAULT_PARAMETERS = defaultValues;
+
+            ScicosParameters.DEFAULT_DEBUG_LEVEL = debugLevel;
         }
     }
 

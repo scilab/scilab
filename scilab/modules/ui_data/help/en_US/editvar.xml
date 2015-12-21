@@ -27,7 +27,7 @@
             <varlistentry>
                 <term>varname</term>
                 <listitem>
-                    <para>variable name. The variable must exist in the current Scilab environnement.</para>
+                    <para>variable name. The variable must exist in the current Scilab environment.</para>
                 </listitem>
             </varlistentry>
         </variablelist>

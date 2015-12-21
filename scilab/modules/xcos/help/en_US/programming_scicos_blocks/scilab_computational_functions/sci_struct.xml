@@ -106,7 +106,7 @@
             
         </para>
         <para>
-            When the simulator is calling such a computational function, it build a scilab structure (in the previous exemple this is the named  rhs/lhs arguments) from his own internal C reprensation of a block structure (see 
+            When the simulator is calling such a computational function, it build a scilab structure (in the previous example this is the named  rhs/lhs arguments) from his own internal C representation of a block structure (see
             for more details about the C structure of scicos
             blocks).
         </para>
@@ -346,7 +346,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">block.ipar :</emphasis> a vector of size correspondig to the integer parameter register. This is a read only data. 
+                    <emphasis role="bold">block.ipar :</emphasis> a vector of size corresponding to the integer parameter register. This is a read only data.
                 </para>
             </listitem>
             <listitem>

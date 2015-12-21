@@ -26,7 +26,7 @@
 #include "scicos_free.h"
 #include "scicos.h"
 #include "core_math.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void assignment(scicos_block *block, int flag)

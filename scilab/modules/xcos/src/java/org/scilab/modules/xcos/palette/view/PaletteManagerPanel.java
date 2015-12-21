@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2015 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
@@ -32,6 +33,8 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.NavigationAction;
@@ -250,7 +253,8 @@ public class PaletteManagerPanel extends JSplitPane {
      */
     public JScrollPane openDiagramAsPal(PaletteNode node) {
         String path = ((Custom) node).getPath().getEvaluatedPath();
-        this.diagramInstance = new PaletteDiagram();
+        JavaController ctroller = new JavaController();
+        this.diagramInstance = new PaletteDiagram(ctroller.createObject(Kind.DIAGRAM));
         this.diagramInstance.openDiagramAsPal(path);
         return this.diagramInstance.getAsComponent();
     }

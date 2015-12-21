@@ -112,13 +112,13 @@
             <emphasis>dz = (zmax-zmin)/nc</emphasis>, then the part of the polygon mapping where  
             <emphasis>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</emphasis> is filled with the color <emphasis>i</emphasis>). 
             By default <emphasis>zmin = min(func)</emphasis> and <emphasis>zmax = max(func)</emphasis>. If you want to do 
-            an animation with func values that varie in time, take for zmin and zmax the global 
+            an animation with func values that varies in time, take for zmin and zmax the global
             minimum and maximum or something close.
         </para>
         <para>
             The <varname>colout</varname> argument lets the user choosing the colors for the 2 extremes
             regions <emphasis>{func &lt; zmin}</emphasis> and <emphasis>{func &gt; zmax}</emphasis>, <literal>under_min_col</literal> and 
-            <literal>upper_max_col</literal> may be equal (independantly) to:
+            <literal>upper_max_col</literal> may be equal (independently) to:
         </para>
         <variablelist>
             <varlistentry>

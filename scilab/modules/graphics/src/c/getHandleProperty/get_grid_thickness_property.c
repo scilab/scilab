@@ -26,7 +26,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_grid_thickness_property(void* _pvCtx, int iObjUID)
+void* get_grid_thickness_property(void* _pvCtx, int iObjUID)
 {
     double grid[3];
     double dGridThickness = 0;
@@ -40,7 +40,7 @@ int get_grid_thickness_property(void* _pvCtx, int iObjUID)
     if (pdGridThickness == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid_thickness");
-        return -1;
+        return NULL;
     }
 
     grid[0] = dGridThickness;
@@ -49,7 +49,7 @@ int get_grid_thickness_property(void* _pvCtx, int iObjUID)
     if (pdGridThickness == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
-        return -1;
+        return NULL;
     }
 
     grid[1] = dGridThickness;
@@ -58,7 +58,7 @@ int get_grid_thickness_property(void* _pvCtx, int iObjUID)
     if (pdGridThickness == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
-        return -1;
+        return NULL;
     }
 
     grid[2] = dGridThickness;
@@ -67,11 +67,11 @@ int get_grid_thickness_property(void* _pvCtx, int iObjUID)
 
     if (iView)
     {
-        return sciReturnRowVector(_pvCtx, grid, 3);
+        return sciReturnRowVector(grid, 3);
     }
     else
     {
-        return sciReturnRowVector(_pvCtx, grid, 2);
+        return sciReturnRowVector(grid, 2);
     }
 }
 /*------------------------------------------------------------------------*/

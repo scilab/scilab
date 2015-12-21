@@ -1,9 +1,0 @@
-	LIBRARY    Output_stream.dll
-
-
-EXPORTS
-;
-;Output_stream
-;
-error_
-basout_

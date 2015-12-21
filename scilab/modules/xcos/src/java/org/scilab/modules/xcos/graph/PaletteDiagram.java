@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2015 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
@@ -15,6 +16,7 @@ package org.scilab.modules.xcos.graph;
 
 import java.awt.Dimension;
 import java.io.File;
+import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,8 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.XcosFileType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.palette.view.PaletteComponent;
 import org.scilab.modules.xcos.palette.view.PaletteManagerPanel;
@@ -46,10 +50,11 @@ public class PaletteDiagram extends XcosDiagram {
     /**
      * Constructor
      */
-    public PaletteDiagram() {
-        super();
+    public PaletteDiagram(long uid) {
+        super(new JavaController(), uid, Kind.DIAGRAM, new UID().toString());
         setComponent(new PaletteComponent(this));
-        installStylesheet();
+
+        setTitle(PaletteDiagram.class.getName());
 
         setCellsLocked(true);
         setGridVisible(false);
@@ -126,7 +131,7 @@ public class PaletteDiagram extends XcosDiagram {
             if (obj instanceof BasicBlock) {
                 BasicBlock block = (BasicBlock) obj;
                 block.setGeometry(getNewBlockPosition(block.getGeometry(), blockCount));
-                BlockPositioning.updateBlockView(block);
+                BlockPositioning.updateBlockView(this, block);
                 blockCount++;
             }
         }
@@ -159,10 +164,14 @@ public class PaletteDiagram extends XcosDiagram {
         double w = geom.getWidth();
         double h = geom.getHeight();
 
-        double ratio = Math.min(palBlockSize.getMaxIconWidth() / w,
-                                palBlockSize.getMaxIconHeight() / h);
-        w *= ratio;
-        h *= ratio;
+        if (geom.getWidth() > palBlockSize.getMaxIconWidth()
+                || geom.getHeight() > palBlockSize.getMaxIconHeight()) {
+            // update block size to fill "block area"
+            double ratio = Math.min(palBlockSize.getMaxIconWidth() / w,
+                                    palBlockSize.getMaxIconHeight() / h);
+            w *= ratio;
+            h *= ratio;
+        }
 
         x = row * blockWidthAndMargin;
         x += (blockD.width - w) / 2;

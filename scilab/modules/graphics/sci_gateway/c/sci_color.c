@@ -18,7 +18,7 @@
 #include "FigureModel.h"
 #include "addColor.h"
 
-int sci_color(char *fname, unsigned long fname_len)
+int sci_color(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iRows = 0;

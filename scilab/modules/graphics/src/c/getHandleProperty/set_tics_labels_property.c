@@ -42,7 +42,7 @@ int set_tics_labels_property(void* _pvCtx, int iObjUID, void* _pvData, int value
 
     if (valueType != sci_strings)
     {
-        Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "tics_labels");
+        Scierror(999, _("Wrong type for '%s' property: string expected.\n"), "tics_labels");
         return SET_PROPERTY_ERROR;
     }
 

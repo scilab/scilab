@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) 2007 - INRIA - Allan CORET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,10 +12,8 @@
 
 #include <string.h>
 #include "getcommandlineargs.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int scilab_nbargs = 0;
 static char *scilab_argv[MAXCMDTOKENS];
@@ -35,7 +33,7 @@ char ** getCommandLineArgs(int *nbargs)
         {
             for (i = 0; i < scilab_nbargs; i++)
             {
-                argv[i] = strdup(scilab_argv[i]);
+                argv[i] = os_strdup(scilab_argv[i]);
             }
         }
     }

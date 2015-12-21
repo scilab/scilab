@@ -150,4 +150,5 @@ void putLineSearchedHistory(void);
 */
 void pasteClipBoard(void);
 
+void finalizeLineBuffer(void);
 #endif /* __TERMLINE_H__ */

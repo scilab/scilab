@@ -21,7 +21,7 @@
  * @param[out] sizeArrayReturned
  * @return an array of chars
  */
-COMPLETION_IMPEXP char **completion(char *somechars, int *sizeArrayReturned);
+COMPLETION_IMPEXP char **completion(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on Functions for scilab
@@ -29,7 +29,7 @@ COMPLETION_IMPEXP char **completion(char *somechars, int *sizeArrayReturned);
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnFunctions(char *somechars, int *sizeArrayReturned);
+COMPLETION_IMPEXP char **completionOnFunctions(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on command words for scilab
@@ -37,7 +37,7 @@ COMPLETION_IMPEXP char **completionOnFunctions(char *somechars, int *sizeArrayRe
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnCommandWords(char *somechars, int *sizeArrayReturned);
+COMPLETION_IMPEXP char **completionOnCommandWords(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on Macros in libraries for scilab
@@ -45,7 +45,7 @@ COMPLETION_IMPEXP char **completionOnCommandWords(char *somechars, int *sizeArra
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnMacros(char *somechars, int *sizeArrayReturned);
+COMPLETION_IMPEXP char **completionOnMacros(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on Variables for scilab
@@ -53,7 +53,7 @@ COMPLETION_IMPEXP char **completionOnMacros(char *somechars, int *sizeArrayRetur
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnVariables(char *somechars, int *sizeArrayReturned);
+COMPLETION_IMPEXP char **completionOnVariables(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on Variables for scilab
@@ -62,7 +62,7 @@ COMPLETION_IMPEXP char **completionOnVariables(char *somechars, int *sizeArrayRe
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturned);
+COMPLETION_IMPEXP char **completionOnVariablesWithoutMacros(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on files for scilab
@@ -70,7 +70,7 @@ COMPLETION_IMPEXP char **completionOnVariablesWithoutMacros(char *somechars, int
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnFiles(char *somechars, int *sizeArrayReturned);
+COMPLETION_IMPEXP char **completionOnFiles(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on files for scilab
@@ -86,6 +86,6 @@ COMPLETION_IMPEXP char **completionOnFields(char *lineBeforeCaret, char *pattern
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnHandleGraphicsProperties(char *somechars, int *sizeArrayReturned);
+COMPLETION_IMPEXP char **completionOnHandleGraphicsProperties(const char *somechars, int *sizeArrayReturned);
 /*--------------------------------------------------------------------------*/
 #endif /* __COMPLETION_H__ */

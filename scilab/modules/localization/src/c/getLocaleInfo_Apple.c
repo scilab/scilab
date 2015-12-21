@@ -11,9 +11,11 @@
  */
 
 #include <CoreFoundation/CoreFoundation.h>
+#include <stdlib.h>
 #include "getLocaleInfo_Apple.h"
+#include "charEncoding.h"
 
-char *getLocaleUserInfo(void)
+wchar_t *getLocaleUserInfo(void)
 {
     char *cUserLanguage = NULL;
     CFLocaleRef userLocaleRef = CFLocaleCopyCurrent();
@@ -22,12 +24,12 @@ char *getLocaleUserInfo(void)
     if (getenv( "LANG" ))
     {
         /* Mac OS X does not respect the LANG variable. We do it ourself. */
-        return getenv("LANG");
+        return to_wide_string(getenv("LANG"));
     }
     else
     {
         cUserLanguage = (char *) malloc(((int) CFStringGetLength(userLanguage) + 1) * sizeof(char));
         CFStringGetCString(userLanguage, cUserLanguage, ((int) CFStringGetLength(userLanguage)) + 1, kCFStringEncodingUTF8);
     }
-    return cUserLanguage;
+    return to_wide_string(cUserLanguage);
 }

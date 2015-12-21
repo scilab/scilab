@@ -13,19 +13,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <wchar.h>
-#include "banier.h"
 #include "csignal.h"
-#include "sigbas.h"
-#include "scilabmode.h"
-#include "getKey.h"
-#include "cliPrompt.h"
-#include "cliDisplayManagement.h"
+#include "configvariable_interface.h"
 
 /* If CTRL-C was pressed. */
 void controlC_handler(int sig)
 {
-    int j = SIGINT;
-    C2F(sigbas)(&j);
+    setExecutionBreak();
 }
 
 int csignal(void)
@@ -48,6 +42,5 @@ int csignal(void)
         return -1;
     }
 #endif
-
     return 0;
 }

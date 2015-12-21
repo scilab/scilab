@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,22 +12,19 @@
  */
 package org.scilab.modules.xcos.actions;
 
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
-
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
 import javax.swing.JButton;
-
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabComponent;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
+
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
 
 /**
  * Launch the modelica compiler configuration TCL UI
@@ -91,30 +89,16 @@ public final class InitModelicaAction extends SimulationNotRunningAction {
             return;
         }
 
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        if (handler == null) {
-            return;
-        }
-
         graph.info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
 
-        handler.writeDiagram(graph.getRootDiagram());
-
-        final String cmd = buildCall("xcosConfigureModelica");
-
-        final ActionListener action = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                graph.info(XcosMessages.EMPTY_INFO);
-                handler.release();
-            }
-        };
+        final StringBuilder command = new StringBuilder();
+        command.append("scs_m = scicos_new(\"0x").append(Long.toHexString(graph.getRootDiagram().getUID())).append("\"); ");
+        command.append("xcosConfigureModelica(scs_m); ");
 
         try {
-            asynchronousScilabExec(action, cmd);
+            asynchronousScilabExec((ActionEvent e1) -> { graph.info(XcosMessages.EMPTY_INFO); }, command.toString());
         } catch (InterpreterException e1) {
             Logger.getLogger(InitModelicaAction.class.getName()).severe(e.toString());
-            handler.release();
         }
     }
 }

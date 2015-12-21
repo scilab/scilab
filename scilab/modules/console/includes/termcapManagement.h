@@ -14,7 +14,7 @@
 
 /* TODO: Check if it is really portable */
 
-/* Token used to differenciate DEL key from Backspace key for rmChar */
+/* Token used to differentiate DEL key from Backspace key for rmChar */
 
 /* When backspace is pressed */
 #define SCI_BACKSPACE 0x7f

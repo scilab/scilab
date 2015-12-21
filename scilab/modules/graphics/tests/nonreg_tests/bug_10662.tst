@@ -14,20 +14,6 @@
 // <-- Short Description -->
 // xload / load_user_data() does not support tlist
 
-// Old save/load
-plot2d();
-a = gca();
-set(a, "user_data", tlist(["test" "a"], %pi));
-warning("off");
-save("TMPDIR/test.scg", gcf());
-warning("on");
-delete(gcf());
-load("TMPDIR/test.scg");
-a = gca();
-assert_checkequal(a.user_data, tlist(["test" "a"], %pi));
-delete(gcf());
-
-deletefile("TMPDIR/test.scg");
 
 // SOD save/load
 plot2d();

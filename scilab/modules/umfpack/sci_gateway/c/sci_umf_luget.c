@@ -51,12 +51,12 @@
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 
 extern CellAdr *ListNumeric;
 
-int sci_umf_luget(char* fname, unsigned long l)
+int sci_umf_luget(char* fname, void* pvApiCtx)
 {
     /*
     *  LU_ptr is (a pointer to) a factorization of A, we have:

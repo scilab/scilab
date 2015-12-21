@@ -81,7 +81,7 @@
         <para>
             <literal>write(%io(2),....)</literal> writes on Scilab's window.
             Note that in this case <literal>format</literal> should produce one output
-            line per matrix row. If this contraint is not verified unpredictable
+            line per matrix row. If this constraint is not verified unpredictable
             behavior could happen.
         </para>
     </refsection>

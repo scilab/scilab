@@ -31,10 +31,10 @@ function   c=cellstr(s)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of string expected.\n"),"cellstr",1));
     end
 
-    C=cell(size(s,1),1);
+    c=cell(size(s,1),1);
 
     for i=1:size(s,1)
-        c(i,1).entries=strcat(s(i,:));
+        c{i,1} = strcat(s(i,:));
     end
 
 endfunction

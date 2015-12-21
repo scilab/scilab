@@ -25,13 +25,12 @@ end
 mclose(fd);
 
 try
-  mtell(fd);
+    mtell(fd);
 catch
-  [message, ierr]=lasterror();
-  if ierr <> 10000 then pause,end
+    errorMessage = sprintf(gettext("%s: Error while opening, reading or writing.\n"), "mtell");
+    [message, ierr]=lasterror();
+    if message <> errorMessage then bugmes();quit;end
 end
-
-
 
 fd = mopen(testFile,'wb');
 // file should be empty

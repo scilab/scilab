@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Serge STEER <serge.steer@inria.fr>
@@ -13,16 +14,16 @@
 // <-- Short Description -->
 // Incorrect syntax error management in control instructions under  execstr( 'errcatch')
 
-if execstr('for k=1:2','errcatch')<>47 then pause,end
-if execstr('for k=1:2,k','errcatch')<>47 then pause,end
-if execstr('for k=1:','errcatch')<>2 then pause,end
-if execstr('for k=[%f %t],k,end','errcatch')<>76 then pause,end
+if execstr("for k=1:2","errcatch")<>999 then pause,end
+if execstr("for k=1:2,k","errcatch")<>999 then pause,end
+if execstr("for k=1:","errcatch")<>999 then pause,end
+if execstr("for k=[%f %t],k,end","errcatch")<>0 then pause,end
 
 
 ok=%f;
-try 
-  for k=[%f %t],k,end
+try
+    for k=[%f %t],k,end
 catch
-  ok=%t;
+    ok=%t;
 end
-if ~ok then pause,end
+if ok then pause,end

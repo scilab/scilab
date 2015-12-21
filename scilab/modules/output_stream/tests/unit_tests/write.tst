@@ -11,9 +11,5 @@
 write(%io(2), "Hello World")
 
 //stdin
-try
-    write(%io(1), "Hello World")
-catch
-    ierr = lasterror();
-    assert_checkequal(ierr, 49);
-end
+ierr = execstr("write(%io(1), ""Hello World"");","errcatch");
+assert_checkequal(ierr, 999);

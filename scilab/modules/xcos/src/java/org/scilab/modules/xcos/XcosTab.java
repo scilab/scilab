@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,6 +13,8 @@
 
 package org.scilab.modules.xcos;
 
+import com.mxgraph.util.mxEvent;
+import com.mxgraph.util.mxEventObject;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.ref.WeakReference;
@@ -82,6 +85,7 @@ import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
+import org.scilab.modules.xcos.actions.ViewDiagramTreeShowAction;
 import org.scilab.modules.xcos.actions.ViewGridAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
@@ -265,6 +269,10 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         initComponents(graph);
 
         graph.getAsComponent().addKeyListener(new ArrowKeyListener());
+        graph.getModel().addListener(mxEvent.CHANGE, (Object sender, mxEventObject evt) -> {
+            graph.setModified(true);
+            graph.updateTabTitle();
+        });
     }
 
     /*
@@ -311,12 +319,12 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
             uuid = UUID.randomUUID().toString();
         }
 
+        // FIXME: fix a crash on DnD and Tab restore
+
         final XcosTab tab = new XcosTab(graph, uuid);
         ScilabTabFactory.getInstance().addToCache(tab);
 
-        Xcos.getInstance().addDiagram(graph.getSavedFile(), graph);
         graph.setOpened(true);
-
         if (visible) {
             tab.createDefaultWindow().setVisible(true);
 
@@ -428,6 +436,7 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         view.add(NormalViewAction.createMenu(diagram));
         view.addSeparator();
         view.add(ViewPaletteBrowserAction.createCheckBoxMenu(diagram));
+        view.add(ViewDiagramTreeShowAction.createMenu(diagram));
         view.add(ViewDiagramBrowserAction.createMenu(diagram));
         final CheckBoxMenuItem menuItem = ViewViewportAction.createCheckBoxMenu(diagram);
         viewport = (JCheckBoxMenuItem) menuItem.getAsSimpleCheckBoxMenuItem();

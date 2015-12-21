@@ -28,15 +28,45 @@ function res = dlwMake(files, objects_or_dll)
     [ptmp, ftmp, fext] = fileparts(objects_or_dll);
     OBJ = ptmp + ftmp;
 
-    // scilab uses Visual Studio C++
+    //create a scibuild.bat file in TMPDIR directory
+    cmd = "nmake /Y /nologo /f Makefile.mak " + OBJ;
+    scibuildfile = writeBatchFile(cmd);
     if ilib_verbose() > 1 then
-        msg = unix_g("nmake /Y /nologo /f Makefile.mak " + OBJ);
+        msg = unix_g(scibuildfile);
         disp(msg);
     else
-        host("nmake /Y /nologo /f Makefile.mak " + OBJ);
+        host(scibuildfile);
     end
 
+    deletefile(scibuildfile);
     res = [OBJ];
 
 endfunction
 //=============================================================================
+function filename = writeBatchFile(cmd)
+
+    //update DEBUG_SCILAB_DYNAMIC_LINK to match with Scilab compilation mode
+    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
+    debugVal = "NO";
+    if val <> "YES" & val <> "NO" & isDebug() then
+        debugVal = "YES";
+    end
+
+    if win64() then
+        arch = "x64";
+    else
+        arch = "x86";
+    end
+
+    path = dlwGetVisualStudioPath();
+
+    scibuild = [ ...
+    "@call """ + path + "\VC\vcvarsall.bat"" " + arch;
+    "set DEBUG_SCILAB_DYNAMIC_LINK=" + debugVal;
+    cmd
+    ];
+
+    filename = TMPDIR + "/scibuild.bat";
+    mputl(scibuild, filename);
+    //filename = "call " + filename;
+endfunction

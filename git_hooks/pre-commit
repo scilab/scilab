@@ -76,6 +76,10 @@ then
     echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/IndentScanner.java' "
     echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/MatchingBlockScanner.java' "
     echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/ScilabLexer.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/xcos/src/java/org/scilab/modules/xcos/Controller.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/xcos/src/java/org/scilab/modules/xcos/JavaController.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/xcos/src/java/org/scilab/modules/xcos/Kind.java' "
+    echo "  git config --add astyle.ignored 'scilab/modules/xcos/src/java/org/scilab/modules/xcos/ObjectProperties.java' "
     echo "  git config --add astyle.ignored 'scilab/modules/scicos/src/scicos_sundials/*' "
 
     echo

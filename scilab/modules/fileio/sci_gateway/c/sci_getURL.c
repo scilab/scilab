@@ -11,29 +11,26 @@
  *
  */
 #include <stdio.h>
+#include <string.h>
 #include "sciprint.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dlManager.h"
 #include "localization.h"
 /* ==================================================================== */
 static void freeAllocatedStrings(char** url, char** dest, char** username, char** password, char** content, char** filePath);
 /* ==================================================================== */
-int sci_getURL(char *fname, int fname_len)
+int sci_getURL(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
-    int length = 0;
 
-    int *piAddr = NULL;
     char *url = NULL;
     char *dest = NULL;
     char *username = NULL;
     char *password = NULL;
     char *content = NULL;
 
-    int iRows = 0, iCols = 0;
-    int iType = 0;
     int *piAddressVarOne = NULL;
     int ret = 0;
     char *filePath = NULL;
@@ -54,7 +51,7 @@ int sci_getURL(char *fname, int fname_len)
     ret = getAllocatedSingleString(pvApiCtx, piAddressVarOne, &url);
     if (ret)
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
         freeAllocatedStrings(&url, &dest, &username, &password, &content, &filePath);
         return 0;
     }
@@ -75,7 +72,7 @@ int sci_getURL(char *fname, int fname_len)
         ret = getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &dest);
         if (ret)
         {
-            Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
             freeAllocatedStrings(&url, &dest, &username, &password, &content, &filePath);
             return 0;
         }
@@ -97,7 +94,7 @@ int sci_getURL(char *fname, int fname_len)
         ret = getAllocatedSingleString(pvApiCtx, piAddressVarThree, &username);
         if (ret)
         {
-            Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
             freeAllocatedStrings(&url, &dest, &username, &password, &content, &filePath);
             return 0;
         }
@@ -120,7 +117,7 @@ int sci_getURL(char *fname, int fname_len)
         ret = getAllocatedSingleString(pvApiCtx, piAddressVarFour, &password);
         if (ret)
         {
-            Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 4);
+            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 4);
             freeAllocatedStrings(&url, &dest, &username, &password, &content, &filePath);
             return 0;
         }

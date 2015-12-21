@@ -39,7 +39,7 @@ function atomsToremoveUnregister(name,version,section)
     // =========================================================================
 
     if type(section) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsToremoveUnregister",3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsToremoveUnregister",3));
     end
 
     if and(section<>["user","allusers"]) then
@@ -81,10 +81,7 @@ function atomsToremoveUnregister(name,version,section)
     // Apply changes
     // =========================================================================
     if isempty(toremove_mat) then
-        wMode = warning("query");
-        warning("off");
-        save(toremove_bin, toremove_mat);
-        warning(wMode);
+        save(toremove_bin, "toremove_mat");
     else
         mdelete(toremove_bin);
     end

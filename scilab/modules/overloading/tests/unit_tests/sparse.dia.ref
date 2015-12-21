@@ -9,7 +9,6 @@ A = spzeros(3,2);
 A(3,1) = 2;
 string(A)
  ans  =
- 
 !(3,2) sparse matrix  !
 !                     !
 !(3,1)    2           !

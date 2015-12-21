@@ -23,7 +23,7 @@
 #include "dynlib_external_objects_scilab.h"
 
 extern "C" {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 namespace org_modules_external_objects

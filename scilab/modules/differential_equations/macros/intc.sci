@@ -59,8 +59,8 @@ function [r, err] = intc(a, b, f, abserr, relerr)
     // Define two functions which define the real part and
     // imaginary part of f(g(t))*g'(t) where g(t) is a
     // parametrization of the line a-b.
-    deff("<r> = real1(t, a, b, f)", "r = real(f((1-t)*a+t*b)*(b-a));")
-    deff("<r> = imag1(t, a, b, f)", "r = imag(f((1-t)*a+t*b)*(b-a));")
+    deff("r = real1(t, a, b, f)", "r = real(f((1-t)*a+t*b)*(b-a));")
+    deff("r = imag1(t, a, b, f)", "r = imag(f((1-t)*a+t*b)*(b-a));")
     [r1, err1] = intg(0, 1, list(real1, a, b, f), abserr, relerr);
     [r2, err2] = intg(0, 1, list(imag1, a, b, f), abserr, relerr);
     r = r1 + %i*r2;

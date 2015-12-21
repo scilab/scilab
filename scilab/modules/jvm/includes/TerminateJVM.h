@@ -15,15 +15,13 @@
 #ifndef __TERMINATEJVM_H__
 #define __TERMINATEJVM_H__
 
-#include "dynlib_jvm.h"
 #include "BOOL.h"
 
 /**
 * Terminate JVM
 * @return TRUE or FALSE
 */
-
-JVM_IMPEXP BOOL TerminateJVM(void);
+BOOL TerminateJVM(void);
 
 #endif /* __TERMINATEJVM_H__ */
 /*--------------------------------------------------------------------------*/

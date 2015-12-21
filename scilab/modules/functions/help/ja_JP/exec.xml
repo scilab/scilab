@@ -228,10 +228,6 @@
             
             入出力の引数も特定の変数環境もありません.
             
-            スクリプトコードはプリコンパイル(<link linkend="comp">comp</link>参照)
-            
-            できるため,この形式は最も効率的です.
-            
             スクリプト評価のこの方法により,スクリプトをライブラリの
             
             関数として保存することが可能になります.
@@ -326,12 +322,6 @@ whos -name "y "
             <member>
                 
                 <link linkend="evstr">evstr</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="comp">comp</link>
                 
             </member>
             

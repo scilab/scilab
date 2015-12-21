@@ -58,7 +58,7 @@
             First an LU factorization of the matrix is computed (<literal> P R^(-1) A Q = LU </literal>
             where P and Q are permutation matrices, R is a diagonal matrix (row scaling), L
             a lower triangular matrix with a diagonal of 1, and U an upper triangular matrix) 
-            then a first solution is computed with forward/backward subtitutions ; 
+            then a first solution is computed with forward/backward substitutions ;
             finaly the solution is improved  by iterative refinement.
         </para>
     </refsection>

@@ -16,16 +16,17 @@
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_PREFIX L"SCI"
 /*--------------------------------------------------------------------------*/
-int sci_tempname(char *fname, unsigned long fname_len)
+int sci_tempname(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     wchar_t *wcprefix = NULL;
     wchar_t *wcTempFilename = NULL;
 
-    Rhs = Max(Rhs, 0);
+    //Rhs = Max(Rhs, 0);
     CheckRhs(0, 1);
     CheckLhs(1, 1);
 
@@ -68,7 +69,7 @@ int sci_tempname(char *fname, unsigned long fname_len)
 #if _MSC_VER
             if (wcslen(wcprefix) > 3)
             {
-                FREE(wcprefix);
+                freeAllocatedSingleWideString(wcprefix);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string (3 characters max.) expected.\n"), fname, 1);
                 return 0;
             }
@@ -76,14 +77,14 @@ int sci_tempname(char *fname, unsigned long fname_len)
         }
         else
         {
-            FREE(wcprefix);
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            freeAllocatedSingleWideString(wcprefix);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
     }
 
     wcTempFilename = createtempfilenameW(wcprefix, TRUE);
-    FREE(wcprefix);
+    freeAllocatedSingleWideString(wcprefix);
     if (wcTempFilename == NULL)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), fname);

@@ -1,7 +1,0 @@
-	LIBRARY    io.dll
-
-
-EXPORTS
-;io
-;
-searchEnv

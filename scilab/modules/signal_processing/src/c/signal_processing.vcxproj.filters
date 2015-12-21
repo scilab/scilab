@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{e9de913f-eaff-49f5-a98a-c1e43a30fac3}</UniqueIdentifier>
+      <UniqueIdentifier>{9b99a910-6df2-4a34-bcca-e91ae9689f08}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{7d355e9c-4382-4b73-b57c-232fd1df0fff}</UniqueIdentifier>
+      <UniqueIdentifier>{d3daabcf-a262-4d20-88b4-35acec398aa2}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{daf54f0c-b81b-48af-b068-f015dbe56e00}</UniqueIdentifier>
+      <UniqueIdentifier>{e4f01980-4227-449f-b245-c96677544adc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{5055e0f1-e648-40da-98ae-c94c3a3b6c2e}</UniqueIdentifier>
+      <UniqueIdentifier>{328720ab-2fef-4f19-a528-5b90565913f8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{c6ac18c8-f30f-4076-a6ed-e24976cec289}</UniqueIdentifier>
+      <UniqueIdentifier>{b64c5b23-4fc0-42b4-b96b-15f0206b0d14}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{f64486fd-3c8c-42ba-9661-87c1796473cd}</UniqueIdentifier>
+      <UniqueIdentifier>{78e25383-0b28-4478-978c-0edd7c804190}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -29,40 +29,10 @@
     <ClCompile Include="DllmainSignal_processing.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_signal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_amell.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_corr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_delip.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ffir.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_fft.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_fiir.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_remez.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_rpem.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_syredi.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="conv2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_conv2.c">
+    <ClCompile Include="..\cpp\signalprocessingfunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -70,17 +40,14 @@
     <ClInclude Include="..\..\includes\dynlib_signal_processing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\gw_signal.h">
+    <ClInclude Include="conv2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="conv2.h">
+    <ClInclude Include="..\cpp\signalprocessingfunctions.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="signal_processing_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -95,5 +62,8 @@
     <ResourceCompile Include="signal_processing.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
   </ItemGroup>
 </Project>

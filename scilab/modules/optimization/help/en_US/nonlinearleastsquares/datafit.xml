@@ -29,7 +29,7 @@
                 <term>imp</term>
                 <listitem>
                     <para>scalar argument used to set the trace mode.
-                        <literal>imp=0</literal> nothing (execpt errors) is reported,
+                        <literal>imp=0</literal> nothing (except errors) is reported,
                         <literal>imp=1</literal> initial and final reports,
                         <literal>imp=2</literal> adds a report per iteration,
                         <literal>imp&gt;2</literal> add reports on linear search.
@@ -68,7 +68,7 @@
             <varlistentry>
                 <term>W</term>
                 <listitem>
-                    <para>weighting matrix of size ne x ne (optional; defaut no
+                    <para>weighting matrix of size ne x ne (optional; default no
                         ponderation)
                     </para>
                 </listitem>

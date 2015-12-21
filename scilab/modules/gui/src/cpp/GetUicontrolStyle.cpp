@@ -20,7 +20,7 @@ extern "C"
  ** \brief Get the style of an uicontrol object
  */
 
-char *IntToStyle(int _iStyle)
+const char *IntToStyle(int _iStyle)
 {
     switch (_iStyle)
     {
@@ -57,7 +57,7 @@ char *IntToStyle(int _iStyle)
     return NULL;
 }
 
-int GetUicontrolStyle(void* _pvCtx, int iObjUID)
+void* GetUicontrolStyle(void* _pvCtx, int iObjUID)
 {
     int iStyle = -1;
     int *piStyle = &iStyle;
@@ -66,12 +66,12 @@ int GetUicontrolStyle(void* _pvCtx, int iObjUID)
 
     if (piStyle != NULL)
     {
-        return sciReturnString(_pvCtx, IntToStyle(iStyle));
+        return sciReturnString(IntToStyle(iStyle));
     }
     else
     {
         Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Style");
-        return FALSE;
+        return NULL;
     }
 
 }

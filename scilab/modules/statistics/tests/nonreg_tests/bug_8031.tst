@@ -22,5 +22,5 @@ p = 1.12837916D-150;
 q = 1;
 x = 0;
 
-refMsg = msprintf(_("Answer appears to be lower than lowest search bound %g\n"), 1e-300);
+refMsg = msprintf(_("%s: Answer appears to be lower than lowest search bound %g\n"), "cdfgam", 1e-300);
 assert_checkerror("shape1 = cdfgam(""Shape"", shape, p, q, x);", refMsg);

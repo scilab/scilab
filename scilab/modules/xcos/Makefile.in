@@ -107,16 +107,19 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@GUI_TRUE@@XCOS_TRUE@am__append_1 = libscixcos.la
+@GIWS_TRUE@am__append_1 = giws
+@SWIG_TRUE@am__append_2 = swig
+@GUI_TRUE@@XCOS_TRUE@am__append_3 = libscixcos.la
 DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am $(top_srcdir)/config/mkinstalldirs \
 	$(top_srcdir)/config/depcomp
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_4 = java
 subdir = modules/xcos
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
+	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
+	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -173,9 +176,12 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscixcos_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/jni/libscixcos_algo_la-Xcos.lo \
+	src/jni/libscixcos_algo_la-XcosCellFactory.lo \
 	src/jni/libscixcos_algo_la-Palette.lo \
 	src/jni/libscixcos_algo_la-Modelica.lo \
-	src/cpp/libscixcos_algo_la-xcosUtilities.lo
+	src/jni/libscixcos_algo_la-JavaController_wrap.lo \
+	src/cpp/libscixcos_algo_la-xcosUtilities.lo \
+	src/cpp/libscixcos_algo_la-loadStatus.lo
 am_libscixcos_algo_la_OBJECTS = $(am__objects_1)
 libscixcos_algo_la_OBJECTS = $(am_libscixcos_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -188,11 +194,14 @@ am__objects_2 = src/noxcos/libscixcos_disable_la-noxcos.lo
 am_libscixcos_disable_la_OBJECTS = $(am__objects_2)
 libscixcos_disable_la_OBJECTS = $(am_libscixcos_disable_la_OBJECTS)
 libscixcos_la_DEPENDENCIES = libscixcos-algo.la \
-	$(top_builddir)/modules/commons/libscicommons.la
-am__objects_3 = sci_gateway/c/libscixcos_la-gw_xcos.lo
+	$(top_builddir)/modules/scicos/libsciscicos.la \
+	$(top_builddir)/modules/commons/libscicommons.la \
+	$(top_builddir)/modules/jvm/libscijvm.la
+am__objects_3 =
 am__objects_4 = sci_gateway/cpp/libscixcos_la-sci_Xcos.lo \
 	sci_gateway/cpp/libscixcos_la-sci_warnBlockByUID.lo \
 	sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosCellCreated.lo \
 	sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo \
 	sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo \
 	sci_gateway/cpp/libscixcos_la-sci_xcosPalCategoryAdd.lo \
@@ -204,7 +213,6 @@ am__objects_4 = sci_gateway/cpp/libscixcos_la-sci_Xcos.lo \
 	sci_gateway/cpp/libscixcos_la-sci_xcosPalGet.lo \
 	sci_gateway/cpp/libscixcos_la-sci_xcosConfigureXmlFile.lo \
 	sci_gateway/cpp/libscixcos_la-sci_xcosAddToolsMenu.lo \
-	sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo \
 	sci_gateway/cpp/libscixcos_la-sci_loadXcos.lo \
 	sci_gateway/cpp/libscixcos_la-sci_xcosSimulationStarted.lo
 am_libscixcos_la_OBJECTS = $(am__objects_3) $(am__objects_4)
@@ -310,6 +318,7 @@ AUTOMAKE = @AUTOMAKE@
 AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
+BLAS_CFLAGS = @BLAS_CFLAGS@
 BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCACHE = @CCACHE@
@@ -344,6 +353,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 ECJ = @ECJ@
 EGREP = @EGREP@
+EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
@@ -367,6 +377,8 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAMCREST = @HAMCREST@
+HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
@@ -403,6 +415,9 @@ LAPACK_LIBS = @LAPACK_LIBS@
 LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
+LEX = @LEX@
+LEXLIB = @LEXLIB@
+LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
 LIBM = @LIBM@
@@ -500,6 +515,8 @@ UMFPACK_CFLAGS = @UMFPACK_CFLAGS@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 USE_NLS = @USE_NLS@
+VALGRIND_CFLAGS = @VALGRIND_CFLAGS@
+VALGRIND_LIBS = @VALGRIND_LIBS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
@@ -518,6 +535,8 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
+YACC = @YACC@
+YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -573,6 +592,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+yacc_present = @yacc_present@
 
 #### Target ######
 modulename = xcos
@@ -596,24 +616,37 @@ libscixcos_la_etc_DATA = \
 	etc/XConfiguration-xcos.xsl \
 	etc/XConfiguration-xcos.xml
 
-XCOS_CXX_SOURCES = src/jni/Xcos.cpp \
-			src/jni/Xcos.hxx \
-			src/jni/Palette.cpp \
-			src/jni/Palette.hxx \
-			src/jni/Modelica.cpp \
-			src/jni/Modelica.hxx \
-			src/cpp/xcosUtilities.cpp
+XCOS_CXX_SOURCES = \
+    src/jni/Xcos.cpp \
+    src/jni/Xcos.hxx \
+    src/jni/XcosCellFactory.cpp \
+    src/jni/XcosCellFactory.hxx \
+    src/jni/Palette.cpp \
+    src/jni/Palette.hxx \
+    src/jni/Modelica.cpp \
+    src/jni/Modelica.hxx \
+    src/jni/JavaController_wrap.cxx \
+    src/cpp/xcosUtilities.cpp \
+    src/cpp/loadStatus.cpp
 
-GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
-			src/jni/Palette.giws.xml \
-			src/jni/Modelica.giws.xml
+GIWS_WRAPPERS = \
+    src/jni/Xcos.giws.xml \
+    src/jni/XcosCellFactory.giws.xml \
+    src/jni/Palette.giws.xml \
+    src/jni/Modelica.giws.xml
 
-@GIWS_TRUE@BUILT_SOURCES = giws
-GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
+SWIG_WRAPPERS = \
+    src/jni/JavaController.i
+
+# FORCE directors due to a bug into swig
+SWIG_OPTIONS = -c++ -directors
+BUILT_SOURCES = $(am__append_1) $(am__append_2)
+GATEWAY_C_SOURCES = 
 GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
+	sci_gateway/cpp/sci_xcosCellCreated.cpp \
 	sci_gateway/cpp/sci_xcosDiagramToScilab.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
@@ -625,35 +658,55 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_xcosPalGet.cpp \
 	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp \
 	sci_gateway/cpp/sci_xcosAddToolsMenu.cpp \
-	sci_gateway/cpp/sci_xcosUpdateBlock.cpp \
 	sci_gateway/cpp/sci_loadXcos.cpp \
 	sci_gateway/cpp/sci_xcosSimulationStarted.cpp
 
 libscixcos_la_CPPFLAGS = \
-			-I$(srcdir)/includes/ \
-			-I$(srcdir)/src/jni/ \
-			-I$(srcdir)/src/cpp/ \
-			-I$(srcdir)/src/c/ \
-	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/commons/src/jni/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			$(JAVA_JNI_INCLUDE) \
-			$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/jni/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/scicos/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/console/includes/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    $(JAVA_JNI_INCLUDE) \
+    $(AM_CPPFLAGS)
 
 
 # Without the xcos module
-libscixcos_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			$(AM_CPPFLAGS)
+libscixcos_disable_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    $(AM_CPPFLAGS)
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
 libscixcos_disable_la_SOURCES = $(XCOS_DISABLE_C_SOURCES)
-pkglib_LTLIBRARIES = libscixcos-disable.la $(am__append_1)
+pkglib_LTLIBRARIES = libscixcos-disable.la $(am__append_3)
 @GUI_TRUE@@XCOS_TRUE@noinst_LTLIBRARIES = libscixcos-algo.la
 libscixcos_algo_la_SOURCES = $(XCOS_C_SOURCES) $(XCOS_CXX_SOURCES)
 libscixcos_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
@@ -663,7 +716,9 @@ libscixcos_algo_la_CPPFLAGS = $(libscixcos_la_CPPFLAGS)
 CHECK_SRC = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixcos_la_CPPFLAGS)
 libscixcos_la_LIBADD = libscixcos-algo.la \
-		$(top_builddir)/modules/commons/libscicommons.la
+		$(top_builddir)/modules/scicos/libsciscicos.la \
+		$(top_builddir)/modules/commons/libscicommons.la \
+		$(top_builddir)/modules/jvm/libscijvm.la
 
 
 #### xcos : gateway declaration ####
@@ -675,7 +730,8 @@ libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 # Generated with:
 #   $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/{print;}'
 libscixcos_la_imagesdir = $(mydatadir)/
-nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
+nobase_libscixcos_la_images_DATA = \
+images/blocks/3DSCOPE.svg \
 images/blocks/ANDBLK.svg \
 images/blocks/ASCOPE.svg \
 images/blocks/BACHE.svg \
@@ -995,7 +1051,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2)
+TARGETS_ALL = $(am__append_4)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1050,7 +1106,7 @@ all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .cpp .lo .o .obj
+.SUFFIXES: .sci .bin .c .cpp .cxx .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1136,10 +1192,14 @@ src/jni/$(DEPDIR)/$(am__dirstamp):
 	@: > src/jni/$(DEPDIR)/$(am__dirstamp)
 src/jni/libscixcos_algo_la-Xcos.lo: src/jni/$(am__dirstamp) \
 	src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscixcos_algo_la-XcosCellFactory.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 src/jni/libscixcos_algo_la-Palette.lo: src/jni/$(am__dirstamp) \
 	src/jni/$(DEPDIR)/$(am__dirstamp)
 src/jni/libscixcos_algo_la-Modelica.lo: src/jni/$(am__dirstamp) \
 	src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscixcos_algo_la-JavaController_wrap.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 src/cpp/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp
 	@: > src/cpp/$(am__dirstamp)
@@ -1147,6 +1207,8 @@ src/cpp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/$(DEPDIR)
 	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscixcos_algo_la-xcosUtilities.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixcos_algo_la-loadStatus.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscixcos-algo.la: $(libscixcos_algo_la_OBJECTS) $(libscixcos_algo_la_DEPENDENCIES) $(EXTRA_libscixcos_algo_la_DEPENDENCIES) 
@@ -1163,14 +1225,6 @@ src/noxcos/libscixcos_disable_la-noxcos.lo:  \
 
 libscixcos-disable.la: $(libscixcos_disable_la_OBJECTS) $(libscixcos_disable_la_DEPENDENCIES) $(EXTRA_libscixcos_disable_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscixcos_disable_la_OBJECTS) $(libscixcos_disable_la_LIBADD) $(LIBS)
-sci_gateway/c/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/c
-	@: > sci_gateway/c/$(am__dirstamp)
-sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
-	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscixcos_la-gw_xcos.lo: sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp
 	@: > sci_gateway/cpp/$(am__dirstamp)
@@ -1184,6 +1238,9 @@ sci_gateway/cpp/libscixcos_la-sci_warnBlockByUID.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosCellCreated.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo:  \
@@ -1219,9 +1276,6 @@ sci_gateway/cpp/libscixcos_la-sci_xcosConfigureXmlFile.lo:  \
 sci_gateway/cpp/libscixcos_la-sci_xcosAddToolsMenu.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscixcos_la-sci_loadXcos.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1234,8 +1288,6 @@ libscixcos.la: $(libscixcos_la_OBJECTS) $(libscixcos_la_DEPENDENCIES) $(EXTRA_li
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f sci_gateway/c/*.$(OBJEXT)
-	-rm -f sci_gateway/c/*.lo
 	-rm -f sci_gateway/cpp/*.$(OBJEXT)
 	-rm -f sci_gateway/cpp/*.lo
 	-rm -f src/cpp/*.$(OBJEXT)
@@ -1248,12 +1300,12 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscixcos_la-gw_xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_Xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_loadXcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosAddToolsMenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosCellCreated.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Plo@am__quote@
@@ -1265,11 +1317,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalMove.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixcos_algo_la-loadStatus.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixcos_algo_la-xcosUtilities.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-JavaController_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-Modelica.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-Palette.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-Xcos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-XcosCellFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/noxcos/$(DEPDIR)/libscixcos_disable_la-noxcos.Plo@am__quote@
 
 .c.o:
@@ -1303,13 +1357,6 @@ src/noxcos/libscixcos_disable_la-noxcos.lo: src/noxcos/noxcos.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/noxcos/libscixcos_disable_la-noxcos.lo `test -f 'src/noxcos/noxcos.c' || echo '$(srcdir)/'`src/noxcos/noxcos.c
 
-sci_gateway/c/libscixcos_la-gw_xcos.lo: sci_gateway/c/gw_xcos.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscixcos_la-gw_xcos.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscixcos_la-gw_xcos.Tpo -c -o sci_gateway/c/libscixcos_la-gw_xcos.lo `test -f 'sci_gateway/c/gw_xcos.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xcos.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscixcos_la-gw_xcos.Tpo sci_gateway/c/$(DEPDIR)/libscixcos_la-gw_xcos.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_xcos.c' object='sci_gateway/c/libscixcos_la-gw_xcos.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscixcos_la-gw_xcos.lo `test -f 'sci_gateway/c/gw_xcos.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xcos.c
-
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
@@ -1341,6 +1388,13 @@ src/jni/libscixcos_algo_la-Xcos.lo: src/jni/Xcos.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscixcos_algo_la-Xcos.lo `test -f 'src/jni/Xcos.cpp' || echo '$(srcdir)/'`src/jni/Xcos.cpp
 
+src/jni/libscixcos_algo_la-XcosCellFactory.lo: src/jni/XcosCellFactory.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscixcos_algo_la-XcosCellFactory.lo -MD -MP -MF src/jni/$(DEPDIR)/libscixcos_algo_la-XcosCellFactory.Tpo -c -o src/jni/libscixcos_algo_la-XcosCellFactory.lo `test -f 'src/jni/XcosCellFactory.cpp' || echo '$(srcdir)/'`src/jni/XcosCellFactory.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscixcos_algo_la-XcosCellFactory.Tpo src/jni/$(DEPDIR)/libscixcos_algo_la-XcosCellFactory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/XcosCellFactory.cpp' object='src/jni/libscixcos_algo_la-XcosCellFactory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscixcos_algo_la-XcosCellFactory.lo `test -f 'src/jni/XcosCellFactory.cpp' || echo '$(srcdir)/'`src/jni/XcosCellFactory.cpp
+
 src/jni/libscixcos_algo_la-Palette.lo: src/jni/Palette.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscixcos_algo_la-Palette.lo -MD -MP -MF src/jni/$(DEPDIR)/libscixcos_algo_la-Palette.Tpo -c -o src/jni/libscixcos_algo_la-Palette.lo `test -f 'src/jni/Palette.cpp' || echo '$(srcdir)/'`src/jni/Palette.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscixcos_algo_la-Palette.Tpo src/jni/$(DEPDIR)/libscixcos_algo_la-Palette.Plo
@@ -1355,12 +1409,26 @@ src/jni/libscixcos_algo_la-Modelica.lo: src/jni/Modelica.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscixcos_algo_la-Modelica.lo `test -f 'src/jni/Modelica.cpp' || echo '$(srcdir)/'`src/jni/Modelica.cpp
 
+src/jni/libscixcos_algo_la-JavaController_wrap.lo: src/jni/JavaController_wrap.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscixcos_algo_la-JavaController_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libscixcos_algo_la-JavaController_wrap.Tpo -c -o src/jni/libscixcos_algo_la-JavaController_wrap.lo `test -f 'src/jni/JavaController_wrap.cxx' || echo '$(srcdir)/'`src/jni/JavaController_wrap.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscixcos_algo_la-JavaController_wrap.Tpo src/jni/$(DEPDIR)/libscixcos_algo_la-JavaController_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/JavaController_wrap.cxx' object='src/jni/libscixcos_algo_la-JavaController_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscixcos_algo_la-JavaController_wrap.lo `test -f 'src/jni/JavaController_wrap.cxx' || echo '$(srcdir)/'`src/jni/JavaController_wrap.cxx
+
 src/cpp/libscixcos_algo_la-xcosUtilities.lo: src/cpp/xcosUtilities.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixcos_algo_la-xcosUtilities.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixcos_algo_la-xcosUtilities.Tpo -c -o src/cpp/libscixcos_algo_la-xcosUtilities.lo `test -f 'src/cpp/xcosUtilities.cpp' || echo '$(srcdir)/'`src/cpp/xcosUtilities.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixcos_algo_la-xcosUtilities.Tpo src/cpp/$(DEPDIR)/libscixcos_algo_la-xcosUtilities.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/xcosUtilities.cpp' object='src/cpp/libscixcos_algo_la-xcosUtilities.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixcos_algo_la-xcosUtilities.lo `test -f 'src/cpp/xcosUtilities.cpp' || echo '$(srcdir)/'`src/cpp/xcosUtilities.cpp
+
+src/cpp/libscixcos_algo_la-loadStatus.lo: src/cpp/loadStatus.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixcos_algo_la-loadStatus.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixcos_algo_la-loadStatus.Tpo -c -o src/cpp/libscixcos_algo_la-loadStatus.lo `test -f 'src/cpp/loadStatus.cpp' || echo '$(srcdir)/'`src/cpp/loadStatus.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixcos_algo_la-loadStatus.Tpo src/cpp/$(DEPDIR)/libscixcos_algo_la-loadStatus.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/loadStatus.cpp' object='src/cpp/libscixcos_algo_la-loadStatus.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixcos_algo_la-loadStatus.lo `test -f 'src/cpp/loadStatus.cpp' || echo '$(srcdir)/'`src/cpp/loadStatus.cpp
 
 sci_gateway/cpp/libscixcos_la-sci_Xcos.lo: sci_gateway/cpp/sci_Xcos.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_Xcos.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_Xcos.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_Xcos.lo `test -f 'sci_gateway/cpp/sci_Xcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_Xcos.cpp
@@ -1382,6 +1450,13 @@ sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo: sci_gateway/cpp/sci_cl
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_closeXcosFromScilab.cpp' object='sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo `test -f 'sci_gateway/cpp/sci_closeXcosFromScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_closeXcosFromScilab.cpp
+
+sci_gateway/cpp/libscixcos_la-sci_xcosCellCreated.lo: sci_gateway/cpp/sci_xcosCellCreated.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosCellCreated.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosCellCreated.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosCellCreated.lo `test -f 'sci_gateway/cpp/sci_xcosCellCreated.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosCellCreated.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosCellCreated.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosCellCreated.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosCellCreated.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosCellCreated.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosCellCreated.lo `test -f 'sci_gateway/cpp/sci_xcosCellCreated.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosCellCreated.cpp
 
 sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo: sci_gateway/cpp/sci_xcosDiagramToScilab.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramToScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramToScilab.cpp
@@ -1460,13 +1535,6 @@ sci_gateway/cpp/libscixcos_la-sci_xcosAddToolsMenu.lo: sci_gateway/cpp/sci_xcosA
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosAddToolsMenu.lo `test -f 'sci_gateway/cpp/sci_xcosAddToolsMenu.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosAddToolsMenu.cpp
 
-sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo: sci_gateway/cpp/sci_xcosUpdateBlock.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo `test -f 'sci_gateway/cpp/sci_xcosUpdateBlock.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosUpdateBlock.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosUpdateBlock.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosUpdateBlock.lo `test -f 'sci_gateway/cpp/sci_xcosUpdateBlock.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosUpdateBlock.cpp
-
 sci_gateway/cpp/libscixcos_la-sci_loadXcos.lo: sci_gateway/cpp/sci_loadXcos.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_loadXcos.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_loadXcos.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_loadXcos.lo `test -f 'sci_gateway/cpp/sci_loadXcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadXcos.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_loadXcos.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_loadXcos.Plo
@@ -1481,12 +1549,35 @@ sci_gateway/cpp/libscixcos_la-sci_xcosSimulationStarted.lo: sci_gateway/cpp/sci_
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosSimulationStarted.lo `test -f 'sci_gateway/cpp/sci_xcosSimulationStarted.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosSimulationStarted.cpp
 
+.cxx.o:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
+
+.cxx.obj:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cxx.lo:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
 	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
 	-rm -rf src/cpp/.libs src/cpp/_libs
 	-rm -rf src/jni/.libs src/jni/_libs
@@ -1697,8 +1788,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-	-rm -f sci_gateway/c/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(am__dirstamp)
 	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1718,7 +1807,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR) src/noxcos/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR) src/noxcos/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1767,7 +1856,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR) src/noxcos/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR) src/noxcos/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

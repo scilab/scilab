@@ -26,7 +26,7 @@
 #define NB_PIXEL_MODES 16
 
 /**
- * the array of correspondance
+ * the array of correspondence
  */
 static char * pmodes[NB_PIXEL_MODES] = { "clear"       , /* 0 */
                                        "and"         , /* 1 */

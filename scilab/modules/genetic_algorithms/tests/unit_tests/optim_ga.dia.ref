@@ -99,8 +99,7 @@ ga_params = add_param(ga_params, "dimension", 2);
 ga_params = add_param(ga_params, "init_func", myinitga);
 [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = ..
 optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
- 
- Initializing the Population with grand   
+ Initializing the Population with grand
 optim_ga: iteration 1 / 10 
     min / max value found = 0.010016 / 0.928237
 optim_ga: iteration 2 / 10 
@@ -129,7 +128,6 @@ function y = f(x, a1, a2)
     y = a1*sum(x.^2) + a2;
 endfunction
 Warning : redefining function: f                       . Use funcprot(0) to avoid this message
-
 ga_params = init_param();
 // Parameters to control the initial population.
 ga_params = add_param(ga_params, "dimension", 3);

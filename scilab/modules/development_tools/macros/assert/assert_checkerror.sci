@@ -8,8 +8,22 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [flag,errmsg] = assert_checkerror ( varargin )
-    //  Check that an instruction produces the expected error.
+    function argin = assert_argindefault ( rhs , vararglist , ivar , default )
+        // Returns the value of the input argument #ivar.
+        // If this argument was not provided, or was equal to the
+        // empty matrix, returns the default value.
+        if ( rhs < ivar ) then
+            argin = default
+        else
+            if ( vararglist(ivar) <> [] ) then
+                argin = vararglist(ivar)
+            else
+                argin = default
+            end
+        end
+    endfunction
 
+    //  Check that an instruction produces the expected error.
     [lhs,rhs]=argn()
     if ( rhs < 2 ) then
         errmsg = sprintf ( gettext ( "%s: Wrong number of input argument: At least %d expected.\n") , "assert_checkerror" , 2 )
@@ -19,7 +33,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     // Get arguments
     instr = varargin(1);
     expectedmsg = varargin(2);
-    expectederrnb = argindefault ( rhs , varargin , 3 , [] );
+    expectederrnb = assert_argindefault ( rhs , varargin , 3 , [] );
     //
     // Check types of variables
     if ( typeof(instr) <> "string" ) then
@@ -137,20 +151,6 @@ function [flag,errmsg] = assert_checkerror ( varargin )
             else
                 return
             end
-        end
-    end
-endfunction
-function argin = argindefault ( rhs , vararglist , ivar , default )
-    // Returns the value of the input argument #ivar.
-    // If this argument was not provided, or was equal to the
-    // empty matrix, returns the default value.
-    if ( rhs < ivar ) then
-        argin = default
-    else
-        if ( vararglist(ivar) <> [] ) then
-            argin = vararglist(ivar)
-        else
-            argin = default
         end
     end
 endfunction

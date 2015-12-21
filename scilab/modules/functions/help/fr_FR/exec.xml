@@ -107,9 +107,7 @@
             <code>exec(fun [,mode])</code> exécute la fonction <varname>fun</varname> comme
             un script : aucun argument n'est utilisé en entrée ou en sortie, et
             l'exécution se fait dans l'environnement courant (les variables
-            créées dans la fonction sont conservées après l'exécution). Cette
-            forme est plus efficace, car ainsi les instructions du script peuvent
-            être pré-compilées (voir <link linkend="comp">comp</link>). Cette méthode d'exécution des
+            créées dans la fonction sont conservées après l'exécution). Cette méthode d'exécution des
             scripts permet aussi de stocker des scripts comme des fonctions dans des
             bibliothèques.
         </para>
@@ -173,9 +171,6 @@ whos -name "y "
             </member>
             <member>
                 <link linkend="evstr">evstr</link>
-            </member>
-            <member>
-                <link linkend="comp">comp</link>
             </member>
             <member>
                 <link linkend="mode">mode</link>

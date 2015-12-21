@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
@@ -11,16 +12,17 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=1659
 //
 // <-- Short Description -->
-//'errclear' does not clear last error message/number 
+//'errclear' does not clear last error message/number
 
-function y=f1(a, b);y=a+b;endfunction 
+function y=f1(a, b);y=a+b;endfunction
 
 function m=f2()
-  errclear();
-  m=lasterror();
+    errclear();
+    m=lasterror();
 endfunction
 
 clear b
-execstr('f1(1)','errcatch')
-if f2()<>[] then pause,end
+err=execstr("f1(1)","errcatch");
+assert_checkfalse(err == 0);
+assert_checkequal(f2(), []);
 

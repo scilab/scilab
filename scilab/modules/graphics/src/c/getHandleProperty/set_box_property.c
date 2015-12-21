@@ -22,7 +22,7 @@
 
 #include <string.h>
 
-#include "stricmp.h"
+#include "os_string.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -34,6 +34,7 @@
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "Sciwarning.h"
 
 /*------------------------------------------------------------------------*/
 int set_box_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
@@ -77,7 +78,7 @@ int set_box_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, in
         }
         else if (stricmp((char*)_pvData, "hidden_axis") == 0)
         {
-            sciprint(_("WARNING !!!\nIn '%s' property: '%s' is deprecated use '%s' instead.\n"), "box", "hidden_axis", "hidden_axes");
+            Sciwarning(_("WARNING !!!\nIn '%s' property: '%s' is deprecated use '%s' instead.\n"), "box", "hidden_axis", "hidden_axes");
             boxType = 2;
         }
         else

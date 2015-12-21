@@ -17,34 +17,9 @@
 // <-- Short Description -->
 // it was not possible to start/close a Scilab engine at anytime.
 
-// Create a C code to use call_scilab:
-
-int main(void)
-{
-    #define NB_LOOPS 10
-    int i = 0;
-    for (i = 0; i < NB_LOOPS; i++)
-    {
-        DisableInteractiveMode();
-#ifdef _MSC_VER
-        StartScilab(NULL, NULL, NULL);
-#else
-        StartScilab(getenv("SCI"), NULL, NULL);
-#endif
-
-        TerminateScilab(NULL);
-
-        DisableInteractiveMode();
-#ifdef _MSC_VER
-        StartScilab(NULL, NULL, NULL);
-#else
-        StartScilab(getenv("SCI"), NULL, NULL);
-#endif
-        SendScilabJob("disp([2,3]+[-44,39]);"); // Will display   - 42.    42.
-
-        TerminateScilab(NULL);
-    }
-    return 0;
-}
+// export SCI=/your/scilab/install/share/scilab
+// export LD_LIBRARY_PATH=/your/scilab/install/lib/scilab/:/your/scilab/install/lib/thirdparty/
+// make bug_7602
+// ./bug_7602
 
 // you must have 10 display of    - 42.    42.

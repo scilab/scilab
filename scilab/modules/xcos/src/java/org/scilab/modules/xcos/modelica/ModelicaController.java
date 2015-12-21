@@ -15,7 +15,6 @@ package org.scilab.modules.xcos.modelica;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -303,7 +302,7 @@ public final class ModelicaController {
             List<JAXBElement<String>> allIds = identifiers.getParameterOrExplicitVariableOrImplicitVariable();
             final QName implicit_name = new QName("", "implicit_variable");
 
-            long implicit_count = 0;
+            long implicit_count = 0l;
             for (JAXBElement<String> e : allIds) {
                 if (e.getName().equals(implicit_name)) {
                     implicit_count++;

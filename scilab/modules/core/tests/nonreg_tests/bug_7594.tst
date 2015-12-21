@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge STEER <serge.steer@inria.fr>
+// Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -15,11 +16,11 @@
 // Incorrect  error detection since bug 6781 fix
 
 function foo1()
-  a=xxxxxxx
+    a=xxxxxxx
 endfunction
 function foo2()
-  a=1:xxxxxxx
+    a=1:xxxxxxx
 endfunction
 clear xxxxxxx ;//to make sure xxxxxxx does not exist
-if execstr("foo1()","errcatch")<>4 then pause,end
-if execstr("foo2()","errcatch")<>4 then pause,end
+assert_checkequal(execstr("foo1()","errcatch"), 999);
+assert_checkequal(execstr("foo2()","errcatch"), 999);

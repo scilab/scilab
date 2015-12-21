@@ -24,13 +24,13 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_style_property(void* _pvCtx, int iObjUID)
+void* get_figure_style_property(void* _pvCtx, int iObjUID)
 {
     /* no more old style */
-    sciReturnString(_pvCtx, "new");
-    return 0;
+    sciReturnString("new");
+    return NULL;
 }
 /*------------------------------------------------------------------------*/

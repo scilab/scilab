@@ -35,7 +35,7 @@ int SetUicontrolTooltipString(void* _pvCtx, int iObjUID, void* _pvData, int valu
     // Label must be a character string
     if (valueType != sci_strings)
     {
-        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string or a vector of strings expected.\n")), "TooltipString");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: string or vector of strings expected.\n")), "TooltipString");
         return SET_PROPERTY_ERROR;
     }
 
@@ -44,7 +44,7 @@ int SetUicontrolTooltipString(void* _pvCtx, int iObjUID, void* _pvData, int valu
     // Value can be string or a string vector
     if (nbCol > 1 && nbRow > 1)
     {
-        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a vector of strings expected.\n")), "TooltipString");
+        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string or vector of strings expected.\n")), "TooltipString");
         return SET_PROPERTY_ERROR;
     }
 

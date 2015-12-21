@@ -16,6 +16,7 @@
 /* desc : interface for xchange routine                                   */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -25,7 +26,7 @@
 #define VIEWING_RECT_SIZE 4
 
 /*--------------------------------------------------------------------------*/
-int sci_xchange(char * fname, unsigned long fname_len)
+int sci_xchange(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -60,7 +61,7 @@ int sci_xchange(char * fname, unsigned long fname_len)
     // Retrieve a matrix of double at position 3.
     if (getAllocatedSingleString(pvApiCtx, piAddrl3, &l3Input))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
         return 1;
     }
 

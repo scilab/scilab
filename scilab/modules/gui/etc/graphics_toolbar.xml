@@ -14,6 +14,10 @@
     <button icon="zoom-original" tooltiptext="Original View">
         <callback instruction="unzoom(get_figure_handle([SCILAB_FIGURE_ID]))" type="-2"/>
     </button>
+    <!-- Fit to the data -->
+    <button icon="zoom-fit-drawing" tooltiptext="Fit zoom to data">
+        <callback instruction="zoom_auto(get_figure_handle([SCILAB_FIGURE_ID]))" type="-2"/>
+    </button>
     <separator/>
     <!-- Datatips -->
     <button icon="datatips" tooltiptext="Toggle datatip mode" toggle="true">
@@ -31,6 +35,6 @@
     <separator/>
     <!-- Help -->
     <button icon="help-browser" tooltiptext="Help Browser">
-        <callback instruction="help();" type="-2"/>
+        <callback instruction="help();" type="10"/>
     </button>
 </toolbar>

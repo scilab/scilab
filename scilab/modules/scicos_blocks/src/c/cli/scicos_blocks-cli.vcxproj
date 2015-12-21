@@ -28,23 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../string/includes;../../../../../libs/intl;../../../../windows_tools/includes;../../../../jvm/includes;../../../src/jni;../../../../../java/jdk/include;../../../../../java/jdk/include/win32;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/system_env;../../../../ast/includes/ast;../../../../ast/includes/operations;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -98,7 +98,7 @@ lib /DEF:"$(ProjectDir)../polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;core.lib;scicos-cli.lib;output_stream.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;scicos-cli.lib;core.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -116,7 +116,7 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../string/includes;../../../../../libs/intl;../../../../windows_tools/includes;../../../../jvm/includes;../../../src/jni;../../../../../java/jdk/include;../../../../../java/jdk/include/win32;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/ast;../../../../ast/includes/system_env;../../../../ast/includes/operations;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -134,7 +134,7 @@ lib /DEF:"$(ProjectDir)../polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;core.lib;scicos-cli.lib;output_stream.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;scicos-cli.lib;core.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -150,7 +150,7 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../string/includes;../../../../../libs/intl;../../../../windows_tools/includes;../../../../jvm/includes;../../../src/jni;../../../../../java/jdk/include;../../../../../java/jdk/include/win32;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/system_env;../../../../ast/includes/ast;../../../../ast/includes/operations;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -170,7 +170,7 @@ lib /DEF:"$(ProjectDir)../polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;core.lib;scicos-cli.lib;output_stream.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;scicos-cli.lib;core.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -191,7 +191,7 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../string/includes;../../../../../libs/intl;../../../../windows_tools/includes;../../../../jvm/includes;../../../src/jni;../../../../../java/jdk/include;../../../../../java/jdk/include/win32;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../src/jni;../../../../../libs/intl;../../../../../libs/hdf5/include;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../string/includes;../../../../windows_tools/includes;../../../../jvm/includes;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;../../../../ast/includes/ast;../../../../ast/includes/system_env;../../../../ast/includes/operations;../../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -211,7 +211,7 @@ lib /DEF:"$(ProjectDir)../polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;core.lib;scicos-cli.lib;output_stream.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;scicos-cli.lib;core.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -226,6 +226,7 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\cpp\fromws_c.cpp" />
     <ClCompile Include="..\..\cpp\HelpersCLI.cpp" />
     <ClCompile Include="..\absblk.c" />
     <ClCompile Include="..\absolute_value.c" />
@@ -342,7 +343,6 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ClCompile Include="..\exttriu.c" />
     <ClCompile Include="..\exttriuz.c" />
     <ClCompile Include="..\foriterator.c" />
-    <ClCompile Include="..\fromws_c.c" />
     <ClCompile Include="..\gain.c" />
     <ClCompile Include="..\gainblk.c" />
     <ClCompile Include="..\gainblk_i16e.c" />
@@ -558,8 +558,8 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ClInclude Include="..\..\cpp\scoUtils.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\core_Import.def" />
     <None Include="..\elementary_functions_f_Import.def" />
-    <None Include="..\core_import.def" />
     <None Include="..\Linear_algebra_f_Import.def" />
     <None Include="..\Output_stream_Import.def" />
     <None Include="..\polynomials_f_Import.def" />
@@ -580,6 +580,9 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ProjectReference Include="..\..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
     </ProjectReference>
@@ -592,6 +595,9 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\graphic_objects\src\c\graphic_objects.vcxproj">
       <Project>{30f9ee41-587b-4618-8de7-698d3fba4985}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\hdf5\src\c\hdf5.vcxproj">
+      <Project>{a824ea62-af07-4f43-9036-0e63990556bd}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
@@ -607,10 +613,6 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\xcos\src\c\xcos.vcxproj">
-      <Project>{494fa8c9-6c85-4175-be4c-9a113c7a3278}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

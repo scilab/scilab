@@ -36,7 +36,7 @@ using namespace org_modules_hdf5;
 */
 
 /*--------------------------------------------------------------------------*/
-int sci_h5dump(char *fname, unsigned long fname_len)
+int sci_h5dump(char *fname, int* pvApiCtx)
 {
     H5Object * hobj = 0;
     SciErr err;
@@ -64,7 +64,7 @@ int sci_h5dump(char *fname, unsigned long fname_len)
 
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -116,7 +116,7 @@ int sci_h5dump(char *fname, unsigned long fname_len)
     {
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
 

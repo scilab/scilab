@@ -22,14 +22,8 @@ DYNAMIC_LINK_IMPEXP int gw_dynamic_link(void);
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
 /*--------------------------------------------------------------------------*/
-DYNAMIC_LINK_IMPEXP int sci_getdynlibext(char *fname, unsigned long fname_len);
-DYNAMIC_LINK_IMPEXP int sci_addinter(char *fname, unsigned long fname_len);
 DYNAMIC_LINK_IMPEXP int sci_fort(char *fname, unsigned long fname_len);
 DYNAMIC_LINK_IMPEXP int sci_call(char *fname, unsigned long fname_len);
-DYNAMIC_LINK_IMPEXP int sci_link(char *fname, unsigned long fname_len);
-DYNAMIC_LINK_IMPEXP int sci_ulink(char *fname, unsigned long fname_len);
-DYNAMIC_LINK_IMPEXP int sci_c_link(char *fname, unsigned long fname_len);
-DYNAMIC_LINK_IMPEXP int sci_ilib_verbose(char *fname, unsigned long fname_len);
-/*--------------------------------------------------------------------------*/
+
 #endif /* __GW_DYNAMIC_LINK__ */
 /*--------------------------------------------------------------------------*/

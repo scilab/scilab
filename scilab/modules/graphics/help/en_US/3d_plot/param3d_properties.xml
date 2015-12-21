@@ -115,7 +115,7 @@
                         directly given in points. When <literal>mark_size_unit</literal> is set to
                         <literal>"tabulated"</literal>, <literal>mark_size</literal> is computed relative
                         to the font size array: therefore, its value should be an integer in
-                        [0 5] whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
+                        [0 5] which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
                         <link linkend="param3d">param3d</link> and pure scilab functions use
                         <literal>tabulated</literal> mode as default ; when using <link linkend="plot">plot</link>
                         function, the <literal>point</literal> mode is automatically enabled.
@@ -131,7 +131,7 @@
                     </para>
                     <para>
                         . The <literal>mark_size</literal> selects the font size of the mark to
-                        be displayed. Its value should be an integer in [0 5] whith stands for
+                        be displayed. Its value should be an integer in [0 5] which stands for
                         8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
                     </para>
                 </listitem>
@@ -219,7 +219,7 @@
                 <term>user_data: </term>
                 <listitem>
                     <para>This field can be use to store any scilab variable in the
-                        param3d data structure, and to retreive it.
+                        param3d data structure, and to retrieve it.
                     </para>
                 </listitem>
             </varlistentry>

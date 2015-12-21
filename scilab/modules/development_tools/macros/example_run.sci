@@ -37,10 +37,10 @@ function boolStatus = example_run(modulesName, functionsName, helpLanguage, vara
     end
 
     if typeof(helpLanguage)<>"string" then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "example_run", 3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "example_run", 3));
     end
     if size(helpLanguage, "*")<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "example_run", 3));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "example_run", 3));
     end
 
     for kMod = 1:size(modulesName, "*")

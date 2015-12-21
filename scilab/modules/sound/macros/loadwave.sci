@@ -24,7 +24,7 @@ function varargout = loadwave(filename)
     end
 
     if ~(type(filename) == 10) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n" ),"loadwave",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n" ),"loadwave",1));
         return
     end
 

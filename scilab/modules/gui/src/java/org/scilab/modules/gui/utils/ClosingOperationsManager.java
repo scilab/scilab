@@ -634,7 +634,7 @@ public class ClosingOperationsManager {
                     SwingScilabDockablePanel.removeActions((SwingScilabDockablePanel) dockArray[0]);
                 }
 
-                // We wait until all the windows are definitly closed
+                // We wait until all the windows are definitely closed
                 while (windowsToClose.size() != 0) {
                     List<SwingScilabWindow> toRemove = new ArrayList<SwingScilabWindow>();
                     for (SwingScilabWindow win : windowsToClose) {

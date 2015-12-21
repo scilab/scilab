@@ -35,7 +35,7 @@
 #include "sciprint.h"
 #include "Scierror.h"
 
-#include "MALLOC.h"             /* MALLOC */
+#include "sci_malloc.h"             /* MALLOC */
 #include "scitokenize.h"
 #include "localization.h"
 #include "get_ticks_utils.h"
@@ -49,6 +49,7 @@
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
+#include "Sciwarning.h"
 
 /*--------------------------------------------------------------------
  *  plot2dn(ptype,Logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
@@ -388,7 +389,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
         }
         else
         {
-            sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+            Sciwarning(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
 
     }
@@ -627,6 +628,8 @@ BOOL update_specification_bounds(int iSubwinUID, double rect[6], int flag)
 
         rect[4] = dataBounds[4];
         rect[5] = dataBounds[5];
+
+        releaseGraphicObjectProperty(__GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
     }
 
     setGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);

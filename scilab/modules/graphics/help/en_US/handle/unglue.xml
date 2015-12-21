@@ -14,7 +14,7 @@
     <refnamediv>
         <refname>unglue</refname>
         <refpurpose>
-            unglue a coumpound object and replace it by individual children.
+            unglue a compound object and replace it by individual children.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -43,7 +43,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Given a handle on an Compound entity, this function destroies the Compound 
+            Given a handle on an Compound entity, this function destroys the Compound
             and unpacks the elementary entities to associated them to its parent.
             <literal>glue</literal> returns a vector of handles on these individual
             children.

@@ -25,15 +25,15 @@ function t = justify(t, job)
         return;
     end
     if type(t) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "justify", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "justify", 1));
     end
 
     if type(job) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "justify", 2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "justify", 2));
     end
 
     if size(job,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "justify", 2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "justify", 2));
     end
 
     if and(job <> ["l" "c" "r" "left" "center" "right"]) then

@@ -14,12 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
 
 msgid "History loading in progress..."
 msgstr "Идёт загрузка истории..."
@@ -68,7 +64,3 @@ msgstr "Невозможно удалить строку начала текущ
 
 msgid "History preferences"
 msgstr "Настройки журнала команд"
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Модуль Scilab «%s» не установлен.\n"

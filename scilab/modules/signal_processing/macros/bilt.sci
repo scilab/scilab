@@ -62,8 +62,16 @@ function [npl,nzr,ngn]=bilt(pl,zr,gn,num,den)
             ngn=prod(n1*ones(zr)-d1*zr)/prod(n1*ones(pl)-d1*pl);
         end
         if ms<>ns then ngn=real(gn*d1**(ms-ns)*ngn);else ngn=real(gn*ngn);end
-        nzr=-(n0*ones(zr)-d0*zr)./(n1*ones(zr)-d1*zr);
-        npl=-(n0*ones(pl)-d0*pl)./(n1*ones(pl)-d1*pl);
+        if isempty(zr)
+            nzr = - (d0*zr) ./ (d1*zr);
+        else
+            nzr = -(n0*ones(zr) - d0*zr) ./ (n1*ones(zr) - d1*zr);
+        end
+        if isempty(pl)
+            npl = -(d0*pl) ./ (d1*pl);
+        else
+            npl = -(n0*ones(pl) - d0*pl)./(n1*ones(pl) - d1*pl);
+        end
         if ms>ns then
             nzr=[nzr';-(d0/d1)*ones(ms-ns,1)];
         elseif ms<ns then

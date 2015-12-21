@@ -54,19 +54,7 @@
     <ClCompile Include="formatnumber.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\intdisp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\intprint.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lspdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="print.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="prntid.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="strdsp.c">
@@ -81,9 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="basouttofile.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dldsp.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dmdsp.f">
@@ -110,19 +95,7 @@
     <f2c_rule Include="formatnumber.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\intdisp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\intprint.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="lspdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="print.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="prntid.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="strdsp.f">
@@ -134,15 +107,12 @@
     <f2c_rule Include="wspdsp.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
+    <f2c_rule Include="dldsp.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
   </ItemGroup>
   <ItemGroup>
     <None Include="Elementary_functions_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="Elementary_functions_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="io_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="core_import.def">
@@ -151,17 +121,11 @@
     <None Include="output_stream_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="Polynomials_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="String_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="..\..\Makefile.am" />
-    <None Include="linpack_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="Core_f_Import.def">
+    <None Include="Polynomials_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

@@ -15,7 +15,7 @@
 
 #include "api_scilab.h"
 
-int sci_bug_11538(char* fname, int length)
+int sci_bug_11538(char* fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;
@@ -38,12 +38,14 @@ int sci_bug_11538(char* fname, int length)
         return 1;
     }
 
+    FREE(pstData);
+
     if (getAllocatedSingleWideString(pvApiCtx, piAddr, &pwstData))
     {
         Scierror(999, "Failed to get data as wide string");
         return 1;
     }
 
-    LhsVar(0) = 1;
+    FREE(pwstData);
     return 0;
 }

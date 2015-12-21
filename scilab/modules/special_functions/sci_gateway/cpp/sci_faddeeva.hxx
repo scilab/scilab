@@ -14,7 +14,7 @@
    file.  This gives us a simple way to define several similar "gateway"
    functions for the Faddeeva::erf, erfc, erfcx, erfi, and Dawson functions. */
 
-int SCI_FADDEEVA(char *fname, unsigned long fname_len)
+int SCI_FADDEEVA(char *fname, void* pvApiCtx)
 {
     int* zAddr = NULL;
     double* zr = NULL;

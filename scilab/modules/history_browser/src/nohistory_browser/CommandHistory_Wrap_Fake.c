@@ -11,11 +11,10 @@
 */
 
 #include "CommandHistory_Wrap.h"
-
 /* fake methods for nogui mode */
 /* configure --without-gui */
 /*------------------------------------------------------------------------*/
-void CommandHistoryAppendLine (char * lineToAppend)
+void CommandHistoryAppendLine (char* lineToAppend)
 {
 }
 /*------------------------------------------------------------------------*/

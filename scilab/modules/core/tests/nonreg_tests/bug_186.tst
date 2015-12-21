@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
@@ -11,15 +12,15 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=186
 //
 // <-- Short Description -->
-//     
+//
 
 
 a="100 100 z  ";
 [values, ierr]= evstr(a);
 
-if ierr<>4 | ~isempty(values) then pause,end
+if ierr==0 | ~isempty(values) then pause,end
 
 a="100 100 m  ";
 [values, ierr]= evstr(a);
 
-if ierr<>4 | ~isempty(values) then pause,end
+if ierr==0 | ~isempty(values) then pause,end

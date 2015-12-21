@@ -38,7 +38,7 @@ GRAPHICS_IMPEXP int sciSetLineWidth (int iObj, double linewidth) ;  /* SET */
 
 GRAPHICS_IMPEXP int sciSetLineStyle (int iObj, int linestyle) ; /* SET */
 
-GRAPHICS_IMPEXP int sciSetMarkSize (int iObj, int marksize); /* SET */
+GRAPHICS_IMPEXP int sciSetMarkSize (int iObj, int *markSizes, int numMarkSizes); /* SET */
 
 /* Text Functions */
 GRAPHICS_IMPEXP int sciSetText (int iObj, char ** text, int nbRow, int nbCol) ; /* SET */

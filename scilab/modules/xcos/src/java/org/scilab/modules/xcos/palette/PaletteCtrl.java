@@ -14,18 +14,22 @@ package org.scilab.modules.xcos.palette;
 
 import java.awt.Dimension;
 import java.awt.datatransfer.Transferable;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.palette.listener.PaletteMouseListener;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.palette.view.PaletteView;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.handler.mxGraphTransferHandler;
 
@@ -40,11 +44,13 @@ public final class PaletteCtrl {
      */
     private static XcosDiagram internalGraph;
     static {
-        internalGraph = new XcosDiagram();
+        JavaController controller = new JavaController();
+        internalGraph = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
         internalGraph.installListeners();
     }
 
     private static final PaletteMouseListener MOUSE_LISTENER = new PaletteMouseListener();
+    private static final Logger LOG = Logger.getLogger(PaletteBlockCtrl.class.getName());
 
     private static final int BLOCKS_BY_ROW = 5;
     private static final Dimension BLOCK_POSITION = XcosConstants.PaletteBlockSize.NORMAL.getBlockDimension();
@@ -110,8 +116,13 @@ public final class PaletteCtrl {
                 continue;
             }
 
-            BasicBlock basicBlock = (BasicBlock) BlockFactory.createClone(blockCtrl.getBlock());
+            BasicBlock basicBlock = XcosCellFactory.createBlock(blockCtrl.getModel().getName());
             if (basicBlock == null) {
+                if (LOG.isLoggable(Level.FINEST)) {
+                    LOG.finest(String.format(XcosMessages.UNABLE_TO_LOAD_BLOCK,
+                            blockCtrl.getModel().getData().getEvaluatedPath()));
+                }
+                getView().setEnabled(false);
                 continue;
             }
 
@@ -131,7 +142,7 @@ public final class PaletteCtrl {
 
             diagram.addCell(basicBlock);
             diagram.addSelectionCell(basicBlock);
-            BlockPositioning.updateBlockView(basicBlock);
+            BlockPositioning.updateBlockView(internalGraph, basicBlock);
             hasNewBlocks = true;
         }
         return hasNewBlocks;

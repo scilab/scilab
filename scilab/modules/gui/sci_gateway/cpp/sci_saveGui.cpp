@@ -23,7 +23,7 @@ extern "C" {
 #include "expandPathVariable.h"
 }
 
-int sci_saveGui(char *fname, unsigned long fname_len)
+int sci_saveGui(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr1 = NULL;
@@ -86,7 +86,7 @@ int sci_saveGui(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, piAddr2) == 0 || isScalar(pvApiCtx, piAddr2) == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -97,7 +97,7 @@ int sci_saveGui(char *fname, unsigned long fname_len)
             freeAllocatedSingleString(pstFile);
         }
 
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -119,7 +119,7 @@ int sci_saveGui(char *fname, unsigned long fname_len)
 
         if (getScalarBoolean(pvApiCtx, piAddr3, &bReserve))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
             return 1;
         }
     }

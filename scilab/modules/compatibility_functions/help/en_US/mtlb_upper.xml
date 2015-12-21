@@ -23,7 +23,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    If <literal>A</literal> is not a chacarter string matrix: Matlab <literal>upper</literal> can be used with a
+                    If <literal>A</literal> is not a character string matrix: Matlab <literal>upper</literal> can be used with a
                     not-character-string <literal>A</literal> but not Scilab <literal>convstr</literal>.
                 </para>
             </listitem>

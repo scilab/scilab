@@ -14,21 +14,21 @@
 #include "Scierror.h"
 #include "localization.h"
 #ifndef _MSC_VER
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 #endif
 /*--------------------------------------------------------------------------*/
 int gw_history_browser(void)
 {
-#ifndef _MSC_VER
-    if (getScilabMode() == SCILAB_NWNI)
-    {
-        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "history_browser");
-    }
-    else
-#endif
-    {
-        Scierror(999, _("Scilab '%s' module not installed.\n"), "history_browser");
-    }
+    //#ifndef _MSC_VER
+    //    if (getScilabMode() == SCILAB_NWNI)
+    //    {
+    //        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "history_browser");
+    //    }
+    //    else
+    //#endif
+    //    {
+    //        Scierror(999, _("Scilab '%s' module not installed.\n"), "history_browser");
+    //    }
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -16,7 +16,7 @@
 /* file: sci_xstringb.c                                                   */
 /* desc : interface for xstringb routine                                  */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -24,7 +24,7 @@
 #include "freeArrayOfString.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_xstringb(char *fname, unsigned long fname_len)
+int sci_xstringb(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -52,7 +52,7 @@ int sci_xstringb(char *fname, unsigned long fname_len)
     if ( nbInputArgument(pvApiCtx) <= 0 )
     {
         /* demo */
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0 ;
     }
 
@@ -117,11 +117,11 @@ int sci_xstringb(char *fname, unsigned long fname_len)
     // Retrieve a matrix of string at position 3.
     if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m3, &n3, &Str))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
         return 1;
     }
 
-    if ( m3*n3 == 0 )
+    if ( m3 * n3 == 0 )
     {
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
@@ -189,13 +189,13 @@ int sci_xstringb(char *fname, unsigned long fname_len)
         // Retrieve a string at position 6.
         if (isScalar(pvApiCtx, piAddrl6) == 0)
         {
-            Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 6);
+            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 6);
             return 1;
         }
 
         if (getAllocatedSingleString(pvApiCtx, piAddrl6, &l6))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 6);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 6);
             return 1;
         }
 

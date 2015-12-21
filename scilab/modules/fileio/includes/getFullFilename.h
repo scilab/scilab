@@ -21,14 +21,14 @@
 * @param[in] FilenameInput can be a relative path
 * @return a full filename (path expanded)
 */
-FILEIO_IMPEXP wchar_t *getFullFilenameW(wchar_t* FilenameInput);
+FILEIO_IMPEXP wchar_t* getFullFilenameW(const wchar_t* FilenameInput);
 
 /**
 * get full filename of a file
 * @param[in] FilenameInput can be a relative path
 * @return a full filename (path expanded)
 */
-FILEIO_IMPEXP char *getFullFilename(char* Filename);
+FILEIO_IMPEXP char* getFullFilename(const char* Filename);
 
 #endif /* __GETFULLFILENAME_H__ */
 /*--------------------------------------------------------------------------*/

@@ -18,7 +18,7 @@ function [tree]=%i2sci_g(tree)
     ind=tree.operands(2)
 
     newtree=Funcall("mtlb_i",1,Rhs_tlist(to,ind,from),list(to))
-    insert(Equal(list(to),newtree))
+    m2sci_insert(Equal(list(to),newtree))
     tree=list()
 endfunction
 

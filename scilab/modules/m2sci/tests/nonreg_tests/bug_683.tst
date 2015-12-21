@@ -21,11 +21,11 @@
 // Create 2 M-files
 MFUN1TXT=["function [a,c] = test_cell1(b)";
 "a = {1,b,''c''};";
-"c = {1,2,''c''};"]
+"c = {1,2,''c''};"];
 
 MFUN2TXT=["function a = test_cell2()";
 "e = ''we'';";
-"a = {1,2,e};"]
+"a = {1,2,e};"];
 
 MFILE1=TMPDIR+"/test_cell1.m";
 MFILE2=TMPDIR+"/test_cell2.m";
@@ -55,9 +55,18 @@ exec(SCIFILE2);
 ce5=test_cell2();
 
 // Verify results
+assert_checkequal(size(ce1), [1 3]);
+assert_checkequal(ce1, {1, 23, "c"});
 
-if or(ce1<>mlist(["ce","dims","entries"],int32([1 3]),list(1,23,"c")))    then pause,end
-if or(ce2<>mlist(["ce","dims","entries"],int32([1 3]),list(1,2,"c")))     then pause,end
-if or(ce3<>mlist(["ce","dims","entries"],int32([1 3]),list(1,[1 2],"c"))) then pause,end
-if or(ce4<>mlist(["ce","dims","entries"],int32([1 3]),list(1,2,"c")))     then pause,end
-if or(ce5<>mlist(["ce","dims","entries"],int32([1 3]),list(1,2,"we")))    then pause,end
+assert_checkequal(size(ce2), [1 3]);
+assert_checkequal(ce2, {1, 2, "c"});
+
+assert_checkequal(size(ce3), [1 3]);
+assert_checkequal(ce3, {1, [1 2], "c"});
+
+assert_checkequal(size(ce4), [1 3]);
+assert_checkequal(ce4, {1, 2, "c"});
+
+assert_checkequal(size(ce5), [1 3]);
+assert_checkequal(ce5, {1, 2, "we"});
+

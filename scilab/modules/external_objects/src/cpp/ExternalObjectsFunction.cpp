@@ -16,9 +16,9 @@ extern "C" {
 #include "ExternalObjectsFunction.h"
 }
 
-void ExternalObjects_goDown()
+void ExternalObjects_goDown(void* _pvCtx)
 {
-    org_modules_external_objects::ScilabAutoCleaner::goDown();
+    org_modules_external_objects::ScilabAutoCleaner::goDown(_pvCtx);
 }
 
 

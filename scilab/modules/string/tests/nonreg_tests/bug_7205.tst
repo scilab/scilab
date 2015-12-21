@@ -17,6 +17,6 @@
 //
 
 A=rand(2,2,2,2);
-assert_checkequal(length(A),double(prod(A.dims)));
+assert_checkequal(length(A), size(A, "*"));
 A=rand(5,5,5,5,5,5,5);
-assert_checkequal(length(A),double(prod(A.dims)));
+assert_checkequal(length(A), size(A, "*"));

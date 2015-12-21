@@ -27,8 +27,7 @@ assert_checkalmostequal(x, [1 2 3 4 5]');
 x = umf_lusolve(Lup,b,"A''x=b");
 assert_checkequal(norm(A'*x-b), 0)
  ans  =
- 
-  T  
+  T
 // don't forget to clear memory with
 umf_ludel(Lup)
 // a real (but small)  example

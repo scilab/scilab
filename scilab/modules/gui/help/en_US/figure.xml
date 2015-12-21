@@ -83,7 +83,7 @@
                 <term>Tag</term>
                 <listitem>
                     <para>string this property is generally used to identify the figure. It
-                        allows to give it a "name". Mainly used in conjontion with findobj().
+                        allows to give it a "name". Mainly used in conjunction with findobj().
                     </para>
                 </listitem>
             </varlistentry>

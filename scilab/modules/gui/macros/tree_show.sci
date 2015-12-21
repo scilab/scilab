@@ -25,8 +25,8 @@ function tree_show(x,titletop)
         error(sprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "tree_show", 1, 2));
     end
 
-    if type(x)<>16 & type(x)<>17 & type(x)<>15 then
-        error("Wrong type; input must be a list.")
+    if type(x)<>16 & type(x)<>17 & type(x)<>15 & type(x)<>128 then
+        error("Wrong type; input must be a list or an Xcos object.")
     end
 
     //-- tt = ["set BWpath [file dirname '"$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0'"] "
@@ -86,7 +86,7 @@ function java = crlist3(x,Path, java)
         path=Path+","+string(i)
         titre=v(i);
         o=getfield(i,x);
-        if type(o)==16 |type(o)==17 then
+        if type(o)==16 | type(o)==17 | type(o)==128 then
             w=getfield(1,o);
             titre2=titre+" ("+w(1)+")";
             //-- 	TCL_EvalStr('.ss.t insert end '+Path+' '+path+' -image [Bitmap::get folder] -text {'+titre2+'}')

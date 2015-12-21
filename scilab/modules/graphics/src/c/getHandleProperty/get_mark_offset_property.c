@@ -26,7 +26,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_offset_property(void* _pvCtx, int iObjUID)
+void* get_mark_offset_property(void* _pvCtx, int iObjUID)
 {
     int iMarkOffset = 0;
     int* piMarkOffset = &iMarkOffset;
@@ -36,9 +36,9 @@ int get_mark_offset_property(void* _pvCtx, int iObjUID)
     if (piMarkOffset == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_offset");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, iMarkOffset);
+    return sciReturnDouble(iMarkOffset);
 }
 /*------------------------------------------------------------------------*/

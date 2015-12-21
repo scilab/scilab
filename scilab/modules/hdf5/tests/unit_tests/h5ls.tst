@@ -9,7 +9,7 @@
 
 msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "h5ls", 1, 3);
 assert_checkerror("h5ls()",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5ls", 1);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5ls", 1);
 assert_checkerror("h5ls(42)",msgerr,999);
 msgerr = msprintf(gettext("%s: %s\n"), "h5ls", msprintf(gettext("Invalid hdf5 file: %s."), "42"));
 assert_checkerror("h5ls(""42"")",msgerr,999);
@@ -21,9 +21,9 @@ save(TMPDIR + "/x.sod", "x");
 msgerr = msprintf(gettext("%s: %s\n"), "h5ls", msprintf(gettext("Invalid hdf5 file: %s."), "x"));
 assert_checkerror("h5ls(""x"")",msgerr,999);
 
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5ls", 2);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5ls", 2);
 assert_checkerror("h5ls(TMPDIR+""/x.sod"",12.0)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5ls", 3);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5ls", 3);
 assert_checkerror("h5ls(TMPDIR+""/x.sod"",""."",12.0)",msgerr,999);
 
 a = h5open(TMPDIR + "/x.sod");
@@ -40,11 +40,11 @@ assert_checkequal(h5ls(a,".","a"),attr);
 msgerr = msprintf(gettext("%s: %s\n"), "h5ls", gettext("Invalid filter"));
 assert_checkerror("h5ls(a,""."",""x"")",msgerr,999);
 
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5ls", 1);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5ls", 1);
 assert_checkerror("h5ls(12.0)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5ls", 2);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5ls", 2);
 assert_checkerror("h5ls(a,12.0)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5ls", 3);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5ls", 3);
 assert_checkerror("h5ls(a,""."",12.0)",msgerr,999);
 msgerr = msprintf(gettext("%s: %s\n"), "h5ls", msprintf(gettext("Invalid hdf5 file: %s."), "x"));
 assert_checkerror("h5ls(""x"")",msgerr,999);

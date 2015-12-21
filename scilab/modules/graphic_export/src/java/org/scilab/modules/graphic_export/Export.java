@@ -857,7 +857,7 @@ public class Export {
                     }
 
                     @Override
-                    public int processShape(Shape s) throws IOException {
+                    public int processShape(Shape s, boolean b) throws IOException {
                         if (s instanceof Ellipse2D.Double) {
                             Ellipse2D.Double ell = (Ellipse2D.Double) s;
                             if (ell.height == ell.width) {
@@ -880,10 +880,10 @@ public class Export {
                                     buffer.append("[").append(gen.formatDouble(coords[0])).append(" ").append(gen.formatDouble(coords[1]));
                                     it.next();
                                 } else {
-                                    return super.processShape(s);
+                                    return super.processShape(s, b);
                                 }
                             } else {
-                                return super.processShape(s);
+                                return super.processShape(s, b);
                             }
 
                             for (; !it.isDone(); it.next()) {
@@ -891,7 +891,7 @@ public class Export {
                                 if (type == PathIterator.SEG_LINETO) {
                                     buffer.append(" ").append(gen.formatDouble(coords[0])).append(" ").append(gen.formatDouble(coords[1]));
                                 } else {
-                                    return super.processShape(s);
+                                    return super.processShape(s, b);
                                 }
                             }
                             buffer.append("] DP");
@@ -899,7 +899,7 @@ public class Export {
                             return PathIterator.WIND_NON_ZERO;
                         }
 
-                        return super.processShape(s);
+                        return super.processShape(s, b);
                     }
                 };
                 g2d.setGraphicContext(new GraphicContext());
@@ -1029,7 +1029,7 @@ public class Export {
                     }
 
                     @Override
-                    public int processShape(Shape s) throws IOException {
+                    public int processShape(Shape s, boolean b) throws IOException {
                         if (s instanceof Ellipse2D.Double) {
                             Ellipse2D.Double ell = (Ellipse2D.Double) s;
                             if (ell.height == ell.width) {
@@ -1052,10 +1052,10 @@ public class Export {
                                     buffer.append("[").append(gen.formatDouble(coords[0])).append(" ").append(gen.formatDouble(coords[1]));
                                     it.next();
                                 } else {
-                                    return super.processShape(s);
+                                    return super.processShape(s, b);
                                 }
                             } else {
-                                return super.processShape(s);
+                                return super.processShape(s, b);
                             }
 
                             for (; !it.isDone(); it.next()) {
@@ -1063,7 +1063,7 @@ public class Export {
                                 if (type == PathIterator.SEG_LINETO) {
                                     buffer.append(" ").append(gen.formatDouble(coords[0])).append(" ").append(gen.formatDouble(coords[1]));
                                 } else {
-                                    return super.processShape(s);
+                                    return super.processShape(s, b);
                                 }
                             }
                             buffer.append("] DP");
@@ -1071,7 +1071,7 @@ public class Export {
                             return PathIterator.WIND_NON_ZERO;
                         }
 
-                        return super.processShape(s);
+                        return super.processShape(s, b);
                     }
 
                 };

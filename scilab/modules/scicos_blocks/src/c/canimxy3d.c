@@ -15,7 +15,7 @@
 #include "dynlib_scicos_blocks.h"
 #include "scoUtils.h"
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "elementary_functions.h"
 
 #include "getGraphicObjectProperty.h"
@@ -29,9 +29,7 @@
 #include "scicos.h"
 
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 
 #include "FigureList.h"
 #include "BuildObjects.h"
@@ -129,8 +127,9 @@ static int getPolyline(int iAxeUID, scicos_block * block, int row);
  * Set the polylines bounds
  *
  * \param block the block
+ * \param iAxeUID the axe id
  */
-static BOOL setPolylinesBounds(scicos_block * block);
+static BOOL setPolylinesBounds(scicos_block * block, int iAxeUID);
 
 /*****************************************************************************
  * Simulation function
@@ -474,7 +473,7 @@ static int getFigure(scicos_block * block)
         setGraphicObjectProperty(iAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
         setGraphicObjectProperty(iAxe, __GO_Z_AXIS_VISIBLE__, &i__1, jni_bool, 1);
 
-        setPolylinesBounds(block);
+        setPolylinesBounds(block, iAxe);
     }
 
     if (sco->scope.cachedFigureUID == 0)
@@ -622,11 +621,8 @@ static int getPolyline(int iAxeUID, scicos_block * block, int row)
     return sco->scope.cachedPolylinesUIDs[row];
 }
 
-static BOOL setPolylinesBounds(scicos_block * block)
+static BOOL setPolylinesBounds(scicos_block * block, int iAxeUID)
 {
-    int iFigureUID;
-    int iAxeUID;
-
     BOOL result;
     double dataBounds[6];
     double rotationAngle[2];
@@ -640,9 +636,6 @@ static BOOL setPolylinesBounds(scicos_block * block)
 
     rotationAngle[0] = block->rpar[6];  // alpha
     rotationAngle[1] = block->rpar[7];  // theta
-
-    iFigureUID = getFigure(block);
-    iAxeUID = getAxe(iFigureUID, block);
 
     result = setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
     if (result == FALSE)

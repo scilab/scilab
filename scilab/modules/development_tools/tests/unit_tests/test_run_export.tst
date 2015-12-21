@@ -14,7 +14,7 @@
 //test_run("development_tools",["checkequal","checktrue","checkfalse"],["show_diff","show_error"],"/tmp/results.xml");
 
 targetXML=TMPDIR+"/plop.xml";
-test_run(["symbolic","xml"],[],["show_diff","show_error"],targetXML);
+test_run(["boolean","xml"],[],["show_diff","show_error"],targetXML);
 
 assert_checktrue(isfile(targetXML));
 xmlElem=xmlRead(targetXML);

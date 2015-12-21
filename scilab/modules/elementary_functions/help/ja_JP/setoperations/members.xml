@@ -375,18 +375,6 @@
             
             <link linkend="dsearch">dsearch(..)</link> を使用します.
             
-            複素数, テキスト, 多項式の場合,
-            
-            より低速でよりメモリ消費が多いアルゴリズムが使用されます.
-            
-            これらのデータ型についてより高い性能を得たい場合,
-            
-            より大きな<literal>N</literal>または<literal>H</literal>の場合, 
-            
-            ユーザは
-            
-            <link linkend="stacksize">stacksize(..)</link>を増加させることになります. 
-            
             計算時間が長い場合, 進行状況の棒グラフが表示されます.
             
         </para>

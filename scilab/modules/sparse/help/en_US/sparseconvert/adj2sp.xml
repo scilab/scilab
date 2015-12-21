@@ -82,7 +82,7 @@
         <title>Description</title>
         <para>
             adj2sp converts a sparse matrix into its adjacency form format.
-            The values in the adjacency format are stored colum-by-column.
+            The values in the adjacency format are stored column-by-column.
             This is why this format is sometimes called "Compressed sparse column" or CSC.
         </para>
     </refsection>

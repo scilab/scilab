@@ -17,11 +17,13 @@ function answ = isempty(m)
 
     m_type = type(m);
 
-    if( (type(m) >= 11) & (type(m) <= 13) | (type(m) >= 128) ) then
+    if( (m_type >= 11) & (m_type <= 13) | (m_type >= 128) ) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"), "isempty", 1));
     end
 
     select m_type
+    case 1
+        answ = m == [];
     case 10
         // matrix of character string
         answ = ( max(length(m)) == 0 );

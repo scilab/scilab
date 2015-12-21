@@ -12,7 +12,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "rk4.h"
-#include "stack-c.h"
+#include "common_structure.h"
 /*--------------------------------------------------------------------------*/
 /* Runge-Kutta (RK4) method */
 /* http://media4.obspm.fr/public/DEA/cours/chapitre3/souschapitre2/section4/page5/section3_2_4_5.html */

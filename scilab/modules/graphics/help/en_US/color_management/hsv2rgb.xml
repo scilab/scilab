@@ -50,7 +50,7 @@
             <varlistentry>
                 <term>hsv</term>
                 <listitem>
-                    <para> a n x 3 matrix. Each row contains a [hue saturation value] tripple.
+                    <para> a n x 3 matrix. Each row contains a [hue saturation value] triple.
                     </para>
                 </listitem>
             </varlistentry>
@@ -78,7 +78,7 @@
             <varlistentry>
                 <term>rgb</term>
                 <listitem>
-                    <para> a n x 3 matrix. Each row contains a [red green blue] tripple.
+                    <para> a n x 3 matrix. Each row contains a [red green blue] triple.
                     </para>
                 </listitem>
             </varlistentry>

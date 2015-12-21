@@ -7,7 +7,6 @@
 
 // <-- CLI SHELL MODE -->
 
-mode(5)
 lines(0)
 zer=sparse([],[],[6,6]);
 //

@@ -15,9 +15,9 @@
 #include <string.h> /* strlen */
 #ifdef _MSC_VER
 #include <Windows.h> /* GetEnvironmentVariable */
-#include "strdup_windows.h"
 #endif
-#include "MALLOC.h"
+#include "os_string.h"
+#include "sci_malloc.h"
 #include "getenvc.h"
 #include "localization.h"
 #include "sciprint.h"
@@ -31,7 +31,7 @@ static void searchenv_others(const char *filename, const char *varname,
                              char *pathname);
 #endif
 /*--------------------------------------------------------------------------*/
-void C2F(getenvc)(int *ierr, char *var, char *buf, int *buflen, int *iflag)
+void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *iflag)
 {
 #ifdef _MSC_VER
     wchar_t* wbuf = NULL;
@@ -48,6 +48,7 @@ void C2F(getenvc)(int *ierr, char *var, char *buf, int *buflen, int *iflag)
             sciprint(_("Undefined environment variable %s.\n"), var);
         }
 
+        FREE(wvar);
         *ierr = 1;
         return;
     }
@@ -61,12 +62,16 @@ void C2F(getenvc)(int *ierr, char *var, char *buf, int *buflen, int *iflag)
                 sciprint(_("Undefined environment variable %s.\n"), var);
             }
 
+            FREE(wbuf);
+            FREE(wvar);
             *ierr = 1;
             return;
         }
     }
 
     temp = wide_string_to_UTF8(wbuf);
+    FREE(wbuf);
+    FREE(wvar);
     *buflen = (int)strlen(temp);
     if (buf)
     {
@@ -211,10 +216,45 @@ char *searchEnv(const char *name, const char *env_var)
     searchenv_others(name, env_var, fullpath);
     if (strlen(fullpath) > 0)
     {
-        buffer = strdup(fullpath);
+        buffer = os_strdup(fullpath);
     }
 #endif
     return buffer;
+}
+/*--------------------------------------------------------------------------*/
+wchar_t* searchEnvW(const wchar_t* _pwstName, const wchar_t* _pwstEnv)
+{
+    wchar_t* pwstRet = NULL;
+    wchar_t pwstFullpath[PATH_MAX];
+
+#if !_MSC_VER
+    char* pstName   = wide_string_to_UTF8(_pwstName);
+    char* pstEnv    = wide_string_to_UTF8(_pwstEnv);
+    char pstFullpath[PATH_MAX];
+#endif
+
+    wcscpy(pwstFullpath, L"");
+
+#if _MSC_VER
+    {
+        _wsearchenv(_pwstName, _pwstEnv, pwstFullpath);
+
+        if (wcslen(pwstFullpath) > 0)
+        {
+            pwstRet = os_wcsdup(pwstFullpath);
+        }
+    }
+#else
+    searchenv_others(pstName, pstEnv, pstFullpath);
+    if (strlen(pstFullpath) > 0)
+    {
+        pwstRet = to_wide_string(pstFullpath);
+    }
+
+    FREE(pstName);
+    FREE(pstEnv);
+#endif
+    return pwstRet;
 }
 /*--------------------------------------------------------------------------*/
 

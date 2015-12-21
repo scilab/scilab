@@ -50,6 +50,7 @@ int printPrompt(int token)
         setCharDisplay(DISP_LAST_SET);
         fflush(stdout);
     }
+
     promptLen = strlen(prompt);
     free(prompt);
     return promptLen;
