@@ -48,14 +48,14 @@ scilabVar API_PROTO(createList)(scilabEnv env)
     return (scilabVar)new types::List();
 }
 
-scilabVar API_PROTO(createTList)(scilabEnv env, wchar_t* const type)
+scilabVar API_PROTO(createTList)(scilabEnv env, const wchar_t* type)
 {
     types::TList* t = new types::TList();
     t->append(new types::String(type));
     return (scilabVar)t;
 }
 
-scilabVar API_PROTO(createMList)(scilabEnv env, wchar_t* const type)
+scilabVar API_PROTO(createMList)(scilabEnv env, const wchar_t* type)
 {
     types::MList* m = new types::MList();
     m->append(new types::String(type));
@@ -84,7 +84,7 @@ scilabVar API_PROTO(getListItem)(scilabEnv env, scilabVar var, int index)
     return (scilabVar)l->get(index);
 }
 
-scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int index, const scilabVar val)
+scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int index, scilabVar val)
 {
     types::List* l = (types::List*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -99,7 +99,7 @@ scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int index, con
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 
-int API_PROTO(getTListFieldNames)(scilabEnv env, scilabVar var, wchar_t const* const** fieldnames)
+int API_PROTO(getTListFieldNames)(scilabEnv env, scilabVar var, wchar_t*** fieldnames)
 {
     types::TList* l = (types::TList*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -130,7 +130,7 @@ scilabVar API_PROTO(getTListField)(scilabEnv env, scilabVar var, const wchar_t* 
 
 }
 
-scilabStatus API_PROTO(setTListField)(scilabEnv env, scilabVar var, const wchar_t* field, const scilabVar val)
+scilabStatus API_PROTO(setTListField)(scilabEnv env, scilabVar var, const wchar_t* field, scilabVar val)
 {
     types::TList* l = (types::TList*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -154,7 +154,7 @@ scilabStatus API_PROTO(setTListField)(scilabEnv env, scilabVar var, const wchar_
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 
-int API_PROTO(getMListFieldNames)(scilabEnv env, scilabVar var, wchar_t const* const** fieldnames)
+int API_PROTO(getMListFieldNames)(scilabEnv env, scilabVar var, wchar_t*** fieldnames)
 {
     types::MList* l = (types::MList*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -183,7 +183,7 @@ scilabVar API_PROTO(getMListField)(scilabEnv env, scilabVar var, const wchar_t* 
     return (scilabVar)l->getField(field);
 }
 
-scilabStatus API_PROTO(setMListField)(scilabEnv env, scilabVar var, const wchar_t* field, const scilabVar val)
+scilabStatus API_PROTO(setMListField)(scilabEnv env, scilabVar var, const wchar_t* field, scilabVar val)
 {
     types::MList* l = (types::MList*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -207,7 +207,7 @@ scilabStatus API_PROTO(setMListField)(scilabEnv env, scilabVar var, const wchar_
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 
-scilabStatus API_PROTO(appendToList)(scilabEnv env, scilabVar var, const scilabVar val)
+scilabStatus API_PROTO(appendToList)(scilabEnv env, scilabVar var, scilabVar val)
 {
     types::List* l = (types::List*)var;
 #ifdef __API_SCILAB_SAFE__

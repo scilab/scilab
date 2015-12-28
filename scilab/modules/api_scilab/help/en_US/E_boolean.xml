@@ -26,7 +26,7 @@
         <literal><link linkend="api_types_scilabVar"><command>scilabVar</command></link> <varname>scilab_createBoolean</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, int val)</literal>
         <para>Create a scalar boolean.</para>
         <para></para>
-        <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getBooleanArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, const int** vals)</literal>
+        <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getBooleanArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int** vals)</literal>
         <para>Get pointer on internal array of boolean of <varname>var</varname>.</para>
         <para></para>
         <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getBoolean</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int* val)</literal>

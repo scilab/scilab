@@ -17,12 +17,12 @@ extern "C"
 #include "api_scilab.h"
 }
 
-scilabVar API_PROTO(createPointer)(scilabEnv env, const void* val)
+scilabVar API_PROTO(createPointer)(scilabEnv env, void* val)
 {
     return (scilabVar)new types::Pointer(val);
 }
 
-scilabStatus API_PROTO(getPointer)(scilabEnv env, scilabVar var, void const** val)
+scilabStatus API_PROTO(getPointer)(scilabEnv env, scilabVar var, const void** val)
 {
     types::Pointer* p = (types::Pointer*)var;
 #ifdef __API_SCILAB_SAFE__

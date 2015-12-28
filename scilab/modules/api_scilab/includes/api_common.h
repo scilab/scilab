@@ -81,7 +81,7 @@ int API_PROTO(isComplex)(scilabEnv env, scilabVar var);
 //dimension
 int API_PROTO(getDim)(scilabEnv env, scilabVar var);
 int API_PROTO(getDim2d)(scilabEnv env, scilabVar var, int* row, int* col);
-int API_PROTO(getDimArray)(scilabEnv env, scilabVar var, const int** dims);
+int API_PROTO(getDimArray)(scilabEnv env, scilabVar var, int** dims);
 int API_PROTO(getSize)(scilabEnv env, scilabVar var);
 int API_PROTO(isEmpty)(scilabEnv env, scilabVar var);
 int API_PROTO(isScalar)(scilabEnv env, scilabVar var);

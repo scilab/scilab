@@ -27,13 +27,13 @@ extern "C" {
 #define scilab_setCellValue         API_PROTO(setCellValue)
 #define scilab_setCell2dValue       API_PROTO(setCell2dValue)
 
-    scilabVar API_PROTO(createCellMatrix)(scilabEnv env, int dim, const int* dims);
-    scilabVar API_PROTO(createCellMatrix2d)(scilabEnv env, int row, int col);
+scilabVar API_PROTO(createCellMatrix)(scilabEnv env, int dim, const int* dims);
+scilabVar API_PROTO(createCellMatrix2d)(scilabEnv env, int row, int col);
 
-    scilabStatus API_PROTO(getCellValue)(scilabEnv env, scilabVar var, int* index, scilabVar* const val);
-    scilabStatus API_PROTO(getCell2dValue)(scilabEnv env, scilabVar var, int row, int col, scilabVar* const val);
-    scilabStatus API_PROTO(setCellValue)(scilabEnv env, scilabVar var, int* index, scilabVar val);
-    scilabStatus API_PROTO(setCell2dValue)(scilabEnv env, scilabVar var, int row, int col, scilabVar val);
+scilabStatus API_PROTO(getCellValue)(scilabEnv env, scilabVar var, int* index, scilabVar* val);
+scilabStatus API_PROTO(getCell2dValue)(scilabEnv env, scilabVar var, int row, int col, scilabVar* val);
+scilabStatus API_PROTO(setCellValue)(scilabEnv env, scilabVar var, int* index, scilabVar val);
+scilabStatus API_PROTO(setCell2dValue)(scilabEnv env, scilabVar var, int row, int col, scilabVar val);
 #ifdef __cplusplus
 }
 #endif

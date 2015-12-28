@@ -311,7 +311,7 @@ int API_PROTO(getDim2d)(scilabEnv env, scilabVar var, int* row, int* col)
     return STATUS_ERROR;
 }
 
-int API_PROTO(getDimArray)(scilabEnv env, scilabVar var, const int** dims)
+int API_PROTO(getDimArray)(scilabEnv env, scilabVar var, int** dims)
 {
     types::InternalType* it = (types::InternalType*)var;
     if (it == nullptr)
@@ -424,7 +424,7 @@ int API_PROTO(isSquare)(scilabEnv env, scilabVar var)
         return false;
     }
 
-    const int* dims = nullptr;
+    int* dims = nullptr;
     scilab_getDimArray(env, var, &dims);
 
     int ref = -1;
@@ -447,7 +447,7 @@ int API_PROTO(isSquare)(scilabEnv env, scilabVar var)
 
 int API_PROTO(isVector)(scilabEnv env, scilabVar var)
 {
-    const int* dims = nullptr;
+    int* dims = nullptr;
     int dim = scilab_getDimArray(env, var, &dims);
 
     int ones = 0;
@@ -469,7 +469,7 @@ int API_PROTO(isMatrix2d)(scilabEnv env, scilabVar var)
 
 int API_PROTO(isNVector)(scilabEnv env, scilabVar var, int n)
 {
-    const int* dims = nullptr;
+    int* dims = nullptr;
     int dim = scilab_getDimArray(env, var, &dims);
 
     for (int i = 0; i < dim; ++i)

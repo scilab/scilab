@@ -37,11 +37,11 @@
             <para>Fill <varname>varname</varname> with polynomial symbol.</para>
         </refsection>
         <refsection id="api_poly_scilab_getPolyArray">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getPolyArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int index, const double** real)</literal>
+            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getPolyArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int index, double** real)</literal>
             <para>Get pointer on internal array of polynomial of <varname>var</varname> at position <varname>index</varname>.</para>
         </refsection>
         <refsection id="api_poly_scilab_getComplexPolyArray">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getComplexPolyArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int index, const double** real, const double** img)</literal>
+            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getComplexPolyArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int index, double** real, double** img)</literal>
             <para>Get pointers on internal array of polynomial of <varname>var</varname> at position <varname>index</varname>.</para>
         </refsection>
         <refsection id="api_poly_scilab_setPolyArray">

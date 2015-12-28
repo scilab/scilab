@@ -18,7 +18,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <refsection id="api_pointer_scilab_createPointer">
-            <literal><link linkend="api_types_scilabVar"><command>scilabVar</command></link> <varname>scilab_createPointer</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, const void* val)</literal>
+            <literal><link linkend="api_types_scilabVar"><command>scilabVar</command></link> <varname>scilab_createPointer</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, void* val)</literal>
             <para>Create a pointer variable from <varname>val</varname>.</para>
         </refsection>
         <refsection id="api_pointer_scilab_getPointer">

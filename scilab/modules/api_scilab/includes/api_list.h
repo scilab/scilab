@@ -38,21 +38,21 @@ int API_PROTO(isDefined)(scilabEnv env, scilabVar var, int index);
 int API_PROTO(isUndefined)(scilabEnv env, scilabVar var, int index);
 
 scilabVar API_PROTO(createList)(scilabEnv env);
-scilabVar API_PROTO(createTList)(scilabEnv env, wchar_t* const type);
-scilabVar API_PROTO(createMList)(scilabEnv env, wchar_t* const type);
+scilabVar API_PROTO(createTList)(scilabEnv env, const wchar_t* type);
+scilabVar API_PROTO(createMList)(scilabEnv env, const wchar_t* type);
 
 scilabVar API_PROTO(getListItem)(scilabEnv env, scilabVar var, int index);
-scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int pos, const scilabVar val);
+scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int pos, scilabVar val);
 
-int API_PROTO(getTListFieldNames)(scilabEnv env, scilabVar var, wchar_t const* const** fieldnames);
+int API_PROTO(getTListFieldNames)(scilabEnv env, scilabVar var, wchar_t*** fieldnames);
 scilabVar API_PROTO(getTListField)(scilabEnv env, scilabVar var, const wchar_t* field);
-scilabStatus API_PROTO(setTListField)(scilabEnv env, scilabVar var, const wchar_t* field, const scilabVar val);
+scilabStatus API_PROTO(setTListField)(scilabEnv env, scilabVar var, const wchar_t* field, scilabVar val);
 
-int API_PROTO(getMListFieldNames)(scilabEnv env, scilabVar var, wchar_t const* const** fieldnames);
+int API_PROTO(getMListFieldNames)(scilabEnv env, scilabVar var, wchar_t*** fieldnames);
 scilabVar API_PROTO(getMListField)(scilabEnv env, scilabVar var, const wchar_t* field);
-scilabStatus API_PROTO(setMListField)(scilabEnv env, scilabVar var, const wchar_t* field, const scilabVar val);
+scilabStatus API_PROTO(setMListField)(scilabEnv env, scilabVar var, const wchar_t* field, scilabVar val);
 
-scilabStatus API_PROTO(appendToList)(scilabEnv env, scilabVar var, const scilabVar val);
+scilabStatus API_PROTO(appendToList)(scilabEnv env, scilabVar var, scilabVar val);
 #ifdef __cplusplus
 }
 #endif

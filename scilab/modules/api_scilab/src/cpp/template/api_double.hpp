@@ -110,7 +110,7 @@ scilabVar API_PROTO(createDoubleComplex)(scilabEnv env, double real, double img)
     return (scilabVar)d;
 }
 
-scilabStatus API_PROTO(getDoubleArray)(scilabEnv env, scilabVar var, const double** real)
+scilabStatus API_PROTO(getDoubleArray)(scilabEnv env, scilabVar var, double** real)
 {
     types::Double* d = (types::Double*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -124,7 +124,7 @@ scilabStatus API_PROTO(getDoubleArray)(scilabEnv env, scilabVar var, const doubl
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(getDoubleComplexArray)(scilabEnv env, scilabVar var, const double** real, const double** img)
+scilabStatus API_PROTO(getDoubleComplexArray)(scilabEnv env, scilabVar var, double** real, double** img)
 {
     types::Double* d = (types::Double*)var;
 #ifdef __API_SCILAB_SAFE__

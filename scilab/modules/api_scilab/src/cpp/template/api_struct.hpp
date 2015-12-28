@@ -117,7 +117,7 @@ scilabStatus API_PROTO(addField)(scilabEnv env, scilabVar var, const wchar_t* fi
     return STATUS_OK;
 }
 
-int API_PROTO(getFields)(scilabEnv env, scilabVar var, const wchar_t* const**  fields)
+int API_PROTO(getFields)(scilabEnv env, scilabVar var, wchar_t***  fields)
 {
     types::Struct* s = (types::Struct*)var;
 #ifdef __API_SCILAB_SAFE__

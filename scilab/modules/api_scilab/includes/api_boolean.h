@@ -28,13 +28,13 @@ extern "C" {
 #define scilab_setBoolean               API_PROTO(setBoolean)
 
 /* Scilab 6 API*/
-scilabVar API_PROTO(createBooleanMatrix)(scilabEnv env, int dim, int* const dims);
+scilabVar API_PROTO(createBooleanMatrix)(scilabEnv env, int dim, const int* dims);
 scilabVar API_PROTO(createBooleanMatrix2d)(scilabEnv env, int row, int col);
 scilabVar API_PROTO(createBoolean)(scilabEnv env, int val);
 
-scilabStatus API_PROTO(getBooleanArray)(scilabEnv env, scilabVar var, int**  const vals);
-scilabStatus API_PROTO(getBoolean)(scilabEnv env, scilabVar var, int* const val);
-scilabStatus API_PROTO(setBooleanArray)(scilabEnv env, scilabVar var, int* const vals);
+scilabStatus API_PROTO(getBooleanArray)(scilabEnv env, scilabVar var, int** vals);
+scilabStatus API_PROTO(getBoolean)(scilabEnv env, scilabVar var, int* val);
+scilabStatus API_PROTO(setBooleanArray)(scilabEnv env, scilabVar var, const int* vals);
 scilabStatus API_PROTO(setBoolean)(scilabEnv env, scilabVar var, int val);
 
 #ifdef __cplusplus

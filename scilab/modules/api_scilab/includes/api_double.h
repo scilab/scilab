@@ -33,21 +33,21 @@ extern "C" {
 #define scilab_setDoubleComplexArray    API_PROTO(setDoubleComplexArray)
 
 /* Scilab 6 API*/
-    scilabVar API_PROTO(createEmptyMatrix)(scilabEnv env);
-    scilabVar API_PROTO(createDoubleMatrix)(scilabEnv env, int dim, const int* dims, int complex);
-    scilabVar API_PROTO(createDoubleMatrix2d)(scilabEnv env, int row, int col, int complex);
-    scilabVar API_PROTO(createDouble)(scilabEnv env, double real);
-    scilabVar API_PROTO(createDoubleComplex)(scilabEnv env, double real, double img);
+scilabVar API_PROTO(createEmptyMatrix)(scilabEnv env);
+scilabVar API_PROTO(createDoubleMatrix)(scilabEnv env, int dim, const int* dims, int complex);
+scilabVar API_PROTO(createDoubleMatrix2d)(scilabEnv env, int row, int col, int complex);
+scilabVar API_PROTO(createDouble)(scilabEnv env, double real);
+scilabVar API_PROTO(createDoubleComplex)(scilabEnv env, double real, double img);
 
-    scilabStatus API_PROTO(getDoubleArray)(scilabEnv env, scilabVar var, const double** real);
-    scilabStatus API_PROTO(getDoubleComplexArray)(scilabEnv env, scilabVar var, const double** real, const double** img);
-    scilabStatus API_PROTO(getDouble)(scilabEnv env, scilabVar var, double* real);
-    scilabStatus API_PROTO(getDoubleComplex)(scilabEnv env, scilabVar var, double* real, double* img);
+scilabStatus API_PROTO(getDoubleArray)(scilabEnv env, scilabVar var, double** real);
+scilabStatus API_PROTO(getDoubleComplexArray)(scilabEnv env, scilabVar var, double** real, double** img);
+scilabStatus API_PROTO(getDouble)(scilabEnv env, scilabVar var, double* real);
+scilabStatus API_PROTO(getDoubleComplex)(scilabEnv env, scilabVar var, double* real, double* img);
 
-    scilabStatus API_PROTO(setDoubleArray)(scilabEnv env, scilabVar var, const double* real);
-    scilabStatus API_PROTO(setDoubleComplexArray)(scilabEnv env, scilabVar var, const double* real, const double* img);
-    scilabStatus API_PROTO(setDouble)(scilabEnv env, scilabVar var, double real);
-    scilabStatus API_PROTO(setDoubleComplex)(scilabEnv env, scilabVar var, double real, double img);
+scilabStatus API_PROTO(setDoubleArray)(scilabEnv env, scilabVar var, const double* real);
+scilabStatus API_PROTO(setDoubleComplexArray)(scilabEnv env, scilabVar var, const double* real, const double* img);
+scilabStatus API_PROTO(setDouble)(scilabEnv env, scilabVar var, double real);
+scilabStatus API_PROTO(setDoubleComplex)(scilabEnv env, scilabVar var, double real, double img);
 
 #ifdef __cplusplus
 }

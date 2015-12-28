@@ -28,14 +28,14 @@ extern "C" {
 #define scilab_getHandle                API_PROTO(getHandle)
 #define scilab_setHandle                API_PROTO(setHandle)
 
-    scilabVar API_PROTO(createHandleMatrix)(scilabEnv env, int dim, const int* dims);
-    scilabVar API_PROTO(createHandleMatrix2d)(scilabEnv env, int row, int col);
-    scilabVar API_PROTO(createHandle)(scilabEnv env);
+scilabVar API_PROTO(createHandleMatrix)(scilabEnv env, int dim, const int* dims);
+scilabVar API_PROTO(createHandleMatrix2d)(scilabEnv env, int row, int col);
+scilabVar API_PROTO(createHandle)(scilabEnv env);
 
-    scilabStatus API_PROTO(getHandleArray)(scilabEnv env, scilabVar var, const long long** vals);
-    scilabStatus API_PROTO(getHandle)(scilabEnv env, scilabVar var, long long* vals);
-    scilabStatus API_PROTO(setHandleArray)(scilabEnv env, scilabVar var, const long long* vals);
-    scilabStatus API_PROTO(setHandle)(scilabEnv env, scilabVar var, long long vals);
+scilabStatus API_PROTO(getHandleArray)(scilabEnv env, scilabVar var, long long** vals);
+scilabStatus API_PROTO(getHandle)(scilabEnv env, scilabVar var, long long* vals);
+scilabStatus API_PROTO(setHandleArray)(scilabEnv env, scilabVar var, const long long* vals);
+scilabStatus API_PROTO(setHandle)(scilabEnv env, scilabVar var, long long vals);
 #ifdef __cplusplus
 }
 #endif

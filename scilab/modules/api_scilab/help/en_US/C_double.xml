@@ -40,11 +40,11 @@
             <para>Create a scalar complex double.</para>
         </refsection>
         <refsection id="api_double_scilab_getDoubleArray">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getDoubleArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, const double** real)</literal>
+            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getDoubleArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, double** real)</literal>
             <para>Get pointer on internal array of double of <literal>var</literal>.</para>
         </refsection>
         <refsection id="api_double_scilab_getDoubleComplexArray">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getDoubleComplexArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, const double** real, const double** img)</literal>
+            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getDoubleComplexArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, double** real, double** img)</literal>
             <para>Get pointers on internal arrays of double of <literal>var</literal>.</para>
         </refsection>
         <refsection id="api_double_scilab_getDouble">

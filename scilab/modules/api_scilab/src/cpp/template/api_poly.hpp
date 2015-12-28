@@ -75,7 +75,7 @@ int API_PROTO(getPolyVarname)(scilabEnv env, scilabVar var, const wchar_t** varn
     return STATUS_OK;
 }
 
-int API_PROTO(getPolyArray)(scilabEnv env, scilabVar var, int index, const double** real)
+int API_PROTO(getPolyArray)(scilabEnv env, scilabVar var, int index, double** real)
 {
     types::Polynom* p = (types::Polynom*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -90,7 +90,7 @@ int API_PROTO(getPolyArray)(scilabEnv env, scilabVar var, int index, const doubl
     return sp->getRank();
 }
 
-int API_PROTO(getComplexPolyArray)(scilabEnv env, scilabVar var, int index, const double** real, const double** img)
+int API_PROTO(getComplexPolyArray)(scilabEnv env, scilabVar var, int index, double** real, double** img)
 {
     types::Polynom* p = (types::Polynom*)var;
 #ifdef __API_SCILAB_SAFE__

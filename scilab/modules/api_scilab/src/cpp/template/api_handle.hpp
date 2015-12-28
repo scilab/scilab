@@ -83,7 +83,7 @@ scilabVar API_PROTO(createHandle)(scilabEnv env)
     return (scilabVar)h;
 }
 
-scilabStatus API_PROTO(getHandleArray)(scilabEnv env, scilabVar var, const long long** vals)
+scilabStatus API_PROTO(getHandleArray)(scilabEnv env, scilabVar var, long long** vals)
 {
     types::GraphicHandle* h = (types::GraphicHandle*)var;
 #ifdef __API_SCILAB_SAFE__

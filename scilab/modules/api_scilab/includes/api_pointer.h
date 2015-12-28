@@ -23,12 +23,12 @@ extern "C" {
 #define scilab_getPointer           API_PROTO(getPointer)
 #define scilab_setPointer           API_PROTO(setPointer)
 
-    /* Scilab 6 API*/
-    scilabVar API_PROTO(createPointer)(scilabEnv env, const void* val);
+/* Scilab 6 API*/
+scilabVar API_PROTO(createPointer)(scilabEnv env, void* val);
 
-    scilabStatus API_PROTO(getPointer)(scilabEnv env, scilabVar var, void const** val);
+scilabStatus API_PROTO(getPointer)(scilabEnv env, scilabVar var, const void** val);
 
-    scilabStatus API_PROTO(setPointer)(scilabEnv env, scilabVar var, const void* val);
+scilabStatus API_PROTO(setPointer)(scilabEnv env, scilabVar var, const void* val);
 
 #ifdef __cplusplus
 }

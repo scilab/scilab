@@ -26,11 +26,11 @@
             <para>Create a cell matrix with 2 dimensions (<varname>row</varname>, <varname>col</varname>).</para>
         </refsection>
         <refsection id="api_cell_scilab_getCellValue">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getCellValue</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int* index, <link linkend="api_types_scilabVar"><command>scilabVar</command></link>* const val)</literal>
+            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getCellValue</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int* index, <link linkend="api_types_scilabVar"><command>scilabVar</command></link>* val)</literal>
             <para>Get data at position (<varname>index</varname>[0], <varname>index</varname>[1], ..., <varname>index</varname>[dims-1]) from <varname>var</varname>.</para>
         </refsection>
         <refsection id="api_cell_scilab_getCell2dValue">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getCell2dValue</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int row, int col, <link linkend="api_types_scilabVar"><command>scilabVar</command></link>* const val)</literal>
+            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getCell2dValue</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int row, int col, <link linkend="api_types_scilabVar"><command>scilabVar</command></link>* val)</literal>
             <para>Get data at position (<varname>row</varname>, <varname>col</varname>) from <varname>var</varname>.</para>
         </refsection>
         <refsection id="api_cell_scilab_setCellValue">

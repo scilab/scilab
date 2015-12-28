@@ -20,7 +20,7 @@ extern "C"
 #include "api_internal_error.hxx"
 
 /* Scilab 6 API*/
-scilabVar API_PROTO(createBooleanMatrix)(scilabEnv env, int dim, int* const dims)
+scilabVar API_PROTO(createBooleanMatrix)(scilabEnv env, int dim, const int* dims)
 {
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
@@ -87,7 +87,7 @@ scilabVar API_PROTO(createBoolean)(scilabEnv env, int val)
     return (scilabVar)b;
 }
 
-scilabStatus API_PROTO(getBoolean)(scilabEnv env, scilabVar var, int* const val)
+scilabStatus API_PROTO(getBoolean)(scilabEnv env, scilabVar var, int* val)
 {
     types::Bool* b = (types::Bool*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -102,7 +102,7 @@ scilabStatus API_PROTO(getBoolean)(scilabEnv env, scilabVar var, int* const val)
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(getBooleanArray)(scilabEnv env, scilabVar var, int** const vals)
+scilabStatus API_PROTO(getBooleanArray)(scilabEnv env, scilabVar var, int** vals)
 {
     types::Bool* b = (types::Bool*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -117,7 +117,7 @@ scilabStatus API_PROTO(getBooleanArray)(scilabEnv env, scilabVar var, int** cons
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(setBooleanArray)(scilabEnv env, scilabVar var, int* const vals)
+scilabStatus API_PROTO(setBooleanArray)(scilabEnv env, scilabVar var, const int* vals)
 {
     types::Bool* b = (types::Bool*)var;
 #ifdef __API_SCILAB_SAFE__

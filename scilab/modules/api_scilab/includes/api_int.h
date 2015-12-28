@@ -87,75 +87,75 @@ extern "C" {
 #define scilab_setUnsignedInteger32Array            API_PROTO(setUnsignedInteger32Array)
 #define scilab_setUnsignedInteger64Array            API_PROTO(setUnsignedInteger64Array)
 
-    /* Scilab 6 API*/
-    int API_PROTO(getIntegerPrecision)(scilabEnv env, scilabVar var);
+/* Scilab 6 API*/
+int API_PROTO(getIntegerPrecision)(scilabEnv env, scilabVar var);
 
-    int API_PROTO(isInt8)(scilabEnv env, scilabVar var);
-    int API_PROTO(isInt16)(scilabEnv env, scilabVar var);
-    int API_PROTO(isInt32)(scilabEnv env, scilabVar var);
-    int API_PROTO(isInt64)(scilabEnv env, scilabVar var);
-    int API_PROTO(isUnsignedInt8)(scilabEnv env, scilabVar var);
-    int API_PROTO(isUnsignedInt16)(scilabEnv env, scilabVar var);
-    int API_PROTO(isUnsignedInt32)(scilabEnv env, scilabVar var);
-    int API_PROTO(isUnsignedInt64)(scilabEnv env, scilabVar var);
+int API_PROTO(isInt8)(scilabEnv env, scilabVar var);
+int API_PROTO(isInt16)(scilabEnv env, scilabVar var);
+int API_PROTO(isInt32)(scilabEnv env, scilabVar var);
+int API_PROTO(isInt64)(scilabEnv env, scilabVar var);
+int API_PROTO(isUnsignedInt8)(scilabEnv env, scilabVar var);
+int API_PROTO(isUnsignedInt16)(scilabEnv env, scilabVar var);
+int API_PROTO(isUnsignedInt32)(scilabEnv env, scilabVar var);
+int API_PROTO(isUnsignedInt64)(scilabEnv env, scilabVar var);
 
-    scilabVar API_PROTO(createInteger8)(scilabEnv env, char val);
-    scilabVar API_PROTO(createInteger16)(scilabEnv env, short val);
-    scilabVar API_PROTO(createInteger32)(scilabEnv env, int val);
-    scilabVar API_PROTO(createInteger64)(scilabEnv env, long long val);
-    scilabVar API_PROTO(createUnsignedInteger8)(scilabEnv env, unsigned char val);
-    scilabVar API_PROTO(createUnsignedInteger16)(scilabEnv env, unsigned short val);
-    scilabVar API_PROTO(createUnsignedInteger32)(scilabEnv env, unsigned int val);
-    scilabVar API_PROTO(createUnsignedInteger64)(scilabEnv env, unsigned long long val);
+scilabVar API_PROTO(createInteger8)(scilabEnv env, char val);
+scilabVar API_PROTO(createInteger16)(scilabEnv env, short val);
+scilabVar API_PROTO(createInteger32)(scilabEnv env, int val);
+scilabVar API_PROTO(createInteger64)(scilabEnv env, long long val);
+scilabVar API_PROTO(createUnsignedInteger8)(scilabEnv env, unsigned char val);
+scilabVar API_PROTO(createUnsignedInteger16)(scilabEnv env, unsigned short val);
+scilabVar API_PROTO(createUnsignedInteger32)(scilabEnv env, unsigned int val);
+scilabVar API_PROTO(createUnsignedInteger64)(scilabEnv env, unsigned long long val);
 
-    scilabVar API_PROTO(createIntegerMatrix)(scilabEnv env, int prec, int dim, const int* dims);
-    scilabVar API_PROTO(createInteger8Matrix)(scilabEnv env, int dim, const int* dims);
-    scilabVar API_PROTO(createInteger16Matrix)(scilabEnv env, int dim, const int* dims);
-    scilabVar API_PROTO(createInteger32Matrix)(scilabEnv env, int dim, const int* dims);
-    scilabVar API_PROTO(createInteger64Matrix)(scilabEnv env, int dim, const int* dims);
-    scilabVar API_PROTO(createUnsignedInteger8Matrix)(scilabEnv env, int dim, const int* dims);
-    scilabVar API_PROTO(createUnsignedInteger16Matrix)(scilabEnv env, int dim, const int* dims);
-    scilabVar API_PROTO(createUnsignedInteger32Matrix)(scilabEnv env, int dim, const int* dims);
-    scilabVar API_PROTO(createUnsignedInteger64Matrix)(scilabEnv env, int dim, const int* dims);
+scilabVar API_PROTO(createIntegerMatrix)(scilabEnv env, int prec, int dim, const int* dims);
+scilabVar API_PROTO(createInteger8Matrix)(scilabEnv env, int dim, const int* dims);
+scilabVar API_PROTO(createInteger16Matrix)(scilabEnv env, int dim, const int* dims);
+scilabVar API_PROTO(createInteger32Matrix)(scilabEnv env, int dim, const int* dims);
+scilabVar API_PROTO(createInteger64Matrix)(scilabEnv env, int dim, const int* dims);
+scilabVar API_PROTO(createUnsignedInteger8Matrix)(scilabEnv env, int dim, const int* dims);
+scilabVar API_PROTO(createUnsignedInteger16Matrix)(scilabEnv env, int dim, const int* dims);
+scilabVar API_PROTO(createUnsignedInteger32Matrix)(scilabEnv env, int dim, const int* dims);
+scilabVar API_PROTO(createUnsignedInteger64Matrix)(scilabEnv env, int dim, const int* dims);
 
-    scilabVar API_PROTO(createIntegerMatrix2d)(scilabEnv env, int prec, int row, int col);
-    scilabVar API_PROTO(createInteger8Matrix2d)(scilabEnv env, int row, int col);
-    scilabVar API_PROTO(createInteger16Matrix2d)(scilabEnv env, int row, int col);
-    scilabVar API_PROTO(createInteger32Matrix2d)(scilabEnv env, int row, int col);
-    scilabVar API_PROTO(createInteger64Matrix2d)(scilabEnv env, int row, int col);
-    scilabVar API_PROTO(createUnsignedInteger8Matrix2d)(scilabEnv env, int row, int col);
-    scilabVar API_PROTO(createUnsignedInteger16Matrix2d)(scilabEnv env, int row, int col);
-    scilabVar API_PROTO(createUnsignedInteger32Matrix2d)(scilabEnv env, int row, int col);
-    scilabVar API_PROTO(createUnsignedInteger64Matrix2d)(scilabEnv env, int row, int col);
+scilabVar API_PROTO(createIntegerMatrix2d)(scilabEnv env, int prec, int row, int col);
+scilabVar API_PROTO(createInteger8Matrix2d)(scilabEnv env, int row, int col);
+scilabVar API_PROTO(createInteger16Matrix2d)(scilabEnv env, int row, int col);
+scilabVar API_PROTO(createInteger32Matrix2d)(scilabEnv env, int row, int col);
+scilabVar API_PROTO(createInteger64Matrix2d)(scilabEnv env, int row, int col);
+scilabVar API_PROTO(createUnsignedInteger8Matrix2d)(scilabEnv env, int row, int col);
+scilabVar API_PROTO(createUnsignedInteger16Matrix2d)(scilabEnv env, int row, int col);
+scilabVar API_PROTO(createUnsignedInteger32Matrix2d)(scilabEnv env, int row, int col);
+scilabVar API_PROTO(createUnsignedInteger64Matrix2d)(scilabEnv env, int row, int col);
 
-    scilabStatus API_PROTO(getInteger8)(scilabEnv env, scilabVar var, char* val);
-    scilabStatus API_PROTO(getInteger16)(scilabEnv env, scilabVar var, short* val);
-    scilabStatus API_PROTO(getInteger32)(scilabEnv env, scilabVar var, int* val);
-    scilabStatus API_PROTO(getInteger64)(scilabEnv env, scilabVar var, long long* val);
-    scilabStatus API_PROTO(getUnsignedInteger8)(scilabEnv env, scilabVar var, unsigned char* val);
-    scilabStatus API_PROTO(getUnsignedInteger16)(scilabEnv env, scilabVar var, unsigned short* val);
-    scilabStatus API_PROTO(getUnsignedInteger32)(scilabEnv env, scilabVar var, unsigned int* val);
-    scilabStatus API_PROTO(getUnsignedInteger64)(scilabEnv env, scilabVar var, unsigned long long* val);
+scilabStatus API_PROTO(getInteger8)(scilabEnv env, scilabVar var, char* val);
+scilabStatus API_PROTO(getInteger16)(scilabEnv env, scilabVar var, short* val);
+scilabStatus API_PROTO(getInteger32)(scilabEnv env, scilabVar var, int* val);
+scilabStatus API_PROTO(getInteger64)(scilabEnv env, scilabVar var, long long* val);
+scilabStatus API_PROTO(getUnsignedInteger8)(scilabEnv env, scilabVar var, unsigned char* val);
+scilabStatus API_PROTO(getUnsignedInteger16)(scilabEnv env, scilabVar var, unsigned short* val);
+scilabStatus API_PROTO(getUnsignedInteger32)(scilabEnv env, scilabVar var, unsigned int* val);
+scilabStatus API_PROTO(getUnsignedInteger64)(scilabEnv env, scilabVar var, unsigned long long* val);
 
-    scilabStatus API_PROTO(getIntegerArray)(scilabEnv env, scilabVar var, const void** vals);
-    scilabStatus API_PROTO(getInteger8Array)(scilabEnv env, scilabVar var, const char** vals);
-    scilabStatus API_PROTO(getInteger16Array)(scilabEnv env, scilabVar var, const short** vals);
-    scilabStatus API_PROTO(getInteger32Array)(scilabEnv env, scilabVar var, const int** vals);
-    scilabStatus API_PROTO(getInteger64Array)(scilabEnv env, scilabVar var, const long long** vals);
-    scilabStatus API_PROTO(getUnsignedInteger8Array)(scilabEnv env, scilabVar var, const unsigned char** vals);
-    scilabStatus API_PROTO(getUnsignedInteger16Array)(scilabEnv env, scilabVar var, const unsigned short** vals);
-    scilabStatus API_PROTO(getUnsignedInteger32Array)(scilabEnv env, scilabVar var, const unsigned int** vals);
-    scilabStatus API_PROTO(getUnsignedInteger64Array)(scilabEnv env, scilabVar var, const unsigned long long** vals);
+scilabStatus API_PROTO(getIntegerArray)(scilabEnv env, scilabVar var, void** vals);
+scilabStatus API_PROTO(getInteger8Array)(scilabEnv env, scilabVar var, char** vals);
+scilabStatus API_PROTO(getInteger16Array)(scilabEnv env, scilabVar var, short** vals);
+scilabStatus API_PROTO(getInteger32Array)(scilabEnv env, scilabVar var, int** vals);
+scilabStatus API_PROTO(getInteger64Array)(scilabEnv env, scilabVar var, long long** vals);
+scilabStatus API_PROTO(getUnsignedInteger8Array)(scilabEnv env, scilabVar var, unsigned char** vals);
+scilabStatus API_PROTO(getUnsignedInteger16Array)(scilabEnv env, scilabVar var, unsigned short** vals);
+scilabStatus API_PROTO(getUnsignedInteger32Array)(scilabEnv env, scilabVar var, unsigned int** vals);
+scilabStatus API_PROTO(getUnsignedInteger64Array)(scilabEnv env, scilabVar var, unsigned long long** vals);
 
-    scilabStatus API_PROTO(setIntegerArray)(scilabEnv env, scilabVar var, const void* vals);
-    scilabStatus API_PROTO(setInteger8Array)(scilabEnv env, scilabVar var, const char* vals);
-    scilabStatus API_PROTO(setInteger16Array)(scilabEnv env, scilabVar var, const short* vals);
-    scilabStatus API_PROTO(setInteger32Array)(scilabEnv env, scilabVar var, const int* vals);
-    scilabStatus API_PROTO(setInteger64Array)(scilabEnv env, scilabVar var, const long long* vals);
-    scilabStatus API_PROTO(setUnsignedInteger8Array)(scilabEnv env, scilabVar var, const unsigned char* vals);
-    scilabStatus API_PROTO(setUnsignedInteger16Array)(scilabEnv env, scilabVar var, const unsigned short* vals);
-    scilabStatus API_PROTO(setUnsignedInteger32Array)(scilabEnv env, scilabVar var, const unsigned int* vals);
-    scilabStatus API_PROTO(setUnsignedInteger64Array)(scilabEnv env, scilabVar var, const unsigned long long* vals);
+scilabStatus API_PROTO(setIntegerArray)(scilabEnv env, scilabVar var, const void* vals);
+scilabStatus API_PROTO(setInteger8Array)(scilabEnv env, scilabVar var, const char* vals);
+scilabStatus API_PROTO(setInteger16Array)(scilabEnv env, scilabVar var, const short* vals);
+scilabStatus API_PROTO(setInteger32Array)(scilabEnv env, scilabVar var, const int* vals);
+scilabStatus API_PROTO(setInteger64Array)(scilabEnv env, scilabVar var, const long long* vals);
+scilabStatus API_PROTO(setUnsignedInteger8Array)(scilabEnv env, scilabVar var, const unsigned char* vals);
+scilabStatus API_PROTO(setUnsignedInteger16Array)(scilabEnv env, scilabVar var, const unsigned short* vals);
+scilabStatus API_PROTO(setUnsignedInteger32Array)(scilabEnv env, scilabVar var, const unsigned int* vals);
+scilabStatus API_PROTO(setUnsignedInteger64Array)(scilabEnv env, scilabVar var, const unsigned long long* vals);
 
 #ifdef __cplusplus
 }

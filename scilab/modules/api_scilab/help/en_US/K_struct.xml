@@ -30,7 +30,7 @@
             <para>Create a scalar struct.</para>
         </refsection>
         <refsection id="api_struct_scilab_addFields">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_addFields</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int count, const wchar_t* const* fields)</literal>
+            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_addFields</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int count, const wchar_t** fields)</literal>
             <para>Add <varname>count</varname> fields <varname>fields</varname> in struct <varname>var</varname>.</para>
         </refsection>
         <refsection id="api_struct_scilab_addField">
@@ -38,7 +38,7 @@
             <para>Add field <varname>field</varname> in struct <varname>var</varname>.</para>
         </refsection>
         <refsection id="api_struct_scilab_getFields">
-            <literal>int <varname>scilab_getFields</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, const wchar_t* const** fields)</literal>
+            <literal>int <varname>scilab_getFields</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, wchar_t*** fields)</literal>
             <para>Get field names <varname>fields</varname> from struct <varname>var</varname> and returns count of fields.</para>
         </refsection>
         <refsection id="api_struct_scilab_getStructMatrixData">
@@ -50,11 +50,11 @@
             <para>Get field value at position (<varname>row</varname>, <varname>col</varname>) from <varname>var</varname>.</para>
         </refsection>
         <refsection id="api_struct_scilab_setStructMatrixData">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_setStructMatrixData</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, const wchar_t* field, const int* index, const <link linkend="api_types_scilabVar"><command>scilabVar</command></link> data)</literal>
+            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_setStructMatrixData</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, const wchar_t* field, const int* index, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> data)</literal>
             <para>Set field value at position (<varname>index</varname>[0], <varname>index</varname>[1], ..., <varname>index</varname>[dims-1]) in <varname>var</varname>.</para>
         </refsection>
         <refsection id="api_struct_scilab_setStructMatrixData2d">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_setStructMatrixData2d</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, const wchar_t* field, int row, int col, const <link linkend="api_types_scilabVar"><command>scilabVar</command></link> data)</literal>
+            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_setStructMatrixData2d</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, const wchar_t* field, int row, int col, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> data)</literal>
             <para>Set field value at position (<varname>row</varname>, <varname>col</varname>) in <varname>var</varname>.</para>
         </refsection>
     </refsynopsisdiv>

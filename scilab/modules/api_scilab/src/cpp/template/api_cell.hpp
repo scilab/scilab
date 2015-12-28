@@ -70,7 +70,7 @@ scilabVar API_PROTO(createCellMatrix2d)(scilabEnv env, int row, int col)
     return (scilabVar)c;
 }
 
-scilabStatus API_PROTO(getCellValue)(scilabEnv env, scilabVar var, int* index, scilabVar* const val)
+scilabStatus API_PROTO(getCellValue)(scilabEnv env, scilabVar var, int* index, scilabVar* val)
 {
     types::Cell* c = (types::Cell*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -86,7 +86,7 @@ scilabStatus API_PROTO(getCellValue)(scilabEnv env, scilabVar var, int* index, s
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(getCell2dValue)(scilabEnv env, scilabVar var, int row, int col, scilabVar* const val)
+scilabStatus API_PROTO(getCell2dValue)(scilabEnv env, scilabVar var, int row, int col, scilabVar* val)
 {
     int index[2] = {row, col};
     types::Cell* c = (types::Cell*)var;
