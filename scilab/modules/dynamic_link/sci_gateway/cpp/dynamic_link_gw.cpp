@@ -28,5 +28,6 @@ int DynamicLinkModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"c_link", &sci_c_link, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ilib_verbose", &sci_ilib_verbose, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"addinter", &sci_addinter, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"call", &sci_call, MODULE_NAME));
     return 1;
 }

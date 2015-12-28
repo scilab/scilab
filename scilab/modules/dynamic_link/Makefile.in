@@ -203,7 +203,8 @@ am__objects_3 =  \
 	sci_gateway/cpp/libscidynamic_link_la-sci_ulink.lo \
 	sci_gateway/cpp/libscidynamic_link_la-sci_ilib_verbose.lo \
 	sci_gateway/cpp/libscidynamic_link_la-sci_getdynlibext.lo \
-	sci_gateway/cpp/libscidynamic_link_la-sci_addinter.lo
+	sci_gateway/cpp/libscidynamic_link_la-sci_addinter.lo \
+	sci_gateway/cpp/libscidynamic_link_la-sci_call.lo
 am_libscidynamic_link_la_OBJECTS = $(am__objects_3)
 libscidynamic_link_la_OBJECTS = $(am_libscidynamic_link_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscidynamic_link_la_rpath =
@@ -597,9 +598,6 @@ DYNAMIC_LINK_CPP_SOURCES = \
     src/cpp/dynamic_link.cpp \
     src/cpp/addinter.cpp
 
-
-#GATEWAY_C_SOURCES = \
-#    sci_gateway/c/sci_call.c
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/dynamic_link_gw.cpp \
     sci_gateway/cpp/sci_link.cpp \
@@ -607,7 +605,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_ulink.cpp \
     sci_gateway/cpp/sci_ilib_verbose.cpp \
     sci_gateway/cpp/sci_getdynlibext.cpp \
-    sci_gateway/cpp/sci_addinter.cpp
+    sci_gateway/cpp/sci_addinter.cpp \
+    sci_gateway/cpp/sci_call.cpp
 
 libscidynamic_link_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
@@ -897,6 +896,9 @@ sci_gateway/cpp/libscidynamic_link_la-sci_getdynlibext.lo:  \
 sci_gateway/cpp/libscidynamic_link_la-sci_addinter.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscidynamic_link_la-sci_call.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscidynamic_link.la: $(libscidynamic_link_la_OBJECTS) $(libscidynamic_link_la_DEPENDENCIES) $(EXTRA_libscidynamic_link_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscidynamic_link_la_rpath) $(libscidynamic_link_la_OBJECTS) $(libscidynamic_link_la_LIBADD) $(LIBS)
@@ -951,6 +953,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-dynamic_link_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_addinter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_c_link.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_call.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_getdynlibext.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_ilib_verbose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_link.Plo@am__quote@
@@ -1100,6 +1103,13 @@ sci_gateway/cpp/libscidynamic_link_la-sci_addinter.lo: sci_gateway/cpp/sci_addin
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_addinter.cpp' object='sci_gateway/cpp/libscidynamic_link_la-sci_addinter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscidynamic_link_la-sci_addinter.lo `test -f 'sci_gateway/cpp/sci_addinter.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_addinter.cpp
+
+sci_gateway/cpp/libscidynamic_link_la-sci_call.lo: sci_gateway/cpp/sci_call.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscidynamic_link_la-sci_call.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_call.Tpo -c -o sci_gateway/cpp/libscidynamic_link_la-sci_call.lo `test -f 'sci_gateway/cpp/sci_call.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_call.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_call.Tpo sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_call.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_call.cpp' object='sci_gateway/cpp/libscidynamic_link_la-sci_call.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscidynamic_link_la-sci_call.lo `test -f 'sci_gateway/cpp/sci_call.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_call.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
