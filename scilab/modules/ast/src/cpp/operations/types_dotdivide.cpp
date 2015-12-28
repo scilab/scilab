@@ -664,8 +664,8 @@ void fillDotDivFunction()
     scilab_fill_dotdiv(Identity, PolynomComplex, M_M, Double, Polynom, Polynom);
     scilab_fill_dotdiv(Identity, ScalarPolynom, M_M, Double, Polynom, Polynom);
     scilab_fill_dotdiv(Identity, ScalarPolynomComplex, M_M, Double, Polynom, Polynom);
-    //scilab_fill_dotdiv(Identity, Sparse, M_M, Double, Sparse, Sparse);
-    //scilab_fill_dotdiv(Identity, SparseComplex, M_M, Double, Sparse, Sparse);
+    scilab_fill_dotdiv(Identity, Sparse, M_M, Double, Sparse, Sparse);
+    scilab_fill_dotdiv(Identity, SparseComplex, M_M, Double, Sparse, Sparse);
 
     scilab_fill_dotdiv(IdentityComplex, Double, IC_M, Double, Double, Double);
     scilab_fill_dotdiv(IdentityComplex, DoubleComplex, IC_MC, Double, Double, Double);
@@ -679,8 +679,8 @@ void fillDotDivFunction()
     scilab_fill_dotdiv(IdentityComplex, PolynomComplex, M_M, Double, Polynom, Polynom);
     scilab_fill_dotdiv(IdentityComplex, ScalarPolynom, M_M, Double, Polynom, Polynom);
     scilab_fill_dotdiv(IdentityComplex, ScalarPolynomComplex, M_M, Double, Polynom, Polynom);
-    //scilab_fill_dotdiv(IdentityComplex, Sparse, M_M, Double, Sparse, Sparse);
-    //scilab_fill_dotdiv(IdentityComplex, SparseComplex, M_M, Double, Sparse, Sparse);
+    scilab_fill_dotdiv(IdentityComplex, Sparse, M_M, Double, Sparse, Sparse);
+    scilab_fill_dotdiv(IdentityComplex, SparseComplex, M_M, Double, Sparse, Sparse);
 
     //Polynom
 
@@ -761,8 +761,8 @@ void fillDotDivFunction()
     scilab_fill_dotdiv(Sparse, ScalarDoubleComplex, M_M, Sparse, Double, Sparse);
 
     scilab_fill_dotdiv(Sparse, Empty, M_E, Sparse, Double, Double);
-    //scilab_fill_dotdiv(Sparse, Identity, M_M, Sparse, Double, Sparse);
-    //scilab_fill_dotdiv(Sparse, IdentityComplex, M_M, Sparse, Double, Sparse);
+    scilab_fill_dotdiv(Sparse, Identity, M_M, Sparse, Double, Sparse);
+    scilab_fill_dotdiv(Sparse, IdentityComplex, M_M, Sparse, Double, Sparse);
 
     scilab_fill_dotdiv(SparseComplex, Sparse, M_M, Sparse, Sparse, Sparse);
     scilab_fill_dotdiv(SparseComplex, SparseComplex, M_M, Sparse, Sparse, Sparse);
@@ -772,8 +772,8 @@ void fillDotDivFunction()
     scilab_fill_dotdiv(SparseComplex, ScalarDoubleComplex, M_M, Sparse, Double, Sparse);
 
     scilab_fill_dotdiv(SparseComplex, Empty, M_E, Sparse, Double, Double);
-    //scilab_fill_dotdiv(SparseComplex, Identity, M_M, Sparse, Double, Sparse);
-    //scilab_fill_dotdiv(SparseComplex, IdentityComplex, M_M, Sparse, Double, Sparse);
+    scilab_fill_dotdiv(SparseComplex, Identity, M_M, Sparse, Double, Sparse);
+    scilab_fill_dotdiv(SparseComplex, IdentityComplex, M_M, Sparse, Double, Sparse);
 
 #undef scilab_fill_dotdiv
 
@@ -1310,11 +1310,12 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
             {
                 if (_pR->get(i) != 0)
                 {
-                    pTemp->set(i, _pL->get(0));
+                    pTemp->set(i, _pL->get(0), false);
                 }
             }
         }
 
+        pTemp->finalize();
         Sparse* pOut = pTemp->dotDivide(*_pR);
         delete pTemp;
         return pOut;
@@ -1337,6 +1338,32 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
 
         InternalType* pIT = GenericDotRDivide(_pL, pD);
         delete pD;
+        return pIT;
+    }
+
+    if (_pL->isIdentity())
+    {
+        Sparse* pSPTemp = new Sparse(_pR->getRows(), _pR->getCols(), _pL->isComplex());
+        int size = std::min(_pR->getRows(), _pR->getCols());
+        double dblLeftR = _pL->get(0);
+        if (_pL->isComplex())
+        {
+            std::complex<double> complexLeft(dblLeftR, _pL->getImg(0));
+            for (int i = 0; i < size; i++)
+            {
+                pSPTemp->set(i, i, complexLeft, false);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < size; i++)
+            {
+                pSPTemp->set(i, i, dblLeftR, false);
+            }
+        }
+        pSPTemp->finalize();
+        InternalType* pIT = GenericDotRDivide(pSPTemp, _pR);
+        delete pSPTemp;
         return pIT;
     }
 
@@ -1370,7 +1397,7 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
                 int iCol = static_cast<int>(pCols[i]) - 1;
                 int index = iCol * iRows + iRow;
 
-                pOut->set(iRow, iCol,  pdblR[index] / pValR[i]);
+                pOut->set(iRow, iCol,  pdblR[index] / pValR[i], false);
             }
         }
         else
@@ -1386,7 +1413,7 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
                 dDenum = ( pValR[index] * pValR[index] + pValI[index] * pValI[index]);
                 c.real((pdblR[index] * pValR[i]) / dDenum);
                 c.imag(-(pdblR[index] * pValI[i]) / dDenum);
-                pOut->set(iRow, iCol,  c);
+                pOut->set(iRow, iCol,  c, false);
             }
         }
     }
@@ -1404,7 +1431,7 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
                 std::complex<double> c;
                 c.real(pdblR[index] / pValR[i]);
                 c.imag(pdblI[index] / pValR[i]);
-                pOut->set(iRow, iCol,  c);
+                pOut->set(iRow, iCol,  c, false);
             }
         }
         else
@@ -1420,7 +1447,7 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
                 dDenum = ( pValR[index] * pValR[index] + pValI[index] * pValI[index]);
                 c.real((pdblR[index] * pValR[i] + pdblI[index] * pValI[i]) / dDenum);
                 c.imag((pdblI[index] * pValR[i] - pdblR[index] * pValI[i]) / dDenum);
-                pOut->set(iRow, iCol,  c);
+                pOut->set(iRow, iCol,  c, false);
             }
         }
     }
@@ -1429,6 +1456,7 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
     delete[] pValR;
     delete[] pValI;
 
+    pOut->finalize();
     return pOut;
 }
 
@@ -1449,7 +1477,7 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
             {
                 if (_pL->get(i) != 0)
                 {
-                    pTemp->set(i, stComplex);
+                    pTemp->set(i, stComplex, false);
                 }
             }
         }
@@ -1461,11 +1489,12 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
             {
                 if (_pL->get(i) != 0)
                 {
-                    pTemp->set(i, _pR->get(0));
+                    pTemp->set(i, _pR->get(0), false);
                 }
             }
         }
 
+        pTemp->finalize();
         Sparse* pOut = _pL->dotDivide(*pTemp);
         delete pTemp;
         return pOut;
@@ -1491,6 +1520,31 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
         return pIT;
     }
 
+    if (_pR->isIdentity())
+    {
+        Sparse* pSPTemp = new Sparse(_pL->getRows(), _pL->getCols(), _pR->isComplex());
+        int size = std::min(_pL->getRows(), _pL->getCols());
+        double dblRightR = _pR->get(0);
+        if (_pR->isComplex())
+        {
+            std::complex<double> complexRight(dblRightR, _pR->getImg(0));
+            for (int i = 0; i < size; i++)
+            {
+                pSPTemp->set(i, i, complexRight, false);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < size; i++)
+            {
+                pSPTemp->set(i, i, dblRightR, false);
+            }
+        }
+        pSPTemp->finalize();
+        InternalType* pIT = GenericDotRDivide(_pL, pSPTemp);
+        delete pSPTemp;
+        return pIT;
+    }
 
     //check dimensions
     if (_pR->getDims() != 2 || _pR->getRows() != _pL->getRows() || _pR->getCols() != _pL->getCols())
@@ -1521,7 +1575,7 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
                 int iCol = static_cast<int>(pCols[i]) - 1;
                 int index = iCol * iRows + iRow;
 
-                pOut->set(iRow, iCol, pValR[i] / pdblR[index]  );
+                pOut->set(iRow, iCol, pValR[i] / pdblR[index], false);
             }
         }
         else
@@ -1535,7 +1589,7 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
                 std::complex<double> c;
                 c.real(pValR[i] / pdblR[index]);
                 c.imag(pValR[i] / pdblR[index]);
-                pOut->set(iRow, iCol,  c);
+                pOut->set(iRow, iCol, c, false);
             }
         }
     }
@@ -1555,7 +1609,7 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
                 dDenum = ( pdblR[index] * pdblR[index] + pdblI[index] * pdblI[index]);
                 c.real((pValR[i]*pdblR[index]) / dDenum );
                 c.imag(-(pdblI[index]*pValR[i]) / dDenum );
-                pOut->set(iRow, iCol,  c);
+                pOut->set(iRow, iCol,  c, false);
             }
         }
         else
@@ -1570,7 +1624,7 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
                 dDenum = ( pdblR[index] * pdblR[index] + pdblI[index] * pdblI[index]);
                 c.real((pdblR[index] * pValR[i] + pdblI[index] * pValI[i]) / dDenum);
                 c.imag((pdblR[index] * pValI[i] - pdblI[index] * pValR[i]) / dDenum);
-                pOut->set(iRow, iCol,  c);
+                pOut->set(iRow, iCol,  c, false);
             }
         }
     }
@@ -1579,6 +1633,7 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
     delete[] pValR;
     delete[] pValI;
 
+    pOut->finalize();
     return pOut;
 }
 

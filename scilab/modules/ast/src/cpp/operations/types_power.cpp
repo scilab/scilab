@@ -502,7 +502,7 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
         {
             DotPowerDoubleByDouble(pDblSp[i], pDbl[i], &ppDblGet);
             std::complex<double> cplx(ppDblGet->get(0), ppDblGet->getImg(0));
-            pSpTemp->set(iPositVal[i], cplx, true);
+            pSpTemp->set(iPositVal[i], cplx, false);
         }
     }
 
@@ -510,6 +510,7 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
     delete Row;
     delete iPositVal;
 
+    pSpTemp->finalize();
     *_pOut = pSpTemp;
     return 0;
 

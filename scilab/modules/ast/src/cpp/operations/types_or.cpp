@@ -717,9 +717,11 @@ InternalType* or_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Sparse
             {
                 for (int j = 0 ; j < iCols ; j++)
                 {
-                    pOut->set(i, j, true);
+                    pOut->set(i, j, true, false);
                 }
             }
+
+            pOut->finalize();
         }
         else
         {
@@ -740,9 +742,11 @@ InternalType* or_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Sparse
             {
                 for (int j = 0 ; j < iCols ; j++)
                 {
-                    pOut->set(i, j, true);
+                    pOut->set(i, j, true, false);
                 }
             }
+
+            pOut->finalize();
         }
         else
         {

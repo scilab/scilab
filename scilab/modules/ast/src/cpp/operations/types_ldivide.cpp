@@ -104,14 +104,14 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
 
     if (_pDouble1->isScalar())
     {
-        //Y \ x => x / Y
+        //x \ Y => Y / x
         return RDivideDoubleByDouble(_pDouble2, _pDouble1, _pDoubleOut);
     }
 
     if (_pDouble2->isScalar())
     {
-        // managed in %s_l_s, call overload
-        return 0;
+        //X \ y => y / X
+        return RDivideDoubleByDouble(_pDouble2, _pDouble1, _pDoubleOut);
     }
 
     if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getRows() != _pDouble2->getRows())

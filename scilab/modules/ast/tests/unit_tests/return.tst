@@ -64,4 +64,4 @@ assert_checkequal(while_return(), 1);
 assert_checkequal(while_if_return(), 1);
 assert_checkequal(for_return(), 1);
 assert_checkequal(for_if_return(), 1);
-assert_checkerror("foo()", _("With input arguments, return / resume expect output arguments."));
+assert_checkerror("foo()", _("With input arguments, return / resume expects output arguments."));

@@ -1290,7 +1290,7 @@ InternalType* dotmul_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
                 int iCol = static_cast<int>(pCols[i]) - 1;
                 int index = iCol * iRows + iRow;
 
-                pOut->set(iRow, iCol,  pdblR[index] * pValR[i]);
+                pOut->set(iRow, iCol,  pdblR[index] * pValR[i], false);
             }
         }
         else
@@ -1304,7 +1304,7 @@ InternalType* dotmul_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
                 std::complex<double> c;
                 c.real(pdblR[index] * pValR[i]);
                 c.imag(pdblR[index] * pValI[i]);
-                pOut->set(iRow, iCol,  c);
+                pOut->set(iRow, iCol,  c, false);
             }
         }
     }
@@ -1322,7 +1322,7 @@ InternalType* dotmul_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
                 std::complex<double> c;
                 c.real(pdblR[index] * pValR[i]);
                 c.imag(pdblI[index] * pValR[i]);
-                pOut->set(iRow, iCol,  c);
+                pOut->set(iRow, iCol,  c, false);
             }
         }
         else
@@ -1336,7 +1336,7 @@ InternalType* dotmul_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
                 std::complex<double> c;
                 c.real(pdblR[index] * pValR[i] - pdblI[index] * pValI[i]);
                 c.imag(pdblR[index] * pValI[i] + pdblI[index] * pValR[i]);
-                pOut->set(iRow, iCol,  c);
+                pOut->set(iRow, iCol,  c, false);
             }
         }
     }
@@ -1345,6 +1345,7 @@ InternalType* dotmul_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
     delete[] pValR;
     delete[] pValI;
 
+    pOut->finalize();
     return pOut;
 }
 

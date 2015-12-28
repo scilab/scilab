@@ -182,7 +182,7 @@ void fillSubtractFunction()
     scilab_fill_sub(Empty, ScalarDoubleComplex, E_MC, Double, Double, Double);
     scilab_fill_sub(Empty, ScalarPolynomComplex, E_MC, Double, Polynom, Polynom);
     //Empty - Empty
-    scilab_fill_sub(Empty, Empty, E_M, Double, Double, Double);
+    scilab_fill_sub(Empty, Empty, E_E, Double, Double, Double);
     //Empty - eye
     scilab_fill_sub(Empty, Identity, E_I, Double, Double, Double);
     scilab_fill_sub(Empty, IdentityComplex, E_IC, Double, Double, Double);
@@ -896,7 +896,7 @@ InternalType* sub_M_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_M_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -978,7 +978,7 @@ InternalType* sub_MC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_MC_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1020,7 +1020,7 @@ InternalType* sub_S_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_S_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1062,7 +1062,7 @@ InternalType* sub_SC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_SC_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1072,7 +1072,7 @@ InternalType* sub_SC_E(T *_pL, U * /*_pR*/)
 template<class T, class U, class O>
 InternalType* sub_E_M(T * /*_pL*/, U *_pR)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1081,7 +1081,7 @@ InternalType* sub_E_M(T * /*_pL*/, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_E_MC(T * /*_pL*/, U *_pR)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1464,7 +1464,7 @@ template<class T, class U, class O> InternalType* sub_IC_IC(T *_pL, U *_pR)
 
 template<class T, class U, class O> types::InternalType* sub_I_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1472,7 +1472,7 @@ template<class T, class U, class O> types::InternalType* sub_I_E(T *_pL, U * /*_
 
 template<class T, class U, class O> types::InternalType* sub_IC_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1480,7 +1480,7 @@ template<class T, class U, class O> types::InternalType* sub_IC_E(T *_pL, U * /*
 
 template<class T, class U, class O> types::InternalType* sub_E_I(T * /*_pL*/, U *_pR)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1488,7 +1488,7 @@ template<class T, class U, class O> types::InternalType* sub_E_I(T * /*_pL*/, U 
 
 template<class T, class U, class O> types::InternalType* sub_E_IC(T * /*_pL*/, U *_pR)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -2667,13 +2667,48 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
     return pOut;
 }
 
-//[] - sp
+//Identity - sp
 template<> InternalType* sub_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
 {
-    return sub_M_M<Sparse, Double, Sparse>(_pR, _pL);
+    Sparse* pOut = NULL;
+    if (_pL->isIdentity())
+    {
+        //convert to _pL
+        Sparse* pS = new Sparse(_pR->getRows(), _pR->getCols(), _pL->isComplex());
+        int size = std::min(_pR->getRows(), _pR->getCols());
+        double dblLeftR = _pL->get(0);
+
+
+        if (_pL->isComplex())
+        {
+            std::complex<double> complexLeft(dblLeftR, _pL->getImg(0));
+            for (int i = 0 ; i < size ; i++)
+            {
+                pS->set(i, i, complexLeft);
+            }
+        }
+        else
+        {
+            for (int i = 0 ; i < size ; i++)
+            {
+                pS->set(i, i, dblLeftR);
+            }
+        }
+        pS->finalize();
+
+
+        pOut = pS->substract(*_pR);
+        delete pS;
+        return pOut;
+    }
+    else
+    {
+        // Call overload if the matrix is not identity
+        return NULL;
+    }
 }
 
-//sp - []
+//sp - Identity
 template<> InternalType* sub_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
 {
     Sparse* pOut = NULL;
@@ -2681,30 +2716,34 @@ template<> InternalType* sub_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _p
     {
         //convert to _pL
         Sparse* pS = new Sparse(_pL->getRows(), _pL->getCols(), _pR->isComplex());
-        if (pS->isComplex())
+        int size = std::min(_pL->getRows(), _pL->getCols());
+        double dblRightR = _pR->get(0);
+
+        if (_pR->isComplex())
         {
-            int size = std::min(_pL->getRows(), _pL->getCols());
+            std::complex<double> complexRight(dblRightR, _pR->getImg(0));
             for (int i = 0 ; i < size ; i++)
             {
-                pS->set(i, i, std::complex<double>(_pR->get(0), _pR->getImg(0)));
+                pS->set(i, i, complexRight, false);
             }
         }
         else
         {
-            int size = std::min(_pL->getRows(), _pL->getCols());
             for (int i = 0 ; i < size ; i++)
             {
-                pS->set(i, i, _pR->get(0));
+                pS->set(i, i, dblRightR, false);
             }
         }
+        pS->finalize();
 
-        //AddSparseToSparse(_pL, pS, (Sparse**)pOut);
+
+        pOut = _pL->substract(*pS);
         delete pS;
         return pOut;
     }
     else
     {
-        //is []
-        return _pL;
+        // Call overload if the matrix is not identity
+        return NULL;
     }
 }

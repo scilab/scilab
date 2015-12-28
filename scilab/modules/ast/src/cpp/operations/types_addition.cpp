@@ -891,17 +891,18 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
         {
             for (int i = 0 ; i < std::min(sp->getRows(), sp->getCols()) ; i++)
             {
-                pS->set(i, i, std::complex<double>(d->get(0), d->getImg(0)));
+                pS->set(i, i, std::complex<double>(d->get(0), d->getImg(0)), false);
             }
         }
         else
         {
             for (int i = 0 ; i < std::min(sp->getRows(), sp->getCols()) ; i++)
             {
-                pS->set(i, i, d->get(0));
+                pS->set(i, i, d->get(0), false);
             }
         }
 
+        pS->finalize();
         AddSparseToSparse(sp, pS, (Sparse**)pDRes);
         delete pS;
         return 0;
