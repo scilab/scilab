@@ -24,7 +24,7 @@ public :
     ListInsert(InternalType* _pIT);
     virtual                 ~ListInsert();
 
-    InternalType*           clone();
+    ListInsert*             clone();
 
     inline ScilabType       getType(void)
     {

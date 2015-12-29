@@ -24,7 +24,6 @@ import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfInt;
 import org.scilab.modules.xcos.graph.ScicosParameters;
-import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.HandledElement;
@@ -130,15 +129,17 @@ class CustomHandler implements ScilabHandler {
 
                 saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.PROPERTIES, properties);
 
-            // no break on purpose, we decode non-root specific properties later
+                // no break on purpose, we decode non-root specific properties later
             case SuperBlockDiagram:
                 final Kind kind;
+                XcosCell parent;
                 if (uid == 0l) {
-                    XcosCell parent = saxHandler.lookupForParentXcosCellElement();
+                    parent = saxHandler.lookupForParentXcosCellElement();
                     uid = parent.getUID();
                     kind = parent.getKind();
                 } else {
                     kind = Kind.DIAGRAM;
+                    parent = new XcosCell(saxHandler.controller, uid, kind, null, null, "", "");
                 }
 
                 /*
@@ -166,7 +167,7 @@ class CustomHandler implements ScilabHandler {
                  * Update some states
                  */
                 saxHandler.allChildren.push(new HashMap<>());
-                return new XcosCell(uid, kind);
+                return parent;
             default:
                 throw new IllegalArgumentException();
         }

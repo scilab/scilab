@@ -25,8 +25,6 @@
 #include <cstring>
 
 #include "gw_scicos.hxx"
-#include "extractblklist.hxx"
-#include "createblklist.hxx"
 
 #include "internal.hxx"
 #include "function.hxx"
@@ -45,6 +43,10 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 }
+
+#include "extractblklist.hxx"
+#include "createblklist.hxx"
+
 /*--------------------------------------------------------------------------*/
 static const std::string name = "callblk";
 /*--------------------------------------------------------------------------*/

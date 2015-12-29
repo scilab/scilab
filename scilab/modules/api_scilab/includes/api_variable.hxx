@@ -333,7 +333,7 @@ public :
     {
         if (this->data)
         {
-            return this->data->setComplex(_bComplex);
+            this->data->setComplex(_bComplex);
         }
     }
 

@@ -37,19 +37,18 @@ bool AnalysisVisitor::analyzeIndices(TIType & type, ast::CallExp & ce)
     SymbolicDimension first, second;
     bool safe, ret;
 
-    argIndices.emplace(static_cast<ast::SimpleVar &>(ce.getName()).getSymbol(), 1);
+    argIndices.emplace(static_cast<ast::SimpleVar &>(ce.getName()), size, 1);
     if (size == 1)
     {
         // when there is one argument, a(?) is equivalent to A(?,1)
         // where A = matrix(a, r_a * c_a, 1)
 
         SymbolicDimension rows(type.rows);
-        second = SymbolicDimension(getGVN(), 1.);
+        second = SymbolicDimension(getGVN(), 1);
         if (type.cols != 1)
         {
             rows *= type.cols;
         }
-
         ret = getDimension(rows, *args.front(), safe, first);
     }
     else

@@ -55,8 +55,7 @@ msgid "Sample limits out of range."
 msgstr "Limites d'échantillonnage en dehors de l'intervalle."
 
 msgid "Sample limits must be given in ascending order."
-msgstr ""
-"Les limites de l'échantillon doivent être données par ordre croissant."
+msgstr "Les limites de l'échantillon doivent être données par ordre croissant."
 
 msgid "Error in file format."
 msgstr "Erreur de format de fichier."
@@ -122,8 +121,7 @@ msgstr "Format de données inconnu."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 msgid "Requires 2-D values only."
 msgstr "Requiert des valeurs 2D seulement."
@@ -175,8 +173,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s : Une erreur est survenue : %s n'est pas supporté.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s : Une erreur est survenue : Format de fichier invalide. Erreur pendant la "
 "lecture du morceau <%s>.\n"

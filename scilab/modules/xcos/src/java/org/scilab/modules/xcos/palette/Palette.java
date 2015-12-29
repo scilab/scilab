@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -52,6 +53,7 @@ import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxGraphView;
 import com.mxgraph.view.mxStylesheet;
+import org.scilab.modules.xcos.ObjectProperties;
 
 /**
  * Utility class which is the entry point from Scilab for palette related
@@ -507,7 +509,19 @@ public final class Palette {
             return;
         }
 
-        final BasicBlock block = new BasicBlock(uid);
+        JavaController controller = new JavaController();
+        Kind kind = controller.getKind(uid);
+
+        String[] strUID = new String[] { "" };
+        controller.getObjectProperty(uid, kind, ObjectProperties.UID, strUID);
+
+        String[] label = new String[] { "" };
+        controller.getObjectProperty(uid, kind, ObjectProperties.LABEL, label);
+
+        String[] style = new String[] { "" };
+        controller.getObjectProperty(uid, kind, ObjectProperties.STYLE, style);
+
+        final BasicBlock block = new BasicBlock(new JavaController(), uid, kind, label[0], null, style[0], strUID[0]);
         generateIcon(block, iconPath);
 
         if (LOG.isLoggable(Level.FINEST)) {
@@ -524,7 +538,7 @@ public final class Palette {
 
         JavaController controller = new JavaController();
 
-        final XcosDiagram graph = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
+        final XcosDiagram graph = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
         graph.installListeners();
 
         graph.addCell(block);

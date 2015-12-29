@@ -49,7 +49,10 @@ class LoopBlockHead : public Block
 
 public:
 
-    LoopBlockHead(const unsigned int id, Block * parent, ast::Exp * exp) : Block(id, parent, exp) { }
+    LoopBlockHead(const unsigned int id, Block * parent, ast::Exp * exp) : Block(id, parent, exp)
+    {
+        blocks.reserve(2);
+    }
 
     inline Block * getFirstBlock()
     {
@@ -74,6 +77,7 @@ class LoopBlock : public Block
     std::unordered_map<ast::Exp *, symbol::Symbol> clonedSym;
 
 public:
+
     LoopBlock(const unsigned int id, Block * parent, ast::Exp * exp, const bool _first) : Block(id, parent, exp), first(_first) { }
 
     inline LoopBlockHead * getParent()

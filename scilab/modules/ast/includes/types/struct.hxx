@@ -64,13 +64,13 @@ public :
     ** Clone
     ** Create a new List and Copy all values.
     */
-    InternalType*               clone();
+    Struct*                     clone();
 
-    bool                        set(int _iRows, int _iCols, SingleStruct* _pIT);
-    bool                        set(int _iRows, int _iCols, const SingleStruct* _pIT);
-    bool                        set(int _iIndex, SingleStruct* _pIT);
-    bool                        set(int _iIndex, const SingleStruct* _pIT);
-    bool                        set(SingleStruct** _pIT);
+    Struct*                     set(int _iRows, int _iCols, SingleStruct* _pIT);
+    Struct*                     set(int _iRows, int _iCols, const SingleStruct* _pIT);
+    Struct*                     set(int _iIndex, SingleStruct* _pIT);
+    Struct*                     set(int _iIndex, const SingleStruct* _pIT);
+    Struct*                     set(SingleStruct** _pIT);
 
     bool                        operator==(const InternalType& it);
     bool                        operator!=(const InternalType& it);
@@ -112,8 +112,8 @@ public :
     std::vector<InternalType*>  extractFields(typed_list* _pArgs);
     inline InternalType *       extractField(const std::wstring& wstField);
 
-    bool                        resize(int* _piDims, int _iDims);
-    bool                        resize(int _iNewRows, int _iNewCols);
+    Struct*                     resize(int* _piDims, int _iDims);
+    Struct*                     resize(int _iNewRows, int _iNewCols);
 
     /*specials functions to disable clone operation during copydata*/
     InternalType*               insertWithoutClone(typed_list* _pArgs, InternalType* _pSource);

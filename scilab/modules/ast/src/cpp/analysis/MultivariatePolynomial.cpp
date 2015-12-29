@@ -707,24 +707,52 @@ bool MultivariatePolynomial::isCoeffNegative(const bool checkConstant) const
 const std::wstring MultivariatePolynomial::print(const std::map<uint64_t, std::wstring> & vars) const
 {
     std::wostringstream wos;
-    wos << constant;
-    std::set<MultivariateMonomial, MultivariateMonomial::Compare> s(polynomial.begin(), polynomial.end());
-    for (const auto & m : s)
+    if (polynomial.empty())
     {
-        wos << L" + " << m.print(vars);
+        wos << constant;
     }
+    else
+    {
+        std::set<MultivariateMonomial, MultivariateMonomial::Compare> s(polynomial.begin(), polynomial.end());
+        auto i = s.begin();
+        if (constant)
+        {
+            wos << constant;
+            if (i->coeff >= 0)
+            {
+                wos << L'+' << i->print(vars);
+            }
+            else
+            {
+                wos << i->print(vars);
+            }
+        }
+        else
+        {
+            wos << i->print(vars);
+        }
+
+        for (i = std::next(s.begin()); i != s.end(); ++i)
+        {
+            if (i->coeff >= 0)
+            {
+                wos << L'+' << i->print(vars);
+            }
+            else
+            {
+                wos << i->print(vars);
+            }
+        }
+    }
+
     return wos.str();
 }
 
 std::wostream & operator<<(std::wostream & out, const MultivariatePolynomial & p)
 {
     const std::map<uint64_t, std::wstring> vars;
-    out << p.constant;
-    std::set<MultivariateMonomial, MultivariateMonomial::Compare> s(p.polynomial.begin(), p.polynomial.end());
-    for (const auto & m : s)
-    {
-        out << L" + " << m.print(vars);
-    }
+    out << p.print(vars);
+
     return out;
 }
 

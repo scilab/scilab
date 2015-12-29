@@ -171,8 +171,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Ha ocurrido un error: %s no está soportado.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Ha ocurrido un error: formato de archivo inválido. Error leyendo la "
 "porción <%s>.\n"

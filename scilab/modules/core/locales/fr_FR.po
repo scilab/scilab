@@ -28,8 +28,7 @@ msgstr "%s : Type erroné de l'argument %d : Un scalaire réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument %d : Un scalaire réel attendu.\n"
+msgstr "%s : Dimension erronée de l'argument %d : Un scalaire réel attendu.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -84,8 +83,7 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
@@ -259,8 +257,7 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -335,8 +332,7 @@ msgid "%s: Wrong type for input argument #%d: macro expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 
 #, c-format
@@ -352,8 +348,7 @@ msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -500,8 +495,7 @@ msgstr "Information sur la version de Scilab."
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid ""
-"(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
 msgid ""
@@ -602,8 +596,7 @@ msgstr "%s : Le fichier n'existe pas : %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"

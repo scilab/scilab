@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,6 +18,8 @@ import org.scilab.modules.xcos.port.BasicPort;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 
 /**
  * A SplitBlock is used on a junction between links.
@@ -31,8 +34,8 @@ public final class SplitBlock extends BasicBlock {
     /**
      * Constructor
      */
-    public SplitBlock(long uid) {
-        super(uid);
+    public SplitBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, new mxGeometry(geometry == null ? DEFAULT_POSITION_X : geometry.getX(), geometry == null ? DEFAULT_POSITION_Y : geometry.getY(), DEFAULT_SIZE, DEFAULT_SIZE), style, id);
     }
 
     /**

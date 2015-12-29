@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -118,18 +119,16 @@ public abstract class BasicPort extends XcosCell {
      * @param style
      *            Value to be set as a Style and as TypeName
      */
-    public BasicPort(long uid, String style, Orientation orientation) {
-        super(uid, Kind.PORT);
+    public BasicPort(final JavaController controller, long uid, Kind kind, Object value, String style, String id, Orientation orientation, boolean isImplicit, PortKind portKind) {
+        super(controller, uid, kind, value, new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE), style, id);
 
-        setVertex(true);
-        setStyle(style);
-        setGeometry(new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE));
-        setOrientation(orientation);
+        this.vertex = true;
 
-        boolean isImplicit = getType() == Type.IMPLICIT;
-        JavaController controller = new JavaController();
         controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.IMPLICIT, isImplicit);
-        controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.PORT_KIND, getPortKind().ordinal());
+        controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.PORT_KIND, portKind.ordinal());
+
+        this.orientation = orientation;
+        setLabelPosition(orientation);
     }
 
     /**
@@ -156,19 +155,12 @@ public abstract class BasicPort extends XcosCell {
     }
 
     /**
-     * Set the default values for newly created port.
-     */
-    public void setDefaultValues() {
-        setLabelPosition(getOrientation());
-    }
-
-    /**
      * Set the label position of the current port according to the orientation.
      *
      * @param current
      *            the port orientation, if null, does nothing.
      */
-    public void setLabelPosition(final Orientation current) {
+    public final void setLabelPosition(final Orientation current) {
         if (current != null) {
             StyleMap style = new StyleMap(getStyle());
 

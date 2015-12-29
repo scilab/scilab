@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,12 +13,9 @@
 
 package org.scilab.modules.xcos.port;
 
-import java.util.NoSuchElementException;
-
+import com.mxgraph.util.mxConstants;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-
-import com.mxgraph.util.mxConstants;
 
 /**
  * Represent a port orientation related to the associated block. These
@@ -104,7 +102,7 @@ public enum Orientation {
                 break;
 
             default:
-                throw new NoSuchElementException();
+                break;
         }
 
         /* Calculate angle */

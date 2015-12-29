@@ -30,8 +30,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體空間不足。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 
 #, c-format

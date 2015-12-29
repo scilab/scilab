@@ -167,8 +167,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Vyskytla se chyba: %s není podporován.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Vyskytla se chyba: neplatný formát souboru. Chyba při čtení kusu <%s>.\n"
 

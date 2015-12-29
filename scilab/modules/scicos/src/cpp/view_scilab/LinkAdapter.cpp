@@ -318,25 +318,22 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
         controller.getObjectProperty(endID, PORT, SOURCE_BLOCK, sourceBlock);
 
         // Looking for the block number among the block IDs
-        ScicosID parentDiagram;
-        controller.getObjectProperty(adaptee, LINK, PARENT_DIAGRAM, parentDiagram);
+        ScicosID parent;
+        kind_t parentKind = BLOCK;
+        controller.getObjectProperty(adaptee, LINK, PARENT_BLOCK, parent);
         std::vector<ScicosID> children;
-        if (parentDiagram == 0)
+        // Added to a superblock
+        if (parent == 0)
         {
-            ScicosID parentBlock;
-            controller.getObjectProperty(adaptee, LINK, PARENT_BLOCK, parentBlock);
-            if (parentBlock == 0)
+            // Added to a diagram
+            controller.getObjectProperty(adaptee, LINK, PARENT_DIAGRAM, parent);
+            parentKind = DIAGRAM;
+            if (parent == 0)
             {
                 return ret;
             }
-            // Added to a superblock
-            controller.getObjectProperty(parentBlock, BLOCK, CHILDREN, children);
         }
-        else
-        {
-            // Added to a diagram
-            controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
-        }
+        controller.getObjectProperty(parent, parentKind, CHILDREN, children);
 
         ret.block = static_cast<int>(std::distance(children.begin(), std::find(children.begin(), children.end(), sourceBlock)) + 1);
 

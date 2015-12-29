@@ -95,8 +95,7 @@ msgstr ""
 "tancar el diari.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Error. No s'ha pogut "
 "tancar el diari %d.\n"
@@ -108,8 +107,7 @@ msgstr ""
 "parar el diari.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Error. No s'ha pogut "
 "parar el diari %d.\n"
@@ -204,8 +202,7 @@ msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 
 #, c-format

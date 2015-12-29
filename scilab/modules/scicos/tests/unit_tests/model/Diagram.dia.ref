@@ -61,6 +61,8 @@ Xcos debug: objectDeleted( 1 , DIAGRAM )
 scs_m = scicos_diagram(objs=list(scicos_block()));
 Xcos debug: objectCreated( 2 , BLOCK )
 Xcos debug: objectReferenced( 2 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 2 , BLOCK ) : 0
+Xcos debug: objectReferenced( 2 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 2 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , BLOCK , ANGLE ) : NO_CHANGES
@@ -107,6 +109,8 @@ Xcos debug: objectDeleted( 3 , DIAGRAM )
 // Create a diagram containing 2 summation blocks and two links
 Sum    = BIGSOM_f("define");
 Xcos debug: objectCreated( 4 , BLOCK )
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
 Xcos debug: objectReferenced( 4 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : SUCCESS
@@ -160,6 +164,8 @@ Xcos trace: propertyUpdated( 4 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Scope1 = CSCOPE("define");
 Xcos debug: objectCreated( 8 , BLOCK )
 Xcos debug: objectReferenced( 8 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 8 , BLOCK ) : 0
+Xcos debug: objectReferenced( 8 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 8 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 8 , BLOCK , ANGLE ) : NO_CHANGES
@@ -202,6 +208,8 @@ Xcos debug: objectUnreferenced( 8 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 8 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Scope2 = CSCOPE("define");
 Xcos debug: objectCreated( 11 , BLOCK )
+Xcos debug: objectReferenced( 11 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
 Xcos debug: objectReferenced( 11 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 11 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , GEOMETRY ) : SUCCESS
@@ -480,8 +488,14 @@ void2 = []
 void3 = []
 doc = list()
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 1     BIGSOM_f
@@ -494,8 +508,14 @@ Xcos debug: objectUnreferenced( 27 , LINK ) : 1
 Xcos debug: objectUnreferenced( 28 , LINK ) : 1
 scs_m.objs
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
  ans  =
@@ -667,8 +687,14 @@ Link    :
 // Link output port #1 of block #1 with input port #1 of block #2 thanks to lnk1
 scs_m.objs(4).from = [1 1 0]; // Link block #1
 Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 3
 Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 3
 Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectReferenced( 24 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 3
 Xcos debug: objectReferenced( 27 , LINK ) : 3
 Xcos debug: objectReferenced( 28 , LINK ) : 3
 Xcos trace: propertyUpdated( 20 , PORT , CONNECTED_SIGNALS ) : SUCCESS
@@ -687,8 +713,14 @@ Xcos trace: propertyUpdated( 28 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 28 , LINK , DESTINATION_PORT ) : NO_CHANGES
 assert_checkequal(scs_m.objs(1).graphics.pout, 4);   // Check that block #1 is connected to lnk1
 Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 3
 Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 3
 Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectReferenced( 24 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 3
 Xcos debug: objectReferenced( 27 , LINK ) : 3
 Xcos debug: objectReferenced( 28 , LINK ) : 3
 Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
@@ -705,8 +737,14 @@ Xcos debug: objectUnreferenced( 27 , LINK ) : 1
 Xcos debug: objectUnreferenced( 28 , LINK ) : 1
 assert_checkequal(scs_m.objs(1).model.out,    -1);   // "
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
@@ -718,8 +756,14 @@ Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
 scs_m.objs(4).to = [2 1 1];   // Link block #2
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos trace: propertyUpdated( 22 , PORT , CONNECTED_SIGNALS ) : SUCCESS
@@ -740,8 +784,14 @@ Xcos trace: propertyUpdated( 28 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 28 , LINK , DESTINATION_PORT ) : NO_CHANGES
 assert_checkequal(scs_m.objs(4).from, [1 1 0]);
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -751,8 +801,14 @@ Xcos debug: objectUnreferenced( 28 , LINK ) : 1
 Xcos debug: objectUnreferenced( 27 , LINK ) : 1
 assert_checkequal(scs_m.objs(4).to,   [2 1 1]);
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -762,8 +818,14 @@ Xcos debug: objectUnreferenced( 28 , LINK ) : 1
 Xcos debug: objectUnreferenced( 27 , LINK ) : 1
 assert_checkequal(scs_m.objs(2).graphics.pin, 4);    // Check that block #2 is connected to lnk1
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -775,8 +837,14 @@ Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(2).model.in,    -1);    // "
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -789,8 +857,14 @@ Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
 // Change the end of the link to input port #2 of block #2
 scs_m.objs(4).to = [2 2 1];
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos trace: propertyUpdated( 22 , PORT , CONNECTED_SIGNALS ) : SUCCESS
@@ -819,8 +893,14 @@ Xcos trace: propertyUpdated( 28 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 28 , LINK , DESTINATION_PORT ) : NO_CHANGES
 assert_checkequal(scs_m.objs(4).from, [1 1 0]);
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -830,8 +910,14 @@ Xcos debug: objectUnreferenced( 28 , LINK ) : 1
 Xcos debug: objectUnreferenced( 27 , LINK ) : 1
 assert_checkequal(scs_m.objs(4).to,   [2 2 1]);
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -841,8 +927,14 @@ Xcos debug: objectUnreferenced( 28 , LINK ) : 1
 Xcos debug: objectUnreferenced( 27 , LINK ) : 1
 assert_checkequal(scs_m.objs(2).graphics.pin, [0; 4]);   // Check that block #2 is connected to lnk1
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -854,8 +946,14 @@ Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(2).model.in,     [-1; -1]); // "
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -868,8 +966,14 @@ Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
 // Disconnect the source
 scs_m.objs(4).from = [0 0 0];
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos trace: propertyUpdated( 20 , PORT , CONNECTED_SIGNALS ) : SUCCESS
@@ -888,8 +992,14 @@ Xcos trace: propertyUpdated( 28 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 28 , LINK , DESTINATION_PORT ) : NO_CHANGES
 assert_checkequal(scs_m.objs(4).from, [0 0 0]);
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -899,8 +1009,14 @@ Xcos debug: objectUnreferenced( 28 , LINK ) : 1
 Xcos debug: objectUnreferenced( 27 , LINK ) : 1
 assert_checkequal(scs_m.objs(4).to,   [2 2 1]);
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -910,8 +1026,14 @@ Xcos debug: objectUnreferenced( 28 , LINK ) : 1
 Xcos debug: objectUnreferenced( 27 , LINK ) : 1
 assert_checkequal(scs_m.objs(1).graphics.pout, 0);     // Check that block #1 is not connected
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
@@ -923,8 +1045,14 @@ Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(2).graphics.pin, [0; 4]); // But block #2 is still connected to the link
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -937,8 +1065,14 @@ Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
 // Disconnect the destination
 scs_m.objs(4).to = [0 0 0];
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos trace: propertyUpdated( 29 , PORT , CONNECTED_SIGNALS ) : SUCCESS
@@ -955,8 +1089,14 @@ Xcos trace: propertyUpdated( 28 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 28 , LINK , DESTINATION_PORT ) : NO_CHANGES
 assert_checkequal(scs_m.objs(2).graphics.pin, [0; 0]);  // Check that block #2 is not connected
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -969,8 +1109,14 @@ Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
 // Now link the two Scope blocks together by adding an event output port to block #3 thanks to lnk2
 scs_m.objs(5).from = [2 1 1]; // Link the input of block #2
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos trace: propertyUpdated( 23 , PORT , CONNECTED_SIGNALS ) : SUCCESS
@@ -989,8 +1135,14 @@ Xcos trace: propertyUpdated( 28 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 28 , LINK , DESTINATION_PORT ) : NO_CHANGES
 scs_m.objs(5).to = [3 1 0];   // Add an event output to block #3 and link it to the previous
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectCreated( 30 , PORT )
@@ -1018,8 +1170,14 @@ Xcos trace: propertyUpdated( 30 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos trace: propertyUpdated( 28 , LINK , DESTINATION_PORT ) : NO_CHANGES
 assert_checkequal(scs_m.objs(5).from, [2 1 1]);
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -1029,8 +1187,14 @@ Xcos debug: objectUnreferenced( 27 , LINK ) : 1
 Xcos debug: objectUnreferenced( 28 , LINK ) : 1
 assert_checkequal(scs_m.objs(5).to,   [3 1 0]);
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -1040,8 +1204,14 @@ Xcos debug: objectUnreferenced( 27 , LINK ) : 1
 Xcos debug: objectUnreferenced( 28 , LINK ) : 1
 assert_checkequal(scs_m.objs(2).graphics.pein,  5);  // Check that block #2 is connected to lnk2
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -1053,8 +1223,14 @@ Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(2).model.evtin,    1);  // "
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -1066,8 +1242,14 @@ Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(3).graphics.peout, 5);  // Check that block #3 is connected to lnk2
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -1079,8 +1261,14 @@ Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 24 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(3).model.evtout,  -1);  // "
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
@@ -1093,8 +1281,14 @@ Xcos debug: objectUnreferenced( 24 , BLOCK ) : 1
 // Verify that it is impossible to link two inputs or two outputs together
 scs_m.objs(5).from = [2 1 0]; // Two outputs
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos trace: propertyUpdated( 16 , DIAGRAM , CHILDREN ) : NO_CHANGES
@@ -1110,8 +1304,14 @@ Xcos trace: propertyUpdated( 30 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos trace: propertyUpdated( 28 , LINK , DESTINATION_PORT ) : NO_CHANGES
 scs_m.objs(5).to = [3 1 1];   // Two inputs
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
 Xcos debug: objectReferenced( 24 , BLOCK ) : 2
+Xcos debug: objectReferenced( 24 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 24 , BLOCK ) : 2
 Xcos debug: objectReferenced( 27 , LINK ) : 2
 Xcos debug: objectReferenced( 28 , LINK ) : 2
 Xcos trace: propertyUpdated( 16 , DIAGRAM , CHILDREN ) : NO_CHANGES
@@ -1340,21 +1540,33 @@ Xcos trace: propertyUpdated( 40 , LINK , DESTINATION_PORT ) : SUCCESS
 Xcos trace: propertyUpdated( 32 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 assert_checkequal(scs_m.objs(3).from, [1 1 0]);
 Xcos debug: objectReferenced( 33 , BLOCK ) : 2
+Xcos debug: objectReferenced( 33 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 33 , BLOCK ) : 2
 Xcos debug: objectReferenced( 37 , BLOCK ) : 2
+Xcos debug: objectReferenced( 37 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 37 , BLOCK ) : 2
 Xcos debug: objectReferenced( 40 , LINK ) : 2
 Xcos debug: objectUnreferenced( 33 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 37 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 40 , LINK ) : 1
 assert_checkequal(scs_m.objs(3).to,   [2 1 1]);
 Xcos debug: objectReferenced( 33 , BLOCK ) : 2
+Xcos debug: objectReferenced( 33 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 33 , BLOCK ) : 2
 Xcos debug: objectReferenced( 37 , BLOCK ) : 2
+Xcos debug: objectReferenced( 37 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 37 , BLOCK ) : 2
 Xcos debug: objectReferenced( 40 , LINK ) : 2
 Xcos debug: objectUnreferenced( 33 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 37 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 40 , LINK ) : 1
 assert_checkequal(scs_m.objs(1).graphics.pout,  3);  // Check that block #1 is connected to lnk
 Xcos debug: objectReferenced( 33 , BLOCK ) : 2
+Xcos debug: objectReferenced( 33 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 33 , BLOCK ) : 2
 Xcos debug: objectReferenced( 37 , BLOCK ) : 2
+Xcos debug: objectReferenced( 37 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 37 , BLOCK ) : 2
 Xcos debug: objectReferenced( 40 , LINK ) : 2
 Xcos debug: objectUnreferenced( 37 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 40 , LINK ) : 1
@@ -1363,7 +1575,11 @@ Xcos debug: objectUnreferenced( 33 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 33 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(1).model.out,     -1);  // "
 Xcos debug: objectReferenced( 33 , BLOCK ) : 2
+Xcos debug: objectReferenced( 33 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 33 , BLOCK ) : 2
 Xcos debug: objectReferenced( 37 , BLOCK ) : 2
+Xcos debug: objectReferenced( 37 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 37 , BLOCK ) : 2
 Xcos debug: objectReferenced( 40 , LINK ) : 2
 Xcos debug: objectUnreferenced( 37 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 40 , LINK ) : 1
@@ -1372,7 +1588,11 @@ Xcos debug: objectUnreferenced( 33 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 33 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(2).graphics.pin,   3);  // Check that block #2 is connected to lnk
 Xcos debug: objectReferenced( 33 , BLOCK ) : 2
+Xcos debug: objectReferenced( 33 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 33 , BLOCK ) : 2
 Xcos debug: objectReferenced( 37 , BLOCK ) : 2
+Xcos debug: objectReferenced( 37 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 37 , BLOCK ) : 2
 Xcos debug: objectReferenced( 40 , LINK ) : 2
 Xcos debug: objectUnreferenced( 33 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 40 , LINK ) : 1
@@ -1381,7 +1601,11 @@ Xcos debug: objectUnreferenced( 37 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 37 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(2).model.in,      -1);  // "
 Xcos debug: objectReferenced( 33 , BLOCK ) : 2
+Xcos debug: objectReferenced( 33 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 33 , BLOCK ) : 2
 Xcos debug: objectReferenced( 37 , BLOCK ) : 2
+Xcos debug: objectReferenced( 37 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 37 , BLOCK ) : 2
 Xcos debug: objectReferenced( 40 , LINK ) : 2
 Xcos debug: objectUnreferenced( 33 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 40 , LINK ) : 1
@@ -1564,35 +1788,55 @@ Xcos debug: objectReferenced( 47 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 42 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 assert_checkequal(scs_m.objs(1).graphics.pout,  0);  // Check that block #1 is not connected
 Xcos debug: objectReferenced( 43 , BLOCK ) : 2
+Xcos debug: objectReferenced( 43 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectReferenced( 47 , BLOCK ) : 2
+Xcos debug: objectReferenced( 47 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 47 , BLOCK ) : 1
 Xcos debug: objectReferenced( 43 , BLOCK ) : 3
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(1).model.out,     -1);  // "
 Xcos debug: objectReferenced( 43 , BLOCK ) : 2
+Xcos debug: objectReferenced( 43 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectReferenced( 47 , BLOCK ) : 2
+Xcos debug: objectReferenced( 47 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 47 , BLOCK ) : 1
 Xcos debug: objectReferenced( 43 , BLOCK ) : 3
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(2).graphics.pin,   0);  // Check that block #2 is not connected
 Xcos debug: objectReferenced( 43 , BLOCK ) : 2
+Xcos debug: objectReferenced( 43 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectReferenced( 47 , BLOCK ) : 2
+Xcos debug: objectReferenced( 47 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 1
 Xcos debug: objectReferenced( 47 , BLOCK ) : 3
 Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 47 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(2).model.in,      -1);  // "
 Xcos debug: objectReferenced( 43 , BLOCK ) : 2
+Xcos debug: objectReferenced( 43 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectReferenced( 47 , BLOCK ) : 2
+Xcos debug: objectReferenced( 47 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 1
 Xcos debug: objectReferenced( 47 , BLOCK ) : 3
 Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 47 , BLOCK ) : 1
 scs_m.objs(3) = lnk;          // Add the predefined Link
 Xcos debug: objectReferenced( 43 , BLOCK ) : 2
+Xcos debug: objectReferenced( 43 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectReferenced( 47 , BLOCK ) : 2
+Xcos debug: objectReferenced( 47 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectCreated( 50 , LINK )
 Xcos trace: propertyUpdated( 50 , LINK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 50 , LINK , KIND ) : NO_CHANGES
@@ -1615,7 +1859,11 @@ Xcos trace: propertyUpdated( 48 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos trace: propertyUpdated( 50 , LINK , DESTINATION_PORT ) : SUCCESS
 scs_m.objs
 Xcos debug: objectReferenced( 43 , BLOCK ) : 2
+Xcos debug: objectReferenced( 43 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectReferenced( 47 , BLOCK ) : 2
+Xcos debug: objectReferenced( 47 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectReferenced( 50 , LINK ) : 2
  ans  =
        ans(1)
@@ -1727,7 +1975,11 @@ Link    :
           to: 2 1 1
 assert_checkequal(scs_m.objs(3).from, [1 1 0]);
 Xcos debug: objectReferenced( 43 , BLOCK ) : 3
+Xcos debug: objectReferenced( 43 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 3
 Xcos debug: objectReferenced( 47 , BLOCK ) : 3
+Xcos debug: objectReferenced( 47 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 47 , BLOCK ) : 3
 Xcos debug: objectReferenced( 50 , LINK ) : 3
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
@@ -1737,14 +1989,22 @@ Xcos debug: objectUnreferenced( 47 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 50 , LINK ) : 1
 assert_checkequal(scs_m.objs(3).to,   [2 1 1]);
 Xcos debug: objectReferenced( 43 , BLOCK ) : 2
+Xcos debug: objectReferenced( 43 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectReferenced( 47 , BLOCK ) : 2
+Xcos debug: objectReferenced( 47 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectReferenced( 50 , LINK ) : 2
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 47 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 50 , LINK ) : 1
 assert_checkequal(scs_m.objs(1).graphics.pout,  3);  // Check that block #1 is connected to lnk
 Xcos debug: objectReferenced( 43 , BLOCK ) : 2
+Xcos debug: objectReferenced( 43 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectReferenced( 47 , BLOCK ) : 2
+Xcos debug: objectReferenced( 47 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectReferenced( 50 , LINK ) : 2
 Xcos debug: objectUnreferenced( 47 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 50 , LINK ) : 1
@@ -1753,7 +2013,11 @@ Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(1).model.out,     -1);  // "
 Xcos debug: objectReferenced( 43 , BLOCK ) : 2
+Xcos debug: objectReferenced( 43 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectReferenced( 47 , BLOCK ) : 2
+Xcos debug: objectReferenced( 47 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectReferenced( 50 , LINK ) : 2
 Xcos debug: objectUnreferenced( 47 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 50 , LINK ) : 1
@@ -1762,7 +2026,11 @@ Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(2).graphics.pin,   3);  // Check that block #2 is connected to lnk
 Xcos debug: objectReferenced( 43 , BLOCK ) : 2
+Xcos debug: objectReferenced( 43 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectReferenced( 47 , BLOCK ) : 2
+Xcos debug: objectReferenced( 47 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectReferenced( 50 , LINK ) : 2
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 50 , LINK ) : 1
@@ -1771,7 +2039,11 @@ Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 47 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(2).model.in,      -1);  // "
 Xcos debug: objectReferenced( 43 , BLOCK ) : 2
+Xcos debug: objectReferenced( 43 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 2
 Xcos debug: objectReferenced( 47 , BLOCK ) : 2
+Xcos debug: objectReferenced( 47 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 47 , BLOCK ) : 2
 Xcos debug: objectReferenced( 50 , LINK ) : 2
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 50 , LINK ) : 1
@@ -1930,6 +2202,8 @@ Xcos trace: propertyUpdated( 53 , LINK , SOURCE_PORT ) : SUCCESS
 scs_m.objs(3) = Scope1;       // Add the Block that lnk's 'to' points to
 Xcos debug: objectReferenced( 53 , LINK ) : 2
 Xcos debug: objectReferenced( 54 , BLOCK ) : 2
+Xcos debug: objectReferenced( 54 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 54 , BLOCK ) : 2
 Xcos debug: objectCreated( 58 , BLOCK )
 Xcos trace: propertyUpdated( 58 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
 Xcos trace: propertyUpdated( 58 , BLOCK , DESCRIPTION ) : NO_CHANGES
@@ -1993,7 +2267,11 @@ Xcos trace: propertyUpdated( 53 , LINK , DESTINATION_PORT ) : SUCCESS
 scs_m.objs
 Xcos debug: objectReferenced( 53 , LINK ) : 2
 Xcos debug: objectReferenced( 54 , BLOCK ) : 2
+Xcos debug: objectReferenced( 54 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 54 , BLOCK ) : 2
 Xcos debug: objectReferenced( 58 , BLOCK ) : 2
+Xcos debug: objectReferenced( 58 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 58 , BLOCK ) : 2
  ans  =
        ans(1)
 Link    :
@@ -2107,7 +2385,11 @@ Xcos debug: objectUnreferenced( 58 , BLOCK ) : 2
 assert_checkequal(scs_m.objs(1).from, [2 1 0]);
 Xcos debug: objectReferenced( 53 , LINK ) : 3
 Xcos debug: objectReferenced( 54 , BLOCK ) : 3
+Xcos debug: objectReferenced( 54 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 54 , BLOCK ) : 3
 Xcos debug: objectReferenced( 58 , BLOCK ) : 3
+Xcos debug: objectReferenced( 58 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 58 , BLOCK ) : 3
 Xcos debug: objectUnreferenced( 54 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 58 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 53 , LINK ) : 2
@@ -2117,14 +2399,22 @@ Xcos debug: objectUnreferenced( 58 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(1).to,   [3 1 1]);
 Xcos debug: objectReferenced( 53 , LINK ) : 2
 Xcos debug: objectReferenced( 54 , BLOCK ) : 2
+Xcos debug: objectReferenced( 54 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 54 , BLOCK ) : 2
 Xcos debug: objectReferenced( 58 , BLOCK ) : 2
+Xcos debug: objectReferenced( 58 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 58 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 54 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 58 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , LINK ) : 1
 assert_checkequal(scs_m.objs(2).graphics.pout,  1);
 Xcos debug: objectReferenced( 53 , LINK ) : 2
 Xcos debug: objectReferenced( 54 , BLOCK ) : 2
+Xcos debug: objectReferenced( 54 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 54 , BLOCK ) : 2
 Xcos debug: objectReferenced( 58 , BLOCK ) : 2
+Xcos debug: objectReferenced( 58 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 58 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 53 , LINK ) : 1
 Xcos debug: objectUnreferenced( 58 , BLOCK ) : 1
 Xcos debug: objectReferenced( 54 , BLOCK ) : 3
@@ -2133,7 +2423,11 @@ Xcos debug: objectUnreferenced( 54 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(2).model.out,     -1);
 Xcos debug: objectReferenced( 53 , LINK ) : 2
 Xcos debug: objectReferenced( 54 , BLOCK ) : 2
+Xcos debug: objectReferenced( 54 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 54 , BLOCK ) : 2
 Xcos debug: objectReferenced( 58 , BLOCK ) : 2
+Xcos debug: objectReferenced( 58 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 58 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 53 , LINK ) : 1
 Xcos debug: objectUnreferenced( 58 , BLOCK ) : 1
 Xcos debug: objectReferenced( 54 , BLOCK ) : 3
@@ -2142,7 +2436,11 @@ Xcos debug: objectUnreferenced( 54 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(3).graphics.pin,   1);
 Xcos debug: objectReferenced( 53 , LINK ) : 2
 Xcos debug: objectReferenced( 54 , BLOCK ) : 2
+Xcos debug: objectReferenced( 54 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 54 , BLOCK ) : 2
 Xcos debug: objectReferenced( 58 , BLOCK ) : 2
+Xcos debug: objectReferenced( 58 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 58 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 53 , LINK ) : 1
 Xcos debug: objectUnreferenced( 54 , BLOCK ) : 1
 Xcos debug: objectReferenced( 58 , BLOCK ) : 3
@@ -2151,7 +2449,11 @@ Xcos debug: objectUnreferenced( 58 , BLOCK ) : 1
 assert_checkequal(scs_m.objs(3).model.in,      -1);
 Xcos debug: objectReferenced( 53 , LINK ) : 2
 Xcos debug: objectReferenced( 54 , BLOCK ) : 2
+Xcos debug: objectReferenced( 54 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 54 , BLOCK ) : 2
 Xcos debug: objectReferenced( 58 , BLOCK ) : 2
+Xcos debug: objectReferenced( 58 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 58 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 53 , LINK ) : 1
 Xcos debug: objectUnreferenced( 54 , BLOCK ) : 1
 Xcos debug: objectReferenced( 58 , BLOCK ) : 3

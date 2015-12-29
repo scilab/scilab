@@ -52,7 +52,7 @@ public :
     }
 
     bool toString(std::wostringstream& ostr);
-    InternalType* clone();
+    Library* clone();
     bool isAssignable()
     {
         return true;

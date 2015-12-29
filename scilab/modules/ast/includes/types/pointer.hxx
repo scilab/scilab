@@ -70,7 +70,7 @@ public :
         return true;
     }
 
-    InternalType* clone()
+    Pointer* clone()
     {
         return new Pointer(m_iRows, m_iCols, m_pvData, m_cplx);
     }

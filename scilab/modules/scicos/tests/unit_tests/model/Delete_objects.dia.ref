@@ -21,6 +21,8 @@ Xcos trace: propertyUpdated( 1 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 Sum1 = BIGSOM_f("define");
 Xcos debug: objectCreated( 2 , BLOCK )
 Xcos debug: objectReferenced( 2 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 2 , BLOCK ) : 0
+Xcos debug: objectReferenced( 2 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 2 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 2 , BLOCK , ANGLE ) : NO_CHANGES
@@ -72,6 +74,8 @@ Xcos debug: objectUnreferenced( 2 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 2 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Sum2 = BIGSOM_f("define");
 Xcos debug: objectCreated( 6 , BLOCK )
+Xcos debug: objectReferenced( 6 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 6 , BLOCK ) : 0
 Xcos debug: objectReferenced( 6 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 6 , BLOCK , GEOMETRY ) : SUCCESS
@@ -205,6 +209,8 @@ Xcos trace: propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectReferenced( 12 , BLOCK ) : 1
 scs_m.objs(2) = Sum2;
 Xcos debug: objectReferenced( 12 , BLOCK ) : 2
+Xcos debug: objectReferenced( 12 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 2
 Xcos debug: objectCreated( 16 , BLOCK )
 Xcos trace: propertyUpdated( 16 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
 Xcos trace: propertyUpdated( 16 , BLOCK , DESCRIPTION ) : NO_CHANGES
@@ -271,7 +277,11 @@ Xcos debug: objectReferenced( 16 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 12 , BLOCK ) : 1
 scs_m.objs(3) = lnk1;
 Xcos debug: objectReferenced( 12 , BLOCK ) : 2
+Xcos debug: objectReferenced( 12 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 2
 Xcos debug: objectReferenced( 16 , BLOCK ) : 2
+Xcos debug: objectReferenced( 16 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 16 , BLOCK ) : 2
 Xcos debug: objectCreated( 20 , LINK )
 Xcos trace: propertyUpdated( 20 , LINK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 20 , LINK , KIND ) : NO_CHANGES
@@ -294,7 +304,11 @@ Xcos trace: propertyUpdated( 17 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos trace: propertyUpdated( 20 , LINK , DESTINATION_PORT ) : SUCCESS
 scs_m.objs(4) = lnk2;
 Xcos debug: objectReferenced( 12 , BLOCK ) : 2
+Xcos debug: objectReferenced( 12 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 2
 Xcos debug: objectReferenced( 16 , BLOCK ) : 2
+Xcos debug: objectReferenced( 16 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 16 , BLOCK ) : 2
 Xcos debug: objectReferenced( 20 , LINK ) : 2
 Xcos debug: objectCreated( 21 , LINK )
 Xcos trace: propertyUpdated( 21 , LINK , COLOR ) : NO_CHANGES
@@ -326,7 +340,11 @@ Xcos trace: propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
 DeletedBlock = mlist("Deleted");
 scs_m.objs(1) = DeletedBlock;
 Xcos debug: objectReferenced( 12 , BLOCK ) : 2
+Xcos debug: objectReferenced( 12 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 2
 Xcos debug: objectReferenced( 16 , BLOCK ) : 2
+Xcos debug: objectReferenced( 16 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 16 , BLOCK ) : 2
 Xcos debug: objectReferenced( 20 , LINK ) : 2
 Xcos debug: objectReferenced( 21 , LINK ) : 2
 Xcos debug: objectUnreferenced( 12 , BLOCK ) : 1
@@ -360,6 +378,8 @@ Xcos trace: propertyUpdated( 21 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
 assert_checkequal(scs_m.objs(1), DeletedBlock);
 Xcos debug: objectReferenced( 16 , BLOCK ) : 2
+Xcos debug: objectReferenced( 16 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 16 , BLOCK ) : 2
 Xcos debug: objectReferenced( 20 , LINK ) : 2
 Xcos debug: objectReferenced( 21 , LINK ) : 2
 Xcos debug: objectUnreferenced( 16 , BLOCK ) : 1
@@ -367,6 +387,8 @@ Xcos debug: objectUnreferenced( 20 , LINK ) : 1
 Xcos debug: objectUnreferenced( 21 , LINK ) : 1
 scs_m.objs(2) = DeletedBlock;
 Xcos debug: objectReferenced( 16 , BLOCK ) : 2
+Xcos debug: objectReferenced( 16 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 16 , BLOCK ) : 2
 Xcos debug: objectReferenced( 20 , LINK ) : 2
 Xcos debug: objectReferenced( 21 , LINK ) : 2
 Xcos debug: objectUnreferenced( 16 , BLOCK ) : 1

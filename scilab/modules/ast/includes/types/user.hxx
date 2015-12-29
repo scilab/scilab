@@ -53,7 +53,7 @@ public :
 
     virtual std::wstring    getTypeStr() = 0;
     virtual std::wstring    getShortTypeStr() = 0;
-    virtual InternalType*   clone() = 0;
+    virtual UserType*       clone() = 0;
 
 public :
     /*** User can overload these methods                            ***/
@@ -82,7 +82,7 @@ public :
     // insertion by value
     // _pArs is a list of scilab types:: of where we want to extract
     // _pSource is what we wan to insert
-    virtual InternalType* insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
+    virtual UserType* insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
     {
         return NULL;
     }
@@ -90,7 +90,7 @@ public :
     // this method is called to perform an extraction by field. ie : a = myUserType.myfield
     // name is the field name
     // out contain extraction of field
-    virtual bool          extract(const std::wstring& /*name*/, InternalType *& /*out*/)
+    virtual bool extract(const std::wstring& /*name*/, InternalType *& /*out*/)
     {
         return false;
     }

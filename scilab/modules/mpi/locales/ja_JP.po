@@ -23,7 +23,8 @@ msgstr "%s: 入力引数 #%d を読み込めません.\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: スカラー整数値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: スカラー整数値を指定してください.\n"
 
 #, c-format
 msgid "%s: Could not get communicator rank of the node %d: %s\n"

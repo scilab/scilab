@@ -306,8 +306,8 @@ msgstr "%s: El archivo CHAPTER no tiene formato correcto en la línea %d\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un string que "
 "termine con .last_successful_build.\n"

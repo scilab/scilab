@@ -28,7 +28,7 @@ void ListUndefined::whoAmI()
     std::cout << "types::ListUndefined";
 }
 
-InternalType* ListUndefined::clone(void)
+ListUndefined* ListUndefined::clone(void)
 {
     return new ListUndefined();
 }

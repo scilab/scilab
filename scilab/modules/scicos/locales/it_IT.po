@@ -48,8 +48,7 @@ msgstr ""
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
-msgstr ""
-"%s: Il primo argomento deve essere una lista tipizzata scicos_block.\n"
+msgstr "%s: Il primo argomento deve essere una lista tipizzata scicos_block.\n"
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
@@ -244,8 +243,7 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
 
 #, c-format
@@ -306,8 +304,7 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -422,8 +419,7 @@ msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
 
 #, c-format
@@ -674,8 +670,7 @@ msgstr ""
 " alcune funzioni potrebbero essere chiamate con dei valori non consentiti."
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: %s, %s, %s, %s, %s or %s type.\n"
+msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s, %s or %s type.\n"
 msgstr ""
 
 #, c-format
@@ -683,8 +678,7 @@ msgid "%s: Wrong value for input argument #%d: %d (String) expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 
 #, c-format

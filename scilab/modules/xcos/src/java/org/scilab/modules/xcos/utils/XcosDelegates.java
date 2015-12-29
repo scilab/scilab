@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Clement David
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -49,7 +50,7 @@ public class XcosDelegates {
     public static final void convertToPNG(final String helpID, final String xcosFile, final File imageFile, final String imageName) throws Exception {
         JavaController controller = new JavaController();
 
-        final XcosDiagram diag = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
+        final XcosDiagram diag = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
         diag.installListeners();
 
         final XcosFileType filetype = XcosFileType.findFileType(xcosFile);

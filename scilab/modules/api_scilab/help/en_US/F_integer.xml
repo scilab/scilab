@@ -86,7 +86,7 @@ int <varname>scilab_isUnsignedInt64</varname>(<link linkend="api_types_scilabEnv
                 </varlistentry>
             </variablelist>
         </refsection>
-        <refsection id="api_integer_scilab_createIntegerMatrix">
+        <refsection id="api_integer_scilab_createIntegerXXMatrix">
             <literallayout>
 <link linkend="api_types_scilabVar"><command>scilabVar</command></link> <varname>scilab_createInteger8Matrix</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, int prec, int dim, const int* dims)
 <link linkend="api_types_scilabVar"><command>scilabVar</command></link> <varname>scilab_createInteger16Matrix</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, int prec, int dim, const int* dims)
@@ -99,12 +99,12 @@ int <varname>scilab_isUnsignedInt64</varname>(<link linkend="api_types_scilabEnv
             </literallayout>
             <para>Create an integer matrix with <varname>dim</varname> dimensions (<varname>dims</varname>[0], <varname>dims</varname>[1], ..., <varname>dims</varname>[<varname>dim</varname>-1]). Precision is specified in function name.</para>
         </refsection>
-        <refsection id="api_integer_scilab_createIntegerMatrix">
+        <refsection id="api_integer_scilab_createIntegerMatrix2d">
             <literal><link linkend="api_types_scilabVar"><command>scilabVar</command></link> <varname>scilab_createIntegerMatrix2d</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, int prec, int dim, const int* dims)</literal>
             <para>Create an integer matrix with 2 dimensions (<varname>row</varname>, <varname>col</varname>).</para>
             <para><varname>prec</varname> parameter give precision.</para>
         </refsection>
-        <refsection id="api_integer_scilab_createIntegerMatrix2d">
+        <refsection id="api_integer_scilab_createIntegerXXMatrix2d">
             <literallayout>
 <link linkend="api_types_scilabVar"><command>scilabVar</command></link> <varname>scilab_createInteger8Matrix2d</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, int row, int col)
 <link linkend="api_types_scilabVar"><command>scilabVar</command></link> <varname>scilab_createInteger16Matrix2d</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, int row, int col)

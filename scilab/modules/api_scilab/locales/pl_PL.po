@@ -59,8 +59,7 @@ msgstr "%s: Nie można pobrać zmiennej \"%s\""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano skalara.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano skalara.\n"
 
 #, c-format
 msgid "%s: Unable to get argument \"%s\""

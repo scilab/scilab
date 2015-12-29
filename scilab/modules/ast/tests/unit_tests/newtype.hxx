@@ -48,7 +48,7 @@ public:
         return L"nt";
     }
 
-    types::InternalType*    clone()
+    NewType*    clone()
     {
         return new NewType();
     }

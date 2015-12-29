@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009-2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,6 +14,7 @@
 
 package org.scilab.modules.xcos.graph;
 
+import org.scilab.modules.xcos.graph.model.XcosGraphModel;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +26,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.IllegalFormatException;
 import java.util.LinkedList;
 import java.util.List;
@@ -104,12 +105,12 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
-import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import java.lang.reflect.Constructor;
+import java.util.Hashtable;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
@@ -137,20 +138,20 @@ public class XcosDiagram extends ScilabGraph {
      */
     private static final mxGeometry DEFAULT_LABEL_GEOMETRY = new mxGeometry(0.5, 1.1, 0.0, 0.0);
 
+
     /**
      * Constructor
      *
-     * @param withVisibleFeatures
-     *            true if the visible features should be activated, false otherwise. Disable it on encode/decode leads to a huge performance gain.
+     * @param controller the shared controller
+     * @param diagramId the diagram MVC ID
+     * @param kind DIAGRAM or BLOCK for a root diagram or a super-block
+     * @param uid the string UID that will be used on the default parent
      */
-    public XcosDiagram(final long diagramId, final Kind kind) {
-        super(new mxGraphModel(), Xcos.getInstance().getStyleSheet());
+    public XcosDiagram(final JavaController controller, final long diagramId, final Kind kind, String uid) {
+        super(new XcosGraphModel(controller, diagramId, kind, uid), Xcos.getInstance().getStyleSheet());
 
-        // add the default parent (the JGraphX layer)
-        XcosCell parent = new XcosCell(diagramId, kind);
-        new JavaController().referenceObject(diagramId);
-        ((mxICell) getModel().getRoot()).insert(parent);
-        setDefaultParent(parent);
+        // set the default parent (the JGraphX layer) defined on the model
+        setDefaultParent(getModel().getChildAt(getModel().getRoot(), 0));
 
         setComponent(new GraphComponent(this));
         initComponent();
@@ -188,7 +189,11 @@ public class XcosDiagram extends ScilabGraph {
 
         setMultiplicities();
 
+        // auto-position the diagram origin
         setAutoOrigin(true);
+
+        // do not put loop links inside the common block cell but on the defaultParent
+        ((mxGraphModel) getModel()).setMaintainEdgeParent(false);
     }
 
     /*
@@ -653,11 +658,11 @@ public class XcosDiagram extends ScilabGraph {
 
             long uid = controller.createObject(Kind.LINK);
             if (src.getType() == Type.EXPLICIT) {
-                link = new ExplicitLink(uid);
+                link = new ExplicitLink(controller, uid, Kind.LINK, value, null, style, id);
             } else if (src.getType() == Type.IMPLICIT) {
-                link = new ImplicitLink(uid);
+                link = new ImplicitLink(controller, uid, Kind.LINK, value, null, style, id);
             } else {
-                link = new CommandControlLink(uid);
+                link = new CommandControlLink(controller, uid, Kind.LINK, value, null, style, id);
             }
 
             // allocate the associated geometry
@@ -971,7 +976,7 @@ public class XcosDiagram extends ScilabGraph {
      *
      * This method *must* be used to setup the component after any reassociation.
      */
-    public void initComponent() {
+    public final void initComponent() {
         getAsComponent().setToolTips(true);
 
         // This enable stop editing cells when pressing Enter.
@@ -1572,9 +1577,10 @@ public class XcosDiagram extends ScilabGraph {
             } else {
                 final String label = super.convertValueToString(cell);
                 if (label.isEmpty() && cell instanceof BasicBlock) {
-                    String[] interfaceFunction = new String[1];
+                    BasicBlock block = (BasicBlock) cell;
 
-                    controller.getObjectProperty(((BasicBlock) cell).getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
+                    String[] interfaceFunction = new String[1];
+                    controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
                     ret = interfaceFunction[0];
                 } else {
                     ret = label;
@@ -1654,13 +1660,7 @@ public class XcosDiagram extends ScilabGraph {
      * @return save status
      */
     public boolean saveDiagram() {
-        final boolean isSuccess = saveDiagramAs(getSavedFile());
-
-        if (isSuccess) {
-            setModified(false);
-        }
-
-        return isSuccess;
+        return saveDiagramAs(getSavedFile());
     }
 
     /**
@@ -1766,6 +1766,7 @@ public class XcosDiagram extends ScilabGraph {
             XcosDialogs.couldNotSaveFile(this);
         }
 
+        updateTabTitle();
         info(XcosMessages.EMPTY_INFO);
         return isSuccess;
     }
@@ -1834,13 +1835,15 @@ public class XcosDiagram extends ScilabGraph {
 
         // get the path
         CharSequence formattedPath = "";
-        final File savedFile = getSavedFile();
-        if (savedFile != null) {
-            try {
-                final String path = savedFile.getCanonicalPath();
-                formattedPath = new StringBuilder().append(" (").append(path).append(')');
-            } catch (final IOException e) {
-                LOG.warning(e.toString());
+        if (getKind() == Kind.DIAGRAM) {
+            final File savedFile = getSavedFile();
+            if (savedFile != null) {
+                try {
+                    final String path = savedFile.getCanonicalPath();
+                    formattedPath = new StringBuilder().append(" (").append(path).append(')');
+                } catch (final IOException e) {
+                    LOG.warning(e.toString());
+                }
             }
         }
 

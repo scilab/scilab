@@ -11,6 +11,8 @@
 */
 
 #include "double.hxx"
+#include "function.hxx"
+
 extern "C"
 {
 #include "fftw_utilities.h"

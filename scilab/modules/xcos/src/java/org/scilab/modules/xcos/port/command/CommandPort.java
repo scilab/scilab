@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,6 +13,8 @@
 
 package org.scilab.modules.xcos.port.command;
 
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.PortKind;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
@@ -29,8 +32,8 @@ public class CommandPort extends BasicPort {
     private static final long serialVersionUID = 0L;
 
     /** Default constructor */
-    public CommandPort(long uid) {
-        super(uid, "CommandPort", Orientation.SOUTH);
+    public CommandPort(JavaController controller, long uid, Kind kind, Object value, String style, String id) {
+        super(controller, uid, kind, value, style == null || style.isEmpty() ? "CommandPort" : style, id, Orientation.SOUTH, false, PortKind.PORT_EOUT);
     }
 
     @Override

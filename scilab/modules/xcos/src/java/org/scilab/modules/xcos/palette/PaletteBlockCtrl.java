@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -54,7 +55,7 @@ public final class PaletteBlockCtrl {
     public static final XcosDiagram INTERNAL_GRAPH;
     static {
         JavaController controller = new JavaController();
-        INTERNAL_GRAPH = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
+        INTERNAL_GRAPH = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
         INTERNAL_GRAPH.installListeners();
     }
 

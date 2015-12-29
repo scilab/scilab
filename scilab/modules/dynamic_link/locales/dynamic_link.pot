@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-21 17:21+0100\n"
+"Revision-Date: 2015-12-17 09:34+0100\n"
 
 # File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 32
 # File: modules/dynamic_link/sci_gateway/cpp/sci_getdynlibext.cpp, line: 28
@@ -493,7 +493,7 @@ msgid "A Fortran or C compiler is required."
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 119
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 132
 #, c-format
 msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
@@ -501,39 +501,39 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 148
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 161
 #, c-format
 msgid "%s: Build command: %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 149
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 162
 # File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 236
 #, c-format
 msgid "Output: %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 150
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 163
 # File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 238
 #, c-format
 msgid "stderr: %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 154
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 167
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 156
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 169
 #, c-format
 msgid "%s: The command was:\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 165
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 178
 #, c-format
 msgid ""
 "%s: Warning: No error code returned by the compilation but the error output "
@@ -541,7 +541,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 174
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 187
 #, c-format
 msgid "%s: Could not find the built library '%s'.\n"
 msgstr ""

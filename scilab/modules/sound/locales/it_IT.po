@@ -30,8 +30,7 @@ msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
+msgstr "%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Il modulo di Scilab per il suono non è installato.\n"
@@ -181,8 +180,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Si è verificato un errore: %s non è supportato.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Si è verificato un errore: il formato di file non è valido. Errore nel "
 "leggere la porzione <%s>.\n"

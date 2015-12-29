@@ -30,6 +30,8 @@ Xcos trace: propertyUpdated( 1 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 1 , DIAGRAM ) : 0
 Xcos debug: objectCreated( 2 , BLOCK )
 Xcos debug: objectReferenced( 2 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 2 , BLOCK ) : 0
+Xcos debug: objectReferenced( 2 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 2 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 2 , BLOCK , ANGLE ) : NO_CHANGES
@@ -95,6 +97,8 @@ Xcos trace: propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , BLOCK , STYLE ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 2 , BLOCK ) : 0
 Xcos debug: objectCreated( 4 , BLOCK )
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
 Xcos debug: objectReferenced( 4 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : SUCCESS
@@ -204,6 +208,8 @@ Xcos trace: propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 6 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectReferenced( 6 , BLOCK ) : 1
 Xcos debug: objectReferenced( 6 , BLOCK ) : 2
+Xcos debug: objectReferenced( 6 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 6 , BLOCK ) : 2
 Xcos debug: objectCreated( 8 , BLOCK )
 Xcos trace: propertyUpdated( 8 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , DESCRIPTION ) : NO_CHANGES
@@ -249,6 +255,8 @@ Xcos trace: propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectReferenced( 8 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 6 , BLOCK ) : 1
 Xcos debug: objectCreated( 10 , BLOCK )
+Xcos debug: objectReferenced( 10 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 10 , BLOCK ) : 0
 Xcos debug: objectReferenced( 10 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 10 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 10 , BLOCK , GEOMETRY ) : SUCCESS
@@ -494,7 +502,11 @@ super type: 0
 Xcos debug: objectReferenced( 18 , DIAGRAM ) : 1
 Xcos debug: objectUnreferenced( 18 , DIAGRAM ) : 0
 Xcos debug: objectReferenced( 13 , BLOCK ) : 2
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
 Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
 Xcos debug: objectReferenced( 13 , BLOCK ) : 3
 Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
 Xcos debug: objectReferenced( 13 , BLOCK ) : 3
@@ -563,7 +575,11 @@ void2 = []
 void3 = []
 doc = list()
 Xcos debug: objectReferenced( 13 , BLOCK ) : 2
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
 Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
 1     IN_f
 2     OUT_f
 Xcos debug: objectUnreferenced( 13 , BLOCK ) : 1
@@ -610,7 +626,11 @@ Xcos trace: propertyUpdated( 21 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 10 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 10 , BLOCK ) : 0
 Xcos debug: objectReferenced( 13 , BLOCK ) : 2
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
 Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectUnreferenced( 13 , BLOCK ) : 1
@@ -726,7 +746,11 @@ Xcos trace: propertyUpdated( 22 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 10 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 10 , BLOCK ) : 0
 Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectReferenced( 13 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 3
 Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 15 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 3
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
@@ -768,7 +792,11 @@ Xcos trace: propertyUpdated( 23 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 10 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 10 , BLOCK ) : 0
 Xcos debug: objectReferenced( 13 , BLOCK ) : 2
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
 Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectUnreferenced( 13 , BLOCK ) : 1
@@ -813,7 +841,11 @@ Xcos trace: propertyUpdated( 24 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 10 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 10 , BLOCK ) : 0
 Xcos debug: objectReferenced( 13 , BLOCK ) : 2
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
 Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectUnreferenced( 13 , BLOCK ) : 1
@@ -853,7 +885,11 @@ Xcos trace: propertyUpdated( 25 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 10 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 10 , BLOCK ) : 0
 Xcos debug: objectReferenced( 13 , BLOCK ) : 2
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
 Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectUnreferenced( 13 , BLOCK ) : 1
@@ -923,6 +959,8 @@ Xcos debug: objectDeleted( 27 , DIAGRAM )
      ()
 clk = CLOCK_c("define")
 Xcos debug: objectCreated( 28 , BLOCK )
+Xcos debug: objectReferenced( 28 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 28 , BLOCK ) : 0
 Xcos debug: objectReferenced( 28 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 28 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 28 , BLOCK , GEOMETRY ) : SUCCESS
@@ -1073,6 +1111,8 @@ Xcos trace: propertyUpdated( 28 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 28 , BLOCK ) : 0
 Xcos debug: objectCreated( 31 , BLOCK )
 Xcos debug: objectReferenced( 31 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 31 , BLOCK ) : 0
+Xcos debug: objectReferenced( 31 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 31 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 31 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 31 , BLOCK , ANGLE ) : NO_CHANGES
@@ -1180,6 +1220,8 @@ Xcos trace: propertyUpdated( 31 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 31 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 31 , BLOCK ) : 0
 Xcos debug: objectCreated( 33 , BLOCK )
+Xcos debug: objectReferenced( 33 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 33 , BLOCK ) : 0
 Xcos debug: objectReferenced( 33 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 33 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 33 , BLOCK , GEOMETRY ) : SUCCESS
@@ -1310,6 +1352,8 @@ Xcos trace: propertyUpdated( 37 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 38 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectReferenced( 38 , BLOCK ) : 1
 Xcos debug: objectReferenced( 38 , BLOCK ) : 2
+Xcos debug: objectReferenced( 38 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 38 , BLOCK ) : 2
 Xcos debug: objectCreated( 40 , BLOCK )
 Xcos trace: propertyUpdated( 40 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
 Xcos trace: propertyUpdated( 40 , BLOCK , DESCRIPTION ) : NO_CHANGES
@@ -1372,7 +1416,11 @@ Xcos trace: propertyUpdated( 43 , LINK , THICK ) : NO_CHANGES
 Xcos trace: propertyUpdated( 43 , LINK , COLOR ) : SUCCESS
 Xcos trace: propertyUpdated( 43 , LINK , KIND ) : SUCCESS
 Xcos debug: objectReferenced( 38 , BLOCK ) : 2
+Xcos debug: objectReferenced( 38 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 38 , BLOCK ) : 2
 Xcos debug: objectReferenced( 40 , BLOCK ) : 2
+Xcos debug: objectReferenced( 40 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 40 , BLOCK ) : 2
 Xcos debug: objectCreated( 44 , LINK )
 Xcos trace: propertyUpdated( 44 , LINK , COLOR ) : SUCCESS
 Xcos trace: propertyUpdated( 44 , LINK , KIND ) : SUCCESS
@@ -1393,7 +1441,11 @@ Xcos trace: propertyUpdated( 42 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos trace: propertyUpdated( 44 , LINK , SOURCE_PORT ) : SUCCESS
 Xcos debug: objectDeleted( 43 , LINK )
 Xcos debug: objectReferenced( 38 , BLOCK ) : 2
+Xcos debug: objectReferenced( 38 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 38 , BLOCK ) : 2
 Xcos debug: objectReferenced( 40 , BLOCK ) : 2
+Xcos debug: objectReferenced( 40 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 40 , BLOCK ) : 2
 Xcos debug: objectReferenced( 44 , LINK ) : 2
 Xcos debug: objectCreated( 45 , BLOCK )
 Xcos trace: propertyUpdated( 45 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
@@ -1474,9 +1526,15 @@ Xcos trace: propertyUpdated( 49 , LINK , THICK ) : NO_CHANGES
 Xcos trace: propertyUpdated( 49 , LINK , COLOR ) : SUCCESS
 Xcos trace: propertyUpdated( 49 , LINK , KIND ) : SUCCESS
 Xcos debug: objectReferenced( 38 , BLOCK ) : 2
+Xcos debug: objectReferenced( 38 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 38 , BLOCK ) : 2
 Xcos debug: objectReferenced( 40 , BLOCK ) : 2
+Xcos debug: objectReferenced( 40 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 40 , BLOCK ) : 2
 Xcos debug: objectReferenced( 44 , LINK ) : 2
 Xcos debug: objectReferenced( 45 , BLOCK ) : 2
+Xcos debug: objectReferenced( 45 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 45 , BLOCK ) : 2
 Xcos debug: objectCreated( 50 , LINK )
 Xcos trace: propertyUpdated( 50 , LINK , COLOR ) : SUCCESS
 Xcos trace: propertyUpdated( 50 , LINK , KIND ) : SUCCESS
@@ -1514,9 +1572,15 @@ Xcos trace: propertyUpdated( 51 , LINK , THICK ) : NO_CHANGES
 Xcos trace: propertyUpdated( 51 , LINK , COLOR ) : SUCCESS
 Xcos trace: propertyUpdated( 51 , LINK , KIND ) : SUCCESS
 Xcos debug: objectReferenced( 38 , BLOCK ) : 2
+Xcos debug: objectReferenced( 38 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 38 , BLOCK ) : 2
 Xcos debug: objectReferenced( 40 , BLOCK ) : 2
+Xcos debug: objectReferenced( 40 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 40 , BLOCK ) : 2
 Xcos debug: objectReferenced( 44 , LINK ) : 2
 Xcos debug: objectReferenced( 45 , BLOCK ) : 2
+Xcos debug: objectReferenced( 45 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 45 , BLOCK ) : 2
 Xcos debug: objectReferenced( 50 , LINK ) : 2
 Xcos debug: objectCreated( 52 , LINK )
 Xcos trace: propertyUpdated( 52 , LINK , COLOR ) : SUCCESS
@@ -1555,6 +1619,8 @@ Xcos trace: propertyUpdated( 41 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos trace: propertyUpdated( 52 , LINK , DESTINATION_PORT ) : SUCCESS
 Xcos debug: objectDeleted( 51 , LINK )
 Xcos debug: objectCreated( 53 , BLOCK )
+Xcos debug: objectReferenced( 53 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 53 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 53 , BLOCK , GEOMETRY ) : NO_CHANGES
@@ -2120,9 +2186,15 @@ csuper type: 0
 Xcos debug: objectReferenced( 68 , DIAGRAM ) : 1
 Xcos debug: objectUnreferenced( 68 , DIAGRAM ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos debug: objectReferenced( 55 , BLOCK ) : 3
@@ -2204,9 +2276,15 @@ void2 = []
 void3 = []
 doc = list()
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 1     CLKOUT_f
@@ -2288,9 +2366,15 @@ Xcos trace: propertyUpdated( 71 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -2500,9 +2584,15 @@ Xcos trace: propertyUpdated( 72 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectReferenced( 55 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 3
 Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectReferenced( 57 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 3
 Xcos debug: objectReferenced( 60 , LINK ) : 3
 Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectReferenced( 61 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 3
 Xcos debug: objectReferenced( 65 , LINK ) : 3
 Xcos debug: objectReferenced( 66 , LINK ) : 3
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -2570,9 +2660,15 @@ Xcos trace: propertyUpdated( 73 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -2639,9 +2735,15 @@ Xcos trace: propertyUpdated( 74 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -2703,9 +2805,15 @@ Xcos trace: propertyUpdated( 75 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -2772,9 +2880,15 @@ Xcos trace: propertyUpdated( 76 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -2817,9 +2931,15 @@ Xcos trace: propertyUpdated( 77 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -2862,9 +2982,15 @@ Xcos trace: propertyUpdated( 78 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -2926,9 +3052,15 @@ Xcos trace: propertyUpdated( 79 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -2995,9 +3127,15 @@ Xcos trace: propertyUpdated( 80 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -3040,9 +3178,15 @@ Xcos trace: propertyUpdated( 81 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -3085,9 +3229,15 @@ Xcos trace: propertyUpdated( 82 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -3130,9 +3280,15 @@ Xcos trace: propertyUpdated( 83 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 53 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 53 , BLOCK ) : 0
 Xcos debug: objectReferenced( 55 , BLOCK ) : 2
+Xcos debug: objectReferenced( 55 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 55 , BLOCK ) : 2
 Xcos debug: objectReferenced( 57 , BLOCK ) : 2
+Xcos debug: objectReferenced( 57 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 57 , BLOCK ) : 2
 Xcos debug: objectReferenced( 60 , LINK ) : 2
 Xcos debug: objectReferenced( 61 , BLOCK ) : 2
+Xcos debug: objectReferenced( 61 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 61 , BLOCK ) : 2
 Xcos debug: objectReferenced( 65 , LINK ) : 2
 Xcos debug: objectReferenced( 66 , LINK ) : 2
 Xcos trace: propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS

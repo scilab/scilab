@@ -64,8 +64,7 @@ msgid "Unique id of a shared library expected."
 msgstr "Identifiant unique d'une bibliothèque partagée attendu."
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -203,8 +202,7 @@ msgstr ""
 "caractères attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaînes de "
 "caractères attendue.\n"
@@ -469,8 +467,7 @@ msgstr "%s : Dimension erronée de l'argument d'entrée n°%d : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : %d,%d ou %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d,%d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
@@ -507,8 +504,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
 
 msgid "not found."
 msgstr "absent."

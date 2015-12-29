@@ -161,8 +161,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: 一個錯誤發生 %s 並不支援.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr "%s: 一個錯誤發生: 無效的檔案格式. 讀取大量<%s> 發生錯誤.\n"
 
 msgid "Invalid .wav file: found data before format information."

@@ -20,6 +20,7 @@
 #include "string.hxx"
 #include "scilab_sprintf.hxx"
 #include "overload.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {

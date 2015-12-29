@@ -24,7 +24,7 @@ public :
     MList() : TList() {}
     //Destructor uses ~TList()
 
-    virtual InternalType*           clone()
+    virtual MList*                  clone()
     {
         return new MList(this);
     }
@@ -33,7 +33,7 @@ public :
         std::cout << "types::MList";
     };
 
-    ScilabType                        getType(void)
+    ScilabType                      getType(void)
     {
         return ScilabMList;
     }

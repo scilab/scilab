@@ -15,6 +15,7 @@
 
 #include "runvisitor.hxx"
 #include "printvisitor.hxx"
+#include "types_tools.hxx"
 
 extern "C"
 {

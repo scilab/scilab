@@ -72,16 +72,14 @@ msgstr ""
 "%s: Неверный тип входного аргумента №%d: сигма должна быть вещественной.\n"
 
 #, c-format
-msgid ""
-"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 "%s: B не является положительно определённой. Попробуйте sigma='SM' или "
 "sigma=scalar.\n"
 
 #, c-format
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
-msgstr ""
-"%s: Если opts.cholB - ИСТИНА, то B должна быть верхней треугольной.\n"
+msgstr "%s: Если opts.cholB - ИСТИНА, то B должна быть верхней треугольной.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
@@ -113,8 +111,7 @@ msgstr "%s: Ошибка распределения памяти.\n"
 
 #, c-format
 msgid "%s : Wrong number of input arguments : %d to %d expected.\n"
-msgstr ""
-"%s : Неверное количество входных аргументов: ожидалось от %d до %d.\n"
+msgstr "%s : Неверное количество входных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid ""
@@ -214,8 +211,7 @@ msgid "%s: Error with %s: info = %d.\n"
 msgstr "%s: Ошибка в %s: info = %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: n должно быть положительным целым "
 "числом.\n"

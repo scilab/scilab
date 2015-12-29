@@ -30,8 +30,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Brak pamięci.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 
 #, c-format
@@ -786,8 +785,7 @@ msgstr "Wybierz katalog bazowy do wyszukiwania"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
-"Moduł '%s' programu Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
+msgstr "Moduł '%s' programu Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

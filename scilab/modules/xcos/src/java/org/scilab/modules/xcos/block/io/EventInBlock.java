@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2009 - DIGITEO - Antoine ELIAS <antoine.elias@scilab.org>
  * Copyright (C) 2009-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
+ * Copyright (C) 2010-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,6 +13,10 @@
  */
 
 package org.scilab.modules.xcos.block.io;
+
+import com.mxgraph.model.mxGeometry;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 
 /**
  * Implement an event entry point of a
@@ -24,7 +29,7 @@ public final class EventInBlock extends ContextUpdate {
     /**
      * Constructor
      */
-    public EventInBlock(long uid) {
-        super(uid);
+    public EventInBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
     }
 }

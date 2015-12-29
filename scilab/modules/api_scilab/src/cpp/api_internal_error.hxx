@@ -9,4 +9,9 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 */
 
+#ifndef __API_INTERNAL_ERROR_HXX__
+#define __API_INTERNAL_ERROR_HXX__
+
 void scilab_setInternalError(scilabEnv env, const std::wstring& name, const std::wstring& msg);
+
+#endif /* !__API_INTERNAL_ERROR_HXX__ */

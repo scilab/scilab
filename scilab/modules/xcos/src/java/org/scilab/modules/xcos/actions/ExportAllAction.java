@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -195,7 +196,10 @@ public final class ExportAllAction extends DefaultAction {
 
 
                 if (diagrams.stream().noneMatch(d -> d.getUID() == currentUID)) {
-                    final XcosDiagram child = new XcosDiagram(currentUID, Kind.BLOCK);
+                    String[] strUID = new String[1];
+                    controller.getObjectProperty(currentUID, Kind.BLOCK, ObjectProperties.UID, strUID);
+
+                    final XcosDiagram child = new XcosDiagram(controller, currentUID, Kind.BLOCK, strUID[0]);
                     diagrams.add(child);
                     stash.add(currentUID);
                 }

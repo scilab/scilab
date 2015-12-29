@@ -142,6 +142,7 @@ src/cpp/analysis/PolymorphicMacroCache.cpp \
 src/cpp/analysis/SizeAnalyzer.cpp \
 src/cpp/analysis/SymbolicList.cpp \
 src/cpp/analysis/TIType.cpp \
+src/cpp/analysis/DollarInfo.cpp \
 src/cpp/analysis/IconvertAnalyzer.cpp \
 src/cpp/analysis/InttypeAnalyzer.cpp \
 src/cpp/analysis/IsrealAnalyzer.cpp \
@@ -159,6 +160,7 @@ src/cpp/analysis/VisitSelectExp.cpp \
 src/cpp/analysis/VisitAssignExp.cpp \
 src/cpp/analysis/VisitIfExp.cpp \
 src/cpp/analysis/VisitForExp.cpp \
+src/cpp/analysis/VisitWhileExp.cpp \
 src/cpp/analysis/VisitCallExp.cpp \
 src/cpp/analysis/VisitSeqExp.cpp \
 src/cpp/analysis/VisitTypeExps.cpp \

@@ -240,8 +240,7 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
 
 #, c-format
@@ -302,8 +301,7 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -425,8 +423,7 @@ msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
 
 #, c-format
@@ -680,8 +677,7 @@ msgstr ""
 " některé funkce mohou být volány s neplatnými vstupy."
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: %s, %s, %s, %s, %s or %s type.\n"
+msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s, %s or %s type.\n"
 msgstr ""
 
 #, c-format
@@ -689,8 +685,7 @@ msgid "%s: Wrong value for input argument #%d: %d (String) expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 
 #, c-format
@@ -1038,8 +1033,7 @@ msgid ""
 msgstr ""
 
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
-msgstr ""
-"Graf obsahuje implicitní bloky, sestavování na implicitního řešitele."
+msgstr "Graf obsahuje implicitní bloky, sestavování na implicitního řešitele."
 
 msgid "Algebraic loop on events."
 msgstr "Algebraické smyčky při událostech"
@@ -1081,15 +1075,15 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
 msgstr ""
-"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
-"varování.</em><br />Výstupní port bloku má neurčenou velikost:"
+"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto varování.</"
+"em><br />Výstupní port bloku má neurčenou velikost:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined type:"
 msgstr ""
-"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
-"varování.</em><br />Výstupní port bloku má neurčený typ:"
+"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto varování.</"
+"em><br />Výstupní port bloku má neurčený typ:"
 
 #, c-format
 msgid "Output port %s type."
@@ -1103,15 +1097,15 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
 msgstr ""
-"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
-"varování.</em><br />Vstupní port bloku má neurčenou velikost:"
+"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto varování.</"
+"em><br />Vstupní port bloku má neurčenou velikost:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined type:"
 msgstr ""
-"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
-"varování.</em><br />Vstupní port bloku má neurčený typ:"
+"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto varování.</"
+"em><br />Vstupní port bloku má neurčený typ:"
 
 msgid ""
 "Highlighted block(s) have connected ports \n"

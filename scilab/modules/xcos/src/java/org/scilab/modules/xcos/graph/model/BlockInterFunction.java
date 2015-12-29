@@ -1,3 +1,14 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ */
 package org.scilab.modules.xcos.graph.model;
 
 import org.scilab.modules.xcos.block.AfficheBlock;
@@ -21,16 +32,16 @@ import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
 /**
  * List the specific block interface function name. <BR>
  * <BR>
- * <EM>Specific instance must be registered before generic ones in order
+ * <EM>Specific instance must be registered after the most generic one in order
  * to serialized all the non-default values.</EM>
  */
 public enum BlockInterFunction {
     /** @see TextBlock */
     TEXT_f(TextBlock.class),
     /** @see SuperBlock */
-    DSUPER(SuperBlock.class),
-    /** @see SuperBlock */
     SUPER_f(SuperBlock.class),
+    /** @see SuperBlock */
+    DSUPER(SuperBlock.class),
     /** @see AfficheBlock */
     AFFICH_m(AfficheBlock.class),
     /** @see ExplicitInBlock */

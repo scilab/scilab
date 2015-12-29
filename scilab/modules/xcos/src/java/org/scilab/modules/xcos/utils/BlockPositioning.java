@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -409,7 +410,7 @@ public final class BlockPositioning {
         diag.getModel().endUpdate();
 
         /*
-         * FIXME: #6705; This placement trick doesn't work on the first block Dnd as the view is not revalidated.
+         * TODO: bug #6705; This placement trick doesn't work on the first block Dnd as the view is not revalidated.
          *
          * On block loading, parentDiagram is null thus placement is not performed.
          */

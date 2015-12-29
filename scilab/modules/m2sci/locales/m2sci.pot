@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-21 17:22+0100\n"
+"Revision-Date: 2015-12-17 09:34+0100\n"
 
 # File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 31
 # File: modules/m2sci/macros/m2sci_gui.sci, line: 280
@@ -852,7 +852,7 @@ msgstr ""
 # File: modules/m2sci/macros/mfile2sci.sci, line: 251
 # File: modules/m2sci/macros/mfile2sci.sci, line: 254
 # File: modules/m2sci/macros/mfile2sci.sci, line: 257
-# File: modules/m2sci/macros/mfile2sci.sci, line: 289
+# File: modules/m2sci/macros/mfile2sci.sci, line: 298
 msgid "resumelogfile.dat"
 msgstr ""
 
@@ -862,37 +862,37 @@ msgid "resume"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 275
+# File: modules/m2sci/macros/mfile2sci.sci, line: 284
 #, c-format
 msgid "****** %s: Functions of mfile2sci() session ******"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 277
+# File: modules/m2sci/macros/mfile2sci.sci, line: 286
 #, c-format
 msgid ""
 "%d Matlab Function(s) not yet converted, original calling sequence used:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 280
+# File: modules/m2sci/macros/mfile2sci.sci, line: 289
 #, c-format
 msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 283
+# File: modules/m2sci/macros/mfile2sci.sci, line: 292
 #, c-format
 msgid "%d Unknown Function(s), original calling sequence used :"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 292
+# File: modules/m2sci/macros/mfile2sci.sci, line: 301
 msgid "Macro to tree conversion: Done"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 327
+# File: modules/m2sci/macros/mfile2sci.sci, line: 336
 msgid ""
 "Translation may be improved: see the //! comments and for all mtlb_<funname> "
 "function call\n"
@@ -901,17 +901,17 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 330
+# File: modules/m2sci/macros/mfile2sci.sci, line: 339
 msgid "Translation may be wrong (see the //!! comments)."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 336
+# File: modules/m2sci/macros/mfile2sci.sci, line: 345
 msgid "File contains no instruction, no translation made..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 340
+# File: modules/m2sci/macros/mfile2sci.sci, line: 349
 msgid "****** End of mfile2sci() session ******"
 msgstr ""
 

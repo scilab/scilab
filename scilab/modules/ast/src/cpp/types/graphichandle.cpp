@@ -75,7 +75,7 @@ GraphicHandle::~GraphicHandle()
 #endif
 }
 
-InternalType* GraphicHandle::clone()
+GraphicHandle* GraphicHandle::clone()
 {
     GraphicHandle* pGH = new GraphicHandle(getDims(), getDimsArray());
     for (int i = 0 ; i < getSize() ; i++)

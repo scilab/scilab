@@ -46,7 +46,7 @@ public:
     Bool(int _iRows, int _iCols, int **_piData);
     ~Bool();
 
-    InternalType*           clone();
+    Bool*                   clone();
 
 
     /*zero or one set filler*/

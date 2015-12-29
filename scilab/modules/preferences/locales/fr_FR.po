@@ -27,8 +27,7 @@ msgstr ""
 "attendue.\n"
 
 msgid "An error occurred while opening Preferences window:"
-msgstr ""
-"Une erreur s'est produite à l'ouverture de la fenêtre de préférences :"
+msgstr "Une erreur s'est produite à l'ouverture de la fenêtre de préférences :"
 
 #, c-format
 msgid ""

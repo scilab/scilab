@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-21 17:22+0100\n"
+"Revision-Date: 2015-12-17 09:34+0100\n"
 
 # File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 31
 # File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 58
@@ -150,25 +150,25 @@ msgstr ""
 # File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 354
 # File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 363
 # File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 382
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 631
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 646
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 659
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 673
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 685
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 697
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 724
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 737
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 745
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 753
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 761
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 771
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 782
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 794
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 802
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 810
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 818
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1035
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1097
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 632
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 647
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 660
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 674
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 686
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 698
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 725
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 738
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 746
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 754
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 762
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 772
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 783
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 795
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 803
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 811
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 819
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1036
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1098
 # File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 91
 # File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 104
 # File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 112
@@ -234,7 +234,7 @@ msgstr ""
 # File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 246
 # File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 271
 # File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 295
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 497
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 498
 # File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 165
 # File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 181
 # File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 84
@@ -370,54 +370,54 @@ msgid "%s: SB10FD exit with info = %d.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 231
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 278
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 320
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 232
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 279
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 321
 #, c-format
 msgid "%s: %s must be a scalar.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 238
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 239
 #, c-format
 msgid "%s: Wrong value for %s: %d, %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 246
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 247
 #, c-format
 msgid "%s: TASK = 1 : LINMEQ requires at least 4 input arguments.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 287
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 288
 #, c-format
 msgid "%s: Wrong value for %s: %d, %d, %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 292
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 293
 #, c-format
 msgid "%s: Wrong value for %s: %d, or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 328
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 329
 #, c-format
 msgid "%s: Wrong value for %s: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 353
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 385
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 413
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 446
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 354
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 386
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 414
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 447
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 419
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 420
 #, c-format
 msgid ""
 "%s: Wrong column size for input argument #%d: Same column size of input "
@@ -425,8 +425,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 456
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 464
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 457
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 465
 #, c-format
 msgid ""
 "%s: Wrong row size for input argument #%d: Same row size of input argument #"
@@ -434,38 +434,38 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 505
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 506
 #, c-format
 msgid "%s: Wrong size for input argument #%d: At most 3 elements expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 513
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 514
 #, c-format
 msgid "%s: Wrong size for input argument #%d: At most 2 elements expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1119
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1136
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1157
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1193
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1120
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1137
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1158
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1194
 #, c-format
 msgid "%s: Convergence problem...\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1124
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1141
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1147
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1162
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1171
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1125
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1142
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1148
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1163
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1172
 #, c-format
 msgid "%s: Problem is singular.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1178
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1179
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: eigenvalues must have negative real "
@@ -473,8 +473,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1182
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1188
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1183
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1189
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: eigenvalues modulus must be less "
@@ -482,14 +482,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1218
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1223
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1219
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1224
 #, c-format
 msgid "%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1228
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1229
 #, c-format
 msgid ""
 "%s: Warning: the equation is (almost) singular. Perturbed values have been "
@@ -1675,7 +1675,13 @@ msgid "%s: Wrong type for input argument #%d: A SIMO expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/csim.sci, line: 156
+# File: modules/cacsd/macros/csim.sci, line: 96
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Function expected"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/csim.sci, line: 161
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"
 msgstr ""

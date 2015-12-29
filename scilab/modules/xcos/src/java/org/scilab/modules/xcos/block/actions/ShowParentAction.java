@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -87,7 +88,10 @@ public class ShowParentAction extends DefaultAction {
 
             XcosDiagram diagram = (XcosDiagram) view.getVisibleObjects().get(parent[0]);
             if (diagram == null) {
-                diagram = new XcosDiagram(parent[0], kind);
+                String[] strUID = new String[] { "" };
+                controller.getObjectProperty(graph.getUID(), kind, ObjectProperties.UID, strUID);
+
+                diagram = new XcosDiagram(controller, parent[0], kind, strUID[0]);
                 view.getVisibleObjects().put(parent[0], diagram);
             }
 

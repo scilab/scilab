@@ -187,8 +187,7 @@ msgstr "%s: Неверные входные параметры: ожидалис
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: должно быть больше %d.\n"
+msgstr "%s: Неверное значение входного параметра №%d: должно быть больше %d.\n"
 
 #, c-format
 msgid ""
@@ -312,8 +311,7 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался дескриптор «%s».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидался действительный "
 "дескриптор «%s».\n"
@@ -381,15 +379,13 @@ msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: string or macro name expected.\n"
+msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидалось строковое значение или "
 "имя макроса.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась строка или имя сценария.\n"
 
@@ -417,8 +413,7 @@ msgstr ""
 "на 1.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался скаляр или вектор-"
 "столбец.\n"
@@ -588,8 +583,7 @@ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалось значение «pos» или "
 "«gdi».\n"
@@ -600,8 +594,7 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась матрица строк.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась матрица строк.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -689,8 +682,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Неверное значение свойства «%s: ожидалось «%s», «%s», «%s» или «%s».\n"
+msgstr "Неверное значение свойства «%s: ожидалось «%s», «%s», «%s» или «%s».\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
@@ -785,8 +777,7 @@ msgstr ""
 "численное значение.\n"
 
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "Неверный тип свойства «%s»: ожидался вектор-строка вещественных чисел.\n"
 
@@ -812,8 +803,7 @@ msgstr "Неверный размер свойства «%s»: ожидался 
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr ""
-"Неверное значение для свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
+msgstr "Неверное значение для свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
 
 msgid "&File"
 msgstr "&Файл"
@@ -2284,10 +2274,8 @@ msgstr "Не удалось открыть: "
 msgid "Restoration error"
 msgstr "Ошибка восстановления"
 
-msgid ""
-"The configuration file has been corrupted and reset to the default one."
-msgstr ""
-"Файл настроек был повреждён и восстановлен со значениями по умолчанию."
+msgid "The configuration file has been corrupted and reset to the default one."
+msgstr "Файл настроек был повреждён и восстановлен со значениями по умолчанию."
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
 msgstr "Файл настроек был повреждён. Необходимо перезапустить Scilab."
@@ -2369,8 +2357,7 @@ msgstr ""
 "строковое значение.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -2447,8 +2434,7 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 "%s: Неверный тип элемента %d входного аргумента №%d: ожидался uitree.\n"
 
@@ -2524,8 +2510,7 @@ msgstr "%s: Неверный тип %s: ожидался вектор-строк
 
 #, c-format
 msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
-msgstr ""
-"%s: Неверный размер %s: ожидался вектор-строка строковых переменных.\n"
+msgstr "%s: Неверный размер %s: ожидался вектор-строка строковых переменных.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A real expected.\n"

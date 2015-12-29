@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -103,7 +104,7 @@ public final class BlockElement extends AbstractElement<BasicBlock> {
         final String interfunction = ((ScilabString) data.get(INTERFUNCTION_INDEX)).getData()[0][0];
         if (block == null) {
             BlockInterFunction func = XcosCellFactory.lookForInterfunction(interfunction);
-            block = XcosCellFactory.createBlock(controller, func, interfunction, controller.createObject(Kind.BLOCK));
+            block = XcosCellFactory.createBlock(controller, func, interfunction, controller.createObject(Kind.BLOCK), Kind.BLOCK);
         }
 
         block = beforeDecode(element, block);

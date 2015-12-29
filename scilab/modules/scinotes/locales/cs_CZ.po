@@ -29,8 +29,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Není více paměti.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 "%s: Špatný typ argumentu #%d: Očekávána reálná matice nebo 'readonly'.\n"
 
@@ -457,8 +456,7 @@ msgstr "Předchozí karta"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
-msgstr ""
-"Před spuštěním tohoto souboru ve Scilab potřebujete uložit Vaše změny."
+msgstr "Před spuštěním tohoto souboru ve Scilab potřebujete uložit Vaše změny."
 
 msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -105,11 +106,11 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
             BlockInterFunction func = XcosCellFactory.lookForInterfunction(interfaceFunction[0]);
             if (func.equals(BlockInterFunction.SUPER_f)) {
                 // this is a super-block, open it
-                XcosDiagram sub = new XcosDiagram(cell.getUID(), cell.getKind());
+                XcosDiagram sub = new XcosDiagram(controller, cell.getUID(), cell.getKind(), cell.getId());
                 XcosCellFactory.insertChildren(controller, sub);
 
-                XcosTab.restore(sub, true);
                 Xcos.getInstance().addDiagram(sub);
+                XcosTab.restore(sub, true);
             } else {
                 BasicBlock block = (BasicBlock) cell;
                 // prevent to open twice

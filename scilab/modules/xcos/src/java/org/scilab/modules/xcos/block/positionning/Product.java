@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2010-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,6 +13,9 @@
 
 package org.scilab.modules.xcos.block.positionning;
 
+import com.mxgraph.model.mxGeometry;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
 
 /**
@@ -19,10 +23,8 @@ import org.scilab.modules.xcos.block.BasicBlock;
  */
 @SuppressWarnings(value = { "serial" })
 public class Product extends BasicBlock {
-    /**
-     * Default constructor
-     */
-    public Product(long uid) {
-        super(uid);
+
+    public Product(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
     }
 }

@@ -19,19 +19,29 @@ bool LoopBlock::requiresAnotherTrip()
 {
     if (first)
     {
+        bool ret = false;
         for (auto & p : symMap)
         {
             tools::SymbolMap<Info>::iterator it;
-            Block * block = getParent()->getDefBlock(p.first, it, false);
-            if (block)
+            if (p.second.type.type != TIType::UNKNOWN)
             {
-                const Info & info = it->second;
-                if (info.type != p.second.type || !info.data->same(p.second.data))
+                Block * block = getParent()->getDefBlock(p.first, it, false);
+                if (block)
                 {
-                    return true;
+                    const Info & info = it->second;
+                    if (info.type != p.second.type || (info.type.type == TIType::DOUBLE && info.isAnInt() != p.second.isAnInt()))
+                    {
+                        getParent()->getExp()->getDecorator().addPromotion(p.first, info.type, p.second.type);
+                        ret = true;
+                    }
+                    else if (!info.data->same(p.second.data))
+                    {
+                        ret = true;
+                    }
                 }
             }
         }
+        return ret;
     }
     else
     {
@@ -136,7 +146,7 @@ void LoopBlockHead::finalize()
         }
 
         // ii) clone is in first and in second so we clone the data at each iteration
-        // iii) clone is only in second so we clone the daat at each iteration except for the first one
+        // iii) clone is only in second so we clone the data at each iteration except for the first one
         //      => for now, we clone at each iteration (TODO: improve that in removing clone at the first iteration)
         for (auto & p : inBoth)
         {

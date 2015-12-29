@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,6 +12,7 @@
  */
 package org.scilab.modules.xcos.block;
 
+import com.mxgraph.model.mxGeometry;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +31,8 @@ import javax.swing.Timer;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 
 /**
  * Implement the AFFICH_m block
@@ -275,10 +279,10 @@ public final class AfficheBlock extends BasicBlock {
         }
     }
 
-    /** Default constructor */
-    public AfficheBlock(long uid) {
-        super(uid);
+    public AfficheBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
     }
+
 
     /**
      * Assign a value to an AfficheBlock instance

@@ -30,8 +30,7 @@ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A integer or string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
 
 #, c-format
@@ -153,8 +152,7 @@ msgid "No comment available."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument: No profile data in the function\n"
+msgid "%s: Wrong values for input argument: No profile data in the function\n"
 msgstr "%s:輸入參數值錯誤: 在函數中找不到特徵資料\n"
 
 msgid "Complexity"

@@ -281,15 +281,13 @@ msgstr ""
 "%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz "
 "quadrada esparsa\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se uma matriz "
 "quadrada esparasa.\n"
@@ -300,8 +298,7 @@ msgstr "%s: A matriz e os fatores LU não têm dimensões iguais !\n"
 
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr ""
-"%s: Tipo inválido e/ou tamanho e/ou valor para o segundo argumento.\n"
+msgstr "%s: Tipo inválido e/ou tamanho e/ou valor para o segundo argumento.\n"
 
 msgid "how to use this stuff"
 msgstr "como utilizar isto"

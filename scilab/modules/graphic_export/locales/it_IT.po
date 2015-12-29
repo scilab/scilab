@@ -145,8 +145,8 @@ msgstr ""
 "degli elementi o la dimensione della figura dovrebbe risolvere il problema."
 
 msgid ""
-"Unable to create export file, please fill a bug report at "
-"http://bugzilla.scilab.org."
+"Unable to create export file, please fill a bug report at http://bugzilla."
+"scilab.org."
 msgstr ""
 "Impossibile esportare il file, segnalare un bug a http://bugzilla.scilab.org."
 

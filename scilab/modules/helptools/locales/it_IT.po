@@ -212,8 +212,7 @@ msgid "Used Functions"
 msgstr "Funzioni usate"
 
 msgid "         Add here the Scilab, C,... used code references"
-msgstr ""
-"         Aggiungere qui i riferimenti al codice usato di Scilab, C,..."
+msgstr "         Aggiungere qui i riferimenti al codice usato di Scilab, C,..."
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -316,8 +315,8 @@ msgstr "%s: Il file CHAPTER non è formattato bene alla riga %d\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
 "stringa che finisce con .last_successful_build.\n"

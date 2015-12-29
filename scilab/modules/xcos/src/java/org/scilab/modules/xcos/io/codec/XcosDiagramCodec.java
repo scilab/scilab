@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -97,10 +98,10 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
     public static void register() {
         JavaController controller = new JavaController();
 
-        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM), DIAGRAM_IGNORED_FIELDS, null,
+        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, ""), DIAGRAM_IGNORED_FIELDS, null,
                 null);
         mxCodecRegistry.register(diagramCodec);
-        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new XcosDiagram(controller.createObject(Kind.BLOCK), Kind.BLOCK),
+        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new XcosDiagram(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, ""),
                 SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
         mxCodecRegistry.register(superBlockDiagramCodec);
     }

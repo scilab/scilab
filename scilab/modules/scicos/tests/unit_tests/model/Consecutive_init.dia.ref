@@ -11,6 +11,8 @@ scicos_log("TRACE");
 super = scicos_block();
 Xcos debug: objectCreated( 1 , BLOCK )
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
@@ -50,6 +52,8 @@ Xcos trace: propertyUpdated( 2 , DIAGRAM , CHILDREN ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 sub       = scicos_block();
 Xcos debug: objectCreated( 3 , BLOCK )
+Xcos debug: objectReferenced( 3 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 3 , BLOCK ) : 0
 Xcos debug: objectReferenced( 3 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
@@ -174,6 +178,8 @@ Xcos trace: propertyUpdated( 6 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectReferenced( 5 , BLOCK ) : 2
+Xcos debug: objectReferenced( 5 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 5 , BLOCK ) : 2
 Xcos trace: propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectUnreferenced( 5 , BLOCK ) : 1
 Xcos debug: objectDeleted( 6 , DIAGRAM )
@@ -250,6 +256,8 @@ Xcos trace: propertyUpdated( 9 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectReferenced( 8 , BLOCK ) : 2
+Xcos debug: objectReferenced( 8 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 8 , BLOCK ) : 2
 Xcos trace: propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectUnreferenced( 8 , BLOCK ) : 1
 Xcos debug: objectDeleted( 9 , DIAGRAM )
@@ -365,6 +373,10 @@ Xcos debug: objectReferenced( 11 , BLOCK ) : 1
 // 'superD' is a diagram containing a SuperBlock
 sBeforeInsert = size(superD.objs(1).model.rpar.objs);
 Xcos debug: objectReferenced( 11 , BLOCK ) : 2
+Xcos debug: objectReferenced( 13 , BLOCK ) : 1
+Xcos debug: objectReferenced( 13 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 0
 Xcos debug: objectCreated( 14 , DIAGRAM )
 Xcos trace: propertyUpdated( 14 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -374,12 +386,18 @@ Xcos debug: objectReferenced( 11 , BLOCK ) : 3
 Xcos debug: objectUnreferenced( 11 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 11 , BLOCK ) : 1
 Xcos debug: objectReferenced( 13 , BLOCK ) : 2
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectUnreferenced( 13 , BLOCK ) : 1
 Xcos debug: objectDeleted( 14 , DIAGRAM )
 Xcos debug: objectUnreferenced( 13 , BLOCK ) : 0
 superD.objs(1) = super;
 Xcos debug: objectReferenced( 11 , BLOCK ) : 2
+Xcos debug: objectReferenced( 13 , BLOCK ) : 1
+Xcos debug: objectReferenced( 13 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 0
 Xcos debug: objectUnreferenced( 11 , BLOCK ) : 1
 Xcos debug: objectCreated( 15 , BLOCK )
 Xcos trace: propertyUpdated( 15 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
@@ -481,6 +499,10 @@ Xcos debug: objectDeleted( 13 , BLOCK )
 Xcos debug: objectDeleted( 11 , BLOCK )
 sAfterInsert  = size(superD.objs(1).model.rpar.objs);
 Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 1
+Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 0
 Xcos debug: objectCreated( 18 , DIAGRAM )
 Xcos trace: propertyUpdated( 18 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -490,6 +512,8 @@ Xcos debug: objectReferenced( 15 , BLOCK ) : 3
 Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 15 , BLOCK ) : 1
 Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
 Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
 Xcos debug: objectDeleted( 18 , DIAGRAM )

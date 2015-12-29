@@ -657,7 +657,7 @@ public class ScilabTypeCoder {
      * @param vec the vector to convert
      * @return a representative string
      */
-    private static String toString(VectorOfDouble vec) {
+    public static String toString(VectorOfDouble vec) {
         int len = vec.size();
         double[] copy = new double[len];
         DoubleBuffer.wrap(copy).put(vec.asByteBuffer(0, len).asDoubleBuffer());
@@ -670,7 +670,7 @@ public class ScilabTypeCoder {
      * @param vec the vector to convert
      * @return a representative string
      */
-    private static String toString(VectorOfScicosID vec) {
+    public static String toString(VectorOfScicosID vec) {
         int len = vec.size();
         long[] copy = new long[len];
         LongBuffer.wrap(copy).put(vec.asByteBuffer(0, len).asLongBuffer());
@@ -683,7 +683,7 @@ public class ScilabTypeCoder {
      * @param vec the vector to convert
      * @return a representative string
      */
-    private static String toString(VectorOfInt vec) {
+    public static String toString(VectorOfInt vec) {
         int len = vec.size();
         int[] copy = new int[len];
         IntBuffer.wrap(copy).put(vec.asByteBuffer(0, len).asIntBuffer());

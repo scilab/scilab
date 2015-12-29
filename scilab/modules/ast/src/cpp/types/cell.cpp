@@ -130,81 +130,115 @@ bool Cell::transpose(InternalType *& out)
     return false;
 }
 
-bool Cell::set(int _iRows, int _iCols, InternalType* _pIT)
+Cell* Cell::set(int _iRows, int _iCols, InternalType* _pIT)
 {
     if (_iRows < getRows() && _iCols < getCols())
     {
         return set(_iCols * getRows() + _iRows, _pIT);
     }
-    return false;
+    return NULL;
 }
 
-bool Cell::set(int _iRows, int _iCols, const InternalType* _pIT)
+Cell* Cell::set(int _iRows, int _iCols, const InternalType* _pIT)
 {
     if (_iRows < getRows() && _iCols < getCols())
     {
         return set(_iCols * getRows() + _iRows, _pIT);
     }
-    return false;
+    return NULL;
 }
 
-bool Cell::set(int _iIndex, InternalType* _pIT)
+Cell* Cell::set(int _iIndex, InternalType* _pIT)
 {
-    if (_iIndex < getSize())
+    if (_iIndex >= m_iSize)
     {
-        // corner case when inserting twice
-        if (m_pRealData[_iIndex] == _pIT)
-        {
-            return true;
-        }
-
-        if (m_pRealData[_iIndex] != NULL)
-        {
-            m_pRealData[_iIndex]->DecreaseRef();
-            m_pRealData[_iIndex]->killMe();
-        }
-
-        _pIT->IncreaseRef();
-        m_pRealData[_iIndex] = _pIT;
-        return true;
+        return NULL;
     }
-    return false;
+
+    // corner case when inserting twice
+    if (m_pRealData[_iIndex] == _pIT)
+    {
+        return this;
+    }
+
+    typedef Cell* (Cell::*set_t)(int, InternalType*);
+    Cell* pIT = checkRef(this, (set_t)&Cell::set, _iIndex, _pIT);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
+    if (m_pRealData[_iIndex] != NULL)
+    {
+        m_pRealData[_iIndex]->DecreaseRef();
+        m_pRealData[_iIndex]->killMe();
+    }
+
+    _pIT->IncreaseRef();
+    m_pRealData[_iIndex] = _pIT;
+    return this;
 }
 
-bool Cell::set(int _iIndex, const InternalType* _pIT)
+Cell* Cell::set(int _iIndex, const InternalType* _pIT)
 {
-    if (_iIndex < getSize())
+    if (_iIndex >= m_iSize)
     {
-        if (m_pRealData[_iIndex] != NULL)
-        {
-            m_pRealData[_iIndex]->DecreaseRef();
-            m_pRealData[_iIndex]->killMe();
-        }
-
-        const_cast<InternalType*>(_pIT)->IncreaseRef();
-        m_pRealData[_iIndex] = const_cast<InternalType*>(_pIT);
-        return true;
+        return NULL;
     }
-    return false;
+
+    typedef Cell* (Cell::*set_t)(int, const InternalType*);
+    Cell* pIT = checkRef(this, (set_t)&Cell::set, _iIndex, _pIT);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
+    if (m_pRealData[_iIndex] != NULL)
+    {
+        m_pRealData[_iIndex]->DecreaseRef();
+        m_pRealData[_iIndex]->killMe();
+    }
+
+    const_cast<InternalType*>(_pIT)->IncreaseRef();
+    m_pRealData[_iIndex] = const_cast<InternalType*>(_pIT);
+
+    return this;
 }
 
-bool Cell::set(InternalType** _pIT)
+Cell* Cell::set(InternalType** _pIT)
 {
-    for (int i = 0 ; i < getSize() ; i++)
+    typedef Cell* (Cell::*set_t)(InternalType**);
+    Cell* pIT = checkRef(this, (set_t)&Cell::set, _pIT);
+    if (pIT != this)
     {
-        if (set(i, _pIT[i]) == false)
-        {
-            return false;
-        }
+        return pIT;
     }
-    return true;
+
+    for (int i = 0; i < m_iSize; i++)
+    {
+        if (i >= m_iSize)
+        {
+            return NULL;
+        }
+
+        if (m_pRealData[i] != NULL)
+        {
+            m_pRealData[i]->DecreaseRef();
+            m_pRealData[i]->killMe();
+        }
+
+        _pIT[i]->IncreaseRef();
+        m_pRealData[i] = _pIT[i];
+    }
+
+    return this;
 }
 
 /**
 ** Clone
 ** Create a new Struct and Copy all values.
 */
-InternalType* Cell::clone()
+Cell* Cell::clone()
 {
     return new Cell(this);
 }
@@ -374,11 +408,6 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
     return true;
 }
 
-//bool Cell::append(int _iRows, int _iCols, Cell *_poSource)
-//{
-//    return true;
-//}
-
 bool Cell::operator==(const InternalType& it)
 {
     if (const_cast<InternalType &>(it).isCell() == false)
@@ -443,7 +472,7 @@ Cell* Cell::insertNewCell(typed_list* _pArgs, InternalType* _pSource)
 {
     Cell* pCell = new Cell(1, 1);
     pCell->set(0, _pSource);
-    Cell* pOut = Cell::insertNew(_pArgs, pCell)->getAs<Cell>();
+    Cell* pOut = pCell->insertNew(_pArgs)->getAs<Cell>();
     return pOut;
 }
 

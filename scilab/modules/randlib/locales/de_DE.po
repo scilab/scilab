@@ -114,8 +114,7 @@ msgid "%s: setgmn return with state %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
 
 #, c-format
@@ -170,8 +169,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
 
 #, c-format
@@ -288,8 +286,7 @@ msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
 msgstr "Falsche Vorgabe für mt, muß ein Integer in [0,2^32-1] sein\n"
 
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
-msgstr ""
-"Die erste Komponente vom Zustand mt, muß ein Integer in [1,624] sein\n"
+msgstr "Die erste Komponente vom Zustand mt, muß ein Integer in [1,624] sein\n"
 
 msgid ""
 "\n"

@@ -17,6 +17,7 @@
 
 #include "call/Call.hxx"
 #include "data/Clone.hxx"
+#include "data/LoopDecoration.hxx"
 #include "DollarInfo.hxx"
 
 namespace analysis
@@ -24,7 +25,7 @@ namespace analysis
 
 class OptionalDecoration
 {
-    enum Type { NONE, CALL, CLONE, DOLLAR };
+    enum Type { NONE, CALL, LOOP, DOLLAR };
 
     Type ty;
     void * ptr;
@@ -33,7 +34,7 @@ public:
 
     OptionalDecoration() : ty(NONE), ptr(nullptr) { }
     OptionalDecoration(Call * _ptr) : ty(CALL), ptr(_ptr) { }
-    OptionalDecoration(Clone * _ptr) : ty(CLONE), ptr(_ptr) { }
+    OptionalDecoration(LoopDecoration * _ptr) : ty(LOOP), ptr(_ptr) { }
     OptionalDecoration(DollarInfo * _ptr) : ty(DOLLAR), ptr(_ptr) { }
     OptionalDecoration(OptionalDecoration && od) : ty(od.ty), ptr(od.ptr)
     {
@@ -66,10 +67,10 @@ public:
         ptr = _ptr;
     }
 
-    inline void set(Clone * _ptr)
+    inline void set(LoopDecoration * _ptr)
     {
         clean();
-        ty = CLONE;
+        ty = LOOP;
         ptr = _ptr;
     }
 
@@ -87,8 +88,8 @@ public:
             case CALL:
                 out << *od.get<Call>();
                 break;
-            case CLONE:
-                out << *od.get<Clone>();
+            case LOOP:
+                out << *od.get<LoopDecoration>();
                 break;
             case DOLLAR:
                 out << *od.get<DollarInfo>();
@@ -109,8 +110,8 @@ private:
             case CALL:
                 delete get<Call>();
                 break;
-            case CLONE:
-                delete get<Clone>();
+            case LOOP:
+                delete get<LoopDecoration>();
                 break;
             case DOLLAR:
                 delete get<DollarInfo>();

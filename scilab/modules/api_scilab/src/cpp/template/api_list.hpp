@@ -95,7 +95,7 @@ scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int index, con
     }
 #endif
  
-    bool ret = l->set(index, (types::InternalType*)val);
+    bool ret = l->set(index, (types::InternalType*)val) != nullptr;
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 
@@ -150,7 +150,7 @@ scilabStatus API_PROTO(setTListField)(scilabEnv env, scilabVar var, const wchar_
         fields->set(fields->getSize() - 1, field);
     }
 
-    bool ret = l->set(field, (types::InternalType*)val);
+    bool ret = l->set(field, (types::InternalType*)val) != nullptr;
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 
@@ -203,7 +203,7 @@ scilabStatus API_PROTO(setMListField)(scilabEnv env, scilabVar var, const wchar_
         fields->set(fields->getSize() - 1, field);
     }
 
-    bool ret = l->set(field, (types::InternalType*)val);
+    bool ret = l->set(field, (types::InternalType*)val) != nullptr;
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 

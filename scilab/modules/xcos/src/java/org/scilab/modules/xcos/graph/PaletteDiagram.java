@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,6 +30,8 @@ import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.model.mxGeometry;
+import java.rmi.server.UID;
+import org.scilab.modules.xcos.JavaController;
 
 /**
  * @author Antoine ELIAS
@@ -47,7 +50,7 @@ public class PaletteDiagram extends XcosDiagram {
      * Constructor
      */
     public PaletteDiagram(long uid) {
-        super(uid, Kind.DIAGRAM);
+        super(new JavaController(), uid, Kind.DIAGRAM, new UID().toString());
         setComponent(new PaletteComponent(this));
 
         setTitle(PaletteDiagram.class.getName());

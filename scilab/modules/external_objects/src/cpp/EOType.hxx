@@ -44,7 +44,7 @@ public :
         return L"eo";
     }
 
-    InternalType* clone()
+    EOType* clone()
     {
         return new EOType(id, isNew);
     }

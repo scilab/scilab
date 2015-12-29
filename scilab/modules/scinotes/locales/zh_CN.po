@@ -30,8 +30,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s：内存不足。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该为实矩阵或‘只读’。\n"
 
 #, c-format

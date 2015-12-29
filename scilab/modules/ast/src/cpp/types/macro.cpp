@@ -89,7 +89,7 @@ void Macro::cleanCall(symbol::Context * pContext, int oldPromptMode)
     ConfigVariable::macroFirstLine_end();
 }
 
-InternalType* Macro::clone()
+Macro* Macro::clone()
 {
     IncreaseRef();
     return this;

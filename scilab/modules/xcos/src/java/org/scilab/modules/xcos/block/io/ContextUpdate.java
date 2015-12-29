@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,11 +13,11 @@
 
 package org.scilab.modules.xcos.block.io;
 
+import com.mxgraph.model.mxGeometry;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -312,18 +313,8 @@ public abstract class ContextUpdate extends BasicBlock {
                         // controller.setObjectProperty(block.getUID(), k, p, v)
 
                         return block;
-                    } catch (InstantiationException e) {
+                    } catch (ReflectiveOperationException e) {
                         Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
-                    } catch (IllegalAccessException e) {
-                        Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    } catch (SecurityException e) {
-                        e.printStackTrace();
-                    } catch (IllegalArgumentException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
                     } finally {
                         JavaController.register_view(Xcos.class.getName(), disabledView);
                     }
@@ -364,9 +355,10 @@ public abstract class ContextUpdate extends BasicBlock {
     /**
      * Constructor.
      */
-    public ContextUpdate(final long uid) {
-        super(uid);
+    public ContextUpdate(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
     }
+
 
     /**
      * @param context

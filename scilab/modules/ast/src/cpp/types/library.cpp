@@ -78,7 +78,7 @@ bool Library::toString(std::wostringstream& ostr)
     return true;
 }
 
-InternalType* Library::clone()
+Library* Library::clone()
 {
     IncreaseRef();
     return this;

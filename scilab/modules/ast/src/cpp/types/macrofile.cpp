@@ -44,7 +44,7 @@ MacroFile::~MacroFile()
     }
 }
 
-InternalType* MacroFile::clone()
+MacroFile* MacroFile::clone()
 {
     IncreaseRef();
     return this;

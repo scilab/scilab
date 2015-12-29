@@ -55,7 +55,7 @@ public :
     virtual ~ImplicitList();
     ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd);
 
-    InternalType* clone();
+    ImplicitList* clone();
 
     inline ScilabType getType(void)
     {

@@ -78,7 +78,9 @@ msgstr ""
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be non-negative "
 "integers.\n"
-msgstr "%s: 入力引数  #%d の値が間違っています: 要素は非負の整数とする必要があります.\n"
+msgstr ""
+"%s: 入力引数  #%d の値が間違っています: 要素は非負の整数とする必要がありま"
+"す.\n"
 
 #, c-format
 msgid "%s: Number of entries does not match product of dimensions"

@@ -67,8 +67,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: six row vector expected.\n"
@@ -126,8 +125,7 @@ msgstr ""
 "строка или вектор-столбец.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался вектор-строка строковых "
 "значений.\n"
@@ -239,8 +237,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
-msgstr ""
-"%s: Неверная версия формата SOD-файла. Ожидалась: %d. Обнаружена: %d\n"
+msgstr "%s: Неверная версия формата SOD-файла. Ожидалась: %d. Обнаружена: %d\n"
 
 #, c-format
 msgid "%s: Unable to load '%s'.\n"

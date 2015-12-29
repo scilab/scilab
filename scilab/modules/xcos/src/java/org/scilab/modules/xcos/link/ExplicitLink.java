@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,7 +13,9 @@
 
 package org.scilab.modules.xcos.link;
 
-import org.scilab.modules.xcos.link.BasicLink;
+import com.mxgraph.model.mxGeometry;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 
 /**
  * An explicit link connect an
@@ -26,9 +29,8 @@ public class ExplicitLink extends BasicLink {
     // 1 means regular link
     private static final double[][] COLOR_AND_TYPE = { { 1.0, 1.0 } };
 
-    /** Default constructor */
-    public ExplicitLink(long uid) {
-        super(uid, "ExplicitLink");
+    public ExplicitLink(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style == null || style.isEmpty() ? "ExplicitLink" : style, id, 1);
     }
 
     /** @return A black colored explicit link identifier */

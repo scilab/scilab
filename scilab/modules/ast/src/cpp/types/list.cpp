@@ -96,17 +96,16 @@ int List::getSize()
 ** append(InternalType *_typedValue)
 ** Append the given value to the end of the List
 */
-void List::append(InternalType *_typedValue)
+List* List::append(InternalType *_typedValue)
 {
-    if (_typedValue->isList())
+    List* pIT = checkRef(this, &List::append, _typedValue);
+    if (pIT != this)
     {
-        m_plData->push_back(_typedValue->clone());
+        return pIT;
     }
-    else
-    {
-        m_plData->push_back(_typedValue);
-    }
-    m_plData->back()->IncreaseRef();
+
+    _typedValue->IncreaseRef();
+    m_plData->push_back(_typedValue);
     m_iSize = static_cast<int>(m_plData->size());
 }
 
@@ -114,7 +113,7 @@ void List::append(InternalType *_typedValue)
 ** Clone
 ** Create a new List and Copy all values.
 */
-InternalType *List::clone()
+List *List::clone()
 {
     return new List(this);
 }
@@ -194,12 +193,18 @@ InternalType* List::extract(typed_list* _pArgs)
     return outList;
 }
 
-InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
+List* List::insert(typed_list* _pArgs, InternalType* _pSource)
 {
     //check input param
     if (_pArgs->size() != 1)
     {
         return NULL;
+    }
+
+    List* pIT = checkRef(this, &List::insert, _pArgs, _pSource);
+    if (pIT != this)
+    {
+        return pIT;
     }
 
     typed_list pArg;
@@ -267,7 +272,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
             throw ast::InternalError(os.str());
         }
 
-        InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert()->clone();
+        InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert();
         pInsert->IncreaseRef();
         if (idx > (int)m_plData->size())
         {
@@ -286,11 +291,9 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
     }
     else if (idx == 0)
     {
-        //special cazse to insert at the first position
-        InternalType* pInsert = NULL;
-        pInsert = _pSource->clone();
-        pInsert->IncreaseRef();
-        m_plData->insert(m_plData->begin(), pInsert);
+        //special case to insert at the first position
+        _pSource->IncreaseRef();
+        m_plData->insert(m_plData->begin(), _pSource);
     }
     else
     {
@@ -303,11 +306,12 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         }
 
         InternalType* pIT = (*m_plData)[idx - 1];
+
+        (*m_plData)[idx - 1] = _pSource;
+        (*m_plData)[idx - 1]->IncreaseRef();
+
         pIT->DecreaseRef();
         pIT->killMe();
-
-        (*m_plData)[idx - 1] = _pSource->clone();
-        (*m_plData)[idx - 1]->IncreaseRef();
     }
 
     m_iSize = (int)m_plData->size();
@@ -327,11 +331,17 @@ InternalType* List::get(const int _iIndex)
     return NULL;
 }
 
-bool List::set(const int _iIndex, InternalType* _pIT)
+List* List::set(const int _iIndex, InternalType* _pIT)
 {
     if (_iIndex < 0)
     {
-        return false;
+        return NULL;
+    }
+
+    List* pIT = checkRef(this, &List::set, _iIndex, _pIT);
+    if (pIT != this)
+    {
+        return pIT;
     }
 
     while ((int)m_plData->size() < _iIndex)
@@ -363,7 +373,7 @@ bool List::set(const int _iIndex, InternalType* _pIT)
         }
     }
 
-    return true;
+    return this;
 }
 
 bool List::operator==(const InternalType& it)

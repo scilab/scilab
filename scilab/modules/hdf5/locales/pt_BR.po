@@ -113,8 +113,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
 msgstr ""
 
 #, c-format
@@ -232,8 +231,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
-msgstr ""
-"%s: Valor errado para argumento de entrada #%d: \"%s\" é um diretório"
+msgstr "%s: Valor errado para argumento de entrada #%d: \"%s\" é um diretório"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"

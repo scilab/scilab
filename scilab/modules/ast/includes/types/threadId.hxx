@@ -44,7 +44,7 @@ public :
     {
         return L"tid";
     }
-    InternalType*           clone();
+    ThreadId*               clone();
 
     __threadId              getThreadId();
     void                    setThreadId(__threadId _id);

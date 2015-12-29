@@ -28,6 +28,7 @@ void AnalysisVisitor::visit(ast::VarDec & e)
         Result & res = getResult();
         Info & info = dm.define(sym, res.getType(), res.isAnInt(), &e);
         info.setRange(res.getRange());
+        e.getDecorator().res = res;
     }
 }
 

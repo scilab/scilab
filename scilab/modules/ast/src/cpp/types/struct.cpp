@@ -17,6 +17,7 @@
 #include "localization.hxx"
 #include "scilabWrite.hxx"
 #include "exp.hxx"
+#include "types_tools.hxx"
 
 namespace types
 {
@@ -102,7 +103,7 @@ Struct::Struct(Struct *_oStructCopyMe)
 #endif
 }
 
-InternalType* Struct::clone()
+Struct* Struct::clone()
 {
     return new Struct(this);
 }
@@ -199,31 +200,38 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
     return ArrayOf<SingleStruct*>::invoke(in, opt, _iRetCount, out, e);
 }
 
-bool Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
+Struct* Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
 {
     if (_iRows < getRows() && _iCols < getCols())
     {
         return set(_iCols * getRows() + _iRows, _pIT);
     }
-    return false;
+    return NULL;
 }
 
-bool Struct::set(int _iRows, int _iCols, const SingleStruct* _pIT)
+Struct* Struct::set(int _iRows, int _iCols, const SingleStruct* _pIT)
 {
     if (_iRows < getRows() && _iCols < getCols())
     {
         return set(_iCols * getRows() + _iRows, _pIT);
     }
-    return false;
+    return NULL;
 }
 
-bool Struct::set(int _iIndex, SingleStruct* _pIT)
+Struct* Struct::set(int _iIndex, SingleStruct* _pIT)
 {
+    typedef Struct* (Struct::*set_t)(int, SingleStruct*);
+    Struct* pIT = checkRef(this, (set_t)&Struct::set, _iIndex, _pIT);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     if (_iIndex < getSize())
     {
         if (m_bDisableCloneInCopyValue && m_pRealData[_iIndex] == _pIT)
         {
-            return true;
+            return this;
         }
 
         InternalType* pOld = m_pRealData[_iIndex];
@@ -241,13 +249,20 @@ bool Struct::set(int _iIndex, SingleStruct* _pIT)
             pOld->killMe();
         }
 
-        return true;
+        return this;
     }
-    return false;
+    return NULL;
 }
 
-bool Struct::set(int _iIndex, const SingleStruct* _pIT)
+Struct* Struct::set(int _iIndex, const SingleStruct* _pIT)
 {
+    typedef Struct* (Struct::*set_t)(int, const SingleStruct*);
+    Struct* pIT = checkRef(this, (set_t)&Struct::set, _iIndex, _pIT);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     if (_iIndex < getSize())
     {
         InternalType* pOld = m_pRealData[_iIndex];
@@ -260,21 +275,28 @@ bool Struct::set(int _iIndex, const SingleStruct* _pIT)
             pOld->killMe();
         }
 
-        return true;
+        return this;
     }
-    return false;
+    return NULL;
 }
 
-bool Struct::set(SingleStruct** _pIT)
+Struct* Struct::set(SingleStruct** _pIT)
 {
+    typedef Struct* (Struct::*set_t)(SingleStruct**);
+    Struct* pIT = checkRef(this, (set_t)&Struct::set, _pIT);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     for (int i = 0 ; i < getSize() ; i++)
     {
-        if (set(i, _pIT[i]) == false)
+        if (set(i, _pIT[i]) == NULL)
         {
-            return false;
+            return NULL;
         }
     }
-    return true;
+    return this;
 }
 
 String* Struct::getFieldNames()
@@ -404,13 +426,10 @@ bool Struct::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, 
 
 Struct* Struct::addField(const std::wstring& _sKey)
 {
-    if (getRef() > 1)
+    Struct* pIT = checkRef(this, &Struct::addField, _sKey);
+    if (pIT != this)
     {
-        // A Struct content in more than one Scilab variable
-        // must be cloned before to be modified.
-        Struct* pClone = clone()->template getAs<Struct>();
-        pClone->addField(_sKey);
-        return pClone;
+        return pIT;
     }
 
     if (getSize() == 0)
@@ -421,13 +440,6 @@ Struct* Struct::addField(const std::wstring& _sKey)
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        /*
-                    if(get(i)->isRef(1))
-                    {//assign more than once
-                        //clone it before add field
-                        set(i, get(i)->clone());
-                    }
-        */
         get(i)->addField(_sKey);
     }
 
@@ -436,13 +448,10 @@ Struct* Struct::addField(const std::wstring& _sKey)
 
 Struct* Struct::addFieldFront(const std::wstring& _sKey)
 {
-    if (getRef() > 1)
+    Struct* pIT = checkRef(this, &Struct::addFieldFront, _sKey);
+    if (pIT != this)
     {
-        // A Struct content in more than one Scilab variable
-        // must be cloned before to be modified.
-        Struct* pClone = clone()->template getAs<Struct>();
-        pClone->addField(_sKey);
-        return pClone;
+        return pIT;
     }
 
     if (getSize() == 0)
@@ -461,13 +470,10 @@ Struct* Struct::addFieldFront(const std::wstring& _sKey)
 
 Struct* Struct::removeField(const std::wstring& _sKey)
 {
-    if (getRef() > 1)
+    Struct* pIT = checkRef(this, &Struct::removeField, _sKey);
+    if (pIT != this)
     {
-        // A Struct content in more than one Scilab variable
-        // must be cloned before to be modified.
-        Struct* pClone = clone()->template getAs<Struct>();
-        pClone->addField(_sKey);
-        return pClone;
+        return pIT;
     }
 
     for (int j = 0; j < getSize(); j++)
@@ -683,18 +689,25 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
     return ResultList;
 }
 
-bool Struct::resize(int _iNewRows, int _iNewCols)
+Struct* Struct::resize(int _iNewRows, int _iNewCols)
 {
     int piDims[2] = {_iNewRows, _iNewCols};
     return resize(piDims, 2);
 }
 
-bool Struct::resize(int* _piDims, int _iDims)
+Struct* Struct::resize(int* _piDims, int _iDims)
 {
+    typedef Struct* (Struct::*resize_t)(int*, int);
+    Struct* pIT = checkRef(this, (resize_t)&Struct::resize, _piDims, _iDims);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     m_bDisableCloneInCopyValue = true;
-    bool bRes = ArrayOf<SingleStruct*>::resize(_piDims, _iDims);
+    Struct* pSRes = ArrayOf<SingleStruct*>::resize(_piDims, _iDims)->getAs<Struct>();
     m_bDisableCloneInCopyValue = false;
-    if (bRes)
+    if (pSRes)
     {
         // insert field(s) only in new element(s) of current struct
         String* pFields = getFieldNames();
@@ -709,7 +722,7 @@ bool Struct::resize(int* _piDims, int _iDims)
         pFields->killMe();
     }
 
-    return bRes;
+    return pSRes;
 }
 
 InternalType* Struct::insertWithoutClone(typed_list* _pArgs, InternalType* _pSource)

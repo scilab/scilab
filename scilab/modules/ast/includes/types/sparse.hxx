@@ -79,14 +79,14 @@ struct EXTERN_AST Sparse : GenericType
     void finalize();
 
     /*data management member function defined for compatibility with the Double API*/
-    bool set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
-    bool set(int _iIndex, double _dblReal, bool _bFinalize = true)
+    Sparse* set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
+    Sparse* set(int _iIndex, double _dblReal, bool _bFinalize = true)
     {
         return set(_iIndex % m_iRows, _iIndex / m_iRows, _dblReal, _bFinalize);
     }
 
-    bool set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize = true);
-    bool set(int _iIndex, std::complex<double> v, bool _bFinalize = true)
+    Sparse* set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize = true);
+    Sparse* set(int _iIndex, std::complex<double> v, bool _bFinalize = true)
     {
         return set(_iIndex % m_iRows, _iIndex / m_iRows, v, _bFinalize);
     }
@@ -159,7 +159,7 @@ struct EXTERN_AST Sparse : GenericType
        @param _iNewCols new minimum nb of cols
        @return true upon succes, false otherwise.
      */
-    bool resize(int _iNewRows, int _iNewCols);
+    Sparse* resize(int _iNewRows, int _iNewCols);
     /* post condition: new total size must be equal to the old size.
                        Two dimensions maximum.
 
@@ -169,8 +169,8 @@ struct EXTERN_AST Sparse : GenericType
        @param _iNewDims new size for each dimension
        @return true upon succes, false otherwise.
     */
-    bool reshape(int* _piNewDims, int _iNewDims);
-    bool reshape(int _iNewRows, int _iNewCols);
+    Sparse* reshape(int* _piNewDims, int _iNewDims);
+    Sparse* reshape(int _iNewRows, int _iNewCols);
     /*
       insert _iSeqCount elements from _poSource at coords given by _piSeqCoord (max in _piMaxDim).
       coords are considered 1D if _bAsVector, 2D otherwise.
@@ -180,18 +180,17 @@ struct EXTERN_AST Sparse : GenericType
       @param  _bAsVector if _piSeqCoord contains 1D coords.
      */
     Sparse* insert(typed_list* _pArgs, InternalType* _pSource);
-    Sparse* insert(typed_list* _pArgs, Sparse* _pSource);
 
-    Sparse* remove(typed_list* _pArgs);
+    GenericType* remove(typed_list* _pArgs);
 
-    static InternalType* insertNew(typed_list* _pArgs, InternalType* _pSource);
+    GenericType* insertNew(typed_list* _pArgs);
 
     /* append _poSource from coords _iRows, _iCols
        @param _iRows row to append from
        @param _iCols col to append from
        @param _poSource src data to append
      */
-    bool append(int r, int c, types::Sparse SPARSE_CONST* src);
+    Sparse* append(int r, int c, types::Sparse SPARSE_CONST* src);
 
     /*
       extract a submatrix
@@ -202,7 +201,7 @@ struct EXTERN_AST Sparse : GenericType
       @param  _bAsVector if _piSeqCoord contains 1D coords.
 
      */
-    InternalType* extract(typed_list* _pArgs);
+    GenericType* extract(typed_list* _pArgs);
     Sparse* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
     virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e);
     virtual bool isInvokable() const;
@@ -472,6 +471,8 @@ private :
      */
     template<typename Src, typename SrcTraversal, typename Sz, typename DestTraversal>
     static bool copyToSparse(Src SPARSE_CONST& src, SrcTraversal srcTrav, Sz n, Sparse& sp, DestTraversal destTrav);
+
+    Sparse* insert(typed_list* _pArgs, Sparse* _pSource);
 };
 
 template<typename T>
@@ -525,20 +526,18 @@ struct EXTERN_AST SparseBool : GenericType
     {
         return const_cast<SparseBool const*>(this)->clone();
     }
-    bool resize(int _iNewRows, int _iNewCols);
 
-    bool reshape(int* _piNewDims, int _iNewDims);
-    bool reshape(int _iNewRows, int _iNewCols);
-
+    SparseBool* resize(int _iNewRows, int _iNewCols);
+    SparseBool* reshape(int* _piNewDims, int _iNewDims);
+    SparseBool* reshape(int _iNewRows, int _iNewCols);
     SparseBool* insert(typed_list* _pArgs, InternalType* _pSource);
-    SparseBool* insert(typed_list* _pArgs, SparseBool* _pSource);
-    SparseBool* remove(typed_list* _pArgs);
+    SparseBool* append(int _iRows, int _iCols, SparseBool SPARSE_CONST* _poSource);
 
-    bool append(int _iRows, int _iCols, SparseBool SPARSE_CONST* _poSource);
+    GenericType* remove(typed_list* _pArgs);
+    GenericType* insertNew(typed_list* _pArgs);
+    GenericType* extract(typed_list* _pArgs);
 
-    static InternalType* insertNew(typed_list* _pArgs, InternalType* _pSource);
     SparseBool* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
-    InternalType* extract(typed_list* _pArgs);
 
     virtual bool invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e);
     virtual bool isInvokable() const;
@@ -621,8 +620,8 @@ struct EXTERN_AST SparseBool : GenericType
         return get(_iIndex % m_iRows, _iIndex / m_iRows);
     }
 
-    bool set(int r, int c, bool b, bool _bFinalize = true) SPARSE_CONST;
-    bool set(int _iIndex, bool b, bool _bFinalize = true) SPARSE_CONST
+    SparseBool* set(int r, int c, bool b, bool _bFinalize = true) SPARSE_CONST;
+    SparseBool* set(int _iIndex, bool b, bool _bFinalize = true) SPARSE_CONST
     {
         return set(_iIndex % m_iRows, _iIndex / m_iRows, b, _bFinalize);
     }
@@ -642,6 +641,7 @@ struct EXTERN_AST SparseBool : GenericType
 
 private:
     void create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPARSE_CONST& idx);
+    SparseBool* insert(typed_list* _pArgs, SparseBool* _pSource);
 };
 
 template<typename T>

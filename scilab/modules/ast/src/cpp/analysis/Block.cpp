@@ -251,15 +251,18 @@ Info & Block::addDefine(const symbol::Symbol & sym, const TIType & Rtype, const 
     return info;
 }
 
-Info & Block::addShare(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, ast::Exp * exp)
+Info & Block::addShare(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, const bool isIntIterator, ast::Exp * exp)
 {
-    addLocal(Lsym, Rtype, /* isIntIterator */ false);
+    addLocal(Lsym, Rtype, isIntIterator);
     Info & Linfo = putAndClear(Lsym, exp);
     Info & Rinfo = putSymsInScope(Rsym);
     Linfo.cleared = false;
     Linfo.type = Rtype;
     Linfo.data = Rinfo.data;
     Linfo.isint = Rinfo.isint;
+    Linfo.constant = Rinfo.constant;
+    Linfo.range = Rinfo.range;
+    Linfo.maxIndex = Rinfo.maxIndex;
     Linfo.data->add(Lsym);
     Linfo.exists = true;
 
@@ -280,7 +283,7 @@ Info & Block::addMacroDef(ast::FunctionDec * dec)
     return i;
 }
 
-    std::vector<TIType> Block::addCall(AnalysisVisitor & visitor, const unsigned int lhs, const symbol::Symbol & sym, std::vector<TIType> & in, ast::CallExp * callexp, uint64_t & functionId)
+std::vector<TIType> Block::addCall(AnalysisVisitor & visitor, const unsigned int lhs, const symbol::Symbol & sym, std::vector<TIType> & in, ast::CallExp * callexp, uint64_t & functionId)
 {
     tools::SymbolMap<Info>::iterator it;
     Block * block = getDefBlock(sym, it, false);

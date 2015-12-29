@@ -55,13 +55,14 @@ public:
     void setContribContent(types::InternalType* v);
 
 private:
-    // Infos for the child elements
-    types::List* list_objects;
-
     // Infos for the child links
     std::vector<link_t> from_vec;
     std::vector<link_t> to_vec;
 
+    // Infos for the child elements
+    types::List* list_objects;
+
+    // User-defined contrib
     types::InternalType* contrib_content;
 };
 

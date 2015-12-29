@@ -370,7 +370,6 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     }
     catch (std::wstring & err)
     {
-        pValue->killMe();
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(err.c_str(), 999, e.getTail()->getLocation());
     }

@@ -18,219 +18,207 @@
 namespace analysis
 {
 
-    bool MultivariateMonomial::contains(const uint64_t var) const
-	{
-	    return monomial.find(var) != monomial.end();
-	}
-    
-    bool MultivariateMonomial::checkVariable(const uint64_t max) const
-    {
-	return std::prev(monomial.end())->var <= max;
-    }
+bool MultivariateMonomial::contains(const uint64_t var) const
+{
+    return monomial.find(var) != monomial.end();
+}
 
-    unsigned int MultivariateMonomial::exponent() const
+bool MultivariateMonomial::checkVariable(const uint64_t max) const
+{
+    return std::prev(monomial.end())->var <= max;
+}
+
+unsigned int MultivariateMonomial::exponent() const
+{
+    unsigned int exp = 0;
+    for (const auto & ve : monomial)
     {
-        unsigned int exp = 0;
+        exp += ve.exp;
+    }
+    return exp;
+}
+
+MultivariateMonomial & MultivariateMonomial::add(const VarExp & ve)
+{
+    Monomial::iterator i = monomial.find(ve);
+    if (i == monomial.end())
+    {
+        monomial.insert(ve);
+    }
+    else
+    {
+        i->exp += ve.exp;
+    }
+    return *this;
+}
+
+MultivariateMonomial & MultivariateMonomial::add(VarExp && ve)
+{
+    Monomial::iterator i = monomial.find(ve);
+    if (i == monomial.end())
+    {
+        monomial.emplace(std::move(ve));
+    }
+    else
+    {
+        i->exp += ve.exp;
+    }
+    return *this;
+}
+
+MultivariateMonomial MultivariateMonomial::operator*(const MultivariateMonomial & R) const
+{
+    MultivariateMonomial res(*this);
+    res.coeff *= R.coeff;
+    for (const auto & ve : R.monomial)
+    {
+        res.add(ve);
+    }
+    return res;
+}
+
+MultivariateMonomial & MultivariateMonomial::operator*=(const MultivariateMonomial & R)
+{
+    coeff *= R.coeff;
+    for (const auto & ve : R.monomial)
+    {
+        add(ve);
+    }
+    return *this;
+}
+
+MultivariateMonomial operator*(const int64_t L, const MultivariateMonomial & R)
+{
+    return R * L;
+}
+
+MultivariateMonomial MultivariateMonomial::operator*(const int64_t R) const
+{
+    MultivariateMonomial res(*this);
+    res.coeff *= R;
+    return res;
+}
+
+MultivariateMonomial & MultivariateMonomial::operator*=(const int64_t R)
+{
+    coeff *= R;
+    return *this;
+}
+
+MultivariateMonomial MultivariateMonomial::operator/(const int64_t R) const
+{
+    MultivariateMonomial res(*this);
+    res.coeff /= R;
+    return res;
+}
+
+MultivariateMonomial & MultivariateMonomial::operator/=(const int64_t R)
+{
+    coeff /= R;
+    return *this;
+}
+
+MultivariateMonomial MultivariateMonomial::operator^(unsigned int R) const
+{
+    MultivariateMonomial res(*this);
+    if (R > 1)
+    {
+        coeff = std::pow(coeff, R);
+        for (auto & ve : res.monomial)
+        {
+            ve.exp *= R;
+        }
+    }
+    return res;
+}
+
+bool MultivariateMonomial::operator==(const MultivariateMonomial & R) const
+{
+    return coeff == R.coeff && monomial == R.monomial;
+}
+
+const std::wstring MultivariateMonomial::print(const std::map<uint64_t, std::wstring> & vars) const
+{
+    std::wostringstream wos;
+    if (coeff == -1 || coeff == 1)
+    {
+        if (coeff == -1)
+        {
+            wos << L'-';
+        }
+        if (!monomial.empty())
+        {
+            wos << monomial.begin()->print(vars);
+            for (auto i = std::next(monomial.begin()), e = monomial.end(); i != e; ++i)
+            {
+                wos << L"*" << i->print(vars);
+            }
+        }
+    }
+    else
+    {
+        wos << coeff;
         for (const auto & ve : monomial)
         {
-            exp += ve.exp;
+            wos << L"*" << ve.print(vars);
         }
-        return exp;
     }
+    return wos.str();
+}
 
-    MultivariateMonomial & MultivariateMonomial::add(const VarExp & ve)
+std::wostream & operator<<(std::wostream & out, const MultivariateMonomial & m)
+{
+    const std::map<uint64_t, std::wstring> vars;
+    out << m.print(vars);
+
+    return out;
+}
+
+bool MultivariateMonomial::Compare::operator()(const MultivariateMonomial & L, const MultivariateMonomial & R) const
+{
+    const unsigned int le = L.exponent();
+    const unsigned int re = R.exponent();
+    if (le < re)
     {
-        Monomial::iterator i = monomial.find(ve);
-        if (i == monomial.end())
+        return true;
+    }
+    else if (le == re)
+    {
+        const unsigned int ls = static_cast<unsigned int>(L.monomial.size());
+        const unsigned int rs = static_cast<unsigned int>(R.monomial.size());
+        if (ls > rs)
         {
-            monomial.insert(ve);
+            return true;
         }
-        else
+        else if (ls == rs)
         {
-            i->exp += ve.exp;
-        }
-        return *this;
-    }
-
-    MultivariateMonomial & MultivariateMonomial::add(VarExp && ve)
-    {
-        Monomial::iterator i = monomial.find(ve);
-        if (i == monomial.end())
-        {
-            monomial.emplace(std::move(ve));
-        }
-        else
-        {
-            i->exp += ve.exp;
-        }
-        return *this;
-    }
-
-    MultivariateMonomial MultivariateMonomial::operator*(const MultivariateMonomial & R) const
-    {
-        MultivariateMonomial res(*this);
-        res.coeff *= R.coeff;
-        for (const auto & ve : R.monomial)
-        {
-            res.add(ve);
-        }
-        return res;
-    }
-
-    MultivariateMonomial & MultivariateMonomial::operator*=(const MultivariateMonomial & R)
-    {
-        coeff *= R.coeff;
-        for (const auto & ve : R.monomial)
-        {
-            add(ve);
-        }
-        return *this;
-    }
-
-    MultivariateMonomial operator*(const int64_t L, const MultivariateMonomial & R)
-    {
-        return R * L;
-    }
-
-    MultivariateMonomial MultivariateMonomial::operator*(const int64_t R) const
-    {
-        MultivariateMonomial res(*this);
-        res.coeff *= R;
-        return res;
-    }
-
-    MultivariateMonomial & MultivariateMonomial::operator*=(const int64_t R)
-    {
-        coeff *= R;
-        return *this;
-    }
-
-    MultivariateMonomial MultivariateMonomial::operator/(const int64_t R) const
-    {
-        MultivariateMonomial res(*this);
-        res.coeff /= R;
-        return res;
-    }
-
-    MultivariateMonomial & MultivariateMonomial::operator/=(const int64_t R)
-    {
-        coeff /= R;
-        return *this;
-    }
-
-    MultivariateMonomial MultivariateMonomial::operator^(unsigned int R) const
-    {
-        MultivariateMonomial res(*this);
-        if (R > 1)
-        {
-            coeff = std::pow(coeff, R);
-            for (auto & ve : res.monomial)
+            for (Monomial::const_iterator i = L.monomial.begin(), j = R.monomial.begin(), e = L.monomial.end(); i != e; ++i, ++j)
             {
-                ve.exp *= R;
-            }
-        }
-        return res;
-    }
-
-    bool MultivariateMonomial::operator==(const MultivariateMonomial & R) const
-    {
-        return coeff == R.coeff && monomial == R.monomial;
-    }
-
-    const std::wstring MultivariateMonomial::print(const std::map<uint64_t, std::wstring> & vars) const
-    {
-        std::wostringstream wos;
-	if (coeff == 1)
-	{
-	    if (!monomial.empty())
-	    {
-		wos << monomial.begin()->print(vars);
-		for (auto i = std::next(monomial.begin()), e = monomial.end(); i != e; ++i)
-		{
-		    wos << L"*" << i->print(vars);
-		}
-	    }
-	}
-	else
-	{
-	    wos << coeff;
-	    for (const auto & ve : monomial)
-	    {
-		wos << L"*" << ve.print(vars);
-	    }
-	}
-        return wos.str();
-    }
-
-    std::wostream & operator<<(std::wostream & out, const MultivariateMonomial & m)
-    {
-	if (m.coeff == 1)
-	{
-	    if (!m.monomial.empty())
-	    {
-		out << *m.monomial.begin();
-		for (auto i = std::next(m.monomial.begin()), e = m.monomial.end(); i != e; ++i)
-		{
-		    out << L"*" << *i;
-		}
-	    }
-	}
-	else
-	{
-	    out << m.coeff;
-	    for (const auto & ve : m.monomial)
-	    {
-		out << L"*" << ve;
-	    }
-	}
-        return out;
-    }
-
-    bool MultivariateMonomial::Compare::operator()(const MultivariateMonomial & L, const MultivariateMonomial & R) const
-    {
-            const unsigned int le = L.exponent();
-            const unsigned int re = R.exponent();
-            if (le < re)
-            {
-                return true;
-            }
-            else if (le == re)
-            {
-                const unsigned int ls = static_cast<unsigned int>(L.monomial.size());
-                const unsigned int rs = static_cast<unsigned int>(R.monomial.size());
-                if (ls > rs)
+                if (VarExp::Compare()(*i, *j))
                 {
                     return true;
                 }
-                else if (ls == rs)
+                else if (!VarExp::Eq()(*i, *j))
                 {
-                    for (Monomial::const_iterator i = L.monomial.begin(), j = R.monomial.begin(), e = L.monomial.end(); i != e; ++i, ++j)
-                    {
-                        if (VarExp::Compare()(*i, *j))
-                        {
-                            return true;
-                        }
-                        else if (!VarExp::Eq()(*i, *j))
-                        {
-                            return false;
-                        }
-                    }
-
-                    for (Monomial::const_iterator i = L.monomial.begin(), j = R.monomial.begin(), e = L.monomial.end(); i != e; ++i, ++j)
-                    {
-                        if (i->exp < j->exp)
-                        {
-                            return true;
-                        }
-                        else if (i->exp > j->exp)
-                        {
-                            return false;
-                        }
-                    }
-
+                    return false;
                 }
             }
-            return false;
+
+            for (Monomial::const_iterator i = L.monomial.begin(), j = R.monomial.begin(), e = L.monomial.end(); i != e; ++i, ++j)
+            {
+                if (i->exp < j->exp)
+                {
+                    return true;
+                }
+                else if (i->exp > j->exp)
+                {
+                    return false;
+                }
+            }
+
         }
+    }
+    return false;
+}
 
 } // namespace analysis

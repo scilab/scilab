@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -131,7 +132,7 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
          * backward compatibility, use explicit as default.
          */
         if (graphics.size() <= GRAPHICS_OUTIMPL_INDEX) {
-            return new ExplicitOutputPort(controller.createObject(Kind.PORT));
+            return new ExplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
         ScilabType outImpl = graphics.get(GRAPHICS_OUTIMPL_INDEX);
 
@@ -139,7 +140,7 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
          * backward compatibility, use explicit as default.
          */
         if (isEmptyField(outImpl)) {
-            return new ExplicitOutputPort(controller.createObject(Kind.PORT));
+            return new ExplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
 
         final ScilabString outImplicit = (ScilabString) outImpl;
@@ -148,7 +149,7 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
          * backward compatibility, use explicit as default.
          */
         if (isEmptyField(outImplicit)) {
-            return new ExplicitOutputPort(controller.createObject(Kind.PORT));
+            return new ExplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
 
         final boolean isColumnDominant = outImplicit.getHeight() >= outImplicit.getWidth();
@@ -163,12 +164,12 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
          * typed port otherwise.
          */
         if (isSet && outimpl[indexes[0]][indexes[1]].equals(EXPLICIT)) {
-            ret = new ExplicitOutputPort(controller.createObject(Kind.PORT));
+            ret = new ExplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         } else if (isSet && outimpl[indexes[0]][indexes[1]].equals(IMPLICIT)) {
-            ret = new ImplicitOutputPort(controller.createObject(Kind.PORT));
+            ret = new ImplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         } else {
             // when not specified, use explicit
-            ret = new ExplicitOutputPort(controller.createObject(Kind.PORT));
+            ret = new ExplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
 
         return ret;

@@ -22,8 +22,7 @@ msgid "%s: The file %s does not exist.\n"
 msgstr "%s : Le fichier %s n'existe pas.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
 msgstr ""
 "%s : Argument d'entrée n°%d faux : Un chemin vers un fichier de script "
 "Scilab attendu.\n"

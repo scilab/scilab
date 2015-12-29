@@ -23,7 +23,7 @@ public :
     Void() {};
     virtual                 ~Void();
 
-    InternalType*           clone();
+    Void*                   clone();
 
     inline ScilabType       getType(void)
     {

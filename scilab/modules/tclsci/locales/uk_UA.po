@@ -150,8 +150,7 @@ msgstr ""
 
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
-msgstr ""
-"Помилка Tcl: помилка під час спроби ініціалізації Tcl (Tcl_Init): %s\n"
+msgstr "Помилка Tcl: помилка під час спроби ініціалізації Tcl (Tcl_Init): %s\n"
 
 #, c-format
 msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"
@@ -190,8 +189,7 @@ msgstr "%s: помилка: інтерпретатор TCL не ініціалі
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мав бути принаймні один.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мав бути принаймні один.\n"
 
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Модуль TCL/TK Scilab не встановлено.\n"

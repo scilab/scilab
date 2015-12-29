@@ -22,8 +22,7 @@ msgid "%s: The file %s does not exist.\n"
 msgstr "%s：文件%s不存在。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
 msgstr "%s：第%d个输入参数错误：应该是Scilab脚本文件的路径。\n"
 
 msgid "Demonstrations"

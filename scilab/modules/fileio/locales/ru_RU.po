@@ -175,8 +175,7 @@ msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
 
 #, c-format
@@ -215,8 +214,7 @@ msgid "%s: Wrong file descriptor: %d.\n"
 msgstr "%s: Неверный дескриптор файла: %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A integer or string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
 
 #, c-format
@@ -306,8 +304,7 @@ msgid "%s: invalid status.\n"
 msgstr "%s: недопустимое состояние.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась строка или целое число.\n"
 
@@ -336,8 +333,7 @@ msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s» или "
 "«%s».\n"
@@ -417,21 +413,18 @@ msgid "%s: An error occurred: too many (> %d) conversion required.\n"
 msgstr "%s: Ошибка: требуется слишком много (> %d) преобразований.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr "%s: Ошибка: поле %d слишком длинное (> %d) для указания %%[.\n"
 
 msgid "Bad conversion."
 msgstr "Плохое преобразование."
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr "%s: Ошибка: поле %d слишком длинное (< %d) для указания %%s .\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr "%s: Ошибка: поле %d слишком длинное (< %d) для указания %%c .\n"
 
 #, c-format
@@ -513,8 +506,7 @@ msgstr ""
 "строка.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d («%s»): формат не распознан.\n"
 

@@ -29,7 +29,8 @@ msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指�
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr "%s: 引数 %d の大きさが間違っています: 実数スカラーを指定してください.\n"
+msgstr ""
+"%s: 引数 %d の大きさが間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -49,7 +50,8 @@ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -61,7 +63,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -85,11 +88,14 @@ msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s' または '%s' を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 msgid "Redefining permanent variable.\n"
 msgstr ""
@@ -100,7 +106,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -209,7 +216,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 0 より大きい値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 0 より大きい値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
@@ -244,8 +252,7 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -279,7 +286,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong file version.xml %s.\n"
@@ -314,8 +322,7 @@ msgid "%s: Wrong type for input argument #%d: macro expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 
 #, c-format
@@ -331,8 +338,7 @@ msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -402,8 +408,8 @@ msgstr "%s モジュールが見つかりません。\n"
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
 msgstr ""
-"エラー: モジュールファイル %s に誤りがあります. (エンコーディングが '%s'　ではありません) エンコーディング '%s' が見つかりました  "
-".\n"
+"エラー: モジュールファイル %s に誤りがあります. (エンコーディングが '%s'　で"
+"はありません) エンコーディング '%s' が見つかりました  .\n"
 
 #
 # File: src/c/loadversion.c, line: 74
@@ -416,16 +422,17 @@ msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"エラー: バージョンファイル %s に誤りがあります. ( <MODULE_VERSION>で始まり,  <VERSION major='' "
-"minor='' maintenance='' revision='' string=''> を含む必要があります)\n"
+"エラー: バージョンファイル %s に誤りがあります. ( <MODULE_VERSION>で始まり,  "
+"<VERSION major='' minor='' maintenance='' revision='' string=''> を含む必要が"
+"あります)\n"
 
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
-"エラー: バージョンファイル %s に誤りがあります. エンコーディング '%s' が見つかりました  (エンコーディングが 'utf-"
-"8'　ではありません).\n"
+"エラー: バージョンファイル %s に誤りがあります. エンコーディング '%s' が見つ"
+"かりました  (エンコーディングが 'utf-8'　ではありません).\n"
 
 #, c-format
 msgid ""
@@ -442,7 +449,8 @@ msgid ""
 msgstr ""
 "致命的なエラーがScilabにより検出されました.\n"
 "このインスタンスは突然終了すると思われます.\n"
-"グラフィック機能が使用されている場合, システムのグラフィックドライバにより発生した可能性があります.\n"
+"グラフィック機能が使用されている場合, システムのグラフィックドライバにより発"
+"生した可能性があります.\n"
 "ドライバを更新した後, この機能を再度実行してみてください.\n"
 "以下のように %s にバグをリポートできます:\n"
 "* 問題を再現するサンプルコード\n"
@@ -455,7 +463,8 @@ msgid ""
 "%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
 "\n"
 msgstr ""
-"%s: texmacs ATOMS モジュールをインストールしてください:  atomsInstall('texmacs')\n"
+"%s: texmacs ATOMS モジュールをインストールしてください:  "
+"atomsInstall('texmacs')\n"
 "\n"
 
 #
@@ -490,8 +499,7 @@ msgstr "Scilabバージョン情報."
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid ""
-"(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
 msgid ""
@@ -594,7 +602,8 @@ msgstr "ツールボックス(&T)"
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
-msgstr "%s:  '%s' が見つかりませんでした: 構築されたマクロをチェックしてください.\n"
+msgstr ""
+"%s:  '%s' が見つかりませんでした: 構築されたマクロをチェックしてください.\n"
 
 #, c-format
 msgid "Checking: %s\n"
@@ -656,7 +665,8 @@ msgstr "%s: システム・エラー: コマンドは実行されました: %s"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
 msgid "Scilab Version: "
 msgstr "Scilabバージョン: "

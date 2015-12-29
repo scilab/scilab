@@ -6,15 +6,23 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 function r=testresult(eps)
-  if argn(2)<=0 then eps=1d-10;end
-  if or(isnan(real(y))<>isnan(real(yref)))  then r=%t,return,end;
-  if or(isnan(imag(y))<>isnan(imag(yref)))  then r=%t,return,end;
-  if or(size(y)<>size(yref)) then r=%t,return,end;
-  if yref==[] then r=%f,return,end;
-  k=find(abs(yref)==0);
-  r=or(abs(y(k)-yref(k))>eps);
-  k=find(abs(yref)<>0);
-  r=r|or(max(abs(y(k)-yref(k))./abs(yref(k)))>eps);
+    if argn(2)<=0 then eps=1d-10;end
+    if or(isnan(real(y))<>isnan(real(yref)))  then r=%t,return,end;
+    if or(isnan(imag(y))<>isnan(imag(yref)))  then r=%t,return,end;
+    if or(size(y)<>size(yref)) then r=%t,return,end;
+    if yref==[] then r=%f,return,end;
+    k=find(abs(yref)==0);
+    if isempty(k)
+        r = or([]);
+    else
+        r=or(abs(y(k)-yref(k))>eps);
+    end
+    k=find(abs(yref)<>0);
+    if isempty(k)
+        r=r|[];
+    else
+        r=r|or( max ( abs(y(k)-yref(k)) ./ abs(yref(k)) ) >eps );
+    end
 endfunction
 ieee(1)
 // ------------------------------ besselh(alpha[,K],x)------------------------------

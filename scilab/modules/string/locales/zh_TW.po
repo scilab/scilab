@@ -94,8 +94,7 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
 #
 # File: sci_gateway/c/sci_grep.c, line: 204
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr "%s: Wrong values for input argument #%d: 應為非空字串.\n"
 
 #
@@ -435,7 +434,8 @@ msgstr "%s: Wrong values for input argument #%d: 應為一非負整數.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
 "character strings or list expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數矩陣, 應為字串矩陣 或 list.\n"
+msgstr ""
+"%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數矩陣, 應為字串矩陣 或 list.\n"
 
 #
 # File: macros/evstr.sci, line: 48

@@ -13,10 +13,7 @@
 
 package org.scilab.modules.xcos.block;
 
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
+import com.mxgraph.model.mxGeometry;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
@@ -31,7 +28,6 @@ import org.scilab.modules.xcos.block.actions.SuperblockMaskCustomizeAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskRemoveAction;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.w3c.dom.Node;
 
 /**
  * A SuperBlock contains an entire diagram on it. Thus it can be easily
@@ -72,20 +68,10 @@ public final class SuperBlock extends BasicBlock {
      */
     private static final String MASKED_INTERFUNCTION_NAME = "DSUPER";
 
-    /**
-     * Constructor
-     */
-    public SuperBlock(long uid, String label, boolean masked) {
-        super(uid);
+    public SuperBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
 
-        setValue(label);
-        if (masked) {
-            mask(new JavaController());
-        }
-    }
-
-    public SuperBlock(long uid) {
-        this(uid, INTERFUNCTION_NAME, false);
+        controller.setObjectProperty(uid, kind, ObjectProperties.SIM_FUNCTION_NAME, SIMULATION_NAME);
     }
 
     /**
@@ -156,35 +142,11 @@ public final class SuperBlock extends BasicBlock {
      */
     @Override
     public void setValue(Object value) {
-        super.setValue(value);
-
-        if (value == null) {
-            return;
+        if (value != null) {
+            super.setValue(FileUtils.toValidCIdentifier(value.toString()));
+        } else {
+            super.setValue(value);
         }
-
-        JavaController controller = new JavaController();
-        controller.setObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.TITLE, FileUtils.toValidCIdentifier(value.toString()));
-    }
-
-    /*
-     * Serializable custom implementation need to handle any copy / DnD case.
-     */
-
-    /**
-     * Decode the block as xml
-     *
-     * @param in
-     *            the input stream
-     * @throws IOException
-     *             on error
-     * @throws ClassNotFoundException
-     *             on error
-     * @throws ParserConfigurationException on error
-     */
-    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException, ParserConfigurationException {
-        final Node input = (Node) in.readObject();
-
-        // FIXME: clone the MVC data
     }
 }
 // CSON: ClassDataAbstractionCoupling

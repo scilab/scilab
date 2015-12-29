@@ -61,7 +61,7 @@ void ThreadId::setKey(__threadKey _key)
     this->m_threadKey = _key;
 }
 
-InternalType* ThreadId::clone()
+ThreadId* ThreadId::clone()
 {
     return this;
 }

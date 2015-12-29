@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,10 +14,12 @@
 
 package org.scilab.modules.xcos.block;
 
+import com.mxgraph.model.mxGeometry;
 import java.util.Map;
 
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
@@ -29,8 +32,8 @@ public final class TextBlock extends BasicBlock {
     /**
      * Default constructor
      */
-    public TextBlock(long uid) {
-        super(uid, Kind.ANNOTATION);
+    public TextBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
     }
 
     /**

@@ -184,10 +184,10 @@ public class XcosSAXHandler extends DefaultHandler {
         long parentUID;
         Kind parentKind;
 
-        final XcosCell parentBlock = lookupForParentXcosCellElement();
-        if (parentBlock != null) {
-            parentUID = parentBlock.getUID();
-            parentKind = parentBlock.getKind();
+        final XcosCell parentCell = lookupForParentXcosCellElement();
+        if (Kind.BLOCK.equals(parentCell.getKind())) {
+            parentUID = parentCell.getUID();
+            parentKind = parentCell.getKind();
 
             controller.setObjectProperty(cell.getUID(), cell.getKind(), ObjectProperties.PARENT_BLOCK, parentUID);
         } else {

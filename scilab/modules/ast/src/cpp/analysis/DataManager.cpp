@@ -20,207 +20,207 @@
 namespace analysis
 {
 
-    DataManager::DataManager() : id(0)
+DataManager::DataManager() : id(0)
+{
+    current = root = new Block(this);
+}
+
+DataManager::~DataManager()
+{
+    for (const auto d : data)
     {
-        current = root = new Block(this);
+        delete d;
     }
-
-    DataManager::~DataManager()
+    delete root;
+    for (const auto & p : macroDefCache)
     {
-        for (const auto d : data)
-        {
-            delete d;
-        }
-        delete root;
-        for (const auto & p : macroDefCache)
-        {
-            delete p.second;
-        }
+        delete p.second;
     }
+}
 
-    void DataManager::reset()
+void DataManager::reset()
+{
+    for (const auto d : data)
     {
-	for (const auto d : data)
-        {
-            delete d;
-        }
-	data.clear();
-	delete root;
-        current = root = new Block(this);
-	globals.clear();
-	while (!callStack.empty())
-	{
-	    callStack.pop();
-	}
-	for (const auto & p : macroDefCache)
-        {
-            delete p.second;
-        }
-	macroDefCache.clear();
+        delete d;
     }
-
-    GVN & DataManager::getGVN()
+    data.clear();
+    delete root;
+    current = root = new Block(this);
+    globals.clear();
+    while (!callStack.empty())
     {
-        return current->getGVN();
+        callStack.pop();
     }
-
-    GVN & DataManager::getDefaultGVN()
+    for (const auto & p : macroDefCache)
     {
-        return gvn;
+        delete p.second;
     }
+    macroDefCache.clear();
+}
 
-    MacroDef * DataManager::getMacroDef(types::Macro * macro)
+GVN & DataManager::getGVN()
+{
+    return current->getGVN();
+}
+
+GVN & DataManager::getDefaultGVN()
+{
+    return gvn;
+}
+
+MacroDef * DataManager::getMacroDef(types::Macro * macro)
+{
+    auto i = macroDefCache.find(macro);
+    if (i == macroDefCache.end())
     {
-        auto i = macroDefCache.find(macro);
-        if (i == macroDefCache.end())
-        {
-            i = macroDefCache.emplace(macro, new ExistingMacroDef(*macro)).first;
-        }
-        return i->second;
+        i = macroDefCache.emplace(macro, new ExistingMacroDef(*macro)).first;
     }
+    return i->second;
+}
 
-    void DataManager::addGlobal(const symbol::Symbol & sym)
+void DataManager::addGlobal(const symbol::Symbol & sym)
+{
+    globals.emplace(sym);
+}
+
+void DataManager::registerData(Data * _data, int line, char * file)
+{
+    if (_data)
     {
-        globals.emplace(sym);
+        /*              bool ok = true;
+                        for (const auto d : data)
+                        {
+                        if (d == _data)
+                        {
+                        ok =  false;
+                        break;
+                        }
+                        }
+
+                        std::cout << "ptr added=" << _data << " line:" << line << " file:" << file << " doubloon:" << ok << std::endl;
+        */
+        data.push_back(_data);
     }
+}
 
-    void DataManager::registerData(Data * _data, int line, char * file)
-    {
-        if (_data)
-        {
-            /*              bool ok = true;
-                            for (const auto d : data)
-                            {
-                            if (d == _data)
-                            {
-                            ok =  false;
-                            break;
-                            }
-                            }
+int DataManager::getTmpId(const TIType & type, const bool isAnInt)
+{
+    return current->getTmpId(type, isAnInt);
+}
 
-                            std::cout << "ptr added=" << _data << " line:" << line << " file:" << file << " doubloon:" << ok << std::endl;
-            */
-            data.push_back(_data);
-        }
-    }
+void DataManager::releaseTmp(const int id, ast::Exp * exp)
+{
+    current->releaseTmp(id, exp);
+}
 
-    int DataManager::getTmpId(const TIType & type, const bool isAnInt)
-    {
-        return current->getTmpId(type, isAnInt);
-    }
+Info & DataManager::read(const symbol::Symbol & sym, ast::Exp * exp)
+{
+    return current->addRead(sym, exp);
+}
 
-    void DataManager::releaseTmp(const int id, ast::Exp * exp)
-    {
-        current->releaseTmp(id, exp);
-    }
+Info & DataManager::write(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp)
+{
+    return current->addWrite(sym, Rtype, exp);
+}
 
-    Info & DataManager::read(const symbol::Symbol & sym, ast::Exp * exp)
-    {
-        return current->addRead(sym, exp);
-    }
+Info & DataManager::define(const symbol::Symbol & sym, const TIType & Rtype, const bool isAnInt, ast::Exp * exp)
+{
+    return current->addDefine(sym, Rtype, isAnInt, exp);
+}
 
-    Info & DataManager::write(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp)
-    {
-        return current->addWrite(sym, Rtype, exp);
-    }
+Info & DataManager::share(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, const bool isAnInt, ast::Exp * exp)
+{
+    return current->addShare(Lsym, Rsym, Rtype, isAnInt, exp);
+}
 
-    Info & DataManager::define(const symbol::Symbol & sym, const TIType & Rtype, const bool isAnInt, ast::Exp * exp)
-    {
-        return current->addDefine(sym, Rtype, isAnInt, exp);
-    }
+Info & DataManager::clear(const symbol::Symbol & sym, ast::Exp * exp)
+{
+    return current->addClear(sym, exp);
+}
 
-    Info & DataManager::share(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, ast::Exp * exp)
-    {
-        return current->addShare(Lsym, Rsym, Rtype, exp);
-    }
+Info & DataManager::macrodef(ast::Exp * exp)
+{
+    return current->addMacroDef(static_cast<ast::FunctionDec *>(exp));
+}
 
-    Info & DataManager::clear(const symbol::Symbol & sym, ast::Exp * exp)
-    {
-        return current->addClear(sym, exp);
-    }
+std::vector<TIType> DataManager::call(AnalysisVisitor & visitor, const unsigned int lhs, const symbol::Symbol & sym, std::vector<TIType> & in, ast::CallExp * callexp, uint64_t & functionId)
+{
+    return current->addCall(visitor, lhs, sym, in, callexp, functionId);
+}
 
-    Info & DataManager::macrodef(ast::Exp * exp)
-    {
-        return current->addMacroDef(static_cast<ast::FunctionDec *>(exp));
-    }
+void DataManager::addBlock(Block::BlockKind kind, ast::Exp * exp)
+{
+    current = current->addBlock(++id, kind, exp);
+}
 
-    std::vector<TIType> DataManager::call(AnalysisVisitor & visitor, const unsigned int lhs, const symbol::Symbol & sym, std::vector<TIType> & in, ast::CallExp * callexp, uint64_t & functionId)
-    {
-        return current->addCall(visitor, lhs, sym, in, callexp, functionId);
-    }
+Block * DataManager::getCurrent()
+{
+    return current;
+}
 
-    void DataManager::addBlock(Block::BlockKind kind, ast::Exp * exp)
-    {
-        current = current->addBlock(++id, kind, exp);
-    }
-
-    Block * DataManager::getCurrent()
-    {
-        return current;
-    }
-
-    void DataManager::finalizeBlock()
-    {
+void DataManager::finalizeBlock()
+{
 #ifndef DEBUG_DATAMANAGER
-        current->finalize();
+    current->finalize();
 #endif
-        current = current->parent;
-    }
+    current = current->parent;
+}
 
-    bool DataManager::requiresAnotherTrip()
-    {
-        return current->requiresAnotherTrip();
-    }
+bool DataManager::requiresAnotherTrip()
+{
+    return current->requiresAnotherTrip();
+}
 
-    void DataManager::pushFunction(FunctionBlock * fblock)
-    {
-        callStack.push(fblock);
-    }
+void DataManager::pushFunction(FunctionBlock * fblock)
+{
+    callStack.push(fblock);
+}
 
-    FunctionBlock * DataManager::poptopFunction()
-    {
-        FunctionBlock * fblock = callStack.top();
-        callStack.pop();
-        return fblock;
-    }
+FunctionBlock * DataManager::poptopFunction()
+{
+    FunctionBlock * fblock = callStack.top();
+    callStack.pop();
+    return fblock;
+}
 
-    FunctionBlock * DataManager::topFunction()
+FunctionBlock * DataManager::topFunction()
+{
+    if (callStack.empty())
     {
-        if (callStack.empty())
+        return nullptr;
+    }
+    return callStack.top();
+}
+
+void DataManager::popFunction()
+{
+    callStack.pop();
+}
+
+TIType DataManager::getSymInScilabContext(GVN & gvn, const symbol::Symbol & sym, bool & exists)
+{
+    types::InternalType * pIT;
+    return getSymInScilabContext(gvn, sym, exists, pIT);
+}
+
+TIType DataManager::getSymInScilabContext(GVN & gvn, const symbol::Symbol & sym, types::InternalType *& pIT)
+{
+    bool exists;
+    return getSymInScilabContext(gvn, sym, exists, pIT);
+}
+
+TIType DataManager::getSymInScilabContext(GVN & gvn, const symbol::Symbol & sym, bool & exists, types::InternalType *& pIT)
+{
+    pIT = symbol::Context::getInstance()->get(sym);
+    if (pIT)
+    {
+        exists = true;
+        if (pIT->isGenericType())
         {
-            return nullptr;
-        }
-        return callStack.top();
-    }
-
-    void DataManager::popFunction()
-    {
-        callStack.pop();
-    }
-
-    TIType DataManager::getSymInScilabContext(GVN & gvn, const symbol::Symbol & sym, bool & exists)
-    {
-        types::InternalType * pIT;
-        return getSymInScilabContext(gvn, sym, exists, pIT);
-    }
-
-    TIType DataManager::getSymInScilabContext(GVN & gvn, const symbol::Symbol & sym, types::InternalType *& pIT)
-    {
-        bool exists;
-        return getSymInScilabContext(gvn, sym, exists, pIT);
-    }
-
-    TIType DataManager::getSymInScilabContext(GVN & gvn, const symbol::Symbol & sym, bool & exists, types::InternalType *& pIT)
-    {
-        pIT = symbol::Context::getInstance()->get(sym);
-        if (pIT)
-        {
-            exists = true;
-            if (pIT->isGenericType())
+            types::GenericType * pGT = static_cast<types::GenericType *>(pIT);
+            switch (pIT->getType())
             {
-                types::GenericType * pGT = static_cast<types::GenericType *>(pIT);
-                switch (pIT->getType())
-                {
                 case types::InternalType::ScilabInt8:
                     return TIType(gvn, TIType::Type::INT8, pGT->getRows(), pGT->getCols());
                 case types::InternalType::ScilabUInt8:
@@ -263,12 +263,12 @@ namespace analysis
                     return TIType(gvn, TIType::Type::SPARSE, pGT->getRows(), pGT->getCols());
                 default:
                     return TIType(gvn, TIType::Type::UNKNOWN, pGT->getRows(), pGT->getCols());
-                }
             }
-            else if (pIT->isCallable())
+        }
+        else if (pIT->isCallable())
+        {
+            switch (pIT->getType())
             {
-                switch (pIT->getType())
-                {
                 case types::InternalType::ScilabFunction:
                     return TIType(gvn, TIType::Type::FUNCTION);
                 case types::InternalType::ScilabMacro:
@@ -277,52 +277,52 @@ namespace analysis
                     return TIType(gvn, TIType::Type::MACROFILE);
                 case types::InternalType::ScilabLibrary:
                     return TIType(gvn, TIType::Type::LIBRARY);
-                }
             }
         }
-
-        exists = false;
-        return TIType(gvn);
     }
 
-    TIType DataManager::getType(const symbol::Symbol & sym, const bool global)
+    exists = false;
+    return TIType(gvn);
+}
+
+TIType DataManager::getType(const symbol::Symbol & sym, const bool global)
+{
+    Block * parent = getCurrent();
+    tools::SymbolMap<Info>::iterator it;
+    Block * block = parent->getDefBlock(sym, it, global);
+    if (block)
     {
-        Block * parent = getCurrent();
-        tools::SymbolMap<Info>::iterator it;
-        Block * block = parent->getDefBlock(sym, it, global);
-        if (block)
-        {
-            return it->second.type;
-        }
-        else
-        {
-            bool exists;
-            return DataManager::getSymInScilabContext(getGVN(), sym, exists);
-        }
+        return it->second.type;
     }
-
-    Info & DataManager::getInfo(const symbol::Symbol & sym)
+    else
     {
-        tools::SymbolMap<Info>::iterator it;
-        Block * block = current->getDefBlock(sym, it, false);
-        if (block)
-        {
-            return it->second;
-        }
-
-        // The sym is not in this DataManager... try in the Scilab's context
-        return current->setDefaultData(sym);
+        bool exists;
+        return DataManager::getSymInScilabContext(getGVN(), sym, exists);
     }
+}
 
-    std::wostream & operator<<(std::wostream & out, const DataManager & dm)
+Info & DataManager::getInfo(const symbol::Symbol & sym)
+{
+    tools::SymbolMap<Info>::iterator it;
+    Block * block = current->getDefBlock(sym, it, false);
+    if (block)
     {
-        out << L"DataManager:" << std::endl
-            << L"Globals: ";
-
-        tools::printSet(dm.globals, out);
-        out << std::endl << *dm.root;
-
-        return out;
+        return it->second;
     }
+
+    // The sym is not in this DataManager... try in the Scilab's context
+    return current->setDefaultData(sym);
+}
+
+std::wostream & operator<<(std::wostream & out, const DataManager & dm)
+{
+    out << L"DataManager:" << std::endl
+        << L"Globals: ";
+
+    tools::printSet(dm.globals, out);
+    out << std::endl << *dm.root;
+
+    return out;
+}
 
 } // namespace analysis

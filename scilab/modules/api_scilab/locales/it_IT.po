@@ -167,8 +167,8 @@ msgstr "%s: Impossibile ottenere i dati dell'argomento"
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa "
-"(%d,%d).\n"
+"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa (%d,"
+"%d).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"

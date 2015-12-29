@@ -116,8 +116,7 @@ msgid "%s: setgmn return with state %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
 
 #, c-format
@@ -175,8 +174,7 @@ msgstr ""
 "de caractères ou de polynômes attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
 
 #, c-format
@@ -276,8 +274,8 @@ msgid ""
 "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr ""
 "\n"
-"Souche erronée de fsultra, doit être un entier dans l'intervalle [0, 2^32-"
-"1]\n"
+"Souche erronée de fsultra, doit être un entier dans l'intervalle [0, "
+"2^32-1]\n"
 
 #, c-format
 msgid ""

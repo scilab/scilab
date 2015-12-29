@@ -30,9 +30,10 @@ msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
-msgstr "%s: 引数 #%d の型が間違っています: 実数の行列または'readonly'を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgstr ""
+"%s: 引数 #%d の型が間違っています: 実数の行列または'readonly'を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
@@ -41,7 +42,9 @@ msgstr "%s: 引数 #%d の型が間違っています: 実数の行列を指定�
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ次元で指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ次元で指定してくだ"
+"さい.\n"
 
 msgid "Graphics handle field"
 msgstr "グラフィックハンドルのフィールド"
@@ -455,20 +458,24 @@ msgstr "前のタブ"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
-msgstr "このファイルをScilabへ取り込んで実行する前に修正部を保存する必要があります。"
+msgstr ""
+"このファイルをScilabへ取り込んで実行する前に修正部を保存する必要があります。"
 
 msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"
 "Are you sure to continue ?"
 msgstr ""
-"このファイルはとても長いです。\"Scilabにファイルをロードして実行\" の方が適している可能性があります.\n"
+"このファイルはとても長いです。\"Scilabにファイルをロードして実行\" の方が適し"
+"ている可能性があります.\n"
 "本当に続けますか?"
 
 msgid "Enter line number"
 msgstr "行番号を入力してください"
 
 msgid "This file is a binary, saving it will result in a corrupt file."
-msgstr "このファイルはバイナリ形式です, このファイルに保存するとファイルを壊す可能性があります."
+msgstr ""
+"このファイルはバイナリ形式です, このファイルに保存するとファイルを壊す可能性"
+"があります."
 
 msgid "Loading"
 msgstr "読み込み中"
@@ -483,7 +490,8 @@ msgid "Read-only mode"
 msgstr "読み込み専用モード"
 
 msgid "Press CTRL and move the mouse over the link to activate it"
-msgstr "CTRLキーを押しながらマウスでリンクの上を移動させるとアクティブ化されます"
+msgstr ""
+"CTRLキーを押しながらマウスでリンクの上を移動させるとアクティブ化されます"
 
 msgid "Open in the navigator the URL "
 msgstr "URLをナビゲータで開く "
@@ -554,7 +562,9 @@ msgstr "選択部を新規タブにコピー"
 #, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
-msgstr "現在のファイルエンコーディングは %s ですが, %s に変換されて保存されます. 続けてよろしいですか?"
+msgstr ""
+"現在のファイルエンコーディングは %s ですが, %s に変換されて保存されます. 続け"
+"てよろしいですか?"
 
 msgid "Encoding problems"
 msgstr "エンコーディングの問題"

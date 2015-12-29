@@ -114,7 +114,7 @@ scilabStatus API_PROTO(setCellValue)(scilabEnv env, scilabVar var, int* index, s
     }
 #endif
     int i = c->getIndex(index);
-    bool bset = c->set(i, (types::InternalType*)val);
+    bool bset = c->set(i, (types::InternalType*)val) != nullptr;
 #ifdef __API_SCILAB_SAFE__
     if (bset == false)
     {
@@ -137,7 +137,7 @@ scilabStatus API_PROTO(setCell2dValue)(scilabEnv env, scilabVar var, int row, in
     }
 #endif
     int i = c->getIndex(index);
-    bool bset = c->set(i, (types::InternalType*)val);
+    bool bset = c->set(i, (types::InternalType*)val) != nullptr;
 #ifdef __API_SCILAB_SAFE__
     if (bset == false)
     {

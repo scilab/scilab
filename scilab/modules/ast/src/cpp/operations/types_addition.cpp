@@ -1132,7 +1132,7 @@ InternalType* add_M_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_M_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1192,7 +1192,7 @@ InternalType* add_MC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_MC_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1230,7 +1230,7 @@ InternalType* add_S_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_S_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1266,7 +1266,7 @@ InternalType* add_SC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_SC_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1276,7 +1276,7 @@ InternalType* add_SC_E(T *_pL, U * /*_pR*/)
 template<class T, class U, class O>
 InternalType* add_E_M(T *_pL, U *_pR)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1285,7 +1285,7 @@ InternalType* add_E_M(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_E_MC(T *_pL, U *_pR)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1294,7 +1294,7 @@ InternalType* add_E_MC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_E_S(T *_pL, U *_pR)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1303,7 +1303,7 @@ InternalType* add_E_S(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_E_SC(T *_pL, U *_pR)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1537,7 +1537,7 @@ template<class T, class U, class O> InternalType* add_IC_IC(T *_pL, U *_pR)
 
 template<class T, class U, class O> types::InternalType* add_I_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1545,7 +1545,7 @@ template<class T, class U, class O> types::InternalType* add_I_E(T *_pL, U * /*_
 
 template<class T, class U, class O> types::InternalType* add_IC_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1553,7 +1553,7 @@ template<class T, class U, class O> types::InternalType* add_IC_E(T *_pL, U * /*
 
 template<class T, class U, class O> types::InternalType* add_E_I(T * /*_pL*/, U *_pR)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1561,7 +1561,7 @@ template<class T, class U, class O> types::InternalType* add_E_I(T * /*_pL*/, U 
 
 template<class T, class U, class O> types::InternalType* add_E_IC(T * /*_pL*/, U *_pR)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1684,7 +1684,7 @@ InternalType* add_S_S<String, String, String>(String* _pL, String* _pR)
 template<>
 InternalType* add_M_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1693,7 +1693,7 @@ InternalType* add_M_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 template<>
 InternalType* add_S_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1702,7 +1702,7 @@ InternalType* add_S_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 template<>
 InternalType* add_E_M<Double, String, String>(Double* /*_pL*/, String* _pR)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1711,7 +1711,7 @@ InternalType* add_E_M<Double, String, String>(Double* /*_pL*/, String* _pR)
 template<>
 InternalType* add_E_S<Double, String, String>(Double* /*_pL*/, String* _pR)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
     return pOut;
@@ -1719,6 +1719,8 @@ InternalType* add_E_S<Double, String, String>(Double* /*_pL*/, String* _pR)
 
 template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
 {
+    Polynom* pLSave = _pL;
+    Polynom* pRSave = _pR;
 
     Polynom* pOut = NULL;
     if (_pL->getVariableName() != _pR->getVariableName())
@@ -1728,22 +1730,20 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
         throw ast::InternalError(os.str());
     }
+
     if (_pR->isIdentity())
     {
+        //clone to avoid modification of original variable.
+        _pR = _pR->clone();
         SinglePoly *sp  = _pR->get(0);
 
         int iDims = _pL->getDims();
         int* piDims = _pL->getDimsArray();
         int iLeadDims = piDims[0];
-        int* piIndex = new int[iDims];
-        piIndex[0] = 0;
         _pR->resize(piDims, iDims);
         //find smaller dims
         for (int i = 1 ; i < iDims ; ++i)
         {
-            //init
-            piIndex[i] = 0;
-
             if (iLeadDims > piDims[i])
             {
                 iLeadDims = piDims[i];
@@ -1751,27 +1751,24 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         }
         for (int i = 1 ; i < iLeadDims ; ++i)
         {
-
             _pR->set(i, i, sp);
-
         }
-    };
+    }
+
     if (_pL->isIdentity())
     {
-        SinglePoly *sp  = _pL->get(0);
+        //clone to avoid modification of original variable.
+        _pL = _pL->clone();
+
+        SinglePoly *sp = _pL->get(0);
 
         int iDims = _pR->getDims();
         int* piDims = _pR->getDimsArray();
         int iLeadDims = piDims[0];
-        int* piIndex = new int[iDims];
-        piIndex[0] = 0;
         _pL->resize(piDims, iDims);
         //find smaller dims
         for (int i = 1 ; i < iDims ; ++i)
         {
-            //init
-            piIndex[i] = 0;
-
             if (iLeadDims > piDims[i])
             {
                 iLeadDims = piDims[i];
@@ -1783,7 +1780,6 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
             _pL->set(i, i, sp);
         }
     }
-
 
     if (_pL->isScalar())
     {
@@ -1851,6 +1847,16 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         delete[] pRank;
         delete[] pRank1;
         delete[] pRank2;
+        if (pLSave != _pL)
+        {
+            _pL->killMe();
+        }
+
+        if (pRSave != _pR)
+        {
+            _pR->killMe();
+        }
+
         return pOut;
     }
 
@@ -1921,6 +1927,17 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         delete[] pRank;
         delete[] pRank1;
         delete[] pRank2;
+
+        if (pLSave != _pL)
+        {
+            _pL->killMe();
+        }
+
+        if (pRSave != _pR)
+        {
+            _pR->killMe();
+        }
+
         return pOut;
     }
 
@@ -1929,6 +1946,16 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
     if (iDims1 != iDims2)
     {
+        if (pLSave != _pL)
+        {
+            _pL->killMe();
+        }
+
+        if (pRSave != _pR)
+        {
+            _pR->killMe();
+        }
+
         return nullptr;
     }
 
@@ -1939,6 +1966,16 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     {
         if ((piDims1[i] != piDims2[i]))
         {
+            if (pLSave != _pL)
+            {
+                _pL->killMe();
+            }
+
+            if (pRSave != _pR)
+            {
+                _pR->killMe();
+            }
+
             wchar_t pMsg[bsiz];
             os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
             throw ast::InternalError(pMsg);
@@ -2008,6 +2045,16 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     delete[] pRank;
     delete[] pRank1;
     delete[] pRank2;
+
+    if (pLSave != _pL)
+    {
+        _pL->killMe();
+    }
+
+    if (pRSave != _pR)
+    {
+        _pR->killMe();
+    }
 
     if (pOut != NULL)
     {

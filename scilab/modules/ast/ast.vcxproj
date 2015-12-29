@@ -297,6 +297,7 @@ lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClInclude Include="includes\analysis\data\Info.hxx" />
     <ClInclude Include="includes\analysis\data\LoopAnalyzer.hxx" />
     <ClInclude Include="includes\analysis\data\LoopBlock.hxx" />
+    <ClInclude Include="includes\analysis\data\LoopDecoration.hxx" />
     <ClInclude Include="includes\analysis\data\MacroDef.hxx" />
     <ClInclude Include="includes\analysis\data\MacroSignature.hxx" />
     <ClInclude Include="includes\analysis\data\PolymorphicMacroCache.hxx" />
@@ -304,6 +305,7 @@ lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClInclude Include="includes\analysis\data\TITypeSignatureTuple.hxx" />
     <ClInclude Include="includes\analysis\data\TITypeTuple.hxx" />
     <ClInclude Include="includes\analysis\data\TypeLocal.hxx" />
+    <ClInclude Include="includes\analysis\data\VarPromotion.hxx" />
     <ClInclude Include="includes\analysis\data\XBlock.hxx" />
     <ClInclude Include="includes\analysis\Decorator.hxx" />
     <ClInclude Include="includes\analysis\DollarInfo.hxx" />
@@ -602,6 +604,7 @@ lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\cpp\analysis\Data.cpp" />
     <ClCompile Include="src\cpp\analysis\DataManager.cpp" />
     <ClCompile Include="src\cpp\analysis\DiagAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\DollarInfo.cpp" />
     <ClCompile Include="src\cpp\analysis\FindAnalyzer.cpp" />
     <ClCompile Include="src\cpp\analysis\FunctionBlock.cpp" />
     <ClCompile Include="src\cpp\analysis\GlobalsCollector.cpp" />
@@ -645,6 +648,7 @@ lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\cpp\analysis\VisitSimpleVar.cpp" />
     <ClCompile Include="src\cpp\analysis\VisitTypeExps.cpp" />
     <ClCompile Include="src\cpp\analysis\VisitVarDec.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitWhileExp.cpp" />
     <ClCompile Include="src\cpp\analysis\XBlock.cpp" />
     <ClCompile Include="src\cpp\ast\consoledebugger.cpp" />
     <ClCompile Include="src\cpp\ast\debuggervisitor.cpp" />

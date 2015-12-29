@@ -109,7 +109,7 @@ scilabStatus API_PROTO(setHandleArray)(scilabEnv env, scilabVar var, const long 
     }
 #endif
 
-    bool bset = h->set(vals);
+    bool bset = h->set(vals) != nullptr;
 #ifdef __API_SCILAB_SAFE__
     if (bset == false)
     {

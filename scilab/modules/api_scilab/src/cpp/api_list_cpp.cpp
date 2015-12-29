@@ -110,7 +110,7 @@ bool TList::set(const std::wstring& _sKey, Variable* _pV)
 {
     if (data)
     {
-        return ((types::TList*)data)->set(_sKey, (types::InternalType*)_pV->getReturnVariable());
+        return ((types::TList*)data)->set(_sKey, (types::InternalType*)_pV->getReturnVariable()) != nullptr;
     }
 
     return false;

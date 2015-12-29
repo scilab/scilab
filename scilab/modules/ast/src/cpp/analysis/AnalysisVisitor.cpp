@@ -279,8 +279,9 @@ void AnalysisVisitor::visitArguments(const std::wstring & name, const unsigned i
     vargs.reserve(args.size());
     resargs.reserve(args.size());
 
-    const symbol::Symbol & sym = static_cast<ast::SimpleVar &>(e.getName()).getSymbol();
-    argIndices.emplace(sym, 0);
+    const ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getName());
+    const symbol::Symbol & sym = var.getSymbol();
+    argIndices.emplace(var, args.size(), 0);
 
     for (auto arg : args)
     {

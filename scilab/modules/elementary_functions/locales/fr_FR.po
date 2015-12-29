@@ -125,8 +125,7 @@ msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Singularity of the function.\n"
+msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
 
 #, c-format
@@ -239,8 +238,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Input and output matrices must have the same number of elements.\n"
+msgid "%s: Input and output matrices must have the same number of elements.\n"
 msgstr ""
 
 #, c-format
@@ -263,8 +261,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
 
 #, c-format
 msgid ""
@@ -512,8 +509,7 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : La matrice n'est pas "
 "diagonalisable.\n"
@@ -555,8 +551,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
 "integers expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Un "
-"scalaire/vecteur/matrice d'entiers positifs attendu.\n"
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire/vecteur/"
+"matrice d'entiers positifs attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
@@ -572,8 +568,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
 "positive integers expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Un "
-"scalaire/vecteur/matrice/hypermatrice d'entiers positifs attendue.\n"
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire/vecteur/"
+"matrice/hypermatrice d'entiers positifs attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
@@ -634,8 +630,7 @@ msgstr "%s : Impossible de diagonaliser.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
 
 #, c-format
 msgid ""
@@ -730,8 +725,7 @@ msgstr ""
 "matrice attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s : Dimensions erronées des arguments d'entrée n°%d et n°%d : Mêmes "
 "dimensions attendues.\n"
@@ -763,8 +757,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument "
-"#%d expected.\n"
+"%s: Wrong size for input argument #%d: At least the size of input argument #"
+"%d expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Au moins la dimension "
 "de l'argument d'entrée n°%d attendue.\n"
@@ -913,8 +907,7 @@ msgstr ""
 "attendues.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Au moins 4 colonnes "
 "attendues.\n"

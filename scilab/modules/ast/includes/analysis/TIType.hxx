@@ -238,6 +238,66 @@ struct TIType
         }
     }
 
+    inline std::wstring get_manglingW() const
+    {
+        const bool kd = isKnownDims();
+        switch (type)
+        {
+            case EMPTY :
+                return L"E";
+            case BOOLEAN :
+                return kd ? (scalar ? L"Sb" : L"Mb") : L"Ub";
+            case COMPLEX :
+                return kd ? (scalar ? L"Sc" : L"Mc") : L"Uc";
+            case CELL :
+                return kd ? (scalar ? L"Sce" : L"Mce") : L"Uce";
+            case DOUBLE :
+                return kd ? (scalar ? L"Sd" : L"Md") : L"Ud";
+            case FUNCTION :
+                return kd ? (scalar ? L"Sfn" : L"Mfn") : L"Ufn";
+            case INT16 :
+                return kd ? (scalar ? L"Si16" : L"Mi16") : L"Ui16";
+            case INT32 :
+                return kd ? (scalar ? L"Si32" : L"Mi32") : L"Ui32";
+            case INT64 :
+                return kd ? (scalar ? L"Si64" : L"Mi64") : L"Ui64";
+            case INT8 :
+                return kd ? (scalar ? L"Si8" : L"Mi8") : L"Ui8";
+            case LIST :
+                return kd ? (scalar ? L"Sl" : L"Ml") : L"Ul";
+            case LIBRARY :
+                return kd ? (scalar ? L"Slb" : L"Mlb") : L"Ulb";
+            case MACRO :
+                return kd ? (scalar ? L"Sm" : L"Mm") : L"Um";
+            case MACROFILE :
+                return kd ? (scalar ? L"Smf" : L"Mmf") : L"Umf";
+            case MLIST :
+                return kd ? (scalar ? L"Sml" : L"Mml") : L"Uml";
+            case POLYNOMIAL :
+                return kd ? (scalar ? L"Sp" : L"Mp") : L"Up";
+            case STRING :
+                return kd ? (scalar ? L"Ss" : L"Ms") : L"Us";
+            case SPARSE :
+                return kd ? (scalar ? L"Ssp" : L"Msp") : L"Usp";
+            case STRUCT :
+                return kd ? (scalar ? L"Sst" : L"Mst") : L"Ust";
+            case TLIST :
+                return kd ? (scalar ? L"Stl" : L"Mtl") : L"Utl";
+            case UNKNOWN :
+                return kd ? (scalar ? L"Su" : L"Mu") : L"Uu";
+            case UINT16 :
+                return kd ? (scalar ? L"Sui16" : L"Mui16") : L"Uui16";
+            case UINT32 :
+                return kd ? (scalar ? L"Sui32" : L"Mui32") : L"Uui32";
+            case UINT64 :
+                return kd ? (scalar ? L"Sui64" : L"Mui64") : L"Uui64";
+            case UINT8 :
+                return kd ? (scalar ? L"Sui8" : L"Mui8") : L"Uui8";
+            default :
+                return L"??";
+        }
+    }
+
     inline static std::string get_mangling(const TIType::Type ty, const bool scalar)
     {
         switch (ty)
@@ -297,9 +357,73 @@ struct TIType
         }
     }
 
+    inline static std::wstring get_manglingW(const TIType::Type ty, const bool scalar)
+    {
+        switch (ty)
+        {
+            case EMPTY :
+                return L"E";
+            case BOOLEAN :
+                return scalar ? L"Sb" : L"Mb";
+            case COMPLEX :
+                return scalar ? L"Sc" : L"Mc";
+            case CELL :
+                return scalar ? L"Sce" : L"Mce";
+            case DOUBLE :
+                return scalar ? L"Sd" : L"Md";
+            case FUNCTION :
+                return scalar ? L"Sfn" : L"Mfn";
+            case INT16 :
+                return scalar ? L"Si16" : L"Mi16";
+            case INT32 :
+                return scalar ? L"Si32" : L"Mi32";
+            case INT64 :
+                return scalar ? L"Si64" : L"Mi64";
+            case INT8 :
+                return scalar ? L"Si8" : L"Mi8";
+            case LIST :
+                return scalar ? L"Sl" : L"Ml";
+            case LIBRARY :
+                return scalar ? L"Slb" : L"Mlb";
+            case MACRO :
+                return scalar ? L"Sm" : L"Mm";
+            case MACROFILE :
+                return scalar ? L"Smf" : L"Mmf";
+            case MLIST :
+                return scalar ? L"Sml" : L"Mml";
+            case POLYNOMIAL :
+                return scalar ? L"Sp" : L"Mp";
+            case STRING :
+                return scalar ? L"Ss" : L"Ms";
+            case SPARSE :
+                return scalar ? L"Ssp" : L"Msp";
+            case STRUCT :
+                return scalar ? L"Sst" : L"Mst";
+            case TLIST :
+                return scalar ? L"Stl" : L"Mtl";
+            case UNKNOWN :
+                return scalar ? L"Su" : L"Mu";
+            case UINT16 :
+                return scalar ? L"Sui16" : L"Mui16";
+            case UINT32 :
+                return scalar ? L"Sui32" : L"Mui32";
+            case UINT64 :
+                return scalar ? L"Sui64" : L"Mui64";
+            case UINT8 :
+                return scalar ? L"Sui8" : L"Mui8";
+            default :
+                return L"??";
+        }
+    }
+
     inline static std::string get_unary_mangling(const std::string & pre, const TIType & l)
     {
         return pre + "_" + l.get_mangling();
+    }
+
+    inline static std::wstring get_unary_manglingW(const std::wstring & pre, const TIType & l)
+    {
+        return pre + L"_" + l.get_manglingW();
     }
 
     inline static std::string get_binary_mangling(const std::string & pre, const TIType & l, const TIType & r)

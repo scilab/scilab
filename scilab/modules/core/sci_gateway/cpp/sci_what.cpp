@@ -14,6 +14,7 @@
 #include "string.hxx"
 #include "scilabWrite.hxx"
 #include "configvariable.hxx"
+#include "function.hxx"
 
 extern "C"
 {

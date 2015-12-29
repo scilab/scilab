@@ -48,13 +48,13 @@ public :
     ** append(InternalType *_typedValue)
     ** Append the given value to the end of the List
     */
-    void                            append(InternalType *_typedValue);
+    List*                           append(InternalType *_typedValue);
 
     /**
     ** Clone
     ** Create a new List and Copy all values.
     */
-    InternalType*                   clone();
+    virtual List*                   clone();
 
     bool                            toString(std::wostringstream& ostr);
 
@@ -63,7 +63,7 @@ public :
         return true;
     }
 
-    InternalType*                   insert(typed_list* _pArgs, InternalType* _pSource);
+    List*                           insert(typed_list* _pArgs, InternalType* _pSource);
     InternalType*                   extract(typed_list* _pArgs);
 
     virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & /*e*/) override
@@ -113,7 +113,7 @@ public :
     }
 
     virtual InternalType*           get(const int _iIndex);
-    virtual bool                    set(const int _iIndex, InternalType* _pIT);
+    virtual List*                   set(const int _iIndex, InternalType* _pIT);
 
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring            getTypeStr()

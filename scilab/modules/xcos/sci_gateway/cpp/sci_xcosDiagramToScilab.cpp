@@ -137,7 +137,7 @@ types::InternalType* importFile(char const* file)
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
-        Scierror(999, "%s: %s\n", funname, exception.getJavaDescription().c_str());
+        Scierror(999, "%s: %s\n%s\n", funname, exception.getJavaDescription().c_str(), exception.getJavaStackTrace().c_str());
         controller.deleteObject(uid);
         return nullptr;
     }
@@ -169,7 +169,7 @@ bool exportFile(int index, char const* file, types::InternalType* type)
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
-        Scierror(999, "%s: %s\n", funname, exception.getJavaDescription().c_str());
+        Scierror(999, "%s: %s\n%s\n", funname, exception.getJavaDescription().c_str(), exception.getJavaStackTrace().c_str());
         return false;
     }
     catch (GiwsException::JniException &exception)

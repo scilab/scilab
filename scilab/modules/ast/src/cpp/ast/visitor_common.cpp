@@ -903,17 +903,15 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     }
 
                     // resize current struct
-                    pStruct->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                    pStruct = pStruct->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                    pEH->setCurrent(pStruct);
                 }
 
                 // create field in parent if it not exist
                 if (pStruct->exists(pwcsFieldname) == false)
                 {
                     pStruct = pStruct->addField(pwcsFieldname);
-                    if (pEH->setCurrent(pStruct))
-                    {
-                        pEH->setReinsertion();
-                    }
+                    pEH->setCurrent(pStruct);
                 }
 
                 if (pEH->getArgs())
@@ -1011,7 +1009,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         int iNewSize = pEH->getSizeFromArgs();
                         if (pTL->getSize() < iNewSize)
                         {
-                            pTL->set(iNewSize - 1, new types::ListUndefined());
+                            pTL = pTL->set(iNewSize - 1, new types::ListUndefined());
+                            pEH->setCurrent(pTL);
                         }
 
                         // update pArgs variables with new argument computed in getSizeFromArgs
@@ -1166,7 +1165,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             int iNewSize = pEH->getSizeFromArgs();
                             if (pL->getSize() < iNewSize)
                             {
-                                pL->set(iNewSize - 1, new types::ListUndefined());
+                                pL = pL->set(iNewSize - 1, new types::ListUndefined());
+                                pEH->setCurrent(pL);
                             }
 
                             types::Double* pDblArgs = (*pEH->getArgs())[0]->getAs<types::Double>();
@@ -1311,11 +1311,11 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             }
             else if (pITCurrent->isCell())
             {
-                types::Cell* pCell = pITCurrent->getAs<types::Cell>();
                 if (pEH->getArgs() && (*pEH->getArgs())[0]->isString() == false)
                 {
                     if (pEH->isCellExp())
                     {
+                        types::Cell* pCell = pITCurrent->getAs<types::Cell>();
                         // a{x} => extract like a(x){[1 2 ...]}
                         if (pEH->getParent() && pEH->getLevel() == pEH->getParent()->getLevel())
                         {
@@ -1341,6 +1341,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         }
                         else
                         {
+                            types::GenericType* pCell = pITCurrent->getAs<types::GenericType>();
                             if (pEH->needResize())
                             {
                                 if (pEH->getArgsDims() == 1)
@@ -1351,7 +1352,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                 }
 
                                 // resize current Cell
-                                pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                                pCell = pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                                pEH->setCurrent(pCell);
                             }
 
                             types::InternalType* pIT = pCell->extract(pEH->getArgs());
@@ -1363,6 +1365,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     {
                         if ((*iterFields)->isCellExp())
                         {
+                            types::GenericType* pCell = pITCurrent->getAs<types::GenericType>();
+
                             // a(x){y}
                             if (pEH->needResize())
                             {
@@ -1374,7 +1378,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                 }
 
                                 // resize current Cell
-                                pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                                pCell = pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims())->getAs<types::Cell>();
+                                pEH->setCurrent(pCell);
                             }
 
                             types::InternalType* pIT = pCell->extract(pEH->getArgs());
@@ -1575,10 +1580,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                 }
 
-                if (pEH->setCurrent(pIT))
-                {
-                    pEH->setReinsertion();
-                }
+                pEH->setCurrent(pIT);
             }
         }
 
@@ -1621,21 +1623,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         types::TList* pTL = pParent->getAs<types::TList>();
                         if (pParentArgs)
                         {
-                            // In case where pTL is in several scilab variable,
-                            // we have to clone it for keep the other variables unchanged.
-                            if (pTL->getRef() > 1)
-                            {
-                                pTL = pTL->clone()->getAs<types::TList>();
-                            }
-
-                            pTL->set(pEH->getWhereReinsert(), pEH->getCurrent());
-
-                            if (pEH->getParent()->setCurrent(pTL))
-                            {
-                                pEH->getParent()->setReinsertion();
-                                pEH->resetReinsertion();
-                            }
-
+                            pTL = pTL->set(pEH->getWhereReinsert(), pEH->getCurrent());
+                            pEHParent->setCurrent(pTL);
                             evalFields.pop_back();
                             delete pEH;
                             continue;
@@ -1644,21 +1633,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         {
                             if (pTL->exists(pEH->getExpAsString()))
                             {
-                                // In case where pTL is in several scilab variable,
-                                // we have to clone it for keep the other variables unchanged.
-                                if (pTL->getRef() > 1)
-                                {
-                                    pTL = pTL->clone()->getAs<types::TList>();
-                                }
-
-                                pTL->set(pEH->getExpAsString(), pEH->getCurrent());
-
-                                if (pEH->getParent()->setCurrent(pTL))
-                                {
-                                    pEH->getParent()->setReinsertion();
-                                    pEH->resetReinsertion();
-                                }
-
+                                pTL = pTL->set(pEH->getExpAsString(), pEH->getCurrent());
+                                pEHParent->setCurrent(pTL);
                                 evalFields.pop_back();
                                 delete pEH;
                                 continue;
@@ -1691,11 +1667,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                 }
 
-                if (pEHParent->setCurrent(pIT))
-                {
-                    pEHParent->setReinsertion();
-                }
-
+                pEHParent->setCurrent(pIT);
                 if (pEHParent->getArgs() == NULL)
                 {
                     delete pParentArgs;
@@ -1788,124 +1760,45 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
     else if (_pInsert->isDouble() && _pInsert->getAs<types::Double>()->isEmpty() && _pVar->isStruct() == false && _pVar->isList() == false)
     {
         //insert [] so deletion except for Struct and List which can insert []
-        types::InternalType::ScilabType varType = _pVar->getType();
-        switch (varType)
+        if (_pVar->isHandle())
         {
-            case types::InternalType::ScilabDouble :
+            types::GraphicHandle* pH = _pVar->getAs<types::GraphicHandle>();
+            if ((*_pArgs)[0]->isString())
             {
-                pOut = _pVar->getAs<types::Double>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabString :
-            {
-                pOut = _pVar->getAs<types::String>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabCell :
-            {
-                pOut = _pVar->getAs<types::Cell>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabBool :
-            {
-                pOut = _pVar->getAs<types::Bool>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabPolynom :
-            {
-                pOut = _pVar->getAs<types::Polynom>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabInt8 :
-            {
-                pOut = _pVar->getAs<types::Int8>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabUInt8 :
-            {
-                pOut = _pVar->getAs<types::UInt8>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabInt16 :
-            {
-                pOut = _pVar->getAs<types::Int16>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabUInt16 :
-            {
-                pOut = _pVar->getAs<types::UInt16>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabInt32 :
-            {
-                pOut = _pVar->getAs<types::Int32>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabUInt32 :
-            {
-                pOut = _pVar->getAs<types::UInt32>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabInt64 :
-            {
-                pOut = _pVar->getAs<types::Int64>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabUInt64 :
-            {
-                pOut = _pVar->getAs<types::UInt64>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabSparse :
-            {
-                pOut = _pVar->getAs<types::Sparse>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabSparseBool :
-            {
-                pOut = _pVar->getAs<types::SparseBool>()->remove(_pArgs);
-                break;
-            }
-            case types::InternalType::ScilabStruct :
-            {
-                pOut = _pVar->getAs<types::Struct>()->insert(_pArgs, _pInsert);
-                break;
-            }
-            case types::InternalType::ScilabHandle :
-            {
-                types::GraphicHandle* pH = _pVar->getAs<types::GraphicHandle>();
-                if ((*_pArgs)[0]->isString())
+                types::String *pS = (*_pArgs)[0]->getAs<types::String>();
+
+                types::typed_list in;
+                types::typed_list out;
+                types::optional_list opt;
+
+                in.push_back(pH);
+                in.push_back(pS);
+                in.push_back(_pInsert);
+
+                types::Function* pCall = (types::Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
+                types::Callable::ReturnValue ret = pCall->call(in, opt, 1, out);
+                if (ret == types::Callable::OK)
                 {
-                    types::String *pS = (*_pArgs)[0]->getAs<types::String>();
-
-                    types::typed_list in;
-                    types::typed_list out;
-                    types::optional_list opt;
-
-                    in.push_back(pH);
-                    in.push_back(pS);
-                    in.push_back(_pInsert);
-
-                    types::Function* pCall = (types::Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
-                    types::Callable::ReturnValue ret = pCall->call(in, opt, 1, out);
-                    if (ret == types::Callable::OK)
-                    {
-                        pOut = _pVar;
-                    }
+                    pOut = _pVar;
                 }
-                else
-                {
-                    pOut = pH->insert(_pArgs, _pInsert);
-                }
-
-                break;
             }
-            default :
+            else
             {
-                //overload !
-                pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
-                break;
+                pOut = pH->insert(_pArgs, _pInsert);
             }
+        }
+        else if (_pVar->isStruct())
+        {
+            pOut = _pVar->getAs<types::Struct>()->insert(_pArgs, _pInsert);
+        }
+        else if (_pVar->isGenericType())
+        {
+            pOut = _pVar->getAs<types::GenericType>()->remove(_pArgs);
+        }
+        else
+        {
+            //overload !
+            pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
         }
     }
     else if (_pVar == NULL || (_pVar->isDouble() && _pVar->getAs<types::Double>()->getSize() == 0))
@@ -1936,64 +1829,16 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         }
         else
         {
-            switch (_pInsert->getType())
+            if (_pInsert->isGenericType())
             {
-                case types::InternalType::ScilabDouble :
-                    pOut = types::Double::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabString :
-                    pOut = types::String::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabCell :
-                    pOut = types::Cell::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabBool :
-                    pOut = types::Bool::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabPolynom :
-                    pOut = types::Polynom::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabInt8 :
-                    pOut = types::Int8::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabUInt8 :
-                    pOut = types::UInt8::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabInt16 :
-                    pOut = types::Int16::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabUInt16 :
-                    pOut = types::UInt16::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabInt32 :
-                    pOut = types::Int32::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabUInt32 :
-                    pOut = types::UInt32::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabInt64 :
-                    pOut = types::Int64::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabUInt64 :
-                    pOut = types::UInt64::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabSparse :
-                    pOut = types::Sparse::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabSparseBool :
-                    pOut = types::SparseBool::insertNew(_pArgs, _pInsert);
-                    break;
-                case types::InternalType::ScilabHandle:
-                    pOut = types::GraphicHandle::insertNew(_pArgs, _pInsert);
-                    break;
-                default :
-                {
-                    // overload
-                    types::Double* pEmpty = types::Double::Empty();
-                    pOut = callOverload(e, L"i", _pArgs, _pInsert, pEmpty);
-                    pEmpty->killMe();
-                    break;
-                }
+                pOut = _pInsert->getAs<types::GenericType>()->insertNew(_pArgs);
+            }
+            else
+            {
+                // overload
+                types::Double* pEmpty = types::Double::Empty();
+                pOut = callOverload(e, L"i", _pArgs, _pInsert, pEmpty);
+                pEmpty->killMe();
             }
         }
     }
@@ -2011,45 +1856,21 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         }
 
         //check types compatibilties
-        if (_pVar->isDouble() && _pInsert->isDouble())
-        {
-            pRet = _pVar->getAs<types::Double>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isDouble() && _pInsert->isSparse())
+        if (_pVar->isDouble() && _pInsert->isSparse())
         {
             types::Sparse* pSp = _pInsert->getAs<types::Sparse>();
             types::Double* pD = new types::Double(pSp->getRows(), pSp->getCols(), pSp->isComplex());
             pSp->fill(*pD);
-            pRet = _pVar->getAs<types::Double>()->insert(_pArgs, pD);
+            pRet = _pVar->getAs<types::GenericType>()->insert(_pArgs, pD);
             delete pD;
-        }
-        else if (_pVar->isString() && _pInsert->isString())
-        {
-            pRet = _pVar->getAs<types::String>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isCell() && _pInsert->isCell())
-        {
-            pRet = _pVar->getAs<types::Cell>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isBool() && _pInsert->isBool())
-        {
-            pRet = _pVar->getAs<types::Bool>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isSparse() && _pInsert->isSparse())
-        {
-            pRet = _pVar->getAs<types::Sparse>()->insert(_pArgs, _pInsert->getAs<types::Sparse>());
         }
         else if (_pVar->isSparse() && _pInsert->isDouble())
         {
-            pRet = _pVar->getAs<types::Sparse>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isSparseBool() && _pInsert->isSparseBool())
-        {
-            pRet = _pVar->getAs<types::SparseBool>()->insert(_pArgs, _pInsert->getAs<types::SparseBool>());
+            pRet = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
         }
         else if (_pVar->isSparseBool() && _pInsert->isBool())
         {
-            pRet = _pVar->getAs<types::SparseBool>()->insert(_pArgs, _pInsert);
+            pRet = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
         }
         else if (_pVar->isDouble() && _pInsert->isPoly())
         {
@@ -2121,42 +1942,6 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
 
             pRet = pDest->insert(_pArgs, pP);
             pP->killMe();
-        }
-        else if (_pVar->isPoly() && _pInsert->isPoly())
-        {
-            pRet = _pVar->getAs<types::Polynom>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isInt8() && _pInsert->isInt8())
-        {
-            pRet = _pVar->getAs<types::Int8>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isUInt8() && _pInsert->isUInt8())
-        {
-            pRet = _pVar->getAs<types::UInt8>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isInt16() && _pInsert->isInt16())
-        {
-            pRet = _pVar->getAs<types::Int16>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isUInt16() && _pInsert->isUInt16())
-        {
-            pRet = _pVar->getAs<types::UInt16>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isInt32() && _pInsert->isInt32())
-        {
-            pRet = _pVar->getAs<types::Int32>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isUInt32() && _pInsert->isUInt32())
-        {
-            pRet = _pVar->getAs<types::UInt32>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isInt64() && _pInsert->isInt64())
-        {
-            pRet = _pVar->getAs<types::Int64>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isUInt64() && _pInsert->isUInt64())
-        {
-            pRet = _pVar->getAs<types::UInt64>()->insert(_pArgs, _pInsert);
         }
         else if (_pVar->isStruct())
         {
@@ -2293,8 +2078,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
 
                     if (pTL->exists(pS->get(0)))
                     {
-                        pTL->set(pS->get(0), _pInsert);
-                        pRet = pTL;
+                        pRet = pTL->set(pS->get(0), _pInsert);
                     }
                     else
                     {
@@ -2451,6 +2235,10 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             {
                 pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
             }
+        }
+        else if (_pVar->getType() == _pInsert->getType())
+        {
+            pRet = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
         }
         else if (_pVar->isCell())
         {
