@@ -181,26 +181,26 @@ bool ConstraintManager::checkGlobalConstants(const std::set<symbol::Symbol> & gc
     return true;
 }
 
-std::wostream & operator<<(std::wostream & out, const ConstraintManager & cm)
+std::ostream & operator<<(std::ostream & out, const ConstraintManager & cm)
 {
     if (!cm.verified.empty())
     {
-        out << L"Verified: " << cm.verified << L'\n';
+        out << "Verified: " << cm.verified << '\n';
     }
     if (!cm.unverified.empty())
     {
-        out << L"Unverified: ";
+        out << "Unverified: ";
         for (const auto & unv : cm.unverified)
         {
-            out << unv << L' ';
+            out << unv << ' ';
         }
-        out << L'\n';
+        out << '\n';
     }
     if (!cm.constantConstraints.empty())
     {
-        out << L"Constants: ";
+        out << "Constants: ";
         tools::printSet(cm.constantConstraints, out);
-        out << L'\n';
+        out << '\n';
     }
     return out;
 }

@@ -861,7 +861,7 @@ InternalType* dotdiv_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -891,7 +891,7 @@ InternalType* dotdiv_M_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -962,7 +962,7 @@ InternalType* dotdiv_MC_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -992,7 +992,7 @@ InternalType* dotdiv_MC_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1261,7 +1261,7 @@ InternalType* dotdiv_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _pR)
     //check dimensions
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
     }
 
     Sparse* pSparseOut = _pL->dotDivide(*_pR);
@@ -1750,7 +1750,7 @@ InternalType* dotdiv_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double* _pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 

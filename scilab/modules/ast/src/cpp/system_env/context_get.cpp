@@ -18,7 +18,7 @@ extern "C"
 #include "types.hxx"
 #include "context.hxx"
 
-void* context_get(wchar_t* _pwstSymbol)
+void* context_get(const char* _pstSymbol)
 {
-    return (void*)symbol::Context::getInstance()->get(symbol::Symbol(_pwstSymbol));
+    return (void*)symbol::Context::getInstance()->get(symbol::Symbol(_pstSymbol));
 }

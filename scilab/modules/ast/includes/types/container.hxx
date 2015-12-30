@@ -46,9 +46,9 @@ public :
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr() = 0;
+    virtual std::string    getTypeStr() = 0;
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr() = 0;
+    virtual std::string    getShortTypeStr() = 0;
 };
 }
 

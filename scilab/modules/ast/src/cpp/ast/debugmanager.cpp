@@ -99,7 +99,7 @@ void DebuggerMagager::sendAbort()
     }
 }
 
-void DebuggerMagager::sendErrorInFile(const std::wstring& filename) const
+void DebuggerMagager::sendErrorInFile(const std::string& filename) const
 {
     for (const auto& it : debuggers)
     {
@@ -107,7 +107,7 @@ void DebuggerMagager::sendErrorInFile(const std::wstring& filename) const
     }
 }
 
-void DebuggerMagager::sendErrorInScript(const std::wstring& funcname) const
+void DebuggerMagager::sendErrorInScript(const std::string& funcname) const
 {
     for (const auto& it : debuggers)
     {
@@ -335,14 +335,14 @@ void DebuggerMagager::stop(const ast::Exp* pExp, int index)
     internal_stop();
     clearExp();
 }
-void DebuggerMagager::errorInFile(const std::wstring filename, const ast::Exp* pExp)
+void DebuggerMagager::errorInFile(const std::string& filename, const ast::Exp* pExp)
 {
     setExp(pExp);
     sendErrorInFile(filename);
     internal_stop();
     clearExp();
 }
-void DebuggerMagager::errorInScript(const std::wstring funcname, const ast::Exp* pExp)
+void DebuggerMagager::errorInScript(const std::string& funcname, const ast::Exp* pExp)
 {
     setExp(pExp);
     sendErrorInScript(funcname);

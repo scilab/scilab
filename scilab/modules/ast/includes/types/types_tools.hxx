@@ -27,7 +27,7 @@ EXTERN_AST int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, 
 EXTERN_AST void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew);
 EXTERN_AST void getIndexesWithDims(int _iIndex, int* _piIndexes, const int* _piDims, int _iDims);
 EXTERN_AST int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims);
-EXTERN_AST types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName);
+EXTERN_AST types::Function::ReturnValue VariableToString(types::InternalType* pIT, const char* varName);
 
 //commom function
 EXTERN_AST int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex);

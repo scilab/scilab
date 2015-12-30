@@ -355,19 +355,8 @@ assign			"="
 <BEGINID>
 {
     {id}                        {
-        wchar_t *pwText = to_wide_string(yytext);
-        if (yytext != NULL && pwText == NULL)
-        {
-	    std::string str = "Can\'t convert \'";
-	    str += yytext;
-	    str += "\' to UTF-8";
-	    BEGIN(INITIAL);
-	    yyerror(str);
-	    return scan_throw(FLEX_ERROR);
-        }
-        yylval.str = new std::wstring(pwText);
-	FREE(pwText);
-	types::InternalType * pIT = symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str));
+        yylval.str = new std::string(yytext);
+    	types::InternalType * pIT = symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str));
         if (pIT && pIT->isCallable())
         {
             scan_throw(ID);
@@ -602,18 +591,7 @@ assign			"="
 
 
 <INITIAL,MATRIX>{id}			{
-    wchar_t *pwText = to_wide_string(yytext);
-    if (yytext != NULL && pwText == NULL)
-    {
-	std::string str = "Can\'t convert \'";
-	str += yytext;
-	str += "\' to UTF-8";
-	BEGIN(INITIAL);
-	yyerror(str);
-	return scan_throw(FLEX_ERROR);
-    }
-    yylval.str = new std::wstring(pwText);
-    FREE(pwText);
+    yylval.str = new std::string(yytext);
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
 #endif
@@ -623,7 +601,7 @@ assign			"="
 
 
 <INITIAL,MATRIX>{startblockcomment}	{
-  yylval.comment = new std::wstring();
+  yylval.comment = new std::string();
   comment_level = 1;
   ParserSingleInstance::pushControlStatus(Parser::WithinBlockComment);
   yy_push_state(REGIONCOMMENT);
@@ -898,23 +876,8 @@ assign			"="
     */
     if (last_token != DOTS)
     {
-        //std::cerr << "pstBuffer = {" << *pstBuffer << "}" << std::endl;
-        //std::cerr << "pstBuffer->c_str() = {" << pstBuffer->c_str() << "}" << std::endl;
-        wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
-        //std::wcerr << L"pwstBuffer = W{" << pwstBuffer << L"}" << std::endl;
-        if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
-        {
-	    pstBuffer.clear();
-	    std::string str = "Can\'t convert \'";
-	    str += pstBuffer.c_str();
-	    str += "\' to UTF-8";
-	    BEGIN(INITIAL);
-	    yyerror(str);
-	    return scan_throw(FLEX_ERROR);
-        }
-        yylval.comment = new std::wstring(pwstBuffer);
-	pstBuffer.clear();
-        FREE (pwstBuffer);
+        yylval.comment = new std::string(pstBuffer);
+        pstBuffer.clear();
         return scan_throw(COMMENT);
     }
     else
@@ -925,20 +888,8 @@ assign			"="
 
   <<EOF>>	{
     yy_pop_state();
-    wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
-    if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
-    {
-	pstBuffer.clear();
-	std::string str = "Can\'t convert \'";
-	str += pstBuffer.c_str();
-	str += "\' to UTF-8";
-	BEGIN(INITIAL);
-	yyerror(str);
-	return scan_throw(FLEX_ERROR);
-    }
-    yylval.comment = new std::wstring(pwstBuffer);
+    yylval.comment = new std::string(pstBuffer);
     pstBuffer.clear();
-    FREE (pwstBuffer);
     return scan_throw(COMMENT);
   }
 
@@ -970,14 +921,12 @@ assign			"="
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     scan_step();
-    *yylval.comment += L"\n//";
+    *yylval.comment += "\n//";
   }
 
   {char_in_comment}				|
   .                                             {
-      wchar_t *pwText = to_wide_string(yytext);
-      *yylval.comment += std::wstring(pwText);
-      FREE(pwText);
+      *yylval.comment += std::string(yytext);
   }
 
  <<EOF>>					{
@@ -1009,20 +958,8 @@ assign			"="
   {quote}					{
     yy_pop_state();
     //scan_step();
-    wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
-    if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
-    {
-	pstBuffer.clear();
-	std::string str = "Can\'t convert \'";
-        str += pstBuffer.c_str();
-        str += "\' to UTF-8";
-	BEGIN(INITIAL);
-	yyerror(str);
-	return scan_throw(FLEX_ERROR);
-    }
-    yylval.str = new std::wstring(pwstBuffer);
+    yylval.str = new std::string(pstBuffer);
     pstBuffer.clear();
-    FREE(pwstBuffer);
     yylloc.first_column = str_opener_column;
     return scan_throw(STR);
   }
@@ -1085,20 +1022,8 @@ assign			"="
   {dquote}                      {
     yy_pop_state();
     //scan_step();
-    wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
-    if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
-    {
-	pstBuffer.clear();
-        std::string str = "Can\'t convert \'";
-        str += pstBuffer.c_str();
-        str += "\' to UTF-8";
-	BEGIN(INITIAL);
-	yyerror(str);
-	return scan_throw(FLEX_ERROR);
-    }
-    yylval.str = new std::wstring(pwstBuffer);
+    yylval.str = new std::string(pstBuffer);
     pstBuffer.clear();
-    FREE(pwstBuffer);
     yylloc.first_column = str_opener_column;
     return scan_throw(STR);
   }
@@ -1173,9 +1098,7 @@ assign			"="
     {assign} {
         if (last_token == STR || last_token == SPACES)
         {
-	    wchar_t *pwText = to_wide_string(yytext);
-            yylval.str = new std::wstring(pwText);
-	    FREE(pwText);
+            yylval.str = new std::string(yytext);
             return scan_throw(STR);
         }
         else
@@ -1188,9 +1111,7 @@ assign			"="
     {lparen} {
         if (last_token == STR || last_token == SPACES)
         {
-	    wchar_t *pwText = to_wide_string(yytext);
-            yylval.str = new std::wstring(pwText);
-	    FREE(pwText);
+            yylval.str = new std::string(yytext);
             return scan_throw(STR);
         }
         else
@@ -1203,9 +1124,7 @@ assign			"="
     {lowerthan} {
         if (last_token == STR || last_token == SPACES)
         {
-	    wchar_t *pwText = to_wide_string(yytext);
-            yylval.str = new std::wstring(pwText);
-	    FREE(pwText);
+            yylval.str = new std::string(yytext);
             return scan_throw(STR);
         }
         else
@@ -1218,9 +1137,7 @@ assign			"="
     {greaterthan} {
         if (last_token == STR || last_token == SPACES)
         {
-	    wchar_t *pwText = to_wide_string(yytext);
-            yylval.str = new std::wstring(pwText);
-	    FREE(pwText);
+            yylval.str = new std::string(yytext);
             return scan_throw(STR);
         }
         else
@@ -1233,9 +1150,7 @@ assign			"="
     {boolnot} {
         if (last_token == STR || last_token == SPACES)
         {
-	    wchar_t *pwText = to_wide_string(yytext);
-            yylval.str = new std::wstring(pwText);
-	    FREE(pwText);
+            yylval.str = new std::string(yytext);
             return scan_throw(STR);
         }
         else
@@ -1247,9 +1162,7 @@ assign			"="
 
 
     [^ \t\v\f\r\n,;'"]+               {
-	wchar_t *pwText = to_wide_string(yytext);
-        yylval.str = new std::wstring(pwText);
-	FREE(pwText);
+        yylval.str = new std::string(yytext);
         return scan_throw(STR);
     }
 

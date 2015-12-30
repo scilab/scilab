@@ -111,26 +111,26 @@ const TIType & Info::getType() const
     return type;
 }
 
-std::wostream & operator<<(std::wostream & out, const Info & info)
+std::ostream & operator<<(std::ostream & out, const Info & info)
 {
-    out << L"Type: " << info.type << L" - RWO:"
-        << (info.R ? L"T" : L"F")
-        << (info.W ? L"T" : L"F")
-        << (info.O ? L"T" : L"F")
-        << L" - int:" << (info.isAnInt() ? L"T" : L"F")
-        << L" - local:" << (info.local == Info::Local::INFO_TRUE ? L"T" : (info.local == Info::Local::INFO_FALSE ? L"F" : L"U"))
-        << L" - cleared:" << (info.cleared ? L"T" : L"F")
-        << L" - exists:" << (info.exists ? L"T" : L"F")
-        << L" - constant:" << info.constant;
+    out << "Type: " << info.type << " - RWO:"
+        << (info.R ? "T" : "F")
+        << (info.W ? "T" : "F")
+        << (info.O ? "T" : "F")
+        << " - int:" << (info.isAnInt() ? "T" : "F")
+        << " - local:" << (info.local == Info::Local::INFO_TRUE ? "T" : (info.local == Info::Local::INFO_FALSE ? "F" : "U"))
+        << " - cleared:" << (info.cleared ? "T" : "F")
+        << " - exists:" << (info.exists ? "T" : "F")
+        << " - constant:" << info.constant;
 
-    out << L" - data:";
+    out << " - data:";
     if (info.data)
     {
         out << *info.data;
     }
     else
     {
-        out << L"null";
+        out << "null";
     }
 
     return out;

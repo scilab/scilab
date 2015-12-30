@@ -54,17 +54,17 @@ public:
 
         Value(const uint64_t _value) : value(_value), poly(nullptr) { }
 
-        friend inline std::wostream & operator<<(std::wostream & out, const Value & v)
+        friend inline std::ostream & operator<<(std::ostream & out, const Value & v)
         {
-            out << L"Value: " << v.value
-                << L", Poly: ";
+            out << "Value: " << v.value
+                << ", Poly: ";
             if (v.poly)
             {
                 out << *v.poly;
             }
             else
             {
-                out << L"null";
+                out << "null";
             }
             return out;
         }
@@ -193,12 +193,12 @@ public:
      * \brief Get a map containing association between symbol names and value (as ULL)
      * \return a map
      */
-    std::map<std::wstring, uint64_t> getSymMap() const;
+    std::map<std::string, uint64_t> getSymMap() const;
 
     /**
      * \brief Overload of the operator << for GVN
      */
-    EXTERN_AST friend std::wostream & operator<<(std::wostream & out, const GVN & gvn);
+    EXTERN_AST friend std::ostream & operator<<(std::ostream & out, const GVN & gvn);
 
 private:
 

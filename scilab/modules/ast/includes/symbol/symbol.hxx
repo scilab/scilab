@@ -47,7 +47,7 @@ namespace symbol
 class EXTERN_AST Symbol
 {
     /** \brief Define the type "set of wstring". */
-    typedef std::set < std::wstring> string_set_type;
+    typedef std::set < std::string> string_set_type;
     /** \brief Define the type used for the size of wstring set. */
     typedef string_set_type::size_type size_type;
 
@@ -56,7 +56,7 @@ class EXTERN_AST Symbol
 public:
     /** \brief Construct a Symbol (explicit).
      ** \param s referenced wstring */
-    explicit Symbol (const std::wstring &s);
+    explicit Symbol (const std::string &s);
     /** \} */
 
 
@@ -64,11 +64,11 @@ public:
      ** \{ */
 public:
     /** \brief Return the wstring referenced by this Symbol. */
-    const std::wstring& getName () const;
+    const std::string& getName () const;
     /** \brief Return the number of referenced strings. */
     static size_type getSize ();
     /** \brief Return all symbols. */
-    static wchar_t** getAll ();
+    static char** getAll ();
     /** \} */
 
 
@@ -102,7 +102,7 @@ private:
  ** \param ostr the destination output stream
  ** \param the a reference to the symbol to redirect
  */
-EXTERN_AST std::wostream& operator<< (std::wostream &ostr, const Symbol &the);
+EXTERN_AST std::ostream& operator<< (std::ostream &ostr, const Symbol &the);
 
 /** Typedef for the list of Symbol */
 typedef std::list<const Symbol*> symbols_t;
@@ -115,7 +115,7 @@ struct hash<symbol::Symbol>
 {
     inline size_t operator()(const symbol::Symbol & sym) const
     {
-        return std::hash<std::wstring>()(sym.getName());
+        return std::hash<std::string>()(sym.getName());
     }
 };
 } // namespace std

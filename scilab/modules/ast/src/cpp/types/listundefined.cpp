@@ -38,9 +38,9 @@ InternalType::ScilabType ListUndefined::getType(void)
     return ScilabListUndefinedOperation;
 }
 
-bool ListUndefined::toString(std::wostringstream& ostr)
+bool ListUndefined::toString(std::ostringstream& ostr)
 {
-    ostr << L"    Undefined" << std::endl;
+    ostr << "    Undefined" << std::endl;
     return true;
 }
 }

@@ -28,9 +28,9 @@ bool CeilAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             Result & R = visitor.getResult();
             const TIType & Rtype = R.getType();
             const symbol::Symbol & sym = static_cast<ast::SimpleVar &>(e.getName()).getSymbol();
-            const std::wstring & name = sym.getName();
+            const std::string & name = sym.getName();
             std::vector<TIType> vargs({ Rtype });
-	    uint64_t functionId = 0;
+            uint64_t functionId = 0;
             std::vector<TIType> out = visitor.getDM().call(visitor, lhs, sym, vargs, &e, functionId);
             if (Rtype.isintegral())
             {

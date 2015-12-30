@@ -18,15 +18,15 @@
 #include "dynlib_ast.h"
 
 #define SIZE_BETWEEN_TWO_VALUES         1
-#define SPACE_BETWEEN_TWO_VALUES        L" "
+#define SPACE_BETWEEN_TWO_VALUES        " "
 #define SIZE_BOOL                       1
 #define SIZE_BETWEEN_BOOL               1
-#define SPACE_BETWEEN_BOOL              L" "
+#define SPACE_BETWEEN_BOOL              " "
 #define SIGN_LENGTH                     1
-#define NO_SIGN                         L" "
-#define MINUS_STRING                    L"-"
-#define PLUS_STRING                     L"+"
-#define SYMBOL_I                        L"i"
+#define NO_SIGN                         " "
+#define MINUS_STRING                    "-"
+#define PLUS_STRING                     "+"
+#define SYMBOL_I                        "i"
 
 
 #define MAX_LINES                       100
@@ -56,13 +56,13 @@ EXTERN_AST void getDoubleFormat(double _dblVal, DoubleFormat* _pDF);
 EXTERN_AST void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, DoubleFormat* _pDFR, DoubleFormat* _pDFI);
 
 //addDoubleValue(int _iWidth, int _iPrec, bool _bExp, bool _bPrintPoint = true, bool _bPrintPlusSign = false, bool _bPrintOne = true, bool _bPaddSign = true, int _iSignLen = 2);
-EXTERN_AST void addDoubleValue(std::wostringstream *_postr, double _dblVal, DoubleFormat* _pDF);
-EXTERN_AST void addDoubleComplexValue(std::wostringstream *_postr, double _dblR, double _dblI, int _iTotalLen, DoubleFormat* _pDFR, DoubleFormat* _pDFI);
+EXTERN_AST void addDoubleValue(std::ostringstream *_postr, double _dblVal, DoubleFormat* _pDF);
+EXTERN_AST void addDoubleComplexValue(std::ostringstream *_postr, double _dblR, double _dblI, int _iTotalLen, DoubleFormat* _pDFR, DoubleFormat* _pDFI);
 
 /*Common*/
-EXTERN_AST void configureStream(std::wostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
-EXTERN_AST void addSpaces(std::wostringstream *_postr, int _iSpace);
-void addColumnString(std::wostringstream& ostr, int _iFrom, int _iTo);
+EXTERN_AST void configureStream(std::ostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
+EXTERN_AST void addSpaces(std::ostringstream *_postr, int _iSpace);
+void addColumnString(std::ostringstream& ostr, int _iFrom, int _iTo);
 
 /*int*/
 /*
@@ -102,49 +102,49 @@ void getSignedIntFormat(T _TVal, int *_piWidth)
 }
 
 template <typename T>
-void addUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
+void addUnsignedIntValue(std::ostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
 {
-    const wchar_t * pwstSign = PLUS_STRING;
-    wchar_t pwstFormat[32];
-    wchar_t pwstOutput[32];
+    const char* pstSign = PLUS_STRING;
+    char pstFormat[32];
+    char pstOutput[32];
     if (bPrintPlusSign == true)
     {
-        pwstSign = PLUS_STRING;
+        pstSign = PLUS_STRING;
     }
     else
     {
-        pwstSign = NO_SIGN;
+        pstSign = NO_SIGN;
     }
 
     if (bPrintOne == true || _TVal != 1)
     {
-        os_swprintf(pwstFormat, 32, L" %ls%llu", pwstSign, (unsigned long long)(_TVal));
-        os_swprintf(pwstOutput, 32, L"%*ls", _iWidth + 1, pwstFormat);//+1 for blank
-        *_postr << pwstOutput;
+        os_sprintf(pstFormat, " %s%llu", pstSign, (unsigned long long)(_TVal));
+        os_sprintf(pstOutput, "%*s", _iWidth + 1, pstFormat);//+1 for blank
+        *_postr << pstOutput;
     }
 }
 
 template <typename T>
-void addSignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
+void addSignedIntValue(std::ostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
 {
-    const wchar_t* pwstSign = NULL;
-    wchar_t pwstFormat[32];
-    wchar_t pwstOutput[32];
+    const char* pstSign = PLUS_STRING;
+    char pstFormat[32];
+    char pstOutput[32];
     if (bPrintPlusSign == true)
     {
-        pwstSign = (_TVal < 0 ? L"-" : L"+");
+        pstSign = (_TVal < 0 ? "-" : "+");
     }
     else
     {
-        pwstSign = (_TVal < 0 ? L"-" : L" ");
+        pstSign = (_TVal < 0 ? "-" : " ");
     }
 
     if (bPrintOne == true || _TVal != 1)
     {
         unsigned long long a = _abs64(_TVal);
-        os_swprintf(pwstFormat, 32, L" %ls%llu", pwstSign, a);
-        os_swprintf(pwstOutput, 32, L"%*ls", _iWidth + 1, pwstFormat);//+1 for blank
-        *_postr << pwstOutput;
+        os_sprintf(pstFormat, " %s%llu", pstSign, a);
+        os_sprintf(pstOutput, "%*s", _iWidth + 1, pstFormat);//+1 for blank
+        *_postr << pstOutput;
     }
 }
 

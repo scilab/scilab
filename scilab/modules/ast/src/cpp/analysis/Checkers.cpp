@@ -23,7 +23,7 @@ TIType (*Checkers::ARGS3[1])(GVN &, const TIType &, const TIType &, const TIType
 
 Checkers::CheckersMap Checkers::map = Checkers::initMap();
 
-TIType Checkers::check(GVN & gvn, const std::wstring & name, const std::vector<TIType> & args)
+TIType Checkers::check(GVN & gvn, const std::string & name, const std::vector<TIType> & args)
 {
     const unsigned short size = args.size();
     CheckersMap::const_iterator i = map.find(__NName(size, name));
@@ -46,7 +46,7 @@ TIType Checkers::check(GVN & gvn, const std::wstring & name, const std::vector<T
     return TIType(gvn);
 }
 
-bool Checkers::isElementWise(const std::wstring & name, unsigned short nargs)
+bool Checkers::isElementWise(const std::string & name, unsigned short nargs)
 {
     CheckersMap::const_iterator i = map.find(__NName(nargs, name));
     if (i != map.end())
@@ -56,7 +56,7 @@ bool Checkers::isElementWise(const std::wstring & name, unsigned short nargs)
     return false;
 }
 
-bool Checkers::isJitted(const std::wstring & name, unsigned short nargs)
+bool Checkers::isJitted(const std::string & name, unsigned short nargs)
 {
     CheckersMap::const_iterator i = map.find(__NName(nargs, name));
     if (i != map.end())
@@ -66,7 +66,7 @@ bool Checkers::isJitted(const std::wstring & name, unsigned short nargs)
     return false;
 }
 
-bool Checkers::isConst(const std::wstring & name, unsigned short nargs)
+bool Checkers::isConst(const std::string & name, unsigned short nargs)
 {
     CheckersMap::const_iterator i = map.find(__NName(nargs, name));
     if (i != map.end())
@@ -79,77 +79,77 @@ bool Checkers::isConst(const std::wstring & name, unsigned short nargs)
 Checkers::CheckersMap Checkers::initMap()
 {
     CheckersMap map;
-    map.emplace(__NName(0, L"rand"), __Infos(0, false, true, false));
-    map.emplace(__NName(0, L"zeros"), __Infos(1, false, false, false));
-    map.emplace(__NName(0, L"ls"), __Infos(2, false, true, false));
-    map.emplace(__NName(0, L"toc"), __Infos(3, false, true, false));
-    map.emplace(__NName(0, L"argn"), __Infos(4, false, false, false));
-    map.emplace(__NName(0, L"ones"), __Infos(5, false, false, false));
-    map.emplace(__NName(1, L"rand"), __Infos(0, false, true, false));
-    map.emplace(__NName(1, L"isreal"), __Infos(1, false, false, false));
-    map.emplace(__NName(1, L"abs"), __Infos(2, true, false, true));
-    map.emplace(__NName(1, L"cosh"), __Infos(3, true, false, true));
-    map.emplace(__NName(1, L"typeof"), __Infos(4, false, false, false));
-    map.emplace(__NName(1, L"int16"), __Infos(5, true, false, true));
-    map.emplace(__NName(1, L"gettext"), __Infos(6, false, true, false));
-    map.emplace(__NName(1, L"tan"), __Infos(7, true, false, true));
-    map.emplace(__NName(1, L"cumsum"), __Infos(8, true, false, true));
-    map.emplace(__NName(1, L"size"), __Infos(9, false, false, false));
-    map.emplace(__NName(1, L"asin"), __Infos(10, true, false, false));
-    map.emplace(__NName(1, L"or"), __Infos(11, false, false, false));
-    map.emplace(__NName(1, L"log"), __Infos(12, true, false, false));
-    map.emplace(__NName(1, L"floor"), __Infos(13, true, false, true));
-    map.emplace(__NName(1, L"int"), __Infos(14, true, false, true));
-    map.emplace(__NName(1, L"fix"), __Infos(15, true, false, true));
-    map.emplace(__NName(1, L"sqrt"), __Infos(16, true, false, true));
-    map.emplace(__NName(1, L"uint16"), __Infos(17, true, false, true));
-    map.emplace(__NName(1, L"zeros"), __Infos(18, false, false, false));
-    map.emplace(__NName(1, L"ls"), __Infos(19, false, true, false));
-    map.emplace(__NName(1, L"max"), __Infos(20, false, false, true));
-    map.emplace(__NName(1, L"uint32"), __Infos(21, true, false, true));
-    map.emplace(__NName(1, L"int64"), __Infos(22, true, false, true));
-    map.emplace(__NName(1, L"prod"), __Infos(23, false, false, true));
-    map.emplace(__NName(1, L"type"), __Infos(24, false, false, false));
-    map.emplace(__NName(1, L"sin"), __Infos(25, true, false, true));
-    map.emplace(__NName(1, L"round"), __Infos(26, true, false, true));
-    map.emplace(__NName(1, L"int32"), __Infos(27, true, false, true));
-    map.emplace(__NName(1, L"inttype"), __Infos(28, false, false, false));
-    map.emplace(__NName(1, L"exp"), __Infos(29, true, false, true));
-    map.emplace(__NName(1, L"atan"), __Infos(30, true, false, true));
-    map.emplace(__NName(1, L"imag"), __Infos(31, false, false, false));
-    map.emplace(__NName(1, L"uint8"), __Infos(32, true, false, true));
-    map.emplace(__NName(1, L"ceil"), __Infos(33, true, false, true));
-    map.emplace(__NName(1, L"uint64"), __Infos(34, true, false, true));
-    map.emplace(__NName(1, L"sinm"), __Infos(35, false, false, false));
-    map.emplace(__NName(1, L"isinf"), __Infos(36, true, false, true));
-    map.emplace(__NName(1, L"sinh"), __Infos(37, true, false, true));
-    map.emplace(__NName(1, L"isscalar"), __Infos(38, false, false, false));
-    map.emplace(__NName(1, L"sign"), __Infos(39, true, false, true));
-    map.emplace(__NName(1, L"int8"), __Infos(40, true, false, true));
-    map.emplace(__NName(1, L"cos"), __Infos(41, true, false, true));
-    map.emplace(__NName(1, L"and"), __Infos(42, false, false, false));
-    map.emplace(__NName(1, L"tanh"), __Infos(43, true, false, true));
-    map.emplace(__NName(1, L"isnan"), __Infos(44, true, false, true));
-    map.emplace(__NName(1, L"imult"), __Infos(45, false, false, false));
-    map.emplace(__NName(1, L"argn"), __Infos(46, false, false, false));
-    map.emplace(__NName(1, L"cumprod"), __Infos(47, true, false, true));
-    map.emplace(__NName(1, L"erf"), __Infos(48, true, false, true));
-    map.emplace(__NName(1, L"ones"), __Infos(49, false, false, false));
-    map.emplace(__NName(1, L"erfc"), __Infos(50, true, false, true));
-    map.emplace(__NName(1, L"min"), __Infos(51, false, false, true));
-    map.emplace(__NName(1, L"sum"), __Infos(52, false, false, true));
-    map.emplace(__NName(1, L"acos"), __Infos(53, true, false, false));
-    map.emplace(__NName(2, L"rand"), __Infos(0, false, true, false));
-    map.emplace(__NName(2, L"isreal"), __Infos(1, false, false, false));
-    map.emplace(__NName(2, L"iconvert"), __Infos(2, false, false, false));
-    map.emplace(__NName(2, L"gettext"), __Infos(3, false, true, false));
-    map.emplace(__NName(2, L"size"), __Infos(4, false, false, false));
-    map.emplace(__NName(2, L"or"), __Infos(5, false, false, false));
-    map.emplace(__NName(2, L"zeros"), __Infos(6, false, false, false));
-    map.emplace(__NName(2, L"matrix"), __Infos(7, false, false, false));
-    map.emplace(__NName(2, L"and"), __Infos(8, false, false, false));
-    map.emplace(__NName(2, L"ones"), __Infos(9, false, false, false));
-    map.emplace(__NName(3, L"matrix"), __Infos(0, false, false, false));
+    map.emplace(__NName(0, "rand"), __Infos(0, false, true, false));
+    map.emplace(__NName(0, "zeros"), __Infos(1, false, false, false));
+    map.emplace(__NName(0, "ls"), __Infos(2, false, true, false));
+    map.emplace(__NName(0, "toc"), __Infos(3, false, true, false));
+    map.emplace(__NName(0, "argn"), __Infos(4, false, false, false));
+    map.emplace(__NName(0, "ones"), __Infos(5, false, false, false));
+    map.emplace(__NName(1, "rand"), __Infos(0, false, true, false));
+    map.emplace(__NName(1, "isreal"), __Infos(1, false, false, false));
+    map.emplace(__NName(1, "abs"), __Infos(2, true, false, true));
+    map.emplace(__NName(1, "cosh"), __Infos(3, true, false, true));
+    map.emplace(__NName(1, "typeof"), __Infos(4, false, false, false));
+    map.emplace(__NName(1, "int16"), __Infos(5, true, false, true));
+    map.emplace(__NName(1, "gettext"), __Infos(6, false, true, false));
+    map.emplace(__NName(1, "tan"), __Infos(7, true, false, true));
+    map.emplace(__NName(1, "cumsum"), __Infos(8, true, false, true));
+    map.emplace(__NName(1, "size"), __Infos(9, false, false, false));
+    map.emplace(__NName(1, "asin"), __Infos(10, true, false, false));
+    map.emplace(__NName(1, "or"), __Infos(11, false, false, false));
+    map.emplace(__NName(1, "log"), __Infos(12, true, false, false));
+    map.emplace(__NName(1, "floor"), __Infos(13, true, false, true));
+    map.emplace(__NName(1, "int"), __Infos(14, true, false, true));
+    map.emplace(__NName(1, "fix"), __Infos(15, true, false, true));
+    map.emplace(__NName(1, "sqrt"), __Infos(16, true, false, true));
+    map.emplace(__NName(1, "uint16"), __Infos(17, true, false, true));
+    map.emplace(__NName(1, "zeros"), __Infos(18, false, false, false));
+    map.emplace(__NName(1, "ls"), __Infos(19, false, true, false));
+    map.emplace(__NName(1, "max"), __Infos(20, false, false, true));
+    map.emplace(__NName(1, "uint32"), __Infos(21, true, false, true));
+    map.emplace(__NName(1, "int64"), __Infos(22, true, false, true));
+    map.emplace(__NName(1, "prod"), __Infos(23, false, false, true));
+    map.emplace(__NName(1, "type"), __Infos(24, false, false, false));
+    map.emplace(__NName(1, "sin"), __Infos(25, true, false, true));
+    map.emplace(__NName(1, "round"), __Infos(26, true, false, true));
+    map.emplace(__NName(1, "int32"), __Infos(27, true, false, true));
+    map.emplace(__NName(1, "inttype"), __Infos(28, false, false, false));
+    map.emplace(__NName(1, "exp"), __Infos(29, true, false, true));
+    map.emplace(__NName(1, "atan"), __Infos(30, true, false, true));
+    map.emplace(__NName(1, "imag"), __Infos(31, false, false, false));
+    map.emplace(__NName(1, "uint8"), __Infos(32, true, false, true));
+    map.emplace(__NName(1, "ceil"), __Infos(33, true, false, true));
+    map.emplace(__NName(1, "uint64"), __Infos(34, true, false, true));
+    map.emplace(__NName(1, "sinm"), __Infos(35, false, false, false));
+    map.emplace(__NName(1, "isinf"), __Infos(36, true, false, true));
+    map.emplace(__NName(1, "sinh"), __Infos(37, true, false, true));
+    map.emplace(__NName(1, "isscalar"), __Infos(38, false, false, false));
+    map.emplace(__NName(1, "sign"), __Infos(39, true, false, true));
+    map.emplace(__NName(1, "int8"), __Infos(40, true, false, true));
+    map.emplace(__NName(1, "cos"), __Infos(41, true, false, true));
+    map.emplace(__NName(1, "and"), __Infos(42, false, false, false));
+    map.emplace(__NName(1, "tanh"), __Infos(43, true, false, true));
+    map.emplace(__NName(1, "isnan"), __Infos(44, true, false, true));
+    map.emplace(__NName(1, "imult"), __Infos(45, false, false, false));
+    map.emplace(__NName(1, "argn"), __Infos(46, false, false, false));
+    map.emplace(__NName(1, "cumprod"), __Infos(47, true, false, true));
+    map.emplace(__NName(1, "erf"), __Infos(48, true, false, true));
+    map.emplace(__NName(1, "ones"), __Infos(49, false, false, false));
+    map.emplace(__NName(1, "erfc"), __Infos(50, true, false, true));
+    map.emplace(__NName(1, "min"), __Infos(51, false, false, true));
+    map.emplace(__NName(1, "sum"), __Infos(52, false, false, true));
+    map.emplace(__NName(1, "acos"), __Infos(53, true, false, false));
+    map.emplace(__NName(2, "rand"), __Infos(0, false, true, false));
+    map.emplace(__NName(2, "isreal"), __Infos(1, false, false, false));
+    map.emplace(__NName(2, "iconvert"), __Infos(2, false, false, false));
+    map.emplace(__NName(2, "gettext"), __Infos(3, false, true, false));
+    map.emplace(__NName(2, "size"), __Infos(4, false, false, false));
+    map.emplace(__NName(2, "or"), __Infos(5, false, false, false));
+    map.emplace(__NName(2, "zeros"), __Infos(6, false, false, false));
+    map.emplace(__NName(2, "matrix"), __Infos(7, false, false, false));
+    map.emplace(__NName(2, "and"), __Infos(8, false, false, false));
+    map.emplace(__NName(2, "ones"), __Infos(9, false, false, false));
+    map.emplace(__NName(3, "matrix"), __Infos(0, false, false, false));
     ARGS0[0] = &check_rand;
     ARGS0[1] = &check_zeros;
     ARGS0[2] = &check_ls;

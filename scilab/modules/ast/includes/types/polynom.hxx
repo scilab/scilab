@@ -37,10 +37,10 @@ class EXTERN_AST Polynom : public ArrayOf<SinglePoly*>
 {
 public :
     Polynom();
-    Polynom(const std::wstring& _szVarName, int _iRows, int _iCols);
-    Polynom(const std::wstring& _szVarName, int _iRows, int _iCols, const int *_piRank);
-    Polynom(const std::wstring& _szVarName, int _iDims, const int* _piDims);
-    Polynom(const std::wstring& _szVarName, int _iDims, const int* _piDims, const int *_piRank);
+    Polynom(const std::string& _varName, int _iRows, int _iCols);
+    Polynom(const std::string& _varName, int _iRows, int _iCols, const int *_piRank);
+    Polynom(const std::string& _varName, int _iDims, const int* _piDims);
+    Polynom(const std::string& _varName, int _iDims, const int* _piDims, const int *_piRank);
 
     virtual                 ~Polynom();
 
@@ -61,7 +61,7 @@ public :
     {
         return isScalar() ? isComplex() ? IdScalarPolynomComplex
                : IdScalarPolynom
-       : isComplex() ? IdPolynomComplex
+               : isComplex() ? IdPolynomComplex
                : IdPolynom;
     }
 
@@ -74,8 +74,8 @@ public :
     }
 
     void                    whoAmI(void);
-    std::wstring&           getVariableName();
-    void                    setVariableName(const std::wstring&);
+    std::string&            getVariableName();
+    void                    setVariableName(const std::string&);
     bool                    getSizes(int *_piSizes);
     bool                    getRank(int *_piRank);
     int                     getMaxRank(void);
@@ -92,23 +92,23 @@ public :
     Polynom*                set(int _iRows, int _iCols, SinglePoly* _pS);
     Polynom*                set(SinglePoly** _pS);
 
-    std::wstring            getRowString(int* _piDims, int _iDims, bool _bComplex);
-    std::wstring            getColString(int* _piDims, int _iDims, bool _bComplex);
-    std::wstring            getMatrixString(int* _piDims, int _iDims, bool _bComplex);
+    std::string             getRowString(int* _piDims, int _iDims, bool _bComplex);
+    std::string             getColString(int* _piDims, int _iDims, bool _bComplex);
+    std::string             getMatrixString(int* _piDims, int _iDims, bool _bComplex);
 
 
     bool                    operator==(const InternalType& it);
     bool                    operator!=(const InternalType& it);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::string     getTypeStr()
     {
-        return L"polynomial";
+        return "polynomial";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::string     getShortTypeStr()
     {
-        return L"p";
+        return "p";
     }
 
     bool isTrue()
@@ -122,11 +122,11 @@ public :
     static Polynom* Dollar();
 
 protected :
-    std::wstring            m_szVarName;
-    void                    createPoly(const std::wstring& _szVarName, int _iDims, const int* _piDims, const int *_piRank);
+    std::string             m_varName;
+    void                    createPoly(const std::string& _varName, int _iDims, const int* _piDims, const int *_piRank);
 
 private :
-    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
+    virtual bool            subMatrixToString(std::ostringstream& ostr, int* _piDims, int _iDims) override;
 
     virtual SinglePoly*     getNullValue();
     virtual Polynom*        createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

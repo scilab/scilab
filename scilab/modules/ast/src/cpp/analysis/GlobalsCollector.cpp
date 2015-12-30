@@ -26,19 +26,19 @@ const tools::SymbolOrdSet & GlobalsCollector::getGlobals() const
     return globals;
 }
 
-std::wostream & operator<<(std::wostream & out, const GlobalsCollector & gc)
+std::ostream & operator<<(std::ostream & out, const GlobalsCollector & gc)
 {
-    out << L"name: " << gc.macrodef.getName() << std::endl
-        << L" -out: ";
+    out << "name: " << gc.macrodef.getName() << std::endl
+        << " -out: ";
     tools::printSet(gc.macrodef.getOut(), out);
     out << std::endl
-        << L" -in: ";
+        << " -in: ";
     tools::printSet(gc.macrodef.getIn(), out);
     out << std::endl
-        << L" -locals: ";
+        << " -locals: ";
     tools::printSet(gc.locals, out);
     out << std::endl
-        << L" -globals: ";
+        << " -globals: ";
     tools::printSet(gc.globals, out);
 
     return out;
@@ -46,8 +46,8 @@ std::wostream & operator<<(std::wostream & out, const GlobalsCollector & gc)
 
 void GlobalsCollector::print_info()
 {
-    std::wcout << L"Globals collection: " << *static_cast<Chrono *>(this) << std::endl
-               << *this << std::endl;
+    std::cout << "Globals collection: " << *static_cast<Chrono *>(this) << std::endl
+              << *this << std::endl;
 }
 
 void GlobalsCollector::collect()

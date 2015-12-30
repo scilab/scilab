@@ -122,7 +122,7 @@ bool GraphicHandle::operator!=(const InternalType& it)
     return !(*this == it);
 }
 
-bool GraphicHandle::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
+bool GraphicHandle::subMatrixToString(std::ostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
 {
     //call %h_p(h)
     //GraphicHandle* pTemp = new GraphicHandle(_iDims, _piDims);
@@ -188,7 +188,7 @@ bool GraphicHandle::invoke(typed_list & in, optional_list & opt, int _iRetCount,
         this->IncreaseRef();
         in.push_back(this);
 
-        Overload::call(L"%h_e", in, 1, out);
+        Overload::call("%h_e", in, 1, out);
     }
     else
     {

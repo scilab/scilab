@@ -25,19 +25,19 @@ public:
      ** depending on input parameters
      ** and maybe on number of result expected <further implementation>
      */
-    static std::wstring buildOverloadName(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount, bool _isOperator = false, bool _truncated = false);
+    static std::string buildOverloadName(const std::string& _stFunctionName, types::typed_list &in, int _iRetCount, bool _isOperator = false, bool _truncated = false);
 
     /**
      */
-    static types::Function::ReturnValue generateNameAndCall(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount,
+    static types::Function::ReturnValue generateNameAndCall(const std::string& _stFunctionName, types::typed_list &in, int _iRetCount,
             types::typed_list &out, bool _isOperator = false);
 
     /**
      */
-    static types::Function::ReturnValue call(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount,
+    static types::Function::ReturnValue call(const std::string& _stFunctionName, types::typed_list &in, int _iRetCount,
             types::typed_list &out, bool _isOperator = false);
 
-    static std::wstring getNameFromOper(const int);
+    static std::string getNameFromOper(const int);
 
 };
 

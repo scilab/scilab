@@ -13,6 +13,6 @@
 #ifndef __CONTEXT_GET_H__
 #define __CONTEXT_GET_H__
 
-void* context_get(wchar_t* _pwstSymbol);
+void* context_get(const char* _symbol);
 
 #endif /* !__CONTEXT_GET_H__ */

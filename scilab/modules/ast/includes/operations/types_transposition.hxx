@@ -100,13 +100,13 @@ struct Transposition
 };
 
 template<>
-inline void Transposition::transpose<wchar_t *, wchar_t *>(const int r, const int c, wchar_t * const * const in, wchar_t ** const out)
+inline void Transposition::transpose<char*, char*>(const int r, const int c, char* const* const in, char** const out)
 {
     for (int i = 0, k = 0; i < c; i++, k += r)
     {
         for (int j = 0, l = 0; j < r; j++, l += c)
         {
-            out[i + l] = os_wcsdup(in[j + k]);
+            out[i + l] = os_strdup(in[j + k]);
         }
     }
 }

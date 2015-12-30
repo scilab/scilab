@@ -839,7 +839,7 @@ InternalType* sub_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -867,7 +867,7 @@ InternalType* sub_M_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -896,7 +896,7 @@ InternalType* sub_M_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_M_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -921,7 +921,7 @@ InternalType* sub_MC_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -949,7 +949,7 @@ InternalType* sub_MC_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -978,7 +978,7 @@ InternalType* sub_MC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_MC_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1020,7 +1020,7 @@ InternalType* sub_S_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_S_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1062,7 +1062,7 @@ InternalType* sub_SC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_SC_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1072,7 +1072,7 @@ InternalType* sub_SC_E(T *_pL, U * /*_pR*/)
 template<class T, class U, class O>
 InternalType* sub_E_M(T * /*_pL*/, U *_pR)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1081,7 +1081,7 @@ InternalType* sub_E_M(T * /*_pL*/, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_E_MC(T * /*_pL*/, U *_pR)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1464,7 +1464,7 @@ template<class T, class U, class O> InternalType* sub_IC_IC(T *_pL, U *_pR)
 
 template<class T, class U, class O> types::InternalType* sub_I_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1472,7 +1472,7 @@ template<class T, class U, class O> types::InternalType* sub_I_E(T *_pL, U * /*_
 
 template<class T, class U, class O> types::InternalType* sub_IC_E(T *_pL, U * /*_pR*/)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1480,7 +1480,7 @@ template<class T, class U, class O> types::InternalType* sub_IC_E(T *_pL, U * /*
 
 template<class T, class U, class O> types::InternalType* sub_E_I(T * /*_pL*/, U *_pR)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1488,7 +1488,7 @@ template<class T, class U, class O> types::InternalType* sub_E_I(T * /*_pL*/, U 
 
 template<class T, class U, class O> types::InternalType* sub_E_IC(T * /*_pL*/, U *_pR)
 {
-    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
     return pOut;
@@ -1687,7 +1687,7 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     {
         if (piDims1[i] != piDims2[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1935,8 +1935,8 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
     {
         if (piDims1[i] != piDims2[i])
         {
-            wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"-", _pL->DimToString().c_str(), _pR->DimToString().c_str());
+            char pMsg[bsiz];
+            os_sprintf(pMsg, _("Error: operator %s: Matrix dimensions must agree (op1 is %s, op2 is %s).\n"),  "-", _pL->DimToString().c_str(), _pR->DimToString().c_str());
             throw ast::InternalError(pMsg);
         }
     }
@@ -2276,8 +2276,8 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
     {
         if (piDims1[i] != piDims2[i])
         {
-            wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
+            char pMsg[bsiz];
+            os_sprintf(pMsg, _("Error: operator %s: Matrix dimensions must agree (op1 is %s, op2 is %s).\n"),  "+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
             throw ast::InternalError(pMsg);
         }
     }
@@ -2344,7 +2344,7 @@ template<> InternalType* sub_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _p
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {
         //dimensions not match
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
     }
 
     types::Sparse* pSPOut = _pL->substract(*_pR);
@@ -2505,7 +2505,7 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
     }
     else
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
     }
 }
 
@@ -2628,7 +2628,7 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
 
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
     }
 
     //SP - D

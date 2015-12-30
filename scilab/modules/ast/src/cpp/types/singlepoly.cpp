@@ -318,18 +318,18 @@ void SinglePoly::updateRank(void)
     }
 }
 
-bool SinglePoly::toString(std::wostringstream& ostr)
+bool SinglePoly::toString(std::ostringstream& ostr)
 {
-    ostr << L"FIXME : implement SinglePoly::toString" << std::endl;
+    ostr << "FIXME : implement SinglePoly::toString" << std::endl;
     return true;
 }
 
-void SinglePoly::toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef)
+void SinglePoly::toStringReal(const std::string& _szVar, std::list<std::string>* _pListExp, std::list<std::string>* _pListCoef)
 {
     toStringInternal(m_pRealData, _szVar, _pListExp, _pListCoef);
 }
 
-void SinglePoly::toStringImg(const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef)
+void SinglePoly::toStringImg(const std::string& _szVar, std::list<std::string>* _pListExp, std::list<std::string>* _pListCoef)
 {
     if (isComplex() == false)
     {
@@ -341,20 +341,20 @@ void SinglePoly::toStringImg(const std::wstring& _szVar, std::list<std::wstring>
     toStringInternal(m_pImgData, _szVar, _pListExp, _pListCoef);
 }
 
-bool SinglePoly::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
+bool SinglePoly::subMatrixToString(std::ostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
 {
     return false;
 }
 
-void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef)
+void SinglePoly::toStringInternal(double *_pdblVal, const std::string& _szVar, std::list<std::string>* _pListExp, std::list<std::string>* _pListCoef)
 {
     int iLineLen = ConfigVariable::getConsoleWidth();
 
-    std::wostringstream ostemp;
-    std::wostringstream ostemp2;
+    std::ostringstream ostemp;
+    std::ostringstream ostemp2;
 
-    ostemp << L" ";
-    ostemp2 << L" ";
+    ostemp << " ";
+    ostemp2 << " ";
 
     int iLen = 0;
     int iLastFlush = 2;
@@ -369,11 +369,11 @@ void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, 
             {
                 iLastFlush = i;
                 _pListExp->push_back(ostemp2.str());
-                ostemp2.str(L""); //reset stream
+                ostemp2.str(""); //reset stream
                 addSpaces(&ostemp2, 11); //take from scilab ... why not ...
 
                 _pListCoef->push_back(ostemp.str());
-                ostemp.str(L""); //reset stream
+                ostemp.str(""); //reset stream
                 addSpaces(&ostemp, 11); //take from scilab ... why not ...
             }
 
@@ -411,13 +411,13 @@ void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, 
 
     if (iLastFlush != 0)
     {
-        if (ostemp.str() == L" ")
+        if (ostemp.str() == " ")
         {
             ostemp << L"  0";
             addSpaces(&ostemp2, static_cast<int>(ostemp.str().size()));
         }
 
-        if (ostemp2.str() == L" ")
+        if (ostemp2.str() == " ")
         {
             // -1 because ostemp2 have already a space
             addSpaces(&ostemp2, static_cast<int>(ostemp.str().size()) - 1);

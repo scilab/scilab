@@ -14,7 +14,6 @@
 #include "double.hxx"
 #include "list.hxx"
 #include "int.hxx"
-#include "localization.hxx"
 #include "scilabWrite.hxx"
 #include "exp.hxx"
 #include "types_tools.hxx"
@@ -135,7 +134,7 @@ bool Struct::transpose(InternalType *& out)
     return false;
 }
 
-bool Struct::extract(const std::wstring & name, InternalType *& out)
+bool Struct::extract(const std::string & name, InternalType *& out)
 {
     if (exists(name))
     {
@@ -143,9 +142,9 @@ bool Struct::extract(const std::wstring & name, InternalType *& out)
     }
     else
     {
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n").c_str(), name.c_str());
-        throw std::wstring(szError);
+        char szError[bsiz];
+        os_sprintf(szError, _("Unknown field : %ls.\n"), name.c_str());
+        throw std::string(szError);
     }
 
     return true;
@@ -164,24 +163,24 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
         std::vector<InternalType *> _out;
         if (arg->isString())
         {
-            std::vector<std::wstring> wstFields;
+            std::vector<std::string> stFields;
             String * pString = arg->getAs<types::String>();
             for (int i = 0; i < pString->getSize(); ++i)
             {
-                std::wstring wstField(pString->get(i));
-                if (this->exists(wstField))
+                std::string stField(pString->get(i));
+                if (this->exists(stField))
                 {
-                    wstFields.push_back(wstField);
+                    stFields.push_back(stField);
                 }
                 else
                 {
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("Field \"%ls\" does not exists\n").c_str(), wstField.c_str());
+                    char szError[bsiz];
+                    os_sprintf(szError, _("Field \"%s\" does not exists\n"), stField.c_str());
                     throw ast::InternalError(szError, 999, e.getLocation());
                 }
             }
 
-            _out = extractFields(wstFields);
+            _out = extractFields(stFields);
             if (_out.size() == 1)
             {
                 InternalType * pIT = _out[0];
@@ -311,7 +310,7 @@ String* Struct::getFieldNames()
     }
 }
 
-bool Struct::exists(const std::wstring& _sKey)
+bool Struct::exists(const std::string& _sKey)
 {
     if (getSize() != 0)
     {
@@ -374,7 +373,7 @@ SingleStruct* Struct::copyValue(SingleStruct* _pData)
     {
         pStr = _pData;
         pStr->IncreaseRef();
-        //std::wcout << L"copyValueWithoutClone -> " << pStr << L" : " << pStr->getRef() << std::endl;
+        //std::wcout << "copyValueWithoutClone -> " << pStr << " : " << pStr->getRef() << std::endl;
     }
     else
     {
@@ -419,12 +418,12 @@ SingleStruct** Struct::allocData(int _iSize)
     return pData;
 }
 
-bool Struct::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
+bool Struct::subMatrixToString(std::ostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
 {
     return true;
 }
 
-Struct* Struct::addField(const std::wstring& _sKey)
+Struct* Struct::addField(const std::string& _sKey)
 {
     Struct* pIT = checkRef(this, &Struct::addField, _sKey);
     if (pIT != this)
@@ -446,7 +445,7 @@ Struct* Struct::addField(const std::wstring& _sKey)
     return this;
 }
 
-Struct* Struct::addFieldFront(const std::wstring& _sKey)
+Struct* Struct::addFieldFront(const std::string& _sKey)
 {
     Struct* pIT = checkRef(this, &Struct::addFieldFront, _sKey);
     if (pIT != this)
@@ -468,7 +467,7 @@ Struct* Struct::addFieldFront(const std::wstring& _sKey)
     return this;
 }
 
-Struct* Struct::removeField(const std::wstring& _sKey)
+Struct* Struct::removeField(const std::string& _sKey)
 {
     Struct* pIT = checkRef(this, &Struct::removeField, _sKey);
     if (pIT != this)
@@ -484,51 +483,51 @@ Struct* Struct::removeField(const std::wstring& _sKey)
     return this;
 }
 
-bool Struct::toString(std::wostringstream& ostr)
+bool Struct::toString(std::ostringstream& ostr)
 {
     if (getSize() == 0)
     {
-        ostr << L"0x0 struct array with no field.";
+        ostr << "0x0 struct array with no field.";
     }
     else if (getSize() == 1)
     {
         SingleStruct* pSS =  get(0);
-        String* pwstFields =  pSS->getFieldNames();
-        if (pwstFields->getSize() == 0)
+        String* pstFields =  pSS->getFieldNames();
+        if (pstFields->getSize() == 0)
         {
-            ostr << L"1x1 struct array with no field.";
+            ostr << "1x1 struct array with no field.";
         }
 
-        for (int i = 0 ; i < pwstFields->getSize() ; i++)
+        for (int i = 0 ; i < pstFields->getSize() ; i++)
         {
-            std::wstring wstField(pwstFields->get(i));
+            std::string wstField(pstFields->get(i));
             InternalType* pIT = pSS->get(wstField);
 
-            //                ostr << L"  " << wstField << ": ";
-            ostr << L"  " << wstField << L": ";
+            //                ostr << "  " << wstField << ": ";
+            ostr << "  " << wstField << ": ";
             ostr << pIT->toStringInLine();
             ostr << std::endl;
         }
-        pwstFields->killMe();;
+        pstFields->killMe();;
     }
     else
     {
-        ostr << L"  ";
+        ostr << "  ";
         for (int i = 0 ; i < m_iDims ; i++)
         {
             if (i > 0)
             {
-                ostr << L"x";
+                ostr << "x";
             }
             ostr << m_piDims[i];
         }
-        ostr << L" struct array with ";
+        ostr << " struct array with ";
 
         String* pwstFields = getFieldNames();
         ostr <<  L"fields:" << std::endl;
         for (int i = 0 ; i < pwstFields->getSize() ; i++)
         {
-            ostr << L"    " << pwstFields->get(i) << std::endl;
+            ostr << "    " << pwstFields->get(i) << std::endl;
         }
         pwstFields->killMe();
     }
@@ -536,32 +535,32 @@ bool Struct::toString(std::wostringstream& ostr)
     return true;
 }
 
-List* Struct::extractFieldWithoutClone(const std::wstring& _wstField)
+List* Struct::extractFieldWithoutClone(const std::string& _stField)
 {
     List* pL = new List();
     for (int j = 0 ; j < getSize() ; j++)
     {
-        pL->set(j, get(j)->get(_wstField));
+        pL->set(j, get(j)->get(_stField));
     }
 
     return pL;
 }
 
-std::vector<InternalType*> Struct::extractFields(std::vector<std::wstring> _wstFields)
+std::vector<InternalType*> Struct::extractFields(const std::vector<std::string>& _stFields)
 {
     std::vector<InternalType*> ResultList;
 
-    for (int i = 0 ; i < (int)_wstFields.size() ; i++)
+    for (int i = 0 ; i < (int)_stFields.size() ; i++)
     {
-        ResultList.push_back(extractField(_wstFields[i]));
+        ResultList.push_back(extractField(_stFields[i]));
     }
 
     return ResultList;
 }
 
-InternalType * Struct::extractField(const std::wstring & wstField)
+InternalType * Struct::extractField(const std::string & wstField)
 {
-    if (wstField == L"dims")
+    if (wstField == "dims")
     {
         Int32 * pDims = new Int32(1, getDims());
         for (int j = 0 ; j < getDims() ; j++)
@@ -638,8 +637,8 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
                 pFields = new String(1, 2);
             }
 
-            pFields->set(0, L"st");
-            pFields->set(1, L"dims");
+            pFields->set(0, "st");
+            pFields->set(1, "dims");
 
             ResultList.push_back(pFields);
         }
@@ -727,23 +726,23 @@ Struct* Struct::resize(int* _piDims, int _iDims)
 
 InternalType* Struct::insertWithoutClone(typed_list* _pArgs, InternalType* _pSource)
 {
-    //std::wcout << L"insertWithoutClone start" << std::endl;
+    //std::wcout << "insertWithoutClone start" << std::endl;
     m_bDisableCloneInCopyValue = true;
     InternalType* pIT = insert(_pArgs, _pSource);
     _pSource->IncreaseRef();
-    //std::wcout << L"insertWithoutClone -> " << _pSource << L" : " << _pSource->getRef() << std::endl;
+    //std::wcout << "insertWithoutClone -> " << _pSource << " : " << _pSource->getRef() << std::endl;
     m_bDisableCloneInCopyValue = false;
-    //std::wcout << L"insertWithoutClone end" << std::endl;
+    //std::wcout << "insertWithoutClone end" << std::endl;
     return pIT;
 }
 
 InternalType* Struct::extractWithoutClone(typed_list* _pArgs)
 {
-    //std::wcout << L"extractWithoutClone start" << std::endl;
+    //std::wcout << "extractWithoutClone start" << std::endl;
     m_bDisableCloneInCopyValue = true;
     InternalType* pIT = extract(_pArgs);
     m_bDisableCloneInCopyValue = false;
-    //std::wcout << L"extractWithoutClone end" << std::endl;
+    //std::wcout << "extractWithoutClone end" << std::endl;
     return pIT;
 }
 

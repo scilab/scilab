@@ -17,7 +17,7 @@ namespace analysis
 
 void AnalysisVisitor::visit(ast::SimpleVar & e)
 {
-    logger.log(L"SimpleVar", e.getSymbol().getName(), e.getLocation());
+    logger.log("SimpleVar", e.getSymbol().getName(), e.getLocation());
     symbol::Symbol & sym = e.getSymbol();
     Info & info = dm.read(sym, &e);
     Result & res = e.getDecorator().setResult(info.type);

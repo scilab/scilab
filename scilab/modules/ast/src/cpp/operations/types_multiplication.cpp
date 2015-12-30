@@ -59,7 +59,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -76,7 +76,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplyDoubleByPoly(pL, pR, (Polynom**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -93,7 +93,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplyPolyByDouble(pL, pR, (Polynom**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -110,7 +110,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplyPolyByPoly(pL, pR, (Polynom**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -127,7 +127,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplySparseBySparse(pL, pR, (Sparse**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -144,7 +144,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplyDoubleBySparse(pL, pR, (GenericType**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -161,7 +161,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplySparseByDouble(pL, pR, (GenericType**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -1350,8 +1350,8 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
         //call overload
         return 0;
     }
-    
-    if(_pSparse->getCols() != _pDouble->getRows())
+
+    if (_pSparse->getCols() != _pDouble->getRows())
     {
         return 1;
     }
@@ -1484,8 +1484,8 @@ int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType** 
         //call overload
         return 0;
     }
-    
-    if(_pSparse->getRows() != _pDouble->getRows() || _pSparse->getCols() != _pDouble->getCols())
+
+    if (_pSparse->getRows() != _pDouble->getRows() || _pSparse->getCols() != _pDouble->getCols())
     {
         return 1;
     }

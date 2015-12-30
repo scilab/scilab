@@ -156,12 +156,11 @@ public:
         }
     }
 
-    inline static void write(std::fstream & out, const std::wstring & str)
+    inline static void write(std::fstream & out, const std::string & str)
     {
-        const std::string _str = scilab::UTF8::toUTF8(str);
-        uint32_t n = _str.size();
+        uint32_t n = str.size();
         out.write((char *)&n, sizeof(uint32_t));
-        out.write(_str.c_str(), sizeof(char) * n);
+        out.write(str.c_str(), sizeof(char) * n);
     }
 
     inline static void write(std::fstream & out, const uint64_t n)
@@ -187,18 +186,15 @@ public:
         write(out, loc.last_column);
     }
 
-    inline static std::wstring readWstring(std::fstream & in)
+    inline static std::string readString(std::fstream & in)
     {
         uint32_t n;
         in.read((char*)&n, sizeof(uint32_t));
         char * buf = new char[n + 1];
         buf[n] = '\0';
         in.read(buf, n * sizeof(char));
-        wchar_t * wstr = to_wide_string(buf);
-        std::wstring str(wstr);
+        std::string str(buf);
         delete[] buf;
-        FREE(wstr);
-
         return str;
     }
 

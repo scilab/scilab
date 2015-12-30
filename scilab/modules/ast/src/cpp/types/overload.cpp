@@ -19,16 +19,15 @@ extern "C"
 }
 
 #include "configvariable.hxx"
-#include "localization.hxx"
 #include "callable.hxx"
 #include "overload.hxx"
 #include "context.hxx"
 #include "opexp.hxx"
 #include "execvisitor.hxx"
 
-std::wstring Overload::buildOverloadName(const std::wstring& _stFunctionName, types::typed_list &in, int /*_iRetCount*/, bool _isOperator, bool _truncated)
+std::string Overload::buildOverloadName(const std::string& _stFunctionName, types::typed_list &in, int /*_iRetCount*/, bool _isOperator, bool _truncated)
 {
-    std::wstring stType0 = in[0]->getShortTypeStr();
+    std::string stType0 = in[0]->getShortTypeStr();
 
     if (_truncated)
     {
@@ -38,38 +37,34 @@ std::wstring Overload::buildOverloadName(const std::wstring& _stFunctionName, ty
     switch (in.size())
     {
         case 0 :
-            return L"%_" + _stFunctionName;
+            return "%_" + _stFunctionName;
         case 2:
             if (_isOperator)
             {
-                return L"%" + stType0 + L"_" + _stFunctionName + L"_" + in[1]->getShortTypeStr();
+                return "%" + stType0 + "_" + _stFunctionName + "_" + in[1]->getShortTypeStr();
             }
         default:
-            return L"%" + stType0 + L"_" + _stFunctionName;
+            return "%" + stType0 + "_" + _stFunctionName;
     }
     return _stFunctionName;
 }
 
-types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
+types::Function::ReturnValue Overload::generateNameAndCall(const std::string& _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
 {
-    std::wstring stFunc = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator);
+    std::string stFunc = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator);
     if (symbol::Context::getInstance()->get(symbol::Symbol(stFunc)))
     {
         return call(stFunc, in, _iRetCount, out, _isOperator);
     }
 
     // if overload doesn't existe try with short name
-    std::wstring stFunc2 = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator, true);
+    std::string stFunc2 = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator, true);
     if (symbol::Context::getInstance()->get(symbol::Symbol(stFunc)))
     {
         types::Function::ReturnValue ret = call(stFunc, in, _iRetCount, out, _isOperator);
         if (ret == types::Function::OK && ConfigVariable::getWarningMode())
         {
-            char* pstFunc2 = wide_string_to_UTF8(stFunc2.c_str());
-            char* pstFunc = wide_string_to_UTF8(stFunc.c_str());
-            sciprint(_("Warning : please rename your overloaded function\n \"%s\" to \"%s\"\n"), pstFunc2, pstFunc);
-            FREE(pstFunc);
-            FREE(pstFunc2);
+            sciprint(_("Warning : please rename your overloaded function\n \"%s\" to \"%s\"\n"), stFunc2.c_str(), stFunc.c_str());
         }
         return ret;
     }
@@ -78,7 +73,7 @@ types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _
     return call(stFunc, in, _iRetCount, out, _isOperator);
 }
 
-types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
+types::Function::ReturnValue Overload::call(const std::string& _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
 {
     types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(_stOverloadingFunctionName));
     types::Callable *pCall = NULL;
@@ -88,20 +83,17 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
         {
             char pstError1[512];
             char pstError2[512];
-            char *pstFuncName = wide_string_to_UTF8(_stOverloadingFunctionName.c_str());
-            wchar_t* pwstError = NULL;
             if (_isOperator)
             {
-                os_sprintf(pstError2, _("check or define function %s for overloading.\n"), pstFuncName);
+                os_sprintf(pstError2, _("check or define function %s for overloading.\n"), _stOverloadingFunctionName.c_str());
                 os_sprintf(pstError1, "%s%s", _("Undefined operation for the given operands.\n"), pstError2);
             }
             else
             {
-                os_sprintf(pstError2, _("  check arguments or define function %s for overloading.\n"), pstFuncName);
+                os_sprintf(pstError2, _("  check arguments or define function %s for overloading.\n"), _stOverloadingFunctionName.c_str());
                 os_sprintf(pstError1, "%s%s", _("Function not defined for given argument type(s),\n"), pstError2);
             }
 
-            FREE(pstFuncName);
             ast::InternalError ie(pstError1);
             ie.SetErrorType(ast::TYPE_EXCEPTION);
             throw ie;
@@ -134,7 +126,7 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
         ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
         if (pCall)
         {
-            if (ConfigVariable::getLastErrorFunction() == L"")
+            if (ConfigVariable::getLastErrorFunction() == "")
             {
                 ConfigVariable::setLastErrorFunction(pCall->getName());
                 ConfigVariable::setLastErrorLine(ie.GetErrorLocation().first_line);
@@ -149,68 +141,68 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
     }
 }
 
-std::wstring Overload::getNameFromOper(const int _oper)
+std::string Overload::getNameFromOper(const int _oper)
 {
     switch (_oper)
     {
         /* standard operators */
         case ast::OpExp::plus :
-            return std::wstring(L"a");
+            return "a";
         case ast::OpExp::unaryMinus :
         case ast::OpExp::minus :
-            return std::wstring(L"s");
+            return "s";
         case ast::OpExp::times :
-            return std::wstring(L"m");
+            return "m";
         case ast::OpExp::rdivide :
-            return std::wstring(L"r");
+            return "r";
         case ast::OpExp::ldivide :
-            return std::wstring(L"l");
+            return "l";
         case ast::OpExp::power :
-            return std::wstring(L"p");
+            return "p";
         /* dot operators */
         case ast::OpExp::dottimes :
-            return std::wstring(L"x");
+            return "x";
         case ast::OpExp::dotrdivide :
-            return std::wstring(L"d");
+            return "d";
         case ast::OpExp::dotldivide :
-            return std::wstring(L"q");
+            return "q";
         case ast::OpExp::dotpower :
-            return std::wstring(L"j");
+            return "j";
         /* Kron operators */
         case ast::OpExp::krontimes :
-            return std::wstring(L"k");
+            return "k";
         case ast::OpExp::kronrdivide :
-            return std::wstring(L"y");
+            return "y";
         case ast::OpExp::kronldivide :
-            return std::wstring(L"z");
+            return "z";
         /* Control Operators ??? */
         case ast::OpExp::controltimes :
-            return std::wstring(L"u");
+            return "u";
         case ast::OpExp::controlrdivide :
-            return std::wstring(L"v");
+            return "v";
         case ast::OpExp::controlldivide :
-            return std::wstring(L"w");
+            return "w";
         case ast::OpExp::eq :
-            return std::wstring(L"o");
+            return "o";
         case ast::OpExp::ne :
-            return std::wstring(L"n");
+            return "n";
         case ast::OpExp::lt :
-            return std::wstring(L"1");
+            return "1";
         case ast::OpExp::le :
-            return std::wstring(L"3");
+            return "3";
         case ast::OpExp::gt :
-            return std::wstring(L"2");
+            return "2";
         case ast::OpExp::ge :
-            return std::wstring(L"4");
+            return "4";
         case ast::OpExp::logicalAnd :
-            return std::wstring(L"h");
+            return "h";
         case ast::OpExp::logicalOr :
-            return std::wstring(L"g");
+            return "g";
         case ast::OpExp::logicalShortCutAnd :
-            return std::wstring(L"h");
+            return "h";
         case ast::OpExp::logicalShortCutOr :
-            return std::wstring(L"g");
+            return "g";
         default :
-            return std::wstring(L"???");
+            return "???";
     }
 }

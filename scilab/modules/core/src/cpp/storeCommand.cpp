@@ -19,7 +19,6 @@ extern "C"
 #include "tasks.hxx"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
-#include "localization.hxx"
 #include "runner.hxx"
 #include "threadmanagement.hxx"
 

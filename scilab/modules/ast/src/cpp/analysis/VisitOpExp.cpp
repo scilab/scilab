@@ -19,7 +19,7 @@ namespace analysis
 
 void AnalysisVisitor::visit(ast::OpExp & e)
 {
-    logger.log(L"OpExp", e.getLocation());
+    logger.log("OpExp", e.getLocation());
     TIType resT(getGVN());
     int tempId = -1;
     bool safe = false;
@@ -260,7 +260,7 @@ void AnalysisVisitor::visit(ast::OpExp & e)
 
 void AnalysisVisitor::visit(ast::NotExp & e)
 {
-    logger.log(L"NotExp", e.getLocation());
+    logger.log("NotExp", e.getLocation());
     e.getExp().accept(*this);
     Result & LR = getResult();
     TIType & LT = LR.getType();
@@ -280,7 +280,7 @@ void AnalysisVisitor::visit(ast::NotExp & e)
 
 void AnalysisVisitor::visit(ast::TransposeExp & e)
 {
-    logger.log(L"TransposeExp", e.getLocation());
+    logger.log("TransposeExp", e.getLocation());
     e.getExp().accept(*this);
     Result & res = getResult();
     const TIType & type = res.getType();

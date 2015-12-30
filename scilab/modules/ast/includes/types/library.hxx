@@ -23,7 +23,7 @@ namespace types
 class EXTERN_AST Library : public GenericType
 {
 public :
-    Library(const std::wstring& _wstPath);
+    Library(const std::string& _path);
     ~Library();
 
     bool isLibrary(void)
@@ -32,14 +32,14 @@ public :
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring getTypeStr()
+    virtual std::string getTypeStr()
     {
-        return L"library";
+        return "library";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring getShortTypeStr()
+    virtual std::string getShortTypeStr()
     {
-        return L"f";
+        return "f";
     }
 
     inline ScilabType getType(void)
@@ -51,22 +51,22 @@ public :
         return IdLibrary;
     }
 
-    bool toString(std::wostringstream& ostr);
+    bool toString(std::ostringstream& ostr) override;
     Library* clone();
     bool isAssignable()
     {
         return true;
     }
 
-    bool extract(const std::wstring& name, InternalType *& out);
+    bool extract(const std::string& name, InternalType *& out);
 
-    void add(const std::wstring& _wstName, MacroFile* _macro);
-    MacroFile* get(const std::wstring& _wstName);
-    int getMacrosName(std::list<std::wstring>& lst);
-    std::wstring getPath();
+    void add(const std::string& _name, MacroFile* _macro);
+    MacroFile* get(const std::string& _name);
+    int getMacrosName(std::list<std::string>& lst);
+    std::string getPath();
 private:
-    std::wstring m_wstPath;
-    typedef std::unordered_map<std::wstring, MacroFile*> MacroMap;
+    std::string m_path;
+    typedef std::unordered_map<std::string, MacroFile*> MacroMap;
     MacroMap m_macros;
 };
 }

@@ -48,9 +48,9 @@ ListInsert* ListInsert::clone(void)
     return new ListInsert(m_pInsert);
 }
 
-bool ListInsert::toString(std::wostringstream& ostr)
+bool ListInsert::toString(std::ostringstream& ostr)
 {
-    ostr << L"FIXME : Implement ListInsert::toString" << std::endl;
+    ostr << "FIXME : Implement ListInsert::toString" << std::endl;
     return true;
 }
 

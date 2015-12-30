@@ -45,14 +45,14 @@ public :
     bool                    operator!=(const InternalType& it);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring     getTypeStr()
+    virtual std::string     getTypeStr()
     {
-        return L"handle";
+        return "handle";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring     getShortTypeStr()
+    virtual std::string     getShortTypeStr()
     {
-        return L"h";
+        return "h";
     }
 
     bool                    hasToString()
@@ -90,7 +90,7 @@ protected :
     }
 
 private :
-    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
+    virtual bool            subMatrixToString(std::ostringstream& ostr, int* _piDims, int _iDims) override;
 
     virtual long long       getNullValue();
     virtual GraphicHandle*  createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

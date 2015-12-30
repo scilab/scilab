@@ -108,7 +108,7 @@ struct OpValue
     /**
      * \brief Overload of the operator <<
      */
-    friend std::wostream & operator<<(std::wostream & out, const OpValue & ov);
+    friend std::ostream & operator<<(std::ostream & out, const OpValue & ov);
 
     /**
      * \struct Hash

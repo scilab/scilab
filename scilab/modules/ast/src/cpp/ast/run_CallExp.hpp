@@ -19,7 +19,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     CoverageInstance::invokeAndStartChrono((void*)&e);
     types::typed_list outTmp;
     types::typed_list inTmp;
-    std::vector<std::wstring> vectOptName;
+    std::vector<std::string> vectOptName;
     std::vector<int> vectNbResult;
 
     int iRetCount = getExpectedSize();
@@ -38,8 +38,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 Exp* pL = &pAssign->getLeftExp();
                 if (!pL->isSimpleVar())
                 {
-                    std::wostringstream os;
-                    os << _W("left side of optional parameter must be a variable") << std::endl;
+                    std::ostringstream os;
+                    os << _("left side of optional parameter must be a variable") << std::endl;
                     CoverageInstance::stopChrono((void*)&e);
                     throw ast::InternalError(os.str(), 999, e.getLocation());
                 }
@@ -135,8 +135,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     if (pIT->getInvokeNbOut() != -1 && pIT->getInvokeNbOut() < iRetCount)
     {
         clearResult();
-        std::wostringstream os;
-        os << _W("Wrong number of output arguments.\n") << std::endl;
+        std::ostringstream os;
+        os << _("Wrong number of output arguments.\n") << std::endl;
         CoverageInstance::stopChrono((void*)&e);
         throw ast::InternalError(os.str(), 999, e.getLocation());
     }
@@ -250,8 +250,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                         pListArg->DecreaseRef();
                         pListArg->killMe();
 
-                        std::wostringstream os;
-                        os << _W("Invalid index.\n");
+                        std::ostringstream os;
+                        os << _("Invalid index.\n");
                         throw ast::InternalError(os.str(), 999, e.getFirstLocation());
                     }
                 }
@@ -265,7 +265,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             if (pIT->isInvokable() == false)
             {
                 // call overload
-                ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, this);
+                ret = Overload::call("%" + pIT->getShortTypeStr() + "_e", in, iRetCount, out, this);
             }
             else
             {
@@ -273,7 +273,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 if (ret == false && pIT->isUserType())
                 {
                     // call overload
-                    ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, this);
+                    ret = Overload::call("%" + pIT->getShortTypeStr() + "_e", in, iRetCount, out, this);
                 }
             }
 
@@ -284,19 +284,15 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     char szError[bsiz];
                     if (pIT->isCallable())
                     {
-                        char* strFName = wide_string_to_UTF8(pIT->getAs<types::Callable>()->getName().c_str());
+                        const char* strFName = pIT->getAs<types::Callable>()->getName().c_str();
                         os_sprintf(szError, _("%s: Wrong number of output argument(s): %d expected.\n"), strFName, out.size());
-                        FREE(strFName);
                     }
                     else
                     {
                         os_sprintf(szError, _("%s: Wrong number of output argument(s): %d expected.\n"), "extract", out.size());
                     }
 
-                    wchar_t* wError = to_wide_string(szError);
-                    std::wstring err(wError);
-                    FREE(wError);
-                    throw InternalError(err, 999, e.getLocation());
+                    throw InternalError(szError, 999, e.getLocation());
                 }
 
                 setExpectedSize(iSaveExpectedSize);
@@ -333,8 +329,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             }
             else
             {
-                std::wostringstream os;
-                os << _W("Invalid index.\n");
+                std::ostringstream os;
+                os << _("Invalid index.\n");
                 throw ast::InternalError(os.str(), 999, e.getFirstLocation());
             }
         }
@@ -409,7 +405,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
             if (pIT->isCell() == false)
             {
                 CoverageInstance::stopChrono((void*)&e);
-                throw ast::InternalError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, e.getFirstLocation());
+                throw ast::InternalError(_("[error] Cell contents reference from a non-cell array object.\n"), 999, e.getFirstLocation());
             }
             //Create list of indexes
             ast::exps_t exps = e.getArgs();
@@ -419,8 +415,8 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
             {
                 // Case a{}
                 delete pArgs;
-                std::wostringstream os;
-                os << _W("Cell : Cannot extract without arguments.\n");
+                std::ostringstream os;
+                os << _("Cell : Cannot extract without arguments.\n");
                 CoverageInstance::stopChrono((void*)&e);
                 throw ast::InternalError(os.str(), 999, e.getFirstLocation());
             }
@@ -430,8 +426,8 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
             if (pList == NULL)
             {
                 delete pArgs;
-                std::wostringstream os;
-                os << _W("inconsistent row/column dimensions\n");
+                std::ostringstream os;
+                os << _("inconsistent row/column dimensions\n");
                 //os << ((*e.args_get().begin())->getLocation()).getLocationString() << std::endl;
                 CoverageInstance::stopChrono((void*)&e);
                 throw ast::InternalError(os.str(), 999, e.getFirstLocation());

@@ -17,7 +17,7 @@ namespace analysis
 
 void AnalysisVisitor::visit(ast::IfExp & e)
 {
-    logger.log(L"IfExp", e.getLocation());
+    logger.log("IfExp", e.getLocation());
     ast::Exp * shortcutExp = nullptr;
 
     // we apply the ConstantVisitor
@@ -114,8 +114,8 @@ void AnalysisVisitor::visit(ast::IfExp & e)
             {
                 ast::SimpleVar & var = static_cast<ast::SimpleVar &>(ce->getName());
                 const symbol::Symbol & sym = var.getSymbol();
-                const std::wstring & name = sym.getName();
-                if (name == L"isempty" && getCM().checkGlobalConstant(sym))
+                const std::string & name = sym.getName();
+                if (name == "isempty" && getCM().checkGlobalConstant(sym))
                 {
                     const ast::exps_t args = ce->getArgs();
                     if (args.size() == 1)

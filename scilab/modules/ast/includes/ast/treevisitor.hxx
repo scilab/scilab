@@ -24,7 +24,7 @@ class EXTERN_AST TreeVisitor : public DummyVisitor
 {
 public:
     TreeVisitor() : l(nullptr), eol(nullptr) {}
-    ~TreeVisitor() 
+    ~TreeVisitor()
     {
         eol->killMe();
         l->killMe();
@@ -65,7 +65,7 @@ public:
         return l;
     }
 
-    static types::List* createVar(const std::wstring& str);
+    static types::List* createVar(const std::string& str);
     static types::List* createConst(types::InternalType* pIT);
     static types::List* createOperation();
     static types::List* createAssign();

@@ -76,14 +76,14 @@ public :
     bool                        operator!=(const InternalType& it);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr()
+    virtual std::string        getTypeStr()
     {
-        return L"struct";
+        return "struct";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr()
+    virtual std::string        getShortTypeStr()
     {
-        return L"st";
+        return "st";
     }
     virtual bool                isContainer(void)
     {
@@ -100,17 +100,17 @@ public :
         return false;
     }
 
-    bool                        subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
+    bool                        subMatrixToString(std::ostringstream& ostr, int* _piDims, int _iDims) override;
     String*                     getFieldNames();
-    bool                        exists(const std::wstring& _sKey);
-    Struct*                     addField(const std::wstring& _sKey);
-    Struct*                     addFieldFront(const std::wstring& _sKey);
-    Struct*                     removeField(const std::wstring& _sKey);
-    bool                        toString(std::wostringstream& ostr);
-    List*                       extractFieldWithoutClone(const std::wstring& _wstField);
-    std::vector<InternalType*>  extractFields(std::vector<std::wstring> _wstFields);
+    bool                        exists(const std::string& _sKey);
+    Struct*                     addField(const std::string& _sKey);
+    Struct*                     addFieldFront(const std::string& _sKey);
+    Struct*                     removeField(const std::string& _sKey);
+    bool                        toString(std::ostringstream& ostr) override;
+    List*                       extractFieldWithoutClone(const std::string& _wstField);
+    std::vector<InternalType*>  extractFields(const std::vector<std::string>& _wstFields);
     std::vector<InternalType*>  extractFields(typed_list* _pArgs);
-    inline InternalType *       extractField(const std::wstring& wstField);
+    inline InternalType *       extractField(const std::string& wstField);
 
     Struct*                     resize(int* _piDims, int _iDims);
     Struct*                     resize(int _iNewRows, int _iNewCols);
@@ -121,7 +121,7 @@ public :
     void                        setCloneInCopyValue(bool _val);
 
     using ArrayOf<SingleStruct *>::extract;
-    bool extract(const std::wstring& name, InternalType *& out);
+    bool extract(const std::string& name, InternalType *& out);
 
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e) override;
 

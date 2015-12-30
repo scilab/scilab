@@ -318,7 +318,7 @@ bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool
             if (GVN::Value * const v = _res.getConstant().getGVNValue())
             {
                 GVN::Value * w = v;
-                if (GVN::Value * const dollar = getGVN().getExistingValue(symbol::Symbol(L"$")))
+                if (GVN::Value * const dollar = getGVN().getExistingValue(symbol::Symbol("$")))
                 {
                     if (GVN::Value * const x = SymbolicList::evalDollar(getGVN(), v, dollar, dim.getValue()))
                     {

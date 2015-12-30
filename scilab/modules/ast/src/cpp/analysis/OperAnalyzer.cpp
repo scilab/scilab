@@ -106,15 +106,15 @@ ast::MemfillExp * OperAnalyzer::analyzeMemfill(AnalysisVisitor & visitor, ast::O
         ast::CallExp & ce = static_cast<ast::CallExp &>(L);
         if (ce.getName().isSimpleVar())
         {
-            const std::wstring & name = static_cast<ast::SimpleVar &>(ce.getName()).getSymbol().getName();
-            if (name == L"ones")
+            const std::string & name = static_cast<ast::SimpleVar &>(ce.getName()).getSymbol().getName();
+            if (name == "ones")
             {
                 value = 1;
                 args = ce.getArgs();
                 constant = &R;
                 callAtLeft = true;
             }
-            else if (name == L"zeros")
+            else if (name == "zeros")
             {
                 value = 0;
                 args = ce.getArgs();
@@ -131,15 +131,15 @@ ast::MemfillExp * OperAnalyzer::analyzeMemfill(AnalysisVisitor & visitor, ast::O
             ast::CallExp & ce = static_cast<ast::CallExp &>(R);
             if (ce.getName().isSimpleVar())
             {
-                const std::wstring & name = static_cast<ast::SimpleVar &>(ce.getName()).getSymbol().getName();
-                if (name == L"ones")
+                const std::string & name = static_cast<ast::SimpleVar &>(ce.getName()).getSymbol().getName();
+                if (name == "ones")
                 {
                     value = 1;
                     args = ce.getArgs();
                     constant = &L;
                     callAtLeft = false;
                 }
-                else if (name == L"zeros")
+                else if (name == "zeros")
                 {
                     value = 0;
                     args = ce.getArgs();

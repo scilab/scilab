@@ -68,16 +68,16 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             {
                 if (second->isStringExp())
                 {
-                    const std::wstring & arg2 = static_cast<ast::StringExp *>(second)->getValue();
-                    if (arg2 == L"r")
+                    const std::string & arg2 = static_cast<ast::StringExp *>(second)->getValue();
+                    if (arg2 == "r")
                     {
                         kind = ROWS;
                     }
-                    else if (arg2 == L"c")
+                    else if (arg2 == "c")
                     {
                         kind = COLS;
                     }
-                    else if (arg2 == L"*")
+                    else if (arg2 == "*")
                     {
                         kind = ROWSTIMESCOLS;
                     }

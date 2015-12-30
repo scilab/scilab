@@ -17,19 +17,10 @@
 
 #include "dynlib_ast.h"
 
-EXTERN_AST wchar_t* getTMPDIRW(void);
 EXTERN_AST char* getTMPDIR(void);
-
-EXTERN_AST void setTMPDIRW(const wchar_t* _sci_tmpdir);
 EXTERN_AST void setTMPDIR(const char* _sci_tmpdir);
-
-EXTERN_AST wchar_t* computeTMPDIRW();
 EXTERN_AST char* computeTMPDIR();
-
-EXTERN_AST wchar_t* getenvTMPDIRW(void);
 EXTERN_AST char* getenvTMPDIR(void);
-
-EXTERN_AST void putenvTMPDIRW(const wchar_t* _sci_tmpdir);
 EXTERN_AST void putenvTMPDIR(const char* _sci_tmpdir);
 
 EXTERN_AST void defineTMPDIR();

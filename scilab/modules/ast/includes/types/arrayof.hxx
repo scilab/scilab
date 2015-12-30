@@ -499,7 +499,7 @@ public :
         return pOut;
     }
 
-    virtual bool toString(std::wostringstream& ostr)
+    virtual bool toString(std::ostringstream& ostr)
     {
         int* piDims = new int[m_iDims];
         bool bFinish = parseSubMatrix(ostr, piDims, m_iDims, m_iDims - 1);
@@ -507,7 +507,7 @@ public :
         return bFinish;
     }
 
-    bool parseSubMatrix(std::wostringstream& ostr, int* _piDims, int _iDims, int _iDim)
+    bool parseSubMatrix(std::ostringstream& ostr, int* _piDims, int _iDims, int _iDim)
     {
         bool bFinish = false;
         if (_iDim == 1)
@@ -517,12 +517,12 @@ public :
             if (m_iDims > 2 && m_bPrintFromStart)
             {
                 //only print for dims > 2
-                ostr << L"(:,:";
+                ostr << "(:,:";
                 for (int i = 2 ; i < _iDims ; i++)
                 {
-                    ostr << L"," << (_piDims[i] + 1);
+                    ostr << "," << (_piDims[i] + 1);
                 }
-                ostr << L")" << std::endl << std::endl;
+                ostr << ")" << std::endl << std::endl;
             }
 
             //reset flag to print dims on next call
@@ -562,24 +562,24 @@ public :
         return true;
     }
 
-    virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) = 0;
+    virtual bool subMatrixToString(std::ostringstream& ostr, int* _piDims, int _iDims) = 0;
 
-    virtual std::wstring toStringInLine()
+    virtual std::string toStringInLine()
     {
-        std::wostringstream ostr;
-        ostr << L"[";
+        std::ostringstream ostr;
+        ostr << "[";
 
         for (int i = 0 ; i < m_iDims ; i++)
         {
             if (i > 0)
             {
-                ostr << L"x";
+                ostr << "x";
             }
 
             ostr << m_piDims[i];
         }
 
-        ostr << L" " << getTypeStr() << L"]";
+        ostr << " " << getTypeStr() << "]";
         return ostr.str();
     }
 };

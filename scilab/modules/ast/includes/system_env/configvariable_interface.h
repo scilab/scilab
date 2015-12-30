@@ -14,7 +14,6 @@
 #define __CONFIGVARIABLE_INTERFACE_H__
 
 #include <string.h>
-#include <wchar.h>
 #include "dynlib_ast.h"
 
 #define PROMPTMODE_NORMAL   0   //show new values but not commands
@@ -68,13 +67,13 @@ EXTERN_AST void setWarningMode(int _iMode);
 EXTERN_AST int getWarningStop(void);
 EXTERN_AST void setWarningStop(int _iMode);
 
-EXTERN_AST int checkReferenceModule(const wchar_t* _module);
-EXTERN_AST void addReferenceModule(const wchar_t* _module);
-EXTERN_AST void removeReferenceModule(const wchar_t* _module);
+EXTERN_AST int checkReferenceModule(const char* _module);
+EXTERN_AST void addReferenceModule(const char* _module);
+EXTERN_AST void removeReferenceModule(const char* _module);
 
 EXTERN_AST int getForceQuit();
 
-EXTERN_AST int getEntryPointPosition(wchar_t* _pwstEntryPointName);
+EXTERN_AST int getEntryPointPosition(char* _pstEntryPointName);
 typedef void(*dynlib_ptr)();
 EXTERN_AST dynlib_ptr getEntryPointFromPosition(int position);
 

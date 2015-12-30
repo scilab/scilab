@@ -45,7 +45,7 @@ public:
      * \param _end the ending value
      */
     SymbolicRange(GVN * _gvn, GVN::Value * _start, GVN::Value * _end) : gvn(_gvn), start(_start), end(_end) { }
-    
+
     /**
      * \brief constructor
      * \param _gvn the GVN to use
@@ -63,22 +63,22 @@ public:
     SymbolicRange(GVN & _gvn, int64_t _start, int64_t _end) : SymbolicRange(&_gvn, _gvn.getValue(_start), _gvn.getValue(_end)) { }
 
     inline void set(GVN & _gvn, GVN::Value * _start, GVN::Value * _end)
-	{
-	    gvn = &_gvn;
-	    start = _start;
-	    end = _end;
-	}
+    {
+        gvn = &_gvn;
+        start = _start;
+        end = _end;
+    }
 
     inline GVN::Value * getStart() const
-	{
-	    return start;
-	}
+    {
+        return start;
+    }
 
     inline GVN::Value * getEnd() const
-	{
-	    return end;
-	}
-    
+    {
+        return end;
+    }
+
     /**
      * \brief Get the associated GVN
      * \return the GVN
@@ -220,9 +220,9 @@ public:
     /**
      * \brief Overload of the << operator
      */
-    friend inline std::wostream & operator<<(std::wostream & out, const SymbolicRange & r)
+    friend inline std::ostream & operator<<(std::ostream & out, const SymbolicRange & r)
     {
-        out << L"[" << *r.start->poly << L" ; " << *r.end->poly << L"]";
+        out << "[" << *r.start->poly << " ; " << *r.end->poly << "]";
 
         return out;
     }

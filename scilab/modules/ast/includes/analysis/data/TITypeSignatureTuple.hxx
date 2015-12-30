@@ -28,11 +28,11 @@ struct TITypeSignature
 
     TITypeSignature(const TIType::Type _type, const bool _scalar) : type(_type), scalar(_scalar) { }
 
-    friend std::wostream & operator<<(std::wostream & out, const TITypeSignature & signature)
+    friend std::ostream & operator<<(std::ostream & out, const TITypeSignature & signature)
     {
-        out << L"[ty:" << TIType::toString(signature.type)
-            << L", sc:" << (signature.scalar ? L"T" : L"F")
-            << L"]";
+        out << "[ty:" << TIType::toString(signature.type)
+            << ", sc:" << (signature.scalar ? "T" : "F")
+            << "]";
 
         return out;
     }
@@ -95,7 +95,7 @@ struct TITypeSignatureTuple
         }
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const TITypeSignatureTuple & tuple)
+    friend std::ostream & operator<<(std::ostream & out, const TITypeSignatureTuple & tuple)
     {
         tools::printSet(tuple.types, out);
         return out;

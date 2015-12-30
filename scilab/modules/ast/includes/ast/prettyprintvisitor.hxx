@@ -43,7 +43,7 @@ namespace ast
 class EXTERN_AST PrettyPrintVisitor : public GenVisitor<const_kind>
 {
 public:
-    PrettyPrintVisitor(std::wostream & my_ostr = std::wcerr, const bool _printDecoration = false, const bool _colored = false) :
+    PrettyPrintVisitor(std::ostream & my_ostr = std::cerr, const bool _printDecoration = false, const bool _colored = false) :
         ostr(&my_ostr),
         printDecoration(_printDecoration)
     {
@@ -134,7 +134,7 @@ public:
     /** \} */
 
     template<typename T>
-    inline void printInternalType(std::wostringstream & stream, types::InternalType * pIT)
+    inline void printInternalType(std::ostringstream & stream, types::InternalType * pIT)
     {
         T * pT = static_cast<T *>(pIT);
         if (pT)
@@ -142,7 +142,7 @@ public:
             const int size = pT->getSize();
             if (size == 0)
             {
-                stream << L"[]";
+                stream << "[]";
             }
             else if (size == 1)
             {
@@ -150,20 +150,20 @@ public:
             }
             else
             {
-                stream << L"[";
+                stream << "[";
                 const int _size = std::min(4, size);
                 for (unsigned int i = 0; i < _size - 1; ++i)
                 {
-                    stream << pT->get(i) << L",";
+                    stream << pT->get(i) << ",";
                 }
                 stream << pT->get(_size - 1);
                 if (size <= _size)
                 {
-                    stream << L"]";
+                    stream << "]";
                 }
                 else
                 {
-                    stream << L"...";
+                    stream << "...";
                 }
             }
         }
@@ -172,16 +172,16 @@ public:
     static bool colored;
 protected:
 
-    std::wostream * ostr;
+    std::ostream* ostr;
     const bool printDecoration;
 
 private:
 
     void START_NODE(const ast::Ast & e);
     void END_NODE(void);
-    void print(const TermColor& cpre, const std::wstring & pre, const Location & loc, const TermColor& cpost, const std::wstring & post, const TermColor& cdeco, const std::wstring & deco);
-    void print(const TermColor& c, const std::wstring & str);
-    void print(const TermColor& c, const std::wstring & str, const Exp & e);
+    void print(const TermColor& cpre, const std::string & pre, const Location & loc, const TermColor& cpost, const std::string & post, const TermColor& cdeco, const std::string & deco);
+    void print(const TermColor& c, const std::string & str);
+    void print(const TermColor& c, const std::string & str, const Exp & e);
     void print(const Exp & e);
     void print(const Location & loc);
 

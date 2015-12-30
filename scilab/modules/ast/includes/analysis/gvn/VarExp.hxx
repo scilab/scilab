@@ -48,12 +48,12 @@ struct VarExp
      * \param vars a map containing association between var number and wstring
      * \return a wstring containing the representation of this VarExp
      */
-    const std::wstring print(const std::map<uint64_t, std::wstring> & vars) const;
+    const std::string print(const std::map<uint64_t, std::string> & vars) const;
 
     /**
      * \brief Overload of the operator <<
      */
-    friend std::wostream & operator<<(std::wostream & out, const VarExp & ve);
+    friend std::ostream & operator<<(std::ostream & out, const VarExp & ve);
 
     /**
      * \brief Overload of the operator <<

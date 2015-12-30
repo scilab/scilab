@@ -35,7 +35,7 @@ const ast::SeqExp & ExistingMacroDef::getOriginalBody()
     return *static_cast<ast::SeqExp *>(original);
 }
 
-const std::wstring & ExistingMacroDef::getName()
+const std::string & ExistingMacroDef::getName()
 {
     return name;
 }
@@ -70,7 +70,7 @@ const ast::SeqExp & DeclaredMacroDef::getOriginalBody()
     return static_cast<ast::SeqExp &>(static_cast<ast::FunctionDec *>(original)->getBody());
 }
 
-const std::wstring & DeclaredMacroDef::getName()
+const std::string & DeclaredMacroDef::getName()
 {
     return static_cast<ast::FunctionDec *>(original)->getSymbol().getName();
 }

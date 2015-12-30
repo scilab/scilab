@@ -150,14 +150,14 @@ struct Variables
     types::InternalType* getAllButCurrentLevel(const Symbol& _key, int _iLevel);
     bool remove(Variable* _var, int _iLevel);
     bool remove(const Symbol& _key, int _iLevel);
-    int getMacrosName(std::list<std::wstring>& lst);
-    int getVarsName(std::list<std::wstring>& lst);
-    bool getVarsNameForWho(std::list<std::wstring>& lstVarName, int* iVarLenMax, bool bSorted = false) const;
-    bool getGlobalNameForWho(std::list<std::wstring>& lstVarName, int* iVarLenMax, bool bSorted = false) const;
-    int getProtectedVarsName(std::list<std::wstring>& lstVarName) const;
-    int getFunctionsName(std::list<std::wstring>& lst);
-    int getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName, int _iLevel);
-    int getFunctionList(std::list<types::Callable *>& lst, std::wstring _stModuleName, int _iLevel);
+    int getMacrosName(std::list<std::string>& lst);
+    int getVarsName(std::list<std::string>& lst);
+    bool getVarsNameForWho(std::list<std::string>& lstVarName, int* iVarLenMax, bool bSorted = false) const;
+    bool getGlobalNameForWho(std::list<std::string>& lstVarName, int* iVarLenMax, bool bSorted = false) const;
+    int getProtectedVarsName(std::list<std::string>& lstVarName) const;
+    int getFunctionsName(std::list<std::string>& lst);
+    int getFunctionList(std::list<Symbol>& lst, const std::string& _stModuleName, int _iLevel);
+    int getFunctionList(std::list<types::Callable *>& lst, const std::string& _stModuleName, int _iLevel);
     int getVarsToVariableBrowser(std::list<Variable*>& lst);
     bool putInPreviousScope(Variable* _var, types::InternalType* _pIT, int _iLevel);
 

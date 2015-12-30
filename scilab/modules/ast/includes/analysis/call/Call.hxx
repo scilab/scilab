@@ -21,42 +21,42 @@
 
 namespace analysis
 {
-    class Call
+class Call
+{
+
+protected:
+
+    const std::string name;
+    std::vector<TIType> args;
+
+public:
+
+    Call(const std::string & _name, const std::vector<TIType> & _args) : name(_name), args(_args) { }
+    Call(const std::string & _name, const TIType & _arg) : name(_name), args(1, _arg) { }
+    Call(const std::string & _name) : name(_name) { }
+    Call(Call && call) : name(call.name), args(call.args) { }
+
+    inline const std::string & getName() const
     {
+        return name;
+    }
 
-    protected:
+    inline void setArgs(const std::vector<TIType> & _args)
+    {
+        args = _args;
+    }
 
-        const std::wstring name;
-        std::vector<TIType> args;
+    inline const std::vector<TIType> & getArgs() const
+    {
+        return args;
+    }
 
-    public:
-
-        Call(const std::wstring & _name, const std::vector<TIType> & _args) : name(_name), args(_args) { }
-	Call(const std::wstring & _name, const TIType & _arg) : name(_name), args(1, _arg) { }
-        Call(const std::wstring & _name) : name(_name) { }
-        Call(Call && call) : name(call.name), args(call.args) { }
-
-        inline const std::wstring & getName() const
-            {
-                return name;
-            }
-
-        inline void setArgs(const std::vector<TIType> & _args)
-            {
-                args = _args;
-            }
-
-        inline const std::vector<TIType> & getArgs() const
-            {
-                return args;
-            }
-
-        friend std::wostream & operator<<(std::wostream & out, const Call & res)
-            {
-                out << L"Call " << res.name;
-                return out;
-            }
-    };
+    friend std::ostream & operator<<(std::ostream & out, const Call & res)
+    {
+        out << "Call " << res.name;
+        return out;
+    }
+};
 
 } // namespace analysis
 

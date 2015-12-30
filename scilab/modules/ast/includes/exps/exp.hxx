@@ -258,98 +258,98 @@ public:
         SMALLINTSELECTEXP,
     };
 
-    const std::wstring getTypeString() const
+    const std::string getTypeString() const
     {
         switch (getType())
         {
             case SIMPLEVAR:
-                return L"SimpleVar";
+                return "SimpleVar";
             case DOLLARVAR:
-                return L"DollarVar";
+                return "DollarVar";
             case COLONVAR:
-                return L"ColonVar";
+                return "ColonVar";
             case ARRAYLISTVAR:
-                return L"ArrayListVar";
+                return "ArrayListVar";
             case DOUBLEEXP:
-                return L"DoubleExp";
+                return "DoubleExp";
             case BOOLEXP:
-                return L"BoolExp";
+                return "BoolExp";
             case STRINGEXP:
-                return L"StringExp";
+                return "StringExp";
             case COMMENTEXP:
-                return L"CommentExp";
+                return "CommentExp";
             case CONSTEXP:
-                return L"ConstExp";
+                return "ConstExp";
             case NILEXP:
-                return L"NilExp";
+                return "NilExp";
             case CALLEXP:
-                return L"CallExp";
+                return "CallExp";
             case CELLCALLEXP:
-                return L"CellCallExp";
+                return "CellCallExp";
             case OPEXP:
-                return L"OpExp";
+                return "OpExp";
             case LOGICALOPEXP:
-                return L"LogicalOpExp";
+                return "LogicalOpExp";
             case ASSIGNEXP:
-                return L"AssignExp";
+                return "AssignExp";
             case IFEXP:
-                return L"IfExp";
+                return "IfExp";
             case WHILEEXP:
-                return L"WhileExp";
+                return "WhileExp";
             case FOREXP:
-                return L"ForExp";
+                return "ForExp";
             case BREAKEXP:
-                return L"BreakExp";
+                return "BreakExp";
             case CONTINUEEXP:
-                return L"ContinueExp";
+                return "ContinueExp";
             case TRYCATCHEXP:
-                return L"TryCatchExp";
+                return "TryCatchExp";
             case SELECTEXP:
-                return L"SelectExp";
+                return "SelectExp";
             case CASEEXP:
-                return L"CaseExp";
+                return "CaseExp";
             case RETURNEXP:
-                return L"ReturnExp";
+                return "ReturnExp";
             case FIELDEXP:
-                return L"FieldExp";
+                return "FieldExp";
             case NOTEXP:
-                return L"NotExp";
+                return "NotExp";
             case TRANSPOSEEXP:
-                return L"TransposeExp";
+                return "TransposeExp";
             case MATRIXEXP:
-                return L"MatrixExp";
+                return "MatrixExp";
             case MATRIXLINEEXP:
-                return L"MatrixLineExp";
+                return "MatrixLineExp";
             case CELLEXP:
-                return L"CellExp";
+                return "CellExp";
             case SEQEXP:
-                return L"SeqExp";
+                return "SeqExp";
             case ARRAYLISTEXP:
-                return L"ArrayListExp";
+                return "ArrayListExp";
             case ASSIGNLISTEXP:
-                return L"AssignListExp";
+                return "AssignListExp";
             case VARDEC:
-                return L"VarDec";
+                return "VarDec";
             case FUNCTIONDEC:
-                return L"FunctionDec";
+                return "FunctionDec";
             case LISTEXP:
-                return L"ListExp";
+                return "ListExp";
             case OPTIMIZEDEXP:
-                return L"OptimizedExp";
+                return "OptimizedExp";
             case MEMFILLEXP:
-                return L"MemfillExp";
+                return "MemfillExp";
             case DAXPYEXP:
-                return L"DAXPYExp";
+                return "DAXPYExp";
             case STRINGSELECTEXP:
-                return L"StringSelectExp";
+                return "StringSelectExp";
             case TABLEINTSELECTEXP:
-                return L"TableIntSelectExp";
+                return "TableIntSelectExp";
             case MAPINTSELECTEXP:
-                return L"MapIntSelectExp";
+                return "MapIntSelectExp";
             case SMALLINTSELECTEXP:
-                return L"SmallIntSelectExp";
+                return "SmallIntSelectExp";
             default:
-                return L"????Exp";
+                return "????Exp";
         }
     }
 

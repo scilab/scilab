@@ -34,8 +34,8 @@ public:
     virtual void onStop(int index) = 0; //when a bp is trigger
     virtual void onResume() = 0;//when "play" is trigger
     virtual void onAbort() = 0;//when execution is abort
-    virtual void onErrorInFile(const std::wstring& filemane) = 0;//when an error is trigger in a file
-    virtual void onErrorInScript(const std::wstring& funcname) = 0;//when an error is trigger in a script
+    virtual void onErrorInFile(const std::string& filemane) = 0;//when an error is trigger in a file
+    virtual void onErrorInScript(const std::string& funcname) = 0;//when an error is trigger in a script
     virtual void onQuit() = 0; //when debugger is killed or replace by another one
 
     virtual void updateBreakpoints() = 0;

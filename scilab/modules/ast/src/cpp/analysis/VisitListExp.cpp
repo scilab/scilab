@@ -18,7 +18,7 @@ namespace analysis
 
 void AnalysisVisitor::visit(ast::ListExp & e)
 {
-    logger.log(L"ListExp", e.getLocation());
+    logger.log("ListExp", e.getLocation());
     if (e.getParent()->isVarDec())
     {
         visitInVarDecCtxt(e);

@@ -61,16 +61,16 @@ struct Printer
     {
     }
     template<typename T>
-    std::wstring emptyName( /* */) const
+    std::string emptyName( /* */) const
     {
-        return L" zero";
+        return " zero";
     }
 
     template<typename T>
-    std::wstring operator()(T const& t) const
+    std::string operator()(T const& t) const
     {
         //never call ?
-        std::wostringstream ostr;
+        std::ostringstream ostr;
         ostr.precision(p);
         ostr << t;
         return ostr.str();
@@ -79,22 +79,22 @@ struct Printer
 };
 
 template<>
-std::wstring Printer::operator()(bool const& b) const
+std::string Printer::operator()(bool const& b) const
 {
     if (b)
     {
-        return L"T";
+        return "T";
     }
     else
     {
-        return L"F";
+        return "F";
     }
 }
 
 template<>
-std::wstring Printer::operator()(double const& d) const
+std::string Printer::operator()(double const& d) const
 {
-    std::wostringstream ostr;
+    std::ostringstream ostr;
     DoubleFormat df;
     getDoubleFormat(d, &df);
     addDoubleValue(&ostr, d, &df);
@@ -102,9 +102,9 @@ std::wstring Printer::operator()(double const& d) const
 }
 
 template<>
-std::wstring Printer::operator()(std::complex<double > const& c) const
+std::string Printer::operator()(std::complex<double > const& c) const
 {
-    std::wostringstream ostr;
+    std::ostringstream ostr;
     int iLen = 0;
     DoubleFormat dfR, dfI;
     getComplexFormat(c.real(), c.imag(), &iLen, &dfR, &dfI);
@@ -113,33 +113,33 @@ std::wstring Printer::operator()(std::complex<double > const& c) const
 }
 
 template<>
-std::wstring Printer::emptyName<bool>() const
+std::string Printer::emptyName<bool>() const
 {
-    return L"False";
+    return "False";
 }
 
 
-template<typename T> std::wstring toString(T const& m, int precision)
+template<typename T> std::string toString(T const& m, int precision)
 {
-    std::wostringstream ostr;
+    std::ostringstream ostr;
 
     int iWidthRows  = 0;
     int iWidthCols  = 0;
     getSignedIntFormat(m.rows(), &iWidthRows);
     getSignedIntFormat(m.cols(), &iWidthCols);
 
-    ostr << L"(" ;
+    ostr << "(" ;
     addUnsignedIntValue<unsigned long long>(&ostr, m.rows(), iWidthRows);
     ostr << ",";
     addUnsignedIntValue<unsigned long long>(&ostr, m.cols(), iWidthCols);
-    ostr << L")";
+    ostr << ")";
 
     Printer p(precision);
     if (!m.nonZeros())
     {
         ostr << ( p.emptyName<typename Eigen::internal::traits<T>::Scalar>());
     }
-    ostr << L" sparse matrix\n\n";
+    ostr << " sparse matrix\n\n";
 
     auto * pIColPos      = m.innerIndexPtr();
     auto * pINbItemByRow = m.outerIndexPtr();
@@ -150,11 +150,11 @@ template<typename T> std::wstring toString(T const& m, int precision)
     {
         for (size_t i = pINbItemByRow[j - 1] ; i < pINbItemByRow[j] ; i++)
         {
-            ostr << L"(";
+            ostr << "(";
             addUnsignedIntValue<unsigned long long>(&ostr, (int)j, iWidthRows);
-            ostr << L",";
+            ostr << ",";
             addUnsignedIntValue<unsigned long long>(&ostr, pIColPos[iPos] + 1, iWidthCols);
-            ostr << L")\t" << p(m.valuePtr()[iPos]) << std::endl;
+            ostr << ")\t" << p(m.valuePtr()[iPos]) << std::endl;
 
             iPos++;
         }
@@ -711,10 +711,10 @@ bool Sparse::zero_set()
 }
 
 // TODO: handle precision and line length
-bool Sparse::toString(std::wostringstream& ostr) const
+bool Sparse::toString(std::ostringstream& ostr) const
 {
     int iPrecision = ConfigVariable::getFormatSize();
-    std::wstring res;
+    std::string res;
     if (matrixReal)
     {
         res = ::toString(*matrixReal, iPrecision);
@@ -1841,8 +1841,8 @@ bool Sparse::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/
         InternalType * _out = extract(&in);
         if (!_out)
         {
-            std::wostringstream os;
-            os << _W("Invalid index.\n");
+            std::ostringstream os;
+            os << _("Invalid index.\n");
             throw ast::InternalError(os.str(), 999, e.getLocation());
         }
         out.push_back(_out);
@@ -2233,7 +2233,7 @@ template<typename S> struct GetReal: std::unary_function<typename S::InnerIterat
     }
 };
 template<> struct GetReal< Eigen::SparseMatrix<std::complex<double >, Eigen::RowMajor > >
-        : std::unary_function<Sparse::CplxSparse_t::InnerIterator, double>
+    : std::unary_function<Sparse::CplxSparse_t::InnerIterator, double>
 {
     double operator()( Sparse::CplxSparse_t::InnerIterator it) const
     {
@@ -2906,7 +2906,7 @@ SparseBool::~SparseBool()
 #endif
 }
 
-bool SparseBool::toString(std::wostringstream& ostr) const
+bool SparseBool::toString(std::ostringstream& ostr) const
 {
     ostr << ::toString(*matrixBool, 0);
     return true;
@@ -3794,8 +3794,8 @@ bool SparseBool::invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCoun
         InternalType * _out = extract(&in);
         if (!_out)
         {
-            std::wostringstream os;
-            os << _W("Invalid index.\n");
+            std::ostringstream os;
+            os << _("Invalid index.\n");
             throw ast::InternalError(os.str(), 999, e.getLocation());
         }
         out.push_back(_out);

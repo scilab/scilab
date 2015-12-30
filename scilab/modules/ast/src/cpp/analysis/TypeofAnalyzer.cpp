@@ -32,14 +32,14 @@ bool TypeofAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, 
 
     ast::Exp * arg = args.back();
     arg->accept(visitor);
-    const std::wstring & str = visitor.getResult().getType().getScilabString();
+    const std::string & str = visitor.getResult().getType().getScilabString();
 
     if (!str.empty())
     {
         TIType type(visitor.getGVN(), TIType::STRING);
         Result & res = e.getDecorator().setResult(type);
         res.getConstant() = new types::String(str.c_str());
-        e.getDecorator().setCall(L"typeof");
+        e.getDecorator().setCall("typeof");
         visitor.setResult(res);
         return true;
     }

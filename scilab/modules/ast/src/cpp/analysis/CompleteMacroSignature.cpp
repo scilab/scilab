@@ -43,7 +43,7 @@ const MacroOut * CompleteMacroSignature::analyze(AnalysisVisitor & visitor, cons
 {
     if (signature.lhs <= macrodef->getLhs())
     {
-        visitor.getLogger().log(L"Visit macro ", macrodef->getName());
+        visitor.getLogger().log("Visit macro ", macrodef->getName());
         dm.addBlock(Block::MACRO, &macrodef->getBody());
         FunctionBlock & fblock = *static_cast<FunctionBlock *>(dm.getCurrent());
         fblock.setName(macrodef->getName());
@@ -72,19 +72,19 @@ const MacroOut * CompleteMacroSignature::analyze(AnalysisVisitor & visitor, cons
     return nullptr;
 }
 
-std::wostream & operator<<(std::wostream & out, const CompleteMacroSignature & cms)
+std::ostream & operator<<(std::ostream & out, const CompleteMacroSignature & cms)
 {
-    out << L"Complete Macro Cache:\n";
+    out << "Complete Macro Cache:\n";
     for (const auto & mpcmo : cms.outMap)
     {
-        out << L" * Verified constraints: " << mpcmo.verified << L"\n"
-            << L" * Unverified constraints: ";
+        out << " * Verified constraints: " << mpcmo.verified << "\n"
+            << " * Unverified constraints: ";
         tools::printSet(mpcmo.unverified, out);
-        out << L"\n"
-            << L" * Globals: ";
+        out << "\n"
+            << " * Globals: ";
         tools::printSet(mpcmo.globalConstants, out);
-        out << L"\n"
-            << L"   => " << mpcmo.out.tuple << L"\n";
+        out << "\n"
+            << "   => " << mpcmo.out.tuple << "\n";
     }
     return out;
 }

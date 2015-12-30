@@ -15,7 +15,6 @@
 #include "singlestruct.hxx"
 #include "string.hxx"
 #include "double.hxx"
-#include "localization.hxx"
 #include "scilabWrite.hxx"
 
 namespace types
@@ -42,7 +41,7 @@ SingleStruct::~SingleStruct()
 #endif
 }
 
-SingleStruct::SingleStruct(SingleStruct *_oSingleStructCopyMe) : m_wstFields(_oSingleStructCopyMe->getFields()), m_Data(_oSingleStructCopyMe->getData())
+SingleStruct::SingleStruct(SingleStruct *_oSingleStructCopyMe) : m_stFields(_oSingleStructCopyMe->getFields()), m_Data(_oSingleStructCopyMe->getData())
 {
     for (auto data : m_Data)
     {
@@ -58,15 +57,15 @@ std::vector<InternalType *> & SingleStruct::getData()
     return m_Data;
 }
 
-std::unordered_map<std::wstring, int> & SingleStruct::getFields()
+std::unordered_map<std::string, int> & SingleStruct::getFields()
 {
-    return m_wstFields;
+    return m_stFields;
 }
 
-int SingleStruct::getFieldIndex(const std::wstring & _field)
+int SingleStruct::getFieldIndex(const std::string & _field)
 {
-    const auto i = m_wstFields.find(_field);
-    if (i != m_wstFields.end())
+    const auto i = m_stFields.find(_field);
+    if (i != m_stFields.end())
     {
         return i->second;
     }
@@ -74,7 +73,7 @@ int SingleStruct::getFieldIndex(const std::wstring & _field)
     return -1;
 }
 
-bool SingleStruct::set(const std::wstring& _sKey, InternalType *_typedValue)
+bool SingleStruct::set(const std::string& _sKey, InternalType *_typedValue)
 {
     const int index = getFieldIndex(_sKey);
     if (index == -1)
@@ -106,7 +105,7 @@ bool SingleStruct::set(const std::wstring& _sKey, InternalType *_typedValue)
 }
 
 
-InternalType* SingleStruct::get(const std::wstring& _sKey)
+InternalType* SingleStruct::get(const std::string& _sKey)
 {
     int index = getFieldIndex(_sKey);
     if (index == -1)
@@ -117,7 +116,7 @@ InternalType* SingleStruct::get(const std::wstring& _sKey)
     return m_Data[index];
 }
 
-bool SingleStruct::exists(const std::wstring& _sKey)
+bool SingleStruct::exists(const std::string& _sKey)
 {
     return (getFieldIndex(_sKey) != -1);
 }
@@ -132,15 +131,15 @@ InternalType* SingleStruct::insert(typed_list* _pArgs, InternalType* _pSource)
     //check input param
     if (_pArgs->size() != 1)
     {
-        std::wostringstream os;
-        os << _W("Unable to insert multiple item in a struct.\n");
+        std::ostringstream os;
+        os << _("Unable to insert multiple item in a struct.\n");
         throw ast::InternalError(os.str());
     }
 
     if ((*_pArgs)[0]->isString() == false)
     {
-        std::wostringstream os;
-        os << _W("Assignment between unlike types is not allowed.\n");
+        std::ostringstream os;
+        os << _("Assignment between unlike types is not allowed.\n");
         throw ast::InternalError(os.str());
     }
 
@@ -153,7 +152,7 @@ InternalType* SingleStruct::insert(typed_list* _pArgs, InternalType* _pSource)
     return this;
 }
 
-std::vector<InternalType*> SingleStruct::extract(std::vector<std::wstring> & _stFields)
+std::vector<InternalType*> SingleStruct::extract(std::vector<std::string> & _stFields)
 {
     std::vector<InternalType*> Result;
 
@@ -175,25 +174,25 @@ std::vector<InternalType*> SingleStruct::extract(std::vector<std::wstring> & _st
 
 String* SingleStruct::getFieldNames()
 {
-    String* pOut = new String((int)m_wstFields.size(), 1);
-    for (const auto & field : m_wstFields)
+    String* pOut = new String((int)m_stFields.size(), 1);
+    for (const auto & field : m_stFields)
     {
         pOut->set(field.second, field.first.data());
     }
     return pOut;
 }
 
-bool SingleStruct::removeField(const std::wstring & _sKey)
+bool SingleStruct::removeField(const std::string & _sKey)
 {
-    const auto i = m_wstFields.find(_sKey);
-    if (i != m_wstFields.end())
+    const auto i = m_stFields.find(_sKey);
+    if (i != m_stFields.end())
     {
         const int pos = i->second;
         m_Data[pos]->DecreaseRef();
         m_Data[pos]->killMe();
-        m_wstFields.erase(i);
+        m_stFields.erase(i);
 
-        for (auto & p : m_wstFields)
+        for (auto & p : m_stFields)
         {
             if (p.second > pos)
             {
@@ -207,7 +206,7 @@ bool SingleStruct::removeField(const std::wstring & _sKey)
     return true;
 }
 
-bool SingleStruct::addField(const std::wstring& _sKey)
+bool SingleStruct::addField(const std::string& _sKey)
 {
     if (exists(_sKey))
     {
@@ -219,12 +218,12 @@ bool SingleStruct::addField(const std::wstring& _sKey)
     InternalType* pIT = Double::Empty();
     pIT->IncreaseRef();
     m_Data.push_back(pIT);
-    m_wstFields.emplace(_sKey, m_Data.size() - 1);
+    m_stFields.emplace(_sKey, m_Data.size() - 1);
 
     return true;
 }
 
-bool SingleStruct::addFieldFront(const std::wstring& _sKey)
+bool SingleStruct::addFieldFront(const std::string& _sKey)
 {
     if (exists(_sKey))
     {
@@ -237,28 +236,28 @@ bool SingleStruct::addFieldFront(const std::wstring& _sKey)
     pIT->IncreaseRef();
     m_Data.insert(m_Data.begin(), pIT);
 
-    for (auto & p : m_wstFields)
+    for (auto & p : m_stFields)
     {
         p.second++;
     }
 
-    m_wstFields.emplace(_sKey, 0);
+    m_stFields.emplace(_sKey, 0);
     return true;
 }
 
-bool SingleStruct::toString(std::wostringstream& ostr)
+bool SingleStruct::toString(std::ostringstream& ostr)
 {
     if (m_Data.size() == 0)
     {
-        ostr << L"empty SingleStruct";
+        ostr << "empty SingleStruct";
         return true;
     }
     else
     {
 
-        for (auto & p : m_wstFields)
+        for (auto & p : m_stFields)
         {
-            ostr << p.first << L" : " << m_Data[p.second]->getTypeStr() << std::endl;
+            ostr << p.first << " : " << m_Data[p.second]->getTypeStr() << std::endl;
         }
     }
 
@@ -274,15 +273,15 @@ bool SingleStruct::operator==(const InternalType& it)
 
     SingleStruct* other = const_cast<InternalType &>(it).getAs<SingleStruct>();
 
-    std::unordered_map<std::wstring, int> & otherFieldNames = other->getFields();
+    std::unordered_map<std::string, int> & otherFieldNames = other->getFields();
     std::vector<InternalType*> & otherFieldData = other->getData();
 
-    if (m_wstFields.size() != otherFieldNames.size())
+    if (m_stFields.size() != otherFieldNames.size())
     {
         return false;
     }
 
-    for (const auto & p : m_wstFields)
+    for (const auto & p : m_stFields)
     {
         const auto i = otherFieldNames.find(p.first);
         if (i == otherFieldNames.end() || (*m_Data[p.second] != *otherFieldData[i->second]))

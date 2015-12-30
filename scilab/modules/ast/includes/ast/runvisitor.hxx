@@ -43,7 +43,7 @@ public:
         _resultVect.push_back(nullptr);
         _result = nullptr;
         m_bSingleResult = true;
-        m_pAns = symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"ans"));
+        m_pAns = symbol::Context::getInstance()->getOrCreate(symbol::Symbol("ans"));
     }
 
     ~RunVisitor()
@@ -369,7 +369,7 @@ public :
     void visitprivate(const VarDec & e);
 
     types::InternalType* callOverloadOpExp(OpExp::Oper _oper, types::InternalType* _paramL, types::InternalType* _paramR);
-    types::InternalType* callOverloadMatrixExp(const std::wstring& strType, types::InternalType* _paramL, types::InternalType* _paramR);
+    types::InternalType* callOverloadMatrixExp(const std::string& strType, types::InternalType* _paramL, types::InternalType* _paramR);
 };
 }
 

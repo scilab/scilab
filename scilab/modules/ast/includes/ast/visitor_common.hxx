@@ -43,23 +43,23 @@ types::InternalType* AddElementToVariableFromRow(
     types::InternalType* _poSource,
     int _iRows, int _iCols, int *_piRows);
 
-const std::wstring* getStructNameFromExp(const ast::Exp* _pExp);
+const std::string* getStructNameFromExp(const ast::Exp* _pExp);
 
 bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields);
 
 types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fields, types::InternalType* pIT);
 
 types::InternalType* callOverload(const ast::Exp& e,
-                                  const std::wstring& _strType,
+                                  const std::string& _strType,
                                   types::typed_list* _pArgs,
                                   types::InternalType* _source,
                                   types::InternalType* _dest);
 
-types::InternalType* callOverload(const std::wstring& strType, types::InternalType* _paramL, types::InternalType* _paramR);
+types::InternalType* callOverload(const std::string& strType, types::InternalType* _paramL, types::InternalType* _paramR);
 
 types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs, types::InternalType* _pVar, types::InternalType* _pInsert);
 
 EXTERN_AST void callOnPrompt(void);
-EXTERN_AST ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg = std::wstring(L""));
+EXTERN_AST ast::Exp* callTyper(ast::Exp* _tree, std::string _msg = std::string(""));
 
 #endif //!AST_VISITOR_COMMON_HXX

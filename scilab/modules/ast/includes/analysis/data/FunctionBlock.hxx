@@ -40,7 +40,7 @@ class FunctionBlock : public Block
 {
 
     uint64_t functionId;
-    std::wstring name;
+    std::string name;
     std::vector<symbol::Symbol> in;
     std::vector<symbol::Symbol> out;
     tools::SymbolOrdSet globals;
@@ -61,10 +61,10 @@ public:
     FunctionBlock(const unsigned int id, Block * parent, ast::Exp * exp);
 
     virtual ~FunctionBlock()
-	{
-	    // we got a clone
-	    delete exp;
-	}
+    {
+        // we got a clone
+        delete exp;
+    }
 
     inline ConstraintManager & getConstraintManager()
     {
@@ -74,11 +74,11 @@ public:
     {
         return inValues;
     }
-    inline void setName(const std::wstring & _name)
+    inline void setName(const std::string & _name)
     {
         name = _name;
     }
-    inline const std::wstring & getName() const
+    inline const std::string & getName() const
     {
         return name;
     }
@@ -118,14 +118,14 @@ public:
     }
 
     inline void setFunctionId(const uint64_t id)
-	{
-	    functionId = id;
-	}
+    {
+        functionId = id;
+    }
 
     inline uint64_t getFunctionId() const
-	{
-	    return functionId;
-	}
+    {
+        return functionId;
+    }
 
     inline const MPolyConstraintSet & getVerifiedConstraints() const
     {
@@ -181,7 +181,7 @@ public:
     MacroOut getOuts(CompleteMacroSignature & cms);
     void setInOut(MacroDef * macrodef, const unsigned int rhs, const std::vector<TIType> & _in);
 
-    friend std::wostream & operator<<(std::wostream & out, const FunctionBlock & fblock);
+    friend std::ostream & operator<<(std::ostream & out, const FunctionBlock & fblock);
 };
 
 } // namespace analysis

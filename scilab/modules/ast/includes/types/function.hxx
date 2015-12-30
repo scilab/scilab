@@ -45,32 +45,32 @@ public :
         EntryPointC = 4
     };
 
-    typedef int(*LOAD_DEPS)(const std::wstring&);
+    typedef int(*LOAD_DEPS)(const std::string&);
     typedef int (*INIT_MODULE)(void);
     typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out);
     typedef ReturnValue (*GW_FUNC_OPT)(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out);
 
     Function() : Callable() {};
-    Function(const std::wstring& _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
+    Function(const std::string& _name, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::string& _module);
     ~Function();
 
     //FIXME : Should not return NULL
     virtual Function*       clone();
 
-    static Function*        createFunction(const std::wstring& _wstName, GW_FUNC _pFunc, const std::wstring& _wstModule);
-    static Function*        createFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, const std::wstring& _wstModule);
-    static Function*        createFunction(const std::wstring& _wstName, OLDGW_FUNC _pFunc, const std::wstring& _wstModule);
-    static Function*        createFunction(const std::wstring& _wstName, MEXGW_FUNC _pFunc, const std::wstring& _wstModule);
-    static Function*        createFunction(const std::wstring& _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
-    static Function*        createFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
-    static Function*        createFunction(const std::wstring& _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
-    static Function*        createFunction(const std::wstring& _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
-    static Function*        createFunction(const std::wstring& _wstName, GW_C_FUNC _pFunc, const std::wstring& _wstModule);
-    static Function*        createFunction(const std::wstring& _wstName, GW_C_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
+    static Function*        createFunction(const std::string& _name, GW_FUNC _pFunc, const std::string& _module);
+    static Function*        createFunction(const std::string& _name, GW_FUNC_OPT _pFunc, const std::string& _module);
+    static Function*        createFunction(const std::string& _name, OLDGW_FUNC _pFunc, const std::string& _module);
+    static Function*        createFunction(const std::string& _name, MEXGW_FUNC _pFunc, const std::string& _module);
+    static Function*        createFunction(const std::string& _name, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::string& _module);
+    static Function*        createFunction(const std::string& _name, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::string& _module);
+    static Function*        createFunction(const std::string& _name, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::string& _module);
+    static Function*        createFunction(const std::string& _name, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::string& _module);
+    static Function*        createFunction(const std::string& _name, GW_C_FUNC _pFunc, const std::string& _module);
+    static Function*        createFunction(const std::string& _name, GW_C_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::string& _module);
 
     /*dynamic gateways*/
-    static Function*        createFunction(const std::wstring& _wstFunctionName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule, bool _bCloseLibAfterCall = false);
-    static Function*        createFunction(const std::wstring& _wstFunctionName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, const std::wstring& _wstLoadDepsName, const std::wstring& _wstModule, bool _bCloseLibAfterCall = false);
+    static Function*        createFunction(const std::string& _functionName, const std::string& _entryPointName, const std::string& _libName, FunctionType _iType, LOAD_DEPS _pLoadDeps, const std::string& _module, bool _bCloseLibAfterCall = false);
+    static Function*        createFunction(const std::string& _functionName, const std::string& _entryPointName, const std::string& _libName, FunctionType _iType, const std::string& _loadDepsName, const std::string& _module, bool _bCloseLibAfterCall = false);
 
     inline ScilabType       getType(void)
     {
@@ -88,19 +88,19 @@ public :
 
     void                    whoAmI();
 
-    bool                    toString(std::wostringstream& ostr);
+    bool                    toString(std::ostringstream& ostr) override;
 
     virtual ReturnValue     call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::string    getTypeStr()
     {
-        return L"fptr";
+        return "fptr";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::string    getShortTypeStr()
     {
-        return L"fptr";
+        return "fptr";
     }
 
     GW_FUNC                 getFunc()
@@ -125,7 +125,7 @@ class OptFunction : public Function
 private :
     OptFunction(OptFunction* _Function);
 public :
-    OptFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
+    OptFunction(const std::string& _name, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::string& _module);
 
     Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
     OptFunction*            clone();
@@ -145,7 +145,7 @@ class WrapFunction : public Function
 private:
     WrapFunction(WrapFunction* _pWrapFunction);
 public:
-    WrapFunction(const std::wstring& _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
+    WrapFunction(const std::string& _name, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::string& _module);
 
     Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
     WrapFunction*           clone();
@@ -164,7 +164,7 @@ class WrapCFunction : public Function
 private:
     WrapCFunction(WrapCFunction* _pWrapFunction);
 public:
-    WrapCFunction(const std::wstring& _wstName, GW_C_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
+    WrapCFunction(const std::string& _name, GW_C_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::string& _module);
 
     Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
     WrapCFunction*          clone();
@@ -183,7 +183,7 @@ class WrapMexFunction : public Function
 private :
     WrapMexFunction(WrapMexFunction* _pWrapFunction);
 public :
-    WrapMexFunction(const std::wstring& _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
+    WrapMexFunction(const std::string& _name, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::string& _module);
 
     Callable::ReturnValue call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
     WrapMexFunction*        clone();
@@ -202,20 +202,20 @@ class DynamicFunction : public Function
 private :
     DynamicFunction(DynamicFunction* _pDynamicFunction);
 public :
-    DynamicFunction(const std::wstring& _wstName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule, bool _bCloseLibAfterCall = false);
+    DynamicFunction(const std::string& _name, const std::string& _entryPointName, const std::string& _libName, FunctionType _iType, LOAD_DEPS _pLoadDeps, const std::string& _module, bool _bCloseLibAfterCall = false);
 
     virtual ~DynamicFunction();
 
-    DynamicFunction(const std::wstring& _wstName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, const std::wstring& _wstLoadDepsName, const std::wstring& _wstModule, bool _bCloseLibAfterCall = false);
+    DynamicFunction(const std::string& _name, const std::string& _entryPointName, const std::string& _libName, FunctionType _iType, const std::string& _loadDepsName, const std::string& _module, bool _bCloseLibAfterCall = false);
     Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
 
 private :
     Callable::ReturnValue   Init();
     void                    Clear();
 
-    std::wstring            m_wstLibName;
-    std::wstring            m_wstEntryPoint;
-    std::wstring            m_wstLoadDepsName;
+    std::string             m_libName;
+    std::string             m_entryPoint;
+    std::string             m_loadDepsName;
     bool                    m_bCloseLibAfterCall;
     FunctionType            m_iType;
     GW_FUNC                 m_pFunc;

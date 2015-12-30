@@ -53,7 +53,7 @@ extern "C"
 // }
 //}
 
-void addSign(std::wostringstream * _postr, double _dblVal, bool _bPrintPlusSign, bool _bPaddSign)
+void addSign(std::ostringstream * _postr, double _dblVal, bool _bPrintPlusSign, bool _bPaddSign)
 {
     if (_bPrintPlusSign == true)
     {
@@ -67,7 +67,7 @@ void addSign(std::wostringstream * _postr, double _dblVal, bool _bPrintPlusSign,
         }
         else
         {
-            *_postr << (_dblVal < 0 ? MINUS_STRING : L"");
+            *_postr << (_dblVal < 0 ? MINUS_STRING : "");
         }
     }
 }
@@ -209,24 +209,24 @@ void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, DoubleForm
     }
 }
 
-void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat * _pDF)
+void addDoubleValue(std::ostringstream * _postr, double _dblVal, DoubleFormat * _pDF)
 {
-    wchar_t pwstFormat[32] = {0};
-    wchar_t pwstOutput[32] = {0};     // > @ format max
-    wchar_t pwstSign[32] = {0};
+    char pstFormat[32] = {0};
+    char pstOutput[32] = {0};     // > @ format max
+    char pstSign[32] = {0};
 
     if (_pDF == NULL)
     {
         return;
     }
 
-    const wchar_t* pBlank = L"";
+    const char* pBlank = "";
     if (_pDF->bPrintBlank)
     {
-        pBlank = L" ";
+        pBlank = " ";
     }
 
-    const wchar_t* pSign = MINUS_STRING;
+    const char* pSign = MINUS_STRING;
     if (_dblVal >= 0 || ISNAN(_dblVal))
     {
         if (_pDF->bPrintPlusSign)
@@ -239,21 +239,21 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         }
         else
         {
-            pSign = L"";
+            pSign = "";
         }
     }
 
-    os_swprintf(pwstSign, 32, L"%ls%ls%ls", pBlank, pSign, pBlank);
+    os_sprintf(pstSign, "%s%s%s", pBlank, pSign, pBlank);
 
     if (ISNAN(_dblVal))
     {
         //NaN
-        os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Nan");
+        os_sprintf(pstOutput, "%s%*s", pstSign, _pDF->iPrec, "Nan");
     }
     else if (!finite(_dblVal))
     {
         //Inf
-        os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Inf");
+        os_sprintf(pstOutput, "%s%*s", pstSign, _pDF->iPrec, "Inf");
     }
     else if (_pDF->bExp)
     {
@@ -277,11 +277,11 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
 
         if (_pDF->bPrintPoint)
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%#d.%%0%ddD%%+.02d", pwstSign, _pDF->iPrec);
+            os_sprintf(pstFormat, "%s%%#d.%%0%ddD%%+.02d", pstSign, _pDF->iPrec);
         }
         else
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%d%%0%ddD%%+.02d", pwstSign, _pDF->iPrec);
+            os_sprintf(pstFormat, "%s%%d%%0%ddD%%+.02d", pstSign, _pDF->iPrec);
         }
 
         if ((int)std::round(dblDec) != (int)dblDec)
@@ -297,32 +297,32 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
             dblDec = d1;
         }
 
-        os_swprintf(pwstOutput, 32, pwstFormat, (int)dblEnt, (int)dblDec, (int)dblTemp);
+        os_sprintf(pstOutput, pstFormat, (int)dblEnt, (int)dblDec, (int)dblTemp);
     }
     else if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
     {
         //do not print if _bPrintOne == false && _dblVal == 1
         if (_pDF->bPrintPoint)
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%#-%d.%df", pwstSign, _pDF->iWidth - 1, _pDF->iPrec);
+            os_sprintf(pstFormat, "%s%%#-%d.%df", pstSign, _pDF->iWidth - 1, _pDF->iPrec);
         }
         else
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%-%d.%df", pwstSign, _pDF->iWidth - 2, _pDF->iPrec);  //-2 no point needed
+            os_sprintf(pstFormat, "%s%%-%d.%df", pstSign, _pDF->iWidth - 2, _pDF->iPrec);  //-2 no point needed
         }
 
-        os_swprintf(pwstOutput, 32, pwstFormat, fabs(_dblVal));
+        os_sprintf(pstOutput, pstFormat, fabs(_dblVal));
     }
-    else if (wcslen(pwstSign) != 0)
+    else if (strlen(pstSign) != 0)
     {
-        os_swprintf(pwstOutput, 32, L"%ls", pwstSign);
+        os_sprintf(pstOutput, "%s", pstSign);
     }
 
-    *_postr << pwstOutput;
+    *_postr << pstOutput;
 }
 
 /*
-void addDoubleValue(std::wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
+void addDoubleValue(std::ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
 {
     addSign(_postr, _dblVal, bPrintPlusSign, bPaddSign);
     configureStream(_postr, _iWidth, _iPrec, ' ');
@@ -333,9 +333,9 @@ void addDoubleValue(std::wostringstream *_postr, double _dblVal, int _iWidth, in
     }
 }
 */
-void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _dblI, int _iTotalWidth, DoubleFormat * _pDFR, DoubleFormat * _pDFI)
+void addDoubleComplexValue(std::ostringstream * _postr, double _dblR, double _dblI, int _iTotalWidth, DoubleFormat * _pDFR, DoubleFormat * _pDFI)
 {
-    std::wostringstream ostemp;
+    std::ostringstream ostemp;
 
     /*
      * if R && !C -> R
@@ -424,15 +424,15 @@ void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _d
     *_postr << std::left << ostemp.str();
 }
 
-void addSpaces(std::wostringstream * _postr, int _iSpace)
+void addSpaces(std::ostringstream * _postr, int _iSpace)
 {
     for (int i = 0; i < _iSpace; i++)
     {
-        *_postr << L" ";
+        *_postr << " ";
     }
 }
 
-void configureStream(std::wostringstream * _postr, int _iWidth, int _iPrec, char _cFill)
+void configureStream(std::ostringstream * _postr, int _iWidth, int _iPrec, char _cFill)
 {
     _postr->setf(std::ios::showpoint);
     _postr->width(_iWidth);
@@ -440,14 +440,14 @@ void configureStream(std::wostringstream * _postr, int _iWidth, int _iPrec, char
     _postr->fill(_cFill);
 }
 
-void addColumnString(std::wostringstream& ostr, int _iFrom, int _iTo)
+void addColumnString(std::ostringstream& ostr, int _iFrom, int _iTo)
 {
     if (_iFrom == _iTo)
     {
-        ostr << std::endl << L"         column " << _iFrom << std::endl << std::endl;
+        ostr << std::endl << "         column " << _iFrom << std::endl << std::endl;
     }
     else
     {
-        ostr << std::endl << L"         column " << _iFrom << L" to " << _iTo << std::endl << std::endl;
+        ostr << std::endl << "         column " << _iFrom << " to " << _iTo << std::endl << std::endl;
     }
 }

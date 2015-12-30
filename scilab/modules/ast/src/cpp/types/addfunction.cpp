@@ -20,17 +20,17 @@ extern "C"
 #include "addfunction.h"
 }
 
-void addCStackFunction(const wchar_t* _wstName, OLDGW_FUNC _pFunc, const wchar_t* _wstModule)
+void addCStackFunction(const char* _stName, OLDGW_FUNC _pFunc, const char* _stModule)
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(_wstName, _pFunc, _wstModule));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(_stName, _pFunc, _stModule));
 }
 
-void addCFunction(const wchar_t* _wstName, GW_C_FUNC _pFunc, const wchar_t* _wstModule)
+void addCFunction(const char* _stName, GW_C_FUNC _pFunc, const char* _stModule)
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(_wstName, _pFunc, _wstModule));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(_stName, _pFunc, _stModule));
 }
 
-void addMexFunction(const wchar_t* _wstName, MEXGW_FUNC _pFunc, const wchar_t* _wstModule)
+void addMexFunction(const char* _stName, MEXGW_FUNC _pFunc, const char* _stModule)
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(_wstName, _pFunc, _wstModule));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(_stName, _pFunc, _stModule));
 }

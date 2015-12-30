@@ -27,7 +27,7 @@ namespace analysis
 {
 struct TIType
 {
-    static const std::wstring _boolean_, _ce_, _constant_, _fptr_, _function_, _int16_, _int32_, _int64_, _int8_, _library_, _list_, _mlist_, _polynomial_, _sparse_, _st_, _string_, _tlist_, _uint16_, _uint32_, _uint64_, _uint8_, _unknown_;
+    static const std::string _boolean_, _ce_, _constant_, _fptr_, _function_, _int16_, _int32_, _int64_, _int8_, _library_, _list_, _mlist_, _polynomial_, _sparse_, _st_, _string_, _tlist_, _uint16_, _uint32_, _uint64_, _uint8_, _unknown_;
 
     enum Type { EMPTY = 0, BOOLEAN, COMPLEX, CELL, DOUBLE, FUNCTION, INT16, INT32, INT64, INT8, LIST, LIBRARY, MACRO, MACROFILE, MLIST, POLYNOMIAL, STRING, SPARSE, STRUCT, TLIST, UNKNOWN, UINT16, UINT32, UINT64, UINT8, COUNT };
     Type type;
@@ -473,71 +473,71 @@ struct TIType
         }
     }
 
-    inline static std::wstring toString(Type t)
+    inline static std::string toString(Type t)
     {
         switch (t)
         {
             case EMPTY :
-                return L"[]";
+                return "[]";
             case BOOLEAN :
-                return L"boolean";
+                return "boolean";
             case COMPLEX :
-                return L"complex";
+                return "complex";
             case CELL :
-                return L"cell";
+                return "cell";
             case DOUBLE :
-                return L"double";
+                return "double";
             case FUNCTION :
-                return L"function";
+                return "function";
             case INT16 :
-                return L"int16";
+                return "int16";
             case INT32 :
-                return L"int32";
+                return "int32";
             case INT64 :
-                return L"int64";
+                return "int64";
             case INT8 :
-                return L"int8";
+                return "int8";
             case LIST :
-                return L"list";
+                return "list";
             case LIBRARY :
-                return L"library";
+                return "library";
             case MACRO :
-                return L"macro";
+                return "macro";
             case MACROFILE :
-                return L"macrofile";
+                return "macrofile";
             case MLIST :
-                return L"mlist";
+                return "mlist";
             case POLYNOMIAL :
-                return L"polynomial";
+                return "polynomial";
             case STRING :
-                return L"string";
+                return "string";
             case SPARSE :
-                return L"sparse";
+                return "sparse";
             case STRUCT :
-                return L"struct";
+                return "struct";
             case TLIST :
-                return L"tlist";
+                return "tlist";
             case UNKNOWN :
-                return L"unknown";
+                return "unknown";
             case UINT16 :
-                return L"uint16";
+                return "uint16";
             case UINT32 :
-                return L"uint32";
+                return "uint32";
             case UINT64 :
-                return L"uint64";
+                return "uint64";
             case UINT8 :
-                return L"uint8";
+                return "uint8";
             default :
-                return L"unknown";
+                return "unknown";
         }
     }
 
-    inline const std::wstring & getScilabString() const
+    inline const std::string& getScilabString() const
     {
         return getScilabString(type);
     }
 
-    inline static const std::wstring & getScilabString(Type t)
+    inline static const std::string& getScilabString(Type t)
     {
         switch (t)
         {
@@ -660,84 +660,84 @@ struct TIType
         }
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const TIType & type)
+    friend std::ostream & operator<<(std::ostream & out, const TIType & type)
     {
         switch (type.type)
         {
             case EMPTY :
-                out << L"[]";
+                out << "[]";
                 break;
             case BOOLEAN :
-                out << L"boolean";
+                out << "boolean";
                 break;
             case COMPLEX :
-                out << L"complex";
+                out << "complex";
                 break;
             case CELL :
-                out << L"cell";
+                out << "cell";
                 break;
             case DOUBLE :
-                out << L"double";
+                out << "double";
                 break;
             case FUNCTION :
-                out << L"function";
+                out << "function";
                 break;
             case INT16 :
-                out << L"int16";
+                out << "int16";
                 break;
             case INT32 :
-                out << L"int32";
+                out << "int32";
                 break;
             case INT64 :
-                out << L"int64";
+                out << "int64";
                 break;
             case INT8 :
-                out << L"int8";
+                out << "int8";
                 break;
             case LIST :
-                out << L"list";
+                out << "list";
                 break;
             case LIBRARY :
-                out << L"library";
+                out << "library";
                 break;
             case MACRO :
-                out << L"macro";
+                out << "macro";
                 break;
             case MACROFILE :
-                out << L"macrofile";
+                out << "macrofile";
                 break;
             case MLIST :
-                out << L"mlist";
+                out << "mlist";
                 break;
             case POLYNOMIAL :
-                out << L"polynomial";
+                out << "polynomial";
                 break;
             case STRING :
-                out << L"string";
+                out << "string";
                 break;
             case SPARSE :
-                out << L"sparse";
+                out << "sparse";
                 break;
             case STRUCT :
-                out << L"struct";
+                out << "struct";
                 break;
             case TLIST :
-                out << L"tlist";
+                out << "tlist";
                 break;
             case UNKNOWN :
-                out << L"unknown";
+                out << "unknown";
                 break;
             case UINT16 :
-                out << L"uint16";
+                out << "uint16";
                 break;
             case UINT32 :
-                out << L"uint32";
+                out << "uint32";
                 break;
             case UINT64 :
-                out << L"uint64";
+                out << "uint64";
                 break;
             case UINT8 :
-                out << L"uint8";
+                out << "uint8";
                 break;
             default :
                 break;
@@ -747,11 +747,11 @@ struct TIType
         {
             if (type.isUnknownDims())
             {
-                out << L"[?, ?]";
+                out << "[?, ?]";
             }
             else
             {
-                out << L"[" << type.rows << L", " << type.cols << L"]";
+                out << "[" << type.rows << ", " << type.cols << "]";
             }
         }
 

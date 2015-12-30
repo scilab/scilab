@@ -16,7 +16,7 @@
 namespace analysis
 {
 
-std::unordered_set<std::wstring> ConstantVisitor::constants = init();
+std::unordered_set<std::string> ConstantVisitor::constants = init();
 
 void ConstantVisitor::visit(ast::SimpleVar & e)
 {
@@ -24,7 +24,7 @@ void ConstantVisitor::visit(ast::SimpleVar & e)
     if (evalSymbols)
     {
         const symbol::Symbol & sym = e.getSymbol();
-        const std::wstring & name = sym.getName();
+        const std::string & name = sym.getName();
         if (constants.find(name) != constants.end() && symbol::Context::getInstance()->isOriginalSymbol(sym))
         {
             if (types::InternalType * pIT = symbol::Context::getInstance()->get(sym))
@@ -175,7 +175,7 @@ void ConstantVisitor::visit(ast::CallExp & e)
         const symbol::Symbol & sym = var.getSymbol();
         if (symbol::Context::getInstance()->isOriginalSymbol(sym))
         {
-            const std::wstring & name = sym.getName();
+            const std::string & name = sym.getName();
             ast::exps_t args = e.getArgs();
 
             bool allConstant = true;
@@ -190,7 +190,7 @@ void ConstantVisitor::visit(ast::CallExp & e)
 
             if (allConstant && Checkers::isConst(name, args.size()))
             {
-                if (name == L"argn")
+                if (name == "argn")
                 {
                     if (parent && parent->getAnalyzer(sym)->analyze(*parent, lhs, e))
                     {
@@ -224,7 +224,7 @@ void ConstantVisitor::visit(ast::CallExp & e)
 
             if (parent && args.size() == 1)
             {
-                if (name == L"type" || name == L"inttype")
+                if (name == "type" || name == "inttype")
                 {
                     if (parent->getAnalyzer(sym)->analyze(*parent, 1, e))
                     {
@@ -234,19 +234,19 @@ void ConstantVisitor::visit(ast::CallExp & e)
                         isConstant = true;
                     }
                 }
-                else if (name == L"typeof")
+                else if (name == "typeof")
                 {
                     if (parent->getAnalyzer(sym)->analyze(*parent, 1, e))
                     {
-                        std::wstring wstr;
-                        if (parent->getResult().getConstant().getStrValue(wstr))
+                        std::string str;
+                        if (parent->getResult().getConstant().getStrValue(str))
                         {
-                            e.replace(new ast::StringExp(e.getLocation(), wstr));
+                            e.replace(new ast::StringExp(e.getLocation(), str));
                             isConstant = true;
                         }
                     }
                 }
-                else if (name == L"isreal" || name == L"isscalar")
+                else if (name == "isreal" || name == "isscalar")
                 {
                     if (parent->getAnalyzer(sym)->analyze(*parent, 1, e))
                     {
@@ -472,23 +472,23 @@ void ConstantVisitor::visit(ast::StringSelectExp & e)
 {
 }
 
-std::unordered_set<std::wstring> ConstantVisitor::init()
+std::unordered_set<std::string> ConstantVisitor::init()
 {
-    std::unordered_set<std::wstring> _constants;
-    _constants.emplace(L"%pi");
-    _constants.emplace(L"%eps");
-    _constants.emplace(L"%e");
-    _constants.emplace(L"%i");
-    _constants.emplace(L"%nan");
-    _constants.emplace(L"%inf");
-    _constants.emplace(L"%t");
-    _constants.emplace(L"%f");
-    _constants.emplace(L"%T");
-    _constants.emplace(L"%F");
-    _constants.emplace(L"SCI");
-    _constants.emplace(L"WSCI");
-    _constants.emplace(L"SCIHOME");
-    _constants.emplace(L"TMPDIR");
+    std::unordered_set<std::string> _constants;
+    _constants.emplace("%pi");
+    _constants.emplace("%eps");
+    _constants.emplace("%e");
+    _constants.emplace("%i");
+    _constants.emplace("%nan");
+    _constants.emplace("%inf");
+    _constants.emplace("%t");
+    _constants.emplace("%f");
+    _constants.emplace("%T");
+    _constants.emplace("%F");
+    _constants.emplace("SCI");
+    _constants.emplace("WSCI");
+    _constants.emplace("SCIHOME");
+    _constants.emplace("TMPDIR");
 
     return _constants;
 }

@@ -38,7 +38,7 @@ class EXTERN_AST ConstantVisitor : public ast::Visitor, public Chrono
     unsigned int lhs;
     const bool evalSymbols;
 
-    static std::unordered_set<std::wstring> constants;
+    static std::unordered_set<std::string> constants;
 
 public:
 
@@ -86,7 +86,7 @@ public:
 
 private:
 
-    static std::unordered_set<std::wstring> init();
+    static std::unordered_set<std::string> init();
 
     inline void setResult(const bool val)
     {

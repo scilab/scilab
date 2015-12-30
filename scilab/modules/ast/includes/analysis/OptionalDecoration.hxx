@@ -81,7 +81,7 @@ public:
         ptr = _ptr;
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const OptionalDecoration & od)
+    friend std::ostream & operator<<(std::ostream & out, const OptionalDecoration & od)
     {
         switch (od.ty)
         {

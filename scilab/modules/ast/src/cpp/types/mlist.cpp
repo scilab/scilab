@@ -36,7 +36,7 @@ bool MList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
         InternalType* _out = NULL;
         if (arg->isString())
         {
-            std::list<std::wstring> stFields;
+            std::list<std::string> stFields;
             String * pString = arg->getAs<types::String>();
             for (int i = 0; i < pString->getSize(); ++i)
             {
@@ -68,11 +68,11 @@ bool MList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
 
     try
     {
-        ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, 1, out);
+        ret = Overload::call("%" + getShortTypeStr() + "_e", in, 1, out);
     }
     catch (ast::InternalError & /*se*/)
     {
-        ret = Overload::call(L"%l_e", in, 1, out);
+        ret = Overload::call("%l_e", in, 1, out);
     }
 
     // Remove this from "in" for keep "in" unchanged.

@@ -31,7 +31,7 @@ class EXTERN_AST StepVisitor : public RunVisitorT<StepVisitor>
     {
         for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
         {
-            PrintVisitor *pv = new PrintVisitor(std::wcerr);
+            PrintVisitor *pv = new PrintVisitor(std::cerr);
             (*it)->accept(*pv);
             std::wcerr << std::endl;
         }

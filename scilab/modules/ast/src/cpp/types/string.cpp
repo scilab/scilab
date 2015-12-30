@@ -26,7 +26,7 @@ extern "C"
 }
 
 #define SIZE_BETWEEN_TWO_STRING_VALUES  2
-#define SPACE_BETWEEN_TWO_STRING_VALUES L"  "
+#define SPACE_BETWEEN_TWO_STRING_VALUES "  "
 
 namespace types
 {
@@ -43,19 +43,8 @@ String::~String()
 
 String::String(int _iDims, const int* _piDims)
 {
-    wchar_t** pwsData = NULL;
-    create(_piDims, _iDims, &pwsData, NULL);
-#ifndef NDEBUG
-    Inspector::addItem(this);
-#endif
-}
-
-String::String(const wchar_t* _pwstData)
-{
-    wchar_t** pwsData = NULL;
-    int piDims[] = {1, 1};
-    create(piDims, 2, &pwsData, NULL);
-    set(0, 0, _pwstData);
+    char** data = NULL;
+    create(_piDims, _iDims, &data, NULL);
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -63,12 +52,10 @@ String::String(const wchar_t* _pwstData)
 
 String::String(const char *_pstData)
 {
-    wchar_t** pwsData = NULL;
+    char** data = NULL;
     int piDims[] = {1, 1};
-    create(piDims, 2, &pwsData, NULL);
-    wchar_t* data = to_wide_string(const_cast<char*>(_pstData));
-    set(0, 0, data);
-    FREE(data);
+    create(piDims, 2, &data, NULL);
+    set(0, _pstData);
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -76,23 +63,9 @@ String::String(const char *_pstData)
 
 String::String(int _iRows, int _iCols)
 {
-    wchar_t** pwsData = NULL;
+    char** data = NULL;
     int piDims[] = {_iRows, _iCols};
-    create(piDims, 2, &pwsData, NULL);
-#ifndef NDEBUG
-    Inspector::addItem(this);
-#endif
-}
-
-String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
-{
-    wchar_t** pwsData = NULL;
-    int piDims[] = {_iRows, _iCols};
-    create(piDims, 2, &pwsData, NULL);
-    for (int i = 0 ; i < m_iSize ; i++)
-    {
-        set(i, _pstData[i]);
-    }
+    create(piDims, 2, &data, NULL);
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -137,7 +110,7 @@ void String::deleteImg()
     return;
 }
 
-bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
+bool String::subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iDims*/)
 {
     int iPrecision = ConfigVariable::getFormatSize();
     int iLineLen = ConfigVariable::getConsoleWidth();
@@ -155,8 +128,8 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         _piDims[1]  = 0;
 
         int iPos = getIndex(_piDims);
-        wchar_t* wcsStr = get(iPos);
-        int iCurLen = static_cast<int>(wcslen(wcsStr));
+        char* cStr = get(iPos);
+        int iCurLen = static_cast<int>(strlen(cStr));
         iMaxLen = std::max(iMaxLen, iCurLen);
         iMaxLen = std::min(iMaxLen, iStrMaxSize);
 
@@ -165,25 +138,25 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             int iStrPos = 0;
             while (iCurLen > iStrMaxSize)
             {
-                ostr << L" ";
-                ostr.write(wcsStr + iStrPos, iStrMaxSize);
-                ostr << L" " << std::endl;
+                ostr << " ";
+                ostr.write(cStr + iStrPos, iStrMaxSize);
+                ostr << " " << std::endl;
                 iCurLen -= iStrMaxSize;
                 iStrPos += iStrMaxSize;
             }
 
-            ostr << L" ";
+            ostr << " ";
             configureStream(&ostr, iStrMaxSize, iPrecision, ' ');
-            ostr << std::left << wcsStr + iStrPos;
+            ostr << std::left << cStr + iStrPos;
         }
         else
         {
-            ostr << L" " << wcsStr << std::endl;
+            ostr << " " << cStr << std::endl;
         }
     }
     else if (getCols() == 1)
     {
-        std::wstring spaces(L"");
+        std::string spaces("");
 
         // compte max string size
         int iMaxLen = 0;
@@ -192,7 +165,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             _piDims[1] = 0;
             _piDims[0] = i;
             int iPos = getIndex(_piDims);
-            iMaxLen = std::max(iMaxLen, static_cast<int>(wcslen(get(iPos))));
+            iMaxLen = std::max(iMaxLen, static_cast<int>(strlen(get(iPos))));
             iMaxLen = std::min(iMaxLen, iStrMaxSize);
         }
 
@@ -217,45 +190,45 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             _piDims[1] = 0;
             _piDims[0] = i;
             int iPos = getIndex(_piDims);
-            wchar_t* wcsStr = get(iPos);
-            int iCurLen = static_cast<int>(wcslen(wcsStr));
+            char* cStr = get(iPos);
+            int iCurLen = static_cast<int>(strlen(cStr));
 
-            ostr << L"!";
+            ostr << "!";
             if (iCurLen > iMaxLen)
             {
                 int iStrPos = 0;
                 while (iCurLen > iStrMaxSize)
                 {
-                    ostr.write(wcsStr + iStrPos, iStrMaxSize);
-                    ostr << L"!" << std::endl << L"!";
+                    ostr.write(cStr + iStrPos, iStrMaxSize);
+                    ostr << "!" << std::endl << "!";
                     iCurLen -= iStrMaxSize;
                     iStrPos += iStrMaxSize;
                 }
 
                 configureStream(&ostr, iStrMaxSize, iPrecision, ' ');
-                ostr << std::left << wcsStr + iStrPos;
+                ostr << std::left << cStr + iStrPos;
             }
             else
             {
                 configureStream(&ostr, iMaxLen, iPrecision, ' ');
-                ostr << std::left << wcsStr << spaces;
+                ostr << std::left << cStr << spaces;
             }
 
-            ostr << L"!" << std::endl;
+            ostr << "!" << std::endl;
 
             if ((i + 1) < m_iSize)
             {
                 //for all but last one
-                ostr << L"!";
+                ostr << "!";
                 configureStream(&ostr, iEmptyLineSize, iPrecision, ' ');
-                ostr << std::left << L" ";
-                ostr << L"!" << std::endl;
+                ostr << std::left << " ";
+                ostr << "!" << std::endl;
             }
         }
     }
     else if (getRows() == 1)
     {
-        std::wostringstream ostemp;
+        std::ostringstream ostemp;
         int iLastVal = m_iCols1PrintState;
 
         for (int i = m_iCols1PrintState ; i < getCols() ; i++)
@@ -265,7 +238,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             int iPos = getIndex(_piDims);
 
             int iLen = 0;
-            int iCurLen = static_cast<int>(wcslen(get(iPos)));
+            int iCurLen = static_cast<int>(strlen(get(iPos)));
             iLen = iCurLen + SIZE_BETWEEN_TWO_STRING_VALUES + static_cast<int>(ostemp.str().size());
             if (iLen > iLineLen && iLastVal != i)
             {
@@ -278,26 +251,26 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 }
 
                 addColumnString(ostr, iLastVal + 1, i);
-                ostr << L"!" << ostemp.str() << L"!" << std::endl;
-                ostemp.str(L"");
+                ostr << "!" << ostemp.str() << "!" << std::endl;
+                ostemp.str("");
                 iLastVal = i;
             }
 
             // Manage case where string length is greater than max line size.
             if (iStrMaxSize < iCurLen)
             {
-                wchar_t* wcsStr = get(iPos);
+                char* cStr = get(iPos);
                 int iStrPos = 0;
                 while (iCurLen > iStrMaxSize) // -2 because of two "!"
                 {
-                    ostemp.write(wcsStr + iStrPos, iStrMaxSize);
-                    ostemp << L"!" << std::endl << L"!";
+                    ostemp.write(cStr + iStrPos, iStrMaxSize);
+                    ostemp << "!" << std::endl << "!";
                     iCurLen -= iStrMaxSize;
                     iStrPos += iStrMaxSize;
                 }
 
                 configureStream(&ostemp, iStrMaxSize, iPrecision, ' ');
-                ostemp << std::left << wcsStr + iStrPos;
+                ostemp << std::left << cStr + iStrPos;
             }
             else
             {
@@ -311,11 +284,11 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             addColumnString(ostr, iLastVal + 1, getCols());
         }
 
-        ostr << L"!" << ostemp.str() << L"!" << std::endl;
+        ostr << "!" << ostemp.str() << "!" << std::endl;
     }
     else //Matrix
     {
-        std::wostringstream ostemp;
+        std::ostringstream ostemp;
         int iLen = 0;
         int iLastCol = m_iCols1PrintState;
 
@@ -325,13 +298,13 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
         for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
         {
-            std::wstring spaces(L"");
+            std::string spaces("");
             for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
             {
                 _piDims[1] = iCols1;
                 _piDims[0] = iRows1;
                 int iPos = getIndex(_piDims);
-                piSize[iCols1] = std::max(piSize[iCols1], static_cast<int>(wcslen(get(iPos))));
+                piSize[iCols1] = std::max(piSize[iCols1], static_cast<int>(strlen(get(iPos))));
                 piSize[iCols1] = std::min(piSize[iCols1], iStrMaxSize);
             }
 
@@ -365,14 +338,14 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                         return false;
                     }
 
-                    ostemp << L"!";
+                    ostemp << "!";
                     for (int iCols2 = iLastCol; iCols2 < iCols1; iCols2++)
                     {
                         _piDims[0] = iRows2;
                         _piDims[1] = iCols2;
                         int iPos = getIndex(_piDims);
-                        wchar_t* wcsStr = get(iPos);
-                        int iLenStr = static_cast<int>(wcslen(wcsStr));
+                        char* cStr = get(iPos);
+                        int iLenStr = static_cast<int>(strlen(cStr));
 
                         // Manage case where string length is greater than max line size.
                         if (iLenStr > iStrMaxSize)
@@ -380,14 +353,14 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             int iStrPos = 0;
                             while (iLenStr > iStrMaxSize)
                             {
-                                ostemp.write(wcsStr + iStrPos, iStrMaxSize);
-                                ostemp << L"!" << std::endl << L"!";
+                                ostemp.write(cStr + iStrPos, iStrMaxSize);
+                                ostemp << "!" << std::endl << "!";
                                 iLenStr -= iStrMaxSize;
                                 iStrPos += iStrMaxSize;
                             }
 
                             configureStream(&ostemp, iStrMaxSize, iPrecision, ' ');
-                            ostemp << std::left << wcsStr + iStrPos;
+                            ostemp << std::left << cStr + iStrPos;
                         }
                         else
                         {
@@ -395,15 +368,15 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             ostemp << std::left << get(iPos) << spaces;
                         }
                     }
-                    ostemp << L"!" << std::endl;
+                    ostemp << "!" << std::endl;
 
                     if ((iRows2 + 1) != m_iRows)
                     {
-                        ostemp << L"!";
+                        ostemp << "!";
                         // -2 because of two "!"
                         configureStream(&ostemp, iEmptyLineSize, iPrecision, ' ');
-                        ostemp << std::left << L" ";
-                        ostemp << L"!" << std::endl;
+                        ostemp << std::left << " ";
+                        ostemp << "!" << std::endl;
                     }
                 }
 
@@ -416,7 +389,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 }
 
                 ostr << ostemp.str();
-                ostemp.str(L"");
+                ostemp.str("");
                 iLastCol = iCols1;
                 m_iRows2PrintState = 0;
                 m_iCols1PrintState = 0;
@@ -426,7 +399,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
         for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
         {
-            std::wstring spaces(L"");
+            std::string spaces("");
             iCurrentLine += 2;
             if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
             {
@@ -452,15 +425,15 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             }
 
 
-            ostemp << L"!";
+            ostemp << "!";
             iLen = 0;
             for (int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
             {
                 _piDims[0] = iRows2;
                 _piDims[1] = iCols2;
                 int iPos = getIndex(_piDims);
-                wchar_t* wcsStr = get(iPos);
-                int iLenStr = static_cast<int>(wcslen(wcsStr));
+                char* cStr = get(iPos);
+                int iLenStr = static_cast<int>(strlen(cStr));
 
                 // Manage case where string length is greater than max line size.
                 if (iStrMaxSize < iLenStr)
@@ -468,14 +441,14 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     int iStrPos = 0;
                     while (iLenStr > iStrMaxSize)
                     {
-                        ostemp.write(wcsStr + iStrPos, iStrMaxSize);
-                        ostemp << L"!" << std::endl << L"!";
+                        ostemp.write(cStr + iStrPos, iStrMaxSize);
+                        ostemp << "!" << std::endl << "!";
                         iLenStr -= iStrMaxSize;
                         iStrPos += iStrMaxSize;
                     }
 
                     configureStream(&ostemp, iStrMaxSize, iPrecision, ' ');
-                    ostemp << wcsStr + iStrPos << std::left;
+                    ostemp << cStr + iStrPos << std::left;
                     iLen = iStrMaxSize;
                 }
                 else
@@ -485,14 +458,14 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     iLen += piSize[iCols2] + static_cast<int>(spaces.size());
                 }
             }
-            ostemp << L"!" << std::endl;
+            ostemp << "!" << std::endl;
 
             if ((iRows2 + 1) != m_iRows)
             {
-                ostemp << L"!";
+                ostemp << "!";
                 configureStream(&ostemp, iLen, iPrecision, ' ');
-                ostemp << std::left << L" ";
-                ostemp << L"!" << std::endl;
+                ostemp << std::left << " ";
+                ostemp << "!" << std::endl;
             }
         }
 
@@ -520,12 +493,12 @@ bool String::operator==(const InternalType& it)
         return false;
     }
 
-    wchar_t **p1 = get();
-    wchar_t **p2 = pS->get();
+    char **p1 = get();
+    char **p2 = pS->get();
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        if (wcscmp(p1[i], p2[i]) != 0)
+        if (strcmp(p1[i], p2[i]) != 0)
         {
             return false;
         }
@@ -538,9 +511,9 @@ bool String::operator!=(const InternalType& it)
     return !(*this == it);
 }
 
-wchar_t* String::getNullValue()
+char* String::getNullValue()
 {
-    return os_wcsdup(L"");
+    return os_strdup("");
 }
 
 String* String::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
@@ -548,11 +521,11 @@ String* String::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
     return new String(_iDims, _piDims);
 }
 
-wchar_t* String::copyValue(wchar_t* _pwstData)
+char* String::copyValue(char* _pstData)
 {
     try
     {
-        return os_wcsdup(_pwstData);
+        return os_strdup(_pstData);
     }
     catch (std::bad_alloc & /*e*/)
     {
@@ -564,12 +537,12 @@ wchar_t* String::copyValue(wchar_t* _pwstData)
     return NULL;
 }
 
-wchar_t* String::copyValue(const wchar_t* _pwstData)
+char* String::copyValue(const char* _pstData)
 {
-    return os_wcsdup(_pwstData);
+    return os_strdup(_pstData);
 }
 
-void String::deleteData(wchar_t* data)
+void String::deleteData(char* data)
 {
     if (data)
     {
@@ -578,35 +551,35 @@ void String::deleteData(wchar_t* data)
     }
 }
 
-String* String::set(int _iPos, const wchar_t* _pwstData)
+String* String::set(int _iPos, const char* _pstData)
 {
     if (m_pRealData == NULL || _iPos >= m_iSize)
     {
         return NULL;
     }
 
-    typedef String* (String::*set_t)(int, const wchar_t*);
-    String* pIT = checkRef(this, (set_t)&String::set, _iPos, _pwstData);
+    typedef String* (String::*set_t)(int, const char*);
+    String* pIT = checkRef(this, (set_t)&String::set, _iPos, _pstData);
     if (pIT != this)
     {
         return pIT;
     }
 
     deleteString(_iPos);
-    m_pRealData[_iPos] = copyValue(_pwstData);
+    m_pRealData[_iPos] = copyValue(_pstData);
     return this;
 }
 
-String* String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
+String* String::set(int _iRows, int _iCols, const char* _pstData)
 {
     int piIndexes[2] = {_iRows, _iCols};
-    return set(getIndex(piIndexes), _pwstData);
+    return set(getIndex(piIndexes), _pstData);
 }
 
-String* String::set(const wchar_t* const* _pwstData)
+String* String::set(const char* const* _pstData)
 {
-    typedef String* (String::*set_t)(const wchar_t * const*);
-    String* pIT = checkRef(this, (set_t)&String::set, _pwstData);
+    typedef String* (String::*set_t)(const char * const*);
+    String* pIT = checkRef(this, (set_t)&String::set, _pstData);
     if (pIT != this)
     {
         return pIT;
@@ -620,51 +593,18 @@ String* String::set(const wchar_t* const* _pwstData)
         }
 
         deleteString(i);
-        m_pRealData[i] = copyValue(_pwstData[i]);
+        m_pRealData[i] = copyValue(_pstData[i]);
     }
     return this;
 }
 
-String* String::set(int _iPos, const char* _pcData)
+char** String::allocData(int _iSize)
 {
-    wchar_t* w = to_wide_string(_pcData);
-    String* ret = set(_iPos, w);
-    FREE(w);
-    return ret;
-}
-
-String* String::set(int _iRows, int _iCols, const char* _pcData)
-{
-    int piIndexes[2] = {_iRows, _iCols};
-    return set(getIndex(piIndexes), _pcData);
-}
-
-String* String::set(const char* const* _pstrData)
-{
-    typedef String* (String::*set_t)(const char * const*);
-    String* pIT = checkRef(this, (set_t)&String::set, _pstrData);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
-    for (int i = 0; i < m_iSize; i++)
-    {
-        if (set(i, _pstrData[i]) == NULL)
-        {
-            return NULL;
-        }
-    }
-    return this;
-}
-
-wchar_t** String::allocData(int _iSize)
-{
-    wchar_t** pStr = nullptr;
+    char** pStr = nullptr;
     try
     {
-        pStr = new wchar_t*[_iSize];
-        memset(pStr, 0x00, _iSize * sizeof(wchar_t*));
+        pStr = new char*[_iSize];
+        memset(pStr, 0x00, _iSize * sizeof(char*));
     }
     catch (std::bad_alloc & /*e*/)
     {

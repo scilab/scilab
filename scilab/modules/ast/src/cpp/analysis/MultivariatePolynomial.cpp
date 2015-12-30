@@ -704,12 +704,12 @@ bool MultivariatePolynomial::isCoeffNegative(const bool checkConstant) const
     return false;
 }
 
-const std::wstring MultivariatePolynomial::print(const std::map<uint64_t, std::wstring> & vars) const
+const std::string MultivariatePolynomial::print(const std::map<uint64_t, std::string> & vars) const
 {
-    std::wostringstream wos;
+    std::ostringstream os;
     if (polynomial.empty())
     {
-        wos << constant;
+        os << constant;
     }
     else
     {
@@ -717,40 +717,40 @@ const std::wstring MultivariatePolynomial::print(const std::map<uint64_t, std::w
         auto i = s.begin();
         if (constant)
         {
-            wos << constant;
+            os << constant;
             if (i->coeff >= 0)
             {
-                wos << L'+' << i->print(vars);
+                os << '+' << i->print(vars);
             }
             else
             {
-                wos << i->print(vars);
+                os << i->print(vars);
             }
         }
         else
         {
-            wos << i->print(vars);
+            os << i->print(vars);
         }
 
         for (i = std::next(s.begin()); i != s.end(); ++i)
         {
             if (i->coeff >= 0)
             {
-                wos << L'+' << i->print(vars);
+                os << '+' << i->print(vars);
             }
             else
             {
-                wos << i->print(vars);
+                os << i->print(vars);
             }
         }
     }
 
-    return wos.str();
+    return os.str();
 }
 
-std::wostream & operator<<(std::wostream & out, const MultivariatePolynomial & p)
+std::ostream & operator<<(std::ostream & out, const MultivariatePolynomial & p)
 {
-    const std::map<uint64_t, std::wstring> vars;
+    const std::map<uint64_t, std::string> vars;
     out << p.print(vars);
 
     return out;

@@ -48,36 +48,36 @@ class EXTERN_AST ConfigVariable
 {
     //module list
 private :
-    static std::list<std::wstring> m_ModuleList;
+    static std::list<std::string> m_ModuleList;
 
 public :
-    static void setModuleList(std::list<std::wstring>& _module_list);
-    static std::list<std::wstring> getModuleList();
+    static void setModuleList(std::list<std::string>& _module_list);
+    static std::list<std::string> getModuleList();
 
 
     //SCI
 private :
-    static std::wstring m_SCIPath;
+    static std::string m_SCIPath;
 
 public :
-    static void setSCIPath(const std::wstring& _SCIPath);
-    static std::wstring& getSCIPath();
+    static void setSCIPath(const std::string& _SCIPath);
+    static std::string& getSCIPath();
 
     //SCIHOME
 private :
-    static std::wstring m_SCIHOME;
+    static std::string m_SCIHOME;
 
 public :
-    static void setSCIHOME(const std::wstring& _m_SCIHOME);
-    static std::wstring& getSCIHOME();
+    static void setSCIHOME(const std::string& _m_SCIHOME);
+    static std::string& getSCIHOME();
 
     //TMPDIR
 private :
-    static std::wstring m_TMPDIR;
+    static std::string m_TMPDIR;
 
 public :
-    static void setTMPDIR(const std::wstring& _TMPDIR);
-    static std::wstring& getTMPDIR();
+    static void setTMPDIR(const std::string& _TMPDIR);
+    static std::string& getTMPDIR();
 
     // Force Quit
 private :
@@ -154,11 +154,11 @@ public :
 
     //HOME
 private :
-    static std::wstring m_HOME;
+    static std::string m_HOME;
 
 public :
-    static void setHOME(const std::wstring& _m_HOME);
-    static std::wstring& getHOME();
+    static void setHOME(const std::string& _m_HOME);
+    static std::string& getHOME();
 
     //Clear last error information
 public :
@@ -173,11 +173,11 @@ public :
 
     //Last Error Message
 private :
-    static std::wstring m_wstError;
+    static std::string m_stError;
 
 public :
-    static void setLastErrorMessage(const std::wstring& _wstError);
-    static std::wstring& getLastErrorMessage();
+    static void setLastErrorMessage(const std::string& _wstError);
+    static std::string& getLastErrorMessage();
 
     //Last Error ID
 private :
@@ -201,11 +201,11 @@ public :
 
     //Last Error Function
 private :
-    static std::wstring m_wstErrorFunction;
+    static std::string m_stErrorFunction;
 
 public :
-    static void setLastErrorFunction(const std::wstring& _wstFunction);
-    static std::wstring& getLastErrorFunction();
+    static void setLastErrorFunction(const std::string& _wstFunction);
+    static std::string& getLastErrorFunction();
 
     //Prompt Mode and Silent error
 public :
@@ -271,7 +271,7 @@ public :
 
     typedef struct
     {
-        wchar_t* pwstLibraryName;      /** name of dynamic library **/
+        char* pstLibraryName;      /** name of dynamic library **/
         DynLibHandle hLib;              /** handle of the library **/
     } DynamicLibraryStr;
 
@@ -279,7 +279,7 @@ public :
 
     typedef struct
     {
-        wchar_t* pwstEntryPointName;    /** name of interface **/
+        char* pstEntryPointName;    /** name of interface **/
         int iLibIndex;                  /** name of interface **/
         dynlib_ptr functionPtr;         /** entrypoint for the interface **/
         bool bOK;                       /** flag set to TRUE if entrypoint can be used **/
@@ -291,8 +291,8 @@ private :
 public :
 
     /* tools fucntions */
-    static void setLibraryName(DynamicLibraryStr* _pDynamicLibrary, wchar_t* _pwstLibraryName);
-    static void setEntryPointName(EntryPointStr* _pEntryPoint, wchar_t* _pwstEntryPointName);
+    static void setLibraryName(DynamicLibraryStr* _pDynamicLibrary, const char* _pstLibraryName);
+    static void setEntryPointName(EntryPointStr* _pEntryPoint, const char* _pstEntryPointName);
 
     /* "Constructors" */
     static DynamicLibraryStr* getNewDynamicLibraryStr();
@@ -309,30 +309,30 @@ public :
     static std::list<EntryPointStr*>* getEntryPointList();
     static void addEntryPoint(EntryPointStr* _pEP);
     static void removeEntryPoint(int _iEntryPointIndex);
-    static EntryPointStr* getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex = -1);
-    static int getEntryPointPosition(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex = -1);
+    static EntryPointStr* getEntryPoint(const char* _pstEntryPointName, int _iDynamicLibraryIndex = -1);
+    static int getEntryPointPosition(const char* _pstEntryPointName, int _iDynamicLibraryIndex = -1);
     static dynlib_ptr getEntryPointFromPosition(int position);
-    static std::vector<std::wstring> getEntryPointNameList();
+    static std::vector<std::string> getEntryPointNameList();
 
     //dynamic modules
 private :
-    static std::map<std::wstring, DynLibHandle> m_DynModules;
+    static std::map<std::string, DynLibHandle> m_DynModules;
 public :
-    static void addDynModule(const std::wstring& _name, DynLibHandle _lib);
-    static void removeDynModule(const std::wstring& _name);
-    static DynLibHandle getDynModule(const std::wstring& _name);
+    static void addDynModule(const std::string& _name, DynLibHandle _lib);
+    static void removeDynModule(const std::string& _name);
+    static DynLibHandle getDynModule(const std::string& _name);
     static int getDynModuleCount();
     static DynLibHandle* getAllDynModule();
     static void cleanDynModule();
 
     // Command Line Arguments
 private :
-    static std::vector<std::wstring> m_Args;
+    static std::vector<std::string> m_Args;
     static bool m_bTimed;
     static bool m_bSerialize;
 public :
     static void setCommandLineArgs(int _iArgs, char** _pstArgs);
-    static wchar_t** getCommandLineArgs(int* _piCount);
+    static char** getCommandLineArgs(int* _piCount);
     static bool getTimed();
     static void setTimed(bool _bTimed);
     static bool getSerialize();
@@ -400,9 +400,9 @@ public :
         int m_line;
         int m_absolute_line;
         int m_macro_first_line;
-        std::wstring m_name;
-        std::wstring m_file_name;
-        WhereEntry(int line, int absolute_line, const std::wstring& name, int first_line, const std::wstring& file_name) :
+        std::string m_name;
+        std::string m_file_name;
+        WhereEntry(int line, int absolute_line, const std::string& name, int first_line, const std::string& file_name) :
             m_line(line), m_absolute_line(absolute_line), m_macro_first_line(first_line), m_name(name), m_file_name(file_name) {}
     };
     typedef std::vector<WhereEntry> WhereVector;
@@ -416,20 +416,20 @@ public :
     static void macroFirstLine_begin(int _iLine);
     static void macroFirstLine_end();
     static int getMacroFirstLines();
-    static void setFileNameToLastWhere(const std::wstring& _fileName);
-    static void whereErrorToString(std::wostringstream &ostr);
+    static void setFileNameToLastWhere(const std::string& _fileName);
+    static void whereErrorToString(std::ostringstream &ostr);
 private :
     static WhereVector m_Where;
     static WhereVector m_WhereError;
     static std::vector<int> m_FirstMacroLine;
     //module called with variable by reference
 private :
-    static std::list<std::wstring> m_ReferenceModules;
+    static std::list<std::string> m_ReferenceModules;
 public :
-    static bool checkReferenceModule(const std::wstring& _module);
-    static void addReferenceModule(const std::wstring& _module);
-    static void removeReferenceModule(const std::wstring& _module);
-    static std::list<std::wstring> getReferenceModules();
+    static bool checkReferenceModule(const std::string& _module);
+    static void addReferenceModule(const std::string& _module);
+    static void removeReferenceModule(const std::string& _module);
+    static std::list<std::string> getReferenceModules();
 
     //analyzer options
 

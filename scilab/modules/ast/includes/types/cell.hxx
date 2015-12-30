@@ -79,20 +79,20 @@ public :
     List*               extractCell(typed_list* _pArgs);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring getTypeStr()
+    virtual std::string getTypeStr()
     {
-        return L"cell";
+        return "cell";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring getShortTypeStr()
+    virtual std::string getShortTypeStr()
     {
-        return L"ce";
+        return "ce";
     };
     virtual bool        isContainer(void)
     {
         return true;
     }
-    bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
+    bool                subMatrixToString(std::ostringstream& ostr, int* _piDims, int _iDims) override;
 
     bool isTrue()
     {

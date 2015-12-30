@@ -32,17 +32,17 @@ public :
     {
         return true;
     }
-    bool                    toString(std::wostringstream& ostr);
+    bool                    toString(std::ostringstream& ostr) override;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::string    getTypeStr()
     {
-        return L"ThreadId";
+        return "ThreadId";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::string    getShortTypeStr()
     {
-        return L"tid";
+        return "tid";
     }
     ThreadId*               clone();
 
@@ -79,7 +79,7 @@ public :
     int                     getCommandOrigin();
 
 private :
-    std::wstring            StatusToString(Status _status);
+    std::string             StatusToString(Status _status);
 
 protected :
     inline ScilabType       getType()

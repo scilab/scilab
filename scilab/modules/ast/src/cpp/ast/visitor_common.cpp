@@ -22,7 +22,6 @@
 #include "execvisitor.hxx"
 #include "serializervisitor.hxx"
 #include "deserializervisitor.hxx"
-#include "localization.hxx"
 #include "user.hxx"
 
 #include "alltypes.hxx"
@@ -529,7 +528,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
     }
 }
 
-const std::wstring* getStructNameFromExp(const ast::Exp* _pExp)
+const std::string* getStructNameFromExp(const ast::Exp* _pExp)
 {
     const ast::FieldExp* pField =  dynamic_cast<const ast::FieldExp*>(_pExp);
     const ast::SimpleVar* pVar =  dynamic_cast<const ast::SimpleVar*>(_pExp);
@@ -549,8 +548,8 @@ const std::wstring* getStructNameFromExp(const ast::Exp* _pExp)
     }
     else
     {
-        std::wostringstream os;
-        os << _W("Unknown expression");
+        std::ostringstream os;
+        os << _("Unknown expression");
         //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
         throw ast::InternalError(os.str(), 999, _pExp->getLocation());
     }
@@ -562,15 +561,15 @@ const std::wstring* getStructNameFromExp(const ast::Exp* _pExp)
 //i1, ..., in : indexes
 //dest : variable where insert data     || NULL
 //source : data to insert               || extract indexes from source
-types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strType, types::typed_list* _pArgs, types::InternalType* _source, types::InternalType* _dest)
+types::InternalType* callOverload(const ast::Exp& e, const std::string& _strType, types::typed_list* _pArgs, types::InternalType* _source, types::InternalType* _dest)
 {
     types::Function::ReturnValue ret = types::Function::Error;
     types::InternalType* pITOut = NULL;
     types::typed_list in;
     types::typed_list out;
 
-    std::wstring function_name;
-    function_name = L"%" + _source->getShortTypeStr() + L"_" + _strType;
+    std::string function_name;
+    function_name = "%" + _source->getShortTypeStr() + "_" + _strType;
 
     for (int i = 0; i < (int)_pArgs->size(); i++)
     {
@@ -586,14 +585,14 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
         _dest->IncreaseRef();
         in.push_back(_dest);
 
-        function_name += L"_" + _dest->getShortTypeStr();
+        function_name += "_" + _dest->getShortTypeStr();
     }
 
     types::InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
     // if %type_6 doesn't exist, call %l_6
     if (_dest == NULL && pFunc == NULL)
     {
-        function_name = L"%l_" + _strType;
+        function_name = "%l_" + _strType;
     }
 
     // For insertion in TList, call normal insertion if overload doesn't exits
@@ -635,8 +634,8 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
         if (ret == types::Function::Error)
         {
             //manage error
-            std::wostringstream os;
-            os << _W("Error in overload function: ") << function_name << std::endl;
+            std::ostringstream os;
+            os << _("Error in overload function: ") << function_name << std::endl;
             throw ast::InternalError(os.str(), 999, e.getLocation());
         }
     }
@@ -809,8 +808,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
         if (ctx->isprotected(pFirstField->getExp()->getSymbol()))
         {
-            std::wostringstream os;
-            os << _W("Redefining permanent variable.\n");
+            std::ostringstream os;
+            os << _("Redefining permanent variable.\n");
             throw ast::InternalError(os.str(), 999, _pExp->getLocation());
         }
 
@@ -883,22 +882,22 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
             if (pEH->isCellExp() && pITCurrent->isCell() == false)
             {
-                std::wostringstream os;
-                os << _W("Wrong insertion : use extraction with {} only on a Cell.");
+                std::ostringstream os;
+                os << _("Wrong insertion : use extraction with {} only on a Cell.");
                 throw ast::InternalError(os.str(), 999, _pExp->getLocation());
             }
 
             if (pITCurrent->isStruct())
             {
                 types::Struct* pStruct = pITCurrent->getAs<types::Struct>();
-                std::wstring pwcsFieldname = (*iterFields)->getExpAsString();
+                std::string pwcsFieldname = (*iterFields)->getExpAsString();
 
                 if (pEH->needResize())
                 {
                     if (pEH->getArgsDims() == 1)
                     {
-                        std::wostringstream os;
-                        os << _W("Invalid index.");
+                        std::ostringstream os;
+                        os << _("Invalid index.");
                         throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                     }
 
@@ -946,8 +945,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         // Avoid insertion in most of one element.
                         if (pStruct->isScalar() == false)
                         {
-                            std::wostringstream os;
-                            os << _W("Unable to insert multiple item in a Struct.");
+                            std::ostringstream os;
+                            os << _("Unable to insert multiple item in a Struct.");
                             throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                         }
 
@@ -987,7 +986,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     if (pArgs->size() > 1 || pITCurrent->isMList())
                     {
                         // call overload
-                        types::InternalType* pExtract = callOverload(*pEH->getExp(), L"6", pArgs, pTL, NULL);
+                        types::InternalType* pExtract = callOverload(*pEH->getExp(), "6", pArgs, pTL, NULL);
                         if ((*iterFields)->getExp() == NULL)
                         {
                             // a(x)(y)
@@ -1022,8 +1021,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         if (pList->getSize() > 1)
                         {
                             pList->killMe();
-                            std::wostringstream os;
-                            os << _W("Unable to insert multiple item in a List.");
+                            std::ostringstream os;
+                            os << _("Unable to insert multiple item in a List.");
                             throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                         }
 
@@ -1053,11 +1052,10 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 {
                     // get string "x" of a.x
                     types::InternalType* pExtract = NULL;
-                    std::wstring pwcsFieldname = L"";
                     bool bReinsert = false;
                     ExpHistory* pEHChield = NULL;
 
-                    pwcsFieldname = (*iterFields)->getExpAsString();
+                    std::string pcsFieldname = (*iterFields)->getExpAsString();
 
                     // check if the field x is the last field
                     std::list<ExpHistory*>::iterator iterFieldsNext(iterFields);
@@ -1066,7 +1064,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     {
                         // create pArg with "x" and set it as argument of "a"
                         types::typed_list* args = new types::typed_list();
-                        args->push_back(new types::String(pwcsFieldname.c_str()));
+                        args->push_back(new types::String(pcsFieldname.c_str()));
                         pEH->setArgs(args);
 
                         // a.x where x is the last field
@@ -1082,7 +1080,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     else
                     {
                         // check if field exists
-                        if (pTL->exists(pwcsFieldname) == false)
+                        if (pTL->exists(pcsFieldname) == false)
                         {
                             std::list<ExpHistory*>::iterator iterFieldsNext(iterFields);
                             ++iterFieldsNext;
@@ -1092,10 +1090,10 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                 // M=mlist(['MType','x','y'], ...
                                 // M.rows1 = "somthing"
                                 pArgs = new types::typed_list();
-                                pArgs->push_back(new types::String(pwcsFieldname.c_str()));
+                                pArgs->push_back(new types::String(pcsFieldname.c_str()));
 
                                 // call overload
-                                pExtract = callOverload(*pEH->getExp(), L"6", pArgs, pTL, NULL);
+                                pExtract = callOverload(*pEH->getExp(), "6", pArgs, pTL, NULL);
                                 bReinsert = true;
 
                                 delete pArgs;
@@ -1104,7 +1102,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         else
                         {
                             // extract field x and append it to elements for next recursion.
-                            pExtract = pTL->getField(pwcsFieldname);
+                            pExtract = pTL->getField(pcsFieldname);
                         }
 
                         pEHChield = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract);
@@ -1122,8 +1120,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 types::List* pL = pITCurrent->getAs<types::List>();
                 if (pEH->getParent() && pEH->getParent()->getLevel() == pEH->getLevel())
                 {
-                    std::wostringstream os;
-                    os << _W("Wrong insertion.");
+                    std::ostringstream os;
+                    os << _("Wrong insertion.");
                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
 
                     //                    // pITCurrent is an extraction of other Type
@@ -1142,7 +1140,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         if (pEH->getArgs()->size() > 1)
                         {
                             // call overload
-                            types::InternalType* pExtract = callOverload(*pEH->getExp(), L"6", pEH->getArgs(), pL, NULL);
+                            types::InternalType* pExtract = callOverload(*pEH->getExp(), "6", pEH->getArgs(), pL, NULL);
 
                             if ((*iterFields)->getExp() == NULL)
                             {
@@ -1199,7 +1197,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     else
                     {
                         // a.x, get string "x"
-                        std::wstring pwcsFieldname = (*iterFields)->getExpAsString();
+                        std::string pwcsFieldname = (*iterFields)->getExpAsString();
 
                         // create pArg with "x"
                         types::typed_list* args = new types::typed_list();
@@ -1224,7 +1222,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         else
                         {
                             // call overload
-                            types::InternalType* pExtract = callOverload(*pEH->getExp(), L"6", args, pL, NULL);
+                            types::InternalType* pExtract = callOverload(*pEH->getExp(), "6", args, pL, NULL);
 
                             // append extraction of a.x for next level.
                             workFields.push_back(new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract));
@@ -1244,7 +1242,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     if (pArgs->size() == 1 && (*pArgs)[0]->isImplicitList() == false)
                     {
                         // call overload
-                        pExtract = callOverload(*pEH->getExp(), L"e", pArgs, pITCurrent, NULL);
+                        pExtract = callOverload(*pEH->getExp(), "e", pArgs, pITCurrent, NULL);
                     }
                     else
                     {
@@ -1253,8 +1251,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
                     if (pExtract == NULL)
                     {
-                        std::wostringstream os;
-                        os << _W("Invalid index.");
+                        std::ostringstream os;
+                        os << _("Invalid index.");
                         throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                     }
 
@@ -1276,7 +1274,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 else
                 {
                     // a.x, get string "x"
-                    std::wstring pwcsFieldname = (*iterFields)->getExpAsString();
+                    std::string pwcsFieldname = (*iterFields)->getExpAsString();
 
                     // create arg with next field
                     types::typed_list* args = new types::typed_list();
@@ -1301,7 +1299,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     else
                     {
                         // call overload
-                        types::InternalType* pExtract = callOverload(*pEH->getExp(), L"e", args, pITCurrent, NULL);
+                        types::InternalType* pExtract = callOverload(*pEH->getExp(), "e", args, pITCurrent, NULL);
 
                         // append extraction of a.x for next level.
                         workFields.push_back(new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract));
@@ -1346,8 +1344,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             {
                                 if (pEH->getArgsDims() == 1)
                                 {
-                                    std::wostringstream os;
-                                    os << _W("Invalid index.");
+                                    std::ostringstream os;
+                                    os << _("Invalid index.");
                                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                                 }
 
@@ -1372,8 +1370,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             {
                                 if (pEH->getArgsDims() == 1)
                                 {
-                                    std::wostringstream os;
-                                    os << _W("Invalid index.");
+                                    std::ostringstream os;
+                                    os << _("Invalid index.");
                                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                                 }
 
@@ -1389,16 +1387,16 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         else
                         {
                             // only a(x)
-                            std::wostringstream os;
-                            os << _W("Wrong insertion in a Cell.");
+                            std::ostringstream os;
+                            os << _("Wrong insertion in a Cell.");
                             throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                         }
                     }
                 }
                 else
                 {
-                    std::wostringstream os;
-                    os << _W("Wrong insertion in a Cell.");
+                    std::ostringstream os;
+                    os << _("Wrong insertion in a Cell.");
                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                 }
             }
@@ -1412,7 +1410,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     if (pExtract == NULL)
                     {
                         // call overload
-                        pExtract = callOverload(*pEH->getExp(), L"e", pEH->getArgs(), pITCurrent, NULL);
+                        pExtract = callOverload(*pEH->getExp(), "e", pEH->getArgs(), pITCurrent, NULL);
                     }
 
                     if ((*iterFields)->getExp() == NULL)
@@ -1433,7 +1431,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 else
                 {
                     // a.x, get string "x"
-                    std::wstring pwcsFieldname = (*iterFields)->getExpAsString();
+                    std::string pwcsFieldname = (*iterFields)->getExpAsString();
 
                     // create arg with next field
                     types::typed_list* args = new types::typed_list();
@@ -1461,7 +1459,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         if (pExtract == NULL)
                         {
                             // call overload
-                            pExtract = callOverload(*pEH->getExp(), L"e", args, pITCurrent, NULL);
+                            pExtract = callOverload(*pEH->getExp(), "e", args, pITCurrent, NULL);
                         }
 
                         // append extraction of a.x for next level.
@@ -1498,15 +1496,10 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 if (ret == false || out.size() != 1 || out[0]->isHandle() == false)
                 {
                     char szError[bsiz];
-                    char* strFName = wide_string_to_UTF8(pITCurrent->getAs<types::Callable>()->getName().c_str());
+                    const char* strFName = pITCurrent->getAs<types::Callable>()->getName().c_str();
                     os_sprintf(szError, _("Wrong insertion: insertion in output of '%s' is not allowed.\n"), strFName);
-                    FREE(strFName);
 
-                    wchar_t* wError = to_wide_string(szError);
-                    std::wstring err(wError);
-                    FREE(wError);
-
-                    throw ast::InternalError(err, 999, pEH->getExp()->getLocation());
+                    throw ast::InternalError(szError, 999, pEH->getExp()->getLocation());
                 }
 
                 pEH->setCurrent(out[0]);
@@ -1545,8 +1538,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             // should never occured
             if (pArgs == NULL || pArgs->size() == 0)
             {
-                std::wostringstream os;
-                os << _W("Wrong insertion : Cannot insert without arguments.");
+                std::ostringstream os;
+                os << _("Wrong insertion : Cannot insert without arguments.");
                 throw ast::InternalError(os.str(), 999, _pExp->getLocation());
             }
 
@@ -1556,8 +1549,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 // insert "something" in b{x}
                 if ((*pArgs)[0]->isString())
                 {
-                    std::wostringstream os;
-                    os << _W("Wrong insertion in a Cell.");
+                    std::ostringstream os;
+                    os << _("Wrong insertion in a Cell.");
                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                 }
 
@@ -1565,8 +1558,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             }
             else if (pEH->getCurrent() && pEH->getCurrent()->isCallable())
             {
-                std::wostringstream os;
-                os << _W("Unexpected redefinition of Scilab function.");
+                std::ostringstream os;
+                os << _("Unexpected redefinition of Scilab function.");
                 throw ast::InternalError(os.str(), 999, _pExp->getLocation());
             }
             else
@@ -1575,8 +1568,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 types::InternalType* pIT = insertionCall(*_pExp, pArgs, pEH->getCurrent(), _pAssignValue);
                 if (pIT == NULL)
                 {
-                    std::wostringstream os;
-                    os << _W("Submatrix incorrectly defined.\n");
+                    std::ostringstream os;
+                    os << _("Submatrix incorrectly defined.\n");
                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                 }
 
@@ -1662,8 +1655,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 types::InternalType* pIT = insertionCall(*_pExp, pParentArgs, pEHParent->getCurrent(), pEH->getCurrent());
                 if (pIT == NULL)
                 {
-                    std::wostringstream os;
-                    os << _W("Submatrix incorrectly defined.\n");
+                    std::ostringstream os;
+                    os << _("Submatrix incorrectly defined.\n");
                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                 }
 
@@ -1775,7 +1768,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 in.push_back(pS);
                 in.push_back(_pInsert);
 
-                types::Function* pCall = (types::Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
+                types::Function* pCall = (types::Function*)symbol::Context::getInstance()->get(symbol::Symbol("set"));
                 types::Callable::ReturnValue ret = pCall->call(in, opt, 1, out);
                 if (ret == types::Callable::OK)
                 {
@@ -1798,7 +1791,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         else
         {
             //overload !
-            pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+            pOut = callOverload(e, "i", _pArgs, _pInsert, _pVar);
         }
     }
     else if (_pVar == NULL || (_pVar->isDouble() && _pVar->getAs<types::Double>()->getSize() == 0))
@@ -1818,8 +1811,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     pIL->killMe();
                 }
                 //manage error
-                std::wostringstream os;
-                os << _W("Invalid Index.\n");
+                std::ostringstream os;
+                os << _("Invalid Index.\n");
                 throw ast::InternalError(os.str(), 999, e.getLocation());
             }
 
@@ -1837,7 +1830,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             {
                 // overload
                 types::Double* pEmpty = types::Double::Empty();
-                pOut = callOverload(e, L"i", _pArgs, _pInsert, pEmpty);
+                pOut = callOverload(e, "i", _pArgs, _pInsert, pEmpty);
                 pEmpty->killMe();
             }
         }
@@ -1850,8 +1843,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         // case m=x; m()=x;
         if (_pArgs == NULL || _pArgs->size() == 0)
         {
-            std::wostringstream os;
-            os << _W("Wrong insertion : Cannot insert without arguments.");
+            std::ostringstream os;
+            os << _("Wrong insertion : Cannot insert without arguments.");
             throw ast::InternalError(os.str(), 999, e.getLocation());
         }
 
@@ -1958,8 +1951,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                         pIL->killMe();
                     }
                     //manage error
-                    std::wostringstream os;
-                    os << _W("Invalid Index.\n");
+                    std::ostringstream os;
+                    os << _("Invalid Index.\n");
                     throw ast::InternalError(os.str(), 999, e.getLocation());
                 }
 
@@ -2000,7 +1993,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                             }
                             else
                             {
-                                std::wstring pwcsField = pStrFieldsName->get(i - 1);
+                                std::string pwcsField = pStrFieldsName->get(i - 1);
                                 types::List* pLExtract = pStructInsert->extractFieldWithoutClone(pwcsField);
 
                                 for (int i = 0; i < pLExtract->getSize(); i++)
@@ -2045,7 +2038,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 }
                 else
                 {
-                    pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    pRet = callOverload(e, "i", _pArgs, _pInsert, _pVar);
                 }
             }
         }
@@ -2066,14 +2059,14 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                         }
 
                         //manage error
-                        std::wostringstream os;
-                        os << _W("Invalid Index.\n");
+                        std::ostringstream os;
+                        os << _("Invalid Index.\n");
                         throw ast::InternalError(os.str(), 999, e.getLocation());
                     }
 
                     if (_pInsert->isListDelete())
                     {
-                        return callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                        return callOverload(e, "i", _pArgs, _pInsert, _pVar);
                     }
 
                     if (pTL->exists(pS->get(0)))
@@ -2082,12 +2075,12 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     }
                     else
                     {
-                        return callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                        return callOverload(e, "i", _pArgs, _pInsert, _pVar);
 
                         //ExecVisitor exec;
                         //typed_list in;
                         //typed_list out;
-                        //std::wstring function_name = L"%l_e";
+                        //std::string function_name = L"%l_e";
 
                         //_pInsert->IncreaseRef();
                         //in.push_back(_pInsert);
@@ -2106,7 +2099,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     // s(x)
                     if (_pVar->isMList())
                     {
-                        pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                        pRet = callOverload(e, "i", _pArgs, _pInsert, _pVar);
                     }
                     else
                     {
@@ -2139,12 +2132,12 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             {
                 if (_pVar->isMList())
                 {
-                    pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    pRet = callOverload(e, "i", _pArgs, _pInsert, _pVar);
                 }
                 else
                 {
                     // call the overload if it exists.
-                    pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    pRet = callOverload(e, "i", _pArgs, _pInsert, _pVar);
                     if (pRet == NULL)
                     {
                         // else normal insert
@@ -2166,7 +2159,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 {
                     pL->killMe();
                     // call overload
-                    pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    pRet = callOverload(e, "i", _pArgs, _pInsert, _pVar);
                 }
             }
             else
@@ -2176,7 +2169,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 if (pRet == NULL)
                 {
                     // call overload
-                    pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    pRet = callOverload(e, "i", _pArgs, _pInsert, _pVar);
                 }
             }
         }
@@ -2195,7 +2188,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 in.push_back(pS);
                 in.push_back(_pInsert);
 
-                types::Function* pCall = (types::Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
+                types::Function* pCall = (types::Function*)symbol::Context::getInstance()->get(symbol::Symbol("set"));
                 if (pCall)
                 {
                     types::Callable::ReturnValue ret = pCall->call(in, opt, 1, out);
@@ -2233,7 +2226,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             pRet = _pVar->getAs<types::UserType>()->insert(_pArgs, _pInsert);
             if (pRet == NULL)
             {
-                pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                pRet = callOverload(e, "i", _pArgs, _pInsert, _pVar);
             }
         }
         else if (_pVar->getType() == _pInsert->getType())
@@ -2245,15 +2238,15 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             if (_pInsert->isCell() == false)
             {
                 //manage error
-                std::wostringstream os;
-                os << _W("Wrong insertion: A Cell expected: use {...} instead of (...).\n");
+                std::ostringstream os;
+                os << _("Wrong insertion: A Cell expected: use {...} instead of (...).\n");
                 throw ast::InternalError(os.str(), 999, e.getLocation());
             }
         }
         else
         {
             // overload
-            pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+            pRet = callOverload(e, "i", _pArgs, _pInsert, _pVar);
         }
 
         pOut = pRet;
@@ -2272,7 +2265,7 @@ void callOnPrompt(void)
     static symbol::Variable* onPrompt = NULL;
     if (onPrompt == NULL)
     {
-        onPrompt = symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"%onprompt"));
+        onPrompt = symbol::Context::getInstance()->getOrCreate(symbol::Symbol("%onprompt"));
     }
 
     types::InternalType* pOnPrompt = NULL;
@@ -2283,7 +2276,7 @@ void callOnPrompt(void)
     }
 }
 
-ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg)
+ast::Exp* callTyper(ast::Exp* _tree, std::string _msg)
 {
     ast::Exp* newTree = NULL;
     unsigned char *newast = NULL;
@@ -2305,8 +2298,8 @@ ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg)
     }
     else
     {
-        std::wstring msgS(_msg + L" serialize");
-        std::wstring msgD(_msg + L" deserialize");
+        std::string msgS(_msg + " serialize");
+        std::string msgD(_msg + " deserialize");
 
         Timer timer;
         timer.start();

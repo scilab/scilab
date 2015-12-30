@@ -343,7 +343,7 @@ bool Double::setOnes()
     return true;
 }
 
-bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
+bool Double::subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iDims*/)
 {
     int iCurrentLine = 0;
     int iLineLen = ConfigVariable::getConsoleWidth();
@@ -351,7 +351,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
     if (isIdentity())
     {
-        ostr << L"eye *" << std::endl << std::endl;
+        ostr << "eye *" << std::endl << std::endl;
         if (isComplex() == false)
         {
             DoubleFormat df;
@@ -372,7 +372,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
     }
     else if (isEmpty())
     {
-        ostr << L"    []";
+        ostr << "    []";
         ostr << std::endl;
     }
     else if (isScalar())
@@ -456,7 +456,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
     else if (getRows() == 1)
     {
         //row vector
-        std::wostringstream ostemp;
+        std::ostringstream ostemp;
         int iLastVal = m_iCols1PrintState;
 
         if (isComplex() == false)
@@ -483,7 +483,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
                     addColumnString(ostr, iLastVal + 1, i);
                     ostr << ostemp.str() << std::endl;
-                    ostemp.str(L"");
+                    ostemp.str("");
                     iLastVal = i;
                 }
 
@@ -524,7 +524,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
                     addColumnString(ostr, iLastVal + 1, i);
                     ostr << ostemp.str() << std::endl;
-                    ostemp.str(L"");
+                    ostemp.str("");
                     iLastVal = i;
                 }
 
@@ -542,7 +542,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
     }
     else // matrix
     {
-        std::wostringstream ostemp;
+        std::ostringstream ostemp;
         int iLen = 0;
         int iLastCol = m_iCols1PrintState;
 
@@ -621,7 +621,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                         addColumnString(ostr, iLastCol + 1, iCols1);
                     }
                     ostr << ostemp.str();
-                    ostemp.str(L"");
+                    ostemp.str("");
                     iLastCol = iCols1;
                     m_iRows2PrintState = 0;
                     m_iCols1PrintState = 0;
@@ -746,7 +746,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                         addColumnString(ostr, iLastCol + 1, iCols1);
                     }
                     ostr << ostemp.str();
-                    ostemp.str(L"");
+                    ostemp.str("");
                     iLastCol = iCols1;
                     m_iRows2PrintState = 0;
                     m_iCols1PrintState = 0;

@@ -150,12 +150,12 @@ public :
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr();
+    virtual std::string        getTypeStr();
 
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr()
+    virtual std::string        getShortTypeStr()
     {
-        return L"i";
+        return "i";
     }
 
 protected :
@@ -163,7 +163,7 @@ protected :
     inline InternalType::ScilabId   getId(void);
 
 private :
-    virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/) override
+    virtual bool subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iDims*/) override
     {
         int iCurrentLine = 0;
         int iLineLen = ConfigVariable::getConsoleWidth();
@@ -171,7 +171,7 @@ private :
 
         if (GenericType::isIdentity())
         {
-            ostr << L"eye *" << std::endl << std::endl;
+            ostr << "eye *" << std::endl << std::endl;
             int iWidth = 0;
             if (isSigned())
             {
@@ -255,7 +255,7 @@ private :
         else if (GenericType::getRows() == 1)
         {
             //row vector
-            std::wostringstream ostemp;
+            std::ostringstream ostemp;
             int iLastVal = this->m_iCols1PrintState;
 
             for (int i = this->m_iCols1PrintState ; i < this->getCols() ; i++)
@@ -288,7 +288,7 @@ private :
 
                     addColumnString(ostr, iLastVal + 1, i);
                     ostr << ostemp.str() << std::endl;
-                    ostemp.str(L"");
+                    ostemp.str("");
                     iLastVal = i;
                 }
 
@@ -312,7 +312,7 @@ private :
         }
         else // matrix
         {
-            std::wostringstream ostemp;
+            std::ostringstream ostemp;
             int iLen = 0;
             int iLastCol = this->m_iCols1PrintState;
 
@@ -390,7 +390,7 @@ private :
                     }
 
                     ostr << ostemp.str();
-                    ostemp.str(L"");
+                    ostemp.str("");
                     iLastCol = iCols1;
                     this->m_iRows2PrintState = 0;
                     this->m_iCols1PrintState = 0;
@@ -483,7 +483,7 @@ private :
         const static bool value = true;
     };
 
-    public:
+public:
     bool isInt8()
     {
         return is_same_int<T, char>::value;
@@ -595,44 +595,44 @@ template<> inline InternalType::ScilabId Int<unsigned long long>::getId()
 }
 
 // Specializations
-template<> inline std::wstring Int<char>::getTypeStr()
+template<> inline std::string Int<char>::getTypeStr()
 {
-    return L"int8";
+    return "int8";
 }
 
-template<> inline std::wstring Int<short>::getTypeStr()
+template<> inline std::string Int<short>::getTypeStr()
 {
-    return L"int16";
+    return "int16";
 }
 
-template<> inline std::wstring Int<int>::getTypeStr()
+template<> inline std::string Int<int>::getTypeStr()
 {
-    return L"int32";
+    return "int32";
 }
 
-template<> inline std::wstring Int<long long>::getTypeStr()
+template<> inline std::string Int<long long>::getTypeStr()
 {
-    return L"int64";
+    return "int64";
 }
 
-template<> inline std::wstring Int<unsigned char>::getTypeStr()
+template<> inline std::string Int<unsigned char>::getTypeStr()
 {
-    return L"uint8";
+    return "uint8";
 }
 
-template<> inline std::wstring Int<unsigned short>::getTypeStr()
+template<> inline std::string Int<unsigned short>::getTypeStr()
 {
-    return L"uint16";
+    return "uint16";
 }
 
-template<> inline std::wstring Int<unsigned int>::getTypeStr()
+template<> inline std::string Int<unsigned int>::getTypeStr()
 {
-    return L"uint32";
+    return "uint32";
 }
 
-template<> inline std::wstring Int<unsigned long long>::getTypeStr()
+template<> inline std::string Int<unsigned long long>::getTypeStr()
 {
-    return L"uint64";
+    return "uint64";
 }
 
 template<> inline void Int<char>::whoAmI()

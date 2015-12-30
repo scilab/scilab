@@ -20,39 +20,39 @@
 
 namespace analysis
 {
-     namespace logging
-     {
+namespace logging
+{
 
-	 class Logger
-	 {
-	     std::shared_ptr<std::wostream> out;
+class Logger
+{
+    std::shared_ptr<std::ostream> out;
 
-	 public:
+public:
 
-	     //Logger(std::wostream & _out) : out(new std::wostream(&_out)) { }
-	     Logger(const std::string & file) : out(new std::wofstream(file, std::ofstream::out | std::ofstream::trunc)) { }
+    //Logger(std::wostream & _out) : out(new std::wostream(&_out)) { }
+    Logger(const std::string & file) : out(new std::ofstream(file, std::ofstream::out | std::ofstream::trunc)) { }
 
-	     template<typename T>
-	     inline void log(const T & x)
-		 {
-		     //*out << x << std::endl;
-		 }
-	     
-	     template<typename T>
-	     inline void log(const unsigned int line, const char * file, const T & x)
-		 {
-		     //*out << file << L"@" << line << L": " << x << std::endl;
-		 }
+    template<typename T>
+    inline void log(const T & x)
+    {
+        //*out << x << std::endl;
+    }
 
-	     template<typename T, typename... Args>
-	     inline void log(const T & x, Args... args)
-		 {
-		     //*out << x << L" ";
-		     log(args...);
-		 }
-	 };
-	 
-     } // namespace logging
+    template<typename T>
+    inline void log(const unsigned int line, const char * file, const T & x)
+    {
+        //*out << file << L"@" << line << L": " << x << std::endl;
+    }
+
+    template<typename T, typename... Args>
+    inline void log(const T & x, Args... args)
+    {
+        //*out << x << L" ";
+        log(args...);
+    }
+};
+
+} // namespace logging
 
 } // namespace analysis
 

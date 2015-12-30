@@ -32,7 +32,7 @@ public :
     // expression "a"
     void                    setExp(ast::SimpleVar*);
     ast::SimpleVar*         getExp();
-    std::wstring            getExpAsString();
+    std::string             getExpAsString();
 
     // arguments x of a(x)
     void                    setArgs(types::typed_list*);

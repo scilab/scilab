@@ -48,9 +48,9 @@ public:
         set.clear();
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const Clone & c)
+    friend std::ostream & operator<<(std::ostream & out, const Clone & c)
     {
-        out << L"Clone";
+        out << "Clone";
         tools::printSet(c.set, out);
 
         return out;

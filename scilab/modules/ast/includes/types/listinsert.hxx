@@ -43,18 +43,18 @@ public :
 
     void                    whoAmI();
 
-    bool                    toString(std::wostringstream& ostr);
+    bool                    toString(std::ostringstream& ostr) override;
     InternalType*           getInsert();
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::string    getTypeStr()
     {
-        return L"listinsert";
+        return "listinsert";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::string    getShortTypeStr()
     {
-        return L"";
+        return "";
     }
 
 private :

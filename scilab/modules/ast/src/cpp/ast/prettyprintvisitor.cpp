@@ -39,15 +39,15 @@ static WORD OutputReverse(WORD c)
     return ((c & ~color_mask) | (new_attributes & color_mask));
 }
 #else
-const std::wstring clNORMAL = L"\033[0m";
-const std::wstring clBOLD = L"\033[1m";
-const std::wstring clRED = L"\033[91m";
-const std::wstring clGREEN = L"\033[92m";
-const std::wstring clYELLOW = L"\033[93m";
-const std::wstring clBLUE = L"\033[94m";
-const std::wstring clMAGENTA = L"\033[95m";
-const std::wstring clCYAN = L"\033[96m";
-const std::wstring clWHITE = L"\033[97m";
+const std::string clNORMAL = "\033[0m";
+const std::string clBOLD = "\033[1m";
+const std::string clRED = "\033[91m";
+const std::string clGREEN = "\033[92m";
+const std::string clYELLOW = "\033[93m";
+const std::string clBLUE = "\033[94m";
+const std::string clMAGENTA = "\033[95m";
+const std::string clCYAN = "\033[96m";
+const std::string clWHITE = "\033[97m";
 #endif
 
 namespace ast
@@ -55,7 +55,7 @@ namespace ast
 static int level = -1;
 
 #ifdef _MSC_VER
-std::wostream& operator<<(std::wostream& os, const TermColor& c)
+std::ostream& operator<<(std::ostream& os, const TermColor& c)
 {
     if (PrettyPrintVisitor::colored == false)
     {
@@ -124,7 +124,7 @@ std::wostream& operator<<(std::wostream& os, const TermColor& c)
 }
 
 #else
-std::wostream& operator<<(std::wostream& os, const TermColor& c)
+std::ostream& operator<<(std::ostream& os, const TermColor& c)
 {
     if (PrettyPrintVisitor::colored == false)
     {
@@ -171,7 +171,7 @@ bool PrettyPrintVisitor::colored = false;
 
 void PrettyPrintVisitor::START_NODE(const ast::Ast & e)
 {
-    *ostr << NORMAL << L"(" << e.getNodeNumber() << L") ";
+    *ostr << NORMAL << "(" << e.getNodeNumber() << ") ";
     ++level;
 }
 
@@ -181,34 +181,34 @@ void PrettyPrintVisitor::END_NODE(void)
     *ostr << RESET;
 }
 
-void PrettyPrintVisitor::print(const TermColor& c, const std::wstring & str)
+void PrettyPrintVisitor::print(const TermColor& c, const std::string & str)
 {
     for (int i = 0 ; i < level; ++i)
     {
-        *ostr << L"  ";
+        *ostr << "  ";
     }
     if (level > 0)
     {
-        *ostr << L"     ";
+        *ostr << "     ";
     }
     *ostr << str << std::endl;
 }
 
 void PrettyPrintVisitor::print(const Location & loc)
 {
-    *ostr << L"@(" << YELLOW << loc.first_line << L"." << BLUE << loc.first_column << NORMAL << L" -> "
-          << YELLOW << loc.last_line << L"." << BLUE << loc.last_column << NORMAL << L")";
+    *ostr << "@(" << YELLOW << loc.first_line << "." << BLUE << loc.first_column << NORMAL << " -> "
+          << YELLOW << loc.last_line << "." << BLUE << loc.last_column << NORMAL << ")";
 }
 
-void PrettyPrintVisitor::print(const TermColor& cpre, const std::wstring & pre, const Location & loc, const TermColor& cpost, const std::wstring & post, const TermColor& cdeco, const std::wstring & deco)
+void PrettyPrintVisitor::print(const TermColor& cpre, const std::string & pre, const Location & loc, const TermColor& cpost, const std::string & post, const TermColor& cdeco, const std::string & deco)
 {
     for (int i = 0 ; i < level; ++i)
     {
-        *ostr << L"  ";
+        *ostr << "  ";
     }
     if (level > 0)
     {
-        *ostr << L"|_./ ";
+        *ostr << "|_./ ";
     }
 
     *ostr << cpre << pre << NORMAL << L' ';
@@ -216,7 +216,7 @@ void PrettyPrintVisitor::print(const TermColor& cpre, const std::wstring & pre, 
 
     if (!post.empty())
     {
-        *ostr << L" : " << cpost << post << NORMAL;
+        *ostr << " : " << cpost << post << NORMAL;
     }
     if (!deco.empty())
     {
@@ -225,26 +225,25 @@ void PrettyPrintVisitor::print(const TermColor& cpre, const std::wstring & pre, 
     *ostr << std::endl;
 }
 
-void PrettyPrintVisitor::print(const TermColor& c, const std::wstring & str, const Exp & e)
+void PrettyPrintVisitor::print(const TermColor& c, const std::string & str, const Exp & e)
 {
-    std::wstring expType;
-    expType = e.getTypeString();
+    std::string expType = e.getTypeString();
 
     if (printDecoration)
     {
-        std::wostringstream wos;
-        wos << L"Deco(" << e.getDecorator() << L")";
-        print(BOLD, expType, e.getLocation(), c, str, NORMAL, wos.str());
+        std::ostringstream os;
+        os << "Deco(" << e.getDecorator() << ")";
+        print(BOLD, expType, e.getLocation(), c, str, NORMAL, os.str());
     }
     else
     {
-        print(BOLD, expType, e.getLocation(), c, str, NORMAL, L"");
+        print(BOLD, expType, e.getLocation(), c, str, NORMAL, "");
     }
 }
 
 void PrettyPrintVisitor::print(const Exp & e)
 {
-    print(NORMAL, L"", e);
+    print(NORMAL, "", e);
 }
 
 void PrettyPrintVisitor::visit(const MatrixExp & e)
@@ -286,7 +285,7 @@ void PrettyPrintVisitor::visit(const CellExp & e)
 void PrettyPrintVisitor::visit(const StringExp & e)
 {
     START_NODE(e);
-    std::wostringstream stream;
+    std::ostringstream stream;
     if (e.getConstant())
     {
         printInternalType<types::String>(stream, e.getConstant());
@@ -310,15 +309,15 @@ void PrettyPrintVisitor::visit(const CommentExp & e)
 void PrettyPrintVisitor::visit(const DoubleExp & e)
 {
     START_NODE(e);
-    std::wostringstream stream;
+    std::ostringstream stream;
     types::InternalType * pIT = e.getConstant();
     if (pIT)
     {
         if (pIT->isImplicitList())
         {
             types::ImplicitList * pIL = static_cast<types::ImplicitList *>(pIT);
-            stream << static_cast<types::Double *>(pIL->getStart())->get(0) << L":"
-                   << static_cast<types::Double *>(pIL->getStep())->get(0) << L":"
+            stream << static_cast<types::Double *>(pIL->getStart())->get(0) << ":"
+                   << static_cast<types::Double *>(pIL->getStep())->get(0) << ":"
                    << static_cast<types::Double *>(pIL->getEnd())->get(0);
         }
         else
@@ -338,7 +337,7 @@ void PrettyPrintVisitor::visit(const DoubleExp & e)
 void PrettyPrintVisitor::visit(const BoolExp & e)
 {
     START_NODE(e);
-    std::wostringstream stream;
+    std::ostringstream stream;
     if (e.getConstant())
     {
         printInternalType<types::Bool>(stream, e.getConstant());
@@ -362,21 +361,20 @@ void PrettyPrintVisitor::visit(const NilExp & e)
 void PrettyPrintVisitor::visit(const SimpleVar & e)
 {
     START_NODE(e);
-    std::wstring str;
-    str = e.getSymbol().getName();
+    std::string str(e.getSymbol().getName());
     if (printDecoration)
     {
-        std::wstring ty;
+        std::string ty;
         analysis::TIType type = e.getDecorator().getResult().getType();
         if (type.type != analysis::TIType::UNKNOWN)
         {
             if (type.isscalar())
             {
-                ty = L" (" + analysis::TIType::toString(type.type) + L")";
+                ty = " (" + analysis::TIType::toString(type.type) + ")";
             }
             else
             {
-                ty = L" (" + analysis::TIType::toString(type.type) + L"*)";
+                ty = " (" + analysis::TIType::toString(type.type) + "*)";
             }
         }
         str += ty;
@@ -622,14 +620,13 @@ void PrettyPrintVisitor::visit(const TransposeExp & e)
 
 void PrettyPrintVisitor::visit(const VarDec & e)
 {
-    std::wstring sym, name;
-    sym = L"Symbol";
-    name = e.getSymbol().getName();
+    std::string sym("Symbol");
+    std::string name(e.getSymbol().getName());
 
     START_NODE(e);
     print(e);
     START_NODE(e);
-    print(BOLD, sym, e.getLocation(), RED, name, NORMAL, L"");
+    print(BOLD, sym, e.getLocation(), RED, name, NORMAL, "");
     END_NODE();
     e.getInit().accept(*this);
     END_NODE();

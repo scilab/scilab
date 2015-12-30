@@ -15,9 +15,9 @@
 
 #include "dynamiclibrary.h"
 
-void addDynModule(const wchar_t* _pwstName, DynLibHandle _lib);
-void removeDynModule(const wchar_t* _pwstName);
-DynLibHandle getDynModule(const wchar_t* _pwstName);
+void addDynModule(const char* _pstName, DynLibHandle _lib);
+void removeDynModule(const char* _pstName);
+DynLibHandle getDynModule(const char* _pstName);
 int getDynModuleCount();
 DynLibHandle* getAllDynModule();
 void cleanDynModule();

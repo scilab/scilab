@@ -48,7 +48,7 @@ types::MacroFile* Library::get(const Symbol& _keyMacro) const
     return nullptr;
 }
 
-int Library::getMacrosName(std::list<std::wstring>& lst)
+int Library::getMacrosName(std::list<std::string>& lst)
 {
     if (empty() == false)
     {
@@ -186,7 +186,7 @@ bool Libraries::remove(const Symbol& _key, int _iLevel)
     return false;
 }
 
-int Libraries::getMacrosName(std::list<std::wstring>& lst)
+int Libraries::getMacrosName(std::list<std::string>& lst)
 {
     MapLibs::iterator it = libs.begin();
     MapLibs::iterator itEnd = libs.end();
@@ -198,7 +198,7 @@ int Libraries::getMacrosName(std::list<std::wstring>& lst)
     return static_cast<int>(lst.size());
 }
 
-int Libraries::getVarsName(std::list<std::wstring>& lst)
+int Libraries::getVarsName(std::list<std::string>& lst)
 {
     for (auto it : libs)
     {
@@ -241,11 +241,11 @@ void Libraries::clearAll()
     }
 }
 
-bool Libraries::getVarsNameForWho(std::list<std::wstring>* lstVarName, int* iVarLenMax, bool bSorted) const
+bool Libraries::getVarsNameForWho(std::list<std::string>* lstVarName, int* iVarLenMax, bool bSorted) const
 {
     for (auto it = libs.begin(), itEnd = libs.end(); it != itEnd; ++it)
     {
-        std::wstring wstrVarName(it->first.getName().c_str());
+        std::string wstrVarName(it->first.getName().c_str());
         if (lstVarName && it->second->empty() == false)
         {
             lstVarName->push_back(wstrVarName);
@@ -264,7 +264,7 @@ bool Libraries::getVarsNameForWho(std::list<std::wstring>* lstVarName, int* iVar
     return true;
 }
 
-int Libraries::whereis(std::list<std::wstring>& lst, const Symbol& _key)
+int Libraries::whereis(std::list<std::string>& lst, const Symbol& _key)
 {
     for (auto lib : libs)
     {
@@ -276,7 +276,7 @@ int Libraries::whereis(std::list<std::wstring>& lst, const Symbol& _key)
     return static_cast<int>(lst.size());
 }
 
-int Libraries::librarieslist(std::list<std::wstring>& lst)
+int Libraries::librarieslist(std::list<std::string>& lst)
 {
     for (auto lib : libs)
     {

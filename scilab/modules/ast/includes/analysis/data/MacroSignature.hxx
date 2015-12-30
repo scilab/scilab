@@ -33,19 +33,19 @@ class DataManager;
  */
 struct MacroSignature
 {
-    const std::wstring name;
+    const std::string name;
     const unsigned int lhs;
     TITypeSignatureTuple tuple;
 
     MacroSignature(MacroDef & macrodef, const unsigned int _lhs, const std::vector<TIType> & in) : name(macrodef.getName()), lhs(_lhs), tuple(in) { }
 
-    friend std::wostream & operator<<(std::wostream & out, const MacroSignature & signature)
+    friend std::ostream & operator<<(std::ostream & out, const MacroSignature & signature)
     {
-        out << L"Signature{"
-            << L"name:" << signature.name
-            << L", lhs:" << signature.lhs
-            << L", types:" << signature.tuple
-            << L"}";
+        out << "Signature{"
+            << "name:" << signature.name
+            << ", lhs:" << signature.lhs
+            << ", types:" << signature.tuple
+            << "}";
 
         return out;
     }
@@ -58,7 +58,7 @@ struct MacroSignature
     {
         inline std::size_t operator()(const MacroSignature & sign) const
         {
-            return tools::hash_combine(std::hash<std::wstring>()(sign.name), sign.lhs, sign.tuple.hash());
+            return tools::hash_combine(std::hash<std::string>()(sign.name), sign.lhs, sign.tuple.hash());
         }
     };
 

@@ -24,7 +24,7 @@ class CommentExp : public ConstExp
 {
 public:
     CommentExp (const Location& location,
-                std::wstring* comment)
+                std::string* comment)
         : ConstExp (location),
           _comment (comment)
     {
@@ -40,7 +40,7 @@ public:
 
     virtual CommentExp* clone()
     {
-        CommentExp* cloned = new CommentExp(getLocation(), new std::wstring(getComment()));
+        CommentExp* cloned = new CommentExp(getLocation(), new std::string(getComment()));
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -70,7 +70,7 @@ public:
     ** \{ */
 public:
     /** \brief Return the comment (read only). */
-    std::wstring &getComment() const
+    std::string &getComment() const
     {
         return *_comment;
     }
@@ -85,7 +85,7 @@ public:
         return true;
     }
 protected:
-    std::wstring* _comment;
+    std::string* _comment;
 };
 
 } // namespace ast

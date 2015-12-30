@@ -16,10 +16,10 @@
 #include "listundefined.hxx"
 #include "listinsert.hxx"
 #include "types_tools.hxx"
-#include "localization.hxx"
 #include "scilabWrite.hxx"
 #include "types_tools.hxx"
 #include "function.hxx"
+#include "scilabWrite.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -121,34 +121,34 @@ List *List::clone()
 /**
 ** toString to display Lists
 */
-bool List::toString(std::wostringstream& ostr)
+bool List::toString(std::ostringstream& ostr)
 {
     if (getSize() == 0)
     {
-        ostr.str(L"");
-        ostr << L"     ()" << std::endl;
+        ostr.str("");
+        ostr << "     ()" << std::endl;
     }
     else
     {
-        wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
+        char* varName = os_strdup(ostr.str().c_str());
         int iPosition = 1;
         for (auto val : *m_plData)
         {
-            std::wostringstream nextVarName;
-            ostr.str(L"");
-            nextVarName << " " << SPACES_LIST << wcsVarName << L"(" << iPosition++ << L")";
+            std::ostringstream nextVarName;
+            ostr.str("");
+            nextVarName << " " << SPACES_LIST << varName << "(" << iPosition++ << ")";
             ostr << std::endl << nextVarName.str() << std::endl << std::endl;
-            scilabForcedWriteW(ostr.str().c_str());
+            scilabForcedWrite(ostr.str().c_str());
             if (VariableToString(val, nextVarName.str().c_str()) == types::Function::Error)
             {
-                free(wcsVarName);
-                ostr.str(L"");
+                free(varName);
+                ostr.str("");
                 return true;
             }
         }
 
-        ostr.str(L"");
-        free(wcsVarName);
+        ostr.str("");
+        free(varName);
     }
 
     return true;
@@ -227,8 +227,8 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
-        std::wostringstream os;
-        os << _W("Unable to insert multiple item in a list.\n");
+        std::ostringstream os;
+        os << _("Unable to insert multiple item in a list.\n");
         throw ast::InternalError(os.str());
     }
     else if (iSeqCount < 0)
@@ -267,8 +267,8 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
-            std::wostringstream os;
-            os << _W("Index out of bounds.\n");
+            std::ostringstream os;
+            os << _("Index out of bounds.\n");
             throw ast::InternalError(os.str());
         }
 

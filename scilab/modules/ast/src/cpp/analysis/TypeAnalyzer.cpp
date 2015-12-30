@@ -17,34 +17,34 @@
 
 namespace analysis
 {
-    bool TypeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+bool TypeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+{
+    if (lhs != 1)
     {
-        if (lhs != 1)
-        {
-            return false;
-        }
-
-        const ast::exps_t args = e.getArgs();
-        if (args.size() != 1)
-        {
-            return false;
-        }
-	
-        ast::Exp * arg = args.back();
-        arg->accept(visitor);
-        const double code = visitor.getResult().getType().getScilabCode();
-        if (code != -1)
-        {
-	    TIType type(visitor.getGVN(), TIType::DOUBLE);
-            Result & res = e.getDecorator().setResult(type);
-            res.getConstant() = visitor.getGVN().getValue(code);
-            e.getDecorator().setCall(L"type");
-            visitor.setResult(res);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return false;
     }
+
+    const ast::exps_t args = e.getArgs();
+    if (args.size() != 1)
+    {
+        return false;
+    }
+
+    ast::Exp * arg = args.back();
+    arg->accept(visitor);
+    const double code = visitor.getResult().getType().getScilabCode();
+    if (code != -1)
+    {
+        TIType type(visitor.getGVN(), TIType::DOUBLE);
+        Result & res = e.getDecorator().setResult(type);
+        res.getConstant() = visitor.getGVN().getValue(code);
+        e.getDecorator().setCall("type");
+        visitor.setResult(res);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 }

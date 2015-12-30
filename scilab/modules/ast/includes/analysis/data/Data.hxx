@@ -37,7 +37,7 @@ struct Data
     bool isDeletable() const;
     bool same(Data * data);
     void setValidity(const bool v);
-    friend std::wostream & operator<<(std::wostream & out, const Data & data);
+    friend std::ostream & operator<<(std::ostream & out, const Data & data);
 };
 
 } // namespace analysis

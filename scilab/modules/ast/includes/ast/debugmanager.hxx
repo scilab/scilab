@@ -101,14 +101,14 @@ public:
     void sendStop(int index);
     void sendResume();
     void sendAbort();
-    void sendErrorInFile(const std::wstring& filename) const;
-    void sendErrorInScript(const std::wstring& funcname) const;
+    void sendErrorInFile(const std::string& filename) const;
+    void sendErrorInScript(const std::string& funcname) const;
     void sendQuit();
     void sendUpdate() const;
 
     void stop(const ast::Exp* pExp, int index);
-    void errorInFile(const std::wstring filename, const ast::Exp* pExp);
-    void errorInScript(const std::wstring funcname, const ast::Exp* pExp);
+    void errorInFile(const std::string& filename, const ast::Exp* pExp);
+    void errorInScript(const std::string& funcname, const ast::Exp* pExp);
     //breakpoints functions
     void addBreakPoint(Breakpoint* bp);
     void removeBreakPoint(int _iBreakPoint);

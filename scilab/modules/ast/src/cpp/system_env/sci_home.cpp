@@ -32,45 +32,23 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-wchar_t* getSCIHOMEW(void)
-{
-    return os_wcsdup(ConfigVariable::getSCIHOME().c_str());
-}
-/*--------------------------------------------------------------------------*/
 char* getSCIHOME(void)
 {
-    std::wstring tmpSCIHOME = ConfigVariable::getSCIHOME();
-    if (tmpSCIHOME == L"")
+    std::string tmpSCIHOME = ConfigVariable::getSCIHOME();
+    if (tmpSCIHOME == "")
     {
-        tmpSCIHOME = L"empty_SCIHOME";
+        tmpSCIHOME = "empty_SCIHOME";
     }
-    return wide_string_to_UTF8(tmpSCIHOME.c_str());
+    return os_strdup(tmpSCIHOME.c_str());
 }
 /*--------------------------------------------------------------------------*/
 void setSCIHOME(const char* _sci_home)
 {
-    wchar_t* pstTemp = to_wide_string(_sci_home);
-    setSCIHOMEW(pstTemp);
-    FREE(pstTemp);
-}
-/*--------------------------------------------------------------------------*/
-void setSCIHOMEW(const wchar_t* _sci_home)
-{
     //add SCI value in context as variable
     types::String *pS = new types::String(_sci_home);
-    symbol::Context::getInstance()->put(symbol::Symbol(L"SCIHOME"), pS);
+    symbol::Context::getInstance()->put(symbol::Symbol("SCIHOME"), pS);
 
-    std::wstring sci_home(_sci_home);
-    ConfigVariable::setSCIHOME(sci_home);
-}
-
-/*--------------------------------------------------------------------------*/
-wchar_t* computeSCIHOMEW(void)
-{
-    char* pstTemp = computeSCIHOME();
-    wchar_t* pstReturn = to_wide_string(pstTemp);
-    FREE(pstTemp);
-    return pstReturn;
+    ConfigVariable::setSCIHOME(_sci_home);
 }
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -208,7 +186,6 @@ char* computeSCIHOME(void)
     return NULL;
 }
 #endif
-
 /*--------------------------------------------------------------------------*/
 char* getenvSCIHOME(void)
 {
@@ -228,22 +205,6 @@ char* getenvSCIHOME(void)
     return SciHome;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* getenvSCIHOMEW(void)
-{
-    char *SciHome = getenvSCIHOME();
-    wchar_t* pstTemp = to_wide_string(SciHome);
-    delete[] SciHome;
-    return pstTemp;
-}
-/*--------------------------------------------------------------------------*/
-void putenvSCIHOMEW(const wchar_t* _sci_home)
-{
-    char* pstTemp = wide_string_to_UTF8(_sci_home);
-    putenvSCIHOME(pstTemp);
-    FREE(pstTemp);
-    return;
-}
-
 void putenvSCIHOME(const char* _sci_home)
 {
     char *ShortPath = NULL;
@@ -266,8 +227,8 @@ void putenvSCIHOME(const char* _sci_home)
 /*--------------------------------------------------------------------------*/
 void defineSCIHOME()
 {
-    wchar_t* sci_home = computeSCIHOMEW();
-    setSCIHOMEW(sci_home);
-    putenvSCIHOMEW(sci_home);
+    char* sci_home = computeSCIHOME();
+    setSCIHOME(sci_home);
+    putenvSCIHOME(sci_home);
     FREE(sci_home);
 }

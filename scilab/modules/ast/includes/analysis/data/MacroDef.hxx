@@ -46,7 +46,7 @@ public:
 
     virtual ast::SeqExp & getBody() = 0;
     virtual const ast::SeqExp & getOriginalBody() = 0;
-    virtual const std::wstring & getName() = 0;
+    virtual const std::string & getName() = 0;
     virtual std::vector<symbol::Symbol> getIn() = 0;
     virtual std::vector<symbol::Symbol> getOut() = 0;
     virtual MacroDef * clone() const = 0;
@@ -101,7 +101,7 @@ public:
 
 class ExistingMacroDef : public MacroDef
 {
-    const std::wstring name;
+    const std::string name;
     std::vector<symbol::Symbol> inputs;
     std::vector<symbol::Symbol> outputs;
 
@@ -114,7 +114,7 @@ public:
 
     ast::SeqExp & getBody();
     const ast::SeqExp & getOriginalBody();
-    const std::wstring & getName();
+    const std::string & getName();
     std::vector<symbol::Symbol> getIn();
     std::vector<symbol::Symbol> getOut();
     MacroDef * clone() const;
@@ -131,7 +131,7 @@ public:
 
     ast::SeqExp & getBody();
     const ast::SeqExp & getOriginalBody();
-    const std::wstring & getName();
+    const std::string & getName();
     std::vector<symbol::Symbol> getIn();
     std::vector<symbol::Symbol> getOut();
     MacroDef * clone() const;

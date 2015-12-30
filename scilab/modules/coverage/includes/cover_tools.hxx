@@ -21,14 +21,14 @@ namespace coverage
 namespace tools
 {
 template<typename T>
-inline static std::wstring getPlural(const T x)
+inline static std::string getPlural(const T x)
 {
-    return x > 1 ? L"s" : L"";
+    return x > 1 ? "s" : "";
 }
 
-inline static std::wstring getUnderline(const std::wstring & s)
+inline static std::string getUnderline(const std::string & s)
 {
-    return std::wstring(s.length(), L'-');
+    return std::string(s.length(), '-');
 }
 
 inline static bool isBlockExp(const ast::Exp * e)
@@ -36,9 +36,9 @@ inline static bool isBlockExp(const ast::Exp * e)
     return e && (e->isIfExp() || e->isWhileExp() || e->isForExp() || e->isTryCatchExp());
 }
 
-inline static std::wstring underline(const std::wstring & str)
+inline static std::string underline(const std::string & str)
 {
-    return str + L"\n" + getUnderline(str) + L"\n";
+    return str + "\n" + getUnderline(str) + "\n";
 }
 
 } // namespace tools

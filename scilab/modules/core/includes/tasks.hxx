@@ -80,7 +80,7 @@ int execScilabQuitTask(bool _bSerialize);
 #ifdef __cplusplus
 extern "C"
 {
-ast::Exp* parseCommand(std::wstring _command);
+ast::Exp* parseCommand(const std::string& _command);
 }
 #endif
 

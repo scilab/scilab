@@ -13,7 +13,6 @@
 #include <sstream>
 #include "macrofile.hxx"
 #include "library.hxx"
-#include "localization.hxx"
 #include "configvariable.hxx"
 #include "scilabWrite.hxx"
 
@@ -25,8 +24,8 @@ extern "C"
 
 namespace types
 {
-Library::Library(const std::wstring& _wstPath) :
-    m_wstPath(_wstPath)
+Library::Library(const std::string& _path) :
+    m_path(_path)
 {
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -52,10 +51,10 @@ Library::~Library()
 #endif
 }
 
-bool Library::toString(std::wostringstream& ostr)
+bool Library::toString(std::ostringstream& ostr)
 {
-    wchar_t output[1024] = {0};
-    os_swprintf(output, 1024, _W("Functions files location : %s.\n").c_str(), m_wstPath.c_str());
+    char output[1024] = {0};
+    os_sprintf(output, _("Functions files location : %s.\n"), m_path.c_str());
 
     ostr << output << std::endl;
 
@@ -84,29 +83,28 @@ Library* Library::clone()
     return this;
 }
 
-bool Library::extract(const std::wstring & name, InternalType *& out)
+bool Library::extract(const std::string & name, InternalType *& out)
 {
     out = get(name);
     if (out == NULL)
     {
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n").c_str(), name.c_str());
-
-        throw std::wstring(szError);
+        char szError[bsiz];
+        os_sprintf(szError, _("Unknown field : %ls.\n"), name.c_str());
+        throw std::string(szError);
     }
 
     return true;
 }
 
-void Library::add(const std::wstring& _wstName, MacroFile* _macro)
+void Library::add(const std::string& _stName, MacroFile* _macro)
 {
     _macro->IncreaseRef();
-    m_macros[_wstName] = _macro;
+    m_macros[_stName] = _macro;
 }
 
-MacroFile* Library::get(const std::wstring& _wstName)
+MacroFile* Library::get(const std::string& _stName)
 {
-    MacroMap::iterator it = m_macros.find(_wstName);
+    MacroMap::iterator it = m_macros.find(_stName);
     if (it != m_macros.end())
     {
         return it->second;
@@ -114,7 +112,7 @@ MacroFile* Library::get(const std::wstring& _wstName)
     return NULL;
 }
 
-int Library::getMacrosName(std::list<std::wstring>& lst)
+int Library::getMacrosName(std::list<std::string>& lst)
 {
     for (auto macro : m_macros)
     {
@@ -124,8 +122,8 @@ int Library::getMacrosName(std::list<std::wstring>& lst)
     return static_cast<int>(lst.size());
 }
 
-std::wstring Library::getPath()
+std::string Library::getPath()
 {
-    return m_wstPath;
+    return m_path;
 }
 }

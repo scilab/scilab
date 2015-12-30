@@ -109,65 +109,65 @@ private :
         switch (code)
         {
             case 1 :
-                return  OpExp::plus;
+                return OpExp::plus;
             case 2 :
-                return  OpExp::minus;
+                return OpExp::minus;
             case 3 :
-                return  OpExp::times;
+                return OpExp::times;
             case 4 :
-                return  OpExp::rdivide;
+                return OpExp::rdivide;
             case 5 :
-                return  OpExp::ldivide;
+                return OpExp::ldivide;
             case 6 :
-                return  OpExp::power;
+                return OpExp::power;
 
             case 7 :
-                return  OpExp::dottimes;
+                return OpExp::dottimes;
             case 8 :
-                return  OpExp::dotrdivide;
+                return OpExp::dotrdivide;
             case 9 :
-                return  OpExp::dotldivide;
+                return OpExp::dotldivide;
             case 10 :
-                return  OpExp::dotpower;
+                return OpExp::dotpower;
 
             case 11 :
-                return  OpExp::krontimes;
+                return OpExp::krontimes;
             case 12 :
-                return  OpExp::kronrdivide;
+                return OpExp::kronrdivide;
             case 13 :
-                return  OpExp::kronldivide;
+                return OpExp::kronldivide;
 
             case 14 :
-                return  OpExp::controltimes;
+                return OpExp::controltimes;
             case 15 :
-                return  OpExp::controlrdivide;
+                return OpExp::controlrdivide;
             case 16 :
-                return  OpExp::controlldivide;
+                return OpExp::controlldivide;
 
             case 17 :
-                return  OpExp::eq;
+                return OpExp::eq;
             case 18 :
-                return  OpExp::ne;
+                return OpExp::ne;
             case 19 :
-                return  OpExp::lt;
+                return OpExp::lt;
             case 20 :
-                return  OpExp::le;
+                return OpExp::le;
             case 21 :
-                return  OpExp::gt;
+                return OpExp::gt;
             case 22 :
-                return  OpExp::ge;
+                return OpExp::ge;
 
             case 23 :
-                return  OpExp::unaryMinus;
+                return OpExp::unaryMinus;
 
             case 24 :
-                return  OpExp::logicalAnd;
+                return OpExp::logicalAnd;
             case 25 :
-                return  OpExp::logicalOr;
+                return OpExp::logicalOr;
             case 26 :
-                return  OpExp::logicalShortCutAnd;
+                return OpExp::logicalShortCutAnd;
             case 27 :
-                return  OpExp::logicalShortCutOr;
+                return OpExp::logicalShortCutOr;
         }
         std::cerr << "Unknown get_OpExp_Oper code " << code << std::endl;
         exit(2);
@@ -187,21 +187,18 @@ private :
         exit(2);
     }
 
-    std::wstring* get_wstring(void)
+    std::string* get_string(void)
     {
         unsigned int size = get_uint32();
         char* ss = (char*)buf;
-        std::string s(ss, size / sizeof(char));
-        wchar_t* ws = to_wide_string(s.data());
-        std::wstring* w = new std::wstring(ws);
-        FREE(ws);
+        std::string* s = new std::string(ss, size / sizeof(char));
         buf += size;
-        return w;
+        return s;
     }
 
     symbol::Symbol* get_Symbol(void)
     {
-        std::wstring* s = get_wstring();
+        std::string* s = get_string();
         symbol::Symbol *sym = new symbol::Symbol(*s);
         delete s;
         return sym;
@@ -242,14 +239,14 @@ private :
             }
             case 2:
             {
-                std::wstring* s = get_wstring();
+                std::string* s = get_string();
                 exp = new StringExp(loc, *s);
                 delete s;
                 break;
             }
             case 3:
             {
-                std::wstring* s = get_wstring();
+                std::string* s = get_string();
                 exp = new CommentExp(loc, s);
                 //delete s;
                 break;

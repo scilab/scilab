@@ -168,22 +168,22 @@ void setWarningStop(int _iStop)
 }
 
 
-int checkReferenceModule(const wchar_t* _module)
+int checkReferenceModule(const char* _module)
 {
     return ConfigVariable::checkReferenceModule(_module) ? 1 : 0;
 }
 
-void addReferenceModule(const wchar_t* _module)
+void addReferenceModule(const char* _module)
 {
     ConfigVariable::addReferenceModule(_module);
 }
 
-void removeReferenceModule(const wchar_t* _module)
+void removeReferenceModule(const char* _module)
 {
     ConfigVariable::removeReferenceModule(_module);
 }
 
-int getEntryPointPosition(wchar_t* _pwstEntryPointName)
+int getEntryPointPosition(char* _pwstEntryPointName)
 {
     return ConfigVariable::getEntryPointPosition(_pwstEntryPointName);
 }

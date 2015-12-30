@@ -360,9 +360,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
 
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
-            throw ast::InternalError(szError);
+            throw ast::InternalError(_("Invalid index.\n"));
         }
 
         if (pSource->isScalar())
@@ -1657,8 +1655,8 @@ bool ArrayOf<T>::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCou
         InternalType * _out = extract(&in);
         if (!_out)
         {
-            std::wostringstream os;
-            os << _W("Invalid index.\n");
+            std::ostringstream os;
+            os << _("Invalid index.\n");
             throw ast::InternalError(os.str(), 999, e.getLocation());
         }
         out.push_back(_out);

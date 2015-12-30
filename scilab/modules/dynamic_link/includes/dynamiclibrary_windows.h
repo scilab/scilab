@@ -29,14 +29,14 @@ typedef FARPROC DynLibFuncPtr;
 * @param name of dynamic library
 * @return Handle to the loaded library
 */
-DYNAMIC_LINK_IMPEXP DynLibHandle LoadDynLibrary(char *libname);
+DYNAMIC_LINK_IMPEXP DynLibHandle LoadDynLibrary(const char *libname);
 
 /**
 * Maps the specified executable module into the address space of the calling process
 * @param name of dynamic library (wide char)
 * @return Handle to the loaded library
 */
-DYNAMIC_LINK_IMPEXP DynLibHandle LoadDynLibraryW(wchar_t *libname);
+DYNAMIC_LINK_IMPEXP DynLibHandle LoadDynLibraryW(const wchar_t *libname);
 
 
 /**

@@ -289,13 +289,13 @@ bool Cell::isEmpty()
 ** toString to display Structs
 ** FIXME : Find a better indentation process
 */
-bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
+bool Cell::subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iDims*/)
 {
     int iPrecision = ConfigVariable::getFormatSize();
 
     if (isEmpty())
     {
-        ostr << L"   {}";
+        ostr << "   {}";
     }
     else
     {
@@ -355,19 +355,19 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                 int iPos = getIndex(_piDims);
                 InternalType* pIT = get(iPos);
 
-                ostr << L"  [";
+                ostr << "  [";
                 if (pIT->isAssignable())
                 {
                     if (pIT->isGenericType())
                     {
                         //"  ixjxkxl type   "
                         GenericType* pGT = pIT->getAs<GenericType>();
-                        std::wostringstream ostemp;
+                        std::ostringstream ostemp;
                         for (int k = 0 ; k < pGT->getDims() ; k++)
                         {
                             if (k != 0)
                             {
-                                ostemp << L"x";
+                                ostemp << "x";
                             }
                             ostemp << pGT->getDimsArray()[k];
                         }
@@ -391,12 +391,12 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                 else
                 {
                     configureStream(&ostr, piSizeLen[j], iPrecision, ' ');
-                    ostr << L"";//fill with space
+                    ostr << "";//fill with space
                 }
-                ostr << L" ";
+                ostr << " ";
                 configureStream(&ostr, piTypeLen[j], iPrecision, ' ');
                 ostr << std::left << pIT->getTypeStr();
-                ostr << L"]";
+                ostr << "]";
             }
             ostr << std::endl;
         }

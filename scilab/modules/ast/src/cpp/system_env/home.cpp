@@ -31,40 +31,18 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-wchar_t* getHOMEW(void)
-{
-    return os_wcsdup(ConfigVariable::getHOME().c_str());
-}
-/*--------------------------------------------------------------------------*/
 char* getHOME(void)
 {
-    return wide_string_to_UTF8(ConfigVariable::getHOME().c_str());
+    return os_strdup(ConfigVariable::getHOME().c_str());
 }
 /*--------------------------------------------------------------------------*/
 void setHOME(const char* _home)
 {
-    wchar_t* pstTemp = to_wide_string(_home);
-    setHOMEW(pstTemp);
-    FREE(pstTemp);
-}
-/*--------------------------------------------------------------------------*/
-void setHOMEW(const wchar_t* _home)
-{
     //add SCI value in context as variable
     types::String *pS = new types::String(_home);
-    symbol::Context::getInstance()->put(symbol::Symbol(L"home"), pS);
+    symbol::Context::getInstance()->put(symbol::Symbol("home"), pS);
 
-    std::wstring home(_home);
-    ConfigVariable::setHOME(home);
-}
-
-/*--------------------------------------------------------------------------*/
-wchar_t* computeHOMEW(void)
-{
-    char* pstTemp = computeHOME();
-    wchar_t* pstReturn = to_wide_string(pstTemp);
-    delete[] pstTemp;
-    return pstReturn;
+    ConfigVariable::setHOME(_home);
 }
 /*--------------------------------------------------------------------------*/
 char* computeHOME(void)
@@ -116,22 +94,6 @@ char* getenvHOME(void)
     return Home;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* getenvHOMEW(void)
-{
-    char *Home = getenvHOME();
-    wchar_t* pstTemp = to_wide_string(Home);
-    delete[] Home;
-    return pstTemp;
-}
-/*--------------------------------------------------------------------------*/
-void putenvHOMEW(const wchar_t* _home)
-{
-    char* pstTemp = wide_string_to_UTF8(_home);
-    putenvHOME(pstTemp);
-    FREE(pstTemp);
-    return;
-}
-
 void putenvHOME(const char* _home)
 {
     char *ShortPath = NULL;
@@ -154,8 +116,8 @@ void putenvHOME(const char* _home)
 /*--------------------------------------------------------------------------*/
 void defineHOME()
 {
-    wchar_t* home = computeHOMEW();
-    setHOMEW(home);
-    putenvHOMEW(home);
+    char* home = computeHOME();
+    setHOME(home);
+    putenvHOME(home);
     FREE(home);
 }

@@ -33,7 +33,7 @@ bool InternalType::hasToString()
     return true;
 }
 
-std::wstring InternalType::toStringInLine()
+std::string InternalType::toStringInLine()
 {
     return getTypeStr();
 }

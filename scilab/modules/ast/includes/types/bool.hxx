@@ -65,14 +65,14 @@ public:
     bool                    operator!=(const InternalType& it);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring     getTypeStr()
+    virtual std::string      getTypeStr()
     {
-        return L"boolean";
+        return "boolean";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring     getShortTypeStr()
+    virtual std::string      getShortTypeStr()
     {
-        return L"b";
+        return "b";
     }
 
     virtual bool transpose(InternalType *& out);
@@ -90,7 +90,7 @@ protected :
     virtual ast::Exp*       getExp(const Location& loc);
 
 private :
-    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
+    virtual bool            subMatrixToString(std::ostringstream& ostr, int* _piDims, int _iDims) override;
 
     virtual int             getNullValue();
     virtual Bool*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

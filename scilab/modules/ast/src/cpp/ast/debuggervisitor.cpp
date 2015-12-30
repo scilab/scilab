@@ -86,7 +86,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                 if (lWhereAmI.size() != 0 && manager->getBreakPointCount() != 0)
                 {
                     debugger::Breakpoints bps = manager->getAllBreakPoint();
-                    std::wstring functionName = lWhereAmI.back().m_name;
+                    std::string functionName = lWhereAmI.back().m_name;
                     int i = -1;
                     for (const auto& bp : bps)
                     {
@@ -118,7 +118,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                                         //protect current env during condition execution
                                         pCtx->scope_begin();
                                         bp->getConditionExp()->accept(execCond);
-                                        types::InternalType* pIT = pCtx->getCurrentLevel(symbol::Symbol(L"ans"));
+                                        types::InternalType* pIT = pCtx->getCurrentLevel(symbol::Symbol("ans"));
                                         if (pIT == NULL ||
                                                 pIT->isBool() == false ||
                                                 ((types::Bool*)pIT)->isScalar() == false ||
@@ -179,7 +179,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                 if (pITMacro)
                 {
                     types::Macro* pMacro = pITMacro->getAs<types::Macro>();
-                    const wchar_t* filename = getfile_filename(iFileID);
+                    const char* filename = getfile_filename(iFileID);
                     // scilab.quit is not open with mopen
                     // in this case filename is NULL because FileManager have not been filled.
                     if (filename)
@@ -221,7 +221,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                     }
                     catch (const InternalError& ie)
                     {
-                        if (ConfigVariable::getLastErrorFunction() == L"")
+                        if (ConfigVariable::getLastErrorFunction() == "")
                         {
                             ConfigVariable::setLastErrorFunction(pCall->getName());
                             ConfigVariable::setLastErrorLine(e.getLocation().first_line);
@@ -240,9 +240,9 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                     if (exp->isVerbose() && ConfigVariable::isPromptShow())
                     {
                         //TODO manage multiple returns
-                        scilabWriteW(L" ans  =\n\n");
-                        std::wostringstream ostrName;
-                        ostrName << L"ans";
+                        scilabWrite(" ans  =\n\n");
+                        std::ostringstream ostrName;
+                        ostrName << "ans";
                         types::VariableToString(pITAns, ostrName.str().c_str());
                     }
                 }
@@ -280,12 +280,12 @@ void DebuggerVisitor::visit(const SeqExp  &e)
             //where can be empty on last stepout, on first calling expression
             if (lWhereAmI.size())
             {
-                std::wstring& filename = lWhereAmI.back().m_file_name;
+                std::string& filename = lWhereAmI.back().m_file_name;
 
                 if (filename.empty())
                 {
                     //error in a console script
-                    std::wstring functionName = lWhereAmI.back().m_name;
+                    std::string functionName = lWhereAmI.back().m_name;
                     manager->errorInScript(functionName, exp);
                 }
                 else

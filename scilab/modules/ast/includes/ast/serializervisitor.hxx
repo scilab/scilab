@@ -174,15 +174,13 @@ private :
         buflen += 8;
     }
 
-    void add_wstring(const std::wstring &w)
+    void add_string(const std::string &c)
     {
-        char *c_str = wide_string_to_UTF8(w.c_str());
-        int size = strlen(c_str);
+        int size = (int)c.size();
         int final_size = size * sizeof(char);
         add_uint32(final_size);
         need(final_size);
-        memcpy(buf + buflen, c_str, final_size);
-        FREE(c_str);
+        memcpy(buf + buflen, c.data(), final_size);
         buflen += final_size;
     }
 
@@ -212,7 +210,7 @@ private :
 
     void add_Symbol(const symbol::Symbol& e)
     {
-        add_wstring(e.getName());
+        add_string(e.getName());
     }
 
     void add_exp(const Exp* e)
@@ -365,12 +363,12 @@ private :
     void visit(const StringExp& e)  /* done */
     {
         add_ast(2, e);
-        add_wstring(e.getValue());
+        add_string(e.getValue());
     }
     void visit(const CommentExp& e)  /* done */
     {
         add_ast(3, e);
-        add_wstring(e.getComment());
+        add_string(e.getComment());
     }
     void visit(const DoubleExp& e)  /* done */
     {

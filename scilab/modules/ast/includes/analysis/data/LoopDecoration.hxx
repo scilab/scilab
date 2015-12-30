@@ -58,20 +58,20 @@ public:
         promotion.clear();
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const LoopDecoration & ld)
+    friend std::ostream & operator<<(std::ostream & out, const LoopDecoration & ld)
     {
         const bool cl = ld.getClone().empty();
         const bool pr = ld.getPromotion().empty();
 
         if (!cl || !pr)
         {
-            out << L"LoopDecoration: ";
+            out << "LoopDecoration: ";
             if (!cl)
             {
                 out << ld.clone;
                 if (pr)
                 {
-                    out << L"; ";
+                    out << "; ";
                 }
             }
             if (!pr)

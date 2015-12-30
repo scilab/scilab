@@ -13,7 +13,7 @@
 #ifndef __SCILABWRITE_HXX__
 #define __SCILABWRITE_HXX__
 
-#define SPACES_LIST L"      "
+#define SPACES_LIST "      "
 
 #include "dynlib_output_stream.h"
 

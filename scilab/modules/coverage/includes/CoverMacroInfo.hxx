@@ -22,17 +22,17 @@ namespace coverage
 
 struct CoverMacroInfo
 {
-    const std::wstring macroModule;
-    const std::wstring macroFilePath;
+    const std::string macroModule;
+    const std::string macroFilePath;
     const uint64_t instrsCount;
     const uint64_t branchesCount;
     const uint64_t pathsCount;
 
-    CoverMacroInfo(const std::wstring & _macroModule, const std::wstring & _macroFilePath, const uint64_t _instrsCount, const uint64_t _branchesCount, const uint64_t _pathsCount) : macroModule(_macroModule), macroFilePath(_macroFilePath), instrsCount(_instrsCount), branchesCount(_branchesCount), pathsCount(_pathsCount) { }
+    CoverMacroInfo(const std::string & _macroModule, const std::string & _macroFilePath, const uint64_t _instrsCount, const uint64_t _branchesCount, const uint64_t _pathsCount) : macroModule(_macroModule), macroFilePath(_macroFilePath), instrsCount(_instrsCount), branchesCount(_branchesCount), pathsCount(_pathsCount) { }
 
-    friend std::wostream & operator<<(std::wostream & out, const CoverMacroInfo & cmi)
+    friend std::ostream & operator<<(std::ostream & out, const CoverMacroInfo & cmi)
     {
-        out << L"instrs: " << cmi.instrsCount << L" branches: " << cmi.branchesCount << L" paths: " << cmi.pathsCount;
+        out << "instrs: " << cmi.instrsCount << " branches: " << cmi.branchesCount << " paths: " << cmi.pathsCount;
         return out;
     }
 

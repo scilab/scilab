@@ -17,7 +17,7 @@ namespace analysis
 
 void AnalysisVisitor::visit(ast::WhileExp & e)
 {
-    logger.log(L"WhileExp", e.getLocation());
+    logger.log("WhileExp", e.getLocation());
     loops.push(&e);
 
     dm.addBlock(Block::LOOP, &e);

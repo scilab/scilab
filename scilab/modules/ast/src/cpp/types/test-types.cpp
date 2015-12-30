@@ -39,9 +39,9 @@ int main(void)
     /*
     ** types::String
     */
-    types::String s42(L"42");
+    types::String s42("42");
     std::cout << "s42 = " << d42.get(0, 0) << std::endl;
-    assert(wcscmp(s42.get(0, 0), L"42") == 0);
+    assert(strcmp(s42.get(0, 0), "42") == 0);
     assert(s42.isInt() == false);
     assert(s42.isDouble() == false);
     assert(s42.isString() == true);

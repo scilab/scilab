@@ -255,7 +255,7 @@ bool Variables::remove(const Symbol& _key, int _iLevel)
     return false;
 }
 
-int Variables::getMacrosName(std::list<std::wstring>& lst)
+int Variables::getMacrosName(std::list<std::string>& lst)
 {
     for (auto it : vars)
     {
@@ -272,7 +272,7 @@ int Variables::getMacrosName(std::list<std::wstring>& lst)
     return static_cast<int>(lst.size());
 }
 
-int Variables::getVarsName(std::list<std::wstring>& lst)
+int Variables::getVarsName(std::list<std::string>& lst)
 {
     for (auto it : vars)
     {
@@ -292,11 +292,11 @@ int Variables::getVarsName(std::list<std::wstring>& lst)
     return static_cast<int>(lst.size());
 }
 
-bool Variables::getVarsNameForWho(std::list<std::wstring>& lstVarName, int* iVarLenMax, bool bSorted) const
+bool Variables::getVarsNameForWho(std::list<std::string>& lstVarName, int* iVarLenMax, bool bSorted) const
 {
     for (auto it : vars)
     {
-        std::wstring wstrVarName(it.first.getName().c_str());
+        std::string wstrVarName(it.first.getName().c_str());
         if (it.second->empty() == false)
         {
             types::InternalType* pIT = it.second->top()->m_pIT;
@@ -316,13 +316,13 @@ bool Variables::getVarsNameForWho(std::list<std::wstring>& lstVarName, int* iVar
     return true;
 }
 
-bool Variables::getGlobalNameForWho(std::list<std::wstring>& lstVarName, int* iVarLenMax, bool bSorted) const
+bool Variables::getGlobalNameForWho(std::list<std::string>& lstVarName, int* iVarLenMax, bool bSorted) const
 {
     for (auto it : vars)
     {
         if (it.second->empty() == false && it.second->isGlobal())
         {
-            std::wstring wstrVarName(it.first.getName().c_str());
+            std::string wstrVarName(it.first.getName().c_str());
             lstVarName.push_back(wstrVarName);
             *iVarLenMax = std::max(*iVarLenMax, (int)wstrVarName.size());
         }
@@ -336,14 +336,14 @@ bool Variables::getGlobalNameForWho(std::list<std::wstring>& lstVarName, int* iV
     return true;
 }
 
-int Variables::getProtectedVarsName(std::list<std::wstring>& lstVarName) const
+int Variables::getProtectedVarsName(std::list<std::string>& lstVarName) const
 {
     for (auto it : vars)
     {
         if (it.second->empty() == false)
         {
             ScopedVariable* pSV = it.second->top();
-            if (pSV->protect && it.first.getName() != L"ans")
+            if (pSV->protect && it.first.getName() != "ans")
             {
                 lstVarName.push_back(it.first.getName());
             }
@@ -353,7 +353,7 @@ int Variables::getProtectedVarsName(std::list<std::wstring>& lstVarName) const
     return static_cast<int>(lstVarName.size());
 }
 
-int Variables::getFunctionsName(std::list<std::wstring>& lst)
+int Variables::getFunctionsName(std::list<std::string>& lst)
 {
     for (auto it : vars)
     {
@@ -370,7 +370,7 @@ int Variables::getFunctionsName(std::list<std::wstring>& lst)
     return static_cast<int>(lst.size());
 }
 
-int Variables::getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName, int _iLevel)
+int Variables::getFunctionList(std::list<Symbol>& lst, const std::string& _stModuleName, int _iLevel)
 {
     for (auto var : vars)
     {
@@ -382,7 +382,7 @@ int Variables::getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleNam
         if ((var.second->top()->m_iLevel == _iLevel || _iLevel == 1) && var.second->top()->m_pIT->isCallable())
         {
             types::Callable* pCall = var.second->top()->m_pIT->getAs<types::Callable>();
-            if (_stModuleName == L"" || _stModuleName == pCall->getModule())
+            if (_stModuleName == "" || _stModuleName == pCall->getModule())
             {
                 lst.push_back(var.first);
             }
@@ -392,25 +392,25 @@ int Variables::getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleNam
     return static_cast<int>(lst.size());
 }
 
-int Variables::getFunctionList(std::list<types::Callable *>& lst, std::wstring _stModuleName, int _iLevel)
+int Variables::getFunctionList(std::list<types::Callable *>& lst, const std::string& _stModuleName, int _iLevel)
 {
     for (auto var : vars)
     {
-	if (var.second->empty())
-	{
-	    continue;
-	}
-	
-	if ((var.second->top()->m_iLevel == _iLevel || _iLevel == 1) && var.second->top()->m_pIT->isCallable())
-	{
-	    types::Callable * pCall = var.second->top()->m_pIT->getAs<types::Callable>();
-	    if (_stModuleName == L"" || _stModuleName == pCall->getModule())
-	    {
-		lst.push_back(pCall);
-	    }
-	}
+        if (var.second->empty())
+        {
+            continue;
+        }
+
+        if ((var.second->top()->m_iLevel == _iLevel || _iLevel == 1) && var.second->top()->m_pIT->isCallable())
+        {
+            types::Callable * pCall = var.second->top()->m_pIT->getAs<types::Callable>();
+            if (_stModuleName == "" || _stModuleName == pCall->getModule())
+            {
+                lst.push_back(pCall);
+            }
+        }
     }
-    
+
     return static_cast<int>(lst.size());
 }
 

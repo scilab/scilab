@@ -55,7 +55,7 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
         int iResult = DoubleLessDouble(pL, pR, (Bool**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -72,7 +72,7 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
         int iResult = SparseLessSparse(pL, pR, (SparseBool**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -89,7 +89,7 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
         int iResult = DoubleLessSparse(pL, pR, (SparseBool**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -106,7 +106,7 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
         int iResult = SparseLessDouble(pL, pR, (SparseBool**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -127,7 +127,7 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
         int iResult = IntLessInt(_pLeftOperand, _pRightOperand, (GenericType**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -268,7 +268,7 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
         int iResult = DoubleLessEqualDouble(pL, pR, (Bool**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -285,7 +285,7 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
         int iResult = SparseLessEqualSparse(pL, pR, (SparseBool**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -302,7 +302,7 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
         int iResult = DoubleLessEqualSparse(pL, pR, (SparseBool**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -319,7 +319,7 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
         int iResult = SparseLessEqualDouble(pL, pR, (SparseBool**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -339,7 +339,7 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
         int iResult = IntLessEqualInt(_pLeftOperand, _pRightOperand, (GenericType**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;

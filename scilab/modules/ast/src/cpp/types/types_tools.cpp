@@ -62,7 +62,7 @@ double getIndex(InternalType* val)
 {
     switch (val->getType())
     {
-            //scalar
+        //scalar
         case InternalType::ScilabDouble:
         {
             return getIndex(val->getAs<Double>());
@@ -517,7 +517,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     continue;
                 }
 
-                wchar_t* pFieldName = pStr->get(0);
+                char* pFieldName = pStr->get(0);
 
                 // pCurrent arg is indexed to 1 unlike the return of "getFieldIndex"
                 int iIndex = pStruct->get(0)->getFieldIndex(pFieldName) + 1;
@@ -537,7 +537,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 double* pdbl = pCurrentArg->get();
                 for (int i = 0; i < pStr->getSize(); i++)
                 {
-                    wchar_t* pFieldName = pStr->get(i);
+                    char* pFieldName = pStr->get(i);
                     int iIndex = pTL->getIndexFromString(pFieldName);
                     if (iIndex == -1)
                     {
@@ -668,8 +668,8 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 //checks if size < size(int)
                 if (pCurrentArg->get(j) >= INT_MAX)
                 {
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("variable size exceeded : less than %d expected.\n").c_str(), INT_MAX);
+                    char szError[bsiz];
+                    os_sprintf(szError, _("variable size exceeded : less than %d expected.\n"), INT_MAX);
                     throw ast::InternalError(szError);
                 }
 
@@ -688,8 +688,8 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
         }
         else
         {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
+            char szError[bsiz];
+            os_sprintf(szError, _("Invalid index.\n"));
 
             delete[] _piMaxDim;
             delete[] _piCountDim;
@@ -784,7 +784,7 @@ int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims)
     return idx;
 }
 
-types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
+types::Function::ReturnValue VariableToString(types::InternalType* pIT, const char* varName)
 {
     if (pIT->hasToString() == false)
     {
@@ -798,7 +798,7 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
 
         try
         {
-            ret = Overload::generateNameAndCall(L"p", in, 1, out);
+            ret = Overload::generateNameAndCall("p", in, 1, out);
             pIT->DecreaseRef();
             return ret;
         }
@@ -810,14 +810,14 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
     }
     else
     {
-        std::wostringstream ostr;
+        std::ostringstream ostr;
         if (pIT->isFunction())
         {
             pIT->getAs<types::Function>()->toString(ostr);
         }
         else if (pIT->isList() || pIT->isCallable())
         {
-            ostr << wcsVarName;
+            ostr << varName;
         }
 
         //to manage lines information
@@ -831,7 +831,7 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
             if (ConfigVariable::isError())
             {
                 ConfigVariable::resetError();
-                ostr.str(L"");
+                ostr.str("");
                 ConfigVariable::resetExecutionBreak();
                 return types::Function::Error;
             }
@@ -842,8 +842,8 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
                 bFinish = linesmore() == 1;
             }
 
-            scilabForcedWriteW(ostr.str().c_str());
-            ostr.str(L"");
+            scilabForcedWrite(ostr.str().c_str());
+            ostr.str("");
         }
         while (bFinish == false && ConfigVariable::isExecutionBreak() == false);
 

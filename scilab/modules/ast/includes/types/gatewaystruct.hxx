@@ -40,8 +40,8 @@ public :
 
 struct EXTERN_AST GatewayCStruct
 {
-    std::string     name;
-    std::wstring    lasterror;
+    std::string name;
+    std::string lasterror;
 };
 }
 #endif /* !__GATEWAYSTRUCT_HXX__ */

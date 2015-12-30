@@ -39,7 +39,7 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = PowerDoubleByDouble(pL, pR, (Double**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -58,9 +58,9 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
         switch (iResult)
         {
             case 1 :
-                throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+                throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
             case 2 :
-                throw ast::InternalError(_W("Invalid exponent.\n"));
+                throw ast::InternalError(_("Invalid exponent.\n"));
             default:
                 //OK
                 break;
@@ -94,7 +94,7 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
         int iResult = DotPowerDoubleByDouble(pL, pR, (Double**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
 
         return pResult;
@@ -110,7 +110,7 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
         int iResult = DotPowerSpaseByDouble(pL, pR, &pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
         return pResult;
 
@@ -129,9 +129,9 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
         switch (iResult)
         {
             case 1 :
-                throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+                throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
             case 2 :
-                throw ast::InternalError(_W("Invalid exponent.\n"));
+                throw ast::InternalError(_("Invalid exponent.\n"));
             default:
                 //OK
                 break;
@@ -488,7 +488,7 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
     else
     {
         delete[] pDblSp;
-        throw ast::InternalError(_W("Invalid exponent.\n"));
+        throw ast::InternalError(_("Invalid exponent.\n"));
         return 1;
     }
 
@@ -566,7 +566,7 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
     else
     {
         delete[] pDblPower;
-        throw ast::InternalError(_W("Invalid exponent.\n"));
+        throw ast::InternalError(_("Invalid exponent.\n"));
     }
 
     InternalType* pITTempOut    = NULL;
@@ -616,12 +616,12 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
         case 1 :
         {
             delete pPolyOut;
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
         case 2 :
         {
             delete pPolyOut;
-            throw ast::InternalError(_W("Invalid exponent.\n"));
+            throw ast::InternalError(_("Invalid exponent.\n"));
         }
         default:
             //OK

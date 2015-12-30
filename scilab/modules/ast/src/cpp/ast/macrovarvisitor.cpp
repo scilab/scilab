@@ -124,34 +124,34 @@ void MacrovarVisitor::visit (const FunctionDec  &e)
     add(m_local);
 }
 
-std::list<std::wstring>& MacrovarVisitor::getIn()
+std::list<std::string>& MacrovarVisitor::getIn()
 {
     return m_in;
 }
 
-std::list<std::wstring>& MacrovarVisitor::getOut()
+std::list<std::string>& MacrovarVisitor::getOut()
 {
     return m_out;
 }
 
-std::list<std::wstring>& MacrovarVisitor::getExternal()
+std::list<std::string>& MacrovarVisitor::getExternal()
 {
     return m_external;
 }
 
-std::list<std::wstring>& MacrovarVisitor::getCalled()
+std::list<std::string>& MacrovarVisitor::getCalled()
 {
     return m_called;
 }
 
-std::list<std::wstring>& MacrovarVisitor::getLocal()
+std::list<std::string>& MacrovarVisitor::getLocal()
 {
     return m_local;
 }
 
-void MacrovarVisitor::add(std::list<std::wstring>& lst)
+void MacrovarVisitor::add(std::list<std::string>& lst)
 {
-    if (m_current == L"")
+    if (m_current == "")
     {
         return;
     }
@@ -161,7 +161,7 @@ void MacrovarVisitor::add(std::list<std::wstring>& lst)
         lst.push_back(m_current);
     }
 
-    m_current = L"";
+    m_current = "";
 }
 
 void MacrovarVisitor::add()
@@ -180,7 +180,7 @@ void MacrovarVisitor::add()
     add(m_external);
 }
 
-bool MacrovarVisitor::isAlreadyIn(std::list<std::wstring>& lst)
+bool MacrovarVisitor::isAlreadyIn(std::list<std::string>& lst)
 {
     for (auto l : lst)
     {

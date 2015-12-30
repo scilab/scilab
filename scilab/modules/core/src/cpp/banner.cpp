@@ -12,7 +12,6 @@
 
 #include "banner.hxx"
 #include "scilabWrite.hxx"
-#include "localization.hxx"
 
 extern "C"
 {

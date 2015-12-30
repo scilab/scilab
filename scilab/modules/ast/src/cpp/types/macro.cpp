@@ -33,13 +33,13 @@ extern "C"
 
 namespace types
 {
-Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputArgs, std::list<symbol::Variable*>& _outputArgs, ast::SeqExp &_body, const std::wstring& _stModule):
+Macro::Macro(const std::string& _stName, std::list<symbol::Variable*>& _inputArgs, std::list<symbol::Variable*>& _outputArgs, ast::SeqExp &_body, const std::string& _stModule):
     Callable(),
     m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(_body.clone()),
-    m_Nargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargin"))),
-    m_Nargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargout"))),
-    m_Varargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargin"))),
-    m_Varargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargout")))
+    m_Nargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol("nargin"))),
+    m_Nargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol("nargout"))),
+    m_Varargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol("varargin"))),
+    m_Varargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol("varargout")))
 {
     setName(_stName);
     setModule(_stModule);
@@ -50,7 +50,7 @@ Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputAr
     m_pDblArgOut->IncreaseRef(); //never delete
 
     m_body->setReturnable();
-    m_stPath = L"";
+    m_stPath = "";
 }
 
 Macro::~Macro()
@@ -105,21 +105,21 @@ ast::SeqExp* Macro::getBody(void)
     return m_body;
 }
 
-bool Macro::toString(std::wostringstream& ostr)
+bool Macro::toString(std::ostringstream& ostr)
 {
     // get macro name
-    wchar_t* wcsVarName = NULL;
+    char* varName = NULL;
     if (ostr.str() == SPACES_LIST)
     {
-        wcsVarName = os_wcsdup(getName().c_str());
+        varName = os_strdup(getName().c_str());
     }
     else
     {
-        wcsVarName = os_wcsdup(ostr.str().c_str());
+        varName = os_strdup(ostr.str().c_str());
     }
 
-    ostr.str(L"");
-    ostr << L"[";
+    ostr.str("");
+    ostr << "[";
 
     // output arguments [a,b,c] = ....
     if (m_outputArgs->empty() == false)
@@ -138,10 +138,10 @@ bool Macro::toString(std::wostringstream& ostr)
         ostr << (*OutArg)->getSymbol().getName();
     }
 
-    ostr << L"]";
+    ostr << "]";
 
     // function name
-    ostr << L"=" << wcsVarName << L"(";
+    ostr << "=" << varName << "(";
 
     // input arguments function(a,b,c)
     if (m_inputArgs->empty() == false)
@@ -160,9 +160,9 @@ bool Macro::toString(std::wostringstream& ostr)
         ostr << (*inArg)->getSymbol().getName();
     }
 
-    ostr << L")" << std::endl;
+    ostr << ")" << std::endl;
 
-    FREE(wcsVarName);
+    FREE(varName);
     return true;
 }
 
@@ -182,7 +182,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     // but not more execpts with varargin
 
     // varargin management
-    if (m_inputArgs->size() > 0 && m_inputArgs->back()->getSymbol().getName() == L"varargin")
+    if (m_inputArgs->size() > 0 && m_inputArgs->back()->getSymbol().getName() == "varargin")
     {
         int iVarPos = static_cast<int>(in.size());
         if (iVarPos > static_cast<int>(m_inputArgs->size()) - 1)
@@ -270,7 +270,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     // varargout is a list
     // varargout can containt more items than caller need
     // varargout must containt at leat caller needs
-    if (m_outputArgs->size() == 1 && m_outputArgs->back()->getSymbol().getName() == L"varargout")
+    if (m_outputArgs->size() == 1 && m_outputArgs->back()->getSymbol().getName() == "varargout")
     {
         bVarargout = true;
         List* pL = new List();
@@ -391,11 +391,9 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 out.clear();
                 cleanCall(pContext, oldVal);
 
-                char* pstArgName = wide_string_to_UTF8((*i)->getSymbol().getName().c_str());
-                char* pstMacroName = wide_string_to_UTF8(getName().c_str());
+                const char* pstArgName = (*i)->getSymbol().getName().c_str();
+                const char* pstMacroName = getName().c_str();
                 Scierror(999, _("Undefined variable '%s' in function '%s'.\n"), pstArgName, pstMacroName);
-                FREE(pstArgName);
-                FREE(pstMacroName);
                 return Callable::Error;
             }
         }
@@ -429,7 +427,7 @@ int Macro::getNbInputArgument(void)
 
 int Macro::getNbOutputArgument(void)
 {
-    if (m_outputArgs->size() == 1 && m_outputArgs->back()->getSymbol().getName() == L"varargout")
+    if (m_outputArgs->size() == 1 && m_outputArgs->back()->getSymbol().getName() == "varargout")
     {
         return -1;
     }

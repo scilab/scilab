@@ -53,19 +53,19 @@ class CoverResult
             }
         };
 
-	struct Compare
-	{
-	    inline bool operator()(const Location & l, const Location & r) const
-		{
-		    return l < r;
-		}
-	};
+        struct Compare
+        {
+            inline bool operator()(const Location & l, const Location & r) const
+            {
+                return l < r;
+            }
+        };
 
     };
 
     friend class CoverModule;
-    
-    std::wstring name;
+
+    std::string name;
     CoverMacroInfo info;
     uint64_t uncoveredInstrs;
     uint64_t uncoveredBranches;
@@ -78,7 +78,7 @@ class CoverResult
 
 public:
 
-    CoverResult(const std::wstring & _name, const CoverMacroInfo & _info) : name(_name), info(_info), uncoveredInstrs(0), uncoveredBranches(0), counter(0), time(0) { }
+    CoverResult(const std::string & _name, const CoverMacroInfo & _info) : name(_name), info(_info), uncoveredInstrs(0), uncoveredBranches(0), counter(0), time(0) { }
 
     void populate(const std::vector<Counter>::const_iterator pos, const std::vector<Counter>::const_iterator end);
 
@@ -191,12 +191,12 @@ public:
         return true;
     }
 
-    inline std::wstring getStringTime() const
+    inline std::string getStringTime() const
     {
         return getStringTime(getNanoTime());
     }
 
-    inline std::wstring getStringTime(const ast::Exp * e) const
+    inline std::string getStringTime(const ast::Exp * e) const
     {
         return getStringTime(getNanoTime(e));
     }
@@ -208,15 +208,15 @@ public:
     }
 
     bool isCovered(const ast::Exp * e) const;
-    void toXML(const std::wstring & outputDir); 
-    void toJSON(const std::wstring & outputDir);
-    void toHTML(const std::wstring & outputDir);
-    std::wstring getStringTime(const uint64_t time) const;
+    void toXML(const std::string & outputDir);
+    void toJSON(const std::string & outputDir);
+    void toHTML(const std::string & outputDir);
+    std::string getStringTime(const uint64_t time) const;
     void toBin(std::fstream & out) const;
     void merge(const CoverResult & cr);
     static CoverResult fromBin(std::fstream & in);
-    
-    friend std::wostream & operator<<(std::wostream & out, const CoverResult & cr);
+
+    friend std::ostream & operator<<(std::ostream & out, const CoverResult & cr);
 
 private:
 

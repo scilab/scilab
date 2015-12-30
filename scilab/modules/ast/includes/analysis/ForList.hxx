@@ -109,9 +109,9 @@ public:
         return std::is_integral<U>::value ? tools::trunc(max) : max;
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const ForList & fl)
+    friend std::ostream & operator<<(std::ostream & out, const ForList & fl)
     {
-        out << L"ForList: { m: " << fl.min << L", s: " << fl.step << L", M: " << fl.max << L", int: " << (fl._int ? L"T" : L"F") << L", uint: " << (fl._unsigned ? L"T" : L"F");
+        out << "ForList: { m: " << fl.min << ", s: " << fl.step << ", M: " << fl.max << ", int: " << (fl._int ? "T" : "F") << ", uint: " << (fl._unsigned ? "T" : "F");
         return out;
     }
 

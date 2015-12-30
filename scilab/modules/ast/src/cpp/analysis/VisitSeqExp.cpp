@@ -17,7 +17,7 @@ namespace analysis
 
 void AnalysisVisitor::visit(ast::SeqExp & e)
 {
-    logger.log(L"SeqExp", e.getLocation());
+    logger.log("SeqExp", e.getLocation());
     ast::exps_t::iterator i = e.getExps().begin();
     ast::exps_t::iterator itEnd = e.getExps().end();
     for (; i != itEnd; ++i)
@@ -33,7 +33,7 @@ void AnalysisVisitor::visit(ast::SeqExp & e)
             if (loops.empty())
             {
                 // We are not in a loop so this break is useless.
-                exp->replace(new ast::CommentExp(exp->getLocation(), new std::wstring(L"useless break or continue")));
+                exp->replace(new ast::CommentExp(exp->getLocation(), new std::string("useless break or continue")));
             }
             else
             {

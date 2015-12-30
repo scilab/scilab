@@ -74,18 +74,18 @@ public:
     types::InternalType* getFunction(const Symbol& key);
 
     /*return function list in the module _stModuleName*/
-    int getFunctionList(std::list<Symbol>& lst, const std::wstring& _stModuleName);
+    int getFunctionList(std::list<Symbol>& lst, const std::string& _stModuleName);
     /*return function list in the module _stModuleName*/
-    int getFunctionList(std::list<types::Callable *>& lst, std::wstring _stModuleName);
+    int getFunctionList(std::list<types::Callable *>& lst, std::string _stModuleName);
 
-    int getConsoleVarsName(std::list<std::wstring>& lst);
-    int getVarsName(std::list<std::wstring>& lst);
-    int getMacrosName(std::list<std::wstring>& lst);
-    int getFunctionsName(std::list<std::wstring>& lst);
-    int getVarsNameForWho(std::list<std::wstring>& lst, bool sorted);
-    int getGlobalNameForWho(std::list<std::wstring>& lst, bool sorted);
-    int getWhereIs(std::list<std::wstring>& lst, const std::wstring& _str);
-    int getLibrariesList(std::list<std::wstring>& lst);
+    int getConsoleVarsName(std::list<std::string>& lst);
+    int getVarsName(std::list<std::string>& lst);
+    int getMacrosName(std::list<std::string>& lst);
+    int getFunctionsName(std::list<std::string>& lst);
+    int getVarsNameForWho(std::list<std::string>& lst, bool sorted);
+    int getGlobalNameForWho(std::list<std::string>& lst, bool sorted);
+    int getWhereIs(std::list<std::string>& lst, const std::string& _str);
+    int getLibrariesList(std::list<std::string>& lst);
     int getVarsToVariableBrowser(std::list<Variable*>& lst);
     int getLibsToVariableBrowser(std::list<Library*>& lst);
     /* global functions */
@@ -110,7 +110,7 @@ public:
     void unprotect();
     bool isprotected(const Symbol& key);
     bool isprotected(Variable* _var);
-    int protectedVars(std::list<std::wstring>& lst);
+    int protectedVars(std::list<std::string>& lst);
 
     /*set variable visible/hidden in current global scope*/
     void setGlobalVisible(const Symbol& key, bool bVisible);
@@ -133,9 +133,8 @@ public:
     bool addFunction(types::Function *_info);
     bool addMacro(types::Macro *_info);
     bool addMacroFile(types::MacroFile *_info);
-    void print(std::wostream& ostr, bool bSorted = false) const;
+    void print(std::ostream& ostr, bool bSorted = false) const;
     int getScopeLevel();
-    bool isValidVariableName(const wchar_t*);
     bool isValidVariableName(const char*);
 
     inline bool isOriginalSymbol(const symbol::Symbol & sym) const
@@ -162,7 +161,7 @@ private:
     static Context* me;
 };
 
-inline std::wostream& operator<< (std::wostream& ostr, const Context &ctx)
+inline std::ostream& operator<< (std::ostream& ostr, const Context &ctx)
 {
     ctx.print(ostr);
     return ostr;

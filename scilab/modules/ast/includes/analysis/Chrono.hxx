@@ -19,35 +19,35 @@
 namespace analysis
 {
 
-    class Chrono
+class Chrono
+{
+    std::chrono::steady_clock::time_point start;
+    std::chrono::steady_clock::time_point end;
+
+public:
+
+    void start_chrono()
     {
-        std::chrono::steady_clock::time_point start;
-        std::chrono::steady_clock::time_point end;
+        start = std::chrono::steady_clock::now();
+    }
 
-    public:
+    void stop_chrono()
+    {
+        end = std::chrono::steady_clock::now();
+    }
 
-	void start_chrono()
-            {
-                start = std::chrono::steady_clock::now();
-            }
-	
-        void stop_chrono()
-            {
-                end = std::chrono::steady_clock::now();
-            }
-	
-        double get_duration() const
-            {
-                return (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9;
-            } 
+    double get_duration() const
+    {
+        return (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9;
+    }
 
-	friend std::wostream & operator<<(std::wostream & out, const Chrono & chrono)
-	    {
-		out << L"Elapsed time: " << chrono.get_duration() << L" s.";
-		return out;
-	    }
-    };
-    
+    friend std::ostream & operator<<(std::ostream & out, const Chrono & chrono)
+    {
+        out << "Elapsed time: " << chrono.get_duration() << " s.";
+        return out;
+    }
+};
+
 } // namespace analysis
 
 #endif // __CHRONO_HXX__

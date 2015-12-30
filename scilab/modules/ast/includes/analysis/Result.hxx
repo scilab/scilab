@@ -86,7 +86,7 @@ public:
     {
         functionId = id;
     }
-    
+
     inline uint64_t getFunctionId() const
     {
         return functionId;
@@ -162,26 +162,26 @@ public:
         return maxIndex;
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const Result & res)
+    friend std::ostream & operator<<(std::ostream & out, const Result & res)
     {
-        out << L"Result {" << res.type;
+        out << "Result {" << res.type;
         if (res.tempId != -1)
         {
-            out << L", temp id:" << res.tempId;
+            out << ", temp id:" << res.tempId;
         }
-	if (res.functionId)
+        if (res.functionId)
         {
-            out << L", function id:" << res.functionId;
+            out << ", function id:" << res.functionId;
         }
         if (res.constant.isKnown())
         {
-            out << L", constant:" << res.constant;
+            out << ", constant:" << res.constant;
         }
         if (res.isAnInt())
         {
-            out << L", isAnInt: T";
+            out << ", isAnInt: T";
         }
-        out << L'}';
+        out << '}';
 
         return out;
     }

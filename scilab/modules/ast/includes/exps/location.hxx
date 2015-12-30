@@ -92,16 +92,16 @@ public:
         return !(*this == loc);
     }
 
-    std::wstring getLocationString() const
+    std::string getLocationString() const
     {
-        std::wostringstream os;
-        os << L" (" << first_line << L"," << first_column << L")";
+        std::ostringstream os;
+        os << " (" << first_line << "," << first_column << ")";
         return os.str();
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const Location & loc)
+    friend std::ostream & operator<<(std::ostream & out, const Location & loc)
     {
-        out << L"(" << loc.first_line << L"," << loc.first_column << L") to (" << loc.last_line << L"," << loc.last_column << L")";
+        out << "(" << loc.first_line << "," << loc.first_column << ") to (" << loc.last_line << "," << loc.last_column << ")";
         return out;
     }
 

@@ -44,7 +44,7 @@ void Parser::cleanup()
     yylex_destroy();
 }
 
-void Parser::parseFile(const std::wstring& fileName, const std::wstring& progName)
+void Parser::parseFile(const std::string& fileName, const std::string& progName)
 {
     // Calling Parse state machine in C with global values
     // Must be locked to avoid concurrent access
@@ -80,22 +80,20 @@ void Parser::parseFile(const std::wstring& fileName, const std::wstring& progNam
 
 
 /** \brief parse the given file name */
-void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::wstring& progName)
+void ParserSingleInstance::parseFile(const std::string& fileName, const std::string& progName)
 {
     yylloc.first_line = yylloc.last_line = 1;
     yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
-    _wfopen_s(&yyin, fileName.c_str(), L"r");
+    fopen_s(&yyin, fileName.c_str(), "r");
 #else
-    char* pstTemp = wide_string_to_UTF8(fileName.c_str());
-    yyin = fopen(pstTemp, "r");
-    FREE(pstTemp);
+    yyin = fopen(fileName.c_str(), "r");
 #endif
 
     if (!yyin)
     {
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Cannot open file %ls.\n").c_str(), L"parser", fileName.c_str());
+        char szError[bsiz];
+        os_sprintf(szError, _("%s: Cannot open file %s.\n"), "parser", fileName.c_str());
         throw ast::InternalError(szError);
     }
 
@@ -154,13 +152,6 @@ void Parser::parse(const char *command)
     // FIXME : UNLOCK
 }
 
-void Parser::parse(const wchar_t *command)
-{
-    char* pstCommand = wide_string_to_UTF8(command);
-    parse(pstCommand);
-    FREE(pstCommand);
-}
-
 /** \brief parse the given file command */
 void ParserSingleInstance::parse(const char *command)
 {
@@ -185,10 +176,8 @@ void ParserSingleInstance::parse(const char *command)
     {
         ParserSingleInstance::setExitStatus(Parser::Failed);
         ParserSingleInstance::resetErrorMessage();
-        wchar_t szError[bsiz];
-        wchar_t* wszFile = to_wide_string(szFile);
-        os_swprintf(szError, bsiz, _W("%ls: Cannot open file %ls.\n").c_str(), L"parser", wszFile);
-        FREE(wszFile);
+        char szError[bsiz];
+        os_sprintf(szError, _("%s: Cannot open file %s.\n"), "parser", szFile);
         appendErrorMessage(szError);
         return;
     }
@@ -222,7 +211,7 @@ void ParserSingleInstance::parse(const char *command)
 #endif
 
     ParserSingleInstance::disableStrictMode();
-    ParserSingleInstance::setFileName(L"prompt");
+    ParserSingleInstance::setFileName("prompt");
     ParserSingleInstance::setTree(nullptr);
     ParserSingleInstance::setExitStatus(Parser::Succeded);
     ParserSingleInstance::resetControlStatus();
@@ -261,12 +250,12 @@ char *ParserSingleInstance::getCodeLine(int line, char **codeLine)
     return *codeLine;
 }
 
-std::wstring& ParserSingleInstance::getErrorMessage(void)
+std::string& ParserSingleInstance::getErrorMessage(void)
 {
     return _error_message;
 }
 
-void ParserSingleInstance::appendErrorMessage(const std::wstring& message)
+void ParserSingleInstance::appendErrorMessage(const std::string& message)
 {
     _error_message += message;
 }
@@ -297,9 +286,9 @@ void ParserSingleInstance::releaseTmpFile()
     }
 }
 
-std::wstring ParserSingleInstance::_file_name;
-std::wstring ParserSingleInstance::_prog_name;
-std::wstring ParserSingleInstance::_error_message;
+std::string ParserSingleInstance::_file_name;
+std::string ParserSingleInstance::_prog_name;
+std::string ParserSingleInstance::_error_message;
 bool ParserSingleInstance::_strict_mode = false;
 bool ParserSingleInstance::_stop_on_first_error = false;
 ast::Exp* ParserSingleInstance::_the_program = nullptr;

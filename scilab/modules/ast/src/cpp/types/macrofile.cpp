@@ -29,7 +29,7 @@ extern "C"
 }
 namespace types
 {
-MacroFile::MacroFile(const std::wstring& _stName, const std::wstring& _stPath, const std::wstring& _stModule) :
+MacroFile::MacroFile(const std::string& _stName, const std::string& _stPath, const std::string& _stModule) :
     Callable(), m_stPath(_stPath), m_pMacro(NULL)
 {
     setName(_stName);
@@ -55,7 +55,7 @@ void MacroFile::whoAmI()
     std::cout << "types::MacroFile";
 }
 
-bool MacroFile::toString(std::wostringstream& ostr)
+bool MacroFile::toString(std::ostringstream& ostr)
 {
 
     parse();
@@ -84,15 +84,12 @@ bool MacroFile::parse(void)
     if (m_pMacro == NULL)
     {
         //load file, only for the first call
-        char* pstPath = wide_string_to_UTF8(m_stPath.c_str());
-        std::ifstream f(pstPath, std::ios::in | std::ios::binary | std::ios::ate);
+        std::ifstream f(m_stPath, std::ios::in | std::ios::binary | std::ios::ate);
         if (f.is_open() == false)
         {
-            Scierror(999, _("Unable to open : %s.\n"), pstPath);
-            FREE(pstPath);
+            Scierror(999, _("Unable to open : %s.\n"), m_stPath.data());
             return false;
         }
-        FREE(pstPath);
 
         int size = (int)f.tellg();
         unsigned char* binAst = new unsigned char[size];
@@ -137,7 +134,7 @@ bool MacroFile::parse(void)
             }
 
             const symbol::Symbol & sym = pFD->getSymbol();
-            Macro* macro = new Macro(sym.getName(), *pVarList, *pRetList, (ast::SeqExp&)pFD->getBody(), m_wstModule);
+            Macro* macro = new Macro(sym.getName(), *pVarList, *pRetList, (ast::SeqExp&)pFD->getBody(), m_stModule);
             macro->setLines(pFD->getLocation().first_line, pFD->getLocation().last_line);
             macro->setFileName(m_stPath);
 

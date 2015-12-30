@@ -20,13 +20,13 @@ symbol::Symbol::string_set_type symbol::Symbol::_set;
 namespace symbol
 {
 // Constructor
-Symbol::Symbol (const std::wstring &s):
+Symbol::Symbol (const std::string &s):
     _set_node (_set.insert(s).first)
 {
 }
 
 // Accessor
-const std::wstring& Symbol::getName () const
+const std::string& Symbol::getName () const
 {
     return (*_set_node);
 }
@@ -54,20 +54,20 @@ bool Symbol::operator<(const Symbol &rhs) const
     return *_set_node < *rhs.getNode();
 }
 
-std::wostream& operator<< (std::wostream &ostr, const Symbol &the)
+std::ostream& operator<< (std::ostream &ostr, const Symbol &the)
 {
     return ostr << the.getName();
 }
 
-wchar_t **Symbol::getAll()
+char **Symbol::getAll()
 {
     string_set_type::const_iterator it;
-    wchar_t **resultVector = new wchar_t*[getSize()];
+    char **resultVector = new char*[getSize()];
     int i = 0;
 
     for (it = _set.begin() ; it != _set.end() ; ++it, ++i)
     {
-        resultVector[i] = const_cast<wchar_t*>(it->c_str());
+        resultVector[i] = const_cast<char*>(it->c_str());
     }
 
     return resultVector;

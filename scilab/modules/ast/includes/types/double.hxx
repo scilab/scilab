@@ -118,14 +118,14 @@ public :
     void                        convertFromZComplex();
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr()
+    virtual std::string        getTypeStr()
     {
-        return L"constant";
+        return "constant";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr()
+    virtual std::string        getShortTypeStr()
     {
-        return L"s";
+        return "s";
     }
 
     inline ScilabType           getType(void)
@@ -135,10 +135,10 @@ public :
     inline ScilabId             getId(void)
     {
         return isIdentity() ? isComplex() ? IdIdentityComplex : IdIdentity
-       : isEmpty() ? IdEmpty
+               : isEmpty() ? IdEmpty
                : isComplex() ? isScalar() ? IdScalarDoubleComplex
                : IdDoubleComplex
-       : isScalar() ? IdScalarDouble
+               : isScalar() ? IdScalarDouble
                : IdDouble;
     }
 
@@ -320,7 +320,7 @@ public :
 
 
 private:
-    virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
+    virtual bool                subMatrixToString(std::ostringstream& ostr, int* _piDims, int _iDims) override;
 
     virtual double              getNullValue();
     virtual Double*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

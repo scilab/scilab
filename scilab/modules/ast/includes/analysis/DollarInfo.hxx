@@ -55,7 +55,7 @@ public:
         return index;
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const DollarInfo & di);
+    friend std::ostream & operator<<(std::ostream & out, const DollarInfo & di);
 
 };
 

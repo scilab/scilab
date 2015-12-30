@@ -47,7 +47,7 @@ bool LengthAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, 
 
     Result & _res = e.getDecorator().setResult(type);
     _res.getConstant() = prod.getValue();
-    e.getDecorator().setCall(L"length", resType);
+    e.getDecorator().setCall("length", resType);
     visitor.setResult(_res);
     return true;
 }

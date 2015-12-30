@@ -27,14 +27,14 @@ class EXTERN_AST Macro : public Callable
 {
 public :
     Macro() : Callable(),
-        m_Nargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargin"))),
-        m_Nargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargout"))),
-        m_Varargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargin"))),
-        m_Varargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargout")))
+        m_Nargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol("nargin"))),
+        m_Nargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol("nargout"))),
+        m_Varargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol("varargin"))),
+        m_Varargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol("varargout")))
     {
     }
 
-    Macro(const std::wstring& _stName, std::list<symbol::Variable*> &_inputArgs, std::list<symbol::Variable*> &_outputArgs, ast::SeqExp &_body, const std::wstring& _stModule);
+    Macro(const std::string& _name, std::list<symbol::Variable*> &_inputArgs, std::list<symbol::Variable*> &_outputArgs, ast::SeqExp &_body, const std::string& _module);
     virtual                     ~Macro();
 
     // FIXME : Should not return NULL;
@@ -55,7 +55,7 @@ public :
 
     void                        whoAmI();
 
-    bool                        toString(std::wostringstream& ostr);
+    bool                        toString(std::ostringstream& ostr) override;
 
     Callable::ReturnValue       call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
 
@@ -64,22 +64,22 @@ public :
     ast::SeqExp*                getBody();
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr()
+    virtual std::string        getTypeStr()
     {
-        return L"function";
+        return "function";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr()
+    virtual std::string        getShortTypeStr()
     {
-        return L"function";
+        return "function";
     }
 
-    const std::wstring&         getFileName()
+    const std::string&         getFileName()
     {
         return m_stPath;
     }
 
-    void                        setFileName(const std::wstring& _fileName)
+    void                        setFileName(const std::string& _fileName)
     {
         m_stPath = _fileName;
     }
@@ -116,7 +116,7 @@ private :
     Double*                         m_pDblArgIn;
     Double*                         m_pDblArgOut;
     std::map<symbol::Variable*, Macro*> m_submacro;
-    std::wstring                    m_stPath;
+    std::string                     m_stPath;
 };
 }
 

@@ -30,7 +30,7 @@ public:
                     Exp& select,
                     exps_t& cases,
                     Exp& defaultCase,
-                    const std::vector<std::wstring> & _keys) : FastSelectExp(location, select, cases, defaultCase), keys(_keys)
+                    const std::vector<std::string> & _keys) : FastSelectExp(location, select, cases, defaultCase), keys(_keys)
     {
         exps_t::iterator i = std::next(_exps.begin());
         for (const auto & key : keys)
@@ -43,7 +43,7 @@ public:
     StringSelectExp(const Location& location,
                     Exp& select,
                     exps_t& cases,
-                    const std::vector<std::wstring> & _keys) : FastSelectExp(location, select, cases), keys(_keys)
+                    const std::vector<std::string> & _keys) : FastSelectExp(location, select, cases), keys(_keys)
     {
         exps_t::iterator i = std::next(_exps.begin());
         for (const auto & key : keys)
@@ -74,7 +74,7 @@ public:
     {
     }
 
-    inline Exp * getExp(const std::wstring & key) const
+    inline Exp * getExp(const std::string & key) const
     {
         auto i = map.find(key);
         if (i == map.end())
@@ -109,8 +109,8 @@ public:
 
 private:
 
-    std::unordered_map<std::wstring, ast::Exp *> map;
-    std::vector<std::wstring> keys;
+    std::unordered_map<std::string, ast::Exp *> map;
+    std::vector<std::string> keys;
 };
 
 } // namespace ast

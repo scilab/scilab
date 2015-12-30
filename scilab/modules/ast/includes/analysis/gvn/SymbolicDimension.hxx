@@ -384,7 +384,7 @@ public:
     /**
      * \brief Overload of the << operator
      */
-    friend inline std::wostream & operator<<(std::wostream & out, const SymbolicDimension & d)
+    friend inline std::ostream & operator<<(std::ostream & out, const SymbolicDimension & d)
     {
         out << *d.value->poly;
 

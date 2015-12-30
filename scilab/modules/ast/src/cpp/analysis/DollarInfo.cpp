@@ -16,9 +16,9 @@
 namespace analysis
 {
 
-std::wostream & operator<<(std::wostream & out, const DollarInfo & di)
+std::ostream & operator<<(std::ostream & out, const DollarInfo & di)
 {
-    out << L"$ in " << di.var.getSymbol() << L" at index " << di.index;
+    out << "$ in " << di.var.getSymbol() << " at index " << di.index;
     return out;
 }
 }

@@ -31,10 +31,10 @@ class Checkers
     struct __NName
     {
         const unsigned short nargs;
-        const std::wstring name;
+        const std::string name;
 
         //__NName(unsigned short n, const char * _name) : nargs(n), name(_name) { }
-        __NName(unsigned short n, const std::wstring & _name) : nargs(n), name(_name) { }
+        __NName(unsigned short n, const std::string & _name) : nargs(n), name(_name) { }
         inline bool operator==(const __NName & R) const
         {
             return nargs == R.nargs && name == R.name;
@@ -55,7 +55,7 @@ class Checkers
     {
         inline std::size_t operator()(const __NName & nn) const
         {
-            return tools::hash_combine(std::hash<std::wstring>()(nn.name), nn.nargs);
+            return tools::hash_combine(std::hash<std::string>()(nn.name), nn.nargs);
         }
     };
 
@@ -68,10 +68,10 @@ class Checkers
 
 public:
 
-    static TIType check(GVN & gvn, const std::wstring & name, const std::vector<TIType> & args);
-    static bool isElementWise(const std::wstring & name, unsigned short nargs = 1);
-    static bool isJitted(const std::wstring & name, unsigned short nargs = 1);
-    static bool isConst(const std::wstring & name, unsigned short nargs = 1);
+    static TIType check(GVN & gvn, const std::string & name, const std::vector<TIType> & args);
+    static bool isElementWise(const std::string & name, unsigned short nargs = 1);
+    static bool isJitted(const std::string & name, unsigned short nargs = 1);
+    static bool isConst(const std::string & name, unsigned short nargs = 1);
 
 private:
 

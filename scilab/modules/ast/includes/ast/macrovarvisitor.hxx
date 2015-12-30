@@ -51,34 +51,34 @@ public:
     void visit(const AssignExp &e);
     void visit(const AssignListExp &e);
 
-    std::list<std::wstring>& getIn();
-    std::list<std::wstring>& getOut();
-    std::list<std::wstring>& getExternal();
-    std::list<std::wstring>& getCalled();
-    std::list<std::wstring>& getLocal();
-    void add(std::list<std::wstring>& lst);
+    std::list<std::string>& getIn();
+    std::list<std::string>& getOut();
+    std::list<std::string>& getExternal();
+    std::list<std::string>& getCalled();
+    std::list<std::string>& getLocal();
+    void add(std::list<std::string>& lst);
     void add();
 
-    bool isAlreadyIn(std::list<std::wstring>& lst);
+    bool isAlreadyIn(std::list<std::string>& lst);
     bool isAlreadyUsed();
 
-    void addIn(const std::wstring& st)
+    void addIn(const std::string& st)
     {
         m_in.push_back(st);
     }
 
-    void addOut(const std::wstring& st)
+    void addOut(const std::string& st)
     {
         m_out.push_back(st);
     }
 
-    std::list<std::wstring> m_in; //inout variables
-    std::list<std::wstring> m_out; //output functions
-    std::list<std::wstring> m_external; //external variables
-    std::list<std::wstring> m_called; //called functions
-    std::list<std::wstring> m_local; // local variables
+    std::list<std::string> m_in; //inout variables
+    std::list<std::string> m_out; //output functions
+    std::list<std::string> m_external; //external variables
+    std::list<std::string> m_called; //called functions
+    std::list<std::string> m_local; // local variables
 
-    std::wstring m_current;
+    std::string m_current;
     bool isAssignExpLeftExp;
 };
 }

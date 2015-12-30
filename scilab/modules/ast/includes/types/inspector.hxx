@@ -42,8 +42,8 @@ public :
     static InternalType* getItem(size_t _iPos);
     static InternalType* getUnreferencedItem(size_t _iPos);
 
-    static std::wstring showItem(size_t _iPos);
-    static std::wstring showUnreferencedItem(size_t _iPos);
+    static std::string showItem(size_t _iPos);
+    static std::string showUnreferencedItem(size_t _iPos);
     static void deleteItems();
     static void displayMemleak();
 };

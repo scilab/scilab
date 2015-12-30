@@ -20,9 +20,9 @@ extern "C"
 #include "charEncoding.h"
 }
 
-void ParserSingleInstance::PrintError(const std::wstring& msg)
+void ParserSingleInstance::PrintError(const std::string& msg)
 {
-    std::wostringstream ostr;
+    std::ostringstream ostr;
     char *codeLine = (char *) malloc(4096 * sizeof(char));
 
     //If the error is a the very beginning of a line
@@ -37,10 +37,10 @@ void ParserSingleInstance::PrintError(const std::wstring& msg)
     ConfigVariable::fillWhereError(yylloc.first_line);
 
     /** Print where in the script the error is located */
-    wchar_t* str = to_wide_string(ParserSingleInstance::getCodeLine(yylloc.first_line, &codeLine));
+    char* str = ParserSingleInstance::getCodeLine(yylloc.first_line, &codeLine);
     ostr << str;
     // add EOL only if the code line doesn't already contains it.
-    if (wcscmp(str + wcslen(str) - 1, L"\n") != 0)
+    if (strcmp(str + strlen(str) - 1, "\n") != 0)
     {
         ostr << std::endl;
     }
@@ -51,22 +51,21 @@ void ParserSingleInstance::PrintError(const std::wstring& msg)
     int i = 0;
     for (i = 1 ; i < yylloc.first_column ; ++i)
     {
-        ostr << L" ";
+        ostr << " ";
     }
-    ostr << L"^";
+    ostr << "^";
     for (i = i + 1 ; i < yylloc.last_column ; ++i)
     {
-        ostr << L"~";
+        ostr << "~";
     }
     if ( yylloc.first_column != yylloc.last_column )
     {
-        ostr << L"^" ;
+        ostr << "^" ;
     }
     ostr << std::endl;
 
     /** Display Parser message  */
-    std::wstring wstrError(_W("Error: "));
-    ostr << wstrError << msg << std::endl;
+    ostr << _("Error: ") << msg << std::endl;
 
     ParserSingleInstance::appendErrorMessage(ostr.str());
 }

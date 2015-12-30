@@ -145,8 +145,8 @@ struct EXTERN_AST Sparse : GenericType
     {
         return const_cast<Sparse const*>(this)->clone();
     }
-    bool toString(std::wostringstream& ostr) const;
-    bool toString(std::wostringstream& ostr)
+    bool toString(std::ostringstream& ostr) const;
+    bool toString(std::ostringstream& ostr)
     {
         return const_cast<Sparse const*>(this)->toString(ostr);
     }
@@ -230,9 +230,9 @@ struct EXTERN_AST Sparse : GenericType
 
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring         getTypeStr() SPARSE_CONST {return std::wstring(L"sparse");}
+    virtual std::string         getTypeStr() SPARSE_CONST {return "sparse";}
     /* return type as short string ( s, i, ce, l, ... ), as in overloading macros*/
-    virtual std::wstring         getShortTypeStr() SPARSE_CONST {return std::wstring(L"sp");}
+    virtual std::string         getShortTypeStr() SPARSE_CONST {return "sp";}
 
     /* create a new sparse matrix containing the result of an addition
        @param o other matrix to add
@@ -514,8 +514,8 @@ struct EXTERN_AST SparseBool : GenericType
     }
     void finalize();
 
-    bool toString(std::wostringstream& ostr) const;
-    bool toString(std::wostringstream& ostr)
+    bool toString(std::ostringstream& ostr) const;
+    bool toString(std::ostringstream& ostr)
     {
         return const_cast<SparseBool const*>(this)->toString(ostr);
     }
@@ -574,9 +574,9 @@ struct EXTERN_AST SparseBool : GenericType
     bool operator!=(const InternalType& it) SPARSE_CONST;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring getTypeStr() SPARSE_CONST {return std::wstring(L"boolean sparse");}
+    virtual std::string getTypeStr() SPARSE_CONST {return "boolean sparse";}
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring getShortTypeStr() SPARSE_CONST {return std::wstring(L"spb");}
+    virtual std::string getShortTypeStr() SPARSE_CONST {return "spb";}
 
     inline ScilabType getType(void) SPARSE_CONST
     {

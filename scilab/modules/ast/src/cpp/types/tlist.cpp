@@ -61,7 +61,7 @@ TList* TList::clone()
     return new TList(this);
 }
 
-bool TList::exists(const std::wstring& _sKey)
+bool TList::exists(const std::string& _sKey)
 {
     if (getSize() < 1)
     {
@@ -73,7 +73,7 @@ bool TList::exists(const std::wstring& _sKey)
     //first field is the tlist type
     for (int i = 1 ; i < pS->getSize() ; i++)
     {
-        if (wcscmp(pS->get(i), _sKey.c_str()) == 0)
+        if (pS->get(i) == _sKey)
         {
             return true;
         }
@@ -111,7 +111,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
         }
         else if (arg->isString())
         {
-            std::list<std::wstring> stFields;
+            std::list<std::string> stFields;
             String * pString = arg->getAs<types::String>();
             for (int i = 0; i < pString->getSize(); ++i)
             {
@@ -163,10 +163,10 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     this->IncreaseRef();
     in.push_back(this);
 
-    std::wstring stType = getShortTypeStr();
+    std::string stType = getShortTypeStr();
     try
     {
-        ret = Overload::call(L"%" + stType + L"_e", in, _iRetCount, out);
+        ret = Overload::call("%" + stType + "_e", in, _iRetCount, out);
     }
     catch (const ast::InternalError &ie)
     {
@@ -176,8 +176,8 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
             //tlist/mlist name are truncated to 8 first character
             if (stType.size() > 8)
             {
-                std::wcout << (L"%" + stType.substr(0, 8) + L"_e") << std::endl;
-                ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out);
+                std::cout << ("%" + stType.substr(0, 8) + "_e") << std::endl;
+                ret = Overload::call("%" + stType.substr(0, 8) + "_e", in, 1, out);
             }
             else
             {
@@ -186,7 +186,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
         }
         catch (ast::InternalError & /*se*/)
         {
-            ret = Overload::call(L"%l_e", in, 1, out);
+            ret = Overload::call("%l_e", in, 1, out);
         }
     }
 
@@ -202,7 +202,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     return true;
 }
 
-bool TList::extract(const std::wstring & name, InternalType *& out)
+bool TList::extract(const std::string & name, InternalType *& out)
 {
     if (exists(name))
     {
@@ -213,12 +213,12 @@ bool TList::extract(const std::wstring & name, InternalType *& out)
     return false;
 }
 
-InternalType* TList::getField(const std::wstring& _sKey)
+InternalType* TList::getField(const std::string& _sKey)
 {
     return List::get(getIndexFromString(_sKey));
 }
 
-int TList::getIndexFromString(const std::wstring& _sKey)
+int TList::getIndexFromString(const std::string& _sKey)
 {
     if (getSize() < 1)
     {
@@ -229,7 +229,7 @@ int TList::getIndexFromString(const std::wstring& _sKey)
     //first field is the tlist type
     for (int i = 1 ; i < pS->getSize() ; i++)
     {
-        if (wcscmp(pS->get(i), _sKey.c_str()) == 0)
+        if (pS->get(i) == _sKey)
         {
             return i;
         }
@@ -237,11 +237,11 @@ int TList::getIndexFromString(const std::wstring& _sKey)
     return -1;
 }
 
-InternalType* TList::extractStrings(const std::list<std::wstring>& _stFields)
+InternalType* TList::extractStrings(const std::list<std::string>& _stFields)
 {
     int i = 0;
     List* pLResult = new List();
-    std::list<std::wstring>::const_iterator it;
+    std::list<std::string>::const_iterator it;
     for (it = _stFields.begin() ; it != _stFields.end() ; it++)
     {
         if (exists(*it) == false)
@@ -265,22 +265,22 @@ InternalType* TList::extractStrings(const std::list<std::wstring>& _stFields)
     return pLResult;
 }
 
-std::wstring TList::getTypeStr()
+std::string TList::getTypeStr()
 {
     if (getSize() < 1)
     {
-        return L"";
+        return "";
     }
 
     return getFieldNames()->get(0);
 }
 
-std::wstring TList::getShortTypeStr()
+std::string TList::getShortTypeStr()
 {
     return getTypeStr();
 }
 
-TList* TList::set(const std::wstring& _sKey, InternalType* _pIT)
+TList* TList::set(const std::string& _sKey, InternalType* _pIT)
 {
     return List::set(getIndexFromString(_sKey), _pIT)->getAs<TList>();
 }
@@ -298,7 +298,7 @@ String* TList::getFieldNames()
 /**
 ** toString to display TLists
 */
-bool TList::toString(std::wostringstream& ostr)
+bool TList::toString(std::ostringstream& ostr)
 {
     //call overload %type_p if exists
     types::typed_list in;
@@ -309,12 +309,12 @@ bool TList::toString(std::wostringstream& ostr)
 
     try
     {
-        if (Overload::generateNameAndCall(L"p", in, 1, out) == Function::Error)
+        if (Overload::generateNameAndCall("p", in, 1, out) == Function::Error)
         {
             ConfigVariable::setError();
         }
 
-        ostr.str(L"");
+        ostr.str("");
         DecreaseRef();
         return true;
     }
@@ -336,23 +336,23 @@ bool TList::toString(std::wostringstream& ostr)
     if (getSize() != 0 &&
             (*m_plData)[0]->isString() &&
             (*m_plData)[0]->getAs<types::String>()->getSize() > 0 &&
-            wcscmp((*m_plData)[0]->getAs<types::String>()->get(0), L"lss") == 0)
+            strcmp((*m_plData)[0]->getAs<types::String>()->get(0), "lss") == 0)
     {
-        wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
+        char* varName = os_strdup(ostr.str().c_str());
         int iPosition = 1;
-        const wchar_t * wcsDesc[7] = {L"  (state-space system:)", L"= A matrix =", L"= B matrix =", L"= C matrix =", L"= D matrix =", L"= X0 (initial state) =", L"= Time domain ="};
+        const char * desc[7] = {"  (state-space system:)", "= A matrix =", "= B matrix =", "= C matrix =", "= D matrix =", "= X0 (initial state) =", "= Time domain ="};
         for (auto val : *m_plData)
         {
-            std::wostringstream nextVarName;
-            ostr.str(L"");
-            nextVarName << " " << wcsVarName << L"(" << iPosition << L")";
-            ostr << std::endl << nextVarName.str() << wcsDesc[iPosition - 1] << std::endl << std::endl;
-            scilabWriteW(ostr.str().c_str());
+            std::ostringstream nextVarName;
+            ostr.str("");
+            nextVarName << " " << varName << "(" << iPosition << ")";
+            ostr << std::endl << nextVarName.str() << desc[iPosition - 1] << std::endl << std::endl;
+            scilabWrite(ostr.str().c_str());
             VariableToString(val, nextVarName.str().c_str());
             iPosition++;
         }
-        ostr.str(L"");
-        free(wcsVarName);
+        ostr.str("");
+        free(varName);
         return true;
     }
 

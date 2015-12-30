@@ -17,69 +17,69 @@
 
 namespace analysis
 {
-    bool InttypeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+bool InttypeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+{
+    if (lhs != 1)
     {
-        if (lhs != 1)
-        {
-            return false;
-        }
+        return false;
+    }
 
-        const ast::exps_t args = e.getArgs();
-        if (args.size() != 1)
-        {
-            return false;
-        }
+    const ast::exps_t args = e.getArgs();
+    if (args.size() != 1)
+    {
+        return false;
+    }
 
-        ast::Exp * arg = args.back();
-        arg->accept(visitor);
-        TIType & typ = visitor.getResult().getType();
-	double code;
-        switch (typ.type)
-        {
+    ast::Exp * arg = args.back();
+    arg->accept(visitor);
+    TIType & typ = visitor.getResult().getType();
+    double code;
+    switch (typ.type)
+    {
         case TIType::EMPTY :
-	case TIType::DOUBLE :
+        case TIType::DOUBLE :
             code = 0;
-	    break;
+            break;
         case TIType::INT8 :
             code = 1;
-	    break;
+            break;
         case TIType::INT16 :
             code = 2;
-	    break;
+            break;
         case TIType::INT32 :
             code = 4;
-	    break;
+            break;
         case TIType::INT64 :
             code = 8;
-	    break;
+            break;
         case TIType::UINT8 :
             code = 11;
-	    break;
+            break;
         case TIType::UINT16 :
             code = 12;
-	    break;
+            break;
         case TIType::UINT32 :
             code = 14;
-	    break;
+            break;
         case TIType::UINT64 :
             code = 18;
-	    break;
+            break;
         default :
-	    code = -1;
-        }
-
-        if (code != -1)
-        {
-	    TIType type(visitor.getGVN(), TIType::DOUBLE);
-            Result & res = e.getDecorator().setResult(type);
-            res.getConstant() = visitor.getGVN().getValue(code);
-            e.getDecorator().setCall(L"inttype");
-            visitor.setResult(res);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+            code = -1;
     }
+
+    if (code != -1)
+    {
+        TIType type(visitor.getGVN(), TIType::DOUBLE);
+        Result & res = e.getDecorator().setResult(type);
+        res.getConstant() = visitor.getGVN().getValue(code);
+        e.getDecorator().setCall("inttype");
+        visitor.setResult(res);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 }

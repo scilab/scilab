@@ -15,40 +15,40 @@
 namespace analysis
 {
 
-    std::wostream & operator<<(std::wostream & out, const OpValue & ov)
+std::ostream & operator<<(std::ostream & out, const OpValue & ov)
+{
+    switch (ov.kind)
     {
-        switch (ov.kind)
-        {
         case OpValue::UNARYMINUS:
-            out << L"-" << ov.lnum;
+            out << "-" << ov.lnum;
             break;
         case OpValue::UNARYNEG:
-            out << L"~" << ov.lnum;
+            out << "~" << ov.lnum;
             break;
         case OpValue::PLUS:
-            out << ov.lnum << L"+" << ov.rnum;
+            out << ov.lnum << "+" << ov.rnum;
             break;
         case OpValue::MINUS:
-            out << ov.lnum << L"-" << ov.rnum;
+            out << ov.lnum << "-" << ov.rnum;
             break;
         case OpValue::TIMES:
         case OpValue::DOTTIMES:
-            out << ov.lnum << L"*" << ov.rnum;
+            out << ov.lnum << "*" << ov.rnum;
             break;
         case OpValue::RDIV:
         case OpValue::DOTRDIV:
-            out << ov.lnum << L"/" << ov.rnum;
+            out << ov.lnum << "/" << ov.rnum;
             break;
         case OpValue::POWER:
         case OpValue::DOTPOWER:
-            out << ov.lnum << L"^" << ov.rnum;
+            out << ov.lnum << "^" << ov.rnum;
             break;
         default:
-            out << ov.lnum << L"??" << ov.rnum;
+            out << ov.lnum << "??" << ov.rnum;
             break;
-        }
-
-        return out;
     }
+
+    return out;
+}
 
 } // namespace analysis

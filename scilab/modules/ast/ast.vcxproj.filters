@@ -859,6 +859,27 @@
     <ClInclude Include="includes\analysis\data\VarPromotion.hxx">
       <Filter>Header Files\analysis\data</Filter>
     </ClInclude>
+    <ClInclude Include="includes\exps\fastselectexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\intselectexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\mapintselectexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\memfillexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\smallintselectexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\stepvisitor.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\stringselectexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\expHistory.cpp">

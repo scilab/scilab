@@ -141,15 +141,15 @@ public:
     /**
      * \brief Overload of the << operator
      */
-    friend inline std::wostream & operator<<(std::wostream & out, const SymbolicList & sl)
+    friend inline std::ostream & operator<<(std::ostream & out, const SymbolicList & sl)
     {
         if (sl.symbolic)
         {
-            out << *sl.start.gvnVal->poly << L" : " << *sl.step.gvnVal->poly << L" : " << *sl.end.gvnVal->poly;
+            out << *sl.start.gvnVal->poly << " : " << *sl.step.gvnVal->poly << " : " << *sl.end.gvnVal->poly;
         }
         else
         {
-            out << sl.start.dval << L" : " << sl.step.dval << L" : " << sl.end.dval;
+            out << sl.start.dval << " : " << sl.step.dval << " : " << sl.end.dval;
         }
         return out;
     }

@@ -18,7 +18,7 @@ namespace analysis
 void AnalysisVisitor::visit(ast::VarDec & e)
 {
     // VarDec is only used in For loop for iterator declaration
-    logger.log(L"VarDec", e.getLocation());
+    logger.log("VarDec", e.getLocation());
     const symbol::Symbol & sym = e.getSymbol();
     if (e.getInit().isListExp())
     {

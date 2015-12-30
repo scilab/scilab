@@ -22,33 +22,33 @@ namespace debugger
 {
 struct Breakpoint
 {
-    Breakpoint(const std::wstring& functionName, int iLine = -1, const std::wstring& condition = L"")
-        : _pFunctionName(functionName), _iMacroLine(iLine), _file(L""), _iFileLine(0), _condition(condition), _conditionExp(NULL), enable(true) {}
+    Breakpoint(const std::string& functionName, int iLine = -1, const std::string& condition = "")
+        : _pFunctionName(functionName), _iMacroLine(iLine), _file(""), _iFileLine(0), _condition(condition), _conditionExp(NULL), enable(true) {}
     //Breakpoint(std::wstring& file, int iLine = -1, ast::Exp* condition = NULL)
     //    : _pFunctionName(NULL), _iMacroLine(iLine), _file(file), _condition(condition) {}
 
     ~Breakpoint()
     {
-        if(_conditionExp)
+        if (_conditionExp)
         {
             delete _conditionExp;
         }
     };
 
-    void setFile(std::wstring& file)
+    void setFile(const std::string& file)
     {
         _file = file;
     }
-    const std::wstring& getFile() const
+    const std::string& getFile() const
     {
         return _file;
     }
 
-    void setFunctionName(std::wstring& functionName)
+    void setFunctionName(const std::string& functionName)
     {
         _pFunctionName = functionName;
     }
-    const std::wstring& getFunctioName() const
+    const std::string& getFunctioName() const
     {
         return _pFunctionName;
     }
@@ -94,7 +94,7 @@ struct Breakpoint
         return enable;
     }
 
-    const std::wstring& getCondition() const
+    const std::string& getCondition() const
     {
         return _condition;
     }
@@ -111,9 +111,9 @@ struct Breakpoint
     }
 
 private:
-    std::wstring _pFunctionName;
-    std::wstring _file;
-    std::wstring _condition;
+    std::string _pFunctionName;
+    std::string _file;
+    std::string _condition;
     ast::Exp* _conditionExp;
     int _iFileLine;
     int _iMacroLine;

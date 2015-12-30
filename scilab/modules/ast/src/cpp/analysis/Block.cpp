@@ -546,19 +546,19 @@ Info & Block::addSym(tools::SymbolMap<Info> & M, const symbol::Symbol & sym, Inf
     return i;
 }
 
-std::wostream & operator<<(std::wostream & out, const Block & block)
+std::ostream & operator<<(std::ostream & out, const Block & block)
 {
     const unsigned int n = block.blocks.size();
-    out << L"Table " << block.id;
+    out << "Table " << block.id;
     if (block.exp)
     {
-        out << L" at " << block.exp->getLocation();
+        out << " at " << block.exp->getLocation();
     }
-    out << L" (" << n << ((n >= 2) ? L" children):" : L" child):") << std::endl;
+    out << " (" << n << ((n >= 2) ? " children):" : " child):") << std::endl;
 
     for (const auto & p : block.symMap)
     {
-        out << L" -" << p.first << L"  " << p.second << std::endl;
+        out << " -" << p.first << "  " << p.second << std::endl;
     }
     //#ifdef DEBUG_DATAMANAGER
     //for (const auto b : block.blocks)

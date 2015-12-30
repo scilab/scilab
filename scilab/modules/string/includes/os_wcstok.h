@@ -17,6 +17,7 @@
 #include "dynlib_string.h"
 
 
-STRING_IMPEXP wchar_t *os_wcstok(wchar_t *_pwstData, const wchar_t *_pwstDelim, wchar_t** _pswtState);
+STRING_IMPEXP wchar_t* os_wcstok(wchar_t *_pwstData, const wchar_t *_pwstDelim, wchar_t** _pswtState);
+STRING_IMPEXP char* os_strtok(char *_pstData, const char *_pstDelim, char** _pstState);
 
 #endif /* !__OS_WCSDUP_H__ */

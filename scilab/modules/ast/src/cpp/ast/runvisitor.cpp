@@ -33,7 +33,6 @@
 #include "generic_operations.hxx"
 #include "types_or.hxx"
 #include "types_and.hxx"
-#include "localization.hxx"
 
 #include "macrofile.hxx"
 #include "macro.hxx"
@@ -116,15 +115,15 @@ void RunVisitorT<T>::visitprivate(const SimpleVar & e)
     {
         if (e.isVerbose() && pI->isCallable() == false && ConfigVariable::isPromptShow())
         {
-            std::wostringstream ostr;
-            ostr << e.getSymbol().getName() << L"  = ";
+            std::ostringstream ostr;
+            ostr << e.getSymbol().getName() << "  = ";
 #ifndef NDEBUG
-            ostr << L"(" << pI->getRef() << L")";
+            ostr << "(" << pI->getRef() << ")";
 #endif
             ostr << std::endl;
             ostr << std::endl;
-            scilabWriteW(ostr.str().c_str());
-            std::wostringstream ostrName;
+            scilabWrite(ostr.str().c_str());
+            std::ostringstream ostrName;
             ostrName << e.getSymbol().getName();
             VariableToString(pI, ostrName.str().c_str());
         }
@@ -146,17 +145,11 @@ void RunVisitorT<T>::visitprivate(const SimpleVar & e)
     else
     {
         char pstError[bsiz];
-        wchar_t* pwstError;
-
-        char* strErr = wide_string_to_UTF8(e.getSymbol().getName().c_str());
-
+        const char* strErr = e.getSymbol().getName().c_str();
         os_sprintf(pstError, _("Undefined variable: %s\n"), strErr);
-        pwstError = to_wide_string(pstError);
-        FREE(strErr);
-        std::wstring wstError(pwstError);
-        FREE(pwstError);
+
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(wstError, 999, e.getLocation());
+        throw InternalError(pstError, 999, e.getLocation());
         //Err, SimpleVar doesn't exist in Scilab scopes.
     }
     CoverageInstance::stopChrono((void*)&e);
@@ -258,8 +251,8 @@ void RunVisitorT<T>::visitprivate(const CellExp & e)
 
         if (iColMax != static_cast<int>(cols.size()))
         {
-            std::wostringstream os;
-            os << _W("inconsistent row/column dimensions\n");
+            std::ostringstream os;
+            os << _("inconsistent row/column dimensions\n");
             //os << ((Location)(*row)->getLocation()).getLocationString() << std::endl;
             CoverageInstance::stopChrono((void*)&e);
             throw InternalError(os.str(), 999, (*row)->getLocation());
@@ -319,8 +312,8 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
     if (!e.getTail()->isSimpleVar())
     {
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n").c_str());
+        char szError[bsiz];
+        os_sprintf(szError, _("/!\\ Unmanaged FieldExp.\n"));
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -337,8 +330,8 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
     if (getResult() == NULL)
     {
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n").c_str());
+        char szError[bsiz];
+        os_sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -349,14 +342,14 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     if (getResultSize() > 1)
     {
         clearResult();
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("Not yet implemented in Scilab.\n").c_str());
+        char szError[bsiz];
+        os_sprintf(szError, _("Not yet implemented in Scilab.\n"));
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
 
     SimpleVar * psvRightMember = static_cast<SimpleVar *>(const_cast<Exp *>(e.getTail()));
-    std::wstring wstField = psvRightMember->getSymbol().getName();
+    std::string stField = psvRightMember->getSymbol().getName();
     types::InternalType * pValue = getResult();
     types::InternalType * pReturn = NULL;
     bool ok = false;
@@ -365,10 +358,10 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     {
         if (pValue->isGenericType() || pValue->isUserType())
         {
-            ok = pValue->getAs<types::GenericType>()->extract(wstField, pReturn);
+            ok = pValue->getAs<types::GenericType>()->extract(stField, pReturn);
         }
     }
-    catch (std::wstring & err)
+    catch (std::string& err)
     {
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(err.c_str(), 999, e.getTail()->getLocation());
@@ -378,8 +371,8 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     {
         if (pReturn == NULL)
         {
-            std::wostringstream os;
-            os << _W("Invalid index.\n");
+            std::ostringstream os;
+            os << _("Invalid index.\n");
             CoverageInstance::stopChrono((void*)&e);
             throw InternalError(os.str(), 999, e.getLocation());
         }
@@ -406,7 +399,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         types::typed_list in;
         types::typed_list out;
 
-        types::String* pS = new types::String(wstField.c_str());
+        types::String* pS = new types::String(stField.c_str());
 
         //TODO: in the case where overload is a macro there is no need to incref in
         // because args will be put in context, removed and killed if required.
@@ -418,11 +411,11 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         in.push_back(pS);
         in.push_back(pValue);
         types::Callable::ReturnValue Ret = types::Callable::Error;
-        std::wstring stType = pValue->getShortTypeStr();
+        std::string stType = pValue->getShortTypeStr();
 
         try
         {
-            Ret = Overload::call(L"%" + stType + L"_e", in, 1, out, this);
+            Ret = Overload::call("%" + stType + "_e", in, 1, out, this);
         }
         catch (const InternalError& ie)
         {
@@ -432,7 +425,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
                 //tlist/mlist name are truncated to 8 first character
                 if (stType.size() > 8)
                 {
-                    Ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, this);
+                    Ret = Overload::call("%" + stType.substr(0, 8) + "_e", in, 1, out, this);
                 }
                 else
                 {
@@ -445,7 +438,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
                 // TList or Mlist
                 if (pValue->isList())
                 {
-                    Ret = Overload::call(L"%l_e", in, 1, out, this);
+                    Ret = Overload::call("%l_e", in, 1, out, this);
                 }
                 else
                 {
@@ -469,8 +462,8 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     else
     {
         pValue->killMe();
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n").c_str());
+        char szError[bsiz];
+        os_sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -664,8 +657,8 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
 
         if (ctx->isprotected(var))
         {
-            std::wostringstream os;
-            os << _W("Redefining permanent variable.\n");
+            std::ostringstream os;
+            os << _("Redefining permanent variable.\n");
             CoverageInstance::stopChrono((void*)&e);
             throw ast::InternalError(os.str(), 999, e.getVardec().getLocation());
         }
@@ -702,8 +695,8 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
                         //update me ( must decrease ref of a )
                         if (ctx->isprotected(var))
                         {
-                            std::wostringstream os;
-                            os << _W("Redefining permanent variable.\n");
+                            std::ostringstream os;
+                            os << _("Redefining permanent variable.\n");
                             CoverageInstance::stopChrono((void*)&e);
                             throw ast::InternalError(os.str(), 999, e.getVardec().getLocation());
                         }
@@ -767,8 +760,8 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
 
             if (ctx->isprotected(var))
             {
-                std::wostringstream os;
-                os << _W("Redefining permanent variable.\n");
+                std::ostringstream os;
+                os << _("Redefining permanent variable.\n");
                 CoverageInstance::stopChrono((void*)&e);
                 throw ast::InternalError(os.str(), 999, e.getVardec().getLocation());
             }
@@ -817,7 +810,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             pIT->DecreaseRef();
             pIT->killMe();
             CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(_W("for expression can only manage 1 or 2 dimensions variables\n"), 999, e.getVardec().getLocation());
+            throw InternalError(_("for expression can only manage 1 or 2 dimensions variables\n"), 999, e.getVardec().getLocation());
         }
 
         symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
@@ -829,13 +822,13 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
                 pIT->DecreaseRef();
                 pIT->killMe();
                 CoverageInstance::stopChrono((void*)&e);
-                throw InternalError(_W("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
+                throw InternalError(_("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
             }
 
             if (ctx->isprotected(var))
             {
-                std::wostringstream os;
-                os << _W("Redefining permanent variable.\n");
+                std::ostringstream os;
+                os << _("Redefining permanent variable.\n");
                 CoverageInstance::stopChrono((void*)&e);
                 throw InternalError(os.str(), 999, e.getVardec().getLocation());
             }
@@ -880,7 +873,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         pIT->DecreaseRef();
         pIT->killMe();
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(_W("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
+        throw InternalError(_("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
     }
 
     pIT->DecreaseRef();
@@ -922,7 +915,7 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
         if (e.getParent() == nullptr || e.getParent()->isAssignExp() == false)
         {
             CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(_W("With input arguments, return / resume expects output arguments.\n"), 999, e.getLocation());
+            throw InternalError(_("With input arguments, return / resume expects output arguments.\n"), 999, e.getLocation());
         }
         //in case of CallExp, we can return only one values
         int iSaveExpectedSize = getExpectedSize();
@@ -1051,9 +1044,9 @@ void RunVisitorT<T>::visitprivate(const StringSelectExp &e)
         types::String * pStr = static_cast<types::String *>(pIT);
         if (pStr->getSize() == 1)
         {
-            if (wchar_t * s = pStr->get(0))
+            if (char * s = pStr->get(0))
             {
-                const std::wstring ws(s);
+                const std::string ws(s);
                 Exp * exp = e.getExp(ws);
                 found = true;
                 if (exp)
@@ -1312,7 +1305,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 if (pITMacro)
                 {
                     types::Macro* pMacro = pITMacro->getAs<types::Macro>();
-                    const wchar_t* filename = getfile_filename(iFileID);
+                    const char* filename = getfile_filename(iFileID);
                     // scilab.quit is not open with mopen
                     // in this case filename is NULL because FileManager have not been filled.
                     if (filename)
@@ -1354,7 +1347,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                     }
                     catch (const InternalError& ie)
                     {
-                        if (ConfigVariable::getLastErrorFunction() == L"")
+                        if (ConfigVariable::getLastErrorFunction() == "")
                         {
                             ConfigVariable::setLastErrorFunction(pCall->getName());
                             ConfigVariable::setLastErrorLine(e.getLocation().first_line);
@@ -1386,9 +1379,9 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                     if (exp->isVerbose() && ConfigVariable::isPromptShow())
                     {
                         //TODO manage multiple returns
-                        scilabWriteW(L" ans  =\n\n");
-                        std::wostringstream ostrName;
-                        ostrName << L"ans";
+                        scilabWrite(" ans  =\n\n");
+                        std::ostringstream ostrName;
+                        ostrName << "ans";
                         VariableToString(pITAns, ostrName.str().c_str());
                     }
                 }
@@ -1498,7 +1491,7 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
         pValue->IncreaseRef();
         in.push_back(pValue);
 
-        types::Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_5", in, 1, out, this);
+        types::Callable::ReturnValue Ret = Overload::call("%" + pValue->getShortTypeStr() + "_5", in, 1, out, this);
 
         if (Ret != types::Callable::OK)
         {
@@ -1530,8 +1523,8 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
     if (getResultSize() != 1)
     {
         clearResult();
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Can not transpose multiple elements.\n").c_str(), L"Transpose");
+        char szError[bsiz];
+        os_sprintf(szError, _("%s: Can not transpose multiple elements.\n"), "Transpose");
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -1564,11 +1557,11 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
         types::Callable::ReturnValue Ret;
         if (bConjug)
         {
-            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_t", in, 1, out, this);
+            Ret = Overload::call("%" + getResult()->getShortTypeStr() + "_t", in, 1, out, this);
         }
         else
         {
-            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_0", in, 1, out, this);
+            Ret = Overload::call("%" + getResult()->getShortTypeStr() + "_0", in, 1, out, this);
         }
 
         if (Ret != types::Callable::OK)
@@ -1614,14 +1607,14 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     }
 
     types::Macro *pMacro = new types::Macro(e.getSymbol().getName(), *pVarList, *pRetList,
-                                            const_cast<SeqExp&>(static_cast<const SeqExp&>(e.getBody())), L"script");
+                                            const_cast<SeqExp&>(static_cast<const SeqExp&>(e.getBody())), "script");
     pMacro->setLines(e.getLocation().first_line, e.getLocation().last_line);
 
     if (ctx->isprotected(symbol::Symbol(pMacro->getName())))
     {
         delete pMacro;
-        std::wostringstream os;
-        os << _W("Redefining permanent variable.\n");
+        std::ostringstream os;
+        os << _("Redefining permanent variable.\n");
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(os.str(), 999, e.getLocation());
     }
@@ -1629,15 +1622,11 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     if (ctx->addMacro(pMacro) == false)
     {
         char pstError[1024];
-        char* pstFuncName = wide_string_to_UTF8(e.getSymbol().getName().c_str());
+        const char* pstFuncName = e.getSymbol().getName().c_str();
         os_sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
-        wchar_t* pwstError = to_wide_string(pstError);
-        std::wstring wstError(pwstError);
-        FREE(pstFuncName);
-        FREE(pwstError);
         pMacro->killMe();
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(wstError, 999, e.getLocation());
+        throw InternalError(pstError, 999, e.getLocation());
     }
 
     CoverageInstance::stopChrono((void*)&e);
@@ -1662,8 +1651,8 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     {
         pITStart->killMe();
         setResult(NULL);
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 1);
+        char szError[bsiz];
+        os_sprintf(szError,  _("%s: Wrong type for argument %d: Real scalar expected.\n"), "':'", 1);
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -1686,8 +1675,8 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         pITStart->killMe();
         pITStep->killMe();
         setResult(NULL);
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2);
+        char szError[bsiz];
+        os_sprintf(szError, _("%s: Wrong type for argument %d: Real scalar expected.\n"), "':'", 2);
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -1712,8 +1701,8 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         pITStep->killMe();
         pITEnd->killMe();
         setResult(NULL);
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 3);
+        char szError[bsiz];
+        os_sprintf(szError, _("%s: Wrong type for argument %d: Real scalar expected.\n"), "':'", 3);
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -1780,7 +1769,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             in.push_back(piStep);
             piEnd->IncreaseRef();
             in.push_back(piEnd);
-            Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piStep->getShortTypeStr(), in, 1, out, true);
+            Ret = Overload::call("%" + piStart->getShortTypeStr() + "_b_" + piStep->getShortTypeStr(), in, 1, out, true);
         }
         else
         {
@@ -1789,7 +1778,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             piStep->killMe();
             piEnd->IncreaseRef();
             in.push_back(piEnd);
-            Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piEnd->getShortTypeStr(), in, 1, out, true);
+            Ret = Overload::call("%" + piStart->getShortTypeStr() + "_b_" + piEnd->getShortTypeStr(), in, 1, out, true);
         }
     }
     catch (const InternalError& error)
@@ -2154,8 +2143,8 @@ void RunVisitorT<T>::visitprivate(const TryCatchExp  &e)
             }
 
             //print msg about recursion limit and trigger an error
-            wchar_t sz[1024];
-            os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
+            char sz[1024];
+            os_sprintf(sz, _("Recursion limit reached (%d).\n"), ConfigVariable::getRecursionLimit());
             CoverageInstance::stopChrono((void*)&e);
             throw ast::InternalError(sz);
         }

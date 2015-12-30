@@ -146,12 +146,12 @@ struct EXTERN_AST MultivariateMonomial
      * \param vars a map containing var id -> string representation
      * \return the printed monomial
      */
-    const std::wstring print(const std::map<uint64_t, std::wstring> & vars) const;
+    const std::string print(const std::map<uint64_t, std::string> & vars) const;
 
     /**
      * \brief Overload of the << operator
      */
-    friend std::wostream & operator<<(std::wostream & out, const MultivariateMonomial & m);
+    friend std::ostream & operator<<(std::ostream & out, const MultivariateMonomial & m);
 
     /**
      * \struct Hash

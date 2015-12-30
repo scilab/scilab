@@ -105,52 +105,52 @@ public:
         return nullptr;
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const LoopAnalyzer & la)
+    friend std::ostream & operator<<(std::ostream & out, const LoopAnalyzer & la)
     {
         if (!la.info.empty())
         {
-            std::wostringstream wos_ass, wos_ins, wos_sh, wos_used;
+            std::ostringstream os_ass, os_ins, os_sh, os_used;
             for (const auto & p : la.info)
             {
-                wos_ass << L"  -Loop at " << p.first->getLocation().getLocationString() << L": ";
-                tools::printSet(p.second.assigned, wos_ass);
-                wos_ass << L"\n";
+                os_ass << "  -Loop at " << p.first->getLocation().getLocationString() << ": ";
+                tools::printSet(p.second.assigned, os_ass);
+                os_ass << "\n";
 
-                wos_ins << L"  -Loop at " << p.first->getLocation().getLocationString() << L": ";
-                tools::printSet(p.second.inserted, wos_ins);
-                wos_ins << L"\n";
+                os_ins << "  -Loop at " << p.first->getLocation().getLocationString() << ": ";
+                tools::printSet(p.second.inserted, os_ins);
+                os_ins << "\n";
 
-                wos_sh << L"  -Loop at " << p.first->getLocation().getLocationString() << L": ";
-                tools::printSet(p.second.inserted, wos_sh);
-                wos_sh << L"\n";
+                os_sh << "  -Loop at " << p.first->getLocation().getLocationString() << ": ";
+                tools::printSet(p.second.inserted, os_sh);
+                os_sh << "\n";
 
-                wos_used << L"  -Loop at " << p.first->getLocation().getLocationString() << L": ";
-                tools::printSet(p.second.inserted, wos_used);
-                wos_used << L"\n";
+                os_used << "  -Loop at " << p.first->getLocation().getLocationString() << ": ";
+                tools::printSet(p.second.inserted, os_used);
+                os_used << "\n";
             }
 
-            std::wstring str = wos_ass.str();
+            std::string str = os_ass.str();
             if (!str.empty())
             {
-                out << L" Assigned:\n";
+                out << " Assigned:\n";
                 out << str;
             }
-            str = wos_ins.str();
+            str = os_ins.str();
             if (!str.empty())
             {
-                out << L" Inserted:\n";
+                out << " Inserted:\n";
                 out << str;
             }
-            str = wos_sh.str();
+            str = os_sh.str();
             if (!str.empty())
             {
-                out << L" Shared:\n";
+                out << " Shared:\n";
                 out << str;
             }
-            str = wos_used.str();
+            str = os_used.str();
             if (!str.empty())
             {
-                out << L" Used:\n";
+                out << " Used:\n";
                 out << str;
             }
         }
@@ -160,8 +160,8 @@ public:
 
     inline void print_info()
     {
-        std::wcerr << L"Loop analyze: " << *static_cast<Chrono *>(this) << std::endl
-                   << *this << std::endl;
+        std::cerr << "Loop analyze: " << *static_cast<Chrono *>(this) << std::endl
+                  << *this << std::endl;
     }
 
 private:

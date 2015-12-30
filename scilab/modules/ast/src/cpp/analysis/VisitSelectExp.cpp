@@ -22,7 +22,7 @@ namespace analysis
 
 void AnalysisVisitor::visit(ast::SelectExp & e)
 {
-    logger.log(L"SelectExp", e.getLocation());
+    logger.log("SelectExp", e.getLocation());
     e.getSelect()->accept(cv);
     ast::Exp & select = *e.getSelect();
     bool found = false;
@@ -108,7 +108,7 @@ void AnalysisVisitor::analyze(ast::SelectExp & e)
 {
     enum Kind { INT, STRING, DUNNO };
     std::vector<int64_t> ints;
-    std::vector<std::wstring> strs;
+    std::vector<std::string> strs;
     ast::exps_t cases = e.getCases();
     Kind kind = DUNNO;
     bool first = true;

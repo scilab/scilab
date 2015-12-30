@@ -66,7 +66,6 @@
 #include "struct.hxx"
 #include "container.hxx"
 #include "cell.hxx"
-#include "localization.hxx"
 
 extern "C"
 {
@@ -1437,7 +1436,7 @@ int mxGetNumberOfFields(const mxArray *ptr)
     {
         return 0;
     }
-    
+
     types::Struct * pa = (types::Struct*)ptr;
     return pa->getFieldNames()->getSize();
 }
@@ -1463,7 +1462,7 @@ int mxGetFieldNumber(const mxArray *ptr, const char *string)
     {
         return -1;
     }
-    
+
     types::Struct *pa = (types::Struct *)ptr;
     types::String *names = pa->getFieldNames();
     wchar_t *field_name = to_wide_string(string);
@@ -1494,7 +1493,7 @@ mxArray *mxGetFieldByNumber(const mxArray *ptr, int lindex, int field_number)
     {
         return NULL;
     }
-    
+
     types::Struct *pa = (types::Struct *)ptr;
     types::String *names = pa->getFieldNames();
     types::SingleStruct *s = pa->get(lindex);
@@ -1517,7 +1516,7 @@ int mxAddField(mxArray *ptr, const char *fieldname)
     {
         return -1;
     }
-    
+
     types::Struct *pa = (types::Struct*)ptr;
     wchar_t *wfieldname = to_wide_string(fieldname);
     pa->addField(wfieldname);

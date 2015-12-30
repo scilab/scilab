@@ -52,8 +52,8 @@ public:
     inline void print_info()
     {
         //stop_chrono();
-        std::wcout << L"GVN: " << /* *static_cast<Chrono *>(this) << */ std::endl;
-        std::wcout << gvn << std::endl;
+        std::cout << "GVN: " << /* *static_cast<Chrono *>(this) << */ std::endl;
+        std::cout << gvn << std::endl;
     }
 
     inline void setResult(const GVN::Value * val)
@@ -66,7 +66,7 @@ public:
         return *_result;
     }
 
-    inline std::map<std::wstring, uint64_t> getSymMap() const
+    inline std::map<std::string, uint64_t> getSymMap() const
     {
         return gvn.getSymMap();
     }

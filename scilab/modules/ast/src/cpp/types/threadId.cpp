@@ -66,20 +66,20 @@ ThreadId* ThreadId::clone()
     return this;
 }
 
-std::wstring ThreadId::StatusToString(Status _status)
+std::string ThreadId::StatusToString(Status _status)
 {
     switch (_status)
     {
         case Running :
-            return L"Running";
+            return "Running";
         case Paused :
-            return L"Paused";
+            return "Paused";
         case Aborted :
-            return L"Aborted";
+            return "Aborted";
         case Done :
-            return L"Done";
+            return "Done";
     }
-    return L"";
+    return "";
 }
 
 void ThreadId::setStatus(ThreadId::Status _status)
@@ -140,10 +140,10 @@ void ThreadId::abort()
 #endif
 }
 
-bool ThreadId::toString(std::wostringstream& ostr)
+bool ThreadId::toString(std::ostringstream& ostr)
 {
-    ostr << L"ThreadId : " << this << std::endl;
-    ostr << L"Status : " << StatusToString(this->getStatus());
+    ostr << "ThreadId : " << this << std::endl;
+    ostr << "Status : " << StatusToString(this->getStatus());
     return true;
 }
 

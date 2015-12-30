@@ -33,7 +33,6 @@ Source: modules\{#LOCALIZATION}\sci_gateway\{#LOCALIZATION}_gateway.xml; DestDir
 ;
 ;Source: modules\{#LOCALIZATION}\includes\*.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\includes\localization.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#LOCALIZATION}\includes\localization.hxx; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\includes\dynlib_localization.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\includes\setgetlanguage.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\includes\charEncoding.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}

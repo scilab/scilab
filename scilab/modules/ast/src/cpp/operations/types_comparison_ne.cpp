@@ -3526,7 +3526,7 @@ InternalType* compnoequal_M_M<String, String, Bool>(String* _pL, String* _pR)
         Bool*  pOut = new Bool(_pR->getDims(), _pR->getDimsArray());
         for (int i = 0; i < _pR->getSize(); i++)
         {
-            pOut->set(i, wcscmp(_pL->get(0), _pR->get(i)) != 0);
+            pOut->set(i, strcmp(_pL->get(0), _pR->get(i)) != 0);
         }
         return pOut;
     }
@@ -3536,7 +3536,7 @@ InternalType* compnoequal_M_M<String, String, Bool>(String* _pL, String* _pR)
         Bool*  pOut = new Bool(_pL->getDims(), _pL->getDimsArray());
         for (int i = 0; i < _pL->getSize(); i++)
         {
-            pOut->set(i, wcscmp(_pL->get(i), _pR->get(0)) != 0);
+            pOut->set(i, strcmp(_pL->get(i), _pR->get(0)) != 0);
         }
         return pOut;
     }
@@ -3568,7 +3568,7 @@ InternalType* compnoequal_M_M<String, String, Bool>(String* _pL, String* _pR)
 
         for (int i = 0; i < _pL->getSize(); i++)
         {
-            pOut->set(i, wcscmp(_pL->get(i), _pR->get(i)) != 0);
+            pOut->set(i, strcmp(_pL->get(i), _pR->get(i)) != 0);
         }
         return pOut;
     }
@@ -3622,7 +3622,7 @@ InternalType* compnoequal_LT_LT(T *_pL, U *_pR)
         types::typed_list in;
         in.push_back(_pL);
         in.push_back(_pR);
-        std::wstring overloadName(Overload::buildOverloadName(Overload::getNameFromOper(ast::OpExp::ne), in, 1, true));
+        std::string overloadName(Overload::buildOverloadName(Overload::getNameFromOper(ast::OpExp::ne), in, 1, true));
         types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(overloadName));
         if (pIT)
         {
@@ -3704,7 +3704,7 @@ types::InternalType* compnoequal_M_M<GraphicHandle, GraphicHandle, Bool>(Graphic
     /* check dimension*/
     if (_pL->getDims() != _pR->getDims())
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -3714,7 +3714,7 @@ types::InternalType* compnoequal_M_M<GraphicHandle, GraphicHandle, Bool>(Graphic
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 

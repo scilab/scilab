@@ -78,7 +78,7 @@ public:
     bool check(Kind kind, const std::vector<GVN::Value *> & values);
     bool checkGlobalConstant(const symbol::Symbol & sym);
 
-    friend std::wostream & operator<<(std::wostream & out, const ConstraintManager & cm);
+    friend std::ostream & operator<<(std::ostream & out, const ConstraintManager & cm);
 
     static bool checkGlobalConstants(const std::set<symbol::Symbol> & gc);
 

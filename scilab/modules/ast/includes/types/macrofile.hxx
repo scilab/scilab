@@ -24,7 +24,7 @@ class EXTERN_AST MacroFile : public Callable
 {
 public :
     MacroFile(): Callable() {};
-    MacroFile(const std::wstring& _stName, const std::wstring& _stPath, const std::wstring& _stModule);
+    MacroFile(const std::string& _stName, const std::string& _stPath, const std::string& _stModule);
     virtual                 ~MacroFile();
 
     //FIXME : Should not return NULL
@@ -46,7 +46,7 @@ public :
 
     void                    whoAmI();
 
-    bool                    toString(std::wostringstream& ostr);
+    bool                    toString(std::ostringstream& ostr) override;
 
     Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
     bool                    parse(void);
@@ -56,17 +56,17 @@ public :
     void                    setLines(int _iFirstLine, int _iLastLine);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::string    getTypeStr()
     {
-        return L"function";
+        return "function";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::string    getShortTypeStr()
     {
-        return L"function";
+        return "function";
     }
 
-    inline const std::wstring & getPath()
+    inline const std::string & getPath()
     {
         return m_stPath;
     }
@@ -77,7 +77,7 @@ public :
     bool operator==(const InternalType& it);
 
 private :
-    std::wstring            m_stPath;
+    std::string            m_stPath;
     Macro*                  m_pMacro;
 };
 }

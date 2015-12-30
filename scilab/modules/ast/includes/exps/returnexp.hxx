@@ -47,7 +47,7 @@ public:
         }
         else
         {
-            _exps.push_back(new ast::CommentExp(location, new std::wstring(L"No return !!")));
+            _exps.push_back(new ast::CommentExp(location, new std::string("No return !!")));
             _exps[0]->setParent(this);
         }
 

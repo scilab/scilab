@@ -27,18 +27,18 @@ void AnalysisVisitor::visit(ast::CallExp & e, const unsigned int lhs)
     {
         const ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getName());
         const symbol::Symbol & sym = var.getSymbol();
-        const std::wstring & name = sym.getName();
+        const std::string & name = sym.getName();
         Info & info = getSymInfo(sym); // that put the sym in the current block !
         Result & res = e.getName().getDecorator().setResult(info.type);
         res.setConstant(info.getConstant());
         res.setRange(info.getRange());
         res.setMaxIndex(info.getMaxIndex());
 
-        logger.log(L"CallExp", e.getLocation(), name);
+        logger.log("CallExp", e.getLocation(), name);
 
         if (info.type.type == TIType::MACRO || info.type.type == TIType::MACROFILE || info.type.type == TIType::FUNCTION)
         {
-            if (name == L"error")
+            if (name == "error")
             {
                 getDM().getCurrent()->setReturn(true);
             }

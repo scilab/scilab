@@ -33,9 +33,9 @@ public:
 
         Promotion(const TIType & _first, const TIType & _second) : first(_first), second(_second) { }
 
-        friend std::wostream & operator<<(std::wostream & out, const Promotion & p)
+        friend std::ostream & operator<<(std::ostream & out, const Promotion & p)
         {
-            out << L"(" << p.first << L" => " << p.second << L")";
+            out << "(" << p.first << " => " << p.second << ")";
             return out;
         }
     };
@@ -63,9 +63,9 @@ public:
         map.clear();
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const VarPromotion & c)
+    friend std::ostream & operator<<(std::ostream & out, const VarPromotion & c)
     {
-        out << L"VarPromotion";
+        out << "VarPromotion";
         tools::printMap(c.map, out);
 
         return out;

@@ -188,64 +188,64 @@ public:
         return _oper == eq || _oper == ne || _oper == lt || _oper == le || _oper == gt || _oper == ge || _oper == logicalAnd || _oper == logicalOr || _oper == logicalShortCutAnd || _oper == logicalShortCutOr;
     }
 
-    inline std::wstring getString() const
+    inline std::string getString() const
     {
         switch (_oper)
         {
             case plus:
-                return L"+";
+                return "+";
             case minus:
-                return L"-";
+                return "-";
             case times:
-                return L"*";
+                return "*";
             case rdivide:
-                return L"/";
+                return "/";
             case ldivide:
-                return L"\\";
+                return "\\";
             case power:
-                return L"^";
+                return "^";
             case dottimes:
-                return L".*";
+                return ".*";
             case dotrdivide:
-                return L"./";
+                return "./";
             case dotldivide:
-                return L".\\";
+                return ".\\";
             case dotpower:
-                return L".^";
+                return ".^";
             case krontimes:
-                return L".*.";
+                return ".*.";
             case kronrdivide:
-                return L"./.";
+                return "./.";
             case kronldivide:
-                return L".\\.";
+                return ".\\.";
             case controltimes:
-                return L"*.";
+                return "*.";
             case controlrdivide:
-                return L"/.";
+                return "/.";
             case controlldivide:
-                return L"\\.";
+                return "\\.";
             case eq:
-                return L"==";
+                return "==";
             case ne:
-                return L"~=";
+                return "~=";
             case lt:
-                return L"<";
+                return "<";
             case le:
-                return L"<=";
+                return "<=";
             case gt:
-                return L">";
+                return ">";
             case ge:
-                return L">=";
+                return ">=";
             case logicalAnd:
-                return L"&";
+                return "&";
             case logicalOr:
-                return L"|";
+                return "|";
             case logicalShortCutAnd:
-                return L"&&";
+                return "&&";
             case logicalShortCutOr:
-                return L"||";
+                return "||";
             case unaryMinus:
-                return L"-";
+                return "-";
         }
     }
 

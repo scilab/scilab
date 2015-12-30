@@ -32,7 +32,7 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
         {
             Result & res = e.getDecorator().setResult(type);
             res.getConstant() = new types::Double(0);
-            e.getDecorator().setCall(L"argn");
+            e.getDecorator().setCall("argn");
             visitor.setResult(res);
             return true;
         }
@@ -107,7 +107,7 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             const int64_t val = kind == LHS ? fblock->getLHS() : fblock->getRHS();
             Result & res = e.getDecorator().setResult(type);
             res.getConstant() = visitor.getGVN().getValue(val);
-            e.getDecorator().setCall(L"argn");
+            e.getDecorator().setCall("argn");
             visitor.setResult(res);
             break;
         }
@@ -124,7 +124,7 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             mlhs.emplace_back(type);
             mlhs.back().getConstant() = visitor.getGVN().getValue(frhs);
 
-            e.getDecorator().setCall(L"argn");
+            e.getDecorator().setCall("argn");
             break;
         }
         default:

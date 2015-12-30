@@ -17,26 +17,26 @@
 
 namespace analysis
 {
-    class SizeCall : public Call
+class SizeCall : public Call
+{
+
+public:
+
+    enum Kind { R, C, RC, R_C, ONE, BOTH, DUNNO };
+
+private:
+
+    Kind kind;
+
+public:
+
+    SizeCall(Kind _kind) : Call("size"), kind(_kind) { }
+
+    inline Kind getKind() const
     {
-
-    public:
-
-	enum Kind { R, C, RC, R_C, ONE, BOTH, DUNNO };
-
-    private:
-	
-	Kind kind;
-	
-    public:
-
-        SizeCall(Kind _kind) : Call(L"size"), kind(_kind) { }
-
-	inline Kind getKind() const
-	    {
-		return kind;
-	    }
-    };
+        return kind;
+    }
+};
 
 } // namespace analysis
 

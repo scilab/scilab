@@ -146,8 +146,8 @@ void PrintVisitor::visit (const StringExp &e)
         }
         if (pStr->getSize() == 1)
         {
-            std::wstring wstr(pStr->get(0, 0));
-            printString(wstr);
+            std::string str(pStr->get(0, 0));
+            printString(str);
         }
         else
         {
@@ -158,12 +158,12 @@ void PrintVisitor::visit (const StringExp &e)
             {
                 for (int j = 0; j < c - 1; ++j)
                 {
-                    std::wstring wstr(pStr->get(i, j));
-                    printString(wstr);
+                    std::string str(pStr->get(i, j));
+                    printString(str);
                     *ostr << L" ";
                 }
-                std::wstring wstr(pStr->get(i, c - 1));
-                printString(wstr);
+                std::string str(pStr->get(i, c - 1));
+                printString(str);
                 *ostr << L";";
             }
             *ostr << L"]";

@@ -69,7 +69,7 @@ public:
 #ifdef DEBUG_DATAMANAGER
         if (symMap.find(sym) != symMap.end())
         {
-            std::wcerr << L"Table " << id << L" already contains " << sym << std::endl;
+            std::cerr << "Table " << id << " already contains " << sym << std::endl;
         }
 #endif
         return symMap.emplace(sym, data).first->second;
@@ -80,7 +80,7 @@ public:
 #ifdef DEBUG_DATAMANAGER
         if (symMap.find(sym) != symMap.end())
         {
-            std::wcerr << L"Table " << id << L" already contains " << sym << std::endl;
+            std::cerr << "Table " << id << " already contains " << sym << std::endl;
         }
 #endif
         return symMap.emplace(sym, info).first->second;
@@ -132,7 +132,7 @@ public:
     virtual void clone(const symbol::Symbol & sym, ast::Exp * exp);
     virtual void needRefCount(const tools::SymbolSet & set);
 
-    friend std::wostream & operator<<(std::wostream & out, const Block & block);
+    friend std::ostream & operator<<(std::ostream & out, const Block & block);
 
 private:
 

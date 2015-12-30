@@ -39,10 +39,10 @@ static bool isCoordIndex(int _iIndex, int* _piCoord, int _iCoordCount)
     return bFind;
 }
 
-std::wstring GenericType::DimToString()
+std::string GenericType::DimToString()
 {
-    std::wostringstream ostr;
-    ostr << getRows() << L"x" << getCols();
+    std::ostringstream ostr;
+    ostr << getRows() << "x" << getCols();
     return ostr.str();
 }
 

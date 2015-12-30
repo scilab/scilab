@@ -71,30 +71,30 @@ public :
         return getNbOutputArgument();
     }
 
-    void                  setName(const std::wstring& _wstName)
+    void setName(const std::string& _stName)
     {
-        m_wstName = _wstName;
+        m_stName = _stName;
     }
-    const std::wstring&   getName()
+    const std::string& getName()
     {
-        return m_wstName;
+        return m_stName;
     }
-    void                  setModule(const std::wstring& _wstModule)
+    void setModule(const std::string& _stModule)
     {
-        m_wstModule = _wstModule;
+        m_stModule = _stModule;
     }
-    std::wstring        getModule()
+    std::string getModule()
     {
-        return m_wstModule;
+        return m_stModule;
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring  getTypeStr()
+    virtual std::string  getTypeStr()
     {
-        return L"callable";
+        return "callable";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring  getShortTypeStr() = 0;
+    virtual std::string  getShortTypeStr() = 0;
     virtual InternalType* clone(void) = 0;
 
     virtual bool        isAssignable(void)
@@ -129,9 +129,8 @@ public :
     }
 
 protected :
-    std::wstring            m_wstName;
     std::string             m_stName;
-    std::wstring            m_wstModule;
+    std::string             m_stModule;
     int                     m_iFirstLine;
     int                     m_iLastLine;
 };

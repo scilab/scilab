@@ -1075,7 +1075,7 @@ InternalType* add_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1103,7 +1103,7 @@ InternalType* add_M_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1163,7 +1163,7 @@ InternalType* add_MC_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1586,7 +1586,7 @@ InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1595,15 +1595,15 @@ InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
     int* sizeOut = new int[size];
     for (int i = 0 ; i < size ; ++i)
     {
-        wchar_t* pwstL = _pL->get(i);
-        wchar_t* pwstR = _pR->get(i);
-        int sizeL = (int)wcslen(pwstL);
-        int sizeR = (int)wcslen(pwstR);
+        char* pstL = _pL->get(i);
+        char* pstR = _pR->get(i);
+        int sizeL = (int)strlen(pstL);
+        int sizeR = (int)strlen(pstR);
 
         sizeOut[i] = sizeL + sizeR + 1;
-        wchar_t* pwstOut = (wchar_t*) MALLOC(sizeOut[i] * sizeof(wchar_t));
+        char* pstOut = (char*) MALLOC(sizeOut[i] * sizeof(char));
         //assign ptr without strdup
-        pOut->get()[i] = pwstOut;
+        pOut->get()[i] = pstOut;
     }
 
     add(_pL->get(), size, _pR->get(), sizeOut, pOut->get());
@@ -1618,21 +1618,21 @@ InternalType* add_S_M<String, String, String>(String* _pL, String* _pR)
     String* pOut = new String(_pR->getDims(), _pR->getDimsArray());
     int size = _pR->getSize();
     int* sizeOut = new int[size];
-    wchar_t* pwstL = _pL->get(0);
-    int sizeL = (int)wcslen(pwstL);
+    char* pstL = _pL->get(0);
+    int sizeL = (int)strlen(pstL);
 
     for (int i = 0 ; i < size ; ++i)
     {
-        wchar_t* pwstR = _pR->get(i);
-        int sizeR = (int)wcslen(pwstR);
+        char* pstR = _pR->get(i);
+        int sizeR = (int)strlen(pstR);
 
         sizeOut[i] = sizeL + sizeR + 1;
-        wchar_t* pwstOut = (wchar_t*) MALLOC(sizeOut[i] * sizeof(wchar_t));
+        char* pstOut = (char*) MALLOC(sizeOut[i] * sizeof(char));
         //assign ptr without strdup
-        pOut->get()[i] = pwstOut;
+        pOut->get()[i] = pstOut;
     }
 
-    add(pwstL, size, _pR->get(), sizeOut, pOut->get());
+    add(pstL, size, _pR->get(), sizeOut, pOut->get());
     delete[] sizeOut;
     return pOut;
 }
@@ -1644,40 +1644,40 @@ InternalType* add_M_S<String, String, String>(String* _pL, String* _pR)
     String* pOut = new String(_pL->getDims(), _pL->getDimsArray());
     int size = _pL->getSize();
     int* sizeOut = new int[size];
-    wchar_t* pwstR = _pR->get(0);
-    int sizeR = (int)wcslen(pwstR);
+    char* pstR = _pR->get(0);
+    int sizeR = (int)strlen(pstR);
 
     for (int i = 0 ; i < size ; ++i)
     {
-        wchar_t* pwstL = _pL->get(i);
-        int sizeL = (int)wcslen(pwstL);
+        char* pstL = _pL->get(i);
+        int sizeL = (int)strlen(pstL);
 
         sizeOut[i] = sizeL + sizeR + 1;
-        wchar_t* pwstOut = (wchar_t*) MALLOC(sizeOut[i] * sizeof(wchar_t));
+        char* pstOut = (char*) MALLOC(sizeOut[i] * sizeof(char));
         //assign ptr without strdup
-        pOut->get()[i] = pwstOut;
+        pOut->get()[i] = pstOut;
     }
 
-    add(_pL->get(), size, pwstR, sizeOut, pOut->get());
+    add(_pL->get(), size, pstR, sizeOut, pOut->get());
     delete[] sizeOut;
     return pOut;
 }
 
-//specifiaction for String Scalar + String Scalar
+//specification for String Scalar + String Scalar
 template<>
 InternalType* add_S_S<String, String, String>(String* _pL, String* _pR)
 {
     String* pOut = new String(1, 1);
-    wchar_t* pwstL = _pL->get(0);
-    wchar_t* pwstR = _pR->get(0);
-    int sizeL = (int)wcslen(pwstL);
-    int sizeR = (int)wcslen(pwstR);
+    char* pstL = _pL->get(0);
+    char* pstR = _pR->get(0);
+    int sizeL = (int)strlen(pstL);
+    int sizeR = (int)strlen(pstR);
 
     int sizeOut = sizeL + sizeR + 1;
-    wchar_t* pwstOut = (wchar_t*) MALLOC(sizeOut * sizeof(wchar_t));
+    char* pstOut = (char*) MALLOC(sizeOut * sizeof(char));
     //assign ptr without strdup
-    pOut->get()[0] = pwstOut;
-    add(pwstL, pwstR, sizeOut, *pOut->get());
+    pOut->get()[0] = pstOut;
+    add(pstL, pstR, sizeOut, *pOut->get());
     return pOut;
 }
 
@@ -1725,8 +1725,8 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     Polynom* pOut = NULL;
     if (_pL->getVariableName() != _pR->getVariableName())
     {
-        std::wostringstream os;
-        os << _W("variables don't have the same formal variable");
+        std::ostringstream os;
+        os << _("variables don't have the same formal variable");
         //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
         throw ast::InternalError(os.str());
     }
@@ -1976,8 +1976,8 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
                 _pR->killMe();
             }
 
-            wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
+            char pMsg[bsiz];
+            os_sprintf(pMsg, _("Error: operator %s: Matrix dimensions must agree (op1 is %s, op2 is %s).\n"),  "+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
             throw ast::InternalError(pMsg);
         }
     }
@@ -2192,8 +2192,8 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
     {
         if (piDims1[i] != piDims2[i])
         {
-            wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
+            char pMsg[bsiz];
+            os_sprintf(pMsg, _("Error: operator %s: Matrix dimensions must agree (op1 is %s, op2 is %s).\n"),  "+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
             throw ast::InternalError(pMsg);
         }
     }
@@ -2356,7 +2356,7 @@ template<> InternalType* add_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _p
      if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
      {
          //dimensions not match
-         throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+         throw ast::InternalError(_("Inconsistent row/column dimensions.\n"));
      }
 
      if (_pL->nonZeros() == 0)

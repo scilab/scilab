@@ -424,12 +424,12 @@ struct EXTERN_AST MultivariatePolynomial
      * \param vars a mapping between vars numbers and wstring representation
      * \return a wstring representing this polynomial
      */
-    const std::wstring print(const std::map<uint64_t, std::wstring> & vars) const;
+    const std::string print(const std::map<uint64_t, std::string> & vars) const;
 
     /**
      * \brief Overload of << operator
      */
-    friend std::wostream & operator<<(std::wostream & out, const MultivariatePolynomial & p);
+    friend std::ostream & operator<<(std::ostream & out, const MultivariatePolynomial & p);
 
     /**
      * \return true if the two polynomials are differing only by a constant

@@ -252,63 +252,63 @@ Block * FunctionBlock::getDefBlock(const symbol::Symbol & sym, tools::SymbolMap<
     return this;
 }
 
-std::wostream & operator<<(std::wostream & out, const FunctionBlock & fblock)
+std::ostream & operator<<(std::ostream & out, const FunctionBlock & fblock)
 {
-    out << L"Function " << fblock.name << L'\n'
-        << L" -LHS: " << fblock.lhs << L'\n'
-        << L" -RHS: " << fblock.rhs << L'\n'
-        << L" -in:" << L'\n';
+    out << "Function " << fblock.name << std::endl
+        << " -LHS: " << fblock.lhs << std::endl
+        << " -RHS: " << fblock.rhs << std::endl
+        << " -in:" << std::endl;
     for (const auto & i : fblock.types_in)
     {
-        out << L"   -" << i.sym << L" -> " << i.tl << L'\n';
+        out << "   -" << i.sym << " -> " << i.tl << std::endl;
     }
 
-    out << L'\n'
-        << L" -out:" << L'\n';
+    out << std::endl
+        << " -out:" << std::endl;
     for (const auto & i : fblock.types_out)
     {
-        out << L"   -" << i.sym;
+        out << "   -" << i.sym;
         if (i.refcount)
         {
-            out << L" (refcount)";
+            out << " (refcount)";
         }
-        out << L" -> " << i.tl << L'\n';
+        out << " -> " << i.tl << std::endl;
     }
-    out << L'\n';
+    out << std::endl;
     if (fblock.locals.empty())
     {
-        out << L" -locals: none" << L'\n';
+        out << " -locals: none" << std::endl;
     }
     else
     {
-        out << L" -locals:" << L'\n';
+        out << " -locals:" << std::endl;
         for (const auto & p : fblock.locals)
         {
-            out << L"   -" << p.first;
+            out << "   -" << p.first;
             if (p.second.refcount)
             {
-                out << L" (refcount)";
+                out << " (refcount)";
             }
-            out << L" -> ";
+            out << " -> ";
             tools::printSet(p.second.set, out);
-            out << L'\n';
+            out << std::endl;
         }
     }
 
-    out << L'\n'
-        << L"Constraint Manager\n" << fblock.constraintManager << L'\n';
+    out << std::endl
+        << "Constraint Manager\n" << fblock.constraintManager << std::endl;
 
     const std::map<TypeLocal, std::stack<int>> & temps = fblock.getTemp();
     if (temps.empty())
     {
-        out << L" -temps: none" << L'\n';
+        out << " -temps: none" << std::endl;
     }
     else
     {
-        out << L" -temps:" << L'\n';
+        out << " -temps:" << std::endl;
         for (const auto & p : temps)
         {
-            out << L"   -" << p.first << L" -> " << p.second.size() << L'\n';
+            out << "   -" << p.first << " -> " << p.second.size() << std::endl;
         }
     }
 

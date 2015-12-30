@@ -137,38 +137,38 @@ bool MultivariateMonomial::operator==(const MultivariateMonomial & R) const
     return coeff == R.coeff && monomial == R.monomial;
 }
 
-const std::wstring MultivariateMonomial::print(const std::map<uint64_t, std::wstring> & vars) const
+const std::string MultivariateMonomial::print(const std::map<uint64_t, std::string> & vars) const
 {
-    std::wostringstream wos;
+    std::ostringstream os;
     if (coeff == -1 || coeff == 1)
     {
         if (coeff == -1)
         {
-            wos << L'-';
+            os << L'-';
         }
         if (!monomial.empty())
         {
-            wos << monomial.begin()->print(vars);
+            os << monomial.begin()->print(vars);
             for (auto i = std::next(monomial.begin()), e = monomial.end(); i != e; ++i)
             {
-                wos << L"*" << i->print(vars);
+                os << "*" << i->print(vars);
             }
         }
     }
     else
     {
-        wos << coeff;
+        os << coeff;
         for (const auto & ve : monomial)
         {
-            wos << L"*" << ve.print(vars);
+            os << "*" << ve.print(vars);
         }
     }
-    return wos.str();
+    return os.str();
 }
 
-std::wostream & operator<<(std::wostream & out, const MultivariateMonomial & m)
+std::ostream & operator<<(std::ostream & out, const MultivariateMonomial & m)
 {
-    const std::map<uint64_t, std::wstring> vars;
+    const std::map<uint64_t, std::string> vars;
     out << m.print(vars);
 
     return out;

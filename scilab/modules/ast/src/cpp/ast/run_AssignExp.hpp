@@ -40,8 +40,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
                 if (getResultSize() != 1)
                 {
-                    std::wostringstream os;
-                    os << _W("Can not assign multiple value in a single variable") << std::endl;
+                    std::ostringstream os;
+                    os << _("Can not assign multiple value in a single variable") << std::endl;
                     //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
                     throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                 }
@@ -73,8 +73,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     }
                     else
                     {
-                        std::wostringstream os;
-                        os << _W("Redefining permanent variable.\n");
+                        std::ostringstream os;
+                        os << _("Redefining permanent variable.\n");
                         throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
                     }
                 }
@@ -99,15 +99,11 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 if (ctx->putInPreviousScope(pVar->getStack(), pIT) == false)
                 {
                     char pstError[1024];
-                    char* pstFuncName = wide_string_to_UTF8(pVar->getSymbol().getName().data());
+                    const char* pstFuncName = pVar->getSymbol().getName().data();
                     os_sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
-                    wchar_t* pwstError = to_wide_string(pstError);
-                    std::wstring wstError(pwstError);
-                    FREE(pstFuncName);
-                    FREE(pwstError);
                     pIT->killMe();
                     CoverageInstance::stopChrono((void*)&e);
-                    throw InternalError(wstError, 999, e.getLocation());
+                    throw InternalError(pstError, 999, e.getLocation());
                 }
 
                 ((AssignExp*)&e)->setReturn();
@@ -120,20 +116,20 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 }
                 else
                 {
-                    std::wostringstream os;
-                    os << _W("Redefining permanent variable.\n");
+                    std::ostringstream os;
+                    os << _("Redefining permanent variable.\n");
                     throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
                 }
             }
 
             if (e.isVerbose() && ConfigVariable::isPromptShow())
             {
-                std::wstring wstrName = pVar->getSymbol().getName();
-                std::wostringstream ostr;
-                ostr << L" " << wstrName << L"  = " << std::endl << std::endl;
-                scilabWriteW(ostr.str().c_str());
-                std::wostringstream ostrName;
-                ostrName << wstrName;
+                std::string strName = pVar->getSymbol().getName();
+                std::ostringstream ostr;
+                ostr << " " << strName << "  = " << std::endl << std::endl;
+                scilabWrite(ostr.str().c_str());
+                std::ostringstream ostrName;
+                ostrName << strName;
                 VariableToString(pIT, ostrName.str().c_str());
             }
             CoverageInstance::stopChrono((void*)&e);
@@ -158,8 +154,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             if (pITR == NULL)
             {
                 // if the right hand is NULL.
-                std::wostringstream os;
-                os << _W("Unable to extract right part expression.\n");
+                std::ostringstream os;
+                os << _("Unable to extract right part expression.\n");
                 throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
             }
 
@@ -170,8 +166,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 {
                     delete *i;
                 }
-                std::wostringstream os;
-                os << _W("Get fields from expression failed.");
+                std::ostringstream os;
+                os << _("Get fields from expression failed.");
                 throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
             }
 
@@ -201,8 +197,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (pOut == NULL)
             {
-                std::wostringstream os;
-                os << _W("Fields evaluation failed.");
+                std::ostringstream os;
+                os << _("Fields evaluation failed.");
                 throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
             }
 
@@ -210,19 +206,18 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 if (e.isVerbose() && ConfigVariable::isPromptShow())
                 {
-                    std::wostringstream ostr;
-                    ostr << L" " << *getStructNameFromExp(pCell) << L"  = " << std::endl;
+                    std::ostringstream ostr;
+                    ostr << " " << *getStructNameFromExp(pCell) << "  = " << std::endl;
                     ostr << std::endl;
-                    scilabWriteW(ostr.str().c_str());
-
+                    scilabWrite(ostr.str().c_str());
                     VariableToString(pOut, ostr.str().c_str());
                 }
             }
             else
             {
                 //manage error
-                std::wostringstream os;
-                os << _W("Invalid Index.\n");
+                std::ostringstream os;
+                os << _("Invalid Index.\n");
                 throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
             }
 
@@ -249,8 +244,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             if (pITR == NULL)
             {
                 // if the right hand is NULL.
-                std::wostringstream os;
-                os << _W("Unable to extract right part expression.\n");
+                std::ostringstream os;
+                os << _("Unable to extract right part expression.\n");
                 throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
             }
 
@@ -264,8 +259,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 {
                     if (ctx->isprotected(var->getStack()))
                     {
-                        std::wostringstream os;
-                        os << _W("Redefining permanent variable.\n");
+                        std::ostringstream os;
+                        os << _("Redefining permanent variable.\n");
                         throw ast::InternalError(os.str(), 999, pCall->getLocation());
                     }
 
@@ -301,8 +296,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
                     if (pOut == NULL)
                     {
-                        std::wostringstream os;
-                        os << _W("Submatrix incorrectly defined.\n");
+                        std::ostringstream os;
+                        os << _("Submatrix incorrectly defined.\n");
                         throw ast::InternalError(os.str(), 999, e.getLocation());
                     }
 
@@ -327,8 +322,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                         delete *i;
                     }
 
-                    std::wostringstream os;
-                    os << _W("Instruction left hand side: waiting for a name.");
+                    std::ostringstream os;
+                    os << _("Instruction left hand side: waiting for a name.");
                     throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                 }
 
@@ -364,20 +359,20 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
                 if (pOut == NULL)
                 {
-                    std::wostringstream os;
-                    os << _W("Fields evaluation failed.");
+                    std::ostringstream os;
+                    os << _("Fields evaluation failed.");
                     throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                 }
             }
 
             if (e.isVerbose() && ConfigVariable::isPromptShow())
             {
-                std::wostringstream ostr;
-                ostr << L" " << *getStructNameFromExp(&pCall->getName()) << L"  = " << std::endl;
+                std::ostringstream ostr;
+                ostr << " " << *getStructNameFromExp(&pCall->getName()) << "  = " << std::endl;
                 ostr << std::endl;
-                scilabWriteW(ostr.str().c_str());
+                scilabWrite(ostr.str().c_str());
 
-                std::wostringstream ostrName;
+                std::ostringstream ostrName;
                 ostrName << *getStructNameFromExp(&pCall->getName());
                 VariableToString(pOut, ostrName.str().c_str());
             }
@@ -401,9 +396,9 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (exec.getResultSize() < iLhsCount)
             {
-                std::wostringstream os;
-                os << _W("Incompatible assignation: trying to assign ") << exec.getResultSize();
-                os << _W(" values in ") << iLhsCount << _W(" variables.") << std::endl;
+                std::ostringstream os;
+                os << _("Incompatible assignation: trying to assign ") << exec.getResultSize();
+                os << _(" values in ") << iLhsCount << _(" variables.") << std::endl;
                 throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
             }
 
@@ -477,8 +472,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 {
                     delete *i;
                 }
-                std::wostringstream os;
-                os << _W("Get fields from expression failed.");
+                std::ostringstream os;
+                os << _("Get fields from expression failed.");
                 throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
             }
 
@@ -490,8 +485,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     {
                         delete *i;
                     }
-                    std::wostringstream os;
-                    os << _W("Fields evaluation failed.");
+                    std::ostringstream os;
+                    os << _("Fields evaluation failed.");
                     throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                 }
             }
@@ -512,14 +507,14 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (e.isVerbose() && ConfigVariable::isPromptShow())
             {
-                const std::wstring *pstName = getStructNameFromExp(pField);
+                const std::string *pstName = getStructNameFromExp(pField);
 
                 types::InternalType* pPrint = ctx->get(symbol::Symbol(*pstName));
-                std::wostringstream ostr;
-                ostr << L" " << *pstName << L"  = " << std::endl << std::endl;
-                scilabWriteW(ostr.str().c_str());
+                std::ostringstream ostr;
+                ostr << " " << *pstName << "  = " << std::endl << std::endl;
+                scilabWrite(ostr.str().c_str());
 
-                std::wostringstream ostrName;
+                std::ostringstream ostrName;
                 ostrName << *pstName;
                 VariableToString(pPrint, ostrName.str().c_str());
             }
@@ -529,8 +524,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             return;
         }
 
-        std::wostringstream os;
-        os << _W("unknown script form");
+        std::ostringstream os;
+        os << _("unknown script form");
         //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
         throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
     }

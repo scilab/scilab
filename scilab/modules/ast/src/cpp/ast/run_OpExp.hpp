@@ -25,8 +25,8 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         if (isSingleResult() == false)
         {
             clearResult();
-            std::wostringstream os;
-            os << _W("Incompatible output argument.\n");
+            std::ostringstream os;
+            os << _("Incompatible output argument.\n");
             //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
             throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
         }
@@ -37,8 +37,8 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         if (isSingleResult() == false)
         {
             clearResult();
-            std::wostringstream os;
-            os << _W("Incompatible output argument.\n");
+            std::ostringstream os;
+            os << _("Incompatible output argument.\n");
             //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
             throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
         }
@@ -234,8 +234,8 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
         pITL = getResult();
         if (isSingleResult() == false)
         {
-            std::wostringstream os;
-            os << _W("Incompatible output argument.\n");
+            std::ostringstream os;
+            os << _("Incompatible output argument.\n");
             //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
             throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
         }
@@ -271,8 +271,8 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 pITR = getResult();
                 if (isSingleResult() == false)
                 {
-                    std::wostringstream os;
-                    os << _W("Incompatible output argument.\n");
+                    std::ostringstream os;
+                    os << _("Incompatible output argument.\n");
                     //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
                     throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
                 }
@@ -306,8 +306,8 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 pITR = getResult();
                 if (isSingleResult() == false)
                 {
-                    std::wostringstream os;
-                    os << _W("Incompatible output argument.\n");
+                    std::ostringstream os;
+                    os << _("Incompatible output argument.\n");
                     //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
                     throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
                 }

@@ -46,14 +46,14 @@ public :
 
     virtual TList*                  clone();
 
-    bool                            exists(const std::wstring& _sKey);
-    InternalType*                   getField(const std::wstring& _sKey);
-    int                             getIndexFromString(const std::wstring& _sKey);
-    TList*                          set(const std::wstring& _sKey, InternalType* _pIT);
+    bool                            exists(const std::string& _sKey);
+    InternalType*                   getField(const std::string& _sKey);
+    int                             getIndexFromString(const std::string& _sKey);
+    TList*                          set(const std::string& _sKey, InternalType* _pIT);
     TList*                          set(const int _iIndex, InternalType* _pIT);
 
     using List::extract; // to avoid this extract to hide extract in list
-    bool                            extract(const std::wstring& name, InternalType *& out);
+    bool                            extract(const std::string& name, InternalType *& out);
 
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e) override;
 
@@ -62,16 +62,16 @@ public :
         return true;
     }
 
-    InternalType*                   extractStrings(const std::list<std::wstring>& _stFields);
+    InternalType*                   extractStrings(const std::list<std::string>& _stFields);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring            getTypeStr();
+    virtual std::string            getTypeStr();
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring            getShortTypeStr();
+    virtual std::string            getShortTypeStr();
 
     String*                         getFieldNames();
 
-    bool                            toString(std::wostringstream& ostr);
+    bool                            toString(std::ostringstream& ostr) override;
 
 private :
 };

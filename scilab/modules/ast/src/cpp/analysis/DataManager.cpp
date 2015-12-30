@@ -314,10 +314,10 @@ Info & DataManager::getInfo(const symbol::Symbol & sym)
     return current->setDefaultData(sym);
 }
 
-std::wostream & operator<<(std::wostream & out, const DataManager & dm)
+std::ostream & operator<<(std::ostream & out, const DataManager & dm)
 {
-    out << L"DataManager:" << std::endl
-        << L"Globals: ";
+    out << "DataManager:" << std::endl
+        << "Globals: ";
 
     tools::printSet(dm.globals, out);
     out << std::endl << *dm.root;

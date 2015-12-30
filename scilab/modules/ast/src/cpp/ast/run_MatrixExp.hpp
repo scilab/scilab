@@ -110,7 +110,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                         {
                             try
                             {
-                                poRow = callOverloadMatrixExp(L"c", poRow, pIT);
+                                poRow = callOverloadMatrixExp("c", poRow, pIT);
                             }
                             catch (const InternalError& error)
                             {
@@ -129,8 +129,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 if (pIT->isGenericType() == false)
                 {
                     pIT->killMe();
-                    std::wostringstream os;
-                    os << _W("unable to concatenate\n");
+                    std::ostringstream os;
+                    os << _("unable to concatenate\n");
                     throw ast::InternalError(os.str(), 999, (*col)->getLocation());
                 }
 
@@ -169,7 +169,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     try
                     {
-                        poRow = callOverloadMatrixExp(L"c", poRow, pGT);
+                        poRow = callOverloadMatrixExp("c", poRow, pGT);
                     }
                     catch (const InternalError& error)
                     {
@@ -199,8 +199,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     {
                         pGT->killMe();
                     }
-                    std::wostringstream os;
-                    os << _W("inconsistent row/column dimensions\n");
+                    std::ostringstream os;
+                    os << _("inconsistent row/column dimensions\n");
                     throw ast::InternalError(os.str(), 999, (*row)->getLocation());
                 }
 
@@ -262,7 +262,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     try
                     {
-                        poRow = callOverloadMatrixExp(L"c", pGTResult, pGT);
+                        poRow = callOverloadMatrixExp("c", pGTResult, pGT);
                     }
                     catch (const InternalError& error)
                     {
@@ -303,7 +303,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             {
                 try
                 {
-                    poResult = callOverloadMatrixExp(L"f", poResult, poRow);
+                    poResult = callOverloadMatrixExp("f", poResult, poRow);
                 }
                 catch (const InternalError& error)
                 {
@@ -321,7 +321,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             {
                 try
                 {
-                    poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
+                    poResult = callOverloadMatrixExp("f", pGTResult, pGT);
                 }
                 catch (const InternalError& error)
                 {
@@ -347,8 +347,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     poResult->killMe();
                 }
-                std::wostringstream os;
-                os << _W("inconsistent row/column dimensions\n");
+                std::ostringstream os;
+                os << _("inconsistent row/column dimensions\n");
                 throw ast::InternalError(os.str(), 999, (*e.getLines().begin())->getLocation());
             }
 
@@ -379,7 +379,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             {
                 try
                 {
-                    poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
+                    poResult = callOverloadMatrixExp("f", pGTResult, pGT);
                 }
                 catch (const InternalError& error)
                 {
@@ -419,7 +419,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 }
 
 template<class T>
-types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& strType, types::InternalType* _paramL, types::InternalType* _paramR)
+types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::string& strType, types::InternalType* _paramL, types::InternalType* _paramR)
 {
     types::typed_list in;
     types::typed_list out;
@@ -435,11 +435,11 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& s
     {
         if (_paramR->isGenericType() && _paramR->getAs<types::GenericType>()->getDims() > 2)
         {
-            Ret = Overload::call(L"%hm_" + strType + L"_hm", in, 1, out, true);
+            Ret = Overload::call("%hm_" + strType + "_hm", in, 1, out, true);
         }
         else
         {
-            Ret = Overload::call(L"%" + _paramL->getAs<types::List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<types::List>()->getShortTypeStr(), in, 1, out, true);
+            Ret = Overload::call("%" + _paramL->getAs<types::List>()->getShortTypeStr() + "_" + strType + "_" + _paramR->getAs<types::List>()->getShortTypeStr(), in, 1, out, true);
         }
     }
     catch (const InternalError& error)

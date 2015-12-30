@@ -33,9 +33,9 @@ ListDelete* ListDelete::clone(void)
     return new ListDelete();
 }
 
-bool ListDelete::toString(std::wostringstream& ostr)
+bool ListDelete::toString(std::ostringstream& ostr)
 {
-    ostr << L"FIXME : Implement ListDelete::toString" << std::endl;
+    ostr << "FIXME : Implement ListDelete::toString" << std::endl;
     return true;
 }
 }

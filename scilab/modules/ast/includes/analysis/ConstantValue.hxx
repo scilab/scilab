@@ -83,10 +83,10 @@ public:
     bool getDblValue(double & _val) const;
     bool getBoolValue(bool & _val) const;
     bool getCplxValue(std::complex<double> & _val) const;
-    bool getStrValue(std::wstring & val) const;
+    bool getStrValue(std::string & val) const;
     void merge(const ConstantValue & cv);
 
-    friend std::wostream & operator<<(std::wostream & out, const ConstantValue & cv);
+    friend std::ostream & operator<<(std::ostream & out, const ConstantValue & cv);
 };
 
 } // namespace analysis

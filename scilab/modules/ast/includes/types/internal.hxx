@@ -27,7 +27,6 @@ extern "C"
 #include "configvariable_interface.h"
 }
 
-#include "localization.hxx"
 #ifndef NDEBUG
 #include "inspector.hxx"
 #endif
@@ -54,7 +53,7 @@ namespace types
 */
 class InternalType;
 typedef std::vector<InternalType *> typed_list;
-typedef std::unordered_map<std::wstring, InternalType *> optional_list;
+typedef std::unordered_map<std::string, InternalType *> optional_list;
 
 class EXTERN_AST InternalType
 {
@@ -216,8 +215,8 @@ public :
     virtual ScilabType              getType(void) = 0 ; //{ return ScilabInternal; }
     virtual ScilabId                getId(void) = 0 ; //{ return ScilabInternal; }
     virtual bool                    hasToString();
-    virtual bool                    toString(std::wostringstream& ostr) = 0;
-    virtual std::wstring            toStringInLine();
+    virtual bool                    toString(std::ostringstream& ostr) = 0;
+    virtual std::string             toStringInLine();
     virtual InternalType*           clone(void) = 0;
     virtual ast::Exp*               getExp(const Location& /*loc*/);
 
@@ -335,9 +334,9 @@ public :
     virtual int getInvokeNbIn();
     virtual int getInvokeNbOut();
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring            getTypeStr() = 0;
+    virtual std::string             getTypeStr() = 0;
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring            getShortTypeStr() = 0;
+    virtual std::string             getShortTypeStr() = 0;
     virtual bool                    operator==(const InternalType& it);
     virtual bool                    operator!=(const InternalType& it);
 

@@ -17,7 +17,7 @@ namespace analysis
 {
 void AnalysisVisitor::visit(ast::MatrixExp & e)
 {
-    logger.log(L"MatrixExp", e.getLocation());
+    logger.log("MatrixExp", e.getLocation());
     const ast::exps_t & lines = e.getLines();
     if (lines.empty())
     {

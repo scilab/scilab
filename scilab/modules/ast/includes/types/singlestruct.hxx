@@ -50,41 +50,41 @@ public :
 
     inline int getNumFields() const
     {
-        return static_cast<int>(m_wstFields.size());
+        return static_cast<int>(m_stFields.size());
     }
 
-    bool                                    toString(std::wostringstream& ostr);
+    bool                                    toString(std::ostringstream& ostr) override;
 
-    bool                                    set(const std::wstring& _sKey, InternalType *_typedValue);
-    InternalType*                           get(const std::wstring& _sKey);
-    bool                                    exists(const std::wstring& _sKey);
+    bool                                    set(const std::string& _sKey, InternalType *_typedValue);
+    InternalType*                           get(const std::string& _sKey);
+    bool                                    exists(const std::string& _sKey);
     InternalType*                           insert(typed_list* _pArgs, InternalType* _pSource);
-    std::vector<InternalType*>              extract(std::vector<std::wstring> & _stFields);
+    std::vector<InternalType*>              extract(std::vector<std::string> & _stFields);
     String*                                 getFieldNames();
-    bool                                    addField(const std::wstring& _sKey);
-    bool                                    addFieldFront(const std::wstring& _sKey);
+    bool                                    addField(const std::string& _sKey);
+    bool                                    addFieldFront(const std::string& _sKey);
     std::vector<InternalType *> &           getData();
-    std::unordered_map<std::wstring, int> & getFields();
-    int                                     getFieldIndex(const std::wstring& _field);
-    bool                                    removeField(const std::wstring& _sKey);
+    std::unordered_map<std::string, int> & getFields();
+    int                                     getFieldIndex(const std::string& _field);
+    bool                                    removeField(const std::string& _sKey);
 
     bool                                    operator==(const InternalType& it);
     bool                                    operator!=(const InternalType& it);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring                    getTypeStr()
+    virtual std::string                    getTypeStr()
     {
-        return L"singlestruct";
+        return "singlestruct";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring                    getShortTypeStr()
+    virtual std::string                    getShortTypeStr()
     {
-        return L"sst";
+        return "sst";
     }
 
 private :
 
-    std::unordered_map<std::wstring, int> m_wstFields;
+    std::unordered_map<std::string, int> m_stFields;
     std::vector<InternalType *> m_Data;
 };
 }

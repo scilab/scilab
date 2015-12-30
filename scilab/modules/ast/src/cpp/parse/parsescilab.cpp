@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.4.  */
+/* A Bison parser, made by GNU Bison 3.0.2.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "3.0.4"
+#define YYBISON_VERSION "3.0.2"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -327,16 +327,16 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-
+typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
 
 
   /* Tokens. */
     double                      number;
-    std::wstring*               str;
-    std::wstring*               path;
-    std::wstring*               comment;
+    std::string*                str;
+    std::string*                path;
+    std::string*                comment;
 
     LineBreakStr*               mute;
 
@@ -387,8 +387,6 @@ union YYSTYPE
 
 
 };
-
-typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -2975,7 +2973,7 @@ yyreduce:
     {
                                   ast::exps_t* tmp = new ast::exps_t;
                                   #ifdef BUILD_DEBUG_AST
-                                      tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty body");
+                                      tmp->push_back(new ast::CommentExp((yyloc), new std::string("Empty body");
                                   #endif
                                   SetTree(new ast::SeqExp((yyloc), *tmp));
 				  delete (yyvsp[0].mute);
@@ -2988,7 +2986,7 @@ yyreduce:
     {
                                   ast::exps_t* tmp = new ast::exps_t;
                                   #ifdef BUILD_DEBUG_AST
-                                      tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty body")));
+                                      tmp->push_back(new ast::CommentExp((yyloc), new std::string("Empty body")));
                                   #endif
                                   SetTree(new ast::SeqExp((yyloc), *tmp));
                                 }
@@ -3228,7 +3226,7 @@ yyreduce:
   case 35:
 
     {
-  (yyval.t_exp) = new ast::CommentExp((yyloc), new std::wstring(L"@@ ERROR RECOVERY @@"));
+  (yyval.t_exp) = new ast::CommentExp((yyloc), new std::string("@@ ERROR RECOVERY @@"));
   StopOnError();
   }
 
@@ -3264,7 +3262,7 @@ yyreduce:
   case 39:
 
     {
-						  std::wstringstream tmp;
+						  std::stringstream tmp;
 						  tmp << (yyvsp[0].number);
 						  (yyval.t_string_exp) = new ast::StringExp((yyloc), tmp.str());
 						}
@@ -3274,7 +3272,7 @@ yyreduce:
   case 40:
 
     {
-						  std::wstringstream tmp;
+						  std::stringstream tmp;
 						  tmp << (yyvsp[0].number);
 						  (yyval.t_string_exp) = new ast::StringExp((yyloc), tmp.str());
 						}
@@ -3284,7 +3282,7 @@ yyreduce:
   case 41:
 
     {
-						  std::wstringstream tmp;
+						  std::stringstream tmp;
 						  tmp << (yyvsp[0].number);
 						  (yyval.t_string_exp) = new ast::StringExp((yyloc), tmp.str());
 						}
@@ -3299,26 +3297,26 @@ yyreduce:
 
   case 43:
 
-    { (yyval.t_string_exp) = new ast::StringExp((yyloc), std::wstring(L"$")); }
+    { (yyval.t_string_exp) = new ast::StringExp((yyloc), std::string("$")); }
 
     break;
 
   case 44:
 
-    { (yyval.t_string_exp) = new ast::StringExp((yyloc), std::wstring(L"%t")); }
+    { (yyval.t_string_exp) = new ast::StringExp((yyloc), std::string("%t")); }
 
     break;
 
   case 45:
 
-    { (yyval.t_string_exp) = new ast::StringExp((yyloc), std::wstring(L"%f")); }
+    { (yyval.t_string_exp) = new ast::StringExp((yyloc), std::string("%f")); }
 
     break;
 
   case 46:
 
     {
-						  std::wstringstream tmp;
+						  std::stringstream tmp;
 						  tmp << (yyvsp[-2].t_string_exp)->getValue() << "." << *(yyvsp[0].str);
 						  (yyval.t_string_exp) = new ast::StringExp((yyloc), tmp.str());
 						  delete (yyvsp[0].str);
@@ -3702,7 +3700,7 @@ yyreduce:
     {
 				  ast::exps_t* tmp = new ast::exps_t;
 				  #ifdef BUILD_DEBUG_AST
-				    tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty function body")));
+				    tmp->push_back(new ast::CommentExp((yyloc), new std::string("Empty function body")));
 				  #endif
 				  (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
 				}
@@ -3745,181 +3743,181 @@ yyreduce:
 
   case 93:
 
-    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalAnd, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalAnd, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 94:
 
-    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalAnd, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalAnd, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 95:
 
-    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalAnd, * new ast::ColonVar((yyloc))); }
+    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalAnd, * new ast::ColonVar((yyloc))); }
 
     break;
 
   case 96:
 
-    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 97:
 
-    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 98:
 
-    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, * new ast::ColonVar((yyloc))); }
+    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, * new ast::ColonVar((yyloc))); }
 
     break;
 
   case 99:
 
-    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalOr, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalOr, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 100:
 
-    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalOr, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalOr, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 101:
 
-    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalOr, * new ast::ColonVar((yyloc))); }
+    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalOr, * new ast::ColonVar((yyloc))); }
 
     break;
 
   case 102:
 
-    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 103:
 
-    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 104:
 
-    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, * new ast::ColonVar((yyloc))); }
+    { (yyval.t_op_exp) = new ast::LogicalOpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, * new ast::ColonVar((yyloc))); }
 
     break;
 
   case 105:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::eq, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::eq, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 106:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::eq, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::eq, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 107:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::eq, * new ast::ColonVar((yyloc))); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::eq, * new ast::ColonVar((yyloc))); }
 
     break;
 
   case 108:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::ne, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::ne, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 109:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::ne, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::ne, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 110:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::ne, * new ast::ColonVar((yyloc))); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::ne, * new ast::ColonVar((yyloc))); }
 
     break;
 
   case 111:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::gt, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::gt, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 112:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::gt, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::gt, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 113:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::gt, * new ast::ColonVar((yyloc))); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::gt, * new ast::ColonVar((yyloc))); }
 
     break;
 
   case 114:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::lt, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::lt, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 115:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::lt, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::lt, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 116:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::lt, * new ast::ColonVar((yyloc))); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::lt, * new ast::ColonVar((yyloc))); }
 
     break;
 
   case 117:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::ge, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::ge, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 118:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::ge, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::ge, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 119:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::ge, * new ast::ColonVar((yyloc))); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::ge, * new ast::ColonVar((yyloc))); }
 
     break;
 
   case 120:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::le, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::le, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 121:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::le, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::le, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 122:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::le, * new ast::ColonVar((yyloc))); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::le, * new ast::ColonVar((yyloc))); }
 
     break;
 
@@ -4043,169 +4041,169 @@ yyreduce:
 
   case 141:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::plus, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::plus, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 142:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::plus, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::plus, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 143:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::minus, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::minus, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 144:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::minus, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::minus, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 145:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::times, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::times, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 146:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::times, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::times, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 147:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::dottimes, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::dottimes, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 148:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::dottimes, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::dottimes, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 149:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::krontimes, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::krontimes, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 150:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::krontimes, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::krontimes, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 151:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::controltimes, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::controltimes, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 152:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::controltimes, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::controltimes, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 153:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::rdivide, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::rdivide, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 154:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::rdivide, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::rdivide, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 155:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::dotrdivide, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::dotrdivide, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 156:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::dotrdivide, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::dotrdivide, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 157:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::kronrdivide, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::kronrdivide, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 158:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::kronrdivide, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::kronrdivide, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 159:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::controlrdivide, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::controlrdivide, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 160:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::controlrdivide, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::controlrdivide, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 161:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::ldivide, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::ldivide, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 162:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::ldivide, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::ldivide, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 163:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::dotldivide, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::dotldivide, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 164:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::dotldivide, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::dotldivide, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 165:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::kronldivide, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::kronldivide, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 166:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::kronldivide, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::kronldivide, *(yyvsp[0].t_call_exp)); }
 
     break;
 
   case 167:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::controlldivide, *(yyvsp[0].t_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::controlldivide, *(yyvsp[0].t_exp)); }
 
     break;
 
   case 168:
 
-    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), ast::OpExp::controlldivide, *(yyvsp[0].t_call_exp)); }
+    { (yyval.t_op_exp) = new ast::OpExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), ast::OpExp::controlldivide, *(yyvsp[0].t_call_exp)); }
 
     break;
 
@@ -4223,19 +4221,19 @@ yyreduce:
 
   case 171:
 
-    { (yyval.t_implicit_list) = new ast::ListExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), *(yyvsp[-2].t_exp), *(yyvsp[0].t_exp), true); }
+    { (yyval.t_implicit_list) = new ast::ListExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), *(yyvsp[-2].t_exp), *(yyvsp[0].t_exp), true); }
 
     break;
 
   case 172:
 
-    { (yyval.t_implicit_list) = new ast::ListExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), *(yyvsp[-2].t_exp), *(yyvsp[0].t_call_exp), true); }
+    { (yyval.t_implicit_list) = new ast::ListExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), *(yyvsp[-2].t_exp), *(yyvsp[0].t_call_exp), true); }
 
     break;
 
   case 173:
 
-    { (yyval.t_implicit_list) = new ast::ListExp((yyloc), *new ast::CommentExp((yyloc), new std::wstring(L"Should not stay in that state")), *new ast::DoubleExp((yyloc), 1.0), *(yyvsp[0].t_exp)); }
+    { (yyval.t_implicit_list) = new ast::ListExp((yyloc), *new ast::CommentExp((yyloc), new std::string("Should not stay in that state")), *new ast::DoubleExp((yyloc), 1.0), *(yyvsp[0].t_exp)); }
 
     break;
 
@@ -4893,7 +4891,7 @@ yyreduce:
     {
     ast::exps_t* tmp = new ast::exps_t;
     #ifdef BUILD_DEBUG_AST
-    tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty then body")));
+    tmp->push_back(new ast::CommentExp((yyloc), new std::string("Empty then body")));
     #endif
     (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
                 }
@@ -4915,7 +4913,7 @@ yyreduce:
     {
                                         #ifdef BUILD_DEBUG_AST
                                             ast::exps_t* tmp = new ast::exps_t;
-                                            tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty else body")));
+                                            tmp->push_back(new ast::CommentExp((yyloc), new std::string("Empty else body")));
                                             (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
                                         #else
                                             (yyval.t_seq_exp) = NULL;
@@ -5272,7 +5270,7 @@ yyreduce:
     {
                             ast::exps_t* tmp = new ast::exps_t;
                             #ifdef BUILD_DEBUG_AST
-                                tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty case body")));
+                                tmp->push_back(new ast::CommentExp((yyloc), new std::string("Empty case body")));
                             #endif
                             (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
 						}
@@ -5438,7 +5436,7 @@ yyreduce:
     {
                     ast::exps_t* tmp = new ast::exps_t;
                     #ifdef BUILD_DEBUG_AST
-                        tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty for body")));
+                        tmp->push_back(new ast::CommentExp((yyloc), new std::string("Empty for body")));
                     #endif
                     (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
 				}
@@ -5466,7 +5464,7 @@ yyreduce:
     {
                             ast::exps_t* tmp = new ast::exps_t;
                             #ifdef BUILD_DEBUG_AST
-                                tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty while body")));
+                                tmp->push_back(new ast::CommentExp((yyloc), new std::string("Empty while body")));
                             #endif
                             (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
                         }
@@ -5592,7 +5590,7 @@ yyreduce:
     {
                                                     ast::exps_t* tmp = new ast::exps_t;
                                                     #ifdef BUILD_DEBUG_AST
-                                                        tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty catch body")));
+                                                        tmp->push_back(new ast::CommentExp((yyloc), new std::string("Empty catch body")));
                                                     #endif
                                                     (yyval.t_try_exp) = new ast::TryCatchExp((yyloc), *(yyvsp[-1].t_seq_exp), *new ast::SeqExp((yyloc), *tmp));
                                                 }
@@ -5644,7 +5642,7 @@ yyreduce:
     {
                                     ast::exps_t* tmp = new ast::exps_t;
                                     #ifdef BUILD_DEBUG_AST
-                                        tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty catch body")));
+                                        tmp->push_back(new ast::CommentExp((yyloc), new std::string("Empty catch body")));
                                     #endif
                                     (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
                                 }
@@ -5656,7 +5654,7 @@ yyreduce:
     {
                                     ast::exps_t* tmp = new ast::exps_t;
                                     #ifdef BUILD_DEBUG_AST
-                                        tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty catch body")));
+                                        tmp->push_back(new ast::CommentExp((yyloc), new std::string("Empty catch body")));
                                     #endif
                                     (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
                                 }
@@ -5701,109 +5699,109 @@ yyreduce:
 
   case 376:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"if")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("if")); }
 
     break;
 
   case 377:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"then")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("then")); }
 
     break;
 
   case 378:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"else")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("else")); }
 
     break;
 
   case 379:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"elseif")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("elseif")); }
 
     break;
 
   case 380:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"end")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("end")); }
 
     break;
 
   case 381:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"select")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("select")); }
 
     break;
 
   case 382:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"switch")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("switch")); }
 
     break;
 
   case 383:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"otherwise")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("otherwise")); }
 
     break;
 
   case 384:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"case")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("case")); }
 
     break;
 
   case 385:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"function")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("function")); }
 
     break;
 
   case 386:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"endfunction")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("endfunction")); }
 
     break;
 
   case 387:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"for")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("for")); }
 
     break;
 
   case 388:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"while")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("while")); }
 
     break;
 
   case 389:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"do")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("do")); }
 
     break;
 
   case 390:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"break")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("break")); }
 
     break;
 
   case 391:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"try")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("try")); }
 
     break;
 
   case 392:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"catch")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("catch")); }
 
     break;
 
   case 393:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"return")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol("return")); }
 
     break;
 
@@ -6060,10 +6058,8 @@ void yyerror(std::string msg) {
     if (!endsWith(msg, "FLEX_ERROR") && !ParserSingleInstance::isStrictMode()
        || ParserSingleInstance::getExitStatus() == Parser::Succeded)
     {
-        wchar_t* pstMsg = to_wide_string(msg.c_str());
-        ParserSingleInstance::PrintError(pstMsg);
+        ParserSingleInstance::PrintError(msg);
         ParserSingleInstance::setExitStatus(Parser::Failed);
-	delete ParserSingleInstance::getTree();
-        FREE(pstMsg);
+        delete ParserSingleInstance::getTree();
     }
 }

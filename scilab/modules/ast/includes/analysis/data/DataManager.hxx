@@ -83,7 +83,7 @@ public:
     TIType getType(const symbol::Symbol & sym, const bool global = false);
     Info & getInfo(const symbol::Symbol & sym);
     void reset();
-    friend std::wostream & operator<<(std::wostream & out, const DataManager & dm);
+    friend std::ostream & operator<<(std::ostream & out, const DataManager & dm);
 
     template<typename T>
     bool getTypes(std::vector<TIType> & out, const T & syms)

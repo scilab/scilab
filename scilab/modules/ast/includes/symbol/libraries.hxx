@@ -42,7 +42,7 @@ struct Library
 
     void put(types::Library* _pLib, int _iLevel);
     types::MacroFile* get(const Symbol& _keyMacro) const;
-    int getMacrosName(std::list<std::wstring>& lst);
+    int getMacrosName(std::list<std::string>& lst);
 
     inline void put(ScopedLibrary* pSL)
     {
@@ -87,13 +87,13 @@ struct Libraries
     bool putInPreviousScope(const Symbol& _keyLib, types::Library* _pLib, int _iLevel);
     types::InternalType* get(const Symbol& _key, int _iLevel);
     bool remove(const Symbol& _key, int _iLevel);
-    int getMacrosName(std::list<std::wstring>& lst);
-    int getVarsName(std::list<std::wstring>& lst);
+    int getMacrosName(std::list<std::string>& lst);
+    int getVarsName(std::list<std::string>& lst);
     int getVarsToVariableBrowser(std::list<Library*>& lst);
     void clearAll();
-    bool getVarsNameForWho(std::list<std::wstring>* lstVarName, int* iVarLenMax, bool bSorted = false) const;
-    int whereis(std::list<std::wstring>& lst, const Symbol& _key);
-    int librarieslist(std::list<std::wstring>& lst);
+    bool getVarsNameForWho(std::list<std::string>* lstVarName, int* iVarLenMax, bool bSorted = false) const;
+    int whereis(std::list<std::string>& lst, const Symbol& _key);
+    int librarieslist(std::list<std::string>& lst);
 
 private:
     MapLibs libs;

@@ -105,7 +105,7 @@ public :
     bool compute();
     bool isComputable();
 
-    bool toString(std::wostringstream& ostr);
+    bool toString(std::ostringstream& ostr) override;
 
 
     InternalType::ScilabType getStartType();
@@ -134,14 +134,14 @@ public :
 
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring getTypeStr()
+    virtual std::string getTypeStr()
     {
-        return L"implicitlist";
+        return "implicitlist";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring getShortTypeStr()
+    virtual std::string getShortTypeStr()
     {
-        return L"ip";
+        return "ip";
     }
 
     // templated extract for

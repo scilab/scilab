@@ -459,29 +459,29 @@ MPolyConstraintSet ValidRangeConstraint::getMPConstraints(const std::vector<GVN:
     return set;
 }
 
-std::wostream & operator<<(std::wostream & out, const MPolyConstraint & mpc)
+std::ostream & operator<<(std::ostream & out, const MPolyConstraint & mpc)
 {
     out << mpc.poly;
     switch (mpc.kind)
     {
         case MPolyConstraint::Kind::EQ0:
-            out << L" = 0";
+            out << " = 0";
             break;
         case MPolyConstraint::Kind::NEQ0:
-            out << L" != 0";
+            out << " != 0";
             break;
         case MPolyConstraint::Kind::GT0:
-            out << L" > 0";
+            out << " > 0";
             break;
         case MPolyConstraint::Kind::GEQ0:
-            out << L" >= 0";
+            out << " >= 0";
             break;
     }
 
     return out;
 }
 
-std::wostream & operator<<(std::wostream & out, const MPolyConstraintSet & mpcs)
+std::ostream & operator<<(std::ostream & out, const MPolyConstraintSet & mpcs)
 {
     tools::printSet(mpcs.constraints, out);
     return out;

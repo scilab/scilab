@@ -45,21 +45,21 @@ struct Decorator
         return *_call;
     }
 
-    inline Call & setCall(const std::wstring & name)
+    inline Call & setCall(const std::string & name)
     {
         Call * call = new Call(name);
         opt.set(call);
         return *call;
     }
 
-    inline Call & setCall(const std::wstring & name, const std::vector<TIType> & args)
+    inline Call & setCall(const std::string & name, const std::vector<TIType> & args)
     {
         Call * call = new Call(name, args);
         opt.set(call);
         return *call;
     }
 
-    inline Call & setCall(const std::wstring & name, const TIType & arg)
+    inline Call & setCall(const std::string & name, const TIType & arg)
     {
         Call * call = new Call(name, arg);
         opt.set(call);
@@ -141,20 +141,20 @@ struct Decorator
         return res;
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const Decorator & deco)
+    friend std::ostream & operator<<(std::ostream & out, const Decorator & deco)
     {
         out << deco.res;
         if (!deco.opt.empty())
         {
-            out << L", " << deco.opt;
+            out << ", " << deco.opt;
         }
         if (deco.deleteData)
         {
-            out << L", Del: T";
+            out << ", Del: T";
         }
         if (deco.safe)
         {
-            out << L", Safe: T";
+            out << ", Safe: T";
         }
 
         return out;

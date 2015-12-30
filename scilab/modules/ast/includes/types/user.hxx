@@ -51,8 +51,8 @@ public :
     /*** User will be asked to implement the following methods      ***/
     /*** in order Scilab engine to manage correctly this user type  ***/
 
-    virtual std::wstring    getTypeStr() = 0;
-    virtual std::wstring    getShortTypeStr() = 0;
+    virtual std::string    getTypeStr() = 0;
+    virtual std::string    getShortTypeStr() = 0;
     virtual UserType*       clone() = 0;
 
 public :
@@ -67,14 +67,14 @@ public :
     // hasToString return false so scilab will call overload %..._p
     // and toString method is useless
     // if user overload hasToString for return true, he must overload toString method
-    // bool toString(std::wostringstream& ostr)
+    // bool toString(std::ostringstream& ostr)
     virtual bool hasToString()
     {
         return false;
     }
 
     // overload this method if hasToString method return true
-    virtual bool toString(std::wostringstream& /*ostr*/)
+    virtual bool toString(std::ostringstream& /*ostr*/) override
     {
         return false;
     }
@@ -90,7 +90,7 @@ public :
     // this method is called to perform an extraction by field. ie : a = myUserType.myfield
     // name is the field name
     // out contain extraction of field
-    virtual bool extract(const std::wstring& /*name*/, InternalType *& /*out*/)
+    virtual bool extract(const std::string& /*name*/, InternalType *& /*out*/)
     {
         return false;
     }

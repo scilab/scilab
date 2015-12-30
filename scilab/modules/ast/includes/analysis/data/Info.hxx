@@ -68,7 +68,7 @@ struct Info
     bool isAnInt() const;
     static const symbol::Symbol & getRightSym(ast::Exp * exp);
     const TIType & getType() const;
-    friend std::wostream & operator<<(std::wostream & out, const Info & info);
+    friend std::ostream & operator<<(std::ostream & out, const Info & info);
 };
 
 } // namespace analysis

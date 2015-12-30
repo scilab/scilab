@@ -33,9 +33,9 @@ ListOperation* ListOperation::clone(void)
     return new ListOperation();
 }
 
-bool ListOperation::toString(std::wostringstream& ostr)
+bool ListOperation::toString(std::ostringstream& ostr)
 {
-    ostr << L"FIXME : Implement ListOperation::toString" << std::endl;
+    ostr << "FIXME : Implement ListOperation::toString" << std::endl;
     return true;
 }
 }

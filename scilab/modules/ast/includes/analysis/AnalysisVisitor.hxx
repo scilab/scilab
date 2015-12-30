@@ -50,7 +50,7 @@ class EXTERN_AST AnalysisVisitor : public ast::Visitor, public Chrono
 
 public:
 
-    typedef std::unordered_map<std::wstring, std::shared_ptr<CallAnalyzer>> MapSymCall;
+    typedef std::unordered_map<std::string, std::shared_ptr<CallAnalyzer>> MapSymCall;
 
 private:
 
@@ -331,7 +331,7 @@ private:
     // get temp id for an element-wise operation
     // A + (B + 1) => B+1 is a temp, A is not and we can reuse the temp to put the result of A + (B+1)
     int getTmpIdForEWOp(const TIType & resT, const Result & LR, const Result & RR, ast::Exp * Lexp, ast::Exp * Rexp);
-    void visitArguments(const std::wstring & name, const unsigned int lhs, const TIType & calltype, ast::CallExp & e, const ast::exps_t & args);
+    void visitArguments(const std::string& name, const unsigned int lhs, const TIType & calltype, ast::CallExp & e, const ast::exps_t & args);
 
     void visit(ast::SelectExp & e);
     void visit(ast::ListExp & e);
@@ -369,7 +369,7 @@ private:
 
     void visit(ast::ArrayListVar & e)
     {
-        logger.log(L"ArrayListVar", e.getLocation());
+        logger.log("ArrayListVar", e.getLocation());
         const ast::exps_t & vars = e.getVars();
         for (auto var : vars)
         {
@@ -379,45 +379,45 @@ private:
 
     void visit(ast::CellCallExp & e)
     {
-        logger.log(L"CellCallExp", e.getLocation());
+        logger.log("CellCallExp", e.getLocation());
         visit(static_cast<ast::CallExp &>(e));
     }
 
     void visit(ast::LogicalOpExp & e)
     {
-        logger.log(L"LogicalOpExp", e.getLocation());
+        logger.log("LogicalOpExp", e.getLocation());
         visit(static_cast<ast::OpExp &>(e));
     }
 
     void visit(ast::BreakExp & e)
     {
-        logger.log(L"BreakExp", e.getLocation());
+        logger.log("BreakExp", e.getLocation());
         // nothing to do
     }
 
     void visit(ast::ContinueExp & e)
     {
-        logger.log(L"ContinueExp", e.getLocation());
+        logger.log("ContinueExp", e.getLocation());
         // nothing to do
     }
 
     void visit(ast::TryCatchExp & e)
     {
-        logger.log(L"TryCatchExp", e.getLocation());
+        logger.log("TryCatchExp", e.getLocation());
         e.getTry().accept(*this);
         e.getCatch().accept(*this);
     }
 
     void visit(ast::CaseExp & e)
     {
-        logger.log(L"CaseExp", e.getLocation());
+        logger.log("CaseExp", e.getLocation());
         e.getTest()->accept(*this);
         e.getBody()->accept(*this);
     }
 
     void visit(ast::ReturnExp & e)
     {
-        logger.log(L"ReturnExp", e.getLocation());
+        logger.log("ReturnExp", e.getLocation());
         getDM().getCurrent()->setReturn(true);
         // Bug with return;
         //e.exp_get().accept(*this);
@@ -426,7 +426,7 @@ private:
 
     void visit(ast::FieldExp & e)
     {
-        logger.log(L"FieldExp", e.getLocation());
+        logger.log("FieldExp", e.getLocation());
         // a.b.c <=> (a.b).c where a.b is the head and c is the tail
 
         //e.head_get()->accept(*this);
@@ -435,13 +435,13 @@ private:
 
     void visit(ast::CellExp & e)
     {
-        logger.log(L"CellExp", e.getLocation());
+        logger.log("CellExp", e.getLocation());
         visit(static_cast<ast::MatrixExp &>(e));
     }
 
     void visit(ast::ArrayListExp & e)
     {
-        logger.log(L"ArrayListExp", e.getLocation());
+        logger.log("ArrayListExp", e.getLocation());
         const ast::exps_t & exps = e.getExps();
         for (const auto exp : e.getExps())
         {
@@ -451,7 +451,7 @@ private:
 
     void visit(ast::AssignListExp & e)
     {
-        logger.log(L"AssignListExp", e.getLocation());
+        logger.log("AssignListExp", e.getLocation());
         visit(static_cast<ast::ArrayListExp &>(e));
     }
 
@@ -460,7 +460,7 @@ private:
         /*e.args_get().accept(*this);
           e.returns_get().accept(*this);
           e.body_get().accept(*this);*/
-        logger.log(L"FunctionDec", e.getLocation());
+        logger.log("FunctionDec", e.getLocation());
         dm.macrodef(&e);
     }
 };

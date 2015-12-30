@@ -17,7 +17,7 @@ namespace analysis
 
 void AnalysisVisitor::visit(ast::DoubleExp & e)
 {
-    logger.log(L"DoubleExp", e.getLocation());
+    logger.log("DoubleExp", e.getLocation());
     if (!e.getConstant())
     {
         e.accept(cv.getExec());
@@ -40,7 +40,7 @@ void AnalysisVisitor::visit(ast::DoubleExp & e)
 
 void AnalysisVisitor::visit(ast::BoolExp & e)
 {
-    logger.log(L"BoolExp", e.getLocation());
+    logger.log("BoolExp", e.getLocation());
     if (!e.getConstant())
     {
         e.accept(cv.getExec());
@@ -54,7 +54,7 @@ void AnalysisVisitor::visit(ast::BoolExp & e)
 
 void AnalysisVisitor::visit(ast::StringExp & e)
 {
-    logger.log(L"StringExp", e.getLocation());
+    logger.log("StringExp", e.getLocation());
     if (!e.getConstant())
     {
         e.accept(cv.getExec());

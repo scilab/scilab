@@ -67,11 +67,11 @@ void Data::setValidity(const bool v)
     }
 }
 
-std::wostream & operator<<(std::wostream & out, const Data & data)
+std::ostream & operator<<(std::ostream & out, const Data & data)
 {
-    out << L"known:" << (data.known ? L"T" : L"F")
-        << L", valid:" << (data.valid ? L"T" : L"F")
-        << L", ";
+    out << "known:" << (data.known ? "T" : "F")
+        << ", valid:" << (data.valid ? "T" : "F")
+        << ", ";
 
     tools::printSet(data.sharedSyms, out);
 

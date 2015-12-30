@@ -83,13 +83,13 @@ InternalType* Inspector::getUnreferencedItem(size_t _iPos)
     return NULL;
 }
 
-std::wstring Inspector::showItem(size_t _iPos)
+std::string Inspector::showItem(size_t _iPos)
 {
-    std::wstring st;
+    std::string st;
     InternalType* pIT = getItem(_iPos);
     if (pIT == NULL)
     {
-        st = L"NULL";
+        st = "NULL";
     }
     else
     {
@@ -98,13 +98,13 @@ std::wstring Inspector::showItem(size_t _iPos)
     return st;
 }
 
-std::wstring Inspector::showUnreferencedItem(size_t _iPos)
+std::string Inspector::showUnreferencedItem(size_t _iPos)
 {
-    std::wstring st;
+    std::string st;
     InternalType* pIT = getUnreferencedItem(_iPos);
     if (pIT == NULL)
     {
-        st = L"NULL";
+        st = "NULL";
     }
     else
     {
@@ -125,7 +125,7 @@ void Inspector::deleteItems()
 
 void Inspector::displayMemleak()
 {
-    std::map<std::wstring, size_t> statistics;
+    std::map<std::string, size_t> statistics;
 
     if (m_vIT.size() != 0)
     {
@@ -136,10 +136,10 @@ void Inspector::displayMemleak()
         }
 
         // display the result
-        std::wcerr << L"Memory leaked, please file a bug on http://bugzilla.scilab.org" << std::endl;
+        std::wcerr << "Memory leaked, please file a bug on http://bugzilla.scilab.org" << std::endl;
         for (auto it = statistics.begin(), itEnd = statistics.end(); it != itEnd; ++it)
         {
-            std::wcerr << L"    " << it->second << L" " << it->first;
+            std::cerr << "    " << it->second << " " << it->first;
 
             // list the not free-ed pointers
             std::wcerr << L" : ";

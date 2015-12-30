@@ -78,11 +78,10 @@ public:
     static void cleanup();
 
     /** \brief parse the given file name */
-    void parseFile(const std::wstring& name, const std::wstring& progName);
+    void parseFile(const std::string& name, const std::string& progName);
 
     /** \brief parse the given file command */
     void parse(const char *command);
-    void parse(const wchar_t *command);
 
     /** \brief enable Bison trace mode */
     void setParseTrace(bool parseTrace)
@@ -124,11 +123,11 @@ public:
         _control_status = controlStatus;
     }
 
-    wchar_t *getErrorMessage(void)
+    char *getErrorMessage(void)
     {
-        return const_cast<wchar_t *>(_error_message.c_str());
+        return const_cast<char *>(_error_message.c_str());
     }
-    void setErrorMessage(const std::wstring& errorMessage)
+    void setErrorMessage(const std::string& errorMessage)
     {
         _error_message = errorMessage;
     }
@@ -160,9 +159,9 @@ public:
 
 
 private :
-    const std::wstring _file_name;
-    const std::wstring _prog_name;
-    std::wstring _error_message;
+    const std::string _file_name;
+    const std::string _prog_name;
+    std::string _error_message;
     bool _stop_on_first_error;
     bool _strict_mode;
     bool _parse_trace;

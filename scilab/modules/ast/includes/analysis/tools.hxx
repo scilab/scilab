@@ -195,18 +195,18 @@ inline static T powui(T x, uint64_t n)
     return y;
 }
 
-inline std::wostream & operator<<(std::wostream & out, const IntType & it)
+inline std::ostream & operator<<(std::ostream & out, const IntType & it)
 {
     switch (it)
     {
         case IntType::NOTANINT :
-            out << L"NAI";
+            out << "NAI";
             break;
         case IntType::SIGNED :
-            out << L'S';
+            out << 'S';
             break;
         case IntType::UNSIGNED :
-            out << L'U';
+            out << 'U';
             break;
     }
     return out;
@@ -229,52 +229,52 @@ inline static unsigned char log2(const unsigned long long x)
 }
 
 template<typename T>
-static void printSet(const T & set, std::wostream & out)
+static void printSet(const T & set, std::ostream & out)
 {
     if (set.empty())
     {
-        out << L"{}";
+        out << "{}";
     }
     else
     {
-        out << L'{';
+        out << '{';
         for (typename T::const_iterator i = set.begin(); i != set.end(); ++i)
         {
             if (std::next(i) == set.end())
             {
-                out << *i << L'}';
+                out << *i << '}';
             }
             else
             {
-                out << *i << L',';
+                out << *i << ',';
             }
         }
     }
 }
 
 template<typename T>
-static void printMap(const T & map, std::wostream & out, const bool newLine = false )
+static void printMap(const T & map, std::ostream & out, const bool newLine = false )
 {
     if (map.empty())
     {
-        out << L"{}";
+        out << "{}";
     }
     else
     {
-        out << L'{';
+        out << '{';
         for (typename T::const_iterator i = map.begin(); i != map.end(); ++i)
         {
-            out << i->first << L" -> " << i->second;
+            out << i->first << " -> " << i->second;
             if (std::next(i) == map.end())
             {
-                out << L'}';
+                out << '}';
             }
             else
             {
-                out << L',';
+                out << ',';
                 if (newLine)
                 {
-                    out << L'\n';
+                    out << '\n';
                 }
             }
         }
@@ -282,7 +282,7 @@ static void printMap(const T & map, std::wostream & out, const bool newLine = fa
 }
 
 template<typename T>
-static void printMapInfo(std::wostream & out, const T & map, const bool show_collisions = false)
+static void printMapInfo(std::ostream & out, const T & map, const bool show_collisions = false)
 {
     double mean = 0;
     double variance = 0;
@@ -290,8 +290,8 @@ static void printMapInfo(std::wostream & out, const T & map, const bool show_col
     unsigned int empty_bucket_count = 0;
     unsigned int collision_count = 0;
 
-    out << L"Map size: " << map.size() << std::endl;
-    out << L"Number of buckets: " << count << std::endl;
+    out << "Map size: " << map.size() << std::endl;
+    out << "Number of buckets: " << count << std::endl;
 
     for (unsigned int i = 0; i < count; ++i)
     {
@@ -317,9 +317,9 @@ static void printMapInfo(std::wostream & out, const T & map, const bool show_col
     }
     variance /= (double)count;
 
-    out << L"Number of elements by buckets: mean=" << mean << L", sigma=" << std::sqrt(variance) << std::endl;
-    out << L"Number of empty buckets: " << empty_bucket_count << std::endl;
-    out << L"Number of collisions: " << collision_count << std::endl;
+    out << "Number of elements by buckets: mean=" << mean << ", sigma=" << std::sqrt(variance) << std::endl;
+    out << "Number of empty buckets: " << empty_bucket_count << std::endl;
+    out << "Number of collisions: " << collision_count << std::endl;
 
     if (show_collisions)
     {
@@ -331,7 +331,7 @@ static void printMapInfo(std::wostream & out, const T & map, const bool show_col
 
         for (const auto & p : collisions)
         {
-            out << L"Bucket " << p.first << L": " << p.second << L", hash=" << (typename T::hasher()(p.second)) << std::endl;
+            out << "Bucket " << p.first << ": " << p.second << ", hash=" << (typename T::hasher()(p.second)) << std::endl;
         }
     }
 }
@@ -353,7 +353,7 @@ struct HashSymbol
 {
     inline std::size_t operator()(const symbol::Symbol & sym) const
     {
-        return std::hash<std::wstring>()(sym.getName());
+        return std::hash<std::string>()(sym.getName());
     }
 };
 

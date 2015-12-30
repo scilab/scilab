@@ -70,7 +70,7 @@ public :
     ** Parsing functions
     */
     static void parse(const char *command);
-    static void parseFile(const std::wstring& fileName, const std::wstring& progName);
+    static void parseFile(const std::string& fileName, const std::string& progName);
 
     /*
     ** Manage strict Mode
@@ -113,11 +113,11 @@ public :
     /*
     ** File name management
     */
-    static const std::wstring getFileName(void)
+    static const std::string getFileName(void)
     {
         return _file_name;
     }
-    static void setFileName(const std::wstring& fileName)
+    static void setFileName(const std::string& fileName)
     {
         _file_name = fileName;
     }
@@ -125,11 +125,11 @@ public :
     /*
     ** Program Name Management
     */
-    static const std::wstring getProgName(void)
+    static const std::string getProgName(void)
     {
-        return L"Scilab6";
+        return "Scilab6";
     }
-    static void setProgName(const std::wstring& progName)
+    static void setProgName(const std::string& progName)
     {
         _prog_name = progName;
     }
@@ -137,8 +137,8 @@ public :
     /*
     ** Error Message management
     */
-    static std::wstring& getErrorMessage(void);
-    static void appendErrorMessage(const std::wstring& ostr);
+    static std::string& getErrorMessage(void);
+    static void appendErrorMessage(const std::string& ostr);
     static void resetErrorMessage(void)
     {
         _error_message.clear();
@@ -154,12 +154,12 @@ public :
     */
     static char* getCodeLine(int line, char **codeLine);
 
-    static void PrintError(const std::wstring& msg);
+    static void PrintError(const std::string& msg);
 
 private :
-    static std::wstring _file_name;
-    static std::wstring _prog_name;
-    static std::wstring _error_message;
+    static std::string _file_name;
+    static std::string _prog_name;
+    static std::string _error_message;
     static bool _strict_mode;
     static bool _stop_on_first_error;
     static ast::Exp* _the_program;

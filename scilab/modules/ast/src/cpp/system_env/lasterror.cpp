@@ -23,9 +23,9 @@ int getLastErrorNumber(void)
     return ConfigVariable::getLastErrorNumber();
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *getLastErrorMessage(void)
+char *getLastErrorMessage(void)
 {
-    return const_cast<wchar_t*>(ConfigVariable::getLastErrorMessage().c_str());
+    return const_cast<char*>(ConfigVariable::getLastErrorMessage().c_str());
 }
 /*--------------------------------------------------------------------------*/
 int getLastErrorLine(void)
@@ -33,9 +33,9 @@ int getLastErrorLine(void)
     return ConfigVariable::getLastErrorLine();
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *getLastErrorFunction(void)
+char *getLastErrorFunction(void)
 {
-    return const_cast<wchar_t*>(ConfigVariable::getLastErrorFunction().c_str());
+    return const_cast<char*>(ConfigVariable::getLastErrorFunction().c_str());
 }
 /*--------------------------------------------------------------------------*/
 void setLastErrorNumber(int _iError)
@@ -44,17 +44,17 @@ void setLastErrorNumber(int _iError)
     ConfigVariable::setError();
 }
 /*--------------------------------------------------------------------------*/
-void setLastErrorMessage(const wchar_t* _pwstError)
+void setLastErrorMessage(const char* _pstError)
 {
-    if (_pwstError == NULL)
+    if (_pstError == NULL)
     {
-        std::wstring wstError(L"");
-        ConfigVariable::setLastErrorFunction(wstError);
+        std::string stError("");
+        ConfigVariable::setLastErrorFunction(stError);
     }
     else
     {
-        std::wstring wstError(_pwstError);
-        ConfigVariable::setLastErrorMessage(wstError);
+        std::string stError(_pstError);
+        ConfigVariable::setLastErrorMessage(stError);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -63,26 +63,26 @@ void setLastErrorLine(int _iLine)
     ConfigVariable::setLastErrorLine(_iLine);
 }
 /*--------------------------------------------------------------------------*/
-void setLastErrorFunction(const wchar_t* _pwstFunction)
+void setLastErrorFunction(const char* _pstFunction)
 {
-    if (_pwstFunction == NULL)
+    if (_pstFunction == NULL)
     {
-        std::wstring wstError(L"");
-        ConfigVariable::setLastErrorFunction(wstError);
+        std::string stError("");
+        ConfigVariable::setLastErrorFunction(stError);
     }
     else
     {
-        std::wstring wstError(_pwstFunction);
-        ConfigVariable::setLastErrorFunction(wstError);
+        std::string stError(_pstFunction);
+        ConfigVariable::setLastErrorFunction(stError);
     }
 }
 /*--------------------------------------------------------------------------*/
-void setLastError(int _iError, const wchar_t* _pwstError, int _iLine, const wchar_t* _pwstFunction)
+void setLastError(int _iError, const char* _pstError, int _iLine, const char* _pstFunction)
 {
     setLastErrorNumber(_iError);
-    setLastErrorMessage(_pwstError);
+    setLastErrorMessage(_pstError);
     setLastErrorLine(_iLine);
-    setLastErrorFunction(_pwstFunction);
+    setLastErrorFunction(_pstFunction);
 }
 
 /*--------------------------------------------------------------------------*/

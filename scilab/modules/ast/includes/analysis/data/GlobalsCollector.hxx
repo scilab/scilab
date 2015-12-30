@@ -51,7 +51,7 @@ public:
     const tools::SymbolOrdSet & getGlobals() const;
     void print_info();
 
-    friend std::wostream & operator<<(std::wostream & out, const GlobalsCollector & gc);
+    friend std::ostream & operator<<(std::ostream & out, const GlobalsCollector & gc);
 
 private:
 

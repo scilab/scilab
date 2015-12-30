@@ -88,7 +88,7 @@ public :
 
     int                         getVarMaxDim(int _iCurrentDim, int _iMaxDim);
 
-    std::wstring                DimToString();
+    std::string                 DimToString();
 
     inline bool                 isGenericType()
     {
@@ -112,14 +112,14 @@ public :
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr()
+    virtual std::string         getTypeStr()
     {
-        return L"generictype";
+        return "generictype";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr()
+    virtual std::string         getShortTypeStr()
     {
-        return L"";
+        return "";
     }
 
     virtual GenericType*        clone(void)
@@ -162,7 +162,7 @@ public :
         return NULL;
     }
 
-    virtual bool                extract(const std::wstring& /*name*/, InternalType *& /*out*/)
+    virtual bool                extract(const std::string& /*name*/, InternalType *& /*out*/)
     {
         return false;
     }

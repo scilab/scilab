@@ -31,21 +31,16 @@
 
 namespace types
 {
-class EXTERN_AST String : public ArrayOf<wchar_t*>
+class EXTERN_AST String : public ArrayOf<char*>
 {
 public :
     String(int _iRows, int _iCols);
     String(int _iDims, const int* _piDims);
-    String(int _iRows, int _iCols, wchar_t const* const* _pstData);
-    String(const wchar_t *_pstData);
+    String(int _iRows, int _iCols, char const* const* _pstData);
     String(const char *_pstData);
     virtual                 ~String();
 
     void                    whoAmI();
-
-    virtual String*         set(int _iPos, const wchar_t* _pwstData);
-    virtual String*         set(int _iRows, int _iCols, const wchar_t* _pwstData);
-    virtual String*         set(const wchar_t* const* _pwstData);
 
     virtual String*         set(int _iPos, const char* _pcData);
     virtual String*         set(int _iRows, int _iCols, const char* _pcData);
@@ -54,16 +49,16 @@ public :
     bool                    operator==(const InternalType& it);
     bool                    operator!=(const InternalType& it);
 
-    bool                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
+    bool                    subMatrixToString(std::ostringstream& ostr, int* _piDims, int _iDims) override;
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::string     getTypeStr()
     {
-        return L"string";
+        return "string";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::string    getShortTypeStr()
     {
-        return L"c";
+        return "c";
     }
     String*                 clone();
 
@@ -99,18 +94,18 @@ private :
     void                    deleteString(int _iPos);
 
     void                    createString(int _iDims, int* _piDims);
-    virtual wchar_t*        copyValue(wchar_t* _pwstData);
-    virtual wchar_t*        copyValue(const wchar_t* _pwstData);
+    virtual char*           copyValue(char* _pwstData);
+    virtual char*           copyValue(const char* _pwstData);
     virtual String*         createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-    virtual wchar_t*        getNullValue();
+    virtual char*           getNullValue();
     virtual void            deleteAll();
     virtual void            deleteImg();
-    virtual wchar_t**       allocData(int _iSize);
-    void                    deleteData(wchar_t* data);
+    virtual char**          allocData(int _iSize);
+    void                    deleteData(char* data);
 };
 }
 
 #ifdef _MSC_VER
-template class types::ArrayOf<wchar_t*>; //String
+template class types::ArrayOf<char*>; //String
 #endif
 #endif /* !__STRING_HXX__ */

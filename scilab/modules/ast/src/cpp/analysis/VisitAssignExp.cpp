@@ -17,7 +17,7 @@ namespace analysis
 
 void AnalysisVisitor::visit(ast::AssignExp & e)
 {
-    logger.log(L"AssignExp", e.getLocation());
+    logger.log("AssignExp", e.getLocation());
     if (e.getLeftExp().isSimpleVar()) // A = ...
     {
         ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getLeftExp());

@@ -16,17 +16,17 @@ extern "C"
 #include "dynamic_module.h"
 }
 
-void addDynModule(const wchar_t* _pwstName, DynLibHandle _lib)
+void addDynModule(const char* _pwstName, DynLibHandle _lib)
 {
     ConfigVariable::addDynModule(_pwstName, _lib);
 }
 
-void removeDynModule(const wchar_t* _pwstName)
+void removeDynModule(const char* _pwstName)
 {
     ConfigVariable::removeDynModule(_pwstName);
 }
 
-DynLibHandle getDynModule(const wchar_t* _pwstName)
+DynLibHandle getDynModule(const char* _pwstName)
 {
     return ConfigVariable::getDynModule(_pwstName);
 }

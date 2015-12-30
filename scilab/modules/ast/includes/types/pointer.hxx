@@ -45,14 +45,14 @@ public :
         return false;
     }
 
-    std::wstring getTypeStr()
+    std::string getTypeStr()
     {
-        return L"pointer";
+        return "pointer";
     }
 
-    std::wstring getShortTypeStr()
+    std::string getShortTypeStr()
     {
-        return L"ptr";
+        return "ptr";
     }
 
     bool isPointer(void)
@@ -65,7 +65,7 @@ public :
         return m_cplx;
     }
 
-    bool toString(std::wostringstream& ostr)
+    bool toString(std::ostringstream& ostr) override
     {
         return true;
     }

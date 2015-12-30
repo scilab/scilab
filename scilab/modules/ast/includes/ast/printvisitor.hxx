@@ -27,7 +27,7 @@ class EXTERN_AST PrintVisitor : public GenVisitor<const_kind>
 {
 public:
 
-    PrintVisitor(std::wostream& my_ostr, bool parenthesis_display = true, bool _displayOriginal = true, bool _headerOnly = false) :
+    PrintVisitor(std::ostream& my_ostr, bool parenthesis_display = true, bool _displayOriginal = true, bool _headerOnly = false) :
         ostr (&my_ostr),
         force_parenthesis (parenthesis_display),
         displayOriginal(_displayOriginal),
@@ -123,7 +123,7 @@ public:
     | Attributes.  |
     `-------------*/
 protected:
-    std::wostream   *ostr;
+    std::ostream*   ostr;
     int             indent;
     bool            force_parenthesis;
     const bool      displayOriginal;
@@ -137,9 +137,9 @@ protected:
 
 private:
 
-    void printString(const std::wstring & value)
+    void printString(const std::string & value)
     {
-        std::wstring::const_iterator it;
+        std::string::const_iterator it;
         *ostr << SCI_OPEN_STRING;
         for (it = value.begin() ; it != value.end() ; ++it)
         {

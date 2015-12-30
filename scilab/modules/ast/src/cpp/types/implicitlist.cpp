@@ -35,8 +35,8 @@ extern "C"
 #include "finite.h"
 }
 
-std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar);
-std::wstring printDouble(types::Double* _pD);
+std::string printInLinePoly(types::SinglePoly* _pPoly, const std::string& _stVar);
+std::string printDouble(types::Double* _pD);
 long long convert_input(types::InternalType* _poIT);
 unsigned long long convert_unsigned_input(types::InternalType* _poIT);
 
@@ -332,9 +332,9 @@ bool ImplicitList::isComputable()
     return true;
 }
 
-bool ImplicitList::toString(std::wostringstream& ostr)
+bool ImplicitList::toString(std::ostringstream& ostr)
 {
-    ostr << L" ";
+    ostr << " ";
     if (m_eStartType == ScilabDouble)
     {
         Double *pD = m_poStart->getAs<Double>();
@@ -346,7 +346,7 @@ bool ImplicitList::toString(std::wostringstream& ostr)
         ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
     }
 
-    ostr << L":";
+    ostr << ":";
 
     if (m_eStepType == ScilabDouble)
     {
@@ -359,7 +359,7 @@ bool ImplicitList::toString(std::wostringstream& ostr)
         ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
     }
 
-    ostr << L":";
+    ostr << ":";
 
     if (m_eEndType == ScilabDouble)
     {
@@ -605,8 +605,8 @@ bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetC
         InternalType * _out = extract(&in);
         if (!_out)
         {
-            std::wostringstream os;
-            os << _W("Invalid index.\n");
+            std::ostringstream os;
+            os << _("Invalid index.\n");
             throw ast::InternalError(os.str(), 999, e.getLocation());
         }
         out.push_back(_out);
@@ -710,9 +710,9 @@ bool ImplicitList::isTrue()
 
 }
 
-std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar)
+std::string printInLinePoly(types::SinglePoly* _pPoly, const std::string& _stVar)
 {
-    std::wostringstream ostr;
+    std::ostringstream ostr;
     double* pdblIn = _pPoly->get();
     for (int i = 0 ; i < _pPoly->getSize() ; i++)
     {
@@ -742,9 +742,9 @@ std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar)
     return ostr.str();
 }
 
-std::wstring printDouble(types::Double* _pD)
+std::string printDouble(types::Double* _pD)
 {
-    std::wostringstream ostr;
+    std::ostringstream ostr;
     DoubleFormat df;
     getDoubleFormat(_pD->get(0), &df);
     df.bPrintPoint = false;

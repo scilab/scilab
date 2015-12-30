@@ -18,21 +18,11 @@
 
 #include "dynlib_ast.h"
 
-EXTERN_AST wchar_t *getHOMEW(void);
 EXTERN_AST char *getHOME(void);
-
-EXTERN_AST void setHOMEW(const wchar_t* _sci_path);
 EXTERN_AST void setHOME(const char* _sci_path);
-
-EXTERN_AST wchar_t* computeHOMEW();
 EXTERN_AST char* computeHOME();
-
-EXTERN_AST wchar_t* getenvHOMEW(void);
 EXTERN_AST char* getenvHOME(void);
-
-EXTERN_AST void putenvHOMEW(const wchar_t* _sci_path);
 EXTERN_AST void putenvHOME(const char* _sci_path);
-
 EXTERN_AST void defineHOME();
 
 #endif // ! __HOME_H__

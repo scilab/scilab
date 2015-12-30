@@ -42,21 +42,21 @@ public :
 
     void                    whoAmI();
 
-    bool                    toString(std::wostringstream& ostr);
+    bool                    toString(std::ostringstream& ostr) override;
     virtual bool            isAssignable(void)
     {
         return false;
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::string    getTypeStr()
     {
-        return L"listoperation";
+        return "listoperation";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::string    getShortTypeStr()
     {
-        return L"";
+        return "";
     }
 };
 }

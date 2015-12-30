@@ -45,7 +45,7 @@ public :
     virtual SinglePoly*     createEmpty(int _iDims, int* _piDims, bool _bComplex);
     virtual double*         allocData(int _iSize);
     virtual double          copyValue(double _dblData);
-    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
+    virtual bool            subMatrixToString(std::ostringstream& ostr, int* _piDims, int _iDims) override;
 
     bool                    setZeros();
     int                     getRank();
@@ -55,23 +55,23 @@ public :
     bool                    evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI);
     void                    updateRank(void);
 
-    void                    toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
-    void                    toStringImg(const std::wstring& _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+    void                    toStringReal(const std::string& _var, std::list<std::string>* _pListExp , std::list<std::string>* _pListCoef);
+    void                    toStringImg(const std::string& _var, std::list<std::string>* _pListExp , std::list<std::string>* _pListCoef);
 
-    bool                    toString(std::wostringstream& ostr);
+    bool                    toString(std::ostringstream& ostr) override;
 
     bool                    operator==(const InternalType& it);
     bool                    operator!=(const InternalType& it);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::string    getTypeStr()
     {
-        return L"poly";
+        return "poly";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::string    getShortTypeStr()
     {
-        return L"p";
+        return "p";
     }
 protected :
     inline ScilabType       getType(void)
@@ -84,7 +84,7 @@ protected :
     }
 
 private :
-    void                    toStringInternal(double *_pdblVal, const std::wstring& _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+    void                    toStringInternal(double *_pdblVal, const std::string& _var, std::list<std::string>* _pListExp , std::list<std::string>* _pListCoef);
 
 };
 

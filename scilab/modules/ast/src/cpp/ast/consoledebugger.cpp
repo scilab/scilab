@@ -85,10 +85,10 @@ void ConsoleDebugger::updateBreakpoints()
     {
         if (b->isMacro())
         {
-            std::wstring condition = b->getCondition();
-            sciprint("% 3d % 7s %24ls % 5d %ls\n", i, b->isEnable() ? "true" : "false", b->getFunctioName().c_str(), b->getMacroLine(),
+            std::string condition = b->getCondition();
+            sciprint("% 3d % 7s %24s % 5d %ls\n", i, b->isEnable() ? "true" : "false", b->getFunctioName().c_str(), b->getMacroLine(),
                      condition.size() < 30 ? condition.c_str() :
-                     (std::wstring(condition.begin(), condition.begin() + 27) + L"...").c_str());
+                     (std::string(condition.begin(), condition.begin() + 27) + "...").c_str());
         }
 
         ++i;
@@ -98,9 +98,9 @@ void ConsoleDebugger::updateBreakpoints()
 void ConsoleDebugger::printExp()
 {
     debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
-    std::wostringstream ostr;
+    std::ostringstream ostr;
     ast::PrintVisitor pp(ostr, true, true, true);
     manager->getExp()->accept(pp);
-    sciprint("%s%ls\n", SCIPROMPT_PAUSE, ostr.str().data());
+    sciprint("%s%s\n", SCIPROMPT_PAUSE, ostr.str().data());
 }
 }
