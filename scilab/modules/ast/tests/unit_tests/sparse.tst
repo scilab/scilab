@@ -1003,3 +1003,11 @@ b=sparse([1 6;1 2;5 5],[10;-1;-1],[5 6]);
 assert_checkfalse(a==b);
 assert_checktrue(a<>b);
 
+// Sparse does not accept hypermatrices as input arguments
+A = hypermat([2 2 3], 1:12);
+msg = _("%s: Wrong size for input argument #%d: A m-by-n matrix expected.\n");
+funcname = "sparse";
+assert_checkerror("sparse(A)", msprintf(msg, funcname, 1));
+
+assert_checkerror("sparse(1, A, 1)", msprintf(msg, funcname, 2));
+assert_checkerror("sparse(1, 1, A)", msprintf(msg, funcname, 3));

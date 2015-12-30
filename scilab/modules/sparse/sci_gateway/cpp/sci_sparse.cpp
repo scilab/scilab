@@ -37,6 +37,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
 
     for (int i = 0 ; isValid && i < in.size() ; i++)
     {
+        // Valid input arguments are of Bool and Double types (dense or sparse)
         switch (in[i]->getType())
         {
             case types::InternalType::ScilabBool :
@@ -60,6 +61,14 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
             Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "sparse", i + 1);
             return types::Function::Error;
         }
+
+        // Valid input arguments are matrices and not hypermatrices
+        if ( in[i]->getAs<types::GenericType>()->getDims() > 2 )
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A m-by-n matrix expected.\n"), "sparse", i + 1);
+            return types::Function::Error;
+        }
+
     }
     // if one argument is given, it will be a matrix of constant or sparse type, which will be converted into a sparse matrix
     if (in.size() == 1)
