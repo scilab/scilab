@@ -23,7 +23,7 @@ extern "C"
 #define BLANK_CHARACTER L' '
 #define TAB_CHARACTER L'\t'
 /*--------------------------------------------------------------------------*/
-static wchar_t* subwcs(const wchar_t *_pstStr, int _iStartPos, int _iEndPos);
+static char* substr(const char* _pstStr, int _iStartPos, int _iEndPos);
 /*--------------------------------------------------------------------------*/
 types::String * stripblanks(types::String *InputStrings, bool bRemoveTAB)
 {
@@ -34,12 +34,12 @@ types::String * stripblanks(types::String *InputStrings, bool bRemoveTAB)
 
         for (int x = 0 ; x < InputStrings->getSize() ; x++)
         {
-            wchar_t* pStr = InputStrings->get(x);
+            char* pStr = InputStrings->get(x);
             int iInputStartIndex    = 0;
-            int iInputEndIndex      = (int)wcslen(pStr);
+            int iInputEndIndex      = (int)strlen(pStr);
 
             /* search character ' ' or TAB from end of the string */
-            for (int i = static_cast<int>(wcslen(pStr) - 1) ; i >= 0 ; i--)
+            for (int i = static_cast<int>(strlen(pStr) - 1) ; i >= 0 ; i--)
             {
                 if (pStr[i] == BLANK_CHARACTER || (bRemoveTAB == true && pStr[i] == TAB_CHARACTER))
                 {
@@ -52,7 +52,7 @@ types::String * stripblanks(types::String *InputStrings, bool bRemoveTAB)
             }
 
             /* search character ' ' or TAB from beginning of the string */
-            for (int i = 0 ; i < static_cast<int>(wcslen(pStr)) ; i++)
+            for (int i = 0 ; i < static_cast<int>(strlen(pStr)) ; i++)
             {
                 if (pStr[i] == BLANK_CHARACTER || (bRemoveTAB == true && pStr[i] == TAB_CHARACTER))
                 {
@@ -64,31 +64,31 @@ types::String * stripblanks(types::String *InputStrings, bool bRemoveTAB)
                 }
             }
 
-            wchar_t* pwstReplace = subwcs(pStr, iInputStartIndex, iInputEndIndex);
-            pOutputStrings->set(x, pwstReplace);
-            FREE(pwstReplace);
+            char* pstReplace = substr(pStr, iInputStartIndex, iInputEndIndex);
+            pOutputStrings->set(x, pstReplace);
+            FREE(pstReplace);
         }
     }
     return pOutputStrings;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t* subwcs(const wchar_t *_pstStr, int _iStartPos, int _iEndPos)
+static char* substr(const char* _pstStr, int _iStartPos, int _iEndPos)
 {
     int iLen = _iEndPos - _iStartPos;
-    wchar_t* pwstBuf = NULL;
+    char* pstBuf = NULL;
 
     //bad len or empty string
-    if (iLen < 0 || wcscmp(_pstStr, L"") == 0)
+    if (iLen < 0 || strcmp(_pstStr, "") == 0)
     {
-        return os_wcsdup(L"");
+        return os_strdup("");
     }
 
-    pwstBuf = (wchar_t*)MALLOC(sizeof(wchar_t) * (iLen + 1)); //+1 for null termination
-    if (pwstBuf)
+    pstBuf = (char*)MALLOC(sizeof(char) * (iLen + 1)); //+1 for null termination
+    if (pstBuf)
     {
-        wcsncpy(pwstBuf, _pstStr + _iStartPos, iLen);   /*Put a part of str into stbuf*/
-        pwstBuf[iLen] = L'\0';
+        strncpy(pstBuf, _pstStr + _iStartPos, iLen);   /*Put a part of str into stbuf*/
+        pstBuf[iLen] = '\0';
     }
-    return pwstBuf;
+    return pstBuf;
 }
 /*------------------------------------------------------------------------*/

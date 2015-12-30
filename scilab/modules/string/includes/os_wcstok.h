@@ -14,6 +14,7 @@
 #define __OS_WCSTOK_H__
 
 #include <wchar.h>
+#include <string.h>
 #include "dynlib_string.h"
 
 

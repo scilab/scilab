@@ -12,13 +12,12 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include <wchar.h>
-#include <wctype.h>
+#include <ctype.h>
 #include "isletter.h"
 #include "sci_malloc.h"
 #include "isdigit.h"
 /*--------------------------------------------------------------------------*/
-BOOL *IsDigitW(wchar_t *input_string, int *returnedSizeArray)
+BOOL *IsDigit(const char* input_string, int *returnedSizeArray)
 {
     BOOL *returnedValues = NULL;
     *returnedSizeArray = 0;
@@ -26,7 +25,7 @@ BOOL *IsDigitW(wchar_t *input_string, int *returnedSizeArray)
     if (input_string)
     {
         int i = 0;
-        int length_input_string = (int)wcslen(input_string);
+        int length_input_string = (int)strlen(input_string);
         *returnedSizeArray = length_input_string;
 
         if (length_input_string > 0)
@@ -36,7 +35,7 @@ BOOL *IsDigitW(wchar_t *input_string, int *returnedSizeArray)
             {
                 for (i = 0; i < length_input_string; i++)
                 {
-                    if ( iswdigit(input_string[i]) )
+                    if (isdigit(input_string[i]))
                     {
                         returnedValues[i] = TRUE;
                     }

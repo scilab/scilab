@@ -50,7 +50,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
 
         if (_iRetCount == 2)
         {
-            out.push_back(new types::String(L""));
+            out.push_back(new types::String(""));
         }
 
         return types::Function::OK;
@@ -120,7 +120,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
             }
 
             strsplit_error ierr = STRSPLIT_NO_ERROR;
-            wchar_t **results = strsplit(pStrIn->get(0), pDbl->get(), pDbl->getSize(), &ierr);
+            char **results = strsplit(pStrIn->get(0), pDbl->get(), pDbl->getSize(), &ierr);
 
             switch (ierr)
             {
@@ -129,35 +129,35 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
                     types::String* pStrOut = new types::String(pDbl->getSize() + 1, 1);
                     pStrOut->set(results);
 
-                    freeArrayOfWideString(results, pDbl->getSize() + 1);
+                    freeArrayOfString(results, pDbl->getSize() + 1);
                     out.push_back(pStrOut);
                     return types::Function::OK;
                 }
                 break;
                 case STRSPLIT_INCORRECT_VALUE_ERROR:
                 {
-                    freeArrayOfWideString(results, pDbl->getSize() + 1);
+                    freeArrayOfString(results, pDbl->getSize() + 1);
                     Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "strsplit", 2);
                     return types::Function::Error;
                 }
                 break;
                 case STRSPLIT_INCORRECT_ORDER_ERROR:
                 {
-                    freeArrayOfWideString(results, pDbl->getSize() + 1);
+                    freeArrayOfString(results, pDbl->getSize() + 1);
                     Scierror(999, _("%s: Elements of %dth argument must be in increasing order.\n"), "strsplit", 2);
                     return types::Function::Error;
                 }
                 break;
                 case STRSPLIT_MEMORY_ALLOCATION_ERROR:
                 {
-                    freeArrayOfWideString(results, pDbl->getSize() + 1);
+                    freeArrayOfString(results, pDbl->getSize() + 1);
                     Scierror(999, _("%s: Memory allocation error.\n"), "strsplit");
                     return types::Function::Error;
                 }
                 break;
                 default:
                 {
-                    freeArrayOfWideString(results, pDbl->getSize() + 1);
+                    freeArrayOfString(results, pDbl->getSize() + 1);
                     Scierror(999, _("%s: error.\n"), "strsplit");
                     return types::Function::Error;
                 }
@@ -170,13 +170,13 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
             if (pStr->isScalar() == false)
             {
                 // checks that 2nd parameter is not an array of regexp pattern
-                wchar_t** pwcsStr = pStr->get();
+                char** pcsStr = pStr->get();
                 for (int i = 0; i < pStr->getSize(); i++)
                 {
-                    if (pwcsStr[i])
+                    if (pcsStr[i])
                     {
-                        int iLen = (int)wcslen(pwcsStr[i]);
-                        if (iLen > 2 && pwcsStr[i][0] == L'/' && pwcsStr[i][iLen - 1] == L'/')
+                        int iLen = (int)strlen(pcsStr[i]);
+                        if (iLen > 2 && pcsStr[i][0] == '/' && pcsStr[i][iLen - 1] == '/')
                         {
                             Scierror(999, _("%s: Wrong value for input argument #%d: a string expected, not a regexp pattern.\n"), "strsplit", 2);
                             return types::Function::Error;
@@ -192,6 +192,6 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
         }
     }
 
-    return Overload::call(L"%_strsplit", in, _iRetCount, out);
+    return Overload::call("%_strsplit", in, _iRetCount, out);
 }
 /*-------------------------------------------------------------------------------------*/

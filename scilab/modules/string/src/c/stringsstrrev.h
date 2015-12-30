@@ -18,8 +18,8 @@
 #include <wchar.h>
 #include "dynlib_string.h"
 
-STRING_IMPEXP wchar_t **strings_strrev(wchar_t **Input_strings, int Dim_Input_strings);
-wchar_t* scistrrev(wchar_t* str);
+STRING_IMPEXP char** strings_strrev(char** Input_strings, int Dim_Input_strings);
+char* scistrrev(char* str);
 
 #endif /* __STRINGSSTRREV_H__ */
 /*----------------------------------------------------------------------------*/

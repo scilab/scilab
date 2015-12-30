@@ -26,10 +26,10 @@ extern "C"
 
 types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::String* pStrIn   = NULL;
-    types::Bool* pBOut      = NULL;
-    wchar_t* wcstrIn        = NULL;
-    int iResultSize         = 0;
+    types::String* pStrIn = NULL;
+    types::Bool* pBOut = NULL;
+    char* strIn = NULL;
+    int iResultSize = 0;
 
     if (in.size() != 1)
     {
@@ -57,8 +57,8 @@ types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    wcstrIn = pStrIn->get(0);
-    int* pbResult = (int*)IsDigitW(wcstrIn, &iResultSize);
+    strIn = pStrIn->get(0);
+    int* pbResult = (int*)IsDigit(strIn, &iResultSize);
     if (pbResult == NULL)
     {
         out.push_back(types::Double::Empty());

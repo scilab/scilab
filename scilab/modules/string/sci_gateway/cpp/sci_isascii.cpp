@@ -50,10 +50,10 @@ types::Function::ReturnValue sci_isascii(types::typed_list &in, int _iRetCount, 
         }
 
         // concatenate all strings
-        std::wstring s(pIn->get(0));
+        std::string s(pIn->get(0));
         for (int i = 1; i < pIn->getSize(); i++)
         {
-            s += std::wstring(pIn->get(i));
+            s += std::string(pIn->get(i));
         }
 
         int iResultSize = 0;

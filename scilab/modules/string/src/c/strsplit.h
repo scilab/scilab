@@ -32,7 +32,7 @@ typedef enum
 * @param[out] error code
 * @return substrings
 */
-STRING_IMPEXP wchar_t **strsplit(wchar_t * wcstringToSplit, double *indices, int sizeIndices, strsplit_error *ierr);
+STRING_IMPEXP char** strsplit(const char* stringToSplit, double *indices, int sizeIndices, strsplit_error *ierr);
 
 #endif /* __STRSPLITFUNCTION_H__ */
 /*----------------------------------------------------------------------------*/

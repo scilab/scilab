@@ -12,6 +12,14 @@
 
 #include "os_wcstok.h"
 
+char* os_strtok(char *_pstData, const char* _pstDelim, char** _pstState)
+{
+#ifndef _MSC_VER
+    return strtok(_pstData, _pstDelim, _pstState);
+#else
+    return strtok(_pstData, _pstDelim);
+#endif
+}
 
 wchar_t *os_wcstok(wchar_t *_pwstData, const wchar_t *_pwstDelim, wchar_t** _pswtState)
 {

@@ -76,7 +76,7 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
     int j = 0; /* Input parameter two is dimension one */
     for (int i = 0 ; i < pString->getSize() ; i++)
     {
-        wchar_t *wcOutput   = NULL;
+        char* output   = NULL;
         int sizeOfCopy      = 0;
 
         if (pDouble->isScalar() == false)
@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
             j = i; /* Input parameter One & two have same dimension */
         }
 
-        if (pDouble->get(j) < wcslen(pString->get(i)))
+        if (pDouble->get(j) < strlen(pString->get(i)))
         {
             int iLen = (int)pDouble->get(j);
             if (iLen < 0)
@@ -92,24 +92,24 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
                 iLen = 0;
             }
 
-            wcOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * (iLen + 1));
+            output = (char*)MALLOC(sizeof(char) * (iLen + 1));
             sizeOfCopy = iLen;
         }
         else
         {
-            int iLen = (int)wcslen(pString->get(i));
-            wcOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * (iLen + 1));
+            int iLen = (int)strlen(pString->get(i));
+            output = (char*)MALLOC(sizeof(char) * (iLen + 1));
             sizeOfCopy = iLen;
         }
 
-        if (wcOutput)
+        if (output)
         {
-            wcsncpy(wcOutput, pString->get(i), sizeOfCopy);
-            wcOutput[sizeOfCopy] = L'\0';
+            strncpy(output, pString->get(i), sizeOfCopy);
+            output[sizeOfCopy] = '\0';
 
-            pOutString->set(i, wcOutput);
-            FREE(wcOutput);
-            wcOutput = NULL;
+            pOutString->set(i, output);
+            FREE(output);
+            output = NULL;
         }
         else
         {

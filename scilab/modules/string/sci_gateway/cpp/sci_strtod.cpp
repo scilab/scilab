@@ -34,9 +34,9 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
     types::String* pOutString = NULL;
     types::String* pString = NULL;
 
-    wchar_t pwstKey[] = L"1234567890";
-    wchar_t pwstSymbol[] = L"-+.";
-    wchar_t wstDecimalSep = L'.';
+    char pstKey[] = "1234567890";
+    char pstSymbol[] = "-+.";
+    char decimalSep = '.';
 
     unsigned long long ullNan = 0x7ff8000000000000;
     double dblNan = *( double* )&ullNan;
@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
         out.push_back(types::Double::Empty());
         if (_iRetCount == 2)
         {
-            out.push_back(new types::String(L""));
+            out.push_back(new types::String(""));
         }
 
         return types::Function::OK;
@@ -86,18 +86,18 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
         }
 
         types::String* pString2 = in[1]->getAs<types::String>();
-        std::wstring pwstr(pString2->get(0));
+        std::string str(pString2->get(0));
 
-        if (pwstr != L"." && pwstr != L",")
+        if (str != "." && str != ",")
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '.' or ',' expected.\n"), "strtod", 2);
             return types::Function::Error;
         }
 
-        wstDecimalSep = *(pwstr.c_str());
-        pwstSymbol[2] = wstDecimalSep;
+        decimalSep = *(str.c_str());
+        pstSymbol[2] = decimalSep;
 
-        if (wstDecimalSep == L',')
+        if (decimalSep == L',')
         {
 #ifdef _MSC_VER
             setlocale(LC_NUMERIC, "French_France.1252");
@@ -111,10 +111,10 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
     {
         //Double part
         bool bStop = false;
-        wchar_t *pwstStop = NULL;
-        wchar_t* pstStr = pString->get(i);
-        int iSign = (int)wcscspn(pstStr, pwstSymbol);
-        int iKey = (int)wcscspn(pstStr, pwstKey);
+        char *pstStop = NULL;
+        char* pstStr = pString->get(i);
+        int iSign = (int)strcspn(pstStr, pstSymbol);
+        int iKey = (int)strcspn(pstStr, pstKey);
 
 
         //symbol can be use only if it is before key
@@ -125,7 +125,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
         }
 
         //special case for "-.3"
-        if (iSign == iKey - 2 && pstStr[iSign + 1] == wstDecimalSep)
+        if (iSign == iKey - 2 && pstStr[iSign + 1] == decimalSep)
         {
             //let strtod do with symbol
             iKey -= 2;
@@ -140,7 +140,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
                 {
                     pOutDouble->set(i, dblNan);
                     bStop = true;
-                    pwstStop = pstStr;
+                    pstStop = pstStr;
                     break;
                 }
             }
@@ -149,40 +149,40 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
             if (bStop == false)
             {
                 //only spaces ?
-                if (wcslen(pstStr) == iKey) // strtod("  ")
+                if (strlen(pstStr) == iKey) // strtod("  ")
                 {
                     pOutDouble->set(i, dblNan);
-                    pwstStop = pstStr;
+                    pstStop = pstStr;
                 }
                 else // strtod("  000xxx")
                 {
-                    pOutDouble->set(i, wcstod(pstStr + iKey, &pwstStop));
+                    pOutDouble->set(i, strtod(pstStr + iKey, &pstStop));
                 }
             }
         }
-        else if (wcslen(pstStr) == 0) //strtod("")
+        else if (strlen(pstStr) == 0) //strtod("")
         {
             pOutDouble->set(i, dblNan);
         }
         else //all characters are digits
         {
-            pOutDouble->set(i, wcstod(pstStr, &pwstStop));
+            pOutDouble->set(i, strtod(pstStr, &pstStop));
         }
 
         if (_iRetCount == 2)
         {
-            if (pwstStop)
+            if (pstStop)
             {
-                pOutString->set(i, pwstStop);
+                pOutString->set(i, pstStop);
             }
             else
             {
-                pOutString->set(i, L"");
+                pOutString->set(i, "");
             }
         }
     }
 
-    if (wstDecimalSep == L',')
+    if (decimalSep == L',')
     {
         setlocale(LC_NUMERIC, "C");
     }

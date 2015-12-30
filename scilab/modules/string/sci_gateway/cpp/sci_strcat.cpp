@@ -46,8 +46,8 @@ static int *lengthEachString(int rhspos, int *sizeArrayReturned);
 /*-------------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int iMode               = 0;
-    wchar_t* pwstToInsert   = NULL;
+    int iMode = 0;
+    char* pstToInsert = NULL;
 
     //check input paramters
     if (in.size() < 1 || in.size() > 3)
@@ -68,7 +68,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
     if (in[0]->isDouble() && in[0]->getAs<types::Double>()->getSize() == 0)
     {
         types::String *pOut = new types::String(1, 1);
-        pOut->set(0, L"");
+        pOut->set(0, "");
         out.push_back(pOut);
         return types::Function::OK;
     }
@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
 
-        pwstToInsert = in[1]->getAs<types::String>()->get(0);
+        pstToInsert = in[1]->getAs<types::String>()->get(0);
     }
 
     types::String* pS = in[0]->getAs<types::String>();
@@ -118,28 +118,28 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
             int iLen = 1; //L'\0'
             for (int i = 0 ; i < pS->getSize() ; i++)
             {
-                iLen += (int)wcslen(pS->get(i));
+                iLen += (int)strlen(pS->get(i));
             }
 
-            if (pwstToInsert != NULL)
+            if (pstToInsert != NULL)
             {
-                iLen += (int)wcslen(pwstToInsert) * (pS->getSize() - 1);
+                iLen += (int)strlen(pstToInsert) * (pS->getSize() - 1);
             }
 
-            wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-            pwstOut[0] = L'\0';
+            char* pstOut = (char*)MALLOC(sizeof(char) * iLen);
+            pstOut[0] = '\0';
             for (int i = 0 ; i < pS->getSize() ; i++)
             {
-                size_t iOffset = wcslen(pwstOut);
-                if (iOffset != 0 && pwstToInsert != NULL)
+                size_t iOffset = strlen(pstOut);
+                if (iOffset != 0 && pstToInsert != NULL)
                 {
-                    wcscat(pwstOut + iOffset, pwstToInsert);
+                    strcat(pstOut + iOffset, pstToInsert);
                 }
-                wcscat(pwstOut + iOffset, pS->get(i));
+                strcat(pstOut + iOffset, pS->get(i));
             }
 
-            pOut->set(0, pwstOut);
-            FREE(pwstOut);
+            pOut->set(0, pstOut);
+            FREE(pstOut);
         }
         break;
         case 1 : //"r"
@@ -151,28 +151,28 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 int iLen = 1; //L'\0'
                 for (int j = 0 ; j < pS->getRows() ; j++)
                 {
-                    iLen += (int)wcslen(pS->get(j, i));
+                    iLen += (int)strlen(pS->get(j, i));
                 }
 
-                if (pwstToInsert != NULL)
+                if (pstToInsert != NULL)
                 {
-                    iLen += (int)wcslen(pwstToInsert) * (pS->getRows() - 1);
+                    iLen += (int)strlen(pstToInsert) * (pS->getRows() - 1);
                 }
 
-                wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-                pwstOut[0] = L'\0';
+                char* pstOut = (char*)MALLOC(sizeof(char) * iLen);
+                pstOut[0] = '\0';
 
                 for (int j = 0 ; j < pS->getRows() ; j++)
                 {
-                    size_t iOffset = wcslen(pwstOut);
-                    if (iOffset != 0 && pwstToInsert != NULL)
+                    size_t iOffset = strlen(pstOut);
+                    if (iOffset != 0 && pstToInsert != NULL)
                     {
-                        wcscat(pwstOut + iOffset, pwstToInsert);
+                        strcat(pstOut + iOffset, pstToInsert);
                     }
-                    wcscat(pwstOut + iOffset, pS->get(j, i));
+                    strcat(pstOut + iOffset, pS->get(j, i));
                 }
-                pOut->set(0, i, pwstOut);
-                FREE(pwstOut);
+                pOut->set(0, i, pstOut);
+                FREE(pstOut);
             }
             break;
         }
@@ -185,28 +185,28 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 int iLen = 1; //L'\0'
                 for (int j = 0 ; j < pS->getCols() ; j++)
                 {
-                    iLen += (int)wcslen(pS->get(i, j));
+                    iLen += (int)strlen(pS->get(i, j));
                 }
 
-                if (pwstToInsert != NULL)
+                if (pstToInsert != NULL)
                 {
-                    iLen += (int)wcslen(pwstToInsert) * (pS->getCols() - 1);
+                    iLen += (int)strlen(pstToInsert) * (pS->getCols() - 1);
                 }
 
-                wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-                pwstOut[0] = L'\0';
+                char* pstOut = (char*)MALLOC(sizeof(char) * iLen);
+                pstOut[0] = '\0';
 
                 for (int j = 0 ; j < pS->getCols() ; j++)
                 {
-                    size_t iOffset = wcslen(pwstOut);
-                    if (iOffset != 0 && pwstToInsert != NULL)
+                    size_t iOffset = strlen(pstOut);
+                    if (iOffset != 0 && pstToInsert != NULL)
                     {
-                        wcscat(pwstOut + iOffset, pwstToInsert);
+                        strcat(pstOut + iOffset, pstToInsert);
                     }
-                    wcscat(pwstOut + iOffset, pS->get(i, j));
+                    strcat(pstOut + iOffset, pS->get(i, j));
                 }
-                pOut->set(i, 0, pwstOut);
-                FREE(pwstOut);
+                pOut->set(i, 0, pstOut);
+                FREE(pstOut);
             }
             break;
         }

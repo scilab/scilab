@@ -33,26 +33,26 @@ extern "C"
 #include "freeArrayOfString.h"
 }
 /*------------------------------------------------------------------------*/
-#define WCHAR_S L's'
-#define WCHAR_R L'r'
-#define WSTR_ONCE L'o'
+#define CHAR_S 's'
+#define CHAR_R 'r'
+#define STR_ONCE 'o'
 /*------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    wchar_t wcType          = WCHAR_S;
-    wchar_t* pwstInput      = NULL;
-    wchar_t* pwstPattern    = NULL;
+    char cType = CHAR_S;
+    char* pstInput = NULL;
+    char* pstPattern = NULL;
 
-    int iPcreStatus         = 0;
-    int iStart              = 0;
-    int iStep               = 0;
-    int iEnd                = 0;
-    int* piStart            = NULL;
-    int* piEnd              = NULL;
-    int iOccurs             = 0;
+    int iPcreStatus = 0;
+    int iStart = 0;
+    int iStep = 0;
+    int iEnd = 0;
+    int* piStart = NULL;
+    int* piEnd = NULL;
+    int iOccurs = 0;
 
     /*for captured sub strings*/
-    wchar_t*** pwstCapturedString = NULL;
+    char*** pstCapturedString = NULL;
     int* piCapturedStringCount = NULL;
 
     if (in.size() < 2 || in.size() > 3)
@@ -73,14 +73,16 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
         Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "regexp", 1);
         return types::Function::Error;
     }
-    pwstInput = in[0]->getAs<types::String>()->get(0);
+
+    pstInput = in[0]->getAs<types::String>()->get(0);
 
     if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "regexp", 2);
         return types::Function::Error;
     }
-    pwstPattern = in[1]->getAs<types::String>()->get(0);
+
+    pstPattern = in[1]->getAs<types::String>()->get(0);
 
     if (in.size() == 3)
     {
@@ -90,16 +92,17 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
 
-        if (in[2]->getAs<types::String>()->get(0)[0] != WSTR_ONCE)
+        if (in[2]->getAs<types::String>()->get(0)[0] != STR_ONCE)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: '%s' expected.\n"), "regexp", 3, "o");
             return types::Function::Error;
         }
-        wcType = WSTR_ONCE;
+        
+        cType = STR_ONCE;
     }
 
     //input is empty
-    if (wcslen(pwstInput) == 0)
+    if (strlen(pstInput) == 0)
     {
         types::Double* pStart = new types::Double(0, 0);
         out.push_back(pStart);
@@ -117,15 +120,15 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
         return types::Function::OK;
     }
 
-    piStart     = new int[wcslen(pwstInput)];
-    piEnd       = new int[wcslen(pwstInput)];
+    piStart = new int[strlen(pstInput)];
+    piEnd = new int[strlen(pstInput)];
 
-    pwstCapturedString = (wchar_t***)CALLOC(sizeof(wchar_t**), wcslen(pwstInput));
-    piCapturedStringCount = (int*)CALLOC(sizeof(int), wcslen(pwstInput));
+    pstCapturedString = (char***)CALLOC(sizeof(char**), strlen(pstInput));
+    piCapturedStringCount = (int*)CALLOC(sizeof(int), strlen(pstInput));
 
     do
     {
-        iPcreStatus = wide_pcre_private(pwstInput + iStep, pwstPattern, &iStart, &iEnd, &pwstCapturedString[iOccurs], &piCapturedStringCount[iOccurs]);
+        iPcreStatus = pcre_private(pstInput + iStep, pstPattern, &iStart, &iEnd, &pstCapturedString[iOccurs], &piCapturedStringCount[iOccurs]);
         if (iPcreStatus == PCRE_FINISHED_OK)
         {
             if (iEnd != iStart)
@@ -134,7 +137,7 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
                 piEnd[iOccurs++]    = iEnd + iStep;
                 iStep               += iEnd;
             }
-            else if (iEnd == 0 && pwstInput[iStep] != L'\0')
+            else if (iEnd == 0 && pstInput[iStep] != '\0')
             {
                 //avoid infinite loop
                 iStep++;
@@ -147,15 +150,15 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
             delete[] piEnd;
             for (int i = 0; i < iOccurs; i++)
             {
-                freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
+                freeArrayOfString(pstCapturedString[i], piCapturedStringCount[i]);
             }
 
-            FREE(pwstCapturedString);
+            FREE(pstCapturedString);
             FREE(piCapturedStringCount);
             return types::Function::Error;
         }
     }
-    while (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd && wcType != WSTR_ONCE);
+    while (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd && cType != STR_ONCE);
 
     if (iOccurs == 0)
     {
@@ -167,16 +170,16 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
 
         if (_iRetCount > 2)
         {
-            out.push_back(new types::String(L""));
+            out.push_back(new types::String(""));
         }
 
         if (_iRetCount > 3)
         {
-            out.push_back(new types::String(L""));
+            out.push_back(new types::String(""));
         }
 
-        freeArrayOfWideString(pwstCapturedString[0], piCapturedStringCount[0]);
-        FREE(pwstCapturedString);
+        freeArrayOfString(pstCapturedString[0], piCapturedStringCount[0]);
+        FREE(pstCapturedString);
         FREE(piCapturedStringCount);
         delete[] piStart;
         delete[] piEnd;
@@ -210,18 +213,18 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
         if (iOccurs == 0)
         {
             pS = new types::String(1, 1);
-            pS->set(0, L"");
+            pS->set(0, "");
         }
         else
         {
             pS = new types::String(iOccurs, 1);
             for (int i = 0 ; i < iOccurs ; i++)
             {
-                wchar_t* pwstTemp = new wchar_t[piEnd[i] - piStart[i] + 1];
-                wcsncpy(pwstTemp, pwstInput + piStart[i], piEnd[i] - piStart[i]);
-                pwstTemp[piEnd[i] - piStart[i]] = 0;
-                pS->set(i, 0, pwstTemp);
-                delete[] pwstTemp;
+                char* pstTemp = new char[piEnd[i] - piStart[i] + 1];
+                strncpy(pstTemp, pstInput + piStart[i], piEnd[i] - piStart[i]);
+                pstTemp[piEnd[i] - piStart[i]] = 0;
+                pS->set(i, 0, pstTemp);
+                delete[] pstTemp;
             }
         }
         out.push_back(pS);
@@ -239,7 +242,7 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
         types::String* pS = NULL;
         if (iOccurs == 0 || iMax == 0)
         {
-            pS = new types::String(L"");
+            pS = new types::String("");
         }
         else
         {
@@ -251,11 +254,11 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
                 {
                     if (i < piCapturedStringCount[j])
                     {
-                        pS->set(index, pwstCapturedString[j][i]);
+                        pS->set(index, pstCapturedString[j][i]);
                     }
                     else
                     {
-                        pS->set(index, L"");
+                        pS->set(index, "");
                     }
 
                     index++;
@@ -268,10 +271,10 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
 
     for (int i = 0; i < iOccurs; i++)
     {
-        freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
+        freeArrayOfString(pstCapturedString[i], piCapturedStringCount[i]);
     }
 
-    FREE(pwstCapturedString);
+    FREE(pstCapturedString);
     FREE(piCapturedStringCount);
     delete[] piStart;
     delete[] piEnd;

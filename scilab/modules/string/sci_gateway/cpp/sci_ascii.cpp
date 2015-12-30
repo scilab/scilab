@@ -119,7 +119,6 @@ template <typename Y, class T>
 types::String* TypeToString(T* _pI)
 {
     types::String* pOut = NULL;
-    wchar_t* pst = NULL;
     int len = _pI->getSize();
     char* pcText = new char[len + 1];
     Y* p = _pI->get();
@@ -139,11 +138,9 @@ types::String* TypeToString(T* _pI)
     }
     pcText[len] = '\0';
 
-    pst = to_wide_string(pcText);
-    pOut = new types::String(pst);
+    pOut = new types::String(pcText);
 
     delete[] pcText;
-    FREE(pst);
     return pOut;
 }
 /*--------------------------------------------------------------------------*/
@@ -158,7 +155,7 @@ types::Double* StringToDouble(types::String* _pst)
     int* pstLen = new int[iSize];
     for (int i = 0 ; i < iSize ; i++)
     {
-        pst[i] = wide_string_to_UTF8(_pst->get(i));
+        pst[i] = os_strdup(_pst->get(i));
         pstLen[i] = (int)strlen(pst[i]);
         iTotalLen += pstLen[i];
     }

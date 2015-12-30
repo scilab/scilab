@@ -42,44 +42,44 @@ static void getMacroString(types::Macro* _pM, types::InternalType** _pOut, types
     //get body
     ast::Exp* exp = _pM->getBody();
 
-    std::wostringstream ostr;
+    std::ostringstream ostr;
     ast::PrintVisitor pv(ostr, false);
 
     exp->accept(pv);
 
-    std::wstring wstBody = ostr.str();
-    const wchar_t* pwstBody = wstBody.c_str();
+    std::string stBody = ostr.str();
+    const char* pstBody = stBody.c_str();
 
     //first loop to find number of lines
     int iLines = 2; //for first and last one-space lines
-    for (int i = 0 ; i < (int)wcslen(pwstBody) ; i++)
+    for (int i = 0 ; i < (int)strlen(pstBody) ; i++)
     {
-        if (pwstBody[i] == L'\n')
+        if (pstBody[i] == '\n')
         {
             iLines++;
         }
     }
 
     types::String* pBody = new types::String(iLines, 1);
-    pBody->set(0, L" ");
+    pBody->set(0, " ");
     //second loop to assign lines to output data
     int iOffset = 0;
     int iIndex = 1;
-    for (int i = 0 ; i < (int)wcslen(pwstBody) ; i++)
+    for (int i = 0 ; i < (int)strlen(pstBody) ; i++)
     {
-        if (pwstBody[i] == L'\n')
+        if (pstBody[i] == '\n')
         {
             int iLen = i - iOffset;
-            wchar_t* pwst = new wchar_t[iLen + 1];
-            wcsncpy(pwst, pwstBody + iOffset, iLen);
-            pwst[iLen] = L'\0';
-            pBody->set(iIndex++, pwst);
-            delete[] pwst;
+            char* pst = new char[iLen + 1];
+            strncpy(pst, pstBody + iOffset, iLen);
+            pst[iLen] = '\0';
+            pBody->set(iIndex++, pst);
+            delete[] pst;
             iOffset = i + 1;
         }
     }
 
-    pBody->set(iIndex, L" ");
+    pBody->set(iIndex, " ");
     *_pBody = pBody;
 
     //get inputs
@@ -122,7 +122,7 @@ static void getMacroString(types::Macro* _pM, types::InternalType** _pOut, types
     }
 }
 
-static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dblR, double _dblI)
+static void DoubleComplexMatrix2String(std::ostringstream *_postr,  double _dblR, double _dblI)
 {
     /*
     if R && !C -> R
@@ -180,12 +180,12 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
             //imaginary part
 
             //I
-            *_postr << (_dblI < 0 ? L"-" : L"");
-            *_postr << L"%i";
+            *_postr << (_dblI < 0 ? "-" : "");
+            *_postr << "%i";
             if (fabs(_dblI) != 1 || dfI.bExp)
             {
                 //specail case if I == 1 write only %i and not %i*1
-                *_postr << L"*";
+                *_postr << "*";
                 addDoubleValue(_postr, fabs(_dblI), &dfI);
             }
         }
@@ -207,11 +207,11 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
             //R
             addDoubleValue(_postr, _dblR, &dfR);
             //I
-            *_postr << (_dblI < 0 ? L"-%i" : L"+%i");
+            *_postr << (_dblI < 0 ? "-%i" : "+%i");
             if (fabs(_dblI) != 1 || dfI.bExp)
             {
                 //special case if I == 1 write only %i and not %i*1
-                *_postr << L"*";
+                *_postr << "*";
                 addDoubleValue(_postr, fabs(_dblI), &dfI);
             }
         }
@@ -227,7 +227,7 @@ types::Function::ReturnValue intString(T* pInt, types::typed_list &out)
     int iSize = pInt->getSize();
     for (int i = 0 ; i < iSize ; i++)
     {
-        std::wostringstream ostr;
+        std::ostringstream ostr;
         DoubleComplexMatrix2String(&ostr, (double)pInt->get(i), 0);
         pstOutput->set(i, ostr.str().c_str());
     }
@@ -266,7 +266,7 @@ types::Function::ReturnValue doubleString(types::Double* pDbl, types::typed_list
     }
     else if (piDimsArray[0] == -1 && piDimsArray[1] == -1)
     {
-        out.push_back(new types::String(L""));
+        out.push_back(new types::String(""));
         return types::Function::OK;
     }
 
@@ -276,7 +276,7 @@ types::Function::ReturnValue doubleString(types::Double* pDbl, types::typed_list
         double* pdblImg = pDbl->getImg();
         for (int i = 0; i < pDbl->getSize(); ++i)
         {
-            std::wostringstream ostr;
+            std::ostringstream ostr;
             DoubleComplexMatrix2String(&ostr, pdblReal[i], pdblImg[i]);
             pstOutput->set(i, ostr.str().c_str());
         }
@@ -286,7 +286,7 @@ types::Function::ReturnValue doubleString(types::Double* pDbl, types::typed_list
         double dblImg  = 0.0;
         for (int i = 0; i < pDbl->getSize(); ++i)
         {
-            std::wostringstream ostr;
+            std::ostringstream ostr;
             DoubleComplexMatrix2String(&ostr, pdblReal[i], dblImg);
             pstOutput->set(i, ostr.str().c_str());
         }
@@ -297,9 +297,9 @@ types::Function::ReturnValue doubleString(types::Double* pDbl, types::typed_list
 
 types::Function::ReturnValue implicitListString(types::ImplicitList* pIL, types::typed_list &out)
 {
-    std::wostringstream ostr;
+    std::ostringstream ostr;
     pIL->toString(ostr);
-    std::wstring str = ostr.str();
+    std::string str = ostr.str();
     //erase fisrt character " "
     str.erase(str.begin());
     //erase last character "\n"
@@ -326,21 +326,21 @@ types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, t
             int iRows = pS->getRows();
             int iCols = pS->getCols();
             bool isComplex = pS->isComplex();
-            std::wostringstream ostr;
-            std::vector<std::wstring> vect;
+            std::ostringstream ostr;
+            std::vector<std::string> vect;
 
 
             ostr << "(" << iRows << "," << iCols << ") sparse matrix";
 
             vect.push_back(ostr.str());
-            ostr.str(L"");
+            ostr.str("");
             ostr.clear();
 
             for (int i = 0 ; i < iRows ; i++)
             {
                 for (int j = 0 ; j < iCols ; j++)
                 {
-                    std::wostringstream temp;
+                    std::ostringstream temp;
                     double real = pS->getReal(i, j);
                     double cplx = 0;
                     if (isComplex)
@@ -350,7 +350,7 @@ types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, t
 
                     if (real || cplx )
                     {
-                        temp << L"(" << i + 1 << L"," << j + 1 << L")    ";
+                        temp << "(" << i + 1 << "," << j + 1 << ")    ";
 
                         if (real)
                         {
@@ -361,19 +361,19 @@ types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, t
                         {
                             if (real && cplx > 0)
                             {
-                                temp << L"+";
+                                temp << "+";
                             }
                             else if (cplx < 0)
                             {
-                                temp << L"-";
+                                temp << "-";
                             }
 
-                            temp << L"%i*" << std::abs(cplx);
+                            temp << "%i*" << std::abs(cplx);
                         }
 
                         ostr << temp.str();
                         vect.push_back(ostr.str());
-                        ostr.str(L"");
+                        ostr.str("");
                         ostr.clear();
                     }
                 }
@@ -479,8 +479,8 @@ types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, t
         case types::InternalType::ScilabMList :
         case types::InternalType::ScilabPolynom :
         {
-            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_string";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_string";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
         case types::InternalType::ScilabBool:
         {
@@ -489,8 +489,8 @@ types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, t
         case types::InternalType::ScilabLibrary:
         {
             types::Library* pL = in[0]->getAs<types::Library>();
-            std::wstring path = pL->getPath();
-            std::list<std::wstring> macros;
+            std::string path = pL->getPath();
+            std::list<std::string> macros;
             int size = pL->getMacrosName(macros);
             types::String* pS = new types::String(size + 1, 1);
             pS->set(0, path.c_str());
@@ -509,12 +509,12 @@ types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, t
         }
         case types::InternalType::ScilabColon:
         {
-            out.push_back(new types::String(L""));
+            out.push_back(new types::String(""));
             break;
         }
         default:
         {
-            std::wostringstream ostr;
+            std::ostringstream ostr;
             in[0]->toString(ostr);
             out.push_back(new types::String(ostr.str().c_str()));
             break;

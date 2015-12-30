@@ -85,32 +85,32 @@ types::Function::ReturnValue sci_strstr(types::typed_list &in, int _iRetCount, t
             j = i; /* Input parameter One & two have same dimension */
         }
 
-        if (wcslen(pString->get(i)) < wcslen(pStrSample->get(j)))
+        if (strlen(pString->get(i)) < strlen(pStrSample->get(j)))
         {
-            pOutString->set(i, L"");
+            pOutString->set(i, "");
         }
         else
         {
-            wchar_t* ptrwstrstr = wcsstr(pString->get(i), pStrSample->get(j));
+            char* ptrstrstr = strstr(pString->get(i), pStrSample->get(j));
 
-            if (ptrwstrstr)
+            if (ptrstrstr)
             {
-                pOutString->set(i, ptrwstrstr);
+                pOutString->set(i, ptrstrstr);
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;
-                    FREE(ptrwstrstr);
+                    FREE(ptrstrstr);
                     Scierror(999, _("%s: No more memory.\n"), "strstr");
                     return types::Function::Error;
                 }
             }
             else
             {
-                pOutString->set(i, L"");
+                pOutString->set(i, "");
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;
-                    FREE(ptrwstrstr);
+                    FREE(ptrstrstr);
                     Scierror(999, _("%s: No more memory.\n"), "strstr");
                     return types::Function::Error;
                 }

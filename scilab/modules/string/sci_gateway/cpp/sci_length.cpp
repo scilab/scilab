@@ -68,13 +68,13 @@ types::Function::ReturnValue sci_length(types::typed_list &in, int _iRetCount, t
     {
         //build overload name and check if function exists.
         types::MList* pML = in[0]->getAs<types::MList>();
-        std::wstring wst = L"%" + pML->getShortTypeStr() + L"_length";
+        std::string st = "%" + pML->getShortTypeStr() + "_length";
         symbol::Context* pCtx = symbol::Context::getInstance();
-        types::InternalType* pFunc = pCtx->get(symbol::Symbol(wst));
+        types::InternalType* pFunc = pCtx->get(symbol::Symbol(st));
         if (pFunc && pFunc->isCallable())
         {
             //call overload
-            Overload::generateNameAndCall(L"length", in, _iRetCount, out);
+            Overload::generateNameAndCall("length", in, _iRetCount, out);
             return types::Function::OK;
         }
 
@@ -107,12 +107,12 @@ static types::Double* lengthStrings(types::String* _pS)
     }
 
     types::Double* pD = new types::Double(_pS->getDims(), _pS->getDimsArray());
-    wchar_t** pwst  = _pS->get();
+    char** pst  = _pS->get();
     double* pdbl    = pD->get();
 
     for (int i = 0 ; i < _pS->getSize() ; i++)
     {
-        pdbl[i] = static_cast<double>(wcslen(pwst[i]));
+        pdbl[i] = static_cast<double>(strlen(pst[i]));
     }
     return pD;
 }

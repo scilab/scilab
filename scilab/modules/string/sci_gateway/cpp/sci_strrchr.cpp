@@ -38,16 +38,19 @@ types::Function::ReturnValue sci_strrchr(types::typed_list &in, int _iRetCount, 
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strrchr", 2);
         return types::Function::Error;
     }
+
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "strrchr", 1);
         return types::Function::Error;
     }
+
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strrchr", 1);
         return types::Function::Error;
     }
+
     if (in[1]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strrchr", 2);
@@ -84,7 +87,7 @@ types::Function::ReturnValue sci_strrchr(types::typed_list &in, int _iRetCount, 
         {
             j = i; /* Input parameter One & two have same dimension */
         }
-        int iLen = (int)wcslen(pCharSample->get(j));
+        int iLen = (int)strlen(pCharSample->get(j));
         if (iLen != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), "strrchr", 2);
@@ -92,28 +95,27 @@ types::Function::ReturnValue sci_strrchr(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        if (wcslen(pString->get(i)) < wcslen(pCharSample->get(j)))
+        if (strlen(pString->get(i)) < strlen(pCharSample->get(j)))
         {
-            pOutString->set(i, L"");
+            pOutString->set(i, "");
         }
         else
         {
-            wchar_t* ptrwstrstr = wcsrchr(pString->get(i), pCharSample->get(j)[0]);
-
-            if (ptrwstrstr)
+            char* ptrstrstr = strrchr(pString->get(i), pCharSample->get(j)[0]);
+            if (ptrstrstr)
             {
-                pOutString->set(i, ptrwstrstr);
+                pOutString->set(i, ptrstrstr);
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;
-                    FREE(ptrwstrstr);
+                    FREE(ptrstrstr);
                     Scierror(999, _("%s: No more memory.\n"), "strrchr");
                     return types::Function::Error;
                 }
             }
             else
             {
-                pOutString->set(i, L"");
+                pOutString->set(i, "");
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;

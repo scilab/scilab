@@ -30,10 +30,10 @@ extern "C"
 
 types::Function::ReturnValue sci_isnum(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Bool* pOutBool   = NULL;
-    types::String* pString  = NULL;
-    int *values             = NULL;
-    wchar_t **strVal        = NULL;
+    types::Bool* pOutBool = NULL;
+    types::String* pString = NULL;
+    int *values = NULL;
+    char** strVal = NULL;
 
     if (in.size() != 1)
     {
@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_isnum(types::typed_list &in, int _iRetCount, ty
     strVal = pString->get();
     for (int i = 0; i < pString->getSize(); i++)
     {
-        values[i] = (int)isNumW(strVal[i]);
+        values[i] = (int)isNum(strVal[i]);
     }
     out.push_back(pOutBool);
     return types::Function::OK;

@@ -35,7 +35,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     types::String* pOutString   = NULL;
     types::String* pString      = NULL;
     types::String* pCharSample  = NULL;
-    wchar_t* seps               = NULL;
+    char* seps                  = NULL;
     int sizeSeps                = 0;
 
     if (in.size() > 2 || in.size() == 0)
@@ -61,7 +61,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "tokens", 1);
         return types::Function::Error;
     }
-    if (wcslen(pString->get(0)) == 0)
+    if (strlen(pString->get(0)) == 0)
     {
         types::Double* pOutDouble = types::Double::Empty();
         out.push_back(pOutDouble);
@@ -84,10 +84,10 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
         sizeSeps = pCharSample->getSize();
-        seps = (wchar_t*)MALLOC((sizeSeps + 1) * sizeof(wchar_t));
+        seps = (char*)MALLOC((sizeSeps + 1) * sizeof(char));
         for (int i = 0; i < sizeSeps ; i++)
         {
-            int iLen = (int)wcslen(pCharSample->get(i));
+            int iLen = (int)strlen(pCharSample->get(i));
             if (iLen > 1 || iLen < 0)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), "tokens", 2);
@@ -100,17 +100,18 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     else // default delimiters are ' ' and Tabulation
     {
         sizeSeps = 2;
-        seps = (wchar_t*)MALLOC((sizeSeps + 1) * sizeof(wchar_t));
-        seps[0] = L' ';
-        seps[1] = L'\t';
+        seps = (char*)MALLOC((sizeSeps + 1) * sizeof(char));
+        seps[0] = ' ';
+        seps[1] = '\t';
     }
-    seps[sizeSeps] = L'\0';
+
+    seps[sizeSeps] = '\0';
 
     // perfom operation
     int dimsArray[2] = {0, 1};
     int dims = 2;
 
-    wchar_t** Output_Strings = stringTokens(pString->get(0), seps, &dimsArray[0]);
+    char** Output_Strings = stringTokens(pString->get(0), seps, &dimsArray[0]);
     FREE(seps);
     if (Output_Strings == NULL)
     {

@@ -25,7 +25,7 @@
 * @param[in] a string
 * @return BOOL array
 */
-STRING_IMPEXP BOOL *isalphanumW(wchar_t *input_string, int *returnedSize);
+STRING_IMPEXP BOOL *isalphanum(const char* input_string, int *returnedSize);
 
 #endif /* __ISALPHANUM_H__ */
 /*--------------------------------------------------------------------------*/

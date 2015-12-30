@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     }
 
     types::String* pS = in[1]->getAs<types::String>();
-    wchar_t** pwstSearch = pS->get();
+    char** pstSearch = pS->get();
 
     if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
     {
@@ -105,8 +105,8 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    wchar_t* pwstData = in[0]->getAs<types::String>()->get()[0];
-    if (wcslen(pwstData) == 0)
+    char* pstData = in[0]->getAs<types::String>()->get()[0];
+    if (strlen(pstData) == 0)
     {
         out.push_back(types::Double::Empty());
         if (_iRetCount == 2)
@@ -117,7 +117,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
         return types::Function::OK;
     }
 
-    In* pstrResult = new In[wcslen(pwstData)];
+    In* pstrResult = new In[strlen(pstData)];
 
     //number of occurances
     int iValues = 0;
@@ -133,7 +133,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
 
             do
             {
-                iPcreStatus = wide_pcre_private(pwstData + iStep, pwstSearch[i], &iStart, &iEnd, NULL, NULL);
+                iPcreStatus = pcre_private(pstData + iStep, pstSearch[i], &iStart, &iEnd, NULL, NULL);
                 if (iPcreStatus == PCRE_FINISHED_OK)
                 {
                     pstrResult[iValues].data        = iStart + iStep + 1;
@@ -159,13 +159,13 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     {
         for (int i = 0 ; i < pS->getSize() ; i++)
         {
-            wchar_t* pCur = pwstData;
+            char* pCur = pstData;
             do
             {
-                pCur = wcsstr(pCur, pwstSearch[i]);
+                pCur = strstr(pCur, pstSearch[i]);
                 if (pCur != NULL)
                 {
-                    pstrResult[iValues].data      = (int)(pCur - pwstData + 1);
+                    pstrResult[iValues].data      = (int)(pCur - pstData + 1);
                     pstrResult[iValues].position  = i + 1;
                     pCur++;
                     iValues++;

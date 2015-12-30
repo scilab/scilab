@@ -13,12 +13,11 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include <wchar.h>
-#include <wctype.h>
+#include <ctype.h>
 #include "isalphanum.h"
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
-BOOL *isalphanumW(wchar_t *input_string, int *returnedSize)
+BOOL *isalphanum(const char* input_string, int *returnedSize)
 {
     BOOL *returnedValues = NULL;
     *returnedSize = 0;
@@ -26,7 +25,7 @@ BOOL *isalphanumW(wchar_t *input_string, int *returnedSize)
     if (input_string)
     {
         int i = 0;
-        int length_input_string = (int)wcslen(input_string);
+        int length_input_string = (int)strlen(input_string);
         *returnedSize = length_input_string;
 
         if (length_input_string > 0)
@@ -36,7 +35,7 @@ BOOL *isalphanumW(wchar_t *input_string, int *returnedSize)
             {
                 for (i = 0; i < length_input_string; i++)
                 {
-                    if ( iswalnum(input_string[i]) )
+                    if (isalnum(input_string[i]))
                     {
                         returnedValues[i] = TRUE;
                     }

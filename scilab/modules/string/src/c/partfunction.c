@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #define BLANK_CHAR ' '
 /*--------------------------------------------------------------------------*/
-char **partfunction(char** stringInput, int m, int n, int *vectInput, int row)
+char **partfunction(const char** stringInput, int m, int n, int *vectInput, int row)
 {
     char **parts = NULL;
     int mn = m * n;

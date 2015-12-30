@@ -15,18 +15,18 @@
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
 /*----------------------------------------------------------------------------*/
-wchar_t **strsplit(wchar_t * wcstringToSplit, double *indices, int sizeIndices, strsplit_error *ierr)
+char** strsplit(const char* stringToSplit, double *indices, int sizeIndices, strsplit_error *ierr)
 {
-    wchar_t **splitted = NULL;
+    char** splitted = NULL;
     *ierr = STRSPLIT_NO_ERROR;
 
-    if (wcstringToSplit)
+    if (stringToSplit)
     {
         int lengthToCopy = 0;
-        int lenString = (int)wcslen(wcstringToSplit);
+        int lenString = (int)strlen(stringToSplit);
         int i = 0, j = 0;
-        wchar_t* wcStrDest = NULL;
-        wchar_t* wcStrSrc = NULL;
+        char* strDest = NULL;
+        const char* strSrc = NULL;
 
         for (i = 0; i < sizeIndices; i++)
         {
@@ -51,7 +51,7 @@ wchar_t **strsplit(wchar_t * wcstringToSplit, double *indices, int sizeIndices, 
             }
         }
 
-        splitted = (wchar_t**)MALLOC(sizeof(wchar_t*) * (sizeIndices + 1));
+        splitted = (char**)MALLOC(sizeof(char*) * (sizeIndices + 1));
         if (splitted == NULL)
         {
             *ierr = STRSPLIT_MEMORY_ALLOCATION_ERROR;
@@ -70,36 +70,37 @@ wchar_t **strsplit(wchar_t * wcstringToSplit, double *indices, int sizeIndices, 
                 lengthToCopy = (int)indices[i] - (int)indices[i - 1];
             }
 
-            splitted[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lengthToCopy + 1));
-            wcStrDest = splitted[i];
+            splitted[i] = (char*)MALLOC(sizeof(char) * (lengthToCopy + 1));
+            strDest = splitted[i];
 
             if (splitted[i] == NULL)
             {
-                freeArrayOfWideString(splitted, sizeIndices);
+                freeArrayOfString(splitted, sizeIndices);
                 *ierr = STRSPLIT_MEMORY_ALLOCATION_ERROR;
                 return NULL;
             }
-            wcStrSrc = &wcstringToSplit[j];
-            memcpy(wcStrDest, wcStrSrc, lengthToCopy * sizeof(wchar_t));
-            wcStrDest[lengthToCopy] = 0;
+            
+            strSrc = &stringToSplit[j];
+            memcpy(strDest, strSrc, lengthToCopy * sizeof(char));
+            strDest[lengthToCopy] = 0;
 
             j = (int)indices[i];
         }
 
         lengthToCopy = lenString - (int)indices[sizeIndices - 1];
-        splitted[sizeIndices] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lengthToCopy + 1));
-        wcStrDest = splitted[sizeIndices];
+        splitted[sizeIndices] = (char*)MALLOC(sizeof(char) * (lengthToCopy + 1));
+        strDest = splitted[sizeIndices];
 
         if (splitted[sizeIndices] == NULL)
         {
-            freeArrayOfWideString(splitted, sizeIndices + 1);
+            freeArrayOfString(splitted, sizeIndices + 1);
             *ierr = STRSPLIT_MEMORY_ALLOCATION_ERROR;
             return NULL;
         }
 
-        wcStrSrc = &wcstringToSplit[j];
-        memcpy(wcStrDest, wcStrSrc, lengthToCopy * sizeof(wchar_t));
-        wcStrDest[lengthToCopy] = 0;
+        strSrc = &stringToSplit[j];
+        memcpy(strDest, strSrc, lengthToCopy * sizeof(char));
+        strDest[lengthToCopy] = 0;
     }
     return splitted;
 }

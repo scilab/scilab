@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    wchar_t* pwstReplace = in[2]->getAs<types::String>()->get()[0];
+    char* pstReplace = in[2]->getAs<types::String>()->get()[0];
 
     if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    wchar_t* pwstSearch = in[1]->getAs<types::String>()->get()[0];
+    char* pstSearch = in[1]->getAs<types::String>()->get()[0];
 
     if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
     {
@@ -92,15 +92,15 @@ types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount,
     types::String* pS = in[0]->getAs<types::String>();
 
     types::String* pOut = new types::String(pS->getRows(), pS->getCols());
-    wchar_t** pwstOutput = NULL;
+    char** pstOutput = NULL;
 
     if (bRegExp)
     {
         int iErr = 0;
-        pwstOutput = wcssubst_reg(const_cast<const wchar_t**>(pS->get()), pS->getSize(), pwstSearch, pwstReplace, &iErr);
+        pstOutput = strsubst_reg(const_cast<const char**>(pS->get()), pS->getSize(), pstSearch, pstReplace, &iErr);
         if (iErr != NO_MATCH && iErr != PCRE_FINISHED_OK && iErr != PCRE_EXIT)
         {
-            freeArrayOfWideString(pwstOutput, pOut->getSize());
+            freeArrayOfString(pstOutput, pOut->getSize());
             pcre_error("strsubst", iErr);
             delete pOut;
             return types::Function::Error;
@@ -108,11 +108,11 @@ types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount,
     }
     else
     {
-        pwstOutput = wcssubst(const_cast<const wchar_t**>(pS->get()), pS->getSize(), pwstSearch, pwstReplace);
+        pstOutput = strsubst(const_cast<const char**>(pS->get()), pS->getSize(), pstSearch, pstReplace);
     }
 
-    pOut->set(pwstOutput);
-    freeArrayOfWideString(pwstOutput, pOut->getSize());
+    pOut->set(pstOutput);
+    freeArrayOfString(pstOutput, pOut->getSize());
     out.push_back(pOut);
     return types::Function::OK;
 }

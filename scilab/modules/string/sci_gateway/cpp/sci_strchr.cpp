@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_strchr(types::typed_list &in, int _iRetCount, t
         {
             j = i; /* Input parameter One & two have same dimension */
         }
-        int iLen = (int)wcslen(pCharSample->get(j));
+        int iLen = (int)strlen(pCharSample->get(j));
         if (iLen != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), "strchr", 2);
@@ -92,28 +92,27 @@ types::Function::ReturnValue sci_strchr(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
 
-        if (wcslen(pString->get(i)) < wcslen(pCharSample->get(j)))
+        if (strlen(pString->get(i)) < strlen(pCharSample->get(j)))
         {
-            pOutString->set(i, L"");
+            pOutString->set(i, "");
         }
         else
         {
-            wchar_t* ptrwstrstr = wcschr(pString->get(i), pCharSample->get(j)[0]);
-
-            if (ptrwstrstr)
+            char* ptrstrstr = strchr(pString->get(i), pCharSample->get(j)[0]);
+            if (ptrstrstr)
             {
-                pOutString->set(i, ptrwstrstr);
+                pOutString->set(i, ptrstrstr);
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;
-                    FREE(ptrwstrstr);
+                    FREE(ptrstrstr);
                     Scierror(999, _("%s: No more memory.\n"), "strchr");
                     return types::Function::Error;
                 }
             }
             else
             {
-                pOutString->set(i, L"");
+                pOutString->set(i, "");
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;

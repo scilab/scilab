@@ -19,12 +19,12 @@
 #include "sci_malloc.h"
 #include "os_string.h"
 /*----------------------------------------------------------------------------*/
-wchar_t **strings_strrev(wchar_t **Input_strings, int Dim_Input_strings)
+char** strings_strrev(char **Input_strings, int Dim_Input_strings)
 {
-    wchar_t **Output_strings = NULL;
+    char** Output_strings = NULL;
     if (Input_strings)
     {
-        Output_strings = (wchar_t **)MALLOC(sizeof(wchar_t*) * Dim_Input_strings);
+        Output_strings = (char**)MALLOC(sizeof(char*) * Dim_Input_strings);
         if (Output_strings)
         {
             int i = 0;
@@ -33,7 +33,7 @@ wchar_t **strings_strrev(wchar_t **Input_strings, int Dim_Input_strings)
                 Output_strings[i] = scistrrev(Input_strings[i]);
                 if (Output_strings[i] == NULL)
                 {
-                    freeArrayOfWideString(Output_strings, i);
+                    freeArrayOfString(Output_strings, i);
                     return NULL;
                 }
             }
@@ -42,19 +42,19 @@ wchar_t **strings_strrev(wchar_t **Input_strings, int Dim_Input_strings)
     return Output_strings;
 }
 /*----------------------------------------------------------------------------*/
-wchar_t* scistrrev(wchar_t* str)
+char* scistrrev(char* str)
 {
-    wchar_t *revstr = NULL;
+    char *revstr = NULL;
     if (str)
     {
 #ifdef _MSC_VER
-        revstr = _wcsrev(os_wcsdup(str));
+        revstr = _strrev(str);
 #else
         int iLen = 0;
         int j = 0;
 
-        iLen = (int)wcslen(str);
-        revstr = (wchar_t*)MALLOC((iLen + 1) * sizeof(wchar_t));
+        iLen = (int)strlen(str);
+        revstr = (char*)MALLOC((iLen + 1) * sizeof(char));
         /* copy character by character to reverse string */
         for (j = 0 ; j < iLen ; j++)
         {

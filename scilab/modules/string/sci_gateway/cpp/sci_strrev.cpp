@@ -30,7 +30,7 @@ types::Function::ReturnValue sci_strrev(types::typed_list &in, int _iRetCount, t
 {
     types::String* pString      = NULL;
     types::String* pOutString   = NULL;
-    wchar_t **OutputStrings     = NULL;
+    char** OutputStrings        = NULL;
 
     if (in.size() != 1)
     {
@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_strrev(types::typed_list &in, int _iRetCount, t
 
     pOutString = new types::String(pString->getDims(), pString->getDimsArray());
     pOutString->set(OutputStrings);
-    freeArrayOfWideString(OutputStrings, pString->getSize());
+    freeArrayOfString(OutputStrings, pString->getSize());
     out.push_back(pOutString);
     return types::Function::OK;
 }

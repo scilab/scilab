@@ -475,7 +475,7 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
         }
         else if (inum_string[1] == 'i' || inum_string[1] == 'j') // The imaginary part looks like "%i*a". For instance if string() has been used
         {
-            int len_inum_string = strlen(inum_string);
+            int len_inum_string = (int)strlen(inum_string);
             for (i = 1; i < len_inum_string; ++i)
             {
                 inum_string[i] = inum_string[i + 1];    // Removing the "i"
@@ -491,13 +491,13 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
             if (strcmp(inum_string, "+") == 0)
             {
                 FREE(inum_string);
-                inum_string = strdup("+1");
+                inum_string = os_strdup("+1");
             }
 
             if (strcmp(inum_string, "-") == 0)
             {
                 FREE(inum_string);
-                inum_string = strdup("-1");
+                inum_string = os_strdup("-1");
             }
             haveImagI = TRUE;
         }

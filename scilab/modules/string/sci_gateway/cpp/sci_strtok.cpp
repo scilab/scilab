@@ -26,13 +26,13 @@ extern "C"
 #include <stdio.h>
 }
 
-static wchar_t *pwstState = NULL;
+static char* pstState = NULL;
 
 types::Function::ReturnValue sci_strtok(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* pOutString   = NULL;
-    wchar_t* pwstString         = NULL;
-    wchar_t* pwstSeps           = NULL;
+    char* pstString             = NULL;
+    char* pstSeps               = NULL;
     int dims                    = 2;
     int dimsArray[2]            = {1, 1};
 
@@ -63,45 +63,45 @@ types::Function::ReturnValue sci_strtok(types::typed_list &in, int _iRetCount, t
 
     if (in.size() == 1)
     {
-        pwstSeps    = in[0]->getAs<types::String>()->get(0);
+        pstSeps = in[0]->getAs<types::String>()->get(0);
     }
     else
     {
-        pwstString  = in[0]->getAs<types::String>()->get(0);
-        pwstSeps    = in[1]->getAs<types::String>()->get(0);
-        pwstState   = NULL;
-        if (wcslen(pwstString) == 0)
+        pstString = in[0]->getAs<types::String>()->get(0);
+        pstSeps = in[1]->getAs<types::String>()->get(0);
+        pstState = NULL;
+        if (strlen(pstString) == 0)
         {
             pOutString  = new types::String(dims, dimsArray);
-            pOutString->set(0, L"");
+            pOutString->set(0, "");
             out.push_back(pOutString);
             return types::Function::OK;
         }
     }
 
-    wchar_t* pwstToken = NULL;
-    if (pwstString == NULL && pwstState == NULL)
+    char* pstToken = NULL;
+    if (pstString == NULL && pstState == NULL)
     {
-        pwstToken = L"";
+        pstToken = "";
     }
     else
     {
 #ifndef _MSC_VER
-        pwstToken = wcstok(pwstString, pwstSeps, &pwstState);
+        pstToken = strtok(pstString, pstSeps, &pstState);
 #else
-        pwstToken = wcstok_s(pwstString, pwstSeps, &pwstState);
+        pstToken = strtok_s(pstString, pstSeps, &pstState);
 #endif
     }
 
     pOutString  = new types::String(dims, dimsArray);
 
-    if (pwstToken)
+    if (pstToken)
     {
-        pOutString->set(0, pwstToken);
+        pOutString->set(0, pstToken);
     }
     else
     {
-        pOutString->set(0, L"");
+        pOutString->set(0, "");
     }
 
     out.push_back(pOutString);

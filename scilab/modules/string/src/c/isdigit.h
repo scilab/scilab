@@ -27,7 +27,7 @@
 * @return BOOL array
 */
 
-STRING_IMPEXP BOOL *IsDigitW(wchar_t *input_string, int *sizeReturnedArray);
+STRING_IMPEXP BOOL *IsDigit(const char *input_string, int *sizeReturnedArray);
 
 #endif /* __ISDIGIT_H__ */
 /*--------------------------------------------------------------------------*/

@@ -46,18 +46,18 @@ types::Function::ReturnValue sci_convstr(types::typed_list &in, int _iRetCount, 
     if (in.size() == 2 && in[1]->isString() == true)
     {
         types::String *pInConvertMode = in[1]->getAs<types::String>();
-        if (pInConvertMode->getSize() != 1 || wcslen(pInConvertMode->get(0)) != 1)
+        if (pInConvertMode->getSize() != 1 || strlen(pInConvertMode->get(0)) != 1)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) expected.\n"), "convstr", 2);
             return types::Function::Error;
         }
 
-        wchar_t wcConvertMode = pInConvertMode->get(0)[0];
-        if (wcConvertMode == L'l' || wcConvertMode == L'L' )
+        char convertMode = pInConvertMode->get(0)[0];
+        if (convertMode == 'l' || convertMode == 'L' )
         {
             iConvertMode = -1;
         }
-        else if (wcConvertMode == L'u' || wcConvertMode == L'U')
+        else if (convertMode == 'u' || convertMode == 'U')
         {
             iConvertMode = 1;
         }
@@ -80,16 +80,16 @@ types::Function::ReturnValue sci_convstr(types::typed_list &in, int _iRetCount, 
 
     for (int i = 0 ; i < pstConvertMe->getSize() ; ++i)
     {
-        wchar_t *pwcsCurrent = pstConvertMe->get(i);
-        for (int j = 0 ; j < wcslen(pwcsCurrent) ; ++j)
+        char *pcsCurrent = pstConvertMe->get(i);
+        for (int j = 0 ; j < strlen(pcsCurrent) ; ++j)
         {
             if (iConvertMode == 1)
             {
-                pwcsCurrent[j] = towupper(pwcsCurrent[j]);
+                pcsCurrent[j] = toupper(pcsCurrent[j]);
             }
             else
             {
-                pwcsCurrent[j] = towlower(pwcsCurrent[j]);
+                pcsCurrent[j] = tolower(pcsCurrent[j]);
             }
         }
     }

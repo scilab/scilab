@@ -106,7 +106,7 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
 
     for (int i = 0 ; i < pS2->getSize() ; i++)
     {
-        if (wcslen(pS2->get(i)) == 0)
+        if (strlen(pS2->get(i)) == 0)
         {
             Scierror(249, _("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"), "grep", 2);
             return types::Function::Error;
@@ -124,13 +124,13 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
     char** pStr1 = (char**)MALLOC(sizeof(char*) * pS1->getSize());
     for (int i = 0 ; i < pS1->getSize() ; i++)
     {
-        pStr1[i] = wide_string_to_UTF8(pS1->get(i));
+        pStr1[i] = os_strdup(pS1->get(i));
     }
 
     char** pStr2 = (char**)MALLOC(sizeof(char*) * pS2->getSize());
     for (int i = 0 ; i < pS2->getSize() ; i++)
     {
-        pStr2[i] = wide_string_to_UTF8(pS2->get(i));
+        pStr2[i] = os_strdup(pS2->get(i));
     }
 
     if (bRegularExpression)

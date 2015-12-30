@@ -56,16 +56,16 @@ types::Function::ReturnValue sci_part(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isString() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_part";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_part";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     types::String* pS = in[0]->getAs<types::String>();
 
     if (in[1]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[1]->getShortTypeStr() + L"_part";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%"  + in[1]->getShortTypeStr() + "_part";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     types::Double* pD = in[1]->getAs<types::Double>();
@@ -82,11 +82,11 @@ types::Function::ReturnValue sci_part(types::typed_list &in, int _iRetCount, typ
         piIndex[i] = static_cast<int>(pD->getReal()[i]);
     }
 
-    wchar_t** pwstOut = partfunctionW(pS->get(), pS->getRows(), pS->getCols(), piIndex, pD->getSize());
+    char** pstOut = partfunction(const_cast<const char**>(pS->get()), pS->getRows(), pS->getCols(), piIndex, pD->getSize());
     delete[] piIndex;
     types::String* pOut = new types::String(pS->getRows(), pS->getCols());
-    pOut->set(pwstOut);
-    freeArrayOfWideString(pwstOut, pOut->getSize());
+    pOut->set(pstOut);
+    freeArrayOfString(pstOut, pOut->getSize());
     out.push_back(pOut);
     return types::Function::OK;
 }
