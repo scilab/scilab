@@ -265,7 +265,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             if (pIT->isInvokable() == false)
             {
                 // call overload
-                ret = Overload::call("%" + pIT->getShortTypeStr() + "_e", in, iRetCount, out, this);
+                ret = Overload::call("%" + pIT->getShortTypeStr() + "_e", in, iRetCount, out) == types::Function::OK;
             }
             else
             {
@@ -273,7 +273,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 if (ret == false && pIT->isUserType())
                 {
                     // call overload
-                    ret = Overload::call("%" + pIT->getShortTypeStr() + "_e", in, iRetCount, out, this);
+                    ret = Overload::call("%" + pIT->getShortTypeStr() + "_e", in, iRetCount, out) == types::Function::OK;
                 }
             }
 

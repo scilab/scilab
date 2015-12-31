@@ -50,7 +50,7 @@ public :
     /*data management*/
     double*                     getReal() const;
     double                      getReal(int _iRows, int _iCols);
-    bool                        setInt(int* _piReal); //to translate int to double matrix
+    void                        setInt(int* _piReal); //to translate int to double matrix
 
     /*zero or one set filler*/
     bool                        setZeros();

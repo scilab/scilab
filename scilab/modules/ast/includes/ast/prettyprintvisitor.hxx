@@ -139,7 +139,7 @@ public:
         T * pT = static_cast<T *>(pIT);
         if (pT)
         {
-            const int size = pT->getSize();
+            int size = pT->getSize();
             if (size == 0)
             {
                 stream << "[]";
@@ -151,11 +151,12 @@ public:
             else
             {
                 stream << "[";
-                const int _size = std::min(4, size);
-                for (unsigned int i = 0; i < _size - 1; ++i)
+                int _size = std::min(4, size);
+                for (int i = 0; i < _size - 1; ++i)
                 {
                     stream << pT->get(i) << ",";
                 }
+
                 stream << pT->get(_size - 1);
                 if (size <= _size)
                 {

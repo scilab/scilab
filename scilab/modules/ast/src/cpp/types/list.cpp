@@ -66,7 +66,7 @@ List::List(List *_oListCopyMe)
 {
     m_plData = new std::vector<InternalType *>;
     std::vector<InternalType *>* lData = _oListCopyMe->getData();
-    int size = lData->size();
+    int size = (int)lData->size();
     for (int i = 0 ; i < size ; i++)
     {
         append((*lData)[i]);

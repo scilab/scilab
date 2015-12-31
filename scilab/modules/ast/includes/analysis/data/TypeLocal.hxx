@@ -60,7 +60,7 @@ struct TypeLocal
     {
         if (type.isConstantDims())
         {
-            return TypeLocal(type.type, type.rows.getConstant(), type.cols.getConstant(), isAnInt);
+            return TypeLocal(type.type, (int)type.rows.getConstant(), (int)type.cols.getConstant(), isAnInt);
         }
         else
         {

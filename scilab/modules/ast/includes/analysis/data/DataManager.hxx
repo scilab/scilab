@@ -36,8 +36,8 @@ namespace analysis
 class AnalysisVisitor;
 class FunctionBlock;
 class MacroDef;
-class Data;
-class Info;
+struct Data;
+struct Info;
 
 class DataManager
 {

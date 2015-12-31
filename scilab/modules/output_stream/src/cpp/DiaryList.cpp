@@ -28,15 +28,15 @@ DiaryList::~DiaryList()
     closeAllDiaries();
 }
 /*--------------------------------------------------------------------------*/
-int DiaryList::openDiary(const std::wstring& _wfilename, bool autorename)
+int DiaryList::openDiary(const std::string& _filename, bool autorename)
 {
-    return openDiary(_wfilename, 0, autorename);
+    return openDiary(_filename, 0, autorename);
 }
 /*--------------------------------------------------------------------------*/
-int DiaryList::openDiary(const std::wstring& _wfilename, int _mode, bool autorename)
+int DiaryList::openDiary(const std::string& _filename, int _mode, bool autorename)
 {
     int ID = -1;
-    Diary newDiary(_wfilename, _mode, findFreeID(), autorename);
+    Diary newDiary(_filename, _mode, findFreeID(), autorename);
     if (newDiary.getID() != -1)
     {
         LSTDIARY.push_back(newDiary);
@@ -90,51 +90,51 @@ int * DiaryList::getIDs(int *sizeID)
     return IDs;
 }
 /*--------------------------------------------------------------------------*/
-std::wstring DiaryList::getFilename(int ID_diary)
+std::string DiaryList::getFilename(int ID_diary)
 {
-    std::wstring wFilename(L"");
+    std::string filename("");
     std::list<Diary>::iterator i;
     for ( i = LSTDIARY.begin(); i != LSTDIARY.end(); i++)
     {
         if ( i->getID() == ID_diary )
         {
-            wFilename = i->getFilename();
+            filename = i->getFilename();
         }
     }
-    return wFilename;
+    return filename;
 }
 /*--------------------------------------------------------------------------*/
-std::list<std::wstring> DiaryList::getFilenames()
+std::list<std::string> DiaryList::getFilenames()
 {
     LSTDIARY.sort(compareDiary);
     int size = (int)LSTDIARY.size();
-    std::list<std::wstring> wFilenames(size);
+    std::list<std::string> filenames(size);
 
     if (size > 0)
     {
         for (auto& iter : LSTDIARY)
         {
-            wFilenames.push_back(iter.getFilename());
+            filenames.push_back(iter.getFilename());
         }
     }
-    return wFilenames;
+    return filenames;
 }
 /*--------------------------------------------------------------------------*/
-void DiaryList::write(const std::wstring& _wstr, bool bInput)
+void DiaryList::write(const std::string& _str, bool bInput)
 {
     std::list<Diary>::iterator i;
     for ( i = LSTDIARY.begin(); i != LSTDIARY.end(); i++)
     {
-        i->write(_wstr, bInput);
+        i->write(_str, bInput);
     }
 }
 /*--------------------------------------------------------------------------*/
-void DiaryList::writeln(const std::wstring& _wstr, bool bInput)
+void DiaryList::writeln(const std::string& _str, bool bInput)
 {
     std::list<Diary>::iterator i;
     for ( i = LSTDIARY.begin(); i != LSTDIARY.end(); i++)
     {
-        i->writeln(_wstr, bInput);
+        i->writeln(_str, bInput);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -151,14 +151,14 @@ bool DiaryList::exists(int ID_diary)
     return false;
 }
 /*--------------------------------------------------------------------------*/
-bool DiaryList::exists(const std::wstring& _wfilename)
+bool DiaryList::exists(const std::string& _filename)
 {
     std::list<Diary>::iterator i;
     for ( i = LSTDIARY.begin(); i != LSTDIARY.end(); i++)
     {
-        wchar_t* wc = getFullFilenameW(_wfilename.data());
-        int comp = i->getFilename().compare(wc);
-        FREE(wc);
+        char* c = getFullFilename(_filename.data());
+        int comp = i->getFilename().compare(c);
+        FREE(c);
         if (comp == 0)
         {
             return true;
@@ -242,14 +242,14 @@ bool DiaryList::getSuspendWrite(int  ID_diary)
     return false;
 }
 /*--------------------------------------------------------------------------*/
-int DiaryList::getID(const std::wstring& _wfilename)
+int DiaryList::getID(const std::string& _filename)
 {
     std::list<Diary>::iterator i;
     for ( i = LSTDIARY.begin(); i != LSTDIARY.end(); i++)
     {
-        wchar_t* ws = getFullFilenameW(_wfilename.data());
-        int comp = i->getFilename().compare(ws);
-        FREE(ws);
+        char* s = getFullFilename(_filename.data());
+        int comp = i->getFilename().compare(s);
+        FREE(s);
         if (comp == 0)
         {
             return i->getID();

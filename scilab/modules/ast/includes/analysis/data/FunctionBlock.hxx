@@ -153,7 +153,7 @@ public:
         std::map<TypeLocal, int> map;
         for (const auto & p : getTemp())
         {
-            _total += p.second.size();
+            _total += (int)p.second.size();
             map.emplace(p.first, p.second.size());
         }
 

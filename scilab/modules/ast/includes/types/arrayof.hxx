@@ -17,6 +17,10 @@
 #define NOMINMAX
 #endif
 
+#ifdef _MSC_VER
+#pragma warning( disable : 4661)
+#endif
+
 #include <sstream>
 #include <cstdio>
 #include "types.hxx"

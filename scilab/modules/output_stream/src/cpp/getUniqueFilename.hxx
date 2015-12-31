@@ -16,7 +16,7 @@
 
 #include <string>
 
-std::wstring getUniqueFilename(const std::wstring& _wfilename);
+std::string getUniqueFilename(const std::string& _filename);
 
 #endif /* __GETFULLFILENAME_HXX__ */
 /*--------------------------------------------------------------------------*/

@@ -26,14 +26,14 @@ extern "C" {
     * @param[in] string to write
     * @param[in] string is a input
     */
-    OUTPUT_STREAM_IMPEXP int diaryWrite(const wchar_t *wstr, BOOL bInput);
+    OUTPUT_STREAM_IMPEXP int diaryWrite(const char *str, BOOL bInput);
 
     /*
     * same as diaryWrite but add carriage return
     * @param[in] string to write
     * @param[in] string is a input
     */
-    OUTPUT_STREAM_IMPEXP int diaryWriteln(const wchar_t *wstr, BOOL bInput);
+    OUTPUT_STREAM_IMPEXP int diaryWriteln(const char* str, BOOL bInput);
 
 #ifdef  __cplusplus
 }

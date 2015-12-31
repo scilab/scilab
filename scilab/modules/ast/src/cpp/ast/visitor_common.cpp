@@ -2085,7 +2085,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                         //_pInsert->IncreaseRef();
                         //in.push_back(_pInsert);
 
-                        //Overload::call(function_name, in, 1, out, &exec);
+                        //Overload::call(function_name, in, 1, out);
                         //_pInsert->DecreaseRef();
 
                         //if (out.size() != 0)

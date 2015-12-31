@@ -25,7 +25,7 @@ Checkers::CheckersMap Checkers::map = Checkers::initMap();
 
 TIType Checkers::check(GVN & gvn, const std::string & name, const std::vector<TIType> & args)
 {
-    const unsigned short size = args.size();
+    const unsigned short size = (unsigned short)args.size();
     CheckersMap::const_iterator i = map.find(__NName(size, name));
     if (i != map.end())
     {

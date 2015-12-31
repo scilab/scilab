@@ -25,16 +25,10 @@ extern "C"
 typedef void (*SCILAB_OUTPUT_METHOD)(const char *text);
 
 OUTPUT_STREAM_IMPEXP void setScilabOutputMethod(SCILAB_OUTPUT_METHOD writer);
-
 OUTPUT_STREAM_IMPEXP void scilabWrite(const char* _pstText);
-
-OUTPUT_STREAM_IMPEXP void scilabWriteW(const wchar_t* _pwstText);
-
 OUTPUT_STREAM_IMPEXP void scilabError(const char* _pstText);
-OUTPUT_STREAM_IMPEXP void scilabErrorW(const wchar_t* _pwstText);
 
 /* functions write in "console" without take care of mode*/
-OUTPUT_STREAM_IMPEXP void scilabForcedWriteW(const wchar_t* _pwsText);
 OUTPUT_STREAM_IMPEXP void scilabForcedWrite(const char* _pstText);
 
 #ifdef __cplusplus

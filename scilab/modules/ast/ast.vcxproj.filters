@@ -110,9 +110,6 @@
     <None Include="fileio_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="output_stream_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="string_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>

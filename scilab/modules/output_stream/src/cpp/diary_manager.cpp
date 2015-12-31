@@ -38,41 +38,41 @@ static int destroyDiaryManager(void)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *getDiaryFilename(int _Id)
+char* getDiaryFilename(int _Id)
 {
-    wchar_t *wcFilename = NULL;
+    char* filename = NULL;
     if (SCIDIARY)
     {
-        if (SCIDIARY->getFilename(_Id).compare(L""))
+        if (SCIDIARY->getFilename(_Id).compare(""))
         {
-            wcFilename = (wchar_t*) MALLOC(sizeof(wchar_t) * (SCIDIARY->getFilename(_Id).length() + 1));
-            if (wcFilename)
+            filename = (char*)MALLOC(sizeof(char) * (SCIDIARY->getFilename(_Id).length() + 1));
+            if (filename)
             {
-                wcscpy(wcFilename, SCIDIARY->getFilename(_Id).c_str());
+                strcpy(filename, SCIDIARY->getFilename(_Id).c_str());
             }
         }
     }
-    return wcFilename;
+    return filename;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t **getDiaryFilenames(int *array_size)
+char **getDiaryFilenames(int *array_size)
 {
     *array_size = 0;
     if (SCIDIARY)
     {
-        std::list<std::wstring> wstringFilenames = SCIDIARY->getFilenames();
-        *array_size = (int)wstringFilenames.size();
+        std::list<std::string> stringFilenames = SCIDIARY->getFilenames();
+        *array_size = (int)stringFilenames.size();
         if (array_size > 0)
         {
-            wchar_t **wcFilenames = (wchar_t **) MALLOC (sizeof(wchar_t*) * (*array_size));
+            char **filenames = (char **) MALLOC (sizeof(char*) * (*array_size));
             int i = 0;
-            for (const auto& filename : wstringFilenames)
+            for (const auto& filename : stringFilenames)
             {
-                wcFilenames[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (filename.length() + 1));
-                wcscpy(wcFilenames[i], filename.data());
+                filenames[i] = (char*)MALLOC(sizeof(char) * (filename.length() + 1));
+                strcpy(filenames[i], filename.data());
                 ++i;
             }
-            return wcFilenames;
+            return filenames;
         }
     }
     return NULL;
@@ -133,7 +133,7 @@ int diaryClose(int _iId)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryClose(wchar_t *filename)
+int diaryClose(char *filename)
 {
     if (SCIDIARY)
     {
@@ -169,11 +169,11 @@ int diaryPause(int _iId)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryPause(wchar_t *filename)
+int diaryPause(char *filename)
 {
     if (SCIDIARY)
     {
-        int iID = SCIDIARY->getID(std::wstring(filename));
+        int iID = SCIDIARY->getID(filename);
         if (iID != -1)
         {
             SCIDIARY->setSuspendWrite(iID, true);
@@ -203,11 +203,11 @@ int diaryResume(int _iId)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryResume(wchar_t *filename)
+int diaryResume(char *filename)
 {
     if (SCIDIARY)
     {
-        int iID = SCIDIARY->getID(std::wstring(filename));
+        int iID = SCIDIARY->getID(filename);
         if (iID != -1)
         {
             SCIDIARY->setSuspendWrite(iID, false);
@@ -229,11 +229,11 @@ int diaryExists(int _iId)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryExists(wchar_t *filename)
+int diaryExists(char *filename)
 {
     if (SCIDIARY)
     {
-        if (SCIDIARY->exists(std::wstring(filename)))
+        if (SCIDIARY->exists(filename))
         {
             return 0;
         }
@@ -241,56 +241,56 @@ int diaryExists(wchar_t *filename)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryNew(wchar_t *filename, bool autorename)
+int diaryNew(char *filename, bool autorename)
 {
     createDiaryManager();
 
     if (SCIDIARY)
     {
-        return SCIDIARY->openDiary(std::wstring(filename), autorename);
+        return SCIDIARY->openDiary(filename, autorename);
     }
 
     return -1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryAppend(wchar_t *filename)
+int diaryAppend(char *filename)
 {
     createDiaryManager();
     if (SCIDIARY)
     {
-        return SCIDIARY->openDiary(std::wstring(filename), 1, false);
+        return SCIDIARY->openDiary(filename, 1, false);
     }
     return -1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryWrite(const wchar_t *wstr, BOOL bInput)
+int diaryWrite(const char *str, BOOL bInput)
 {
     if (SCIDIARY)
     {
         if (bInput)
         {
-            SCIDIARY->write(std::wstring(wstr), true);
+            SCIDIARY->write(str, true);
         }
         else
         {
-            SCIDIARY->write(std::wstring(wstr), false);
+            SCIDIARY->write(str, false);
         }
         return 0;
     }
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryWriteln(const wchar_t *wstr, BOOL bInput)
+int diaryWriteln(const char *str, BOOL bInput)
 {
     if (SCIDIARY)
     {
         if (bInput)
         {
-            SCIDIARY->writeln(std::wstring(wstr), true);
+            SCIDIARY->writeln(str, true);
         }
         else
         {
-            SCIDIARY->writeln(std::wstring(wstr), false);
+            SCIDIARY->writeln(str, false);
         }
         return 0;
     }

@@ -21,7 +21,7 @@
 class Diary
 {
 private:
-    std::wstring wfilename;
+    std::string filename;
     int ID_foutstream;
 
     int fileAttribMode;
@@ -43,13 +43,13 @@ private:
     /*
     * used on Windows to replace carriage return
     */
-    std::wstring replace(const std::wstring& text, const std::wstring& s, const std::wstring& replacement);
+    std::string replace(const std::string& text, const std::string& s, const std::string& replacement);
 
 public:
     /*
     * constructor
     */
-    Diary(const std::wstring& _wfilename, int _mode, int ID, bool autorename);
+    Diary(const std::string& _filename, int _mode, int ID, bool autorename);
 
     /*
     * destructor
@@ -59,7 +59,7 @@ public:
     /*
     * get filename of this diary
     */
-    std::wstring getFilename(void);
+    std::string getFilename(void);
 
     /*
     * get & set IO mode
@@ -75,12 +75,12 @@ public:
     /*
     * write a string in this diary
     */
-    void write(const std::wstring& _wstr, bool bInput);
+    void write(const std::string& _wstr, bool bInput);
 
     /*
     * write a line in this diary
     */
-    void writeln(const std::wstring& _wstr, bool bInput);
+    void writeln(const std::string& _wstr, bool bInput);
 
     /*
     * get & set Resume mode

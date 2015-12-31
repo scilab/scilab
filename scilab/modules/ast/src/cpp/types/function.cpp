@@ -205,7 +205,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     int ret = 1;
     int inSize = (int)in.size();
     int optSize = (int)opt.size();
-    bool isRef = checkReferenceModule(m_stModule.c_str());
+    bool isRef = checkReferenceModule(m_stModule.c_str()) == 1;
 
     if (m_pLoadDeps != NULL)
     {

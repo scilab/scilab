@@ -857,7 +857,7 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
             int last = 0;
             for (int i = 0; i < iNotEntireSize; ++i)
             {
-                int ii = piNotEntireIndex[i] - 1;
+                int ii = (int)piNotEntireIndex[i] - 1;
                 for (int j = last; j < ii; ++j)
                 {
                     pOut->set(iNewPos, get(j));

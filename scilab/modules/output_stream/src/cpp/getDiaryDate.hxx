@@ -22,7 +22,7 @@
 * _mode 1: ISO_8601
 * @return std::wstring date & time
 */
-std::wstring getDiaryDate(int format_mode);
+std::string getDiaryDate(int format_mode);
 
 #endif /* __GETDIARYDATE_HXX__ */
 /*--------------------------------------------------------------------------*/

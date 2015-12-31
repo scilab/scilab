@@ -24,24 +24,24 @@ extern "C"
 #include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
-Diary::Diary(const std::wstring& _wfilename, int _mode, int ID, bool autorename)
+Diary::Diary(const std::string& _filename, int _mode, int ID, bool autorename)
 {
-    std::ios::openmode wofstream_mode;
+    std::ios::openmode ofstream_mode;
 
-    std::wstring fullfilename = getUniqueFilename(_wfilename);
+    std::string fullfilename = getUniqueFilename(_filename);
     if (autorename)
     {
-        fullfilename = getUniqueFilename(_wfilename);
+        fullfilename = getUniqueFilename(_filename);
 
-        wchar_t* ws = getFullFilenameW(fullfilename.data());
-        fullfilename = ws;
-        FREE(ws);
+        char* s = getFullFilename(fullfilename.data());
+        fullfilename = s;
+        FREE(s);
     }
     else
     {
-        wchar_t* ws = getFullFilenameW(_wfilename.data());
-        fullfilename = ws;
-        FREE(ws);
+        char* s = getFullFilename(_filename.data());
+        fullfilename = s;
+        FREE(s);
     }
 
     suspendwrite = false;
@@ -52,38 +52,25 @@ Diary::Diary(const std::wstring& _wfilename, int _mode, int ID, bool autorename)
 
     if (_mode == 0)
     {
-        wofstream_mode = std::ios::trunc | std::ios::binary;
+        ofstream_mode = std::ios::trunc | std::ios::binary;
     }
     else
     {
-        wofstream_mode = std::ios::app | std::ios::binary;
+        ofstream_mode = std::ios::app | std::ios::binary;
     }
 
-#ifdef _MSC_VER
-    std::wofstream fileDiary(fullfilename, wofstream_mode);
-#else
-    wchar_t *wcfile = (wchar_t *) fullfilename.c_str();
-    char *filename = wide_string_to_UTF8(wcfile);
-
-    std::ofstream fileDiary(filename, wofstream_mode);
-
-    if (filename)
-    {
-        FREE(filename);
-        filename = NULL;
-    }
-#endif
+    std::ofstream fileDiary(fullfilename, ofstream_mode);
 
     if (fileDiary.bad())
     {
-        wfilename = std::wstring(L"");
+        filename = std::string("");
         fileAttribMode = -1;
         setID(-1);
     }
     else
     {
-        wfilename = fullfilename;
-        fileAttribMode = wofstream_mode;
+        filename = fullfilename;
+        fileAttribMode = ofstream_mode;
         setID(ID);
     }
     fileDiary.close();
@@ -92,48 +79,35 @@ Diary::Diary(const std::wstring& _wfilename, int _mode, int ID, bool autorename)
 /*--------------------------------------------------------------------------*/
 Diary::~Diary()
 {
-    wfilename = L"";
+    filename = "";
     fileAttribMode = -1;
     setID(-1);
 }
 
 /*--------------------------------------------------------------------------*/
-std::wstring Diary::getFilename(void)
+std::string Diary::getFilename(void)
 {
-    return wfilename;
+    return filename;
 }
 
 /*--------------------------------------------------------------------------*/
-void Diary::write(const std::wstring& _wstr, bool bInput)
+void Diary::write(const std::string& _str, bool bInput)
 {
     if (!suspendwrite)
     {
-        std::ios::openmode wofstream_mode = std::ios::app | std::ios::binary;
+        std::ios::openmode ofstream_mode = std::ios::app | std::ios::binary;
 
-#ifdef _MSC_VER
-        std::wofstream fileDiary(wfilename.c_str(), wofstream_mode);
-#else
-        wchar_t *wcfile = (wchar_t *) wfilename.c_str();
-        char *filename = wide_string_to_UTF8(wcfile);
-
-        std::ofstream fileDiary(filename, wofstream_mode);
-        if (filename)
-        {
-            FREE(filename);
-            filename = NULL;
-        }
-#endif
-
+        std::ofstream fileDiary(filename.c_str(), ofstream_mode);
         if (fileDiary.good())
         {
-            char *line = NULL;
-            std::wstring wst = _wstr;
+            const char *line = NULL;
+            std::string st = _str;
 #ifdef _MSC_VER
             /* carriage return for Windows */
-            wst = replace(wst, std::wstring(L"\n"), std::wstring(L"\r\n"));
-            wst = replace(wst, std::wstring(L"\r\r"), std::wstring(L"\r"));
+            st = replace(st, "\n", "\r\n");
+            st = replace(st, "\r\r", "\r");
 #endif
-            line = wide_string_to_UTF8(wst.data());
+            line = st.data();
 
             if (bInput)         // input
             {
@@ -189,10 +163,10 @@ void Diary::write(const std::wstring& _wstr, bool bInput)
 }
 
 /*--------------------------------------------------------------------------*/
-void Diary::writeln(const std::wstring& _wstr, bool bInput)
+void Diary::writeln(const std::string& _str, bool bInput)
 {
-#define ENDLINE L"\n"
-    write(_wstr + ENDLINE, bInput);
+#define ENDLINE "\n"
+    write(_str + ENDLINE, bInput);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -223,14 +197,14 @@ bool Diary::getSuspendWrite(void)
 }
 
 /*--------------------------------------------------------------------------*/
-std::wstring Diary::replace(const std::wstring& text, const std::wstring& s, const std::wstring& replacement)
+std::string Diary::replace(const std::string& text, const std::string& s, const std::string& replacement)
 {
-    std::wstring::size_type pos = 0;
-    std::wstring ret = text;
-    while (pos != std::wstring::npos)
+    std::string::size_type pos = 0;
+    std::string ret = text;
+    while (pos != std::string::npos)
     {
         pos = ret.find(s, pos);
-        if (pos == std::wstring::npos)
+        if (pos == std::string::npos)
             // no more 's' in '*this'
         {
             break;

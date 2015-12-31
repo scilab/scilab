@@ -283,7 +283,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
 
                 //printf("%.2f : %.2f : %.2f\n", start, step, end);
 
-                int size = (end - start) / step + 1;
+                int size = (int)((end - start) / step) + 1;
                 if (size <= 0)
                 {
                     //manage implicit that return []
@@ -293,10 +293,10 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
 
                 std::vector<int> idx(size);
                 int* pi = idx.data();
-                pi[0] = start - 1; //0-indexed
+                pi[0] = (int)start - 1; //0-indexed
                 for (int j = 1; j < size; ++j)
                 {
-                    pi[j] = pi[j - 1] + step;
+                    pi[j] = pi[j - 1] + (int)step;
                 }
 
                 lstIdx.push_back(idx);

@@ -29,54 +29,44 @@ extern "C"
 #include "charEncoding.h"
 }
 /*--------------------------------------------------------------------------*/
-static void wcsplitpath(const wchar_t* path, wchar_t* drv, wchar_t* dir, wchar_t* name, wchar_t* ext);
-static int getFileSize(const std::wstring& _wfilename);
+static int getFileSize(const std::string& _filename);
 /*--------------------------------------------------------------------------*/
-std::wstring getUniqueFilename(const std::wstring& _wfilename)
+std::string getUniqueFilename(const std::string& _filename)
 {
-    wchar_t* ws = getFullFilenameW(_wfilename.data());
-    std::wstring wfullfilename(ws);
-    FREE(ws);
-    std::wstring newfilename;
+    char* s = getFullFilename(_filename.data());
+    std::string fullfilename(s);
+    FREE(s);
+    std::string newfilename;
 
-    if (FileExistW(wfullfilename.data()))
+    if (FileExist(fullfilename.data()))
     {
-        wchar_t wcdrive[PATH_MAX];
-        wchar_t wcdirectory[PATH_MAX];
-        wchar_t wcname[PATH_MAX];
-        wchar_t wcext[PATH_MAX];
+        char drive[PATH_MAX];
+        char directory[PATH_MAX];
+        char name[PATH_MAX];
+        char ext[PATH_MAX];
         unsigned int id = (unsigned int)(-1);
 
-        splitpathW(wfullfilename.data(), FALSE, wcdrive, wcdirectory, wcname, wcext);
-        std::wstring prefixFilename(wcdrive);
-        prefixFilename += wcdirectory;
-        prefixFilename += wcname;
+        splitpath(fullfilename.data(), FALSE, drive, directory, name, ext);
+        std::string prefixFilename(drive);
+        prefixFilename += directory;
+        prefixFilename += name;
 
         do
         {
             id++;
-            newfilename = prefixFilename + L"_" + std::to_wstring(id) + wcext;
-        } while (FileExistW(newfilename.data()) && getFileSize(newfilename) != 0);
+            newfilename = prefixFilename + "_" + std::to_string(id) + ext;
+        } while (FileExist(newfilename.data()) && getFileSize(newfilename) != 0);
     }
     else
     {
-        newfilename = wfullfilename;
+        newfilename = fullfilename;
     }
     return newfilename;
 }
 /*--------------------------------------------------------------------------*/
-static int getFileSize(const std::wstring& _wfilename)
+static int getFileSize(const std::string& _filename)
 {
-#ifdef _MSC_VER
-    std::wifstream file(_wfilename.c_str());
-#else
-    char *_filename = wide_string_to_UTF8((wchar_t*)_wfilename.c_str());
-    if (_filename == NULL)
-    {
-        return false;
-    }
-    std::ifstream file(_filename);
-#endif
+    std::ifstream file(_filename.c_str());
     file.seekg(std::ios::end);
     if(file.is_open())
     {

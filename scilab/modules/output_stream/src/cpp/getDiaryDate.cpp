@@ -28,10 +28,10 @@ extern "C"
 #include <locale.h>
 }
 /*--------------------------------------------------------------------------*/
-std::wstring getDiaryDate(int format_mode)
+std::string getDiaryDate(int format_mode)
 {
-    std::wstring wstrdate(L"");
-    std::wstringstream StrStream;
+    std::string strdate("");
+    std::stringstream StrStream;
     time_t tDate;
     time(&tDate);
 
@@ -41,7 +41,7 @@ std::wstring getDiaryDate(int format_mode)
         default: // UNIX TIMESTAMP
         {
             StrStream << (unsigned int)tDate;
-            wstrdate = StrStream.str();
+            strdate = StrStream.str();
         }
         break;
         case 1: // http://en.wikipedia.org/wiki/ISO_8601 YYYY-MM-DD hh:mm:ss
@@ -58,10 +58,10 @@ std::wstring getDiaryDate(int format_mode)
             StrStream << YEAR << L"-" << MONTH << L"-" << DAY_OF_MONTH;
             StrStream << L" ";
             StrStream << HOUR_OF_DAY << L":" << MINUTES << L":" << SECONDS;
-            wstrdate = StrStream.str();
+            strdate = StrStream.str();
         }
         break;
     }
-    return wstrdate;
+    return strdate;
 }
 /*--------------------------------------------------------------------------*/

@@ -1230,7 +1230,7 @@ void ConfigVariable::whereErrorToString(std::ostringstream &ostr)
 
     // compute max size between "at line xxx of function" and "in builtin "
     // +1 : line number is pad to 5. length of "% 5d" + 1 == 5
-    int iMaxLen = std::max(strAtLine.length() + 1, strBuiltin.length());
+    int iMaxLen = (int)std::max(strAtLine.length() + 1, strBuiltin.length());
     if (isExecstr)
     {
         iMaxLen = std::max(((int)strExecStr.length()) + 1, iMaxLen);

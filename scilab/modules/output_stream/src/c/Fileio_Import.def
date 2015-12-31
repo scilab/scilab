@@ -2,6 +2,6 @@ LIBRARY    fileio.dll
 
 
 EXPORTS
-FileExistW
-getFullFilenameW
-splitpathW
+FileExist
+getFullFilename
+splitpath

@@ -62,7 +62,7 @@ public:
      * \param _gvn the GVN associated with this dimension
      * \param dim the value of this dimension
      */
-    SymbolicDimension(GVN & _gvn, int64_t dim) : gvn(&_gvn), value(dim == -1 ? _gvn.getValue() : _gvn.getValue(dim)) { }
+    SymbolicDimension(GVN & _gvn, int64_t dim) : gvn(&_gvn), value(dim == -1 ? _gvn.getValue() : _gvn.getValue((double)dim)) { }
 
     /**
      * \brief Get the associated GVN
@@ -151,7 +151,7 @@ public:
      */
     inline void setValue(const int64_t _value)
     {
-        value = gvn->getValue(_value);
+        value = gvn->getValue((double)_value);
     }
 
     /**
@@ -206,7 +206,7 @@ public:
      */
     inline SymbolicDimension operator+(const int64_t R) const
     {
-        return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::PLUS, *value, *gvn->getValue(R)));
+        return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::PLUS, *value, *gvn->getValue((double)R)));
     }
 
     /**
@@ -222,7 +222,7 @@ public:
      */
     inline SymbolicDimension operator-(const int64_t R) const
     {
-        return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::MINUS, *value, *gvn->getValue(R)));
+        return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::MINUS, *value, *gvn->getValue((double)R)));
     }
 
     /**
@@ -238,7 +238,7 @@ public:
      */
     inline SymbolicDimension operator*(const int64_t R) const
     {
-        return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::TIMES, *value, *gvn->getValue(R)));
+        return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::TIMES, *value, *gvn->getValue((double)R)));
     }
 
     /**
@@ -274,7 +274,7 @@ public:
      */
     inline SymbolicDimension operator/(const int64_t R) const
     {
-        return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::RDIV, *value, *gvn->getValue(R)));
+        return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::RDIV, *value, *gvn->getValue((double)R)));
     }
 
     /**
@@ -290,7 +290,7 @@ public:
      */
     inline SymbolicDimension operator^(const int64_t R) const
     {
-        return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::POWER, *value, *gvn->getValue(R)));
+        return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::POWER, *value, *gvn->getValue((double)R)));
     }
 
     /**
@@ -338,7 +338,7 @@ public:
      */
     inline friend SymbolicDimension operator-(const int64_t L, const SymbolicDimension & R)
     {
-        return SymbolicDimension(R.gvn, R.gvn->getValue(OpValue::Kind::MINUS, *R.gvn->getValue(L), *R.value));
+        return SymbolicDimension(R.gvn, R.gvn->getValue(OpValue::Kind::MINUS, *R.gvn->getValue((double)L), *R.value));
     }
 
     /**
@@ -354,7 +354,7 @@ public:
      */
     inline friend SymbolicDimension operator/(const int64_t L, const SymbolicDimension & R)
     {
-        return SymbolicDimension(R.gvn, R.gvn->getValue(OpValue::Kind::RDIV, *R.gvn->getValue(L), *R.value));
+        return SymbolicDimension(R.gvn, R.gvn->getValue(OpValue::Kind::RDIV, *R.gvn->getValue((double)L), *R.value));
     }
 
     /**
@@ -362,7 +362,7 @@ public:
      */
     inline friend SymbolicDimension operator^(const int64_t L, const SymbolicDimension & R)
     {
-        return SymbolicDimension(R.gvn, R.gvn->getValue(OpValue::Kind::POWER, *R.gvn->getValue(L), *R.value));
+        return SymbolicDimension(R.gvn, R.gvn->getValue(OpValue::Kind::POWER, *R.gvn->getValue((double)L), *R.value));
     }
 
     /**

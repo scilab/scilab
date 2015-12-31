@@ -61,7 +61,7 @@ public:
     {
         if (parent)
         {
-            return new ConstantVisitor(parent);
+            return new ConstantVisitor(*parent);
         }
         else
         {

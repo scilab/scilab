@@ -60,7 +60,7 @@ public:
      * \param _start the starting value
      * \param _end the ending value
      */
-    SymbolicRange(GVN & _gvn, int64_t _start, int64_t _end) : SymbolicRange(&_gvn, _gvn.getValue(_start), _gvn.getValue(_end)) { }
+    SymbolicRange(GVN & _gvn, int64_t _start, int64_t _end) : SymbolicRange(&_gvn, _gvn.getValue((double)_start), _gvn.getValue((double)_end)) { }
 
     inline void set(GVN & _gvn, GVN::Value * _start, GVN::Value * _end)
     {

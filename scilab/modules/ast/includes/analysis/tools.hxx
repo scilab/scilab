@@ -215,7 +215,7 @@ inline std::ostream & operator<<(std::ostream & out, const IntType & it)
 template<typename T>
 inline static unsigned char popcount(const T x)
 {
-    return std::bitset<sizeof(T)>(x).count();
+    return (unsigned char)std::bitset<sizeof(T)>(x).count();
 }
 
 inline static unsigned char log2(const unsigned int x)

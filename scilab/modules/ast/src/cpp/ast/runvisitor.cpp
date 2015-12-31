@@ -415,7 +415,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
         try
         {
-            Ret = Overload::call("%" + stType + "_e", in, 1, out, this);
+            Ret = Overload::call("%" + stType + "_e", in, 1, out);
         }
         catch (const InternalError& ie)
         {
@@ -425,7 +425,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
                 //tlist/mlist name are truncated to 8 first character
                 if (stType.size() > 8)
                 {
-                    Ret = Overload::call("%" + stType.substr(0, 8) + "_e", in, 1, out, this);
+                    Ret = Overload::call("%" + stType.substr(0, 8) + "_e", in, 1, out);
                 }
                 else
                 {
@@ -438,7 +438,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
                 // TList or Mlist
                 if (pValue->isList())
                 {
-                    Ret = Overload::call("%l_e", in, 1, out, this);
+                    Ret = Overload::call("%l_e", in, 1, out);
                 }
                 else
                 {
@@ -1491,7 +1491,7 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
         pValue->IncreaseRef();
         in.push_back(pValue);
 
-        types::Callable::ReturnValue Ret = Overload::call("%" + pValue->getShortTypeStr() + "_5", in, 1, out, this);
+        types::Callable::ReturnValue Ret = Overload::call("%" + pValue->getShortTypeStr() + "_5", in, 1, out);
 
         if (Ret != types::Callable::OK)
         {
@@ -1557,11 +1557,11 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
         types::Callable::ReturnValue Ret;
         if (bConjug)
         {
-            Ret = Overload::call("%" + getResult()->getShortTypeStr() + "_t", in, 1, out, this);
+            Ret = Overload::call("%" + getResult()->getShortTypeStr() + "_t", in, 1, out);
         }
         else
         {
-            Ret = Overload::call("%" + getResult()->getShortTypeStr() + "_0", in, 1, out, this);
+            Ret = Overload::call("%" + getResult()->getShortTypeStr() + "_0", in, 1, out);
         }
 
         if (Ret != types::Callable::OK)

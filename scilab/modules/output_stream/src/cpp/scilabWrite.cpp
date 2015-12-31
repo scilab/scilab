@@ -31,9 +31,7 @@ void setScilabOutputMethod(SCILAB_OUTPUT_METHOD writer)
 
 static void scilabPrint(const char* _pstText)
 {
-    wchar_t* pwstTemp = to_wide_string(_pstText);
-    diaryWrite(pwstTemp, FALSE);
-    FREE(pwstTemp);
+    diaryWrite(_pstText, FALSE);
     (*_writer)(const_cast<char*>(_pstText));
 }
 
@@ -50,37 +48,10 @@ void scilabForcedWrite(const char* _pstText)
     scilabPrint(const_cast<char*>(_pstText));
 }
 
-void scilabWriteW(const wchar_t* _pwsText)
-{
-    if (isPromptShow())
-    {
-        char* pstTemp = wide_string_to_UTF8(_pwsText);
-        scilabWrite(pstTemp);
-        FREE(pstTemp);
-    }
-}
-
-void scilabForcedWriteW(const wchar_t* _pwsText)
-{
-    char* pstTemp = wide_string_to_UTF8(_pwsText);
-    scilabForcedWrite(pstTemp);
-    FREE(pstTemp);
-}
-
 void scilabError(const char* _pstText)
 {
     if (getSilentError() == VERBOSE_ERROR)
     {
         scilabPrint(const_cast<char*>(_pstText));
-    }
-}
-
-void scilabErrorW(const wchar_t* _pwsText)
-{
-    if (getSilentError() == VERBOSE_ERROR)
-    {
-        char* pstTemp = wide_string_to_UTF8(_pwsText);
-        scilabPrint(pstTemp);
-        FREE(pstTemp);
     }
 }
