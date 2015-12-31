@@ -25,16 +25,16 @@ class FILEIO_IMPEXP FileManager
 public :
     /*commom attributes and function for all File*/
     static int                  getFileMaxID();
-    static bool                 isOpened(const std::wstring& _stFilename);
-    static int                  getFileID(const std::wstring& _stFilename);
+    static bool                 isOpened(const std::string& _stFilename);
+    static int                  getFileID(const std::string& _stFilename);
     static types::File*         getFile(int _iID);
     static int                  getCurrentFile();
     static int                  addFile(types::File* _file);
     static int                  getFirstFreeFileID();
     static void                 deleteFile(int _iID);
     static int                  getOpenedCount();
-    static wchar_t**            getTypesAsString();
-    static wchar_t**            getFilenames();
+    static char**               getTypesAsString();
+    static char**               getFilenames();
     static double*              getModes();
     static double*              getSwaps();
     static int*                 getIDs();

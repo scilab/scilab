@@ -18,7 +18,7 @@
 
 struct TokenDef
 {
-    wchar_t* pwstToken;
+    char* pwstToken;
     types::InternalType::ScilabType outputType;
     bool length;
     int width;
@@ -43,7 +43,7 @@ struct TokenDef
     {}
 };
 
-OUTPUT_STREAM_IMPEXP_GW wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput, types::typed_list &in, int* _piOutputRows, int* _piNewLine);
+OUTPUT_STREAM_IMPEXP_GW char** scilab_sprintf(const std::string& funcname, const char* _pwstInput, types::typed_list &in, int* _piOutputRows, int* _piNewLine);
 
 
 

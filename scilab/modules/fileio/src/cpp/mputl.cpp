@@ -25,7 +25,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 #define MPUTL_FORMAT "%s\n"
 /*--------------------------------------------------------------------------*/
-mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR)
+mputlError mputl(int _iFileId, char **pstStrings, int _iSizeStrings, BOOL _CR)
 {
     int i = 0;
     types::File* pF = NULL;
@@ -64,9 +64,7 @@ mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR
     for (i = 0; i < _iSizeStrings; i++)
     {
         char* pstTemp = NULL;
-        pstTemp = wide_string_to_UTF8(pstStrings[i]);
-        int iRet = fputs(pstTemp, pF->getFiledesc());
-        FREE(pstTemp);
+        int iRet = fputs(pstStrings[i], pF->getFiledesc());
         if (iRet == -1)
         {
             return MPUTL_ERROR;

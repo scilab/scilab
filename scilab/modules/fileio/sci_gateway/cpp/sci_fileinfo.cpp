@@ -58,7 +58,7 @@ types::Function::ReturnValue sci_fileinfo(types::typed_list &in, int _iRetCount,
         pS = iT->getAs<types::String>();
     }
     int *piErr = new int[pS->getRows()];
-    double* pData = filesinfoW(pS->get(), pS->getRows(), piErr);
+    double* pData = filesinfo(pS->get(), pS->getRows(), piErr);
 
     /* fileinfo returns [] for single non existing file to match the behavior
        of Scilab < 6 */

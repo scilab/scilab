@@ -28,15 +28,13 @@ extern "C"
 #include "os_wfopen.h"
 }
 /*--------------------------------------------------------------------------*/
-int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int* _piID)
+int mopen(const char* _pstFilename, const char* _pstMode, int _iSwap, int* _piID)
 {
     int lenChar = 0, testRep = 1;
 
     if (getWarningMode() && FileManager::isOpened(_pstFilename))
     {
-        char* pst = wide_string_to_UTF8(_pstFilename);
-        sciprint(_("Warning: file '%s' already opened in Scilab.\n"), pst);
-        FREE(pst);
+        sciprint(_("Warning: file '%s' already opened in Scilab.\n"), _pstFilename);
     }
     /* bug 4846 */
     if (_pstFilename == NULL)
@@ -44,7 +42,7 @@ int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int*
         return MOPEN_INVALID_FILENAME;
     }
 
-    if (wcslen(_pstFilename) == 0)
+    if (strlen(_pstFilename) == 0)
     {
         return MOPEN_INVALID_FILENAME;
     }
@@ -54,7 +52,7 @@ int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int*
         return MOPEN_INVALID_STATUS;
     }
 
-    lenChar = wcslen(_pstMode);
+    lenChar = (int)strlen(_pstMode);
     if (( lenChar == 0 ) || ( lenChar > 3 ))
     {
         return MOPEN_INVALID_STATUS;
@@ -73,12 +71,12 @@ int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int*
         }
     }
 
-    if (isdirW(_pstFilename))
+    if (isdir(_pstFilename))
     {
         return MOPEN_CAN_NOT_OPEN_FILE;
     }
 
-    FILE* pF = os_wfopen(_pstFilename, _pstMode);
+    FILE* pF = fopen(_pstFilename, _pstMode);
     if (pF == NULL)
     {
         return MOPEN_CAN_NOT_OPEN_FILE;

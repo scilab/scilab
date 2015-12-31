@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
 {
     int size                    = (int)in.size();
     int iNiter                  = 1;
-    wchar_t* wcsFormat          = NULL;
+    char* Format                = NULL;
     types::String* pStrRead     = NULL;
     int dimsArray[2]            = {1, 1};
     std::vector<types::InternalType*> IT;
@@ -79,7 +79,8 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
     {
         iNiter = pStrRead->getRows();
     }
-    wcsFormat = in[size - 1]->getAs<types::String>()->get(0);
+
+    Format = in[size - 1]->getAs<types::String>()->get(0);
     nrow = iNiter;
     while (++rowcount < iNiter)
     {
@@ -87,11 +88,13 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
         {
             break;
         }
-        int err = do_xxscanf(L"sscanf", (FILE *)0, wcsFormat, &args, pStrRead->get(rowcount), &retval, buf, type);
+
+        int err = do_xxscanf("sscanf", (FILE *)0, Format, &args, pStrRead->get(rowcount), &retval, buf, type);
         if (err < 0)
         {
             return types::Function::Error;
         }
+
         err = Store_Scan(&nrow, &ncol, type_s, type, &retval, &retval_s, buf, &data, rowcount, args);
         if (err < 0)
         {
@@ -275,7 +278,7 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                 }
 
                 types::MList* pMList = new types::MList();
-                pMList->append(new types::String(L"cblock"));
+                pMList->append(new types::String("cblock"));
                 for (int i = 0 ; i < pITTemp->size() ; i++)
                 {
                     pMList->append((*pITTemp)[i]);

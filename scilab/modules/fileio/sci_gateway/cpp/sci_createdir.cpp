@@ -44,22 +44,22 @@ types::Function::ReturnValue sci_createdir(types::typed_list &in, int _iRetCount
         return types::Function::Error;
     }
 
-    wchar_t* pwstPath = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
+    char* pstPath = expandPathVariable(in[0]->getAs<types::String>()->get(0));
     int iRet = 0;
-    if (!isdirW(pwstPath))
+    if (!isdir(pstPath))
     {
-        iRet = createdirectoryW(pwstPath);
+        iRet = createdirectory(pstPath);
     }
     else
     {
         if (getWarningMode())
         {
-            sciprint(_("%ls: Warning: Directory '%ls' already exists.\n"), L"createdir", pwstPath);
+            sciprint(_("%ls: Warning: Directory '%ls' already exists.\n"), L"createdir", pstPath);
         }
         iRet = 1;
     }
 
-    FREE(pwstPath);
+    FREE(pstPath);
     types::Bool* pOut = new types::Bool(iRet);
 
     out.push_back(pOut);

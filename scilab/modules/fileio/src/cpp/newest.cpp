@@ -24,7 +24,7 @@ extern "C"
 #include "newest.h"
 }
 
-int newest(wchar_t** _pwcsFilesString, int _iNbrOfFileString)
+int newest(char** _filesString, int _iNbrOfFileString)
 {
 #ifdef _MSC_VER
     struct _stat buf;
@@ -42,24 +42,22 @@ int newest(wchar_t** _pwcsFilesString, int _iNbrOfFileString)
     {
 
         int resultstat = 0;
-        wchar_t *FileName = NULL;
+        char* FileName = NULL;
 
-        FileName = expandPathVariableW(_pwcsFilesString[i]);
+        FileName = expandPathVariable(_filesString[i]);
 
 #ifdef _MSC_VER
         if (FileName)
         {
-            if ( (FileName[wcslen(FileName) - 1] == L'/') || (FileName[wcslen(FileName) - 1] == L'\\') )
+            if ( (FileName[strlen(FileName) - 1] == '/') || (FileName[strlen(FileName) - 1] == '\\') )
             {
-                FileName[wcslen(FileName) - 1] = L'\0';
+                FileName[strlen(FileName) - 1] = '\0';
             }
 
         }
-        resultstat = _wstat(FileName, &buf );
+        resultstat = _stat(FileName, &buf);
 #else
-        char* temp = wide_string_to_UTF8(FileName);
-        resultstat = stat(temp, &buf );
-        FREE(temp);
+        resultstat = stat(FileName, &buf);
 #endif
         if (resultstat == 0)
         {

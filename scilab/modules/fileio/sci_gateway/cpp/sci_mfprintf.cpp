@@ -46,8 +46,8 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
     unsigned int iNumberCols        = 0;
     int nbrOfLines                  = 0;
     int ifileMode                   = 0;
-    wchar_t* wcsInput               = NULL;
-    wchar_t** wcsStringToWrite      = NULL;
+    char* Input                     = NULL;
+    char** StringToWrite            = NULL;
 
     if (in.size() < 2)
     {
@@ -85,8 +85,8 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
     {
         if (in[i]->isDouble() == false && in[i]->isString() == false)
         {
-            std::wstring wstFuncName = L"%" + in[i]->getShortTypeStr() + L"_mfprintf";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[i]->getShortTypeStr() + "_mfprintf";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
     }
 
@@ -141,8 +141,8 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
 
     // Checking input string to write in file
     int iNewLine = 0;
-    wcsInput = pFileStr->get(0);
-    wcsStringToWrite = scilab_sprintf("mfprintf", wcsInput, in, &nbrOfLines, &iNewLine);
+    Input = pFileStr->get(0);
+    StringToWrite = scilab_sprintf("mfprintf", Input, in, &nbrOfLines, &iNewLine);
 
     if (isSTD)
     {
@@ -150,18 +150,18 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
         {
             if (isSTDErr)
             {
-                std::wcerr << wcsStringToWrite[i];
+                std::wcerr << StringToWrite[i];
             }
             else
             {
-                scilabForcedWriteW(wcsStringToWrite[i]);
+                scilabForcedWrite(StringToWrite[i]);
             }
             scilabForcedWriteW(L"\n");
         }
     }
     else
     {
-        int iRet = mputl(iFile, wcsStringToWrite, nbrOfLines, (BOOL)iNewLine); // FALSE = don't add the "\n" at the end.
+        int iRet = mputl(iFile, StringToWrite, nbrOfLines, (BOOL)iNewLine); // FALSE = don't add the "\n" at the end.
         if (iRet)
         {
             Scierror(999, _("%s: Error while writing in file: disk full or deleted file.\n"), "mprintf");
@@ -171,10 +171,10 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
 
     for (int i = 0; i < nbrOfLines; i++)
     {
-        FREE(wcsStringToWrite[i]);
+        FREE(StringToWrite[i]);
     }
 
-    FREE(wcsStringToWrite);
+    FREE(StringToWrite);
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

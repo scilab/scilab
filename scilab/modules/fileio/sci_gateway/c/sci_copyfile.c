@@ -30,19 +30,19 @@
 #include "charEncoding.h"
 #include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/
-static wchar_t *getFilenameWithExtension(wchar_t* wcFullFilename);
+static char *getFilenameWithExtension(char* fullFilename);
 static int returnCopyFileResultOnStack(int ierr, char *fname , void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 int sci_copyfile(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
-    wchar_t *pStVarOne = NULL;
-    wchar_t *pStVarOneExpanded = NULL;
+    char *pStVarOne = NULL;
+    char *pStVarOneExpanded = NULL;
 
     int *piAddressVarTwo = NULL;
-    wchar_t *pStVarTwo = NULL;
-    wchar_t *pStVarTwoExpanded = NULL;
+    char *pStVarTwo = NULL;
+    char *pStVarTwoExpanded = NULL;
 
     /* Check Input & Output parameters */
     CheckRhs(2, 2);
@@ -76,34 +76,34 @@ int sci_copyfile(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne))
+    if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &pStVarOne))
     {
         if (pStVarOne)
         {
-            freeAllocatedSingleWideString(pStVarOne);
+            freeAllocatedSingleString(pStVarOne);
         }
 
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
-    if (getAllocatedSingleWideString(pvApiCtx, piAddressVarTwo, &pStVarTwo))
+    if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &pStVarTwo))
     {
         if (pStVarTwo)
         {
-            freeAllocatedSingleWideString(pStVarTwo);
+            freeAllocatedSingleString(pStVarTwo);
         }
 
-        freeAllocatedSingleWideString(pStVarOne);
+        freeAllocatedSingleString(pStVarOne);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
-    pStVarOneExpanded = expandPathVariableW(pStVarOne);
-    pStVarTwoExpanded = expandPathVariableW(pStVarTwo);
+    pStVarOneExpanded = expandPathVariable(pStVarOne);
+    pStVarTwoExpanded = expandPathVariable(pStVarTwo);
 
-    freeAllocatedSingleWideString(pStVarTwo);
-    freeAllocatedSingleWideString(pStVarOne);
+    freeAllocatedSingleString(pStVarTwo);
+    freeAllocatedSingleString(pStVarOne);
 
     if (pStVarOneExpanded == NULL)
     {
@@ -127,40 +127,40 @@ int sci_copyfile(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    if (isdirW(pStVarOneExpanded) || FileExistW(pStVarOneExpanded))
+    if (isdir(pStVarOneExpanded) || FileExist(pStVarOneExpanded))
     {
         int ierrCopy = 0;
 
-        if (isdirW(pStVarOneExpanded) || FileExistW(pStVarOneExpanded))
+        if (isdir(pStVarOneExpanded) || FileExist(pStVarOneExpanded))
         {
-            if (isdirW(pStVarOneExpanded))
+            if (isdir(pStVarOneExpanded))
             {
                 /* copy a directory into a directory */
                 ierrCopy = CopyDirectoryFunction(pStVarTwoExpanded, pStVarOneExpanded);
             }
-            else if (FileExistW(pStVarOneExpanded))
+            else if (FileExist(pStVarOneExpanded))
             {
-                if (isdirW(pStVarTwoExpanded))
+                if (isdir(pStVarTwoExpanded))
                 {
                     /* copy file into a existing directory */
-                    wchar_t *filename = getFilenameWithExtension(pStVarOneExpanded);
+                    char *filename = getFilenameWithExtension(pStVarOneExpanded);
 
                     if (filename)
                     {
 #define FORMAT_FULLFILENAME "%s/%s"
-                        wchar_t *destFullFilename = NULL;
+                        char *destFullFilename = NULL;
 
                         /* remove last file separator if it exists */
-                        if ((pStVarTwoExpanded[wcslen(pStVarTwoExpanded) - 1] == L'\\') || (pStVarTwoExpanded[wcslen(pStVarTwoExpanded) - 1] == L'/'))
+                        if ((pStVarTwoExpanded[strlen(pStVarTwoExpanded) - 1] == '\\') || (pStVarTwoExpanded[strlen(pStVarTwoExpanded) - 1] == '/'))
                         {
-                            pStVarTwoExpanded[wcslen(pStVarTwoExpanded) - 1] = L'\0';
+                            pStVarTwoExpanded[strlen(pStVarTwoExpanded) - 1] = '\0';
                         }
 
-                        destFullFilename = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(pStVarTwoExpanded) +
-                                                              (int)wcslen(filename) + (int)wcslen(L"/") + 1));
-                        wcscpy(destFullFilename, pStVarTwoExpanded);
-                        wcscat(destFullFilename, L"/");
-                        wcscat(destFullFilename, filename);
+                        destFullFilename = (char *) MALLOC(sizeof(char) * ((int)strlen(pStVarTwoExpanded) +
+                                                              (int)strlen(filename) + (int)strlen("/") + 1));
+                        strcpy(destFullFilename, pStVarTwoExpanded);
+                        strcat(destFullFilename, "/");
+                        strcat(destFullFilename, filename);
 
                         ierrCopy = CopyFileFunction(destFullFilename, pStVarOneExpanded);
 
@@ -214,18 +214,18 @@ int sci_copyfile(char *fname, void* pvApiCtx)
 }
 
 /*--------------------------------------------------------------------------*/
-static wchar_t *getFilenameWithExtension(wchar_t * wcFullFilename)
+static char *getFilenameWithExtension(char * fullFilename)
 {
-    wchar_t *wcfilename = NULL;
+    char *wcfilename = NULL;
 
-    if (wcFullFilename)
+    if (fullFilename)
     {
-        wchar_t *wcdrv = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t *wcdir = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t *wcname = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t *wcext = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
+        char *wcdrv = (char *)MALLOC(sizeof(char) * ((int)strlen(fullFilename) + 1));
+        char *wcdir = (char *)MALLOC(sizeof(char) * ((int)strlen(fullFilename) + 1));
+        char *wcname = (char *)MALLOC(sizeof(char) * ((int)strlen(fullFilename) + 1));
+        char *wcext = (char *)MALLOC(sizeof(char) * ((int)strlen(fullFilename) + 1));
 
-        wcfilename = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
+        wcfilename = (char *)MALLOC(sizeof(char) * ((int)strlen(fullFilename) + 1));
 
         if (wcdrv == NULL || wcdir == NULL || wcname == NULL || wcext == NULL || wcfilename == NULL)
         {
@@ -237,10 +237,10 @@ static wchar_t *getFilenameWithExtension(wchar_t * wcFullFilename)
             return NULL;
         }
 
-        splitpathW(wcFullFilename, FALSE, wcdrv, wcdir, wcname, wcext);
+        splitpath(fullFilename, FALSE, wcdrv, wcdir, wcname, wcext);
 
-        wcscpy(wcfilename, wcname);
-        wcscat(wcfilename, wcext);
+        strcpy(wcfilename, wcname);
+        strcat(wcfilename, wcext);
 
         FREE(wcdrv);
         FREE(wcdir);
@@ -253,44 +253,45 @@ static wchar_t *getFilenameWithExtension(wchar_t * wcFullFilename)
 static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
 {
     double dError = 0.;
-    wchar_t *sciError = NULL;
+    char *sciError = NULL;
 
 #ifdef _MSC_VER
     if (ierr)
     {
 #define BUFFER_SIZE 1024
         DWORD dw = GetLastError();
-        wchar_t buffer[BUFFER_SIZE];
+        char buffer[BUFFER_SIZE];
 
-        if (FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
+        if (FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
                            dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), buffer, BUFFER_SIZE, NULL) == 0)
         {
-            wcscpy(buffer, L"Unknown Error");
+            strcpy(buffer, "Unknown Error");
         }
 
         // Compatibility with previous version , we return 0
         //dError = (double) dw;
         dError = (double)0.;
 
-        sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(buffer) + 1));
+        sciError = (char *) MALLOC(sizeof(char) * ((int)strlen(buffer) + 1));
         if (sciError == NULL)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
 
-        wcscpy(sciError, buffer);
+        strcpy(sciError, buffer);
     }
     else
     {
         dError = 1.;
-        sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * 1);
+        sciError = (char *) MALLOC(sizeof(char) * 1);
         if (sciError == NULL)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
-        wcscpy(sciError, L"");
+        
+        strcpy(sciError, "");
     }
 #else
     if (ierr)
@@ -298,23 +299,12 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
         // Compatibility with previous version , we return 0
         //dError = (double) ierr;
         //dError = (double) 0.;
-        sciError = to_wide_string(strerror(errno));
-        if (sciError == NULL)
-        {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
-            return 0;
-        }
+        sciError = strerror(errno);
     }
     else
     {
         dError = 1.;
-        sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * 1);
-        if (sciError == NULL)
-        {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
-            return 0;
-        }
-        wcscpy(sciError, L"");
+        sciError = os_strdup("");
     }
 #endif
 
@@ -332,7 +322,7 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
 
     if (Lhs == 2)
     {
-        if (createSingleWideString(pvApiCtx, Rhs + 2, sciError))
+        if (createSingleString(pvApiCtx, Rhs + 2, sciError))
         {
             if (sciError)
             {

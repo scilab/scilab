@@ -34,7 +34,7 @@
 
 #define FILEINFO_DEFAULT_ERROR    -1
 
-FILEIO_IMPEXP double* filesinfoW(wchar_t** _pwstFilename, int _iSize, int* _piErr);
+FILEIO_IMPEXP double* filesinfo(char** _pstFilename, int _iSize, int* _piErr);
 
 #endif /* __FILEINFO_H__ */
 /*--------------------------------------------------------------------------*/

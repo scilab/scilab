@@ -36,9 +36,9 @@
 #define NegInfString "-Inf"
 /*--------------------------------------------------------------------------*/
 #if _MSC_VER
-#define READ_ONLY_TEXT_MODE L"rt"
+#define READ_ONLY_TEXT_MODE "rt"
 #else
-#define READ_ONLY_TEXT_MODE L"r"
+#define READ_ONLY_TEXT_MODE "r"
 #endif
 /*--------------------------------------------------------------------------*/
 #define NB_FORMAT_SUPPORTED 7
@@ -83,11 +83,9 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
 
 
     fscanfMatResult *resultFscanfMat = NULL;
-    wchar_t **pwsLines = NULL;
-    char **lines = NULL;
+    char **psLines = NULL;
     int nblines = 0;
     double *dValues = NULL;
-    wchar_t* filenameW = NULL;
 
     if ((filename == NULL) || (format == NULL) || (separator == NULL))
     {
@@ -109,9 +107,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
         return resultFscanfMat;
     }
 
-    filenameW = to_wide_string(filename);
-    errMOPEN = mopen(filenameW, READ_ONLY_TEXT_MODE, f_swap, &fd);
-    FREE(filenameW);
+    errMOPEN = mopen(filename, READ_ONLY_TEXT_MODE, f_swap, &fd);
     if (errMOPEN != MOPEN_NO_ERROR)
     {
         resultFscanfMat = (fscanfMatResult*)(MALLOC(sizeof(fscanfMatResult)));
@@ -127,7 +123,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
         return resultFscanfMat;
     }
 
-    pwsLines = mgetl(fd, -1, &nblines, &errMGETL);
+    psLines = mgetl(fd, -1, &nblines, &errMGETL);
     mclose(fd);
 
     if (errMGETL != MGETL_NO_ERROR)
@@ -145,22 +141,14 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
         return resultFscanfMat;
     }
 
-    lines = (char**)MALLOC(sizeof(char*) * nblines);
-    for (i = 0; i < nblines; i++)
-    {
-        lines[i] = wide_string_to_UTF8(pwsLines[i]);
-    }
+    psLines = removeEmptyLinesAtTheEnd(psLines, &nblines);
+    psLines = removeTextLinesAtTheEnd(psLines, &nblines, format, separator);
 
-    freeArrayOfWideString(pwsLines, nblines);
-
-    lines = removeEmptyLinesAtTheEnd(lines, &nblines);
-    lines = removeTextLinesAtTheEnd(lines, &nblines, format, separator);
-
-    nbLinesTextDetected = getNumbersLinesOfText(lines, nblines, format, separator);
+    nbLinesTextDetected = getNumbersLinesOfText(psLines, nblines, format, separator);
     nbRows = nblines - nbLinesTextDetected;
-    nbColumns = getNumbersColumnsInLines(lines, nblines, nbLinesTextDetected, format, separator);
+    nbColumns = getNumbersColumnsInLines(psLines, nblines, nbLinesTextDetected, format, separator);
 
-    dValues = getDoubleValuesFromLines(lines, nblines,
+    dValues = getDoubleValuesFromLines(psLines, nblines,
                                        nbLinesTextDetected,
                                        format, separator,
                                        nbColumns, nbRows);
@@ -171,22 +159,22 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
         {
             if (nbLinesTextDetected > 0)
             {
-                if (lines)
+                if (psLines)
                 {
                     for (i = nbLinesTextDetected; i < nblines; i++)
                     {
-                        if (lines[i])
+                        if (psLines[i])
                         {
-                            FREE(lines[i]);
-                            lines[i] = NULL;
+                            FREE(psLines[i]);
+                            psLines[i] = NULL;
                         }
                     }
                 }
-                resultFscanfMat->text = lines;
+                resultFscanfMat->text = psLines;
             }
             else
             {
-                freeArrayOfString(lines, nblines);
+                freeArrayOfString(psLines, nblines);
                 resultFscanfMat->text = NULL;
             }
             resultFscanfMat->sizeText = nbLinesTextDetected;
@@ -198,12 +186,12 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
         else
         {
             FREE(dValues);
-            freeArrayOfString(lines, nblines);
+            freeArrayOfString(psLines, nblines);
         }
     }
     else
     {
-        freeArrayOfString(lines, nblines);
+        freeArrayOfString(psLines, nblines);
         if (nbColumns == 0 || nbRows == 0)
         {
             resultFscanfMat = (fscanfMatResult*)(MALLOC(sizeof(fscanfMatResult)));
@@ -582,7 +570,7 @@ static double *getDoubleValuesInLine(char *line,
                 int ierr = 0;
                 double dValue = 0.;
                 char *cleanedFormat = getCleanedFormat(format);
-                int iLen = strlen(cleanedFormat);
+                int iLen = (int)strlen(cleanedFormat);
                 switch (cleanedFormat[iLen - 1])
                 {
                     case 'e' :

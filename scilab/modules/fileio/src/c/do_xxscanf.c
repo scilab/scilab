@@ -30,11 +30,11 @@ typedef int (*XXSCANF) (FILE* , char* , ...);
 typedef int (*FLUSH) (FILE*);
 
 /*--------------------------------------------------------------------------*/
-static void set_xxscanf(FILE* fp, XXSCANF* xxscanf, char** target, wchar_t* strv)
+static void set_xxscanf(FILE* fp, XXSCANF* xxscanf, char** target, char* strv)
 {
     if (fp == (FILE *) 0)
     {
-        *target = wide_string_to_UTF8(strv);
+        *target = strv;
         *xxscanf = (XXSCANF) sscanf;
     }
     else
@@ -47,11 +47,11 @@ static void delete_target(FILE* fp, char* target)
 {
     if (target && fp == (FILE *) 0)
     {
-        FREE(target);
+        //FREE(target);
     }
 }
 /*--------------------------------------------------------------------------*/
-int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *nargs, wchar_t *strv, int *retval, rec_entry *buf, sfdir *type)
+int do_xxscanf (const char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir *type)
 {
     int nc[MAXSCAN];
     int n_directive_count = 0;
@@ -64,14 +64,13 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
     int str_flag = 0;
     int num_conversion = -1;
     void *ptrtab[MAXSCAN];
-    wchar_t sformat[MAX_STR];
-    wchar_t backupcurrrentchar;
-    wchar_t directive;
-    wchar_t *p1 = NULL;
+    char sformat[MAX_STR];
+    char backupcurrrentchar;
+    char directive;
+    char *p1 = NULL;
     char* target = NULL;
-    wchar_t *sval = NULL;
-    register wchar_t *currentchar = NULL;
-    char* strFormat = NULL;
+    char* sval = NULL;
+    register char* currentchar = NULL;
 
     XXSCANF xxscanf;
 
@@ -82,11 +81,11 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
     while (TRUE)
     {
         /* scanf */
-        while (*currentchar != L'%' && *currentchar != L'\0')
+        while (*currentchar != '%' && *currentchar != '\0')
         {
             currentchar++;
         }
-        if (*currentchar == L'%' && *(currentchar + 1) == L'%')
+        if (*currentchar == '%' && *(currentchar + 1) == '%')
         {
             currentchar = currentchar + 2;
             continue;
@@ -109,16 +108,16 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
 
         if (p1 + 1 != currentchar)
         {
-            wchar_t w = *currentchar;
-            *currentchar = L'\0';
+            char w = *currentchar;
+            *currentchar = '\0';
             width_flag = 1;
-            swscanf(p1 + 1, L"%d", &width_val);
+            sscanf(p1 + 1, "%d", &width_val);
             *currentchar = w;
         }
 
         ignore_flag = 0;
 
-        if (*currentchar == L'*')
+        if (*currentchar == '*')
         {
             ignore_flag = 1;
             currentchar++;
@@ -128,12 +127,12 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
             l_flag = h_flag = 0;
         }
 
-        if (*currentchar == L'l')
+        if (*currentchar == 'l')
         {
             currentchar++;
             l_flag = 1;
         }
-        else if (*currentchar == L'h')
+        else if (*currentchar == 'h')
         {
             currentchar++;
             h_flag = 1;
@@ -143,31 +142,31 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
 
         directive = *currentchar++;
 
-        if (directive == L'[')
+        if (directive == '[')
         {
-            wchar_t *currentchar1 = currentchar--;
+            char* currentchar1 = currentchar--;
 
-            while (*currentchar1 != L'\0' && *currentchar1 != L']')
+            while (*currentchar1 != '\0' && *currentchar1 != ']')
             {
                 currentchar1++;
             }
 
-            if (*currentchar1 == L'\0')
+            if (*currentchar1 == '\0')
             {
                 delete_target(fp, target);
                 Scierror(998, _("%s: An error occurred: %s\n"), fname, _("unclosed [ directive."));
                 return DO_XXPRINTF_RET_BUG;
             }
 
-            if (currentchar1 == currentchar + 1 || wcsncmp(currentchar, L"[^]", 3) == 0)
+            if (currentchar1 == currentchar + 1 || strncmp(currentchar, "[^]", 3) == 0)
             {
                 currentchar1++;
-                while (*currentchar1 != L'\0' && *currentchar1 != L']')
+                while (*currentchar1 != '\0' && *currentchar1 != ']')
                 {
                     currentchar1++;
                 }
 
-                if (*currentchar1 == L'\0')
+                if (*currentchar1 == '\0')
                 {
                     delete_target(fp, target);
                     Scierror(998, _("%s: An error occurred: %s\n"), fname, _("unclosed [ directive."));
@@ -194,7 +193,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
 
             switch (directive)
             {
-                case L']':
+                case ']':
                     str_flag = 1;
 
                     if (width_flag == 1 && width_val > MAX_STR - 1)
@@ -204,7 +203,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                         return DO_XXPRINTF_RET_BUG;
                     }
 
-                    if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR * sizeof(wchar_t))) == NULL)
+                    if ((buf[num_conversion].c = (char*)MALLOC(MAX_STR * sizeof(char))) == NULL)
                     {
                         delete_target(fp, target);
                         return DO_XXPRINTF_MEM_LACK;
@@ -213,7 +212,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                     type[num_conversion] = SF_S;
                     break;
 
-                case L's':
+                case 's':
                     if (l_flag + h_flag)
                     {
                         delete_target(fp, target);
@@ -229,7 +228,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                         return DO_XXPRINTF_RET_BUG;
                     }
 
-                    if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR * sizeof(wchar_t))) == NULL)
+                    if ((buf[num_conversion].c = (char*)MALLOC(MAX_STR * sizeof(char))) == NULL)
                     {
                         delete_target(fp, target);
                         return DO_XXPRINTF_MEM_LACK;
@@ -239,7 +238,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                     type[num_conversion] = SF_S;
                     break;
 
-                case L'c':
+                case 'c':
                     str_flag = 1;
                     if (l_flag + h_flag)
                     {
@@ -264,7 +263,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                         return DO_XXPRINTF_RET_BUG;
                     }
 
-                    if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR * sizeof(wchar_t))) == NULL)
+                    if ((buf[num_conversion].c = (char*)MALLOC(MAX_STR * sizeof(char))) == NULL)
                     {
                         delete_target(fp, target);
                         return DO_XXPRINTF_MEM_LACK;
@@ -274,10 +273,10 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                     type[num_conversion] = SF_C;
                     break;
 
-                case L'o':
-                case L'u':
-                case L'x':
-                case L'X':
+                case 'o':
+                case 'u':
+                case 'x':
+                case 'X':
                     if (l_flag)
                     {
                         ptrtab[num_conversion] = &buf[num_conversion].lui;
@@ -295,17 +294,17 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                     }
                     break;
 
-                case L'D':
+                case 'D':
                     ptrtab[num_conversion] = &buf[num_conversion].li;
                     type[num_conversion] = SF_LI;
                     break;
 
-                case L'n':
+                case 'n':
                     n_directive_count++;
                     //pass to next statement
 
-                case L'i':
-                case L'd':
+                case 'i':
+                case 'd':
                     if (l_flag)
                     {
                         ptrtab[num_conversion] = &buf[num_conversion].li;
@@ -323,11 +322,11 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                     }
                     break;
 
-                case L'e':
-                case L'f':
-                case L'g':
-                case L'E':
-                case L'G':
+                case 'e':
+                case 'f':
+                case 'g':
+                case 'E':
+                case 'G':
                     if (h_flag)
                     {
                         delete_target(fp, target);
@@ -360,15 +359,15 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
     // replace %s by %ls
     if (str_flag)
     {
-        wchar_t *f1 = format;
-        wchar_t *f2 = sformat;
-        wchar_t *slast = sformat + MAX_STR - 1 - 4;
+        char *f1 = format;
+        char *f2 = sformat;
+        char *slast = sformat + MAX_STR - 1 - 4;
 
         int bFirst = 1;
-        while (*f1 != L'\0')
+        while (*f1 != '\0')
         {
             int n;
-            if (*(f1) == L'%')
+            if (*(f1) == '%')
             {
                 bFirst = 1;
             }
@@ -378,7 +377,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                 *f2++ = *f1++;
             }
 
-            if (bFirst && ( *(f1) == L's'  || *(f1) == L'[' || *(f1) == L'c'))
+            if (bFirst && ( *(f1) == 's'  || *(f1) == '[' || *(f1) == 'c'))
             {
                 bFirst = 0;
                 if (*(f1 - 1) != L'l' && *(f1 - 1) != L'L')
@@ -386,16 +385,16 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                     *f2++  = L'l';
                 }
             }
-            if ( (*(f1) == L's' || *(f1) == L'[')
+            if ( (*(f1) == 's' || *(f1) == '[')
                     &&
-                    (   (*(f1 - 1) == L'%')
+                    (   (*(f1 - 1) == '%')
                         ||
-                        ((*(f1 - 1) == L'l' || *(f1 - 1) == L'L') && (*(f1 - 2) == L'%'))
+                        ((*(f1 - 1) == 'l' || *(f1 - 1) == 'L') && (*(f1 - 2) == '%'))
                     )
                )
             {
                 f2--;
-                n = os_swprintf(f2, MAX_STR - 1, L"%d%c", MAX_STR - 1, L'l');
+                n = os_sprintf(f2, MAX_STR - 1, "%d%c", MAX_STR - 1, 'l');
                 f2 += n;
                 *f2++ = *f1++;
             }
@@ -408,12 +407,11 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
             }
         }
 
-        *f2 = L'\0';
+        *f2 = '\0';
         format = sformat;
     }
 
-    strFormat = wide_string_to_UTF8(format);
-    *retval = (*xxscanf) ((VPTR) target, strFormat,
+    *retval = (*xxscanf) ((VPTR) target, format,
                           ptrtab[0], ptrtab[1], ptrtab[2], ptrtab[3], ptrtab[4], ptrtab[5], ptrtab[6], ptrtab[7], ptrtab[8], ptrtab[9],
                           ptrtab[10], ptrtab[11], ptrtab[12], ptrtab[13], ptrtab[14], ptrtab[15], ptrtab[16], ptrtab[17], ptrtab[18], ptrtab[19],
                           ptrtab[20], ptrtab[21], ptrtab[22], ptrtab[23], ptrtab[24], ptrtab[25], ptrtab[26], ptrtab[27], ptrtab[28], ptrtab[29],
@@ -425,7 +423,6 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                           ptrtab[80], ptrtab[81], ptrtab[82], ptrtab[83], ptrtab[84], ptrtab[85], ptrtab[86], ptrtab[87], ptrtab[88], ptrtab[89],
                           ptrtab[90], ptrtab[91], ptrtab[92], ptrtab[93], ptrtab[94], ptrtab[95], ptrtab[96], ptrtab[97], ptrtab[98],
                           ptrtab[MAXSCAN - 1]);
-    FREE(strFormat);
     delete_target(fp, target);
 
     *nargs = Min(num_conversion + 1, Max(*retval + n_directive_count, 0));
@@ -434,8 +431,8 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
     {
         if (type[i - 1] == SF_C)
         {
-            sval = (wchar_t *)ptrtab[i - 1];
-            sval[nc[i - 1]] = L'\0';
+            sval = (char *)ptrtab[i - 1];
+            sval[nc[i - 1]] = '\0';
         }
     }
 

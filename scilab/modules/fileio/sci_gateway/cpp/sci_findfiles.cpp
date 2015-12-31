@@ -31,15 +31,15 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-#define DEFAULT_FILESPEC L"*.*"
+#define DEFAULT_FILESPEC "*.*"
 #else
-#define DEFAULT_FILESPEC L"*"
+#define DEFAULT_FILESPEC "*"
 #endif
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    wchar_t* pwstPath   = NULL;
-    wchar_t* pwstSpec   = NULL;
+    char* path   = NULL;
+    char* spec   = NULL;
     bool bAllocatedSpec = false;
 
     if (in.size() > 2)
@@ -53,8 +53,8 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
         //default path and default file spec
         int ierr        = 0;
 
-        pwstPath        = scigetcwdW(&ierr);
-        pwstSpec        = os_wcsdup(DEFAULT_FILESPEC);
+        path        = scigetcwd(&ierr);
+        spec        = os_strdup(DEFAULT_FILESPEC);
         bAllocatedSpec  = true;
     }
     else
@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
             return types::Function::Error;
         }
 
-        pwstPath = expandPathVariableW(in[0]->getAs<types::String>()->get()[0]);
+        path = expandPathVariable(in[0]->getAs<types::String>()->get()[0]);
 
         if (in.size() == 2)
         {
@@ -77,25 +77,25 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
                 return types::Function::Error;
             }
 
-            pwstSpec = in[1]->getAs<types::String>()->get()[0];
+            spec = in[1]->getAs<types::String>()->get()[0];
         }
         else
         {
             //default file spec
-            pwstSpec        = os_wcsdup(DEFAULT_FILESPEC);
+            spec        = os_strdup(DEFAULT_FILESPEC);
             bAllocatedSpec  = true;
         }
     }
 
     int iSize               = 0;
-    wchar_t** pwstFilesList = NULL;
+    char** pstFilesList = NULL;
 
-    pwstFilesList = findfilesW(pwstPath, pwstSpec, &iSize, FALSE);
-    if (pwstFilesList)
+    pstFilesList = findfiles(path, spec, &iSize, FALSE);
+    if (pstFilesList)
     {
         types::String* pS = new types::String(iSize, 1);
-        pS->set(pwstFilesList);
-        freeArrayOfWideString(pwstFilesList, iSize);
+        pS->set(pstFilesList);
+        freeArrayOfString(pstFilesList, iSize);
         out.push_back(pS);
     }
     else
@@ -103,10 +103,10 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
         out.push_back(types::Double::Empty());
     }
 
-    FREE(pwstPath);
+    FREE(path);
     if (bAllocatedSpec)
     {
-        FREE(pwstSpec);
+        FREE(spec);
     }
 
     return types::Function::OK;

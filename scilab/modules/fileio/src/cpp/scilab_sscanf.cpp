@@ -27,9 +27,9 @@ extern "C"
 #include "os_wcstok.h"
 }
 
-static wchar_t* findChars(wchar_t*, BOOL*); // Use to find what is inside the [] when the format is %[...].
+static char* findChars(const char*, BOOL*); // Use to find what is inside the [] when the format is %[...].
 
-int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _iNiter, std::vector<types::InternalType*> *_pITOut)
+int scilab_sscanf(const char* _format, const char* _data, int _iIterrator, int _iNiter, std::vector<types::InternalType*> *_pITOut)
 {
     int i                       = 0;
     int j                       = 0;
@@ -41,57 +41,57 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
     BOOL bNegatif               = FALSE;
     BOOL bIgnoredChars          = TRUE;
     int base                    = 0;
-    wchar_t wcsLLH              = L' ';
-    wchar_t* wcsData            = NULL;
-    int sizeOfData              = (int)wcslen(_wcsData);
+    char LLH                    = ' ';
+    char* data                  = NULL;
+    int sizeOfData              = (int)strlen(_data);
     int iCountDataRead          = 0;
 
-    wcsData = (wchar_t*)MALLOC((sizeOfData + 1) * sizeof(wchar_t));
-    memcpy(wcsData, _wcsData, sizeOfData * sizeof(wchar_t));
-    wcsData[sizeOfData] = '\0';
+    data = (char*)MALLOC((sizeOfData + 1) * sizeof(char));
+    memcpy(data, _data, sizeOfData * sizeof(char));
+    data[sizeOfData] = '\0';
 
-    while (i < (int)wcslen(_wcsFormat))
+    while (i < (int)strlen(_format))
     {
-        while (bIgnoredChars && i < (int)wcslen(_wcsFormat)) // %da%s => 'a' is an ignored char.
+        while (bIgnoredChars && i < (int)strlen(_format)) // %da%s => 'a' is an ignored char.
         {
-            if (wcsData != NULL && wcsData[0] != L'\0' && _wcsFormat[i] == wcsData[0])
+            if (data != NULL && data[0] != '\0' && _format[i] == data[0])
             {
-                if (_wcsFormat[i] != L' ')
+                if (_format[i] != ' ')
                 {
                     i++;
-                    wcsData++;
+                    data++;
                 }
                 else
                 {
-                    while (wcsData[0] == L' ')
+                    while (data[0] == ' ')
                     {
-                        wcsData++;
+                        data++;
                     }
-                    while (_wcsFormat[i] == L' ')
+                    while (_format[i] == ' ')
                     {
                         i++;
                     }
                 }
             }
-            else if ((wcsData == NULL || wcsData[0] == L'\0') && i < (int)wcslen(_wcsFormat) && iCountDataRead == 0 && _pITOut->size() == 0)
+            else if ((data == NULL || data[0] == '\0') && i < (int)strlen(_format) && iCountDataRead == 0 && _pITOut->size() == 0)
             {
                 iCountDataRead = -1;
             }
             else
             {
-                if (_wcsFormat[i] == L' ')
+                if (_format[i] == ' ')
                 {
                     do
                     {
                         i++;
                     }
-                    while (i < (int)wcslen(_wcsFormat) && _wcsFormat[i] == L' ');
+                    while (i < (int)strlen(_format) && _format[i] == ' ');
                 }
 
-                if (_wcsFormat[i] != L'%')
+                if (_format[i] != '%')
                 {
-                    wcsData = NULL;
-                    while (i < (int)wcslen(_wcsFormat) && _wcsFormat[i] != L'%')
+                    data = NULL;
+                    while (i < (int)strlen(_format) && _format[i] != '%')
                     {
                         i++;
                     }
@@ -99,46 +99,46 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                 break;
             }
         }
-        if (i == (int)wcslen(_wcsFormat))
+        if (i == (int)strlen(_format))
         {
             break;
         }
 
-        if (iswdigit(_wcsFormat[i]))
+        if (iswdigit(_format[i]))
         {
-            nbrOfDigit = wcstol(&_wcsFormat[i], NULL, 10);
-            while (iswdigit(_wcsFormat[i]))
+            nbrOfDigit = strtol(&_format[i], NULL, 10);
+            while (isdigit(_format[i]))
             {
                 i++;
             }
         }
-        else switch (_wcsFormat[i])
+        else switch (_format[i])
             {
-                case L' ' :
-                case L'\n':
-                case L'\t':
+                case ' ' :
+                case '\n':
+                case '\t':
                     i++;
                     break;
-                case L'%' :
+                case '%' :
                     i++;
                     bIgnoredChars = FALSE;
                     break;
-                case L'*' :
+                case '*' :
                     bStar = TRUE;
                     i++;
                     break;
-                case L'h' :
-                case L'l' :
-                case L'L' :
-                    wcsLLH = _wcsFormat[i];
+                case 'h' :
+                case 'l' :
+                case 'L' :
+                    LLH = _format[i];
                     i++;
                     break;
-                case L'c' :
+                case 'c' :
                 {
-                    if (wcsData != NULL && wcsData[0] != L'\0') // If the end of data has not been reached we can get datas.
+                    if (data != NULL && data[0] != '\0') // If the end of data has not been reached we can get datas.
                     {
-                        wchar_t wcSingleData[2];
-                        wcSingleData[0] = wcsData[0];
+                        char wcSingleData[2];
+                        wcSingleData[0] = data[0];
                         wcSingleData[1] = 0;
 
                         if (!bStar) // If this format is not ignored put the datas found.
@@ -148,14 +148,14 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                 types::String* pS = new types::String(dims, dimsArray);
                                 for (int k = 0 ; k < pS->getSize(); k++)
                                 {
-                                    pS->set(k, L"");
+                                    pS->set(k, "");
                                 }
                                 _pITOut->push_back(pS);
                             }
                             (*_pITOut)[j]->getAs<types::String>()->set(_iIterrator, wcSingleData);
                             iCountDataRead++;
                         }
-                        wcsData++;
+                        data++;
                     }
                     else
                     {
@@ -177,39 +177,39 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                     bStar = FALSE;
                 }
                 break;
-                case L's' :
+                case 's' :
                 {
-                    if (wcsData != NULL && wcsData[0] != L'\0')
+                    if (data != NULL && data[0] != '\0')
                     {
-                        wchar_t* wcsSingleData  = NULL;
-                        wchar_t* wcsRes         = NULL;
-                        wchar_t seps[]          = L" \t\n";
-                        int sizeOfCurrentData   = (int)wcslen(wcsData);
-                        wchar_t* wcsTemp        = (wchar_t*)MALLOC((sizeOfCurrentData + 1) * sizeof(wchar_t));
+                        char* singleData        = NULL;
+                        char* res               = NULL;
+                        char seps[]             = " \t\n";
+                        int sizeOfCurrentData   = (int)strlen(data);
+                        char* temp              = (char*)MALLOC((sizeOfCurrentData + 1) * sizeof(char));
 
-                        memcpy(wcsTemp, wcsData, sizeOfCurrentData * sizeof(wchar_t));
-                        wcsTemp[sizeOfCurrentData] = L'\0';
-                        wcsRes = os_wcstok(wcsTemp, seps, &wcsTemp); // the seps[] found is replaced by the '\0' char.
+                        memcpy(temp, data, sizeOfCurrentData * sizeof(char));
+                        temp[sizeOfCurrentData] = '\0';
+                        res = os_strtok(temp, seps, &temp); // the seps[] found is replaced by the '\0' char.
 
-                        if (wcsTemp == NULL || wcsTemp[0] == L'\0')
+                        if (temp == NULL || temp[0] == '\0')
                         {
-                            wcsData = NULL;
+                            data = NULL;
                         }
                         else
                         {
-                            wcsData += (wcslen(wcsData) - wcslen(wcsTemp) - 1); // set the pointer on the seps[] and not on the next char.
+                            data += (strlen(data) - strlen(temp) - 1); // set the pointer on the seps[] and not on the next char.
                         }
 
                         if (nbrOfDigit) // Get only the numbers of digit indicated in the format. (ex: %2d)
                         {
-                            wcsSingleData = (wchar_t*)MALLOC(sizeof(wchar_t) * (nbrOfDigit + 1));
-                            memcpy(wcsSingleData, wcsRes, sizeof(wchar_t) * nbrOfDigit);
-                            wcsSingleData[nbrOfDigit] = L'\0';
+                            singleData = (char*)MALLOC(sizeof(char) * (nbrOfDigit + 1));
+                            memcpy(singleData, res, sizeof(char) * nbrOfDigit);
+                            singleData[nbrOfDigit] = '\0';
                             nbrOfDigit = 0;
                         }
                         else // Get all data find.
                         {
-                            wcsSingleData = wcsRes;
+                            singleData = res;
                         }
 
                         if (!bStar)
@@ -219,17 +219,17 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                 types::String* pS = new types::String(dims, dimsArray);
                                 for (int k = 0 ; k < pS->getSize(); k++)
                                 {
-                                    pS->set(k, L"");
+                                    pS->set(k, "");
                                 }
                                 _pITOut->push_back(pS);
                             }
-                            (*_pITOut)[j]->getAs<types::String>()->set(_iIterrator, wcsSingleData);
+                            (*_pITOut)[j]->getAs<types::String>()->set(_iIterrator, singleData);
                             iCountDataRead++;
                         }
 
                         if (nbrOfDigit)
                         {
-                            FREE(wcsSingleData);
+                            FREE(singleData);
                         }
                     }
                     else
@@ -252,28 +252,28 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                     bStar = FALSE;
                 }
                 break;
-                case L'[' :
+                case '[' :
                 {
-                    if (wcsData != NULL && wcsData[0] != L'\0')
+                    if (data != NULL && data[0] != '\0')
                     {
-                        wchar_t* wcsInside          = NULL;
-                        wchar_t* wcsCpyFormat       = NULL;
-                        unsigned int iPos           = 0;
-                        wchar_t* wcsSingleData      = NULL;
-                        wchar_t* wcsRes             = NULL;
-                        wchar_t* wscToFind          = NULL;
-                        BOOL bInv                   = FALSE;
+                        char* inside        = NULL;
+                        char* cpyFormat     = NULL;
+                        unsigned int iPos   = 0;
+                        char* singleData    = NULL;
+                        char* res           = NULL;
+                        char* toFind        = NULL;
+                        BOOL bInv           = FALSE;
 
                         i++;
-                        wcsCpyFormat = (wchar_t*)MALLOC((wcslen(_wcsFormat) - i + 1) * sizeof(wchar_t));
-                        memcpy(wcsCpyFormat, &_wcsFormat[i], (wcslen(_wcsFormat) - i) * sizeof(wchar_t));
-                        wcsCpyFormat[wcslen(_wcsFormat) - i] = L'\0';
+                        cpyFormat = (char*)MALLOC((strlen(_format) - i + 1) * sizeof(char));
+                        memcpy(cpyFormat, &_format[i], (strlen(_format) - i) * sizeof(char));
+                        cpyFormat[strlen(_format) - i] = '\0';
 
-                        wcsInside = os_wcstok(wcsCpyFormat, L"]", &wcsCpyFormat);
-                        i += (int)wcslen(wcsInside) + 1; // +1 => ]
+                        inside = os_strtok(cpyFormat, "]", &cpyFormat);
+                        i += (int)strlen(inside) + 1; // +1 => ]
 
-                        wscToFind = findChars(wcsInside, &bInv);
-                        if (wscToFind == NULL)
+                        toFind = findChars(inside, &bInv);
+                        if (toFind == NULL)
                         {
                             // MALLOC error
                             return -10;
@@ -281,16 +281,16 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
 
                         if (bInv)
                         {
-                            iPos = (int)wcscspn(wcsData, wscToFind);
+                            iPos = (int)strcspn(data, toFind);
                         }
                         else
                         {
-                            iPos = (int)wcsspn(wcsData, wscToFind);
+                            iPos = (int)strspn(data, toFind);
                         }
 
                         if (iPos == 0)
                         {
-                            // The string begins with a character which is not in wscToFind
+                            // The string begins with a character which is not in toFind
                             if (_iIterrator == 0 && !bStar && _iNiter == 1)
                             {
                                 _pITOut->push_back(types::Double::Empty());
@@ -302,23 +302,23 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                         }
                         else
                         {
-                            wcsRes = (wchar_t*)MALLOC((iPos + 1) * sizeof(wchar_t));
-                            memcpy(wcsRes, wcsData, iPos * sizeof(wchar_t));
-                            wcsRes[iPos] = '\0';
+                            res = (char*)MALLOC((iPos + 1) * sizeof(char));
+                            memcpy(res, data, iPos * sizeof(char));
+                            res[iPos] = '\0';
 
-                            FREE(wcsInside);
+                            FREE(inside);
 
                             if (nbrOfDigit)
                             {
-                                wcsSingleData = (wchar_t*)MALLOC(sizeof(wchar_t) * (nbrOfDigit + 1));
-                                memcpy(wcsSingleData, wcsRes, sizeof(wchar_t) * nbrOfDigit);
-                                wcsSingleData[nbrOfDigit] = L'\0';
-                                wcsData += nbrOfDigit;
+                                singleData = (char*)MALLOC(sizeof(char) * (nbrOfDigit + 1));
+                                memcpy(singleData, res, sizeof(char) * nbrOfDigit);
+                                singleData[nbrOfDigit] = '\0';
+                                data += nbrOfDigit;
                             }
                             else
                             {
-                                wcsSingleData = wcsRes;
-                                wcsData += iPos;
+                                singleData = res;
+                                data += iPos;
                             }
                         }
 
@@ -329,20 +329,20 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                 types::String* pS = new types::String(dims, dimsArray);
                                 for (int k = 0 ; k < pS->getSize(); k++)
                                 {
-                                    pS->set(k, L"");
+                                    pS->set(k, "");
                                 }
                                 _pITOut->push_back(pS);
                             }
-                            if (wcsSingleData != NULL)
+                            if (singleData != NULL)
                             {
-                                (*_pITOut)[j]->getAs<types::String>()->set(_iIterrator, wcsSingleData);
+                                (*_pITOut)[j]->getAs<types::String>()->set(_iIterrator, singleData);
                                 iCountDataRead++;
                             }
                         }
 
                         if (nbrOfDigit)
                         {
-                            FREE(wcsSingleData);
+                            FREE(singleData);
                         }
                     }
                     else
@@ -365,44 +365,44 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                     bStar           = FALSE;
                 }
                 break;
-                case L'x' :
-                case L'X' :
+                case 'x' :
+                case 'X' :
                     base += 6; // 6 + 2 + 8 = 16 // Compute the base of data to get.
-                case L'u' :
+                case 'u' :
                     if (base == 0)
                     {
                         bUnsigned = TRUE;    // unsigned int
                     }
-                case L'i' :
-                case L'd' :
+                case 'i' :
+                case 'd' :
                     base += 2; // 2 + 8 = 10
-                case L'o' :
+                case 'o' :
                     base += 8; // 8 = 8 :D
                     {
-                        if (wcsData != NULL && wcsData[0] != L'\0')
+                        if (data != NULL && data[0] != '\0')
                         {
                             long int iSingleData = 0;
-                            while (wcsData[0] == L' ')
+                            while (data[0] == ' ')
                             {
-                                wcsData++;
+                                data++;
                             }
                             if (nbrOfDigit)
                             {
-                                wchar_t* number = NULL;
-                                if (wcslen(wcsData) < nbrOfDigit)
+                                char* number = NULL;
+                                if (strlen(data) < nbrOfDigit)
                                 {
-                                    nbrOfDigit = (int)wcslen(wcsData);
+                                    nbrOfDigit = (int)strlen(data);
                                 }
 
-                                number = (wchar_t*)MALLOC((nbrOfDigit + 1) * sizeof(wchar_t));
-                                memcpy(number, wcsData, nbrOfDigit * sizeof(wchar_t));
-                                number[nbrOfDigit] = L'\0';
-                                iSingleData = wcstoul(number, &number, base);
-                                if ((iSingleData == 0) && (number[0] == wcsData[0]))
+                                number = (char*)MALLOC((nbrOfDigit + 1) * sizeof(char));
+                                memcpy(number, data, nbrOfDigit * sizeof(char));
+                                number[nbrOfDigit] = '\0';
+                                iSingleData = strtoul(number, &number, base);
+                                if ((iSingleData == 0) && (number[0] == data[0]))
                                 {
                                     if (_iIterrator == 0 && !bStar && _iNiter == 1)
                                     {
-                                        wcsData = NULL;
+                                        data = NULL;
                                         _pITOut->push_back(types::Double::Empty());
                                         bStar = TRUE;
                                     }
@@ -413,23 +413,23 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                 }
                                 if (number == NULL)
                                 {
-                                    wcsData += nbrOfDigit;
+                                    data += nbrOfDigit;
                                 }
                                 else
                                 {
-                                    wcsData += (nbrOfDigit - wcslen(number));
+                                    data += (nbrOfDigit - strlen(number));
                                 }
                                 nbrOfDigit = 0;
                             }
                             else
                             {
-                                wchar_t temp = wcsData[0];
-                                iSingleData = wcstoul(wcsData, &wcsData, base);
-                                if ((iSingleData == 0) && (temp == wcsData[0]))
+                                char temp = data[0];
+                                iSingleData = strtoul(data, &data, base);
+                                if ((iSingleData == 0) && (temp == data[0]))
                                 {
                                     if (_iIterrator == 0 && !bStar && _iNiter == 1)
                                     {
-                                        wcsData = NULL;
+                                        data = NULL;
                                         _pITOut->push_back(types::Double::Empty());
                                         bStar = TRUE;
                                     }
@@ -444,9 +444,9 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                             {
                                 if (_iIterrator == 0)
                                 {
-                                    switch (wcsLLH)
+                                    switch (LLH)
                                     {
-                                        case L'h' :
+                                        case 'h' :
                                         {
                                             if (bUnsigned)
                                             {
@@ -468,8 +468,8 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                             }
                                         }
                                         break;
-                                        case L'l' :
-                                        case L'L' :
+                                        case 'l' :
+                                        case 'L' :
                                         {
                                             if (bUnsigned)
                                             {
@@ -514,9 +514,9 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                         }
                                     }
                                 }
-                                switch (wcsLLH)
+                                switch (LLH)
                                 {
-                                    case L'h' :
+                                    case 'h' :
                                         if (bUnsigned)
                                         {
                                             (*_pITOut)[j]->getAs<types::UInt16>()->set(_iIterrator, static_cast<unsigned short int>(iSingleData));
@@ -528,8 +528,8 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                             iCountDataRead++;
                                         }
                                         break;
-                                    case L'l' :
-                                    case L'L' :
+                                    case 'l' :
+                                    case 'L' :
                                         if (bUnsigned)
                                         {
                                             (*_pITOut)[j]->getAs<types::UInt64>()->set(_iIterrator, iSingleData);
@@ -570,7 +570,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                         {
                             j++;
                         }
-                        wcsLLH          = L' ';
+                        LLH          = ' ';
                         bIgnoredChars   = TRUE;
                         bUnsigned       = FALSE;
                         bNegatif        = FALSE;
@@ -579,36 +579,36 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                         i++;
                     }
                     break;
-                case L'e' :
-                case L'E' :
-                case L'g' :
-                case L'G' :
-                case L'f' :
+                case 'e' :
+                case 'E' :
+                case 'g' :
+                case 'G' :
+                case 'f' :
                 {
-                    if (wcsData != NULL && wcsData[0] != L'\0')
+                    if (data != NULL && data[0] != '\0')
                     {
                         double dSingleData  = 0;
                         BOOL bSigne         = FALSE;
-                        while (wcsData[0] == L' ')
+                        while (data[0] == ' ')
                         {
-                            wcsData++;
+                            data++;
                         }
                         if (nbrOfDigit)
                         {
                             int iSizeRead   = 0;
-                            wchar_t* number = NULL;
-                            wchar_t* next   = NULL;
-                            if (wcslen(wcsData) < nbrOfDigit)
+                            char* number = NULL;
+                            char* next   = NULL;
+                            if (strlen(data) < nbrOfDigit)
                             {
-                                nbrOfDigit = (int)wcslen(wcsData);
+                                nbrOfDigit = (int)strlen(data);
                             }
-                            number = (wchar_t*)MALLOC((nbrOfDigit + 1) * sizeof(wchar_t));
-                            memcpy(number, wcsData, nbrOfDigit * sizeof(wchar_t));
-                            number[nbrOfDigit] = L'\0';
-                            dSingleData = wcstod(number, &next);
+                            number = (char*)MALLOC((nbrOfDigit + 1) * sizeof(char));
+                            memcpy(number, data, nbrOfDigit * sizeof(char));
+                            number[nbrOfDigit] = '\0';
+                            dSingleData = strtod(number, &next);
                             if (next)
                             {
-                                iSizeRead = nbrOfDigit - (int)wcslen(next);
+                                iSizeRead = nbrOfDigit - (int)strlen(next);
                             }
                             else
                             {
@@ -618,7 +618,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                             {
                                 if (_iIterrator == 0 && !bStar && _iNiter == 1)
                                 {
-                                    wcsData = NULL;
+                                    data = NULL;
                                     _pITOut->push_back(types::Double::Empty());
                                     bStar = TRUE;
                                 }
@@ -627,19 +627,19 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                     return -10;
                                 }
                             }
-                            wcsData += iSizeRead;
+                            data += iSizeRead;
                             FREE(number);
                             nbrOfDigit = 0;
                         }
                         else
                         {
-                            int iLenData = (int)wcslen(wcsData);
-                            dSingleData = wcstod(wcsData, &wcsData);
-                            if ((dSingleData == 0) && (iLenData == wcslen(wcsData)))
+                            int iLenData = (int)strlen(data);
+                            dSingleData = strtod(data, &data);
+                            if ((dSingleData == 0) && (iLenData == strlen(data)))
                             {
                                 if (_iIterrator == 0 && !bStar && _iNiter == 1)
                                 {
-                                    wcsData = NULL;
+                                    data = NULL;
                                     _pITOut->push_back(types::Double::Empty());
                                     bStar = TRUE;
                                 }
@@ -685,7 +685,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                     bStar = FALSE;
                 }
                 break;
-                case L'n' :
+                case 'n' :
                 {
                     double dSingleData = -1;
                     if (_iIterrator == 0 && !bStar)
@@ -698,13 +698,13 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                         _pITOut->push_back(pD);
                     }
 
-                    if (wcsData == NULL || wcsData[0] == L'\0')
+                    if (data == NULL || data[0] == '\0')
                     {
                         dSingleData = (double)sizeOfData;
                     }
                     else
                     {
-                        dSingleData = (double)sizeOfData - (double)wcslen(wcsData);
+                        dSingleData = (double)sizeOfData - (double)strlen(data);
                     }
 
                     if (!bStar)
@@ -719,7 +719,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                 }
                 break;
                 default :
-                    printf("format read : %c\n", _wcsFormat[i]);
+                    printf("format read : %c\n", _format[i]);
                     return -10;
             }
     }
@@ -727,18 +727,18 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
     return iCountDataRead;
 }
 
-wchar_t* findChars(wchar_t* chars, BOOL* _bInv) // ex: "123456789abc" = findChars("1-9abc")
+char* findChars(const char* chars, BOOL* _bInv) // ex: "123456789abc" = findChars("1-9abc")
 {
     unsigned int iIterChars = 0;
     unsigned int iIterRes   = 0;
     int iNbr                = 0;
     int iLen                = 0;
-    wchar_t* wcsRes         = NULL;
+    char* res               = NULL;
     int* piPos              = NULL;
 
-    piPos = (int*)MALLOC(wcslen(chars) * sizeof(int));
+    piPos = (int*)MALLOC(strlen(chars) * sizeof(int));
 
-    if (chars[0] == L'^')
+    if (chars[0] == '^')
     {
         *_bInv = TRUE;
     }
@@ -747,9 +747,9 @@ wchar_t* findChars(wchar_t* chars, BOOL* _bInv) // ex: "123456789abc" = findChar
         *_bInv = FALSE;
     }
 
-    for (iIterChars = 0; iIterChars < wcslen(chars); iIterChars++)
+    for (iIterChars = 0; iIterChars < strlen(chars); iIterChars++)
     {
-        if (chars[iIterChars] == L'-' && iIterChars != 0 && iIterChars != wcslen(chars) - 1)
+        if (chars[iIterChars] == '-' && iIterChars != 0 && iIterChars != strlen(chars) - 1)
         {
             int iSize = chars[iIterChars + 1] - chars[iIterChars - 1] - 1;
             if (iSize >= 0)
@@ -771,25 +771,25 @@ wchar_t* findChars(wchar_t* chars, BOOL* _bInv) // ex: "123456789abc" = findChar
         }
     }
 
-    wcsRes = (wchar_t*)MALLOC((iLen + 1) * sizeof(wchar_t));
+    res = (char*)MALLOC((iLen + 1) * sizeof(char));
 
-    for (iIterChars = 0; iIterChars < wcslen(chars); iIterChars++)
+    for (iIterChars = 0; iIterChars < strlen(chars); iIterChars++)
     {
         if (piPos[iIterChars])
         {
             for (int i = 1; i < (chars[iIterChars + 1] - chars[iIterChars - 1]); i++, iIterRes++)
             {
-                wcsRes[iIterRes] = chars[iIterChars - 1] + i;
+                res[iIterRes] = chars[iIterChars - 1] + i;
             }
         }
         else
         {
-            wcsRes[iIterRes] = chars[iIterChars];
+            res[iIterRes] = chars[iIterChars];
             iIterRes++;
         }
     }
-    wcsRes[iLen] = L'\0';
+    res[iLen] = '\0';
 
     FREE(piPos);
-    return wcsRes;
+    return res;
 }

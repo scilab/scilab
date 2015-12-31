@@ -27,7 +27,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    wchar_t **wcsDrives = NULL;
+    char** drives = NULL;
     int iNbDrives = 0;
     int dimsArray[2] = {1, 1};
     types::String* pOut = NULL;
@@ -38,18 +38,18 @@ types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount
         return types::Function::Error;
     }
 
-    wcsDrives = getdrivesW(&iNbDrives);
-    if (wcsDrives)
+    drives = getdrives(&iNbDrives);
+    if (drives)
     {
         dimsArray[1] = iNbDrives;
         pOut = new types::String(2, dimsArray);
-        pOut->set(wcsDrives);
-        freeArrayOfWideString(wcsDrives, iNbDrives);
+        pOut->set(drives);
+        freeArrayOfString(drives, iNbDrives);
     }
     else
     {
         pOut = new types::String(2, dimsArray);
-        pOut->set(0, L"");
+        pOut->set(0, "");
     }
 
     out.push_back(pOut);

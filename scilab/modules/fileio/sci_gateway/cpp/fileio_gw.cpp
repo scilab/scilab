@@ -14,7 +14,7 @@
 #include "context.hxx"
 #include "function.hxx"
 
-#define MODULE_NAME L"fileio"
+#define MODULE_NAME "fileio"
 
 #pragma comment(lib,"../../../../bin/libxml2.lib")
 #pragma comment(lib,"../../../../bin/libcurl.lib")
@@ -26,52 +26,52 @@ extern "C"
 
 int FileioModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"cd", &sci_chdir, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"chdir", &sci_chdir, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"pwd", &sci_pwd, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mopen", &sci_mopen, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mclose", &sci_mclose, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mput", &sci_mput, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mget", &sci_mget, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mputl", &sci_mputl, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mgetl", &sci_mgetl, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"pathconvert", &sci_pathconvert, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isdir", &sci_isdir, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"filesep", &sci_filesep, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fileparts", &sci_fileparts, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"findfiles", &sci_findfiles, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"basename", &sci_basename, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isfile", &sci_isfile, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fileinfo", &sci_fileinfo, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"deletefile", &sci_deletefile, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getshortpathname", &sci_getshortpathname, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getlongpathname", &sci_getlongpathname, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fileext", &sci_fileext, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"createdir", &sci_createdir, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fullpath", &sci_fullpath, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"copyfile", &sci_copyfile, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"removedir", &sci_removedir, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"meof", &sci_meof, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mputstr", &sci_mputstr, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mgetstr", &sci_mgetstr, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mseek", &sci_mseek, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mtell", &sci_mtell, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"newest", &sci_newest, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"merror", &sci_merror, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mclearerr", &sci_mclearerr, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"get_absolute_file_path", &sci_get_absolute_file_path, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getrelativefilename", &sci_getrelativefilename, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"pathsep", &sci_pathsep, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mfprintf", &sci_mfprintf, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mscanf", &sci_mscanf, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mfscanf", &sci_mfscanf, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"msscanf", &sci_msscanf, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getdrives", &sci_getdrives, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fprintfMat", &sci_fprintfMat, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fscanfMat", &sci_fscanfMat, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getURL", &sci_getURL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"movefile", &sci_movefile, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"splitURL", &sci_splitURL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tempname", &sci_tempname, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("cd", &sci_chdir, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("chdir", &sci_chdir, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("pwd", &sci_pwd, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mopen", &sci_mopen, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mclose", &sci_mclose, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mput", &sci_mput, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mget", &sci_mget, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mputl", &sci_mputl, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mgetl", &sci_mgetl, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("pathconvert", &sci_pathconvert, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("isdir", &sci_isdir, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("filesep", &sci_filesep, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("fileparts", &sci_fileparts, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("findfiles", &sci_findfiles, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("basename", &sci_basename, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("isfile", &sci_isfile, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("fileinfo", &sci_fileinfo, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("deletefile", &sci_deletefile, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("getshortpathname", &sci_getshortpathname, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("getlongpathname", &sci_getlongpathname, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("fileext", &sci_fileext, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("createdir", &sci_createdir, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("fullpath", &sci_fullpath, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("copyfile", &sci_copyfile, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("removedir", &sci_removedir, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("meof", &sci_meof, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mputstr", &sci_mputstr, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mgetstr", &sci_mgetstr, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mseek", &sci_mseek, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mtell", &sci_mtell, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("newest", &sci_newest, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("merror", &sci_merror, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mclearerr", &sci_mclearerr, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("get_absolute_file_path", &sci_get_absolute_file_path, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("getrelativefilename", &sci_getrelativefilename, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("pathsep", &sci_pathsep, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mfprintf", &sci_mfprintf, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mscanf", &sci_mscanf, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mfscanf", &sci_mfscanf, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("msscanf", &sci_msscanf, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("getdrives", &sci_getdrives, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("fprintfMat", &sci_fprintfMat, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("fscanfMat", &sci_fscanfMat, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("getURL", &sci_getURL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("movefile", &sci_movefile, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("splitURL", &sci_splitURL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("tempname", &sci_tempname, MODULE_NAME));
     return 1;
 }

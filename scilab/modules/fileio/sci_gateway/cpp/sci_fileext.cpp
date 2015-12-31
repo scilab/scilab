@@ -51,19 +51,21 @@ types::Function::ReturnValue sci_fileext(types::typed_list &in, int _iRetCount, 
 
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
-        wchar_t* pwstIn         = pS->get(i);
-        wchar_t* pwstDrive      = new wchar_t[wcslen(pwstIn) + 1];
-        wchar_t* pwstDirectory  = new wchar_t[wcslen(pwstIn) + 1];
-        wchar_t* pwstName       = new wchar_t[wcslen(pwstIn) + 1];
-        wchar_t* pwstExtension  = new wchar_t[wcslen(pwstIn) + 1];
+        char* pstIn         = pS->get(i);
+        int len = (int)strlen(pstIn);
 
-        splitpathW(pwstIn, FALSE, pwstDrive, pwstDirectory, pwstName, pwstExtension);
-        pOut->set(i, pwstExtension);
+        char* pstDrive      = new char[len + 1];
+        char* pstDirectory  = new char[len + 1];
+        char* pstName       = new char[len + 1];
+        char* pstExtension  = new char[len + 1];
 
-        delete[] pwstDirectory;
-        delete[] pwstDrive;
-        delete[] pwstExtension;
-        delete[] pwstName;
+        splitpath(pstIn, FALSE, pstDrive, pstDirectory, pstName, pstExtension);
+        pOut->set(i, pstExtension);
+
+        delete[] pstDirectory;
+        delete[] pstDrive;
+        delete[] pstExtension;
+        delete[] pstName;
     }
 
     out.push_back(pOut);

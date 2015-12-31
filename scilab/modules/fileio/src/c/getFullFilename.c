@@ -10,6 +10,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "getFullFilename.h"
 #include "charEncoding.h"
 #include "sci_malloc.h"
@@ -19,123 +20,102 @@
 #include "isdir.h"
 #include "fullpath.h"
 /*--------------------------------------------------------------------------*/
-wchar_t *getFullFilenameW(const wchar_t* FilenameInput)
+char *getFullFilename(const char* Filename)
 {
-    wchar_t *pStwcFullFilename = NULL;
+    char *pStFullFilename = NULL;
 
-    pStwcFullFilename = (wchar_t *)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-    if (pStwcFullFilename)
+    pStFullFilename = (char *)MALLOC(sizeof(char) * (PATH_MAX * 2));
+    if (pStFullFilename)
     {
         int i = 0;
         int lenPath = 0;
 
-        wchar_t wcDrv[PATH_MAX * 2];
-        wchar_t wcDir[PATH_MAX * 2];
-        wchar_t wcName[PATH_MAX * 2];
-        wchar_t wcExt[PATH_MAX * 2];
+        char Drv[PATH_MAX * 2];
+        char Dir[PATH_MAX * 2];
+        char Name[PATH_MAX * 2];
+        char Ext[PATH_MAX * 2];
 
-        wchar_t *wcNameExt = (wchar_t *)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-        wchar_t *wcPath = (wchar_t *)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-        wchar_t *wcTmp = NULL;
+        char *NameExt = (char *)MALLOC(sizeof(char) * (PATH_MAX * 2));
+        char *Path = (char *)MALLOC(sizeof(char) * (PATH_MAX * 2));
+        char *Tmp = NULL;
 
-        if (wcNameExt == NULL || wcPath == NULL)
+        if (NameExt == NULL || Path == NULL)
         {
-            FREE(pStwcFullFilename);
-            if (wcNameExt)
+            FREE(pStFullFilename);
+            if (NameExt)
             {
-                FREE(wcNameExt);
+                FREE(NameExt);
             }
-            if (wcPath)
+            if (Path)
             {
-                FREE(wcPath);
+                FREE(Path);
             }
             return NULL;
         }
-        splitpathW(FilenameInput, TRUE, wcDrv, wcDir,  wcName, wcExt);
+        splitpath(Filename, TRUE, Drv, Dir, Name, Ext);
 
-        wcscpy(wcNameExt, wcName);
-        wcscat(wcNameExt, wcExt);
+        strcpy(NameExt, Name);
+        strcat(NameExt, Ext);
 
-        wcscpy(wcPath, wcDrv);
-        wcscat(wcPath, wcDir);
+        strcpy(Path, Drv);
+        strcat(Path, Dir);
 
-        if (wcscmp(wcPath, L"") == 0)
+        if (strcmp(Path, "") == 0)
         {
             int ierr = 0;
-            wchar_t *wcCurrentDir = scigetcwdW(&ierr);
+            char *CurrentDir = scigetcwd(&ierr);
             if (ierr == 0)
             {
-                wcscpy(wcPath, wcCurrentDir);
+                strcpy(Path, CurrentDir);
             }
-            if (wcCurrentDir)
+            if (CurrentDir)
             {
-                FREE(wcCurrentDir);
-                wcCurrentDir = NULL;
+                FREE(CurrentDir);
+                CurrentDir = NULL;
             }
         }
 
-        wcTmp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-        if (wcTmp)
+        Tmp = (char*)MALLOC(sizeof(char) * (PATH_MAX * 2));
+        if (Tmp)
         {
-            get_full_pathW(wcTmp, (const wchar_t*)wcPath, PATH_MAX * 2);
-            wcscpy(wcPath, wcTmp);
-            FREE(wcTmp);
-            wcTmp = NULL;
+            get_full_path(Tmp, (const char*)Path, PATH_MAX * 2);
+            strcpy(Path, Tmp);
+            FREE(Tmp);
+            Tmp = NULL;
         }
 
-        lenPath = (int)wcslen(wcPath);
+        lenPath = (int)strlen(Path);
         if (lenPath - 1 >= 0)
         {
-            if ( (wcPath[lenPath - 1 ] != L'/') && (wcPath[lenPath - 1 ] != L'\\') )
+            if ( (Path[lenPath - 1 ] != '/') && (Path[lenPath - 1 ] != '\\') )
             {
-                wcscat(wcPath, L"/");
-                lenPath = (int)wcslen(wcPath);
+                strcat(Path, "/");
+                lenPath = (int)strlen(Path);
             }
         }
 
         for ( i = 0; i < lenPath; i++)
         {
 #ifdef _MSC_VER
-            if (wcPath[i] == L'/')
+            if (Path[i] == '/')
             {
-                wcPath[i] = L'\\';
+                Path[i] = '\\';
             }
 #else
-            if (wcPath[i] == L'\\')
+            if (Path[i] == '\\')
             {
-                wcPath[i] = L'/';
+                Path[i] = '/';
             }
 #endif
         }
 
-        wcscpy(pStwcFullFilename, wcPath);
-        wcscat(pStwcFullFilename, wcNameExt);
+        strcpy(pStFullFilename, Path);
+        strcat(pStFullFilename, NameExt);
 
-        FREE(wcNameExt);
-        FREE(wcPath);
+        FREE(NameExt);
+        FREE(Path);
     }
-    return pStwcFullFilename;
-
-}
-/*--------------------------------------------------------------------------*/
-char *getFullFilename(const char* Filename)
-{
-    char *pStFullFilename = NULL;
-    if (Filename)
-    {
-        wchar_t *wcFilename = to_wide_string(Filename);
-        if (wcFilename)
-        {
-            wchar_t *pStwcFullFilename = getFullFilenameW(wcFilename);
-            FREE(wcFilename);
-            if (pStwcFullFilename)
-            {
-                pStFullFilename = wide_string_to_UTF8(pStwcFullFilename);
-                FREE(pStwcFullFilename);
-            }
-        }
-    }
-
     return pStFullFilename;
+
 }
 /*--------------------------------------------------------------------------*/

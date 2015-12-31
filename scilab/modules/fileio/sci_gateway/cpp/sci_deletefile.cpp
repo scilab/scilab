@@ -41,7 +41,7 @@ types::Function::ReturnValue sci_deletefile(types::typed_list &in, int _iRetCoun
 
 
     types::Bool *pOut = NULL;
-    if (deleteafileW(in[0]->getAs<types::String>()->get(0)))
+    if (deleteafile(in[0]->getAs<types::String>()->get(0)))
     {
         pOut = new types::Bool(1);
     }

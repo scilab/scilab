@@ -37,20 +37,19 @@ extern "C"
 #endif
 #define LINE_MAX 4096
 
-#define CR L'\r'
-#define LF L'\n'
-#define EMPTYSTRW L""
+#define CR '\r'
+#define LF '\n'
 #define EMPTYSTR ""
 /*--------------------------------------------------------------------------*/
-static wchar_t *removeEOL(wchar_t *_inString);
+static char *removeEOL(char *_inString);
 static char *convertAnsiToUtf(char *_inString);
-static wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, types::File* _pFile);
+static char* getLine(char* _pstLine, int _iLineSize, types::File* _pFile);
 /*--------------------------------------------------------------------------*/
 #define UTF_16BE_BOM 0xFEFF // 0xFEFF = to_wide_string(0xEFBBBF)
 /*--------------------------------------------------------------------------*/
-wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
+char** mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 {
-    wchar_t **strLines = NULL;
+    char** strLines = NULL;
     types::File* pFile = NULL;
     int iLineSizeMult = 1;
     *ierr = MGETL_ERROR;
@@ -85,7 +84,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
     //        return NULL;
     //    }
 
-    //    strLines = (wchar_t**)MALLOC(sizeof(wchar_t*) * *nbLinesOut);
+    //    strLines = (char**)MALLOC(sizeof(char*) * *nbLinesOut);
     //    for(int i = 0 ; i < *nbLinesOut ; i++)
     //    {
     //        strLines[i] = to_wide_string(lst.front().c_str());
@@ -97,12 +96,12 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 
     if (pFile)
     {
-        wchar_t* Line = (wchar_t*)MALLOC(LINE_MAX * iLineSizeMult * sizeof(wchar_t));
+        char* Line = (char*)MALLOC(LINE_MAX * iLineSizeMult * sizeof(char));
         int nbLines = 0;
         long long iPos = 0;
         if (nbLinesIn < 0)
         {
-            strLines = (wchar_t **)MALLOC(sizeof(wchar_t *));
+            strLines = (char **)MALLOC(sizeof(char *));
             if (strLines == NULL)
             {
                 *nbLinesOut = 0;
@@ -111,11 +110,11 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
             }
             while ( getLine ( Line, LINE_MAX * iLineSizeMult, pFile ) != NULL )
             {
-                if (((int) wcslen(Line)) >= (LINE_MAX * iLineSizeMult) - 1)
+                if (((int) strlen(Line)) >= (LINE_MAX * iLineSizeMult) - 1)
                 {
                     FREE(Line);
                     iLineSizeMult++;
-                    Line = (wchar_t*)MALLOC(LINE_MAX * iLineSizeMult * sizeof(wchar_t));
+                    Line = (char*)MALLOC(LINE_MAX * iLineSizeMult * sizeof(char));
                     mseek(fd, iPos, SEEK_SET);
 
                     continue;
@@ -125,14 +124,14 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                 /* UTF-16 BOM */
                 if ((nbLines == 0) && (Line[0] == UTF_16BE_BOM))
                 {
-                    wchar_t* tmpLine = os_wcsdup(Line);
+                    char* tmpLine = os_strdup(Line);
                     memset(Line, 0x00, LINE_MAX * iLineSizeMult);
-                    wcscpy(Line, &tmpLine[1]);
+                    strcpy(Line, &tmpLine[1]);
                     FREE(tmpLine);
                 }
 
                 nbLines++;
-                strLines = (wchar_t **)REALLOC(strLines, nbLines * sizeof(wchar_t *));
+                strLines = (char **)REALLOC(strLines, nbLines * sizeof(char *));
                 if (strLines == NULL)
                 {
                     *nbLinesOut = 0;
@@ -140,14 +139,15 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                     return NULL;
                 }
 
-                strLines[nbLines - 1] = os_wcsdup(removeEOL(Line));
+                strLines[nbLines - 1] = os_strdup(removeEOL(Line));
                 if (strLines[nbLines - 1] == NULL)
                 {
                     *nbLinesOut = 0;
                     *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
                     return NULL;
                 }
-                wcscpy(Line, EMPTYSTRW);
+                
+                strcpy(Line, EMPTYSTR);
             }
             *nbLinesOut = nbLines;
             *ierr = MGETL_NO_ERROR;
@@ -168,7 +168,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
             {
                 BOOL bContinue = TRUE;
                 BOOL bEOF = FALSE;
-                strLines = (wchar_t **)MALLOC(sizeof(wchar_t *) * nbLinesIn);
+                strLines = (char **)MALLOC(sizeof(char *) * nbLinesIn);
                 if (strLines == NULL)
                 {
                     *nbLinesOut = 0;
@@ -189,11 +189,11 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 
                         if ( getLine ( Line, LINE_MAX * iLineSizeMult, pFile) != NULL)
                         {
-                            if (((int) wcslen(Line)) >= (LINE_MAX * iLineSizeMult) - 1)
+                            if (((int) strlen(Line)) >= (LINE_MAX * iLineSizeMult) - 1)
                             {
                                 FREE(Line);
                                 iLineSizeMult++;
-                                Line = (wchar_t*)MALLOC(LINE_MAX * iLineSizeMult * sizeof(wchar_t));
+                                Line = (char*)MALLOC(LINE_MAX * iLineSizeMult * sizeof(char));
                                 mseek(fd, iPos, SEEK_SET);
 
                                 continue;
@@ -203,19 +203,20 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 
                             if (header && (Line[0] == UTF_16BE_BOM))
                             {
-                                wchar_t* tmpLine = os_wcsdup(Line);
+                                char* tmpLine = os_strdup(Line);
                                 memset(Line, 0x00, LINE_MAX * iLineSizeMult);
-                                wcscpy(Line, &tmpLine[1]);
+                                strcpy(Line, &tmpLine[1]);
                             }
                             nbLines++;
-                            strLines[nbLines - 1] = os_wcsdup(removeEOL(Line));
+                            strLines[nbLines - 1] = os_strdup(removeEOL(Line));
                             if (strLines[nbLines - 1] == NULL)
                             {
                                 *nbLinesOut = 0;
                                 *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
                                 return NULL;
                             }
-                            wcscpy(Line, EMPTYSTRW);
+
+                            strcpy(Line, EMPTYSTR);
                         }
                         else
                         {
@@ -250,7 +251,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
     return strLines;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, types::File* _pFile)
+char* getLine(char* _pstLine, int _iLineSize, types::File* _pFile)
 {
     char* pstTemp = (char*)MALLOC(sizeof(char) * _iLineSize);
     if (fgets(pstTemp, _iLineSize, _pFile->getFiledesc()) == NULL)
@@ -259,24 +260,22 @@ wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, types::File* _pFile)
         return NULL;
     }
 
-    wchar_t* pstTempWide = to_wide_string(pstTemp);
-    wcscpy(_pstLine, pstTempWide);
+    strcpy(_pstLine, pstTemp);
     FREE(pstTemp);
-    FREE(pstTempWide);
     return _pstLine;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *removeEOL(wchar_t *_inString)
+char *removeEOL(char *_inString)
 {
     if (_inString)
     {
-        wchar_t *pos = wcschr(_inString, LF);
+        char *pos = strchr(_inString, LF);
         if (pos)
         {
             *pos = 0;
         }
 
-        pos = wcschr(_inString, CR);
+        pos = strchr(_inString, CR);
         if (pos)
         {
             *pos = 0;

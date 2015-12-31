@@ -53,14 +53,14 @@ types::Function::ReturnValue sci_mputl(types::typed_list &in, int _iRetCount, ty
     }
     else if (in[1]->isString() && in[1]->getAs<types::String>()->getSize() == 1)
     {
-        wchar_t *expandedFileName = expandPathVariableW(in[1]->getAs<types::String>()->get(0));
+        char* expandedFileName = expandPathVariable(in[1]->getAs<types::String>()->get(0));
 
-        iErr = mopen(expandedFileName, L"wt", 0, &iFileID);
+        iErr = mopen(expandedFileName, "wt", 0, &iFileID);
         FREE(expandedFileName);
 
         if (iErr)
         {
-            char* pst = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+            char* pst = in[1]->getAs<types::String>()->get(0);
             switch (iErr)
             {
                 case MOPEN_NO_MORE_LOGICAL_UNIT:
@@ -79,7 +79,7 @@ types::Function::ReturnValue sci_mputl(types::typed_list &in, int _iRetCount, ty
                     Scierror(999, _("%s: invalid status.\n"), "mputl");
                     break;
             }
-            FREE(pst);
+
             return types::Function::Error;
         }
 

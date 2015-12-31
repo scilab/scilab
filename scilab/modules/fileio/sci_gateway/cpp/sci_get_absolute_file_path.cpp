@@ -30,10 +30,10 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    wchar_t* wcsFileName = NULL;
-    wchar_t** wcsFilesOpened = NULL;
-    wchar_t* wcsTemp = NULL;
-    wchar_t* wcsPath = NULL;
+    char* fileName = NULL;
+    char** filesOpened = NULL;
+    char* temp = NULL;
+    char* path = NULL;
 
     if (in.size() != 1)
     {
@@ -47,40 +47,38 @@ types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, i
         return types::Function::Error;
     }
 
-    wcsFileName = in[0]->getAs<types::String>()->get(0);
-    wcsFilesOpened = FileManager::getFilenames();
+    fileName = in[0]->getAs<types::String>()->get(0);
+    filesOpened = FileManager::getFilenames();
 
     for (int i = FileManager::getOpenedCount() - 1; i >= 0; --i)
     {
-        wcsTemp = wcsstr(wcsFilesOpened[i], wcsFileName);
-        if (wcsTemp)
+        temp = strstr(filesOpened[i], fileName);
+        if (temp)
         {
-            int iSize = (int)(wcsTemp - wcsFilesOpened[i]);
-            if (wcslen(wcsFilesOpened[i]) == wcslen(wcsFileName) + iSize)
+            int iSize = (int)(temp - filesOpened[i]);
+            if (strlen(filesOpened[i]) == strlen(fileName) + iSize)
             {
-                wcsPath = (wchar_t*)MALLOC((iSize + 1) * sizeof(wchar_t));
-                memcpy(wcsPath, wcsFilesOpened[i], iSize * sizeof(wchar_t));
-                wcsPath[iSize] = L'\0';
-                types::String* pStringOut = new types::String(wcsPath);
-                FREE(wcsPath);
+                path = (char*)MALLOC((iSize + 1) * sizeof(char));
+                memcpy(path, filesOpened[i], iSize * sizeof(char));
+                path[iSize] = '\0';
+                types::String* pStringOut = new types::String(path);
+                FREE(path);
                 out.push_back(pStringOut);
-                freeArrayOfWideString(wcsFilesOpened, FileManager::getOpenedCount());
+                freeArrayOfString(filesOpened, FileManager::getOpenedCount());
                 return types::Function::OK;
             }
             else
             {
-                wcsTemp = NULL;
+                temp = NULL;
             }
         }
     }
 
-    freeArrayOfWideString(wcsFilesOpened, FileManager::getOpenedCount());
+    freeArrayOfString(filesOpened, FileManager::getOpenedCount());
 
-    if (wcsTemp == NULL)
+    if (temp == NULL)
     {
-        char* pstFile = wide_string_to_UTF8(wcsFileName);
-        Scierror(999, _("%s: The file %s is not opened in scilab.\n"), "get_absolute_file_path", pstFile);
-        FREE(pstFile);
+        Scierror(999, _("%s: The file %s is not opened in scilab.\n"), "get_absolute_file_path", fileName);
         return types::Function::Error;
     }
 

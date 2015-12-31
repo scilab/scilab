@@ -34,11 +34,10 @@ extern "C"
 
 types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int size                    = (int)in.size();
-    int iNiter                  = 1;
-    wchar_t* wcsFormat          = NULL;
-    wchar_t* wcsRead            = NULL;
-    int dimsArray[2]            = {1, 1};
+    int size            = (int)in.size();
+    int iNiter          = 1;
+    char* Format        = NULL;
+    int dimsArray[2]    = {1, 1};
     std::vector<types::InternalType*>* pIT = new std::vector<types::InternalType*>();
 
     int args        = 0;
@@ -77,7 +76,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    wcsFormat = in[size - 1]->getAs<types::String>()->get(0);
+    Format = in[size - 1]->getAs<types::String>()->get(0);
     nrow = iNiter;
     while (++rowcount < iNiter)
     {
@@ -100,10 +99,8 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
             pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
         }
 
-        wcsRead = to_wide_string(pcConsoleReadStr);
+        int err = do_xxscanf("sscanf", (FILE *)0, Format, &args, pcConsoleReadStr, &retval, buf, type);
         FREE(pcConsoleReadStr);
-        int err = do_xxscanf(L"sscanf", (FILE *)0, wcsFormat, &args, wcsRead, &retval, buf, type);
-        FREE(wcsRead);
         if (err < 0)
         {
             return types::Function::Error;
@@ -193,7 +190,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
     {
         if (sizeOfVector == 0)
         {
-            out.push_back(new types::String(L""));
+            out.push_back(new types::String(""));
             return types::Function::OK;
         }
 

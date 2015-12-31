@@ -44,7 +44,7 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
     int iRet            = 0;
     long long iWhere    = 0;
     int iFlag           = 0;
-    wchar_t* wcsFlag    = NULL;
+    char* Flag          = NULL;
 
     if (in.size() < 1 || in.size() > 3)
     {
@@ -68,7 +68,7 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
         }
         else if (in[1]->isString() && in[1]->getAs<types::String>()->isScalar())
         {
-            wcsFlag = in[1]->getAs<types::String>()->get(0);
+            Flag = in[1]->getAs<types::String>()->get(0);
         }
         else
         {
@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
         }
 
         iFile = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
-        wcsFlag = in[2]->getAs<types::String>()->get(0);
+        Flag = in[2]->getAs<types::String>()->get(0);
     }
 
     switch (iFile)
@@ -103,17 +103,17 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
     }
 
-    if (wcsFlag != NULL)
+    if (Flag != NULL)
     {
-        if (wcsncmp(wcsFlag, L"set", 3) == 0)
+        if (strncmp(Flag, "set", 3) == 0)
         {
             iFlag = SEEK_SET;
         }
-        else if (wcsncmp(wcsFlag, L"cur", 3) == 0)
+        else if (strncmp(Flag, "cur", 3) == 0)
         {
             iFlag = SEEK_CUR;
         }
-        else if (wcsncmp(wcsFlag, L"end", 3) == 0)
+        else if (strncmp(Flag, "end", 3) == 0)
         {
             iFlag = SEEK_END;
         }

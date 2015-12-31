@@ -32,12 +32,12 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int iFileID                 = 0;
-    int iErr                    = 0;
-    bool bCloseFile             = false;
-    int iLinesExcepted          = -1;
-    int iLinesRead              = -1;
-    wchar_t** wcReadedStrings   = NULL;
+    int iFileID             = 0;
+    int iErr                = 0;
+    bool bCloseFile         = false;
+    int iLinesExcepted      = -1;
+    int iLinesRead          = -1;
+    char** readedStrings    = NULL;
 
     if (in.size() < 1 || in.size() > 2)
     {
@@ -75,35 +75,34 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
     }
     else if (in[0]->isString() && in[0]->getAs<types::String>()->getSize() == 1)
     {
-        wchar_t *expandedFileName = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
+        char* expandedFileName = expandPathVariable(in[0]->getAs<types::String>()->get(0));
 
-        iErr = mopen(expandedFileName, L"rt", 0, &iFileID);
+        iErr = mopen(expandedFileName, "rt", 0, &iFileID);
 
         if (iErr)
         {
-            char* pst = wide_string_to_UTF8(expandedFileName);
             switch (iErr)
             {
                 case MOPEN_NO_MORE_LOGICAL_UNIT:
                     Scierror(66, _("%s: Too many files opened!\n"), "mgetl");
                     break;
                 case MOPEN_CAN_NOT_OPEN_FILE:
-                    Scierror(999, _("%s: Cannot open file %s.\n"), "mgetl", pst);
+                    Scierror(999, _("%s: Cannot open file %s.\n"), "mgetl", expandedFileName);
                     break;
                 case MOPEN_NO_MORE_MEMORY:
                     Scierror(999, _("%s: No more memory.\n"), "mgetl");
                     break;
                 case MOPEN_INVALID_FILENAME:
-                    Scierror(999, _("%s: invalid filename %s.\n"), "mgetl", pst);
+                    Scierror(999, _("%s: invalid filename %s.\n"), "mgetl", expandedFileName);
                     break;
                 default: //MOPEN_INVALID_STATUS
                     Scierror(999, _("%s: invalid status.\n"), "mgetl");
                     break;
             }
 
-            FREE(pst);
             return types::Function::Error;
         }
+ 
         FREE(expandedFileName);
         bCloseFile = true;
     }
@@ -130,7 +129,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
-            wcReadedStrings = mgetl(iFileID, iLinesExcepted, &iLinesRead, &iErr);
+            readedStrings = mgetl(iFileID, iLinesExcepted, &iLinesRead, &iErr);
 
             switch (iErr)
             {
@@ -141,19 +140,19 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    if (wcReadedStrings && iLinesRead > 0)
+    if (readedStrings && iLinesRead > 0)
     {
         types::String *pS = new types::String(iLinesRead, 1);
-        pS->set(wcReadedStrings);
+        pS->set(readedStrings);
         out.push_back(pS);
-        freeArrayOfWideString(wcReadedStrings, iLinesRead);
+        freeArrayOfString(readedStrings, iLinesRead);
     }
     else
     {
         out.push_back(types::Double::Empty());
-        if (wcReadedStrings)
+        if (readedStrings)
         {
-            FREE(wcReadedStrings);
+            FREE(readedStrings);
         }
     }
 

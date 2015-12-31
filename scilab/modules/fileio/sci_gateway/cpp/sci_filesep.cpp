@@ -41,8 +41,7 @@ types::Function::ReturnValue sci_filesep(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    types::String* pS = new types::String(DIR_SEPARATORW);
-    out.push_back(pS);
+    out.push_back(new types::String(DIR_SEPARATOR));
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

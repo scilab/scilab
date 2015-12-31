@@ -26,22 +26,22 @@ int sci_chdir(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
-    wchar_t *pStVarOne = NULL;
+    char* pStVarOne = NULL;
     int iType1	= 0;
     int lenStVarOne = 0;
     int m1 = 0, n1 = 0;
 
-    wchar_t *expandedPath = NULL;
+    char* expandedPath = NULL;
 
     CheckRhs(0, 1);
     CheckLhs(1, 1);
 
     if (Rhs == 0)
     {
-        pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(L"home") + 1));
+        pStVarOne = (char*)MALLOC(sizeof(char) * ((int)strlen("home") + 1));
         if (pStVarOne)
         {
-            wcscpy(pStVarOne, L"home");
+            strcpy(pStVarOne, "home");
         }
     }
     else
@@ -60,11 +60,11 @@ int sci_chdir(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne))
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &pStVarOne))
         {
             if (pStVarOne)
             {
-                freeAllocatedSingleWideString(pStVarOne);
+                freeAllocatedSingleString(pStVarOne);
             }
 
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -72,8 +72,8 @@ int sci_chdir(char *fname, void* pvApiCtx)
         }
     }
 
-    expandedPath = expandPathVariableW(pStVarOne);
-    freeAllocatedSingleWideString(pStVarOne);
+    expandedPath = expandPathVariable(pStVarOne);
+    freeAllocatedSingleString(pStVarOne);
 
     if (expandedPath == NULL)
     {
@@ -82,7 +82,7 @@ int sci_chdir(char *fname, void* pvApiCtx)
     }
 
     /* get value of PWD scilab variable (compatiblity scilab 4.x) */
-    if (wcscmp(expandedPath, L"PWD") == 0)
+    if (strcmp(expandedPath, "PWD") == 0)
     {
         sciErr = getNamedVarType(pvApiCtx, "PWD", &iType1);
         if (sciErr.iErr)
@@ -95,13 +95,13 @@ int sci_chdir(char *fname, void* pvApiCtx)
 
         if (iType1 == sci_strings)
         {
-            wchar_t *VARVALUE = NULL;
+            char* VARVALUE = NULL;
             FREE(expandedPath);
-            if (getAllocatedNamedSingleWideString(pvApiCtx, "PWD", &VARVALUE))
+            if (getAllocatedNamedSingleString(pvApiCtx, "PWD", &VARVALUE))
             {
                 if (VARVALUE)
                 {
-                    freeAllocatedSingleWideString(VARVALUE);
+                    freeAllocatedSingleString(VARVALUE);
                 }
 
                 Scierror(999, _("%s: Can not read named argument %s.\n"), fname, "PWD");
@@ -115,7 +115,7 @@ int sci_chdir(char *fname, void* pvApiCtx)
     if (strcmp(fname, "chdir") == 0) /* chdir output boolean */
     {
         int iOutput = FALSE;
-        if (scichdirW(expandedPath))
+        if (scichdir(expandedPath))
         {
             iOutput = FALSE;
         }
@@ -137,14 +137,14 @@ int sci_chdir(char *fname, void* pvApiCtx)
     }
     else /* cd output string current path */
     {
-        if ( isdirW(expandedPath) || (wcscmp(expandedPath, L"/") == 0) ||
-                (wcscmp(expandedPath, L"\\") == 0) )
+        if ( isdir(expandedPath) || (strcmp(expandedPath, "/") == 0) ||
+                (strcmp(expandedPath, "\\") == 0) )
         {
-            int ierr = scichdirW(expandedPath);
-            wchar_t *currentDir = scigetcwdW(&ierr);
+            int ierr = scichdir(expandedPath);
+            char* currentDir = scigetcwd(&ierr);
             if ( (ierr == 0) && currentDir)
             {
-                sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, 1, 1, (wchar_t const * const*) &currentDir);
+                sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, (char const * const*) &currentDir);
             }
             else
             {
@@ -165,18 +165,9 @@ int sci_chdir(char *fname, void* pvApiCtx)
         }
         else
         {
-            char *path = wide_string_to_UTF8(expandedPath);
+            Scierror(998, _("%s: Cannot go to directory %s\n"), fname, expandedPath);
             FREE(expandedPath);
-            if (path)
-            {
-                Scierror(998, _("%s: Cannot go to directory %s\n"), fname, path);
-                FREE(path);
-                path = NULL;
-            }
-            else
-            {
-                Scierror(998, _("%s: Cannot go to directory.\n"), fname);
-            }
+            expandedPath = NULL;
         }
     }
 

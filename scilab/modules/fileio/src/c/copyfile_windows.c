@@ -23,12 +23,12 @@
 #include "PATH_MAX.h"
 #include "os_string.h"
 /*--------------------------------------------------------------------------*/
-static int CopyFileFunction_windows(wchar_t *DestinationFilename, wchar_t *SourceFilename);
-static int CopyDirectoryFunction_windows(wchar_t *DestinationDirectory, wchar_t *SourceDirectory);
+static int CopyFileFunction_windows(char* DestinationFilename, char* SourceFilename);
+static int CopyDirectoryFunction_windows(char* DestinationDirectory, char* SourceDirectory);
 /*--------------------------------------------------------------------------*/
-int CopyFileFunction(wchar_t *DestinationFilename, wchar_t *SourceFilename)
+int CopyFileFunction(char* DestinationFilename, char* SourceFilename)
 {
-    if (os_wcsicmp(DestinationFilename, SourceFilename) == 0)
+    if (stricmp(DestinationFilename, SourceFilename) == 0)
     {
         SetLastError(ERROR_ACCESS_DENIED);
         return 1;
@@ -36,23 +36,25 @@ int CopyFileFunction(wchar_t *DestinationFilename, wchar_t *SourceFilename)
     return CopyFileFunction_windows(DestinationFilename, SourceFilename);
 }
 /*--------------------------------------------------------------------------*/
-int CopyDirectoryFunction(wchar_t *DestinationDirectory, wchar_t *SourceDirectory)
+int CopyDirectoryFunction(char* DestinationDirectory, char* SourceDirectory)
 {
     /* remove last file separator if it does not exists */
-    if ( (SourceDirectory[wcslen(SourceDirectory) - 1] == L'\\') ||
-            (SourceDirectory[wcslen(SourceDirectory) - 1] == L'/') )
+    int srclen = (int)strlen(SourceDirectory);
+    if ( (SourceDirectory[srclen - 1] == '\\') ||
+        (SourceDirectory[srclen - 1] == '/'))
     {
-        SourceDirectory[wcslen(SourceDirectory) - 1] = L'\0';
+        SourceDirectory[srclen - 1] = '\0';
     }
 
     /* remove last file separator if it does not exists */
-    if ( (DestinationDirectory[wcslen(DestinationDirectory) - 1] == L'\\') ||
-            (DestinationDirectory[wcslen(DestinationDirectory) - 1] == L'/') )
+    int dstlen = (int)strlen(DestinationDirectory);
+    if ((DestinationDirectory[dstlen - 1] == '\\') ||
+        (DestinationDirectory[dstlen - 1] == '/'))
     {
-        DestinationDirectory[wcslen(DestinationDirectory) - 1] = L'\0';
+        DestinationDirectory[dstlen - 1] = '\0';
     }
 
-    if (os_wcsicmp(DestinationDirectory, SourceDirectory) == 0)
+    if (stricmp(DestinationDirectory, SourceDirectory) == 0)
     {
         SetLastError(ERROR_ACCESS_DENIED);
         return 1;
@@ -62,22 +64,22 @@ int CopyDirectoryFunction(wchar_t *DestinationDirectory, wchar_t *SourceDirector
     return CopyDirectoryFunction_windows(DestinationDirectory, SourceDirectory);
 }
 /*--------------------------------------------------------------------------*/
-static int CopyFileFunction_windows(wchar_t *DestinationFilename, wchar_t *SourceFilename)
+static int CopyFileFunction_windows(char* DestinationFilename, char* SourceFilename)
 {
     BOOL bFailIfExists = FALSE;
-    if (!CopyFileW(SourceFilename, DestinationFilename, bFailIfExists))
+    if (!CopyFileA(SourceFilename, DestinationFilename, bFailIfExists))
     {
         return 1;
     }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int CopyDirectoryFunction_windows(wchar_t *DestinationDirectory, wchar_t *SourceDirectory)
+static int CopyDirectoryFunction_windows(char* DestinationDirectory, char* SourceDirectory)
 {
-    WIN32_FIND_DATAW dir_find_data;
-    wchar_t src_buffer[MAX_PATH * 2 + 1];
-    wchar_t dest_buffer[MAX_PATH * 2 + 1];
-    HANDLE find_handle = FindFirstFileW(DestinationDirectory, &dir_find_data);
+    WIN32_FIND_DATA dir_find_data;
+    char src_buffer[MAX_PATH * 2 + 1];
+    char dest_buffer[MAX_PATH * 2 + 1];
+    HANDLE find_handle = FindFirstFileA(DestinationDirectory, &dir_find_data);
     BOOL ans;
 
     if (find_handle && (find_handle != INVALID_HANDLE_VALUE))
@@ -91,13 +93,15 @@ static int CopyDirectoryFunction_windows(wchar_t *DestinationDirectory, wchar_t 
         {
             ans = 0;
         }
+
         FindClose(find_handle);
     }
     else
     {
         /* Create the destdir */
-        ans = createdirectoryW(DestinationDirectory);
+        ans = createdirectory(DestinationDirectory);
     }
+
     FindClose(find_handle);
 
     if (!ans)
@@ -106,28 +110,28 @@ static int CopyDirectoryFunction_windows(wchar_t *DestinationDirectory, wchar_t 
     }
 
     /* Get ready to do some copying */
-    wcscpy(src_buffer, SourceDirectory);
-    wcscat(src_buffer, L"\\*");
+    strcpy(src_buffer, SourceDirectory);
+    strcat(src_buffer, "\\*");
 
-    wcscpy(dest_buffer, DestinationDirectory);
-    wcscat(dest_buffer, L"\\");
+    strcpy(dest_buffer, DestinationDirectory);
+    strcat(dest_buffer, "\\");
 
-    find_handle = FindFirstFileW(src_buffer, &dir_find_data);
+    find_handle = FindFirstFileA(src_buffer, &dir_find_data);
     if (find_handle && find_handle != INVALID_HANDLE_VALUE)
     {
         do
         {
-            if (wcscmp(dir_find_data.cFileName, L".") == 0)
+            if (strcmp(dir_find_data.cFileName, ".") == 0)
             {
                 continue;
             }
-            if (wcscmp(dir_find_data.cFileName, L"..") == 0)
+            if (strcmp(dir_find_data.cFileName, "..") == 0)
             {
                 continue;
             }
 
-            wcscpy(src_buffer + wcslen(SourceDirectory) + 1, dir_find_data.cFileName);
-            wcscpy(dest_buffer + wcslen(DestinationDirectory) + 1, dir_find_data.cFileName);
+            strcpy(src_buffer + strlen(SourceDirectory) + 1, dir_find_data.cFileName);
+            strcpy(dest_buffer + strlen(DestinationDirectory) + 1, dir_find_data.cFileName);
 
             if (dir_find_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
             {
@@ -135,14 +139,15 @@ static int CopyDirectoryFunction_windows(wchar_t *DestinationDirectory, wchar_t 
             }
             else
             {
-                ans = CopyFileW(src_buffer, dest_buffer, FALSE);
+                ans = CopyFileA(src_buffer, dest_buffer, FALSE);
             }
             if (!ans)
             {
                 break;
             }
         }
-        while (FindNextFileW(find_handle, &dir_find_data));
+        while (FindNextFileA(find_handle, &dir_find_data));
+
         FindClose(find_handle);
     }
     return (ans ? 0 : 1);

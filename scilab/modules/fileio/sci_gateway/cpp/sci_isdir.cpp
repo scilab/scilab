@@ -56,10 +56,10 @@ types::Function::ReturnValue sci_isdir(types::typed_list &in, int _iRetCount, ty
 
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
-        wchar_t *expandedPath = expandPathVariableW(pS->get(i));
+        char* expandedPath = expandPathVariable(pS->get(i));
         if (expandedPath)
         {
-            pOut->get()[i] = isdirW(expandedPath);
+            pOut->get()[i] = isdir(expandedPath);
             FREE(expandedPath);
             expandedPath = NULL;
         }

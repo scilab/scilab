@@ -23,7 +23,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 void C2F(getfileinfo)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *filename, int *lf, int *ierr)
 {
-    const wchar_t *filenamefromfd = NULL;
+    const char *filenamefromfd = NULL;
     if (*fd < 0)
     {
         *ierr = 1;
@@ -44,9 +44,7 @@ void C2F(getfileinfo)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char 
     filenamefromfd = pFile->getFilename().c_str();
     if (filenamefromfd)
     {
-        char* pstFileName = wide_string_to_UTF8(filenamefromfd);
-        strcpy(filename, pstFileName);
-        FREE(pstFileName);
+        strcpy(filename, filenamefromfd);
     }
     else
     {

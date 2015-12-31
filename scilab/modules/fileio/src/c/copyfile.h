@@ -22,7 +22,7 @@
 * @param[in] source filename
 * @return error number
 */
-FILEIO_IMPEXP int CopyFileFunction(wchar_t *DestinationFilename, wchar_t *SourceFilename);
+FILEIO_IMPEXP int CopyFileFunction(char* DestinationFilename, char* SourceFilename);
 
 /**
 * copy a directory
@@ -30,7 +30,7 @@ FILEIO_IMPEXP int CopyFileFunction(wchar_t *DestinationFilename, wchar_t *Source
 * @param[in] source directory
 * @return error number
 */
-FILEIO_IMPEXP int CopyDirectoryFunction(wchar_t *DestinationDirectory, wchar_t *SourceDirectory);
+FILEIO_IMPEXP int CopyDirectoryFunction(char* DestinationDirectory, char* SourceDirectory);
 
 #endif /* __COPYFILE_H__ */
 /*--------------------------------------------------------------------------*/

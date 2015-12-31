@@ -51,10 +51,10 @@ types::Function::ReturnValue sci_isfile(types::typed_list &in, int _iRetCount, t
 
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
-        wchar_t *expandedPath = expandPathVariableW(pS->get(i));
+        char *expandedPath = expandPathVariable(pS->get(i));
         if (expandedPath)
         {
-            pOut->get()[i] = !isdirW(expandedPath) && FileExistW(expandedPath);
+            pOut->get()[i] = !isdir(expandedPath) && FileExist(expandedPath);
             FREE(expandedPath);
             expandedPath = NULL;
         }

@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
 {
     int iRet                    = 0;
     int iNbrString              = 0;
-    wchar_t** pwcsStringInput   = NULL;
+    char** pStringInput         = NULL;
 
     if (in.size() == 0)
     {
@@ -66,41 +66,41 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
         else
         {
             int size = in[0]->getAs<types::String>()->getSize();
-            pwcsStringInput = (wchar_t**)MALLOC(size * sizeof(wchar_t*));
+            pStringInput = (char**)MALLOC(size * sizeof(char*));
             for (iNbrString = 0; iNbrString < size; iNbrString++)
             {
-                pwcsStringInput[iNbrString] = in[0]->getAs<types::String>()->get(iNbrString);
+                pStringInput[iNbrString] = in[0]->getAs<types::String>()->get(iNbrString);
             }
 
-            iRet = newest(pwcsStringInput, iNbrString);
-            FREE(pwcsStringInput);
+            iRet = newest(pStringInput, iNbrString);
+            FREE(pStringInput);
             out.push_back(new types::Double(iRet));
         }
     }
     else
     {
         int size = (int)in.size();
-        pwcsStringInput = (wchar_t**)MALLOC(size * sizeof(wchar_t*));
+        pStringInput = (char**)MALLOC(size * sizeof(char*));
         for (iNbrString = 0; iNbrString < size; iNbrString++)
         {
             if (in[iNbrString]->isString() == FALSE)
             {
-                FREE(pwcsStringInput);
+                FREE(pStringInput);
                 Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "newest", iNbrString + 1);
                 return types::Function::Error;
             }
-            pwcsStringInput[iNbrString] = in[iNbrString]->getAs<types::String>()->get(0);
+            pStringInput[iNbrString] = in[iNbrString]->getAs<types::String>()->get(0);
         }
 
         if (in[1]->getAs<types::String>()->isScalar() == false)
         {
-            FREE(pwcsStringInput);
+            FREE(pStringInput);
             Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "newest", 2);
             return types::Function::Error;
         }
 
-        iRet = newest(pwcsStringInput, iNbrString);
-        FREE(pwcsStringInput);
+        iRet = newest(pStringInput, iNbrString);
+        FREE(pStringInput);
         out.push_back(new types::Double((double)iRet));
     }
 

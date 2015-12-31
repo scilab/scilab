@@ -24,10 +24,8 @@ extern "C"
 #include "pathconvert.h"
 }
 
-#define UNIX_TYPE       L"u"
-#define WINDOWS_TYPE    L"w"
-#define _UNIX_TYPE      "u"
-#define _WINDOWS_TYPE   "w"
+#define UNIX_TYPE      "u"
+#define WINDOWS_TYPE   "w"
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -57,18 +55,18 @@ types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCou
             return types::Function::Error;
         }
 
-        wchar_t* pwstType = in[3]->getAs<types::String>()->get(0);
-        if (wcscmp(pwstType, WINDOWS_TYPE) == 0)
+        char* pstType = in[3]->getAs<types::String>()->get(0);
+        if (strcmp(pstType, WINDOWS_TYPE) == 0)
         {
             PType = WINDOWS_STYLE;
         }
-        else if (wcscmp(pwstType, UNIX_TYPE) == 0)
+        else if (strcmp(pstType, UNIX_TYPE) == 0)
         {
             PType = UNIX_STYLE;
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "pathconvert", 4, _UNIX_TYPE, _WINDOWS_TYPE);
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "pathconvert", 4, UNIX_TYPE, WINDOWS_TYPE);
             return types::Function::Error;
         }
     }
@@ -109,12 +107,12 @@ types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCou
 
     types::String* pS = in[0]->getAs<types::String>();
     types::String* pOut = new types::String(pS->getRows(), pS->getCols());
-    wchar_t** pStr = pOut->get();
+    char** pStr = pOut->get();
 
 
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
-        pStr[i] = pathconvertW(pS->get(i), (BOOL) iPathTrail, (BOOL) iPathExpand, PType);
+        pStr[i] = pathconvert(pS->get(i), (BOOL) iPathTrail, (BOOL) iPathExpand, PType);
     }
 
     out.push_back(pOut);

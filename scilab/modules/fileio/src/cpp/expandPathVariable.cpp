@@ -26,126 +26,103 @@ extern "C"
 #include "getlongpathname.h"
 #include "os_string.h"
 }
-
-
-
 /*--------------------------------------------------------------------------*/
 struct VARIABLEALIAS
 {
-    const wchar_t *Alias;
-    const wchar_t *VariableName;
+    const char *Alias;
+    const char *VariableName;
     symbol::Variable* var;
 };
 /*--------------------------------------------------------------------------*/
 #define NB_ALIAS 7
 static struct VARIABLEALIAS VARIABLES_words[NB_ALIAS] =
 {
-    {L"SCIHOME", L"SCIHOME", NULL},
-    {L"WSCI", L"WSCI", NULL},
-    {L"SCI", L"SCI", NULL},
-    {L"~", L"home", NULL},
-    {L"HOME", L"home", NULL},
-    {L"home", L"home", NULL},
-    {L"TMPDIR", L"TMPDIR", NULL}
+    {"SCIHOME", "SCIHOME", NULL},
+    {"WSCI", "WSCI", NULL},
+    {"SCI", "SCI", NULL},
+    {"~", "home", NULL},
+    {"HOME", "home", NULL},
+    {"home", "home", NULL},
+    {"TMPDIR", "TMPDIR", NULL}
 };
 /*--------------------------------------------------------------------------*/
-static wchar_t *getVariableValueDefinedInScilab(VARIABLEALIAS* var);
-static wchar_t *convertFileSeparators(wchar_t *wcStr);
+static char *getVariableValueDefinedInScilab(VARIABLEALIAS* var);
+static char *convertFileSeparators(char *str);
 /*--------------------------------------------------------------------------*/
-wchar_t *expandPathVariableW(wchar_t *wcstr)
+char *expandPathVariable(const char* str)
 {
-    wchar_t *wcexpanded = NULL;
-    if (wcstr)
+    char *expanded = NULL;
+    if (str)
     {
         int i = 0;
-        int lenStr = (int)wcslen(wcstr);
+        int lenStr = (int)strlen(str);
 
         for (i = 0; i < NB_ALIAS; i++)
         {
             int lenAlias = 0;
 
             /* input is ALIAS without subdirectory */
-            if (wcscmp(VARIABLES_words[i].Alias, wcstr) == 0)
+            if (strcmp(VARIABLES_words[i].Alias, str) == 0)
             {
-                wchar_t *wcexpanded = getVariableValueDefinedInScilab(&VARIABLES_words[i]);
-                if (wcexpanded)
+                char* expanded = getVariableValueDefinedInScilab(&VARIABLES_words[i]);
+                if (expanded)
                 {
-                    return convertFileSeparators(wcexpanded);
+                    return convertFileSeparators(expanded);
                 }
             }
 
-            lenAlias = (int)wcslen(VARIABLES_words[i].Alias);
+            lenAlias = (int)strlen(VARIABLES_words[i].Alias);
 
             if (lenStr > lenAlias)
             {
-                wchar_t *wcBegin = (wchar_t *)MALLOC(sizeof(wchar_t) * (lenAlias + 1));
-                if (wcBegin)
+                char* begin = (char *)MALLOC(sizeof(char) * (lenAlias + 1));
+                if (begin)
                 {
-                    wcsncpy(wcBegin, wcstr, lenAlias);
-                    wcBegin[lenAlias] = 0;
+                    strncpy(begin, str, lenAlias);
+                    begin[lenAlias] = 0;
 
-                    if (wcscmp(wcBegin, VARIABLES_words[i].Alias) == 0 )
+                    if (strcmp(begin, VARIABLES_words[i].Alias) == 0 )
                     {
-                        if ( (wcstr[lenAlias] == L'/') || (wcstr[lenAlias] == L'\\') )
+                        if ( (str[lenAlias] == '/') || (str[lenAlias] == '\\') )
                         {
-                            wchar_t * newBegin = getVariableValueDefinedInScilab(&VARIABLES_words[i]);
+                            char* newBegin = getVariableValueDefinedInScilab(&VARIABLES_words[i]);
                             if (newBegin)
                             {
-                                int lengthnewBegin = (int)wcslen(newBegin);
-                                wcexpanded = (wchar_t *)MALLOC(sizeof(wchar_t) * (lengthnewBegin + (int)wcslen(&wcstr[lenAlias]) + 1));
-                                if (wcexpanded)
+                                int lengthnewBegin = (int)strlen(newBegin);
+                                expanded = (char*)MALLOC(sizeof(char) * (lengthnewBegin + (int)strlen(&str[lenAlias]) + 1));
+                                if (expanded)
                                 {
-                                    wcscpy(wcexpanded, newBegin);
-                                    wcscat(wcexpanded, &wcstr[lenAlias]);
-                                    FREE(wcBegin);
-                                    wcBegin = NULL;
+                                    strcpy(expanded, newBegin);
+                                    strcat(expanded, &str[lenAlias]);
+                                    FREE(begin);
+                                    begin = NULL;
                                     free(newBegin);
                                     newBegin = NULL;
-                                    return convertFileSeparators(wcexpanded);
+                                    return convertFileSeparators(expanded);
                                 }
                                 FREE(newBegin);
                                 newBegin = NULL;
                             }
                         }
                     }
-                    FREE(wcBegin);
-                    wcBegin = NULL;
+                    FREE(begin);
+                    begin = NULL;
                 }
             }
         }
 
         /* Variables not founded returns a copy of input */
-        wcexpanded = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcstr) + 1));
-        if (wcexpanded)
+        expanded = (char*)MALLOC(sizeof(char) * ((int)strlen(str) + 1));
+        if (expanded)
         {
-            wcscpy(wcexpanded, wcstr);
-            return convertFileSeparators(wcexpanded);
+            strcpy(expanded, str);
+            return convertFileSeparators(expanded);
         }
-    }
-    return wcexpanded;
-}
-/*--------------------------------------------------------------------------*/
-char *expandPathVariable(char* str)
-{
-    char *expanded = NULL;
-    wchar_t *wstr = to_wide_string(str);
-
-    if (wstr)
-    {
-        wchar_t *wcexpanded = expandPathVariableW(wstr);
-        if (wcexpanded)
-        {
-            expanded = wide_string_to_UTF8(wcexpanded);
-            FREE(wcexpanded);
-            wcexpanded = NULL;
-        }
-        FREE(wstr);
-        wstr = NULL;
     }
     return expanded;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *getVariableValueDefinedInScilab(VARIABLEALIAS* _var)
+char *getVariableValueDefinedInScilab(VARIABLEALIAS* _var)
 {
     if (_var)
     {
@@ -161,7 +138,7 @@ wchar_t *getVariableValueDefinedInScilab(VARIABLEALIAS* _var)
         }
 
         types::String* pS = pIT->getAs<types::String>();
-        return os_wcsdup(pS->get(0));
+        return os_strdup(pS->get(0));
     }
     return NULL;
 }
@@ -174,25 +151,25 @@ void resetVariableValueDefinedInScilab(void)
     }
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *convertFileSeparators(wchar_t *wcStr)
+char* convertFileSeparators(char *str)
 {
-    if (wcStr)
+    if (str)
     {
         int k = 0;
-        int len = (int)wcslen(wcStr);
+        int len = (int)strlen(str);
 
 #ifdef _MSC_VER
-        for (k = 0 ; k < len ; k++) if (wcStr[k] == L'/')
-            {
-                wcStr[k] = L'\\';
-            }
+        for (k = 0; k < len; k++) if (str[k] == '/')
+        {
+            str[k] = '\\';
+        }
 #else
-        for (k = 0 ; k < len ; k++) if (wcStr[k] == L'\\')
-            {
-                wcStr[k] = L'/';
-            }
+        for (k = 0 ; k < len ; k++) if (str[k] == '\\')
+        {
+            str[k] = '/';
+        }
 #endif
     }
-    return wcStr;
+    return str;
 }
 /*--------------------------------------------------------------------------*/

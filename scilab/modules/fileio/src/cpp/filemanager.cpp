@@ -21,7 +21,7 @@ extern "C"
 std::vector<types::File*> FileManager::m_fileList;
 int FileManager::m_iCurrentFile = -1;
 
-int FileManager::getFileID(const std::wstring& _stFilename)
+int FileManager::getFileID(const std::string& _stFilename)
 {
     for (int i = 0 ; i < static_cast<int>(m_fileList.size()) ; i++)
     {
@@ -38,7 +38,7 @@ int FileManager::getFileMaxID()
     return static_cast<int>(m_fileList.size());
 }
 
-bool FileManager::isOpened(const std::wstring& _stFilename)
+bool FileManager::isOpened(const std::string& _stFilename)
 {
     for (int i = 0 ; i < static_cast<int>(m_fileList.size()) ; i++)
     {
@@ -171,34 +171,34 @@ int FileManager::getOpenedCount()
     return iCount;
 }
 
-wchar_t** FileManager::getTypesAsString()
+char** FileManager::getTypesAsString()
 {
     int iFileIndex      = 0;
-    wchar_t** pstTypes  = NULL;
+    char** pstTypes  = NULL;
 
-    pstTypes = new wchar_t*[getOpenedCount()];
+    pstTypes = new char*[getOpenedCount()];
     for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
         if (m_fileList[i] != NULL)
         {
-            pstTypes[iFileIndex++] = os_wcsdup(m_fileList[i]->getFileTypeAsString().c_str());
+            pstTypes[iFileIndex++] = os_strdup(m_fileList[i]->getFileTypeAsString().c_str());
         }
     }
 
     return pstTypes;
 }
 
-wchar_t** FileManager::getFilenames()
+char** FileManager::getFilenames()
 {
     int iFileIndex          = 0;
-    wchar_t** pstFilenames  = NULL;
+    char** pstFilenames  = NULL;
 
-    pstFilenames = (wchar_t**) MALLOC(getOpenedCount() * sizeof(wchar_t*));
+    pstFilenames = (char**) MALLOC(getOpenedCount() * sizeof(char*));
     for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
         if (m_fileList[i] != NULL)
         {
-            pstFilenames[iFileIndex++] = os_wcsdup(m_fileList[i]->getFilename().c_str());
+            pstFilenames[iFileIndex++] = os_strdup(m_fileList[i]->getFilename().c_str());
         }
     }
 
@@ -242,25 +242,25 @@ double* FileManager::getSwaps()
 void FileManager::initialize()
 {
     types::File* pErr = new types::File();
-    pErr->setFileMode(L"wb");
+    pErr->setFileMode("wb");
     pErr->setFileDesc(stderr);
     pErr->setFileSwap(0);
     pErr->setFileType(3);
-    pErr->setFilename(L"stderr");
+    pErr->setFilename("stderr");
 
     types::File* pIn = new types::File();
-    pIn->setFileMode(L"rb");
+    pIn->setFileMode("rb");
     pIn->setFileDesc(stdin);
     pIn->setFileSwap(0);
     pIn->setFileType(3);
-    pIn->setFilename(L"stdin");
+    pIn->setFilename("stdin");
 
     types::File* pOut = new types::File();
-    pOut->setFileMode(L"wb");
+    pOut->setFileMode("wb");
     pOut->setFileDesc(stdout);
     pOut->setFileSwap(0);
     pOut->setFileType(3);
-    pOut->setFilename(L"stdout");
+    pOut->setFilename("stdout");
 
     //put pErr at position 0
     m_fileList.push_back(pErr);

@@ -23,8 +23,8 @@ public :
     File();
     ~File();
 
-    void                        setFileMode(const std::wstring& _pstMode);
-    std::wstring&               getFileMode();
+    void                        setFileMode(const std::string& _pstMode);
+    std::string&                getFileMode();
     void                        setFileModeAsInt(int _iMode);
     int                         getFileModeAsInt();
     void                        setFileFortranMode(int _iMode);
@@ -38,10 +38,10 @@ public :
 
     void                        setFileType(int _iType);
     int                         getFileType();
-    std::wstring                getFileTypeAsString();
+    std::string                 getFileTypeAsString();
 
-    void                        setFilename(const std::wstring& _stFilename);
-    std::wstring&               getFilename();
+    void                        setFilename(const std::string& _stFilename);
+    std::string&                getFilename();
 
     int                         getCountLines();
 
@@ -52,10 +52,10 @@ public :
 private :
     FILE*                       m_fileDesc;
     int                         m_iSwap; /* swap status for each file */
-    std::wstring                m_pstMode; /* mode for each file */
+    std::string                 m_pstMode; /* mode for each file */
     int                         m_iFortranMode; /* mode for file opened with fortran open*/
     int                         m_iType; /* type (Fortran,C) for each file must be zero initialized */
-    std::wstring                m_stFilename; /* name for each file */
+    std::string                 m_stFilename; /* name for each file */
 
 };
 }

@@ -14,7 +14,7 @@
 
 #include "filemanager_interface.h"
 
-FILEIO_IMPEXP const wchar_t* getfile_filename(int uid)
+FILEIO_IMPEXP const char* getfile_filename(int uid)
 {
     types::File* file = FileManager::getFile(uid);
     if (file == nullptr)

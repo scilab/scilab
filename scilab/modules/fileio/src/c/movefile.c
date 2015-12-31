@@ -17,13 +17,13 @@
 #include "createdirectory.h"
 #include "isdir.h"
 /*--------------------------------------------------------------------------*/
-int MoveFileFunction(wchar_t *DestinationFilename, wchar_t *SourceFilename)
+int MoveFileFunction(char *DestinationFilename, char *SourceFilename)
 {
     int ierr = 0;
     ierr = CopyFileFunction(DestinationFilename, SourceFilename);
     if (ierr == 0)
     {
-        if (deleteafileW(SourceFilename))
+        if (deleteafile(SourceFilename))
         {
             return 0;
         }
@@ -35,19 +35,19 @@ int MoveFileFunction(wchar_t *DestinationFilename, wchar_t *SourceFilename)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int MoveDirectoryFunction(wchar_t *DestinationDirectory, wchar_t *SourceDirectory)
+int MoveDirectoryFunction(char *DestinationDirectory, char *SourceDirectory)
 {
     int ierr = 0;
 
-    if ( !isdirW(DestinationDirectory)  )
+    if ( !isdir(DestinationDirectory)  )
     {
-        createdirectoryW(DestinationDirectory);
+        createdirectory(DestinationDirectory);
     }
 
     ierr = CopyDirectoryFunction(DestinationDirectory, SourceDirectory);
     if (ierr == 0)
     {
-        if (removedirW(SourceDirectory))
+        if (removedir(SourceDirectory))
         {
             return 0;
         }

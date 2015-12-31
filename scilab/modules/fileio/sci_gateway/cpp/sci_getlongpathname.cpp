@@ -48,10 +48,10 @@ types::Function::ReturnValue sci_getlongpathname(types::typed_list &in, int _iRe
     types::Bool* pOut2 = new types::Bool(pS->getRows(), pS->getCols());
     int* pBool = pOut2->get();
     int size = pS->getSize();
-    wchar_t** p = pS->get();
+    char** p = pS->get();
     for (int i = 0 ; i < size; i++)
     {
-        wchar_t* tmp = getlongpathnameW(p[i], (BOOL*)&pBool[i]);
+        char* tmp = getlongpathname(p[i], (BOOL*)&pBool[i]);
         pOut1->set(i, tmp);
         FREE(tmp);
     }

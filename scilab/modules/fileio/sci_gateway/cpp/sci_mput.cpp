@@ -32,7 +32,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    char* pstType   = os_strdup("l");//default type value : long
+    char* pstType   = "l";//default type value : long
     int iSize       = 0;
     int iFile       = -1; //default file : last opened file
     double* pData   = NULL;
@@ -62,8 +62,7 @@ types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        FREE(pstType);
-        pstType = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+        pstType = in[1]->getAs<types::String>()->get(0);
 
     }
 
@@ -160,7 +159,6 @@ types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, typ
 
     C2F(mput)(&iFile, pData, &iSize, pstType, &iErr);
 
-    FREE(pstType);
     if (in[0]->isDouble() == false)
     {
         free(pData);

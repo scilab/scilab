@@ -10,46 +10,48 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "basename.h"
 #include "sci_malloc.h"
 #include "expandPathVariable.h"
 #include "splitpath.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
-wchar_t *basenameW(wchar_t *wcfullfilename, BOOL bExpand)
+char *basename(const char* fullfilename, BOOL bExpand)
 {
-    wchar_t *basename_str = NULL;
-    if (wcfullfilename)
+    char *basename_str = NULL;
+    if (fullfilename)
     {
-        wchar_t *expandedPath = expandPathVariableW(wcfullfilename);
+        char *expandedPath = expandPathVariable(fullfilename);
         if (expandedPath)
         {
-            wchar_t *wcdrv = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(expandedPath) + 1));
-            wchar_t* wcdir = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(expandedPath) + 1));
-            wchar_t* wcname = (wchar_t*) MALLOC(sizeof(wchar_t) * ((int)wcslen(expandedPath) + 1));
-            wchar_t* wcext = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(expandedPath) + 1));
+            char* drv = (char*)MALLOC(sizeof(char) * ((int)strlen(expandedPath) + 1));
+            char* dir = (char*)MALLOC(sizeof(char) * ((int)strlen(expandedPath) + 1));
+            char* name = (char*) MALLOC(sizeof(char) * ((int)strlen(expandedPath) + 1));
+            char* ext = (char*)MALLOC(sizeof(char) * ((int)strlen(expandedPath) + 1));
 
-            splitpathW(expandedPath, bExpand, wcdrv, wcdir, wcname, wcext);
+            splitpath(expandedPath, bExpand, drv, dir, name, ext);
 
-            if (wcname)
+            if (name)
             {
-                basename_str = wcname;
+                basename_str = name;
             }
 
-            if (wcdrv)
+            if (drv)
             {
-                FREE(wcdrv);
-                wcdrv = NULL;
+                FREE(drv);
+                drv = NULL;
             }
-            if (wcdir)
+
+            if (dir)
             {
-                FREE(wcdir);
-                wcdir = NULL;
+                FREE(dir);
+                dir = NULL;
             }
-            if (wcext)
+            if (ext)
             {
-                FREE(wcext);
-                wcext = NULL;
+                FREE(ext);
+                ext = NULL;
             }
 
             FREE(expandedPath);

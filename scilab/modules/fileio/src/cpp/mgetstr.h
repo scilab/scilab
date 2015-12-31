@@ -15,7 +15,7 @@
 
 #include "dynlib_fileio.h"
 
-FILEIO_IMPEXP wchar_t* mgetstr(int _iFileId, int _iSizeToRead);
+FILEIO_IMPEXP char* mgetstr(int _iFileId, int _iSizeToRead);
 
 #endif /* !__MGETSTR_H__ */
 

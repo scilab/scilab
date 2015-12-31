@@ -15,7 +15,7 @@
 
 #include "dynlib_fileio.h"
 
-FILEIO_IMPEXP int newest(wchar_t** _pwcsFilesString, int _iNbrOfFileString);
+FILEIO_IMPEXP int newest(char** _filesString, int _iNbrOfFileString);
 
 #endif /* !__NEWEST_H__ */
 

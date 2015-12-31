@@ -33,74 +33,37 @@
 BOOL createdirectory(const char *path)
 {
     BOOL bOK = FALSE;
-
     if (path)
     {
-        if  (!isdir(path))
+        if (!isdir(path))
         {
-#ifndef _MSC_VER
-            if (mkdir(path, DIRMODE) == 0)
-            {
-                bOK = TRUE;
-            }
-#else
-            wchar_t *widePath = to_wide_string((char*)path);
-            if (widePath)
-            {
-                bOK = createdirectoryW(widePath);
-                FREE(widePath);
-                widePath = NULL;
-            }
-#endif
-        }
-    }
-    return bOK;
-}
-/*--------------------------------------------------------------------------*/
-BOOL createdirectoryW(const wchar_t *pathW)
-{
-    BOOL bOK = FALSE;
-    if (pathW)
-    {
-        if (!isdirW(pathW))
-        {
-#ifndef _MSC_VER
-            char *path = wide_string_to_UTF8(pathW);
-            if (path)
-            {
-                bOK = createdirectory(path);
-                FREE(path);
-                path = NULL;
-            }
-#else
-            wchar_t path_out[MAX_PATH];
-            wchar_t drv[MAX_PATH];
-            wchar_t dir[MAX_PATH];
-            splitpathW(pathW, TRUE, drv, dir, NULL, NULL);
+            char path_out[MAX_PATH];
+            char drv[MAX_PATH];
+            char dir[MAX_PATH];
+            splitpath(path, TRUE, drv, dir, NULL, NULL);
 
-            wcscpy(path_out, drv);
-            wcscat(path_out, dir);
+            strcpy(path_out, drv);
+            strcat(path_out, dir);
 
             //if there is no path_out, get current dir as reference.
-            if (wcslen(path_out) == 0)
+            if (strlen(path_out) == 0)
             {
                 int err = 0;
-                wchar_t * cur = NULL;
-                if (wcslen(pathW)  == 0)
+                char* cur = NULL;
+                if (strlen(path)  == 0)
                 {
                     return FALSE;
                 }
 
-                cur = scigetcwdW(&err);
-                wcscpy(path_out, cur);
+                cur = scigetcwd(&err);
+                strcpy(path_out, cur);
                 FREE(cur);
             }
 
-            if (CreateDirectoryExW(path_out, pathW, NULL))
+            if (CreateDirectoryExA(path_out, path, NULL))
             {
                 bOK = TRUE;
             }
-#endif
         }
     }
     return bOK;

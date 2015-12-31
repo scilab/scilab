@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, 
     int iFile                   = -1; //default file : last opened file
     types::String* pOutString   = NULL;
     int iSizeToRead             = 0;
-    wchar_t* pwstOut            = NULL;
+    char* pstOut                = NULL;
 
 
     if (in.size() < 1 || in.size() > 2)
@@ -69,17 +69,17 @@ types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, 
             Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mgetstr", iFile);
             return types::Function::Error;
         default :
-            pwstOut = mgetstr(iFile, iSizeToRead);
+            pstOut = mgetstr(iFile, iSizeToRead);
     }
 
-    if (pwstOut == NULL)
+    if (pstOut == NULL)
     {
         Scierror(999, _("%s: Unable to read file %d.\n"), "mgetstr", iFile);
         return types::Function::Error;
     }
 
-    out.push_back(new types::String(pwstOut));
-    FREE(pwstOut);
+    out.push_back(new types::String(pstOut));
+    FREE(pstOut);
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

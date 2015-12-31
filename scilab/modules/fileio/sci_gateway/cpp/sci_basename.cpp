@@ -90,11 +90,10 @@ types::Function::ReturnValue sci_basename(types::typed_list &in, int _iRetCount,
     types::String* pOut = new types::String(pS->getRows(), pS->getCols());
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
-        wchar_t* base = basenameW(pS->get(i), (BOOL)iExpand);
+        char* base = basename(pS->get(i), (BOOL)iExpand);
         pOut->set(i, base);
         FREE(base);
     }
-
 
     out.push_back(pOut);
     return types::Function::OK;

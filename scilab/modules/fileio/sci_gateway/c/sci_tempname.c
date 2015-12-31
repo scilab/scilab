@@ -18,13 +18,13 @@
 #include "localization.h"
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
-#define DEFAULT_PREFIX L"SCI"
+#define DEFAULT_PREFIX "SCI"
 /*--------------------------------------------------------------------------*/
 int sci_tempname(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
-    wchar_t *wcprefix = NULL;
-    wchar_t *wcTempFilename = NULL;
+    char *wcprefix = NULL;
+    char *wcTempFilename = NULL;
 
     //Rhs = Max(Rhs, 0);
     CheckRhs(0, 1);
@@ -32,8 +32,8 @@ int sci_tempname(char *fname, void* pvApiCtx)
 
     if (Rhs == 0)
     {
-        wcprefix = (wchar_t *)MALLOC(sizeof(wchar_t) * (wcslen(DEFAULT_PREFIX) + 1));
-        wcscpy(wcprefix, DEFAULT_PREFIX);
+        wcprefix = (char*)MALLOC(sizeof(char) * (strlen(DEFAULT_PREFIX) + 1));
+        strcpy(wcprefix, DEFAULT_PREFIX);
     }
     else
     {
@@ -55,11 +55,11 @@ int sci_tempname(char *fname, void* pvApiCtx)
 
         if (isStringType(pvApiCtx, piAddressVarOne))
         {
-            if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &wcprefix))
+            if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &wcprefix))
             {
                 if (wcprefix)
                 {
-                    freeAllocatedSingleWideString(wcprefix);
+                    freeAllocatedSingleString(wcprefix);
                 }
 
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
@@ -67,9 +67,9 @@ int sci_tempname(char *fname, void* pvApiCtx)
             }
 
 #if _MSC_VER
-            if (wcslen(wcprefix) > 3)
+            if (strlen(wcprefix) > 3)
             {
-                freeAllocatedSingleWideString(wcprefix);
+                freeAllocatedSingleString(wcprefix);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string (3 characters max.) expected.\n"), fname, 1);
                 return 0;
             }
@@ -77,21 +77,21 @@ int sci_tempname(char *fname, void* pvApiCtx)
         }
         else
         {
-            freeAllocatedSingleWideString(wcprefix);
+            freeAllocatedSingleString(wcprefix);
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
     }
 
-    wcTempFilename = createtempfilenameW(wcprefix, TRUE);
-    freeAllocatedSingleWideString(wcprefix);
+    wcTempFilename = createtempfilename(wcprefix, TRUE);
+    freeAllocatedSingleString(wcprefix);
     if (wcTempFilename == NULL)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
-    if (createSingleWideString(pvApiCtx, Rhs + 1, wcTempFilename))
+    if (createSingleString(pvApiCtx, Rhs + 1, wcTempFilename))
     {
         FREE(wcTempFilename);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);

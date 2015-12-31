@@ -17,6 +17,7 @@
 #include "mgetl.h"
 #include "freeArrayOfString.h"
 #include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define EMPTYSTR ""
 /*--------------------------------------------------------------------------*/
@@ -27,9 +28,9 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
     int nbLinesReaded = 0;
     int mgetIerr = MGETL_ERROR;
 
-    wchar_t **lines = mgetl(fd, nbLinesToRead, &nbLinesReaded, &mgetIerr);
-    char* line = wide_string_to_UTF8(lines[0]);
-    freeArrayOfWideString(lines, nbLinesReaded);
+    char **lines = mgetl(fd, nbLinesToRead, &nbLinesReaded, &mgetIerr);
+    char* line = os_strdup(lines[0]);
+    freeArrayOfString(lines, nbLinesReaded);
 
     *cnt = 0;
     *nr = 0;
@@ -44,7 +45,7 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
             if (line && nbLinesReaded == 1)
             {
                 /* current limitation (bsiz) of line readed by scilab */
-                if ((int)wcslen(lines[0]) < bsiz)
+                if ((int)strlen(lines[0]) < bsiz)
                 {
                     strcpy(buf, line);
                     returnedInfo = READNEXTLINE_ERROR_EOL;

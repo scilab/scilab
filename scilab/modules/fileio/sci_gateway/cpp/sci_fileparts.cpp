@@ -32,9 +32,9 @@ enum PartialPart
     AllPart = -1
 };
 /*--------------------------------------------------------------------------*/
-#define FILEPARTS_PATH_SELECTOR L"path"
-#define FILEPARTS_FNAME_SELECTOR L"fname"
-#define FILEPARTS_EXTENSION_SELECTOR L"extension"
+#define FILEPARTS_PATH_SELECTOR "path"
+#define FILEPARTS_FNAME_SELECTOR "fname"
+#define FILEPARTS_EXTENSION_SELECTOR "extension"
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -86,16 +86,16 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
             return types::Function::Error;
         }
 
-        wchar_t* pParts = in[1]->getAs<types::String>()->get(0);
-        if (wcscmp(pParts, FILEPARTS_PATH_SELECTOR) == 0)
+        char* pParts = in[1]->getAs<types::String>()->get(0);
+        if (strcmp(pParts, FILEPARTS_PATH_SELECTOR) == 0)
         {
             iPartialPart = PathPart;
         }
-        else if (wcscmp(pParts, FILEPARTS_FNAME_SELECTOR) == 0)
+        else if (strcmp(pParts, FILEPARTS_FNAME_SELECTOR) == 0)
         {
             iPartialPart = NamePart;
         }
-        else if (wcscmp(pParts, FILEPARTS_EXTENSION_SELECTOR) == 0)
+        else if (strcmp(pParts, FILEPARTS_EXTENSION_SELECTOR) == 0)
         {
             iPartialPart = ExtensionPart;
         }
@@ -108,31 +108,32 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
         pStrOut = new types::String(pStrPath->getDims(), pStrPath->getDimsArray());
         for (int i = 0; i < pStrPath->getSize(); i++)
         {
-            wchar_t* pPath = pStrPath->get(i);
+            char* pPath = pStrPath->get(i);
+            int len = (int)strlen(pPath);
 
-            wchar_t* pwstDrive      = new wchar_t[wcslen(pPath) + 1];
-            wchar_t* pwstDirectory  = new wchar_t[wcslen(pPath) + 1];
-            wchar_t* pwstName       = new wchar_t[wcslen(pPath) + 1];
-            wchar_t* pwstExtension  = new wchar_t[wcslen(pPath) + 1];
+            char* pstDirectory  = new char[len + 1];
+            char* pstDrive      = new char[len + 1];
+            char* pstName       = new char[len + 1];
+            char* pstExtension  = new char[len + 1];
 
-            splitpathW(pPath, FALSE, pwstDrive, pwstDirectory, pwstName, pwstExtension);
-            wcscat(pwstDrive, pwstDirectory);
+            splitpath(pPath, FALSE, pstDrive, pstDirectory, pstName, pstExtension);
+            strcat(pstDrive, pstDirectory);
 
             switch (iPartialPart)
             {
                 case PathPart :
                 {
-                    pStrOut->set(i, pwstDrive);
+                    pStrOut->set(i, pstDrive);
                     break;
                 }
                 case NamePart :
                 {
-                    pStrOut->set(i, pwstName);
+                    pStrOut->set(i, pstName);
                     break;
                 }
                 case ExtensionPart :
                 {
-                    pStrOut->set(i, pwstExtension);
+                    pStrOut->set(i, pstExtension);
                     break;
                 }
                 default :
@@ -141,10 +142,10 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
                 }
             }
 
-            delete[] pwstDirectory;
-            delete[] pwstDrive;
-            delete[] pwstExtension;
-            delete[] pwstName;
+            delete[] pstDirectory;
+            delete[] pstDrive;
+            delete[] pstExtension;
+            delete[] pstName;
         }
 
         out.push_back(pStrOut);
@@ -157,25 +158,26 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
 
         for (int i = 0; i < pStrPath->getSize(); i++)
         {
-            wchar_t* pPath = pStrPath->get(i);
+            char* pPath = pStrPath->get(i);
+            int len = (int)strlen(pPath);
 
-            wchar_t* pwstDrive      = new wchar_t[wcslen(pPath) + 1];
-            wchar_t* pwstDirectory  = new wchar_t[wcslen(pPath) + 1];
-            wchar_t* pwstName       = new wchar_t[wcslen(pPath) + 1];
-            wchar_t* pwstExtension  = new wchar_t[wcslen(pPath) + 1];
+            char* pstDrive      = new char[len + 1];
+            char* pstDirectory  = new char[len + 1];
+            char* pstName       = new char[len + 1];
+            char* pstExtension  = new char[len + 1];
 
-            splitpathW(pPath, FALSE, pwstDrive, pwstDirectory, pwstName, pwstExtension);
-            wcscat(pwstDrive, pwstDirectory);
+            splitpath(pPath, FALSE, pstDrive, pstDirectory, pstName, pstExtension);
+            strcat(pstDrive, pstDirectory);
 
             //standard case, 3 outputs
-            pStrOut->set(i, pwstDrive);
-            pStrOut2->set(i, pwstName);
-            pStrOut3->set(i, pwstExtension);
+            pStrOut->set(i, pstDrive);
+            pStrOut2->set(i, pstName);
+            pStrOut3->set(i, pstExtension);
 
-            delete[] pwstDirectory;
-            delete[] pwstDrive;
-            delete[] pwstExtension;
-            delete[] pwstName;
+            delete[] pstDirectory;
+            delete[] pstDrive;
+            delete[] pstExtension;
+            delete[] pstName;
         }
 
         out.push_back(pStrOut);

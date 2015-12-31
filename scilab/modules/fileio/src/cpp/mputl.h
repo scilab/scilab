@@ -37,7 +37,7 @@ typedef enum
 * @param[in] numbers of strings to write
 * @return enum error
 */
-FILEIO_IMPEXP mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR = TRUE);
+FILEIO_IMPEXP mputlError mputl(int _iFileId, char **pstStrings, int _iSizeStrings, BOOL _CR = TRUE);
 
 #endif /* __MPUTL_H__ */
 /*--------------------------------------------------------------------------*/

@@ -23,6 +23,6 @@
 * @param[in] BOOL flagexpand
 * @return basename
 */
-FILEIO_IMPEXP wchar_t *basenameW(wchar_t *wcfullfilename, BOOL bExpand);
+FILEIO_IMPEXP char* basename(const char *fullfilename, BOOL bExpand);
 
 #endif

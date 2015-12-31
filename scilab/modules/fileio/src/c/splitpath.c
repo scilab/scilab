@@ -18,29 +18,29 @@
 #include "sci_malloc.h"
 #include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/
-void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, wchar_t* name, wchar_t* ext)
+void splitpath(const char* path, BOOL bExpand, char* drv, char* dir, char* name, char* ext)
 {
-    wchar_t* duplicate_path = NULL;
-    wchar_t* begin_duplicate_path = NULL;
-    const wchar_t* lastslash = NULL;
-    const wchar_t* lastdot = NULL;
-    const wchar_t* begin = NULL;
+    char* duplicate_path = NULL;
+    char* begin_duplicate_path = NULL;
+    const char* lastslash = NULL;
+    const char* lastdot = NULL;
+    const char* begin = NULL;
 
     if (drv)
     {
-        wcscpy(drv, L"");
+        strcpy(drv, "");
     }
     if (dir)
     {
-        wcscpy(dir, L"");
+        strcpy(dir, "");
     }
     if (name)
     {
-        wcscpy(name, L"");
+        strcpy(name, "");
     }
     if (ext)
     {
-        wcscpy(ext, L"");
+        strcpy(ext, "");
     }
 
     /* pathconvert hardcoded */
@@ -50,14 +50,14 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
 
         if (bExpand)
         {
-            duplicate_path = expandPathVariableW((wchar_t*)path);
+            duplicate_path = expandPathVariable(path);
         }
         else
         {
-            duplicate_path = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(path) + 1));
+            duplicate_path = (char*)MALLOC(sizeof(char) * ((int)strlen(path) + 1));
             if (duplicate_path)
             {
-                wcscpy(duplicate_path, path);
+                strcpy(duplicate_path, path);
             }
         }
 
@@ -68,17 +68,17 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
 
         begin_duplicate_path = duplicate_path;
 
-        for (i = 0; i < (int)wcslen(duplicate_path); i++)
+        for (i = 0; i < (int)strlen(duplicate_path); i++)
         {
 #ifdef _MSC_VER
-            if (duplicate_path[i] == L'/')
+            if (duplicate_path[i] == '/')
             {
-                duplicate_path[i] = L'\\';
+                duplicate_path[i] = '\\';
             }
 #else
-            if (duplicate_path[i] == L'\\')
+            if (duplicate_path[i] == '\\')
             {
-                duplicate_path[i] = L'/';
+                duplicate_path[i] = '/';
             }
 #endif
         }
@@ -90,14 +90,14 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
 
     if (duplicate_path)
     {
-        if (wcslen(duplicate_path) > 2)
+        if (strlen(duplicate_path) > 2)
         {
-            if (duplicate_path[0] && duplicate_path[1] == L':' && ( (duplicate_path[2] == L'\\') || (duplicate_path[2] == L'/') ) )
+            if (duplicate_path[0] && duplicate_path[1] == ':' && ((duplicate_path[2] == '\\') || (duplicate_path[2] == '/')))
             {
                 if (drv)
                 {
-                    wcsncpy(drv, duplicate_path, 2);
-                    drv[2] = L'\0';
+                    strncpy(drv, duplicate_path, 2);
+                    drv[2] = '\0';
                     duplicate_path = duplicate_path + 2;
                 }
             }
@@ -107,9 +107,9 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
 
     /* find the last slash in the path */
 #ifdef _MSC_VER
-    lastslash = wcsrchr(duplicate_path, L'\\');
+    lastslash = strrchr(duplicate_path, '\\');
 #else
-    lastslash = wcsrchr(duplicate_path, L'/');
+    lastslash = strrchr(duplicate_path, '/');
 #endif
 
     /* fill in directory */
@@ -117,26 +117,26 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
     {
         if (lastslash == 0)
         {
-            wcscpy(dir, L"");
+            strcpy(dir, "");
         }
         else
         {
-            int len = (int)wcslen(duplicate_path) - (int)wcslen(lastslash) + 1;
-            wcsncpy(dir, duplicate_path, len);
-            dir[len] = L'\0';
+            int len = (int)strlen(duplicate_path) - (int)strlen(lastslash) + 1;
+            strncpy(dir, duplicate_path, len);
+            dir[len] = '\0';
         }
     }
 
     /* Get the last dot in the filename */
     begin = (lastslash != 0) ? lastslash + 1 : duplicate_path;
-    lastdot = wcsrchr(begin, L'.');
+    lastdot = strrchr(begin, '.');
 
     /* fill filename and extension */
     if (lastdot == 0)
     {
         if (name)
         {
-            wcscpy(name, begin);
+            strcpy(name, begin);
         }
     }
     else
@@ -145,14 +145,14 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
         {
             if (lastdot)
             {
-                int len = (int)wcslen(begin) - (int)wcslen(lastdot);
-                wcsncpy(name, begin, len);
-                name[len] = L'\0';
+                int len = (int)strlen(begin) - (int)strlen(lastdot);
+                strncpy(name, begin, len);
+                name[len] = '\0';
             }
         }
         if (ext)
         {
-            wcscpy(ext, lastdot);
+            strcpy(ext, lastdot);
         }
     }
 
@@ -163,73 +163,10 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
     }
 
     /* swap name & extension if no name */
-    if (name && name[0] == 0 && ext && wcslen(ext) > 0)
+    if (name && name[0] == 0 && ext && strlen(ext) > 0)
     {
-        wcscpy(name, ext);
-        wcscpy(ext, L"");
+        strcpy(name, ext);
+        strcpy(ext, "");
     }
-}
-/*--------------------------------------------------------------------------*/
-void splitpath(const char* path, BOOL bExpand, char* drv, char* dir, char* name, char* ext)
-{
-    wchar_t *wcpath = NULL;
-    wchar_t *wcdrv = NULL;
-    wchar_t *wcdir = NULL;
-    wchar_t *wcname = NULL;
-    wchar_t *wcext = NULL;
-
-    char *buffer = NULL;
-
-    if (drv == NULL || dir == NULL || name == NULL || ext == NULL)
-    {
-        return;
-    }
-
-    wcpath = to_wide_string((char*)path);
-    wcdrv = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
-    wcdir = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
-    wcname = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
-    wcext = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
-
-    strcpy(drv, "");
-    strcpy(dir, "");
-    strcpy(name, "");
-    strcpy(ext, "");
-
-    splitpathW(wcpath, bExpand, wcdrv, wcdir, wcname, wcext);
-
-    FREE(wcpath);
-
-    buffer = wide_string_to_UTF8(wcdrv);
-    if (buffer)
-    {
-        strcpy(drv, buffer);
-        FREE(buffer);
-    }
-    FREE(wcdrv);
-
-    buffer = wide_string_to_UTF8(wcdir);
-    if (buffer)
-    {
-        strcpy(dir, buffer);
-        FREE(buffer);
-    }
-    FREE(wcdir);
-
-    buffer = wide_string_to_UTF8(wcname);
-    if (buffer)
-    {
-        strcpy(name, buffer);
-        FREE(buffer);
-    }
-    FREE(wcname);
-
-    buffer = wide_string_to_UTF8(wcext);
-    if (buffer)
-    {
-        strcpy(ext, buffer);
-        FREE(buffer);
-    }
-    FREE(wcext);
 }
 /*--------------------------------------------------------------------------*/

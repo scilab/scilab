@@ -55,20 +55,16 @@ types::Function::ReturnValue sci_fullpath(types::typed_list &in, int _iRetCount,
 
     for (int i = 0 ; i < pIn->getSize() ; i++)
     {
-        char *relPath = wide_string_to_UTF8(pIn->get(i));
+        char *relPath = pIn->get(i);
         if ( get_full_path(fullpath, relPath, PATH_MAX * 4 ) != NULL)
         {
             pOut->set(i, fullpath);
-            FREE(relPath);
         }
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"), "fullpath", 1, relPath);
-            FREE(relPath);
             return types::Function::Error;
         }
-
-        fullpath[0] = L'\0';
     }
 
     out.push_back(pOut);

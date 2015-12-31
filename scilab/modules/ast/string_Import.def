@@ -2,4 +2,4 @@ LIBRARY    string.dll
 
 
 EXPORTS
-os_wcstok
+os_strtok

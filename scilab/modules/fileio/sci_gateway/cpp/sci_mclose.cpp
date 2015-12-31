@@ -50,14 +50,12 @@ types::Function::ReturnValue sci_mclose(types::typed_list &in, int _iRetCount, t
                 int iFileID = FileManager::getFileID(pS->get(0));
                 if (iFileID == -1)
                 {
-                    char* pst = wide_string_to_UTF8(pS->get(0));
-                    Scierror(999, _("%s: File not found: '%s'.\n"), "mclose", pst);
-                    FREE(pst);
+                    Scierror(999, _("%s: File not found: '%s'.\n"), "mclose", pS->get(0));
                     return types::Function::Error;
                 }
                 iRet = mclose(iFileID);
             }
-            else if (os_wcsicmp(pS->get(0), L"all") == 0)
+            else if (stricmp(pS->get(0), "all") == 0)
             {
                 iRet = mcloseAll();
             }

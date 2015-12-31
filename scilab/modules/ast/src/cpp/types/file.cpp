@@ -25,10 +25,10 @@ File::File()
 {
     m_fileDesc = NULL;
     m_iSwap = 0;
-    m_pstMode = L"";
+    m_pstMode = "";
     m_iFortranMode = -1; // see clunit.f
     m_iType = 0; // 1 : fortran open   2 : c open   3 : std::err std::out std::in
-    m_stFilename = L"";
+    m_stFilename = "";
 }
 
 File::~File()
@@ -45,12 +45,12 @@ FILE* File::getFiledesc()
     return m_fileDesc;
 }
 
-void File::setFileMode(const std::wstring& _pstMode)
+void File::setFileMode(const std::string& _pstMode)
 {
     m_pstMode = _pstMode;
 }
 
-std::wstring& File::getFileMode()
+std::string& File::getFileMode()
 {
     return m_pstMode;
 }
@@ -61,25 +61,25 @@ int File::getFileModeAsInt()
     int iPlus  = 0;
     int iBin   = 0;
 
-    for (int i = 0 ; i < (int)wcslen(m_pstMode.c_str()) ; i++)
+    for (int i = 0 ; i < (int)strlen(m_pstMode.c_str()) ; i++)
     {
-        if (m_pstMode[i] == L'r')
+        if (m_pstMode[i] == 'r')
         {
             iMode = 1;
         }
-        else if (m_pstMode[i] == L'w')
+        else if (m_pstMode[i] == 'w')
         {
             iMode = 2;
         }
-        else if (m_pstMode[i] == L'a')
+        else if (m_pstMode[i] == 'a')
         {
             iMode = 3;
         }
-        else if (m_pstMode[i] == L'+')
+        else if (m_pstMode[i] == '+')
         {
             iPlus = 1;
         }
-        else if (m_pstMode[i] == L'b')
+        else if (m_pstMode[i] == 'b')
         {
             iBin = 1;
         }
@@ -94,28 +94,28 @@ void File::setFileModeAsInt(int _iMode)
     int iPlus  = (int)((_iMode - iMode * 100) / 10);
     int iBin   = _iMode - iMode * 100 - iPlus * 10;
 
-    m_pstMode = L"";
+    m_pstMode = "";
 
     switch (iMode)
     {
         case 2 :
-            m_pstMode += L"w";
+            m_pstMode += "w";
             break;
         case 3 :
-            m_pstMode += L"a";
+            m_pstMode += "a";
             break;
         default:
-            m_pstMode += L"r"; // default mode "rb"
+            m_pstMode += "r"; // default mode "rb"
     }
 
     if (iPlus)
     {
-        m_pstMode += L"+";
+        m_pstMode += "+";
     }
 
     if (iBin)
     {
-        m_pstMode += L"b";
+        m_pstMode += "b";
     }
 }
 
@@ -149,39 +149,38 @@ int File::getFileType()
     return m_iType;
 }
 
-std::wstring File::getFileTypeAsString()
+std::string File::getFileTypeAsString()
 {
     switch (getFileType())
     {
         case 1 :
-            return L"F";
+            return "F";
             break;
         case 2 :
-            return L"C";
+            return "C";
             break;
         case 3 :
-            return L"STD";
+            return "STD";
             break;
         default :
-            return L"Error";
+            return "Error";
             break;
     }
 }
 
-void File::setFilename(const std::wstring& _stFilename)
+void File::setFilename(const std::string& _stFilename)
 {
     m_stFilename = _stFilename;
 }
 
-std::wstring& File::getFilename()
+std::string& File::getFilename()
 {
     return m_stFilename;
 }
 
 int File::getCountLines()
 {
-    char* pstFileName = wide_string_to_UTF8(m_stFilename.c_str());
-    std::ifstream in(pstFileName);
+    std::ifstream in(m_stFilename);
     std::string stLine;
     int iLines = 0;
 
@@ -191,7 +190,6 @@ int File::getCountLines()
     }
 
     in.close();
-    FREE(pstFileName);
     return iLines;
 }
 

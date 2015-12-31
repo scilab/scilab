@@ -32,8 +32,8 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
 {
     int iErr                = 0;
     int iID                 = 0;
-    wchar_t* pstFilename    = NULL;
-    const wchar_t* pstMode  = L"rb";
+    char* pstFilename       = NULL;
+    char* pstMode           = "rb";
     int iSwap               = 0;
 
     //check output parameters
@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        pstFilename = expandPathVariableW(pS1->get(0));
+        pstFilename = expandPathVariable(pS1->get(0));
 
         if (in.size() >= 2)
         {
@@ -117,9 +117,9 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-    get_full_pathW(pwstTemp, (const wchar_t*)pstFilename, PATH_MAX * 2);
-    iErr = mopen(pwstTemp, pstMode, iSwap, &iID);
+    char* pstTemp = (char*)MALLOC(sizeof(char) * (PATH_MAX * 2));
+    get_full_path(pstTemp, (const char*)pstFilename, PATH_MAX * 2);
+    iErr = mopen(pstTemp, pstMode, iSwap, &iID);
     if (iErr != MOPEN_NO_ERROR)
     {
         //mange file open errors
@@ -129,11 +129,9 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
             {
                 case MOPEN_CAN_NOT_OPEN_FILE:
                 {
-                    char* pst = wide_string_to_UTF8(pstFilename);
-                    Scierror(999, _("%s: Cannot open file %s.\n"), "mopen", pst);
-                    FREE(pst);
+                    Scierror(999, _("%s: Cannot open file %s.\n"), "mopen", pstFilename);
                     FREE(pstFilename);
-                    FREE(pwstTemp);
+                    FREE(pstTemp);
                     pstFilename = NULL;
                     return types::Function::Error;
                 }
@@ -141,7 +139,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
                 {
                     Scierror(999, _("%s: invalid filename.\n"), "mopen");
                     FREE(pstFilename);
-                    FREE(pwstTemp);
+                    FREE(pstTemp);
                     pstFilename = NULL;
                     return types::Function::Error;
                 }
@@ -149,7 +147,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
                 {
                     Scierror(999, _("%s: invalid status.\n"), "mopen");
                     FREE(pstFilename);
-                    FREE(pwstTemp);
+                    FREE(pstTemp);
                     pstFilename = NULL;
                     return types::Function::Error;
                 }
@@ -157,7 +155,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    FREE(pwstTemp);
+    FREE(pstTemp);
     FREE(pstFilename);
 
     types::Double* pD = new types::Double(static_cast<double>(iID));

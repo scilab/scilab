@@ -30,90 +30,35 @@
 /*--------------------------------------------------------------------------*/
 char *createtempfilename(const char *prefix, BOOL bShortFormat)
 {
-    char *tempfilename = NULL;
-#ifdef _MSC_VER
-    wchar_t *wcprefix = to_wide_string(prefix);
-    wchar_t *wcresult = createtempfilenameW(wcprefix, bShortFormat);
-
-    tempfilename = wide_string_to_UTF8(wcresult);
-
-    if (wcresult)
-    {
-        FREE(wcresult);
-        wcresult = NULL;
-    }
-    if (wcresult)
-    {
-        FREE(wcresult);
-        wcresult = NULL;
-    }
-#else
-    char *TmpDir = getTMPDIR();
-    if (TmpDir)
-    {
-        char TempFileName[PATH_MAX];
-        int fd = 0;
-        sprintf(TempFileName, "%s/%sXXXXXX", TmpDir, prefix);
-        fd = mkstemp(TempFileName);
-        if (fd != -1)
-        {
-            close(fd);
-        }
-        tempfilename = os_strdup(TempFileName);
-    }
-#endif
-    return tempfilename;
-}
-/*--------------------------------------------------------------------------*/
-wchar_t *createtempfilenameW(const wchar_t *wcprefix, BOOL bShortFormat)
-{
-    wchar_t *wcReturnedTempFilename = NULL;
+    char* returnedTempFilename = NULL;
 
 #ifdef _MSC_VER
-    wchar_t *wcTmpDir = getTMPDIRW();
-    if (wcTmpDir)
+    char *tmpDir = getTMPDIR();
+    if (tmpDir)
     {
         unsigned int uRetVal = 0;
-        wchar_t wcTempFileName[MAX_PATH];
-        uRetVal = GetTempFileNameW(wcTmpDir, wcprefix, 0, wcTempFileName);
+        char tempFileName[MAX_PATH];
+        uRetVal = GetTempFileNameA(tmpDir, prefix, 0, tempFileName);
         if (uRetVal != 0)
         {
-            size_t len = wcslen(wcTempFileName) + 1;
-            wchar_t* shortTempFilename = (wchar_t *)MALLOC(len * sizeof(wchar_t));
+            size_t len = strlen(tempFileName) + 1;
+            char* shortTempFilename = (char*)MALLOC(len * sizeof(char));
             if (shortTempFilename)
             {
                 if (bShortFormat)
                 {
-                    GetShortPathNameW(wcTempFileName, shortTempFilename, (DWORD)len);
+                    GetShortPathNameA(tempFileName, shortTempFilename, (DWORD)len);
                 }
-                wcReturnedTempFilename = shortTempFilename;
+
+                returnedTempFilename = shortTempFilename;
             }
         }
 
-        FREE(wcTmpDir);
+        FREE(tmpDir);
     }
+    return returnedTempFilename;
 #else
-    char *prefix = wide_string_to_UTF8(wcprefix);
-    char *result = createtempfilename(prefix, bShortFormat);
-
-    wcReturnedTempFilename = to_wide_string(result);
-
-    if (result)
-    {
-        FREE(result);
-        result = NULL;
-    }
-    if (prefix)
-    {
-        FREE(prefix);
-        prefix = NULL;
-    }
-    if (result)
-    {
-        FREE(result);
-        result = NULL;
-    }
+    return createtempfilename(prefix, bShortFormat);
 #endif
-    return wcReturnedTempFilename;
 }
 /*--------------------------------------------------------------------------*/

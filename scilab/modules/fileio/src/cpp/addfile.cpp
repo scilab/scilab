@@ -23,10 +23,9 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 void C2F(addfile)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *filename, int *ierr)
 {
-    wchar_t* wcsFilename = to_wide_string(filename);
     types::File* pFile = new types::File();
 
-    pFile->setFilename(std::wstring(wcsFilename));
+    pFile->setFilename(filename);
 
     if (*type == 2)
     {
@@ -57,8 +56,6 @@ void C2F(addfile)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *fil
     FileManager::addFile(pFile);
 
     *ierr = 0;
-
-    FREE(wcsFilename);
 }
 /*--------------------------------------------------------------------------*/
 

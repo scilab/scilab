@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     int size = (int)in.size();
     int iNiter = 1;
     int iErr = 0;
-    wchar_t* wcsFormat = NULL;
+    char* Format = NULL;
     std::vector<types::InternalType*> IT;
 
     int args        = 0;
@@ -99,8 +99,8 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
             break;
     }
 
-    wcsFormat = in[size - 1]->getAs<types::String>()->get(0);
-    StringConvertW(wcsFormat);
+    Format = os_strdup(in[size - 1]->getAs<types::String>()->get(0));
+    StringConvert(Format);
 
     types::File* pFile = FileManager::getFile(iFile);
     if (pFile == NULL)
@@ -124,7 +124,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
         int iCurrentPos = static_cast<int>(mtell(iFile));
 
         // get data
-        int err = do_xxscanf(L"mfscanf", fDesc, wcsFormat, &args, NULL, &retval, buf, type);
+        int err = do_xxscanf("mfscanf", fDesc, Format, &args, NULL, &retval, buf, type);
         if (err < 0)
         {
             return types::Function::Error;
@@ -171,6 +171,8 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
             break;
         }
     }
+
+    FREE(Format);
 
     unsigned int uiFormatUsed = 0;
     for (int i = 0; i < ncol; i++)
@@ -336,7 +338,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                 }
 
                 types::MList* pMList = new types::MList();
-                pMList->append(new types::String(L"cblock"));
+                pMList->append(new types::String("cblock"));
                 for (int i = 0; i < ITTemp.size(); i++)
                 {
                     pMList->append(ITTemp[i]);

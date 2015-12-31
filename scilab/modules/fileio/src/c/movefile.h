@@ -22,7 +22,7 @@
 * @param[in] source filename
 * @return error number
 */
-FILEIO_IMPEXP int MoveFileFunction(wchar_t *DestinationFilename, wchar_t *SourceFilename);
+FILEIO_IMPEXP int MoveFileFunction(char *DestinationFilename, char *SourceFilename);
 
 /**
 * move a directory
@@ -30,7 +30,7 @@ FILEIO_IMPEXP int MoveFileFunction(wchar_t *DestinationFilename, wchar_t *Source
 * @param[in] source directory
 * @return error number
 */
-FILEIO_IMPEXP int MoveDirectoryFunction(wchar_t *DestinationDirectory, wchar_t *SourceDirectory);
+FILEIO_IMPEXP int MoveDirectoryFunction(char *DestinationDirectory, char *SourceDirectory);
 
 #endif /* __MOVEFILE_H__ */
 /*--------------------------------------------------------------------------*/

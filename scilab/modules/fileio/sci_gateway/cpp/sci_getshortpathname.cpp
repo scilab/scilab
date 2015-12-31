@@ -51,11 +51,11 @@ types::Function::ReturnValue sci_getshortpathname(types::typed_list &in, int _iR
     types::String* pOut1 = new types::String(pS->getRows(), pS->getCols());
     types::Bool* pOut2 = new types::Bool(pS->getRows(), pS->getCols());
     int* pBool = pOut2->get();
-    wchar_t** p = pS->get();
+    char** p = pS->get();
     int size = pS->getSize();
     for (int i = 0 ; i < size; i++)
     {
-        wchar_t* tmp = getshortpathnameW(p[i], (BOOL*)&pBool[i]);
+        char* tmp = getshortpathname(p[i], (BOOL*)&pBool[i]);
         pOut1->set(i, tmp);
         FREE(tmp);
     }

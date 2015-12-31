@@ -34,9 +34,9 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    wchar_t* wcsAbsDir  = NULL;
-    wchar_t* wcsAbsFile = NULL;
-    wchar_t* wcsResult  = NULL;
+    char* absDir  = NULL;
+    char* absFile = NULL;
+    char* result  = NULL;
 
     types::String* pStrDir  = NULL;
     types::String* pStrFile = NULL;
@@ -74,27 +74,27 @@ types::Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int 
 
     for (int i = 0; i < pStrDir->getSize(); i++)
     {
-        wcsAbsDir = expandPathVariableW(pStrDir->get(i));
-        if (wcslen(wcsAbsDir) > PATH_MAX)
+        absDir = expandPathVariable(pStrDir->get(i));
+        if (strlen(absDir) > PATH_MAX)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), "getrelativefilename", 1, PATH_MAX);
             return types::Function::Error;
         }
 
-        wcsAbsFile = expandPathVariableW(pStrFile->get(i));
-        if (wcslen(wcsAbsFile) > PATH_MAX)
+        absFile = expandPathVariable(pStrFile->get(i));
+        if (strlen(absFile) > PATH_MAX)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), "getrelativefilename", 2, PATH_MAX);
             return types::Function::Error;
         }
 
-        wcsResult = getrelativefilenameW(wcsAbsDir, wcsAbsFile);
+        result = getrelativefilename(absDir, absFile);
 
-        FREE(wcsAbsDir);
-        FREE(wcsAbsFile);
+        FREE(absDir);
+        FREE(absFile);
 
-        pStrOut->set(i, wcsResult);
-        FREE(wcsResult);
+        pStrOut->set(i, result);
+        FREE(result);
     }
 
     out.push_back(pStrOut);
