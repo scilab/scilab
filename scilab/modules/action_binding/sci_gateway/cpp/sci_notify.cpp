@@ -29,7 +29,6 @@ extern "C"
 types::Function::ReturnValue sci_notify(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* pString  = NULL;
-    wchar_t* wcsInput       = NULL;
 
     if (in.size() != 1)
     {
@@ -48,20 +47,16 @@ types::Function::ReturnValue sci_notify(types::typed_list &in, int _iRetCount, t
         Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "notify" , 1);
         return types::Function::Error;
     }
-    wcsInput = pString->get(0);
 
-    char* strInput = wide_string_to_UTF8(wcsInput);
     try
     {
-        org_scilab_modules_action_binding_utils::Signal::notify(getScilabJavaVM(), strInput);
+        org_scilab_modules_action_binding_utils::Signal::notify(getScilabJavaVM(), pString->get(0));
     }
     catch (const GiwsException::JniException & e)
     {
         Scierror(999, _("%s: A Java exception arisen:\n%s"), "notify", e.whatStr().c_str());
-        FREE(strInput);
         return types::Function::Error;
     }
-    FREE(strInput);
 
     return types::Function::OK;
 }
