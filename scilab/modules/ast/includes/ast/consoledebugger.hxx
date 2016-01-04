@@ -36,8 +36,8 @@ public:
     virtual void onStop(int index);
     virtual void onResume();
     virtual void onAbort();
-    virtual void onErrorInFile(const std::wstring& filemane);
-    virtual void onErrorInScript(const std::wstring& funcname);
+    virtual void onErrorInFile(const std::string& filemane);
+    virtual void onErrorInScript(const std::string& funcname);
     virtual void onQuit();
     virtual void updateBreakpoints();
 };

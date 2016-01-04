@@ -20,7 +20,7 @@ extern "C" {
 /*----------------------------------------------------------------------------------*/
 char **getVariablesName(int *sizearray, BOOL sorted)
 {
-    std::list<std::wstring> varNames;
+    std::list<std::string> varNames;
     *sizearray = symbol::Context::getInstance()->getVarsName(varNames);
     char** variables = NULL;
 
@@ -36,7 +36,7 @@ char **getVariablesName(int *sizearray, BOOL sorted)
         int i = 0;
         for (auto it : varNames)
         {
-            variables[i++] = wide_string_to_UTF8(it.c_str());
+            variables[i++] = os_strdup(it.c_str());
         }
     }
 

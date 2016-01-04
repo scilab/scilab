@@ -20,7 +20,7 @@ extern "C" {
 /*----------------------------------------------------------------------------------*/
 char **getMacrosName(int *sizearray)
 {
-    std::list<std::wstring> macrosList;
+    std::list<std::string> macrosList;
     int size = symbol::Context::getInstance()->getMacrosName(macrosList);
 
     //sort list
@@ -37,7 +37,7 @@ char **getMacrosName(int *sizearray)
         int i = 0;
         for (auto it : macrosList)
         {
-            macros[i++] = wide_string_to_UTF8(it.c_str());
+            macros[i++] = os_strdup(it.c_str());
         }
     }
 

@@ -27,8 +27,8 @@
 #include "scilabWrite.hxx"
 #include "runner.hxx"
 
-#define SCILAB_START    L"/etc/scilab.start"
-#define SCILAB_QUIT     L"/etc/scilab.quit"
+#define SCILAB_START    "/etc/scilab.start"
+#define SCILAB_QUIT     "/etc/scilab.quit"
 
 Timer _timer;
 
@@ -39,7 +39,7 @@ Timer _timer;
 **
 ** Parse the given file and create the AST.
 */
-void parseFileTask(Parser *parser, bool timed, const wchar_t* file_name, const wchar_t* prog_name)
+void parseFileTask(Parser *parser, bool timed, const char* file_name, const char* prog_name)
 {
 #ifdef DEBUG
     std::cerr << "*** Processing " << file_name << " file..." << std::endl;
@@ -54,7 +54,7 @@ void parseFileTask(Parser *parser, bool timed, const wchar_t* file_name, const w
 
     if (timed)
     {
-        _timer.check(L"Parsing");
+        _timer.check("Parsing");
     }
 }
 
@@ -63,7 +63,7 @@ void parseFileTask(Parser *parser, bool timed, const wchar_t* file_name, const w
 **
 ** Parse the given command and create the AST.
 */
-void parseCommandTask(Parser *parser, bool timed, char *command)
+void parseCommandTask(Parser *parser, bool timed, const char *command)
 {
 #ifdef DEBUG
     std::cerr << "*** Processing [" <<  command << "]..." << std::endl;
@@ -78,7 +78,7 @@ void parseCommandTask(Parser *parser, bool timed, char *command)
 
     if (timed && parser->getControlStatus() == Parser::AllControlClosed)
     {
-        _timer.check(L"Parsing");
+        _timer.check("Parsing");
     }
 }
 
@@ -102,7 +102,7 @@ void dumpAstTask(ast::Exp *tree, bool timed)
 
     if (timed)
     {
-        _timer.check(L"AST Dump");
+        _timer.check("AST Dump");
     }
 }
 
@@ -120,13 +120,13 @@ void printAstTask(ast::Exp *tree, bool timed)
 
     if (tree)
     {
-        ast::PrintVisitor printMe = *new ast::PrintVisitor(std::wcout);
+        ast::PrintVisitor printMe = *new ast::PrintVisitor(std::cout);
         tree->accept(printMe);
     }
 
     if (timed)
     {
-        _timer.check(L"Pretty Print");
+        _timer.check("Pretty Print");
     }
 }
 
@@ -149,7 +149,7 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
     {
         if (timed)
         {
-            newTree = callTyper(tree, L"tasks");
+            newTree = callTyper(tree, "tasks");
         }
         else
         {
@@ -196,7 +196,7 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
 
     if (timed)
     {
-        _timer.check(L"Execute AST");
+        _timer.check("Execute AST");
     }
 }
 
@@ -212,11 +212,11 @@ void dumpStackTask(bool timed)
         _timer.start();
     }
 
-    symbol::Context::getInstance()->print(std::wcout);
+    symbol::Context::getInstance()->print(std::cout);
 
     if (timed)
     {
-        _timer.check(L"Dumping Stack");
+        _timer.check("Dumping Stack");
     }
 }
 
@@ -227,13 +227,13 @@ void dumpStackTask(bool timed)
 int execScilabStartTask(bool _bSerialize)
 {
     Parser parse;
-    std::wstring stSCI = ConfigVariable::getSCIPath();
+    std::string stSCI(ConfigVariable::getSCIPath());
     stSCI += SCILAB_START;
 
     ThreadManagement::LockParser();
     try
     {
-        parse.parseFile(stSCI, L"");
+        parse.parseFile(stSCI, "");
     }
     catch (const ast::InternalError& ie)
     {
@@ -244,8 +244,8 @@ int execScilabStartTask(bool _bSerialize)
 
     if (parse.getExitStatus() != Parser::Succeded)
     {
-        scilabWriteW(parse.getErrorMessage());
-        scilabWriteW(L"Failed to parse scilab.start");
+        scilabWrite(parse.getErrorMessage());
+        scilabWrite("Failed to parse scilab.start");
         ThreadManagement::UnlockParser();
         return 1;
     }
@@ -267,13 +267,13 @@ int execScilabStartTask(bool _bSerialize)
 int execScilabQuitTask(bool _bSerialize)
 {
     Parser parse;
-    std::wstring stSCI = ConfigVariable::getSCIPath();
+    std::string stSCI(ConfigVariable::getSCIPath());
     stSCI += SCILAB_QUIT;
 
     ThreadManagement::LockParser();
     try
     {
-        parse.parseFile(stSCI, L"");
+        parse.parseFile(stSCI, "");
     }
     catch (const ast::InternalError& ie)
     {
@@ -284,8 +284,8 @@ int execScilabQuitTask(bool _bSerialize)
 
     if (parse.getExitStatus() != Parser::Succeded)
     {
-        scilabWriteW(parse.getErrorMessage());
-        scilabWriteW(L"Failed to parse scilab.quit");
+        scilabWrite(parse.getErrorMessage());
+        scilabWrite("Failed to parse scilab.quit");
         ThreadManagement::UnlockParser();
         return 1;
     }
@@ -301,7 +301,7 @@ int execScilabQuitTask(bool _bSerialize)
 }
 
 
-ast::Exp* parseCommand(std::wstring _command)
+ast::Exp* parseCommand(const std::string& _command)
 {
     if (_command.empty())
     {
@@ -309,7 +309,7 @@ ast::Exp* parseCommand(std::wstring _command)
     }
 
     Parser parse;
-    parse.parse((wchar_t*)_command.c_str());
+    parse.parse(_command.c_str());
     if (parse.getExitStatus() != Parser::Succeded)
     {
         return NULL;

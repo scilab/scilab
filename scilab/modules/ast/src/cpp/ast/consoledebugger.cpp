@@ -47,7 +47,7 @@ void ConsoleDebugger::onAbort()
     sciprint(_("Execution aborted.\n"));
 }
 
-void ConsoleDebugger::onErrorInFile(const std::wstring& filename)
+void ConsoleDebugger::onErrorInFile(const std::string& filename)
 {
     debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
     ast::Exp* exp = manager->getExp();
@@ -55,7 +55,7 @@ void ConsoleDebugger::onErrorInFile(const std::wstring& filename)
     printExp();
 }
 
-void ConsoleDebugger::onErrorInScript(const std::wstring& funcname)
+void ConsoleDebugger::onErrorInScript(const std::string& funcname)
 {
     debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
     ast::Exp* exp = manager->getExp();

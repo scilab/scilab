@@ -99,8 +99,8 @@ int StaticRunner::launch()
             ConfigVariable::setPromptMode(oldMode);
 
             //print msg about recursion limit and trigger an error
-            wchar_t sz[1024];
-            os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
+            char sz[1024];
+            os_sprintf(sz, _("Recursion limit reached (%d).\n"), ConfigVariable::getRecursionLimit());
             throw ast::InternalError(sz);
         }
     }
@@ -111,10 +111,10 @@ int StaticRunner::launch()
             ConfigVariable::setPromptMode(iOldPromptMode);
         }
 
-        std::wostringstream ostr;
+        std::ostringstream ostr;
         ConfigVariable::whereErrorToString(ostr);
-        scilabErrorW(ostr.str().c_str());
-        scilabErrorW(se.GetErrorMessage().c_str());
+        scilabError(ostr.str().c_str());
+        scilabError(se.GetErrorMessage().c_str());
         ConfigVariable::resetWhereError();
         iRet = 1;
     }

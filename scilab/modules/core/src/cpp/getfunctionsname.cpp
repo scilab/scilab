@@ -20,7 +20,7 @@ extern "C" {
 /*----------------------------------------------------------------------------------*/
 char **getFunctionsName(int *sizearray)
 {
-    std::list<std::wstring> macrosList;
+    std::list<std::string> macrosList;
     *sizearray = symbol::Context::getInstance()->getFunctionsName(macrosList);
 
     char** functions = NULL;
@@ -33,7 +33,7 @@ char **getFunctionsName(int *sizearray)
         int i = 0;
         for (auto it : macrosList)
         {
-            functions[i++] = wide_string_to_UTF8(it.c_str());
+            functions[i++] = os_strdup(it.c_str());
         }
     }
 

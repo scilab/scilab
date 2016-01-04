@@ -19,46 +19,47 @@ extern "C"
 #include <math.h>
 #include "version.h"
 #include "charEncoding.h"
+#include "localization.h"
 }
 /*--------------------------------------------------------------------------*/
-static const wchar_t *line = L"        ___________________________________________        ";
+static const char *line = "        ___________________________________________        ";
 /*--------------------------------------------------------------------------*/
-static void centerPrint(const wchar_t *str);
+static void centerPrint(const char* str);
 
 void banner(void)
 {
-    scilabForcedWriteW(line);
-    scilabForcedWriteW(L"\n");
+    scilabForcedWrite(line);
+    scilabForcedWrite("\n");
 
-    centerPrint(SCI_VERSION_WIDE_STRING);
-    scilabForcedWriteW(L"\n\n");
+    centerPrint(SCI_VERSION_STRING);
+    scilabForcedWrite("\n\n");
 
-    centerPrint(_W("Scilab Enterprises\n").c_str());
-    centerPrint(_W("Copyright (c) 2011-2015 (Scilab Enterprises)\n").c_str());
-    centerPrint(_W("Copyright (c) 1989-2012 (INRIA)\n").c_str());
-    centerPrint(_W("Copyright (c) 1989-2007 (ENPC)\n").c_str());
+    centerPrint(_("Scilab Enterprises\n"));
+    centerPrint(_("Copyright (c) 2011-2015 (Scilab Enterprises)\n"));
+    centerPrint(_("Copyright (c) 1989-2012 (INRIA)\n"));
+    centerPrint(_("Copyright (c) 1989-2007 (ENPC)\n"));
 
-    scilabForcedWriteW(line);
-    scilabForcedWriteW(L"\n");
+    scilabForcedWrite(line);
+    scilabForcedWrite("\n");
 
-    scilabForcedWriteW(L"\n");
-    centerPrint(L"-*- This is the future version 6 of Scilab. Only for testing -*-");
-    scilabForcedWriteW(L"\n");
+    scilabForcedWrite("\n");
+    centerPrint("-*- This is the future version 6 of Scilab. Only for testing -*-");
+    scilabForcedWrite("\n");
 
-    scilabForcedWriteW(line);
-    scilabForcedWriteW(L"\n");
+    scilabForcedWrite(line);
+    scilabForcedWrite("\n");
 }
 
 /*--------------------------------------------------------------------------*/
-static void centerPrint(const wchar_t *str)
+static void centerPrint(const char *str)
 {
     int i = 0;
-    int startVersion = (int)(floor((double)(wcslen(line) / 2)) - floor((double)(wcslen(str) / 2)));
+    int startVersion = (int)(floor((double)(strlen(line) / 2)) - floor((double)(strlen(str) / 2)));
 
     /* To center the version name */
     for (i = 0 ; i < startVersion ; i++ )
     {
-        scilabForcedWriteW(L" ");
+        scilabForcedWrite(" ");
     }
-    scilabForcedWriteW(str);
+    scilabForcedWrite(str);
 }

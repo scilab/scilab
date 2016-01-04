@@ -9,8 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include <wchar.h>
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
-BOOL with_module(wchar_t* _pwstModule);
+BOOL with_module(const char* _pstModule);
 /*--------------------------------------------------------------------------*/

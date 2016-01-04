@@ -20,15 +20,15 @@ extern "C"
 #include "getmodules.h"
 }
 /*--------------------------------------------------------------------------*/
-BOOL with_module(wchar_t* _pwstModule)
+BOOL with_module(const char* _pwstModule)
 {
     if (_pwstModule)
     {
-        std::list<std::wstring> sModuleList = ConfigVariable::getModuleList();
-        std::list<std::wstring>::const_iterator it;
+        std::list<std::string> sModuleList = ConfigVariable::getModuleList();
+        std::list<std::string>::const_iterator it;
         for (it = sModuleList.begin() ; it != sModuleList.end() ; it++)
         {
-            if (wcscmp((*it).c_str(), _pwstModule) == 0)
+            if (strcmp((*it).c_str(), _pwstModule) == 0)
             {
                 return TRUE;
             }

@@ -58,12 +58,6 @@ int getScilabVersionTimestamp();
 char* getScilabVersionAsString(void);
 
 /**
-* get Scilab version as wide string
-* @return scilab version
-*/
-wchar_t* getScilabVersionAsWideString(void);
-
-/**
 * get module version as a int array
 * @param[in] module name
 * @param[out] size of returned array
@@ -73,51 +67,51 @@ wchar_t* getScilabVersionAsWideString(void);
 * ver[2] Maintenance version
 * ver[3] timestamp
 */
-int* getModuleVersion(wchar_t* _pwstModule, int *sizeArrayReturned);
+int* getModuleVersion(const char* _pstModule, int *sizeArrayReturned);
 
 /**
 * get module version as a string
 * @param[in] module name
 * @return scilab version
 */
-wchar_t* getModuleVersionInfoAsString(wchar_t* _pwstModule);
+char* getModuleVersionInfoAsString(const char* _pstModule);
 
 /**
 * get options used for this version
 * @param[out]
 * @return char ** with options used
 */
-wchar_t** getScilabVersionOptions(int *sizeArrayReturned);
+char** getScilabVersionOptions(int *sizeArrayReturned);
 
 /**
 * get release mode
 * @return 'release' or 'debug'
 */
-wchar_t* getReleaseMode(void);
+char* getReleaseMode(void);
 
 /**
 * get release date
 * @return date of version
 */
-wchar_t* getReleaseDate(void);
+char* getReleaseDate(void);
 
 /**
 * get release time
 * @return time of version
 */
-wchar_t* getReleaseTime(void);
+char* getReleaseTime(void);
 
 /**
 * get compiler used to build scilab
 * @return 'VC++', 'ICC', 'GCC'
 */
-wchar_t* getCompilerUsedToBuildScilab(void);
+char* getCompilerUsedToBuildScilab(void);
 
 /**
 * get Compiler Architecture
 * @return 'x86' or 'x64'
 */
-wchar_t* getCompilerArchitecture(void);
+char* getCompilerArchitecture(void);
 
 /**
 * with modelica compiler ?

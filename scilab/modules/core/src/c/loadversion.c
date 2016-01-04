@@ -28,26 +28,25 @@
 #include "charEncoding.h"
 #include "version.h"
 /*--------------------------------------------------------------------------*/
-BOOL getversionmodule(wchar_t* _pwstModule,
+BOOL getversionmodule(const char* _pstModule,
                       int *sci_version_major,
                       int *sci_version_minor,
                       int *sci_version_maintenance,
-                      wchar_t* _pwstSciVersionString,
+                      char* _pstSciVersionString,
                       int *sci_version_revision)
 {
     BOOL bOK = FALSE;
 
-    if (with_module(_pwstModule))
+    if (with_module(_pstModule))
     {
         char* filename_VERSION_module = NULL;
-        char* pstModule = wide_string_to_UTF8(_pwstModule);
         char* SciPath = NULL;
         int len = 0;
 
         SciPath = getSCI();
-        len = (int)strlen(FORMATVERSIONFILENAME) + (int)strlen(SciPath) + (int)strlen(pstModule) + 1;
+        len = (int)strlen(FORMATVERSIONFILENAME) + (int)strlen(SciPath) + (int)strlen(_pstModule) + 1;
         filename_VERSION_module = (char*)MALLOC(sizeof(char) * len);
-        sprintf(filename_VERSION_module, FORMATVERSIONFILENAME, SciPath, pstModule);
+        sprintf(filename_VERSION_module, FORMATVERSIONFILENAME, SciPath, _pstModule);
         if (SciPath)
         {
             FREE(SciPath);
@@ -62,7 +61,7 @@ BOOL getversionmodule(wchar_t* _pwstModule,
             xmlKeepBlanksDefault(0);
 
             /* check if the XML file has been encoded with utf8 (unicode) or not */
-            if ( stricmp("utf-8", encoding) == 0)
+            if (stricmp("utf-8", encoding) == 0)
             {
                 xmlDocPtr doc = NULL;
                 xmlXPathContextPtr xpathCtxt = NULL;
@@ -72,7 +71,7 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                 int version_minor = 0;
                 int version_maintenance = 0;
                 int version_revision = 0;
-                wchar_t *pwstSciVersionString = 0;
+                const char *pstSciVersionString = 0;
 
                 {
                     BOOL bConvert = FALSE;
@@ -127,8 +126,7 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                         else if (xmlStrEqual (attrib->name, (const xmlChar*)"string"))
                         {
                             /* we found <string> */
-                            const char *str = (const char*)attrib->children->content;
-                            pwstSciVersionString = to_wide_string(str);
+                            pstSciVersionString = (const char*)attrib->children->content;
                         }
 
                         attrib = attrib->next;
@@ -138,12 +136,7 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                     *sci_version_minor = version_minor;
                     *sci_version_maintenance = version_maintenance;
                     *sci_version_revision = version_revision;
-                    wcscpy(_pwstSciVersionString, pwstSciVersionString);
-                    if (pwstSciVersionString)
-                    {
-                        FREE(pwstSciVersionString);
-                        pwstSciVersionString = NULL;
-                    }
+                    strcpy(_pstSciVersionString, pstSciVersionString);
                 }
                 else
                 {
@@ -179,7 +172,7 @@ BOOL getversionmodule(wchar_t* _pwstModule,
             *sci_version_minor = SCI_VERSION_MINOR;
             *sci_version_maintenance = SCI_VERSION_MAINTENANCE;
             *sci_version_revision = SCI_VERSION_TIMESTAMP;
-            wcscpy(_pwstSciVersionString, L"");
+            strcpy(_pstSciVersionString, "");
             bOK = TRUE;
         }
 

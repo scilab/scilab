@@ -101,10 +101,10 @@ static void Add_Nan(void);
 static void Add_Inf(void);
 static void Add_io(void);
 static void Add_All_Variables(void);
-static void Add_Double_Constant(const std::wstring& _szName, double _dblReal, double _dblImg, bool _bComplex);
-static void Add_Poly_Constant(const std::wstring& _szName, const std::wstring& _szPolyVar, int _iRank, types::Double * _pdblReal);
-static void Add_Boolean_Constant(const std::wstring& _szName, bool _bBool);
-static void Add_String_Constant(const std::wstring& _szName, const char *_pstString);
+static void Add_Double_Constant(const std::string& _name, double _dblReal, double _dblImg, bool _bComplex);
+static void Add_Poly_Constant(const std::string& _name, const std::string& _szPolyVar, int _iRank, types::Double * _pdblReal);
+static void Add_Boolean_Constant(const std::string& _name, bool _bBool);
+static void Add_String_Constant(const std::string& _name, const char *_pstString);
 static void checkForLinkerErrors(void);
 
 static int batchMain(ScilabEngineInfo* _pSEI);
@@ -242,7 +242,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         loadBackGroundClassPath();
 
         //update %gui to true
-        Add_Boolean_Constant(L"%gui", true);
+        Add_Boolean_Constant("%gui", true);
     }
 
     /* Standard mode -> init Java Console */
@@ -272,11 +272,11 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     //variables are needed by loadModules but must be in SCOPE_CONSOLE under protection
     //remove (W)SCI/SCIHOME/HOME/TMPDIR
-    symbol::Context::getInstance()->remove(symbol::Symbol(L"SCI"));
-    symbol::Context::getInstance()->remove(symbol::Symbol(L"WSCI"));
-    symbol::Context::getInstance()->remove(symbol::Symbol(L"SCIHOME"));
-    symbol::Context::getInstance()->remove(symbol::Symbol(L"home"));
-    symbol::Context::getInstance()->remove(symbol::Symbol(L"TMPDIR"));
+    symbol::Context::getInstance()->remove(symbol::Symbol("SCI"));
+    symbol::Context::getInstance()->remove(symbol::Symbol("WSCI"));
+    symbol::Context::getInstance()->remove(symbol::Symbol("SCIHOME"));
+    symbol::Context::getInstance()->remove(symbol::Symbol("home"));
+    symbol::Context::getInstance()->remove(symbol::Symbol("TMPDIR"));
 
     //open a scope for macros
     symbol::Context::getInstance()->scope_begin();
@@ -310,7 +310,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
         if (parser.getExitStatus() == Parser::Failed)
         {
-            scilabWriteW(parser.getErrorMessage());
+            scilabWrite(parser.getErrorMessage());
         }
         else if (parser.getControlStatus() !=  Parser::AllControlClosed)
         {
@@ -564,7 +564,7 @@ void* scilabReadAndExecCommand(void* param)
 
         if (parser.getExitStatus() == Parser::Failed)
         {
-            scilabWriteW(parser.getErrorMessage());
+            scilabWrite(parser.getErrorMessage());
             ThreadManagement::UnlockParser();
             continue;
         }
@@ -586,7 +586,7 @@ void* scilabReadAndStore(void* param)
     Parser::ControlStatus controlStatus = Parser::AllControlClosed;
 
     char *command = NULL;
-    wchar_t* parserErrorMsg = NULL;
+    char* parserErrorMsg = NULL;
 
     ScilabEngineInfo* _pSEI = (ScilabEngineInfo*)param;
 
@@ -620,7 +620,7 @@ void* scilabReadAndStore(void* param)
 
         if (ConfigVariable::isEmptyLineShow())
         {
-            scilabWriteW(L"\n");
+            scilabWrite("\n");
         }
 
         do
@@ -677,7 +677,7 @@ void* scilabReadAndStore(void* param)
             {
                 bool disableDebug = false;
                 char* tmpCommand = NULL;
-                int commandsize = strlen(command);
+                int commandsize = (int)strlen(command);
 
                 //all commands must be prefixed by debug except e(xec) (r)un or p(rint) "something" that become "something" or disp("something")
                 if (strncmp(command, "e ", 2) == 0 || strncmp(command, "r ", 2) == 0)
@@ -780,7 +780,7 @@ void* scilabReadAndStore(void* param)
         {
             FREE(command);
             command = NULL;
-            scilabForcedWriteW(parserErrorMsg);
+            scilabForcedWrite(parserErrorMsg);
             continue;
         }
 
@@ -899,12 +899,10 @@ static int batchMain(ScilabEngineInfo* _pSEI)
 
     parser->setParseTrace(_pSEI->iParseTrace != 0);
 
-    wchar_t *pwstFileName = to_wide_string(_pSEI->pstParseFile);
-
     /*
      ** -*- PARSING -*-
      */
-    parseFileTask(parser, _pSEI->iTimed != 0, pwstFileName, L"scilab 6");
+    parseFileTask(parser, _pSEI->iTimed != 0, _pSEI->pstParseFile, "scilab 6");
 
     /*
      ** -*- DUMPING TREE -*-
@@ -927,7 +925,7 @@ static int batchMain(ScilabEngineInfo* _pSEI)
     }
     else
     {
-        scilabWriteW(parser->getErrorMessage());
+        scilabWrite(parser->getErrorMessage());
     }
 
 #ifdef DEBUG
@@ -1022,7 +1020,7 @@ static void Add_Nan(void)
     double dbl1 = -1.0;
     double dbl0 = fabs(dbl1 - dbl1);
 
-    Add_Double_Constant(L"%nan", dbl0 / dbl0, 0, false);
+    Add_Double_Constant("%nan", dbl0 / dbl0, 0, false);
 }
 
 static void Add_Inf(void)
@@ -1030,37 +1028,37 @@ static void Add_Inf(void)
     double dbl1 = 1.0;
     double dbl0 = dbl1 - dbl1;
 
-    Add_Double_Constant(L"%inf", dbl1 / dbl0, 0, false);
+    Add_Double_Constant("%inf", dbl1 / dbl0, 0, false);
 }
 
 static void Add_gui(void)
 {
-    Add_Boolean_Constant(L"%gui", false);
+    Add_Boolean_Constant("%gui", false);
 }
 
 static void Add_fftw(void)
 {
-    Add_Boolean_Constant(L"%fftw", withfftw() == 1);
+    Add_Boolean_Constant("%fftw", withfftw() == 1);
 }
 
 static void Add_pi(void)
 {
-    Add_Double_Constant(L"%pi", M_PI, 0, false);
+    Add_Double_Constant("%pi", M_PI, 0, false);
 }
 
 static void Add_eps(void)
 {
-    Add_Double_Constant(L"%eps", NumericConstants::eps_machine, 0, false);
+    Add_Double_Constant("%eps", NumericConstants::eps_machine, 0, false);
 }
 
 static void Add_e(void)
 {
-    Add_Double_Constant(L"%e", 2.71828182845904530, 0, false);
+    Add_Double_Constant("%e", 2.71828182845904530, 0, false);
 }
 
 static void Add_i(void)
 {
-    Add_Double_Constant(L"%i", 0, 1, true);
+    Add_Double_Constant("%i", 0, 1, true);
 }
 
 static void Add_s(void)
@@ -1070,7 +1068,7 @@ static void Add_s(void)
     dblCoef.set(0, 0, 0);
     dblCoef.set(0, 1, 1);
 
-    Add_Poly_Constant(L"%s", L"s", 1, &dblCoef);
+    Add_Poly_Constant("%s", "s", 1, &dblCoef);
 }
 
 static void Add_z(void)
@@ -1080,7 +1078,7 @@ static void Add_z(void)
     dblCoef.set(0, 0, 0);
     dblCoef.set(0, 1, 1);
 
-    Add_Poly_Constant(L"%z", L"z", 1, &dblCoef);
+    Add_Poly_Constant("%z", "z", 1, &dblCoef);
 }
 
 static void Add_io(void)
@@ -1088,10 +1086,10 @@ static void Add_io(void)
     types::Double * pVal = new types::Double(1, 2);
     pVal->set(0, 5);
     pVal->set(1, 6);
-    symbol::Context::getInstance()->put(symbol::Symbol(L"%io"), pVal);
+    symbol::Context::getInstance()->put(symbol::Symbol("%io"), pVal);
 }
 
-static void Add_Poly_Constant(const std::wstring& _szName, const std::wstring& _szPolyVar, int _iRank, types::Double * _pdbl)
+static void Add_Poly_Constant(const std::string& _szName, const std::string& _szPolyVar, int _iRank, types::Double * _pdbl)
 {
     types::Polynom * pVar = new types::Polynom(_szPolyVar, 1, 1, &_iRank);
     types::SinglePoly *poPoly = pVar->get(0);
@@ -1100,7 +1098,7 @@ static void Add_Poly_Constant(const std::wstring& _szName, const std::wstring& _
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), pVar);
 }
 
-static void Add_Double_Constant(const std::wstring& _szName, double _dblReal, double _dblImg, bool _bComplex)
+static void Add_Double_Constant(const std::string& _szName, double _dblReal, double _dblImg, bool _bComplex)
 {
     types::Double * pVal = new types::Double(1, 1, _bComplex);
     pVal->set(0, 0, _dblReal);
@@ -1108,13 +1106,13 @@ static void Add_Double_Constant(const std::wstring& _szName, double _dblReal, do
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), pVal);
 }
 
-static void Add_Boolean_Constant(const std::wstring& _szName, bool _bBool)
+static void Add_Boolean_Constant(const std::string& _szName, bool _bBool)
 {
     types::Bool * pVal = new types::Bool(_bBool);
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), pVal);
 }
 
-static void Add_String_Constant(const std::wstring& _szName, const char *_pstString)
+static void Add_String_Constant(const std::string& _szName, const char *_pstString)
 {
     types::String * ps = new types::String(_pstString);
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), ps);
