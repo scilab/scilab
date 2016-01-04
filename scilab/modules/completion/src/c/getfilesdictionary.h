@@ -22,7 +22,7 @@
 * @param[in] returns with the full path name
 * @return array of strings
 */
-char **getfilesdictionary(char *somechars, int *sizearray, BOOL fullpath);
+char **getfilesdictionary(const char *somechars, int *sizearray, BOOL fullpath);
 
 #endif /* __GETFILESDICTIONARY_H__ */
 /*--------------------------------------------------------------------------*/

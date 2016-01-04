@@ -40,10 +40,9 @@ static int cmpNames(const void *a, const void *b)
 char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
 {
     int rc = 0;
-    wchar_t **pstData = NULL;
+    char** pstData = NULL;
     char **fields = NULL;
     char *pstVar = NULL;
-    wchar_t* pwstVar = NULL;
     int iXlist = 0;
 
     char *lineBeforePoint = NULL;
@@ -70,16 +69,12 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
     lineBeforePoint[pos] = '\0';
     pstVar = getPartLevel(lineBeforePoint);
 
-    pwstVar = to_wide_string(pstVar);
-    FREE(pstVar);
-
     FREE(lineBeforePoint);
     lineBeforePoint = NULL;
 
     symbol::Context* pCtx = symbol::Context::getInstance();
 
-    types::InternalType* pIT = pCtx->get(symbol::Symbol(pwstVar));
-    FREE(pwstVar);
+    types::InternalType* pIT = pCtx->get(symbol::Symbol(pstVar));
     if (pIT == NULL)
     {
         return NULL;
@@ -133,17 +128,14 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
 
     int iLast = 0;
     char** _fields = (char**)MALLOC(sizeof(char*) * (iSize + 1));
-    wchar_t* wpattern = to_wide_string(pattern);
     for (int i = iXlist; i < (iSize + iXlist); ++i)
     {
-        if (wcsstr(pstData[i], wpattern) == pstData[i])
+        if (strstr(pstData[i], pattern) == pstData[i])
         {
-            _fields[iLast++] = wide_string_to_UTF8(pstData[i]);
+            _fields[iLast++] = os_strdup(pstData[i]);
         }
 
     }
-
-    FREE(wpattern);
 
     _fields[iLast] = NULL;
     *size = iLast;

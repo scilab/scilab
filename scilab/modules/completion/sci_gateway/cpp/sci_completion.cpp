@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCoun
         return types::Function::Error;
     }
 
-    pcSomechars = wide_string_to_UTF8(pStrSomechars->get(0));
+    pcSomechars = pStrSomechars->get(0);
 
     if (in.size() == 1)
     {
@@ -107,40 +107,39 @@ types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCoun
             return types::Function::Error;
         }
 
-        wchar_t* wcsDictionary = pStrDictionary->get(0);
-        if ( wcscmp(wcsDictionary, L"functions") == 0 )
+        char* dictionary = pStrDictionary->get(0);
+        if (strcmp(dictionary, "functions") == 0)
         {
             out.push_back(doCompletion(pcSomechars, &completionOnFunctions));
         }
-        else if ( wcscmp(wcsDictionary, L"commands") == 0 )
+        else if (strcmp(dictionary, "commands") == 0)
         {
             out.push_back(doCompletion(pcSomechars, &completionOnCommandWords));
         }
-        else if ( wcscmp(wcsDictionary, L"variables") == 0 )
+        else if (strcmp(dictionary, "variables") == 0)
         {
             out.push_back(doCompletion(pcSomechars, &completionOnVariables));
         }
-        else if ( wcscmp(wcsDictionary, L"macros") == 0 )
+        else if (strcmp(dictionary, "macros") == 0)
         {
             out.push_back(doCompletion(pcSomechars, &completionOnMacros));
         }
-        else if ( wcscmp(wcsDictionary, L"graphic_properties") == 0 )
+        else if (strcmp(dictionary, "graphic_properties") == 0)
         {
             out.push_back(doCompletion(pcSomechars, &completionOnHandleGraphicsProperties));
         }
-        else if ( wcscmp(wcsDictionary, L"files") == 0 )
+        else if (strcmp(dictionary, "files") == 0)
         {
             out.push_back(doCompletion(pcSomechars, &completionOnFiles));
         }
         else
         {
             Scierror(999, _("%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"),
-                     "completion", "functions", "commands", "variables", "macros", "graphic_properties", "files");
+                "completion", "functions", "commands", "variables", "macros", "graphic_properties", "files");
             return types::Function::Error;
         }
     }
 
-    FREE(pcSomechars);
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
