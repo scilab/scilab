@@ -25,7 +25,7 @@ extern "C"
 }
 
 
-static int findOptional(void* _pvCtx, char *fname, rhs_opts opts[]);
+static int findOptional(void* _pvCtx, const char *fname, rhs_opts opts[]);
 static void printOptionalNames(void* _pvCtx, rhs_opts opts[]);
 
 /**************************/
@@ -49,9 +49,7 @@ int getOptionals(void* _pvCtx, char* pstFuncName, rhs_opts opts[])
     for (const auto& o : opt)
     {
         int typeOfOpt = -1;
-        char* pstOpts = wide_string_to_UTF8(o.first.c_str());
-        int index = findOptional(_pvCtx, pstOpts, opts);
-        FREE(pstOpts);
+        int index = findOptional(_pvCtx, o.first.c_str(), opts);
 
         if (index < 0)
         {
@@ -126,7 +124,7 @@ int FindOpt(void* _pvCtx, char* pstProperty, rhs_opts opts[])
     return -1;
 }
 
-static int findOptional(void* _pvCtx, char *pstProperty, rhs_opts opts[])
+static int findOptional(void* _pvCtx, const char *pstProperty, rhs_opts opts[])
 {
     int rep = -1, i = 0;
 

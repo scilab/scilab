@@ -420,10 +420,8 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int
     C2F(dcopy)(&iSize, const_cast<double*>(&_pdblData->r), &iTwo, pdblReal, &iOne);
     C2F(dcopy)(&iSize, const_cast<double*>(&_pdblData->i), &iOne, pdblImg, &iOne);
 
-    wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context* ctx = symbol::Context::getInstance();
-    symbol::Symbol sym = symbol::Symbol(pwstName);
-    FREE(pwstName);
+    symbol::Symbol sym = symbol::Symbol(_pstName);
     if (ctx->isprotected(sym) == false)
     {
         ctx->put(sym, pDbl);
@@ -446,7 +444,6 @@ SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _
         return sciErr;
     }
 
-    wchar_t* pwstName           = to_wide_string(_pstName);
     int iOne					= 1;
     int iSize					= _iRows * _iCols;
 
@@ -462,8 +459,7 @@ SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _
     }
 
     symbol::Context* ctx = symbol::Context::getInstance();
-    symbol::Symbol sym = symbol::Symbol(pwstName);
-    FREE(pwstName);
+    symbol::Symbol sym = symbol::Symbol(_pstName);
     if (ctx->isprotected(sym) == false)
     {
         ctx->put(sym, pDbl);

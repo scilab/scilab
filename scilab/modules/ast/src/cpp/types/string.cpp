@@ -71,6 +71,20 @@ String::String(int _iRows, int _iCols)
 #endif
 }
 
+String::String(int _iRows, int _iCols, char const* const* _pstData)
+{
+    char** data = NULL;
+    int piDims[] = {_iRows, _iCols};
+    create(piDims, 2, &data, NULL);
+    for (int i = 0; i < m_iSize; ++i)
+    {
+        set(i, _pstData[i]);
+    }
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
+
 String* String::clone()
 {
     String *pstClone = new String(getDims(), getDimsArray());

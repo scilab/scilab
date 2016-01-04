@@ -222,17 +222,15 @@ SciErr getHypermatPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarN
     }
 
     types::Polynom* p = (types::Polynom*)entries;
-    std::wstring var = p->getVariableName();
+    std::string var(p->getVariableName());
 
-    char* varname = wide_string_to_UTF8(var.data());
-    *_piVarNameLen = static_cast<int>(strlen(varname));
+    *_piVarNameLen = static_cast<int>(var.length());
 
     if (_pstVarName)
     {
-        strcpy(_pstVarName, varname);
+        strcpy(_pstVarName, var.data());
     }
 
-    FREE(varname);
     return sciErr;
 }
 
@@ -350,17 +348,15 @@ SciErr getHypermatOfString(void* _pvCtx, int* _piAddress, int **_dims, int *_ndi
 
     if (_pstStrings == NULL || *_pstStrings == NULL)
     {
-        wchar_t** s = p->get();
+        char** s = p->get();
         for (int i = 0; i < size; i++)
         {
-            char* c = wide_string_to_UTF8(s[i]);
-            _piLength[i] = (int)strlen(c);
-            FREE(c);
+            _piLength[i] = (int)strlen(s[i]);
         }
     }
     else
     {
-        wchar_t** s = p->get();
+        char** s = p->get();
         for (int i = 0; i < size; i++)
         {
             if (_pstStrings[i] == NULL)
@@ -369,9 +365,7 @@ SciErr getHypermatOfString(void* _pvCtx, int* _piAddress, int **_dims, int *_ndi
                 return sciErr;
             }
 
-            char* c = wide_string_to_UTF8(s[i]);
-            strcpy(_pstStrings[i], c);
-            FREE(c);
+            strcpy(_pstStrings[i], s[i]);
         }
     }
 
@@ -404,15 +398,17 @@ SciErr getHypermatOfWideString(void* _pvCtx, int* _piAddress, int **_dims, int *
 
     if (_pwstStrings == NULL || *_pwstStrings == NULL)
     {
-        wchar_t** s = p->get();
+        char** s = p->get();
         for (int i = 0; i < size; i++)
         {
-            _piLength[i] = (int)wcslen(s[i]);
+            wchar_t* w = to_wide_string(s[i]);
+            _piLength[i] = (int)wcslen(w);
+            FREE(w);
         }
     }
     else
     {
-        wchar_t** s = p->get();
+        char** s = p->get();
         for (int i = 0; i < size; i++)
         {
             if (_pwstStrings[i] == NULL)
@@ -421,7 +417,9 @@ SciErr getHypermatOfWideString(void* _pvCtx, int* _piAddress, int **_dims, int *
                 return sciErr;
             }
 
-            wcscpy(_pwstStrings[i], s[i]);
+            wchar_t* w = to_wide_string(s[i]);
+            wcscpy(_pwstStrings[i], w);
+            FREE(w);
         }
     }
 
@@ -628,9 +626,7 @@ SciErr createHypermatOfString(void *_pvCtx, int _iVar, int * _dims, int _ndims, 
 
     for (int i = 0; i < size; ++i)
     {
-        wchar_t* w = to_wide_string(_pstStrings[i]);
-        p->set(i, w);
-        FREE(w);
+        p->set(i, _pstStrings[i]);
     }
 
     out[rhs - 1] = p;
@@ -645,8 +641,7 @@ SciErr createHypermatOfPoly(void *_pvCtx, int _iVar, char* _pstVarName, int * _d
     types::InternalType** out = pStr->m_pOut;
     int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    wchar_t* w = to_wide_string(_pstVarName);
-    types::Polynom* p = new types::Polynom(w, _ndims, _dims, _piNbCoef);
+    types::Polynom* p = new types::Polynom(_pstVarName, _ndims, _dims, _piNbCoef);
 
     int size = p->getSize();
     if (size == 0)
@@ -675,8 +670,7 @@ SciErr createComplexHypermatOfPoly(void *_pvCtx, int _iVar, char* _pstVarName, i
     types::InternalType** out = pStr->m_pOut;
     int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    wchar_t* w = to_wide_string(_pstVarName);
-    types::Polynom* p = new types::Polynom(w, _ndims, _dims, _piNbCoef);
+    types::Polynom* p = new types::Polynom(_pstVarName, _ndims, _dims, _piNbCoef);
     p->setComplex(true);
 
     int size = p->getSize();

@@ -24,7 +24,7 @@ extern "C" {
 
 #define scilab_getOptional          API_PROTO(getOptional)
 
-    scilabVar API_PROTO(getOptional)(scilabEnv env, scilabOpt opt, const wchar_t* varname);
+    scilabVar API_PROTO(getOptional)(scilabEnv env, scilabOpt opt, const char* varname);
 #ifdef __cplusplus
 }
 #endif

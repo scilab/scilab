@@ -144,7 +144,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
 
             if (pSinglePoly->getRank() < 2 && dblParse >= 0 && dblParse < (double)iSize)
             {
-                out.push_back(get(iSize - 1 - dblParse));
+                out.push_back(get(iSize - 1 - (int)dblParse));
             }
             else
             {

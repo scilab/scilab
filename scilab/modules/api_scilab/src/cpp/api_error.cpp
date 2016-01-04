@@ -16,19 +16,19 @@ extern "C"
 #include "api_scilab.h"
 }
 
-void scilab_setError(scilabEnv env, const wchar_t* msg)
+void scilab_setError(scilabEnv env, const char* msg)
 {
     ((types::GatewayCStruct*)env)->lasterror = msg;
 }
 
 //error
-const wchar_t* scilab_lastError(scilabEnv env)
+const char* scilab_lastError(scilabEnv env)
 {
     return ((types::GatewayCStruct*)env)->lasterror.data();
 }
 
-void scilab_setInternalError(scilabEnv env, const std::wstring& name, const std::wstring& msg)
+void scilab_setInternalError(scilabEnv env, const std::string& name, const std::string& msg)
 {
-    std::wstring err(L"scilab_" + name + L": " + msg);
+    std::string err("scilab_" + name + ": " + msg);
     scilab_setError(env, err.data());
 }

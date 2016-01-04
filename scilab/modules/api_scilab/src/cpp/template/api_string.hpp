@@ -22,7 +22,7 @@ scilabVar API_PROTO(createStringMatrix)(scilabEnv env, int dim, const int* dims)
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createStringMatrix", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createStringMatrix", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -30,7 +30,7 @@ scilabVar API_PROTO(createStringMatrix)(scilabEnv env, int dim, const int* dims)
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createStringMatrix", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createStringMatrix", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -39,7 +39,7 @@ scilabVar API_PROTO(createStringMatrix)(scilabEnv env, int dim, const int* dims)
 #ifdef __API_SCILAB_SAFE__
     if (s == nullptr)
     {
-        scilab_setInternalError(env, L"createStringMatrix", _W("memory allocation error"));
+        scilab_setInternalError(env, "createStringMatrix", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -54,7 +54,7 @@ scilabVar API_PROTO(createStringMatrix2d)(scilabEnv env, int row, int col)
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createStringMatrix2d", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createStringMatrix2d", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -63,33 +63,33 @@ scilabVar API_PROTO(createStringMatrix2d)(scilabEnv env, int row, int col)
 #ifdef __API_SCILAB_SAFE__
     if (s == nullptr)
     {
-        scilab_setInternalError(env, L"createStringMatrix2d", _W("memory allocation error"));
+        scilab_setInternalError(env, "createStringMatrix2d", _("memory allocation error"));
         return nullptr;
     }
 #endif
     return (scilabVar)s;
 }
 
-scilabVar API_PROTO(createString)(scilabEnv env, const wchar_t* val)
+scilabVar API_PROTO(createString)(scilabEnv env, const char* val)
 {
     types::String* s = new types::String(val);
 #ifdef __API_SCILAB_SAFE__
     if (s == nullptr)
     {
-        scilab_setInternalError(env, L"createString", _W("memory allocation error"));
+        scilab_setInternalError(env, "createString", _("memory allocation error"));
         return nullptr;
     }
 #endif
     return (scilabVar)s;
 }
 
-scilabStatus API_PROTO(getStringArray)(scilabEnv env, scilabVar var, wchar_t const* const** strs)
+scilabStatus API_PROTO(getStringArray)(scilabEnv env, scilabVar var, char const* const** strs)
 {
     types::String* s = (types::String*)var;
 #ifdef __API_SCILAB_SAFE__
     if (s->isString() == false)
     {
-        scilab_setInternalError(env, L"getStringArray", _W("var must be a string variable"));
+        scilab_setInternalError(env, "getStringArray", _("var must be a string variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -97,13 +97,13 @@ scilabStatus API_PROTO(getStringArray)(scilabEnv env, scilabVar var, wchar_t con
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(getString)(scilabEnv env, scilabVar var, wchar_t const** str)
+scilabStatus API_PROTO(getString)(scilabEnv env, scilabVar var, char const** str)
 {
     types::String* s = (types::String*)var;
 #ifdef __API_SCILAB_SAFE__
     if (s->isString() == false || s->isScalar() == false)
     {
-        scilab_setInternalError(env, L"getString", _W("var must be a scalar string variable"));
+        scilab_setInternalError(env, "getString", _("var must be a scalar string variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -111,13 +111,13 @@ scilabStatus API_PROTO(getString)(scilabEnv env, scilabVar var, wchar_t const** 
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(setStringArray)(scilabEnv env, scilabVar var, const wchar_t* const* strs)
+scilabStatus API_PROTO(setStringArray)(scilabEnv env, scilabVar var, const char* const* strs)
 {
     types::String* s = (types::String*)var;
 #ifdef __API_SCILAB_SAFE__
     if (s->isString() == false)
     {
-        scilab_setInternalError(env, L"setStringArray", _W("var must be a string variable"));
+        scilab_setInternalError(env, "setStringArray", _("var must be a string variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -125,13 +125,13 @@ scilabStatus API_PROTO(setStringArray)(scilabEnv env, scilabVar var, const wchar
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(setString)(scilabEnv env, scilabVar var, wchar_t* str)
+scilabStatus API_PROTO(setString)(scilabEnv env, scilabVar var, char* str)
 {
     types::String* s = (types::String*)var;
 #ifdef __API_SCILAB_SAFE__
     if (s->isString() == false || s->isScalar() == false)
     {
-        scilab_setInternalError(env, L"setString", _W("var must be a scalar string variable"));
+        scilab_setInternalError(env, "setString", _("var must be a scalar string variable"));
         return STATUS_ERROR;
     }
 #endif

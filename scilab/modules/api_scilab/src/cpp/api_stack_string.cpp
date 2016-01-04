@@ -89,9 +89,7 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
     {
         for (int i = 0 ; i < iSize; i++)
         {
-            char* pstTemp = wide_string_to_UTF8(pS->get(i));
-            _piLength[i] = (int)strlen(pstTemp);
-            FREE(pstTemp);
+            _piLength[i] = (int)strlen(pS->get(i));
         }
     }
     else
@@ -104,9 +102,7 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
                 return sciErr;
             }
 
-            char* c = wide_string_to_UTF8(pS->get(i));
-            strcpy(_pstStrings[i], c);
-            FREE(c);
+            strcpy(_pstStrings[i], pS->get(i));
         }
     }
 
@@ -144,9 +140,7 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
 
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
-        wchar_t* pstTemp = to_wide_string(_pstStrings[i]);
-        pS->set(i, pstTemp);
-        FREE(pstTemp);
+        pS->set(i, _pstStrings[i]);
     }
 
     out[rhs - 1] = pS;
@@ -188,15 +182,11 @@ SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows,
 
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
-        wchar_t* pstTemp = to_wide_string(_pstStrings[i]);
-        pS->set(i, pstTemp);
-        FREE(pstTemp);
+        pS->set(i, _pstStrings[i]);
     }
 
-    wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context* ctx = symbol::Context::getInstance();
-    symbol::Symbol sym = symbol::Symbol(pwstName);
-    FREE(pwstName);
+    symbol::Symbol sym = symbol::Symbol(_pstName);
     if (ctx->isprotected(sym) == false)
     {
         ctx->put(sym, pS);
@@ -276,7 +266,9 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
     {
         for (int i = 0 ; i < iSize; i++)
         {
-            _piwLength[i] = (int)wcslen(pS->get(i));
+            wchar_t* w = to_wide_string(pS->get(i));
+            _piwLength[i] = (int)wcslen(w);
+            FREE(w);
         }
     }
     else
@@ -289,7 +281,8 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
                 return sciErr;
             }
 
-            wcscpy(_pwstStrings[i], pS->get(i));
+            wchar_t* w = to_wide_string(pS->get(i));
+            wcscpy(_pwstStrings[i], w);
         }
     }
 
@@ -363,13 +356,13 @@ SciErr createNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int _iR
 
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
-        pS->set(i, _pwstStrings[i]);
+        char* c = wide_string_to_UTF8(_pwstStrings[i]);
+        pS->set(i, c);
+        FREE(c);
     }
 
-    wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context* ctx = symbol::Context::getInstance();
-    symbol::Symbol sym = symbol::Symbol(pwstName);
-    FREE(pwstName);
+    symbol::Symbol sym = symbol::Symbol(_pstName);
     if (ctx->isprotected(sym) == false)
     {
         ctx->put(sym, pS);

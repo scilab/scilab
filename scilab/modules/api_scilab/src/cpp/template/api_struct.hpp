@@ -23,7 +23,7 @@ scilabVar API_PROTO(createStruct)(scilabEnv env)
 #ifdef __API_SCILAB_SAFE__
     if (s == nullptr)
     {
-        scilab_setInternalError(env, L"createStruct", _W("memory allocation error"));
+        scilab_setInternalError(env, "createStruct", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -35,7 +35,7 @@ scilabVar API_PROTO(createStructMatrix)(scilabEnv env, int dim, const int* dims)
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createStructMatrix", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createStructMatrix", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -43,7 +43,7 @@ scilabVar API_PROTO(createStructMatrix)(scilabEnv env, int dim, const int* dims)
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createStructMatrix", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createStructMatrix", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -52,7 +52,7 @@ scilabVar API_PROTO(createStructMatrix)(scilabEnv env, int dim, const int* dims)
 #ifdef __API_SCILAB_SAFE__
     if (s == nullptr)
     {
-        scilab_setInternalError(env, L"createStructMatrix", _W("memory allocation error"));
+        scilab_setInternalError(env, "createStructMatrix", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -67,7 +67,7 @@ scilabVar API_PROTO(createStructMatrix2d)(scilabEnv env, int row, int col)
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createStructMatrix2d", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createStructMatrix2d", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -76,7 +76,7 @@ scilabVar API_PROTO(createStructMatrix2d)(scilabEnv env, int row, int col)
 #ifdef __API_SCILAB_SAFE__
     if (s == nullptr)
     {
-        scilab_setInternalError(env, L"createStructMatrix2d", _W("memory allocation error"));
+        scilab_setInternalError(env, "createStructMatrix2d", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -84,13 +84,13 @@ scilabVar API_PROTO(createStructMatrix2d)(scilabEnv env, int row, int col)
 }
 
 /*fields*/
-scilabStatus API_PROTO(addFields)(scilabEnv env, scilabVar var, int count, const wchar_t** fields)
+scilabStatus API_PROTO(addFields)(scilabEnv env, scilabVar var, int count, const char** fields)
 {
     types::Struct* s = (types::Struct*)var;
 #ifdef __API_SCILAB_SAFE__
     if (s->isStruct() == false)
     {
-        scilab_setInternalError(env, L"addFields", _W("var must be a struct variable"));
+        scilab_setInternalError(env, "addFields", _("var must be a struct variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -103,13 +103,13 @@ scilabStatus API_PROTO(addFields)(scilabEnv env, scilabVar var, int count, const
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(addField)(scilabEnv env, scilabVar var, const wchar_t* field)
+scilabStatus API_PROTO(addField)(scilabEnv env, scilabVar var, const char* field)
 {
     types::Struct* s = (types::Struct*)var;
 #ifdef __API_SCILAB_SAFE__
     if (s->isStruct() == false)
     {
-        scilab_setInternalError(env, L"addField", _W("var must be a struct variable"));
+        scilab_setInternalError(env, "addField", _("var must be a struct variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -117,13 +117,13 @@ scilabStatus API_PROTO(addField)(scilabEnv env, scilabVar var, const wchar_t* fi
     return STATUS_OK;
 }
 
-int API_PROTO(getFields)(scilabEnv env, scilabVar var, const wchar_t* const**  fields)
+int API_PROTO(getFields)(scilabEnv env, scilabVar var, const char* const**  fields)
 {
     types::Struct* s = (types::Struct*)var;
 #ifdef __API_SCILAB_SAFE__
     if (s->isStruct() == false)
     {
-        scilab_setInternalError(env, L"getFields", _W("var must be a struct variable"));
+        scilab_setInternalError(env, "getFields", _("var must be a struct variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -133,13 +133,13 @@ int API_PROTO(getFields)(scilabEnv env, scilabVar var, const wchar_t* const**  f
 }
 
 /*data*/
-scilabVar API_PROTO(getStructMatrixData)(scilabEnv env, scilabVar var, const wchar_t* field, const int* index)
+scilabVar API_PROTO(getStructMatrixData)(scilabEnv env, scilabVar var, const char* field, const int* index)
 {
     types::Struct* s = (types::Struct*)var;
 #ifdef __API_SCILAB_SAFE__
     if (s->isStruct() == false)
     {
-        scilab_setInternalError(env, L"getStructMatrixData", _W("var must be a struct variable"));
+        scilab_setInternalError(env, "getStructMatrixData", _("var must be a struct variable"));
         return nullptr;
     }
 #endif
@@ -147,14 +147,14 @@ scilabVar API_PROTO(getStructMatrixData)(scilabEnv env, scilabVar var, const wch
     types::SingleStruct* ss = s->get(s->getIndex(index));
     return (scilabVar)ss->get(field);
 }
-scilabVar API_PROTO(getStructMatrix2dData)(scilabEnv env, scilabVar var, const wchar_t* field, int row, int col)
+scilabVar API_PROTO(getStructMatrix2dData)(scilabEnv env, scilabVar var, const char* field, int row, int col)
 {
     int index[2] = {row, col};
     types::Struct* s = (types::Struct*)var;
 #ifdef __API_SCILAB_SAFE__
     if (s->isStruct() == false)
     {
-        scilab_setInternalError(env, L"getStructMatrix2dData", _W("var must be a struct variable"));
+        scilab_setInternalError(env, "getStructMatrix2dData", _("var must be a struct variable"));
         return nullptr;
     }
 #endif
@@ -162,13 +162,13 @@ scilabVar API_PROTO(getStructMatrix2dData)(scilabEnv env, scilabVar var, const w
     return (scilabVar)ss->get(field);
 }
 
-scilabStatus API_PROTO(setStructMatrixData)(scilabEnv env, scilabVar var, const wchar_t* field, const int* index, scilabVar data)
+scilabStatus API_PROTO(setStructMatrixData)(scilabEnv env, scilabVar var, const char* field, const int* index, scilabVar data)
 {
     types::Struct* s = (types::Struct*)var;
 #ifdef __API_SCILAB_SAFE__
     if (s->isStruct() == false)
     {
-        scilab_setInternalError(env, L"setStructMatrixData", _W("var must be a struct variable"));
+        scilab_setInternalError(env, "setStructMatrixData", _("var must be a struct variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -176,14 +176,14 @@ scilabStatus API_PROTO(setStructMatrixData)(scilabEnv env, scilabVar var, const 
     return ss->set(field, (types::InternalType*)data) ? STATUS_OK : STATUS_ERROR;
 }
 
-scilabStatus API_PROTO(setStructMatrix2dData)(scilabEnv env, scilabVar var, const wchar_t* field, int row, int col, scilabVar data)
+scilabStatus API_PROTO(setStructMatrix2dData)(scilabEnv env, scilabVar var, const char* field, int row, int col, scilabVar data)
 {
     int index[2] = {row, col};
     types::Struct* s = (types::Struct*)var;
 #ifdef __API_SCILAB_SAFE__
     if (s->isStruct() == false)
     {
-        scilab_setInternalError(env, L"setStructMatrix2dData", _W("var must be a struct variable"));
+        scilab_setInternalError(env, "setStructMatrix2dData", _("var must be a struct variable"));
         return STATUS_ERROR;
     }
 #endif

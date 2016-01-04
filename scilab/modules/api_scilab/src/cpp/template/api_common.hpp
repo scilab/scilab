@@ -24,7 +24,7 @@ extern "C"
 /* Scilab 6 API*/
 
 //var
-scilabVar API_PROTO(getVar)(const wchar_t* name)
+scilabVar API_PROTO(getVar)(const char* name)
 {
     return (scilabVar)symbol::Context::getInstance()->get(symbol::Symbol(name));
 }
@@ -508,10 +508,6 @@ scilabStatus API_PROTO(overload)(scilabEnv env, scilabVar var, int nin, scilabVa
 {
     std::string &fname =  ((types::GatewayCStruct*)env)->name;
 
-    wchar_t* pwstName = to_wide_string(fname.data());
-    std::wstring wsFunName(pwstName);
-    FREE(pwstName);
-
     types::typed_list inCall;
     types::typed_list outCall;
 
@@ -522,7 +518,7 @@ scilabStatus API_PROTO(overload)(scilabEnv env, scilabVar var, int nin, scilabVa
         inCall.back()->IncreaseRef();
     }
 
-    types::Function::ReturnValue callResult = Overload::generateNameAndCall(wsFunName, inCall, nout, outCall);
+    types::Function::ReturnValue callResult = Overload::generateNameAndCall(fname.data(), inCall, nout, outCall);
 
     for (int i = 0; i < nin; i++)
     {
@@ -531,7 +527,7 @@ scilabStatus API_PROTO(overload)(scilabEnv env, scilabVar var, int nin, scilabVa
 
     if (callResult != types::Function::OK)
     {
-        scilab_setInternalError(env, L"call", _W("error in called function"));
+        scilab_setInternalError(env, "call", _("error in called function"));
         return STATUS_ERROR;
     }
 
@@ -543,7 +539,7 @@ scilabStatus API_PROTO(overload)(scilabEnv env, scilabVar var, int nin, scilabVa
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(call)(scilabEnv env, const wchar_t* name, int nin, scilabVar* in, int nout, scilabVar* out)
+scilabStatus API_PROTO(call)(scilabEnv env, const char* name, int nin, scilabVar* in, int nout, scilabVar* out)
 {
     types::typed_list inCall;
     types::typed_list outCall;
@@ -564,7 +560,7 @@ scilabStatus API_PROTO(call)(scilabEnv env, const wchar_t* name, int nin, scilab
 
     if (callResult != types::Function::OK)
     {
-        scilab_setInternalError(env, L"call", _W("error in called function"));
+        scilab_setInternalError(env, "call", _("error in called function"));
         return STATUS_ERROR;
     }
 

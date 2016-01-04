@@ -25,15 +25,9 @@ String::String(int _iDims, int* _piDims)
     created = true;
 }
 
-String::String(int _iRows, int _iCols, wchar_t** _pwstData)
+String::String(int _iRows, int _iCols, const char** _pstData)
 {
-    data = new types::String(_iRows, _iRows, _pwstData);
-    created = true;
-}
-
-String::String(const wchar_t *_pwstData)
-{
-    data = new types::String(_pwstData);
+    data = new types::String(_iRows, _iRows, _pstData);
     created = true;
 }
 

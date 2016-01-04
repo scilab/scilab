@@ -152,7 +152,7 @@ scilabVar API_PROTO(createInteger8Matrix)(scilabEnv env, int dim, const int* dim
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createIntegerMatrix8", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createIntegerMatrix8", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -160,7 +160,7 @@ scilabVar API_PROTO(createInteger8Matrix)(scilabEnv env, int dim, const int* dim
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createIntegerMatrix8", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createIntegerMatrix8", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -174,7 +174,7 @@ scilabVar API_PROTO(createInteger16Matrix)(scilabEnv env, int dim, const int* di
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createIntegerMatrix16", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createIntegerMatrix16", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -182,7 +182,7 @@ scilabVar API_PROTO(createInteger16Matrix)(scilabEnv env, int dim, const int* di
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createIntegerMatrix16", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createIntegerMatrix16", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -196,7 +196,7 @@ scilabVar API_PROTO(createInteger32Matrix)(scilabEnv env, int dim, const int* di
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createIntegerMatrix32", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createIntegerMatrix32", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -204,7 +204,7 @@ scilabVar API_PROTO(createInteger32Matrix)(scilabEnv env, int dim, const int* di
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createIntegerMatrix32", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createIntegerMatrix32", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -218,7 +218,7 @@ scilabVar API_PROTO(createInteger64Matrix)(scilabEnv env, int dim, const int* di
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createIntegerMatrix64", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createIntegerMatrix64", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -226,7 +226,7 @@ scilabVar API_PROTO(createInteger64Matrix)(scilabEnv env, int dim, const int* di
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createIntegerMatrix64", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createIntegerMatrix64", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -240,7 +240,7 @@ scilabVar API_PROTO(createUnsignedInteger8Matrix)(scilabEnv env, int dim, const 
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createUnsignedIntegerMatrix8", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createUnsignedIntegerMatrix8", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -248,7 +248,7 @@ scilabVar API_PROTO(createUnsignedInteger8Matrix)(scilabEnv env, int dim, const 
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createUnsignedIntegerMatrix8", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createUnsignedIntegerMatrix8", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -262,7 +262,7 @@ scilabVar API_PROTO(createUnsignedInteger16Matrix)(scilabEnv env, int dim, const
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createUnsignedIntegerMatrix16", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createUnsignedIntegerMatrix16", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -270,7 +270,7 @@ scilabVar API_PROTO(createUnsignedInteger16Matrix)(scilabEnv env, int dim, const
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createUnsignedIntegerMatrix16", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createUnsignedIntegerMatrix16", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -284,7 +284,7 @@ scilabVar API_PROTO(createUnsignedInteger32Matrix)(scilabEnv env, int dim, const
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createUnsignedIntegerMatrix32", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createUnsignedIntegerMatrix32", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -292,7 +292,7 @@ scilabVar API_PROTO(createUnsignedInteger32Matrix)(scilabEnv env, int dim, const
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createUnsignedIntegerMatrix32", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createUnsignedIntegerMatrix32", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -306,7 +306,7 @@ scilabVar API_PROTO(createUnsignedInteger64Matrix)(scilabEnv env, int dim, const
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createUnsignedIntegerMatrix64", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createUnsignedIntegerMatrix64", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -314,7 +314,7 @@ scilabVar API_PROTO(createUnsignedInteger64Matrix)(scilabEnv env, int dim, const
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createUnsignedIntegerMatrix64", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createUnsignedIntegerMatrix64", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -375,7 +375,7 @@ scilabStatus API_PROTO(getInteger8)(scilabEnv env, scilabVar var, char* val)
 #ifdef __API_SCILAB_SAFE__
     if (i->isInt8() == false || i->isScalar() == false)
     {
-        scilab_setInternalError(env, L"getInteger8", _W("var must be a scalar int8 variable"));
+        scilab_setInternalError(env, "getInteger8", _("var must be a scalar int8 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -389,7 +389,7 @@ scilabStatus API_PROTO(getInteger16)(scilabEnv env, scilabVar var, short* val)
 #ifdef __API_SCILAB_SAFE__
     if (i->isInt16() == false || i->isScalar() == false)
     {
-        scilab_setInternalError(env, L"getInteger16", _W("var must be a scalar int16 variable"));
+        scilab_setInternalError(env, "getInteger16", _("var must be a scalar int16 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -403,7 +403,7 @@ scilabStatus API_PROTO(getInteger32)(scilabEnv env, scilabVar var, int* val)
 #ifdef __API_SCILAB_SAFE__
     if (i->isInt32() == false || i->isScalar() == false)
     {
-        scilab_setInternalError(env, L"getInteger32", _W("var must be a scalar int32 variable"));
+        scilab_setInternalError(env, "getInteger32", _("var must be a scalar int32 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -417,7 +417,7 @@ scilabStatus API_PROTO(getInteger64)(scilabEnv env, scilabVar var, long long* va
 #ifdef __API_SCILAB_SAFE__
     if (i->isInt64() == false || i->isScalar() == false)
     {
-        scilab_setInternalError(env, L"getInteger64", _W("var must be a scalar int64 variable"));
+        scilab_setInternalError(env, "getInteger64", _("var must be a scalar int64 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -431,7 +431,7 @@ scilabStatus API_PROTO(getUnsignedInteger8)(scilabEnv env, scilabVar var, unsign
 #ifdef __API_SCILAB_SAFE__
     if (i->isUInt8() == false || i->isScalar() == false)
     {
-        scilab_setInternalError(env, L"getUnsignedInteger8", _W("var must be a scalar uint8 variable"));
+        scilab_setInternalError(env, "getUnsignedInteger8", _("var must be a scalar uint8 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -445,7 +445,7 @@ scilabStatus API_PROTO(getUnsignedInteger16)(scilabEnv env, scilabVar var, unsig
 #ifdef __API_SCILAB_SAFE__
     if (i->isUInt16() == false || i->isScalar() == false)
     {
-        scilab_setInternalError(env, L"getUnsignedInteger16", _W("var must be a scalar uint16 variable"));
+        scilab_setInternalError(env, "getUnsignedInteger16", _("var must be a scalar uint16 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -459,7 +459,7 @@ scilabStatus API_PROTO(getUnsignedInteger32)(scilabEnv env, scilabVar var, unsig
 #ifdef __API_SCILAB_SAFE__
     if (i->isUInt32() == false || i->isScalar() == false)
     {
-        scilab_setInternalError(env, L"getUnsignedInteger32", _W("var must be a scalar uint32 variable"));
+        scilab_setInternalError(env, "getUnsignedInteger32", _("var must be a scalar uint32 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -473,7 +473,7 @@ scilabStatus API_PROTO(getUnsignedInteger64)(scilabEnv env, scilabVar var, unsig
 #ifdef __API_SCILAB_SAFE__
     if (i->isUInt64() == false || i->isScalar() == false)
     {
-        scilab_setInternalError(env, L"getUnsignedInteger64", _W("var must be a scalar uint64 variable"));
+        scilab_setInternalError(env, "getUnsignedInteger64", _("var must be a scalar uint64 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -512,7 +512,7 @@ scilabStatus API_PROTO(getInteger8Array)(scilabEnv env, scilabVar var, const cha
 #ifdef __API_SCILAB_SAFE__
     if (i->isInt8() == false)
     {
-        scilab_setInternalError(env, L"getInteger8Array", _W("var must be a int8 variable"));
+        scilab_setInternalError(env, "getInteger8Array", _("var must be a int8 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -526,7 +526,7 @@ scilabStatus API_PROTO(getInteger16Array)(scilabEnv env, scilabVar var, const sh
 #ifdef __API_SCILAB_SAFE__
     if (i->isInt16() == false)
     {
-        scilab_setInternalError(env, L"getInteger16Array", _W("var must be a int16 variable"));
+        scilab_setInternalError(env, "getInteger16Array", _("var must be a int16 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -540,7 +540,7 @@ scilabStatus API_PROTO(getInteger32Array)(scilabEnv env, scilabVar var, const in
 #ifdef __API_SCILAB_SAFE__
     if (i->isInt32() == false)
     {
-        scilab_setInternalError(env, L"getInteger32Array", _W("var must be a int32 variable"));
+        scilab_setInternalError(env, "getInteger32Array", _("var must be a int32 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -554,7 +554,7 @@ scilabStatus API_PROTO(getInteger64Array)(scilabEnv env, scilabVar var, const lo
 #ifdef __API_SCILAB_SAFE__
     if (i->isInt64() == false)
     {
-        scilab_setInternalError(env, L"getInteger64Array", _W("var must be a int64 variable"));
+        scilab_setInternalError(env, "getInteger64Array", _("var must be a int64 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -568,7 +568,7 @@ scilabStatus API_PROTO(getUnsignedInteger8Array)(scilabEnv env, scilabVar var, c
 #ifdef __API_SCILAB_SAFE__
     if (i->isUInt8() == false)
     {
-        scilab_setInternalError(env, L"getUnsignedInteger8Array", _W("var must be a uint8 variable"));
+        scilab_setInternalError(env, "getUnsignedInteger8Array", _("var must be a uint8 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -582,7 +582,7 @@ scilabStatus API_PROTO(getUnsignedInteger16Array)(scilabEnv env, scilabVar var, 
 #ifdef __API_SCILAB_SAFE__
     if (i->isUInt16() == false)
     {
-        scilab_setInternalError(env, L"getUnsignedInteger16Array", _W("var must be a uint16 variable"));
+        scilab_setInternalError(env, "getUnsignedInteger16Array", _("var must be a uint16 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -596,7 +596,7 @@ scilabStatus API_PROTO(getUnsignedInteger32Array)(scilabEnv env, scilabVar var, 
 #ifdef __API_SCILAB_SAFE__
     if (i->isUInt32() == false)
     {
-        scilab_setInternalError(env, L"getUnsignedInteger32Array", _W("var must be a uint32 variable"));
+        scilab_setInternalError(env, "getUnsignedInteger32Array", _("var must be a uint32 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -610,7 +610,7 @@ scilabStatus API_PROTO(getUnsignedInteger64Array)(scilabEnv env, scilabVar var, 
 #ifdef __API_SCILAB_SAFE__
     if (i->isUInt64() == false)
     {
-        scilab_setInternalError(env, L"getUnsignedInteger64Array", _W("var must be a uint64 variable"));
+        scilab_setInternalError(env, "getUnsignedInteger64Array", _("var must be a uint64 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -649,7 +649,7 @@ scilabStatus API_PROTO(setInteger8Array)(scilabEnv env, scilabVar var, const cha
 #ifdef __API_SCILAB_SAFE__
     if (i->isInt8() == false)
     {
-        scilab_setInternalError(env, L"setInteger8Array", _W("var must be a int8 variable"));
+        scilab_setInternalError(env, "setInteger8Array", _("var must be a int8 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -663,7 +663,7 @@ scilabStatus API_PROTO(setInteger16Array)(scilabEnv env, scilabVar var, const sh
 #ifdef __API_SCILAB_SAFE__
     if (i->isInt16() == false)
     {
-        scilab_setInternalError(env, L"setInteger16Array", _W("var must be a int16 variable"));
+        scilab_setInternalError(env, "setInteger16Array", _("var must be a int16 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -677,7 +677,7 @@ scilabStatus API_PROTO(setInteger32Array)(scilabEnv env, scilabVar var, const in
 #ifdef __API_SCILAB_SAFE__
     if (i->isInt32() == false)
     {
-        scilab_setInternalError(env, L"setInteger32Array", _W("var must be a int32 variable"));
+        scilab_setInternalError(env, "setInteger32Array", _("var must be a int32 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -691,7 +691,7 @@ scilabStatus API_PROTO(setInteger64Array)(scilabEnv env, scilabVar var, const lo
 #ifdef __API_SCILAB_SAFE__
     if (i->isInt32() == false)
     {
-        scilab_setInternalError(env, L"setInteger64Array", _W("var must be a int32 variable"));
+        scilab_setInternalError(env, "setInteger64Array", _("var must be a int32 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -705,7 +705,7 @@ scilabStatus API_PROTO(setUnsignedInteger8Array)(scilabEnv env, scilabVar var, c
 #ifdef __API_SCILAB_SAFE__
     if (i->isUInt8() == false)
     {
-        scilab_setInternalError(env, L"setUnsignedInteger8Array", _W("var must be a uint8 variable"));
+        scilab_setInternalError(env, "setUnsignedInteger8Array", _("var must be a uint8 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -719,7 +719,7 @@ scilabStatus API_PROTO(setUnsignedInteger16Array)(scilabEnv env, scilabVar var, 
 #ifdef __API_SCILAB_SAFE__
     if (i->isUInt16() == false)
     {
-        scilab_setInternalError(env, L"setUnsignedInteger16Array", _W("var must be a uint16 variable"));
+        scilab_setInternalError(env, "setUnsignedInteger16Array", _("var must be a uint16 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -733,7 +733,7 @@ scilabStatus API_PROTO(setUnsignedInteger32Array)(scilabEnv env, scilabVar var, 
 #ifdef __API_SCILAB_SAFE__
     if (i->isUInt32() == false)
     {
-        scilab_setInternalError(env, L"setUnsignedInteger32Array", _W("var must be a uint32 variable"));
+        scilab_setInternalError(env, "setUnsignedInteger32Array", _("var must be a uint32 variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -747,7 +747,7 @@ scilabStatus API_PROTO(setUnsignedInteger64Array)(scilabEnv env, scilabVar var, 
 #ifdef __API_SCILAB_SAFE__
     if (i->isUInt64() == false)
     {
-        scilab_setInternalError(env, L"setUnsignedInteger64Array", _W("var must be a uint64 variable"));
+        scilab_setInternalError(env, "setUnsignedInteger64Array", _("var must be a uint64 variable"));
         return STATUS_ERROR;
     }
 #endif

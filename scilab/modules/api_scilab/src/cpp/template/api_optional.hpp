@@ -16,9 +16,9 @@ extern "C"
 #include "api_scilab.h"
 }
 
-scilabVar API_PROTO(getOptional)(scilabEnv env, scilabOpt opt, const wchar_t* varname)
+scilabVar API_PROTO(getOptional)(scilabEnv env, scilabOpt opt, const char* varname)
 {
-    std::wstring name(varname);
+    std::string name(varname);
     types::optional_list* l = (types::optional_list*)opt;
 
     const auto it = l->find(name);

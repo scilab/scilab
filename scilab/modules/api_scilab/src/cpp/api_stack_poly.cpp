@@ -64,9 +64,7 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
         return sciErr;
     }
 
-    char* pstTemp = wide_string_to_UTF8(((types::InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().c_str());
-    strcpy(_pstVarName, pstTemp);
-    FREE(pstTemp);
+    strcpy(_pstVarName, ((types::InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().c_str());
     *_piVarNameLen = static_cast<int>(strlen(_pstVarName));
     return sciErr;
 }
@@ -194,10 +192,7 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
         return sciErr;
     }
 
-    wchar_t* pstTemp = to_wide_string(_pstVarName);
-    std::wstring wstTemp(pstTemp);
-    types::Polynom* pP = new types::Polynom(wstTemp, _iRows, _iCols, _piNbCoef);
-    FREE(pstTemp);
+    types::Polynom* pP = new types::Polynom(_pstVarName, _iRows, _iCols, _piNbCoef);
     if (pP == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), _iComplex ? "createComplexMatrixOfPoly" : "createMatrixOfPoly");
@@ -259,10 +254,7 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
         return sciErr;
     }
 
-    wchar_t* pstTemp = to_wide_string(_pstVarName);
-    std::wstring wstTemp(pstTemp);
-    types::Polynom* pP = new types::Polynom(wstTemp, _iRows, _iCols, _piNbCoef);
-    FREE(pstTemp);
+    types::Polynom* pP = new types::Polynom(_pstVarName, _iRows, _iCols, _piNbCoef);
     if (pP == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommonNamedMatrixOfPoly", _pstName);
@@ -286,10 +278,8 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
         delete pD;
     }
 
-    wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context* ctx = symbol::Context::getInstance();
-    symbol::Symbol sym = symbol::Symbol(pwstName);
-    FREE(pwstName);
+    symbol::Symbol sym = symbol::Symbol(_pstName);
     if (ctx->isprotected(sym) == false)
     {
         ctx->put(sym, pP);

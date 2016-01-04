@@ -236,9 +236,6 @@ int callScilabFunction(void* _pvCtx, char const* _pstName, int _iStart, int _iLh
     types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
     types::Function::ReturnValue callResult;
 
-    wchar_t* pwstName = to_wide_string(_pstName);
-    std::wstring wsFunName(pwstName);
-
     types::typed_list in;
     types::typed_list out;
 
@@ -249,7 +246,7 @@ int callScilabFunction(void* _pvCtx, char const* _pstName, int _iStart, int _iLh
         in[i]->IncreaseRef();
     }
 
-    callResult = Overload::call(wsFunName, in, _iLhs, out);
+    callResult = Overload::call(_pstName, in, _iLhs, out);
 
     //unprotect input arguments
     for (int i = 0 ; i < _iRhs ; i++)
@@ -268,7 +265,6 @@ int callScilabFunction(void* _pvCtx, char const* _pstName, int _iStart, int _iLh
         }
     }
 
-    FREE(pwstName);
     return 0;
 }
 
@@ -278,24 +274,15 @@ int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _
     types::Function::ReturnValue callResult;
     types::typed_list tlReturnedValues;
 
-    wchar_t* pwstName = NULL;
-    if (_pstName == NULL || strlen(_pstName) == 0)
-    {
-        pwstName = to_wide_string(pStr->m_pstName);
-    }
-    else
-    {
-        pwstName = to_wide_string(_pstName);
-    }
-    std::wstring wsFunName;
+    std::string funName;
 
     if (_iVar == 0)
     {
-        wsFunName = std::wstring(L"%_") + std::wstring(pwstName);
+        funName = std::string("%_") + std::string(_pstName);
     }
     else
     {
-        wsFunName = std::wstring(L"%") + (*pStr->m_pIn)[_iVar - 1]->getShortTypeStr() + L"_" + std::wstring(pwstName);
+        funName = std::string("%") + (*pStr->m_pIn)[_iVar - 1]->getShortTypeStr() + "_" + std::string(_pstName);
     }
 
     //protect input arguments
@@ -304,7 +291,7 @@ int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _
         (*pStr->m_pIn)[i]->IncreaseRef();
     }
 
-    callResult = Overload::call(wsFunName, *(pStr->m_pIn), *(pStr->m_piRetCount), tlReturnedValues);
+    callResult = Overload::call(funName, *(pStr->m_pIn), *(pStr->m_piRetCount), tlReturnedValues);
 
     //unprotect input arguments
     for (int i = 0 ; i < pStr->m_pIn->size() ; i++)
@@ -323,7 +310,6 @@ int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _
         }
     }
 
-    FREE(pwstName);
     return 0;
 }
 
@@ -442,11 +428,9 @@ SciErr getVarNameFromPosition(void *_pvCtx, int _iVar, char *_pstName)
 
     if (in[_iVar - 1]->isCallable())
     {
-        std::wstring pwstring = in[_iVar - 1]->getAs<types::Callable>()->getName();
-        const wchar_t* pwcName = pwstring.c_str();
-        char* pstNameTempo = wide_string_to_UTF8(pwcName);
-        strcpy(_pstName, pstNameTempo);
-        FREE(pstNameTempo);
+        std::string str(in[_iVar - 1]->getAs<types::Callable>()->getName());
+        const char* pcName = str.c_str();
+        strcpy(_pstName, pcName);
     }
 
     return sciErr;
@@ -463,10 +447,8 @@ SciErr getVarAddressFromName(void *_pvCtx, const char *_pstName, int **_piAddres
 {
     SciErr sciErr = sciErrInit();
 
-    wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context* pCtx = symbol::Context::getInstance();
-    types::InternalType* pVar = pCtx->get(symbol::Symbol(pwstName));
-    FREE(pwstName);
+    types::InternalType* pVar = pCtx->get(symbol::Symbol(_pstName));
 
     if (pVar == NULL)
     {
@@ -1534,10 +1516,8 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
         return 0;
     }
 
-    wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context* ctx = symbol::Context::getInstance();
-    symbol::Symbol sym = symbol::Symbol(pwstName);
-    FREE(pwstName);
+    symbol::Symbol sym = symbol::Symbol(_pstName);
     bool ret = false;
     if (ctx->isprotected(sym) == false)
     {

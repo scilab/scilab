@@ -22,7 +22,7 @@ scilabVar API_PROTO(createHandleMatrix)(scilabEnv env, int dim, const int* dims)
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createHandleMatrix", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createHandleMatrix", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -30,7 +30,7 @@ scilabVar API_PROTO(createHandleMatrix)(scilabEnv env, int dim, const int* dims)
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createHandleMatrix", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createHandleMatrix", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -39,7 +39,7 @@ scilabVar API_PROTO(createHandleMatrix)(scilabEnv env, int dim, const int* dims)
 #ifdef __API_SCILAB_SAFE__
     if (h == nullptr)
     {
-        scilab_setInternalError(env, L"createHandleMatrix", _W("memory allocation error"));
+        scilab_setInternalError(env, "createHandleMatrix", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -54,7 +54,7 @@ scilabVar API_PROTO(createHandleMatrix2d)(scilabEnv env, int row, int col)
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createHandleMatrix2d", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createHandleMatrix2d", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -63,7 +63,7 @@ scilabVar API_PROTO(createHandleMatrix2d)(scilabEnv env, int row, int col)
 #ifdef __API_SCILAB_SAFE__
     if (h == nullptr)
     {
-        scilab_setInternalError(env, L"createHandleMatrix2d", _W("memory allocation error"));
+        scilab_setInternalError(env, "createHandleMatrix2d", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -76,7 +76,7 @@ scilabVar API_PROTO(createHandle)(scilabEnv env)
 #ifdef __API_SCILAB_SAFE__
     if (h == nullptr)
     {
-        scilab_setInternalError(env, L"createHandle", _W("memory allocation error"));
+        scilab_setInternalError(env, "createHandle", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -89,7 +89,7 @@ scilabStatus API_PROTO(getHandleArray)(scilabEnv env, scilabVar var, const long 
 #ifdef __API_SCILAB_SAFE__
     if (h->isHandle() == false)
     {
-        scilab_setInternalError(env, L"getHandleArray", _W("var must be a handle variable"));
+        scilab_setInternalError(env, "getHandleArray", _("var must be a handle variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -104,7 +104,7 @@ scilabStatus API_PROTO(setHandleArray)(scilabEnv env, scilabVar var, const long 
 #ifdef __API_SCILAB_SAFE__
     if (h->isHandle() == false)
     {
-        scilab_setInternalError(env, L"setHandleArray", _W("var must be a handle variable"));
+        scilab_setInternalError(env, "setHandleArray", _("var must be a handle variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -113,7 +113,7 @@ scilabStatus API_PROTO(setHandleArray)(scilabEnv env, scilabVar var, const long 
 #ifdef __API_SCILAB_SAFE__
     if (bset == false)
     {
-        scilab_setInternalError(env, L"setHandleArray", _W("unable to set data"));
+        scilab_setInternalError(env, "setHandleArray", _("unable to set data"));
         return STATUS_ERROR;
     }
 #endif
@@ -126,7 +126,7 @@ scilabStatus API_PROTO(getHandle)(scilabEnv env, scilabVar var, long long* vals)
 #ifdef __API_SCILAB_SAFE__
     if (h->isHandle() == false || h->isScalar() == false)
     {
-        scilab_setInternalError(env, L"getHandle", _W("var must be a scalar handle variable"));
+        scilab_setInternalError(env, "getHandle", _("var must be a scalar handle variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -140,7 +140,7 @@ scilabStatus API_PROTO(setHandle)(scilabEnv env, scilabVar var, long long val)
 #ifdef __API_SCILAB_SAFE__
     if (h->isHandle() == false || h->isScalar() == false)
     {
-        scilab_setInternalError(env, L"setHandle", _W("var must be a scalar handle variable"));
+        scilab_setInternalError(env, "setHandle", _("var must be a scalar handle variable"));
         return STATUS_ERROR;
     }
 #endif

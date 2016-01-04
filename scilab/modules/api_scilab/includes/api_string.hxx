@@ -21,7 +21,7 @@
 
 namespace api_scilab
 {
-class API_SCILAB_IMPEXP String : public MatrixT<wchar_t*, types::String>
+class API_SCILAB_IMPEXP String : public MatrixT<char*, types::String>
 {
 private :
     //internal constructor for existing variable
@@ -34,8 +34,7 @@ private :
 public :
     String(int _iRows, int _iCols);
     String(int _iDims, int* _piDims);
-    String(int _iRows, int _iCols, wchar_t** _pstData);
-    String(const wchar_t *_pstData);
+    String(int _iRows, int _iCols, const char** _pstData);
     String(const char *_pstData);
 
     virtual ~String()
@@ -56,7 +55,7 @@ public :
 }
 
 #ifdef _MSC_VER
-template class api_scilab::MatrixT<wchar_t*, types::String>;
+template class api_scilab::MatrixT<char*, types::String>;
 #endif
 
 #endif /* !__API_STRING_HXX__ */

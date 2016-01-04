@@ -12,6 +12,6 @@
 #ifndef __API_INTERNAL_ERROR_HXX__
 #define __API_INTERNAL_ERROR_HXX__
 
-void scilab_setInternalError(scilabEnv env, const std::wstring& name, const std::wstring& msg);
+void scilab_setInternalError(scilabEnv env, const std::string& name, const std::string& msg);
 
 #endif /* !__API_INTERNAL_ERROR_HXX__ */

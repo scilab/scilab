@@ -25,7 +25,7 @@ scilabVar API_PROTO(createBooleanMatrix)(scilabEnv env, int dim, int* const dims
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createBooleanMatrix", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createBooleanMatrix", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -33,7 +33,7 @@ scilabVar API_PROTO(createBooleanMatrix)(scilabEnv env, int dim, int* const dims
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createBooleanMatrix", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createBooleanMatrix", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -42,7 +42,7 @@ scilabVar API_PROTO(createBooleanMatrix)(scilabEnv env, int dim, int* const dims
 #ifdef __API_SCILAB_SAFE__
     if (b == nullptr)
     {
-        scilab_setInternalError(env, L"createBooleanMatrix", _W("memory allocation error"));
+        scilab_setInternalError(env, "createBooleanMatrix", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -58,7 +58,7 @@ scilabVar API_PROTO(createBooleanMatrix2d)(scilabEnv env, int row, int col)
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createBooleanMatrix2d", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createBooleanMatrix2d", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -67,7 +67,7 @@ scilabVar API_PROTO(createBooleanMatrix2d)(scilabEnv env, int row, int col)
 #ifdef __API_SCILAB_SAFE__
     if (b == nullptr)
     {
-        scilab_setInternalError(env, L"createBooleanMatrix2d", _W("memory allocation error"));
+        scilab_setInternalError(env, "createBooleanMatrix2d", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -80,7 +80,7 @@ scilabVar API_PROTO(createBoolean)(scilabEnv env, int val)
 #ifdef __API_SCILAB_SAFE__
     if (b == nullptr)
     {
-        scilab_setInternalError(env, L"createBoolean", _W("memory allocation error"));
+        scilab_setInternalError(env, "createBoolean", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -93,7 +93,7 @@ scilabStatus API_PROTO(getBoolean)(scilabEnv env, scilabVar var, int* const val)
 #ifdef __API_SCILAB_SAFE__
     if (b->isBool() == false || b->isScalar() == false)
     {
-        scilab_setInternalError(env, L"getBoolean", _W("var must be a scalar boolean variable"));
+        scilab_setInternalError(env, "getBoolean", _("var must be a scalar boolean variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -108,7 +108,7 @@ scilabStatus API_PROTO(getBooleanArray)(scilabEnv env, scilabVar var, int** cons
 #ifdef __API_SCILAB_SAFE__
     if (b->isBool() == false)
     {
-        scilab_setInternalError(env, L"getBooleanArray", _W("var must be a boolean variable"));
+        scilab_setInternalError(env, "getBooleanArray", _("var must be a boolean variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -123,7 +123,7 @@ scilabStatus API_PROTO(setBooleanArray)(scilabEnv env, scilabVar var, int* const
 #ifdef __API_SCILAB_SAFE__
     if (b->isBool() == false)
     {
-        scilab_setInternalError(env, L"setBooleanArray", _W("var must be a boolean variable"));
+        scilab_setInternalError(env, "setBooleanArray", _("var must be a boolean variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -132,7 +132,7 @@ scilabStatus API_PROTO(setBooleanArray)(scilabEnv env, scilabVar var, int* const
 #ifdef __API_SCILAB_SAFE__
     if (bset == false)
     {
-        scilab_setInternalError(env, L"setBooleanArray", _W("unable to set data"));
+        scilab_setInternalError(env, "setBooleanArray", _("unable to set data"));
         return STATUS_ERROR;
     }
 #endif
@@ -145,7 +145,7 @@ scilabStatus API_PROTO(setBoolean)(scilabEnv env, scilabVar var, int val)
 #ifdef __API_SCILAB_SAFE__
     if (b->isBool() == false || b->isScalar() == false)
     {
-        scilab_setInternalError(env, L"setBoolean", _W("var must be a scalar boolean variable"));
+        scilab_setInternalError(env, "setBoolean", _("var must be a scalar boolean variable"));
         return STATUS_ERROR;
     }
 #endif

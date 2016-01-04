@@ -24,7 +24,7 @@ scilabVar API_PROTO(createEmptyMatrix)(scilabEnv env)
 #ifdef __API_SCILAB_SAFE__
     if (var == nullptr)
     {
-        scilab_setInternalError(env, L"createEmptyMatrix", _W("memory allocation error"));
+        scilab_setInternalError(env, "createEmptyMatrix", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -36,7 +36,7 @@ scilabVar API_PROTO(createDoubleMatrix)(scilabEnv env, int dim, const int* dims,
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createDoubleMatrix", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createDoubleMatrix", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -44,7 +44,7 @@ scilabVar API_PROTO(createDoubleMatrix)(scilabEnv env, int dim, const int* dims,
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createDoubleMatrix", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createDoubleMatrix", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -53,7 +53,7 @@ scilabVar API_PROTO(createDoubleMatrix)(scilabEnv env, int dim, const int* dims,
 #ifdef __API_SCILAB_SAFE__
     if (d == nullptr)
     {
-        scilab_setInternalError(env, L"createDoubleMatrix", _W("memory allocation error"));
+        scilab_setInternalError(env, "createDoubleMatrix", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -68,7 +68,7 @@ scilabVar API_PROTO(createDoubleMatrix2d)(scilabEnv env, int row, int col, int c
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createDoubleMatrix2d", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createDoubleMatrix2d", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -77,7 +77,7 @@ scilabVar API_PROTO(createDoubleMatrix2d)(scilabEnv env, int row, int col, int c
 #ifdef __API_SCILAB_SAFE__
     if (d == nullptr)
     {
-        scilab_setInternalError(env, L"createDoubleMatrix2d", _W("memory allocation error"));
+        scilab_setInternalError(env, "createDoubleMatrix2d", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -90,7 +90,7 @@ scilabVar API_PROTO(createDouble)(scilabEnv env, double val)
 #ifdef __API_SCILAB_SAFE__
     if (d == nullptr)
     {
-        scilab_setInternalError(env, L"createDouble", _W("memory allocation error"));
+        scilab_setInternalError(env, "createDouble", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -103,7 +103,7 @@ scilabVar API_PROTO(createDoubleComplex)(scilabEnv env, double real, double img)
 #ifdef __API_SCILAB_SAFE__
     if (d == nullptr)
     {
-        scilab_setInternalError(env, L"createDoubleComplex", _W("memory allocation error"));
+        scilab_setInternalError(env, "createDoubleComplex", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -116,7 +116,7 @@ scilabStatus API_PROTO(getDoubleArray)(scilabEnv env, scilabVar var, const doubl
 #ifdef __API_SCILAB_SAFE__
     if (d->isDouble() == false)
     {
-        scilab_setInternalError(env, L"getDoubleArray", _W("var must be a double variable"));
+        scilab_setInternalError(env, "getDoubleArray", _("var must be a double variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -130,7 +130,7 @@ scilabStatus API_PROTO(getDoubleComplexArray)(scilabEnv env, scilabVar var, cons
 #ifdef __API_SCILAB_SAFE__
     if (d->isDouble() == false || d->isComplex() == false)
     {
-        scilab_setInternalError(env, L"getDoubleComplexArray", _W("var must be a double complex variable"));
+        scilab_setInternalError(env, "getDoubleComplexArray", _("var must be a double complex variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -145,7 +145,7 @@ scilabStatus API_PROTO(getDouble)(scilabEnv env, scilabVar var, double* real)
 #ifdef __API_SCILAB_SAFE__
     if (d->isDouble() == false || d->isScalar() == false)
     {
-        scilab_setInternalError(env, L"getDouble", _W("var must be a scalar double variable"));
+        scilab_setInternalError(env, "getDouble", _("var must be a scalar double variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -159,7 +159,7 @@ scilabStatus API_PROTO(getDoubleComplex)(scilabEnv env, scilabVar var, double* r
 #ifdef __API_SCILAB_SAFE__
     if (d->isDouble() == false || d->isScalar() == false || d->isComplex() == false)
     {
-        scilab_setInternalError(env, L"getDoubleComplex", _W("var must be a scalar double complex variable"));
+        scilab_setInternalError(env, "getDoubleComplex", _("var must be a scalar double complex variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -174,7 +174,7 @@ scilabStatus API_PROTO(setDoubleArray)(scilabEnv env, scilabVar var, const doubl
 #ifdef __API_SCILAB_SAFE__
     if (d->isDouble() == false)
     {
-        scilab_setInternalError(env, L"setBooleanArray", _W("var must be a double variable"));
+        scilab_setInternalError(env, "setBooleanArray", _("var must be a double variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -188,7 +188,7 @@ scilabStatus API_PROTO(setDoubleComplexArray)(scilabEnv env, scilabVar var, cons
 #ifdef __API_SCILAB_SAFE__
     if (d->isDouble() == false || d->isComplex() == false)
     {
-        scilab_setInternalError(env, L"setDoubleComplexArray", _W("var must be a double complex variable"));
+        scilab_setInternalError(env, "setDoubleComplexArray", _("var must be a double complex variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -203,7 +203,7 @@ scilabStatus API_PROTO(setDouble)(scilabEnv env, scilabVar var, double real)
 #ifdef __API_SCILAB_SAFE__
     if (d->isDouble() == false || d->isScalar() == false)
     {
-        scilab_setInternalError(env, L"setDouble", _W("var must be a scalar double variable"));
+        scilab_setInternalError(env, "setDouble", _("var must be a scalar double variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -217,7 +217,7 @@ scilabStatus API_PROTO(setDoubleComplex)(scilabEnv env, scilabVar var, double re
 #ifdef __API_SCILAB_SAFE__
     if (d->isDouble() == false || d->isScalar() == false || d->isComplex() == false)
     {
-        scilab_setInternalError(env, L"setDoubleComplex", _W("var must be a scalar double complex variable"));
+        scilab_setInternalError(env, "setDoubleComplex", _("var must be a scalar double complex variable"));
         return STATUS_ERROR;
     }
 #endif

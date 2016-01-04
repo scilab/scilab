@@ -55,7 +55,7 @@ extern "C" {
 
 //var
 /*this function should be call out of gateway so do not need scilabEnv argument*/
-scilabVar API_PROTO(getVar)(const wchar_t* name);
+scilabVar API_PROTO(getVar)(const char* name);
 
 scilabVar API_PROTO(getClone)(scilabEnv env, scilabVar var);
 
@@ -95,7 +95,7 @@ int API_PROTO(isHypermat)(scilabEnv env, scilabVar var);
 
 /*functions*/
 scilabStatus API_PROTO(overload)(scilabEnv env, scilabVar var, int nin, scilabVar* in, int nout, scilabVar* out);
-scilabStatus API_PROTO(call)(scilabEnv env, const wchar_t* name, int nin, scilabVar* in, int nout, scilabVar* out);
+scilabStatus API_PROTO(call)(scilabEnv env, const char* name, int nin, scilabVar* in, int nout, scilabVar* out);
 
 #ifdef __cplusplus
 }

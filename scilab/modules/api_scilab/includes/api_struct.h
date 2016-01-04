@@ -36,16 +36,16 @@ extern "C" {
     scilabVar API_PROTO(createStructMatrix2d)(scilabEnv env, int row, int col);
 
     /*fields*/
-    scilabStatus API_PROTO(addFields)(scilabEnv env, scilabVar var, int count, const wchar_t* const* fields);
-    scilabStatus API_PROTO(addField)(scilabEnv env, scilabVar var, const wchar_t* field);
-    int API_PROTO(getFields)(scilabEnv env, scilabVar var, const wchar_t* const** fields);
+    scilabStatus API_PROTO(addFields)(scilabEnv env, scilabVar var, int count, const char* const* fields);
+    scilabStatus API_PROTO(addField)(scilabEnv env, scilabVar var, const char* field);
+    int API_PROTO(getFields)(scilabEnv env, scilabVar var, const char* const** fields);
 
     /*data*/
-    scilabVar API_PROTO(getStructMatrixData)(scilabEnv env, scilabVar var, const wchar_t* field, const int* index);
-    scilabVar API_PROTO(getStructMatrix2dData)(scilabEnv env, scilabVar var, const wchar_t* field, int row, int col);
+    scilabVar API_PROTO(getStructMatrixData)(scilabEnv env, scilabVar var, const char* field, const int* index);
+    scilabVar API_PROTO(getStructMatrix2dData)(scilabEnv env, scilabVar var, const char* field, int row, int col);
 
-    scilabStatus API_PROTO(setStructMatrixData)(scilabEnv env, scilabVar var, const wchar_t* field, const int* index, const scilabVar data);
-    scilabStatus API_PROTO(setStructMatrix2dData)(scilabEnv env, scilabVar var, const wchar_t* field, int row, int col, const scilabVar data);
+    scilabStatus API_PROTO(setStructMatrixData)(scilabEnv env, scilabVar var, const char* field, const int* index, const scilabVar data);
+    scilabStatus API_PROTO(setStructMatrix2dData)(scilabEnv env, scilabVar var, const char* field, int row, int col, const scilabVar data);
 
 #ifdef __cplusplus
 }

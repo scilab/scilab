@@ -30,7 +30,7 @@ int API_PROTO(isUndefined)(scilabEnv env, scilabVar var, int index)
 #ifdef __API_SCILAB_SAFE__
     if (l->isList() == false)
     {
-        scilab_setInternalError(env, L"isUndefined", _W("var must be a list variable"));
+        scilab_setInternalError(env, "isUndefined", _("var must be a list variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -48,14 +48,14 @@ scilabVar API_PROTO(createList)(scilabEnv env)
     return (scilabVar)new types::List();
 }
 
-scilabVar API_PROTO(createTList)(scilabEnv env, wchar_t* const type)
+scilabVar API_PROTO(createTList)(scilabEnv env, char* const type)
 {
     types::TList* t = new types::TList();
     t->append(new types::String(type));
     return (scilabVar)t;
 }
 
-scilabVar API_PROTO(createMList)(scilabEnv env, wchar_t* const type)
+scilabVar API_PROTO(createMList)(scilabEnv env, char* const type)
 {
     types::MList* m = new types::MList();
     m->append(new types::String(type));
@@ -68,7 +68,7 @@ scilabVar API_PROTO(getListItem)(scilabEnv env, scilabVar var, int index)
 #ifdef __API_SCILAB_SAFE__
     if (l->isList() == false)
     {
-        scilab_setInternalError(env, L"getListItem", _W("var must be a list variable"));
+        scilab_setInternalError(env, "getListItem", _("var must be a list variable"));
         return nullptr;
     }
 #endif
@@ -76,7 +76,7 @@ scilabVar API_PROTO(getListItem)(scilabEnv env, scilabVar var, int index)
     if (index < 0 || index >= l->getSize())
     {
 #ifdef __API_SCILAB_SAFE__
-        scilab_setInternalError(env, L"getListItem", _W("index out of bounds"));
+        scilab_setInternalError(env, "getListItem", _("index out of bounds"));
 #endif
         return nullptr;
     }
@@ -90,7 +90,7 @@ scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int index, con
 #ifdef __API_SCILAB_SAFE__
     if (l->isList() == false)
     {
-        scilab_setInternalError(env, L"setListItem", _W("var must be a list variable"));
+        scilab_setInternalError(env, "setListItem", _("var must be a list variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -99,13 +99,13 @@ scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int index, con
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 
-int API_PROTO(getTListFieldNames)(scilabEnv env, scilabVar var, wchar_t const* const** fieldnames)
+int API_PROTO(getTListFieldNames)(scilabEnv env, scilabVar var, char const* const** fieldnames)
 {
     types::TList* l = (types::TList*)var;
 #ifdef __API_SCILAB_SAFE__
     if (l->isTList() == false)
     {
-        scilab_setInternalError(env, L"getTListFieldNames", _W("var must be a tlist variable"));
+        scilab_setInternalError(env, "getTListFieldNames", _("var must be a tlist variable"));
         return 0;
     }
 #endif
@@ -115,13 +115,13 @@ int API_PROTO(getTListFieldNames)(scilabEnv env, scilabVar var, wchar_t const* c
     return names->getSize();
 }
 
-scilabVar API_PROTO(getTListField)(scilabEnv env, scilabVar var, const wchar_t* field)
+scilabVar API_PROTO(getTListField)(scilabEnv env, scilabVar var, const char* field)
 {
     types::TList* l = (types::TList*)var;
 #ifdef __API_SCILAB_SAFE__
     if (l->isTList() == false)
     {
-        scilab_setInternalError(env, L"getTListField", _W("var must be a tlist variable"));
+        scilab_setInternalError(env, "getTListField", _("var must be a tlist variable"));
         return nullptr;
     }
 #endif
@@ -130,13 +130,13 @@ scilabVar API_PROTO(getTListField)(scilabEnv env, scilabVar var, const wchar_t* 
 
 }
 
-scilabStatus API_PROTO(setTListField)(scilabEnv env, scilabVar var, const wchar_t* field, const scilabVar val)
+scilabStatus API_PROTO(setTListField)(scilabEnv env, scilabVar var, const char* field, const scilabVar val)
 {
     types::TList* l = (types::TList*)var;
 #ifdef __API_SCILAB_SAFE__
     if (l->isTList() == false)
     {
-        scilab_setInternalError(env, L"setTListField", _W("var must be a tlist variable"));
+        scilab_setInternalError(env, "setTListField", _("var must be a tlist variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -154,13 +154,13 @@ scilabStatus API_PROTO(setTListField)(scilabEnv env, scilabVar var, const wchar_
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 
-int API_PROTO(getMListFieldNames)(scilabEnv env, scilabVar var, wchar_t const* const** fieldnames)
+int API_PROTO(getMListFieldNames)(scilabEnv env, scilabVar var, char const* const** fieldnames)
 {
     types::MList* l = (types::MList*)var;
 #ifdef __API_SCILAB_SAFE__
     if (l->isTList() == false)
     {
-        scilab_setInternalError(env, L"getMListFieldNames", _W("var must be a tlist variable"));
+        scilab_setInternalError(env, "getMListFieldNames", _("var must be a tlist variable"));
         return 0;
     }
 #endif
@@ -170,26 +170,26 @@ int API_PROTO(getMListFieldNames)(scilabEnv env, scilabVar var, wchar_t const* c
     return names->getSize();
 }
 
-scilabVar API_PROTO(getMListField)(scilabEnv env, scilabVar var, const wchar_t* field)
+scilabVar API_PROTO(getMListField)(scilabEnv env, scilabVar var, const char* field)
 {
     types::MList* l = (types::MList*)var;
 #ifdef __API_SCILAB_SAFE__
     if (l->isMList() == false)
     {
-        scilab_setInternalError(env, L"getMListField", _W("var must be a mlist variable"));
+        scilab_setInternalError(env, "getMListField", _("var must be a mlist variable"));
         return nullptr;
     }
 #endif
     return (scilabVar)l->getField(field);
 }
 
-scilabStatus API_PROTO(setMListField)(scilabEnv env, scilabVar var, const wchar_t* field, const scilabVar val)
+scilabStatus API_PROTO(setMListField)(scilabEnv env, scilabVar var, const char* field, const scilabVar val)
 {
     types::MList* l = (types::MList*)var;
 #ifdef __API_SCILAB_SAFE__
     if (l->isMList() == false)
     {
-        scilab_setInternalError(env, L"setMListField", _W("var must be a mlist variable"));
+        scilab_setInternalError(env, "setMListField", _("var must be a mlist variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -213,7 +213,7 @@ scilabStatus API_PROTO(appendToList)(scilabEnv env, scilabVar var, const scilabV
 #ifdef __API_SCILAB_SAFE__
     if (l->isList() == false)
     {
-        scilab_setInternalError(env, L"appendToList", _W("var must be a list variable"));
+        scilab_setInternalError(env, "appendToList", _("var must be a list variable"));
         return STATUS_ERROR;
     }
 #endif

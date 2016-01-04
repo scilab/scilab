@@ -28,7 +28,7 @@ scilabStatus API_PROTO(getPointer)(scilabEnv env, scilabVar var, void const** va
 #ifdef __API_SCILAB_SAFE__
     if (p->isPointer() == false)
     {
-        scilab_setInternalError(env, L"getPointer", _W("var must be a pointer variable"));
+        scilab_setInternalError(env, "getPointer", _("var must be a pointer variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -42,7 +42,7 @@ scilabStatus API_PROTO(setPointer)(scilabEnv env, scilabVar var, const void* val
 #ifdef __API_SCILAB_SAFE__
     if (p->isPointer() == false)
     {
-        scilab_setInternalError(env, L"setPointer", _W("var must be a pointer variable"));
+        scilab_setInternalError(env, "setPointer", _("var must be a pointer variable"));
         return STATUS_ERROR;
     }
 #endif

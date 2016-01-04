@@ -124,9 +124,7 @@ void* sciReturnStringMatrix(char * values[], int nbRow, int nbCol)
     types::String* pS = new types::String(nbRow, nbCol);
     for (int i = 0 ; i < nbRow * nbCol ; i++)
     {
-        wchar_t* pwstValue = to_wide_string(values[i]);
-        pS->set(i, pwstValue);
-        FREE(pwstValue);
+        pS->set(i, values[i]);
     }
     return pS;
 }

@@ -29,11 +29,11 @@ extern "C" {
 #define scilab_setPolyArray         API_PROTO(setPolyArray)
 #define scilab_setComplexPolyArray  API_PROTO(setComplexPolyArray)
 
-    scilabVar API_PROTO(createPoly)(scilabEnv env, const wchar_t* varname, int complex);
-    scilabVar API_PROTO(createPolyMatrix)(scilabEnv env, const wchar_t* varname, int dim, const int* dims, int complex);
-    scilabVar API_PROTO(createPolyMatrix2d)(scilabEnv env, const wchar_t* varname, int row, int col, int complex);
+    scilabVar API_PROTO(createPoly)(scilabEnv env, const char* varname, int complex);
+    scilabVar API_PROTO(createPolyMatrix)(scilabEnv env, const char* varname, int dim, const int* dims, int complex);
+    scilabVar API_PROTO(createPolyMatrix2d)(scilabEnv env, const char* varname, int row, int col, int complex);
 
-    int API_PROTO(getPolyVarname)(scilabEnv env, scilabVar var, const wchar_t** varname);
+    int API_PROTO(getPolyVarname)(scilabEnv env, scilabVar var, const char** varname);
     int API_PROTO(getPolyArray)(scilabEnv env, scilabVar var, int index, const double** real);
     int API_PROTO(getComplexPolyArray)(scilabEnv env, scilabVar var, int index, const double** real, const double** img);
 

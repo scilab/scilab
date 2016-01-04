@@ -841,10 +841,8 @@ SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int 
         return sciErr;
     }
 
-    wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context* ctx = symbol::Context::getInstance();
-    symbol::Symbol sym = symbol::Symbol(pwstName);
-    FREE(pwstName);
+    symbol::Symbol sym = symbol::Symbol(_pstName);
     if (ctx->isprotected(sym) == false)
     {
         ctx->put(sym, pIT);

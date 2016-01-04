@@ -22,7 +22,7 @@ scilabVar API_PROTO(createCellMatrix)(scilabEnv env, int dim, const int* dims)
 #ifdef __API_SCILAB_SAFE__
     if (dims == nullptr)
     {
-        scilab_setInternalError(env, L"createCell", _W("dims array cannot be NULL"));
+        scilab_setInternalError(env, "createCell", _("dims array cannot be NULL"));
         return nullptr;
     }
 
@@ -30,7 +30,7 @@ scilabVar API_PROTO(createCellMatrix)(scilabEnv env, int dim, const int* dims)
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createCell", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createCell", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -39,7 +39,7 @@ scilabVar API_PROTO(createCellMatrix)(scilabEnv env, int dim, const int* dims)
 #ifdef __API_SCILAB_SAFE__
     if (c == nullptr)
     {
-        scilab_setInternalError(env, L"createCell", _W("memory allocation error"));
+        scilab_setInternalError(env, "createCell", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -54,7 +54,7 @@ scilabVar API_PROTO(createCellMatrix2d)(scilabEnv env, int row, int col)
     {
         if (dims[i] < 0)
         {
-            scilab_setInternalError(env, L"createCell2d", _W("dimensions cannot be negative"));
+            scilab_setInternalError(env, "createCell2d", _("dimensions cannot be negative"));
             return nullptr;
         }
     }
@@ -63,7 +63,7 @@ scilabVar API_PROTO(createCellMatrix2d)(scilabEnv env, int row, int col)
 #ifdef __API_SCILAB_SAFE__
     if (c == nullptr)
     {
-        scilab_setInternalError(env, L"createCell2d", _W("memory allocation error"));
+        scilab_setInternalError(env, "createCell2d", _("memory allocation error"));
         return nullptr;
     }
 #endif
@@ -76,7 +76,7 @@ scilabStatus API_PROTO(getCellValue)(scilabEnv env, scilabVar var, int* index, s
 #ifdef __API_SCILAB_SAFE__
     if (c->isCell() == false)
     {
-        scilab_setInternalError(env, L"getCellValue", _W("var must be a cell variable"));
+        scilab_setInternalError(env, "getCellValue", _("var must be a cell variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -93,7 +93,7 @@ scilabStatus API_PROTO(getCell2dValue)(scilabEnv env, scilabVar var, int row, in
 #ifdef __API_SCILAB_SAFE__
     if (c->isCell() == false)
     {
-        scilab_setInternalError(env, L"getCell2dValue", _W("var must be a cell variable"));
+        scilab_setInternalError(env, "getCell2dValue", _("var must be a cell variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -109,7 +109,7 @@ scilabStatus API_PROTO(setCellValue)(scilabEnv env, scilabVar var, int* index, s
 #ifdef __API_SCILAB_SAFE__
     if (c->isCell() == false)
     {
-        scilab_setInternalError(env, L"setCellArray", _W("var must be a cell variable"));
+        scilab_setInternalError(env, "setCellArray", _("var must be a cell variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -118,7 +118,7 @@ scilabStatus API_PROTO(setCellValue)(scilabEnv env, scilabVar var, int* index, s
 #ifdef __API_SCILAB_SAFE__
     if (bset == false)
     {
-        scilab_setInternalError(env, L"setCellValue", _W("unable to set data"));
+        scilab_setInternalError(env, "setCellValue", _("unable to set data"));
         return STATUS_ERROR;
     }
 #endif
@@ -132,7 +132,7 @@ scilabStatus API_PROTO(setCell2dValue)(scilabEnv env, scilabVar var, int row, in
 #ifdef __API_SCILAB_SAFE__
     if (c->isCell() == false)
     {
-        scilab_setInternalError(env, L"setCell2dValue", _W("var must be a cell variable"));
+        scilab_setInternalError(env, "setCell2dValue", _("var must be a cell variable"));
         return STATUS_ERROR;
     }
 #endif
@@ -141,7 +141,7 @@ scilabStatus API_PROTO(setCell2dValue)(scilabEnv env, scilabVar var, int row, in
 #ifdef __API_SCILAB_SAFE__
     if (bset == false)
     {
-        scilab_setInternalError(env, L"setCell2dValue", _W("unable to set data"));
+        scilab_setInternalError(env, "setCell2dValue", _("unable to set data"));
         return STATUS_ERROR;
     }
 #endif

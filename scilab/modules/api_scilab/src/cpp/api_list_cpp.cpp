@@ -76,7 +76,7 @@ TList* TList::getAsTList(types::InternalType* _pIT)
     return NULL;
 }
 
-bool TList::exists(const std::wstring& _sKey)
+bool TList::exists(const std::string& _sKey)
 {
     if (data)
     {
@@ -86,7 +86,7 @@ bool TList::exists(const std::wstring& _sKey)
     return false;
 }
 
-Variable* TList::getField(const std::wstring& _sKey)
+Variable* TList::getField(const std::string& _sKey)
 {
     if (data)
     {
@@ -96,7 +96,7 @@ Variable* TList::getField(const std::wstring& _sKey)
     return NULL;
 }
 
-int TList::getIndexFromString(const std::wstring& _sKey)
+int TList::getIndexFromString(const std::string& _sKey)
 {
     if (data)
     {
@@ -106,7 +106,7 @@ int TList::getIndexFromString(const std::wstring& _sKey)
     return -1;
 }
 
-bool TList::set(const std::wstring& _sKey, Variable* _pV)
+bool TList::set(const std::string& _sKey, Variable* _pV)
 {
     if (data)
     {

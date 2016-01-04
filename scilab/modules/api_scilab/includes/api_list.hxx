@@ -77,10 +77,10 @@ public :
     }
     static TList* getAsTList(types::InternalType* _pIT);
 
-    bool exists(const std::wstring& _sKey);
-    Variable* getField(const std::wstring& _sKey);
-    int getIndexFromString(const std::wstring& _sKey);
-    bool set(const std::wstring& _sKey, Variable* _pIT);
+    bool exists(const std::string& _sKey);
+    Variable* getField(const std::string& _sKey);
+    int getIndexFromString(const std::string& _sKey);
+    bool set(const std::string& _sKey, Variable* _pIT);
     String* getFieldNames();
 };
 

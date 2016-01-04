@@ -258,10 +258,8 @@ static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iLi
     // it helps to check a wrong item, for example in createCommonListInList
     pL->set(_iNbItem - 1, new types::ListUndefined());
 
-    wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context* ctx = symbol::Context::getInstance();
-    symbol::Symbol sym = symbol::Symbol(pwstName);
-    FREE(pwstName);
+    symbol::Symbol sym = symbol::Symbol(_pstName);
     if (ctx->isprotected(sym) == false)
     {
         ctx->put(sym, pL);
@@ -954,9 +952,7 @@ SciErr createCommonMatrixOfStringInList(void* _pvCtx, const char* _pstName, int*
 
     for (int i = 0 ; i < _iRows * _iCols ; i++)
     {
-        wchar_t* pwst = to_wide_string(_pstStrings[i]);
-        pS->set(i, pwst);
-        FREE(pwst);
+        pS->set(i, _pstStrings[i]);
     }
 
     pParent->set(_iItemPos - 1, pS);
@@ -1259,10 +1255,7 @@ SciErr createCommonMatrixOfPolyInList(void* _pvCtx, const char* _pstName, int* _
         return sciErr;
     }
 
-    wchar_t* pstTemp = to_wide_string(_pstVarName);
-    std::wstring wstTemp(pstTemp);
-    types::Polynom* pP = new types::Polynom(wstTemp, _iRows, _iCols, _piNbCoef);
-    FREE(pstTemp);
+    types::Polynom* pP = new types::Polynom(_pstVarName, _iRows, _iCols, _piNbCoef);
     if (pP == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), funcName);
