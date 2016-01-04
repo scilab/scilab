@@ -55,13 +55,13 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
     if (in[0]->isGenericType() && in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
         //hypermatrix are manage in external macro
-        return Overload::call(L"%hm_and", in, _iRetCount, out);
+        return Overload::call("%hm_and", in, _iRetCount, out);
     }
 
     if (in[0]->isBool() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_and";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_and";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     if (in.size() == 2)
@@ -74,8 +74,14 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
 
         if (in[1]->isString())
         {
-            char *pStr =  wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+            const char *pStr =  in[1]->getAs<types::String>()->get(0);
             size_t len = strlen(pStr);
+            if (len != 1)
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
+                return types::Function::Error;
+            }
+
             switch (pStr[0])
             {
                 case 'r':
@@ -98,13 +104,6 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
                     Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
                     return types::Function::Error;
                 }
-            }
-
-            delete pStr;
-            if (len != 1)
-            {
-                Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
-                return types::Function::Error;
             }
         }
         else if (in[1]->isDouble())

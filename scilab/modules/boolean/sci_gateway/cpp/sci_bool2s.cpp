@@ -40,8 +40,8 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
 
         if (pIn->isComplex())
         {
-            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_bool2s";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_bool2s";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
 
         types::Double* pD = new types::Double(pIn->getDims(), pIn->getDimsArray());
@@ -75,8 +75,8 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
 
         if (pSpIn->isComplex())
         {
-            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_bool2s";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_bool2s";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
 
         types::Sparse* pSpOut = new types::Sparse(pSpIn->getRows(), pSpIn->getCols());
@@ -122,8 +122,8 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
     }
     else
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_bool2s";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_bool2s";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     out.push_back(pOut);

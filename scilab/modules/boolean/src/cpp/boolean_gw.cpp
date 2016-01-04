@@ -14,7 +14,7 @@
 #include "context.hxx"
 #include "function.hxx"
 
-#define MODULE_NAME L"boolean"
+#define MODULE_NAME "boolean"
 extern "C"
 {
 #include "gw_boolean.h"
@@ -22,10 +22,10 @@ extern "C"
 
 int BooleanModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"or", &sci_or, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"and", &sci_and, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"bool2s", &sci_bool2s, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"find", &sci_find, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("or", &sci_or, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("and", &sci_and, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("bool2s", &sci_bool2s, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("find", &sci_find, MODULE_NAME));
     return 1;
 }
 

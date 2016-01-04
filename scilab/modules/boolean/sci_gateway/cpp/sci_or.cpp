@@ -51,13 +51,13 @@ types::Function::ReturnValue sci_or(types::typed_list &in, int _iRetCount, types
     if (in[0]->isGenericType() && in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
         //hypermatrix are manage in external macro
-        return Overload::call(L"%hm_or", in, _iRetCount, out);
+        return Overload::call("%hm_or", in, _iRetCount, out);
     }
 
     if (in[0]->isBool() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_or";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_or";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     if (in.size() == 2)
@@ -70,39 +70,37 @@ types::Function::ReturnValue sci_or(types::typed_list &in, int _iRetCount, types
 
         if (in[1]->isString())
         {
-            char *pStr =  wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+            const char *pStr =  in[1]->getAs<types::String>()->get(0);
             size_t len = strlen(pStr);
-            switch (pStr[0])
-            {
-                case 'r':
-                {
-                    opt = OR_BY_ROWS;
-                }
-                break;
-                case '*':
-                {
-                    opt = OR_ON_ALL;
-                }
-                break;
-                case 'c':
-                {
-                    opt = OR_BY_COLUMNS;
-                }
-                break;
-                default:
-                {
-                    Scierror(44, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
-                    return types::Function::Error;
-                }
-                break;
-            }
-            delete(pStr);
             if (len != 1)
             {
                 Scierror(44, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
                 return types::Function::Error;
             }
 
+            switch (pStr[0])
+            {
+                case 'r':
+                {
+                    opt = OR_BY_ROWS;
+                    break;
+                }
+                case '*':
+                {
+                    opt = OR_ON_ALL;
+                    break;
+                }
+                case 'c':
+                {
+                    opt = OR_BY_COLUMNS;
+                    break;
+                }
+                default:
+                {
+                    Scierror(44, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
+                    return types::Function::Error;
+                }
+            }
         }
         else if (in[1]->isDouble())
         {
