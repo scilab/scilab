@@ -67,14 +67,10 @@ char *scilabRead()
     //add prompt to diary
     static char pstPrompt[PROMPT_SIZE_MAX];
     GetCurrentPrompt(pstPrompt);
-    wchar_t* pwstPrompt = to_wide_string(pstPrompt);
-    diaryWrite(pwstPrompt, TRUE);
-    FREE(pwstPrompt);
+    diaryWrite(pstPrompt, TRUE);
 
     //add input to diary
-    wchar_t* pwstIn = to_wide_string(pstTemp);
-    diaryWriteln(pwstIn, TRUE);
-    FREE(pwstIn);
+    diaryWriteln(pstTemp, TRUE);
 
     ConfigVariable::setConsoleReadStr(pstTemp);
     ThreadManagement::UnlockScilabRead();

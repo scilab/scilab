@@ -65,7 +65,8 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "prompt", 1);
             return types::Function::Error;
         }
-        SetTemporaryPrompt(wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0)));
+
+        SetTemporaryPrompt(in[0]->getAs<types::String>()->get(0));
     }
 
     return types::Function::OK;
