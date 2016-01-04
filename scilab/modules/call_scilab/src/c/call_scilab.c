@@ -266,7 +266,7 @@ sci_types getVariableType(char *varName)
 */
 char *getLastErrorMessageSingle(void)
 {
-    return wide_string_to_UTF8(getLastErrorMessage());
+    return getLastErrorMessage();
 }
 
 /*--------------------------------------------------------------------------*/
