@@ -63,6 +63,12 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
+    if (_iRetCount > 2)
+    {
+        Scierror(999, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "grep", 1, 2);
+        return types::Function::Error;
+    }
+
     if (in[0]->isDouble() && in[0]->getAs<types::Double>()->getSize() == 0)
     {
         types::Double *pD = types::Double::Empty();
@@ -214,7 +220,7 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
 
         case MEMORY_ALLOC_ERROR :
             Scierror(999, _("%s: No more memory.\n"), "grep");
-        //no break, to free reserved memory.
+            //no break, to free reserved memory.
         case GREP_ERROR :
         {
             if (grepresults.values)
@@ -296,13 +302,10 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
     char *save = NULL;
     int iRet = GREP_OK;
     pcre_error_code answer = PCRE_FINISHED_OK;
-    for (x = 0; x <  mn_one ; x++)
-    {
-        results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
-    }
+    results->sizeArraysMax = mn_one * mn_two;
 
-    results->values = (int *)MALLOC(sizeof(int) * (3 * results->sizeArraysMax + 1));
-    results->positions = (int *)MALLOC(sizeof(int) * (3 * results->sizeArraysMax + 1));
+    results->values = (int *)MALLOC(sizeof(int) * results->sizeArraysMax);
+    results->positions = (int *)MALLOC(sizeof(int) * results->sizeArraysMax);
 
     if ( (results->values == NULL) || (results->positions == NULL) )
     {
@@ -331,17 +334,14 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
 
             if ( answer == PCRE_FINISHED_OK )
             {
-                if (results->currentLength < results->sizeArraysMax)
-                {
-                    results->values[results->currentLength] = y + 1;
-                    results->positions[results->currentLength] = x + 1;
-                    results->currentLength++;
-                }
+                results->values[results->currentLength] = y + 1;
+                results->positions[results->currentLength] = x + 1;
+                results->currentLength++;
             }
             else if (answer != NO_MATCH)
             {
                 pcre_error("grep", answer);
-                iRet = GREP_ERROR;
+                return GREP_ERROR;
             }
 
             if (save)
@@ -350,11 +350,6 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
                 save = NULL;
             }
         }
-    }
-
-    if (results->currentLength > results->sizeArraysMax)
-    {
-        results->currentLength = results->sizeArraysMax;
     }
 
     return iRet;

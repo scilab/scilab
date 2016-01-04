@@ -13,7 +13,6 @@ For a high-level overview of the changes in this release, please consult the "Wh
         Changes between version 6.0.0-alpha-2 and 6.0.0-beta-1
         ======================================================
 
-
 New Features
 ============
 
@@ -36,21 +35,23 @@ earlier versions:
    automatically converted to the 6.0 format: they cannot be opened again
    in Scilab/Xcos 5.x.
 
+
 Bug Fixes
 =========
 
 * Bug #9560  fixed - (1./M) was parsed as (1. / M) instead of (1 ./ M)
 
-* Bug #13918 fixed - Unmanaged operations on hypermatrix did not call overload functions.
-
 * Bug #13298 fixed - Static analysis bugs detected by PVS-Studio fixed.
+
+* Bug #13795 fixed - grep with regexp option did not match the empty string properly
+
+* Bug #13918 fixed - Unmanaged operations on hypermatrix did not call overload functions.
 
 * Bug #13986 fixed - setdefaultlanguage did not set value correctly in Windows registry.
 
 * Bug #13990 fixed - Windows installer did not ship all localization files.
 
-* Bug #13999 fixed - editor() was modal. It locked the console using an
-  external editor.
+* Bug #13999 fixed - editor() was modal. It locked the console using an external editor.
 
 * Bug #14178 fixed - tcl/tk unavailability on MacOS is now documented.
 
