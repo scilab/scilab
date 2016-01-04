@@ -14,31 +14,31 @@
 #include "function.hxx"
 #include "context.hxx"
 
-#define MODULE_NAME L"cacsd"
+#define MODULE_NAME "cacsd"
 
 int CacsdModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"contr", &sci_contr, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"dhinf", &sci_dhinf, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"hinf", &sci_hinf, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"linmeq", &sci_linmeq, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mucomp", &sci_mucomp, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"rankqr", &sci_rankqr, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ricc", &sci_ricc, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sident", &sci_sident, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sorder", &sci_sorder, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"findBD", &sci_findbd, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("contr", &sci_contr, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("dhinf", &sci_dhinf, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("hinf", &sci_hinf, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("linmeq", &sci_linmeq, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mucomp", &sci_mucomp, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("rankqr", &sci_rankqr, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("ricc", &sci_ricc, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("sident", &sci_sident, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("sorder", &sci_sorder, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("findBD", &sci_findbd, NULL, MODULE_NAME));
 
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"arl2_ius", &sci_arl2_ius, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ldiv", &sci_ldiv, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tr_zer", &sci_tzer, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"residu", &sci_residu, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ppol", &sci_ppol, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"freq", &sci_freq, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ltitr", &sci_ltitr, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"rtitr", &sci_rtitr, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ereduc", &sci_ereduc, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fstair", &sci_fstair, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("arl2_ius", &sci_arl2_ius, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("ldiv", &sci_ldiv, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("tr_zer", &sci_tzer, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("residu", &sci_residu, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("ppol", &sci_ppol, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("freq", &sci_freq, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("ltitr", &sci_ltitr, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("rtitr", &sci_rtitr, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("ereduc", &sci_ereduc, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("fstair", &sci_fstair, NULL, MODULE_NAME));
 
     return 1;
 }

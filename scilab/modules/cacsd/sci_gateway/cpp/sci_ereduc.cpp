@@ -47,8 +47,8 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
     // get X
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_ereduc";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_ereduc";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     types::Double* pDblX = in[0]->clone()->getAs<types::Double>();

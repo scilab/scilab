@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_fstair(types::typed_list &in, int _iRetCount, t
     {
         if (in[i]->isDouble() == false)
         {
-            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_fstair";
+            std::string wstFuncName = "%" + in[0]->getShortTypeStr() + "_fstair";
             return Overload::call(wstFuncName, in, _iRetCount, out);
         }
 

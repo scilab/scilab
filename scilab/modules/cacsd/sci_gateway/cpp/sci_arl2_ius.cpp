@@ -164,7 +164,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
                 return types::Function::Error;
             }
 
-            if (wcscmp(pStrAll->get(0), L"all") != 0)
+            if (strcmp(pStrAll->get(0), "all") != 0)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: 'all' expected.\n"), "arl2_ius", 4);
                 return types::Function::Error;
@@ -219,7 +219,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        if (wcscmp(pStrAll->get(0), L"all") != 0)
+        if (strcmp(pStrAll->get(0), "all") != 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: 'all' expected.\n"), "arl2_ius", 5);
             return types::Function::Error;
