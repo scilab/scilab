@@ -73,8 +73,8 @@ Controller::SharedData::SharedData() :
     onModelStructuralModification(), model(),
     onViewsStructuralModification(), allNamedViews(), allViews()
 {
-    onModelStructuralModification.clear();
-    onViewsStructuralModification.clear();
+    unlock(&onModelStructuralModification);
+    unlock(&onViewsStructuralModification);
 }
 
 Controller::SharedData::~SharedData()
