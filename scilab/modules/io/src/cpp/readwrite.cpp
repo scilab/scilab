@@ -90,10 +90,8 @@ void closeFile(types::InternalType* _pIT, int _iID)
     {
         int piMode[2] = { 0, 0 };
         types::String* pSPath = _pIT->getAs<types::String>();
-        char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
         int  close = -_iID;
-        int iErr = C2F(clunit)(&close, pstFilename, piMode, (int)strlen(pstFilename));
-        FREE(pstFilename);
+        int iErr = C2F(clunit)(&close, pSPath->get(0), piMode, (int)strlen(pSPath->get(0)));
     }
 }
 /*--------------------------------------------------------------------------*/

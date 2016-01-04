@@ -77,26 +77,21 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
         }
 
         int piMode[2] = { -1, 0};
-        char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
-        int iErr = C2F(clunit)(&iID, pstFilename, piMode, (int)strlen(pstFilename));
+        int iErr = C2F(clunit)(&iID, pSPath->get(0), piMode, (int)strlen(pSPath->get(0)));
 
         if (iErr == 240)
         {
             closeFile(in[0], iID);
-            Scierror(999, _("File \"%s\" already exists or directory write access denied.\n"), pstFilename);
-            FREE(pstFilename);
+            Scierror(999, _("File \"%s\" already exists or directory write access denied.\n"), pSPath->get(0));
             return types::Function::Error;
         }
 
         if (iErr == 241)
         {
             closeFile(in[0], iID);
-            Scierror(999, _("File \"%s\" does not exist or read access denied.\n"), pstFilename);
-            FREE(pstFilename);
+            Scierror(999, _("File \"%s\" does not exist or read access denied.\n"), pSPath->get(0));
             return types::Function::Error;
         }
-
-        FREE(pstFilename);
     }
     else if (in[0]->isDouble())
     {
@@ -138,9 +133,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
         }
 
         //checkformat
-        pstFormat = wide_string_to_UTF8(pSFormat->get(0));
-
-        itTypeOfData = checkformat(pstFormat);
+        itTypeOfData = checkformat(pSFormat->get(0));
         if (itTypeOfData == types::InternalType::ScilabNull)
         {
             FREE(pstFormat);
@@ -148,6 +141,8 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
             Scierror(999, _("Incorrect file or format.\n"));
             return types::Function::Error;
         }
+
+        pstFormat = os_strdup(pSFormat->get(0));
     }
 
     int error = 0;

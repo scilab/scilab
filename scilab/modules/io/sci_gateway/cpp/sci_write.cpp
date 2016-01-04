@@ -71,17 +71,14 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
         }
 
         int piMode[2] = {0, 0};
-        char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
-        int iErr = C2F(clunit)(&iID, pstFilename, piMode, (int)strlen(pstFilename));
+        int iErr = C2F(clunit)(&iID, pSPath->get(0), piMode, (int)strlen(pSPath->get(0)));
 
         if (iErr == 240)
         {
             closeFile(in[0], iID);
-            Scierror(999, _("File \"%s\" already exists or directory write access denied.\n"), pstFilename);
-            FREE(pstFilename);
+            Scierror(999, _("File \"%s\" already exists or directory write access denied.\n"), pSPath->get(0));
             return types::Function::Error;
         }
-        FREE(pstFilename);
     }
     else if (in[0]->isDouble())
     {
@@ -143,16 +140,16 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        //checkformat
-        pstFormat = wide_string_to_UTF8(pSFormat->get(0));
-
-        itTypeOfData = checkformat(pstFormat);
+        itTypeOfData = checkformat(pSFormat->get(0));
         if (itTypeOfData == types::InternalType::ScilabNull)
         {
             closeFile(in[0], iID);
             Scierror(999, _("Incorrect file or format.\n"));
             return types::Function::Error;
         }
+
+        //checkformat
+        pstFormat = os_strdup(pSFormat->get(0));
     }
     else
     {
@@ -205,14 +202,10 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
             {
                 case types::InternalType::ScilabString:
                 {
-                    char* pd = NULL;
                     types::String* pD = in[1]->getAs<types::String>();
-
                     for (int i = 0; i < iCols; i++)
                     {
-                        pd = wide_string_to_UTF8(pD->get(i));
-                        C2F(writestringfile)(&iID, pstFormat, pd, &error, (int)strlen(pstFormat), (int)strlen(pd));
-                        FREE(pd);
+                        C2F(writestringfile)(&iID, pstFormat, pD->get(i), &error, (int)strlen(pstFormat), (int)strlen(pD->get(i)));
                     }
                 }
                 break;
@@ -321,13 +314,10 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
             {
                 case types::InternalType::ScilabString:
                 {
-                    char* pd = NULL;
                     types::String* pD = in[1]->getAs<types::String>();
                     for (int i = 0; i < iCols; i++)
                     {
-                        pd = wide_string_to_UTF8(pD->get(i));
-                        C2F(writestring)(pstFormat, pd, &error, (int)strlen(pstFormat), (int)strlen(pd));
-                        FREE(pd);
+                        C2F(writestring)(pstFormat, pD->get(i), &error, (int)strlen(pstFormat), (int)strlen(pD->get(i)));
                     }
                 }
                 break;

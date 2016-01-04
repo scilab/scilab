@@ -74,7 +74,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    if (wcscmp(pSAction->get(0), L"open") == 0)
+    if (strcmp(pSAction->get(0), "open") == 0)
     {
         types::String* pSPath   = NULL;
         types::String* pSOption = NULL;
@@ -134,15 +134,15 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            if (wcscmp(pSOption->get(0), L"new") == 0)
+            if (strcmp(pSOption->get(0), "new") == 0)
             {
                 iStatus = 0;
             }
-            else if (wcscmp(pSOption->get(0), L"old") == 0)
+            else if (strcmp(pSOption->get(0), "old") == 0)
             {
                 iStatus = 1;
                 // file must already exists.
-                if (FileExistW(pSPath->get(0)) == false)
+                if (FileExist(pSPath->get(0)) == false)
                 {
                     if (_iRetCount == 2)
                     {
@@ -152,43 +152,32 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
                     }
                     else
                     {
-                        char* pstrFilename = wide_string_to_UTF8(pSPath->get(0));
-                        if (pstrFilename)
-                        {
-                            Scierror(240, _("%s: The file \"%s\" does not exist.\n"), "file", pstrFilename);
-                            FREE(pstrFilename);
-                            pstrFilename = NULL;
-                        }
-                        else
-                        {
-                            Scierror(240, _("%s: The file does not exist.\n"), "file");
-                        }
-
+                        Scierror(240, _("%s: The file \"%s\" does not exist.\n"), "file", pSPath->get(0));
                         return types::Function::Error;
                     }
                 }
             }
-            else if (wcscmp(pSOption->get(0), L"scratch") == 0)
+            else if (strcmp(pSOption->get(0), "scratch") == 0)
             {
                 iStatus = 2;
             }
-            else if (wcscmp(pSOption->get(0), L"unknown") == 0)
+            else if (strcmp(pSOption->get(0), "unknown") == 0)
             {
                 iStatus = 3;
             }
-            else if (wcscmp(pSOption->get(0), L"sequential") == 0)
+            else if (strcmp(pSOption->get(0), "sequential") == 0)
             {
                 iAccess = 0;
             }
-            else if (wcscmp(pSOption->get(0), L"direct") == 0)
+            else if (strcmp(pSOption->get(0), "direct") == 0)
             {
                 iAccess = 1;
             }
-            else if (wcscmp(pSOption->get(0), L"formatted") == 0)
+            else if (strcmp(pSOption->get(0), "formatted") == 0)
             {
                 iForm = 0;
             }
-            else if (wcscmp(pSOption->get(0), L"unformatted") == 0)
+            else if (strcmp(pSOption->get(0), "unformatted") == 0)
             {
                 iForm = 1;
             }
@@ -201,8 +190,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
 
         piMode[0] = iStatus + 10 * (iAccess + 10 * iForm);
         int lunit = 0; // file unit. 0 mean we open the file by this name.
-        char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
-        int iErr = C2F(clunit)(&lunit, pstFilename, piMode, (int)strlen(pstFilename));
+        int iErr = C2F(clunit)(&lunit, pSPath->get(0), piMode, (int)strlen(pSPath->get(0)));
         if (iErr)
         {
             if (_iRetCount == 1)
@@ -219,13 +207,13 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
                         Scierror(iErr, _("%s: Unknown file format.\n"), "file");
                         break;
                     case 240 :
-                        Scierror(iErr, _("%s: File \"%s\" already exists or directory write access denied.\n"), "file", pstFilename);
+                        Scierror(iErr, _("%s: File \"%s\" already exists or directory write access denied.\n"), "file", pSPath->get(0));
                         break;
                     case 241 :
-                        Scierror(iErr, _("%s: File \"%s\" does not exist or read access denied.\n"), "file", pstFilename);
+                        Scierror(iErr, _("%s: File \"%s\" does not exist or read access denied.\n"), "file", pSPath->get(0));
                         break;
                     default  :
-                        Scierror(iErr, _("%s: Can not open File \"%s\"\n"), "file", pstFilename);
+                        Scierror(iErr, _("%s: Can not open File \"%s\"\n"), "file", pSPath->get(0));
                 }
 
                 return types::Function::Error;
@@ -243,13 +231,11 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
         {
             out.push_back(new types::Double(0.0));
         }
-
-        FREE(pstFilename);
     }
-    else if (wcscmp(pSAction->get(0), L"close") == 0 ||
-             wcscmp(pSAction->get(0), L"rewind") == 0 ||
-             wcscmp(pSAction->get(0), L"backspace") == 0 ||
-             wcscmp(pSAction->get(0), L"last") == 0)
+    else if (strcmp(pSAction->get(0), "close") == 0 ||
+             strcmp(pSAction->get(0), "rewind") == 0 ||
+             strcmp(pSAction->get(0), "backspace") == 0 ||
+             strcmp(pSAction->get(0), "last") == 0)
     {
         if (_iRetCount != 1)
         {
@@ -272,7 +258,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
         types::Double* pDblFileUnit = in[1]->getAs<types::Double>();
         double* pdblUnit = pDblFileUnit->get();
 
-        if (wcscmp(pSAction->get(0), L"close") == 0)
+        if (strcmp(pSAction->get(0), "close") == 0)
         {
             for (int i = 0; i < pDblFileUnit->getSize(); i++)
             {
@@ -284,7 +270,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
                 }
             }
         }
-        else if (wcscmp(pSAction->get(0), L"rewind") == 0)
+        else if (strcmp(pSAction->get(0), "rewind") == 0)
         {
             int iFileUnit = (int)pdblUnit[0];
             types::File* pFile = FileManager::getFile(iFileUnit);
@@ -303,7 +289,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
         }
-        else if (wcscmp(pSAction->get(0), L"backspace") == 0)
+        else if (strcmp(pSAction->get(0), "backspace") == 0)
         {
             int iFileUnit = (int)pdblUnit[0];
             types::File* pFile = FileManager::getFile(iFileUnit);
@@ -323,7 +309,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
         }
-        else if (wcscmp(pSAction->get(0), L"last") == 0)
+        else if (strcmp(pSAction->get(0), "last") == 0)
         {
             int iFileUnit = (int)pdblUnit[0];
             types::File* pFile = FileManager::getFile(iFileUnit);
@@ -387,7 +373,7 @@ types::Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCou
 
     if (_iRetCount > 1) /*types*/
     {
-        wchar_t** pstTypes = FileManager::getTypesAsString();
+        char** pstTypes = FileManager::getTypesAsString();
         if (pstTypes != NULL)
         {
             types::String* pS = new types::String(1, iCount);
@@ -403,7 +389,7 @@ types::Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCou
 
     if (_iRetCount > 2) /*names*/
     {
-        wchar_t** pstNames = FileManager::getFilenames();
+        char** pstNames = FileManager::getFilenames();
         if (pstNames != NULL)
         {
             types::String* pS = new types::String(1, iCount);
@@ -475,24 +461,14 @@ types::Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCo
     out.push_back(new types::Double(iID));
     if (_iRetCount > 1) /*type*/
     {
-        wchar_t* pstType = os_wcsdup(pF->getFileTypeAsString().c_str());
-        if (pstType != NULL)
-        {
-            types::String* pS = new types::String(pstType);
-            out.push_back(pS);
-            delete[] pstType;
-        }
+        types::String* pS = new types::String(pF->getFileTypeAsString().data());
+        out.push_back(pS);
     }
 
     if (_iRetCount > 2) /*name*/
     {
-        wchar_t* pstName =  os_wcsdup(pF->getFilename().c_str());
-        if (pstName != NULL)
-        {
-            types::String* pS = new types::String(pstName);
-            out.push_back(pS);
-            delete[] pstName;
-        }
+        types::String* pS = new types::String(pF->getFilename().data());
+        out.push_back(pS);
     }
 
     if (_iRetCount > 3) /* mod */

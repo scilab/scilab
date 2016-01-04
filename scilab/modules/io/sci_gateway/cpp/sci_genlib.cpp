@@ -17,9 +17,9 @@
 #define DEFAULT_ENCODING "UTF-8"
 
 #ifdef _MSC_VER
-#define FILE_SEPARATOR L"\\"
+#define FILE_SEPARATOR "\\"
 #else
-#define FILE_SEPARATOR L"/"
+#define FILE_SEPARATOR "/"
 #endif
 
 //XML API
@@ -59,26 +59,26 @@ extern "C"
 }
 
 
-xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLibName);
+xmlTextWriterPtr openXMLFile(const char* _pstFilename, const char* _pstLibName);
 void closeXMLFile(xmlTextWriterPtr _pWriter);
-bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::wstring& name, const std::wstring& file, const std::wstring& md5);
+bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::string& name, const std::string& file, const std::string& md5);
 
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int succes = 1;
-    std::vector<std::wstring> failed_files;
-    std::vector<std::wstring> success_files;
-    std::vector<std::wstring> funcs;
+    std::vector<std::string> failed_files;
+    std::vector<std::string> success_files;
+    std::vector<std::string> funcs;
 
-    wchar_t pstParseFile[PATH_MAX + FILENAME_MAX];
-    wchar_t pstVerbose[65535];
+    char pstParseFile[PATH_MAX + FILENAME_MAX];
+    char pstVerbose[65535];
 
     int iNbFile = 0;
-    wchar_t *pstParsePath = NULL;
+    char *pstParsePath = NULL;
     int iParsePathLen = 0;
-    wchar_t* pstLibName = NULL;
+    char* pstLibName = NULL;
     bool bVerbose = false;
     bool bForce = false;
 
@@ -169,44 +169,44 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         bVerbose = p->get()[0] == 1;
     }
 
-    wchar_t* pstFile = pS->get(0);
-    pstParsePath = pathconvertW(pstFile, TRUE, TRUE, AUTO_STYLE);
+    char* pstFile = pS->get(0);
+    pstParsePath = pathconvert(pstFile, TRUE, TRUE, AUTO_STYLE);
 
     if (in.size() == 1)
     {
         delete pS;
     }
 
-    os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%lslib", pstParsePath);
+    os_sprintf(pstParseFile, "%slib", pstParsePath);
 
     if (bVerbose)
     {
-        os_swprintf(pstVerbose, 65535, _W("-- Creation of [%ls] (Macros) --\n").c_str(), pstLibName);
+        os_sprintf(pstVerbose, _("-- Creation of [%ls] (Macros) --\n"), pstLibName);
 
         //save current prompt mode
         int oldVal = ConfigVariable::getPromptMode();
         //set mode silent for errors
         ConfigVariable::setPromptMode(0);
-        scilabWriteW(pstVerbose);
+        scilabWrite(pstVerbose);
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
     }
 
     MacroInfoList lstOld;
-    if (FileExistW(pstParseFile))
+    if (FileExist(pstParseFile))
     {
         //read it to get previous information like md5
-        std::wstring libname;
+        std::string libname;
         parseLibFile(pstParseFile, lstOld, libname);
-        deleteafileW(pstParseFile);
+        deleteafile(pstParseFile);
     }
 
     xmlTextWriterPtr pWriter = openXMLFile(pstParseFile, pstLibName);
 
     if (pWriter == NULL)
     {
-        os_swprintf(pstVerbose, 65535, _W("%ls: Cannot open file ''%ls''.\n").c_str(), L"genlib", pstParseFile);
-        scilabWriteW(pstVerbose);
+        os_sprintf(pstVerbose, _("%s: Cannot open file ''%s''.\n"), "genlib", pstParseFile);
+        scilabWrite(pstVerbose);
 
         out.push_back(new types::Bool(0));
         FREE(pstParsePath);
@@ -214,7 +214,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
     }
 
 
-    wchar_t **pstPath = findfilesW(pstParsePath, L"*.sci", &iNbFile, FALSE);
+    char** pstPath = findfiles(pstParsePath, "*.sci", &iNbFile, FALSE);
 
     if (pstPath)
     {
@@ -223,30 +223,26 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         {
             //version with direct parsing
             //parse the file to find all functions
-            std::wstring stFullPath = std::wstring(pstParsePath) + std::wstring(FILE_SEPARATOR) + std::wstring(pstPath[k]);
-            std::wstring stFullPathBin(stFullPath);
-            stFullPathBin.replace(stFullPathBin.end() - 3, stFullPathBin.end(), L"bin");
-            std::wstring pstPathBin(pstPath[k]);
-            pstPathBin.replace(pstPathBin.end() - 3, pstPathBin.end(), L"bin");
+            std::string stFullPath = std::string(pstParsePath) + std::string(FILE_SEPARATOR) + std::string(pstPath[k]);
+            std::string stFullPathBin(stFullPath);
+            stFullPathBin.replace(stFullPathBin.end() - 3, stFullPathBin.end(), "bin");
+            std::string pstPathBin(pstPath[k]);
+            pstPathBin.replace(pstPathBin.end() - 3, pstPathBin.end(), "bin");
 
             //compute file md5
-            FILE* fmdf5 = os_wfopen(stFullPath.data(), L"rb");
+            FILE* fmdf5 = fopen(stFullPath.data(), "rb");
             if (fmdf5 == NULL)
             {
-                char* pstr = wide_string_to_UTF8(stFullPath.data());
-                Scierror(999, _("%s: Cannot open file ''%s''.\n"), "genlib", pstr);
-                FREE(pstr);
+                Scierror(999, _("%s: Cannot open file ''%s''.\n"), "genlib", stFullPath.data());
                 pLib->killMe();
                 return types::Function::Error;
             }
 
             char* md5 = md5_file(fmdf5);
-            fclose(fmdf5);
-
-            wchar_t* wmd5 = to_wide_string(md5);
+            std::string s_md5(md5);
             FREE(md5);
-            std::wstring wide_md5(wmd5);
-            FREE(wmd5);
+
+            fclose(fmdf5);
 
             if (bForce == false)
             {
@@ -254,10 +250,10 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
                 MacroInfoList::iterator it = lstOld.find(pstPathBin);
                 if (it != lstOld.end())
                 {
-                    if (wide_md5 == (*it).second.md5)
+                    if (s_md5 == (*it).second.md5)
                     {
                         //file not change, we can skip it
-                        AddMacroToXML(pWriter, (*it).second.name, pstPathBin, wide_md5);
+                        AddMacroToXML(pWriter, (*it).second.name, pstPathBin, s_md5);
                         pLib->add((*it).second.name, new types::MacroFile((*it).second.name, stFullPathBin, pstLibName));
                         success_files.push_back(stFullPath);
                         funcs.push_back((*it).second.name);
@@ -277,18 +273,16 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
             {
                 if (_iRetCount != 4)
                 {
-                    std::wstring wstrErr = parser.getErrorMessage();
+                    std::string strErr(parser.getErrorMessage());
 
-                    wchar_t errmsg[256];
-                    os_swprintf(errmsg, 256, _W("%ls: Error in file %ls.\n").c_str(), L"genlib", stFullPath.data());
-                    wstrErr += errmsg;
+                    char errmsg[256];
+                    os_sprintf(errmsg, _("%s: Error in file %s.\n"), "genlib", stFullPath.data());
+                    strErr += errmsg;
 
-                    char* str = wide_string_to_UTF8(wstrErr.c_str());
-                    Scierror(999, str);
-                    FREE(str);
+                    Scierror(999, strErr.data());
 
                     FREE(pstParsePath);
-                    freeArrayOfWideString(pstPath, iNbFile);
+                    freeArrayOfString(pstPath, iNbFile);
                     closeXMLFile(pWriter);
                     delete pLib;
                     return types::Function::Error;
@@ -306,7 +300,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
             // Header is : buffer size (4 bytes) + scilab version (4 bytes)
             unsigned int size = *((unsigned int*)serialAst);
 
-            FILE* f = os_wfopen(stFullPathBin.c_str(), L"wb");
+            FILE* f = fopen(stFullPathBin.c_str(), "wb");
             fwrite(serialAst, 1, size, f);
             fclose(f);
 
@@ -316,13 +310,13 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
                 if ((*j)->isFunctionDec())
                 {
                     ast::FunctionDec* pFD = (*j)->getAs<ast::FunctionDec>();
-                    const std::wstring& name = pFD->getSymbol().getName();
-                    if (name + L".sci" == pstPath[k])
+                    const std::string& name = pFD->getSymbol().getName();
+                    if (name + ".sci" == pstPath[k])
                     {
-                        if (AddMacroToXML(pWriter, name, pstPathBin, wide_md5) == false)
+                        if (AddMacroToXML(pWriter, name, pstPathBin, s_md5) == false)
                         {
-                            os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n").c_str(), L"genlib", pFD->getSymbol().getName().c_str(), pstPath[k]);
-                            scilabWriteW(pstVerbose);
+                            os_sprintf(pstVerbose, _("%s: Warning: %s information cannot be added to file %s. File ignored\n"), "genlib", pFD->getSymbol().getName().c_str(), pstPath[k]);
+                            scilabWrite(pstVerbose);
                         }
 
                         pLib->add(name, new types::MacroFile(name, stFullPathBin, pstLibName));
@@ -348,7 +342,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         {
             Scierror(999, _("Redefining permanent variable.\n"));
 
-            freeArrayOfWideString(pstPath, iNbFile);
+            freeArrayOfString(pstPath, iNbFile);
             FREE(pstParsePath);
             closeXMLFile(pWriter);
             delete pLib;
@@ -356,7 +350,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         }
     }
 
-    freeArrayOfWideString(pstPath, iNbFile);
+    freeArrayOfString(pstPath, iNbFile);
 
     out.push_back(new types::Bool(succes));
 
@@ -447,16 +441,13 @@ void closeXMLFile(xmlTextWriterPtr _pWriter)
     xmlFreeTextWriter(_pWriter);
 }
 
-xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLibName)
+xmlTextWriterPtr openXMLFile(const char *_pstFilename, const char* _pstLibName)
 {
     int iLen;
     xmlTextWriterPtr pWriter = NULL;;
-    char *pstFilename = wide_string_to_UTF8(_pstFilename);
-    char *pstLibName = wide_string_to_UTF8(_pstLibName);
-
 
     //create a writer
-    pWriter = xmlNewTextWriterFilename(pstFilename, 0);
+    pWriter = xmlNewTextWriterFilename(_pstFilename, 0);
     if (pWriter == NULL)
     {
         return NULL;
@@ -483,20 +474,17 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     }
 
     //Add attribute "name"
-    iLen = xmlTextWriterWriteAttribute(pWriter, (xmlChar*)"name", (xmlChar*)pstLibName);
+    iLen = xmlTextWriterWriteAttribute(pWriter, (xmlChar*)"name", (xmlChar*)_pstLibName);
     if (iLen < 0)
     {
         closeXMLFile(pWriter);
         return NULL;
     }
 
-    FREE(pstFilename);
-    FREE(pstLibName);
-
     return pWriter;
 }
 
-bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::wstring& name, const std::wstring& file, const std::wstring& md5)
+bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::string& name, const std::string& file, const std::string& md5)
 {
     int iLen;
 
@@ -513,31 +501,25 @@ bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::wstring& name, const st
     }
 
     //Add attribute "name"
-    char* pst1 = wide_string_to_UTF8(name.data());
-    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"name", (xmlChar*)pst1);
+    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"name", (xmlChar*)name.data());
     if (iLen < 0)
     {
         return false;
     }
-    FREE(pst1);
-
+    
     //Add attribute "file"
-    char* pst2 = wide_string_to_UTF8(file.data());
-    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"file", (xmlChar*)pst2);
+    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"file", (xmlChar*)file.data());
     if (iLen < 0)
     {
         return false;
     }
-    FREE(pst2);
 
     //Add attribute "md5"
-    char* pst3 = wide_string_to_UTF8(md5.data());
-    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"md5", (xmlChar*)pst3);
+    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"md5", (xmlChar*)md5.data());
     if (iLen < 0)
     {
         return false;
     }
-    FREE(pst3);
 
     //close "macro" node
     iLen = xmlTextWriterEndElement(_pWriter);

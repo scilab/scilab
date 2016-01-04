@@ -19,16 +19,16 @@
 struct MacroInfo
 {
     MacroInfo() {} //needed by unordered_map
-    MacroInfo(const std::wstring& _name, const std::wstring& _file, const std::wstring& _md5) :
+    MacroInfo(const std::string& _name, const std::string& _file, const std::string& _md5) :
         name(_name),
         file(_file),
         md5(_md5) {}
-    std::wstring name;
-    std::wstring file;
-    std::wstring md5;
+    std::string name;
+    std::string file;
+    std::string md5;
 };
 
-typedef std::unordered_map<std::wstring, MacroInfo> MacroInfoList;
-IO_IMPEXP types::Library* loadlib(const std::wstring& _wstXML, int* ierr, bool _isFile = true, bool _bAddInContext = true);
-IO_IMPEXP int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring& libname);
+typedef std::unordered_map<std::string, MacroInfo> MacroInfoList;
+IO_IMPEXP types::Library* loadlib(const std::string& _wstXML, int* ierr, bool _isFile = true, bool _bAddInContext = true);
+IO_IMPEXP int parseLibFile(const std::string& _wstXML, MacroInfoList& info, std::string& libname);
 #endif /* !__LOADLIB_H__ */

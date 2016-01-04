@@ -50,11 +50,10 @@ types::Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, type
         return types::Function::Error;
     }
 
-    wchar_t* pstPath = pS->get(0);
-    wchar_t* pwstPath = pathconvertW(pstPath, TRUE, TRUE, AUTO_STYLE);
+    char* pstPath = pathconvert(pS->get(0), TRUE, TRUE, AUTO_STYLE);
     int err = 0;
-    types::Library* lib = loadlib(pwstPath, &err, false, false);
-    FREE(pwstPath);
+    types::Library* lib = loadlib(pstPath, &err, false, false);
+    FREE(pstPath);
 
     switch (err)
     {
@@ -63,9 +62,7 @@ types::Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, type
             break;
         case 1:
         {
-            char* pst = wide_string_to_UTF8(pstPath);
-            Scierror(999, _("%s: %s is not a valid lib path.\n"), "lib", pst);
-            FREE(pst);
+            Scierror(999, _("%s: %s is not a valid lib path.\n"), "lib", pS->get(0));
             return types::Function::Error;
         }
         case 2:

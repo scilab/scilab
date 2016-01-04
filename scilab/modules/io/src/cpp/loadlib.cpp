@@ -29,55 +29,55 @@ extern "C"
 
 #define DEFAULT_ENCODING "UTF-8"
 
-static char *GetXmlFileEncoding(std::string _filename);
+static char *GetXmlFileEncoding(const std::string& _filename);
 
-types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, bool _bAddInContext)
+types::Library* loadlib(const std::string& _stXML, int* err, bool _isFile, bool _bAddInContext)
 {
     types::Library* lib = NULL;
 
-    wchar_t* pwstPathLib = expandPathVariableW((wchar_t*)_wstXML.c_str());
+    char* pstPathLib = expandPathVariable(_stXML.c_str());
 
-    wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-    get_full_pathW(pwstTemp, pwstPathLib, PATH_MAX * 2);
-    FREE(pwstPathLib);
+    char* pstTemp = (char*)MALLOC(sizeof(char) * (PATH_MAX * 2));
+    get_full_path(pstTemp, pstPathLib, PATH_MAX * 2);
+    FREE(pstPathLib);
 
-    std::wstring wstOriginalPath(pwstTemp);
-    std::wstring wstFile(pwstTemp);
-    std::wstring wstPath(pwstTemp);
-    FREE(pwstTemp);
+    std::string stOriginalPath(pstTemp);
+    std::string stFile(pstTemp);
+    std::string stPath(pstTemp);
+    FREE(pstTemp);
 
     if (_isFile)
     {
         //remove / or \ at the end
-        size_t pos = wstPath.find_last_of(L"/\\");
-        wstPath = wstPath.substr(0, pos);
-        pos = wstOriginalPath.find_last_of(L"/\\");
-        wstOriginalPath = wstOriginalPath.substr(0, pos + 1); //with ending /
+        size_t pos = stPath.find_last_of("/\\");
+        stPath = stPath.substr(0, pos);
+        pos = stOriginalPath.find_last_of("/\\");
+        stOriginalPath = stOriginalPath.substr(0, pos + 1); //with ending /
     }
     else
     {
-        if (wstFile.empty() == false && *wstFile.rbegin() != DIR_SEPARATORW[0])
+        if (stFile.empty() == false && *stFile.rbegin() != DIR_SEPARATOR[0])
         {
-            wstFile += DIR_SEPARATORW;
+            stFile += DIR_SEPARATOR;
         }
 
-        wstFile += L"lib";
+        stFile += "lib";
     }
 
-    std::wstring libname;
+    std::string libname;
     MacroInfoList lst;
-    *err = parseLibFile(wstFile, lst, libname);
+    *err = parseLibFile(stFile, lst, libname);
     if (*err)
     {
         return lib;
     }
 
-    lib = new types::Library(wstOriginalPath);
+    lib = new types::Library(stOriginalPath);
 
-    std::wstring stFilename(wstPath);
-    if (stFilename.empty() == false && *stFilename.rbegin() != DIR_SEPARATORW[0])
+    std::string stFilename(stPath);
+    if (stFilename.empty() == false && *stFilename.rbegin() != DIR_SEPARATOR[0])
     {
-        stFilename += DIR_SEPARATORW;
+        stFilename += DIR_SEPARATOR;
     }
 
 
@@ -106,26 +106,22 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
     return lib;
 }
 
-int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring& libname)
+int parseLibFile(const std::string& _stXML, MacroInfoList& info, std::string& libname)
 {
     info.clear();
 
-    char* pstFile = wide_string_to_UTF8(_wstXML.data());
-
-    if (FileExist(pstFile) == FALSE)
+    if (FileExist(_stXML.data()) == FALSE)
     {
-        FREE(pstFile);
         return 1;
     }
 
-    char *encoding = GetXmlFileEncoding(pstFile);
+    char *encoding = GetXmlFileEncoding(_stXML);
 
     /* Don't care about line return / empty line */
     xmlKeepBlanksDefault(0);
     /* check if the XML file has been encoded with utf8 (unicode) or not */
     if (stricmp("utf-8", encoding))
     {
-        FREE(pstFile);
         free(encoding);
         return NULL;
     }
@@ -133,22 +129,19 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
     xmlDocPtr doc;
     xmlXPathContextPtr xpathCtxt = NULL;
     xmlXPathObjectPtr xpathObj = NULL;
-    wchar_t* pstName = NULL;
-    wchar_t* pstLibName = NULL;
-    wchar_t* pstFileName = NULL;
-    wchar_t* pstMd5 = NULL;
+    std::string stName;
+    std::string stLibName;
+    std::string stFileName;
+    std::string stMd5;
 
     free(encoding);
 
-    doc = xmlParseFile(pstFile);
+    doc = xmlParseFile(_stXML.data());
 
     if (doc == NULL)
     {
-        FREE(pstFile);
         return 1;
     }
-
-    FREE(pstFile);
 
     xpathCtxt = xmlXPathNewContext(doc);
     xpathObj = xmlXPathEval((const xmlChar*)"//scilablib", xpathCtxt);
@@ -158,10 +151,7 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
         if (xmlStrEqual(attrib->name, (const xmlChar*)"name"))
         {
             /* we found the tag name */
-            const char *str = (const char*)attrib->children->content;
-            pstLibName = to_wide_string(str);
-            libname = pstLibName;
-            FREE(pstLibName);
+            stLibName = (const char*)attrib->children->content;
             xmlXPathFreeObject(xpathObj);
         }
         else
@@ -189,45 +179,24 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
                 if (xmlStrEqual(attrib->name, (const xmlChar*)"name"))
                 {
                     /* we found the tag name */
-                    const char *str = (const char*)attrib->children->content;
-                    pstName = to_wide_string(str);
+                    stName = (const char*)attrib->children->content;
                 }
                 else if (xmlStrEqual(attrib->name, (const xmlChar*)"file"))
                 {
                     /* we found the tag activate */
-                    const char *str = (const char*)attrib->children->content;
-                    pstFileName = to_wide_string(str);
+                    stFileName = (const char*)attrib->children->content;
                 }
                 else if (xmlStrEqual(attrib->name, (const xmlChar*)"md5"))
                 {
                     /* we found the tag activate */
-                    const char *str = (const char*)attrib->children->content;
-                    pstMd5 = to_wide_string(str);
+                    stMd5 = (const char*)attrib->children->content;
                 }
                 attrib = attrib->next;
             }
 
-            if (pstName && pstFileName && pstMd5)
+            if (stName.empty() == false && stFileName.empty() == false && stMd5.empty() == false)
             {
-                info[pstFileName] = MacroInfo(pstName, pstFileName, pstMd5);
-            }
-
-            if (pstName)
-            {
-                FREE(pstName);
-                pstName = NULL;
-            }
-
-            if (pstFileName)
-            {
-                FREE(pstFileName);
-                pstFileName = NULL;
-            }
-
-            if (pstMd5)
-            {
-                FREE(pstMd5);
-                pstMd5 = NULL;
+                info[stFileName] = MacroInfo(stName, stFileName, stMd5);
             }
         }
     }
@@ -245,7 +214,7 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
     return 0;
 }
 
-static char *GetXmlFileEncoding(std::string _filename)
+static char *GetXmlFileEncoding(const std::string& _filename)
 {
     char *encoding = NULL;
     xmlDocPtr doc = NULL;
