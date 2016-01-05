@@ -51,12 +51,12 @@ types::Function::ReturnValue sci_kron(types::typed_list &in, int _iRetCount, typ
     else if (in[0]->isInt() || in[1]->isInt())
     {
         // int .*. double || double .*. int || int .*. int
-        return Overload::call(L"%_kron", in, _iRetCount, out);
+        return Overload::call("%_kron", in, _iRetCount, out);
     }
     else
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_kron";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_kron";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     out.push_back(pDblOut);

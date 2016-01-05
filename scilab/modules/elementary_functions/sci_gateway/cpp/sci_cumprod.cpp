@@ -93,8 +93,8 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
             pDblIn = getAsDouble(in[0]->getAs<types::UInt64>());
             break;
         default :
-            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_cumprod";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_cumprod";
+            return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     if (in.size() >= 2)
@@ -142,21 +142,21 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
                 return types::Function::Error;
             }
 
-            wchar_t* wcsString = pStr->get(0);
+            char* str = pStr->get(0);
 
-            if (wcscmp(wcsString, L"*") == 0)
+            if (strcmp(str, "*") == 0)
             {
                 iOrientation = 0;
             }
-            else if (wcscmp(wcsString, L"r") == 0)
+            else if (strcmp(str, "r") == 0)
             {
                 iOrientation = 1;
             }
-            else if (wcscmp(wcsString, L"c") == 0)
+            else if (strcmp(str, "c") == 0)
             {
                 iOrientation = 2;
             }
-            else if (wcscmp(wcsString, L"m") == 0)
+            else if (strcmp(str, "m") == 0)
             {
                 int iDims = 0;
                 int* piDimsArray = NULL;
@@ -182,11 +182,11 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
                     }
                 }
             }
-            else if ((wcscmp(wcsString, L"native") == 0) && (in.size() == 2))
+            else if ((strcmp(str, "native") == 0) && (in.size() == 2))
             {
                 iOuttype = 1;
             }
-            else if ((wcscmp(wcsString, L"double") == 0) && (in.size() == 2))
+            else if ((strcmp(str, "double") == 0) && (in.size() == 2))
             {
                 iOuttype = 2;
             }
@@ -249,13 +249,13 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        wchar_t* wcsString = pStr->get(0);
+        char* str = pStr->get(0);
 
-        if (wcscmp(wcsString, L"native") == 0)
+        if (strcmp(str, "native") == 0)
         {
             iOuttype = 1;
         }
-        else if (wcscmp(wcsString, L"double") == 0)
+        else if (strcmp(str, "double") == 0)
         {
             iOuttype = 2;
         }

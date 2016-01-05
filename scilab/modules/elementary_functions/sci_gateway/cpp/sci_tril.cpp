@@ -48,14 +48,14 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isGenericType() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tril";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_tril";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     if (in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tril";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_tril";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     // get offset
@@ -154,8 +154,8 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tril";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_tril";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     return types::Function::OK;

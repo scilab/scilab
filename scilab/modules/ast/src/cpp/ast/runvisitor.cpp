@@ -33,7 +33,7 @@
 #include "generic_operations.hxx"
 #include "types_or.hxx"
 #include "types_and.hxx"
-
+ 
 #include "macrofile.hxx"
 #include "macro.hxx"
 #include "cell.hxx"

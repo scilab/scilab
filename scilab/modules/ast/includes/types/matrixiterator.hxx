@@ -126,36 +126,45 @@ template<typename S, typename V> bool set(S &, int, int, V)
 
 template<> bool set(types::Double & d, int r, int c, double v)
 {
-    return d.set(r, c, v);
+    d.set(r, c, v);
+    return true;
 }
 template<> bool set(types::Double & d, int r, int c, std::complex<double> v)
 {
-    return d.set(r, c, v.real()) && d.setImg(r, c, v.imag());
+    d.set(r, c, v.real());
+    d.setImg(r, c, v.imag());
+    return true;
 }
 
 template<> bool set(types::Sparse & s, int r, int c, double v)
 {
-    return s.set(r, c, v);
+    s.set(r, c, v);
+    return true;
 }
 template<> bool set(types::Sparse & s, int r, int c, std::complex<double> v)
 {
-    return s.set(r, c, v);
+    s.set(r, c, v);
+    return true;
 }
 template<> bool set(types::Bool & d, int r, int c, bool v)
 {
-    return d.set(r, c, v);
+    d.set(r, c, v);
+    return true;
 }
 template<> bool set(types::SparseBool & d, int r, int c, bool v)
 {
-    return d.set(r, c, v);
+    d.set(r, c, v);
+    return true;
 }
 template<> bool set(types::Bool & d, int r, int c, int v)
 {
-    return d.set(r, c, v);
+    d.set(r, c, v);
+    return true;
 }
 template<> bool set(types::SparseBool & d, int r, int c, int v)
 {
-    return d.set(r, c, v != 0);
+    d.set(r, c, v != 0);
+    return true;
 }
 
 template<> bool set(types::Sparse::RealSparse_t& s, int r, int c, double v)

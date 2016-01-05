@@ -184,8 +184,8 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
         }
         default:
         {
-            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_abs";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_abs";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
     }
 

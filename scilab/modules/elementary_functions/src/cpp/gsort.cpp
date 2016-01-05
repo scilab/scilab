@@ -120,29 +120,29 @@ bool descendent (std::pair<int, std::pair<T*, T*> > left, std::pair<int, std::pa
 }
 
 // string case
-bool increasingCompareStr (wchar_t* left, wchar_t* right)
+bool increasingCompareStr (char* left, char* right)
 {
-    return wcscmp(left, right) < 0;
+    return strcmp(left, right) < 0;
 }
 
-bool descendentCompareStr (wchar_t* left, wchar_t* right)
+bool descendentCompareStr (char* left, char* right)
 {
-    return wcscmp(left, right) > 0;
+    return strcmp(left, right) > 0;
 }
 
-bool descendentStr (std::pair<int, std::pair<wchar_t**, wchar_t**> > left, std::pair<int, std::pair<wchar_t**, wchar_t**> > right)
+bool descendentStr (std::pair<int, std::pair<char**, char**> > left, std::pair<int, std::pair<char**, char**> > right)
 {
     return std::lexicographical_compare(right.second.first, right.second.second, left.second.first, left.second.second, increasingCompareStr);
 }
 
-bool increasingStr (std::pair<int, std::pair<wchar_t**, wchar_t**> > left, std::pair<int, std::pair<wchar_t**, wchar_t**> > right)
+bool increasingStr (std::pair<int, std::pair<char**, char**> > left, std::pair<int, std::pair<char**, char**> > right)
 {
     return std::lexicographical_compare(left.second.first, left.second.second, right.second.first, right.second.second, increasingCompareStr);
 }
 
-bool descendentStr (std::pair<int, wchar_t*> left, std::pair<int, wchar_t*> right)
+bool descendentStr (std::pair<int, char*> left, std::pair<int, char*> right)
 {
-    int comp = wcscmp(left.second, right.second);
+    int comp = strcmp(left.second, right.second);
     // keep position order (position order is always increasing)
     if (comp == 0)
     {
@@ -152,9 +152,9 @@ bool descendentStr (std::pair<int, wchar_t*> left, std::pair<int, wchar_t*> righ
     return comp > 0;
 }
 
-bool increasingStr (std::pair<int, wchar_t*> left, std::pair<int, wchar_t*> right)
+bool increasingStr (std::pair<int, char*> left, std::pair<int, char*> right)
 {
-    int comp = wcscmp(left.second, right.second);
+    int comp = strcmp(left.second, right.second);
     // keep position order (position order is always increasing)
     if (comp == 0)
     {
@@ -165,7 +165,7 @@ bool increasingStr (std::pair<int, wchar_t*> left, std::pair<int, wchar_t*> righ
 }
 
 /*--------------------------- Double ---------------------------------------*/
-types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
+types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::string& strWay, const std::string& strProcess)
 {
     types::Double* pOut = NULL;
 
@@ -194,30 +194,30 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
                       std::pair<int, std::pair<double*, double*> > right);
 
     // sort direction
-    if (wstrWay == L"i")
+    if (strWay == "i")
     {
         pFuncWayBasic   = &(increasing);
         pFuncWay        = &(increasing);
         pFuncWayL       = &(increasing);
     }
-    else // strWay == L"d"
+    else // strWay == "d"
     {
         pFuncWayBasic   = &(descendent);
         pFuncWay        = &(descendent);
         pFuncWayL       = &(descendent);
     }
 
-    if (wstrProcess == L"g")
+    if (strProcess == "g")
     {
         iItem = pIn->getSize();
     }
-    else if (wstrProcess == L"c" || wstrProcess == L"lr")
+    else if (strProcess == "c" || strProcess == "lr")
     {
         iTimes   = pIn->getRows();
         iItem    = pIn->getCols();
         iOffset1 = pIn->getRows();
     }
-    else if (wstrProcess == L"r" || wstrProcess == L"lc")
+    else if (strProcess == "r" || strProcess == "lc")
     {
         iTimes   = pIn->getCols();
         iItem    = pIn->getRows();
@@ -230,7 +230,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
         double* pdblOutR = pOut->get();
         double* pdblOutI = pOut->getImg();
 
-        if (wstrProcess == L"r" || wstrProcess == L"c" || wstrProcess == L"g")
+        if (strProcess == "r" || strProcess == "c" || strProcess == "g")
         {
             std::vector<std::pair<std::pair<int, int>, double> > V;
             std::vector<std::pair<std::pair<int, int>, double> >::iterator it;
@@ -259,7 +259,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
                 V.clear();
             }
         }
-        else// wstrProcess == L"lr" and wstrProcess == L"lc"
+        else// strProcess == "lr" and strProcess == "lc"
         {
             std::vector<std::pair<int, std::pair<double*, double*> > > V;
             std::vector<std::pair<int, std::pair<double*, double*> > >::iterator it;
@@ -267,7 +267,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
             types::Double* pTemp = new types::Double(pIn->getRows(), pIn->getCols());
             double* pdblTemp = pTemp->get();
 
-            if (wstrProcess == L"lr")
+            if (strProcess == "lr")
             {
                 // transpose matrix pIn
                 types::Double* pTemp = pIn;
@@ -310,7 +310,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
             delete pTemp;
             pTemp = NULL;
 
-            if (wstrProcess == L"lr")
+            if (strProcess == "lr")
             {
                 delete pIn;
             }
@@ -318,7 +318,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
     }
     else
     {
-        if (wstrProcess == L"r" || wstrProcess == L"c" || wstrProcess == L"g")
+        if (strProcess == "r" || strProcess == "c" || strProcess == "g")
         {
             if (pDblInd)
             {
@@ -350,13 +350,13 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
             }
             else
             {
-                if (wstrProcess == L"g")
+                if (strProcess == "g")
                 {
                     pOut = pIn->clone()->getAs<types::Double>();
                     double* pdblOutR = pOut->get();
                     std::sort(pdblOutR, pdblOutR + pOut->getSize(), (*pFuncWayBasic));
                 }
-                else if (wstrProcess == L"c")
+                else if (strProcess == "c")
                 {
                     pOut = new types::Double(pIn->getCols(), pIn->getRows());
                     double* pdblOutR = pOut->get();
@@ -376,7 +376,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
                     vTransposeRealMatrix(pTemp->get(), pTemp->getRows(), pTemp->getCols(), pdblOutR);
                     delete pTemp;
                 }
-                else //wstrProcess == L"r"
+                else //strProcess == "r"
                 {
                     pOut = pIn->clone()->getAs<types::Double>();
                     double* pdblOutR = pOut->get();
@@ -388,7 +388,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
                 }
             }
         }
-        else// wstrProcess == L"lr" and wstrProcess == L"lc"
+        else// strProcess == "lr" and strProcess == "lc"
         {
             pOut = new types::Double(pIn->getDims(), pIn->getDimsArray());
             double* pdblOutR = pOut->get();
@@ -396,7 +396,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
             std::vector<std::pair<int, std::pair<double*, double*> > > V;
             std::vector<std::pair<int, std::pair<double*, double*> > >::iterator it;
 
-            if (wstrProcess == L"lr")
+            if (strProcess == "lr")
             {
                 // transpose matrix pIn
                 types::Double* pTemp = pIn;
@@ -428,7 +428,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
             }
 
             V.clear();
-            if (wstrProcess == L"lr")
+            if (strProcess == "lr")
             {
                 delete pIn;
             }
@@ -439,7 +439,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
 }
 
 /*--------------------------- String ---------------------------------------*/
-types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
+types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::string& strWay, const std::string& strProcess)
 {
     types::String* pOut = nullptr;
 
@@ -451,68 +451,68 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
     int iOffset1    = 1;
     int iOffset2    = 1;
 
-    bool (*pFuncWayStr)(std::pair<int, wchar_t*> left,
-                        std::pair<int, wchar_t*> right);
+    bool (*pFuncWayStr)(std::pair<int, char*> left,
+                        std::pair<int, char*> right);
 
-    bool (*pFuncWayStrL)(std::pair<int, std::pair<wchar_t**, wchar_t**> > left,
-                         std::pair<int, std::pair<wchar_t**, wchar_t**> > right);
+    bool (*pFuncWayStrL)(std::pair<int, std::pair<char**, char**> > left,
+                         std::pair<int, std::pair<char**, char**> > right);
 
-    if (wstrWay == L"i")
+    if (strWay == "i")
     {
         pFuncWayStr = &(increasingStr);
         pFuncWayStrL = &(increasingStr);
     }
-    else // strWay == L"d"
+    else // strWay == "d"
     {
         pFuncWayStr = &(descendentStr);
         pFuncWayStrL = &(descendentStr);
     }
 
-    if (wstrProcess == L"g")
+    if (strProcess == "g")
     {
         iItem = pIn->getSize();
     }
-    else if (wstrProcess == L"c")
+    else if (strProcess == "c")
     {
         iTimes   = pIn->getRows();
         iItem    = pIn->getCols();
         iOffset1 = pIn->getRows();
     }
-    else if (wstrProcess == L"r")
+    else if (strProcess == "r")
     {
         iTimes   = pIn->getCols();
         iItem    = pIn->getRows();
         iOffset2 = pIn->getRows();
     }
-    else if (wstrProcess == L"lc")
+    else if (strProcess == "lc")
     {
         iTimes   = pIn->getCols();
         iItem    = pIn->getRows();
         iOffset2 = pIn->getRows();
     }
-    else if (wstrProcess == L"lr")
+    else if (strProcess == "lr")
     {
         iTimes   = pIn->getRows();
         iItem    = pIn->getCols();
         iOffset1 = pIn->getRows();
     }
 
-    if (wstrProcess == L"r" || wstrProcess == L"c" || wstrProcess == L"g")
+    if (strProcess == "r" || strProcess == "c" || strProcess == "g")
     {
         if (pDblInd)
         {
             pOut = new types::String(pIn->getDims(), pIn->getDimsArray());
 
-            std::vector<std::pair<int, wchar_t*> > V;
-            std::vector<std::pair<int, wchar_t*> >::iterator it;
+            std::vector<std::pair<int, char*> > V;
+            std::vector<std::pair<int, char*> >::iterator it;
 
             for (int i = 0; i < iTimes; i++)
             {
                 for (int j = 0; j < iItem; j++)
                 {
                     iPos = i * iOffset2 + j * iOffset1;
-                    wchar_t* pWcsData = pIn->get(iPos);
-                    V.push_back(std::pair<int, wchar_t*>(j, pWcsData));
+                    char* pWcsData = pIn->get(iPos);
+                    V.push_back(std::pair<int, char*>(j, pWcsData));
                 }
 
                 std::sort(V.begin(), V.end(), (*pFuncWayStr));
@@ -532,25 +532,25 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
         }
         else
         {
-            if (wstrProcess == L"g")
+            if (strProcess == "g")
             {
                 pOut = pIn->clone()->getAs<types::String>();
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     std::sort(pOut->get(), pOut->get() + pOut->getSize(), increasingCompareStr);
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     std::sort(pOut->get(), pOut->get() + pOut->getSize(), descendentCompareStr);
                 }
             }
-            else if (wstrProcess == L"c")
+            else if (strProcess == "c")
             {
                 pOut = new types::String(pIn->getRows(), pIn->getCols());
 
                 // transpose matrix pIn
-                wchar_t** pwstOut = new wchar_t*[pIn->getSize()];
-                wchar_t** pwstIn = pIn->get();
+                char** pwstOut = new char*[pIn->getSize()];
+                char** pwstIn = pIn->get();
                 int iRows = pIn->getRows();
                 int iCols = pIn->getCols();
 
@@ -561,14 +561,14 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
                 }
 
                 // sort output
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(pwstOut + (iItem * i), pwstOut + (iItem * (i + 1)), increasingCompareStr);
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -585,18 +585,18 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
 
                 delete[] pwstOut;
             }
-            else //wstrProcess == L"r"
+            else //strProcess == "r"
             {
                 pOut = pIn->clone()->getAs<types::String>();
 
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(pOut->get() + (iItem * i), pOut->get() + (iItem * (i + 1)), increasingCompareStr);
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -606,20 +606,20 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
             }
         }
     }
-    else// wstrProcess == L"lr" and wstrProcess == L"lc"
+    else// strProcess == "lr" and strProcess == "lc"
     {
         pOut = new types::String(pIn->getDims(), pIn->getDimsArray());
-        std::vector<std::pair<int, std::pair<wchar_t**, wchar_t**> > > V;
-        std::vector<std::pair<int, std::pair<wchar_t**, wchar_t**> > >::iterator it;
+        std::vector<std::pair<int, std::pair<char**, char**> > > V;
+        std::vector<std::pair<int, std::pair<char**, char**> > >::iterator it;
 
-        wchar_t** pwstIn = NULL;
-        if (wstrProcess == L"lr")
+        char** pwstIn = NULL;
+        if (strProcess == "lr")
         {
             // transpose matrix pIn
             types::String* pTemp = pIn;
 
-            pwstIn = new wchar_t*[pTemp->getSize()];
-            wchar_t** pwstTemp = pTemp->get();
+            pwstIn = new char*[pTemp->getSize()];
+            char** pwstTemp = pTemp->get();
             int iRows = pTemp->getRows();
             int iCols = pTemp->getCols();
 
@@ -636,7 +636,7 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
 
         for (int i = 0; i < iTimes; i++)
         {
-            V.push_back(std::pair<int, std::pair<wchar_t**, wchar_t**> >(i, std::pair<wchar_t**, wchar_t**>(pwstIn + (i * iItem), pwstIn + (i + 1) * iItem)));
+            V.push_back(std::pair<int, std::pair<char**, char**> >(i, std::pair<char**, char**>(pwstIn + (i * iItem), pwstIn + (i + 1) * iItem)));
         }
 
         std::sort(V.begin(), V.end(), (*pFuncWayStrL));
@@ -657,7 +657,7 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
         }
         V.clear();
 
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             delete[] pwstIn;
         }
@@ -667,7 +667,7 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
 }
 
 /*--------------------------- Int8 -----------------------------------------*/
-types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
+types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::string& strWay, const std::string& strProcess)
 {
     types::Int8* pOut = NULL;
 
@@ -689,35 +689,35 @@ types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring&
     bool (*pFuncWayL)(std::pair<int, std::pair<char*, char*> > left,
                       std::pair<int, std::pair<char*, char*> > right);
 
-    if (wstrWay == L"i")
+    if (strWay == "i")
     {
         pFuncWay  = &(increasing);
         pFuncWayL = &(increasing);
     }
-    else // strWay == L"d"
+    else // strWay == "d"
     {
         pFuncWay  = &(descendent);
         pFuncWayL = &(descendent);
     }
 
-    if (wstrProcess == L"g")
+    if (strProcess == "g")
     {
         iItem = pIn->getSize();
     }
-    else if (wstrProcess == L"c" || wstrProcess == L"lr")
+    else if (strProcess == "c" || strProcess == "lr")
     {
         iTimes   = pIn->getRows();
         iItem    = pIn->getCols();
         iOffset1 = pIn->getRows();
     }
-    else if (wstrProcess == L"r" || wstrProcess == L"lc")
+    else if (strProcess == "r" || strProcess == "lc")
     {
         iTimes   = pIn->getCols();
         iItem    = pIn->getRows();
         iOffset2 = pIn->getRows();
     }
 
-    if (wstrProcess == L"r" || wstrProcess == L"c" || wstrProcess == L"g")
+    if (strProcess == "r" || strProcess == "c" || strProcess == "g")
     {
         if (pDblInd)
         {
@@ -749,20 +749,20 @@ types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring&
         }
         else
         {
-            if (wstrProcess == L"g")
+            if (strProcess == "g")
             {
                 pOut = pIn->clone()->getAs<types::Int8>();
                 char* piOut = pOut->get();
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     std::sort(piOut, piOut + pOut->getSize());
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     std::sort(piOut, piOut + pOut->getSize(), std::greater<char>());
                 }
             }
-            else if (wstrProcess == L"c")
+            else if (strProcess == "c")
             {
                 pOut = new types::Int8(pIn->getCols(), pIn->getRows());
                 char* piOut = pOut->get();
@@ -777,14 +777,14 @@ types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring&
                 }
 
                 // sort output
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -808,19 +808,19 @@ types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring&
 
                 delete pTemp;
             }
-            else //wstrProcess == L"r"
+            else //strProcess == "r"
             {
                 pOut = pIn->clone()->getAs<types::Int8>();
                 char* piOut = pOut->get();
 
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -830,7 +830,7 @@ types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring&
             }
         }
     }
-    else// wstrProcess == L"lr" and wstrProcess == L"lc"
+    else// strProcess == "lr" and strProcess == "lc"
     {
         pOut = new types::Int8(pIn->getDims(), pIn->getDimsArray());
         char* piOut = pOut->get();
@@ -838,7 +838,7 @@ types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring&
         std::vector<std::pair<int, std::pair<char*, char*> > > V;
         std::vector<std::pair<int, std::pair<char*, char*> > >::iterator it;
 
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             // transpose matrix pIn
             types::Int8* pTemp = pIn;
@@ -878,7 +878,7 @@ types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring&
         }
 
         V.clear();
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             delete pIn;
         }
@@ -888,7 +888,7 @@ types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring&
 }
 
 /*--------------------------- Int16 -----------------------------------------*/
-types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
+types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::string& strWay, const std::string& strProcess)
 {
     types::Int16* pOut = NULL;
 
@@ -910,35 +910,35 @@ types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstrin
     bool (*pFuncWayL)(std::pair<int, std::pair<short*, short*> > left,
                       std::pair<int, std::pair<short*, short*> > right);
 
-    if (wstrWay == L"i")
+    if (strWay == "i")
     {
         pFuncWay  = &(increasing);
         pFuncWayL = &(increasing);
     }
-    else // strWay == L"d"
+    else // strWay == "d"
     {
         pFuncWay  = &(descendent);
         pFuncWayL = &(descendent);
     }
 
-    if (wstrProcess == L"g")
+    if (strProcess == "g")
     {
         iItem = pIn->getSize();
     }
-    else if (wstrProcess == L"c" || wstrProcess == L"lr")
+    else if (strProcess == "c" || strProcess == "lr")
     {
         iTimes   = pIn->getRows();
         iItem    = pIn->getCols();
         iOffset1 = pIn->getRows();
     }
-    else if (wstrProcess == L"r" || wstrProcess == L"lc")
+    else if (strProcess == "r" || strProcess == "lc")
     {
         iTimes   = pIn->getCols();
         iItem    = pIn->getRows();
         iOffset2 = pIn->getRows();
     }
 
-    if (wstrProcess == L"r" || wstrProcess == L"c" || wstrProcess == L"g")
+    if (strProcess == "r" || strProcess == "c" || strProcess == "g")
     {
         if (pDblInd)
         {
@@ -970,20 +970,20 @@ types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstrin
         }
         else
         {
-            if (wstrProcess == L"g")
+            if (strProcess == "g")
             {
                 pOut = pIn->clone()->getAs<types::Int16>();
                 short* piOut = pOut->get();
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     std::sort(piOut, piOut + pOut->getSize());
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     std::sort(piOut, piOut + pOut->getSize(), std::greater<short>());
                 }
             }
-            else if (wstrProcess == L"c")
+            else if (strProcess == "c")
             {
                 pOut = new types::Int16(pIn->getCols(), pIn->getRows());
                 short* piOut = pOut->get();
@@ -998,14 +998,14 @@ types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstrin
                 }
 
                 // sort output
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -1029,19 +1029,19 @@ types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstrin
 
                 delete pTemp;
             }
-            else //wstrProcess == L"r"
+            else //strProcess == "r"
             {
                 pOut = pIn->clone()->getAs<types::Int16>();
                 short* piOut = pOut->get();
 
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -1051,7 +1051,7 @@ types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstrin
             }
         }
     }
-    else// wstrProcess == L"lr" and wstrProcess == L"lc"
+    else// strProcess == "lr" and strProcess == "lc"
     {
         pOut = new types::Int16(pIn->getDims(), pIn->getDimsArray());
         short* piOut = pOut->get();
@@ -1059,7 +1059,7 @@ types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstrin
         std::vector<std::pair<int, std::pair<short*, short*> > > V;
         std::vector<std::pair<int, std::pair<short*, short*> > >::iterator it;
 
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             // transpose matrix pIn
             types::Int16* pTemp = pIn;
@@ -1099,7 +1099,7 @@ types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstrin
         }
 
         V.clear();
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             delete pIn;
         }
@@ -1109,7 +1109,7 @@ types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstrin
 }
 
 /*--------------------------- Int32 -----------------------------------------*/
-types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
+types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::string& strWay, const std::string& strProcess)
 {
     types::Int32* pOut = NULL;
 
@@ -1131,35 +1131,35 @@ types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstrin
     bool (*pFuncWayL)(std::pair<int, std::pair<int*, int*> > left,
                       std::pair<int, std::pair<int*, int*> > right);
 
-    if (wstrWay == L"i")
+    if (strWay == "i")
     {
         pFuncWay  = &(increasing);
         pFuncWayL = &(increasing);
     }
-    else // strWay == L"d"
+    else // strWay == "d"
     {
         pFuncWay  = &(descendent);
         pFuncWayL = &(descendent);
     }
 
-    if (wstrProcess == L"g")
+    if (strProcess == "g")
     {
         iItem = pIn->getSize();
     }
-    else if (wstrProcess == L"c" || wstrProcess == L"lr")
+    else if (strProcess == "c" || strProcess == "lr")
     {
         iTimes   = pIn->getRows();
         iItem    = pIn->getCols();
         iOffset1 = pIn->getRows();
     }
-    else if (wstrProcess == L"r" || wstrProcess == L"lc")
+    else if (strProcess == "r" || strProcess == "lc")
     {
         iTimes   = pIn->getCols();
         iItem    = pIn->getRows();
         iOffset2 = pIn->getRows();
     }
 
-    if (wstrProcess == L"r" || wstrProcess == L"c" || wstrProcess == L"g")
+    if (strProcess == "r" || strProcess == "c" || strProcess == "g")
     {
         if (pDblInd)
         {
@@ -1191,20 +1191,20 @@ types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstrin
         }
         else
         {
-            if (wstrProcess == L"g")
+            if (strProcess == "g")
             {
                 pOut = pIn->clone()->getAs<types::Int32>();
                 int* piOut = pOut->get();
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     std::sort(piOut, piOut + pOut->getSize());
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     std::sort(piOut, piOut + pOut->getSize(), std::greater<int>());
                 }
             }
-            else if (wstrProcess == L"c")
+            else if (strProcess == "c")
             {
                 pOut = new types::Int32(pIn->getCols(), pIn->getRows());
                 int* piOut = pOut->get();
@@ -1219,14 +1219,14 @@ types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstrin
                 }
 
                 // sort output
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -1250,19 +1250,19 @@ types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstrin
 
                 delete pTemp;
             }
-            else //wstrProcess == L"r"
+            else //strProcess == "r"
             {
                 pOut = pIn->clone()->getAs<types::Int32>();
                 int* piOut = pOut->get();
 
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -1272,7 +1272,7 @@ types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstrin
             }
         }
     }
-    else// wstrProcess == L"lr" and wstrProcess == L"lc"
+    else// strProcess == "lr" and strProcess == "lc"
     {
         pOut = new types::Int32(pIn->getDims(), pIn->getDimsArray());
         int* piOut = pOut->get();
@@ -1280,7 +1280,7 @@ types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstrin
         std::vector<std::pair<int, std::pair<int*, int*> > > V;
         std::vector<std::pair<int, std::pair<int*, int*> > >::iterator it;
 
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             // transpose matrix pIn
             types::Int32* pTemp = pIn;
@@ -1320,7 +1320,7 @@ types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstrin
         }
 
         V.clear();
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             delete pIn;
         }
@@ -1330,7 +1330,7 @@ types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstrin
 }
 
 /*--------------------------- Int64 -----------------------------------------*/
-types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
+types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::string& strWay, const std::string& strProcess)
 {
     types::Int64* pOut = NULL;
 
@@ -1352,35 +1352,35 @@ types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstrin
     bool (*pFuncWayL)(std::pair<int, std::pair<long long*, long long*> > left,
                       std::pair<int, std::pair<long long*, long long*> > right);
 
-    if (wstrWay == L"i")
+    if (strWay == "i")
     {
         pFuncWay  = &(increasing);
         pFuncWayL = &(increasing);
     }
-    else // strWay == L"d"
+    else // strWay == "d"
     {
         pFuncWay  = &(descendent);
         pFuncWayL = &(descendent);
     }
 
-    if (wstrProcess == L"g")
+    if (strProcess == "g")
     {
         iItem = pIn->getSize();
     }
-    else if (wstrProcess == L"c" || wstrProcess == L"lr")
+    else if (strProcess == "c" || strProcess == "lr")
     {
         iTimes   = pIn->getRows();
         iItem    = pIn->getCols();
         iOffset1 = pIn->getRows();
     }
-    else if (wstrProcess == L"r" || wstrProcess == L"lc")
+    else if (strProcess == "r" || strProcess == "lc")
     {
         iTimes   = pIn->getCols();
         iItem    = pIn->getRows();
         iOffset2 = pIn->getRows();
     }
 
-    if (wstrProcess == L"r" || wstrProcess == L"c" || wstrProcess == L"g")
+    if (strProcess == "r" || strProcess == "c" || strProcess == "g")
     {
         if (pDblInd)
         {
@@ -1412,20 +1412,20 @@ types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstrin
         }
         else
         {
-            if (wstrProcess == L"g")
+            if (strProcess == "g")
             {
                 pOut = pIn->clone()->getAs<types::Int64>();
                 long long* piOut = pOut->get();
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     std::sort(piOut, piOut + pOut->getSize());
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     std::sort(piOut, piOut + pOut->getSize(), std::greater<long long>());
                 }
             }
-            else if (wstrProcess == L"c")
+            else if (strProcess == "c")
             {
                 pOut = new types::Int64(pIn->getCols(), pIn->getRows());
                 long long* piOut = pOut->get();
@@ -1440,14 +1440,14 @@ types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstrin
                 }
 
                 // sort output
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -1471,19 +1471,19 @@ types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstrin
 
                 delete pTemp;
             }
-            else //wstrProcess == L"r"
+            else //strProcess == "r"
             {
                 pOut = pIn->clone()->getAs<types::Int64>();
                 long long* piOut = pOut->get();
 
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -1493,7 +1493,7 @@ types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstrin
             }
         }
     }
-    else// wstrProcess == L"lr" and wstrProcess == L"lc"
+    else// strProcess == "lr" and strProcess == "lc"
     {
         pOut = new types::Int64(pIn->getDims(), pIn->getDimsArray());
         long long* piOut = pOut->get();
@@ -1501,7 +1501,7 @@ types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstrin
         std::vector<std::pair<int, std::pair<long long*, long long*> > > V;
         std::vector<std::pair<int, std::pair<long long*, long long*> > >::iterator it;
 
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             // transpose matrix pIn
             types::Int64* pTemp = pIn;
@@ -1541,7 +1541,7 @@ types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstrin
         }
 
         V.clear();
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             delete pIn;
         }
@@ -1551,7 +1551,7 @@ types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstrin
 }
 
 /*--------------------------- UInt8 -----------------------------------------*/
-types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
+types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::string& strWay, const std::string& strProcess)
 {
     types::UInt8* pOut = NULL;
 
@@ -1573,35 +1573,35 @@ types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstrin
     bool (*pFuncWayL)(std::pair<int, std::pair<unsigned char*, unsigned char*> > left,
                       std::pair<int, std::pair<unsigned char*, unsigned char*> > right);
 
-    if (wstrWay == L"i")
+    if (strWay == "i")
     {
         pFuncWay  = &(increasing);
         pFuncWayL = &(increasing);
     }
-    else // strWay == L"d"
+    else // strWay == "d"
     {
         pFuncWay  = &(descendent);
         pFuncWayL = &(descendent);
     }
 
-    if (wstrProcess == L"g")
+    if (strProcess == "g")
     {
         iItem = pIn->getSize();
     }
-    else if (wstrProcess == L"c" || wstrProcess == L"lr")
+    else if (strProcess == "c" || strProcess == "lr")
     {
         iTimes   = pIn->getRows();
         iItem    = pIn->getCols();
         iOffset1 = pIn->getRows();
     }
-    else if (wstrProcess == L"r" || wstrProcess == L"lc")
+    else if (strProcess == "r" || strProcess == "lc")
     {
         iTimes   = pIn->getCols();
         iItem    = pIn->getRows();
         iOffset2 = pIn->getRows();
     }
 
-    if (wstrProcess == L"r" || wstrProcess == L"c" || wstrProcess == L"g")
+    if (strProcess == "r" || strProcess == "c" || strProcess == "g")
     {
         if (pDblInd)
         {
@@ -1633,20 +1633,20 @@ types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstrin
         }
         else
         {
-            if (wstrProcess == L"g")
+            if (strProcess == "g")
             {
                 pOut = pIn->clone()->getAs<types::UInt8>();
                 unsigned char* piOut = pOut->get();
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     std::sort(piOut, piOut + pOut->getSize());
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     std::sort(piOut, piOut + pOut->getSize(), std::greater<unsigned char>());
                 }
             }
-            else if (wstrProcess == L"c")
+            else if (strProcess == "c")
             {
                 pOut = new types::UInt8(pIn->getCols(), pIn->getRows());
                 unsigned char* piOut = pOut->get();
@@ -1661,14 +1661,14 @@ types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstrin
                 }
 
                 // sort output
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -1692,19 +1692,19 @@ types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstrin
 
                 delete pTemp;
             }
-            else //wstrProcess == L"r"
+            else //strProcess == "r"
             {
                 pOut = pIn->clone()->getAs<types::UInt8>();
                 unsigned char* piOut = pOut->get();
 
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -1714,7 +1714,7 @@ types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstrin
             }
         }
     }
-    else// wstrProcess == L"lr" and wstrProcess == L"lc"
+    else// strProcess == "lr" and strProcess == "lc"
     {
         pOut = new types::UInt8(pIn->getDims(), pIn->getDimsArray());
         unsigned char* piOut = pOut->get();
@@ -1722,7 +1722,7 @@ types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstrin
         std::vector<std::pair<int, std::pair<unsigned char*, unsigned char*> > > V;
         std::vector<std::pair<int, std::pair<unsigned char*, unsigned char*> > >::iterator it;
 
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             // transpose matrix pIn
             types::UInt8* pTemp = pIn;
@@ -1762,7 +1762,7 @@ types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstrin
         }
 
         V.clear();
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             delete pIn;
         }
@@ -1772,7 +1772,7 @@ types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstrin
 }
 
 /*--------------------------- UInt16 -----------------------------------------*/
-types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
+types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::string& strWay, const std::string& strProcess)
 {
     types::UInt16* pOut = NULL;
 
@@ -1794,35 +1794,35 @@ types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstr
     bool (*pFuncWayL)(std::pair<int, std::pair<unsigned short*, unsigned short*> > left,
                       std::pair<int, std::pair<unsigned short*, unsigned short*> > right);
 
-    if (wstrWay == L"i")
+    if (strWay == "i")
     {
         pFuncWay  = &(increasing);
         pFuncWayL = &(increasing);
     }
-    else // strWay == L"d"
+    else // strWay == "d"
     {
         pFuncWay  = &(descendent);
         pFuncWayL = &(descendent);
     }
 
-    if (wstrProcess == L"g")
+    if (strProcess == "g")
     {
         iItem = pIn->getSize();
     }
-    else if (wstrProcess == L"c" || wstrProcess == L"lr")
+    else if (strProcess == "c" || strProcess == "lr")
     {
         iTimes   = pIn->getRows();
         iItem    = pIn->getCols();
         iOffset1 = pIn->getRows();
     }
-    else if (wstrProcess == L"r" || wstrProcess == L"lc")
+    else if (strProcess == "r" || strProcess == "lc")
     {
         iTimes   = pIn->getCols();
         iItem    = pIn->getRows();
         iOffset2 = pIn->getRows();
     }
 
-    if (wstrProcess == L"r" || wstrProcess == L"c" || wstrProcess == L"g")
+    if (strProcess == "r" || strProcess == "c" || strProcess == "g")
     {
         if (pDblInd)
         {
@@ -1854,20 +1854,20 @@ types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstr
         }
         else
         {
-            if (wstrProcess == L"g")
+            if (strProcess == "g")
             {
                 pOut = pIn->clone()->getAs<types::UInt16>();
                 unsigned short* piOut = pOut->get();
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     std::sort(piOut, piOut + pOut->getSize());
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     std::sort(piOut, piOut + pOut->getSize(), std::greater<unsigned short>());
                 }
             }
-            else if (wstrProcess == L"c")
+            else if (strProcess == "c")
             {
                 pOut = new types::UInt16(pIn->getCols(), pIn->getRows());
                 unsigned short* piOut = pOut->get();
@@ -1882,14 +1882,14 @@ types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstr
                 }
 
                 // sort output
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -1913,19 +1913,19 @@ types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstr
 
                 delete pTemp;
             }
-            else //wstrProcess == L"r"
+            else //strProcess == "r"
             {
                 pOut = pIn->clone()->getAs<types::UInt16>();
                 unsigned short* piOut = pOut->get();
 
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -1935,7 +1935,7 @@ types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstr
             }
         }
     }
-    else// wstrProcess == L"lr" and wstrProcess == L"lc"
+    else// strProcess == "lr" and strProcess == "lc"
     {
         pOut = new types::UInt16(pIn->getDims(), pIn->getDimsArray());
         unsigned short* piOut = pOut->get();
@@ -1943,7 +1943,7 @@ types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstr
         std::vector<std::pair<int, std::pair<unsigned short*, unsigned short*> > > V;
         std::vector<std::pair<int, std::pair<unsigned short*, unsigned short*> > >::iterator it;
 
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             // transpose matrix pIn
             types::UInt16* pTemp = pIn;
@@ -1983,7 +1983,7 @@ types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstr
         }
 
         V.clear();
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             delete pIn;
         }
@@ -1993,7 +1993,7 @@ types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstr
 }
 
 /*--------------------------- UInt32 -----------------------------------------*/
-types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
+types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::string& strWay, const std::string& strProcess)
 {
     types::UInt32* pOut = NULL;
 
@@ -2015,35 +2015,35 @@ types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstr
     bool (*pFuncWayL)(std::pair<int, std::pair<unsigned int*, unsigned int*> > left,
                       std::pair<int, std::pair<unsigned int*, unsigned int*> > right);
 
-    if (wstrWay == L"i")
+    if (strWay == "i")
     {
         pFuncWay  = &(increasing);
         pFuncWayL = &(increasing);
     }
-    else // strWay == L"d"
+    else // strWay == "d"
     {
         pFuncWay  = &(descendent);
         pFuncWayL = &(descendent);
     }
 
-    if (wstrProcess == L"g")
+    if (strProcess == "g")
     {
         iItem = pIn->getSize();
     }
-    else if (wstrProcess == L"c" || wstrProcess == L"lr")
+    else if (strProcess == "c" || strProcess == "lr")
     {
         iTimes   = pIn->getRows();
         iItem    = pIn->getCols();
         iOffset1 = pIn->getRows();
     }
-    else if (wstrProcess == L"r" || wstrProcess == L"lc")
+    else if (strProcess == "r" || strProcess == "lc")
     {
         iTimes   = pIn->getCols();
         iItem    = pIn->getRows();
         iOffset2 = pIn->getRows();
     }
 
-    if (wstrProcess == L"r" || wstrProcess == L"c" || wstrProcess == L"g")
+    if (strProcess == "r" || strProcess == "c" || strProcess == "g")
     {
         if (pDblInd)
         {
@@ -2075,20 +2075,20 @@ types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstr
         }
         else
         {
-            if (wstrProcess == L"g")
+            if (strProcess == "g")
             {
                 pOut = pIn->clone()->getAs<types::UInt32>();
                 unsigned int* piOut = pOut->get();
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     std::sort(piOut, piOut + pOut->getSize());
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     std::sort(piOut, piOut + pOut->getSize(), std::greater<unsigned int>());
                 }
             }
-            else if (wstrProcess == L"c")
+            else if (strProcess == "c")
             {
                 pOut = new types::UInt32(pIn->getCols(), pIn->getRows());
                 unsigned int* piOut = pOut->get();
@@ -2103,14 +2103,14 @@ types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstr
                 }
 
                 // sort output
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -2134,19 +2134,19 @@ types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstr
 
                 delete pTemp;
             }
-            else //wstrProcess == L"r"
+            else //strProcess == "r"
             {
                 pOut = pIn->clone()->getAs<types::UInt32>();
                 unsigned int* piOut = pOut->get();
 
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -2156,7 +2156,7 @@ types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstr
             }
         }
     }
-    else// wstrProcess == L"lr" and wstrProcess == L"lc"
+    else// strProcess == "lr" and strProcess == "lc"
     {
         pOut = new types::UInt32(pIn->getDims(), pIn->getDimsArray());
         unsigned int* piOut = pOut->get();
@@ -2164,7 +2164,7 @@ types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstr
         std::vector<std::pair<int, std::pair<unsigned int*, unsigned int*> > > V;
         std::vector<std::pair<int, std::pair<unsigned int*, unsigned int*> > >::iterator it;
 
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             // transpose matrix pIn
             types::UInt32* pTemp = pIn;
@@ -2204,7 +2204,7 @@ types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstr
         }
 
         V.clear();
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             delete pIn;
         }
@@ -2214,7 +2214,7 @@ types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstr
 }
 
 /*--------------------------- UInt64 -----------------------------------------*/
-types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
+types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::string& strWay, const std::string& strProcess)
 {
     types::UInt64* pOut = NULL;
 
@@ -2236,35 +2236,35 @@ types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::wstr
     bool (*pFuncWayL)(std::pair<int, std::pair<unsigned long long*, unsigned long long*> > left,
                       std::pair<int, std::pair<unsigned long long*, unsigned long long*> > right);
 
-    if (wstrWay == L"i")
+    if (strWay == "i")
     {
         pFuncWay  = &(increasing);
         pFuncWayL = &(increasing);
     }
-    else // strWay == L"d"
+    else // strWay == "d"
     {
         pFuncWay  = &(descendent);
         pFuncWayL = &(descendent);
     }
 
-    if (wstrProcess == L"g")
+    if (strProcess == "g")
     {
         iItem = pIn->getSize();
     }
-    else if (wstrProcess == L"c" || wstrProcess == L"lr")
+    else if (strProcess == "c" || strProcess == "lr")
     {
         iTimes   = pIn->getRows();
         iItem    = pIn->getCols();
         iOffset1 = pIn->getRows();
     }
-    else if (wstrProcess == L"r" || wstrProcess == L"lc")
+    else if (strProcess == "r" || strProcess == "lc")
     {
         iTimes   = pIn->getCols();
         iItem    = pIn->getRows();
         iOffset2 = pIn->getRows();
     }
 
-    if (wstrProcess == L"r" || wstrProcess == L"c" || wstrProcess == L"g")
+    if (strProcess == "r" || strProcess == "c" || strProcess == "g")
     {
         if (pDblInd)
         {
@@ -2296,20 +2296,20 @@ types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::wstr
         }
         else
         {
-            if (wstrProcess == L"g")
+            if (strProcess == "g")
             {
                 pOut = pIn->clone()->getAs<types::UInt64>();
                 unsigned long long* piOut = pOut->get();
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     std::sort(piOut, piOut + pOut->getSize());
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     std::sort(piOut, piOut + pOut->getSize(), std::greater<unsigned long long>());
                 }
             }
-            else if (wstrProcess == L"c")
+            else if (strProcess == "c")
             {
                 pOut = new types::UInt64(pIn->getCols(), pIn->getRows());
                 unsigned long long* piOut = pOut->get();
@@ -2324,14 +2324,14 @@ types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::wstr
                 }
 
                 // sort output
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -2355,19 +2355,19 @@ types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::wstr
 
                 delete pTemp;
             }
-            else //wstrProcess == L"r"
+            else //strProcess == "r"
             {
                 pOut = pIn->clone()->getAs<types::UInt64>();
                 unsigned long long* piOut = pOut->get();
 
-                if (wstrWay == L"i")
+                if (strWay == "i")
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
                         std::sort(piOut + (iItem * i), piOut + (iItem * (i + 1)));
                     }
                 }
-                else // strWay == L"d"
+                else // strWay == "d"
                 {
                     for (int i = 0; i < iTimes; i++)
                     {
@@ -2377,7 +2377,7 @@ types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::wstr
             }
         }
     }
-    else// wstrProcess == L"lr" and wstrProcess == L"lc"
+    else// strProcess == "lr" and strProcess == "lc"
     {
         pOut = new types::UInt64(pIn->getDims(), pIn->getDimsArray());
         unsigned long long* piOut = pOut->get();
@@ -2385,7 +2385,7 @@ types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::wstr
         std::vector<std::pair<int, std::pair<unsigned long long*, unsigned long long*> > > V;
         std::vector<std::pair<int, std::pair<unsigned long long*, unsigned long long*> > >::iterator it;
 
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             // transpose matrix pIn
             types::UInt64* pTemp = pIn;
@@ -2425,7 +2425,7 @@ types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::wstr
         }
 
         V.clear();
-        if (wstrProcess == L"lr")
+        if (strProcess == "lr")
         {
             delete pIn;
         }

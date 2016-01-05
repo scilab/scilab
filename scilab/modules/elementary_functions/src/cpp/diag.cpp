@@ -148,7 +148,7 @@ types::InternalType* diag(types::String* pIn,  int iStartPos)
 
         for (int i = 0; i < iSize * iSize; i++)
         {
-            pStrOut->set(i, L"");
+            pStrOut->set(i, "");
         }
 
         for (int i = 0; i < iSizeOfVector; i++)

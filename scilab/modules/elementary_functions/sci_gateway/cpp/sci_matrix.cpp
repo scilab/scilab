@@ -50,8 +50,8 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
             in[0]->isSparse()       == false &&
             in[0]->isSparseBool()   == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_matrix";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_matrix";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     pGTIn = in[0]->getAs<types::GenericType>();
@@ -173,11 +173,10 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    bOk = pGTOut->reshape(piSizes, iDims);
+    pGTOut = pGTOut->reshape(piSizes, iDims);
 
-    if (bOk == false)
+    if (pGTOut == nullptr)
     {
-        pGTOut->killMe();
         Scierror(999, _("%s: Input and output matrices must have the same number of elements.\n"), "matrix");
         return types::Function::Error;
     }

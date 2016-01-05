@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, type
             case 1:
             {
                 //call overload
-                return Overload::generateNameAndCall(L"eye", in, _iRetCount, out);
+                return Overload::generateNameAndCall("eye", in, _iRetCount, out);
             }
         }
 

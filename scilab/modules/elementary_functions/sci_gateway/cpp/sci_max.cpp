@@ -97,10 +97,8 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
 
     if (inputs[0]->isDouble() == false && inputs[0]->isInt() == false)
     {
-        wchar_t* wcsMinMax = to_wide_string(fname);
-        std::wstring wstFuncName = L"%" + inputs[0]->getShortTypeStr() + L"_" + wcsMinMax;
-        FREE(wcsMinMax);
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + inputs[0]->getShortTypeStr() + "_" + fname;
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     types::GenericType* pGT = NULL;
@@ -137,16 +135,16 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
 
     if (inputs.size() == 2 && inputs[1]->isString())
     {
-        std::wstring wcsOrientation = inputs[1]->getAs<types::String>()->get(0);
-        if (wcsOrientation == L"r")
+        std::string orientation = inputs[1]->getAs<types::String>()->get(0);
+        if (orientation == "r")
         {
             iOrientation = 1;
         }
-        else if (wcsOrientation == L"c")
+        else if (orientation == "c")
         {
             iOrientation = 2;
         }
-        else if (wcsOrientation == L"m")
+        else if (orientation == "m")
         {
             // old function was "mtlsel"
             for (int i = 0; i < iDims; i++)
@@ -158,7 +156,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
                 }
             }
         }
-        else if (wcsOrientation == L"*")
+        else if (orientation == "*")
         {
             iOrientation = 0;
         }

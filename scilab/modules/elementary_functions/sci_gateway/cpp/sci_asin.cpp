@@ -48,8 +48,8 @@ types::Function::ReturnValue sci_asin(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_asin";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_asin";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     pDblIn = in[0]->getAs<types::Double>();

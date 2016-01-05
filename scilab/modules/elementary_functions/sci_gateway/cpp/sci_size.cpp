@@ -43,18 +43,18 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
         // Dedicated case for lists.
         case types::InternalType::ScilabMList:
         {
-            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_size";
-            Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_size";
+            Overload::call(stFuncName, in, _iRetCount, out);
             break;
         }
         case types::InternalType::ScilabTList:
         {
             // calls the overload if it exists.
-            std::wstring wstFuncName = L"%"  + in[0]->getTypeStr() + L"_size";
-            types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wstFuncName));
+            std::string stFuncName = "%"  + in[0]->getTypeStr() + "_size";
+            types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(stFuncName));
             if (pIT)
             {
-                return Overload::call(wstFuncName, in, _iRetCount, out);
+                return Overload::call(stFuncName, in, _iRetCount, out);
             }
         }
         case types::InternalType::ScilabList:
@@ -74,8 +74,8 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
         {
             if (in[0]->isGenericType() == false)
             {
-                std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_size";
-                return Overload::call(wstFuncName, in, _iRetCount, out);
+                std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_size";
+                return Overload::call(stFuncName, in, _iRetCount, out);
             }
             int iMode = -1;
 

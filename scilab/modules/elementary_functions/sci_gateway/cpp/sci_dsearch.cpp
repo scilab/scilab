@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
     // input data
     if (in[0]->isDouble() == false || in[1]->isDouble() == false)
     {
-        std::wstring stType;
+        std::string stType;
         //build manually overload name
         if (in[0]->isDouble() == false)
         {
@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
             stType = in[1]->getShortTypeStr();
         }
 
-        return Overload::call(L"%" + stType + L"_dsearch", in, _iRetCount, out);
+        return Overload::call("%" + stType + "_dsearch", in, _iRetCount, out);
     }
 
     pDblIn = in[0]->getAs<types::Double>();
@@ -110,13 +110,13 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        wchar_t* wcsString = in[2]->getAs<types::String>()->get(0);
+        char* str = in[2]->getAs<types::String>()->get(0);
 
-        if (wcscmp(wcsString, L"c") == 0)
+        if (strcmp(str, "c") == 0)
         {
             iTypeSearch = 1;
         }
-        else if (wcscmp(wcsString, L"d") == 0)
+        else if (strcmp(str, "d") == 0)
         {
             iTypeSearch = 0;
         }

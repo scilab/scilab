@@ -39,8 +39,8 @@ types::Function::ReturnValue sci_sqrt(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sqrt";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_sqrt";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     types::Double* input = in[0]->getAs<types::Double>();

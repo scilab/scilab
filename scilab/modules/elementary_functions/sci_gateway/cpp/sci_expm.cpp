@@ -42,15 +42,15 @@ types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_expm";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_expm";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     pDblIn = in[0]->getAs<types::Double>();
 
     if (pDblIn->getDims() > 2)
     {
-        return Overload::call(L"%hm_expm", in, _iRetCount, out);
+        return Overload::call("%hm_expm", in, _iRetCount, out);
     }
 
     if (pDblIn->getSize() == 0)

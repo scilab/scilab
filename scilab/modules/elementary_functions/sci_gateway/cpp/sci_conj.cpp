@@ -56,8 +56,8 @@ types::Function::ReturnValue sci_conj(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_conj";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_conj";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     iSize = pDblOut->getSize();

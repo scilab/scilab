@@ -19,18 +19,22 @@
 #include "string.hxx"
 #include "int.hxx"
 
-types::Double* gsort(types::Double* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
+extern "C"
+{
+#include "dynlib_elementary_functions.h"
+}
 
-types::String* gsort(types::String* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
+ELEMENTARY_FUNCTIONS_IMPEXP types::Double* gsort(types::Double* pIn, types::Double* pInd, const std::string& strWay, const std::string& strProcess);
 
-types::Int8* gsort(types::Int8* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
-types::Int16* gsort(types::Int16* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
-types::Int32* gsort(types::Int32* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
-types::Int64* gsort(types::Int64* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
+ELEMENTARY_FUNCTIONS_IMPEXP types::String* gsort(types::String* pIn, types::Double* pInd, const std::string& strWay, const std::string& strProcess);
 
-types::UInt8* gsort(types::UInt8* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
-types::UInt16* gsort(types::UInt16* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
-types::UInt32* gsort(types::UInt32* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
-types::UInt64* gsort(types::UInt64* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
+ELEMENTARY_FUNCTIONS_IMPEXP types::Int8* gsort(types::Int8* pIn, types::Double* pInd, const std::string& strWay, const std::string& strProcess);
+ELEMENTARY_FUNCTIONS_IMPEXP types::Int16* gsort(types::Int16* pIn, types::Double* pInd, const std::string& strWay, const std::string& strProcess);
+ELEMENTARY_FUNCTIONS_IMPEXP types::Int32* gsort(types::Int32* pIn, types::Double* pInd, const std::string& strWay, const std::string& strProcess);
+ELEMENTARY_FUNCTIONS_IMPEXP types::Int64* gsort(types::Int64* pIn, types::Double* pInd, const std::string& strWay, const std::string& strProcess);
+ELEMENTARY_FUNCTIONS_IMPEXP types::UInt8* gsort(types::UInt8* pIn, types::Double* pInd, const std::string& strWay, const std::string& strProcess);
+ELEMENTARY_FUNCTIONS_IMPEXP types::UInt16* gsort(types::UInt16* pIn, types::Double* pInd, const std::string& strWay, const std::string& strProcess);
+ELEMENTARY_FUNCTIONS_IMPEXP types::UInt32* gsort(types::UInt32* pIn, types::Double* pInd, const std::string& strWay, const std::string& strProcess);
+ELEMENTARY_FUNCTIONS_IMPEXP types::UInt64* gsort(types::UInt64* pIn, types::Double* pInd, const std::string& strWay, const std::string& strProcess);
 
 #endif /* __GSORT_H__ */

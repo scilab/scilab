@@ -211,8 +211,8 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
 
     else
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_int";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_int";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     return types::Function::OK;

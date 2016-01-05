@@ -50,8 +50,8 @@ types::Function::ReturnValue sci_acos(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_acos";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_acos";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     pDblIn = in[0]->getAs<types::Double>();

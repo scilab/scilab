@@ -107,6 +107,7 @@ List* List::append(InternalType *_typedValue)
     _typedValue->IncreaseRef();
     m_plData->push_back(_typedValue);
     m_iSize = static_cast<int>(m_plData->size());
+    return this;
 }
 
 /**

@@ -114,8 +114,8 @@ types::Function::ReturnValue sci_acosh(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_acosh";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_acosh";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     return types::Function::OK;

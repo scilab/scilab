@@ -24,13 +24,13 @@ extern "C"
 #include "basic_functions.h"
 }
 
-const wchar_t g_pwstConfigInfo[] = {L"info"};
-const wchar_t g_pwstConfigSeed[] = {L"seed"};
+const char g_pstConfigInfo[] = "info";
+const char g_pstConfigSeed[] = "seed";
 
-const wchar_t g_pwstTypeUniform[] = {L"uniform"};
-const wchar_t g_pwstTypeNormal[] = {L"normal"};
+const char g_pstTypeUniform[] = "uniform";
+const char g_pstTypeNormal[] = "normal";
 
-int setRandType(wchar_t _wcType);
+int setRandType(char _wcType);
 double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
 
 /*
@@ -64,9 +64,9 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        wchar_t* pwstKey = pS->get(0);
+        char* key = pS->get(0);
 
-        if (pwstKey[0] == g_pwstConfigInfo[0])
+        if (key[0] == g_pstConfigInfo[0])
         {
             //info
             if (iSizeIn > 1)
@@ -77,14 +77,14 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
 
             if (siRandType == 0)
             {
-                out.push_back(new types::String(g_pwstTypeUniform));
+                out.push_back(new types::String(g_pstTypeUniform));
             }
             else
             {
-                out.push_back(new types::String(g_pwstTypeNormal));
+                out.push_back(new types::String(g_pstTypeNormal));
             }
         }
-        else if (pwstKey[0] == g_pwstConfigSeed[0])
+        else if (key[0] == g_pstConfigSeed[0])
         {
             //seed
             if (iSizeIn == 1)
@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            siRandType = setRandType(pwstKey[0]);
+            siRandType = setRandType(key[0]);
         }
     }
     else
@@ -151,7 +151,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
                 case 1:
                 {
                     //call overload
-                    return Overload::generateNameAndCall(L"rand", in, _iRetCount, out);
+                    return Overload::generateNameAndCall("rand", in, _iRetCount, out);
                 }
             }
 
@@ -234,7 +234,7 @@ double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit)
     return dblVal;
 }
 
-int setRandType(wchar_t _wcType)
+int setRandType(char _wcType)
 {
     if (_wcType == L'g' || _wcType == L'n')
     {

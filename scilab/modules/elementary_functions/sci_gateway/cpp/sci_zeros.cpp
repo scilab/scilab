@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, ty
             case 1:
             {
                 //call overload
-                return Overload::generateNameAndCall(L"zeros", in, _iRetCount, out);
+                return Overload::generateNameAndCall("zeros", in, _iRetCount, out);
             }
         }
 

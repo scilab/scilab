@@ -145,8 +145,8 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_imult";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_imult";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     return types::Function::OK;

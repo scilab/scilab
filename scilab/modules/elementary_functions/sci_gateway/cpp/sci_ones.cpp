@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, typ
             case 1:
             {
                 //call overload
-                return Overload::generateNameAndCall(L"ones", in, _iRetCount, out);
+                return Overload::generateNameAndCall("ones", in, _iRetCount, out);
             }
         }
 
