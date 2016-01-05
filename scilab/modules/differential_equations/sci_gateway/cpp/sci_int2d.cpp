@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     int nd          = 0;
 
     // error message catched
-    std::wostringstream os;
+    std::ostringstream os;
     bool bCatch = false;
 
     // *** check the minimal number of input args. ***
@@ -115,7 +115,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 
 
     // function
-    DifferentialEquationFunctions deFunctionsManager(L"int2d");
+    DifferentialEquationFunctions deFunctionsManager("int2d");
     DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
     if (in[2]->isCallable())
@@ -142,9 +142,8 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 
         if (bOK == false)
         {
-            char* pst = wide_string_to_UTF8(pStr->get(0));
+            const char* pst = pStr->get(0);
             Scierror(50, _("%s: Subroutine not found: %s\n"), "int2d", pst);
-            FREE(pst);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -254,8 +253,8 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 
     if (bCatch)
     {
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "int2d", "twodq");
+        char szError[bsiz];
+        os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "int2d", "twodq");
         os << szError;
         throw ast::InternalError(os.str());
     }

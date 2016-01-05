@@ -44,7 +44,7 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
     types::Double* pDblOut = NULL;
 
     // error message catched
-    std::wostringstream os;
+    std::ostringstream os;
     bool bCatch = false;
 
     // *** check the minimal number of input args. ***
@@ -95,7 +95,7 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
     }
 
     // function
-    DifferentialEquationFunctions deFunctionsManager(L"feval");
+    DifferentialEquationFunctions deFunctionsManager("feval");
     DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
     if (in[iPos]->isCallable())
@@ -111,9 +111,8 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 
         if (bOK == false)
         {
-            char* pst = wide_string_to_UTF8(pStr->get(0));
+            const char* pst = pStr->get(0);
             Scierror(50, _("%s: Subroutine not found: %s\n"), "feval", pst);
-            FREE(pst);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -189,8 +188,8 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
                 FREE(res);
                 delete pDblOut;
 
-                wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "feval", "execFevalF");
+                char szError[bsiz];
+                os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "feval", "execFevalF");
                 os << szError;
                 throw ast::InternalError(os.str());
             }

@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 {
     // Methode
     types::String* pStrType     = NULL;
-    const wchar_t* wcsType            = L"lsoda";
+    const char* type            = "lsoda";
     int meth                    = 0;
 
     // y0
@@ -86,7 +86,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     int* jroot = NULL;
 
     // error message catched
-    std::wostringstream os;
+    std::ostringstream os;
     bool bCatch = false;
 
     // *** check the minimal number of input args. ***
@@ -100,37 +100,37 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     if (in[0]->isString())
     {
         pStrType = in[0]->getAs<types::String>();
-        wcsType = pStrType->get(0);
+        type = pStrType->get(0);
         iPos++;
     }
 
     if (iPos)
     {
-        if (wcscmp(wcsType, L"adams") == 0)
+        if (strcmp(type, "adams") == 0)
         {
             meth = 1;
         }
-        else if (wcscmp(wcsType, L"stiff") == 0)
+        else if (strcmp(type, "stiff") == 0)
         {
             meth = 2;
         }
-        else if (wcscmp(wcsType, L"root") == 0)
+        else if (strcmp(type, "root") == 0)
         {
             meth = 3;
         }
-        else if (wcscmp(wcsType, L"discrete") == 0)
+        else if (strcmp(type, "discrete") == 0)
         {
             meth = 4;
         }
-        else if (wcscmp(wcsType, L"rk") == 0)
+        else if (strcmp(type, "rk") == 0)
         {
             meth = 5;
         }
-        else if (wcscmp(wcsType, L"rkf") == 0)
+        else if (strcmp(type, "rkf") == 0)
         {
             meth = 6;
         }
-        else if (wcscmp(wcsType, L"fix") == 0)
+        else if (strcmp(type, "fix") == 0)
         {
             meth = 7;
         }
@@ -269,7 +269,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     }
 
     // get next inputs
-    DifferentialEquationFunctions deFunctionsManager(L"odedc");
+    DifferentialEquationFunctions deFunctionsManager("odedc");
     DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
     deFunctionsManager.setOdedcYDSize((int)pDblNd->get(0));
     deFunctionsManager.setOdeYRows(pDblY0->getRows());
@@ -426,9 +426,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
             if (bOK == false)
             {
-                char* pst = wide_string_to_UTF8(pStr->get(0));
-                Scierror(50, _("%s: Subroutine not found: %s\n"), "odedc", pst);
-                FREE(pst);
+                Scierror(50, _("%s: Subroutine not found: %s\n"), "odedc", pStr->get(0));
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 FREE(pdYData);
                 FREE(YSize);
@@ -489,9 +487,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
                 if (bOK == false)
                 {
-                    char* pst = wide_string_to_UTF8(pStr->get(0));
-                    Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "odedc", iPos + 1, pst);
-                    FREE(pst);
+                    Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "odedc", iPos + 1, pStr->get(0));
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     FREE(pdYData);
                     FREE(YSize);
@@ -648,7 +644,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     int* eh0001i    = &(C2F(eh0001).mesflg);
 
     // get %ODEOPTIONS
-    types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(L"%ODEOPTIONS"));
+    types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol("%ODEOPTIONS"));
     if (pIT != NULL && pIT->isDouble())
     {
         pDblOdeOptions = pIT->getAs<types::Double>();
@@ -1133,8 +1129,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                         FREE(rtol);
                     }
 
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "odedc", "tright");
+                    char szError[bsiz];
+                    os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "odedc", "tright");
                     os << szError;
                     throw ast::InternalError(os.str());
                 }
@@ -1250,8 +1246,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
                     if (bCatch)
                     {
-                        wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "odedc", strMeth.c_str());
+                        char szError[bsiz];
+                        os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "odedc", strMeth.c_str());
                         os << szError;
                         throw ast::InternalError(os.str());
                     }
@@ -1445,8 +1441,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
                 if (bCatch)
                 {
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "odedc", strMeth.c_str());
+                    char szError[bsiz];
+                    os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "odedc", strMeth.c_str());
                     os << szError;
                     throw ast::InternalError(os.str());
                 }
@@ -1499,8 +1495,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                         FREE(rtol);
                     }
 
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "odedc", tright);
+                    char szError[bsiz];
+                    os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "odedc", tright);
                     os << szError;
                     throw ast::InternalError(os.str());
                 }

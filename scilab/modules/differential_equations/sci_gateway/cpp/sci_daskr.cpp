@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     bool bListInfo  = false;
 
     // error message catched
-    std::wostringstream os;
+    std::ostringstream os;
     bool bCatch = false;
 
     // *** check the minimal number of input args. ***
@@ -191,7 +191,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     }
 
     // get next inputs
-    DifferentialEquationFunctions deFunctionsManager(L"daskr");
+    DifferentialEquationFunctions deFunctionsManager("daskr");
     DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
     deFunctionsManager.setOdeYRows(pDblX0->getRows());
@@ -343,7 +343,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
             if (bOK == false)
             {
-                char* pst = wide_string_to_UTF8(pStr->get(0));
+                const char* pst = pStr->get(0);
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "daskr", pst);
                 FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
@@ -413,9 +413,8 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
                 if (bOK == false)
                 {
-                    char* pst = wide_string_to_UTF8(pStr->get(0));
+                    const char* pst = pStr->get(0);
                     Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "daskr", iPos + 1, pst);
-                    FREE(pst);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     FREE(pdYdotData);
                     FREE(pdYData);
@@ -1092,8 +1091,8 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
             if (bCatch)
             {
-                wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "daskr", "ddaskr");
+                char szError[bsiz];
+                os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "daskr", "ddaskr");
                 os << szError;
                 throw ast::InternalError(os.str());
             }

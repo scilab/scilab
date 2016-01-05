@@ -37,7 +37,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 {
     // Methode
     types::String* pStrType     = NULL;
-    const wchar_t * wcsType     = L"lsoda";
+    const char* type            = "lsoda";
     int meth                    = 2;// default methode is stiff
 
     // y0
@@ -76,7 +76,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     int one = 1; // use in dcopy
 
     // error message catched
-    std::wostringstream os;
+    std::ostringstream os;
     bool bCatch = false;
 
     // *** check the minimal number of input args. ***
@@ -97,18 +97,18 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isString())
     {
         pStrType = in[0]->getAs<types::String>();
-        wcsType = pStrType->get(0);
+        type = pStrType->get(0);
         iPos++;
     }
 
     if (iPos)
     {
-        if (wcscmp(wcsType, L"adams") == 0)
+        if (strcmp(type, "adams") == 0)
         {
             meth = 1;
             maxord = 12;
         }
-        else if (wcscmp(wcsType, L"stiff") == 0)
+        else if (strcmp(type, "stiff") == 0)
         {
             meth = 2;
         }
@@ -190,7 +190,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     pDblT = in[iPos]->getAs<types::Double>();
 
     // get next inputs
-    DifferentialEquationFunctions deFunctionsManager(L"impl");
+    DifferentialEquationFunctions deFunctionsManager("impl");
     DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
     YSize = (int*)malloc(sizeOfYSize * sizeof(int));
@@ -319,9 +319,8 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
             if (bOK == false)
             {
-                char* pst = wide_string_to_UTF8(pStr->get(0));
+                const char* pst = pStr->get(0);
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "impl", pst);
-                FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 free(pdYData);
                 free(YSize);
@@ -382,9 +381,8 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
                 if (bOK == false)
                 {
-                    char* pst = wide_string_to_UTF8(pStr->get(0));
+                    const char* pst = pStr->get(0);
                     Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "impl", iPos + 1, pst);
-                    FREE(pst);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     free(pdYData);
                     free(YSize);
@@ -686,8 +684,8 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
             if (bCatch)
             {
-                wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "impl", "lsodi");
+                char szError[bsiz];
+                os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "impl", "lsodi");
                 os << szError;
                 throw ast::InternalError(os.str());
             }

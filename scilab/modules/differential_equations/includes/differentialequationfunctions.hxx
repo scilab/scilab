@@ -98,7 +98,7 @@ class DIFFERENTIAL_EQUATIONS_IMPEXP DifferentialEquationFunctions
 
 public :
 
-    DifferentialEquationFunctions(const std::wstring& callerName);
+    DifferentialEquationFunctions(const std::string& callerName);
     ~DifferentialEquationFunctions();
 
     void setOdeYRows(int);
@@ -195,8 +195,8 @@ public :
 
 private :
 
-    std::map<std::wstring, void*> m_staticFunctionMap;
-    std::wstring m_wstrCaller;
+    std::map<std::string, void*> m_staticFunctionMap;
+    std::string m_strCaller;
 
     int m_odeYRows;
     int m_odeYCols;
