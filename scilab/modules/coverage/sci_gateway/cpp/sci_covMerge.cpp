@@ -36,33 +36,33 @@ types::Function::ReturnValue sci_covMerge(types::typed_list &in, int _iRetCount,
 {
     if (in.size() != 2)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "covMerge" , 2);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "covMerge", 2);
         return types::Function::Error;
     }
 
     if (!in[0]->isString())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "covWrite" , 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "covWrite", 1);
         return types::Function::Error;
     }
 
     if (!in[1]->isString() || in[1]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar string expected.\n"), "covWrite" , 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar string expected.\n"), "covWrite", 2);
         return types::Function::Error;
-    }    
+    }
 
     types::String * strs = in[0]->getAs<types::String>();
     const unsigned int size = strs->getSize();
-    std::vector<std::wstring> paths;
+    std::vector<std::string> paths;
     paths.reserve(size);
-    
+
     for (unsigned int i = 0; i < size; ++i)
     {
-	paths.emplace_back(strs->get(i));
+        paths.emplace_back(strs->get(i));
     }
 
     coverage::CoverModule::merge(paths, in[1]->getAs<types::String>()->get(0));
-    
+
     return types::Function::OK;
 }

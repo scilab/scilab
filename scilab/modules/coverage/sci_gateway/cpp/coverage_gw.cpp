@@ -14,13 +14,13 @@
 #include "function.hxx"
 #include "context.hxx"
 
-#define MODULE_NAME L"coverage"
+#define MODULE_NAME "coverage"
 
 int CoverageModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"covStart", &sci_covStart, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"covWrite", &sci_covWrite, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"covStop", &sci_covStop, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"covMerge", &sci_covMerge, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("covStart", &sci_covStart, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("covWrite", &sci_covWrite, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("covStop", &sci_covStop, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("covMerge", &sci_covMerge, NULL, MODULE_NAME));
     return 1;
 }

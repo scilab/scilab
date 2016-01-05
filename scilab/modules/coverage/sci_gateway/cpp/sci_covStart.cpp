@@ -36,13 +36,13 @@ types::Function::ReturnValue sci_covStart(types::typed_list &in, int _iRetCount,
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "covStart" , 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "covStart", 1);
         return types::Function::Error;
     }
 
     if (!in[0]->isMacro() && !in[0]->isMacroFile() && (!in[0]->isString() || (in[0]->getAs<types::String>()->getCols() != 2 && in[0]->getAs<types::String>()->getCols() != 1)))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A two-columns string matrix expected.\n"), "covStart" , 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A two-columns string matrix expected.\n"), "covStart", 1);
         return types::Function::Error;
     }
 
@@ -52,39 +52,39 @@ types::Function::ReturnValue sci_covStart(types::typed_list &in, int _iRetCount,
         const unsigned int rows = strs->getRows();
 
         if (strs->getSize() == 2)
-	{
-	    std::vector<std::pair<std::wstring, std::wstring>> paths_mods;
-	    paths_mods.reserve(rows);
-	    
-	    for (unsigned int i = 0; i < rows; ++i)
-	    {
-		paths_mods.emplace_back(strs->get(i, 0), strs->get(i, 1));
-	    }
+        {
+            std::vector<std::pair<std::string, std::string>> paths_mods;
+            paths_mods.reserve(rows);
 
-	    coverage::CoverModule::createInstance(paths_mods);
-	}
-	else
-	{
-	    std::vector<std::wstring> mods;
-	    mods.reserve(rows);
-	    
-	    for (unsigned int i = 0; i < rows; ++i)
-	    {
-		mods.emplace_back(strs->get(i, 0));
-	    }
+            for (unsigned int i = 0; i < rows; ++i)
+            {
+                paths_mods.emplace_back(strs->get(i, 0), strs->get(i, 1));
+            }
 
-	    coverage::CoverModule::createInstance(mods);
-	}
+            coverage::CoverModule::createInstance(paths_mods);
+        }
+        else
+        {
+            std::vector<std::string> mods;
+            mods.reserve(rows);
+
+            for (unsigned int i = 0; i < rows; ++i)
+            {
+                mods.emplace_back(strs->get(i, 0));
+            }
+
+            coverage::CoverModule::createInstance(mods);
+        }
     }
     else
     {
         if (in[0]->isMacro())
         {
-            coverage::CoverModule::createInstance()->instrumentSingleMacro(L"", L"", static_cast<types::Macro *>(in[0]), false);
+            coverage::CoverModule::createInstance()->instrumentSingleMacro("", "", static_cast<types::Macro *>(in[0]), false);
         }
         else
         {
-            coverage::CoverModule::createInstance()->instrumentSingleMacro(L"", L"", static_cast<types::MacroFile *>(in[0])->getMacro(), false);
+            coverage::CoverModule::createInstance()->instrumentSingleMacro("", "", static_cast<types::MacroFile *>(in[0])->getMacro(), false);
         }
     }
 

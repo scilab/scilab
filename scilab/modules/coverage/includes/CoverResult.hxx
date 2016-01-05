@@ -152,12 +152,12 @@ public:
 
     inline unsigned int getCovInstrsPercent() const
     {
-        return info.instrsCount ? std::round(100. * (1. - (double)uncoveredInstrs / (double)info.instrsCount)) : 100.;
+        return info.instrsCount ? (unsigned int)(std::round(100. * (1. - (double)uncoveredInstrs / (double)info.instrsCount))) : 100;
     }
 
     inline unsigned int getCovBranchesPercent() const
     {
-        return info.branchesCount ? std::round(100. * (1. - (double)uncoveredBranches / (double)info.branchesCount)) : 100.;
+        return info.branchesCount ? (unsigned int)(std::round(100. * (1. - (double)uncoveredBranches / (double)info.branchesCount))) : 100;
     }
 
     inline uint64_t getUncInstrs() const

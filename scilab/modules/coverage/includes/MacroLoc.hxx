@@ -18,18 +18,18 @@
 namespace coverage
 {
 
-    struct MacroLoc
+struct MacroLoc
+{
+    const std::string name;
+    const Location loc;
+
+    MacroLoc(const std::string & _name, const Location & _loc) : name(_name), loc(_loc) { }
+
+    bool operator<(const MacroLoc & R) const
     {
-	const std::wstring name;
-	const Location loc;
-	
-	MacroLoc(const std::wstring & _name, const Location & _loc) : name(_name), loc(_loc) { }
-	
-	bool operator<(const MacroLoc & R) const
-	    {
-		return (name < R.name) || ((name == R.name) && loc < R.loc);
-	    }
-    };
+        return (name < R.name) || ((name == R.name) && loc < R.loc);
+    }
+};
 
 
 } // namespace coverage

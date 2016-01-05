@@ -17,205 +17,205 @@
 namespace coverage
 {
 
-    void CovHTMLCodePrinter::handleDefault(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleDefault(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabdefault\'>"
+        out << "<span class=\'scilabdefault\'>"
             << replaceByEntities(seq)
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleOperator(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleOperator(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilaboperator\'>"
+        out << "<span class=\'scilaboperator\'>"
             << replaceByEntities(seq)
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleOpenClose(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleOpenClose(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabopenclose\'>"
+        out << "<span class=\'scilabopenclose\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleFunctionKwds(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleFunctionKwds(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        if (seq == L"function" && isInsideKnownFunction())
+        if (seq == "function" && isInsideKnownFunction())
         {
-            const std::wstring did = L"d" + std::to_wstring(fnId);
-            const std::wstring fid = L"f" + std::to_wstring(fnId++);
+            const std::string did = "d" + std::to_string(fnId);
+            const std::string fid = "f" + std::to_string(fnId++);
 
-            out << L"<a class=\'linkStats\' onmouseover=\"show(\'" << did << L"\',\'" << fid << L"\')\" onmouseout=\"hide(\'" << did << L"\')\">"
-                << L"<div id=\'" << did << L"\' class=\'functionStats\'>";
+            out << "<a class=\'linkStats\' onmouseover=\"show(\'" << did << "\',\'" << fid << "\')\" onmouseout=\"hide(\'" << did << "\')\">"
+                << "<div id=\'" << did << "\' class=\'functionStats\'>";
 
             getFunctionStats(out, getCurrentMacro(), getCurrentResult());
 
-            out << L"</div>"
-                << L"<span id=\'" << fid << L"' class=\'scilabfkeyword\'>function</span></a>";
+            out << "</div>"
+                << "<span id=\'" << fid << "' class=\'scilabfkeyword\'>function</span></a>";
         }
         else
         {
-            out << L"<span class=\'scilabfkeyword\'>"
+            out << "<span class=\'scilabfkeyword\'>"
                 << seq
-                << L"</span>";
+                << "</span>";
         }
     }
 
-    void CovHTMLCodePrinter::handleStructureKwds(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleStructureKwds(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabskeyword\'>"
+        out << "<span class=\'scilabskeyword\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleControlKwds(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleControlKwds(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabckeyword\'>"
+        out << "<span class=\'scilabckeyword\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleConstants(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleConstants(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabconstants\'>"
+        out << "<span class=\'scilabconstants\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleCommands(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleCommands(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabcommand\'>"
+        out << "<span class=\'scilabcommand\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleMacros(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleMacros(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabmacro\'>"
+        out << "<span class=\'scilabmacro\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleFunctionName(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleFunctionName(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabfunctionid\'>"
+        out << "<span class=\'scilabfunctionid\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleFunctionNameDec(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleFunctionNameDec(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabfunctionid\'>"
+        out << "<span class=\'scilabfunctionid\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleName(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleName(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
         if (locals.find(seq) != locals.end())
         {
-            out << L"<span class=\'scilabinputoutputargs\'>"
+            out << "<span class=\'scilabinputoutputargs\'>"
                 << seq
-                << L"</span>";
+                << "</span>";
         }
         else
         {
-            out << L"<span class=\'scilabid\'>"
+            out << "<span class=\'scilabid\'>"
                 << seq
-                << L"</span>";
+                << "</span>";
         }
     }
 
-    void CovHTMLCodePrinter::handleInOutArgsDec(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleInOutArgsDec(const std::string& seq)
     {
         locals.emplace(seq);
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabinputoutputargs\'>"
+        out << "<span class=\'scilabinputoutputargs\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleInOutArgs(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleInOutArgs(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabinputoutputargs\'>"
+        out << "<span class=\'scilabinputoutputargs\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleNumber(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleNumber(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabnumber\'>"
+        out << "<span class=\'scilabnumber\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleSpecial(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleSpecial(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabspecial\'>"
+        out << "<span class=\'scilabspecial\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleString(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleString(const std::string& seq)
     {
         addNewLineHeader();
-        out << L"<span class=\'scilabstring\'>";
+        out << "<span class=\'scilabstring\'>";
         for (const auto c : seq)
         {
-            if (c == L'\'')
+            if (c == '\'')
             {
-                out << L"&#0039;&#0039;";
+                out << "&#0039;&#0039;";
                 counter += 2;
             }
-            else if (c == L'\"')
+            else if (c == '\"')
             {
-                out << L"&#0034;&#0034;";
+                out << "&#0034;&#0034;";
                 counter += 2;
             }
             else
             {
-                if (c == L'<')
+                if (c == '<')
                 {
-                    out << L"&#0060;";
+                    out << "&#0060;";
                 }
-                else if (c == L'>')
+                else if (c == '>')
                 {
-                    out << L"&#0062;";
+                    out << "&#0062;";
                 }
-                else if (c == L'&')
+                else if (c == '&')
                 {
-                    out << L"&#0038;";
+                    out << "&#0038;";
                 }
                 else
                 {
@@ -224,32 +224,32 @@ namespace coverage
                 ++counter;
             }
         }
-        out << L"</span>";
+        out << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleNothing(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleNothing(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
         out << replaceByEntities(seq);
     }
 
-    void CovHTMLCodePrinter::handleField(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleField(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabfield\'>"
+        out << "<span class=\'scilabfield\'>"
             << seq
-            << L"</span>";
+            << "</span>";
     }
 
-    void CovHTMLCodePrinter::handleComment(const std::wstring & seq)
+    void CovHTMLCodePrinter::handleComment(const std::string& seq)
     {
         addNewLineHeader();
         count(seq);
-        out << L"<span class=\'scilabcomment\'>"
+        out << "<span class=\'scilabcomment\'>"
             << replaceByEntities(seq)
-            << L"</span>";
+            << "</span>";
     }
 
     void CovHTMLCodePrinter::handleNewLine()
@@ -261,7 +261,7 @@ namespace coverage
             {
                 if (last->isCommentExp())
                 {
-                    out << L"</pre></td><td></td>\n";
+                    out << "</pre></td><td></td>\n";
                 }
                 else
                 {
@@ -269,7 +269,7 @@ namespace coverage
 		    {
 			if (last->isFunctionDec())
 			{
-			    out << L"</pre></td><td style=\'background-color: rgba(83, 232, 37, 1);\' class=\'time\'>" << getCurrentResult().getStringTime() << L"</td>\n";
+			    out << "</pre></td><td style=\'background-color: rgba(83, 232, 37, 1);\' class=\'time\'>" << getCurrentResult().getStringTime() << "</td>\n";
 			}
 			else
 			{
@@ -280,21 +280,21 @@ namespace coverage
 			    R = 255 - (unsigned int)std::round((double)R * ratio);
 			    G = 255 - (unsigned int)std::round((double)G * ratio);
 			    B = 255 - (unsigned int)std::round((double)B * ratio);
-			    const std::wstring color = L"rgba(" + std::to_wstring(R) + L"," + std::to_wstring(G) + L"," + std::to_wstring(B) + L",1);";
+			    const std::string color = "rgba(" + std::to_string(R) + "," + std::to_string(G) + "," + std::to_string(B) + ",1);";
 			    const uint64_t time = getCurrentResult().getNanoTime(last);
 			    if (time)
 			    {
-				out << L"</pre></td><td style=\'background-color: " << color << L"\' class=\'time\'>" << getCurrentResult().getStringTime(time) << L"</td>\n";
+				out << "</pre></td><td style=\'background-color: " << color << "\' class=\'time\'>" << getCurrentResult().getStringTime(time) << "</td>\n";
 			    }
 			    else
 			    {
-				out << L"</pre></td><td></td>\n";
+				out << "</pre></td><td></td>\n";
 			    }
 			}
 		    }
 		    else
 		    {
-			out << L"</pre></td><td></td>\n";
+			out << "</pre></td><td></td>\n";
 		    }
 		}
 
@@ -304,17 +304,17 @@ namespace coverage
                     if (!stats.empty())
                     {
                         const uint64_t total = stats[0] + stats[1];
-                        double thenbr = stats[0];
-                        double elsebr = stats[1];
+                        double thenbr = (double)stats[0];
+                        double elsebr = (double)stats[1];
                         if (total)
                         {
                             thenbr = std::round(100 * thenbr / (double)total);
                             elsebr = 100 - thenbr;
                         }
-                        const std::wstring thencls = stats[0] == 0 ? L"null_stats" : L"stats";
-                        const std::wstring elsecls = stats[1] == 0 ? L"null_stats" : L"stats";
+                        const std::string thencls = stats[0] == 0 ? "null_stats" : "stats";
+                        const std::string elsecls = stats[1] == 0 ? "null_stats" : "stats";
 
-                        out << L"<td class=\'" << thencls << L"\'>" << thenbr << L"%</td><td class=\'" << elsecls << L"\'>" << elsebr << L"%</td>\n</tr>\n";
+                        out << "<td class=\'" << thencls << "\'>" << thenbr << "%</td><td class=\'" << elsecls << "\'>" << elsebr << "%</td>\n</tr>\n";
                         printed = true;
                     }
                 }
@@ -323,21 +323,21 @@ namespace coverage
                     uint64_t count;
                     if (getCurrentResult().getLoopStats(last, count))
                     {
-                        std::wstring loopcls = count == 0 ? L"null_stats" : L"stats";
-                        out << L"<td class=\'" << loopcls << L"\' colspan=\'2\'>&#xD7;" << count << L"</td>\n</tr>\n";
+                        std::string loopcls = count == 0 ? "null_stats" : "stats";
+                        out << "<td class=\'" << loopcls << "\' colspan=\'2\'>&#xD7;" << count << "</td>\n</tr>\n";
                         printed = true;
                     }
                 }
 
                 if (!printed)
                 {
-                    out << L"<td></td><td></td></tr>\n";
+                    out << "<td></td><td></td></tr>\n";
                     printed = true;
                 }
             }
             if (!printed)
             {
-                out << L"</pre></td><td></td><td></td><td></td></tr>\n";
+                out << "</pre></td><td></td><td></td><td></td></tr>\n";
             }
             out.flush();
         }
@@ -355,7 +355,7 @@ namespace coverage
         }
         if (e->isFunctionDec())
         {
-            const std::wstring & name = static_cast<const ast::FunctionDec *>(e)->getSymbol().getName();
+            const std::string& name = static_cast<const ast::FunctionDec *>(e)->getSymbol().getName();
 	    const Location & loc = static_cast<const ast::FunctionDec *>(e)->getBody().getLocation();
 	    MacroLoc ml(name, loc);
             auto i = results.find(ml);
@@ -383,42 +383,42 @@ namespace coverage
         if (isNewLine)
         {
             const std::size_t indent = getIndentSize();
-            out << L"<tr class=\'";
+            out << "<tr class=\'";
             if (current && isInsideKnownFunction())
             {
                 if (current->isCommentExp())
                 {
-                    out << L"none";
+                    out << "none";
                 }
                 else if (current->isFunctionDec())
                 {
-                    out << (getCurrentResult().getCounter() ? L"cover" : L"uncover");
+                    out << (getCurrentResult().getCounter() ? "cover" : "uncover");
                 }
 		else if (current->isCaseExp())
                 {
-		    out << (getCurrentResult().isCovered(static_cast<const ast::CaseExp *>(current)->getTest()) ? L"cover" : L"uncover");
+		    out << (getCurrentResult().isCovered(static_cast<const ast::CaseExp *>(current)->getTest()) ? "cover" : "uncover");
 		}
                 else
                 {
-                    out << (getCurrentResult().isCovered(current) ? L"cover" : L"uncover");
+                    out << (getCurrentResult().isCovered(current) ? "cover" : "uncover");
                 }
             }
             else
             {
-                out << L"none";
+                out << "none";
             }
             ++lineCount;
-            out <<  L"\' id=\'L" << lineCount << L"\'>\n"
-                << L"<td class=\'num\'><a href=\'#L" << lineCount << L"\'>" << lineCount << L"</a></td>\n"
-                << L"<td class=\'src\'><pre>" << std::wstring(indent, L' ');
+            out <<  "\' id=\'L" << lineCount << "\'>\n"
+                << "<td class=\'num\'><a href=\'#L" << lineCount << "\'>" << lineCount << "</a></td>\n"
+                << "<td class=\'src\'><pre>" << std::string(indent, ' ');
 
-            counter = indent;
+            counter = (unsigned int)indent;
             isNewLine = false;
         }
         current = nullptr;
     }
 
-    void CovHTMLCodePrinter::getFunctionStats(std::wostringstream & out, const MacroLoc & ml, const CoverResult & result)
+    void CovHTMLCodePrinter::getFunctionStats(std::ostringstream & out, const MacroLoc & ml, const CoverResult & result)
     {
         const CoverMacroInfo & info = result.getInfo();
         const std::size_t instrs = info.instrsCount;
@@ -426,78 +426,78 @@ namespace coverage
         const std::size_t branches = info.branchesCount;
         const unsigned int percentBranches = result.getCovBranchesPercent();
 
-        out << L"<table class=\'functionInfo\'>"
-            << L"<tr><td colspan=\'5\'>Macro <span class=\'scilabfunctionid\'>" << ml.name << L"</span>:</td></tr>"
-            << L"<tr><td>&nbsp;&mdash;&nbsp;called:</td><td>" << result.getCounter() << L" time" << tools::getPlural(result.getCounter()) << L"</td><td>&nbsp;&mdash;&nbsp;spent time:</td><td>" << result.getStringTime() << L"</td></tr>"
-            << L"<tr><td>&nbsp;&mdash;&nbsp;instrs:</td><td>" << instrs << L"</td><td>&nbsp;&mdash;&nbsp;covered:</td><td>" << percentInstrs << L"%</td><td>";
+        out << "<table class=\'functionInfo\'>"
+            << "<tr><td colspan=\'5\'>Macro <span class=\'scilabfunctionid\'>" << ml.name << "</span>:</td></tr>"
+            << "<tr><td>&nbsp;&mdash;&nbsp;called:</td><td>" << result.getCounter() << " time" << tools::getPlural(result.getCounter()) << "</td><td>&nbsp;&mdash;&nbsp;spent time:</td><td>" << result.getStringTime() << "</td></tr>"
+            << "<tr><td>&nbsp;&mdash;&nbsp;instrs:</td><td>" << instrs << "</td><td>&nbsp;&mdash;&nbsp;covered:</td><td>" << percentInstrs << "%</td><td>";
 
         getDivPercent(out, percentInstrs);
 
-        out << L"</td></tr>"
-            << L"<tr><td>&nbsp;&mdash;&nbsp;branches:</td><td>" << branches << L"</td><td>&nbsp;&mdash;&nbsp;covered:</td><td>" << percentBranches << L"%</td><td>";
+        out << "</td></tr>"
+            << "<tr><td>&nbsp;&mdash;&nbsp;branches:</td><td>" << branches << "</td><td>&nbsp;&mdash;&nbsp;covered:</td><td>" << percentBranches << "%</td><td>";
 
         getDivPercent(out, percentBranches);
 
-        out << L"</td></tr>"
-            << L"</table>";
+        out << "</td></tr>"
+            << "</table>";
     }
 
-    void CovHTMLCodePrinter::getDivPercent(std::wostringstream & out, const unsigned int percent)
+    void CovHTMLCodePrinter::getDivPercent(std::ostringstream & out, const unsigned int percent)
     {
         if (percent == 0)
         {
-            out << L"<div class=\'fullPercent\'><div class=\'filledPercent2\' style=\'width:" << (100 - percent) << L"%;\'></div></div>";
+            out << "<div class=\'fullPercent\'><div class=\'filledPercent2\' style=\'width:" << (100 - percent) << "%;\'></div></div>";
         }
         else if (percent == 100)
         {
-            out << L"<div class=\'fullPercent\'><div class=\'filledPercent1\' style=\'width:" << percent << L"%;\'></div></div>";
+            out << "<div class=\'fullPercent\'><div class=\'filledPercent1\' style=\'width:" << percent << "%;\'></div></div>";
         }
         else
         {
-            out << L"<div class=\'fullPercent\'><div class=\'filledPercent1\' style=\'width:" << percent << L"%;\'></div><div class=\'filledPercent2\' style=\'width:" << (100 - percent) << L"%;\'></div></div>";
+            out << "<div class=\'fullPercent\'><div class=\'filledPercent1\' style=\'width:" << percent << "%;\'></div><div class=\'filledPercent2\' style=\'width:" << (100 - percent) << "%;\'></div></div>";
         }
     }
 
-    std::wstring CovHTMLCodePrinter::getOrderButton(const unsigned int tableid, const unsigned int id, const unsigned int col, const bool enabled)
+    std::string CovHTMLCodePrinter::getOrderButton(const unsigned int tableid, const unsigned int id, const unsigned int col, const bool enabled)
     {
-        std::wostringstream wos;
-        const std::wstring str = enabled ?  L"buttonOrderEnable" : L"buttonOrderDisable";
-        wos << L"<span class=\'groupButton\'>"
-            << L"<a id=\'but_1_" << id << L"\' class=\'" << str << L"\' onclick=\"order(\'table" << tableid << L"\'," << col << L",true,\'but_1_" << id << L"\')\">&#x25B4;</a>"
-            << L"<a id=\'but_2_" << id << L"\' class=\'buttonOrderDisable\' onclick=\"order(\'table" << tableid << "\'," << col << L",false,\'but_2_" << id << L"\')\">&#x25BE;</a>"
-            << L"</span>";
+        std::ostringstream wos;
+        const std::string str = enabled ?  "buttonOrderEnable" : "buttonOrderDisable";
+        wos << "<span class=\'groupButton\'>"
+            << "<a id=\'but_1_" << id << "\' class=\'" << str << "\' onclick=\"order(\'table" << tableid << "\'," << col << ",true,\'but_1_" << id << "\')\">&#x25B4;</a>"
+            << "<a id=\'but_2_" << id << "\' class=\'buttonOrderDisable\' onclick=\"order(\'table" << tableid << "\'," << col << ",false,\'but_2_" << id << "\')\">&#x25BE;</a>"
+            << "</span>";
 
         return wos.str();
     }
 
-    std::wstring CovHTMLCodePrinter::replaceByEntities(const std::wstring & seq)
+    std::string CovHTMLCodePrinter::replaceByEntities(const std::string& seq)
     {
-        std::vector<wchar_t> buf;
+        std::vector<char> buf;
         // if seq contains 100 chars and there are 8 special chars
         // then it will contain after the loop 148 chars.
         // So we should avoid the buf resizment.
-        buf.reserve(1.5 * seq.length());
+        buf.reserve((size_t)(1.5 * seq.length()));
         for (auto c : seq)
         {
-            if (c == L'<')
+            if (c == '<')
             {
-                pushEntity(buf, L"&#0060;", 7);
+                pushEntity(buf, "&#0060;", 7);
             }
-            else if (c == L'>')
+            else if (c == '>')
             {
-                pushEntity(buf, L"&#0062;", 7);
+                pushEntity(buf, "&#0062;", 7);
             }
-            else if (c == L'\'')
+            else if (c == '\'')
             {
-                pushEntity(buf, L"&#0039;", 7);
+                pushEntity(buf, "&#0039;", 7);
             }
-            else if (c == L'\"')
+            else if (c == '\"')
             {
-                pushEntity(buf, L"&#0034;", 7);
+                pushEntity(buf, "&#0034;", 7);
             }
-            else if (c == L'&')
+            else if (c == '&')
             {
-                pushEntity(buf, L"&#0038;", 7);
+                pushEntity(buf, "&#0038;", 7);
             }
             else
             {
@@ -505,6 +505,6 @@ namespace coverage
             }
         }
 
-        return std::wstring(buf.begin(), buf.end());
+        return std::string(buf.begin(), buf.end());
     }
 }

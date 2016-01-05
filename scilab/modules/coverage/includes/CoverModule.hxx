@@ -42,33 +42,33 @@ class COVERAGE_IMPEXP CoverModule
     std::unordered_map<types::Macro *, CoverMacroInfo> macros;
 
     // { moduleName => functions }
-    std::unordered_multimap<std::wstring, types::Callable *> functions;
+    std::unordered_multimap<std::string, types::Callable *> functions;
 
     // { moduleName => { macroFilename => { macroName => CoverResult } } }
-    std::unordered_map<std::wstring, std::unordered_map<std::wstring, std::map<MacroLoc, CoverResult>>> results;
+    std::unordered_map<std::string, std::unordered_map<std::string, std::map<MacroLoc, CoverResult>>> results;
     // { moduleName => { funname => <ismacro, counter> } }
-    std::unordered_map<std::wstring, std::unordered_map<std::wstring, std::pair<bool, uint64_t>>> allCounters;
+    std::unordered_map<std::string, std::unordered_map<std::string, std::pair<bool, uint64_t>>> allCounters;
 
     InstrumentVisitor visitor;
 
     static CoverModule * instance;
 
-    CoverModule(const std::vector<std::pair<std::wstring, std::wstring>> & paths_mods);
-    CoverModule(const std::vector<std::wstring> & moduleNames);
+    CoverModule(const std::vector<std::pair<std::string, std::string>> & paths_mods);
+    CoverModule(const std::vector<std::string> & moduleNames);
     CoverModule();
 
     ~CoverModule();
 
 public:
 
-    inline static CoverModule * createInstance(const std::vector<std::pair<std::wstring, std::wstring>> & paths_mods)
+    inline static CoverModule * createInstance(const std::vector<std::pair<std::string, std::string>> & paths_mods)
     {
         delete instance;
         instance = new CoverModule(paths_mods);
         return instance;
     }
 
-    inline static CoverModule * createInstance(const std::vector<std::wstring> & moduleNames)
+    inline static CoverModule * createInstance(const std::vector<std::string> & moduleNames)
     {
         delete instance;
         instance = new CoverModule(moduleNames);
@@ -98,15 +98,15 @@ public:
     void invoke(const uint64_t id);
     void print();
     void collect();
-    void toHTML(const std::wstring & outputDir);
+    void toHTML(const std::string & outputDir);
     void toBin(std::fstream & out) const;
-    void save(const std::wstring & path) const;
-    void load(const std::wstring & path);
+    void save(const std::string & path) const;
+    void load(const std::string & path);
 
     void fromBin(std::fstream & in);
     static void fromBin(CoverModule & cm, std::fstream & in);
-    static void merge(const std::vector<std::wstring> & paths, const std::wstring & out);
-    static void toHTML(const std::wstring & inBin, const std::wstring & outDir);
+    static void merge(const std::vector<std::string> & paths, const std::string & out);
+    static void toHTML(const std::string & inBin, const std::string & outDir);
 
     inline bool isCovered(types::Callable * f) const
     {
@@ -158,7 +158,7 @@ public:
 
     inline static void write(std::fstream & out, const std::string & str)
     {
-        uint32_t n = str.size();
+        uint32_t n = (uint32_t)str.size();
         out.write((char *)&n, sizeof(uint32_t));
         out.write(str.c_str(), sizeof(char) * n);
     }
@@ -233,29 +233,29 @@ public:
     }
 
 
-    void instrumentSingleMacro(const std::wstring & module, const std::wstring & path, types::Macro * macro, bool instrumentInners);
+    void instrumentSingleMacro(const std::string & module, const std::string & path, types::Macro * macro, bool instrumentInners);
 
 private:
 
-    void getMacros(const std::vector<std::pair<std::wstring, std::wstring>> & paths_mods);
-    void getMacros(const std::wstring & path, const std::wstring & module);
-    void getMacrosFromDir(const std::wstring & path, const std::wstring & module);
-    void getBuiltins(const std::vector<std::pair<std::wstring, std::wstring>> & paths_mods);
-    void instrumentMacro(const std::wstring & module, const std::wstring & path, types::Macro * macro);
+    void getMacros(const std::vector<std::pair<std::string, std::string>> & paths_mods);
+    void getMacros(const std::string & path, const std::string & module);
+    void getMacrosFromDir(const std::string & path, const std::string & module);
+    void getBuiltins(const std::vector<std::pair<std::string, std::string>> & paths_mods);
+    void instrumentMacro(const std::string & module, const std::string & path, types::Macro * macro);
 
-    static bool getStringFromXPath(char * filePath, const char * xpquery, std::unordered_set<std::wstring> & set);
-    static void copyDataFiles(const std::wstring & outputDir);
-    static void copyFile(const std::wstring & inDir, const std::wstring & outDir, const std::wstring & filename);
-    static void writeFile(const std::wostringstream & out, const std::wstring & outputDir, const std::wstring & filename);
-    static ast::Exp * getTree(const std::wstring & path);
-    static const std::wstring getName(const std::wstring & path);
-    static void writeMacroHTMLReport(ast::Exp * tree, const std::wstring & filename, const std::wstring & path, const std::wstring & moduleName, std::map<MacroLoc, CoverResult> & results, const std::wstring & outputDir);
-    static bool writeMacroHTMLReport(const std::wstring & path, const std::wstring & moduleName, std::map<MacroLoc, CoverResult> & results, const std::wstring & outputDir);
-    static void writeMacroHTMLReport(types::Macro * macro, std::map<MacroLoc, CoverResult> & results, const std::wstring & outputDir);
-    static std::wstring encodeFilename(const std::wstring & name);
-    static const std::vector<std::pair<std::wstring, std::wstring>> getModule(const std::vector<std::wstring> & moduleNames);
+    static bool getStringFromXPath(const char * filePath, const char * xpquery, std::unordered_set<std::string> & set);
+    static void copyDataFiles(const std::string & outputDir);
+    static void copyFile(const std::string & inDir, const std::string & outDir, const std::string & filename);
+    static void writeFile(const std::ostringstream & out, const std::string & outputDir, const std::string & filename);
+    static ast::Exp * getTree(const std::string & path);
+    static const std::string getName(const std::string & path);
+    static void writeMacroHTMLReport(ast::Exp * tree, const std::string & filename, const std::string & path, const std::string & moduleName, std::map<MacroLoc, CoverResult> & results, const std::string & outputDir);
+    static bool writeMacroHTMLReport(const std::string & path, const std::string & moduleName, std::map<MacroLoc, CoverResult> & results, const std::string & outputDir);
+    static void writeMacroHTMLReport(types::Macro * macro, std::map<MacroLoc, CoverResult> & results, const std::string & outputDir);
+    static std::string encodeFilename(const std::string & name);
+    static const std::vector<std::pair<std::string, std::string>> getModule(const std::vector<std::string> & moduleNames);
 
-    typedef std::tuple<const CoverResult *, const std::wstring *, const std::wstring *, const Location *> __Res1;
+    typedef std::tuple<const CoverResult *, const std::string *, const std::string *, const Location *> __Res1;
     struct __Compare1
     {
         inline bool operator()(const __Res1 & l, const __Res1 & r) const
@@ -263,9 +263,9 @@ private:
             return std::get<0>(l)->counter < std::get<0>(r)->counter || (std::get<0>(l)->counter == std::get<0>(r)->counter && (std::get<2>(l) < std::get<2>(r) || (std::get<2>(l) == std::get<2>(r) && std::get<3>(l) < std::get<3>(r))));
         }
     };
-    std::set<__Res1, __Compare1> getOrderedResults(const std::wstring & moduleName) const;
+    std::set<__Res1, __Compare1> getOrderedResults(const std::string & moduleName) const;
 
-    typedef std::pair<const std::wstring *, uint64_t> __Res2;
+    typedef std::pair<const std::string *, uint64_t> __Res2;
     struct __Compare2
     {
         inline bool operator()(const __Res2 & l, const __Res2 & r) const
@@ -273,9 +273,9 @@ private:
             return l.second < r.second || (l.second == r.second && *l.first < *r.first);
         }
     };
-    std::set<__Res2, __Compare2> getBuiltinStats(const std::wstring & moduleName) const;
+    std::set<__Res2, __Compare2> getBuiltinStats(const std::string & moduleName) const;
 
-    std::vector<std::pair<types::Callable *, uint64_t>> getFunctionCalls(const std::wstring & moduleName, const bool builtin) const;
+    std::vector<std::pair<types::Callable *, uint64_t>> getFunctionCalls(const std::string & moduleName, const bool builtin) const;
 
 };
 

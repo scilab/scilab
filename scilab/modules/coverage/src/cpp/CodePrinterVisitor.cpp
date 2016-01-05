@@ -21,7 +21,7 @@ void CodePrinterVisitor::visit(const ast::MatrixExp & e)
     printer.handleOpenClose(SCI_OPEN_MATRIX);
 
     const bool mustReturn = e.getLocation().first_line != e.getLocation().last_line;
-    const int shift = mustReturn ? (printer.getLineCharCount() - printer.getIndentSize()) : 0;
+    const int shift = mustReturn ? (int)(printer.getLineCharCount() - printer.getIndentSize()) : 0;
     const ast::exps_t & lines = e.getLines();
     if (lines.size())
     {
@@ -50,7 +50,7 @@ void CodePrinterVisitor::visit(const ast::MatrixExp & e)
                         printer.handleExpStart(&e);
                         if (shift > 0)
                         {
-                            printer.handleNothing(std::wstring(shift, L' '));
+                            printer.handleNothing(std::string(shift, L' '));
                         }
                     }
                 }
@@ -72,7 +72,7 @@ void CodePrinterVisitor::visit(const ast::CellExp & e)
     printer.handleOpenClose(SCI_OPEN_CELL);
 
     const bool mustReturn = e.getLocation().first_line != e.getLocation().last_line;
-    const unsigned int shift = mustReturn ? (printer.getLineCharCount() - printer.getIndentSize()) : 0;
+    const unsigned int shift = mustReturn ? (unsigned int)(printer.getLineCharCount() - printer.getIndentSize()) : 0;
     const ast::exps_t & lines = e.getLines();
     if (lines.size())
     {
@@ -98,7 +98,7 @@ void CodePrinterVisitor::visit(const ast::CellExp & e)
                     if (mustReturn)
                     {
                         printer.handleNewLine();
-                        printer.handleNothing(std::wstring(shift, L' '));
+                        printer.handleNothing(std::string(shift, L' '));
                     }
                 }
             }
@@ -120,7 +120,7 @@ void CodePrinterVisitor::visit(const ast::StringExp & e)
 void CodePrinterVisitor::visit(const ast::CommentExp & e)
 {
     printer.handleExpStart(&e);
-    printer.handleComment(L"// " + e.getComment());
+    printer.handleComment("// " + e.getComment());
     printer.handleExpEnd(&e);
 }
 
@@ -130,11 +130,11 @@ void CodePrinterVisitor::visit(const ast::DoubleExp & e)
     const double x = e.getValue();
     if (analysis::tools::isAnInt(x))
     {
-        printer.handleNumber(x >= 0 ? std::to_wstring((uint64_t)x) : std::to_wstring((int64_t)x));
+        printer.handleNumber(x >= 0 ? std::to_string((uint64_t)x) : std::to_string((int64_t)x));
     }
     else
     {
-        printer.handleNumber(std::to_wstring(e.getValue()));
+        printer.handleNumber(std::to_string(e.getValue()));
     }
     printer.handleExpEnd(&e);
 }
@@ -171,8 +171,8 @@ void CodePrinterVisitor::visit(const ast::SimpleVar & e)
                 break;
             default:
             {
-                const std::wstring & name = sym.getName();
-                if (name == L"%t" || name == L"%T" || name == L"%f" || name == L"%F" || name == L"%e" || name == L"%pi" || name == L"%inf" || name == L"%i" || name == L"%z" || name == L"%s" || name == L"%nan" || name == L"%eps" || name == L"SCI" || name == L"WSCI" || name == L"SCIHOME" || name == L"TMPDIR")
+                const std::string & name = sym.getName();
+                if (name == "%t" || name == "%T" || name == "%f" || name == "%F" || name == "%e" || name == "%pi" || name == "%inf" || name == "%i" || name == "%z" || name == "%s" || name == "%nan" || name == "%eps" || name == "SCI" || name == "WSCI" || name == "SCIHOME" || name == "TMPDIR")
                 {
                     printer.handleConstants(name);
                 }
@@ -219,7 +219,7 @@ void CodePrinterVisitor::visit(const ast::ArrayListVar & e)
             if (i != last)
             {
                 printer.handleDefault(SCI_COMMA);
-                printer.handleNothing(L" ");
+                printer.handleNothing(" ");
             }
         }
     }
@@ -250,7 +250,7 @@ void CodePrinterVisitor::visit(const ast::OpExp & e)
         {
             e.getLeft().accept(*this);
         }
-        printer.handleNothing(L" ");
+        printer.handleNothing(" ");
     }
 
     switch (e.getOper())
@@ -328,7 +328,7 @@ void CodePrinterVisitor::visit(const ast::OpExp & e)
 
     if (e.getOper() != ast::OpExp::unaryMinus)
     {
-        printer.handleNothing(L" ");
+        printer.handleNothing(" ");
     }
 
     if (e.getRight().isOpExp() || e.getRight().isLogicalOpExp())
@@ -357,7 +357,7 @@ void CodePrinterVisitor::visit(const ast::LogicalOpExp & e)
     {
         e.getLeft().accept(*this);
     }
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
 
     switch (e.getOper())
     {
@@ -377,7 +377,7 @@ void CodePrinterVisitor::visit(const ast::LogicalOpExp & e)
             break;
     }
 
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     if (e.getRight().isOpExp() || e.getRight().isLogicalOpExp())
     {
         printer.handleOpenClose(SCI_LPAREN);
@@ -395,9 +395,9 @@ void CodePrinterVisitor::visit(const ast::AssignExp & e)
 {
     printer.handleExpStart(&e);
     e.getLeftExp().accept(*this);
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     printer.handleOperator(SCI_ASSIGN);
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     e.getRightExp().accept(*this);
     printer.handleExpEnd(&e);
 }
@@ -417,7 +417,7 @@ void CodePrinterVisitor::visit(const ast::CellCallExp & e)
             if (i != last)
             {
                 printer.handleDefault(SCI_COMMA);
-                printer.handleNothing(L" ");
+                printer.handleNothing(" ");
             }
         }
     }
@@ -440,7 +440,7 @@ void CodePrinterVisitor::visit(const ast::CallExp & e)
             if (i != last)
             {
                 printer.handleDefault(SCI_COMMA);
-                printer.handleNothing(L" ");
+                printer.handleNothing(" ");
             }
         }
     }
@@ -452,11 +452,11 @@ void CodePrinterVisitor::visit(const ast::IfExp & e)
 {
     printer.handleExpStart(&e);
     printer.handleStructureKwds(SCI_IF);
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     //printer.handleOpenClose(SCI_OPEN_TEST);
     e.getTest().accept(*this);
     //printer.handleOpenClose(SCI_CLOSE_TEST);
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     printer.handleStructureKwds(SCI_THEN);
 
     printer.incIndent();
@@ -506,7 +506,7 @@ void CodePrinterVisitor::visit(const ast::WhileExp & e)
 {
     printer.handleExpStart(&e);
     printer.handleStructureKwds(SCI_WHILE);
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     //printer.handleOpenClose(SCI_OPEN_TEST);
     e.getTest().accept(*this);
     //printer.handleOpenClose(SCI_CLOSE_TEST);
@@ -525,9 +525,9 @@ void CodePrinterVisitor::visit(const ast::ForExp & e)
 {
     printer.handleExpStart(&e);
     printer.handleStructureKwds(SCI_FOR);
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     e.getVardec().accept(*this);
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     printer.handleStructureKwds(SCI_DO);
 
     printer.incIndent();
@@ -561,7 +561,7 @@ void CodePrinterVisitor::visit(const ast::ReturnExp & e)
 
     if (!e.isGlobal())
     {
-        printer.handleNothing(L" ");
+        printer.handleNothing(" ");
         e.getExp().accept(*this);
     }
     printer.handleExpEnd(&e);
@@ -571,7 +571,7 @@ void CodePrinterVisitor::visit(const ast::SelectExp & e)
 {
     printer.handleExpStart(&e);
     printer.handleStructureKwds(SCI_SELECT);
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     printer.handleOpenClose(SCI_OPEN_TEST);
     e.getSelect()->accept(*this);
     printer.handleOpenClose(SCI_CLOSE_TEST);
@@ -605,7 +605,7 @@ void CodePrinterVisitor::visit(const ast::CaseExp & e)
 {
     printer.handleExpStart(&e);
     printer.handleStructureKwds(SCI_CASE);
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     e.getTest()->accept(*this);
 
     printer.incIndent();
@@ -628,7 +628,7 @@ void CodePrinterVisitor::visit(const ast::SeqExp & e)
             (*i)->accept(*this);
             if (!(*i)->isCommentExp() && !(*i)->isIfExp() && !(*i)->isForExp() && !(*i)->isWhileExp() && !(*i)->isTryCatchExp() && !(*i)->isFunctionDec())
             {
-                printer.handleNothing(L";");
+                printer.handleNothing(";");
             }
 
             if (i != last)
@@ -655,7 +655,7 @@ void CodePrinterVisitor::visit(const ast::ArrayListExp & e)
             if (i != last)
             {
                 printer.handleDefault(SCI_COMMA);
-                printer.handleNothing(L" ");
+                printer.handleNothing(" ");
             }
         }
     }
@@ -678,7 +678,7 @@ void CodePrinterVisitor::visit(const ast::AssignListExp & e)
             if (i != last)
             {
                 printer.handleDefault(SCI_COMMA);
-                printer.handleNothing(L" ");
+                printer.handleNothing(" ");
             }
         }
     }
@@ -733,9 +733,9 @@ void CodePrinterVisitor::visit(const ast::VarDec & e)
 {
     printer.handleExpStart(&e);
     printer.handleName(e.getSymbol().getName());
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     printer.handleOperator(SCI_ASSIGN);
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     e.getInit().accept(*this);
     printer.handleExpEnd(&e);
 }
@@ -744,7 +744,7 @@ void CodePrinterVisitor::visit(const ast::FunctionDec & e)
 {
     printer.handleExpStart(&e);
     printer.handleFunctionKwds(SCI_FUNCTION);
-    printer.handleNothing(L" ");
+    printer.handleNothing(" ");
     const ast::ArrayListVar & ret = e.getReturns();
     const ast::ArrayListVar & args = e.getArgs();
 
@@ -761,9 +761,9 @@ void CodePrinterVisitor::visit(const ast::FunctionDec & e)
 
     if (ret.getVars().size() != 0)
     {
-        printer.handleNothing(L" ");
+        printer.handleNothing(" ");
         printer.handleOperator(SCI_ASSIGN);
-        printer.handleNothing(L" ");
+        printer.handleNothing(" ");
     }
 
     printer.handleFunctionNameDec(e.getSymbol().getName());

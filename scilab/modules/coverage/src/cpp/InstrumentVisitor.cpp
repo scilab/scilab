@@ -117,7 +117,7 @@ void InstrumentVisitor::visit(ast::FunctionDec & e)
             pRetList->push_back(ret->getAs<ast::SimpleVar>()->getStack());
         }
 
-        pMacro = new types::Macro(e.getSymbol().getName(), *pVarList, *pRetList, static_cast<ast::SeqExp &>(e.getBody()), L"script");
+        pMacro = new types::Macro(e.getSymbol().getName(), *pVarList, *pRetList, static_cast<ast::SeqExp &>(e.getBody()), "script");
         pMacro->setLines(e.getLocation().first_line, e.getLocation().last_line);
         //pMacro->setFirstLine(e.getLocation().first_line);
         e.setMacro(pMacro);

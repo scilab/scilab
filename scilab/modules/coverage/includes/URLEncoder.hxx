@@ -19,76 +19,75 @@
 
 namespace coverage
 {
-
-    class URLEncoder
+class URLEncoder
+{
+    struct __Pair
     {
-        struct __Pair
+        const char c;
+        const std::string rep;
+
+        __Pair(const char _c, const std::string _rep) : c(_c), rep(_rep) { }
+        __Pair(const char _c) : c(_c) { }
+
+        inline bool operator<(const __Pair & R) const
         {
-            const wchar_t c;
-            const std::wstring rep;
-
-            __Pair(const wchar_t _c, const std::wstring _rep) : c(_c), rep(_rep) { }
-            __Pair(const wchar_t _c) : c(_c) { }
-
-            inline bool operator<(const __Pair & R) const
-                {
-                    return c < R.c;
-                }
-        };
-        static std::set<__Pair> pairs;
-
-    public:
-
-        inline static void replace(std::wostringstream & out, const wchar_t c)
-            {
-                auto i = pairs.find(__Pair(c));
-                if (i == pairs.end())
-                {
-                    out << c;
-                }
-                else
-                {
-                    out << i->rep;
-                }
-            }
-
-    private:
-
-        inline static std::set<__Pair> init()
-            {
-                std::set<__Pair> pairs;
-                pairs.emplace(L'%', L"%25");
-                pairs.emplace(L'!', L"%21");
-                pairs.emplace(L'\"', L"%22");
-                pairs.emplace(L'#', L"%23");
-                pairs.emplace(L'$', L"%24");
-                pairs.emplace(L'&', L"%26");
-                pairs.emplace(L'\'', L"%27");
-                pairs.emplace(L'(', L"%28");
-                pairs.emplace(L')', L"%29");
-                pairs.emplace(L'*', L"%2A");
-                pairs.emplace(L'+', L"%2B");
-                pairs.emplace(L',', L"%2C");
-                pairs.emplace(L'/', L"%2F");
-                pairs.emplace(L':', L"%3A");
-                pairs.emplace(L';', L"%3B");
-                pairs.emplace(L'=', L"%3D");
-                pairs.emplace(L'?', L"%3F");
-                pairs.emplace(L'@', L"%40");
-                pairs.emplace(L'[', L"%5B");
-                pairs.emplace(L']', L"%5D");
-                pairs.emplace(L' ', L"%20");
-                pairs.emplace(L'-', L"%2D");
-                pairs.emplace(L'<', L"%3C");
-                pairs.emplace(L'>', L"%3E");
-                pairs.emplace(L'{', L"%7B");
-                pairs.emplace(L'}', L"%7D");
-                pairs.emplace(L'_', L"%5F");
-                pairs.emplace(L'~', L"%7E");
-
-                return pairs;
-            }
+            return c < R.c;
+        }
     };
+    static std::set<__Pair> pairs;
+
+public:
+
+    inline static void replace(std::ostringstream & out, const char c)
+    {
+        auto i = pairs.find(__Pair(c));
+        if (i == pairs.end())
+        {
+            out << c;
+        }
+        else
+        {
+            out << i->rep;
+        }
+    }
+
+private:
+
+    inline static std::set<__Pair> init()
+    {
+        std::set<__Pair> pairs;
+        pairs.emplace('%', "%25");
+        pairs.emplace('!', "%21");
+        pairs.emplace('\"', "%22");
+        pairs.emplace('#', "%23");
+        pairs.emplace('$', "%24");
+        pairs.emplace('&', "%26");
+        pairs.emplace('\'', "%27");
+        pairs.emplace('(', "%28");
+        pairs.emplace(')', "%29");
+        pairs.emplace('*', "%2A");
+        pairs.emplace('+', "%2B");
+        pairs.emplace(',', "%2C");
+        pairs.emplace('/', "%2F");
+        pairs.emplace(':', "%3A");
+        pairs.emplace(';', "%3B");
+        pairs.emplace('=', "%3D");
+        pairs.emplace('?', "%3F");
+        pairs.emplace('@', "%40");
+        pairs.emplace('[', "%5B");
+        pairs.emplace(']', "%5D");
+        pairs.emplace(' ', "%20");
+        pairs.emplace('-', "%2D");
+        pairs.emplace('<', "%3C");
+        pairs.emplace('>', "%3E");
+        pairs.emplace('{', "%7B");
+        pairs.emplace('}', "%7D");
+        pairs.emplace('_', "%5F");
+        pairs.emplace('~', "%7E");
+
+        return pairs;
+    }
+};
 
 } // namespace coverage
 
