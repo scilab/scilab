@@ -31,7 +31,7 @@ extern "C"
 #include "localization.h"
 }
 
-types::InternalType* createString(std::list<std::wstring>& lst);
+types::InternalType* createString(std::list<std::string>& lst);
 void addIn(ast::MacrovarVisitor& pVisit, std::list<symbol::Variable*>* pSym);
 void addOut(ast::MacrovarVisitor& pVisit, std::list<symbol::Variable*>* pSym);
 
@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_macrovar(types::typed_list &in, int _iRetCount,
 }
 
 
-types::InternalType* createString(std::list<std::wstring>& lst)
+types::InternalType* createString(std::list<std::string>& lst)
 {
     if (lst.size() == 0)
     {
@@ -97,7 +97,7 @@ types::InternalType* createString(std::list<std::wstring>& lst)
     }
 
     types::String* pS = new types::String((int)lst.size(), 1);
-    std::list<std::wstring>::iterator it = lst.begin();
+    std::list<std::string>::iterator it = lst.begin();
     for (int i = 0 ; it != lst.end() ; it++, i++)
     {
         pS->set(i, (*it).c_str());

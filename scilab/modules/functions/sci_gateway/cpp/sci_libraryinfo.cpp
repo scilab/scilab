@@ -56,15 +56,13 @@ types::Function::ReturnValue sci_libraryinfo(types::typed_list &in, int _iRetCou
     types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(pS->get(0)));
     if (pIT == nullptr || pIT->isLibrary() == false)
     {
-        char* libname = wide_string_to_UTF8(pS->get()[0]);
-        Scierror(999, _("%s: Invalid library %s.\n"), "libraryinfo", libname);
-        FREE(libname);
+        Scierror(999, _("%s: Invalid library %s.\n"), "libraryinfo", pS->get()[0]);
         return types::Function::Error;
     }
 
     types::Library* lib = pIT->getAs<types::Library>();
 
-    std::list<std::wstring> names;
+    std::list<std::string> names;
     int size = lib->getMacrosName(names);
     types::String* pNames = new types::String(size, 1);
     int i = 0;

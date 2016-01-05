@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_librarieslist(types::typed_list &in, int _iRetC
         return types::Function::Error;
     }
 
-    std::list<std::wstring> lst;
+    std::list<std::string> lst;
     int size = symbol::Context::getInstance()->getLibrariesList(lst);
 
     types::String* pOut = new types::String(size, 1);

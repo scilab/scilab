@@ -26,7 +26,7 @@ types::Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    std::wstring pstLibName;
+    std::string pstLibName;
     if (in.size() == 1)
     {
         types::InternalType* pIT = in[0];
@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount,
     }
     else
     {
-        pstLibName = L"";
+        pstLibName = "";
     }
 
     std::list<symbol::Symbol> funcList;

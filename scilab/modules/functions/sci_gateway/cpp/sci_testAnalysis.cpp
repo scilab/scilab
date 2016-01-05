@@ -72,27 +72,27 @@ types::Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCo
 
     analysis::TIType & t = analysis.getResult().getType();
     types::Struct * pOut = new types::Struct(1, 1);
-    pOut->addField(L"type");
-    pOut->get(0)->set(L"type", new types::String(analysis::TIType::toString(t.type).c_str()));
+    pOut->addField("type");
+    pOut->get(0)->set("type", new types::String(analysis::TIType::toString(t.type).c_str()));
 
-    pOut->addField(L"rows");
+    pOut->addField("rows");
     if (t.rows.isConstant())
     {
-        pOut->get(0)->set(L"rows", new types::Double(t.rows.getConstant()));
+        pOut->get(0)->set("rows", new types::Double(t.rows.getConstant()));
     }
     else
     {
-        pOut->get(0)->set(L"rows", new types::Double(analysis::tools::NaN()));
+        pOut->get(0)->set("rows", new types::Double(analysis::tools::NaN()));
     }
 
-    pOut->addField(L"cols");
+    pOut->addField("cols");
     if (t.cols.isConstant())
     {
-        pOut->get(0)->set(L"cols", new types::Double(t.cols.getConstant()));
+        pOut->get(0)->set("cols", new types::Double(t.cols.getConstant()));
     }
     else
     {
-        pOut->get(0)->set(L"cols", new types::Double(analysis::tools::NaN()));
+        pOut->get(0)->set("cols", new types::Double(analysis::tools::NaN()));
     }
     out.push_back(pOut);
 

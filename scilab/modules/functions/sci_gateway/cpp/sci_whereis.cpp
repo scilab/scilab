@@ -48,7 +48,7 @@ types::Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        std::list<std::wstring> lst;
+        std::list<std::string> lst;
         int size = symbol::Context::getInstance()->getWhereIs(lst, pS->get(0));
         if (lst.empty())
         {
@@ -58,7 +58,7 @@ types::Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, 
 
         types::String* pOut = new types::String(size, 1);
         int i = 0;
-        for (std::wstring l : lst)
+        for (std::string l : lst)
         {
             pOut->set(i++, l.c_str());
         }

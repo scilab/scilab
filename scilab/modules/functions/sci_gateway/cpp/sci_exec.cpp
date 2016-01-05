@@ -49,7 +49,7 @@ void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _b
 std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer);
 std::string getExpression(const std::string& _stFile, ast::Exp* _pExp);
 
-void closeFile(std::ifstream* file, int fileId, const std::wstring& wstFile, ast::Exp* pExp)
+void closeFile(std::ifstream* file, int fileId, const std::string& stFile, ast::Exp* pExp)
 {
     if (file)
     {
@@ -62,7 +62,7 @@ void closeFile(std::ifstream* file, int fileId, const std::wstring& wstFile, ast
         }
 
         // Check if file has not already been closed (for ex mclose('all') in function)
-        if (FileManager::isOpened(wstFile))
+        if (FileManager::isOpened(stFile))
         {
             mclose(fileId);
         }
@@ -80,12 +80,10 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     types::Macro* pMacro = NULL;
     Parser parser;
 
-    wchar_t* pwstFile = NULL;
     char* pstFile = NULL;
 
-    std::string stFile;
     std::ifstream* file = NULL;
-    std::wstring wstFile;
+    std::string stFile;
 
     if (ConfigVariable::getStartProcessing() == false)
     {
@@ -113,7 +111,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         {
             //errcatch
             types::String* pS = in[1]->getAs<types::String>();
-            if (os_wcsicmp(pS->get(0), L"errcatch") == 0)
+            if (stricmp(pS->get(0), "errcatch") == 0)
             {
                 bErrCatch = true;
             }
@@ -162,36 +160,35 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         int iParsePathLen = 0;
         types::String* pS = in[0]->getAs<types::String>();
 
-        pwstFile = expandPathVariableW(pS->get(0));
-        pstFile = wide_string_to_UTF8(pwstFile);
+        pstFile = expandPathVariable(pS->get(0));
         stFile = pstFile;
         file = new std::ifstream(pstFile);
 
         FREE(pstFile);
 
-        wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-        get_full_pathW(pwstTemp, pwstFile, PATH_MAX * 2);
-        wstFile = pwstTemp;
+        char* pstTemp = (char*)MALLOC(sizeof(char) * (PATH_MAX * 2));
+        get_full_path(pstTemp, pstFile, PATH_MAX * 2);
+        stFile = pstTemp;
 
-        FREE(pwstFile);
+        FREE(pstFile);
         /*fake call to mopen to show file within file()*/
-        if (mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
+        if (mopen(pstTemp, "r", 0, &iID) != MOPEN_NO_ERROR)
         {
-            closeFile(file, iID, wstFile, pExp);
-            FREE(pwstTemp);
+            closeFile(file, iID, stFile, pExp);
+            FREE(pstTemp);
             Scierror(999, _("%s: Cannot open file %s.\n"), "exec", stFile.data());
             return types::Function::Error;
         }
 
         // update where to set the name of the executed file.
-        ConfigVariable::setFileNameToLastWhere(wstFile.data());
+        ConfigVariable::setFileNameToLastWhere(stFile.data());
 
         ThreadManagement::LockParser();
-        parser.parseFile(pwstTemp, L"exec");
-        FREE(pwstTemp);
+        parser.parseFile(pstTemp, "exec");
+        FREE(pstTemp);
         if (parser.getExitStatus() !=  Parser::Succeded)
         {
-            closeFile(file, iID, wstFile, pExp);
+            closeFile(file, iID, stFile, pExp);
             if (bErrCatch)
             {
                 out.push_back(new types::Double(999));
@@ -204,9 +201,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 return types::Function::OK;
             }
 
-            char* pst = wide_string_to_UTF8(parser.getErrorMessage());
-            Scierror(999, "%s", pst);
-            FREE(pst);
+            Scierror(999, "%s", parser.getErrorMessage());
 
             delete parser.getTree();
             ThreadManagement::UnlockParser();
@@ -218,7 +213,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             ast::Exp* temp = parser.getTree();
             if (ConfigVariable::getTimed())
             {
-                pExp = callTyper(temp, L"exec");
+                pExp = callTyper(temp, "exec");
             }
             else
             {
@@ -243,9 +238,8 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             //1st argument is a macro name, parse and execute it in the current environnement
             if (in[0]->getAs<types::MacroFile>()->parse() == false)
             {
-                char* pstMacro = wide_string_to_UTF8(in[0]->getAs<types::MacroFile>()->getName().c_str());
+                const char* pstMacro = in[0]->getAs<types::MacroFile>()->getName().c_str();
                 Scierror(999, _("%s: Unable to parse macro '%s'"), "exec", pstMacro);
-                FREE(pstMacro);
                 return types::Function::Error;
             }
             pMacro = in[0]->getAs<types::MacroFile>()->getMacro();
@@ -258,8 +252,8 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         // unable for macro with varargin or varargout
         auto inputs = pMacro->getInputs();
         auto outputs = pMacro->getOutputs();
-        if ((inputs->size() != 0 && inputs->back()->getSymbol().getName() == L"varargin") ||
-                outputs->size() != 0 && outputs->back()->getSymbol().getName() == L"varargout")
+        if ((inputs->size() != 0 && inputs->back()->getSymbol().getName() == "varargin") ||
+                outputs->size() != 0 && outputs->back()->getSymbol().getName() == "varargout")
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A macro without varargin and varargout expected.\n"), "exec", 1);
             return types::Function::Error;
@@ -321,21 +315,21 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 }
 
                 //print msg about recursion limit and trigger an error
-                wchar_t sz[1024];
-                os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
+                char sz[1024];
+                os_sprintf(sz, _("Recursion limit reached (%d).\n"), ConfigVariable::getRecursionLimit());
                 throw ast::InternalError(sz);
             }
         }
         catch (const ast::InternalAbort& ia)
         {
-            closeFile(file, iID, wstFile, pExp);
+            closeFile(file, iID, stFile, pExp);
             throw ia;
         }
         catch (const ast::InternalError& ie)
         {
             if (bErrCatch == false)
             {
-                closeFile(file, iID, wstFile, pExp);
+                closeFile(file, iID, stFile, pExp);
                 ConfigVariable::setPromptMode(oldVal);
                 ConfigVariable::setExecutedFileID(0);
                 throw ie;
@@ -425,14 +419,14 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                     }
 
                     //print msg about recursion limit and trigger an error
-                    wchar_t sz[1024];
-                    os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
+                    char sz[1024];
+                    os_sprintf(sz, _("Recursion limit reached (%d).\n"), ConfigVariable::getRecursionLimit());
                     throw ast::InternalError(sz);
                 }
             }
             catch (const ast::InternalAbort& ia)
             {
-                closeFile(file, iID, wstFile, pExp);
+                closeFile(file, iID, stFile, pExp);
 
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
@@ -466,7 +460,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 iErr = ConfigVariable::getLastErrorNumber();
                 if (bErrCatch == false)
                 {
-                    closeFile(file, iID, wstFile, pExp);
+                    closeFile(file, iID, stFile, pExp);
 
                     //restore previous prompt mode
                     ConfigVariable::setPromptMode(oldVal);
@@ -503,7 +497,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         ConfigVariable::setLastErrorCall();
     }
 
-    closeFile(file, iID, wstFile, pExp);
+    closeFile(file, iID, stFile, pExp);
     return types::Function::OK;
 }
 

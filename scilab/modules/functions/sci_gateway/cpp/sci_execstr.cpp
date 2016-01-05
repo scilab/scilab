@@ -33,8 +33,8 @@ extern "C"
 #include "os_string.h"
 }
 
-#define MUTE_FLAG       L"n"
-#define NO_MUTE_FLAG    L"m"
+#define MUTE_FLAG       "n"
+#define NO_MUTE_FLAG    "m"
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -42,9 +42,9 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
     int iErr            = 0;
     bool bErrCatch		= false;
     bool bMute          = false;
-    wchar_t* pstMsg     = NULL;
+    char* pstMsg        = NULL;
     ast::Exp* pExp      = NULL;
-    wchar_t *pstCommand = NULL;
+    char *pstCommand = NULL;
     Parser parser;
 
     if (in.size() < 1 || in.size() > 3)
@@ -64,7 +64,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
         }
 
         types::String* pS = in[1]->getAs<types::String>();
-        if (os_wcsicmp(pS->get(0), L"errcatch") == 0)
+        if (stricmp(pS->get(0), "errcatch") == 0)
         {
             bErrCatch = true;
         }
@@ -86,11 +86,11 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        if (os_wcsicmp(in[2]->getAs<types::String>()->get(0), MUTE_FLAG) == 0)
+        if (stricmp(in[2]->getAs<types::String>()->get(0), MUTE_FLAG) == 0)
         {
             bMute = true;
         }
-        else if (os_wcsicmp(in[2]->getAs<types::String>()->get(0), NO_MUTE_FLAG) == 0)
+        else if (stricmp(in[2]->getAs<types::String>()->get(0), NO_MUTE_FLAG) == 0)
         {
             bMute = false;
         }
@@ -119,16 +119,16 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
     int iTotalLen = pS->getSize(); //add \n after each string
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
-        iTotalLen += (int)wcslen(pS->get(i));
+        iTotalLen += (int)strlen(pS->get(i));
     }
 
-    pstCommand = (wchar_t*)MALLOC(sizeof(wchar_t) * (iTotalLen + 1));//+1 for null termination
+    pstCommand = (char*)MALLOC(sizeof(char) * (iTotalLen + 1));//+1 for null termination
 
     for (int i = 0, iPos = 0 ; i < pS->getSize() ; i++)
     {
-        wcscpy(pstCommand + iPos, pS->get(i));
-        iPos = (int)wcslen(pstCommand);
-        pstCommand[iPos++] = L'\n';
+        strcpy(pstCommand + iPos, pS->get(i));
+        iPos = (int)strlen(pstCommand);
+        pstCommand[iPos++] = '\n';
         pstCommand[iPos] = 0;
     }
 
@@ -154,9 +154,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
         }
         else
         {
-            char* pst = wide_string_to_UTF8(parser.getErrorMessage());
-            Scierror(999, "%s", pst);
-            FREE(pst);
+            Scierror(999, "%s", parser.getErrorMessage());
             ThreadManagement::UnlockParser();
             ConfigVariable::macroFirstLine_end();
             return types::Function::OK;
@@ -168,7 +166,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
         ast::Exp* temp = parser.getTree();
         if (ConfigVariable::getTimed())
         {
-            pExp = callTyper(temp, L"execstr");
+            pExp = callTyper(temp, "execstr");
         }
         else
         {
@@ -228,8 +226,8 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
             }
 
             //print msg about recursion limit and trigger an error
-            wchar_t sz[1024];
-            os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
+            char sz[1024];
+            os_sprintf(sz, _("Recursion limit reached (%d).\n"), ConfigVariable::getRecursionLimit());
             throw ast::InternalError(sz);
         }
     }
@@ -245,7 +243,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
 
         if (bMute == false)
         {
-            scilabForcedWriteW(ie.GetErrorMessage().c_str());
+            scilabForcedWrite(ie.GetErrorMessage().c_str());
         }
 
         ConfigVariable::resetWhereError();

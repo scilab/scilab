@@ -53,9 +53,7 @@ types::Function::ReturnValue sci_testGVN(types::typed_list &in, int _iRetCount, 
     parser.parse(in[0]->getAs<types::String>()->get(0));
     if (parser.getExitStatus() != Parser::Succeded)
     {
-        char* pst = wide_string_to_UTF8(parser.getErrorMessage());
-        Scierror(999, "%s", pst);
-        FREE(pst);
+        Scierror(999, "%s", parser.getErrorMessage());
         return types::Function::Error;
     }
 
@@ -71,7 +69,7 @@ types::Function::ReturnValue sci_testGVN(types::typed_list &in, int _iRetCount, 
     gvn.print_info();
 
     types::Struct * pOut = new types::Struct(1, 1);
-    std::map<std::wstring, uint64_t> maps = gvn.getSymMap();
+    std::map<std::string, uint64_t> maps = gvn.getSymMap();
     for (const auto & p : maps)
     {
         pOut->addField(p.first);
