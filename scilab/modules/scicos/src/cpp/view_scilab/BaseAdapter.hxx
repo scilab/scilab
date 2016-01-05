@@ -247,7 +247,7 @@ public:
      * property comparison
      */
 
-    types::Bool* equal(types::UserType*& ut)
+    types::Bool* equal(types::UserType*& ut) override final
     {
         const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(ut->getShortTypeStr());
         // Check that 'ut' is an Adapter of the same type as *this
@@ -298,7 +298,7 @@ public:
     virtual std::wstring getShortTypeStr() = 0;
 
 private:
-    virtual UserType* clone() final
+    virtual UserType* clone() override final
     {
         return new Adaptor(*static_cast<Adaptor*>(this));
     }
@@ -307,12 +307,12 @@ private:
      * Implement a specific types::User
      */
 
-    bool isAssignable()
+    bool isAssignable() override final
     {
         return true;
     }
 
-    bool extract(const std::wstring & name, types::InternalType *& out)
+    bool extract(const std::wstring & name, types::InternalType *& out) override final
     {
         typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
         if (found != property<Adaptor>::fields.end() && !(name < found->name))
@@ -338,7 +338,7 @@ private:
         return false;
     }
 
-    types::InternalType* extract(types::typed_list* _pArgs)
+    types::InternalType* extract(types::typed_list* _pArgs) override final
     {
         if (_pArgs->size() == 0)
         {
@@ -387,7 +387,7 @@ private:
         return NULL;
     }
 
-    types::UserType* insert(types::typed_list* _pArgs, types::InternalType* _pSource)
+    types::UserType* insert(types::typed_list* _pArgs, types::InternalType* _pSource) override final
     {
         for (size_t i = 0; i < _pArgs->size(); i++)
         {
@@ -415,18 +415,18 @@ private:
         return NULL;
     }
 
-    void whoAmI(void)
+    void whoAmI(void) override
     {
         std::cout << "scicos object";
     }
 
-    bool hasToString()
+    bool hasToString() override final
     {
         // Do not allow scilab to call toString of this class
         return false;
     }
 
-    bool toString(std::wostringstream& ostr)
+    bool toString(std::wostringstream& ostr) override final
     {
         // Deprecated, use the overload instead
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
@@ -440,12 +440,12 @@ private:
         return true;
     }
 
-    bool isInvokable() const
+    bool isInvokable() const override final
     {
         return true;
     }
 
-    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, const ast::Exp & e) override
+    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, const ast::Exp & e) override final
     {
         if (in.size() == 0)
         {
