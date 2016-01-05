@@ -13,7 +13,7 @@
 #include "data_structures_gw.hxx"
 #include "context.hxx"
 
-#define MODULE_NAME L"data_structures"
+#define MODULE_NAME "data_structures"
 
 extern "C"
 {
@@ -23,9 +23,9 @@ extern "C"
 
 int DataStructuresModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getfield", &sci_getfield, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"setfield", &sci_setfield, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"rlist", &sci_rlist, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"definedfields", &sci_definedfields, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("getfield", &sci_getfield, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("setfield", &sci_setfield, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("rlist", &sci_rlist, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("definedfields", &sci_definedfields, MODULE_NAME));
     return 1;
 }

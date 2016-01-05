@@ -77,13 +77,13 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
         types::TList* pT = pL->getAs<types::TList>();
         types::String* pS = pIndex->getAs<types::String>();
 
-        std::list<std::wstring> stFields;
+        std::list<std::string> stFields;
 
         //check output arguments count
         for (int i = 0 ; i < pS->getSize() ; i++)
         {
-            std::wstring wst = pS->get(i);
-            if (pT->exists(wst) == false)
+            std::string st(pS->get(i));
+            if (pT->exists(st) == false)
             {
                 Scierror(999, _("%s: Invalid index.\n"), "getfield");
                 return types::Function::Error;
@@ -171,8 +171,8 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
                 break;
                 case types::InternalType::ScilabType::ScilabString:
                 {
-                    std::wstring wField(pIndex->getAs<types::String>()->get(i));
-                    iIndex = pL->getAs<types::TList>()->getIndexFromString(wField);
+                    std::string field(pIndex->getAs<types::String>()->get(i));
+                    iIndex = pL->getAs<types::TList>()->getIndexFromString(field);
                     // The type (the first field) is not counted
                     iIndex++;
                 }
@@ -207,14 +207,14 @@ static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, in
     if (pIndex->isString())
     {
         types::String* pFields = pIndex->getAs<types::String>();
-        std::vector<std::wstring> wstFields;
+        std::vector<std::string> stFields;
 
         for (int i = 0 ; i < pFields->getSize() ; i++)
         {
-            wstFields.push_back(pFields->get(i));
+            stFields.push_back(pFields->get(i));
         }
 
-        vectResult = pSt->extractFields(wstFields);
+        vectResult = pSt->extractFields(stFields);
     }
     else
     {
@@ -268,7 +268,7 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
         types::String* propertiesStr = properties->getAs<types::String>();
 
         // Checking the index validity
-        int index = pIndex->get(0);
+        int index = (int)pIndex->get(0);
         if (floor(index) != index)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "getfield", 1);

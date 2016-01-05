@@ -39,8 +39,8 @@ types::Function::ReturnValue sci_rlist(types::typed_list &in, int _iRetCount, ty
     }
 
     types::TList* pTLOut = new types::TList();
-    const wchar_t * wcsFields[4] = {L"r", L"num", L"den", L"dt"};
-    types::String* pStr = new types::String(1, 4, wcsFields);
+    const char* fields[4] = {"r", "num", "den", "dt"};
+    types::String* pStr = new types::String(1, 4, fields);
     pTLOut->set(0, pStr);
 
     for(int i = 0; i < in.size(); i++)
