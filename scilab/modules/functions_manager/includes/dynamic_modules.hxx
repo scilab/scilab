@@ -20,13 +20,13 @@ struct GatewayStr
 {
     GatewayStr()
     {
-        wstName = L"";
-        wstFunction = L"";
+        stName = "";
+        stFunction = "";
         iType = types::Function::EntryPointOldC;
     }
 
-    std::wstring wstName;
-    std::wstring wstFunction;
+    std::string stName;
+    std::string stFunction;
     types::Function::FunctionType iType;
 };
 
@@ -47,7 +47,7 @@ public :
 class ScinotesModule : public GenericModule
 {
     static bool loadedDep;
-    static int LoadDeps(const std::wstring& _functionName);
+    static int LoadDeps(const std::string& _functionName);
 public :
     static int Load();
 };
@@ -73,7 +73,7 @@ public :
 class HelptoolsModule : public GenericModule
 {
     static bool loadedDep;
-    static int LoadDeps(const std::wstring& _functionName);
+    static int LoadDeps(const std::string& _functionName);
 public :
     static int Load();
 };
@@ -177,7 +177,7 @@ public :
 class XcosModule : public GenericModule
 {
     static bool loadedDep;
-    static int LoadDeps(const std::wstring& _functionName);
+    static int LoadDeps(const std::string& _functionName);
 public :
     static int Load();
 };

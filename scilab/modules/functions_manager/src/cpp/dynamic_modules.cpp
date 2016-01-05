@@ -24,13 +24,11 @@ extern "C"
 #include "configvariable_interface.h"
 }
 
-vectGateway loadGatewaysName(const std::wstring& _wstModuleName)
+vectGateway loadGatewaysName(const std::string& _stModuleName)
 {
     vectGateway vect;
-    std::wstring wstPath = ConfigVariable::getSCIPath();
-    std::wstring wstModuleName = wstPath + L"/modules/" + _wstModuleName + L"/sci_gateway/" + _wstModuleName + L"_gateway.xml";
-
-    char* pstModuleName = wide_string_to_UTF8(wstModuleName.c_str());
+    std::string stPath = ConfigVariable::getSCIPath();
+    std::string stModuleName = stPath + "/modules/" + _stModuleName + "/sci_gateway/" + _stModuleName + "_gateway.xml";
 
     /* Don't care about line return / empty line */
     xmlKeepBlanksDefault(0);
@@ -39,14 +37,12 @@ vectGateway loadGatewaysName(const std::wstring& _wstModuleName)
     xmlXPathContextPtr xpathCtxt = NULL;
     xmlXPathObjectPtr xpathObj = NULL;
 
-    doc = xmlParseFile(pstModuleName);
+    doc = xmlParseFile(stModuleName.c_str());
     if (doc == NULL)
     {
-        std::cout << "Error: Could not parse file " << pstModuleName << std::endl;
-        FREE(pstModuleName);
+        std::cout << "Error: Could not parse file " << stModuleName.c_str() << std::endl;
         return vect;
     }
-    FREE(pstModuleName);
 
     xpathCtxt = xmlXPathNewContext(doc);
     xpathObj = xmlXPathEval((const xmlChar*)"//module/gateway", xpathCtxt);
@@ -64,15 +60,11 @@ vectGateway loadGatewaysName(const std::wstring& _wstModuleName)
                 /* loop until when have read all the attributes */
                 if (xmlStrEqual(attrib->name, (const xmlChar*)"name"))
                 {
-                    wchar_t * ws = to_wide_string((const char*)attrib->children->content);
-                    str.wstName = ws;
-                    FREE(ws);
+                    str.stName = (const char*)attrib->children->content;
                 }
                 else if (xmlStrEqual(attrib->name, (const xmlChar*)"function"))
                 {
-                    wchar_t * ws = to_wide_string((const char*)attrib->children->content);
-                    str.wstFunction = ws;
-                    FREE(ws);
+                    str.stFunction = (const char*)attrib->children->content;
                 }
                 else if (xmlStrEqual(attrib->name, (const xmlChar*)"type"))
                 {
@@ -102,7 +94,7 @@ vectGateway loadGatewaysName(const std::wstring& _wstModuleName)
 //Scinotes module
 
 bool ScinotesModule::loadedDep = false;
-int ScinotesModule::LoadDeps(const std::wstring& _functionName)
+int ScinotesModule::LoadDeps(const std::string& _functionName)
 {
     if (loadedDep == false)
     {
@@ -115,88 +107,88 @@ int ScinotesModule::LoadDeps(const std::wstring& _functionName)
 
 int ScinotesModule::Load()
 {
-    std::wstring wstModuleName = L"scinotes";
+    std::string stModuleName = "scinotes";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &ScinotesModule::LoadDeps, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, &ScinotesModule::LoadDeps, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 //Functions module
 int FunctionsModule::Load()
 {
-    std::wstring wstPath = L"functions";
+    std::string stPath = "functions";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"functions_gw";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    std::string stModuleName = "functions_gw";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    std::wstring wstModuleName = L"functions";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    std::string stModuleName = "functions";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
+    vectGateway vect = loadGatewaysName(stPath);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int StatisticsModule::Load()
 {
-    std::wstring wstPath = L"statistics";
+    std::string stPath = "statistics";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"statistics_gw";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    std::string stModuleName = "statistics_gw";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    std::wstring wstModuleName = L"statistics";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    std::string stModuleName = "statistics";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
+    vectGateway vect = loadGatewaysName(stPath);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int SignalProcessingModule::Load()
 {
-    std::wstring wstPath = L"signal_processing";
+    std::string stPath = "signal_processing";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"signal_processing_gw";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    std::string stModuleName = "signal_processing_gw";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    std::wstring wstModuleName = L"signal_processing";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    std::string stModuleName = "signal_processing";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
+    vectGateway vect = loadGatewaysName(stPath);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
-int HelptoolsModule::LoadDeps(const std::wstring& _functionName)
+int HelptoolsModule::LoadDeps(const std::string& _functionName)
 {
     if (loadedDep == false)
     {
@@ -210,345 +202,345 @@ int HelptoolsModule::LoadDeps(const std::wstring& _functionName)
 bool HelptoolsModule::loadedDep = false;
 int HelptoolsModule::Load()
 {
-    std::wstring wstModuleName = L"helptools";
+    std::string stModuleName = "helptools";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
 
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &HelptoolsModule::LoadDeps, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, &HelptoolsModule::LoadDeps, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int MatioModule::Load()
 {
-    std::wstring wstPath = L"matio";
+    std::string stPath = "matio";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"matio_gw";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    std::string stModuleName = "matio_gw";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    std::wstring wstModuleName = L"matio";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    std::string stModuleName = "matio";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
+    vectGateway vect = loadGatewaysName(stPath);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int Hdf5Module::Load()
 {
-    std::wstring wstModuleName = L"hdf5";
+    std::string stModuleName = "hdf5";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int ActionBindingModule::Load()
 {
-    std::wstring wstPath = L"action_binding";
+    std::string stPath = "action_binding";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"action_binding_gw";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    std::string stModuleName = "action_binding_gw";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
 #else
-    std::wstring wstModuleName = L"action_binding";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    std::string stModuleName = "action_binding";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
+    vectGateway vect = loadGatewaysName(stPath);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int SpreadsheetModule::Load()
 {
-    std::wstring wstModuleName = L"spreadsheet";
+    std::string stModuleName = "spreadsheet";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int InterpolationModule::Load()
 {
-    std::wstring wstPath = L"interpolation";
+    std::string stPath = "interpolation";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"interpolation";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    std::string stModuleName = "interpolation";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    std::wstring wstModuleName = L"interpolation";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    std::string stModuleName = "interpolation";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
+    vectGateway vect = loadGatewaysName(stPath);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int SoundModule::Load()
 {
-    std::wstring wstPath = L"sound";
+    std::string stPath = "sound";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"sound";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    std::string stModuleName = "sound";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    std::wstring wstModuleName = L"sound";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    std::string stModuleName = "sound";
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
+    vectGateway vect = loadGatewaysName(stPath);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int RandlibModule::Load()
 {
-    std::wstring wstModuleName = L"randlib";
+    std::string stModuleName = "randlib";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int UmfpackModule::Load()
 {
-    std::wstring wstModuleName = L"umfpack";
+    std::string stModuleName = "umfpack";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int OptimizationModule::Load()
 {
-    std::wstring wstModuleName = L"optimization";
+    std::string stModuleName = "optimization";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int SpecialFunctionsModule::Load()
 {
-    std::wstring wstModuleName = L"special_functions";
+    std::string stModuleName = "special_functions";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int GraphicExportModule::Load()
 {
-    std::wstring wstModuleName = L"graphic_export";
+    std::string stModuleName = "graphic_export";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int ArnoldiModule::Load()
 {
-    std::wstring wstModuleName = L"arnoldi";
+    std::string stModuleName = "arnoldi";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int CallScilabModule::Load()
 {
-    std::wstring wstModuleName = L"call_scilab";
+    std::string stModuleName = "call_scilab";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int CompletionModule::Load()
 {
-    std::wstring wstModuleName = L"completion";
+    std::string stModuleName = "completion";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int XmlModule::Load()
 {
-    std::wstring wstModuleName = L"xml";
+    std::string stModuleName = "xml";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int ScicosModule::Load()
 {
-    std::wstring wstModuleName = L"scicos";
-    const wchar_t* wstLibName = wstModuleName.c_str();
+    std::string stModuleName = "scicos";
+    const char* stLibName = stModuleName.c_str();
     if (getScilabMode() == SCILAB_NWNI)
     {
-        wstLibName = L"scicos-cli";
+        stLibName = "scicos-cli";
     }
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstLibName, DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stLibName, DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstLibName, DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stLibName, DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 bool XcosModule::loadedDep = false;
-int XcosModule::LoadDeps(const std::wstring& _functionName)
+int XcosModule::LoadDeps(const std::string& _functionName)
 {
-    if (loadedDep == false && _functionName != L"closeXcos")
+    if (loadedDep == false && _functionName != "closeXcos")
     {
         loadOnUseClassPath("Xcos");
         loadedDep = true;
@@ -559,95 +551,95 @@ int XcosModule::LoadDeps(const std::wstring& _functionName)
 
 int XcosModule::Load()
 {
-    std::wstring wstModuleName = L"xcos";
+    std::string stModuleName = "xcos";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &XcosModule::LoadDeps, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, &XcosModule::LoadDeps, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int MPIModule::Load()
 {
-    std::wstring wstModuleName = L"mpi";
+    std::string stModuleName = "mpi";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int ExternalObjectsModule::Load()
 {
-    std::wstring wstModuleName = L"external_objects";
+    std::string stModuleName = "external_objects";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int ExternalObjectsJavaModule::Load()
 {
-    std::wstring wstModuleName = L"external_objects_java";
+    std::string stModuleName = "external_objects_java";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }
 
 int SlintModule::Load()
 {
-    std::wstring wstModuleName = L"slint";
+    std::string stModuleName = "slint";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    char* pstLibName = buildModuleDynLibraryName(stModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
+    vectGateway vect = loadGatewaysName(stModuleName);
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].stFunction, vect[i].stName, pstLibName, vect[i].iType, NULL, stModuleName));
     }
 
-    FREE(pwstLibName);
+    FREE(pstLibName);
     return 1;
 }

@@ -31,12 +31,12 @@
 #define EXTERN_FUNC_MAN
 #endif
 
-#define MODULE_DIR  L"/modules/"
-#define MACRO_DIR   L"/macros/"
-#define ETC_DIR     L"/etc/"
-#define SCI_EXT     L"*.sci"
-#define START_EXT   L".start"
-#define QUIT_EXT    L".quit"
+#define MODULE_DIR  "/modules/"
+#define MACRO_DIR   "/macros/"
+#define ETC_DIR     "/etc/"
+#define SCI_EXT     "*.sci"
+#define START_EXT   ".start"
+#define QUIT_EXT    ".quit"
 
 //Gateway function pointer
 typedef int (*GW_MOD)(void);
@@ -46,11 +46,11 @@ class EXTERN_FUNC_MAN FuncManager
 {
 private :
     //	map <string, FuncInfo*>	m_FuncMap;
-    typedef std::map<std::wstring, std::pair<GW_MOD, GW_MOD> >  ModuleMap;
+    typedef std::map<std::string, std::pair<GW_MOD, GW_MOD> >  ModuleMap;
     ModuleMap  m_ModuleMap;
-    std::map<std::wstring, GW_MOD> m_ActivModuleMap;
-    std::list<std::wstring> m_ModuleName;
-    std::wstring m_szXmlFile;
+    std::map<std::string, GW_MOD> m_ActivModuleMap;
+    std::list<std::string> m_ModuleName;
+    std::string m_szXmlFile;
     bool m_bNoStart;
 public:
     static FuncManager* getInstance();
@@ -66,13 +66,13 @@ private :
 
     bool GetModules();
     bool AppendModules();
-    bool VerifyModule(wchar_t* ModuleName);
+    bool VerifyModule(const char* ModuleName);
 
     bool CreateModuleList(void);
 
-    bool ExecuteStartFile(const std::wstring& _stModule);
-    bool ExecuteQuitFile(const std::wstring& _stModule);
-    bool ExecuteFile(const std::wstring& _stFile);
+    bool ExecuteStartFile(const std::string& _stModule);
+    bool ExecuteQuitFile(const std::string& _stModule);
+    bool ExecuteFile(const std::string& _stFile);
     static FuncManager* me;
 };
 
