@@ -29,7 +29,7 @@ static int sci_dst_gen(const char *fname, types::Double* A, types::Double** O, i
 /*-----------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_dst(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    std::wstring name(L"dst");
+    std::string name("dst");
     return fftw_common(name, in, _iRetCount, out, sci_dst_gen);
 }
 /*-----------------------------------------------------------------------------------*/

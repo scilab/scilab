@@ -64,19 +64,8 @@ BOOL LoadFFTWLibrary(const char* libraryname)
     }
     if (hinstLib == NULL)
     {
-#ifdef _MSC_VER
-        {
-            wchar_t * wclibraryname = to_wide_string(libraryname);
-            if (wclibraryname)
-            {
-                hinstLib = LoadDynLibraryW(wclibraryname);
-                FREE(wclibraryname);
-                wclibraryname = NULL;
-            }
-        }
-#else
         hinstLib = LoadDynLibrary(libraryname);
-#endif
+
         MY_FFTW_EXECUTE_SPLIT_DFT        = NULL;
         MY_FFTW_EXECUTE_SPLIT_DFT_C2R    = NULL;
         MY_FFTW_EXECUTE_SPLIT_DFT_R2C    = NULL;

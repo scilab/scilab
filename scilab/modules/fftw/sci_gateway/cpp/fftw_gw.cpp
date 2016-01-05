@@ -14,7 +14,7 @@
 #include "context.hxx"
 #include "overload.hxx"
 
-#define MODULE_NAME L"fftw"
+#define MODULE_NAME "fftw"
 extern "C"
 {
 #include "gw_fftw.h"
@@ -22,15 +22,15 @@ extern "C"
 
 int FFTWModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"loadfftwlibrary", &sci_loadfftwlibrary, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"disposefftwlibrary", &sci_disposefftwlibrary, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fftwlibraryisloaded", &sci_fftwlibraryisloaded, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fftw", &sci_fftw, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fftw_flags", &sci_fftw_flags, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"get_fftw_wisdom", &sci_get_fftw_wisdom, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"set_fftw_wisdom", &sci_set_fftw_wisdom, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fftw_forget_wisdom", &sci_fftw_forget_wisdom, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"dct", &sci_dct, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"dst", &sci_dst, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("loadfftwlibrary", &sci_loadfftwlibrary, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("disposefftwlibrary", &sci_disposefftwlibrary, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("fftwlibraryisloaded", &sci_fftwlibraryisloaded, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("fftw", &sci_fftw, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("fftw_flags", &sci_fftw_flags, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("get_fftw_wisdom", &sci_get_fftw_wisdom, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("set_fftw_wisdom", &sci_set_fftw_wisdom, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("fftw_forget_wisdom", &sci_fftw_forget_wisdom, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("dct", &sci_dct, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("dst", &sci_dst, MODULE_NAME));
     return 1;
 }

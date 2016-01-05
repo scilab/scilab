@@ -20,7 +20,7 @@ extern "C"
 
 typedef int(*fftw_gen)(const char *fname, types::Double* A, types::Double** O, int isn, guru_dim_struct gdim, int iopt);
 
-types::Function::ReturnValue fftw_common(std::wstring& name, types::typed_list &in, int _iRetCount, types::typed_list &out, fftw_gen func);
+types::Function::ReturnValue fftw_common(std::string& name, types::typed_list &in, int _iRetCount, types::typed_list &out, fftw_gen func);
 types::Function::ReturnValue common_2args(std::string& name, types::typed_list &in, int _iRetCount, types::typed_list &out, fftw_gen func, int way, int opt);
 types::Function::ReturnValue common_3args(std::string& name, types::typed_list &in, int _iRetCount, types::typed_list &out, fftw_gen func, int way, int opt);
 types::Function::ReturnValue common_4args(std::string& name, types::typed_list &in, int _iRetCount, types::typed_list &out, fftw_gen func, int way, int opt);

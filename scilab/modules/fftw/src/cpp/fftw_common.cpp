@@ -24,22 +24,18 @@ extern "C"
 
     extern int WITHMKL;
 }
-types::Function::ReturnValue fftw_common(std::wstring& name, types::typed_list &in, int _iRetCount, types::typed_list &out, fftw_gen func)
+types::Function::ReturnValue fftw_common(std::string& name, types::typed_list &in, int _iRetCount, types::typed_list &out, fftw_gen func)
 {
     int iRhs = static_cast<int>(in.size());
 
-    wchar_t* option = nullptr;
+    char* option = nullptr;
     int isn = FFTW_FORWARD;
     WITHMKL = withMKL();
     int iopt = 0;
 
 
-    char* s = wide_string_to_UTF8(name.data());
-    std::string cname(s);
-    FREE(s);
-
     int iMaxRhs = 4;
-    if (name == L"fftw")
+    if (name == "fftw")
     {
         iMaxRhs = 5;
     }
@@ -50,13 +46,13 @@ types::Function::ReturnValue fftw_common(std::wstring& name, types::typed_list &
     /* check min/max lhs/rhs arguments of scilab function */
     if (in.size() < 1 || in.size() > iMaxRhs)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), cname.data(), 1, iMaxRhs);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), name.data(), 1, iMaxRhs);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), cname.data(), 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), name.data(), 1);
         return types::Function::Error;
     }
 
@@ -76,7 +72,7 @@ types::Function::ReturnValue fftw_common(std::wstring& name, types::typed_list &
         }
         else
         {
-            Scierror(999, _("%s: Cannot allocate more memory.\n"), cname.data());
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), name.data());
             return types::Function::Error;
         }
     }
@@ -86,36 +82,36 @@ types::Function::ReturnValue fftw_common(std::wstring& name, types::typed_list &
     {
         if (in[1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), cname.data(), 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), name.data(), 2);
             return types::Function::Error;
         }
 
         types::Double* pWay = in[1]->getAs<types::Double>();
         if (pWay->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), cname.data(), 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), name.data(), 2);
             return types::Function::Error;
         }
 
         isn = static_cast<int>(pWay->get()[0]);
         if (isn != FFTW_FORWARD && isn != FFTW_BACKWARD)
         {
-            Scierror(53, _("%s: Wrong value for input argument #%d: %d or %d expected.\n"), cname.data(), 2, FFTW_FORWARD, FFTW_BACKWARD);
+            Scierror(53, _("%s: Wrong value for input argument #%d: %d or %d expected.\n"), name.data(), 2, FFTW_FORWARD, FFTW_BACKWARD);
             return types::Function::Error;
         }
     }
 
     if (option)
     {
-        if (cname == "dct" || cname == "dst")
+        if (name == "dct" || name == "dst")
         {
             if (isn == FFTW_FORWARD)
             {
-                if (option == name + L"1")
+                if (option == name + "1")
                 {
                     iopt = 1;
                 }
-                else if (option == name + L"2")
+                else if (option == name + "2")
                 {
                     iopt = 2;
                 }
@@ -123,58 +119,58 @@ types::Function::ReturnValue fftw_common(std::wstring& name, types::typed_list &
                 {
                     iopt = 0;
                 }
-                else if (option == name + L"4")
+                else if (option == name + "4")
                 {
                     iopt = 4;
                 }
                 else
                 {
                     std::string err;
-                    err += "\"" + cname + "\",";
-                    err += "\"" + cname + "1\",";
-                    err += "\"" + cname + "2\",";
-                    err += "\"" + cname + "4\"";
-                    Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), cname.data(), in.size(), err.data());
+                    err += "\"" + name + "\",";
+                    err += "\"" + name + "1\",";
+                    err += "\"" + name + "2\",";
+                    err += "\"" + name + "4\"";
+                    Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), name.data(), in.size(), err.data());
                     return types::Function::Error;
                 }
             }
             else
             {
-                if (option == name + L"1")
+                if (option == name + "1")
                 {
                     iopt = 1;
                 }
-                else if (option == name + L"3")
+                else if (option == name + "3")
                 {
                     iopt = 3;
                 }
-                else if (option == L"i" + name)
+                else if (option == "i" + name)
                 {
                     iopt = 0;
                 }
-                else if (option == name + L"4")
+                else if (option == name + "4")
                 {
                     iopt = 4;
                 }
                 else
                 {
                     std::string err;
-                    err += "\"i" + cname + "\",";
-                    err += "\"" + cname + "1\",";
-                    err += "\"" + cname + "3\",";
-                    err += "\"" + cname + "4\"";
-                    Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), cname.data(), in.size(), err.data());
+                    err += "\"i" + name + "\",";
+                    err += "\"" + name + "1\",";
+                    err += "\"" + name + "3\",";
+                    err += "\"" + name + "4\"";
+                    Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), name.data(), in.size(), err.data());
                     return types::Function::Error;
                 }
             }
         }
         else //fftw
         {
-            if (option == std::wstring(L"symmetric"))
+            if (option == "symmetric")
             {
                 iopt = 1;
             }
-            else if (option == std::wstring(L"nonsymmetric"))
+            else if (option == "nonsymmetric")
             {
                 iopt = 2;
             }
@@ -191,19 +187,19 @@ types::Function::ReturnValue fftw_common(std::wstring& name, types::typed_list &
         case 4:
         {
             /* dct(A ,sign ,dim, incr)*/
-            return common_4args(cname, in, _iRetCount, out, func, isn, iopt);
+            return common_4args(name, in, _iRetCount, out, func, isn, iopt);
             break;
         }
         case 3:
         {
             /* dct(A ,sign ,sel)*/
-            return common_3args(cname, in, _iRetCount, out, func, isn, iopt);
+            return common_3args(name, in, _iRetCount, out, func, isn, iopt);
             break;
         }
         default:
         {
             /* dct(A ,sign)*/
-            return common_2args(cname, in, _iRetCount, out, func, isn, iopt);
+            return common_2args(name, in, _iRetCount, out, func, isn, iopt);
             break;
         }
     }

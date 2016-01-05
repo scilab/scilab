@@ -38,7 +38,7 @@ static int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, i
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_fftw(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    std::wstring name(L"fftw");
+    std::string name("fftw");
     return fftw_common(name, in, _iRetCount, out, sci_fft_gen);
 }
 /*--------------------------------------------------------------------------*/
