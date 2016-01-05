@@ -18,33 +18,28 @@
 #include "localization.h"
 #include "sci_malloc.h"
 /*---------------------------------------------------------------------------*/
-void dl_genErrorMessage(const wchar_t * _pwstCallerName, int _iErr, const wchar_t * _pwstLibraryName)
+void dl_genErrorMessage(const char* _pstCallerName, int _iErr, const char * _pstLibraryName)
 {
-    char* pstCaller = wide_string_to_UTF8(_pwstCallerName);
-    char* pstLibName = wide_string_to_UTF8(_pwstLibraryName);
     switch (_iErr)
     {
         case -1:
-            Scierror(236, _("%s: The shared archive was not loaded: %s\n"), pstCaller, GetLastDynLibError());
+            Scierror(236, _("%s: The shared archive was not loaded: %s\n"), _pstCallerName, GetLastDynLibError());
             break;
         case -2:
             //never occurs now
             break;
         case -3:
-            Scierror(999, _("%s: Shared lib %s does not exist.\n") , pstCaller, pstLibName);
+            Scierror(999, _("%s: Shared lib %s does not exist.\n"), _pstCallerName, _pstLibraryName);
             break;
         case -4:
-            Scierror(999, _("%s: Already loaded from library %s\n"), pstCaller, pstLibName);
+            Scierror(999, _("%s: Already loaded from library %s\n"), _pstCallerName, _pstLibraryName);
             break;
         case -5:
-            Scierror(235, _("%s: problem with one of the entry point.\n"), pstCaller);
+            Scierror(235, _("%s: problem with one of the entry point.\n"), _pstCallerName);
             break;
         default:
-            Scierror(999, _("%s: An error occurred: %s\n"), pstCaller, GetLastDynLibError());
+            Scierror(999, _("%s: An error occurred: %s\n"), _pstCallerName, GetLastDynLibError());
             break;
     }
-
-    FREE(pstLibName);
-    FREE(pstCaller);
 }
 /*---------------------------------------------------------------------------*/

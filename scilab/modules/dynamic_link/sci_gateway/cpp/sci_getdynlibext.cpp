@@ -29,16 +29,7 @@ types::Function::ReturnValue sci_getdynlibext(types::typed_list &in, int _iRetCo
         return types::Function::Error;
     }
 
-    out.push_back(new types::String(SHARED_LIB_EXTW));
+    out.push_back(new types::String(SHARED_LIB_EXT));
     return types::Function::OK;
-    //CheckRhs(0,0);
-    //CheckLhs(1,1);
-
-    //   createSingleString(pvApiCtx, Rhs + 1, SHARED_LIB_EXT);
-
-    //LhsVar(1) = Rhs+1;
-    //PutLhsVar();
-
-    //return 0;
 }
 /*--------------------------------------------------------------------------*/

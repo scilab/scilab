@@ -21,15 +21,15 @@ extern "C"
 #include "addinter.h"
 }
 
-typedef void(*function)(wchar_t*);
+typedef void(*function)(char*);
 
-int AddInterfaceToScilab(wchar_t* _pwstDynamicLibraryName, wchar_t* _pwstModuleName, wchar_t** _pwstEntryPointName, int _iEntryPointSize)
+int AddInterfaceToScilab(const char* _pstDynamicLibraryName, const char* _pstModuleName, const char** _pstEntryPointName, int _iEntryPointSize)
 {
     int iLibID = -1; /* Id of library */
     int iErr = 0;
 
     /** Try to unlink the interface if it was previously linked **/
-    ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(_pwstModuleName);
+    ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(_pstModuleName);
     if (pEP)
     {
         //entry point already linked, so remove it before add it
@@ -38,18 +38,18 @@ int AddInterfaceToScilab(wchar_t* _pwstDynamicLibraryName, wchar_t* _pwstModuleN
 
     /* link then search  */
     /* Haven't been able to find the symbol. Try C symbol */
-    iLibID =  scilabLink(iLibID, _pwstDynamicLibraryName, &_pwstModuleName, 1, FALSE, &iErr);
+    iLibID =  scilabLink(iLibID, _pstDynamicLibraryName, &_pstModuleName, 1, FALSE, &iErr);
     if (iErr)
     {
         /* Trying with the fortran symbol */
-        iLibID =  scilabLink(iLibID, _pwstDynamicLibraryName, &_pwstModuleName, 1, TRUE, &iErr);
+        iLibID =  scilabLink(iLibID, _pstDynamicLibraryName, &_pstModuleName, 1, TRUE, &iErr);
         if (iErr)
         {
             return iErr;
         }
     }
 
-    pEP = ConfigVariable::getEntryPoint(_pwstModuleName);
+    pEP = ConfigVariable::getEntryPoint(_pstModuleName);
     if (pEP == NULL)
     {
         //
@@ -58,7 +58,7 @@ int AddInterfaceToScilab(wchar_t* _pwstDynamicLibraryName, wchar_t* _pwstModuleN
 
     for (int i = 0 ; i < _iEntryPointSize ; i++)
     {
-        ((function)pEP->functionPtr)(_pwstEntryPointName[i]);
+        ((function)pEP->functionPtr)((char*)_pstEntryPointName[i]);
     }
     return 0;
 }

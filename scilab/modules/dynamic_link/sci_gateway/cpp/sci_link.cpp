@@ -35,11 +35,11 @@ types::Double* getLibraryIDs(void);
 /*-----------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int iSizeSubNames       = 0;
-    wchar_t** pwstSubNames  = NULL;
-    wchar_t* pwstLibName    = NULL;
-    BOOL bFortran           = TRUE;
-    int iIDSharedLib        = -1;
+    int iSizeSubNames = 0;
+    char** pstSubNames = NULL;
+    char* pstLibName = NULL;
+    BOOL bFortran = TRUE;
+    int iIDSharedLib = -1;
 
     if (in.size() > 3)
     {
@@ -49,7 +49,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 0)
     {
-        std::vector<std::wstring> FunctionsList = ConfigVariable::getEntryPointNameList();
+        std::vector<std::string> FunctionsList = ConfigVariable::getEntryPointNameList();
         if (FunctionsList.size() == 0)
         {
             out.push_back(types::Double::Empty());
@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         types::String* pSFunctionNames = new types::String(1, (int)FunctionsList.size());
         for (int i = 0 ; i < FunctionsList.size(); i++)
         {
-            pSFunctionNames->set(FunctionsList.size() - i - 1, FunctionsList[i].c_str());
+            pSFunctionNames->set((int)FunctionsList.size() - i - 1, FunctionsList[i].c_str());
         }
 
         out.push_back(pSFunctionNames);
@@ -76,10 +76,10 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         }
 
         types::String* pSFlag = in[2]->getAs<types::String>();
-        wchar_t* pwstFlag = pSFlag->get(0);
-        if (wcscmp(pwstFlag, L"f") == 0 || wcscmp(pwstFlag, L"c") == 0)
+        char* pstflag = pSFlag->get(0);
+        if (strcmp(pstflag, "f") == 0 || strcmp(pstflag, "c") == 0)
         {
-            if (wcscmp(pwstFlag, L"c") == 0)
+            if (strcmp(pstflag, "c") == 0)
             {
                 bFortran = FALSE;
             }
@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
 
         types::String* pSSubNames = in[1]->getAs<types::String>();
         iSizeSubNames = pSSubNames->getSize();
-        pwstSubNames = pSSubNames->get();
+        pstSubNames = pSSubNames->get();
     }
 
     if (in.size() >= 1)
@@ -128,7 +128,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            if (wcscmp(pS->get(0), L"show") == 0)
+            if (strcmp(pS->get(0), "show") == 0)
             {
                 //show option
                 displayDynLibInfo();
@@ -137,7 +137,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
             }
 
             //library name
-            pwstLibName = pS->get(0);
+            pstLibName = pS->get(0);
         }
         else
         {
@@ -147,11 +147,11 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
     }
 
     int iErr    = 0;
-    int iRetID  = scilabLink(iIDSharedLib, pwstLibName, pwstSubNames, iSizeSubNames, bFortran, &iErr);
+    int iRetID  = scilabLink(iIDSharedLib, pstLibName, (const char**)pstSubNames, iSizeSubNames, bFortran, &iErr);
 
     if (iErr)
     {
-        dl_genErrorMessage(L"link", iErr, pwstLibName);
+        dl_genErrorMessage("link", iErr, pstLibName);
 
         /* release lib if it is a new link */
         if ((iIDSharedLib == -1) && (iRetID != -1))
@@ -210,7 +210,7 @@ void displayDynLibInfo(void)
     {
         if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
         {
-            sciprint(_("Entry point %ls in shared library %d.\n"), (*it)->pwstEntryPointName, (*it)->iLibIndex);
+            sciprint(_("Entry point %ls in shared library %d.\n"), (*it)->pstEntryPointName, (*it)->iLibIndex);
         }
     }
 }

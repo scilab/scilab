@@ -46,6 +46,6 @@ DYNAMIC_LINK_IMPEXP void RemoveInterf(int id);
 * @param[in] sizefcts size of fcts array
 * @return a int id of interface (-1 failed)
 */
-DYNAMIC_LINK_IMPEXP int AddInterfaceToScilab(wchar_t* _pwstDynamicLibraryName, wchar_t* _pwstModuleName, wchar_t** _pwstEntryPointName, int _iEntryPointSize);
+DYNAMIC_LINK_IMPEXP int AddInterfaceToScilab(const char* _pstDynamicLibraryName, const char* _pstModuleName, const char** _pstEntryPointName, int _iEntryPointSize);
 
 #endif /*  __ADDINTER_H__ */

@@ -13,7 +13,7 @@
 #include "dynamic_link_gw.hxx"
 #include "context.hxx"
 
-#define MODULE_NAME L"dynamic_link"
+#define MODULE_NAME "dynamic_link"
 
 extern "C"
 {
@@ -22,11 +22,11 @@ extern "C"
 
 int DynamicLinkModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getdynlibext", &sci_getdynlibext, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"link", &sci_link, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ulink", &sci_ulink, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"c_link", &sci_c_link, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ilib_verbose", &sci_ilib_verbose, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"addinter", &sci_addinter, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("getdynlibext", &sci_getdynlibext, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("link", &sci_link, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("ulink", &sci_ulink, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("c_link", &sci_c_link, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("ilib_verbose", &sci_ilib_verbose, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("addinter", &sci_addinter, MODULE_NAME));
     return 1;
 }

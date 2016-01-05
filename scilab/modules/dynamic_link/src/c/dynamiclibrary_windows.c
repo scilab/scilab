@@ -17,14 +17,9 @@
 #include "machine.h"
 #include "os_string.h"
 /*---------------------------------------------------------------------------*/
-DynLibHandle LoadDynLibraryW(wchar_t *libname)
+DynLibHandle LoadDynLibrary(const char *libname)
 {
-    return (DynLibHandle) LoadLibraryW(libname);
-}
-/*---------------------------------------------------------------------------*/
-DynLibHandle LoadDynLibrary(char *libname)
-{
-    return (DynLibHandle) LoadLibrary(libname);
+    return (DynLibHandle) LoadLibraryA(libname);
 }
 /*---------------------------------------------------------------------------*/
 BOOL FreeDynLibrary(DynLibHandle hInstance)
@@ -54,7 +49,7 @@ char * GetLastDynLibError(void)
     {
         strcpy(buffer, "Unknown Error");
     }
-    else if (FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM |
+    else if (FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM |
                            FORMAT_MESSAGE_IGNORE_INSERTS, &source, dw, 0,
                            buffer, 512, NULL) == 0)
     {
@@ -64,60 +59,25 @@ char * GetLastDynLibError(void)
     return buffer;
 }
 /*---------------------------------------------------------------------------*/
-wchar_t* buildModuleDynLibraryNameW(const wchar_t* _pwstModuleName, dynlib_name_format _iType)
+char* buildModuleDynLibraryName(const char* _pstModuleName, dynlib_name_format _iType)
 {
-    wchar_t *pwstDynlibname = NULL;
-    int iLen = (int)(wcslen(_pwstModuleName) + wcslen(SHARED_LIB_EXTW)) + 1;//+1 for null
+    char pstDynlibname[1024];
     switch (_iType)
     {
         case DYNLIB_NAME_FORMAT_AUTO:
         default:
-#ifdef _MSC_VER
-            iLen = iLen + (int)wcslen(FORMATGATEWAYLIBNAME_1);
-#else
-            iLen = iLen + (int)wcslen(FORMATGATEWAYLIBNAME_3);
-#endif
-            pwstDynlibname = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-            if (iLen)
-            {
-                os_swprintf(pwstDynlibname, iLen, FORMATGATEWAYLIBNAME_1, _pwstModuleName, SHARED_LIB_EXTW);
-            }
+            sprintf_s(pstDynlibname, 1024, FORMATGATEWAYLIBNAME_1, _pstModuleName, SHARED_LIB_EXT);
             break;
         case DYNLIB_NAME_FORMAT_1:
-            iLen = iLen + (int)wcslen(FORMATGATEWAYLIBNAME_1) ;
-            pwstDynlibname = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-            if (pwstDynlibname)
-            {
-                os_swprintf(pwstDynlibname, iLen, FORMATGATEWAYLIBNAME_1, _pwstModuleName, SHARED_LIB_EXTW);
-            }
+            sprintf_s(pstDynlibname, 1024, FORMATGATEWAYLIBNAME_1, _pstModuleName, SHARED_LIB_EXT);
             break;
         case DYNLIB_NAME_FORMAT_2:
-            iLen = iLen + (int)wcslen(FORMATGATEWAYLIBNAME_2);
-            pwstDynlibname = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-            if (pwstDynlibname)
-            {
-                os_swprintf(pwstDynlibname, iLen, FORMATGATEWAYLIBNAME_2, _pwstModuleName, SHARED_LIB_EXTW);
-            }
+            sprintf_s(pstDynlibname, 1024, FORMATGATEWAYLIBNAME_2, _pstModuleName, SHARED_LIB_EXT);
             break;
         case DYNLIB_NAME_FORMAT_3:
-            iLen = iLen + (int)wcslen(FORMATGATEWAYLIBNAME_3);
-            pwstDynlibname = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-            if (pwstDynlibname)
-            {
-                os_swprintf(pwstDynlibname, iLen, FORMATGATEWAYLIBNAME_3, _pwstModuleName, SHARED_LIB_EXTW);
-            }
+            sprintf_s(pstDynlibname, 1024, FORMATGATEWAYLIBNAME_3, _pstModuleName, SHARED_LIB_EXT);
             break;
     }
-    return pwstDynlibname;
-}
-/*--------------------------------------------------------------------------*/
-char* buildModuleDynLibraryName(const char* _pstModuleName, dynlib_name_format _iType)
-{
-    wchar_t* pwstModuleName = to_wide_string(_pstModuleName);
-    wchar_t* pwstDynLibName = buildModuleDynLibraryNameW(pwstModuleName, _iType);
-    char* pstDynLibName = wide_string_to_UTF8(pwstDynLibName);
-    FREE(pwstModuleName);
-    FREE(pwstDynLibName);
-    return pstDynLibName;
+    return os_strdup(pstDynlibname);
 }
 /*--------------------------------------------------------------------------*/

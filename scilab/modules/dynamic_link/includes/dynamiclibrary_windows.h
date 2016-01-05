@@ -32,14 +32,6 @@ typedef FARPROC DynLibFuncPtr;
 DYNAMIC_LINK_IMPEXP DynLibHandle LoadDynLibrary(const char *libname);
 
 /**
-* Maps the specified executable module into the address space of the calling process
-* @param name of dynamic library (wide char)
-* @return Handle to the loaded library
-*/
-DYNAMIC_LINK_IMPEXP DynLibHandle LoadDynLibraryW(const wchar_t *libname);
-
-
-/**
 * Decrements the reference count of the loaded dynamic-link library
 * @param Handle to the loaded library
 * @return BOOL If the function succeeds, the return value is nonzero
@@ -79,9 +71,9 @@ typedef enum
     DYNLIB_NAME_FORMAT_3 = 3
 } dynlib_name_format;
 
-#define FORMATGATEWAYLIBNAME_1 L"%ls%ls"
-#define FORMATGATEWAYLIBNAME_2 L"sci%ls%ls"
-#define FORMATGATEWAYLIBNAME_3 L"libsci%ls%ls"
+#define FORMATGATEWAYLIBNAME_1 "%s%s"
+#define FORMATGATEWAYLIBNAME_2 "sci%s%s"
+#define FORMATGATEWAYLIBNAME_3 "libsci%s%s"
 
 /**
 * Build name of dynamic library based on module name
@@ -89,7 +81,6 @@ typedef enum
 * @param[in] generated dynamic lib name type
 * @return name of dynamic library
 */
-DYNAMIC_LINK_IMPEXP wchar_t* buildModuleDynLibraryNameW(const wchar_t* _pwstModuleName, dynlib_name_format _iType);
 DYNAMIC_LINK_IMPEXP char* buildModuleDynLibraryName(const char* _pstModuleName, dynlib_name_format _iType);
 
 #endif /* _WIN32 // guard against mis-compilation */

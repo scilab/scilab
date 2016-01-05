@@ -41,18 +41,18 @@ extern "C"
 #include "charEncoding.h"
 }
 
-static void Underscores(BOOL _bFortran, wchar_t* _pwstEntryPointName, wchar_t* _pwstTrailingName);
+static void Underscores(BOOL _bFortran, const char* _pstEntryPointName, char* _pstTrailingName);
 
 typedef void (*function) ();
 
 
-int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPointName, int _iEntryPointSize, BOOL _bFortran , int *_piErr)
+int scilabLink(int _iLibID, const char* _pstLibraryName, const char** _pstEntryPointName, int _iEntryPointSize, BOOL _bFortran, int *_piErr)
 {
     int iLibID = -1;
 
     if (_iLibID == -1)
     {
-        iLibID = Sci_dlopen(_pwstLibraryName);
+        iLibID = Sci_dlopen(_pstLibraryName);
     }
     else
     {
@@ -64,10 +64,10 @@ int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPoint
         if ( getWarningMode() )
         {
 #ifdef _MSC_VER
-            if (isDllW(_pwstLibraryName))
+            if (isDll(_pstLibraryName))
             {
 #ifdef _WIN64
-                if (isX86DllW(_pwstLibraryName))
+                if (isX86Dll(_pstLibraryName))
                 {
                     if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
                     {
@@ -76,7 +76,7 @@ int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPoint
                     SetLastError(ERROR_DLL_INIT_FAILED);
                 }
 #else
-                if (isX64DllW(_pwstLibraryName))
+                if (isX64Dll(_pstLibraryName))
                 {
                     if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
                     {
@@ -88,19 +88,19 @@ int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPoint
             }
             else
             {
-                wchar_t* pwstPathSearch = searchEnvW(_pwstLibraryName, L"PATH");
-                if (pwstPathSearch == NULL)
+                char* pstPathSearch = searchEnv(_pstLibraryName, "PATH");
+                if (pstPathSearch == NULL)
                 {
                     if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
                     {
-                        sciprint(_("%ls: The file %ls does not exist in PATH environment.\n" ), L"link", _pwstLibraryName);
+                        sciprint(_("%s: The file %s does not exist in PATH environment.\n" ), "link", _pstLibraryName);
                     }
                 }
             }
 #else
             if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
             {
-                sciprint(_("Link failed for dynamic library '%ls'.\n"), _pwstLibraryName);
+                sciprint(_("Link failed for dynamic library '%s'.\n"), _pstLibraryName);
                 sciprint(_("An error occurred: %s\n"), GetLastDynLibError());
             }
 #endif
@@ -117,7 +117,7 @@ int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPoint
 
     for (int i = 0 ; i < _iEntryPointSize ; i++)
     {
-        *_piErr = Sci_dlsym(_pwstEntryPointName[i], iLibID, _bFortran);
+        *_piErr = Sci_dlsym(_pstEntryPointName[i], iLibID, _bFortran);
     }
 
     return iLibID;
@@ -127,17 +127,17 @@ int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPoint
 * Underscores : deals with the trailing _
 * in entry names
 */
-static void Underscores(BOOL _bFortran, wchar_t* _pwstEntryPointName, wchar_t* _pwstTrailingName)
+static void Underscores(BOOL _bFortran, const char* _pstEntryPointName, char* _pstTrailingName)
 {
 #ifdef WLU1
-    *_pwstTrailingName = L'_';
-    _pwstTrailingName++;
+    *_pstTrailingName = '_';
+    _pstTrailingName++;
 #endif
-    wcscpy(_pwstTrailingName, _pwstEntryPointName);
+    strcpy(_pstTrailingName, _pstEntryPointName);
 #ifdef WTU
     if (_bFortran)
     {
-        wcscat(_pwstTrailingName, L"_");
+        strcat(_pstTrailingName, "_");
     }
 #endif
     return;
@@ -148,18 +148,18 @@ int Sci_dlclose(DynLibHandle _hLib)
     return FreeDynLibrary(_hLib);
 }
 /*---------------------------------------------------------------------------*/
-int Sci_dlopen(wchar_t* _pwstDynLibPath)
+int Sci_dlopen(const char* _pstDynLibPath)
 {
     static DynLibHandle hLib = NULL;
     int i = 0;
 
 #ifdef _MSC_VER
     {
-        hLib = LoadDynLibraryW(_pwstDynLibPath);
+        hLib = LoadDynLibrary(_pstDynLibPath);
     }
 #else
     {
-        char* pstDynLibPath = wide_string_to_UTF8(_pwstDynLibPath);
+        char* pstDynLibPath = wide_string_to_UTF8(_pstDynLibPath);
         hLib = LoadDynLibrary (pstDynLibPath);
         FREE(pstDynLibPath);
     }
@@ -171,22 +171,22 @@ int Sci_dlopen(wchar_t* _pwstDynLibPath)
     }
 
     ConfigVariable::DynamicLibraryStr* pDL = ConfigVariable::getNewDynamicLibraryStr();
-    ConfigVariable::setLibraryName(pDL, _pwstDynLibPath);
+    ConfigVariable::setLibraryName(pDL, _pstDynLibPath);
     pDL->hLib = hLib;
 
 
     return ConfigVariable::addDynamicLibrary(pDL);
 }
 /*---------------------------------------------------------------------------*/
-int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
+int Sci_dlsym(const char* _pstEntryPointName, int _iLibID, BOOL _bFortran)
 {
     DynLibHandle hDynLib = NULL;
     ConfigVariable::EntryPointStr* pEP = ConfigVariable::getNewEntryPointStr();
     //+3 : 1 for '\0', 1 for prefix _, 1 for suffix _
-    wchar_t* pwstEntryPointName = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(_pwstEntryPointName) + 3));
-    memset(pwstEntryPointName, 0x00, (wcslen(_pwstEntryPointName) + 3));
+    char* pstEntryPointName = (char*)MALLOC(sizeof(char) * (strlen(_pstEntryPointName) + 3));
+    memset(pstEntryPointName, 0x00, (strlen(_pstEntryPointName) + 3));
 
-    Underscores(_bFortran, _pwstEntryPointName, pwstEntryPointName);
+    Underscores(_bFortran, _pstEntryPointName, pstEntryPointName);
 
 
     if (_iLibID < 0 || ConfigVariable::isDynamicLibrary(_iLibID) == false)
@@ -196,26 +196,21 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
     }
 
     /** entry was previously loaded **/
-    if (ConfigVariable::getEntryPoint(_pwstEntryPointName, _iLibID) != NULL)
+    if (ConfigVariable::getEntryPoint(_pstEntryPointName, _iLibID) != NULL)
     {
-        sciprint(_("Entry name %ls.\n"), _pwstEntryPointName);
+        sciprint(_("Entry name %s.\n"), _pstEntryPointName);
         return -4;
     }
 
     pEP->iLibIndex = _iLibID;
     hDynLib = (DynLibHandle)  ConfigVariable::getDynamicLibrary(_iLibID)->hLib;
-#ifdef _MCS_VER
-    pEP->functionPtr = (function) GetDynLibFuncPtrW(hDynLib, pwstEntryPointName);
-#else
-    char* pstEntryPointName = wide_string_to_UTF8(pwstEntryPointName);
     pEP->functionPtr = (function) GetDynLibFuncPtr(hDynLib, pstEntryPointName);
     FREE(pstEntryPointName);
-#endif
     if (pEP->functionPtr == NULL)
     {
         if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
         {
-            sciprint(_("%ls is not an entry point.\n"), _pwstEntryPointName);
+            sciprint(_("%s is not an entry point.\n"), _pstEntryPointName);
         }
         return -5;
     }
@@ -223,12 +218,12 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
 
     if (0 /*debug mode*/)
     {
-        sciprint(_("Linking %ls.\n"), _pwstEntryPointName);
+        sciprint(_("Linking %s.\n"), _pstEntryPointName);
     }
 
-    ConfigVariable::setEntryPointName(pEP, _pwstEntryPointName);
+    ConfigVariable::setEntryPointName(pEP, _pstEntryPointName);
     ConfigVariable::addEntryPoint(pEP);
-    FREE(pwstEntryPointName);
+    FREE(pstEntryPointName);
     return 0;
 }
 /*---------------------------------------------------------------------------*/

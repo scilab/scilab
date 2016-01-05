@@ -15,7 +15,7 @@
 #ifndef __DYNAMIC_LINK_H__
 #define __DYNAMIC_LINK_H__
 
-#include <wchar.h> /* wchar_t */
+#include <wchar.h> /* char */
 #include "dynlib_dynamic_link.h"
 #include "dynamiclibrary.h"
 #include "BOOL.h"
@@ -26,7 +26,7 @@
 * return value is == -1 if the LoadDynLibrary failed
 * @param loaded_file
 */
-DYNAMIC_LINK_IMPEXP int Sci_dlopen(wchar_t* _pwstDynLibPath);
+DYNAMIC_LINK_IMPEXP int Sci_dlopen(const char* _pstDynLibPath);
 
 /**
 * unload a shared library by calling FreeDynLibrary
@@ -40,19 +40,19 @@ DYNAMIC_LINK_IMPEXP int Sci_dlclose(DynLibHandle _hLib);
 * from shared lib ishared
 * @return TRUE or FALSE
 */
-DYNAMIC_LINK_IMPEXP int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran);
+DYNAMIC_LINK_IMPEXP int Sci_dlsym(const char* _pstEntryPointName, int _iLibID, BOOL _bFortran);
 
 /**
 * call link for scilab
 * @param _iLibID                : Id of an existing shared lib otherwise -1
-* @param _pwstLibraryName       : Dynamic library name
-* @param _pwstEntryPointName    : List of functions name in dynamic library
-* @param _iEntryPointSize       : Size of _pwstEntryPointName
+* @param _pstLibraryName       : Dynamic library name
+* @param _pstEntryPointName    : List of functions name in dynamic library
+* @param _iEntryPointSize       : Size of _pstEntryPointName
 * @param _bFortran              : Is a link on a fortran function
 * @param _piErr                 : Error Id
 * @return id                    : Dynamic Library ID
 */
-DYNAMIC_LINK_IMPEXP int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPointName, int _iEntryPointSize, BOOL _bFortran , int *_piErr);
+DYNAMIC_LINK_IMPEXP int scilabLink(int _iLibID, const char* _pstLibraryName, const char** _pstEntryPointName, int _iEntryPointSize, BOOL _bFortran, int *_piErr);
 
 #endif /* __DYNAMIC_LINK_H__ */
 /*-----------------------------------------------------------------------------------*/

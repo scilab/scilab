@@ -27,7 +27,7 @@ extern "C"
 #include "Scierror.h"
 }
 
-bool isLink(wchar_t* _pwstEntryPoint, int* _piLib);
+bool isLink(const char* _pstEntryPoint, int* _piLib);
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -77,9 +77,9 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
-bool isLink(wchar_t* _pwstEntryPoint, int* _piLib)
+bool isLink(const char* _pstEntryPoint, int* _piLib)
 {
-    ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(_pwstEntryPoint, *_piLib);
+    ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(_pstEntryPoint, *_piLib);
 
     if (pEP == NULL)
     {

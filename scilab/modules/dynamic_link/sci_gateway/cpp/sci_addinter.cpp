@@ -76,10 +76,10 @@ types::Function::ReturnValue sci_addinter(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    iErr = AddInterfaceToScilab(pSLibName->get(0), pSModuleName->get(0), pSFunctionList->get(), pSFunctionList->getSize());
+    iErr = AddInterfaceToScilab(pSLibName->get(0), pSModuleName->get(0), (const char**)pSFunctionList->get(), pSFunctionList->getSize());
     if (iErr)
     {
-        dl_genErrorMessage(L"addinter", iErr, pSLibName->get(0));
+        dl_genErrorMessage("addinter", iErr, pSLibName->get(0));
         return types::Function::Error;
     }
 
