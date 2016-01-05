@@ -52,7 +52,7 @@ function scs_m_new = update_scs_m(scs_m,version)
 
             sprops = scs_m.props;
             T = getfield(1,scs_m.props);
-            T_txt = [];
+            T_txt = "";
             for j=2:size(T,2)
                 T_txt = T_txt + strsubst(T(1,j),"title","Title") + ...
                 "=" + "sprops." + T(1,j);
@@ -86,7 +86,7 @@ function scs_m_new = update_scs_m(scs_m,version)
                         case "graphics" then
                             ogra  = o.graphics;
                             G     = getfield(1,ogra);
-                            G_txt = [];
+                            G_txt = "";
                             for l=2:size(G,2)
                                 G_txt = G_txt + G(1,l) + ...
                                 "=" + "ogra." + G(1,l);
@@ -103,7 +103,7 @@ function scs_m_new = update_scs_m(scs_m,version)
                         case "model" then
                             omod  = o.model;
                             M     = getfield(1,o.model);
-                            M_txt = [];
+                            M_txt = "";
                             for l=2:size(M,2)
                                 M_txt = M_txt + M(1,l) + ...
                                 "=" + "omod." + M(1,l);
@@ -142,7 +142,7 @@ function scs_m_new = update_scs_m(scs_m,version)
                 case "Link" then
 
                     T     = getfield(1,o);
-                    T_txt = [];
+                    T_txt = "";
                     for k=2:size(T,2)
                         T_txt = T_txt + T(1,k) + ...
                         "=" + "o." + T(1,k);
@@ -161,14 +161,14 @@ function scs_m_new = update_scs_m(scs_m,version)
                     scicos_graphics(),scicos_model()," ","TEXT_f")
 
                     T     = getfield(1,o);
-                    T_txt = [];
+                    T_txt = "";
                     for k=2:size(T,2)
                         select T(k)
                             //*********** graphics **********//
                         case "graphics" then
                             ogra  = o.graphics;
                             G     = getfield(1,ogra);
-                            G_txt = [];
+                            G_txt = "";
                             for l=2:size(G,2)
                                 G_txt = G_txt + G(1,l) + ...
                                 "=" + "ogra." + G(1,l);
@@ -183,24 +183,7 @@ function scs_m_new = update_scs_m(scs_m,version)
 
                             //************* model ***********//
                         case "model" then
-                            omod  = o.model;
-                            M     = getfield(1,o.model);
-                            M_txt = [];
-                            for l=2:size(M,2)
-                                M_txt = M_txt + M(1,l) + ...
-                                "=" + "omod." + M(1,l);
-                                if l<>size(M,2) then
-                                    M_txt = M_txt + ",";
-                                end
-                            end
-                            M_txt = "omod=scicos_model(" + M_txt + ")";
-                            execstr(M_txt)
-                            //******** super block case ********//
-                            if omod.sim=="super"|omod.sim=="csuper" then
-                                rpar=update_scs_m(omod.rpar,version)
-                                omod.rpar=rpar
-                            end
-                            o_new.model = omod;
+                            // ignored by the MVC
                             //*******************************//
 
                             //************* other ***********//
