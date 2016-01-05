@@ -35,7 +35,7 @@ class EXTERNAL_OBJECTS_SCILAB_IMPEXP ScilabObjects
     static const char * _ECLASS[];
     static const char * _EVOID[];
 public:
-    static const wchar_t * _INVOKE_;
+    static const char * _INVOKE_;
 
     static void initialization(ScilabAbstractEnvironment & env, void * pvApiCtx);
 

@@ -32,10 +32,10 @@ bool ScilabObjects::isInit = false;
 const char * ScilabObjects::_EOBJ[] = {"_EObj", "_EnvId", "_id"};
 const char * ScilabObjects::_ECLASS[] = {"_EClass", "_EnvId", "_id"};
 const char * ScilabObjects::_EVOID[] = {"_EVoid", "_EnvId", "_id"};
-const wchar_t * ScilabObjects::_INVOKE_ = L"!!_invoke_";
-const wchar_t pwstEClass[] = {L"_EClass"};
-const wchar_t pwstEObj[] = {L"_EObj"};
-const wchar_t pwstEVoid[] = {L"_EVoid"};
+const char * ScilabObjects::_INVOKE_ = "!!_invoke_";
+const char pstEClass[] = {"_EClass"};
+const char pstEObj[] = {"_EObj"};
+const char pstEVoid[] = {"_EVoid"};
 
 void ScilabObjects::initialization(ScilabAbstractEnvironment & env, void * pvApiCtx)
 {
@@ -796,18 +796,18 @@ int ScilabObjects::getMListType(int * mlist, void * pvApiCtx)
         return EXTERNAL_INVALID;
     }
 
-    wchar_t* pwstMlistType = pStrFieldNames->get(0);
-    if (wcslen(pwstMlistType) == strlen("_EClass") && wcscmp(pwstMlistType, L"_EClass") == 0)
+    char* pstMlistType = pStrFieldNames->get(0);
+    if (strlen(pstMlistType) == strlen("_EClass") && strcmp(pstMlistType, "_EClass") == 0)
     {
         return EXTERNAL_CLASS;
     }
 
-    if (wcslen(pwstMlistType) == strlen("_EObj") && wcscmp(pwstMlistType, L"_EObj") == 0)
+    if (strlen(pstMlistType) == strlen("_EObj") && strcmp(pstMlistType, "_EObj") == 0)
     {
         return EXTERNAL_OBJECT;
     }
 
-    if (wcslen(pwstMlistType) == strlen("_EVoid") && wcscmp(pwstMlistType, L"_EVoid") == 0)
+    if (strlen(pstMlistType) == strlen("_EVoid") && strcmp(pstMlistType, "_EVoid") == 0)
     {
         return EXTERNAL_VOID;
     }

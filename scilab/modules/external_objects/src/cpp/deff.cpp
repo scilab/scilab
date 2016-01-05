@@ -54,7 +54,7 @@ int ScilabGateway::deff(char * fname, const int envId, void * pvApiCtx)
     if (pCall == nullptr)
     {
         symbol::Context* ctx = symbol::Context::getInstance();
-        types::InternalType* pIT = ctx->get(symbol::Symbol(L"#_deff_wrapper"));
+        types::InternalType* pIT = ctx->get(symbol::Symbol("#_deff_wrapper"));
         if (pIT && pIT->isCallable())
         {
             pCall = pIT->getAs<types::Callable>();

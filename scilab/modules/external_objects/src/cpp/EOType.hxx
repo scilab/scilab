@@ -34,14 +34,14 @@ public :
     }
     virtual ~EOType() {}
 
-    inline std::wstring getTypeStr()
+    inline std::string getTypeStr()
     {
-        return L"eotype";
+        return "eotype";
     }
 
-    inline std::wstring getShortTypeStr()
+    inline std::string getShortTypeStr()
     {
-        return L"eo";
+        return "eo";
     }
 
     EOType* clone()
@@ -54,7 +54,7 @@ public :
         return true;
     }
 
-    inline bool toString(std::wostringstream& ostr)
+    inline bool toString(std::ostringstream& ostr)
     {
         ostr << "eotype" << std::endl;
         return true;
