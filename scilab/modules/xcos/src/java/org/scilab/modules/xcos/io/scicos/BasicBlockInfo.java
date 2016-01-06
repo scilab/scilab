@@ -27,6 +27,10 @@ import org.scilab.modules.xcos.port.Orientation;
 
 import com.mxgraph.model.mxICell;
 import java.util.HashMap;
+import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 
 /**
  * Convert BasicBlock pure objects to a mixed BasicBlock objects (update the scicos information)
@@ -132,11 +136,26 @@ public final class BasicBlockInfo {
         final int childrenCount = block.getChildCount();
         for (int i = 0; i < childrenCount; ++i) {
             final mxICell cell = block.getChildAt(i);
-            if (cell instanceof BasicPort) {
+
+            // avoid generic class comparaison because inputs might be explicit or implicit
+            Class< ? extends BasicPort> klass;
+            if (cell instanceof InputPort) {
+                klass = InputPort.class;
+            } else if (cell instanceof OutputPort) {
+                klass = OutputPort.class;
+            } else if (cell instanceof ControlPort) {
+                klass = ControlPort.class;
+            } else if (cell instanceof CommandPort) {
+                klass = CommandPort.class;
+            } else {
+                klass = null;
+            }
+
+            if (klass != null) {
                 final BasicPort p = ((BasicPort) cell);
 
                 // order the ports per kind using a locally allocated map (do not call Controller nor use an ordering field)
-                Integer counter = counterMap.getOrDefault(p.getClass(), 1);
+                Integer counter = counterMap.getOrDefault(klass, 1);
                 if (counter == position) {
                     data.add(p);
                 }
