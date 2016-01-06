@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
     }
 
     // Check tree structure
-    if (wcscmp(strItem1->get(0), TREE_REF_NAME) != 0)
+    if (strcmp(strItem1->get(0), TREE_REF_NAME) != 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A Tree expected.\n"), funname.data(), 1);
         return types::Function::Error;
@@ -135,9 +135,7 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
         return types::Function::Error;
     }
 
-    char* cstr = wide_string_to_UTF8(strLabel->get(0));
-    StructList.push_back(std::string(cstr));
-    FREE(cstr);
+    StructList.push_back(strLabel->get(0));
 
     // Get icon name
     temp = node->get(0)->get(Icon);
@@ -154,9 +152,7 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
         return types::Function::Error;
     }
 
-    cstr = wide_string_to_UTF8(strIcon->get(0));
-    StructList.push_back(std::string(cstr));
-    FREE(cstr);
+    StructList.push_back(strIcon->get(0));
 
     // Get callback name
     temp = node->get(0)->get(Callback);
@@ -173,9 +169,7 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
         return types::Function::Error;
     }
 
-    cstr = wide_string_to_UTF8(strCallback->get(0));
-    StructList.push_back(std::string(cstr));
-    FREE(cstr);
+    StructList.push_back(strCallback->get(0));
 
     if (parseListItem(pIn, iItemCount, StructList, szCurLevel) == false)
     {

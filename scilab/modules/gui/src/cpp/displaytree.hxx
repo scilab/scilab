@@ -23,11 +23,11 @@
 #include "dynlib_gui.h"
 #include "list.hxx"
 
-#define TREE_REF_NAME L"uitree"
+#define TREE_REF_NAME "uitree"
 
-static const std::wstring Label(L"label");
-static const std::wstring Icon(L"icon");
-static const std::wstring Callback(L"callback");
+static const std::string Label("label");
+static const std::string Icon("icon");
+static const std::string Callback("callback");
 
 GUI_IMPEXP bool parseListItem(types::List* pIn, int icountItem, std::vector<std::string> &_pvStructList, const std::string& _szLevel);
 

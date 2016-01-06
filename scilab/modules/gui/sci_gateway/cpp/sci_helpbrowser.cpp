@@ -83,48 +83,24 @@ types::Function::ReturnValue sci_helpbrowser(types::typed_list &in, int _iRetCou
     if (in[0]->isString() == true)
     {
         types::String *pInHelpAdr = in[0]->getAs<types::String>();
-        helpAdr = new char*[pInHelpAdr->getSize()];
+        helpAdr = pInHelpAdr->get();
         iHelpAdrSize = pInHelpAdr->getSize();
-
-        for (int i = 0 ; i < pInHelpAdr->getSize() ; ++i)
-        {
-            helpAdr[i] = wide_string_to_UTF8(pInHelpAdr->get(i));
-        }
     }
 
     char* pstLang   = NULL;
     char* pstKey    = NULL;
     if (in.size() == 2)
     {
-        pstLang = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+        pstLang = in[1]->getAs<types::String>()->get(0);
         launchHelpBrowser(helpAdr, iHelpAdrSize, pstLang);
     }
 
     if (in.size() == 4)
     {
-        pstLang = wide_string_to_UTF8(in[2]->getAs<types::String>()->get(0));
-        pstKey = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+        pstLang = in[2]->getAs<types::String>()->get(0);
+        pstKey = in[1]->getAs<types::String>()->get(0);
         int iFullText = in[3]->getAs<types::Bool>()->get(0);
         searchKeyword(helpAdr, iHelpAdrSize, pstKey, pstLang, (BOOL) iFullText);
-    }
-
-    if (pstLang != NULL)
-    {
-        FREE(pstLang);
-    }
-
-    if (pstKey != NULL)
-    {
-        FREE(pstKey);
-    }
-
-    if (helpAdr != NULL) /* No toolboxes loaded */
-    {
-        for (int i = 0 ; i < iHelpAdrSize ; i++)
-        {
-            FREE(helpAdr[i]);
-        }
-        delete[] helpAdr;
     }
 
     return types::Function::OK;

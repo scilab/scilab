@@ -32,8 +32,6 @@ extern "C"
 
 bool parseListItem(types::List* pIn, int _iItemCount, std::vector<std::string>& _pvStructList, const std::string& _szLevel)
 {
-    char* cstr; // Buffer
-
     std::string szCurLvl = "";
 
     // Parse item
@@ -66,7 +64,7 @@ bool parseListItem(types::List* pIn, int _iItemCount, std::vector<std::string>& 
         }
 
         // Check tree structure
-        if (wcscmp(strItem1->get(0), TREE_REF_NAME) != 0)
+        if (strcmp(strItem1->get(0), TREE_REF_NAME) != 0)
         {
             return false;
         }
@@ -108,9 +106,7 @@ bool parseListItem(types::List* pIn, int _iItemCount, std::vector<std::string>& 
             return false;
         }
 
-        cstr = wide_string_to_UTF8(strLabel->get(0));
-        _pvStructList.push_back(std::string(cstr));
-        FREE(cstr);
+        _pvStructList.push_back(std::string(strLabel->get(0)));
 
         // Get icon name
         temp = node->get(0)->get(Icon);
@@ -125,9 +121,7 @@ bool parseListItem(types::List* pIn, int _iItemCount, std::vector<std::string>& 
             return false;
         }
 
-        cstr = wide_string_to_UTF8(strIcon->get(0));
-        _pvStructList.push_back(std::string(cstr));
-        FREE(cstr);
+        _pvStructList.push_back(strIcon->get(0));
 
         // Get callback name
         temp = node->get(0)->get(Callback);
@@ -142,9 +136,7 @@ bool parseListItem(types::List* pIn, int _iItemCount, std::vector<std::string>& 
             return false;
         }
 
-        cstr = wide_string_to_UTF8(strCallback->get(0));
-        _pvStructList.push_back(std::string(cstr));
-        FREE(cstr);
+        _pvStructList.push_back(strCallback->get(0));
 
         parseListItem(tlist, iItemCount, _pvStructList, szCurLvl);
     }

@@ -22,7 +22,7 @@ private :
     GuiModule() {};
     ~GuiModule() {};
 public :
-    GUI_GW_IMPEXP static int LoadDeps(const std::wstring& _functionName);
+    GUI_GW_IMPEXP static int LoadDeps(const std::string& _functionName);
     GUI_GW_IMPEXP static int Load();
     GUI_GW_IMPEXP static int Unload()
     {
