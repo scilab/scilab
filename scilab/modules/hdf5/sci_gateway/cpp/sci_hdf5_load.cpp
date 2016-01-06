@@ -47,14 +47,11 @@ types::Function::ReturnValue sci_hdf5_load(types::typed_list &in, int _iRetCount
         return types::Function::Error;
     }
 
-    wchar_t* wcfilename = expandPathVariableW(in[0]->getAs<types::String>()->get()[0]);
-    char* cfilename = wide_string_to_UTF8(wcfilename);
+    char* cfilename = expandPathVariable(in[0]->getAs<types::String>()->get()[0]);
     std::string filename(cfilename);
-    std::wstring wfilename(wcfilename);
     FREE(cfilename);
-    FREE(wcfilename);
 
-    if (FileExistW(wfilename.data()) == FALSE)
+    if (FileExist(filename.data()) == FALSE)
     {
         Scierror(999, _("%s: Unable to open file: '%s'.\n"), fname.data(), filename.data());
         return types::Function::Error;
@@ -90,7 +87,7 @@ types::Function::ReturnValue sci_hdf5_load(types::typed_list &in, int _iRetCount
         return types::Function::Error;
     }
 
-    std::wstring wstFuncName;
+    std::string stFuncName;
     //manage version information
     int version = getSODFormatAttribute(iFile);
     closeHDF5File(iFile);
@@ -101,19 +98,19 @@ types::Function::ReturnValue sci_hdf5_load(types::typed_list &in, int _iRetCount
         case -1:
         case 1:
         {
-            wstFuncName = L"hdf5_load_v1";
+            stFuncName = "hdf5_load_v1";
             needReprocess = true;
             break;
         }
         case 2:
         {
-            wstFuncName = L"hdf5_load_v2";
+            stFuncName = "hdf5_load_v2";
             needReprocess = true;
             break;
         }
         case 3:
         {
-            wstFuncName = L"hdf5_load_v3";
+            stFuncName = "hdf5_load_v3";
             break;
         }
         default :
@@ -124,7 +121,7 @@ types::Function::ReturnValue sci_hdf5_load(types::typed_list &in, int _iRetCount
     }
 
     types::typed_list out1;
-    types::Function::ReturnValue ret = Overload::call(wstFuncName, in, _iRetCount, out1);
+    types::Function::ReturnValue ret = Overload::call(stFuncName, in, _iRetCount, out1);
 
     if (ret != types::Function::OK)
     {
@@ -140,12 +137,12 @@ types::Function::ReturnValue sci_hdf5_load(types::typed_list &in, int _iRetCount
         int size = vars->getSize();
         types::typed_list in2(1, vars);
         types::typed_list out2;
-        std::wstring wstFuncName = L"%_sodload";
-        ret = Overload::call(wstFuncName, in2, size, out2);
+        std::string stFuncName = "%_sodload";
+        ret = Overload::call(stFuncName, in2, size, out2);
         vars->DecreaseRef();
 
         symbol::Context* ctx = symbol::Context::getInstance();
-        wchar_t** names = vars->get();
+        char** names = vars->get();
 
         //update context with values return by %_sodload
         for (int i = 0; i < size; ++i)

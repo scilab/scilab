@@ -75,7 +75,7 @@ int sci_h5close(char *fname, int* pvApiCtx)
                      */
 
                     types::MList* m = (types::MList*)addr;
-                    m->set(L"_id", new types::Int32(invalid));
+                    m->set("_id", new types::Int32(invalid));
                 }
                 else
                 {

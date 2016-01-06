@@ -1058,16 +1058,9 @@ void HDF5Scilab::getScilabData(hid_t * type, unsigned int * ndims, hsize_t ** di
         case types::InternalType::ScilabString:
         {
             types::String* pIn = pGT->getAs<types::String>();
-            wchar_t** pwcsIn = pIn->get();
-            char** pstrIn = new char*[iSize];
-
-            for (int i = 0; i < iSize; i++)
-            {
-                pstrIn[i] = wide_string_to_UTF8(pwcsIn[i]);
-            }
-
-            *type = H5Type::getBaseType(pstrIn);
-            *data = pstrIn;
+            char** strs = pIn->get();
+            *type = H5Type::getBaseType(strs);
+            *data = strs;
             *mustDelete = true;
             *mustDeleteContent = true;
             break;

@@ -93,17 +93,15 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
         return types::Function::Error;
     }
 
-    wchar_t* wfilename = expandPathVariableW(in[0]->getAs<types::String>()->get()[0]);
-    char* cfilename = wide_string_to_UTF8(wfilename);
+    char* cfilename = expandPathVariable(in[0]->getAs<types::String>()->get()[0]);
     filename = cfilename;
-    FREE(wfilename);
     FREE(cfilename);
 
     if (rhs == 1)
     {
         //save environment
         //get variables in scope 1
-        std::list<std::wstring> lst;
+        std::list<std::string> lst;
         int size = ctx->getConsoleVarsName(lst);
 
         if (size == 0)
@@ -111,19 +109,15 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
             return types::Function::OK;
         }
 
-        for (const auto & wvar : lst)
+        for (const auto & var : lst)
         {
-            types::InternalType* pIT = ctx->getAtLevel(symbol::Symbol(wvar), SCOPE_CONSOLE);
+            types::InternalType* pIT = ctx->getAtLevel(symbol::Symbol(var), SCOPE_CONSOLE);
 
             //do not save macrofile
             if (pIT->isMacroFile() || pIT->isFunction() || pIT->isLibrary())
             {
                 continue;
             }
-
-            char* cvar = wide_string_to_UTF8(wvar.data());
-            std::string var(cvar);
-            FREE(cvar);
 
             //check var exists
             vars[var] = pIT;
@@ -139,23 +133,19 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
                 return types::Function::Error;
             }
 
-            wchar_t* wvar = in[i]->getAs<types::String>()->get()[0];
-            if (wcscmp(wvar, L"-append") == 0)
+            char* var = in[i]->getAs<types::String>()->get()[0];
+            if (strcmp(var, "-append") == 0)
             {
                 bAppendMode = true;
                 continue;
             }
 
-            types::InternalType* pIT = ctx->get(symbol::Symbol(wvar));
+            types::InternalType* pIT = ctx->get(symbol::Symbol(var));
             if (pIT == NULL)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname.data(), i + 1);
                 return types::Function::Error;
             }
-
-            char* cvar = wide_string_to_UTF8(wvar);
-            std::string var(cvar);
-            FREE(cvar);
 
             //check var exists
             vars[var] = pIT;
@@ -432,25 +422,7 @@ static int export_int(int parent, const std::string& name, int type, const char*
 /*--------------------------------------------------------------------------*/
 static int export_string(int parent, const std::string& name, types::String* data)
 {
-    int size = data->getSize();
-    wchar_t** s = data->get();
-    std::vector<char*> v(size);
-
-    //convert UTF16 strings to UTF8
-    for (int i = 0; i < size; ++i)
-    {
-        v[i] = wide_string_to_UTF8(s[i]);
-    }
-
-    int dset = writeStringMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), v.data());
-
-    //release memory
-    for (int i = 0; i < size; ++i)
-    {
-        FREE(v[i]);
-    }
-
-    return dset;
+    return writeStringMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), data->get());
 }
 /*--------------------------------------------------------------------------*/
 static int export_boolean(int parent, const std::string& name, types::Bool* data)
@@ -491,7 +463,7 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
 
     types::String* fields = data->getFieldNames();
     int fieldCount = fields->getSize();
-    wchar_t** pfields = fields->get();
+    char** pfields = fields->get();
 
     //save fields list in vector to keep order
     export_string(dset, "__fields__", fields);
@@ -500,13 +472,12 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
     //fill main group with struct field name
     for (int i = 0; i < fieldCount; ++i)
     {
-        char* cfield = wide_string_to_UTF8(pfields[i]);
         for (int j = 0; j < size; ++j)
         {
             //get data
             types::InternalType* val = data->get(j)->get(pfields[i]);
             //create ref name
-            std::string refname(cfield);
+            std::string refname(pfields[i]);
             refname += "_" + std::to_string(j);
             //export data in refs group
             int ref = export_data(refs, refname, val);
@@ -519,8 +490,7 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
             }
         }
 
-        ret = writeStructField6(dset, cfield, data->getDims(), data->getDimsArray(), vrefs.data());
-        FREE(cfield);
+        ret = writeStructField6(dset, pfields[i], data->getDims(), data->getDimsArray(), vrefs.data());
         if (ret < 0)
         {
             delete fields;
@@ -567,9 +537,8 @@ static int export_poly(int parent, const std::string& name, types::Polynom* data
 
     //store variable name
     std::vector<int> vardims = {1, 1};
-    char* varname = wide_string_to_UTF8(data->getVariableName().data());
-    ret = writeStringMatrix6(dset, "__varname__", 2, vardims.data(), &varname);
-    FREE(varname);
+    const char* varname = data->getVariableName().data();
+    ret = writeStringMatrix6(dset, "__varname__", 2, vardims.data(), (char**)&varname);
     if (ret < 0)
     {
         return -1;
@@ -846,38 +815,28 @@ static int export_macro(int parent, const std::string& name, types::Macro* data)
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_MACRO);
 
     //inputs
-    std::vector<char*> inputNames;
+    std::vector<const char*> inputNames;
     auto inputs = data->getInputs();
     for (auto & input : *inputs)
     {
-        inputNames.push_back(wide_string_to_UTF8(input->getSymbol().getName().data()));
+        inputNames.push_back(input->getSymbol().getName().data());
     }
 
     dims[0] = 1;
     dims[1] = static_cast<int>(inputNames.size());
-    writeStringMatrix6(dset, "inputs", 2, dims, inputNames.data());
-
-    for (auto & in : inputNames)
-    {
-        FREE(in);
-    }
+    writeStringMatrix6(dset, "inputs", 2, dims, (char**)inputNames.data());
 
     //outputs
-    std::vector<char*> outputNames;
+    std::vector<const char*> outputNames;
     auto outputs = data->getOutputs();
     for (auto & output : *outputs)
     {
-        outputNames.push_back(wide_string_to_UTF8(output->getSymbol().getName().data()));
+        outputNames.push_back(output->getSymbol().getName().data());
     }
 
     dims[0] = 1;
     dims[1] = static_cast<int>(outputNames.size());
-    writeStringMatrix6(dset, "outputs", 2, dims, outputNames.data());
-
-    for (auto & in : outputNames)
-    {
-        FREE(in);
-    }
+    writeStringMatrix6(dset, "outputs", 2, dims, (char**)outputNames.data());
 
     //body
     ast::Exp* pExp = data->getBody();
@@ -907,11 +866,11 @@ static int export_usertype(int parent, const std::string& name, types::UserType*
         types::typed_list out;
         //overload
         // rational case
-        std::wstring wstFuncName = L"%" + data->getShortTypeStr() + L"_save";
+        std::string stFuncName = "%" + data->getShortTypeStr() + "_save";
 
         try
         {
-            types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out);
+            types::Callable::ReturnValue ret = Overload::call(stFuncName, in, 1, out);
 
             if (ret != types::Callable::OK)
             {
@@ -948,12 +907,12 @@ static int export_usertype(int parent, const std::string& name, types::UserType*
     types::SingleStruct* ss = str->get()[0];
 
     //add fields
-    ss->addField(L"type");
-    ss->addField(L"data");
+    ss->addField("type");
+    ss->addField("data");
 
     //assign values to new fields
-    ss->set(L"type", new types::String(data->getShortTypeStr().data()));
-    ss->set(L"data", it);
+    ss->set("type", new types::String(data->getShortTypeStr().data()));
+    ss->set("data", it);
 
     int ret = export_struct(parent, name, str, g_SCILAB_CLASS_USERTYPE);
 

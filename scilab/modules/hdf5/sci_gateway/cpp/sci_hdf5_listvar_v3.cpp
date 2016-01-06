@@ -89,10 +89,8 @@ types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRe
     }
 
     //open hdf5 file
-    wchar_t* wfilename = expandPathVariableW(in[0]->getAs<types::String>()->get()[0]);
-    char* cfilename = wide_string_to_UTF8(wfilename);
+    char* cfilename = expandPathVariable(in[0]->getAs<types::String>()->get()[0]);
     std::string filename = cfilename;
-    FREE(wfilename);
     FREE(cfilename);
 
     int iFile = openHDF5File(filename.data(), 0);

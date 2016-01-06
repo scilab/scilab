@@ -90,10 +90,8 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
         return types::Function::Error;
     }
 
-    wchar_t* wfilename = expandPathVariableW(in[0]->getAs<types::String>()->get()[0]);
-    char* cfilename = wide_string_to_UTF8(wfilename);
+    char* cfilename = expandPathVariable(in[0]->getAs<types::String>()->get()[0]);
     filename = cfilename;
-    FREE(wfilename);
     FREE(cfilename);
 
     int iFile = openHDF5File(filename.data(), 0);
@@ -116,10 +114,7 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
     {
         for (int i = 1; i < rhs; ++i)
         {
-            std::string var;
-            char* cvar = wide_string_to_UTF8(in[i]->getAs<types::String>()->get()[0]);
-            var = cvar;
-            FREE(cvar);
+            std::string var(in[i]->getAs<types::String>()->get()[0]);
 
             if (import_variable(iFile, var) == false)
             {
@@ -168,20 +163,19 @@ static bool import_variable(int file, std::string& name)
     types::InternalType* data = import_data(dataset);
     if (data != nullptr)
     {
-        wchar_t* var = to_wide_string(name.data());
         //update macro name
         if (data->isMacro())
         {
             types::Macro* macro = data->getAs<types::Macro>();
-            macro->setName(var);
+            macro->setName(name.data());
             symbol::Context::getInstance()->addMacro(macro);
         }
         else
         {
             //add to context
-            symbol::Context::getInstance()->put(symbol::Symbol(var), data);
+            symbol::Context::getInstance()->put(symbol::Symbol(name.data()), data);
         }
-        FREE(var);
+
         return true;
     }
 
@@ -334,11 +328,8 @@ static types::InternalType* import_string(int dataset)
         return nullptr;
     }
 
-
     std::vector<int> d(dims);
     int size = getDatasetInfo(dataset, &complex, &dims, d.data());
-
-
     if (dims == 0 || size == 0)
     {
         closeDataSet(dataset);
@@ -349,13 +340,6 @@ static types::InternalType* import_string(int dataset)
     ret = readStringMatrix(dataset, s.data());
 
     types::String* str = new types::String(dims, d.data());
-    wchar_t** pstr = str->get();
-
-    for (int i = 0; i < size; ++i)
-    {
-        pstr[i] = to_wide_string(s[i]);
-    }
-
     freeStringMatrix(dataset, s.data());
 
     return str;
@@ -604,8 +588,7 @@ static types::InternalType* import_struct(int dataset)
 
     for (const auto & name : fields)
     {
-        wchar_t* field = to_wide_string(name);
-        str->addField(field);
+        str->addField(name);
 
         int dataref = getDataSetIdFromName(dataset, name);
         if (dataref < 0)
@@ -649,11 +632,10 @@ static types::InternalType* import_struct(int dataset)
                 return nullptr;
             }
 
-            sstr[j]->set(field, val);
+            sstr[j]->set(name, val);
 
         }
 
-        FREE(field);
         closeDataSet(dataref);
     }
 
@@ -672,14 +654,12 @@ static types::InternalType* import_poly(int dataset)
 
     //get variable name
     char* var = NULL;
-    int varname = getDataSetIdFromName(dataset, "__varname__");
-    readStringMatrix(varname, &var);
-    wchar_t* wvar = to_wide_string(var);
-    std::wstring wvarname(wvar);
-    FREE(wvar);
-    freeStringMatrix(varname, &var);
+    int varId = getDataSetIdFromName(dataset, "__varname__");
+    readStringMatrix(varId, &var);
+    std::string varname(var);
+    freeStringMatrix(varId, &var);
 
-    types::Polynom* p = new types::Polynom(wvarname, static_cast<int>(pdims.size()), pdims.data());
+    types::Polynom* p = new types::Polynom(varname, static_cast<int>(pdims.size()), pdims.data());
     types::SinglePoly** pss = p->get();
 
     //open __refs__ node
@@ -995,9 +975,7 @@ static types::InternalType* import_macro(int dataset)
 
         for (auto & input : inputNames)
         {
-            wchar_t* winput = to_wide_string(input);
-            symbol::Variable* var = ctx->getOrCreate(symbol::Symbol(winput));
-            FREE(winput);
+            symbol::Variable* var = ctx->getOrCreate(symbol::Symbol(input));
             inputList->push_back(var);
         }
 
@@ -1019,9 +997,7 @@ static types::InternalType* import_macro(int dataset)
 
         for (auto & output : outputNames)
         {
-            wchar_t* woutput = to_wide_string(output);
-            symbol::Variable* var = ctx->getOrCreate(symbol::Symbol(woutput));
-            FREE(woutput);
+            symbol::Variable* var = ctx->getOrCreate(symbol::Symbol(output));
             outputList->push_back(var);
         }
 
@@ -1042,7 +1018,7 @@ static types::InternalType* import_macro(int dataset)
     body = ds.deserialize();
 
     //wname+1 is to remove "/" at the start of the var name from HDF5
-    types::Macro* macro = new types::Macro(L"", *inputList, *outputList, *body->getAs<ast::SeqExp>(), L"script");
+    types::Macro* macro = new types::Macro("", *inputList, *outputList, *body->getAs<ast::SeqExp>(), "script");
     delete body;
     closeList6(dataset);
     return macro;
@@ -1069,7 +1045,7 @@ static types::InternalType* import_usertype(int dataset)
     types::SingleStruct* ss = str->get()[0];
 
     //extract type from struct
-    types::InternalType* itType  = ss->get(L"type");
+    types::InternalType* itType  = ss->get("type");
     if (itType == nullptr || itType->getId() != types::InternalType::IdScalarString)
     {
         delete it;
@@ -1077,9 +1053,9 @@ static types::InternalType* import_usertype(int dataset)
     }
 
     types::String* s = it->getAs<types::String>();
-    wchar_t* type = s->get()[0];
+    char* type = s->get()[0];
 
-    types::InternalType* data = ss->get(L"data");
+    types::InternalType* data = ss->get("data");
     if (data == nullptr)
     {
         delete it;
@@ -1093,8 +1069,8 @@ static types::InternalType* import_usertype(int dataset)
     types::typed_list out;
     //overload
     // rational case
-    std::wstring wstFuncName = L"%" + data->getShortTypeStr() + L"_load";
-    types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out);
+    std::string stFuncName = "%" + data->getShortTypeStr() + "_load";
+    types::Callable::ReturnValue ret = Overload::call(stFuncName, in, 1, out);
 
     //clean temporary variables
     delete it; //included type and data

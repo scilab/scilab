@@ -43,10 +43,8 @@ types::Function::ReturnValue sci_hdf5_listvar(types::typed_list &in, int _iRetCo
         return types::Function::Error;
     }
 
-    wchar_t* wfilename = expandPathVariableW(in[0]->getAs<types::String>()->get()[0]);
-    char* cfilename = wide_string_to_UTF8(wfilename);
+    char* cfilename = expandPathVariable(in[0]->getAs<types::String>()->get()[0]);
     std::string filename = cfilename;
-    FREE(wfilename);
     FREE(cfilename);
 
     int iFile = openHDF5File(filename.data(), 0);
@@ -56,7 +54,7 @@ types::Function::ReturnValue sci_hdf5_listvar(types::typed_list &in, int _iRetCo
         return types::Function::Error;
     }
 
-    std::wstring wstFuncName;
+    std::string stFuncName;
     //manage version information
     int version = getSODFormatAttribute(iFile);
     closeHDF5File(iFile);
@@ -66,12 +64,12 @@ types::Function::ReturnValue sci_hdf5_listvar(types::typed_list &in, int _iRetCo
         case 1:
         case 2:
         {
-            wstFuncName = L"hdf5_listvar_v2";
+            stFuncName = "hdf5_listvar_v2";
             break;
         }
         case 3:
         {
-            wstFuncName = L"hdf5_listvar_v3";
+            stFuncName = "hdf5_listvar_v3";
             break;
         }
         default:
@@ -81,5 +79,5 @@ types::Function::ReturnValue sci_hdf5_listvar(types::typed_list &in, int _iRetCo
         }
     }
 
-    return Overload::call(wstFuncName, in, _iRetCount, out);
+    return Overload::call(stFuncName, in, _iRetCount, out);
 }

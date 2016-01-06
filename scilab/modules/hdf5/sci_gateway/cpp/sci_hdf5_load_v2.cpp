@@ -1304,9 +1304,7 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     }
     else
     {
-        wchar_t* pwcsName = to_wide_string(_pstVarname);
-        pIT = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(pwcsName));
-        FREE(pwcsName);
+        pIT = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(_pstVarname));
     }
 
     // reshape data with size of hypermatrix
@@ -1481,13 +1479,10 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
 
     types::Struct* pStruct = new types::Struct(piDims[1], piDimsArray);
 
-    wchar_t* pwstName = NULL;
     for (int i = 0; i < (-2 + iItems); ++i)
     {
-        pwstName = to_wide_string(pstDataSave[i]);
-        pStruct->addField(pwstName);
+        pStruct->addField(pstDataSave[i]);
         delete pstDataSave[i];
-        FREE(pwstName);
     }
 
     delete[] pstDataSave;
@@ -1503,6 +1498,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     if (pStruct->getSize() == 1)
     {
         types::InternalType* pIT = NULL;
+        char** fields = pStr->get();
         for (int i = 0; i < pStr->getSize(); ++i)
         {
             int iItemDataset = 0;
@@ -1515,10 +1511,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
                 return false;
             }
 
-            wchar_t* pwcsName = pStr->get(i);
-            char* pcName = wide_string_to_UTF8(pwcsName);
-
-            bool bRet = import_data(pvCtx, iItemDataset, 1, (int*)pList, pcName);
+            bool bRet = import_data(pvCtx, iItemDataset, 1, (int*)pList, fields[i]);
             if (bRet == false)
             {
                 deleteListItemReferences(_iDatasetId, piItemRef);
@@ -1528,12 +1521,12 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
             }
 
             pIT = pList->get(0);
-            ppSStruct[0]->set(pwcsName, pIT);
-            FREE(pcName);
+            ppSStruct[0]->set(fields[i], pIT);
         }
     }
     else if (pStruct->getSize() > 1)
     {
+        char** fields = pStr->get();
         for (int i = 0; i < pStr->getSize(); ++i)
         {
             int iItemDataset = 0;
@@ -1546,10 +1539,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
                 return false;
             }
 
-            wchar_t* pwcsName = pStr->get(i);
-            char* pcName = wide_string_to_UTF8(pwcsName);
-
-            bool bRet = import_data(pvCtx, iItemDataset, 1, (int*)pList, pcName);
+            bool bRet = import_data(pvCtx, iItemDataset, 1, (int*)pList, fields[i]);
             if (bRet == false)
             {
                 deleteListItemReferences(_iDatasetId, piItemRef);
@@ -1561,10 +1551,8 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
             types::List* pListData = pList->get(0)->getAs<types::List>();
             for (int iWriteData = 0; iWriteData < pStruct->getSize(); ++iWriteData)
             {
-                ppSStruct[iWriteData]->set(pwcsName, pListData->get(iWriteData));
+                ppSStruct[iWriteData]->set(fields[i], pListData->get(iWriteData));
             }
-
-            FREE(pcName);
         }
 
     }
@@ -1572,9 +1560,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     delete pList;
     if (_piAddress == NULL)
     {
-        pwstName = to_wide_string(_pstVarname);
-        symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pStruct);
-        FREE(pwstName);
+        symbol::Context::getInstance()->put(symbol::Symbol(_pstVarname), pStruct);
     }
     else
     {
@@ -1745,9 +1731,7 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
 
     if (_piAddress == NULL)
     {
-        wchar_t* pwstName = to_wide_string(_pstVarname);
-        symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pCell);
-        FREE(pwstName);
+        symbol::Context::getInstance()->put(symbol::Symbol(_pstVarname), pCell);
     }
     else
     {

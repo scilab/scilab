@@ -1330,9 +1330,7 @@ static bool import_hypermat_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _
     }
     else
     {
-        wchar_t* pwcsName = to_wide_string(_pstVarname);
-        pIT = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(pwcsName));
-        FREE(pwcsName);
+        pIT = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(_pstVarname));
     }
 
     // reshape data with size of hypermatrix
