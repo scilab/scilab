@@ -806,7 +806,7 @@ int ConstructCompoundSeq(int number)
     return iObj;
 }
 
-int ConstructLight(char* fname, int iSubwin, int type, BOOL visible, double * position, double * direction, double * ambient_color, double * diffuse_color, double * specular_color)
+int ConstructLight(const char* fname, int iSubwin, int type, BOOL visible, double * position, double * direction, double * ambient_color, double * diffuse_color, double * specular_color)
 {
     int iLight = 0;
     int * piType = &type;

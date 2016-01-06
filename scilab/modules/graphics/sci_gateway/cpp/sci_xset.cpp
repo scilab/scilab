@@ -51,13 +51,13 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    wchar_t* pwcsWhat = NULL;
+    char* what = NULL;
     std::list<types::Double*> lpDblInputs;
     int iSubwinUID = 0;
 
     if (in.size() == 0)
     {
-        return Overload::call(L"%_xset", in, _iRetCount, out);
+        return Overload::call("%_xset", in, _iRetCount, out);
     }
 
     if (in.size() > 6)
@@ -86,21 +86,19 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    pwcsWhat = pStr->get(0);
+    what = pStr->get(0);
 
-    if (ConfigGraphicVariable::bPropertyFound(pwcsWhat) == false)
+    if (ConfigGraphicVariable::bPropertyFound(what) == false)
     {
-        char* pstWhat = wide_string_to_UTF8(pwcsWhat);
-        Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), "xset", pstWhat);
-        FREE(pstWhat);
+        Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), "xset", what);
         return types::Function::Error;
     }
 
     // Only in case of "fpf" and "auto clear", the second argument is a string
     // Only "default" case have one input argument
-    if (ConfigGraphicVariable::getPropertyValue(pwcsWhat) != 15 && // fpf
-            ConfigGraphicVariable::getPropertyValue(pwcsWhat) != 2  && // auto clear
-            ConfigGraphicVariable::getPropertyValue(pwcsWhat) != 10)   // default
+    if (ConfigGraphicVariable::getPropertyValue(what) != 15 && // fpf
+        ConfigGraphicVariable::getPropertyValue(what) != 2 && // auto clear
+        ConfigGraphicVariable::getPropertyValue(what) != 10)   // default
     {
         for (unsigned int i = 1 ; i < in.size() ; i++)
         {
@@ -111,7 +109,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         }
     }
 
-    switch (ConfigGraphicVariable::getPropertyValue(pwcsWhat))
+    switch (ConfigGraphicVariable::getPropertyValue(what))
     {
         case 15 : // fpf
         {
@@ -159,7 +157,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             }
 
             int bAutoClear = 0;
-            if (wcscmp(pStrValue->get(0), L"on") == 0)
+            if (strcmp(pStrValue->get(0), "on") == 0)
             {
                 bAutoClear = 1;
             }
@@ -286,7 +284,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             int defaultBackground = -2;
 
             // reset format
-            ConfigGraphicVariable::setFPF(L"");
+            ConfigGraphicVariable::setFPF("");
 
             double* pdblColorMap = (double*)malloc(m * 3 * sizeof(double));
             if (pdblColorMap == NULL)
@@ -556,8 +554,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             }
 
             int viewport[4] = {0, 0, 0, 0};
-            viewport[0] = in[1]->getAs<types::Double>()->get(0);
-            viewport[1] = in[2]->getAs<types::Double>()->get(0);
+            viewport[0] = (int)in[1]->getAs<types::Double>()->get(0);
+            viewport[1] = (int)in[2]->getAs<types::Double>()->get(0);
 
             getOrCreateDefaultSubwin();
             setGraphicObjectProperty(getCurrentFigure(), __GO_VIEWPORT__, viewport, jni_int_vector, 2);
@@ -587,9 +585,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         break;
         default :
         {
-            char* pstWhat = wide_string_to_UTF8(pwcsWhat);
-            Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), "xset", pstWhat);
-            FREE(pstWhat);
+            Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), "xset", what);
             return types::Function::Error;
         }
     }

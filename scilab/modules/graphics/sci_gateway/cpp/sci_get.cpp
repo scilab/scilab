@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 
     if (p1->isMList() || p1->isTList())
     {
-        Overload::generateNameAndCall(L"get", in, _iRetCount, out);
+        Overload::generateNameAndCall("get", in, _iRetCount, out);
         return types::Function::OK;
     }
 
@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         double pdbll1 = pDbll1->get(0);
         if (pdbll1 != 0)
         {
-            Overload::generateNameAndCall(L"get", in, _iRetCount, out);
+            Overload::generateNameAndCall("get", in, _iRetCount, out);
             return types::Function::OK;
         }
 
@@ -106,17 +106,15 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
             return types::Function::Error;
         }
 
-        char* pstr = wide_string_to_UTF8(pStr->get(0));
+        char* pstr = pStr->get(0);
         void* pvPropScreen = GetScreenProperty(NULL, pstr);
 
         if (pvPropScreen == NULL) /* Return property */
         {
             Scierror(999, _("%s: Could not read property '%s' for root object.\n"), "get", pstr);
-            FREE(pstr);
             return types::Function::Error;
         }
 
-        FREE(pstr);
         out.push_back(static_cast<types::InternalType*>(pvPropScreen));
         return types::Function::OK;
     }
@@ -125,7 +123,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         types::GraphicHandle* pH = p1->getAs<types::GraphicHandle>();
         if (pH->isScalar() == false)
         {
-            return Overload::call(L"%h_get", in, _iRetCount, out);
+            return Overload::call("%h_get", in, _iRetCount, out);
         }
 
         if (in.size() == 1)
@@ -176,19 +174,18 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
             return types::Function::Error;
         }
 
-        wchar_t* pstProperty = pS->get(0);
+        char* pstProperty = pS->get(0);
 
-        if (wcscmp(pstProperty, L"default_figure")  &&
-                wcscmp(pstProperty, L"default_axes")    &&
-                wcscmp(pstProperty, L"current_figure")  &&
-                wcscmp(pstProperty, L"current_axes")    &&
-                wcscmp(pstProperty, L"current_entity")  &&
-                wcscmp(pstProperty, L"hdl")             &&
-                wcscmp(pstProperty, L"figures_id"))
+        if (strcmp(pstProperty, "default_figure")  &&
+                strcmp(pstProperty, "default_axes")    &&
+                strcmp(pstProperty, "current_figure")  &&
+                strcmp(pstProperty, "current_axes")    &&
+                strcmp(pstProperty, "current_entity")  &&
+                strcmp(pstProperty, "hdl")             &&
+                strcmp(pstProperty, "figures_id"))
         {
-            char* pstProperty = wide_string_to_UTF8(pS->get(0));
+            char* pstProperty = pS->get(0);
             int uid = search_path(pstProperty);
-            FREE(pstProperty);
 
             if (uid != 0)
             {
@@ -222,17 +219,16 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     else
     {
         // Overload
-        return Overload::call(L"%" + p1->getShortTypeStr() + L"_get", in, _iRetCount, out);
+        return Overload::call("%" + p1->getShortTypeStr() + "_get", in, _iRetCount, out);
     }
 
-    char* pstProperty = wide_string_to_UTF8(pS->get(0));
+    char* pstProperty = pS->get(0);
 
     if (llH)
     {
         iObjUID = getObjectFromHandle((long)llH);
         if (iObjUID == 0)
         {
-            FREE(pstProperty);
             Scierror(999, _("%s: The handle is not or no more valid.\n"), "get");
             return types::Function::Error;
         }
@@ -246,11 +242,9 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     if (pOut == NULL)
     {
         /* An error has occurred */
-        FREE(pstProperty);
         return types::Function::Error;
     }
 
     out.push_back(pOut);
-    FREE(pstProperty);
     return types::Function::OK;
 }

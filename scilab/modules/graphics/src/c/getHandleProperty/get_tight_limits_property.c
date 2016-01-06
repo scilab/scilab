@@ -52,7 +52,7 @@ void* get_tight_limits_property(void* _pvCtx, int iObjUID)
         if (piTightLimits == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "tight_limits");
-            return -1;
+            return NULL;
         }
 
         if (iTightLimits)
@@ -72,7 +72,7 @@ void* get_tight_limits_property(void* _pvCtx, int iObjUID)
             }
 
             Scierror(999, _("%s: No more memory.\n"), "get_tight_limits_property");
-            return -1;
+            return NULL;
         }
 
     }

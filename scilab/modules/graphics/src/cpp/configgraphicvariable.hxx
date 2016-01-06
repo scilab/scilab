@@ -27,20 +27,20 @@ class GRAPHICS_IMPEXP ConfigGraphicVariable
 {
     //FPF
 private :
-    static std::wstring m_wstFPF;
+    static std::string m_stFPF;
 
 public :
-    static void setFPF(const std::wstring& _wstFPF);
-    static std::wstring getFPF();
+    static void setFPF(const std::string& _wstFPF);
+    static std::string getFPF();
 
     //KeyTab_, graphic properties
 private :
-    static std::map<std::wstring, int> m_mapProperties;
+    static std::map<std::string, int> m_mapProperties;
     static void fillProperties();
 
 public :
-    static bool bPropertyFound(wchar_t* _wcsKey);
-    static int getPropertyValue(wchar_t* _wcsKey);
+    static bool bPropertyFound(const char* _key);
+    static int getPropertyValue(const char* _key);
 
     //color map
 private :

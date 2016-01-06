@@ -66,71 +66,71 @@ int sci_light(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, in
         }
 
         //optionals
-        var = scilab_getOptional(env, opt, L"visible");
+        var = scilab_getOptional(env, opt, "visible");
         if (var && scilab_isString(env, var) && scilab_isScalar(env, var))
         {
-            wchar_t* wstr = NULL;
-            if (scilab_getString(env, var, &wstr))
+            char* str = NULL;
+            if (scilab_getString(env, var, &str))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 7);
                 return 0;
             }
 
-            if (wcsicmp(wstr, L"on") == 0)
+            if (stricmp(str, "on") == 0)
             {
                 visible = 1;
             }
-            else if (wcsicmp(wstr, L"off") == 0)
+            else if (stricmp(str, "off") == 0)
             {
                 visible = 0;
             }
         }
 
-        var = scilab_getOptional(env, opt, L"type");
+        var = scilab_getOptional(env, opt, "type");
         if (var && scilab_isString(env, var) && scilab_isScalar(env, var))
         {
-            wchar_t* wstr = NULL;
-            if (scilab_getString(env, var, &wstr))
+            char* str = NULL;
+            if (scilab_getString(env, var, &str))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 7);
                 return 0;
             }
 
-            if (wcsicmp(wstr, L"directional") == 0)
+            if (stricmp(str, "directional") == 0)
             {
                 type = 0;
             }
-            else if (wcsicmp(wstr, L"point") == 0)
+            else if (stricmp(str, "point") == 0)
             {
                 type = 1;
             }
         }
 
-        var = scilab_getOptional(env, opt, L"position");
+        var = scilab_getOptional(env, opt, "position");
         if (var && scilab_isDouble(env, var) && scilab_getSize(env, var) == 3)
         {
             scilab_getDoubleArray(env, var, &position);
         }
 
-        var = scilab_getOptional(env, opt, L"direction");
+        var = scilab_getOptional(env, opt, "direction");
         if (var && scilab_isDouble(env, var) && scilab_getSize(env, var) == 3)
         {
             scilab_getDoubleArray(env, var, &direction);
         }
 
-        var = scilab_getOptional(env, opt, L"ambient_color");
+        var = scilab_getOptional(env, opt, "ambient_color");
         if (var && scilab_isDouble(env, var) && scilab_getSize(env, var) == 3)
         {
             scilab_getDoubleArray(env, var, &ambient_color);
         }
 
-        var = scilab_getOptional(env, opt, L"diffuse_color");
+        var = scilab_getOptional(env, opt, "diffuse_color");
         if (var && scilab_isDouble(env, var) && scilab_getSize(env, var) == 3)
         {
             scilab_getDoubleArray(env, var, &diffuse_color);
         }
 
-        var = scilab_getOptional(env, opt, L"specular_color");
+        var = scilab_getOptional(env, opt, "specular_color");
         if (var && scilab_isDouble(env, var) && scilab_getSize(env, var) == 3)
         {
             scilab_getDoubleArray(env, var, &specular_color);

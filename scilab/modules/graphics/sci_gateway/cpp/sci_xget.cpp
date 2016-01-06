@@ -45,12 +45,12 @@ extern "C"
 types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     double dValue = 0;
-    wchar_t* pwcsWhat = NULL;
+    char* pcsWhat = NULL;
     void* pvApiCtx = NULL;
 
     if (in.size() == 0)
     {
-        return Overload::call(L"%_xget", in, _iRetCount, out);
+        return Overload::call("%_xget", in, _iRetCount, out);
     }
 
     if (in.size() > 2)
@@ -79,13 +79,11 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    pwcsWhat = pStr->get(0);
+    pcsWhat = pStr->get(0);
 
-    if (ConfigGraphicVariable::bPropertyFound(pwcsWhat) == false)
+    if (ConfigGraphicVariable::bPropertyFound(pcsWhat) == false)
     {
-        char* pstWhat = wide_string_to_UTF8(pwcsWhat);
-        Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), "xget", pstWhat);
-        FREE(pstWhat);
+        Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), "xget", pcsWhat);
         return types::Function::Error;
     }
 
@@ -109,7 +107,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         dValue = pDbl->get(0);
     }
 
-    switch (ConfigGraphicVariable::getPropertyValue(pwcsWhat))
+    switch (ConfigGraphicVariable::getPropertyValue(pcsWhat))
     {
         case 15 : // fpf
         {
@@ -123,11 +121,11 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
             getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, jni_bool, (void **)&piAutoClear);
             if (iAutoClear == 1)
             {
-                out.push_back(new types::String(L"on"));
+                out.push_back(new types::String("on"));
             }
             else
             {
-                out.push_back(new types::String(L"off"));
+                out.push_back(new types::String("off"));
             }
         }
         break;
@@ -365,9 +363,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         break;
         default :
         {
-            char* pstWhat = wide_string_to_UTF8(pwcsWhat);
-            Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), "xget", pstWhat);
-            FREE(pstWhat);
+            Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), "xget", pcsWhat);
             return types::Function::Error;
         }
     }

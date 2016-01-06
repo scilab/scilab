@@ -46,9 +46,7 @@ types::Function::ReturnValue sci_matplot1(types::typed_list &in, int _iRetCount,
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     int* piAddr1 = NULL;
     int* piAddr2 = NULL;
-    int type;
     int plottype = -1;
-    int precision;
     int *dims = NULL;
 
     double* l1 = NULL;
@@ -57,7 +55,7 @@ types::Function::ReturnValue sci_matplot1(types::typed_list &in, int _iRetCount,
 
     if (in.size() < 1)
     {
-        return Overload::call(L"%_Matplot1", in, _iRetCount, out);
+        return Overload::call("%_Matplot1", in, _iRetCount, out);
     }
     else if (in.size() != 2)
     {

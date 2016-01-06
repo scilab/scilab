@@ -138,7 +138,7 @@ void Objarc(double* angle1    ,
     {
         double rect[6];
         const double two_pi = 2 * M_PI;
-        if (abs(*angle2) >= two_pi)
+        if (fabs(*angle2) >= two_pi)
         {
             rect[0] = *x;
             rect[1] = *x + *width;

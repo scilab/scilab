@@ -182,7 +182,7 @@ int sci_contour2dm(char * fname, void *pvApiCtx)
     {
         double zmin = (double) Mini(l4, m4 * n4);
         double zmax = (double) Maxi(l4, m4 * n4);
-        int nb = l5[0];
+        int nb = (int)l5[0];
         l5 = new double[nb];
         l5alloc = true;
         for (int i = 0; i < nb; ++i)
@@ -207,7 +207,7 @@ int sci_contour2dm(char * fname, void *pvApiCtx)
         return 1;
     }
 
-    sciErr = createMatrixOfDouble(pvApiCtx, 6, 1, xC.size(), &(xC[0]));
+    sciErr = createMatrixOfDouble(pvApiCtx, 6, 1, (int)xC.size(), &(xC[0]));
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -215,7 +215,7 @@ int sci_contour2dm(char * fname, void *pvApiCtx)
         return 1;
     }
 
-    sciErr = createMatrixOfDouble(pvApiCtx, 7, 1, yC.size(), &(yC[0]));
+    sciErr = createMatrixOfDouble(pvApiCtx, 7, 1, (int)yC.size(), &(yC[0]));
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
