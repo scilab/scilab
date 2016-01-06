@@ -13,6 +13,32 @@ For a high-level overview of the changes in this release, please consult the "Wh
         Changes between version 6.0.0-alpha-2 and 6.0.0-beta-1
         ======================================================
 
+
+New Features
+============
+
+Xcos - the graphical tool for dynamic systems modeling and simulation - is 
+finally functional in this release. You can now graphically create, edit, and
+simulate models. No changes are visible to the user, but the new Xcos uses the
+re-written Scilab engine, and is now running in native code, which should
+provide much better performance as well as support for much bigger models.
+
+Xcos can load and run models created with earlier versions of Scilab. However,
+there are a few known limitations to upgrade of schemas created with
+earlier versions:
+ * Some links may not be imported correctly. If links disappear when opening
+   the schema, simply re-create them manually. Simulation will then work
+   properly. Please report when this happens as bugs, if possible with the
+   original schema attached (or please send it to us in private if you
+   prefer): we could not verify all the cases where this could happen,
+   thus we are **very** interested in these cases.
+ * When saving, schemas created with earlier versions of Xcos will be
+   automatically converted to the 6.0 format: they cannot be opened again
+   in Scilab/Xcos 5.x.
+
+Bug Fixes
+=========
+
 * Bug #13918 fixed - Unmanaged operations on hypermatrix did not call overload functions.
 
 * Bug #13298 fixed - Static analysis bugs detected by PVS-Studio fixed.
