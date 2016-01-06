@@ -276,7 +276,7 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
     getVarType(nullptr, (int*) in, &iType);
     switch (iType)
     {
-        // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
+            // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
         case sci_matrix  :
             encode(in->getAs<types::Double>(), out);
             break;

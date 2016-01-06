@@ -72,6 +72,10 @@ public class Controller {
     JavaControllerJNI.Controller_sortAndFillKind(swigCPtr, this, VectorOfScicosID.getCPtr(uids), uids, VectorOfInt.getCPtr(kind), kind);
   }
 
+  public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, double[] v) {
+    return JavaControllerJNI.Controller_getObjectProperty__SWIG_0(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v);
+  }
+
   public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, int[] v) {
     return JavaControllerJNI.Controller_getObjectProperty__SWIG_1(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v);
   }
@@ -80,16 +84,16 @@ public class Controller {
     return JavaControllerJNI.Controller_getObjectProperty__SWIG_2(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v);
   }
 
-  public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, double[] v) {
+  public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, String[] v) {
     return JavaControllerJNI.Controller_getObjectProperty__SWIG_3(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v);
   }
 
-  public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, String[] v) {
+  public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, long[] v) {
     return JavaControllerJNI.Controller_getObjectProperty__SWIG_4(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v);
   }
 
-  public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, long[] v) {
-    return JavaControllerJNI.Controller_getObjectProperty__SWIG_5(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v);
+  public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, VectorOfDouble v) {
+    return JavaControllerJNI.Controller_getObjectProperty__SWIG_5(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfDouble.getCPtr(v), v);
   }
 
   public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, VectorOfInt v) {
@@ -100,16 +104,16 @@ public class Controller {
     return JavaControllerJNI.Controller_getObjectProperty__SWIG_7(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfBool.getCPtr(v), v);
   }
 
-  public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, VectorOfDouble v) {
-    return JavaControllerJNI.Controller_getObjectProperty__SWIG_8(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfDouble.getCPtr(v), v);
-  }
-
   public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, VectorOfString v) {
-    return JavaControllerJNI.Controller_getObjectProperty__SWIG_9(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfString.getCPtr(v), v);
+    return JavaControllerJNI.Controller_getObjectProperty__SWIG_8(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfString.getCPtr(v), v);
   }
 
   public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, VectorOfScicosID v) {
-    return JavaControllerJNI.Controller_getObjectProperty__SWIG_10(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfScicosID.getCPtr(v), v);
+    return JavaControllerJNI.Controller_getObjectProperty__SWIG_9(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfScicosID.getCPtr(v), v);
+  }
+
+  public UpdateStatus setObjectProperty(long uid, Kind k, ObjectProperties p, double v) {
+    return UpdateStatus.class.getEnumConstants()[JavaControllerJNI.Controller_setObjectProperty__SWIG_0(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v)];
   }
 
   public UpdateStatus setObjectProperty(long uid, Kind k, ObjectProperties p, int v) {
@@ -120,7 +124,7 @@ public class Controller {
     return UpdateStatus.class.getEnumConstants()[JavaControllerJNI.Controller_setObjectProperty__SWIG_2(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v)];
   }
 
-  public UpdateStatus setObjectProperty(long uid, Kind k, ObjectProperties p, double v) {
+  public UpdateStatus setObjectProperty(long uid, Kind k, ObjectProperties p, long v) {
     return UpdateStatus.class.getEnumConstants()[JavaControllerJNI.Controller_setObjectProperty__SWIG_3(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v)];
   }
 
@@ -128,8 +132,8 @@ public class Controller {
     return UpdateStatus.class.getEnumConstants()[JavaControllerJNI.Controller_setObjectProperty__SWIG_4(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v)];
   }
 
-  public UpdateStatus setObjectProperty(long uid, Kind k, ObjectProperties p, long v) {
-    return UpdateStatus.class.getEnumConstants()[JavaControllerJNI.Controller_setObjectProperty__SWIG_5(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v)];
+  public UpdateStatus setObjectProperty(long uid, Kind k, ObjectProperties p, VectorOfDouble v) {
+    return UpdateStatus.class.getEnumConstants()[JavaControllerJNI.Controller_setObjectProperty__SWIG_5(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfDouble.getCPtr(v), v)];
   }
 
   public UpdateStatus setObjectProperty(long uid, Kind k, ObjectProperties p, VectorOfInt v) {
@@ -140,16 +144,12 @@ public class Controller {
     return UpdateStatus.class.getEnumConstants()[JavaControllerJNI.Controller_setObjectProperty__SWIG_7(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfBool.getCPtr(v), v)];
   }
 
-  public UpdateStatus setObjectProperty(long uid, Kind k, ObjectProperties p, VectorOfDouble v) {
-    return UpdateStatus.class.getEnumConstants()[JavaControllerJNI.Controller_setObjectProperty__SWIG_8(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfDouble.getCPtr(v), v)];
-  }
-
   public UpdateStatus setObjectProperty(long uid, Kind k, ObjectProperties p, VectorOfString v) {
-    return UpdateStatus.class.getEnumConstants()[JavaControllerJNI.Controller_setObjectProperty__SWIG_9(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfString.getCPtr(v), v)];
+    return UpdateStatus.class.getEnumConstants()[JavaControllerJNI.Controller_setObjectProperty__SWIG_8(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfString.getCPtr(v), v)];
   }
 
   public UpdateStatus setObjectProperty(long uid, Kind k, ObjectProperties p, VectorOfScicosID v) {
-    return UpdateStatus.class.getEnumConstants()[JavaControllerJNI.Controller_setObjectProperty__SWIG_10(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfScicosID.getCPtr(v), v)];
+    return UpdateStatus.class.getEnumConstants()[JavaControllerJNI.Controller_setObjectProperty__SWIG_9(swigCPtr, this, uid, k.ordinal(), p.ordinal(), VectorOfScicosID.getCPtr(v), v)];
   }
 
 }

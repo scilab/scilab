@@ -582,7 +582,112 @@ void Controller::sortAndFillKind(std::vector<ScicosID>& uids, std::vector<int>& 
     unlock(&m_instance.onModelStructuralModification);
 }
 
+template<typename T>
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const
+{
+    lock(&m_instance.onModelStructuralModification);
+    bool ret = m_instance.model.getObjectProperty(uid, k, p, v);
+    unlock(&m_instance.onModelStructuralModification);
+    return ret;
+}
 
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<bool>& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector< std::string >& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+
+template<typename T>
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v)
+{
+    lock(&m_instance.onModelStructuralModification);
+    update_status_t status = m_instance.model.setObjectProperty(uid, k, p, v);
+    unlock(&m_instance.onModelStructuralModification);
+
+    lock(&m_instance.onViewsStructuralModification);
+    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
+    {
+        (*iter)->propertyUpdated(uid, k, p, status);
+    }
+    unlock(&m_instance.onViewsStructuralModification);
+    return status;
+}
+
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::string& v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<double>& v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<int>& v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<bool>& v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector< std::string >& v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<ScicosID>& v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
 
 model::BaseObject* Controller::getObject(ScicosID uid) const
 {
@@ -593,3 +698,4 @@ model::BaseObject* Controller::getObject(ScicosID uid) const
 }
 
 } /* namespace org_scilab_modules_scicos */
+

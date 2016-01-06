@@ -638,7 +638,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         {
             concernedPort = controller.createObject(PORT);
             controller.setObjectProperty(concernedPort, PORT, IMPLICIT, newPortIsImplicit);
-            controller.setObjectProperty(concernedPort, PORT, PORT_KIND, newPortKind);
+            controller.setObjectProperty(concernedPort, PORT, PORT_KIND, static_cast<int>(newPortKind));
             controller.setObjectProperty(concernedPort, PORT, SOURCE_BLOCK, blkID);
             controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
             // Set the default dataType so it is saved in the model

@@ -84,7 +84,7 @@ types::InternalType* get_with_vec2var(const ModelAdapter& adaptor, const Control
     return res;
 }
 
-const bool set_with_var2vec(ModelAdapter& adaptor, types::InternalType* v, Controller& controller, object_properties_t p)
+bool set_with_var2vec(ModelAdapter& adaptor, types::InternalType* v, Controller& controller, object_properties_t p)
 {
     ScicosID adaptee = adaptor.getAdaptee()->id();
 
