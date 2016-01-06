@@ -16,6 +16,7 @@
 
 #include <vector>
 #include <list>
+
 #include "context.hxx"
 #include "configvariable.hxx"
 #include "macrofile.hxx"
@@ -1574,7 +1575,7 @@ int ConfigVariable::getExecutedFileID()
 ** string read from console by scilabRead
 ** \{
 */
-char* ConfigVariable::m_pcConsoleReadStr = NULL;
+std::atomic<char*> ConfigVariable::m_pcConsoleReadStr(nullptr);
 void ConfigVariable::setConsoleReadStr(char* _pcConsoleReadStr)
 {
     m_pcConsoleReadStr = _pcConsoleReadStr;
@@ -1583,8 +1584,7 @@ void ConfigVariable::setConsoleReadStr(char* _pcConsoleReadStr)
 char* ConfigVariable::getConsoleReadStr()
 {
     ThreadManagement::LockScilabRead();
-    char* tmp = m_pcConsoleReadStr;
-    m_pcConsoleReadStr = NULL;
+    char* tmp = m_pcConsoleReadStr.exchange(NULL);
     ThreadManagement::UnlockScilabRead();
     return tmp;
 }
@@ -1597,7 +1597,7 @@ char* ConfigVariable::getConsoleReadStr()
 ** is a scilab command or not.
 ** \{
 */
-int ConfigVariable::m_isScilabCommand = 1;
+std::atomic<int> ConfigVariable::m_isScilabCommand(1);
 void ConfigVariable::setScilabCommand(int _isciCmd)
 {
     m_isScilabCommand = _isciCmd;
@@ -1605,7 +1605,7 @@ void ConfigVariable::setScilabCommand(int _isciCmd)
 
 int ConfigVariable::isScilabCommand()
 {
-    return m_isScilabCommand;
+    return m_isScilabCommand.load();
 }
 /*
 ** \}

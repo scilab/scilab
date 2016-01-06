@@ -120,7 +120,7 @@ static void caseDelOrArrowKey(wchar_t ** commandLine, unsigned int *cursorLocati
                 updateTokenInScilabHistory(commandLine);
                 break;
             }
-        //home or end key in some consoles
+            //home or end key in some consoles
         case L'H':
             begLine(cmd, cursorLocation);
             break;
@@ -232,6 +232,7 @@ static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
     if (getTokenInteruptExecution() == DO_NOT_SEND_COMMAND)
     {
         resetCommandLine(commandLine, cursorLocation);
+        return;
     }
 
     switch (key)

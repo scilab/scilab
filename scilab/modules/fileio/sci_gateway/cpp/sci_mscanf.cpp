@@ -91,18 +91,20 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
         }
 
         // get data
-        // mscanf is called from a callback
+        // The console thread must not parse the next console input.
         ConfigVariable::setScilabCommand(0);
+
+        // Get the console input filled by the console thread.
         char* pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
-        if (pcConsoleReadStr)
+        ThreadManagement::SendConsoleExecDoneSignal();
+        while (pcConsoleReadStr == NULL)
         {
+            pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
             ThreadManagement::SendConsoleExecDoneSignal();
         }
-        else // mscanf is called from the console
-        {
-            scilabRead();
-            pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
-        }
+
+        // reset flag to default value
+        ConfigVariable::setScilabCommand(1);
 
         wcsRead = to_wide_string(pcConsoleReadStr);
         FREE(pcConsoleReadStr);

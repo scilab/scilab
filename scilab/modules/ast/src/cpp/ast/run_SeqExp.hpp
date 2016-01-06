@@ -212,17 +212,21 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 {
                     //break execution
                     SetTemporaryPrompt(SCIPROMPT_PAUSE);
+
+                    // The console thread must not parse the next console input.
                     ConfigVariable::setScilabCommand(0);
+
+                    // Get the console input filled by the console thread.
                     char* pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
-                    if (pcConsoleReadStr) // exec is called from a callback
+                    ThreadManagement::SendConsoleExecDoneSignal();
+                    while (pcConsoleReadStr == NULL)
                     {
+                        pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
                         ThreadManagement::SendConsoleExecDoneSignal();
                     }
-                    else // exec is called from the console
-                    {
-                        scilabRead();
-                        pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
-                    }
+
+                    // reset flag to default value
+                    ConfigVariable::setScilabCommand(1);
 
                     if (pcConsoleReadStr && pcConsoleReadStr[0] == 'p' && pcConsoleReadStr[1] == '\0')
                     {

@@ -649,12 +649,10 @@ void* scilabReadAndStore(void* param)
             //set prompt value
             C2F(setprlev) (&pause);
 
-            ConfigVariable::setScilabCommand(1);
-            scilabRead();
-            if (ConfigVariable::isScilabCommand() == 0)
+            if (scilabRead() == 0)
             {
-                // happens when the return of scilabRead is used
-                // in other thread (ie: call mscanf in a callback)
+                // happens when the return of scilabRead must not be interpreted by Scilab.
+                // ie: mscanf, step by step execution (mode 4 or 7)
                 ThreadManagement::WaitForConsoleExecDoneSignal();
                 continue;
             }
@@ -754,11 +752,11 @@ void* scilabReadAndStore(void* param)
                 }
                 else if (commandsize > 1 && command[0] == 'p' && command[1] == ' ')
                 {
-                        std::string s("disp(");
-                        s += command + 2;
-                        s += ")";
-                        tmpCommand = os_strdup(s.data());
-                        disableDebug = true;
+                    std::string s("disp(");
+                    s += command + 2;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
                 }
                 else if (commandsize > 6 && strncmp(command, "print ", 6) == 0)
                 {

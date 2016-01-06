@@ -19,10 +19,11 @@
 #include <wchar.h>
 #include "csignal.h"
 #include "configvariable_interface.h"
-
+#include "getKey.h"
 /* If CTRL-C was pressed. */
 void controlC_handler(int sig)
 {
+    setTokenInteruptExecution(DO_NOT_SEND_COMMAND);
     setExecutionBreak();
 }
 
