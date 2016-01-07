@@ -36,6 +36,10 @@ earlier versions:
    automatically converted to the 6.0 format: they cannot be opened again
    in Scilab/Xcos 5.x.
 
+Scilab now use the Droid fonts across all platforms. This might generally
+improve the look 'n feel of the software but might regress sometimes.
+
+
 Bug Fixes
 =========
 

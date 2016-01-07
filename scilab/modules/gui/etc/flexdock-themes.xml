@@ -17,6 +17,7 @@
         <!-- List the various titlebars that are available -->
         <titlebar-ui name="scilab" extends="default">
             <property name="icon-map" value="scilab" />
+            <property name="font" value="Droid Sans, 0, 11" handler="font" />
         </titlebar-ui>
         
         <icon-resource name="scilab.undock">

@@ -185,8 +185,8 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(appdatadir)" "$(DESTDIR)$(desktopdir)" \
-	"$(DESTDIR)$(mimedir)"
-DATA = $(appdata_DATA) $(desktop_DATA) $(mime_DATA)
+	"$(DESTDIR)$(fontdir)" "$(DESTDIR)$(mimedir)"
+DATA = $(appdata_DATA) $(desktop_DATA) $(font_DATA) $(mime_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 am__recursive_targets = \
@@ -552,6 +552,18 @@ mime_DATA = scilab.xml
 # Note that here, it is datadir and NOT pkgdatadir
 appdatadir = $(datadir)/appdata
 appdata_DATA = scilab.appdata.xml
+
+# Embedded font file
+# Note that here, it is datadir and NOT pkgdatadir
+fontdir = $(datadir)/fonts/google-droid/
+font_DATA = DroidSans-Bold.ttf \
+DroidSansMono.ttf \
+DroidSans.ttf \
+DroidSerif-BoldItalic.ttf \
+DroidSerif-Bold.ttf \
+DroidSerif-Italic.ttf \
+DroidSerif-Regular.ttf
+
 all: all-recursive
 
 .SUFFIXES:
@@ -632,6 +644,27 @@ uninstall-desktopDATA:
 	@list='$(desktop_DATA)'; test -n "$(desktopdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(desktopdir)'; $(am__uninstall_files_from_dir)
+install-fontDATA: $(font_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(font_DATA)'; test -n "$(fontdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(fontdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(fontdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(fontdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(fontdir)" || exit $$?; \
+	done
+
+uninstall-fontDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(font_DATA)'; test -n "$(fontdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(fontdir)'; $(am__uninstall_files_from_dir)
 install-mimeDATA: $(mime_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(mime_DATA)'; test -n "$(mimedir)" || list=; \
@@ -813,7 +846,7 @@ check: check-recursive
 all-am: Makefile $(DATA)
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(appdatadir)" "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(mimedir)"; do \
+	for dir in "$(DESTDIR)$(appdatadir)" "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(fontdir)" "$(DESTDIR)$(mimedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -867,7 +900,7 @@ info: info-recursive
 info-am:
 
 install-data-am: install-appdataDATA install-desktopDATA \
-	install-mimeDATA
+	install-fontDATA install-mimeDATA
 
 install-dvi: install-dvi-recursive
 
@@ -912,7 +945,7 @@ ps: ps-recursive
 ps-am:
 
 uninstall-am: uninstall-appdataDATA uninstall-desktopDATA \
-	uninstall-mimeDATA
+	uninstall-fontDATA uninstall-mimeDATA
 
 .MAKE: $(am__recursive_targets) install-am install-strip
 
@@ -922,14 +955,15 @@ uninstall-am: uninstall-appdataDATA uninstall-desktopDATA \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-appdataDATA install-data \
 	install-data-am install-desktopDATA install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-mimeDATA \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	installdirs-am maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
-	ps ps-am tags tags-am uninstall uninstall-am \
-	uninstall-appdataDATA uninstall-desktopDATA uninstall-mimeDATA
+	install-exec install-exec-am install-fontDATA install-html \
+	install-html-am install-info install-info-am install-man \
+	install-mimeDATA install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs installdirs-am maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
+	uninstall-am uninstall-appdataDATA uninstall-desktopDATA \
+	uninstall-fontDATA uninstall-mimeDATA
 
 .PRECIOUS: Makefile
 

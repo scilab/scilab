@@ -34,3 +34,14 @@ mime_DATA = scilab.xml
 # Note that here, it is datadir and NOT pkgdatadir
 appdatadir = $(datadir)/appdata
 appdata_DATA = scilab.appdata.xml
+
+# Embedded font file
+# Note that here, it is datadir and NOT pkgdatadir
+fontdir = $(datadir)/fonts/google-droid/
+font_DATA = DroidSans-Bold.ttf \
+DroidSansMono.ttf \
+DroidSans.ttf \
+DroidSerif-BoldItalic.ttf \
+DroidSerif-Bold.ttf \
+DroidSerif-Italic.ttf \
+DroidSerif-Regular.ttf
