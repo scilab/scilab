@@ -22,11 +22,10 @@ void setdefaultlanguage(const char * lang)
 {
 
 #ifdef _MSC_VER
-    wchar_t *savedLanguage = getLanguagePreferences();
-    wchar_t* pwstLang = to_wide_string(lang);
-    if (wcscmp(pwstLang, savedLanguage))
+    char *savedLanguage = getLanguagePreferences();
+    if (strcmp(lang, savedLanguage))
     {
-        if (setlanguage(pwstLang))
+        if (setlanguage(lang))
         {
             setLanguagePreferences();
         }
@@ -39,7 +38,7 @@ const char* getdefaultlanguage(void)
 {
 
 #ifdef _MSC_VER
-    return wide_string_to_UTF8(getLanguagePreferences());
+    return getLanguagePreferences();
 #else
     return "";
 #endif

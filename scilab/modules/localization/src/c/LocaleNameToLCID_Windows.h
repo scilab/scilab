@@ -22,7 +22,7 @@
 /* Windows must support multilanguage */
 /* by default LCID returns 0*/
 
-LCID dllLocaleNameToLCID(LPCWSTR lpName, DWORD dwFlags);
+LCID dllLocaleNameToLCID(LPCSTR lpName, DWORD dwFlags);
 
 #endif
 

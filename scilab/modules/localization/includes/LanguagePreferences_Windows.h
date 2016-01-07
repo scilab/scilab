@@ -21,7 +21,7 @@
 * Get default language saved in registry
 * @return language
 */
-wchar_t *getLanguagePreferences(void);
+char* getLanguagePreferences(void);
 
 /**
 * Set default language saved in registry
@@ -34,7 +34,7 @@ BOOL setLanguagePreferences(void);
 * @param[in] language string
 * @return TRUE or FALSE
 */
-BOOL setLanguageFromCommandLine(wchar_t *lang);
+BOOL setLanguageFromCommandLine(const char* lang);
 
 /**
 * check if it is valid language format
@@ -42,7 +42,7 @@ BOOL setLanguageFromCommandLine(wchar_t *lang);
 * @param[in] language string
 * @return TRUE or FALSE
 */
-BOOL isValidLanguage(wchar_t *lang);
+BOOL isValidLanguage(const char* lang);
 
 #endif /* __LANGUAGEPREFERENCES_WINDOWS_H__ */
 /*--------------------------------------------------------------------------*/

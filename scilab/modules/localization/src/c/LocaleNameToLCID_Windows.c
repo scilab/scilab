@@ -11,6 +11,8 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "LocaleNameToLCID_Windows.h"
+#include "charEncoding.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 /* ONLY for Windows */
 /* Some old XP without SP2 or more do not have this function ... */
@@ -19,18 +21,21 @@ static HINSTANCE KernelDll = NULL;
 /*--------------------------------------------------------------------------*/
 typedef LCID (WINAPI * LocaleNameToLCIDPROC)(LPCWSTR lpName, DWORD dwFlags);
 /*--------------------------------------------------------------------------*/
-LCID dllLocaleNameToLCID(LPCWSTR lpName, DWORD dwFlags)
+LCID dllLocaleNameToLCID(LPCSTR lpName, DWORD dwFlags)
 {
     if (KernelDll == NULL)
     {
-        KernelDll = LoadLibrary ("kernel32.dll");
+        KernelDll = LoadLibrary("kernel32.dll");
     }
     if (KernelDll)
     {
         LocaleNameToLCIDPROC ptrFunctionLocaleNameToLCID = (LocaleNameToLCIDPROC)GetProcAddress(KernelDll, "LocaleNameToLCID");
         if (ptrFunctionLocaleNameToLCID)
         {
-            return (LCID)(ptrFunctionLocaleNameToLCID)(lpName, dwFlags);
+            wchar_t* name = to_wide_string(lpName);
+            LCID id = (LCID)(ptrFunctionLocaleNameToLCID)(name, dwFlags);
+            FREE(name);
+            return id;
         }
     }
     return 0;

@@ -26,7 +26,7 @@
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 /* replaces '_' by '-' windows local format and convert to wide string */
-static wchar_t *getWindowsLocaleFormat(const char *pStrLocale);
+static char* getWindowsLocaleFormat(const char *pStrLocale);
 #endif
 /*--------------------------------------------------------------------------*/
 char *getLcidString(const char *pStrLocale)
@@ -44,8 +44,8 @@ char *getLcidString(const char *pStrLocale)
     }
     else
     {
-        wchar_t *wLocale = getWindowsLocaleFormat(pStrLocale);
-        LCID lcid = dllLocaleNameToLCID(wLocale, 0);
+        char *locale = getWindowsLocaleFormat(pStrLocale);
+        LCID lcid = dllLocaleNameToLCID(locale, 0);
 
         if (lcid == 0)
         {
@@ -68,23 +68,23 @@ char *getLcidString(const char *pStrLocale)
 }
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-static wchar_t *getWindowsLocaleFormat(const char *pStrLocale)
+static char* getWindowsLocaleFormat(const char *pStrLocale)
 {
-    wchar_t *Locale = NULL;
+    char* ret = NULL;
     if (pStrLocale)
     {
-        wchar_t *pwStrLocale = to_wide_string(pStrLocale);
-        if (pwStrLocale)
+        char* locale = os_strdup(pStrLocale);
+        if (locale)
         {
-            wchar_t *pos = wcschr(pwStrLocale, L'_');
+            char* pos = strchr(locale, '_');
             if (pos)
             {
-                *pos = L'-';
+                *pos = '-';
             }
-            Locale = pwStrLocale;
+            ret = locale;
         }
     }
-    return Locale;
+    return ret;
 }
 #endif
 /*--------------------------------------------------------------------------*/

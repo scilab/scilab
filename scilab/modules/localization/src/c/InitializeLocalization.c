@@ -85,7 +85,7 @@ BOOL InitializeLocalization(void)
             /* We look if registry value LANGUAGE exists */
             /* If not exists the "" means that we will try to use the language of the system.*/
             {
-                wchar_t* loadLanguage = getLanguagePreferences();
+                char* loadLanguage = getLanguagePreferences();
                 setlanguage(loadLanguage);
                 if (loadLanguage)
                 {
@@ -143,18 +143,18 @@ BOOL InitializeLocalization(void)
     /* Here, the "" means that we will try to use the language of the system
      * first. If it doesn't work, we switch back to default (English) */
 #ifdef FORCE_LOCALE_EN_US
-    setlanguage(L"C");
+    setlanguage("C");
 #else
-    setlanguage(L"");
+    setlanguage("");
 #endif
 #else
     /* We look if registry value LANGUAGE exists */
     /* If not exists the "" means that we will try to use the language of the system.*/
     {
 #ifdef FORCE_LOCALE_EN_US
-        setlanguage(L"en_US");
+        setlanguage("en_US");
 #else
-        wchar_t *loadLanguage = getLanguagePreferences();
+        char *loadLanguage = getLanguagePreferences();
         setlanguage(loadLanguage);
         if (loadLanguage)
         {

@@ -26,18 +26,11 @@
 BOOL setenvc(const char *stringIn, const char *valueIn)
 {
 #ifdef _MSC_VER
-    wchar_t* wstringIn = to_wide_string(stringIn);
-    wchar_t* wvalueIn = to_wide_string(valueIn);
-
-    if (setenvcW(wstringIn, wvalueIn) == 0)
+    if (SetEnvironmentVariableA(stringIn, valueIn) == 0)
     {
-        FREE(wstringIn);
-        FREE(wvalueIn);
         return FALSE;
     }
 
-    FREE(wstringIn);
-    FREE(wvalueIn);
 #else
     /* linux and Mac OS X */
     /* setenv() function is strongly preferred to putenv() */
@@ -60,35 +53,9 @@ BOOL setenvc(const char *stringIn, const char *valueIn)
         return FALSE;
     }
 
-    setenvtcl(stringIn, valueIn);
 #endif
 
+    setenvtcl(stringIn, valueIn);
     return TRUE;
-}
-/*--------------------------------------------------------------------------*/
-BOOL setenvcW(const wchar_t *wstringIn, const wchar_t *wvalueIn)
-{
-    BOOL ret = TRUE;
-    int len_env = 0;
-#ifdef _MSC_VER
-    if (SetEnvironmentVariableW(wstringIn, wvalueIn) == 0)
-    {
-        return FALSE;
-    }
-
-    char * stringIn = wide_string_to_UTF8(wstringIn);
-    char * valueIn = wide_string_to_UTF8(wvalueIn);
-    setenvtcl(stringIn, valueIn);
-    FREE(stringIn);
-    FREE(valueIn);
-#else
-    char * stringIn = wide_string_to_UTF8(wstringIn);
-    char * valueIn = wide_string_to_UTF8(wvalueIn);
-    ret = setenvc(stringIn, valueIn);
-    FREE(stringIn);
-    FREE(valueIn);
-#endif
-
-    return ret;
 }
 /*--------------------------------------------------------------------------*/
