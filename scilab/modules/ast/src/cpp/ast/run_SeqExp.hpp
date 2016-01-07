@@ -255,9 +255,23 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
         {
             ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
             CoverageInstance::stopChrono((void*)&e);
+            if (file)
+            {
+                file->close();
+                delete file;
+            }
+
             throw ie;
         }
-
+        catch (const InternalAbort& ia)
+        {
+            if (file)
+            {
+                file->close();
+                delete file;
+            }
+            throw ia;
+        }
         // If something other than NULL is given to setResult, then that would imply
         // to make a cleanup in visit(ForExp) for example (e.getBody().accept(*this);)
         setResult(NULL);
