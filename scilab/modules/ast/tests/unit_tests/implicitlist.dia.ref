@@ -102,5 +102,5 @@ checkCallOverload("1:t:%t");
 checkCallOverload("1:t:8");
 assert_checkerror("1:2:t", [], 10000);
 // extraction
-assert_checkerror("vect=1:3;vect(1:4)", gettext("Invalid index."));
-assert_checkerror("vect=1:3;vect(4:-1:1)", gettext("Invalid index."));
+assert_checkerror("vect=1:3;vect(1:4)", msprintf(gettext("Invalid index.\n")));
+assert_checkerror("vect=1:3;vect(4:-1:1)", msprintf(gettext("Invalid index.\n")));
