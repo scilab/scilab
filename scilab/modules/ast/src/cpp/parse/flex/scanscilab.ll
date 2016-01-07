@@ -795,11 +795,13 @@ assign			"="
    else
    {
        unput('+');
+       yylloc.last_column--;
    }
   }
 
   {spaces}{minus}                       {
     unput('-');
+    yylloc.last_column--;
     if (last_token != LBRACK
        && last_token != EOL
        && last_token != SEMI

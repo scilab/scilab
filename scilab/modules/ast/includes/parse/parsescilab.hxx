@@ -43,8 +43,8 @@ extern int yydebug;
 /* Token type.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
-enum yytokentype
-{
+  enum yytokentype
+  {
     YYEOF = 0,
     DOTS = 258,
     EOL = 259,
@@ -127,7 +127,7 @@ enum yytokentype
     CONTROLBREAK = 336,
     UMINUS = 337,
     FUNCTIONCALL = 338
-};
+  };
 #endif
 /* Tokens.  */
 #define YYEOF 0
@@ -220,7 +220,7 @@ union YYSTYPE
 {
 
 
-    /* Tokens. */
+  /* Tokens. */
     double                      number;
     std::wstring*               str;
     std::wstring*               path;
@@ -284,10 +284,10 @@ union YYSTYPE
 typedef struct YYLTYPE YYLTYPE;
 struct YYLTYPE
 {
-    int first_line;
-    int first_column;
-    int last_line;
-    int last_column;
+  int first_line;
+  int first_column;
+  int last_line;
+  int last_column;
 };
 # define YYLTYPE_IS_DECLARED 1
 # define YYLTYPE_IS_TRIVIAL 1

@@ -881,7 +881,7 @@ variable rightOperand			{
 					  $2->setLocation(@$);
 					  $$ = $2;
 					}
-| MINUS variable        %prec UMINUS    { if ($2->isDoubleExp()) { $$ = $2->getAs<ast::DoubleExp>()->neg(); } else { $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryMinus, *$2); } }
+| MINUS variable        %prec UMINUS    { if ($2->isDoubleExp()) { $$ = $2->getAs<ast::DoubleExp>()->neg();  $2->setLocation(@$);} else { $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryMinus, *$2); } }
 | MINUS functionCall    %prec UMINUS    { $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryMinus, *$2); }
 | PLUS variable				            { $$ = $2; }
 | PLUS functionCall			            { $$ = $2; }
@@ -1720,7 +1720,7 @@ bool endsWith(const std::string & str, const std::string & end)
     {
 	return false;
     }
-    
+
     return std::equal(end.rbegin(), end.rend(), str.rbegin());
 }
 
