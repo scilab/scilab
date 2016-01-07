@@ -823,8 +823,12 @@ assign			"="
       /* Just do nothing */
       yylloc.last_line += 1;
       yylloc.last_column = 1;
+      if(last_token == SPACES)
+      {
+        unput(' ');
+      }
+
       scan_step();
-      scan_throw(EOL);
   }
 
   {next}{spaces}*{startcomment}          {
@@ -1053,7 +1057,7 @@ assign			"="
     pstBuffer.clear();
     BEGIN(INITIAL);
     yyerror("Unexpected end of file in a string.");
-    return scan_throw(FLEX_ERROR);    
+    return scan_throw(FLEX_ERROR);
   }
 
   {in_string}						|
@@ -1129,7 +1133,7 @@ assign			"="
     pstBuffer.clear();
     BEGIN(INITIAL);
     yyerror("Unexpected end of file in a string.");
-    return scan_throw(FLEX_ERROR);    
+    return scan_throw(FLEX_ERROR);
   }
 
   {in_string}         |

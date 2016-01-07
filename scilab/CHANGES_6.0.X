@@ -63,6 +63,8 @@ Bug Fixes
 
 * Bug #14300 fixed - Crash when playing with structures.
 
+* Bug #14313 fixed - Parser did not create a column separator after spaces and '...' at the end of lines
+
 Dependencies
 =============
 
