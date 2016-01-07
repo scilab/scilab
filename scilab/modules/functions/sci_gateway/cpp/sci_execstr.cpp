@@ -159,7 +159,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
             FREE(pst);
             ThreadManagement::UnlockParser();
             ConfigVariable::macroFirstLine_end();
-            return types::Function::OK;
+            return types::Function::Error;
         }
     }
 
