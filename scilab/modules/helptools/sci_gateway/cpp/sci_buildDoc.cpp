@@ -105,9 +105,7 @@ extern "C"
 
         if (Rhs < 3)            /* Language not provided */
         {
-            wchar_t* l = getlanguage();
-            language = wide_string_to_UTF8(l);
-            free(l);
+            language = getlanguage();
         }
         else
         {
@@ -130,9 +128,7 @@ extern "C"
 
             if (!isScalar(pvApiCtx, piAddr))
             {
-                wchar_t* pwstLang = getlanguage();
-                language = wide_string_to_UTF8(pwstLang);
-                free(pwstLang);
+                language = getlanguage();
             }
             else
             {
@@ -173,7 +169,6 @@ extern "C"
                 // Wrong type string
             }
 
-
             iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
             if (iRet)
             {
@@ -208,7 +203,7 @@ extern "C"
                 freeAllocatedSingleString(pstData);
                 return iRet;
             }
-            outputDirectory = std::string(pstData) + std::string("/scilab_") + language + std::string("_help/");
+            outputDirectory = std::string(pstData) + "/scilab_" + language + "_help/";
             freeAllocatedSingleString(pstData);
 
         }
@@ -217,13 +212,11 @@ extern "C"
             /* Update the path with the localization */
             if (exportFormat != "jar-only")
             {
-                outputDirectoryTMP =
-                    std::string("/modules/helptools/") + std::string(exportFormat) + std::string("/scilab_") + language + std::string("_help/");
+                outputDirectoryTMP = "/modules/helptools/" + exportFormat + "/scilab_" + language + "_help/";
             }
             else
             {
-                outputDirectoryTMP =
-                    std::string("/modules/helptools/") + std::string("javaHelp") + std::string("/scilab_") + language + std::string("_help/");
+                outputDirectoryTMP = "/modules/helptools/javaHelp/scilab_" + language + "_help/";
             }
 
             outputDirectory = SciPath + outputDirectoryTMP;
