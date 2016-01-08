@@ -223,7 +223,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         {
             //version with direct parsing
             //parse the file to find all functions
-            std::wstring stFullPath = std::wstring(pstParsePath) + std::wstring(FILE_SEPARATOR) + std::wstring(pstPath[k]);
+            std::wstring stFullPath = std::wstring(pstParsePath) + std::wstring(pstPath[k]);
             std::wstring stFullPathBin(stFullPath);
             stFullPathBin.replace(stFullPathBin.end() - 3, stFullPathBin.end(), L"bin");
             std::wstring pstPathBin(pstPath[k]);
