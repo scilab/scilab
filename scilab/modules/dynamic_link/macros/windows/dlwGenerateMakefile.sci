@@ -185,6 +185,9 @@ function ilib_gen_Make_win32(name, ..
     val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
     if val <> "YES" & val <> "NO" & isDebug()then
         setenv("DEBUG_SCILAB_DYNAMIC_LINK","YES");
+        CFLAGS = CFLAGS + " -D_DEBUG";
+    else
+        CFLAGS = CFLAGS + " -DNDEBUG";
     end
 
     // remove duplicated files
@@ -193,10 +196,10 @@ function ilib_gen_Make_win32(name, ..
     FILES_SRC = strcat(FILES_SRC_MATRIX," ");
 
     OBJ_DEST_PATH = "";
-    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
-        OBJ_DEST_PATH = "Release/";
-    else
+    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","YES") == "YES") then
         OBJ_DEST_PATH = "Debug/";
+    else
+        OBJ_DEST_PATH = "Release/";
     end
 
     OBJS_MATRIX = [];

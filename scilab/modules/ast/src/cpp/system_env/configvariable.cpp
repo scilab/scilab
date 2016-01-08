@@ -823,7 +823,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
     if (_iDynamicLibraryIndex < (int)m_DynLibList.size())
     {
         std::list<EntryPointStr*>::const_iterator it;
-        for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+        for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; )
         {
             //clear all entry points linked to removed dynamic library
             if ((*it)->iLibIndex == _iDynamicLibraryIndex)
@@ -837,6 +837,10 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
                     break;
                 }
                 it = m_EntryPointList.begin();
+            }
+            else
+            {
+                ++it;
             }
         }
         //remove dynamic library
