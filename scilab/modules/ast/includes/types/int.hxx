@@ -483,7 +483,7 @@ private :
         const static bool value = true;
     };
 
-    public:
+public:
     bool isInt8()
     {
         return is_same_int<T, char>::value;
@@ -563,35 +563,35 @@ template<> inline InternalType::ScilabType Int<unsigned long long>::getType()
 
 template<> inline InternalType::ScilabId Int<char>::getId()
 {
-    return isScalar() ? IdScalarInt8 : IdInt8;
+    return GenericType::isScalar() ? IdScalarInt8 : IdInt8;
 }
 template<> inline InternalType::ScilabId Int<unsigned char>::getId()
 {
-    return isScalar() ? IdScalarUInt8 : IdUInt8;
+    return GenericType::isScalar() ? IdScalarUInt8 : IdUInt8;
 }
 template<> inline InternalType::ScilabId Int<short>::getId()
 {
-    return isScalar() ? IdScalarInt16 : IdInt16;
+    return GenericType::isScalar() ? IdScalarInt16 : IdInt16;
 }
 template<> inline InternalType::ScilabId Int<unsigned short>::getId()
 {
-    return isScalar() ? IdScalarUInt16 : IdUInt16;
+    return GenericType::isScalar() ? IdScalarUInt16 : IdUInt16;
 }
 template<> inline InternalType::ScilabId Int<int>::getId()
 {
-    return isScalar() ? IdScalarInt32 : IdInt32;
+    return GenericType::isScalar() ? IdScalarInt32 : IdInt32;
 }
 template<> inline InternalType::ScilabId Int<unsigned int>::getId()
 {
-    return isScalar() ? IdScalarUInt32 : IdUInt32;
+    return GenericType::isScalar() ? IdScalarUInt32 : IdUInt32;
 }
 template<> inline InternalType::ScilabId Int<long long>::getId()
 {
-    return isScalar() ? IdScalarInt64 : IdInt64;
+    return GenericType::isScalar() ? IdScalarInt64 : IdInt64;
 }
 template<> inline InternalType::ScilabId Int<unsigned long long>::getId()
 {
-    return isScalar() ? IdScalarUInt64 : IdUInt64;
+    return GenericType::isScalar() ? IdScalarUInt64 : IdUInt64;
 }
 
 // Specializations
