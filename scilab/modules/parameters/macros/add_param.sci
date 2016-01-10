@@ -9,8 +9,6 @@
 
 function plist = add_param(list_name, param_name, param_value)
 
-    [nargout, nargin] = argn();
-
     if nargout == 2 then
         warning(sprintf(_("Second output argument of %s is obsolete.\n"), "add_param"))
         warning(sprintf(_("This argument will be permanently removed in Scilab %s"), "5.5.1"))
@@ -22,7 +20,7 @@ function plist = add_param(list_name, param_name, param_value)
 
     if typeof(list_name) == "plist" then
         if ~is_param(list_name, param_name) then
-            setfield(1, [getfield(1, list_name) param_name], list_name);
+            list_name = setfield(1, [getfield(1, list_name) param_name], list_name);
             if nargin == 3 then
                 list_name(param_name) = param_value;
             end

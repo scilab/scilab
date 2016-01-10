@@ -21,14 +21,14 @@ function M=%infer_i_s(varargin)
             if index=="entries" then
                 // change struct to cell
                 f=getfield(1,M);f(1)="ce"
-                setfield(1,f,M)
+                M=setfield(1,f,M)
             end
         else
             M=createstruct(index,N)
             if type(index(1))<>10 & index(2)=="entries" then
                 // change struct to cell
                 f=getfield(1,M);f(1)="ce"
-                setfield(1,f,M)
+                M=setfield(1,f,M)
             end
         end
         return

@@ -45,7 +45,7 @@ function s=%st_6(varargin)
                 s.dims=int32([0 0]);
             else
                 // return a 1x1 struct with fields set to []
-                for k=1:size(f,"*"),setfield(k+2,[],s);end
+                for k=1:size(f,"*"),s=setfield(k+2,[],s);end
                 s.dims=int32([1 1]);
             end
         end

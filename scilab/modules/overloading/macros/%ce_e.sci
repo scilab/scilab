@@ -93,11 +93,11 @@ function s=%ce_e(varargin)
         ww=getfield(k,w);
         if type(ww)~=15 then ww=list(ww);end
         if prod(dims)==1
-            setfield(k,ww(I),s);
+            s=setfield(k,ww(I),s);
         elseif prod(dims)==0 //VC 27/05/2004 after modification in convertindex
-            setfield(k,list(),s);
+            s=setfield(k,list(),s);
         else
-            setfield(k,list(ww(I)),s);
+            s=setfield(k,list(ww(I)),s);
         end
     end
 endfunction

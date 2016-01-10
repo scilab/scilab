@@ -103,7 +103,7 @@ function varargout = %_sodload(%__varnameList__)
                 elseif isList(fieldValue) then
                     fieldValue = parseList(fieldValue);
                 end
-                setfield(kField, fieldValue, varValue);
+                varValue = setfield(kField, fieldValue, varValue);
             end
         end
     endfunction

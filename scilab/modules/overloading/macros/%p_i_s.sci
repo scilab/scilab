@@ -18,7 +18,7 @@ function M=%p_i_s(varargin)
         if type(index(1))<>10 & index(2)=="entries" then
             // change struct to cell
             f=getfield(1,M);f(1)="ce"
-            setfield(1,f,M)
+            M=setfield(1,f,M)
         end
     elseif rhs>4 then //more than 2 indices: insertion of a polynomial in an  matrix of numbers
         M=varargin($)

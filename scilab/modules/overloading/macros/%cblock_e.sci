@@ -49,7 +49,7 @@ function y=%cblock_e(varargin)
             if type(v)==type(temp) then
                 temp=[temp v(i,jk)]
             else
-                setfield(length(y)+1,temp,y)
+                y=setfield(length(y)+1,temp,y)
                 temp=v(i,jk)
             end
         end
@@ -57,7 +57,7 @@ function y=%cblock_e(varargin)
     if length(y)==1 then
         y=temp
     else
-        setfield(length(y)+1,temp,y)
+        y=setfield(length(y)+1,temp,y)
     end
 
 endfunction

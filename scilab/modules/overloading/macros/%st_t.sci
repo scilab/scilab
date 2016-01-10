@@ -18,6 +18,6 @@ function R=%st_t(M)
     R=mlist(F,int32([D(2) D(1)]))
     for k=3:size(F,"*")
         v=getfield(k,M)
-        setfield(k,list(v(NewInd)),R)
+        R=setfield(k,list(v(NewInd)),R)
     end
 endfunction

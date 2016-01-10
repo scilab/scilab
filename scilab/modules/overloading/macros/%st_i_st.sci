@@ -21,7 +21,7 @@ function M=%st_i_st(varargin)
 
     if type(varargin(1))==10 //addind a new field
         flds=getfield(1,M);flds=[flds,varargin(1)];
-        setfield(1,flds,M);setfield($+1,N,M);
+        M=setfield(1,flds,M);M=setfield($+1,N,M);
         if and(dims==[0 0]) then M.dims=int32([1 1]),end
     else   //Subscripted assignment between structures
         //build resulting struct fields
@@ -65,7 +65,7 @@ function M=%st_i_st(varargin)
             v1=list();for k=1:prod(Ndims),v1(k)=[];end
             // create the resulting matrix
             R=mlist(["st","dims",matrix(FR,1,-1)],int32(Ndims));
-            for k=1:size(FR,"*"),setfield(2+k,v1,R),end
+            for k=1:size(FR,"*"),R=setfield(2+k,v1,R),end
             // populate it with M entries
             for k=1:nFM
                 v2=v1;
@@ -80,17 +80,17 @@ function M=%st_i_st(varargin)
                         v2(I1(i)+1)=[];
                     end
                 end
-                setfield(kf+2,v2,R);
+                R=setfield(kf+2,v2,R);
             end
         else //the dimension agree
             R=M
             //does the fields agree?
             if or(FR<>FM) then //no
                 //add new fields
-                setfield(1,["st","dims",FR],R)
+                R=setfield(1,["st","dims",FR],R)
                 v1=list();for k=1:prod(Ndims),v1(k)=[];end
                 for k=nFM+1:size(FR,"*")
-                    setfield($+1,v1,R)
+                    R=setfield($+1,v1,R)
                 end
             end
         end
@@ -114,7 +114,7 @@ function M=%st_i_st(varargin)
                 end
             end
             if length(v2)==1 then v2=v2(1);end
-            setfield(kf+2,v2,R);
+            R=setfield(kf+2,v2,R);
         end
 
         //remove trailing unitary dimensions

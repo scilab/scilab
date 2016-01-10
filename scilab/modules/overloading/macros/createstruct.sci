@@ -37,7 +37,7 @@ function  M=createstruct(index,N)
                         Li=list();for kl=1:nmax, Li(kl)=[];end
                         //set fields pointed to by index(1) to N
                         for kl=1:size(I,"*"), Li(I(kl))=N;end
-                        setfield(3,Li,M);
+                        M=setfield(3,Li,M);
                     end
                     return;
                     // First index is a list of numerical values

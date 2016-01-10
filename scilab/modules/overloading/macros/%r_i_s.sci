@@ -20,7 +20,7 @@ function f2=%r_i_s(varargin)
             if type(i(1))<>10 & i(2)=="entries" then
                 // change struct to cell
                 f=getfield(1,f2);f(1)="ce"
-                setfield(1,f,f2)
+                f2=setfield(1,f,f2)
             end
             return
         end

@@ -12,8 +12,8 @@ function a=%cblock_c_s(a,b)
 
     if size(v,1)<>size(b,1) then error(5),end
     if type(b)==type(v) then
-        setfield($,[v b],a)
+        a=setfield($,[v b],a)
     else
-        setfield($+1,b,a)
+        a=setfield($+1,b,a)
     end
 endfunction

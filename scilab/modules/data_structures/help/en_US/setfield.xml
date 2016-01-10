@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>setfield(i, x, l)</synopsis>
+        <synopsis>a = setfield(i, x, l)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -44,6 +44,14 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>
+                        Updated variable.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -61,9 +69,7 @@ l=list(1,'qwerw',%s)
 l(1)='Changed'
 l(0)='Added'
 l(6)=['one more';'added']
- 
-a=hypermat([2,2,2],rand(1:2^3));// hypermatrices are coded using mlists
-setfield(3,1:8,a);a // set the field value to 1:8
+l=setfield(5,"added by setfield", l)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -73,5 +79,16 @@ setfield(3,1:8,a);a // set the field value to 1:8
                 <link linkend="insertion">insertion</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    setfield returns variable updated instead of change it "in place".
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

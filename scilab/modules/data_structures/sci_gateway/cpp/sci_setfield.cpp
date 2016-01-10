@@ -45,6 +45,10 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
     types::InternalType* pIndex = in[0];
     types::InternalType* pData = in[1];
     types::List* pL = in[2]->getAs<types::List>();
+    if (pL->isDeletable() == false)
+    {
+        pL = pL->clone();
+    }
 
     if (pL->isList() == false && pL->isMList() == false && pL->isTList() == false)
     {
@@ -65,18 +69,28 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
         types::TList* pT = pL->getAs<types::TList>();
 
         std::wstring stField = pS->get(0);
-        if (pT->set(stField, pData) == false)
+        types::TList* pRet = pT->set(stField, pData);
+        if(pRet == nullptr)
         {
             Scierror(999, _("%s: Invalid index.\n"), "setfield");
             return types::Function::Error;
         }
+
+        out.push_back(pRet);
     }
     else
     {
         //insertion by index
         types::typed_list Args;
         Args.push_back(pIndex);
-        pL->insert(&Args, pData);
+        types::InternalType* pRet = pL->insert(&Args, pData);
+        if (pRet == nullptr)
+        {
+            Scierror(999, _("%s: Invalid index.\n"), "setfield");
+            return types::Function::Error;
+        }
+
+        out.push_back(pRet);
     }
 
     return types::Function::OK;

@@ -24,7 +24,7 @@ function M=generic_i_s(varargin)
         if index($)=="entries" then
             // change struct to cell
             f=getfield(1,M);f(1)="ce"
-            setfield(1,f,M)
+            M=setfield(1,f,M)
         end
         return
     elseif rhs==3 &(type(index)<>10 & type(index)<>15) then

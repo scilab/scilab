@@ -13,8 +13,8 @@ function st=%0_i_st(i,void,st)
         k=find(f(3:$)==i);
         if k<>[] then
             f(k+2)=[];
-            setfield(k+2,null(),st);
-            setfield(1,f,st);
+            st = setfield(k+2,null(),st);
+            st = setfield(1,f,st);
         else
             error(msprintf(_("%s: Invalid index.\n"),"%0_i_st"));
         end

@@ -41,7 +41,7 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
     get_full_pathW(pwstTemp, pwstPathLib, PATH_MAX * 2);
     FREE(pwstPathLib);
 
-    std::wstring wstOriginalPath(pwstTemp);
+    std::wstring wstOriginalPath(_wstXML);
     std::wstring wstFile(pwstTemp);
     std::wstring wstPath(pwstTemp);
     FREE(pwstTemp);

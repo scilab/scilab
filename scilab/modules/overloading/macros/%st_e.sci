@@ -99,9 +99,9 @@ function s=%st_e(varargin)
         if type(ww)~=15 then ww=list(ww);end
         //S(2,3).f1=12  -> k=3;I=6;ww(I)=12;s=mlist(["st","dims","f1"],int32([1;1]));
         if prod(dims)==1 then
-            setfield(k,ww(I),s);
+            s=setfield(k,ww(I),s);
         elseif prod(dims)>1 then
-            setfield(k,list(ww(I)),s);
+            s=setfield(k,list(ww(I)),s);
         end
     end
 endfunction

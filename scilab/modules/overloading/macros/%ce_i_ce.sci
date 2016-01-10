@@ -86,7 +86,7 @@ function M=%ce_i_ce(varargin)
             end
         end
         if length(v2)==1 then v2=v2(1);end
-        setfield(3,v2,R);
+        R=setfield(3,v2,R);
     end
 
     //remove trailing unitary dimensions

@@ -19,7 +19,7 @@ function s=%lss_i_s(i,j,s1,s2)
             if type(i(1))<>10 & i(2)=="entries" then
                 // change struct to cell
                 f=getfield(1,s);f(1)="ce"
-                setfield(1,f,s)
+                s=setfield(1,f,s)
             end
             return
         end

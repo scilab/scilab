@@ -22,7 +22,7 @@ function M=%c_i_s(varargin)
             if index=="entries" then //M.entries=N
                 // change struct to cell
                 f=getfield(1,M);f(1)="ce"
-                setfield(1,f,M)
+                M=setfield(1,f,M)
             end
             return
         elseif type(index)==15 then
@@ -34,7 +34,7 @@ function M=%c_i_s(varargin)
                 if type(index(1))<>10 & index(2)=="entries" then
                     // change struct to cell
                     f=getfield(1,M);f(1)="ce"
-                    setfield(1,f,M)
+                    M=setfield(1,f,M)
                 end
             else
                 M(index(:))=N

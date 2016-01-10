@@ -15,13 +15,13 @@ function a=%cblock_c_cblock(a,b)
 
     if size(v1,1)<>size(v2,1) then error(5),end
     if type(v1)==type(v2) then
-        setfield(na,[v1 v2],a)
+        a=setfield(na,[v1 v2],a)
     else
-        setfield(na+1,v2,a);na=na+1
+        a=setfield(na+1,v2,a);na=na+1
     end
 
     for k=3:length(b)
-        setfield(na+1,getfield(k,b),a)
+        a=setfield(na+1,getfield(k,b),a)
         na=na+1
     end
 endfunction

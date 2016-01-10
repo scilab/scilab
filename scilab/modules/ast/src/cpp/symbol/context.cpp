@@ -276,7 +276,7 @@ int Context::getConsoleVarsName(std::list<std::wstring>& lst)
 {
     if (console)
     {
-        for (const auto& var : *console)
+        for (const auto & var : *console)
         {
             lst.push_back(var.first.getName());
         }
@@ -353,6 +353,19 @@ bool Context::put(Variable* _var, types::InternalType* _pIT)
 bool Context::put(const Symbol& _key, types::InternalType* _pIT)
 {
     Variable* var = variables.getOrCreate(_key);
+
+    if (var->empty())
+    {
+        //box is empty, check if a macro from a library have this name.
+        //in this case, add it to context before set new value.
+        types::InternalType* pIT = get(_key);
+        if (pIT && (pIT->isMacroFile() || pIT->isMacro()))
+        {
+            put(var, pIT);
+            return put(var, _pIT);
+        }
+    }
+
     return put(var, _pIT);
 }
 
