@@ -104,16 +104,16 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
                             break;
                         }
                     }
-                    std::wstring wstField(to_wide_string((char*)allData[i]->name));
-                    pOut->getAs<types::Struct>()->addField(wstField);
+                    std::string stField(allData[i]->name);
+                    pOut->getAs<types::Struct>()->addField(stField);
                 }
 
                 for (int i = 0; i < pOut->getAs<types::Struct>()->getSize(); i++)
                 {
                     for (int j = 0; j < iSizeStruct; j++)
                     {
-                        std::wstring wstField(to_wide_string((char*)allData[j]->name));
-                        pOut->getAs<types::Struct>()->get(i)->set(wstField, CreateMatlabTreeVariable(allData[i * iSizeStruct + j]));
+                        std::string stField(allData[j]->name);
+                        pOut->getAs<types::Struct>()->get(i)->set(stField, CreateMatlabTreeVariable(allData[i * iSizeStruct + j]));
                     }
                 }
             }

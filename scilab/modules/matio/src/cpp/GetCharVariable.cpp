@@ -70,18 +70,16 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
 
 
     char* pcName = NULL;
-    iLen = wcslen(pStr->get(0));
+    iLen = (int)strlen(pStr->get(0));
 
     for (int i = 1; i < pStr->getSize(); ++i)
     {
-        pcName = wide_string_to_UTF8(pStr->get(i));
+        pcName = pStr->get(i);
         if (iLen != strlen(pcName))
         {
             Scierror(999, _("%s: Column array of strings with different lengths saving is not implemented.\n"), "GetCharMatVar");
-            FREE(pcName);
             return NULL;
         }
-        FREE(pcName);
     }
 
     size_t* psize_t = (size_t*)MALLOC(Dims * sizeof(size_t));
@@ -113,18 +111,7 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
 
         for (int i = 0; i < pDims[0]; ++i)
         {
-            ppcName[i] = wide_string_to_UTF8(pStr->get(i));
-            if (pstMatData == NULL)
-            {
-                for (int idelete = 0; idelete < i; ++idelete)
-                {
-                    FREE(ppcName[idelete]);
-                }
-                FREE(ppcName);
-                FREE(pstMatData);
-                Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
-                return NULL;
-            }
+            ppcName[i] = pStr->get(i);
         }
 
 
@@ -135,13 +122,6 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
                 pstMatData[i + j * pDims[0]] = ppcName[i][j];
             }
         }
-
-        for (int i = 0; i < pDims[0]; ++i)
-        {
-            FREE(ppcName[i]);
-        }
-
-        FREE(ppcName);
     }
 
     /* Save the variable */

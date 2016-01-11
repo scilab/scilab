@@ -60,7 +60,7 @@ matvar_t* GetStructMatVar(types::Struct* pStruct, const char *name, int matfile_
     }
 
     types::String* pFieldNames = pStruct->getFieldNames();
-    wchar_t** ppwchFieldNames = pFieldNames->get();
+    char** ppchFieldNames = pFieldNames->get();
     int isizeFieldNames = pFieldNames->getSize();
 
     /* Total number of entries */
@@ -87,7 +87,7 @@ matvar_t* GetStructMatVar(types::Struct* pStruct, const char *name, int matfile_
     {
         for (int j = 0; j < isizeFieldNames; j++)
         {
-            structEntries[i * isizeFieldNames + j] = ConvertSciVarToMatVar(ppSingleStruct[i]->get(pFieldNames->get(j)), wide_string_to_UTF8(pFieldNames->get(j)), matfile_version);
+            structEntries[i * isizeFieldNames + j] = ConvertSciVarToMatVar(ppSingleStruct[i]->get(pFieldNames->get(j)), pFieldNames->get(j), matfile_version);
             if (structEntries[i * isizeFieldNames + j] == NULL)
             {
                 FREE(structEntries);
