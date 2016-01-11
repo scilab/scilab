@@ -120,7 +120,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         for (const auto& o : opt)
         {
             // "imp"
-            if (o.first == L"imp")
+            if (o.first == "imp")
             {
                 if (o.second->isDouble() == false)
                 {
@@ -139,7 +139,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 iImp = (int)pDblImp->get(0);
             }
             // "nap"
-            else if (o.first == L"nap")
+            else if (o.first == "nap")
             {
                 if (o.second->isDouble() == false)
                 {
@@ -157,7 +157,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 iNap = (int)pDblNap->get(0);
             }
             // "iter"
-            else if (o.first == L"iter")
+            else if (o.first == "iter")
             {
                 if (o.second->isDouble() == false)
                 {
@@ -175,7 +175,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 iItMax = (int)pDblIter->get(0);
             }
             // "epsg"
-            else if (o.first == L"epsg")
+            else if (o.first == "epsg")
             {
                 if (o.second->isDouble() == false)
                 {
@@ -193,7 +193,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 dEpsg = pDblEpsg->get(0);
             }
             // "epsf"
-            else if (o.first == L"epsf")
+            else if (o.first == "epsf")
             {
                 if (o.second->isDouble() == false)
                 {
@@ -211,7 +211,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 dEpsf = pDblEpsf->get(0);
             }
             // "epsx"
-            else if (o.first == L"epsx")
+            else if (o.first == "epsx")
             {
                 if (o.second->isDouble() == false)
                 {
@@ -225,7 +225,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             }
         }
         // get costf
-        opFunctionsManager = new OptimizationFunctions(L"optim");
+        opFunctionsManager = new OptimizationFunctions("optim");
         Optimization::addOptimizationFunctions(opFunctionsManager);
 
 
@@ -238,19 +238,17 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         else if (in[iPos]->isString())
         {
             types::String* pStr = in[iPos]->getAs<types::String>();
-            char* pst = wide_string_to_UTF8(pStr->get(0));
+            char* pst = pStr->get(0);
             bool bOK = opFunctionsManager->setOptimCostfFunction(pStr);
             iSim = 1;
 
             if (bOK == false)
             {
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "optim", pst);
-                FREE(pst);
                 throw ast::ScilabException();
             }
 
             memcpy(C2F(optim).nomsub, pst, std::max(size_t(6), strlen(pst)));
-            FREE(pst);
         }
         else if (in[iPos]->isList())
         {
@@ -264,19 +262,17 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             if (pList->get(0)->isString())
             {
                 types::String* pStr = pList->get(0)->getAs<types::String>();
-                char* pst = wide_string_to_UTF8(pStr->get(0));
+                char* pst = pStr->get(0);
                 bool bOK = opFunctionsManager->setOptimCostfFunction(pStr);
                 iSim = 1;
 
                 if (bOK == false)
                 {
                     Scierror(50, _("%s: Subroutine not found: %s\n"), "optim", pst);
-                    FREE(pst);
                     throw ast::ScilabException();
                 }
 
                 memcpy(C2F(optim).nomsub, pst, std::max(size_t(6), strlen(pst)));
-                FREE(pst);
             }
             else if (pList->get(0)->isCallable())
             {
@@ -306,7 +302,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         if (in[iPos]->isString())
         {
             types::String* pStrContr = in[iPos]->getAs<types::String>();
-            if (pStrContr->isScalar() == false || wcscmp(pStrContr->get(0), L"b"))
+            if (pStrContr->isScalar() == false || strcmp(pStrContr->get(0), "b"))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: String \"b\" expected.\n"), "optim", iPos + 1);
                 throw ast::ScilabException();
@@ -419,17 +415,17 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 throw ast::ScilabException();
             }
 
-            if (wcscmp(pStr->get(0), L"qn") == 0) // default case
+            if (strcmp(pStr->get(0), "qn") == 0) // default case
             {
                 iAlgo = 1;
                 iPos++;
             }
-            else if (wcscmp(pStr->get(0), L"gc") == 0)
+            else if (strcmp(pStr->get(0), "gc") == 0)
             {
                 iAlgo = 2;
                 iPos++;
             }
-            else if (wcscmp(pStr->get(0), L"nd") == 0)
+            else if (strcmp(pStr->get(0), "nd") == 0)
             {
                 iAlgo = 10;
                 iPos++;
@@ -543,7 +539,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         while (iPos < in.size() && in[iPos]->isString())
         {
             types::String* pStr = in[iPos]->getAs<types::String>();
-            if (wcscmp(pStr->get(0), L"ar") == 0)
+            if (strcmp(pStr->get(0), "ar") == 0)
             {
                 iPos++;
                 for (int i = iPos; i < in.size(); i++)
@@ -625,7 +621,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                     }
                 }
             }
-            else if (wcscmp(pStr->get(0), L"in") == 0)
+            else if (strcmp(pStr->get(0), "in") == 0)
             {
                 if (iSim != 1)
                 {
@@ -665,7 +661,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                     throw ast::ScilabException();
                 }
             }
-            else if (wcscmp(pStr->get(0), L"ti") == 0)
+            else if (strcmp(pStr->get(0), "ti") == 0)
             {
                 iPos++;
                 if (in[iPos]->isDouble() == false)
@@ -685,7 +681,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
                 iIzs = 0;
             }
-            else if (wcscmp(pStr->get(0), L"td") == 0)
+            else if (strcmp(pStr->get(0), "td") == 0)
             {
                 iPos++;
                 if (in[iPos]->isDouble() == false)
@@ -699,11 +695,11 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 pdblDzs = pDblTd->get();
                 iDzs = 0;
             }
-            else if (wcscmp(pStr->get(0), L"si") == 0)
+            else if (strcmp(pStr->get(0), "si") == 0)
             {
                 iSaveI = 1;
             }
-            else if (wcscmp(pStr->get(0), L"sd") == 0)
+            else if (strcmp(pStr->get(0), "sd") == 0)
             {
                 iSaveD = 1;
             }
@@ -1124,9 +1120,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
     }
     catch (const ast::InternalError& e)
     {
-        char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-        Scierror(999, pstrMsg);
-        FREE(pstrMsg);
+        Scierror(999, e.GetErrorMessage().c_str());
     }
     catch (const ast::ScilabException& /* e */)
     {

@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     iSizeX = pDblX->getSize();
 
     // get function
-    opFunctionsManager = new OptimizationFunctions(L"lsqrsolve");
+    opFunctionsManager = new OptimizationFunctions("lsqrsolve");
     Optimization::addOptimizationFunctions(opFunctionsManager);
     opFunctionsManager->setXRows(pDblX->getRows());
     opFunctionsManager->setXCols(pDblX->getCols());
@@ -102,17 +102,14 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     else if (in[1]->isString())
     {
         types::String* pStr = in[1]->getAs<types::String>();
-        char* pst = wide_string_to_UTF8(pStr->get(0));
+        char* pst = pStr->get(0);
         bool bOK = opFunctionsManager->setFsolveFctFunction(pStr);
 
         if (bOK == false)
         {
             Scierror(50, _("%s: Subroutine not found: %s\n"), "lsqrsolve", pst);
-            FREE(pst);
             return types::Function::Error;
         }
-
-        FREE(pst);
     }
     else if (in[1]->isList())
     {
@@ -126,17 +123,14 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
         if (pList->get(0)->isString())
         {
             types::String* pStr = pList->get(0)->getAs<types::String>();
-            char* pst = wide_string_to_UTF8(pStr->get(0));
+            char* pst = pStr->get(0);
             bool bOK = opFunctionsManager->setFsolveFctFunction(pStr);
 
             if (bOK == false)
             {
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "lsqrsolve", pst);
-                FREE(pst);
                 return types::Function::Error;
             }
-
-            FREE(pst);
         }
         else if (pList->get(0)->isCallable())
         {
@@ -198,19 +192,17 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
         else if (in[iPos]->isString())
         {
             types::String* pStr = in[iPos]->getAs<types::String>();
-            char* pst = wide_string_to_UTF8(pStr->get(0));
+            char* pst = pStr->get(0);
             bool bOK = opFunctionsManager->setFsolveJacFunction(pStr);
 
             if (bOK == false)
             {
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "lsqrsolve", pst);
-                FREE(pst);
                 return types::Function::Error;
             }
 
             bJac = true;
             iPos++;
-            FREE(pst);
         }
         else if (in[iPos]->isList())
         {
@@ -224,7 +216,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
             if (pList->get(0)->isString())
             {
                 types::String* pStr = pList->get(0)->getAs<types::String>();
-                char* pst = wide_string_to_UTF8(pStr->get(0));
+                char* pst = pStr->get(0);
                 bool bOK = opFunctionsManager->setFsolveJacFunction(pStr);
 
                 if (bOK == false)
@@ -235,7 +227,6 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
 
                 bJac = true;
                 iPos++;
-                FREE(pst);
             }
             else if (pList->get(0)->isCallable())
             {
@@ -365,10 +356,8 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     }
     catch (const ast::InternalError &e)
     {
-        char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
         sciprint(_("%s: exception caught in '%s' subroutine.\n"), "lsqrsolve", pstrFunc);
-        Scierror(999, pstrMsg);
-        FREE(pstrMsg);
+        Scierror(999, e.GetErrorMessage().c_str());
         delete pDblX;
         delete piPvt;
         delete pDblQtf;

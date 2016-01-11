@@ -52,12 +52,12 @@ OptimizationFunctions* Optimization::getOptimizationFunctions()
 
 
 /*--------------------------------------------------------------------------*/
-OptimizationFunctions::OptimizationFunctions(const std::wstring& callerName)
+OptimizationFunctions::OptimizationFunctions(const std::string& callerName)
 {
     m_iXRows = 0;
     m_iXCols = 0;
 
-    m_wstrCaller = callerName;
+    m_strCaller = callerName;
 
     // optim
     m_pCallOptimCostfFunction           = NULL;
@@ -74,22 +74,22 @@ OptimizationFunctions::OptimizationFunctions(const std::wstring& callerName)
     m_pStringFsolveJacFunctionStatic    = NULL;
 
     // init static functions
-    if (callerName == L"optim")
+    if (callerName == "optim")
     {
-        m_staticFunctionMap[L"genros"]  = (void*) C2F(genros);
-        m_staticFunctionMap[L"topt2"]   = (void*) C2F(topt2);
-        m_staticFunctionMap[L"icsemc"]  = (void*) C2F(icsemc);
-        m_staticFunctionMap[L"mcsec"]   = (void*) C2F(mcsec);
+        m_staticFunctionMap["genros"]  = (void*) C2F(genros);
+        m_staticFunctionMap["topt2"]   = (void*) C2F(topt2);
+        m_staticFunctionMap["icsemc"]  = (void*) C2F(icsemc);
+        m_staticFunctionMap["mcsec"]   = (void*) C2F(mcsec);
     }
-    else if (callerName == L"fsolve")
+    else if (callerName == "fsolve")
     {
-        m_staticFunctionMap[L"fsol1"]   = (void*) C2F(fsol1);
-        m_staticFunctionMap[L"fsolj1"]  = (void*) C2F(fsolj1);
+        m_staticFunctionMap["fsol1"]   = (void*) C2F(fsol1);
+        m_staticFunctionMap["fsolj1"]  = (void*) C2F(fsolj1);
     }
-    else if (callerName == L"lsqrsolve")
+    else if (callerName == "lsqrsolve")
     {
-        m_staticFunctionMap[L"lsqrsol1"]   = (void*) C2F(lsqrsol1);
-        m_staticFunctionMap[L"lsqrsolj1"]  = (void*) C2F(lsqrsolj1);
+        m_staticFunctionMap["lsqrsol1"]   = (void*) C2F(lsqrsol1);
+        m_staticFunctionMap["lsqrsolj1"]  = (void*) C2F(lsqrsolj1);
     }
 }
 
@@ -383,7 +383,7 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallOptimCostfFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallOptimCostfFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::string("")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -402,9 +402,8 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
 
     if (out.size() != iRetCount)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallOptimCostfFunction->getName().c_str());
+        const  char* pstrName = m_pCallOptimCostfFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -429,18 +428,16 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
     // get f
     if (out[0]->isDouble() == false)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallOptimCostfFunction->getName().c_str());
+        const char* pstrName = m_pCallOptimCostfFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real scalar expected.\n"), pstrName, 1);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
     pDblOut = out[0]->getAs<types::Double>();
     if (pDblOut->isComplex() || pDblOut->isScalar() == false)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallOptimCostfFunction->getName().c_str());
+        const char* pstrName = m_pCallOptimCostfFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real scalar expected.\n"), pstrName, 1);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -455,18 +452,16 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
     // get g
     if (out[1]->isDouble() == false)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallOptimCostfFunction->getName().c_str());
+        const char* pstrName = m_pCallOptimCostfFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 2);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
     pDblOut = out[1]->getAs<types::Double>();
     if (pDblOut->isComplex())
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallOptimCostfFunction->getName().c_str());
+        const char* pstrName = m_pCallOptimCostfFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 2);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -481,18 +476,16 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
     // get ind
     if (out[2]->isDouble() == false)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallOptimCostfFunction->getName().c_str());
+        const char* pstrName = m_pCallOptimCostfFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real scalar expected.\n"), pstrName, 3);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
     pDblOut = out[2]->getAs<types::Double>();
     if (pDblOut->isComplex() || pDblOut->isScalar() == false)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallOptimCostfFunction->getName().c_str());
+        const char* pstrName = m_pCallOptimCostfFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real scalar expected.\n"), pstrName, 3);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -533,7 +526,7 @@ void OptimizationFunctions::callFsolveFctMacro(int *n, double *x, double *v, int
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFsolveFctFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFsolveFctFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::string("")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -552,9 +545,8 @@ void OptimizationFunctions::callFsolveFctMacro(int *n, double *x, double *v, int
 
     if (out.size() != iRetCount)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallFsolveFctFunction->getName().c_str());
+        const char* pstrName = m_pCallFsolveFctFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -571,18 +563,16 @@ void OptimizationFunctions::callFsolveFctMacro(int *n, double *x, double *v, int
     // get v
     if (out[0]->isDouble() == false)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallFsolveFctFunction->getName().c_str());
+        const char* pstrName = m_pCallFsolveFctFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real scalar expected.\n"), pstrName, 1);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
     pDblOut = out[0]->getAs<types::Double>();
     if (pDblOut->getRows() != m_iXRows || pDblOut->getCols() != m_iXCols)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallFsolveFctFunction->getName().c_str());
+        const char* pstrName = m_pCallFsolveFctFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"), pstrName, 1, m_iXRows, m_iXCols);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -622,7 +612,7 @@ void OptimizationFunctions::callFsolveJacMacro(int *n, double *x, double *v, dou
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFsolveJacFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFsolveJacFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::string("")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -641,9 +631,8 @@ void OptimizationFunctions::callFsolveJacMacro(int *n, double *x, double *v, dou
 
     if (out.size() != iRetCount)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallFsolveJacFunction->getName().c_str());
+        const char* pstrName = m_pCallFsolveJacFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -660,18 +649,16 @@ void OptimizationFunctions::callFsolveJacMacro(int *n, double *x, double *v, dou
     // get jac
     if (out[0]->isDouble() == false)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallFsolveJacFunction->getName().c_str());
+        const char* pstrName = m_pCallFsolveJacFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real scalar expected.\n"), pstrName, 1);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
     pDblOut = out[0]->getAs<types::Double>();
     if (pDblOut->getRows() != *ldjac || pDblOut->getCols() != *n)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallFsolveJacFunction->getName().c_str());
+        const char* pstrName = m_pCallFsolveJacFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"), pstrName, 1, *ldjac, *n);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -716,7 +703,7 @@ void OptimizationFunctions::callLsqrsolveFctMacro(int *m, int *n, double *x, dou
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFsolveFctFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFsolveFctFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::string("")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -735,9 +722,8 @@ void OptimizationFunctions::callLsqrsolveFctMacro(int *m, int *n, double *x, dou
 
     if (out.size() != iRetCount)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallFsolveFctFunction->getName().c_str());
+        const char* pstrName = m_pCallFsolveFctFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -760,18 +746,16 @@ void OptimizationFunctions::callLsqrsolveFctMacro(int *m, int *n, double *x, dou
     // get v
     if (out[0]->isDouble() == false)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallFsolveFctFunction->getName().c_str());
+        const char* pstrName = m_pCallFsolveFctFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real scalar expected.\n"), pstrName, 1);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
     pDblOut = out[0]->getAs<types::Double>();
     if (pDblOut->getSize() != *m)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallFsolveFctFunction->getName().c_str());
+        const char* pstrName = m_pCallFsolveFctFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A vector of %d expected.\n"), pstrName, 1, *m);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -813,7 +797,7 @@ void OptimizationFunctions::callLsqrsolveJacMacro(int *m, int *n, double *x, dou
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFsolveJacFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFsolveJacFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::string("")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -832,9 +816,8 @@ void OptimizationFunctions::callLsqrsolveJacMacro(int *m, int *n, double *x, dou
 
     if (out.size() != iRetCount)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallFsolveJacFunction->getName().c_str());
+        const char* pstrName = m_pCallFsolveJacFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -857,18 +840,16 @@ void OptimizationFunctions::callLsqrsolveJacMacro(int *m, int *n, double *x, dou
     // get jac
     if (out[0]->isDouble() == false)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallFsolveJacFunction->getName().c_str());
+        const char* pstrName = m_pCallFsolveJacFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real scalar expected.\n"), pstrName, 1);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
     pDblOut = out[0]->getAs<types::Double>();
     if (pDblOut->getSize() != *m **n)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallFsolveJacFunction->getName().c_str());
+        const char* pstrName = m_pCallFsolveJacFunction->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A vector of %d expected.\n"), pstrName, 1, *m);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 

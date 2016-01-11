@@ -242,25 +242,25 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
 
     types::TList* pTL = new types::TList();
     pStr = new types::String(1, 19);
-    pStr->set(0,  L"mps");
-    pStr->set(1,  L"irobj");
-    pStr->set(2,  L"namec");
-    pStr->set(3,  L"nameb");
-    pStr->set(4,  L"namran");
-    pStr->set(5,  L"nambnd");
-    pStr->set(6,  L"name");
-    pStr->set(7,  L"rownames");
-    pStr->set(8,  L"colnames");
-    pStr->set(9,  L"rowstat");
-    pStr->set(10, L"rowcode");
-    pStr->set(11, L"colcode");
-    pStr->set(12, L"rownmbs");
-    pStr->set(13, L"colpnts");
-    pStr->set(14, L"acoeff");
-    pStr->set(15, L"rhs");
-    pStr->set(16, L"ranges");
-    pStr->set(17, L"bounds");
-    pStr->set(18, L"stavar");
+    pStr->set(0,  "mps");
+    pStr->set(1,  "irobj");
+    pStr->set(2,  "namec");
+    pStr->set(3,  "nameb");
+    pStr->set(4,  "namran");
+    pStr->set(5,  "nambnd");
+    pStr->set(6,  "name");
+    pStr->set(7,  "rownames");
+    pStr->set(8,  "colnames");
+    pStr->set(9,  "rowstat");
+    pStr->set(10, "rowcode");
+    pStr->set(11, "colcode");
+    pStr->set(12, "rownmbs");
+    pStr->set(13, "colpnts");
+    pStr->set(14, "acoeff");
+    pStr->set(15, "rhs");
+    pStr->set(16, "ranges");
+    pStr->set(17, "bounds");
+    pStr->set(18, "stavar");
     pTL->append(pStr);
 
     pTL->append(new types::Double((double)irobj));
@@ -357,7 +357,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
 
 int openMPSFile(types::String* _pStrFilename, int* _piMode, int* _lunit)
 {
-    char* pstFilename = wide_string_to_UTF8(_pStrFilename->get(0));
+    char* pstFilename = _pStrFilename->get(0);
     int iErr = C2F(clunit)(_lunit, pstFilename, _piMode, (int)strlen(pstFilename));
     if (iErr)
     {
@@ -382,10 +382,8 @@ int openMPSFile(types::String* _pStrFilename, int* _piMode, int* _lunit)
                 Scierror(iErr, _("%s: Can not open File \"%s\"\n"), "readmps", pstFilename);
         }
 
-        FREE(pstFilename);
         return 1;
     }
 
-    FREE(pstFilename);
     return 0;
 }

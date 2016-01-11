@@ -46,7 +46,7 @@ class OPTIMIZATION_IMPEXP OptimizationFunctions
 
 public :
 
-    OptimizationFunctions(const std::wstring& callerName);
+    OptimizationFunctions(const std::string& callerName);
     ~OptimizationFunctions();
 
     void setXRows(int);
@@ -75,8 +75,8 @@ public :
 
 private :
 
-    std::map<std::wstring, void*> m_staticFunctionMap;
-    std::wstring m_wstrCaller;
+    std::map<std::string, void*> m_staticFunctionMap;
+    std::string m_strCaller;
     int m_iXRows;
     int m_iXCols;
 

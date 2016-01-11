@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
     iSizeX = pDblX->getSize();
 
     // get function
-    opFunctionsManager = new OptimizationFunctions(L"fsolve");
+    opFunctionsManager = new OptimizationFunctions("fsolve");
     Optimization::addOptimizationFunctions(opFunctionsManager);
     opFunctionsManager->setXRows(pDblX->getRows());
     opFunctionsManager->setXCols(pDblX->getCols());
@@ -90,17 +90,14 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
     else if (in[1]->isString())
     {
         types::String* pStr = in[1]->getAs<types::String>();
-        char* pst = wide_string_to_UTF8(pStr->get(0));
+        char* pst = pStr->get(0);
         bool bOK = opFunctionsManager->setFsolveFctFunction(pStr);
 
         if (bOK == false)
         {
             Scierror(50, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
-            FREE(pst);
             return types::Function::Error;
         }
-
-        FREE(pst);
     }
     else if (in[1]->isList())
     {
@@ -114,17 +111,14 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
         if (pList->get(0)->isString())
         {
             types::String* pStr = pList->get(0)->getAs<types::String>();
-            char* pst = wide_string_to_UTF8(pStr->get(0));
+            char* pst = pStr->get(0);
             bool bOK = opFunctionsManager->setFsolveFctFunction(pStr);
 
             if (bOK == false)
             {
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
-                FREE(pst);
                 return types::Function::Error;
             }
-
-            FREE(pst);
         }
         else if (pList->get(0)->isCallable())
         {
@@ -159,18 +153,16 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
         else if (in[2]->isString())
         {
             types::String* pStr = in[2]->getAs<types::String>();
-            char* pst = wide_string_to_UTF8(pStr->get(0));
+            char* pst = pStr->get(0);
             bool bOK = opFunctionsManager->setFsolveJacFunction(pStr);
 
             if (bOK == false)
             {
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
-                FREE(pst);
                 return types::Function::Error;
             }
 
             bJac = true;
-            FREE(pst);
         }
         else if (in[2]->isList())
         {
@@ -184,7 +176,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
             if (pList->get(0)->isString())
             {
                 types::String* pStr = pList->get(0)->getAs<types::String>();
-                char* pst = wide_string_to_UTF8(pStr->get(0));
+                char* pst = pStr->get(0);
                 bool bOK = opFunctionsManager->setFsolveJacFunction(pStr);
 
                 if (bOK == false)
@@ -194,7 +186,6 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
                 }
 
                 bJac = true;
-                FREE(pst);
             }
             else if (pList->get(0)->isCallable())
             {
@@ -283,10 +274,8 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
     }
     catch (const ast::InternalError &e)
     {
-        char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
         sciprint(_("%s: exception caught in '%s' subroutine.\n"), "fsolve", pstrFunc);
-        Scierror(999, pstrMsg);
-        FREE(pstrMsg);
+        Scierror(999, e.GetErrorMessage().c_str());
         delete pdblWork;
         delete pDblX;
         if (pdblJac)
