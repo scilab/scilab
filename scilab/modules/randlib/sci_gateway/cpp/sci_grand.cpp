@@ -44,7 +44,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     };
 
     //  names at the scilab level
-    const wchar_t* names_gen[6] = { L"mt", L"kiss", L"clcg4", L"clcg2", L"urand", L"fsultra" };
+    const char* names_gen[6] = {"mt", "kiss", "clcg4", "clcg2", "urand", "fsultra"};
 
     types::String* pStrMethod = NULL;
     types::String* pStrGenOrPhr = NULL;
@@ -92,8 +92,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         {
             if (in[i]->isDouble() == false)
             {
-                std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_grand";
-                return Overload::call(wstFuncName, in, _iRetCount, out);
+                std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_grand";
+                return Overload::call(stFuncName, in, _iRetCount, out);
             }
         }
 
@@ -108,115 +108,115 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     itab[0] = 1;
     itab[1] = 1;
 
-    wchar_t* wcsMeth = pStrMethod->get(0);
+    char* cMeth = pStrMethod->get(0);
     int iNumInputArg = 5;
-    if (wcscmp(wcsMeth, L"bet") == 0) // beta
+    if (strcmp(cMeth, "bet") == 0) // beta
     {
         meth = 1;
     }
-    else if (wcscmp(wcsMeth, L"bin") == 0) // binomial
+    else if (strcmp(cMeth, "bin") == 0) // binomial
     {
         meth = 2;
     }
-    else if (wcscmp(wcsMeth, L"nbn") == 0) // negative binomial
+    else if (strcmp(cMeth, "nbn") == 0) // negative binomial
     {
         meth = 3;
     }
-    else if (wcscmp(wcsMeth, L"chi") == 0) // chisquare
+    else if (strcmp(cMeth, "chi") == 0) // chisquare
     {
         iNumInputArg = 4;
         meth = 4;
     }
-    else if (wcscmp(wcsMeth, L"nch") == 0) // non central chisquare
+    else if (strcmp(cMeth, "nch") == 0) // non central chisquare
     {
         meth = 5;
     }
-    else if (wcscmp(wcsMeth, L"exp") == 0) // exponential
+    else if (strcmp(cMeth, "exp") == 0) // exponential
     {
         iNumInputArg = 4;
         meth = 6;
     }
-    else if (wcscmp(wcsMeth, L"f") == 0) // F variance ratio
+    else if (strcmp(cMeth, "f") == 0) // F variance ratio
     {
         meth = 7;
     }
-    else if (wcscmp(wcsMeth, L"nf") == 0) // non central F variance ratio
+    else if (strcmp(cMeth, "nf") == 0) // non central F variance ratio
     {
         iNumInputArg = 6;
         meth = 8;
     }
-    else if (wcscmp(wcsMeth, L"gam") == 0) // gamma
+    else if (strcmp(cMeth, "gam") == 0) // gamma
     {
         meth = 9;
     }
-    else if (wcscmp(wcsMeth, L"nor") == 0) // Gauss Laplace (normal)
+    else if (strcmp(cMeth, "nor") == 0) // Gauss Laplace (normal)
     {
         meth = 10;
     }
-    else if (wcscmp(wcsMeth, L"mn") == 0) // multivariate gaussian (multivariate normal)
+    else if (strcmp(cMeth, "mn") == 0) // multivariate gaussian (multivariate normal)
     {
         iNumInputArg = 4;
         meth = 11;
     }
-    else if (wcscmp(wcsMeth, L"geom") == 0) // geometric
+    else if (strcmp(cMeth, "geom") == 0) // geometric
     {
         iNumInputArg = 4;
         meth = 12;
     }
-    else if (wcscmp(wcsMeth, L"markov") == 0) // markov
+    else if (strcmp(cMeth, "markov") == 0) // markov
     {
         iNumInputArg = 4;
         meth = 13;
     }
-    else if (wcscmp(wcsMeth, L"mul") == 0) // multinomial
+    else if (strcmp(cMeth, "mul") == 0) // multinomial
     {
         iNumInputArg = 4;
         meth = 14;
     }
-    else if (wcscmp(wcsMeth, L"poi") == 0) // Poisson
+    else if (strcmp(cMeth, "poi") == 0) // Poisson
     {
         iNumInputArg = 4;
         meth = 15;
     }
-    else if (wcscmp(wcsMeth, L"prm") == 0) // random permutations
+    else if (strcmp(cMeth, "prm") == 0) // random permutations
     {
         iNumInputArg = 3;
         meth = 16;
     }
-    else if (wcscmp(wcsMeth, L"def") == 0) // uniform (def)
+    else if (strcmp(cMeth, "def") == 0) // uniform (def)
     {
         iNumInputArg = 3;
         meth = 17;
     }
-    else if (wcscmp(wcsMeth, L"unf") == 0) // uniform (unf)
+    else if (strcmp(cMeth, "unf") == 0) // uniform (unf)
     {
         meth = 18;
     }
-    else if (wcscmp(wcsMeth, L"uin") == 0) // uniform (uin)
+    else if (strcmp(cMeth, "uin") == 0) // uniform (uin)
     {
         meth = 19;
     }
-    else if (wcscmp(wcsMeth, L"lgi") == 0) // uniform (lgi)
+    else if (strcmp(cMeth, "lgi") == 0) // uniform (lgi)
     {
         iNumInputArg = 3;
         meth = 20;
     }
-    else if (wcscmp(wcsMeth, L"getgen") == 0) // getgen
+    else if (strcmp(cMeth, "getgen") == 0) // getgen
     {
         iNumInputArg = 1;
         meth = 21;
     }
-    else if (wcscmp(wcsMeth, L"setgen") == 0) // setgen
+    else if (strcmp(cMeth, "setgen") == 0) // setgen
     {
         iNumInputArg = 2;
         meth = 22;
     }
-    else if (wcscmp(wcsMeth, L"getsd") == 0) // getsd
+    else if (strcmp(cMeth, "getsd") == 0) // getsd
     {
         iNumInputArg = 1;
         meth = 23;
     }
-    else if (wcscmp(wcsMeth, L"setsd") == 0) // setsd
+    else if (strcmp(cMeth, "setsd") == 0) // setsd
     {
         switch (current_base_gen)
         {
@@ -239,9 +239,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             {
                 if (in.size() != 2 && in.size() != 3)
                 {
-                    char* pstMeth = wide_string_to_UTF8(wcsMeth);
-                    Scierror(77, _("%s: Wrong number of input argument(s) for method %s: %d or %d expected.\n"), "grand", pstMeth, 2, 3);
-                    FREE(pstMeth);
+                    Scierror(77, _("%s: Wrong number of input argument(s) for method %s: %d or %d expected.\n"), "grand", cMeth, 2, 3);
                     return types::Function::Error;
                 }
 
@@ -251,41 +249,39 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         }
         meth = 24;
     }
-    else if (wcscmp(wcsMeth, L"phr2sd") == 0) // phr2sd
+    else if (strcmp(cMeth, "phr2sd") == 0) // phr2sd
     {
         iNumInputArg = 2;
         meth = 25;
     }
-    else if (wcscmp(wcsMeth, L"setcgn") == 0) // setcgn
+    else if (strcmp(cMeth, "setcgn") == 0) // setcgn
     {
         iNumInputArg = 2;
         meth = 26;
     }
-    else if (wcscmp(wcsMeth, L"getcgn") == 0) // getcgn
+    else if (strcmp(cMeth, "getcgn") == 0) // getcgn
     {
         iNumInputArg = 1;
         meth = 27;
     }
-    else if (wcscmp(wcsMeth, L"initgn") == 0) // initgn
+    else if (strcmp(cMeth, "initgn") == 0) // initgn
     {
         iNumInputArg = 2;
         meth = 28;
     }
-    else if (wcscmp(wcsMeth, L"setall") == 0) // setall
+    else if (strcmp(cMeth, "setall") == 0) // setall
     {
         iNumInputArg = 5;
         meth = 29;
     }
-    else if (wcscmp(wcsMeth, L"advnst") == 0) // advnst
+    else if (strcmp(cMeth, "advnst") == 0) // advnst
     {
         iNumInputArg = 2;
         meth = 30;
     }
     else
     {
-        char* pstMeth = wide_string_to_UTF8(wcsMeth);
-        Scierror(78, _("%s: Wrong method for input argument #%d: %s unknown.\n"), "grand", iStrPos + 1, pstMeth);
-        FREE(pstMeth);
+        Scierror(78, _("%s: Wrong method for input argument #%d: %s unknown.\n"), "grand", iStrPos + 1, cMeth);
         return types::Function::Error;
     }
 
@@ -1233,29 +1229,28 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         case 22: // setgen
         {
             delete pDblOut;
-            wchar_t* wcsGen = pStrGenOrPhr->get(0);
-
-            if (wcscmp(wcsGen, L"mt") == 0)
+            char* cGen = pStrGenOrPhr->get(0);
+            if (strcmp(cGen, "mt") == 0)
             {
                 ConfigVariable::setCurrentBaseGen(MT);
             }
-            else if (wcscmp(wcsGen, L"kiss") == 0)
+            else if (strcmp(cGen, "kiss") == 0)
             {
                 ConfigVariable::setCurrentBaseGen(KISS);
             }
-            else if (wcscmp(wcsGen, L"clcg4") == 0)
+            else if (strcmp(cGen, "clcg4") == 0)
             {
                 ConfigVariable::setCurrentBaseGen(CLCG4);
             }
-            else if (wcscmp(wcsGen, L"clcg2") == 0)
+            else if (strcmp(cGen, "clcg2") == 0)
             {
                 ConfigVariable::setCurrentBaseGen(CLCG2);
             }
-            else if (wcscmp(wcsGen, L"urand") == 0)
+            else if (strcmp(cGen, "urand") == 0)
             {
                 ConfigVariable::setCurrentBaseGen(URAND);
             }
-            else if (wcscmp(wcsGen, L"fsultra") == 0)
+            else if (strcmp(cGen, "fsultra") == 0)
             {
                 ConfigVariable::setCurrentBaseGen(FSULTRA);
             }
@@ -1444,16 +1439,15 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             }
 
             types::Double* pDblOut = new types::Double(1, 2);
-            int size = (int)wcslen(pStrGenOrPhr->get(0));
+            int size = (int)strlen(pStrGenOrPhr->get(0));
             int piOut[2];
-            char* strPhr = wide_string_to_UTF8(pStrGenOrPhr->get(0));
+            char* strPhr = pStrGenOrPhr->get(0);
 
             C2F(phrtsd)(strPhr, &size, piOut, piOut + 1, size);
 
             pDblOut->set(0, static_cast<double>(piOut[0]));
             pDblOut->set(1, static_cast<double>(piOut[1]));
 
-            FREE(strPhr);
             out.push_back(pDblOut);
             break;
         }
