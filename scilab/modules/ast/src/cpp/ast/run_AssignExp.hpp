@@ -414,7 +414,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             for (i = iLhsCount - 1; i >= 0; i--)
             {
                 //create a new AssignExp and run it
-                pIT[i] = (exec.getResult(i));
+                pIT[i] = exec.getResult(i);
                 //protet rhs against removal [a,b] = (b,a);
                 pIT[i]->IncreaseRef();
             }

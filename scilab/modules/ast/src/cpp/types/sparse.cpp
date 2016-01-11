@@ -2366,7 +2366,7 @@ SparseBool* Sparse::newLessThan(Sparse &o)
         outputRowCol(rowcolL.data());
 
         double r = o.get(0, 0);
-        if (r >= 0)
+        if (r > 0)
         {
             ret->setTrue(true);
         }

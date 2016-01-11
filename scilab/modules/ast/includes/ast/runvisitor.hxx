@@ -260,10 +260,18 @@ public:
         }
     }
 
-    void cleanOpt(const types::optional_list & opt)
+    void cleanOpt(const types::optional_list & opt, const types::typed_list & out)
     {
         if (!opt.empty())
         {
+            for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
+            {
+                if (*o)
+                {
+                    (*o)->IncreaseRef();
+                }
+            }
+            
             for (types::optional_list::const_iterator o = opt.begin(); o != opt.end(); ++o)
             {
                 if (o->second)
@@ -271,6 +279,14 @@ public:
                     //decreasef ref after increaseref in callexp
                     o->second->DecreaseRef();
                     o->second->killMe();
+                }
+            }
+
+            for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
+            {
+                if (*o)
+                {
+                    (*o)->DecreaseRef();
                 }
             }
         }

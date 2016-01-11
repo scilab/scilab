@@ -218,7 +218,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         {
             pListArg = in[0]->getAs<types::List>();
             iLoopSize = pListArg->getSize();
-            cleanOpt(opt);
+            cleanOpt(opt, out);
         }
 
         setExpectedSize(iSaveExpectedSize);
@@ -302,7 +302,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 setExpectedSize(iSaveExpectedSize);
                 setResult(out);
                 cleanIn(in, out);
-                cleanOpt(opt);
+                cleanOpt(opt, out);
 
                 // In case a.b(), getResult contain pIT ("b").
                 // If out == pIT, do not delete it.
@@ -355,7 +355,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
         clearResult();
         cleanInOut(in, out);
-        cleanOpt(opt);
+        cleanOpt(opt, out);
         CoverageInstance::stopChrono((void*)&e);
 
         throw ia;
@@ -370,7 +370,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
         clearResult();
         cleanInOut(in, out);
-        cleanOpt(opt);
+        cleanOpt(opt, out);
         CoverageInstance::stopChrono((void*)&e);
 
         throw ie;
