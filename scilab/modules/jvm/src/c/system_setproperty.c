@@ -19,7 +19,7 @@
 #include "catchIfJavaException.h"
 #include "os_string.h"
 /*--------------------------------------------------------------------------*/
-char * system_setproperty(char *property, char *value)
+char * system_setproperty(const char *prop, const char *value)
 {
     char *retValue = NULL;
 
@@ -41,7 +41,7 @@ char * system_setproperty(char *property, char *value)
                 jstring jstrValue;
                 jstring jstrPreviousValue;
 
-                jstrProperty = (*currentENV)->NewStringUTF(currentENV, property);
+                jstrProperty = (*currentENV)->NewStringUTF(currentENV, prop);
                 jstrValue = (*currentENV)->NewStringUTF(currentENV, value);
 
                 jstrPreviousValue = (*currentENV)->CallStaticObjectMethod(currentENV, cls, mid, jstrProperty, jstrValue);

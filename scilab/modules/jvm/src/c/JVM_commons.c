@@ -77,22 +77,16 @@ BOOL FreeDynLibJVM(void)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-BOOL LoadFunctionsJVM(char *filedynlib)
+BOOL LoadFunctionsJVM(const char *filedynlib)
 {
 #ifdef _MSC_VER
     if (filedynlib == NULL)
     {
-        hLibJVM = LoadDynLibraryW(L"jvm.dll");
+        hLibJVM = LoadDynLibrary("jvm.dll");
     }
     else
     {
-        wchar_t * wcfiledynlib = to_wide_string(filedynlib);
-        if (wcfiledynlib)
-        {
-            hLibJVM = LoadDynLibraryW(wcfiledynlib);
-            FREE(wcfiledynlib);
-            wcfiledynlib = NULL;
-        }
+        hLibJVM = LoadDynLibrary(filedynlib);
     }
 #else
 #ifdef __APPLE__

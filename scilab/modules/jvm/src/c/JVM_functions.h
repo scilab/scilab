@@ -65,13 +65,13 @@ BOOL withEmbeddedJRE(void);
 * search a Created JavaVM
 * @return a JavaVM or NULL (not found)
 */
-JavaVM *FindCreatedJavaVM(char *SCILAB_PATH);
+JavaVM *FindCreatedJavaVM(const char *SCILAB_PATH);
 
 /**
 * Load Functions for JVM
 * @return TRUE or FALSE
 */
-BOOL LoadFunctionsJVM(char *filedynlib);
+BOOL LoadFunctionsJVM(const char *filedynlib);
 
 
 /**

@@ -35,7 +35,7 @@ but it has the downside of taking around 10% longer to start up, and it uses mor
 /*--------------------------------------------------------------------------*/
 static char *Search_Java_RuntimeLib_in_Windows_Registry(void);
 static JavaVM *SearchCreatedJavaVMPath(void);
-static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH);
+static JavaVM *SearchCreatedJavaVMEmbedded(const char *SCILAB_PATH);
 static JavaVM *SearchCreatedJavaVMRegistry(void);
 /*--------------------------------------------------------------------------*/
 static BOOL EMBEDDED_JRE = FALSE;
@@ -175,7 +175,7 @@ BOOL withEmbeddedJRE(void)
     return EMBEDDED_JRE;
 }
 /*--------------------------------------------------------------------------*/
-static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
+static JavaVM *SearchCreatedJavaVMEmbedded(const char *SCILAB_PATH)
 {
     JavaVM *jvm = NULL;
     jsize jvm_count = 0;
@@ -282,7 +282,7 @@ static JavaVM *SearchCreatedJavaVMPath(void)
     return jvm;
 }
 /*----------------------------------------------------------------------------------*/
-JavaVM *FindCreatedJavaVM(char *SCILAB_PATH)
+JavaVM *FindCreatedJavaVM(const char *SCILAB_PATH)
 {
     JavaVM *jvm = NULL;
 

@@ -45,13 +45,14 @@ types::Function::ReturnValue sci_system_getproperty(types::typed_list &in, int _
         return types::Function::Error;
     }
 
-    char* pstProperty = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
+    char* pstProperty = in[0]->getAs<types::String>()->get(0);
+
     char* pstValue = system_getproperty(pstProperty, "unknown");
     types::String* pS = new types::String(pstValue);
+    FREE(pstValue);
+
     out.push_back(pS);
 
-    FREE(pstProperty);
-    FREE(pstValue);
 
     return types::Function::OK;
 }

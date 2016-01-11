@@ -21,7 +21,7 @@
 * @param value
 * @return previous value or NULL
 */
-char * system_setproperty(char *property, char *value);
+char * system_setproperty(const char *prop, const char *value);
 
 #endif /* __SYSTEM_SETPROPERTY_H__ */
 /*--------------------------------------------------------------------------*/
