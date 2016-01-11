@@ -133,7 +133,7 @@ int diaryClose(int _iId)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryClose(char *filename)
+int diaryClose(const char *filename)
 {
     if (SCIDIARY)
     {
@@ -169,7 +169,7 @@ int diaryPause(int _iId)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryPause(char *filename)
+int diaryPause(const char *filename)
 {
     if (SCIDIARY)
     {
@@ -203,7 +203,7 @@ int diaryResume(int _iId)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryResume(char *filename)
+int diaryResume(const char *filename)
 {
     if (SCIDIARY)
     {
@@ -229,7 +229,7 @@ int diaryExists(int _iId)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryExists(char *filename)
+int diaryExists(const char *filename)
 {
     if (SCIDIARY)
     {
@@ -241,7 +241,7 @@ int diaryExists(char *filename)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryNew(char *filename, bool autorename)
+int diaryNew(const char *filename, bool autorename)
 {
     createDiaryManager();
 
@@ -253,7 +253,7 @@ int diaryNew(char *filename, bool autorename)
     return -1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryAppend(char *filename)
+int diaryAppend(const char *filename)
 {
     createDiaryManager();
     if (SCIDIARY)

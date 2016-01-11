@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_disp(types::typed_list &in, int _iRetCount, typ
 
     for (it = in.rbegin() ; it != in.rend() ; it++)
     {
-        scilabForcedWriteW(L"\n");
+        scilabForcedWrite("\n");
         if (VariableToString(*it, SPACES_LIST) == types::Function::Error)
         {
             return types::Function::Error;

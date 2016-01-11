@@ -23,20 +23,20 @@ extern "C"
 #include "freeArrayOfString.h"
 }
 /*--------------------------------------------------------------------------*/
-#define DIARY_SECOND_ARG_LIST L"list"
-#define DIARY_SECOND_ARG_CLOSE L"close"
-#define DIARY_SECOND_ARG_PAUSE L"pause"
-#define DIARY_SECOND_ARG_OFF L"off"
-#define DIARY_SECOND_ARG_RESUME L"resume"
-#define DIARY_SECOND_ARG_ON L"on"
-#define DIARY_SECOND_ARG_NEW L"new"
-#define DIARY_SECOND_ARG_APPEND L"append"
-#define DIARY_SECOND_ARG_EXISTS L"exists"
-#define DIARY_THIRD_ARG_FILTER_COMMAND L"filter=command"
-#define DIARY_THIRD_ARG_FILTER_OUTPUT L"filter=output"
-#define DIARY_THIRD_ARG_PREFIX_UNIX_EPOCH L"prefix=U"
-#define DIARY_THIRD_ARG_PREFIX_DEFAULT L"prefix=YYYY-MM-DD hh:mm:ss"
-#define DIARY_THIRD_ARG_PREFIX_ONLY_COMMANDS L"prefix-only-commands"
+#define DIARY_SECOND_ARG_LIST "list"
+#define DIARY_SECOND_ARG_CLOSE "close"
+#define DIARY_SECOND_ARG_PAUSE "pause"
+#define DIARY_SECOND_ARG_OFF "off"
+#define DIARY_SECOND_ARG_RESUME "resume"
+#define DIARY_SECOND_ARG_ON "on"
+#define DIARY_SECOND_ARG_NEW "new"
+#define DIARY_SECOND_ARG_APPEND "append"
+#define DIARY_SECOND_ARG_EXISTS "exists"
+#define DIARY_THIRD_ARG_FILTER_COMMAND "filter=command"
+#define DIARY_THIRD_ARG_FILTER_OUTPUT "filter=output"
+#define DIARY_THIRD_ARG_PREFIX_UNIX_EPOCH "prefix=U"
+#define DIARY_THIRD_ARG_PREFIX_DEFAULT "prefix=YYYY-MM-DD hh:mm:ss"
+#define DIARY_THIRD_ARG_PREFIX_ONLY_COMMANDS "prefix-only-commands"
 /*--------------------------------------------------------------------------*/
 static int sci_diary_no_rhs(char *fname, void* pvApiCtx);
 static int sci_diary_one_rhs(char *fname, void* pvApiCtx);
@@ -44,11 +44,11 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx);
 static int sci_diary_three_rhs(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 static double *getInputArgumentOneIDs(char *fname, void* pvApiCtx, int *sizeReturnedArray, int *ierror);
-static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *sizeReturnedArray, int *ierror);
-static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror);
-static wchar_t **getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeReturnedArray, int *ierror);
+static char** getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *sizeReturnedArray, int *ierror);
+static char* getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror);
+static char** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeReturnedArray, int *ierror);
 static int checkExistByIDs(char *fname, void* pvApiCtx, double *IDs, int size_IDs);
-static int checkExistByFilenames(char *fname, void* pvApiCtx, wchar_t **wcFilenames, int size_IDs);
+static int checkExistByFilenames(char *fname, void* pvApiCtx, char** filenames, int size_IDs);
 static int CloseByFilenames(char *fname, void* pvApiCtx);
 static int CloseByIds(char *fname, void* pvApiCtx);
 static int PauseByFilenames(char *fname, void* pvApiCtx);
@@ -93,9 +93,9 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
     // [ids, filenames] = diary([],"list")
     SciErr sciErr;
     int nb_diary_ids = 0;
-    double *diary_ids  = getDiaryIDsAsDouble(&nb_diary_ids);
+    double *diary_ids = getDiaryIDsAsDouble(&nb_diary_ids);
 
-    if ( (diary_ids) && (nb_diary_ids > 0) )
+    if ((diary_ids) && (nb_diary_ids > 0))
     {
         sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, nb_diary_ids, 1, diary_ids);
         if (sciErr.iErr)
@@ -107,7 +107,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
 
         LhsVar(1) = Rhs + 1;
 
-        delete [] diary_ids;
+        delete[] diary_ids;
         diary_ids = NULL;
         nb_diary_ids = 0;
     }
@@ -126,7 +126,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
 
             if (diary_ids)
             {
-                delete [] diary_ids;
+                delete[] diary_ids;
                 diary_ids = NULL;
                 nb_diary_ids = 0;
             }
@@ -141,11 +141,11 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
     if (Lhs == 2)
     {
         int nb_diary_filenames = 0;
-        wchar_t **wcdiary_filenames = getDiaryFilenames(&nb_diary_filenames);
+        char **diary_filenames = getDiaryFilenames(&nb_diary_filenames);
 
-        if ( (wcdiary_filenames) && (nb_diary_filenames > 0) )
+        if ((diary_filenames) && (nb_diary_filenames > 0))
         {
-            sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, nb_diary_filenames, 1, wcdiary_filenames);
+            sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, nb_diary_filenames, 1, diary_filenames);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -155,7 +155,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
 
             LhsVar(2) = Rhs + 2;
 
-            freeArrayOfWideString(wcdiary_filenames, nb_diary_filenames);
+            freeArrayOfString(diary_filenames, nb_diary_filenames);
             nb_diary_filenames = 0;
         }
         else
@@ -171,9 +171,9 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
                 }
 
                 LhsVar(2) = Rhs + 2;
-                if (wcdiary_filenames)
+                if (diary_filenames)
                 {
-                    freeArrayOfWideString(wcdiary_filenames, nb_diary_filenames);
+                    freeArrayOfString(diary_filenames, nb_diary_filenames);
                     nb_diary_filenames = 0;
                 }
             }
@@ -193,7 +193,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
 static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
-    int iType	= 0;
+    int iType = 0;
     int *piAddressVarOne = NULL;
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
@@ -225,8 +225,8 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
         // diary([])
         // diary(0)
         // close all
-        if ( (IDs_size == 0) ||
-                ((IDs_size == 1) && ((int)IDs[0] == 0)))
+        if ((IDs_size == 0) ||
+            ((IDs_size == 1) && ((int)IDs[0] == 0)))
         {
             diaryCloseAll();
             PutLhsVar();
@@ -239,31 +239,21 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
     else if (iType == sci_strings)
     {
         int ierr = 0;
-        int sizewcFilenames = 0;
-        wchar_t ** wcFilenames = getInputArgumentOneFilenames(fname, pvApiCtx, &sizewcFilenames, &ierr);
+        int sizeFilenames = 0;
+        char ** filenames = getInputArgumentOneFilenames(fname, pvApiCtx, &sizeFilenames, &ierr);
         if (ierr)
         {
             return 0;
         }
 
-        if (sizewcFilenames == 1)
+        if (sizeFilenames == 1)
         {
-            if (diaryExists(wcFilenames[0]))
+            if (diaryExists(filenames[0]))
             {
-                double dID = (double)diaryNew(wcFilenames[0], false);
+                double dID = (double)diaryNew(filenames[0], false);
                 if (dID == -1)
                 {
-                    char *utf_str = wide_string_to_UTF8(wcFilenames[0]);
-                    if (utf_str)
-                    {
-                        Scierror(999, _("%s: error can not create diary: %s.\n"), fname, utf_str);
-                        FREE(utf_str);
-                        utf_str = NULL;
-                    }
-                    else
-                    {
-                        Scierror(999, _("%s: error can not create diary.\n"), fname);
-                    }
+                    Scierror(999, _("%s: error can not create diary: %s.\n"), fname, filenames[0]);
                     return 0;
                 }
 
@@ -279,9 +269,8 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
 
                 if (Lhs == 2)
                 {
-                    wchar_t **wfilenameUsed = new wchar_t*[1];
-                    wfilenameUsed[0] = getDiaryFilename((int)dID);
-                    sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, 1, 1, wfilenameUsed);
+                    char* filenameUsed = getDiaryFilename((int)dID);
+                    sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, 1, 1, &filenameUsed);
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
@@ -290,17 +279,16 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
                     }
 
                     LhsVar(2) = Rhs + 2;
-                    FREE(wfilenameUsed[0]);
-                    delete [] wfilenameUsed;
+                    FREE(filenameUsed);
                 }
             }
             else // diary(filename) exists (close diary)
             {
-                if (diaryClose(wcFilenames[0]))
+                if (diaryClose(filenames[0]))
                 {
-                    if (wcFilenames)
+                    if (filenames)
                     {
-                        freeArrayOfWideString(wcFilenames, 1);
+                        freeArrayOfString(filenames, 1);
                         Scierror(999, _("%s: error can not close diary.\n"), fname);
                         return 0;
                     }
@@ -308,12 +296,12 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
                 LhsVar(1) = 0;
             }
 
-            freeArrayOfWideString(wcFilenames, sizewcFilenames);
+            freeArrayOfString(filenames, sizeFilenames);
             PutLhsVar();
         }
         else
         {
-            freeArrayOfWideString(wcFilenames, sizewcFilenames);
+            freeArrayOfString(filenames, sizeFilenames);
             Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
         }
     }
@@ -327,7 +315,7 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
 static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
 {
     int ierr = 0;
-    wchar_t *wcArgumentTwo = getInputArgumentTwo(fname, pvApiCtx, &ierr);
+    char *argumentTwo = getInputArgumentTwo(fname, pvApiCtx, &ierr);
     SciErr sciErr;
     int *piAddressVarOne = NULL;
 
@@ -344,11 +332,11 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    if (wcArgumentTwo)
+    if (argumentTwo)
     {
-        if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_LIST) == 0)
+        if (strcmp(argumentTwo, DIARY_SECOND_ARG_LIST) == 0)
         {
-            FREE(wcArgumentTwo);
+            FREE(argumentTwo);
             int m1 = 0, n1 = 0;
             sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
             if (sciErr.iErr)
@@ -358,7 +346,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
                 return 0;
             }
 
-            if ( (m1 == n1) && (n1 == 0) )
+            if ((m1 == n1) && (n1 == 0))
             {
                 // diary() == diary([], "list")
                 return sci_diary_no_rhs(fname, pvApiCtx);
@@ -368,9 +356,9 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
             }
         }
-        else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_CLOSE) == 0)
+        else if (strcmp(argumentTwo, DIARY_SECOND_ARG_CLOSE) == 0)
         {
-            FREE(wcArgumentTwo);
+            FREE(argumentTwo);
             int iType = 0;
             sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
             if (sciErr.iErr)
@@ -394,10 +382,10 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
                 return 0;
             }
         }
-        else if ( (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_PAUSE) == 0) ||
-                  (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_OFF) == 0) )
+        else if ((strcmp(argumentTwo, DIARY_SECOND_ARG_PAUSE) == 0) ||
+            (strcmp(argumentTwo, DIARY_SECOND_ARG_OFF) == 0))
         {
-            FREE(wcArgumentTwo);
+            FREE(argumentTwo);
             int iType = 0;
             sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
             if (sciErr.iErr)
@@ -421,10 +409,10 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
                 return 0;
             }
         }
-        else if ( (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_RESUME) == 0) ||
-                  (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_ON) == 0) )
+        else if ((strcmp(argumentTwo, DIARY_SECOND_ARG_RESUME) == 0) ||
+            (strcmp(argumentTwo, DIARY_SECOND_ARG_ON) == 0))
         {
-            FREE(wcArgumentTwo);
+            FREE(argumentTwo);
             int iType = 0;
             sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
             if (sciErr.iErr)
@@ -448,9 +436,9 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
                 return 0;
             }
         }
-        else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_NEW) == 0)
+        else if (strcmp(argumentTwo, DIARY_SECOND_ARG_NEW) == 0)
         {
-            FREE(wcArgumentTwo);
+            FREE(argumentTwo);
             int iType = 0;
             sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
             if (sciErr.iErr)
@@ -463,8 +451,8 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
             if (iType == sci_strings)
             {
                 return NewByFilenames(fname, pvApiCtx, DIARY_FILTER_INPUT_AND_OUTPUT,
-                                      PREFIX_TIME_FORMAT_UNIX_EPOCH,
-                                      PREFIX_FILTER_NONE, false);
+                    PREFIX_TIME_FORMAT_UNIX_EPOCH,
+                    PREFIX_FILTER_NONE, false);
             }
             else
             {
@@ -472,9 +460,9 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
                 return 0;
             }
         }
-        else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_APPEND) == 0)
+        else if (strcmp(argumentTwo, DIARY_SECOND_ARG_APPEND) == 0)
         {
-            FREE(wcArgumentTwo);
+            FREE(argumentTwo);
             int iType = 0;
             sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
             if (sciErr.iErr)
@@ -487,8 +475,8 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
             if (iType == sci_strings)
             {
                 return AppendByFilenames(fname, pvApiCtx, DIARY_FILTER_INPUT_AND_OUTPUT,
-                                         PREFIX_TIME_FORMAT_UNIX_EPOCH,
-                                         PREFIX_FILTER_NONE, false);
+                    PREFIX_TIME_FORMAT_UNIX_EPOCH,
+                    PREFIX_FILTER_NONE, false);
             }
             else
             {
@@ -496,9 +484,9 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
                 return 0;
             }
         }
-        else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_EXISTS) == 0)
+        else if (strcmp(argumentTwo, DIARY_SECOND_ARG_EXISTS) == 0)
         {
-            FREE(wcArgumentTwo);
+            FREE(argumentTwo);
             int iType = 0;
             sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
             if (sciErr.iErr)
@@ -524,7 +512,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
         }
         else
         {
-            FREE(wcArgumentTwo);
+            FREE(argumentTwo);
             Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
             return 0;
         }
@@ -541,13 +529,13 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
 {
     int ierr = 0;
     int size_ArgThree = 0;
-    wchar_t **wcArgumentThree = getInputArgumentThree(fname, pvApiCtx, &size_ArgThree, &ierr);
+    char** argumentThree = getInputArgumentThree(fname, pvApiCtx, &size_ArgThree, &ierr);
     if (ierr)
     {
         return 0;
     }
 
-    if (wcArgumentThree)
+    if (argumentThree)
     {
         diary_filter filterMode = DIARY_FILTER_INPUT_AND_OUTPUT;
         diary_prefix_time_format iPrefixMode = PREFIX_TIME_FORMAT_UNIX_EPOCH;
@@ -556,15 +544,15 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
 
         for (int i = 0; i < size_ArgThree; i++)
         {
-            if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_FILTER_COMMAND) == 0)
+            if (strcmp(argumentThree[i], DIARY_THIRD_ARG_FILTER_COMMAND) == 0)
             {
                 filterMode = DIARY_FILTER_ONLY_INPUT; // input only
             }
-            else if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_FILTER_OUTPUT) == 0)
+            else if (strcmp(argumentThree[i], DIARY_THIRD_ARG_FILTER_OUTPUT) == 0)
             {
                 filterMode = DIARY_FILTER_ONLY_OUTPUT; // output only
             }
-            else if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_PREFIX_UNIX_EPOCH) == 0)
+            else if (strcmp(argumentThree[i], DIARY_THIRD_ARG_PREFIX_UNIX_EPOCH) == 0)
             {
                 iPrefixMode = PREFIX_TIME_FORMAT_UNIX_EPOCH;
                 if (iPrefixIoModeFilter == PREFIX_FILTER_NONE)
@@ -572,7 +560,7 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
                     iPrefixIoModeFilter = PREFIX_FILTER_INPUT_AND_OUTPUT;
                 }
             }
-            else if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_PREFIX_DEFAULT) == 0)
+            else if (strcmp(argumentThree[i], DIARY_THIRD_ARG_PREFIX_DEFAULT) == 0)
             {
                 iPrefixMode = PREFIX_TIME_FORMAT_ISO_8601;
                 if (iPrefixIoModeFilter == PREFIX_FILTER_NONE)
@@ -580,33 +568,33 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
                     iPrefixIoModeFilter = PREFIX_FILTER_INPUT_AND_OUTPUT;
                 }
             }
-            else if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_PREFIX_ONLY_COMMANDS) == 0)
+            else if (strcmp(argumentThree[i], DIARY_THIRD_ARG_PREFIX_ONLY_COMMANDS) == 0)
             {
                 iPrefixIoModeFilter = PREFIX_FILTER_ONLY_INPUT;
             }
-            else if ( (wcscmp(wcArgumentThree[i], DIARY_SECOND_ARG_ON) == 0) || (wcscmp(wcArgumentThree[i], DIARY_SECOND_ARG_RESUME) == 0) )
+            else if ((strcmp(argumentThree[i], DIARY_SECOND_ARG_ON) == 0) || (strcmp(argumentThree[i], DIARY_SECOND_ARG_RESUME) == 0))
             {
                 suspendedDiary = false;
             }
-            else if ( (wcscmp(wcArgumentThree[i], DIARY_SECOND_ARG_OFF) == 0) || (wcscmp(wcArgumentThree[i], DIARY_SECOND_ARG_PAUSE) == 0) )
+            else if ((strcmp(argumentThree[i], DIARY_SECOND_ARG_OFF) == 0) || (strcmp(argumentThree[i], DIARY_SECOND_ARG_PAUSE) == 0))
             {
                 suspendedDiary = true;
             }
             else
             {
-                freeArrayOfWideString(wcArgumentThree, size_ArgThree);
+                freeArrayOfString(argumentThree, size_ArgThree);
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 3);
                 return 0;
             }
         }
-        freeArrayOfWideString(wcArgumentThree, size_ArgThree);
+        freeArrayOfString(argumentThree, size_ArgThree);
 
-        wchar_t *wcArgumentTwo = getInputArgumentTwo(fname, pvApiCtx, &ierr);
+        char* argumentTwo = getInputArgumentTwo(fname, pvApiCtx, &ierr);
         if (ierr)
         {
             return 0;
         }
-        if (wcArgumentTwo)
+        if (argumentTwo)
         {
             int *piAddressVarOne = NULL;
             SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
@@ -617,7 +605,7 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
                 return 0;
             }
 
-            if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_NEW) == 0)
+            if (strcmp(argumentTwo, DIARY_SECOND_ARG_NEW) == 0)
             {
                 int iType = 0;
                 sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
@@ -628,8 +616,8 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
                     return 0;
                 }
 
-                FREE(wcArgumentTwo);
-                wcArgumentTwo = NULL;
+                FREE(argumentTwo);
+                argumentTwo = NULL;
                 if (iType == sci_strings)
                 {
                     return NewByFilenames(fname, pvApiCtx, filterMode, iPrefixMode, iPrefixIoModeFilter, suspendedDiary);
@@ -640,7 +628,7 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
                     return 0;
                 }
             }
-            else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_APPEND) == 0)
+            else if (strcmp(argumentTwo, DIARY_SECOND_ARG_APPEND) == 0)
             {
                 int iType = 0;
                 sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
@@ -651,8 +639,8 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
                     return 0;
                 }
 
-                FREE(wcArgumentTwo);
-                wcArgumentTwo = NULL;
+                FREE(argumentTwo);
+                argumentTwo = NULL;
                 if (iType == sci_strings)
                 {
                     return AppendByFilenames(fname, pvApiCtx, filterMode, iPrefixMode, iPrefixIoModeFilter, suspendedDiary);
@@ -665,8 +653,8 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
             }
             else
             {
-                FREE(wcArgumentTwo);
-                wcArgumentTwo = NULL;
+                FREE(argumentTwo);
+                argumentTwo = NULL;
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
                 return 0;
             }
@@ -719,11 +707,11 @@ static double *getInputArgumentOneIDs(char *fname, void* pvApiCtx, int *sizeRetu
             return 0;
         }
 
-        if ( (m1 == 1) || (n1 == 1) )
+        if ((m1 == 1) || (n1 == 1))
         {
             *sizeReturnedArray = m1 * n1;
         }
-        else if ( (m1 == 0) || (n1 == 0) )
+        else if ((m1 == 0) || (n1 == 0))
         {
             *sizeReturnedArray = 0;
             *ierror = 2;
@@ -744,9 +732,9 @@ static double *getInputArgumentOneIDs(char *fname, void* pvApiCtx, int *sizeRetu
     return IDs;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *sizeReturnedArray, int *ierror)
+static char** getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *sizeReturnedArray, int *ierror)
 {
-    wchar_t** wcFilenames = NULL;
+    char** filenames = NULL;
     *sizeReturnedArray = 0;
     *ierror = 0;
 
@@ -787,7 +775,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
             Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
             *ierror = 1;
         }
-        else if ( (m1 == 1) || (n1 == 1) )
+        else if ((m1 == 1) || (n1 == 1))
         {
             lenStVarOne = (int *)MALLOC(sizeof(int) * (m1 * n1));
             if (lenStVarOne == NULL)
@@ -797,7 +785,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
             }
             else
             {
-                sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, wcFilenames);
+                sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, filenames);
                 if (sciErr.iErr)
                 {
                     FREE(lenStVarOne);
@@ -807,8 +795,8 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
                     return NULL;
                 }
 
-                wcFilenames = (wchar_t **)MALLOC(sizeof(wchar_t *) * (m1 * n1));
-                if (wcFilenames == NULL)
+                filenames = (char**)MALLOC(sizeof(char*) * (m1 * n1));
+                if (filenames == NULL)
                 {
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     *ierror = 1;
@@ -817,15 +805,15 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
                 {
                     for (int i = 0; i < m1 * n1; i++)
                     {
-                        wcFilenames[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarOne[i] + 1));
-                        if (wcFilenames[i] == NULL)
+                        filenames[i] = (char*)MALLOC(sizeof(char) * (lenStVarOne[i] + 1));
+                        if (filenames[i] == NULL)
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), fname);
                             *ierror = 1;
                         }
                     }
 
-                    sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, wcFilenames);
+                    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, filenames);
                     FREE(lenStVarOne);
                     if (sciErr.iErr)
                     {
@@ -850,12 +838,12 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
         Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         *ierror = 1;
     }
-    return wcFilenames;
+    return filenames;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
+static char* getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
 {
-    wchar_t *wcInputArgumentTwo = NULL;
+    char* inputArgumentTwo = NULL;
     *ierror = 0;
 
     int m2 = 0, n2 = 0;
@@ -889,7 +877,7 @@ static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
             return 0;
         }
 
-        if ( (m2 != n2) && (n2 != 1) )
+        if ((m2 != n2) && (n2 != 1))
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
             *ierror = 1;
@@ -897,7 +885,7 @@ static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
         else
         {
             // get length lenStVarTwo
-            sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &wcInputArgumentTwo);
+            sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &inputArgumentTwo);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -905,15 +893,15 @@ static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
                 return 0;
             }
 
-            wcInputArgumentTwo = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarTwo + 1));
+            inputArgumentTwo = (char*)MALLOC(sizeof(char) * (lenStVarTwo + 1));
 
-            if (wcInputArgumentTwo == NULL)
+            if (inputArgumentTwo == NULL)
             {
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 *ierror = 1;
             }
 
-            sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &wcInputArgumentTwo);
+            sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &inputArgumentTwo);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -927,12 +915,12 @@ static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
         Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         *ierror = 1;
     }
-    return wcInputArgumentTwo;
+    return inputArgumentTwo;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeReturnedArray, int *ierror)
+static char** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeReturnedArray, int *ierror)
 {
-    wchar_t** wcInputArgumentThree = NULL;
+    char** inputArgumentThree = NULL;
     *sizeReturnedArray = 0;
     *ierror = 0;
 
@@ -973,7 +961,7 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
             Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 3);
             *ierror = 1;
         }
-        else if ( (m3 == 1) || (n3 == 1) )
+        else if ((m3 == 1) || (n3 == 1))
         {
             lenStVarThree = (int *)MALLOC(sizeof(int) * (m3 * n3));
             if (lenStVarThree == NULL)
@@ -983,7 +971,7 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
             }
             else
             {
-                sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, wcInputArgumentThree);
+                sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, inputArgumentThree);
                 if (sciErr.iErr)
                 {
                     FREE(lenStVarThree);
@@ -993,8 +981,8 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
                     return NULL;
                 }
 
-                wcInputArgumentThree = (wchar_t **)MALLOC(sizeof(wchar_t *) * (m3 * n3));
-                if (wcInputArgumentThree == NULL)
+                inputArgumentThree = (char**)MALLOC(sizeof(char*) * (m3 * n3));
+                if (inputArgumentThree == NULL)
                 {
                     FREE(lenStVarThree);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
@@ -1004,10 +992,10 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
                 {
                     for (int i = 0; i < m3 * n3; i++)
                     {
-                        wcInputArgumentThree[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarThree[i] + 1));
+                        inputArgumentThree[i] = (char*)MALLOC(sizeof(char) * (lenStVarThree[i] + 1));
                     }
 
-                    sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, wcInputArgumentThree);
+                    sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, inputArgumentThree);
                     FREE(lenStVarThree);
                     if (sciErr.iErr)
                     {
@@ -1031,7 +1019,7 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
         Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
         *ierror = 1;
     }
-    return wcInputArgumentThree;
+    return inputArgumentThree;
 }
 /*--------------------------------------------------------------------------*/
 static int checkExistByIDs(char *fname, void* pvApiCtx, double *IDs, int size_IDs)
@@ -1051,13 +1039,13 @@ static int checkExistByIDs(char *fname, void* pvApiCtx, double *IDs, int size_ID
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-static int checkExistByFilenames(char *fname, void* pvApiCtx, wchar_t **wcFilenames, int size_IDs)
+static int checkExistByFilenames(char *fname, void* pvApiCtx, char** filenames, int size_IDs)
 {
-    if (wcFilenames)
+    if (filenames)
     {
         for (int i = 0; i < size_IDs; i++)
         {
-            if (diaryExists(wcFilenames[i]))
+            if (diaryExists(filenames[i]))
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: diary filename not exists.\n"), fname, 1);
                 return 1;
@@ -1070,34 +1058,34 @@ static int checkExistByFilenames(char *fname, void* pvApiCtx, wchar_t **wcFilena
 /*--------------------------------------------------------------------------*/
 static int CloseByFilenames(char *fname, void* pvApiCtx)
 {
-    wchar_t **wcFilenames = NULL;
+    char **filenames = NULL;
     int dIDs_size = 0;
     int ierr = 0;
 
-    wcFilenames = getInputArgumentOneFilenames(fname, pvApiCtx, &dIDs_size, &ierr);
+    filenames = getInputArgumentOneFilenames(fname, pvApiCtx, &dIDs_size, &ierr);
     if (ierr)
     {
         return 0;
     }
 
-    ierr = checkExistByFilenames(fname, pvApiCtx, wcFilenames, dIDs_size);
+    ierr = checkExistByFilenames(fname, pvApiCtx, filenames, dIDs_size);
     if (ierr)
     {
-        freeArrayOfWideString(wcFilenames, dIDs_size);
+        freeArrayOfString(filenames, dIDs_size);
         return 0;
     }
 
     for (int i = 0; i < dIDs_size; i++)
     {
-        if (diaryClose(wcFilenames[i]))
+        if (diaryClose(filenames[i]))
         {
-            freeArrayOfWideString(wcFilenames, dIDs_size);
+            freeArrayOfString(filenames, dIDs_size);
             Scierror(999, _("%s: Wrong value for input argument #%d: error can not close diary.\n"), fname);
             return 0;
         }
     }
 
-    freeArrayOfWideString(wcFilenames, dIDs_size);
+    freeArrayOfString(filenames, dIDs_size);
     PutLhsVar();
     return 0;
 }
@@ -1142,34 +1130,34 @@ static int CloseByIds(char *fname, void* pvApiCtx)
 /*--------------------------------------------------------------------------*/
 static int PauseByFilenames(char *fname, void* pvApiCtx)
 {
-    wchar_t **wcFilenames = NULL;
+    char** filenames = NULL;
     int dIDs_size = 0;
     int ierr = 0;
 
-    wcFilenames = getInputArgumentOneFilenames(fname, pvApiCtx, &dIDs_size, &ierr);
+    filenames = getInputArgumentOneFilenames(fname, pvApiCtx, &dIDs_size, &ierr);
     if (ierr)
     {
         return 0;
     }
 
-    ierr = checkExistByFilenames(fname, pvApiCtx, wcFilenames, dIDs_size);
+    ierr = checkExistByFilenames(fname, pvApiCtx, filenames, dIDs_size);
     if (ierr)
     {
-        freeArrayOfWideString(wcFilenames, dIDs_size);
+        freeArrayOfString(filenames, dIDs_size);
         return 0;
     }
 
     for (int i = 0; i < dIDs_size; i++)
     {
-        if (diaryPause(wcFilenames[i]))
+        if (diaryPause(filenames[i]))
         {
-            freeArrayOfWideString(wcFilenames, dIDs_size);
+            freeArrayOfString(filenames, dIDs_size);
             Scierror(999, _("%s: Wrong value for input argument #%d: error can not pause diary.\n"), fname);
             return 0;
         }
     }
 
-    freeArrayOfWideString(wcFilenames, dIDs_size);
+    freeArrayOfString(filenames, dIDs_size);
 
     PutLhsVar();
     return 0;
@@ -1216,33 +1204,33 @@ static int PauseByIds(char *fname, void* pvApiCtx)
 /*--------------------------------------------------------------------------*/
 static int ResumeByFilenames(char *fname, void* pvApiCtx)
 {
-    wchar_t **wcFilenames = NULL;
+    char** filenames = NULL;
     int dIDs_size = 0;
     int ierr = 0;
-    wcFilenames = getInputArgumentOneFilenames(fname, pvApiCtx, &dIDs_size, &ierr);
+    filenames = getInputArgumentOneFilenames(fname, pvApiCtx, &dIDs_size, &ierr);
     if (ierr)
     {
         return 0;
     }
 
-    ierr = checkExistByFilenames(fname, pvApiCtx, wcFilenames, dIDs_size);
+    ierr = checkExistByFilenames(fname, pvApiCtx, filenames, dIDs_size);
     if (ierr)
     {
-        freeArrayOfWideString(wcFilenames, dIDs_size);
+        freeArrayOfString(filenames, dIDs_size);
         return 0;
     }
 
     for (int i = 0; i < dIDs_size; i++)
     {
-        if (diaryResume(wcFilenames[i]))
+        if (diaryResume(filenames[i]))
         {
-            freeArrayOfWideString(wcFilenames, dIDs_size);
+            freeArrayOfString(filenames, dIDs_size);
             Scierror(999, _("%s: Wrong value for input argument #%d: error can not resume diary.\n"), fname);
             return 0;
         }
     }
 
-    freeArrayOfWideString(wcFilenames, dIDs_size);
+    freeArrayOfString(filenames, dIDs_size);
 
     PutLhsVar();
 
@@ -1290,10 +1278,10 @@ static int ResumeByIds(char *fname, void* pvApiCtx)
 /*--------------------------------------------------------------------------*/
 static int ExistByFilenames(char *fname, void* pvApiCtx)
 {
-    wchar_t **wcFilenames = NULL;
+    char** filenames = NULL;
     int dIDs_size = 0;
     int ierr = 0;
-    wcFilenames = getInputArgumentOneFilenames(fname, pvApiCtx, &dIDs_size, &ierr);
+    filenames = getInputArgumentOneFilenames(fname, pvApiCtx, &dIDs_size, &ierr);
     if (ierr)
     {
         return 0;
@@ -1302,24 +1290,24 @@ static int ExistByFilenames(char *fname, void* pvApiCtx)
     int *resultExist = (int*)MALLOC(sizeof(int) * dIDs_size);
     if (resultExist == NULL)
     {
-        freeArrayOfWideString(wcFilenames, dIDs_size);
+        freeArrayOfString(filenames, dIDs_size);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
     for (int i = 0; i < dIDs_size; i++)
     {
-        int bExists = diaryExists(wcFilenames[i]);
-        if ( bExists == 0)
+        int bExists = diaryExists(filenames[i]);
+        if (bExists == 0)
         {
-            resultExist[i]  = TRUE;
+            resultExist[i] = TRUE;
         }
         else
         {
-            resultExist[i]  = FALSE;
+            resultExist[i] = FALSE;
         }
     }
-    freeArrayOfWideString(wcFilenames, dIDs_size);
+    freeArrayOfString(filenames, dIDs_size);
 
     SciErr sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, dIDs_size, resultExist);
     if (sciErr.iErr)
@@ -1359,13 +1347,13 @@ static int ExistByIds(char *fname, void* pvApiCtx)
     for (int i = 0; i < dIDs_size; i++)
     {
         int bExists = diaryExists((int)dIDs[i]);
-        if ( bExists == 0)
+        if (bExists == 0)
         {
-            resultExist[i]  = TRUE;
+            resultExist[i] = TRUE;
         }
         else
         {
-            resultExist[i]  = FALSE;
+            resultExist[i] = FALSE;
         }
     }
 
@@ -1386,17 +1374,17 @@ static int ExistByIds(char *fname, void* pvApiCtx)
 }
 /*--------------------------------------------------------------------------*/
 static int AppendByFilenames(char *fname, void* pvApiCtx,
-                             diary_filter filterMode,
-                             diary_prefix_time_format prefixMode,
-                             diary_prefix_time_filter prefixModeFilter,
-                             bool suspended)
+    diary_filter filterMode,
+    diary_prefix_time_format prefixMode,
+    diary_prefix_time_filter prefixModeFilter,
+    bool suspended)
 {
     SciErr sciErr;
-    wchar_t **wcFilenames = NULL;
+    char** filenames = NULL;
     int dIDs_size = 0;
     int ierr = 0;
 
-    wcFilenames = getInputArgumentOneFilenames(fname, pvApiCtx, &dIDs_size, &ierr);
+    filenames = getInputArgumentOneFilenames(fname, pvApiCtx, &dIDs_size, &ierr);
     if (ierr)
     {
         return 0;
@@ -1404,25 +1392,15 @@ static int AppendByFilenames(char *fname, void* pvApiCtx,
 
     if (dIDs_size == 1)
     {
-        double dID = (double)diaryAppend(wcFilenames[0]);
+        double dID = (double)diaryAppend(filenames[0]);
         if (dID == -1)
         {
-            char *utf_str = wide_string_to_UTF8(wcFilenames[0]);
-            if (utf_str)
-            {
-                Scierror(999, _("%s: error can not create diary: %s.\n"), fname, utf_str);
-                FREE(utf_str);
-                utf_str = NULL;
-            }
-            else
-            {
-                Scierror(999, _("%s: error can not create diary.\n"), fname);
-            }
-            freeArrayOfWideString(wcFilenames, dIDs_size);
+            Scierror(999, _("%s: error can not create diary: %s.\n"), fname, filenames[0]);
+            freeArrayOfString(filenames, dIDs_size);
             return 0;
         }
 
-        freeArrayOfWideString(wcFilenames, dIDs_size);
+        freeArrayOfString(filenames, dIDs_size);
 
         diarySetFilterMode((int)dID, filterMode);
         diarySetPrefixMode((int)dID, prefixMode);
@@ -1444,9 +1422,8 @@ static int AppendByFilenames(char *fname, void* pvApiCtx,
 
         if (Lhs == 2)
         {
-            wchar_t **wfilenameUsed = new wchar_t*[1];
-            wfilenameUsed[0] = getDiaryFilename((int)dID);
-            sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, 1, 1, wfilenameUsed);
+            char* filenameUsed = getDiaryFilename((int)dID);
+            sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, 1, 1, &filenameUsed);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -1455,13 +1432,13 @@ static int AppendByFilenames(char *fname, void* pvApiCtx,
             }
 
             LhsVar(2) = Rhs + 2;
-            freeArrayOfWideString(wfilenameUsed, 1);
+            freeArrayOfString(&filenameUsed, 1);
         }
         PutLhsVar();
     }
     else
     {
-        freeArrayOfWideString(wcFilenames, dIDs_size);
+        freeArrayOfString(filenames, dIDs_size);
         Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
     }
 
@@ -1469,16 +1446,16 @@ static int AppendByFilenames(char *fname, void* pvApiCtx,
 }
 /*--------------------------------------------------------------------------*/
 static int NewByFilenames(char *fname, void* pvApiCtx,
-                          diary_filter filterMode,
-                          diary_prefix_time_format prefixMode,
-                          diary_prefix_time_filter prefixModeFilter,
-                          bool suspended)
+    diary_filter filterMode,
+    diary_prefix_time_format prefixMode,
+    diary_prefix_time_filter prefixModeFilter,
+    bool suspended)
 {
-    wchar_t **wcFilenames = NULL;
+    char** filenames = NULL;
     int dIDs_size = 0;
     int ierr = 0;
 
-    wcFilenames = getInputArgumentOneFilenames(fname, pvApiCtx, &dIDs_size, &ierr);
+    filenames = getInputArgumentOneFilenames(fname, pvApiCtx, &dIDs_size, &ierr);
     if (ierr)
     {
         return 0;
@@ -1486,25 +1463,15 @@ static int NewByFilenames(char *fname, void* pvApiCtx,
 
     if (dIDs_size == 1)
     {
-        double dID = (double)diaryNew(wcFilenames[0], true);
+        double dID = (double)diaryNew(filenames[0], true);
         if (dID == -1)
         {
-            char *utf_str = wide_string_to_UTF8(wcFilenames[0]);
-            if (utf_str)
-            {
-                Scierror(999, _("%s: error can not create diary: %s.\n"), fname, utf_str);
-                FREE(utf_str);
-                utf_str = NULL;
-            }
-            else
-            {
-                Scierror(999, _("%s: error can not create diary.\n"), fname);
-            }
-            freeArrayOfWideString(wcFilenames, dIDs_size);
+            Scierror(999, _("%s: error can not create diary: %s.\n"), fname, filenames[0]);
+            freeArrayOfString(filenames, dIDs_size);
             return 0;
         }
 
-        freeArrayOfWideString(wcFilenames, dIDs_size);
+        freeArrayOfString(filenames, dIDs_size);
 
         diarySetFilterMode((int)dID, filterMode);
         diarySetPrefixMode((int)dID, prefixMode);
@@ -1519,9 +1486,8 @@ static int NewByFilenames(char *fname, void* pvApiCtx,
 
         if (Lhs == 2)
         {
-            wchar_t **wfilenameUsed = new wchar_t*[1];
-            wfilenameUsed[0] = getDiaryFilename((int)dID);
-            sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, 1, 1, wfilenameUsed);
+            char* filenameUsed = getDiaryFilename((int)dID);
+            sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, 1, 1, &filenameUsed);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -1530,14 +1496,13 @@ static int NewByFilenames(char *fname, void* pvApiCtx,
             }
 
             LhsVar(2) = Rhs + 2;
-            FREE(wfilenameUsed[0]);
-            delete [] wfilenameUsed;
+            FREE(filenameUsed);
         }
         PutLhsVar();
     }
     else
     {
-        freeArrayOfWideString(wcFilenames, dIDs_size);
+        freeArrayOfString(filenames, dIDs_size);
         Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
     }
 

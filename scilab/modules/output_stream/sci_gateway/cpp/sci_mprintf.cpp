@@ -50,17 +50,16 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
     {
         if (in[i]->isDouble() == false && in[i]->isString() == false)
         {
-            std::wstring wstFuncName = L"%" + in[i]->getShortTypeStr() + L"_mprintf";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[i]->getShortTypeStr() + "_mprintf";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
     }
 
     int iOutputRows = 0;
     int iNewLine = 0;
-    wchar_t* pwstInput = in[0]->getAs<types::String>()->get()[0];
-    wchar_t** pwstOutput = scilab_sprintf("mprintf", pwstInput, in, &iOutputRows, &iNewLine);
-
-    if (pwstOutput == NULL)
+    char* pstInput = in[0]->getAs<types::String>()->get()[0];
+    char** pstOutput = scilab_sprintf("mprintf", pstInput, in, &iOutputRows, &iNewLine);
+    if (pstOutput == NULL)
     {
         //error already set by scilab_sprintf
         return types::Function::Error;
@@ -70,21 +69,21 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
     {
         if (i)
         {
-            scilabForcedWriteW(L"\n");
+            scilabForcedWrite("\n");
         }
 
-        scilabForcedWriteW(pwstOutput[i]);
+        scilabForcedWrite(pstOutput[i]);
 
         fflush(NULL);
-        FREE(pwstOutput[i]);
+        FREE(pstOutput[i]);
     }
 
     if (iNewLine)
     {
-        scilabForcedWriteW(L"\n");
+        scilabForcedWrite("\n");
     }
 
-    FREE(pwstOutput);
+    FREE(pstOutput);
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

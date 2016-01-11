@@ -66,7 +66,7 @@ OUTPUT_STREAM_IMPEXP int diaryClose(int _iId);
 * @param[in] filename
 * @return 0 (OK) 1 (NOK)
 */
-OUTPUT_STREAM_IMPEXP int diaryClose(char* filename);
+OUTPUT_STREAM_IMPEXP int diaryClose(const char* filename);
 
 /**
 * Pause all diaries
@@ -86,7 +86,7 @@ OUTPUT_STREAM_IMPEXP int diaryPause(int _iId);
 * @param[in] filename
 * @return 0 (OK) 1 (NOK)
 */
-OUTPUT_STREAM_IMPEXP int diaryPause(char* filename);
+OUTPUT_STREAM_IMPEXP int diaryPause(const char* filename);
 
 /**
 * Resume All diaries
@@ -106,7 +106,7 @@ OUTPUT_STREAM_IMPEXP int diaryResume(int _iId);
 * @param[in] filename
 * @return 0 (OK) 1 (NOK)
 */
-OUTPUT_STREAM_IMPEXP int diaryResume(char* filename);
+OUTPUT_STREAM_IMPEXP int diaryResume(const char* filename);
 
 /**
 * check if a ID exists
@@ -120,21 +120,21 @@ OUTPUT_STREAM_IMPEXP int diaryExists(int _iId);
 * @param[in] filename
 * @return 0 (OK) 1 (NOK)
 */
-OUTPUT_STREAM_IMPEXP int diaryExists(char* filename);
+OUTPUT_STREAM_IMPEXP int diaryExists(const char* filename);
 
 /**
 * create a new diary
 * @param[in] filename
 * @return ID or -1 (NOK)
 */
-OUTPUT_STREAM_IMPEXP int diaryNew(char* filename, bool autorename);
+OUTPUT_STREAM_IMPEXP int diaryNew(const char* filename, bool autorename);
 
 /**
 * append to a diary
 * @param[in] filename
 * @return ID or -1 (NOK)
 */
-OUTPUT_STREAM_IMPEXP int diaryAppend(char* filename);
+OUTPUT_STREAM_IMPEXP int diaryAppend(const char* filename);
 
 /*
 * Set filter mode (input, output)

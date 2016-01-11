@@ -18,7 +18,7 @@
 
 struct TokenDef
 {
-    char* pwstToken;
+    char* pstToken;
     types::InternalType::ScilabType outputType;
     bool length;
     int width;
@@ -30,7 +30,7 @@ struct TokenDef
     int col;
 
     TokenDef() :
-        pwstToken(nullptr),
+        pstToken(nullptr),
         outputType(types::InternalType::ScilabNull),
         length(false),
         width(0),
