@@ -16,9 +16,9 @@
 #include "configvariable.hxx"
 #include "Scierror.h"
 
-#define MODULE_NAME L"preferences"
+#define MODULE_NAME "preferences"
 
-int PreferencesModule::LoadDeps(const std::wstring& _functionName)
+int PreferencesModule::LoadDeps(const std::string& _functionName)
 {
     if (ConfigVariable::getScilabMode() == SCILAB_NWNI)
     {
@@ -31,8 +31,8 @@ int PreferencesModule::LoadDeps(const std::wstring& _functionName)
 
 int PreferencesModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"addModulePreferences", &sci_addModulePreferences, &PreferencesModule::LoadDeps, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"removeModulePreferences", &sci_removeModulePreferences, &PreferencesModule::LoadDeps, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"preferences", &sci_preferences, &PreferencesModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("addModulePreferences", &sci_addModulePreferences, &PreferencesModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("removeModulePreferences", &sci_removeModulePreferences, &PreferencesModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("preferences", &sci_preferences, &PreferencesModule::LoadDeps, MODULE_NAME));
     return 1;
 }
