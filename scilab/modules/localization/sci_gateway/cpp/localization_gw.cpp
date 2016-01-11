@@ -21,18 +21,18 @@ extern "C"
 #include "gw_localization.h"
 }
 
-#define MODULE_NAME L"localization"
+#define MODULE_NAME "localization"
 
 int LocalizationModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"gettext", &sci_gettext, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"_", &sci_gettext, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"_d", &sci_gettext, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"dgettext", &sci_gettext, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"setdefaultlanguage", &sci_setdefaultlanguage, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getdefaultlanguage", &sci_getdefaultlanguage, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"setlanguage", &sci_setlanguage, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getlanguage", &sci_getlanguage, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"addlocalizationdomain", &sci_addlocalizationdomain, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("gettext", &sci_gettext, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("_", &sci_gettext, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("_d", &sci_gettext, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("dgettext", &sci_gettext, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("setdefaultlanguage", &sci_setdefaultlanguage, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("getdefaultlanguage", &sci_getdefaultlanguage, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("setlanguage", &sci_setlanguage, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("getlanguage", &sci_getlanguage, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("addlocalizationdomain", &sci_addlocalizationdomain, MODULE_NAME));
     return 1;
 }

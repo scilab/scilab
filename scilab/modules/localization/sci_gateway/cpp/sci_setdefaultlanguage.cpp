@@ -33,25 +33,25 @@ extern "C"
 
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-static wchar_t *getLanguageFromAlias(wchar_t *alias)
+static char* getLanguageFromAlias(const char* alias)
 {
     if (alias)
     {
-        if ( wcscmp(alias, L"en") == 0 )
+        if (strcmp(alias, "en") == 0)
         {
-            return os_wcsdup(L"en_US");
+            return os_strdup("en_US");
         }
 
-        if ( wcscmp(alias, L"fr") == 0 )
+        if (strcmp(alias, "fr") == 0)
         {
-            return os_wcsdup(L"fr_FR");
+            return os_strdup("fr_FR");
         }
 
-        return os_wcsdup(alias);
+        return os_strdup(alias);
     }
 
     /* "" value fixed by system */
-    return os_wcsdup(L"");
+    return os_strdup("");
 }
 #endif
 /*--------------------------------------------------------------------------*/
@@ -85,14 +85,15 @@ types::Function::ReturnValue sci_setdefaultlanguage(types::typed_list &in, int _
 #else
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "setdefaultlanguage" , 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "setdefaultlanguage", 1);
         return types::Function::Error;
     }
-    wchar_t *newlang = getLanguageFromAlias(in[0]->getAs<types::String>()->get(0));
 
-    if ( !isValidLanguage(newlang) )
+    char* newlang = getLanguageFromAlias(in[0]->getAs<types::String>()->get(0));
+
+    if (!isValidLanguage(newlang))
     {
-        if ( getWarningMode() )
+        if (getWarningMode())
         {
             sciprint(_("Unsupported language '%ls'.\n"), newlang);
         }
@@ -102,8 +103,8 @@ types::Function::ReturnValue sci_setdefaultlanguage(types::typed_list &in, int _
     }
     else
     {
-        wchar_t *savedLanguage = getLanguagePreferences();
-        if ( wcscmp(newlang, savedLanguage) == 0 )
+        char* savedLanguage = getLanguagePreferences();
+        if (strcmp(newlang, savedLanguage) == 0)
         {
             /* do nothing */
             out.push_back(new types::Bool(TRUE));
@@ -113,20 +114,20 @@ types::Function::ReturnValue sci_setdefaultlanguage(types::typed_list &in, int _
         else
         {
             // ??                if (savedLanguage) { FREE(savedLanguage); savedLanguage = NULL; }
-            if ( !setlanguage(newlang) ) /* */
+            if (!setlanguage(newlang)) /* */
             {
                 out.push_back(new types::Bool(FALSE));
                 return types::Function::OK;
             }
             else
             {
-                if ( getWarningMode() )
+                if (getWarningMode())
                 {
                     sciprint("\n");
                     sciprint(_("The language for menus cannot be changed on a running console.\n"));
                     sciprint(_("Restart Scilab to apply to menus.\n"));
                 }
-                if ( setLanguagePreferences() )
+                if (setLanguagePreferences())
                 {
                     out.push_back(new types::Bool(TRUE));
                 }
