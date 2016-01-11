@@ -100,22 +100,6 @@
                         
                         <varlistentry>
                             
-                            <term>'p'</term>
-                            
-                            <listitem>
-                                
-                                <para>関数は"コンパイル"され,
-                                    
-                                    プロファイルに備えます (<link linkend="profile">profile</link>参照);
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
-                        
-                        <varlistentry>
-                            
                             <term>'n'</term>
                             
                             <listitem>

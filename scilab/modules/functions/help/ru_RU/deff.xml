@@ -60,14 +60,6 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>'p'</term>
-                            <listitem>
-                                <para>
-                                    функция "скомпилирована" и подготовлена к профилированию (см. справку <link linkend="profile">profile</link>);
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
                             <term>'n'</term>
                             <listitem>
                                 <para>

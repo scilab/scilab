@@ -1924,9 +1924,6 @@ mdelete
 mkdir
 rmdir
 scanf
-add_profiling
-bytecode
-bytecodewalk
 check_gateways
 createfun
 genlib
@@ -1934,14 +1931,7 @@ get_function_path
 get_profile
 getd
 head_comments
-listfunctions
 macrovar
-plotprofile
-profile
-recompilefunction
-remove_profiling
-reset_profiling
-showprofile
 warnobsolete
 %_gsort
 %_unwrap

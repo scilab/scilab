@@ -56,14 +56,6 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>'p'</term>
-                            <listitem>
-                                <para>
-                                    function is "compiled" and prepared for profiling (see help <link linkend="profile">profile</link>);
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
                             <term>'n'</term>
                             <listitem>
                                 <para>function is not "compiled".</para>
