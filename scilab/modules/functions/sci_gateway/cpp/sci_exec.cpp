@@ -336,6 +336,11 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     }
     catch (const ast::InternalError& ie)
     {
+        if (pMacro && ConfigVariable::getLastErrorFunction() == L"")
+        {
+            ConfigVariable::setLastErrorFunction(pMacro->getName());
+        }
+
         if (bErrCatch == false)
         {
             closeFile(file, iID, wstFile, pExp);
