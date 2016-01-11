@@ -95,18 +95,18 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
 
     pTList = in[3]->getAs<types::TList>();
 
-    if (pTList->getTypeStr() != L"tensbs3d")
+    if (pTList->getTypeStr() != "tensbs3d")
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A %s tlist expected.\n"), "interp3d", 4, "tensbs3d");
         return types::Function::Error;
     }
 
-    pDblX = pTList->getField(L"tx")->getAs<types::Double>();
-    pDblY = pTList->getField(L"ty")->getAs<types::Double>();
-    pDblZ = pTList->getField(L"tz")->getAs<types::Double>();
-    pDblOrder = pTList->getField(L"order")->getAs<types::Double>();
-    pDblCoef = pTList->getField(L"bcoef")->getAs<types::Double>();
-    pDblXyzminmax = pTList->getField(L"xyzminmax")->getAs<types::Double>();
+    pDblX = pTList->getField("tx")->getAs<types::Double>();
+    pDblY = pTList->getField("ty")->getAs<types::Double>();
+    pDblZ = pTList->getField("tz")->getAs<types::Double>();
+    pDblOrder = pTList->getField("order")->getAs<types::Double>();
+    pDblCoef = pTList->getField("bcoef")->getAs<types::Double>();
+    pDblXyzminmax = pTList->getField("xyzminmax")->getAs<types::Double>();
 
     if (in.size() == 5)
     {
@@ -116,29 +116,27 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        wchar_t* wcsType = in[4]->getAs<types::String>()->get(0);
+        char* type = in[4]->getAs<types::String>()->get(0);
 
-        if (wcscmp(wcsType, L"C0") == 0)
+        if (strcmp(type, "C0") == 0)
         {
             iType = 8;
         }
-        else if (wcscmp(wcsType, L"by_zero") == 0)
+        else if (strcmp(type, "by_zero") == 0)
         {
             iType = 7;
         }
-        else if (wcscmp(wcsType, L"periodic") == 0)
+        else if (strcmp(type, "periodic") == 0)
         {
             iType = 3;
         }
-        else if (wcscmp(wcsType, L"by_nan") == 0)
+        else if (strcmp(type, "by_nan") == 0)
         {
             iType = 10;
         }
         else // undefined
         {
-            char* pstType = wide_string_to_UTF8(wcsType);
-            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"), "interp3d", 5, pstType, "outmode");
-            FREE(pstType);
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"), "interp3d", 5, type, "outmode");
             return types::Function::Error;
         }
     }

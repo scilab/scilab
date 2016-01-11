@@ -157,33 +157,31 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
             return types::Function::Error;
         }
 
-        wchar_t* wcsType = in[2 * n + 1]->getAs<types::String>()->get(0);
+        char* type = in[2 * n + 1]->getAs<types::String>()->get(0);
 
-        if (wcscmp(wcsType, L"C0") == 0)
+        if (strcmp(type, "C0") == 0)
         {
             iType = 8;
         }
-        else if (wcscmp(wcsType, L"by_zero") == 0)
+        else if (strcmp(type, "by_zero") == 0)
         {
             iType = 7;
         }
-        else if (wcscmp(wcsType, L"natural") == 0)
+        else if (strcmp(type, "natural") == 0)
         {
             iType = 1;
         }
-        else if (wcscmp(wcsType, L"periodic") == 0)
+        else if (strcmp(type, "periodic") == 0)
         {
             iType = 3;
         }
-        else if (wcscmp(wcsType, L"by_nan") == 0)
+        else if (strcmp(type, "by_nan") == 0)
         {
             iType = 10;
         }
         else // undefined
         {
-            char* pst = wide_string_to_UTF8(wcsType);
-            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"), "linear_interpn", 2 * n + 3, pst, "outmode");
-            FREE(pst);
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"), "linear_interpn", 2 * n + 3, type, "outmode");
             return types::Function::Error;
         }
     }

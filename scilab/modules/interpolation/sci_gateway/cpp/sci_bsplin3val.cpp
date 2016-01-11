@@ -87,18 +87,18 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
 
     pTList = in[3]->getAs<types::TList>();
 
-    if (pTList->getTypeStr() != L"tensbs3d")
+    if (pTList->getTypeStr() != "tensbs3d")
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A %s tlist expected.\n"), "bsplin3val", 4, "tensbs3d");
         return types::Function::Error;
     }
 
-    pDblX = pTList->getField(L"tx")->getAs<types::Double>();
-    pDblY = pTList->getField(L"ty")->getAs<types::Double>();
-    pDblZ = pTList->getField(L"tz")->getAs<types::Double>();
-    pDblOrder = pTList->getField(L"order")->getAs<types::Double>();
-    pDblCoef = pTList->getField(L"bcoef")->getAs<types::Double>();
-    pDblXyzminmax = pTList->getField(L"xyzminmax")->getAs<types::Double>();
+    pDblX = pTList->getField("tx")->getAs<types::Double>();
+    pDblY = pTList->getField("ty")->getAs<types::Double>();
+    pDblZ = pTList->getField("tz")->getAs<types::Double>();
+    pDblOrder = pTList->getField("order")->getAs<types::Double>();
+    pDblCoef = pTList->getField("bcoef")->getAs<types::Double>();
+    pDblXyzminmax = pTList->getField("xyzminmax")->getAs<types::Double>();
 
     if (in[4]->isDouble() == false)
     {

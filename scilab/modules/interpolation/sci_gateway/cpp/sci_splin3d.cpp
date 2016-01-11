@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
     // output
     types::TList* pTListOut = NULL;
 
-    const wchar_t * wcsStr[] = {L"tensbs3d", L"tx", L"ty", L"tz", L"order", L"bcoef", L"xyzminmax"};
+    const char* str[] = {"tensbs3d", "tx", "ty", "tz", "order", "bcoef", "xyzminmax"};
 
     // *** check the minimal number of input args. ***
     if (in.size() < 4 || in.size() > 5)
@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
 
     // *** Perform operation. ***
     types::String* pStr = new types::String(1, 7);
-    pStr->set(wcsStr);
+    pStr->set(str);
 
     types::Double* pDblOutOrder = new types::Double(3, 1);
     pDblOutOrder->set(0, static_cast<double>(pdOrder[0]));

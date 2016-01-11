@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_cshep2d(types::typed_list &in, int _iRetCount, 
     //output
     types::TList* pTListCoef = NULL;
 
-    const wchar_t * wcsStr[] = {L"cshep2d", L"xyz", L"lcell", L"lnext", L"grdim", L"rmax", L"rw", L"a"};
+    const char* str[] = {"cshep2d", "xyz", "lcell", "lnext", "grdim", "rmax", "rw", "a"};
 
     // *** check the minimal number of input args. ***
     if (in.size() != 1)
@@ -83,7 +83,7 @@ types::Function::ReturnValue sci_cshep2d(types::typed_list &in, int _iRetCount, 
     pTListCoef = new types::TList();
 
     types::String* pStr = new types::String(1, 8);
-    pStr->set(wcsStr);
+    pStr->set(str);
 
     types::Int32* pInt32Cell    = new types::Int32(nr, nr);
     types::Int32* pInt32Next    = new types::Int32(1, pDblXYZ->getRows());

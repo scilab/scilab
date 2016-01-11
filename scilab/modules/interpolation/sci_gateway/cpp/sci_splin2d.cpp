@@ -141,41 +141,39 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        wchar_t* wcsType = in[3]->getAs<types::String>()->get(0);
+        char* type = in[3]->getAs<types::String>()->get(0);
 
-        if (wcscmp(wcsType, L"not_a_knot") == 0)
+        if (strcmp(type, "not_a_knot") == 0)
         {
             iType = 0;
         }
-        else if (wcscmp(wcsType, L"natural") == 0)
+        else if (strcmp(type, "natural") == 0)
         {
             iType = 1;
         }
-        else if (wcscmp(wcsType, L"clamped") == 0)
+        else if (strcmp(type, "clamped") == 0)
         {
             iType = 2;
         }
-        else if (wcscmp(wcsType, L"periodic") == 0)
+        else if (strcmp(type, "periodic") == 0)
         {
             iType = 3;
         }
-        else if (wcscmp(wcsType, L"fast") == 0)
+        else if (strcmp(type, "fast") == 0)
         {
             iType = 4;
         }
-        else if (wcscmp(wcsType, L"fast_periodic") == 0)
+        else if (strcmp(type, "fast_periodic") == 0)
         {
             iType = 5;
         }
-        else if (wcscmp(wcsType, L"monotone") == 0)
+        else if (strcmp(type, "monotone") == 0)
         {
             iType = 6;
         }
         else // undefined
         {
-            char* pstType = wide_string_to_UTF8(wcsType);
-            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"), "splin2d", 4, pstType, "spline");
-            FREE(pstType);
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"), "splin2d", 4, type, "spline");
             return types::Function::Error;
         }
     }

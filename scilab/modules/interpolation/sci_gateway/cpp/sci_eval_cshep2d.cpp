@@ -108,19 +108,19 @@ types::Function::ReturnValue sci_eval_cshep2d(types::typed_list &in, int _iRetCo
 
     pTListCoef = in[2]->getAs<types::TList>();
 
-    if (pTListCoef->getTypeStr() != L"cshep2d")
+    if (pTListCoef->getTypeStr() != "cshep2d")
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A %s tlist expected.\n"), "eval_cshep2d", 3, "cshep2d");
         return types::Function::Error;
     }
 
-    pDblCoef    = pTListCoef->getField(L"xyz")->getAs<types::Double>();
-    pInt32Cell  = pTListCoef->getField(L"lcell")->getAs<types::Int32>();
-    pInt32Next  = pTListCoef->getField(L"lnext")->getAs<types::Int32>();
-    pDblGrid    = pTListCoef->getField(L"grdim")->getAs<types::Double>();
-    pDblRMax    = pTListCoef->getField(L"rmax")->getAs<types::Double>();
-    pDblRW      = pTListCoef->getField(L"rw")->getAs<types::Double>();
-    pDblA       = pTListCoef->getField(L"a")->getAs<types::Double>();
+    pDblCoef    = pTListCoef->getField("xyz")->getAs<types::Double>();
+    pInt32Cell  = pTListCoef->getField("lcell")->getAs<types::Int32>();
+    pInt32Next  = pTListCoef->getField("lnext")->getAs<types::Int32>();
+    pDblGrid    = pTListCoef->getField("grdim")->getAs<types::Double>();
+    pDblRMax    = pTListCoef->getField("rmax")->getAs<types::Double>();
+    pDblRW      = pTListCoef->getField("rw")->getAs<types::Double>();
+    pDblA       = pTListCoef->getField("a")->getAs<types::Double>();
 
     // *** Perform operation. ***
     int ier         = 0;
