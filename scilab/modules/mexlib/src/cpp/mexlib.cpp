@@ -87,10 +87,8 @@ static void (*exitFcn)(void);
 
 static int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name)
 {
-    wchar_t* pwst = to_wide_string(name);
     symbol::Context *context = symbol::Context::getInstance();
-    symbol::Symbol *symbol = new symbol::Symbol(pwst);
-    FREE(pwst);
+    symbol::Symbol *symbol = new symbol::Symbol(name);
 
     types::InternalType *value = context->get(*symbol);
     types::Function *func = value->getAs<types::Function>();
@@ -200,15 +198,8 @@ mxArray *mxCreateString(const char *string)
 mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
 {
     int n = 1;
-    wchar_t** strings = NULL;
-    strings = (wchar_t**)MALLOC(sizeof(wchar_t*) * m);
-    for (int k = 0; k < m; k++)
-    {
-        strings[k] = to_wide_string(str[k]);
-    }
-
-    types::String *ptr = new types::String(m, n, strings);
-    freeArrayOfWideString(strings, m);
+    types::String *ptr = new types::String(m, n);
+    ptr->set(str);
     return (mxArray *)ptr;
 }
 
@@ -223,7 +214,7 @@ mxArray *mxCreateCharArray(int ndim, const int *dims)
     int size = ptr->getSize();
     for (int i = 0; i < size; ++i)
     {
-        ptr->set(i, L"");
+        ptr->set(i, "");
     }
     return (mxArray *)ptr;
 }
@@ -271,9 +262,7 @@ mxArray *mxCreateStructArray(int ndim, const int *dims, int nfields, const char 
     types::Struct *ptr = new types::Struct(ndim, (int *)dims);
     for (int i = 0; i < nfields; i++)
     {
-        wchar_t *name = to_wide_string(field_names[i]);
-        ptr->addField(name);
-        FREE(name);
+        ptr->addField(field_names[i]);
     }
     return (mxArray *)ptr;
 }
@@ -613,18 +602,17 @@ char *mxArrayToString(const mxArray *ptr)
     int items = mxGetM(ptr);
     int index = 0;
     int length = 1; // one extra char to \0
-    wchar_t **wstrings = pa->get();
+    char **strings = pa->get();
     for (int k = 0; k < items; k++)
     {
-        length += (int)wcslen(wstrings[k]);
+        length += (int)strlen(strings[k]);
     }
 
     char *str = (char *)malloc(sizeof(char *) * length);
     for (int k = 0; k < items; k++)
     {
-        char *dest = wide_string_to_UTF8(wstrings[k]);
-        int dest_length = strlen(dest);
-        memcpy(str + index, dest, dest_length);
+        int dest_length = strlen(strings[k]);
+        memcpy(str + index, strings[k], dest_length);
         index += dest_length;
     }
 
@@ -651,13 +639,11 @@ int mxGetString(const mxArray *ptr, char *str, int strl)
     int free_space = strl - 1;
     for (int k = 0; k < items; k++)
     {
-        wchar_t *to_copy = pa->get(k);
-        char *dest = wide_string_to_UTF8(to_copy);
+        char *dest = pa->get(k);
         int length = (int)strlen(dest);
         memcpy(str + index, dest, free_space);
         index += std::min(length, free_space);
         free_space -= length;
-        FREE(dest);
         if (free_space <= 0)
         {
             break;
@@ -1110,7 +1096,7 @@ void mxSetData(mxArray *array_ptr, void *data_ptr)
 {
     if (mxIsChar(array_ptr))
     {
-        ((types::String *)array_ptr)->set((wchar_t **)data_ptr);
+        ((types::String *)array_ptr)->set((char**)data_ptr);
     }
     else if (mxIsDouble(array_ptr))
     {
@@ -1223,7 +1209,7 @@ void mxSetImagData(mxArray *array_ptr, void *data_ptr)
 {
     if (mxIsChar(array_ptr))
     {
-        ((types::String *)array_ptr)->setImg((wchar_t **)data_ptr);
+        ((types::String *)array_ptr)->setImg((char**)data_ptr);
     }
     else if (mxIsDouble(array_ptr))
     {
@@ -1273,8 +1259,8 @@ mxChar *mxGetChars(mxArray *array_ptr)
     {
         return NULL;
     }
-    wchar_t *chars = ((types::String *)array_ptr)->get(0);
-    return (mxChar *)wide_string_to_UTF8(chars);
+
+    return (mxChar *)((types::String *)array_ptr)->get(0);
 }
 
 mxLogical *mxGetLogicals(const mxArray *ptr)
@@ -1452,8 +1438,7 @@ const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number)
         return NULL;
     }
     types::String *names = ((types::Struct*)array_ptr)->getFieldNames();
-    wchar_t *name = names->get(field_number);
-    return (const char *)wide_string_to_UTF8(name);
+    return names->get(field_number);
 }
 
 int mxGetFieldNumber(const mxArray *ptr, const char *string)
@@ -1465,17 +1450,15 @@ int mxGetFieldNumber(const mxArray *ptr, const char *string)
 
     types::Struct *pa = (types::Struct *)ptr;
     types::String *names = pa->getFieldNames();
-    wchar_t *field_name = to_wide_string(string);
 
     for (int i = 0; i < names->getSize(); i++)
     {
-        if (wcscmp(names->get(i), field_name) == 0)
+        if (strcmp(names->get(i), string) == 0)
         {
-            FREE(field_name);
             return i;
         }
     }
-    FREE(field_name);
+
     return -1;
 }
 
@@ -1518,8 +1501,7 @@ int mxAddField(mxArray *ptr, const char *fieldname)
     }
 
     types::Struct *pa = (types::Struct*)ptr;
-    wchar_t *wfieldname = to_wide_string(fieldname);
-    pa->addField(wfieldname);
+    pa->addField(fieldname);
     return mxGetFieldNumber(ptr, fieldname);
 }
 
@@ -1604,7 +1586,7 @@ int mexEvalString(const char *name)
     types::typed_list in;
     types::typed_list out;
     in.push_back(new types::String(name));
-    types::Callable::ReturnValue ret = Overload::call(L"execstr", in, 1, out);
+    types::Callable::ReturnValue ret = Overload::call("execstr", in, 1, out);
     in.back()->killMe();
     if (ret != types::Callable::OK)
     {
@@ -1647,9 +1629,8 @@ mxArray *mexGetVariable(const char *workspace, const char *name)
 const mxArray *mexGetVariablePtr(const char *workspace, const char *name)
 {
     symbol::Context *context = symbol::Context::getInstance();
-    wchar_t *key = to_wide_string(name);
     types::InternalType *value = NULL;
-    symbol::Symbol sym = symbol::Symbol(key);
+    symbol::Symbol sym = symbol::Symbol(name);
     if (strcmp(workspace, "base") == 0)
     {
         value = context->get(sym);
@@ -1668,26 +1649,25 @@ const mxArray *mexGetVariablePtr(const char *workspace, const char *name)
             value = context->getGlobalValue(sym);
         }
     }
-    FREE(key);
+
     return (mxArray *)value;
 }
 
 int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm)
 {
     symbol::Context *context = symbol::Context::getInstance();
-    wchar_t *dest = to_wide_string(varname);
     if (strcmp(workspace, "base") == 0)
     {
-        context->putInPreviousScope(context->getOrCreate(symbol::Symbol(dest)), (types::InternalType *)pm);
+        context->putInPreviousScope(context->getOrCreate(symbol::Symbol(varname)), (types::InternalType *)pm);
     }
     else if (strcmp(workspace, "caller") == 0)
     {
-        context->put(symbol::Symbol(dest), (types::InternalType *)pm);
+        context->put(symbol::Symbol(varname), (types::InternalType *)pm);
     }
     else if (strcmp(workspace, "global") == 0)
     {
-        context->setGlobalVisible(symbol::Symbol(dest), true);
-        context->put(symbol::Symbol(dest), (types::InternalType *)pm);
+        context->setGlobalVisible(symbol::Symbol(varname), true);
+        context->put(symbol::Symbol(varname), (types::InternalType *)pm);
     }
     else
     {
@@ -1699,7 +1679,7 @@ int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm
 int mexIsGlobal(const mxArray *ptr)
 {
     symbol::Context *context = symbol::Context::getInstance();
-    std::list<std::wstring> lst;
+    std::list<std::string> lst;
     int size = context->getGlobalNameForWho(lst, false);
 
     for (auto it : lst)
@@ -1781,7 +1761,7 @@ void mexMakeMemoryPersistent(void *ptr)
 
 double mxGetInf(void)
 {
-    types::InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol(L"%inf"));
+    types::InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol("%inf"));
     if (pITInf && pITInf->isDouble())
     {
         return pITInf->getAs<types::Double>()->get(0);
@@ -1792,7 +1772,7 @@ double mxGetInf(void)
 
 double mxGetNaN(void)
 {
-    types::InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol(L"%nan"));
+    types::InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol("%nan"));
     if (pITInf)
     {
         return pITInf->getAs<types::Double>()->get(0);
@@ -1803,7 +1783,7 @@ double mxGetNaN(void)
 
 double mxGetEps(void)
 {
-    types::InternalType *pITEps = symbol::Context::getInstance()->get(symbol::Symbol(L"%eps"));
+    types::InternalType *pITEps = symbol::Context::getInstance()->get(symbol::Symbol("%eps"));
     if (pITEps && pITEps->isDouble())
     {
         return pITEps->getAs<types::Double>()->get(0);
