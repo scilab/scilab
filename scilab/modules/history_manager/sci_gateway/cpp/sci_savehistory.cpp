@@ -45,21 +45,13 @@ types::Function::ReturnValue sci_savehistory(types::typed_list &in, int _iRetCou
             return types::Function::Error;
         }
 
-        wchar_t* pwscsPath = in[0]->getAs<types::String>()->get(0);
-        wchar_t* pwcsLine = expandPathVariableW(pwscsPath);
-        if (pwcsLine)
+        char* pLine = expandPathVariable(in[0]->getAs<types::String>()->get(0));
+        if (pLine)
         {
-            char* pstLine = wide_string_to_UTF8(pwcsLine);
-            if (pstLine)
-            {
-                HistoryManager::getInstance()->writeToFile(pstLine);
-                FREE(pstLine);
-                pstLine = NULL;
-
-            }
-            FREE(pwcsLine);
-            pwcsLine = NULL;
+            HistoryManager::getInstance()->writeToFile(pLine);
         }
+
+        FREE(pLine);
     }
     else
     {

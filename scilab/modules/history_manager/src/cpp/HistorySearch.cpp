@@ -36,21 +36,19 @@ HistorySearch::~HistorySearch()
 BOOL HistorySearch::setHistory(std::list<std::string> _lstCommands)
 {
     BOOL bOK = FALSE;
-    std::list<std::string>::const_iterator it;
-
     if (m_Commands.empty() == false)
     {
         m_Commands.clear();
     }
 
-    for (it = _lstCommands.begin() ; it != _lstCommands.end(); it++)
+    for (auto &it : _lstCommands)
     {
-        m_Commands.push_back((*it));
+        m_Commands.push_back(it);
     }
     return bOK;
 }
 /*------------------------------------------------------------------------*/
-BOOL HistorySearch::setToken(std::string _stToken)
+BOOL HistorySearch::setToken(const std::string& _stToken)
 {
     if (_stToken != m_stToken || m_stToken.empty() || _stToken.empty())
     {
@@ -70,28 +68,22 @@ BOOL HistorySearch::search(void)
     BOOL bOK = FALSE;
     if (m_stToken.empty() == false)
     {
-        std::list<std::string>::const_iterator it;
-
         m_vstLines.clear();
 
-        for (it = m_Commands.begin() ; it != m_Commands.end(); it++)
+        for (auto &it : m_Commands)
         {
-            std::string stLine = (*it);
-            if (stLine.compare(0, m_stToken.size(), m_stToken) == 0 )
+            if (it.compare(0, m_stToken.size(), m_stToken) == 0 )
             {
-                m_vstLines.push_back(stLine);
+                m_vstLines.push_back(it);
             }
         }
     }
     else
     {
-        std::list<std::string>::const_iterator it;
-
         m_vstLines.clear();
-
-        for (it = m_Commands.begin() ; it != m_Commands.end(); it++)
+        for (auto &it : m_Commands)
         {
-            m_vstLines.push_back(*it);
+            m_vstLines.push_back(it);
         }
     }
     //current_position = i - 1;

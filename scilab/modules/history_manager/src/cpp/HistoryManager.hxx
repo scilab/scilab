@@ -46,7 +46,7 @@ public:
     * line isn't added if it is the same as previous (FALSE)
     * @return TRUE or FALSE
     */
-    BOOL appendLine(char *_pstLine);
+    BOOL appendLine(const char *_pstLine);
 
     /**
     * append lines to History manager
@@ -54,7 +54,7 @@ public:
     * @param size of the array of string
     * @return TRUE or FALSE
     */
-    BOOL appendLines(char **_pstLines, int _iLines);
+    BOOL appendLines(const char **_pstLines, int _iLines);
 
     /**
     * Display history
@@ -72,7 +72,7 @@ public:
     * @param filename of history
     * @return TRUE or FALSE
     */
-    BOOL setFilename(char* _pstFilename);
+    BOOL setFilename(const char* _pstFilename);
 
     /**
     * set default filename of history
@@ -86,7 +86,7 @@ public:
     * default filename --> SCIHOME/history.scilab
     * @return TRUE or FALSE
     */
-    BOOL writeToFile(char* _pstFilename);
+    BOOL writeToFile(const char* _pstFilename);
 
     /**
     * load history from a file
@@ -94,7 +94,7 @@ public:
     * default filename --> SCIHOME/<scilab version>history.scilab
     * @return TRUE or FALSE
     */
-    BOOL loadFromFile(char* _pstFilename);
+    BOOL loadFromFile(const char* _pstFilename);
 
     /**
     * reset history manager
@@ -216,7 +216,7 @@ public:
     * search if line is a beginning of a session
     * @return TRUE or FALSE
     */
-    BOOL isBeginningSessionLine(char* _pstLine);
+    BOOL isBeginningSessionLine(const char* _pstLine);
 
 protected:
 

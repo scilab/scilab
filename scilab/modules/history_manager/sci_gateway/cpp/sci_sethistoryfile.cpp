@@ -37,20 +37,16 @@ types::Function::ReturnValue sci_sethistoryfile(types::typed_list &in, int _iRet
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "sethistoryfile", 1);
             return types::Function::Error;
         }
-        wchar_t* pwcsFilename = in[0]->getAs<types::String>()->get(0);
-        char* pstFilename = wide_string_to_UTF8(pwcsFilename);
-        if (pstFilename)
-        {
-            HistoryManager::getInstance()->setFilename(pstFilename);
-            FREE(pstFilename);
-        }
-        FREE(pwcsFilename);
+
+        char* pstFilename = in[0]->getAs<types::String>()->get(0);
+        HistoryManager::getInstance()->setFilename(pstFilename);
     }
     else
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "sethistoryfile", 0, 1);
         return types::Function::Error;
     }
+
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

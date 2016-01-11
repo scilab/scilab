@@ -49,7 +49,7 @@ public:
     * @param token (a string)
     * @return TRUE or FALSE
     */
-    BOOL setToken(std::string _stToken);
+    BOOL setToken(const std::string& _stToken);
 
     /**
     * get token searched in history

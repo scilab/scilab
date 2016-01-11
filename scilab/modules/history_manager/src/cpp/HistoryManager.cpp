@@ -88,7 +88,7 @@ BOOL TerminateHistoryManager(void)
     return TRUE;
 }
 /*------------------------------------------------------------------------*/
-BOOL setSearchedTokenInScilabHistory(char* _pstToken)
+BOOL setSearchedTokenInScilabHistory(const char* _pstToken)
 {
     return HistoryManager::getInstance()->setToken(_pstToken);
 }
@@ -103,12 +103,12 @@ char* getSearchedTokenInScilabHistory(void)
     return HistoryManager::getInstance()->getToken();
 }
 /*------------------------------------------------------------------------*/
-BOOL appendLineToScilabHistory(char* _pstLine)
+BOOL appendLineToScilabHistory(const char* _pstLine)
 {
     return HistoryManager::getInstance()->appendLine(_pstLine);
 }
 /*------------------------------------------------------------------------*/
-BOOL appendLinesToScilabHistory(char** _pstLines, int _iLines)
+BOOL appendLinesToScilabHistory(const char** _pstLines, int _iLines)
 {
     for (int i = 0 ; i < _iLines ; i++)
     {
@@ -125,12 +125,12 @@ void displayScilabHistory(void)
     HistoryManager::getInstance()->displayHistory();
 }
 /*------------------------------------------------------------------------*/
-BOOL writeScilabHistoryToFile(char* _pstFilename)
+BOOL writeScilabHistoryToFile(const char* _pstFilename)
 {
     return HistoryManager::getInstance()->writeToFile(_pstFilename);
 }
 /*------------------------------------------------------------------------*/
-BOOL loadScilabHistoryFromFile(char* _pstFilename)
+BOOL loadScilabHistoryFromFile(const char* _pstFilename)
 {
     return HistoryManager::getInstance()->loadFromFile(_pstFilename);
 }
@@ -140,7 +140,7 @@ BOOL isScilabHistoryTruncated(void)
     return HistoryManager::getInstance()->isTruncated();
 }
 /*------------------------------------------------------------------------*/
-BOOL setFilenameScilabHistory(char* _pstFilename)
+BOOL setFilenameScilabHistory(const char* _pstFilename)
 {
     return HistoryManager::getInstance()->setFilename(_pstFilename);
 }
@@ -261,7 +261,7 @@ BOOL HistoryManager::historyIsEnabled(void)
     return FALSE;
 }
 /*------------------------------------------------------------------------*/
-BOOL HistoryManager::appendLine(char* _pstLine)
+BOOL HistoryManager::appendLine(const char* _pstLine)
 {
     BOOL bOK = FALSE;
     if (_pstLine)
@@ -361,7 +361,7 @@ BOOL HistoryManager::appendLine(char* _pstLine)
     return bOK;
 }
 /*------------------------------------------------------------------------*/
-BOOL HistoryManager::appendLines(char** _pstLines, int _iLines)
+BOOL HistoryManager::appendLines(const char** _pstLines, int _iLines)
 {
     for (int i = 0 ; i < _iLines ; i++)
     {
@@ -392,7 +392,7 @@ char* HistoryManager::getFilename(void)
     return NULL;
 }
 /*------------------------------------------------------------------------*/
-BOOL HistoryManager::setFilename(char* _pstFilename)
+BOOL HistoryManager::setFilename(const char* _pstFilename)
 {
     if (_pstFilename)
     {
@@ -407,7 +407,7 @@ BOOL HistoryManager::setDefaultFilename(void)
     return m_HF.setDefaultFilename();
 }
 /*------------------------------------------------------------------------*/
-BOOL HistoryManager::writeToFile(char* _pstFilename)
+BOOL HistoryManager::writeToFile(const char* _pstFilename)
 {
     if (_pstFilename)
     {
@@ -417,7 +417,7 @@ BOOL HistoryManager::writeToFile(char* _pstFilename)
     return FALSE;
 }
 /*------------------------------------------------------------------------*/
-BOOL HistoryManager::loadFromFile(char* _pstFilename)
+BOOL HistoryManager::loadFromFile(const char* _pstFilename)
 {
     if (_pstFilename)
     {
@@ -660,7 +660,7 @@ BOOL HistoryManager::resetToken(void)
     return m_HS.reset();
 }
 /*--------------------------------------------------------------------------*/
-BOOL HistoryManager::isBeginningSessionLine(char* _pstLine)
+BOOL HistoryManager::isBeginningSessionLine(const char* _pstLine)
 {
     if (_pstLine)
     {

@@ -62,7 +62,7 @@ std::string HistoryFile::getFilename(void)
     return m_stFilename;
 }
 /*------------------------------------------------------------------------*/
-void HistoryFile::setFilename(std::string _stFilename)
+void HistoryFile::setFilename(const std::string& _stFilename)
 {
     if (_stFilename.empty() == false)
     {
@@ -92,7 +92,7 @@ BOOL HistoryFile::setDefaultFilename(void)
     return TRUE;
 }
 /*------------------------------------------------------------------------*/
-BOOL HistoryFile::writeToFile(std::string _stFilename)
+BOOL HistoryFile::writeToFile(const std::string& _stFilename)
 {
     if (m_Commands.empty())
     {
@@ -119,10 +119,9 @@ BOOL HistoryFile::writeToFile(std::string _stFilename)
             return FALSE;
         }
 
-        std::list<std::string>::const_iterator it;
-        for (it = m_Commands.begin(); it != m_Commands.end(); it++)
+        for (auto &it : m_Commands)
         {
-            fOut << (*it).c_str() << std::endl;
+            fOut << it.c_str() << std::endl;
         }
         fOut.close();
     }
@@ -139,7 +138,7 @@ BOOL HistoryFile::writeToFile(void)
 }
 /*------------------------------------------------------------------------*/
 
-errorLoadHistoryCode HistoryFile::loadFromFile(std::string _stFilename)
+errorLoadHistoryCode HistoryFile::loadFromFile(const std::string& _stFilename)
 {
     errorLoadHistoryCode returnedError = ERROR_HISTORY_NOT_LOADED;
     std::ifstream fIn;
@@ -246,19 +245,18 @@ std::list<std::string> HistoryFile::getHistory(void)
     return m_Commands;
 }
 /*------------------------------------------------------------------------*/
-BOOL HistoryFile::setHistory(std::list<std::string> _lstCommands)
+BOOL HistoryFile::setHistory(const std::list<std::string>& _lstCommands)
 {
     BOOL bOK = FALSE;
-    std::list<std::string>::const_iterator it;
 
     if (m_Commands.empty() == false)
     {
         m_Commands.clear();
     }
 
-    for (it = _lstCommands.begin(); it != _lstCommands.end(); it++)
+    for (auto& it : _lstCommands)
     {
-        m_Commands.push_back(*it);
+        m_Commands.push_back(it);
     }
     return bOK;
 }

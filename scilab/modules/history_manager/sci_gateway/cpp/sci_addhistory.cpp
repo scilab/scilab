@@ -41,19 +41,12 @@ types::Function::ReturnValue sci_addhistory(types::typed_list &in, int _iRetCoun
 
         for (int i = 0 ; i < iSize ; i++)
         {
-            char* pstLine = wide_string_to_UTF8(pStr->get(i));
-            if (pstLine)
+            bOK = HistoryManager::getInstance()->appendLine(pStr->get(i));
+            if (!bOK)
             {
-                bOK = HistoryManager::getInstance()->appendLine(pstLine);
-                FREE(pstLine);
-                pstLine = NULL;
+                Scierror(999, _("%s: Append lines in Scilab history failed.\n"), "addhistory");
+                return types::Function::Error;
             }
-        }
-
-        if (!bOK)
-        {
-            Scierror(999, _("%s: Append lines in Scilab history failed.\n"), "addhistory");
-            return types::Function::Error;
         }
     }
     else
@@ -61,6 +54,7 @@ types::Function::ReturnValue sci_addhistory(types::typed_list &in, int _iRetCoun
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "addhistory", 1);
         return types::Function::Error;
     }
+
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

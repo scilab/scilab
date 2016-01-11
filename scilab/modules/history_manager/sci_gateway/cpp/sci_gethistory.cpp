@@ -72,9 +72,7 @@ types::Function::ReturnValue sci_gethistory(types::typed_list &in, int _iRetCoun
             types::String* pS = new types::String(nbElements, 1);
             for (int i = 0 ; i < nbElements ; i++)
             {
-                wchar_t* pwstLine = to_wide_string(pstLines[i]);
-                pS->set(i, pwstLine);
-                FREE(pwstLine);
+                pS->set(i, pstLines[i]);
             }
 
             out.push_back(pS);

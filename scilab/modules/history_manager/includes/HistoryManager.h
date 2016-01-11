@@ -33,7 +33,7 @@ extern "C" {
     * @param size of the array of string
     * @return TRUE or FALSE
     */
-    HISTORY_MANAGER_IMPEXP BOOL appendLinesToScilabHistory(char **lines_, int numberoflines);
+    HISTORY_MANAGER_IMPEXP BOOL appendLinesToScilabHistory(const char **lines_, int numberoflines);
     // Note it is lines_ because line is a keyword for term stuff
 
     /**
@@ -42,7 +42,7 @@ extern "C" {
     * line isn't added if it is the same as previous (FALSE)
     * @return TRUE or FALSE
     */
-    HISTORY_MANAGER_IMPEXP BOOL appendLineToScilabHistory(char *line);
+    HISTORY_MANAGER_IMPEXP BOOL appendLineToScilabHistory(const char *line);
 
     /**
     * Display history
@@ -54,21 +54,21 @@ extern "C" {
     * @param a filename if NULL saves in default filename
     * @return TRUE or FALSE
     */
-    HISTORY_MANAGER_IMPEXP BOOL writeScilabHistoryToFile(char *filename);
+    HISTORY_MANAGER_IMPEXP BOOL writeScilabHistoryToFile(const char *filename);
 
     /**
     * load history from a file
     * @param a filename if NULL load from default filename
     * @return TRUE or FALSE
     */
-    HISTORY_MANAGER_IMPEXP BOOL loadScilabHistoryFromFile(char *filename);
+    HISTORY_MANAGER_IMPEXP BOOL loadScilabHistoryFromFile(const char *filename);
 
     /**
     * set filename of history
     * @param filename of history
     * @return TRUE or FALSE
     */
-    HISTORY_MANAGER_IMPEXP BOOL setFilenameScilabHistory(char *filename);
+    HISTORY_MANAGER_IMPEXP BOOL setFilenameScilabHistory(const char *filename);
 
     /**
     * get filename of history
@@ -111,7 +111,7 @@ extern "C" {
     * @param token (a string)
     * @return TRUE or FALSE
     */
-    HISTORY_MANAGER_IMPEXP BOOL setSearchedTokenInScilabHistory(char *token);
+    HISTORY_MANAGER_IMPEXP BOOL setSearchedTokenInScilabHistory(const char *token);
 
     /**
     * reset search in history

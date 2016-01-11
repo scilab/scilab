@@ -56,7 +56,7 @@ types::Function::ReturnValue sci_historysize(types::typed_list &in, int _iRetCou
             return types::Function::Error;
         }
 
-        if (wcscmp(pS->get(0), L"max"))
+        if (strcmp(pS->get(0), "max"))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" expected.\n"), "historysize", 1, "max");
             return types::Function::Error;

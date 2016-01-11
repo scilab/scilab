@@ -57,7 +57,7 @@ public:
     * @param a string the filename
     * @return TRUE or FALSE
     */
-    BOOL writeToFile(std::string _stFilename);
+    BOOL writeToFile(const std::string& _stFilename);
 
     /**
     * get filename used by history
@@ -69,7 +69,7 @@ public:
     * set filename used by history
     * @param a string (filename)
     */
-    void setFilename(std::string _stFilename);
+    void setFilename(const std::string& _stFilename);
 
     /**
     * write history to a file
@@ -83,7 +83,7 @@ public:
     * @param a string the filename
     * @return TRUE or FALSE
     */
-    errorLoadHistoryCode loadFromFile(std::string _stFilename);
+    errorLoadHistoryCode loadFromFile(const std::string& _stFilename);
 
 
     /**
@@ -115,7 +115,7 @@ public:
     * @param a list of CommandLine
     * @return TRUE or FALSE
     */
-    BOOL setHistory(std::list<std::string> _lstCommands);
+    BOOL setHistory(const std::list<std::string>& _lstCommands);
 
     /**
     *

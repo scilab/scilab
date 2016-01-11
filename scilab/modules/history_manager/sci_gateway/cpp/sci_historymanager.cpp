@@ -34,11 +34,11 @@ types::Function::ReturnValue sci_historymanager(types::typed_list &in, int _iRet
     {
         if (HistoryManager::historyIsEnabled())
         {
-            out.push_back(new types::String(L"on"));
+            out.push_back(new types::String("on"));
         }
         else
         {
-            out.push_back(new types::String(L"off"));
+            out.push_back(new types::String("off"));
         }
     }
     else if (in.size() == 1)
@@ -50,17 +50,17 @@ types::Function::ReturnValue sci_historymanager(types::typed_list &in, int _iRet
         }
 
         pStr = in[0]->getAs<types::String>();
-        if (wcscmp(pStr->get(0), L"on") == 0)
+        if (strcmp(pStr->get(0), "on") == 0)
         {
             char* pstCommentBeginSession = getCommentDateSession(FALSE);
             HistoryManager::getInstance()->appendLine(pstCommentBeginSession);
-            out.push_back(new types::String(L"on"));
+            out.push_back(new types::String("on"));
             FREE(pstCommentBeginSession);
         }
-        else if (wcscmp(pStr->get(0), L"off") == 0)
+        else if (strcmp(pStr->get(0), "off") == 0)
         {
             HistoryManager::killInstance();
-            out.push_back(new types::String(L"off"));
+            out.push_back(new types::String("off"));
         }
         else
         {
