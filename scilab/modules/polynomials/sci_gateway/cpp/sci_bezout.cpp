@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
     double dblErr     = 0;
     int iOne          = 1;
 
-    std::wstring wstrName = L"";
+    std::string strName = "";
 
     if (in.size() != 2)
     {
@@ -50,8 +50,8 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
     {
         if (in[i]->isPoly() == false && in[i]->isDouble() == false)
         {
-            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_bezout";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_bezout";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
 
         types::GenericType* pGT = in[i]->getAs<types::GenericType>();
@@ -75,13 +75,13 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
         else // polynom
         {
             types::Polynom* pPolyIn = in[i]->getAs<types::Polynom>();
-            if (wstrName != L"" && wstrName != pPolyIn->getVariableName())
+            if (strName != "" && strName != pPolyIn->getVariableName())
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "bezout", i + 1, wstrName.c_str());
+                Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "bezout", i + 1, strName.c_str());
                 return types::Function::Error;
             }
 
-            wstrName    = pPolyIn->getVariableName();
+            strName    = pPolyIn->getVariableName();
             pdblIn[i]   = pPolyIn->get(0)->get();
             piDegree[i] = pPolyIn->get(0)->getRank();
         }
@@ -103,16 +103,16 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
     types::SinglePoly* pSP = new types::SinglePoly(&pdblSP, np - 1);
     memcpy(pdblSP, pdblOut + ipb[0] - 1, np * sizeof(double));
 
-    if (wstrName == L"")
+    if (strName == "")
     {
-        wstrName = L"s";
+        strName = "s";
     }
 
-    types::Polynom* pPolyGCD = new types::Polynom(wstrName, 1, 1);
+    types::Polynom* pPolyGCD = new types::Polynom(strName, 1, 1);
     pPolyGCD->set(0, pSP);
     delete pSP;
 
-    types::Polynom* pPolyU = new types::Polynom(wstrName, 2, 2);
+    types::Polynom* pPolyU = new types::Polynom(strName, 2, 2);
     for (int i = 0; i < 4; i++)
     {
         int ii     = i + 1;

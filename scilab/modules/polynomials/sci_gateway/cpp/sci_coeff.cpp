@@ -210,8 +210,8 @@ types::Function::ReturnValue sci_coeff(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_coeff";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_coeff";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     out.push_back(pDblOut);

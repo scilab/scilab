@@ -33,7 +33,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    std::wstring wstrAlgo   = L"e"; // e = eigen (default), f = fast
+    std::string strAlgo     = "e"; // e = eigen (default), f = fast
     types::Double* pDblIn   = NULL;
     types::Double* pDblOut  = NULL;
     types::Polynom* pPolyIn = NULL;
@@ -77,8 +77,8 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        wstrAlgo = pStrAlgo->get(0);
-        if (wstrAlgo != L"e" && wstrAlgo != L"f")
+        strAlgo = pStrAlgo->get(0);
+        if (strAlgo != "e" && strAlgo != "f")
         {
             Scierror(999, _("%s: Wrong value for input argument #%d : ""%s"" or ""%s"" expected.\n"), "roots", 2, "e", "f");
             return types::Function::Error;
@@ -129,13 +129,13 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_roots";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_roots";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     // If "fast" algo was chosen and polynomial is complex,
     // then produce an error.
-    if (wstrAlgo == L"f" && bComplex)
+    if (strAlgo == "f" && bComplex)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d : If algo is ""%s"", a real is expected.\n"), "roots", 2, "f");
         return types::Function::Error;
@@ -160,13 +160,13 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
 
     // If "fast" algo was chosen and polynomial has degree greater than 100,
     // then produce an error.
-    if (wstrAlgo == L"f" && iSize > 100)
+    if (strAlgo == "f" && iSize > 100)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d : If algo is ""%s"", a degree less than %d expected.\n"), "roots", 2, "f", 100);
         return types::Function::Error;
     }
 
-    if (wstrAlgo == L"f")
+    if (strAlgo == "f")
     {
         // real polynomial: rpoly algorithm
         // this alg is much more speedy, but it may happens that it gives
@@ -252,7 +252,7 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
         }
 
         //call spec
-        types::InternalType* pSpec = symbol::Context::getInstance()->get(symbol::Symbol(L"spec"));
+        types::InternalType* pSpec = symbol::Context::getInstance()->get(symbol::Symbol("spec"));
         if (pSpec && pSpec->isFunction())
         {
             types::Function *funcSpec = pSpec->getAs<types::Function>();

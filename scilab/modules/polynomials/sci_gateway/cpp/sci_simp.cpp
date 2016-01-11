@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
     int iMaxDegrDen = 0;
     int iErr        = 0;
 
-    std::wstring wstrName = L"";
+    std::string strName = "";
 
     if (in.size() < 1 || in.size() > 2)
     {
@@ -62,8 +62,7 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
     if (in.size() == 1)
     {
         // rational case
-        std::wstring wstFuncName = L"%r_simp";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        return Overload::call("%r_simp", in, _iRetCount, out);
     }
     else // simp(num, den)
     {
@@ -96,12 +95,12 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
 
         if (bComplex)
         {
-            return Overload::call(L"%p_simp", in, _iRetCount, out);
+            return Overload::call("%p_simp", in, _iRetCount, out);
         }
 
         if (iDouble == 3) // simp(double, double)
         {
-            return Overload::call(L"%s_simp", in, _iRetCount, out);
+            return Overload::call("%s_simp", in, _iRetCount, out);
         }
 
         switch (iDouble)
@@ -111,16 +110,16 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                 types::Polynom* pNum = in[0]->clone()->getAs<types::Polynom>();
                 types::Polynom* pDen = in[1]->clone()->getAs<types::Polynom>();
 
-                wstrName = pNum->getVariableName();
+                strName = pNum->getVariableName();
 
-                if (wstrName != pDen->getVariableName())
+                if (strName != pDen->getVariableName())
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "simp", 2, wstrName.c_str());
+                    Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "simp", 2, strName.c_str());
                     return types::Function::Error;
                 }
 
-                types::Polynom* pPolyNumOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
-                types::Polynom* pPolyDenOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
+                types::Polynom* pPolyNumOut = new types::Polynom(strName, pNum->getRows(), pNum->getCols());
+                types::Polynom* pPolyDenOut = new types::Polynom(strName, pNum->getRows(), pNum->getCols());
 
                 iMaxDegrNum = pNum->getMaxRank();
                 iMaxDegrDen = pDen->getMaxRank();

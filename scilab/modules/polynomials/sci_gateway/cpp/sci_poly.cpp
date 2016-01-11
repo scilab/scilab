@@ -38,7 +38,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
     types::String* pStrName  = NULL;
     types::Polynom* pPolyOut = NULL;
 
-    std::wstring wstrFlag = L"roots"; // roots (default), coeff
+    std::string strFlag = "roots"; // roots (default), coeff
 
     if (in.size() < 2 || in.size() > 3)
     {
@@ -54,8 +54,8 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_poly";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_poly";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     pDblIn = in[0]->getAs<types::Double>();
@@ -68,8 +68,8 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        wstrFlag = in[2]->getAs<types::String>()->get(0);
-        if (wstrFlag != L"roots" && wstrFlag != L"coeff" && wstrFlag != L"r" && wstrFlag != L"c")
+        strFlag = in[2]->getAs<types::String>()->get(0);
+        if (strFlag != "roots" && strFlag != "coeff" && strFlag != "r" && strFlag != "c")
         {
             Scierror(999, _("%s: Wrong value for input argument #%d : ""%s"" or ""%s"" expected.\n"), "poly", 3, "roots", "coeff");
             return types::Function::Error;
@@ -89,21 +89,21 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    std::wstring wstrName = pStrName->get(0);
-    size_t badpos = wstrName.find_first_not_of(L"$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    std::string strName = pStrName->get(0);
+    size_t badpos = strName.find_first_not_of("$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
     if (badpos != std::wstring::npos)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d : Valid variable name expected.\n"), "poly", 2);
         return types::Function::Error;
     }
 
-    if (wstrFlag == L"roots" || wstrFlag == L"r") // roots
+    if (strFlag == "roots" || strFlag == "r") // roots
     {
         // [] case
         if (pDblIn->getSize() == 0)
         {
             int iRank = 0;
-            types::Polynom* pPolyOut = new types::Polynom(wstrName, 1, 1, &iRank);
+            types::Polynom* pPolyOut = new types::Polynom(strName, 1, 1, &iRank);
             double* pdblCoef = pPolyOut->get(0)->get();
             *pdblCoef = 1;
             out.push_back(pPolyOut);
@@ -118,7 +118,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
             types::typed_list tlOutput;
             types::optional_list tlOpt;
             tlInput.push_back(pDblIn);
-            types::Function *funcSpec = symbol::Context::getInstance()->get(symbol::Symbol(L"spec"))->getAs<types::Function>();
+            types::Function *funcSpec = symbol::Context::getInstance()->get(symbol::Symbol("spec"))->getAs<types::Function>();
             funcSpec->call(tlInput, tlOpt, 1, tlOutput);
             pDblIn = tlOutput[0]->getAs<types::Double>();
             bDeleteInput = true;
@@ -129,7 +129,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         int piDimsArray[2] = {1, 1};
         int iSize = pDblIn->getSize();
         int iRanks = iSize;
-        pPolyOut = new types::Polynom(wstrName, 2, piDimsArray, &iRanks);
+        pPolyOut = new types::Polynom(strName, 2, piDimsArray, &iRanks);
         double* pdblCoefReal = pPolyOut->get(0)->get();
         if (pDblIn->isComplex())
         {
@@ -176,7 +176,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
 
         int piDimsArray[2] = {1, 1};
         int iRanks = pDblIn->getSize() - 1;
-        pPolyOut = new types::Polynom(wstrName, 2, piDimsArray, &iRanks);
+        pPolyOut = new types::Polynom(strName, 2, piDimsArray, &iRanks);
         pPolyOut->setComplex(pDblIn->isComplex());
         pPolyOut->setCoef(0, pDblIn);
     }

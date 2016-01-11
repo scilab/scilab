@@ -49,8 +49,8 @@ types::Function::ReturnValue sci_varn(types::typed_list &in, int _iRetCount, typ
             return types::Function::OK;
         }
 
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_varn";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_varn";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     pPolyIn = in[0]->getAs<types::Polynom>();
@@ -74,9 +74,9 @@ types::Function::ReturnValue sci_varn(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        std::wstring wstrName = pStrName->get(0);
+        std::string strName = pStrName->get(0);
         // search blank
-        size_t blankpos = wstrName.find_first_of(L" ");
+        size_t blankpos = strName.find_first_of(" ");
         if ((int)blankpos != -1)
         {
             // blank found
@@ -85,7 +85,7 @@ types::Function::ReturnValue sci_varn(types::typed_list &in, int _iRetCount, typ
         }
 
         pPolyOut = pPolyIn->clone()->getAs<types::Polynom>();
-        pPolyOut->setVariableName(std::wstring(wstrName));
+        pPolyOut->setVariableName(strName);
         out.push_back(pPolyOut);
     }
 

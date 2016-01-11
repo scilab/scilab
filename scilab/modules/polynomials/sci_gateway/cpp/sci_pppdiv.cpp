@@ -40,7 +40,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
     int iErr            = 0;
     int iOne            = 1;
 
-    std::wstring wstrName = L"";
+    std::string strName = "";
 
     if (in.size() != 2)
     {
@@ -89,13 +89,13 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            if (wstrName != L"" && wstrName != pPolyIn->getVariableName())
+            if (strName != "" && strName != pPolyIn->getVariableName())
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "pppdiv", i + 1, wstrName.c_str());
+                Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "pppdiv", i + 1, strName.c_str());
                 return types::Function::Error;
             }
 
-            wstrName = pPolyIn->getVariableName();
+            strName = pPolyIn->getVariableName();
             piSize[i] = pPolyIn->getMaxRank() + 1;
             pdblInR[i] = pPolyIn->get(0)->get();
             if (pPolyIn->isComplex())
@@ -106,8 +106,8 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            std::wstring wstFuncName = L"%" + in[i]->getShortTypeStr() + L"_pppdiv";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[i]->getShortTypeStr() + "_pppdiv";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
     }
 
@@ -231,7 +231,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         else // return a types::Polynom
         {
             double* pdblReal = NULL;
-            types::Polynom* pPolyOut = new types::Polynom(wstrName, 1, 1);
+            types::Polynom* pPolyOut = new types::Polynom(strName, 1, 1);
             types::SinglePoly* pSP = NULL;
             int iSize = iSizeRest + 1;
             if (bComplex && C2F(dasum)(&iSize, pdblRestI, &iOne) != 0)
@@ -267,7 +267,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
     else // return a types::Polynom
     {
         double* pdblReal = NULL;
-        types::Polynom* pPolyOut = new types::Polynom(wstrName, 1, 1);
+        types::Polynom* pPolyOut = new types::Polynom(strName, 1, 1);
         types::SinglePoly* pSP = NULL;
         int iSize = iSizeCoeff + 1;
         if (bComplex && C2F(dasum)(&iSize, pdblCoeffI, &iOne) != 0)
