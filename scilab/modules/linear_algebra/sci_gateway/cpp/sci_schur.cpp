@@ -54,8 +54,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
     // *** check type of input args and get it. ***
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_schur";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_schur";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     pDbl[0] = in[0]->getAs<types::Double>();
@@ -105,8 +105,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         else if (in[1]->isString())
         {
             pStr = in[1]->getAs<types::String>();
-            bIsRealStr = !wcscmp(pStr->get(0), L"r") || !wcscmp(pStr->get(0), L"real");
-            bIsComplexStr = !wcscmp(pStr->get(0), L"comp") || !wcscmp(pStr->get(0), L"complex");
+            bIsRealStr = !strcmp(pStr->get(0), "r") || !strcmp(pStr->get(0), "real");
+            bIsComplexStr = !strcmp(pStr->get(0), "comp") || !strcmp(pStr->get(0), "complex");
 
             if (bIsComplexStr)
             {
@@ -129,8 +129,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            std::wstring wstFuncName = L"%" + in[1]->getShortTypeStr() + L"_schur";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[1]->getShortTypeStr() + "_schur";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
     }
 
@@ -138,8 +138,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
     {
         if (in[2]->isString() == false && in[2]->isCallable() == false)
         {
-            std::wstring wstFuncName = L"%" + in[2]->getShortTypeStr() + L"_schur";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[2]->getShortTypeStr() + "_schur";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
 
         if (in[2]->isString())
@@ -288,29 +288,27 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if (pStr)
             {
-                wchar_t* pst = pStr->get(0);
-                bIsContinuStr = !wcscmp(pst, L"c") ||
-                                !wcscmp(pst, L"cont") ||
-                                !wcscmp(pst, L"zb02ow") || // two matrix, complex case
-                                !wcscmp(pst, L"zb02mv") || // one matrix, complex case
-                                !wcscmp(pst, L"sb02ow") || // two matrix, real case
-                                !wcscmp(pst, L"sb02mv");   // one matrix, real case
+                char* pst = pStr->get(0);
+                bIsContinuStr = !strcmp(pst, "c") ||
+                                !strcmp(pst, "cont") ||
+                                !strcmp(pst, "zb02ow") || // two matrix, complex case
+                                !strcmp(pst, "zb02mv") || // one matrix, complex case
+                                !strcmp(pst, "sb02ow") || // two matrix, real case
+                                !strcmp(pst, "sb02mv");   // one matrix, real case
 
-                bIsDiscreteStr = !wcscmp(pst, L"d") ||
-                                 !wcscmp(pst, L"disc") ||
-                                 !wcscmp(pst, L"zb02ox") || // two matrix, complex case
-                                 !wcscmp(pst, L"zb02mw") || // one matrix, complex case
-                                 !wcscmp(pst, L"sb02ox") || // two matrix, real case
-                                 !wcscmp(pst, L"sb02mw");   // one matrix, real case
+                bIsDiscreteStr = !strcmp(pst, "d") ||
+                                 !strcmp(pst, "disc") ||
+                                 !strcmp(pst, "zb02ox") || // two matrix, complex case
+                                 !strcmp(pst, "zb02mw") || // one matrix, complex case
+                                 !strcmp(pst, "sb02ox") || // two matrix, real case
+                                 !strcmp(pst, "sb02mw");   // one matrix, real case
 
                 if (bIsContinuStr == false && bIsDiscreteStr == false)
                 {
                     pStrFunction = ConfigVariable::getEntryPoint(pStr->get(0));
                     if (pStrFunction == NULL)
                     {
-                        char* pst = wide_string_to_UTF8(pStr->get(0));
                         Scierror(999, _("%s: Subroutine not found: %s\n"), "schur", pst);
-                        FREE(pst);
                         return types::Function::Error;
                     }
                 }

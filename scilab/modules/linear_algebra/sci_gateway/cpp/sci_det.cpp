@@ -46,8 +46,8 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
 
     if ((in[0]->isDouble() == false))
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_det";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_det";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();

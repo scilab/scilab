@@ -18,23 +18,23 @@ extern "C"
 #include "gw_linear_algebra.h"
 }
 
-#define MODULE_NAME L"linear_algebra"
+#define MODULE_NAME "linear_algebra"
 
 int LinearAlgebraModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"chol", &sci_chol, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"bdiag", &sci_bdiag, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"svd", &sci_svd, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"rcond", &sci_rcond, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"qr", &sci_qr, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"lu", &sci_lu, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"lsq", &sci_lsq, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inv", &sci_inv, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"hess", &sci_hess, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spec", &sci_spec, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"det", &sci_det, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"balanc", &sci_balanc, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"schur", &sci_schur, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"norm", &sci_norm, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("chol", &sci_chol, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("bdiag", &sci_bdiag, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("svd", &sci_svd, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("rcond", &sci_rcond, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("qr", &sci_qr, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("lu", &sci_lu, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("lsq", &sci_lsq, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("inv", &sci_inv, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("hess", &sci_hess, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("spec", &sci_spec, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("det", &sci_det, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("balanc", &sci_balanc, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("schur", &sci_schur, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("norm", &sci_norm, MODULE_NAME));
     return true;
 }

@@ -51,8 +51,8 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_spec";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_spec";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     types::Double* in0 = in[0]->getAs<types::Double>();
@@ -280,8 +280,8 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
         if (in[1]->isDouble() == false)
         {
-            std::wstring wstFuncName = L"%" + in[1]->getShortTypeStr() + L"_spec";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[1]->getShortTypeStr() + "_spec";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
 
         types::Double* in1 = in[1]->getAs<types::Double>();

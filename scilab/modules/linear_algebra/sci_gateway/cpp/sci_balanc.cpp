@@ -47,8 +47,8 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
 
     if ((in[0]->isDouble() == false))
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_balanc";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_balanc";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     pDbl[0] = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
@@ -61,8 +61,8 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
     {
         if ((in[1]->isDouble() == false))
         {
-            std::wstring wstFuncName = L"%" + in[1]->getShortTypeStr() + L"_balanc";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[1]->getShortTypeStr() + "_balanc";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
 
         pDbl[1] = in[1]->getAs<types::Double>()->clone()->getAs<types::Double>();

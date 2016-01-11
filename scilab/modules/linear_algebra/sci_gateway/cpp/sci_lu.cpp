@@ -50,8 +50,8 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
 
     if ((in[0]->isDouble() == false))
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_lu";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_lu";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();

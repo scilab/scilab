@@ -71,8 +71,8 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_svd";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_svd";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
     pDbl = in[0]->clone()->getAs<types::Double>();
 
@@ -86,7 +86,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
                 return types::Function::Error;
             }
             types::String* pStr = in[1]->getAs<types::String>();
-            if ((wcslen(pStr->get(0)) == 1) && (pStr->get(0)[0] == L'e'))
+            if ((strlen(pStr->get(0)) == 1) && (pStr->get(0)[0] == 'e'))
             {
                 economy = 1;
             }

@@ -49,16 +49,16 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
 
     if ((in[0]->isDouble() == false))
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_lsq";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_lsq";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     if (in.size() == 2)
     {
         if ((in[1]->isDouble() == false))
         {
-            std::wstring wstFuncName = L"%" + in[1]->getShortTypeStr() + L"_lsq";
-            return Overload::call(wstFuncName, in, _iRetCount, out);
+            std::string stFuncName = "%" + in[1]->getShortTypeStr() + "_lsq";
+            return Overload::call(stFuncName, in, _iRetCount, out);
         }
         pDbl[1] = in[1]->getAs<types::Double>()->clone()->getAs<types::Double>();
     }
