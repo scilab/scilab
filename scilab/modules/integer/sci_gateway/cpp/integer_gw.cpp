@@ -13,7 +13,7 @@
 #include "integer_gw.hxx"
 #include "context.hxx"
 
-#define MODULE_NAME L"integer"
+#define MODULE_NAME "integer"
 
 extern "C"
 {
@@ -22,16 +22,16 @@ extern "C"
 
 int IntegerModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"int8", &sci_integer8, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"uint8", &sci_uinteger8, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"int16", &sci_integer16, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"uint16", &sci_uinteger16, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"int32", &sci_integer32, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"uint32", &sci_uinteger32, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"int64", &sci_integer64, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"uint64", &sci_uinteger64, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inttype", &sci_inttype, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"double", &sci_double, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"iconvert", &sci_iconvert, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("int8", &sci_integer8, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("uint8", &sci_uinteger8, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("int16", &sci_integer16, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("uint16", &sci_uinteger16, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("int32", &sci_integer32, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("uint32", &sci_uinteger32, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("int64", &sci_integer64, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("uint64", &sci_uinteger64, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("inttype", &sci_inttype, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("double", &sci_double, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("iconvert", &sci_iconvert, MODULE_NAME));
     return 1;
 }

@@ -37,10 +37,10 @@ types::Function::ReturnValue sci_iconvert(types::typed_list &in, int _iRetCount,
     if (in[0]->isInt() == false && in[0]->isDouble() == false && in[0]->isBool() == false)
     {
         // call overload
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_iconvert";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_iconvert";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     // perfom operation
-    return Overload::call(L"%_iconvert", in, _iRetCount, out);
+    return Overload::call("%_iconvert", in, _iRetCount, out);
 }
