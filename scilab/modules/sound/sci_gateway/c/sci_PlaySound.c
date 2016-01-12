@@ -24,7 +24,7 @@
 #include "localization.h"
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
-static int playsound(wchar_t *wcFilename);
+static int playsound(const char* cFilename);
 /*--------------------------------------------------------------------------*/
 /* private function called by playsnd */
 /*--------------------------------------------------------------------------*/
@@ -32,11 +32,11 @@ int sci_PlaySound(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
-    wchar_t *pStVarOne = NULL;
+    char* pStVarOne = NULL;
     int iType1 = 0;
     int lenStVarOne = 0;
     int m1 = 0, n1 = 0;
-    wchar_t *expandedPath = NULL;
+    char* expandedPath = NULL;
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -63,43 +63,14 @@ int sci_PlaySound(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne))
+    if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &pStVarOne))
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 1;
     }
 
-    //    if ( (m1 != n1) && (n1 != 1) )
-    //    {
-    //        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
-    //        return 1;
-    //    }
-    //
-    //    sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
-    //    if (sciErr.iErr)
-    //    {
-    //        printError(&sciErr, 0);
-    //        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-    //        return 1;
-    //    }
-    //
-    //    pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarOne + 1));
-    //    if (pStVarOne == NULL)
-    //    {
-    //        Scierror(999, _("%s: Memory allocation error.\n"), fname);
-    //        return 1;
-    //    }
-    //
-    //    sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
-    //    if (sciErr.iErr)
-    //    {
-    //        printError(&sciErr, 0);
-    //        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-    //        return 1;
-    //    }
-
-    expandedPath = expandPathVariableW(pStVarOne);
+    expandedPath = expandPathVariable(pStVarOne);
     if (pStVarOne)
     {
         freeAllocatedSingleString(pStVarOne);
@@ -131,14 +102,14 @@ int sci_PlaySound(char *fname, void* pvApiCtx)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int playsound(wchar_t *wcFilename)
+static int playsound(const char* cFilename)
 {
 #ifdef _MSC_VER
-    if (wcFilename)
+    if (cFilename)
     {
         /* Stop Playing*/
-        PlaySoundW(NULL, NULL, SND_PURGE);
-        PlaySoundW(wcFilename, NULL, SND_ASYNC | SND_FILENAME);
+        PlaySoundA(NULL, NULL, SND_PURGE);
+        PlaySoundA(cFilename, NULL, SND_ASYNC | SND_FILENAME);
     }
 #endif
     return 0;
