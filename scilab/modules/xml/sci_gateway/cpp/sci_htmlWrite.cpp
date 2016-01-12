@@ -130,7 +130,7 @@ int sci_htmlWrite(char *fname, void* pvApiCtx)
                 return 0;
             }
 
-            expandedPath = strdup((const char *)document->URL);
+            expandedPath = os_strdup((const char *)document->URL);
             getScalarBoolean(pvApiCtx, addr, &indent);
         }
 
@@ -162,7 +162,7 @@ int sci_htmlWrite(char *fname, void* pvApiCtx)
             Scierror(999, gettext("%s: The XML Document has not an URI and there is no second argument.\n"), fname);
             return 0;
         }
-        expandedPath = strdup((const char *)document->URL);
+        expandedPath = os_strdup((const char *)document->URL);
     }
 
     if (!doc->saveToHTMLFile(expandedPath, indent == 1))

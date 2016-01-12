@@ -274,40 +274,40 @@ int getMListType(int * mlist, void * pvApiCtx)
         return -1;
     }
 
-    wchar_t* pwstType = pS->get(0);
-    int iLen = (int)wcslen(pwstType);
+    char* pstType = pS->get(0);
+    int iLen = (int)strlen(pstType);
 
-    if (wcsncmp(pwstType, L"XML", 3) == 0)
+    if (strncmp(pstType, "XML", 3) == 0)
     {
-        if (iLen == 6 /*strlen("XMLDoc")*/ && wcscmp(pwstType + 3, L"Doc") == 0)
+        if (iLen == 6 /*strlen("XMLDoc")*/ && strcmp(pstType + 3, "Doc") == 0)
         {
             return XMLDOCUMENT;
         }
-        if (iLen == 7 /*strlen("XMLElem")*/ && wcscmp(pwstType + 3, L"Elem") == 0)
+        if (iLen == 7 /*strlen("XMLElem")*/ && strcmp(pstType + 3, "Elem") == 0)
         {
             return XMLELEMENT;
         }
-        if (iLen == 7 /*strlen("XMLAttr")*/ && wcscmp(pwstType + 3, L"Attr") == 0)
+        if (iLen == 7 /*strlen("XMLAttr")*/ && strcmp(pstType + 3, "Attr") == 0)
         {
             return XMLATTRIBUTE;
         }
-        if (iLen == 5 /*strlen("XMLNs")*/ && wcscmp(pwstType + 3, L"Ns") == 0)
+        if (iLen == 5 /*strlen("XMLNs")*/ && strcmp(pstType + 3, "Ns") == 0)
         {
             return XMLNAMESPACE;
         }
-        if (iLen == 7 /*strlen("XMLList")*/ && wcscmp(pwstType + 3, L"List") == 0)
+        if (iLen == 7 /*strlen("XMLList")*/ && strcmp(pstType + 3, "List") == 0)
         {
             return XMLLIST;
         }
-        if (iLen == 5 /*strlen("XMLNH")*/ && wcscmp(pwstType + 3, L"NH") == 0)
+        if (iLen == 5 /*strlen("XMLNH")*/ && strcmp(pstType + 3, "NH") == 0)
         {
             return XMLNOTHANDLED;
         }
-        if (iLen == 6 /*strlen("XMLSet")*/ && wcscmp(pwstType + 3, L"Set") == 0)
+        if (iLen == 6 /*strlen("XMLSet")*/ && strcmp(pstType + 3, "Set") == 0)
         {
             return XMLSET;
         }
-        if (iLen == 8 /*strlen("XMLValid")*/ && wcscmp(pwstType + 3, L"Valid") == 0)
+        if (iLen == 8 /*strlen("XMLValid")*/ && strcmp(pstType + 3, "Valid") == 0)
         {
             return XMLVALID;
         }
