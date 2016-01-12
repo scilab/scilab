@@ -135,7 +135,7 @@ types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, ty
     {
         if (pBools)
         {
-            pCoordSorted = gsort(pCoord, NULL, L"i", L"lr");
+            pCoordSorted = gsort(pCoord, NULL, "i", "lr");
             for (int i = 0 ; i < nonZeros ; i++)
             {
                 pBools->set(i, true);
@@ -144,7 +144,7 @@ types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, ty
         else
         {
             types::Double* pIndex = new types::Double(nonZeros, 1);
-            pCoordSorted = gsort(pCoord, pIndex, L"i", L"lr");
+            pCoordSorted = gsort(pCoord, pIndex, "i", "lr");
             if (pValues->isComplex())
             {
                 for (int i = 0 ; i < nonZeros ; i++)
@@ -168,7 +168,7 @@ types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        pCoordSorted = gsort(pCoord, NULL, L"i", L"lr");
+        pCoordSorted = gsort(pCoord, NULL, "i", "lr");
     }
 
     out.push_back(pCoordSorted);

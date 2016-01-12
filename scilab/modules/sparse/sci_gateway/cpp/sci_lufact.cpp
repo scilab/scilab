@@ -84,8 +84,8 @@ types::Function::ReturnValue sci_lufact(types::typed_list &in, int _iRetCount, t
 
     if (in[0]->isSparse() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_lufact";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_lufact";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     pSpIn = in[0]->getAs<types::Sparse>();
@@ -105,7 +105,7 @@ types::Function::ReturnValue sci_lufact(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    nonZeros = pSpIn->nonZeros();
+    nonZeros = (int)pSpIn->nonZeros();
     dbl = new double[nonZeros];
     colPos = new int[nonZeros];
     itemsRow = new int[m];

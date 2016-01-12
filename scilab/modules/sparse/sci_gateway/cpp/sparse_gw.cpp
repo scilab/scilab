@@ -13,23 +13,23 @@
 #include "sparse_gw.hxx"
 #include "context.hxx"
 
-#define MODULE_NAME L"sparse"
+#define MODULE_NAME "sparse"
 int SparseModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"adj2sp", &sci_adj2sp, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"nnz", &sci_nnz, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sp2adj", &sci_sp2adj, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sparse", &sci_sparse, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spcompack", &sci_spcompack, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spget", &sci_spget, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spzeros", &sci_spzeros, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spones", &sci_spones, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"full", &sci_full, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ordmmd", &sci_ordmmd, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"lufact", &sci_lufact, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"lusolve", &sci_lusolve, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"luget", &sci_luget, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ludel", &sci_ludel, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spchol", &sci_spchol, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("adj2sp", &sci_adj2sp, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("nnz", &sci_nnz, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("sp2adj", &sci_sp2adj, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("sparse", &sci_sparse, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("spcompack", &sci_spcompack, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("spget", &sci_spget, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("spzeros", &sci_spzeros, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("spones", &sci_spones, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("full", &sci_full, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("ordmmd", &sci_ordmmd, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("lufact", &sci_lufact, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("lusolve", &sci_lusolve, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("luget", &sci_luget, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("ludel", &sci_ludel, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("spchol", &sci_spchol, MODULE_NAME));
     return 1;
 }

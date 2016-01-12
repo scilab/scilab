@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        nonZeros = pSpIn->nonZeros();
+        nonZeros = (int)pSpIn->nonZeros();
         dbl = new double[nonZeros];
         pSpIn->outputValues(dbl, NULL);
         colPos = new int[nonZeros];
@@ -103,14 +103,14 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
     }
     else
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_lusolve";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_lusolve";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     if ((in[1]->isSparse() == false) && (in[1]->isDouble() == false))
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_lusolve";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_lusolve";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     if (in[1]->isSparse() )
