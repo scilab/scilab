@@ -17,5 +17,5 @@
 
 types::Function::ReturnValue sci_mlist_gw(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
-    return sci_tlist_or_mlist<types::MList>(in, _piRetCount, out, L"mlist");
+    return sci_tlist_or_mlist<types::MList>(in, _piRetCount, out, "mlist");
 }

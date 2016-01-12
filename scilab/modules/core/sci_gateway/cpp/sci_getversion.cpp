@@ -28,7 +28,7 @@ extern "C"
 #include "freeArrayOfString.h"
 }
 /*--------------------------------------------------------------------------*/
-#define VERSION_STRING L"string_info"
+#define VERSION_STRING "string_info"
 /*--------------------------------------------------------------------------*/
 static int getversion_no_rhs(char *fname, void* pvApiCtx);
 static int getversion_one_rhs(char *fname, void* pvApiCtx);
@@ -50,19 +50,19 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
             return types::Function::Error;
         }
 
-        wchar_t *pwstVer = getScilabVersionAsWideString();
-        types::String* pOut1 = new types::String(pwstVer);
+        char *pstVer = getScilabVersionAsString();
+        types::String* pOut1 = new types::String(pstVer);
         out.push_back(pOut1);
-        FREE(pwstVer);
+        FREE(pstVer);
 
         if (_iRetCount == 2)
         {
             int iOption = 0;
-            wchar_t** pwstOption = getScilabVersionOptions(&iOption);
+            char** pstOption = getScilabVersionOptions(&iOption);
             types::String* pOut2 = new types::String(1, iOption);
-            pOut2->set(pwstOption);
+            pOut2->set(pstOption);
             out.push_back(pOut2);
-            freeArrayOfWideString(pwstOption, iOption);
+            freeArrayOfString(pstOption, iOption);
         }
 
     }
@@ -80,14 +80,14 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
             return types::Function::Error;
         }
 
-        wchar_t* pwstModule = in[0]->getAs<types::String>()->get()[0];
-        if (with_module(pwstModule) || (wcscmp(pwstModule, L"scilab") == 0))
+        char* pstModule = in[0]->getAs<types::String>()->get()[0];
+        if (with_module(pstModule) || (strcmp(pstModule, "scilab") == 0))
         {
             int versionSize = 0;
-            int *version = getModuleVersion(pwstModule, &versionSize);
+            int *version = getModuleVersion(pstModule, &versionSize);
             if (version == NULL)
             {
-                Scierror(999, _("%s: Wrong file version.xml %s.\n"), "getversion", pwstModule);
+                Scierror(999, _("%s: Wrong file version.xml %s.\n"), "getversion", pstModule);
                 return types::Function::Error;
             }
 
@@ -111,17 +111,17 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
             return types::Function::Error;
         }
 
-        wchar_t* pwstModule = in[0]->getAs<types::String>()->get()[0];
-        wchar_t* pwstOption = in[1]->getAs<types::String>()->get()[0];
+        char* pstModule = in[0]->getAs<types::String>()->get()[0];
+        char* pstOption = in[1]->getAs<types::String>()->get()[0];
 
-        if ( with_module(pwstModule) || (wcscmp(pwstModule, L"scilab") == 0) )
+        if ( with_module(pstModule) || (strcmp(pstModule, "scilab") == 0) )
         {
-            if ( wcscmp(pwstOption, VERSION_STRING) == 0)
+            if (strcmp(pstOption, VERSION_STRING) == 0)
             {
-                wchar_t *pwstInfo = getModuleVersionInfoAsString(pwstModule);
-                types::String* pOut = new types::String(pwstInfo);
+                char* pstInfo = getModuleVersionInfoAsString(pstModule);
+                types::String* pOut = new types::String(pstInfo);
                 out.push_back(pOut);
-                FREE(pwstInfo);
+                FREE(pstInfo);
             }
         }
     }

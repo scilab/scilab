@@ -102,11 +102,11 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
     for (itInput = in.begin() ; itInput != in.end() ; itInput += 2)
     {
         //for each field
-        std::wstring wstField((*itInput)->getAs<types::String>()->get(0));
+        std::string stField((*itInput)->getAs<types::String>()->get(0));
         types::InternalType* pData = (*(itInput + 1));
 
         //add field in struct
-        pOut->addField(wstField);
+        pOut->addField(stField);
 
         if (pData->isCell())
         {
@@ -116,14 +116,14 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
             {
                 for (int i = 0 ; i < pOut->getSize() ; i++)
                 {
-                    pOut->get(i)->set(wstField, pCell->get(0));
+                    pOut->get(i)->set(stField, pCell->get(0));
                 }
             }
             else
             {
                 for (int i = 0 ; i < pOut->getSize() ; i++)
                 {
-                    pOut->get(i)->set(wstField, pCell->get(i));
+                    pOut->get(i)->set(stField, pCell->get(i));
                 }
             }
         }
@@ -132,7 +132,7 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
             //others
             for (int i = 0 ; i < pOut->getSize() ; i++)
             {
-                pOut->get(i)->set(wstField, pData);
+                pOut->get(i)->set(stField, pData);
             }
         }
     }

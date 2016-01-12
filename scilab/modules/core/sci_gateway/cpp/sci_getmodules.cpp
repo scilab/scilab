@@ -26,10 +26,10 @@ types::Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCoun
     }
 
 
-    std::list<std::wstring> sModuleList = ConfigVariable::getModuleList();
+    std::list<std::string> sModuleList = ConfigVariable::getModuleList();
     types::String *pOut = new types::String(static_cast<int>(sModuleList.size()), 1);
 
-    std::list<std::wstring>::iterator it = sModuleList.begin();
+    std::list<std::string>::iterator it = sModuleList.begin();
     for (int i = 0; it != sModuleList.end() ; it++, i++)
     {
         pOut->set(i, it->c_str());

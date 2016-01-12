@@ -21,7 +21,7 @@ extern "C" {
 #include "localization.h"
 }
 
-#define OPTION L"overload"
+#define OPTION "overload"
 
 types::Function::ReturnValue sci_typeof(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -44,14 +44,14 @@ types::Function::ReturnValue sci_typeof(types::typed_list &in, int _iRetCount, t
         // Special cases for rational and state-space list
         if (in[0]->isTList())
         {
-            if (in[0]->getShortTypeStr() == L"r")
+            if (in[0]->getShortTypeStr() == "r")
             {
-                out.push_back(new types::String(L"rational"));
+                out.push_back(new types::String("rational"));
                 return types::Function::OK;
             }
-            else if (in[0]->getShortTypeStr() == L"lss")
+            else if (in[0]->getShortTypeStr() == "lss")
             {
-                out.push_back(new types::String(L"state-space"));
+                out.push_back(new types::String("state-space"));
                 return types::Function::OK;
             }
         }
@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_typeof(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    if (wcscmp(in[1]->getAs<types::String>()->get(0, 0), OPTION) == 0)
+    if (strcmp(in[1]->getAs<types::String>()->get(0, 0), OPTION) == 0)
     {
         out.push_back(new types::String(in[0]->getShortTypeStr().c_str()));
         return types::Function::OK;

@@ -46,12 +46,12 @@ types::Function::ReturnValue sci_clearfun(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    wchar_t* pwcsName = pS1->get(0);
+    char* pcsName = pS1->get(0);
 
     bool bDeleted = false;
     symbol::Context* pCtx = symbol::Context::getInstance();
 
-    symbol::Variable* pVar = pCtx->getOrCreate(symbol::Symbol(pwcsName));
+    symbol::Variable* pVar = pCtx->getOrCreate(symbol::Symbol(pcsName));
     symbol::Variable::StackVar stack;
 
     //unstack all elements and stack them in new stack ( reverse order )

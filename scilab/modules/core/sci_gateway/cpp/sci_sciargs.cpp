@@ -33,19 +33,19 @@ types::Function::ReturnValue sci_sciargs(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    wchar_t** pwstCmdLineArgs = ConfigVariable::getCommandLineArgs(&iCount);
+    char** pstCmdLineArgs = ConfigVariable::getCommandLineArgs(&iCount);
 
     if (iCount == 0)
     {
         // call_scilab
-        out.push_back(new types::String(L""));
+        out.push_back(new types::String(""));
         return types::Function::OK;
     }
 
     types::String* pS = new types::String(iCount, 1);
-    pS->set(pwstCmdLineArgs);
+    pS->set(pstCmdLineArgs);
     out.push_back(pS);
-    freeArrayOfWideString(pwstCmdLineArgs, iCount);
+    freeArrayOfString(pstCmdLineArgs, iCount);
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

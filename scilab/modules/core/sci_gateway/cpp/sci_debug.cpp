@@ -50,7 +50,7 @@ typedef enum EnumCommand
 const char fname[] = "debug";
 
 void print_help();
-EnumCommand getCommand(const std::wstring& command);
+EnumCommand getCommand(const std::string& command);
 
 types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -92,7 +92,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
 
     debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
 
-    std::wstring command(((types::String*)in[0])->get(0));
+    std::string command(((types::String*)in[0])->get(0));
     switch (getCommand(command))
     {
         case AbortCommand:
@@ -124,9 +124,9 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             }
 
             //breakpoint
-            wchar_t* pwstFunctionName = NULL;
+            char* pstFunctionName = NULL;
             int iLine = -1;
-            wchar_t* pwstCondition = NULL;
+            char* pstCondition = NULL;
             debugger::Breakpoint* bp = NULL;
             //function name
             if (iRhs > 1)
@@ -134,15 +134,15 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
                 //do not check name
                 //we can set breakpoint before function declaration
                 //for embedded function for example
-                pwstFunctionName = ((types::String*)in[1])->get(0);
+                pstFunctionName = ((types::String*)in[1])->get(0);
             }
 
             if (iRhs > 2)
             {
-                wchar_t* pwstLineNumber = ((types::String*)in[2])->get(0);
-                wchar_t* pwstEnd = NULL;
-                iLine = wcstol(pwstLineNumber, &pwstEnd, 10);
-                if (pwstEnd == NULL || *pwstEnd != 0)
+                char* pstLineNumber = ((types::String*)in[2])->get(0);
+                char* pstEnd = NULL;
+                iLine = strtol(pstLineNumber, &pstEnd, 10);
+                if (pstEnd == NULL || *pstEnd != 0)
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "breakpoint", 2);
                     return types::Function::Error;
@@ -151,12 +151,12 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
 
             if (iRhs > 3)
             {
-                pwstCondition = ((types::String*)in[3])->get(0);
-                bp = new debugger::Breakpoint(pwstFunctionName, iLine, pwstCondition);
+                pstCondition = ((types::String*)in[3])->get(0);
+                bp = new debugger::Breakpoint(pstFunctionName, iLine, pstCondition);
             }
             else
             {
-                bp = new debugger::Breakpoint(pwstFunctionName, iLine);
+                bp = new debugger::Breakpoint(pstFunctionName, iLine);
             }
 
             manager->addBreakPoint(bp);
@@ -193,8 +193,8 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             //disable
             if (iRhs == 2)
             {
-                wchar_t* pEnd = NULL;
-                int iBp = (int)wcstol(((types::String*)in[1])->get(0), &pEnd, 10);
+                char* pEnd = NULL;
+                int iBp = (int)strtol(((types::String*)in[1])->get(0), &pEnd, 10);
                 if (pEnd == NULL || *pEnd != 0)
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "disable", 1);
@@ -227,8 +227,8 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             //delete
             if (iRhs == 2)
             {
-                wchar_t* pEnd = NULL;
-                int iBp = (int)wcstol(((types::String*)in[1])->get(0), &pEnd, 10);
+                char* pEnd = NULL;
+                int iBp = (int)strtol(((types::String*)in[1])->get(0), &pEnd, 10);
                 if (pEnd == NULL || *pEnd != 0)
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "disable", 1);
@@ -261,8 +261,8 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             //enable
             if (iRhs == 2)
             {
-                wchar_t* pEnd = NULL;
-                int iBp = (int)wcstol(((types::String*)in[1])->get(0), &pEnd, 10);
+                char* pEnd = NULL;
+                int iBp = (int)strtol(((types::String*)in[1])->get(0), &pEnd, 10);
                 if (pEnd == NULL || *pEnd != 0)
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "enable", 1);
@@ -322,7 +322,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
 
             if (manager->isInterrupted())
             {
-                std::wostringstream ostr;
+                std::ostringstream ostr;
                 ast::PrintVisitor pp(ostr, true, true, true);
                 manager->getExp()->accept(pp);
                 sciprint(_("%ls"), ostr.str().data());
@@ -410,12 +410,12 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
-            sciprint("% 3ls % 7ls %24ls % 5ls %ls\n\n", L"num", L"enable", L"function name", L"line", L"condition");
+            sciprint("% 3s % 7s %24s % 5s %s\n\n", "num", "enable", "function name", "line", "condition");
 
             if (iRhs > 1)
             {
-                wchar_t* pEnd = NULL;
-                int iBp = (int)wcstol(((types::String*)in[1])->get(0), &pEnd, 10);
+                char* pEnd = NULL;
+                int iBp = (int)strtol(((types::String*)in[1])->get(0), &pEnd, 10);
                 if (pEnd == NULL || *pEnd != 0)
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "disable", 1);
@@ -431,10 +431,10 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
 
                 if (bp->isMacro())
                 {
-                    std::wstring condition = bp->getCondition();
-                    sciprint("% 3d % 7s %24ls % 5d %ls\n", iBp, bp->isEnable() ? "true" : "false", bp->getFunctioName().c_str(), bp->getMacroLine(),
+                    std::string condition = bp->getCondition();
+                    sciprint("% 3d % 7s %24s % 5d %s\n", iBp, bp->isEnable() ? "true" : "false", bp->getFunctioName().c_str(), bp->getMacroLine(),
                              condition.size() < 30 ? condition.c_str() :
-                             (std::wstring(condition.begin(), condition.begin() + 27) + L"...").c_str());
+                             (std::string(condition.begin(), condition.begin() + 27) + "...").c_str());
                 }
             }
             else
@@ -446,10 +446,10 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
                     debugger::Breakpoint* bp = *it;
                     if (bp->isMacro())
                     {
-                        std::wstring condition = bp->getCondition();
-                        sciprint("% 3d % 7s %24ls % 5d %ls\n", i, bp->isEnable() ? "true" : "false", bp->getFunctioName().c_str(), bp->getMacroLine(),
+                        std::string condition = bp->getCondition();
+                        sciprint("% 3d % 7s %24s % 5d %s\n", i, bp->isEnable() ? "true" : "false", bp->getFunctioName().c_str(), bp->getMacroLine(),
                                  condition.size() < 30 ? condition.c_str() :
-                                 (std::wstring(condition.begin(), condition.begin() + 27) + L"...").c_str());
+                                 (std::string(condition.begin(), condition.begin() + 27) + "...").c_str());
                     }
                 }
             }
@@ -476,7 +476,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             int i = 0;
             sciprint("%s\n", _("callstack:"));
 
-            std::wostringstream ostr;
+            std::ostringstream ostr;
             ast::PrintVisitor pp(ostr, true, true, true);
             manager->getExp()->accept(pp);
 #define BT_PRINT "#%-5d%ls (line %d)\n"
@@ -543,15 +543,15 @@ void print_help()
     sciprint(_("  for more details, show help page.\n"));
 }
 
-EnumCommand getCommand(const std::wstring& command)
+EnumCommand getCommand(const std::string& command)
 {
     wchar_t c = command[0];
 
     switch (c)
     {
-        case L'a':
+        case 'a':
         {
-            if (command.size() == 1 || command == L"abort")
+            if (command.size() == 1 || command == "abort")
             {
                 return AbortCommand;
             }
@@ -559,123 +559,123 @@ EnumCommand getCommand(const std::wstring& command)
         }
         case 'b':
         {
-            if (command.size() == 1 || command == L"break" || command == L"breakpoint")
+            if (command.size() == 1 || command == "break" || command == "breakpoint")
             {
                 return BreakCommand;
             }
 
-            if (command == L"bt")
+            if (command == "bt")
             {
                 return WhereCommand;
             }
             break;
         }
-        case L'c':
+        case 'c':
         {
-            if (command.size() == 1 || command == L"continue")
+            if (command.size() == 1 || command == "continue")
             {
                 return ContinueCommand;
             }
             break;
         }
-        case L'd':
+        case 'd':
         {
-            if (command == L"disable")
+            if (command == "disable")
             {
                 return DisableCommand;
             }
 
-            if (command == L"del" || command == L"delete")
+            if (command == "del" || command == "delete")
             {
                 return DeleteCommand;
             }
             break;
         }
-        case L'e':
+        case 'e':
         {
-            if (command == L"enable")
+            if (command == "enable")
             {
                 return EnableCommand;
             }
             break;
         }
-        case L'h':
+        case 'h':
         {
             if (command.size() == 1)
             {
                 return HelpShortCommand;
             }
 
-            if (command == L"help")
+            if (command == "help")
             {
                 return HelpCommand;
             }
 
             break;
         }
-        case L'l':
+        case 'l':
         {
-            if (command.size() == 1 || command == L"list")
+            if (command.size() == 1 || command == "list")
             {
                 return ListCommand;
             }
             break;
         }
-        case L'i':
+        case 'i':
         {
-            if (command.size() == 1 || command == L"in")
+            if (command.size() == 1 || command == "in")
             {
                 return StepInCommand;
             }
             break;
         }
-        case L'n':
+        case 'n':
         {
-            if (command.size() == 1 || command == L"next")
+            if (command.size() == 1 || command == "next")
             {
                 return NextCommand;
             }
             break;
         }
-        case L'o':
+        case 'o':
         {
-            if (command.size() == 1 || command == L"out")
+            if (command.size() == 1 || command == "out")
             {
                 return StepOutCommand;
             }
             break;
         }
-        case L'q':
+        case 'q':
         {
-            if (command.size() == 1 || command == L"quit")
+            if (command.size() == 1 || command == "quit")
             {
                 return QuitCommand;
             }
             break;
         }
-        case L's':
+        case 's':
         {
-            if (command.size() == 1 || command == L"show")
+            if (command.size() == 1 || command == "show")
             {
                 return ShowCommand;
             }
-            if (command == L"stepnext")
+            if (command == "stepnext")
             {
                 return NextCommand;
             }
-            if (command == L"stepin")
+            if (command == "stepin")
             {
                 return StepInCommand;
             }
-            if (command == L"stepout")
+            if (command == "stepout")
             {
                 return StepOutCommand;
             }
             break;
         }
-        case L'w':
+        case 'w':
         {
-            if (command.size() == 1 || command == L"where")
+            if (command.size() == 1 || command == "where")
             {
                 return WhereCommand;
             }

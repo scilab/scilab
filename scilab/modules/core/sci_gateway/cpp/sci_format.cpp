@@ -23,10 +23,8 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-#define e_type_format L"e"
-#define v_type_format L"v"
-#define _e_type_format "e"
-#define _v_type_format "v"
+#define e_type_format "e"
+#define v_type_format "v"
 #define format_MIN 2
 #define format_MAX 25
 #define format_e_MIN 8
@@ -65,22 +63,22 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
         types::String *pS = in[0]->getAs<types::String>();
         if (pS->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 1, _e_type_format, _v_type_format);
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 1, e_type_format, v_type_format);
             return types::Function::Error;
         }
 
-        wchar_t* pwst = pS->get(0);
-        if (wcscmp(pwst, e_type_format) == 0)
+        char* pst = pS->get(0);
+        if (strcmp(pst, e_type_format) == 0)
         {
             iType = 0;
         }
-        else if (wcscmp(pwst, v_type_format) == 0)
+        else if (strcmp(pst, v_type_format) == 0)
         {
             iType = 1;
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 1, _e_type_format, _v_type_format);
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 1, e_type_format, v_type_format);
             return types::Function::Error;
         }
     }
@@ -146,22 +144,22 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
             types::String *pS = in[0]->getAs<types::String>();
             if (pS->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 1, _e_type_format, _v_type_format);
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 1, e_type_format, v_type_format);
                 return types::Function::Error;
             }
 
-            wchar_t* pwst = pS->get(0);
-            if (wcscmp(pwst, e_type_format) == 0)
+            char* pst = pS->get(0);
+            if (strcmp(pst, e_type_format) == 0)
             {
                 iType = 0;
             }
-            else if (wcscmp(pwst, v_type_format) == 0)
+            else if (strcmp(pst, v_type_format) == 0)
             {
                 iType = 1;
             }
             else
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 1, _e_type_format, _v_type_format);
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 1, e_type_format, v_type_format);
                 return types::Function::Error;
             }
 
@@ -226,22 +224,22 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
                 types::String *pS = in[1]->getAs<types::String>();
                 if (pS->isScalar() == false)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 2, _e_type_format, _v_type_format);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 2, e_type_format, v_type_format);
                     return types::Function::Error;
                 }
 
-                wchar_t* pwst = pS->get(0);
-                if (wcscmp(pwst, e_type_format) == 0)
+                char* pst = pS->get(0);
+                if (strcmp(pst, e_type_format) == 0)
                 {
                     iType = 0;
                 }
-                else if (wcscmp(pwst, v_type_format) == 0)
+                else if (strcmp(pst, v_type_format) == 0)
                 {
                     iType = 1;
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 2, _e_type_format, _v_type_format);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 2, e_type_format, v_type_format);
                     return types::Function::Error;
                 }
             }

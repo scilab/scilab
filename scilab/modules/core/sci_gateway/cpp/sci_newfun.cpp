@@ -24,23 +24,23 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-bool isValidName(wchar_t* _pwstName)
+bool isValidName(const char* _pstName)
 {
-    if (_pwstName == NULL)
+    if (_pstName == NULL)
     {
         return false;
     }
 
-    if (isdigit(_pwstName[0]))
+    if (isdigit(_pstName[0]))
     {
         return false;
     }
 
-    int size = (int)wcslen(_pwstName);
+    int size = (int)strlen(_pstName);
     for (int i = 1 ; i < size ; ++i)
     {
-        wchar_t c = _pwstName[i];
-        if (c != L'_' && c != L'?' && c != L'!' && isalnum(c) == false)
+        wchar_t c = _pstName[i];
+        if (c != '_' && c != '?' && c != '!' && isalnum(c) == false)
         {
             return false;
         }
@@ -73,10 +73,10 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    wchar_t* pwcsNewName = pS1->get(0);
+    char* pcsNewName = pS1->get(0);
 
     //check is a valid name
-    if (isValidName(pwcsNewName) == false)
+    if (isValidName(pcsNewName) == false)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Valid function name expected.\n"), "newfun", 1);
         return types::Function::Error;
@@ -95,12 +95,12 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    wchar_t* pwcsName = pS2->get(0);
+    char* pcsName = pS2->get(0);
 
     types::Function* pFunc = NULL;
     symbol::Context* pCtx = symbol::Context::getInstance();
 
-    symbol::Variable* pVar = pCtx->getOrCreate(symbol::Symbol(pwcsName));
+    symbol::Variable* pVar = pCtx->getOrCreate(symbol::Symbol(pcsName));
     symbol::Variable::StackVar stack;
 
     //get original function
@@ -137,7 +137,7 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
     }
 
     //new function
-    pVar = pCtx->getOrCreate(symbol::Symbol(pwcsNewName));
+    pVar = pCtx->getOrCreate(symbol::Symbol(pcsNewName));
     if (pVar->empty())
     {
         pVar->put(pFunc, 0);

@@ -55,45 +55,45 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
     if (psInput->getSize() == 1)
     {
         /* "on" "off" "query" "stop" */
-        if (wcscmp(psInput->get(0), L"on") == 0)
+        if (strcmp(psInput->get(0), "on") == 0)
         {
             setWarningMode(TRUE);
             setWarningStop(FALSE);
             return types::Function::OK;
         }
 
-        if (wcscmp(psInput->get(0), L"off") == 0)
+        if (strcmp(psInput->get(0), "off") == 0)
         {
             setWarningMode(FALSE);
             setWarningStop(FALSE);
             return types::Function::OK;
         }
 
-        if (wcscmp(psInput->get(0), L"stop") == 0)
+        if (strcmp(psInput->get(0), "stop") == 0)
         {
             setWarningMode(TRUE);
             setWarningStop(TRUE);
             return types::Function::OK;
         }
 
-        if (wcscmp(psInput->get(0), L"query") == 0)
+        if (strcmp(psInput->get(0), "query") == 0)
         {
             if (getWarningMode())
             {
                 if (getWarningStop())
                 {
                     // WarningMode and WarningStop => warning stop mode active
-                    out.push_back(new types::String(L"stop"));
+                    out.push_back(new types::String("stop"));
                 }
                 else
                 {
                     // WarningMode and !WarningStop => warning on  mode active
-                    out.push_back(new types::String(L"on"));
+                    out.push_back(new types::String("on"));
                 }
             }
             else
             {
-                out.push_back(new types::String(L"off"));
+                out.push_back(new types::String("off"));
             }
             return types::Function::OK;
         }
@@ -103,12 +103,12 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
     {
         for (int i = 0; i < psInput->getSize() ; ++i)
         {
-            wchar_t* pwstTemp = psInput->get(i);
-            size_t iSize = (wcslen(pwstTemp) + 10 + 1);
-            wchar_t* pwstToPrint = (wchar_t*)MALLOC(sizeof(wchar_t) * iSize);
-            os_swprintf(pwstToPrint, iSize, _W("WARNING: %ls\n").c_str(), pwstTemp);
-            scilabForcedWriteW(pwstToPrint);
-            FREE(pwstToPrint);
+            char* pstTemp = psInput->get(i);
+            size_t iSize = (strlen(pstTemp) + 10 + 1);
+            char* pstToPrint = (char*)MALLOC(sizeof(char) * iSize);
+            os_sprintf(pstToPrint, iSize, _("WARNING: %s\n"), pstTemp);
+            scilabForcedWrite(pstToPrint);
+            FREE(pstToPrint);
         }
 
         if (getWarningStop())

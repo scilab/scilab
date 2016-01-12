@@ -30,7 +30,7 @@ types::Function::ReturnValue sci_cell_gw(types::typed_list &in, int _iRetCount, 
     {
         if (in[i]->isDouble() == false)
         {
-            return Overload::call(L"%_cell", in, _iRetCount, out);
+            return Overload::call("%_cell", in, _iRetCount, out);
         }
     }
 

@@ -47,14 +47,14 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
         return types::Function::Error;
     }
 
-    wchar_t* pwstModuleName = pStr->get(0);
+    char* pstModuleName = pStr->get(0);
 
     types::Bool* pOut = new types::Bool(0);
-    std::list<std::wstring> sModuleList = ConfigVariable::getModuleList();
-    std::list<std::wstring>::iterator it;
-    for (it = sModuleList.begin() ; it != sModuleList.end() ; it++)
+    std::list<std::string> sModuleList = ConfigVariable::getModuleList();
+    std::list<std::string>::iterator it;
+    for (auto& it : sModuleList)
     {
-        if (*it == pwstModuleName)
+        if (it == pstModuleName)
         {
             pOut->get()[0] = 1;
             break;

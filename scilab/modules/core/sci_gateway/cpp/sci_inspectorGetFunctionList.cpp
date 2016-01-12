@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_inspectorGetFunctionList(types::typed_list &in,
     symbol::Context* pC = symbol::Context::getInstance();
 
     std::list<symbol::Symbol> funcName;
-    int size = pC->getFunctionList(funcName, L"");
+    int size = pC->getFunctionList(funcName, "");
 
     types::String* pOut = new types::String(size, 4);
 
@@ -49,11 +49,11 @@ types::Function::ReturnValue sci_inspectorGetFunctionList(types::typed_list &in,
 
         if (pCall->isMacroFile())
         {
-            pOut->set(i, 3, pCall->getAs<types::MacroFile>()->getMacro() == NULL ? L"false" : L"true");
+            pOut->set(i, 3, pCall->getAs<types::MacroFile>()->getMacro() == NULL ? "false" : "true");
         }
         else
         {
-            pOut->set(i, 3, L"");
+            pOut->set(i, 3, "");
         }
 
         ++i;

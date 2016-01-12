@@ -32,17 +32,17 @@ enum ScopeRange
     UnknownRange
 };
 
-static ScopeRange getScopeFromOption(const wchar_t *_psScope)
+static ScopeRange getScopeFromOption(const char* _psScope)
 {
-    if (wcscmp(_psScope, L"all") == 0 || wcscmp(_psScope, L"a") == 0)
+    if (strcmp(_psScope, "all") == 0 || strcmp(_psScope, "a") == 0)
     {
         return All;
     }
-    if (wcscmp(_psScope, L"local") == 0 || wcscmp(_psScope, L"l") == 0)
+    if (strcmp(_psScope, "local") == 0 || strcmp(_psScope, "l") == 0)
     {
         return Local;
     }
-    if (wcscmp(_psScope, L"nolocal") == 0 || wcscmp(_psScope, L"n") == 0)
+    if (strcmp(_psScope, "nolocal") == 0 || strcmp(_psScope, "n") == 0)
     {
         return NoLocal;
     }
@@ -72,7 +72,7 @@ types::Function::ReturnValue sci_existsOrIsdef(types::typed_list &in, int _iRetC
         return types::Function::Error;
     }
 
-    const wchar_t *psScope = L"all"; // Default option is "all"
+    const char *psScope = "all"; // Default option is "all"
     if (in.size() == 2)
     {
         psScope = in[1]->getAs<types::String>()->get(0);

@@ -54,7 +54,7 @@ types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, 
     }
 
     types::String *pInString = in[1]->getAs<types::String>();
-    wchar_t** wcsStr = pInString->get();
+    char** cStr = pInString->get();
     types::Bool *pOutBool = new types::Bool(pInString->getRows(), pInString->getCols());
 
     switch (in[0]->getType())
@@ -64,7 +64,7 @@ types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, 
             types::Struct* pStruct = in[0]->getAs<types::Struct>();
             for (int i = 0; i < pInString->getSize(); i++)
             {
-                pOutBool->set(i, pStruct->exists(std::wstring(wcsStr[i])));
+                pOutBool->set(i, pStruct->exists(cStr[i]));
             }
             break;
         }
@@ -74,7 +74,7 @@ types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, 
             types::TList* pTL = in[0]->getAs<types::TList>();
             for (int i = 0; i < pInString->getSize(); i++)
             {
-                pOutBool->set(i, pTL->exists(std::wstring(wcsStr[i])));
+                pOutBool->set(i, pTL->exists(cStr[i]));
             }
             break;
         }

@@ -83,7 +83,7 @@ types::Function::ReturnValue sci_fieldnames(types::typed_list &in, int _iRetCoun
         types::UserType *pInUser = in[0]->getAs<types::UserType>();
 
         // Extract the sub-type
-        std::wstring subType (pInUser->getShortTypeStr());
+        std::string subType (pInUser->getShortTypeStr());
 
         // Extract the properties
         types::typed_list one(1, new types::Double(1));
@@ -95,8 +95,8 @@ types::Function::ReturnValue sci_fieldnames(types::typed_list &in, int _iRetCoun
             out.push_back(types::Double::Empty());
             return types::Function::OK;
         }
-        int nProp = ((types::String*) pProperties)->getSize();
 
+        int nProp = ((types::String*) pProperties)->getSize();
         pIT = new types::String(nProp + 1, 1);
         ((types::String*) pIT)->set(0, subType.data());
         for (int i = 0; i < nProp; ++i)
@@ -106,12 +106,12 @@ types::Function::ReturnValue sci_fieldnames(types::typed_list &in, int _iRetCoun
     }
 
     types::String *pAllFields = pIT->getAs<types::String>();
-    wchar_t **pwcsAllStrings =  pAllFields->get();
+    char** pcsAllStrings =  pAllFields->get();
     // shift to forget first value corresponding to type.
     //    ++pwcsAllStrings;
 
 
-    types::String *pNewString = new types::String(pAllFields->getSize() - 1, 1, pwcsAllStrings + 1);
+    types::String *pNewString = new types::String(pAllFields->getSize() - 1, 1, pcsAllStrings + 1);
 
     out.push_back(pNewString);
 

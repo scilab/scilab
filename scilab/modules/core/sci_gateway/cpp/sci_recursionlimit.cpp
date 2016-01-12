@@ -42,7 +42,7 @@ types::Function::ReturnValue sci_recursionlimit(types::typed_list &in, int _iRet
     if (in[0]->isString())
     {
         types::String* s = in[0]->getAs<types::String>();
-        if (s->isScalar() == false || wcscmp(s->get()[0], L"current") != 0)
+        if (s->isScalar() == false || strcmp(s->get()[0], "current") != 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 1, "current");
             return types::Function::Error;

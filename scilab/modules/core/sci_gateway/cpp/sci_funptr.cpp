@@ -46,11 +46,11 @@ types::Function::ReturnValue sci_funptr(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    wchar_t* pwcsName = pS1->get(0);
+    char* pcsName = pS1->get(0);
 
     symbol::Context* pCtx = symbol::Context::getInstance();
 
-    symbol::Variable* pVar = pCtx->getOrCreate(symbol::Symbol(pwcsName));
+    symbol::Variable* pVar = pCtx->getOrCreate(symbol::Symbol(pcsName));
     symbol::Variable::StackVar stack;
     bool bExist = false;
 
@@ -80,7 +80,7 @@ types::Function::ReturnValue sci_funptr(types::typed_list &in, int _iRetCount, t
 
     if (bExist)
     {
-        out.push_back(new types::String(pwcsName));
+        out.push_back(new types::String(pcsName));
     }
     else
     {

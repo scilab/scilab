@@ -18,5 +18,5 @@
 
 types::Function::ReturnValue sci_tlist_gw(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
-    return sci_tlist_or_mlist<types::TList>(in, _piRetCount, out, L"tlist");
+    return sci_tlist_or_mlist<types::TList>(in, _piRetCount, out, "tlist");
 }

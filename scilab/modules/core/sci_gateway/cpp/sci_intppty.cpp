@@ -42,11 +42,11 @@ types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, 
         }
 
         types::String* pMode = in[1]->getAs<types::String>();
-        if (os_wcsicmp(pMode->get(0), L"add") == 0)
+        if (stricmp(pMode->get(0), "add") == 0)
         {
             bAdd = true;
         }
-        else if (os_wcsicmp(pMode->get(0), L"remove") == 0)
+        else if (stricmp(pMode->get(0), "remove") == 0)
         {
             bAdd = false;
         }
@@ -81,7 +81,7 @@ types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, 
     else
     {
         //get list of reference modules
-        std::list<std::wstring> l = ConfigVariable::getReferenceModules();
+        std::list<std::string> l = ConfigVariable::getReferenceModules();
         if (l.size() == 0)
         {
             out.push_back(types::Double::Empty());
@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, 
         else
         {
             types::String* pOut = new types::String(1, (int)l.size());
-            std::list<std::wstring>::iterator it = l.begin();
+            std::list<std::string>::iterator it = l.begin();
 
             for (int i = 0; it != l.end() ; ++it, ++i)
             {

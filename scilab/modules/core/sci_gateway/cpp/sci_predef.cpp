@@ -37,7 +37,7 @@ types::Function::ReturnValue sci_predef(types::typed_list &in, int _iRetCount, t
     if (rhs == 0)
     {
         //return size
-        std::list<std::wstring> lst;
+        std::list<std::string> lst;
         int size = ctx->protectedVars(lst);
         out.push_back(new types::Double(size));
         return types::Function::OK;
@@ -59,19 +59,19 @@ types::Function::ReturnValue sci_predef(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    std::wstring opt(pS->get()[0]);
+    std::string opt(pS->get()[0]);
 
-    if (opt == L"all" || opt == L"a")
+    if (opt == "all" || opt == "a")
     {
         symbol::Context::getInstance()->protect();
     }
-    else if (opt == L"clear" || opt == L"c")
+    else if (opt == "clear" || opt == "c")
     {
         symbol::Context::getInstance()->unprotect();
     }
-    else if (opt == L"names" || opt == L"n")
+    else if (opt == "names" || opt == "n")
     {
-        std::list<std::wstring> lst;
+        std::list<std::string> lst;
         int size = ctx->protectedVars(lst);
 
         //create output string
@@ -83,7 +83,6 @@ types::Function::ReturnValue sci_predef(types::typed_list &in, int _iRetCount, t
 
         types::String* pS = new types::String(size, 1);
         int i = 0;
-        wchar_t** ws = pS->get();
         for (auto var : lst)
         {
             pS->set(i++, var.c_str());

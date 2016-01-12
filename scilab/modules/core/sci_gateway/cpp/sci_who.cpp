@@ -27,11 +27,11 @@ extern "C"
 
 types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, types::typed_list& out)
 {
-    wchar_t* wcsWhat = L"";
+    char* cWhat = "";
     bool bSorted = false;
     types::String* pStrOut = NULL;
     types::Double* pDblOut = NULL;
-    std::list<std::wstring> lstVar;
+    std::list<std::string> lstVar;
     int size = 0;
 
     if (in.size() < 0 || in.size() > 2)
@@ -48,10 +48,10 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
 
     if (in.size() == 0)
     {
-        std::wstringstream wstream;
-        symbol::Context::getInstance()->print(wstream, bSorted);
-        wstream << std::endl;
-        scilabForcedWriteW(wstream.str().c_str());
+        std::stringstream stream;
+        symbol::Context::getInstance()->print(stream, bSorted);
+        stream << std::endl;
+        scilabForcedWrite(stream.str().c_str());
         return types::Function::OK;
     }
 
@@ -71,7 +71,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
             return types::Function::Error;
         }
 
-        if (wcscmp(pStrSorted->get(0), L"sorted") == 0)
+        if (strcmp(pStrSorted->get(0), "sorted") == 0)
         {
             bSorted = true;
         }
@@ -98,24 +98,24 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
             return types::Function::Error;
         }
 
-        wcsWhat = pStrWhat->get(0);
+        cWhat = pStrWhat->get(0);
     }
 
-    if (wcscmp(wcsWhat, L"local") == 0 || wcscmp(wcsWhat, L"get") == 0)
+    if (strcmp(cWhat, "local") == 0 || strcmp(cWhat, "get") == 0)
     {
         size = symbol::Context::getInstance()->getVarsNameForWho(lstVar, bSorted);
     }
-    else if (wcscmp(wcsWhat, L"global") == 0)
+    else if (strcmp(cWhat, "global") == 0)
     {
         size = symbol::Context::getInstance()->getGlobalNameForWho(lstVar, bSorted);
     }
-    else if (bSorted == false && wcscmp(wcsWhat, L"sorted") == 0)
+    else if (bSorted == false && strcmp(cWhat, "sorted") == 0)
     {
         bSorted = true;
-        std::wstringstream wstream;
-        symbol::Context::getInstance()->print(wstream, bSorted);
-        wstream << std::endl;
-        scilabForcedWriteW(wstream.str().c_str());
+        std::stringstream stream;
+        symbol::Context::getInstance()->print(stream, bSorted);
+        stream << std::endl;
+        scilabForcedWrite(stream.str().c_str());
         return types::Function::OK;
     }
     else

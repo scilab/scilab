@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
 
     if (in.size() == 2)
     {
-        if (wcscmp(in[1]->getAs<types::String>()->get(0), L"string") == 0)
+        if (strcmp(in[1]->getAs<types::String>()->get(0), "string") == 0)
         {
             bStringMode = true;
         }
@@ -73,25 +73,25 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
 
     for (int i = 0 ; i < pIn->getSize() ; ++i)
     {
-        wchar_t *wcsCurrentIn = pIn->get(i);
-        wchar_t *pstMD5 = NULL;
+        char *cCurrentIn = pIn->get(i);
+        char *pstMD5 = NULL;
 
         if (bStringMode)
         {
-            pstPath = wide_string_to_UTF8(wcsCurrentIn);
-            pstMD5 = to_wide_string(md5_str(pstPath));
+            pstPath = cCurrentIn;
+            pstMD5 = md5_str(pstPath);
         }
         else
         {
             FILE *fp = NULL;
-            wchar_t *real_path = NULL;
+            char* real_path = NULL;
 
             /* Replaces SCI, ~, HOME, TMPDIR by the real path */
-            real_path = expandPathVariableW(wcsCurrentIn);
-            pstPath = wide_string_to_UTF8(real_path);
+            real_path = expandPathVariable(cCurrentIn);
+            pstPath = real_path;
 
             /* bug 4469 */
-            if (isdirW(real_path))
+            if (isdir(real_path))
             {
                 Scierror(999, _("%s: The file %s does not exist.\n"), "getmd5", pstPath);
                 FREE(pstPath);
@@ -100,14 +100,12 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            wcfopen(fp, pstPath, "rb");
+            fp = fopen(pstPath, "rb");
 
             if (fp)
             {
-                char* pstrFile = md5_file(fp);
-                pstMD5 = to_wide_string(pstrFile);
+                pstMD5 = md5_file(fp);
                 fclose(fp);
-                FREE(pstrFile);
             }
             else
             {

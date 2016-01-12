@@ -55,18 +55,18 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
     }
     else
     {
-        std::wstring wstLastErrorMessage = ConfigVariable::getLastErrorMessage();
-        std::vector<std::wstring> vectLines;
-        std::wistringstream iss(wstLastErrorMessage);
-        std::wstring line;
+        std::string stLastErrorMessage = ConfigVariable::getLastErrorMessage();
+        std::vector<std::string> vectLines;
+        std::istringstream iss(stLastErrorMessage);
+        std::string line;
         // get all lines
-        while (std::getline( iss, line, L'\n' ))
+        while (std::getline( iss, line, '\n' ))
         {
             vectLines.push_back(line);
         }
 
         // do not create an empty line if the end of the error message is '\n'
-        if (vectLines.back() == L"")
+        if (vectLines.back() == "")
         {
             vectLines.pop_back();
         }
@@ -94,14 +94,14 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
 
             if (_iRetCount > 3)
             {
-                std::wstring wstLastErrorFunction = ConfigVariable::getLastErrorFunction();
-                if (wstLastErrorFunction.size() == 0)
+                std::string stLastErrorFunction = ConfigVariable::getLastErrorFunction();
+                if (stLastErrorFunction.size() == 0)
                 {
-                    out.push_back(new types::String(L""));
+                    out.push_back(new types::String(""));
                 }
                 else
                 {
-                    out.push_back(new types::String(wstLastErrorFunction.c_str()));
+                    out.push_back(new types::String(stLastErrorFunction.c_str()));
                 }
             }
         }

@@ -54,18 +54,13 @@ types::Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, ty
         {
             types::String* pStrError = in[0]->getAs<types::String>();
             std::string strErr = "";
-            char* pstError = NULL;
             for (int i = 0; i < pStrError->getSize() - 1; i++)
             {
-                pstError = wide_string_to_UTF8(pStrError->get(i));
-                strErr = strErr + std::string(pstError) + std::string("\n");
-                FREE(pstError);
+                strErr = strErr + std::string(pStrError->get(i)) + "\n";
             }
 
-            pstError = wide_string_to_UTF8(pStrError->get(pStrError->getSize() - 1));
+            char* pstError = pStrError->get(pStrError->getSize() - 1);
             strErr = strErr + std::string(pstError);
-            FREE(pstError);
-
             Scierror(DEFAULT_ERROR_CODE, "%s", strErr.c_str());
         }
         else
@@ -131,9 +126,7 @@ types::Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        char* pst = wide_string_to_UTF8(pStr->get(0));
-        Scierror((int)pDbl->get(0), "%s\n", pst);
-        FREE(pst);
+        Scierror((int)pDbl->get(0), "%s\n", pStr->get(0));
     }
 
     return types::Function::Error;
