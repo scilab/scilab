@@ -35,7 +35,7 @@ extern "C"
 #include "FileExist.h"
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t* xls_basename(wchar_t* name);
+static const char* xls_basename(const char* name);
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -45,10 +45,10 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
 
     // input
     types::String* pStrPath = NULL;
-    wchar_t* filename_IN    = NULL;
+    char* filename_IN    = NULL;
 
-    wchar_t TMP[max_char_xls_open];
-    wchar_t* TMPDIR = NULL;
+    char TMP[max_char_xls_open];
+    char* TMPDIR = NULL;
 
     char **sst          = NULL;
     char **Sheetnames   = NULL;
@@ -60,13 +60,13 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
     int* Abspos = NULL;
     int nsheets = 0;
 
-    wchar_t sep[2];
+    char sep[2];
 #ifdef _MSC_VER
-    sep[0] = L'\\';
+    sep[0] = '\\';
 #else
-    sep[0] = L'/';
+    sep[0] = '/';
 #endif
-    sep[1] = L'\0';
+    sep[1] = '\0';
 
     // *** check the minimal number of input args. ***
     if (in.size() > 1)
@@ -91,14 +91,14 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
     }
 
     pStrPath = in[0]->getAs<types::String>();
-    filename_IN = expandPathVariableW(pStrPath->get(0));
+    filename_IN = expandPathVariable(pStrPath->get(0));
 
     // *** Perform operation. ***
     if (filename_IN)
     {
         /* bug 5615 */
         /* remove blank characters @ the end */
-        int len = (int)wcslen(filename_IN);
+        int len = (int)strlen(filename_IN);
         int i = 0;
 
         if (len >= 1)
@@ -114,17 +114,15 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
             }
         }
 
-        if (FileExistW(filename_IN) == false)
+        if (FileExist(filename_IN) == false)
         {
-            char* pstFile = wide_string_to_UTF8(filename_IN);
-            Scierror(999, _("The file %s does not exist.\n"), pstFile);
-            FREE(pstFile);
+            Scierror(999, _("The file %s does not exist.\n"), filename_IN);
             return types::Function::Error;
         }
     }
 
-    TMPDIR = getTMPDIRW();
-    wcscpy(TMP, TMPDIR);
+    TMPDIR = getTMPDIR();
+    strcpy(TMP, TMPDIR);
 
     if (TMPDIR)
     {
@@ -132,21 +130,16 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
         TMPDIR = NULL;
     }
 
-    wcscat(TMP, sep);
-    wcscat(TMP, xls_basename(filename_IN));
+    strcat(TMP, sep);
+    strcat(TMP, xls_basename(filename_IN));
 
-    char* tmp = wide_string_to_UTF8(TMP);
-    char* filename_in = wide_string_to_UTF8(filename_IN);
-    int result = ripole(filename_in, tmp, 0, 0);
-    free(tmp);
-    free(filename_in);
+    int result = ripole(filename_IN, TMP, 0, 0);
 
     if (result != OLE_OK)
     {
-        char* pstFile = wide_string_to_UTF8(filename_IN);
         if (result == OLEER_NO_INPUT_FILE)
         {
-            Scierror(999, _("%s: The file %s does not exist.\n"), "xls_open", pstFile);
+            Scierror(999, _("%s: The file %s does not exist.\n"), "xls_open", filename_IN);
         }
         else if (result == OLEER_NOT_OLE_FILE ||
                  result == OLEER_INSANE_OLE_FILE ||
@@ -154,36 +147,32 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
                  result == OLEER_MINIFAT_READ_FAIL ||
                  result == OLEER_PROPERTIES_READ_FAIL)
         {
-            Scierror(999, _("%s: File %s is not an ole2 file.\n"), "xls_open", pstFile);
+            Scierror(999, _("%s: File %s is not an ole2 file.\n"), "xls_open", filename_IN);
         }
         else if (result == -1)
         {
-            Scierror(999, _("%s: Cannot open file %s.\n"), "xls_open", pstFile);
+            Scierror(999, _("%s: Cannot open file %s.\n"), "xls_open", filename_IN);
         }
 
         if (filename_IN)
         {
             FREE(filename_IN);
             filename_IN = NULL;
-            FREE(pstFile);
         }
 
-        FREE(pstFile);
         return types::Function::Error;
     }
 
-    wcscat(TMP, sep);
-    wcscat(TMP, L"Workbook");
+    strcat(TMP, sep);
+    strcat(TMP, "Workbook");
 
-    iErr = mopen(TMP, L"rb", iSwap, &iId);
+    iErr = mopen(TMP, "rb", iSwap, &iId);
     if (iErr != MOPEN_NO_ERROR)
     {
         sciprint(_("There is no xls stream in the ole2 file %ls.\n"), filename_IN);
         if (iErr == MOPEN_CAN_NOT_OPEN_FILE)
         {
-            char* pstTMP = wide_string_to_UTF8(TMP);
-            Scierror(999, _("%s: Cannot open file %s.\n"), "xls_open", pstTMP);
-            FREE(pstTMP);
+            Scierror(999, _("%s: Cannot open file %s.\n"), "xls_open", TMP);
         }
         else if (iErr == MOPEN_INVALID_FILENAME)
         {
@@ -259,9 +248,7 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
         types::String* pStrSst = new types::String(1, ns);
         for (int i = 0; i < ns; i++)
         {
-            wchar_t* wcssst = to_wide_string(sst[i]);
-            pStrSst->set(i, wcssst);
-            free(wcssst);
+            pStrSst->set(i, sst[i]);
         }
         freeArrayOfString(sst, ns);
         out.push_back(pStrSst);
@@ -277,9 +264,7 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
         types::String* pStrSheets = new types::String(1, nsheets);
         for (int i = 0; i < nsheets; i++)
         {
-            wchar_t* wcssheet = to_wide_string(Sheetnames[i]);
-            pStrSheets->set(i, wcssheet);
-            free(wcssheet);
+            pStrSheets->set(i, Sheetnames[i]);
         }
         freeArrayOfString(Sheetnames, nsheets);
         out.push_back(pStrSheets);
@@ -309,13 +294,13 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t* xls_basename(wchar_t* name)
+static const char* xls_basename(const char* name)
 {
-    wchar_t* base = NULL;
+    const char* base = NULL;
 #ifdef _MSC_VER
-    base = wcsrchr (name, L'\\');
+    base = strrchr(name, '\\');
 #else
-    base = wcsrchr (name, L'/');
+    base = strrchr(name, '/');
 #endif
     return base ? base + 1 : name;
 }

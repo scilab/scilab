@@ -1582,10 +1582,7 @@ int OLE_open_directory(struct OLE_object *ole, char *directory)
     result = mkdir(directory, S_IRWXU);
 #else
     {
-        wchar_t *wdirectory = to_wide_string(directory);
-
-        result = createdirectoryW(wdirectory);
-        FREE(wdirectory);
+        result = createdirectory(directory);
     }
     /* If the function succeeds, the return value is nonzero.
      * If the function fails, the return value is zero. */

@@ -50,15 +50,13 @@ static char **removeAllBlankLines(const char **lines, int *sizelines);
 // =============================================================================
 csvResult* csvRead(const char *filename, const char *separator, const char *decimal, const char **toreplace, int sizetoreplace, const char *regexpcomments, int header)
 {
-    wchar_t *expandedFilename = NULL;
-    wchar_t *wideFilename = NULL;
+    char *expandedFilename = NULL;
     csvResult *result = NULL;
     int fd = 0;
     int f_swap = 0;
     double res = 0.0;
     int errMOPEN = MOPEN_INVALID_STATUS;
     int errMGETL = MGETL_ERROR;
-    wchar_t **pwstLines = NULL;
     char **pstLines = NULL;
     int nblines = 0;
     char **replacedInLines = NULL;
@@ -70,11 +68,9 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
         return NULL;
     }
 
-    wideFilename = to_wide_string((char*)filename);
-    expandedFilename = expandPathVariableW(wideFilename);
-    FREE(wideFilename);
+    expandedFilename = expandPathVariable(filename);
 
-    if (!FileExistW(expandedFilename))
+    if (!FileExist(expandedFilename))
     {
         result = (csvResult*)(MALLOC(sizeof(csvResult)));
         if (result)
@@ -91,7 +87,7 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
         return result;
     }
 
-    errMOPEN = mopen(expandedFilename, L"rt", f_swap, &fd); // rt = read only
+    errMOPEN = mopen(expandedFilename, "rt", f_swap, &fd); // rt = read only
     if (expandedFilename)
     {
         FREE(expandedFilename);
@@ -119,26 +115,15 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
         mgetl(fd, header, &nblines, &errMGETL);
     }
 
-    pwstLines = mgetl(fd, -1, &nblines, &errMGETL);
-    pstLines = (char**)MALLOC(sizeof(char*) * nblines);
-
-    {
-        int i = 0;
-        for (i = 0 ; i < nblines ; i++)
-        {
-            pstLines[i] = wide_string_to_UTF8(pwstLines[i]);
-        }
-
-    }
-
+    pstLines = mgetl(fd, -1, &nblines, &errMGETL);
     mclose(fd);
 
     if (errMGETL != MGETL_NO_ERROR)
     {
-        if (pwstLines)
+        if (pstLines)
         {
-            freeArrayOfWideString(pwstLines, nblines);
-            pwstLines = NULL;
+            freeArrayOfString(pstLines, nblines);
+            pstLines = NULL;
         }
 
         result = (csvResult*)(MALLOC(sizeof(csvResult)));
@@ -188,12 +173,11 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
             pCleanedLines = removeComments((const char**)pstLines, nblines, (const char*)regexpcomments, &nbCleanedLines, &iErr);
             if (pCleanedLines)
             {
-                if (pwstLines)
+                if (pstLines)
                 {
-                    freeArrayOfWideString(pwstLines, nblines);
-                    pwstLines = NULL;
+                    freeArrayOfString(pstLines, nblines);
+                    pstLines = NULL;
                 }
-                FREE(pstLines);
                 pstLines = pCleanedLines;
                 nblines = nbCleanedLines;
             }
@@ -213,7 +197,6 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
 
     result = csvTextScan((const char**)pstLines, nblines, (const char*)separator, (const char*)decimal);
     freeArrayOfString(pstLines, nblines);
-    freeArrayOfWideString(pwstLines, nblines);
 
     if (result)
     {
