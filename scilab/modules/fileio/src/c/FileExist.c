@@ -23,12 +23,19 @@
 BOOL FileExist(const char *filename)
 {
 #ifdef _MSC_VER
-    wchar_t *wcFilename = to_wide_string(filename);
-    if (wcFilename)
+    if (filename)
     {
-        BOOL bOK = FileExistW(wcFilename);
-        FREE(wcFilename);
-        return bOK;
+        WIN32_FIND_DATAA FindFileData;
+        HANDLE handle = FindFirstFileA(filename, &FindFileData);
+        if (handle != INVALID_HANDLE_VALUE)
+        {
+            FindClose (handle);
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
     }
     return FALSE;
 #else
@@ -42,41 +49,6 @@ BOOL FileExist(const char *filename)
     {
         return FALSE;
     }
-#endif
-
-}
-/*--------------------------------------------------------------------------*/
-BOOL FileExistW(const wchar_t *wcfilename)
-{
-#ifdef _MSC_VER
-    if (wcfilename)
-    {
-        WIN32_FIND_DATAW FindFileData;
-        HANDLE handle = FindFirstFileW (wcfilename, &FindFileData);
-        if (handle != INVALID_HANDLE_VALUE)
-        {
-            FindClose (handle);
-            return TRUE;
-        }
-        else
-        {
-            return FALSE;
-        }
-    }
-    else
-    {
-        return FALSE;
-    }
-
-#else
-    char *filename = wide_string_to_UTF8(wcfilename);
-    if (filename)
-    {
-        BOOL bOK = FileExist(filename);
-        FREE(filename);
-        return bOK;
-    }
-    return FALSE;
 #endif
 }
 /*--------------------------------------------------------------------------*/

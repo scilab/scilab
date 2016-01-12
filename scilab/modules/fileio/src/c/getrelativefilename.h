@@ -38,6 +38,5 @@
 #include "wchar.h"
 #include "dynlib_fileio.h"
 
-FILEIO_IMPEXP char* getrelativefilename(char *currentDirectory, char *absoluteFilename);
-FILEIO_IMPEXP wchar_t* getrelativefilenameW(wchar_t *currentDirectory, wchar_t *absoluteFilename);
+FILEIO_IMPEXP char* getrelativefilename(const char *currentDirectory, const char *absoluteFilename);
 #endif /* __GETRELATIVEFILENAME_H__ */

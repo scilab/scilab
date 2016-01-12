@@ -35,70 +35,31 @@
 #include "Sciwarning.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-static int DeleteDirectory(wchar_t *refcstrRootDirectory);
+static int DeleteDirectory(const char* refcstrRootDirectory);
 #else
-static int DeleteDirectory(char *refcstrRootDirectory);
+static int DeleteDirectory(const char *refcstrRootDirectory);
 #endif
 /*--------------------------------------------------------------------------*/
 BOOL removedir(char *path)
 {
     if (isdir(path))
     {
-#ifdef _MSC_VER
-        {
-            wchar_t *pstPath = to_wide_string(path);
-            if (pstPath)
-            {
-                removedirW(pstPath);
-                FREE(pstPath);
-                pstPath = NULL;
-            }
-        }
-#else
         DeleteDirectory(path);
-#endif
-        if (!isdir(path))
-        {
-            return TRUE;
-        }
-    }
-    return FALSE;
-}
-/*--------------------------------------------------------------------------*/
-BOOL removedirW(wchar_t *pathW)
-{
-    if (isdirW(pathW))
-    {
-#ifdef _MSC_VER
-        DeleteDirectory(pathW);
-#else
-        char *path = wide_string_to_UTF8(pathW);
-        if (path)
-        {
-            DeleteDirectory(path);
-            FREE(path);
-            path = NULL;
-        }
-#endif
-        if (!isdirW(pathW))
-        {
-            return TRUE;
-        }
     }
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-static int DeleteDirectory(wchar_t *refcstrRootDirectory)
+static int DeleteDirectory(const char* refcstrRootDirectory)
 {
-#define DEFAULT_PATTERN L"%ls/*.*"
+#define DEFAULT_PATTERN "%s/*.*"
     BOOL bDeleteSubdirectories = TRUE;
     BOOL bSubdirectory = FALSE;
     HANDLE hFile;
-    WIN32_FIND_DATAW FileInformation;
+    WIN32_FIND_DATAA FileInformation;
     DWORD dwError;
-    wchar_t	*strPattern		= NULL;
-    wchar_t	*strFilePath	= NULL;
+    char* strPattern = NULL;
+    char* strFilePath = NULL;
     int len = 0;
 
     if (refcstrRootDirectory == NULL)
@@ -106,19 +67,19 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
         return 1;
     }
 
-    len = (int)(wcslen(refcstrRootDirectory) + (int)wcslen(DEFAULT_PATTERN) + 1);
+    len = (int)(strlen(refcstrRootDirectory) + (int)strlen(DEFAULT_PATTERN) + 1);
 
-    strPattern = (wchar_t*)MALLOC(sizeof(wchar_t) * len);
+    strPattern = (char*)MALLOC(sizeof(char) * len);
     if (strPattern)
     {
-        os_swprintf(strPattern, len, DEFAULT_PATTERN, refcstrRootDirectory);
+        os_sprintf(strPattern, len, DEFAULT_PATTERN, refcstrRootDirectory);
     }
     else
     {
         return 1;
     }
 
-    hFile = FindFirstFileW(strPattern, &FileInformation);
+    hFile = FindFirstFileA(strPattern, &FileInformation);
     if (strPattern)
     {
         FREE(strPattern);
@@ -129,14 +90,14 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
     {
         do
         {
-            if ( (wcscmp(FileInformation.cFileName, L".") != 0) && (wcscmp(FileInformation.cFileName, L"..") != 0) )
+            if ( (strcmp(FileInformation.cFileName, ".") != 0) && (strcmp(FileInformation.cFileName, "..") != 0) )
             {
-#define FORMAT_PATH_TO_REMOVE L"%ls\\%ls"
-                int len = (int) (wcslen(refcstrRootDirectory) + wcslen(FORMAT_PATH_TO_REMOVE) + wcslen((wchar_t*)(FileInformation.cFileName)) + 1);
-                strFilePath = (wchar_t*) MALLOC(sizeof(wchar_t) * len);
+#define FORMAT_PATH_TO_REMOVE "%s\\%s"
+                int len = (int) (strlen(refcstrRootDirectory) + strlen(FORMAT_PATH_TO_REMOVE) + strlen((char*)(FileInformation.cFileName)) + 1);
+                strFilePath = (char*) MALLOC(sizeof(char) * len);
                 if (strFilePath)
                 {
-                    os_swprintf(strFilePath, len, FORMAT_PATH_TO_REMOVE, refcstrRootDirectory, FileInformation.cFileName);
+                    os_sprintf(strFilePath, len, FORMAT_PATH_TO_REMOVE, refcstrRootDirectory, FileInformation.cFileName);
                 }
 
                 if (FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
@@ -167,7 +128,7 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
                 }
                 else
                 {
-                    if (SetFileAttributesW(strFilePath, FILE_ATTRIBUTE_NORMAL) == FALSE)
+                    if (SetFileAttributesA(strFilePath, FILE_ATTRIBUTE_NORMAL) == FALSE)
                     {
                         if (strFilePath)
                         {
@@ -182,7 +143,7 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
                         return GetLastError();
                     }
 
-                    if (DeleteFileW(strFilePath) == FALSE)
+                    if (DeleteFileA(strFilePath) == FALSE)
                     {
                         if (strFilePath)
                         {
@@ -205,7 +166,7 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
                 strFilePath = NULL;
             }
         }
-        while (FindNextFileW(hFile, &FileInformation) == TRUE);
+        while (FindNextFileA(hFile, &FileInformation) == TRUE);
 
         FindClose(hFile);
         if (strFilePath)
@@ -228,11 +189,11 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
         {
             if (!bSubdirectory)
             {
-                if (SetFileAttributesW(refcstrRootDirectory, FILE_ATTRIBUTE_NORMAL) == FALSE)
+                if (SetFileAttributesA(refcstrRootDirectory, FILE_ATTRIBUTE_NORMAL) == FALSE)
                 {
                     return GetLastError();
                 }
-                if (RemoveDirectoryW(refcstrRootDirectory) == FALSE)
+                if (RemoveDirectoryA(refcstrRootDirectory) == FALSE)
                 {
                     return GetLastError();
                 }
@@ -255,7 +216,7 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
 #endif
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
-static int DeleteDirectory(char *refcstrRootDirectory)
+static int DeleteDirectory(const char *refcstrRootDirectory)
 {
     DIR *dir;
     struct dirent *ent;

@@ -156,7 +156,7 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
             {
                 scilabForcedWrite(StringToWrite[i]);
             }
-            scilabForcedWriteW(L"\n");
+            scilabForcedWrite("\n");
         }
     }
     else

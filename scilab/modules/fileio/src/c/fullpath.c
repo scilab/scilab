@@ -33,31 +33,7 @@ static int normalizePath(char *path);
 char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
 {
 #if defined(_MSC_VER)
-    char *returnedFullPath = NULL;
-
-    wchar_t *wPath = to_wide_string((char *)_Path);
-    wchar_t *wFullPath = (wchar_t *) MALLOC(sizeof(wchar_t) * _SizeInBytes);
-
-    _wfullpath(wFullPath, wPath, _SizeInBytes);
-    returnedFullPath = wide_string_to_UTF8(wFullPath);
-    if (returnedFullPath)
-    {
-        strcpy(_FullPath, returnedFullPath);
-        FREE(returnedFullPath);
-        returnedFullPath = NULL;
-    }
-
-    if (wPath)
-    {
-        FREE(wPath);
-        wPath = NULL;
-    }
-    if (wFullPath)
-    {
-        FREE(wFullPath);
-        wFullPath = NULL;
-    }
-
+    _fullpath(_FullPath, _Path, _SizeInBytes);
     return _FullPath;
 #else
     char *rp = NULL;
@@ -146,51 +122,6 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
     return _FullPath;
 #endif
 }
-
-/*--------------------------------------------------------------------------*/
-wchar_t *get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t _SizeInBytes)
-{
-#if defined(_MSC_VER)
-    if (_wcPath)
-    {
-        _wfullpath(_wcFullPath, _wcPath, _SizeInBytes);
-        return _wcFullPath;
-    }
-    return NULL;
-#else
-    if (_wcPath)
-    {
-        char *_Path = wide_string_to_UTF8(_wcPath);
-        if (_Path)
-        {
-            char *_FullPath = (char *)MALLOC(sizeof(char) * (_SizeInBytes));
-
-            if (_FullPath)
-            {
-                wchar_t *wcResult = NULL;
-                char *rp = NULL;
-
-                rp = realpath(_Path, _FullPath);
-                if (!rp)
-                {
-                    strcpy(_FullPath, _Path);
-                    normalizePath(_FullPath);
-                }
-                wcResult = to_wide_string(_FullPath);
-                FREE(_FullPath);
-                if (wcResult)
-                {
-                    wcscpy(_wcFullPath, wcResult);
-                    FREE(wcResult);
-                }
-            }
-            FREE(_Path);
-        }
-    }
-    return _wcFullPath;
-#endif
-}
-
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static unsigned int isDirSeparator(const char c)

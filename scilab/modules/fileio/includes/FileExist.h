@@ -23,12 +23,5 @@
 * @return TRUE or FALSE
 */
 FILEIO_IMPEXP BOOL FileExist(const char *filename);
-
-/**
-* verify if filename is a valid file
-* @param filename a wide string
-* @return TRUE or FALSE
-*/
-FILEIO_IMPEXP BOOL FileExistW(const wchar_t *wcfilename);
 /*--------------------------------------------------------------------------*/
 #endif /* __FILEEXIST_H__ */

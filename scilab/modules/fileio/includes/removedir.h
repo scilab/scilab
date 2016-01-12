@@ -24,12 +24,5 @@
 */
 FILEIO_IMPEXP BOOL removedir(char *path);
 
-/**
-* Remove a directory
-* @param path the directory (wide string)
-* @return the result of the operation
-*/
-FILEIO_IMPEXP BOOL removedirW(wchar_t *pathW);
-
 #endif /* __REMOVEDIR_H__ */
 /*--------------------------------------------------------------------------*/

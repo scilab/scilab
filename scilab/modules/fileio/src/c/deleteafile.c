@@ -51,38 +51,11 @@ BOOL deleteafile(const char *filename)
         BOOL bOK = FALSE;
         if (filename)
         {
-            wchar_t *wcfilename = to_wide_string(filename);
-            if (wcfilename)
-            {
-                bOK = deleteafileW(wcfilename);
-                FREE(wcfilename);
-            }
+            bOK = DeleteFileA(filename);
         }
 
         return bOK;
     }
 #endif
-}
-/*--------------------------------------------------------------------------*/
-BOOL deleteafileW(const wchar_t *filenameW)
-{
-    BOOL bOK = FALSE;
-#ifndef _MSC_VER
-    {
-        char *filename = wide_string_to_UTF8(filenameW);
-        if (filename)
-        {
-            bOK = deleteafile(filename);
-            FREE(filename);
-            filename = NULL;
-        }
-    }
-#else
-    if (filenameW)
-    {
-        bOK = DeleteFileW(filenameW);
-    }
-#endif
-    return bOK;
 }
 /*--------------------------------------------------------------------------*/

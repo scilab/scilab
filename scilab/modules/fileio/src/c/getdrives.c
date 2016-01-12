@@ -58,45 +58,4 @@ char **getdrives(int *nbDrives)
 
     return DrivesList;
 }
-
-wchar_t **getdrivesW(int *nbDrives)
-{
-    wchar_t **DrivesList = NULL;
-    *nbDrives = 0;
-#ifdef _MSC_VER
-    {
-#define DriveMask 0x00000001L
-        wchar_t DrvLetter[4] = L"A:\\";
-        DWORD uDriveMask = GetLogicalDrives();
-
-        while (DrvLetter[0] <= 'Z')
-        {
-            if (uDriveMask & DriveMask)
-            {
-                (*nbDrives)++;
-                if (DrivesList)
-                {
-                    DrivesList = (wchar_t**)REALLOC(DrivesList, sizeof(wchar_t*) * (*nbDrives));
-                    DrivesList[*nbDrives - 1] = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(DrvLetter) + 1));
-                }
-                else
-                {
-                    DrivesList = (wchar_t**)MALLOC(sizeof(wchar_t*) * (*nbDrives));
-                    DrivesList[*nbDrives - 1] = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(DrvLetter) + 1));
-                }
-                wcscpy(DrivesList[*nbDrives - 1], DrvLetter);
-            }
-            DrvLetter[0]++;
-            uDriveMask = uDriveMask >> 1;
-        }
-    }
-#else
-    (*nbDrives)++;
-    DrivesList = (wchar_t**)MALLOC(sizeof(wchar_t*) * (*nbDrives));
-    DrivesList[*nbDrives - 1] = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(L"/") + 1));
-    wcscpy(DrivesList[*nbDrives - 1], L"/");
-#endif
-
-    return DrivesList;
-}
 /*--------------------------------------------------------------------------*/

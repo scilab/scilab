@@ -21,6 +21,7 @@
 #include <unistd.h>
 #define GETCWD(x,y) getcwd(x,y)
 #endif
+#include "os_string.h"
 #include "sciprint.h"
 #include "scicurdir.h"
 #include "sci_malloc.h"
@@ -29,20 +30,14 @@
 #include "configvariable_interface.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
-int scichdirW(wchar_t *wcpath)
+int scichdir(const char *path)
 {
-#ifndef _MSC_VER
-    char *path = NULL;
-    if (wcpath == NULL)
-    {
-        return 1;
-    }
-
-    path = wide_string_to_UTF8(wcpath);
     if (path == NULL)
     {
         return 1;
     }
+
+#ifndef _MSC_VER
 
     if (chdir(path) == -1)
     {
@@ -65,12 +60,7 @@ int scichdirW(wchar_t *wcpath)
     }
 
 #else
-    if (wcpath == NULL)
-    {
-        return 1;
-    }
-
-    if ( _wchdir(wcpath) )
+    if (_chdir(path) )
     {
         switch (errno)
         {
@@ -78,13 +68,7 @@ int scichdirW(wchar_t *wcpath)
             {
                 if ( getWarningMode() )
                 {
-                    char *path = wide_string_to_UTF8(wcpath);
-                    if (path)
-                    {
-                        sciprint(_("Can't go to directory %s.\n"), path);
-                        FREE(path);
-                        path = NULL;
-                    }
+                    sciprint(_("Can't go to directory %s.\n"), path);
                 }
             }
             break;
@@ -110,78 +94,24 @@ int scichdirW(wchar_t *wcpath)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int scichdir(char *path)
-{
-    int ierr = 1;
-    wchar_t *wcpath = NULL;
-    if (path == NULL)
-    {
-        return ierr;
-    }
-    wcpath = to_wide_string(path);
-    if (wcpath == NULL)
-    {
-        return ierr;
-    }
-    ierr = scichdirW(wcpath);
-    FREE(wcpath);
-    wcpath = NULL;
-    return ierr;
-}
-/*--------------------------------------------------------------------------*/
-wchar_t * scigetcwdW(int *err)
-{
-    wchar_t *wcCurrentDir = NULL;
-
-#ifndef _MSC_VER
-    char currentDir[PATH_MAX + 1];
-    if (GETCWD(currentDir, PATH_MAX) == NULL)
-    {
-        if ( getWarningMode() )
-        {
-            sciprint(_("Can't get current directory.\n"));
-        }
-        *err = 1;
-    }
-    else
-    {
-        wcCurrentDir = to_wide_string(currentDir);
-        *err = 0;
-    }
-#else
-    wchar_t wcdir[PATH_MAX + 1];
-    if ( _wgetcwd(wcdir, PATH_MAX) == NULL )
-    {
-        if ( getWarningMode() )
-        {
-            sciprint(_("Can't get current directory.\n"));
-        }
-        *err = 1;
-    }
-    else
-    {
-        wcCurrentDir = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcdir) + 1));
-        if (wcCurrentDir)
-        {
-            wcscpy(wcCurrentDir, wcdir);
-            *err = 0;
-        }
-    }
-#endif
-    return wcCurrentDir;
-}
-/*--------------------------------------------------------------------------*/
 char * scigetcwd(int *err)
 {
-    char *currentDir = NULL;
-    wchar_t *wcCurrentDir = scigetcwdW(err);
-    if (wcCurrentDir)
+    char currentDir[PATH_MAX + 1];
+#ifndef _MSC_VER
+    if (GETCWD(currentDir, PATH_MAX) == NULL)
+#else
+    if (_getcwd(currentDir, PATH_MAX) == NULL )
+#endif
     {
-        currentDir = wide_string_to_UTF8(wcCurrentDir);
-        FREE(wcCurrentDir);
-        wcCurrentDir = NULL;
+        if (getWarningMode())
+        {
+            sciprint(_("Can't get current directory.\n"));
+        }
+        *err = 1;
     }
-    return currentDir;
+
+    *err = 0;
+
+    return os_strdup(currentDir);
 }
 /*--------------------------------------------------------------------------*/
-

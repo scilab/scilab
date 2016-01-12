@@ -85,7 +85,7 @@ static double *fileinfo_Windows(const char* _pstFilename, int *_piErr)
         return NULL;
     }
 
-    os_sprintf(DriveTemp, PATH_MAX + FILENAME_MAX + 1, "%ls", _pstFilename);
+    os_sprintf(DriveTemp, PATH_MAX + FILENAME_MAX + 1, "%s", _pstFilename);
     if ((DriveTemp[strlen(DriveTemp) - 1] == '/') || (DriveTemp[strlen(DriveTemp) - 1] == '\\'))
     {
         DriveTemp[strlen(DriveTemp) - 1] = '\0';

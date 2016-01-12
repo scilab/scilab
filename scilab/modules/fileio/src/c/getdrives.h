@@ -23,5 +23,4 @@
 #include "dynlib_fileio.h"
 
 FILEIO_IMPEXP char **getdrives(int *nbDrives);
-FILEIO_IMPEXP wchar_t **getdrivesW(int *nbDrives);
 #endif /* __GETDRIVES_H__ */

@@ -42,30 +42,4 @@ BOOL isDrive(const char *strname)
     return bOK;
 }
 /*--------------------------------------------------------------------------*/
-BOOL isDriveW(const wchar_t *wcstrname)
-{
-    BOOL bOK = FALSE;
-#ifdef _MSC_VER
-    if (wcstrname)
-    {
-        if ( ((wcslen(wcstrname) == 2) || (wcslen(wcstrname) == 3)) && (wcstrname[1] == L':') )
-        {
-            if (wcslen(wcstrname) == 3)
-            {
-                if ( (wcstrname[2] != L'\\') && (wcstrname[2] != L'/') )
-                {
-                    return FALSE;
-                }
-            }
-
-            if ( ( wcstrname[0] >= L'A' && wcstrname[0] <= L'Z' ) || ( wcstrname[0] >= L'a' && wcstrname[0] <= L'z' ) )
-            {
-                bOK = TRUE;
-            }
-        }
-    }
-#endif
-    return bOK;
-}
-/*--------------------------------------------------------------------------*/
 

@@ -32,55 +32,51 @@ static BOOL find_spec( char *filename , char *filespec);
 #endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-wchar_t** findfilesW(const wchar_t *path, const wchar_t *filespec, int *sizeListReturned, BOOL warning)
+char** findfiles(const char *path, const char *filespec, int *sizeListReturned, BOOL warning)
 {
-    wchar_t **ListFiles = NULL;
-    wchar_t *wcstrPattern = NULL;
+    char** ListFiles = NULL;
+    char* strPattern = NULL;
     HANDLE hFile;
-    WIN32_FIND_DATAW FileInformation;
+    WIN32_FIND_DATAA FileInformation;
     int nbElements = 0;
     int len = 0;
 
-    len = (int)( wcslen(path) + wcslen(filespec) + 8);
-    wcstrPattern = (wchar_t*)MALLOC(sizeof(wchar_t) * len);
-    os_swprintf(wcstrPattern, len, L"%ls/%ls", path, filespec);
+    len = (int)(strlen(path) + strlen(filespec) + 8);
+    strPattern = (char*)MALLOC(sizeof(char) * len);
+    os_sprintf(strPattern, len, "%s/%s", path, filespec);
 
-    hFile = FindFirstFileW(wcstrPattern, &FileInformation);
-    if (wcstrPattern)
+    hFile = FindFirstFile(strPattern, &FileInformation);
+    if (strPattern)
     {
-        FREE(wcstrPattern);
-        wcstrPattern = NULL;
+        FREE(strPattern);
+        strPattern = NULL;
     }
 
     if (hFile != INVALID_HANDLE_VALUE)
     {
         do
         {
-            if (wcscmp(FileInformation.cFileName, L".") &&  wcscmp(FileInformation.cFileName, L".."))
+            if (strcmp(FileInformation.cFileName, ".") &&  strcmp(FileInformation.cFileName, ".."))
             {
                 nbElements++;
                 if (ListFiles)
                 {
-                    ListFiles = (wchar_t**)REALLOC(ListFiles, sizeof(char*) * (nbElements));
+                    ListFiles = (char**)REALLOC(ListFiles, sizeof(char*) * (nbElements));
                 }
                 else
                 {
-                    ListFiles = (wchar_t**)MALLOC(sizeof(wchar_t*) * (nbElements));
+                    ListFiles = (char**)MALLOC(sizeof(char*) * (nbElements));
                 }
-                ListFiles[nbElements - 1] = os_wcsdup(FileInformation.cFileName);
+                ListFiles[nbElements - 1] = os_strdup(FileInformation.cFileName);
             }
         }
-        while (FindNextFileW(hFile, &FileInformation) == TRUE);
+        while (FindNextFileA(hFile, &FileInformation) == TRUE);
     }
     else
     {
         if (warning)
         {
-            char* pstPath = wide_string_to_UTF8(path);
-            char* pstError = wide_string_to_UTF8(_wcserror(errno));
-            Sciwarning(_("Warning: Could not open directory %s: %s\n"), pstPath, pstError);
-            FREE(pstPath);
-            FREE(pstError);
+            Sciwarning(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
         }
     }
     FindClose(hFile);
@@ -88,31 +84,6 @@ wchar_t** findfilesW(const wchar_t *path, const wchar_t *filespec, int *sizeList
     return ListFiles;
 }
 
-char** findfiles(const char *path, const char *filespec, int *sizeListReturned, BOOL warning)
-{
-    int i = 0;
-    wchar_t** wListFiles = NULL;
-    char** ListFiles = NULL;
-    wchar_t* pstPath = to_wide_string(path);
-    wchar_t* pstFileSpec = to_wide_string(filespec);
-    wListFiles = findfilesW(pstPath, pstFileSpec, sizeListReturned, warning);
-
-    if (*sizeListReturned)
-    {
-        ListFiles = (char**)MALLOC(sizeof(char*) * *sizeListReturned);
-
-        for (i = 0 ; i < *sizeListReturned ; i++)
-        {
-            ListFiles[i] = wide_string_to_UTF8(wListFiles[i]);
-            FREE(wListFiles[i]);
-        }
-        FREE(wListFiles);
-    }
-
-    FREE(pstPath);
-    FREE(pstFileSpec);
-    return ListFiles;
-}
 #else
 /*--------------------------------------------------------------------------*/
 char **findfiles(const char *path, const char *filespec, int *sizeListReturned, BOOL warning)
@@ -159,36 +130,6 @@ char **findfiles(const char *path, const char *filespec, int *sizeListReturned, 
     *sizeListReturned = nbElements;
     return ListFiles;
 }
-/*--------------------------------------------------------------------------*/
-wchar_t** findfilesW(const wchar_t* path, const wchar_t* filespec, int* sizeListReturned, BOOL warning)
-{
-    int i = 0;
-    char* pstPath = wide_string_to_UTF8(path);
-    char* pstFileSpec = wide_string_to_UTF8(filespec);
-
-    wchar_t** wListFiles = NULL;
-    char** ListFiles = findfiles(pstPath, pstFileSpec, sizeListReturned, warning);
-
-    if (*sizeListReturned != 0)
-    {
-        wListFiles = (wchar_t**)MALLOC(sizeof(wchar_t*) * (*sizeListReturned));
-
-        for (i = 0 ; i < (*sizeListReturned) ; i++)
-        {
-            wListFiles[i] = to_wide_string(ListFiles[i]);
-            FREE(ListFiles[i]);
-        }
-
-        FREE(ListFiles);
-    }
-
-    FREE(pstPath);
-    FREE(pstFileSpec);
-    return wListFiles;
-}
-#endif
-/*--------------------------------------------------------------------------*/
-#ifndef _MSC_VER
 /**
  * Check if the file matches the mask
  * '*' for all chars

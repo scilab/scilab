@@ -28,7 +28,6 @@
 */
 
 FILEIO_IMPEXP char** findfiles(const char* path, const char* filespec, int *sizeListReturned, BOOL warning);
-FILEIO_IMPEXP wchar_t** findfilesW(const wchar_t* path, const wchar_t* filespec, int *sizeListReturned, BOOL warning);
 
 #endif /* __FINDFILES_H__ */
 /*--------------------------------------------------------------------------*/

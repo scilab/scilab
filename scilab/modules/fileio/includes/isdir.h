@@ -24,12 +24,5 @@
 * @return if the directory exists (TRUE) or not (FALSE)
 */
 FILEIO_IMPEXP BOOL isdir(const char *path);
-
-/**
-* Check if a directory exists or not
-* @param path the directory (wide string)
-* @return if the directory exists (TRUE) or not (FALSE)
-*/
-FILEIO_IMPEXP BOOL isdirW(const wchar_t *wcpath);
 #endif /* __ISDIR_H__ */
 /*--------------------------------------------------------------------------*/

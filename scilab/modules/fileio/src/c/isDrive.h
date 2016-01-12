@@ -24,15 +24,5 @@
 * returns always false on linux
 */
 BOOL isDrive(const char *strname);
-
-/**
-* check if strname is a drive (only for windows)
-* @param[in] a wide string
-* @return TRUE or FALSE
-* returns always false on linux
-*/
-
-BOOL isDriveW(const wchar_t *wcstrname);
-
 #endif
 /*--------------------------------------------------------------------------*/

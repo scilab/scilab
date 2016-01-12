@@ -26,7 +26,5 @@
 */
 FILEIO_IMPEXP char *createtempfilename(const char *prefix, BOOL bShortFormat);
 
-FILEIO_IMPEXP wchar_t *createtempfilenameW(const wchar_t *wcprefix, BOOL bShortFormat);
-
 #endif /* __CREATETEMPFILENAME_H__ */
 /*--------------------------------------------------------------------------*/

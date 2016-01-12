@@ -41,44 +41,22 @@ BOOL isdir(const char * path)
         bOK = TRUE;
     }
 #else
-    wchar_t *wcpath = to_wide_string((char*)path);
-    if (wcpath == NULL)
-    {
-        return FALSE;
-    }
-    bOK = isdirW(wcpath);
-    FREE(wcpath);
-#endif
-    return bOK;
-}
-/*--------------------------------------------------------------------------*/
-BOOL isdirW(const wchar_t * wcpath)
-{
-    BOOL bOK = FALSE;
-#ifndef _MSC_VER
-    struct stat buf;
-    char *path = wide_string_to_UTF8(wcpath);
-    if (path == NULL)
-    {
-        return FALSE;
-    }
-    bOK = isdir(path);
-    FREE(path);
-#else
-    if (isDriveW(wcpath))
+    if (isDrive(path))
     {
         return TRUE;
     }
     else
     {
         DWORD attr = 0;
-        wchar_t *tmpPath = os_wcsdup(wcpath);
+        char* tmpPath = os_strdup(path);
 
-        if ( (tmpPath[wcslen(tmpPath) - 1] == L'\\') || (tmpPath[wcslen(tmpPath) - 1] == L'/') )
+        int len = (int)strlen(tmpPath);
+        if ((tmpPath[len - 1] == '\\') || (tmpPath[len - 1] == '/'))
         {
-            tmpPath[wcslen(tmpPath) - 1] = L'\0';
+            tmpPath[len - 1] = '\0';
         }
-        attr = GetFileAttributesW(tmpPath);
+
+        attr = GetFileAttributesA(tmpPath);
         FREE(tmpPath);
         if (attr == INVALID_FILE_ATTRIBUTES)
         {

@@ -21,14 +21,7 @@
  * @param path : the path where Scilab should go
  * @return err : the error code
  */
-FILEIO_IMPEXP int scichdir(char *path);
-
-/**
-* Changes scilab current directory (wide string)
-* @param path : the path where Scilab should go
-* @return err : the error code
-*/
-FILEIO_IMPEXP int scichdirW(wchar_t *wcpath);
+FILEIO_IMPEXP int scichdir(const char *path);
 
 /**
  * Get scilab current directory
@@ -36,13 +29,6 @@ FILEIO_IMPEXP int scichdirW(wchar_t *wcpath);
  * @return path : the current path
  */
 FILEIO_IMPEXP char * scigetcwd(int *err);
-
-/**
-* Get scilab current directory (wide string)
-* @param[out] err : the error code
-* @return path : the current path
-*/
-FILEIO_IMPEXP wchar_t * scigetcwdW(int *err);
 
 #endif /* __SCICURDIR_H__ */
 /*--------------------------------------------------------------------------*/
