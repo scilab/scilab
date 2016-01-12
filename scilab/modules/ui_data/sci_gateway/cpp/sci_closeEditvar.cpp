@@ -21,6 +21,7 @@ extern "C"
 {
 #include "getScilabJavaVM.h"
 #include "Scierror.h"
+#include "localization.h"
 }
 
 using namespace org_scilab_modules_ui_data;

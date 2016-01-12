@@ -63,7 +63,7 @@ using namespace org_scilab_modules_ui_data;
 using std::string;
 
 static std::set<string> createScilabDefaultVariablesSet();
-static char * getListName(char * variableName);
+static char * getListName(const char * variableName);
 static std::string formatMatrix(int nbRows, int nbCols, double *pdblReal, double *pdblImg);
 static char * valueToDisplay(types::InternalType* pIT, int variableType, int nbRows, int nbCols);
 void OpenBrowseVar()
@@ -94,7 +94,7 @@ void SetBrowseVarData()
     iLocalVariablesUsed = ctx->getVarsToVariableBrowser(lstVars);
     iLocalVariablesUsed += ctx->getLibsToVariableBrowser(lstLibs);
 
-    char **pstAllVariableNames = new char*[iLocalVariablesUsed];
+    const char **pstAllVariableNames = new const char*[iLocalVariablesUsed];
     char **pstAllVariableVisibility = new char*[iLocalVariablesUsed];
     char **pstAllVariableListTypes = new char*[iLocalVariablesUsed];
     int *piAllVariableBytes = new int[iLocalVariablesUsed];
@@ -121,7 +121,7 @@ void SetBrowseVarData()
         types::InternalType* pIT = sv->m_pIT;
 
         // get name
-        pstAllVariableNames[i] = wide_string_to_UTF8(var->getSymbol().getName().data());
+        pstAllVariableNames[i] = var->getSymbol().getName().data();
 
         // get visibility
         if (sv->m_globalVisible == true)
@@ -223,7 +223,7 @@ void SetBrowseVarData()
         symbol::ScopedLibrary* sl = lib->top();
 
         // get name
-        pstAllVariableNames[i] = wide_string_to_UTF8(lib->getSymbol().getName().data());
+        pstAllVariableNames[i] = lib->getSymbol().getName().data();
 
         // get visibility
         if (sl->m_iLevel != iLevel)
@@ -262,7 +262,6 @@ void SetBrowseVarData()
 
     for (int i = 0; i < iLocalVariablesUsed; ++i)
     {
-        FREE(pstAllVariableNames[i]);
         FREE(pstAllVariableVisibility[i]);
         FREE(pstAllVariableSizes[i]);
         FREE(pstAllVariableListTypes[i]);
@@ -335,7 +334,7 @@ static std::set<string> createScilabDefaultVariablesSet()
     return ScilabDefaultVariables;
 }
 
-static char * getListName(char * variableName)
+static char * getListName(const char * variableName)
 {
     SciErr sciErr;
     int *piAddr = NULL;

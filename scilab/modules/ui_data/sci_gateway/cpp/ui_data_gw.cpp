@@ -18,15 +18,15 @@
 #include "localization.h"
 #include "charEncoding.h"
 
-#define MODULE_NAME L"ui_data"
+#define MODULE_NAME "ui_data"
 
 int UiDataModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"browsevar", &sci_browsevar, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"editvar", &sci_editvar, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"filebrowser", &sci_filebrowser, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"updatebrowsevar", &sci_updatebrowsevar, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"closeEditvar", &sci_closeEditvar, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("browsevar", &sci_browsevar, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("editvar", &sci_editvar, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("filebrowser", &sci_filebrowser, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("updatebrowsevar", &sci_updatebrowsevar, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("closeEditvar", &sci_closeEditvar, MODULE_NAME));
 
     return 0;
 }

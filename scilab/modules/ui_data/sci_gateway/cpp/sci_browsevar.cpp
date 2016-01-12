@@ -18,6 +18,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "BrowseVarManager.h"
+#include "localization.h"
 }
 
 static const std::string fname("browsevar");
