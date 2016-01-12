@@ -490,7 +490,7 @@ types::InternalType* createblklist(const scicos_block* const Blocks, const int f
     }
     else
     {
-        m->append(new types::String(L""));
+        m->append(new types::String(""));
     }
 
     return m;

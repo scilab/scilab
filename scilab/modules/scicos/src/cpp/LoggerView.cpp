@@ -37,14 +37,14 @@ LoggerView::~LoggerView()
 {
 }
 
-static std::wstring levelTable[] =
+static std::string levelTable[] =
 {
-    L"TRACE",
-    L"DEBUG",
-    L"INFO",
-    L"WARNING",
-    L"ERROR",
-    L"FATAL",
+    "TRACE",
+    "DEBUG",
+    "INFO",
+    "WARNING",
+    "ERROR",
+    "FATAL",
 };
 
 static std::string displayTable[] =
@@ -57,11 +57,11 @@ static std::string displayTable[] =
     "Xcos fatal: ",
 };
 
-enum LogLevel LoggerView::indexOf(const wchar_t* name)
+enum LogLevel LoggerView::indexOf(const char* name)
 {
     for (int i = LOG_TRACE; i <= LOG_FATAL; i++)
     {
-        if (!wcscmp(name, levelTable[i].data()))
+        if (!strcmp(name, levelTable[i].data()))
         {
             return static_cast<enum LogLevel>(i);
         }
@@ -69,13 +69,13 @@ enum LogLevel LoggerView::indexOf(const wchar_t* name)
     return LOG_UNDEF;
 }
 
-const wchar_t* LoggerView::toString(enum LogLevel level)
+const char* LoggerView::toString(enum LogLevel level)
 {
     if (LOG_TRACE <= level && level <= LOG_FATAL)
     {
         return levelTable[level].data();
     }
-    return L"";
+    return "";
 }
 
 const char* LoggerView::toDisplay(enum LogLevel level)
@@ -143,33 +143,6 @@ void LoggerView::log(enum LogLevel level, const char* msg, ...)
             std::cerr << LoggerView::toDisplay(level);
             std::cerr << str;
         }
-    }
-}
-
-void LoggerView::log(enum LogLevel level, const wchar_t* msg, ...)
-{
-    if (level >= this->m_level)
-    {
-        const int N = 1024;
-        wchar_t* str = new wchar_t[N];
-
-        va_list opts;
-        va_start(opts, msg);
-        vswprintf(str, N, msg, opts);
-        va_end(opts);
-
-        if (USE_SCILAB_WRITE)
-        {
-            scilabForcedWrite(LoggerView::toDisplay(level));
-            scilabForcedWriteW(str);
-        }
-        else
-        {
-            std::cerr << LoggerView::toDisplay(level);
-            std::wcerr << str;
-        }
-
-        delete[] str;
     }
 }
 

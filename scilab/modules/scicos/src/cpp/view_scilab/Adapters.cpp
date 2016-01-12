@@ -66,7 +66,7 @@ Adapters::~Adapters()
     adapters.clear();
 }
 
-Adapters::adapters_index_t Adapters::lookup_by_typename(const std::wstring& name)
+Adapters::adapters_index_t Adapters::lookup_by_typename(const std::string& name)
 {
     adapters_t::iterator it = std::lower_bound(adapters.begin(), adapters.end(), name);
     if (it != adapters.end() && !(name < it->name))
@@ -77,7 +77,7 @@ Adapters::adapters_index_t Adapters::lookup_by_typename(const std::wstring& name
 }
 
 
-std::wstring Adapters::get_typename(Adapters::adapters_index_t kind)
+std::string Adapters::get_typename(Adapters::adapters_index_t kind)
 {
     for (auto it : adapters)
     {
@@ -87,13 +87,13 @@ std::wstring Adapters::get_typename(Adapters::adapters_index_t kind)
         }
     }
 
-    return L"";
+    return "";
 }
 
 
 const model::BaseObject* Adapters::descriptor(types::InternalType* v)
 {
-    const std::wstring& name = v->getShortTypeStr();
+    const std::string& name = v->getShortTypeStr();
     adapters_t::iterator it = std::lower_bound(adapters.begin(), adapters.end(), name);
     if (v->isUserType() && it != adapters.end() && !(name < it->name))
     {

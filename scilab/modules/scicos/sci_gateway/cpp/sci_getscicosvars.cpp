@@ -188,16 +188,13 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
         ok = false;
         for (size_t i = 0; i < nentries; ++i)
         {
-            char* field = wide_string_to_UTF8(il_str->get(j));
-            if (strcmp(field, entry[i]) == 0)
+            if (strcmp(il_str->get(j), entry[i]) == 0)
             {
                 dyn_char->set(j + 1, entry[i]);
 
                 ok = true;
-                FREE(field);
                 break;
             }
-            FREE(field);
         }
 
         // If failed then display an error message and exit
@@ -216,7 +213,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
     types::InternalType* element; // Declare 'element' out of the loop to be able to return it alone in case il_str->getSize()==1
     for (int j = 0; j < m1 * n1; j++)
     {
-        char* field = wide_string_to_UTF8(il_str->get(j));
+        char* field = il_str->get(j);
 
         /*****************************************************************
         * Entries that can be retrieved by 'il_state_save' global variable
@@ -517,11 +514,9 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
             Scierror(999, _("%s: Error with parameter \"%s\".\n"), funname.data(), il_str->get(j));
             dyn_char->killMe();
             ret->killMe();
-            FREE(field);
             return types::Function::Error;
         }
 
-        FREE(field);
         ret->append(element);
     }
 

@@ -30,13 +30,13 @@ public:
     StateAdapter(const Controller& c, org_scilab_modules_scicos::model::Diagram* adaptee);
     ~StateAdapter();
 
-    static const std::wstring getSharedTypeStr()
+    static const std::string getSharedTypeStr()
     {
-        return L"xcs";
+        return "xcs";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::string getTypeStr();
+    std::string getShortTypeStr();
 };
 
 } /* namespace view_scilab */

@@ -83,9 +83,7 @@ types::Function::ReturnValue sci_coserror(types::typed_list &in, int _iRetCount,
     // Write the argument message elements into 'coserr.buf', line by line
     for (int i = 0; i < inputMsg->getSize(); ++i)
     {
-        char* c_str = wide_string_to_UTF8(inputMsg->get(i));
-        sprintf(coserr.buf, "%s\n%s", coserr.buf, c_str);
-        FREE(c_str);
+        sprintf(coserr.buf, "%s\n%s", coserr.buf, inputMsg->get(i));
     }
     set_block_error(-5);
 

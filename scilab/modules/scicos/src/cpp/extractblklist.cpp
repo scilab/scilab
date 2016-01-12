@@ -143,7 +143,7 @@ static bool getString(types::InternalType* p, char** dest)
         types::String* s = p->getAs<types::String>();
         if (s->isScalar())
         {
-            *dest = wide_string_to_UTF8(s->get()[0]);
+            *dest = os_strdup(s->get()[0]);
             return true;
         }
     }
@@ -297,14 +297,14 @@ bool extractblklist(types::TList* t, scicos_block* const Block)
     types::InternalType* pIT = nullptr;
 
     /* 2 - nevprt */
-    if (getDoubleAsInt(t->getField(L"nevprt"), &Block->nevprt) == false)
+    if (getDoubleAsInt(t->getField("nevprt"), &Block->nevprt) == false)
     {
         return false;
     }
 
     /* 3 - funpt */
     //function ptr hide in double*
-    pIT = t->getField(L"funpt");
+    pIT = t->getField("funpt");
     if (pIT->isDouble())
     {
         types::Double* d = pIT->getAs<types::Double>();
@@ -312,14 +312,14 @@ bool extractblklist(types::TList* t, scicos_block* const Block)
     }
 
     /* 4 - type */
-    if (getDoubleAsInt(t->getField(L"type"), &Block->type) == false)
+    if (getDoubleAsInt(t->getField("type"), &Block->type) == false)
     {
         return false;
     }
 
     /* 5 - scsptr */
     //function ptr hide in double*
-    pIT = t->getField(L"scsptr");
+    pIT = t->getField("scsptr");
     if (pIT->isDouble())
     {
         types::Double* d = pIT->getAs<types::Double>();
@@ -327,37 +327,37 @@ bool extractblklist(types::TList* t, scicos_block* const Block)
     }
 
     /* 6 - nz */
-    if (getDoubleAsInt(t->getField(L"nz"), &Block->nz) == false)
+    if (getDoubleAsInt(t->getField("nz"), &Block->nz) == false)
     {
         return false;
     }
 
     /* 7 - z */
-    if (getDoubleArray(t->getField(L"z"), &Block->z, Block->nz) == false)
+    if (getDoubleArray(t->getField("z"), &Block->z, Block->nz) == false)
     {
         return false;
     }
 
     /* 8 - noz */
-    if (getDoubleAsInt(t->getField(L"noz"), &Block->noz) == false)
+    if (getDoubleAsInt(t->getField("noz"), &Block->noz) == false)
     {
         return false;
     }
 
     /* 9 - ozsz */
-    if (getDoubleArrayAsInt(t->getField(L"ozsz"), &Block->ozsz, Block->noz * 2) == false)
+    if (getDoubleArrayAsInt(t->getField("ozsz"), &Block->ozsz, Block->noz * 2) == false)
     {
         return false;
     }
 
     /* 10 - oztyp */
-    if (getDoubleArrayAsInt(t->getField(L"oztyp"), &Block->ozsz, Block->noz) == false)
+    if (getDoubleArrayAsInt(t->getField("oztyp"), &Block->ozsz, Block->noz) == false)
     {
         return false;
     }
 
     /* 11 - oz */
-    pIT = t->getField(L"oz");
+    pIT = t->getField("oz");
     if (pIT->isList())
     {
         types::List* ozptr = pIT->getAs<types::List>();
@@ -388,43 +388,43 @@ bool extractblklist(types::TList* t, scicos_block* const Block)
     }
 
     /* 12 - nx */
-    if (getDoubleAsInt(t->getField(L"nx"), &Block->nx) == false)
+    if (getDoubleAsInt(t->getField("nx"), &Block->nx) == false)
     {
         return false;
     }
 
     /* 13 - x */
-    if (getDoubleArray(t->getField(L"x"), &Block->x, Block->nx) == false)
+    if (getDoubleArray(t->getField("x"), &Block->x, Block->nx) == false)
     {
         return false;
     }
 
     /* 14 - xd */
-    if (getDoubleArray(t->getField(L"xd"), &Block->xd, Block->nx) == false)
+    if (getDoubleArray(t->getField("xd"), &Block->xd, Block->nx) == false)
     {
         return false;
     }
 
     /* 15 - res */
-    if (getDoubleArray(t->getField(L"res"), &Block->res, Block->nx) == false)
+    if (getDoubleArray(t->getField("res"), &Block->res, Block->nx) == false)
     {
         return false;
     }
 
     /* 16 - nin */
-    if (getDoubleAsInt(t->getField(L"nin"), &Block->nin) == false)
+    if (getDoubleAsInt(t->getField("nin"), &Block->nin) == false)
     {
         return false;
     }
 
     /* 17 - insz */
-    if (getDoubleArrayAsInt(t->getField(L"insz"), &Block->insz, Block->nin * 3) == false)
+    if (getDoubleArrayAsInt(t->getField("insz"), &Block->insz, Block->nin * 3) == false)
     {
         return false;
     }
 
     /* 18 - inptr */
-    pIT = t->getField(L"inptr");
+    pIT = t->getField("inptr");
     if (pIT->isList())
     {
         types::List* inptr = pIT->getAs<types::List>();
@@ -455,19 +455,19 @@ bool extractblklist(types::TList* t, scicos_block* const Block)
     }
 
     /* 19 - nout */
-    if (getDoubleAsInt(t->getField(L"nout"), &Block->nout) == false)
+    if (getDoubleAsInt(t->getField("nout"), &Block->nout) == false)
     {
         return false;
     }
 
     /* 20 - outsz */
-    if (getDoubleArrayAsInt(t->getField(L"outsz"), &Block->outsz, Block->nout * 3) == false)
+    if (getDoubleArrayAsInt(t->getField("outsz"), &Block->outsz, Block->nout * 3) == false)
     {
         return false;
     }
 
     /* 21 - outptr */
-    pIT = t->getField(L"outptr");
+    pIT = t->getField("outptr");
     if (pIT->isList())
     {
         types::List* outptr = pIT->getAs<types::List>();
@@ -498,61 +498,61 @@ bool extractblklist(types::TList* t, scicos_block* const Block)
     }
 
     /* 22 - nevout */
-    if (getDoubleAsInt(t->getField(L"nevout"), &Block->nevout) == false)
+    if (getDoubleAsInt(t->getField("nevout"), &Block->nevout) == false)
     {
         return false;
     }
 
     /* 23 - evout */
-    if (getDoubleArray(t->getField(L"evout"), &Block->evout, Block->nevout) == false)
+    if (getDoubleArray(t->getField("evout"), &Block->evout, Block->nevout) == false)
     {
         return false;
     }
 
     /* 24 - nrpar */
-    if (getDoubleAsInt(t->getField(L"nrpar"), &Block->nrpar) == false)
+    if (getDoubleAsInt(t->getField("nrpar"), &Block->nrpar) == false)
     {
         return false;
     }
 
     /* 25 - rpar */
-    if (getDoubleArray(t->getField(L"rpar"), &Block->rpar, Block->nrpar) == false)
+    if (getDoubleArray(t->getField("rpar"), &Block->rpar, Block->nrpar) == false)
     {
         return false;
     }
 
     /* 26 - nipar */
-    if (getDoubleAsInt(t->getField(L"nipar"), &Block->nipar) == false)
+    if (getDoubleAsInt(t->getField("nipar"), &Block->nipar) == false)
     {
         return false;
     }
 
     /* 27 - ipar */
-    if (getDoubleArrayAsInt(t->getField(L"ipar"), &Block->ipar, Block->nipar) == false)
+    if (getDoubleArrayAsInt(t->getField("ipar"), &Block->ipar, Block->nipar) == false)
     {
         return false;
     }
 
     /* 28 - nopar */
-    if (getDoubleAsInt(t->getField(L"nopar"), &Block->nopar) == false)
+    if (getDoubleAsInt(t->getField("nopar"), &Block->nopar) == false)
     {
         return false;
     }
 
     /* 29 - oparsz */
-    if (getDoubleArrayAsInt(t->getField(L"oparsz"), &Block->oparsz, 2 * Block->nopar) == false)
+    if (getDoubleArrayAsInt(t->getField("oparsz"), &Block->oparsz, 2 * Block->nopar) == false)
     {
         return false;
     }
 
     /* 30 - opartyp */
-    if (getDoubleArrayAsInt(t->getField(L"opartyp"), &Block->opartyp, Block->nopar) == false)
+    if (getDoubleArrayAsInt(t->getField("opartyp"), &Block->opartyp, Block->nopar) == false)
     {
         return false;
     }
 
     /* 31 - opar */
-    pIT = t->getField(L"opar");
+    pIT = t->getField("opar");
     if (pIT->isList())
     {
         types::List* opar = pIT->getAs<types::List>();
@@ -583,37 +583,37 @@ bool extractblklist(types::TList* t, scicos_block* const Block)
     }
 
     /* 32 - ng */
-    if (getDoubleAsInt(t->getField(L"ng"), &Block->ng) == false)
+    if (getDoubleAsInt(t->getField("ng"), &Block->ng) == false)
     {
         return false;
     }
 
     /* 33 - g */
-    if (getDoubleArray(t->getField(L"g"), &Block->g, Block->ng) == false)
+    if (getDoubleArray(t->getField("g"), &Block->g, Block->ng) == false)
     {
         return false;
     }
 
     /* 34 - ztyp */
-    if (getDoubleAsInt(t->getField(L"ztyp"), &Block->ztyp) == false)
+    if (getDoubleAsInt(t->getField("ztyp"), &Block->ztyp) == false)
     {
         return false;
     }
 
     /* 35 - jroot */
-    if (getDoubleArrayAsInt(t->getField(L"jroot"), &Block->jroot, Block->ng) == false)
+    if (getDoubleArrayAsInt(t->getField("jroot"), &Block->jroot, Block->ng) == false)
     {
         return false;
     }
 
     /* 36 - label */
-    if (getString(t->getField(L"label"), &Block->label) == false)
+    if (getString(t->getField("label"), &Block->label) == false)
     {
         return false;
     }
 
     /* 37 - work*/
-    pIT = t->getField(L"work");
+    pIT = t->getField("work");
     if (pIT->isDouble())
     {
         types::Double* d = pIT->getAs<types::Double>();
@@ -621,19 +621,19 @@ bool extractblklist(types::TList* t, scicos_block* const Block)
     }
 
     /* 38 - nmode*/
-    if (getDoubleAsInt(t->getField(L"nmode"), &Block->nmode) == false)
+    if (getDoubleAsInt(t->getField("nmode"), &Block->nmode) == false)
     {
         return false;
     }
 
     /* 39 - mode */
-    if (getDoubleArrayAsInt(t->getField(L"mode"), &Block->mode, Block->nmode) == false)
+    if (getDoubleArrayAsInt(t->getField("mode"), &Block->mode, Block->nmode) == false)
     {
         return false;
     }
 
     /* 40 - xprop */
-    if (getDoubleArrayAsInt(t->getField(L"xprop"), &Block->xprop, Block->nx) == false)
+    if (getDoubleArrayAsInt(t->getField("xprop"), &Block->xprop, Block->nx) == false)
     {
         return false;
     }

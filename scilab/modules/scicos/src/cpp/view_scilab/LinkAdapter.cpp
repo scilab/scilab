@@ -203,10 +203,7 @@ struct id
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        char* c_str = wide_string_to_UTF8(current->get(0));
-        std::string id(c_str);
-        FREE(c_str);
-
+        std::string id(current->get(0));
         controller.setObjectProperty(adaptee, LINK, LABEL, id);
         return true;
     }
@@ -843,13 +840,13 @@ LinkAdapter::LinkAdapter(const Controller& c, org_scilab_modules_scicos::model::
     if (property<LinkAdapter>::properties_have_not_been_set())
     {
         property<LinkAdapter>::fields.reserve(7);
-        property<LinkAdapter>::add_property(L"xx", &xx::get, &xx::set);
-        property<LinkAdapter>::add_property(L"yy", &yy::get, &yy::set);
-        property<LinkAdapter>::add_property(L"id", &id::get, &id::set);
-        property<LinkAdapter>::add_property(L"thick", &thick::get, &thick::set);
-        property<LinkAdapter>::add_property(L"ct", &ct::get, &ct::set);
-        property<LinkAdapter>::add_property(L"from", &from::get, &from::set);
-        property<LinkAdapter>::add_property(L"to", &to::get, &to::set);
+        property<LinkAdapter>::add_property("xx", &xx::get, &xx::set);
+        property<LinkAdapter>::add_property("yy", &yy::get, &yy::set);
+        property<LinkAdapter>::add_property("id", &id::get, &id::set);
+        property<LinkAdapter>::add_property("thick", &thick::get, &thick::set);
+        property<LinkAdapter>::add_property("ct", &ct::get, &ct::set);
+        property<LinkAdapter>::add_property("from", &from::get, &from::set);
+        property<LinkAdapter>::add_property("to", &to::get, &to::set);
     }
 
     // If the Link has been added to a diagram, the following lines will dig up its information at model-level
@@ -869,11 +866,11 @@ LinkAdapter::~LinkAdapter()
 {
 }
 
-std::wstring LinkAdapter::getTypeStr()
+std::string LinkAdapter::getTypeStr()
 {
     return getSharedTypeStr();
 }
-std::wstring LinkAdapter::getShortTypeStr()
+std::string LinkAdapter::getShortTypeStr()
 {
     return getSharedTypeStr();
 }

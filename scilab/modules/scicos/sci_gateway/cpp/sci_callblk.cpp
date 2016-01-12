@@ -156,7 +156,7 @@ types::Function::ReturnValue sci_callblk(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    if (wcscmp(s->get()[0], L"scicos_block"))
+    if (strcmp(s->get()[0], "scicos_block"))
     {
         Scierror(888, _("%s : First argument must be a valid scicos_block typed list.\n"), name.data());
         return types::Function::Error;

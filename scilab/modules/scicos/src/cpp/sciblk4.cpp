@@ -292,7 +292,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             if (Blocks->nx != 0)
             {
                 /* 14 - xd */
-                if (getDoubleArray(t->getField(L"xd"), Blocks->xd) == false)
+                if (getDoubleArray(t->getField("xd"), Blocks->xd) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -302,7 +302,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
                 if ((funtyp[kfun - 1] == 10004) || (funtyp[kfun - 1] == 10005))
                 {
                     /* 15 - res */
-                    if (getDoubleArray(t->getField(L"res"), Blocks->res) == false)
+                    if (getDoubleArray(t->getField("res"), Blocks->res) == false)
                     {
                         t->killMe();
                         set_block_error(-1);
@@ -320,7 +320,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             /* 21 - outptr */
             if (Blocks->nout > 0)
             {
-                types::InternalType* pIT = t->getField(L"outptr");
+                types::InternalType* pIT = t->getField("outptr");
                 if (pIT && pIT->isList())
                 {
                     types::List* lout = pIT->getAs<types::List>();
@@ -349,7 +349,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             /* 7 - z */
             if (Blocks[0].nz != 0)
             {
-                if (getDoubleArray(t->getField(L"z"), Blocks->z) == false)
+                if (getDoubleArray(t->getField("z"), Blocks->z) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -363,7 +363,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             if (Blocks[0].nx != 0)
             {
                 /* 13 - x */
-                if (getDoubleArray(t->getField(L"x"), Blocks->x) == false)
+                if (getDoubleArray(t->getField("x"), Blocks->x) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -371,7 +371,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
                 }
 
                 /* 14 - xd */
-                if (getDoubleArray(t->getField(L"xd"), Blocks->xd) == false)
+                if (getDoubleArray(t->getField("xd"), Blocks->xd) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -388,7 +388,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
         case 3:
         {
             /* 23 - evout */
-            if (getDoubleArray(t->getField(L"evout"), Blocks->evout) == false)
+            if (getDoubleArray(t->getField("evout"), Blocks->evout) == false)
             {
                 t->killMe();
                 set_block_error(-1);
@@ -404,7 +404,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             /* 7 - z */
             if (Blocks[0].nz != 0)
             {
-                if (getDoubleArray(t->getField(L"z"), Blocks->z) == false)
+                if (getDoubleArray(t->getField("z"), Blocks->z) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -418,7 +418,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             if (Blocks[0].nx != 0)
             {
                 /* 13 - x */
-                if (getDoubleArray(t->getField(L"x"), Blocks->x) == false)
+                if (getDoubleArray(t->getField("x"), Blocks->x) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -426,7 +426,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
                 }
 
                 /* 14 - xd */
-                if (getDoubleArray(t->getField(L"xd"), Blocks->xd) == false)
+                if (getDoubleArray(t->getField("xd"), Blocks->xd) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -442,7 +442,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             /* 7 - z */
             if (Blocks[0].nz != 0)
             {
-                if (getDoubleArray(t->getField(L"z"), Blocks->z) == false)
+                if (getDoubleArray(t->getField("z"), Blocks->z) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -464,7 +464,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             /* 7 - z */
             if (Blocks[0].nz != 0)
             {
-                if (getDoubleArray(t->getField(L"z"), Blocks->z) == false)
+                if (getDoubleArray(t->getField("z"), Blocks->z) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -478,7 +478,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             if (Blocks[0].nx != 0)
             {
                 /* 13 - x */
-                if (getDoubleArray(t->getField(L"x"), Blocks->x) == false)
+                if (getDoubleArray(t->getField("x"), Blocks->x) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -486,7 +486,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
                 }
 
                 /* 14 - xd */
-                if (getDoubleArray(t->getField(L"xd"), Blocks->xd) == false)
+                if (getDoubleArray(t->getField("xd"), Blocks->xd) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -497,7 +497,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             /* 21 - outptr */
             if (Blocks->nout > 0)
             {
-                types::InternalType* pIT = t->getField(L"outptr");
+                types::InternalType* pIT = t->getField("outptr");
                 if (pIT && pIT->isList())
                 {
                     types::List* lout = pIT->getAs<types::List>();
@@ -531,7 +531,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             if (Blocks[0].nx != 0)
             {
                 /* 40 - xprop */
-                if (getDoubleArrayAsInt(t->getField(L"xprop"), Blocks->xprop) == false)
+                if (getDoubleArrayAsInt(t->getField("xprop"), Blocks->xprop) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -547,7 +547,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
         case 9:
         {
             /* 33 - g */
-            if (getDoubleArray(t->getField(L"g"), Blocks->g) == false)
+            if (getDoubleArray(t->getField("g"), Blocks->g) == false)
             {
                 t->killMe();
                 set_block_error(-1);
@@ -557,7 +557,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             if (get_phase_simulation() == 1)
             {
                 /* 39 - mode */
-                if (getDoubleArrayAsInt(t->getField(L"mode"), Blocks->mode) == false)
+                if (getDoubleArrayAsInt(t->getField("mode"), Blocks->mode) == false)
                 {
                     t->killMe();
                     set_block_error(-1);
@@ -574,7 +574,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             if ((funtyp[kfun - 1] == 10004) || (funtyp[kfun - 1] == 10005))
             {
                 /* 15 - res */
-                if (getDoubleArray(t->getField(L"res"), Blocks->res) == false)
+                if (getDoubleArray(t->getField("res"), Blocks->res) == false)
                 {
                     t->killMe();
                     set_block_error(-1);

@@ -32,13 +32,13 @@ public:
     ParamsAdapter(const Controller& c, org_scilab_modules_scicos::model::Diagram* adaptee);
     ~ParamsAdapter();
 
-    static const std::wstring getSharedTypeStr()
+    static const std::string getSharedTypeStr()
     {
-        return L"params";
+        return "params";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::string getTypeStr();
+    std::string getShortTypeStr();
 
     types::InternalType* getDocContent() const;
     void setDocContent(types::InternalType* v);

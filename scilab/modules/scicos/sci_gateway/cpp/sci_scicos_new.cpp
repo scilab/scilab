@@ -65,7 +65,7 @@ types::InternalType * alloc_and_set(kind_t k, types::String* type_name, types::t
     // the first header entry is the type
     for (int i = 1; i < (int)in.size(); i++)
     {
-        std::wstring name (type_name->get(i));
+        std::string name (type_name->get(i));
         if (!adaptor->setProperty(name, in[i], controller))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
@@ -85,7 +85,7 @@ types::InternalType * alloc_and_set_as_tlist(types::String* type_name, types::ty
     Adaptor adaptor;
     for (int i = 1; i < (int)in.size(); i++)
     {
-        std::wstring name(type_name->get(i));
+        std::string name(type_name->get(i));
         if (!adaptor.hasProperty(name))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
@@ -112,7 +112,7 @@ types::InternalType * alloc_and_set_as_mlist(types::String* type_name, types::ty
     Adaptor adaptor;
     for (int i = 1; i < (int)in.size(); i++)
     {
-        std::wstring name(type_name->get(i));
+        std::string name(type_name->get(i));
         if (!adaptor.hasProperty(name))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
@@ -243,8 +243,7 @@ static ScicosID get(types::GenericType* UIDs, int index)
     {
         case types::InternalType::ScilabString:
         {
-            wchar_t* str = UIDs->getAs<types::String>()->get(index);
-            std::wistringstream iss(str);
+            std::istringstream iss(UIDs->getAs<types::String>()->get(index));
             iss >> std::hex >> ret;
             break;
         }

@@ -42,17 +42,17 @@ namespace view_scilab
 namespace
 {
 
-const std::wstring MBLOCK (L"MBLOCK");
-const std::wstring MPBLOCK (L"MPBLOCK");
-const std::wstring in (L"in");
-const std::wstring intype (L"intype");
-const std::wstring out (L"out");
-const std::wstring outtype (L"outtype");
-const std::wstring param (L"param");
-const std::wstring paramv (L"paramv");
-const std::wstring pprop (L"pprop");
-const std::wstring nameF (L"nameF");
-const std::wstring funtxt (L"funtxt");
+const std::string MBLOCK ("MBLOCK");
+const std::string MPBLOCK ("MPBLOCK");
+const std::string in ("in");
+const std::string intype ("intype");
+const std::string out ("out");
+const std::string outtype ("outtype");
+const std::string param ("param");
+const std::string paramv ("paramv");
+const std::string pprop ("pprop");
+const std::string nameF ("nameF");
+const std::string funtxt ("funtxt");
 
 struct orig
 {
@@ -156,7 +156,7 @@ struct flip
         std::vector<double> angle;
         controller.getObjectProperty(adaptee, BLOCK, ANGLE, angle);
 
-        int mirrorAndFlip = angle[0];
+        int mirrorAndFlip = (int)angle[0];
         mirrorAndFlip ^= 1 << 0;
 
         data[0] = mirrorAndFlip;
@@ -864,9 +864,7 @@ struct id
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        char* c_str = wide_string_to_UTF8(current->get(0));
-        std::string id(c_str);
-        FREE(c_str);
+        std::string id(current->get(0));
 
         controller.setObjectProperty(adaptee, BLOCK, LABEL, id);
         return true;
@@ -982,9 +980,7 @@ struct style
                 return false;
             }
 
-            char* c_str = wide_string_to_UTF8(current->get(0));
-            std::string style(c_str);
-            FREE(c_str);
+            std::string style(current->get(0));
 
             controller.setObjectProperty(adaptee, BLOCK, STYLE, style);
             return true;
@@ -1016,24 +1012,24 @@ static void initialize_fields()
     if (property<GraphicsAdapter>::properties_have_not_been_set())
     {
         property<GraphicsAdapter>::fields.reserve(18);
-        property<GraphicsAdapter>::add_property(L"orig", &orig::get, &orig::set);
-        property<GraphicsAdapter>::add_property(L"sz", &sz::get, &sz::set);
-        property<GraphicsAdapter>::add_property(L"flip", &flip::get, &flip::set);
-        property<GraphicsAdapter>::add_property(L"theta", &theta::get, &theta::set);
-        property<GraphicsAdapter>::add_property(L"exprs", &exprs::get, &exprs::set);
-        property<GraphicsAdapter>::add_property(L"pin", &pin::get, &pin::set);
-        property<GraphicsAdapter>::add_property(L"pout", &pout::get, &pout::set);
-        property<GraphicsAdapter>::add_property(L"pein", &pein::get, &pein::set);
-        property<GraphicsAdapter>::add_property(L"peout", &peout::get, &peout::set);
-        property<GraphicsAdapter>::add_property(L"gr_i", &gr_i::get, &gr_i::set);
-        property<GraphicsAdapter>::add_property(L"id", &id::get, &id::set);
-        property<GraphicsAdapter>::add_property(L"in_implicit", &in_implicit::get, &in_implicit::set);
-        property<GraphicsAdapter>::add_property(L"out_implicit", &out_implicit::get, &out_implicit::set);
-        property<GraphicsAdapter>::add_property(L"in_style", &in_style::get, &in_style::set);
-        property<GraphicsAdapter>::add_property(L"out_style", &out_style::get, &out_style::set);
-        property<GraphicsAdapter>::add_property(L"in_label", &in_label::get, &in_label::set);
-        property<GraphicsAdapter>::add_property(L"out_label", &out_label::get, &out_label::set);
-        property<GraphicsAdapter>::add_property(L"style", &style::get, &style::set);
+        property<GraphicsAdapter>::add_property("orig", &orig::get, &orig::set);
+        property<GraphicsAdapter>::add_property("sz", &sz::get, &sz::set);
+        property<GraphicsAdapter>::add_property("flip", &flip::get, &flip::set);
+        property<GraphicsAdapter>::add_property("theta", &theta::get, &theta::set);
+        property<GraphicsAdapter>::add_property("exprs", &exprs::get, &exprs::set);
+        property<GraphicsAdapter>::add_property("pin", &pin::get, &pin::set);
+        property<GraphicsAdapter>::add_property("pout", &pout::get, &pout::set);
+        property<GraphicsAdapter>::add_property("pein", &pein::get, &pein::set);
+        property<GraphicsAdapter>::add_property("peout", &peout::get, &peout::set);
+        property<GraphicsAdapter>::add_property("gr_i", &gr_i::get, &gr_i::set);
+        property<GraphicsAdapter>::add_property("id", &id::get, &id::set);
+        property<GraphicsAdapter>::add_property("in_implicit", &in_implicit::get, &in_implicit::set);
+        property<GraphicsAdapter>::add_property("out_implicit", &out_implicit::get, &out_implicit::set);
+        property<GraphicsAdapter>::add_property("in_style", &in_style::get, &in_style::set);
+        property<GraphicsAdapter>::add_property("out_style", &out_style::get, &out_style::set);
+        property<GraphicsAdapter>::add_property("in_label", &in_label::get, &in_label::set);
+        property<GraphicsAdapter>::add_property("out_label", &out_label::get, &out_label::set);
+        property<GraphicsAdapter>::add_property("style", &style::get, &style::set);
     }
 }
 
@@ -1057,12 +1053,12 @@ GraphicsAdapter::~GraphicsAdapter()
     gr_i_content->killMe();
 }
 
-std::wstring GraphicsAdapter::getTypeStr()
+std::string GraphicsAdapter::getTypeStr()
 {
     return getSharedTypeStr();
 }
 
-std::wstring GraphicsAdapter::getShortTypeStr()
+std::string GraphicsAdapter::getShortTypeStr()
 {
     return getSharedTypeStr();
 }

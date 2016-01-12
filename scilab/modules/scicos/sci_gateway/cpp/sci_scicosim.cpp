@@ -1006,7 +1006,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     }
     for (int i = 0; i < il_sim_lab->getSize(); ++i)
     {
-        l_sim_lab[i] = wide_string_to_UTF8(il_sim_lab->get(i));
+        l_sim_lab[i] = os_strdup(il_sim_lab->get(i));
         il_sim_labptr[i] = static_cast<int>(strlen(l_sim_lab[i]));
     }
 
@@ -1086,7 +1086,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     }
     for (int i = 0; i < il_sim_uid->getSize(); ++i)
     {
-        l_sim_uid[i] = wide_string_to_UTF8(il_sim_uid->get(i));
+        l_sim_uid[i] = os_strdup(il_sim_uid->get(i));
         il_sim_uidptr[i] = static_cast<int>(strlen(l_sim_uid[i]));
     }
 
@@ -1125,11 +1125,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    const std::wstring start  (L"start");
-    const std::wstring run    (L"run");
-    const std::wstring finish (L"finish");
-    const std::wstring linear (L"linear");
-    const std::wstring Kinsol (L"Kinsol");
+    const std::string start  ("start");
+    const std::string run    ("run");
+    const std::string finish ("finish");
+    const std::string linear ("linear");
+    const std::string Kinsol ("Kinsol");
     int flag;
     if (il_str->get(0) == start)
     {
@@ -1358,8 +1358,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                 return types::Function::Error;
             }
 
-            wchar_t* w_str = funStr->get(0);
-            char* c_str = wide_string_to_UTF8(w_str);
+            char* c_str = funStr->get(0);
             if (strcmp(c_str, "ifthel") == 0)
             {
                 l_sim_funtyp[i] = 11; // Magic value for "if-then-else" block
@@ -1385,7 +1384,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                 // Block is defined by a predefined scilab function
                 else
                 {
-                    ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(w_str);
+                    ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(c_str);
                     if (pEP)
                     {
                         //linked functions
@@ -1393,7 +1392,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                     }
                     else
                     {
-                        types::InternalType* pMacro = symbol::Context::getInstance()->get(symbol::Symbol(w_str));
+                        types::InternalType* pMacro = symbol::Context::getInstance()->get(symbol::Symbol(c_str));
                         if (pMacro && pMacro->isCallable())
                         {
                             //macros
@@ -1414,13 +1413,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                             delete[] il_sim_uidptr;
                             delete[] l_sim_uid;
                             delete[] lfunpt;
-                            FREE(c_str);
                             return types::Function::Error;
                         }
                     }
                 }
             }
-            FREE(c_str);
         }
         else
         {

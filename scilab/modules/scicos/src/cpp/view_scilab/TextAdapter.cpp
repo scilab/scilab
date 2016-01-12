@@ -34,11 +34,11 @@ namespace view_scilab
 namespace
 {
 
-const std::wstring Graphics(L"graphics");
-const std::wstring orig(L"orig");
-const std::wstring sz(L"sz");
-const std::wstring exprs(L"exprs");
-const std::wstring style(L"style");
+const std::string Graphics("graphics");
+const std::string orig("orig");
+const std::string sz("sz");
+const std::string exprs("exprs");
+const std::string style("style");
 
 struct graphics
 {
@@ -177,9 +177,7 @@ struct graphics
             std::vector<std::string> exprsField (3);
             for (int i = 0; i < (int) exprsField.size(); ++i)
             {
-                char* c_str = wide_string_to_UTF8(currentFieldString->get(i));
-                exprsField[i] = std::string(c_str);
-                FREE(c_str);
+                exprsField[i] = currentFieldString->get(i);
             }
             controller.setObjectProperty(adaptee, ANNOTATION, DESCRIPTION, exprsField[0]);
             controller.setObjectProperty(adaptee, ANNOTATION, FONT, exprsField[1]);
@@ -232,9 +230,7 @@ struct graphics
                 return false;
             }
 
-            char* c_str = wide_string_to_UTF8(currentFieldString->get(0));
-            std::string styleField (c_str);
-            FREE(c_str);
+            std::string styleField (currentFieldString->get(0));
             controller.setObjectProperty(adaptee, ANNOTATION, STYLE, styleField);
         }
 
@@ -278,9 +274,9 @@ TextAdapter::TextAdapter(const Controller& c, org_scilab_modules_scicos::model::
     {
         property<TextAdapter>::fields.reserve(4);
         property<TextAdapter>::add_property(Graphics, &graphics::get, &graphics::set);
-        property<TextAdapter>::add_property(L"model", &dummy_property::get, &dummy_property::set);
-        property<TextAdapter>::add_property(L"void", &dummy_property::get, &dummy_property::set);
-        property<TextAdapter>::add_property(L"gui", &gui::get, &dummy_property::set);
+        property<TextAdapter>::add_property("model", &dummy_property::get, &dummy_property::set);
+        property<TextAdapter>::add_property("void", &dummy_property::get, &dummy_property::set);
+        property<TextAdapter>::add_property("gui", &gui::get, &dummy_property::set);
     }
 }
 
@@ -293,11 +289,11 @@ TextAdapter::~TextAdapter()
 {
 }
 
-std::wstring TextAdapter::getTypeStr()
+std::string TextAdapter::getTypeStr()
 {
     return getSharedTypeStr();
 }
-std::wstring TextAdapter::getShortTypeStr()
+std::string TextAdapter::getShortTypeStr()
 {
     return getSharedTypeStr();
 }

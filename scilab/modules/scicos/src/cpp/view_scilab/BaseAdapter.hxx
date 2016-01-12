@@ -62,15 +62,15 @@ public:
     typedef typename props_t::iterator props_t_it;
 
 
-    property(const std::wstring& prop, getter_t g, setter_t s) : original_index(fields.size()), name(prop), get(g), set(s) {};
+    property(const std::string& prop, getter_t g, setter_t s) : original_index(fields.size()), name(prop), get(g), set(s) {};
     ~property() {};
 
     size_t original_index;
-    std::wstring name;
+    std::string name;
     getter_t get;
     setter_t set;
 
-    bool operator< (const std::wstring& v) const
+    bool operator< (const std::string& v) const
     {
         return name < v;
     }
@@ -96,7 +96,7 @@ public:
     /**
      * Add a property to an Adaptor
      */
-    static void add_property(const std::wstring& name, getter_t g, setter_t s)
+    static void add_property(const std::string& name, getter_t g, setter_t s)
     {
         property<Adaptor>::props_t_it pos = std::lower_bound(fields.begin(), fields.end(), name);
         fields.insert(pos, property(name, g, s));
@@ -135,13 +135,13 @@ public:
      * property accessors
      */
 
-    bool hasProperty(const std::wstring& _sKey) const
+    bool hasProperty(const std::string& _sKey) const
     {
         typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), _sKey);
         return found != property<Adaptor>::fields.end() && !(_sKey < found->name);
     }
 
-    types::InternalType* getProperty(const std::wstring& _sKey, Controller controller = Controller()) const
+    types::InternalType* getProperty(const std::string& _sKey, Controller controller = Controller()) const
     {
         typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), _sKey);
         if (found != property<Adaptor>::fields.end() && !(_sKey < found->name))
@@ -151,7 +151,7 @@ public:
         return 0;
     }
 
-    bool setProperty(const std::wstring& _sKey, types::InternalType* v, Controller controller = Controller())
+    bool setProperty(const std::string& _sKey, types::InternalType* v, Controller controller = Controller())
     {
         typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), _sKey);
         if (found != property<Adaptor>::fields.end() && !(_sKey < found->name))
@@ -263,7 +263,7 @@ public:
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
-        types::Bool* ret = new types::Bool(1, 1 + properties.size());
+        types::Bool* ret = new types::Bool(1, 1 + (int)properties.size());
         ret->set(0, true); // First field is just the Adapter's name, which has been checked by the above conditions
 
         Controller controller;
@@ -294,8 +294,8 @@ public:
      * All following methods should be implemented by each template instance
      */
 
-    virtual std::wstring getTypeStr() = 0;
-    virtual std::wstring getShortTypeStr() = 0;
+    virtual std::string getTypeStr() = 0;
+    virtual std::string getShortTypeStr() = 0;
 
 private:
     virtual UserType* clone() final
@@ -312,7 +312,7 @@ private:
         return true;
     }
 
-    bool extract(const std::wstring & name, types::InternalType *& out)
+    bool extract(const std::string & name, types::InternalType *& out)
     {
         typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
         if (found != property<Adaptor>::fields.end() && !(name < found->name))
@@ -329,7 +329,7 @@ private:
         }
 
         // specific case : to ease debugging let the user retrieve the model ID
-        if (name == L"modelID")
+        if (name == "modelID")
         {
             out = new types::Int64(m_adaptee->id());
             return true;
@@ -350,7 +350,7 @@ private:
         {
             types::String* pStr = (*_pArgs)[0]->getAs<types::String>();
             types::InternalType* pOut = NULL;
-            extract(std::wstring(pStr->get(0)), pOut);
+            extract(std::string(pStr->get(0)), pOut);
             return pOut;
         }
         else
@@ -394,7 +394,7 @@ private:
             if ((*_pArgs)[i]->isString())
             {
                 types::String* pStr = (*_pArgs)[i]->getAs<types::String>();
-                std::wstring name = pStr->get(0);
+                std::string name = pStr->get(0);
 
                 Controller controller;
                 typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
@@ -426,16 +426,16 @@ private:
         return false;
     }
 
-    bool toString(std::wostringstream& ostr)
+    bool toString(std::ostringstream& ostr) override
     {
         // Deprecated, use the overload instead
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
-        ostr << L"scicos_" <<  getTypeStr() << L" type :" << std::endl;
+        ostr << "scicos_" <<  getTypeStr() << " type :" << std::endl;
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it)
         {
-            ostr << L"  " << it->name << std::endl;
+            ostr << "  " << it->name << std::endl;
         }
         return true;
     }
@@ -482,11 +482,11 @@ private:
 
         try
         {
-            ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, 1, out);
+            ret = Overload::call("%" + getShortTypeStr() + "_e", in, 1, out);
         }
         catch (ast::InternalError & /*se*/)
         {
-            ret = Overload::call(L"%l_e", in, 1, out);
+            ret = Overload::call("%l_e", in, 1, out);
         }
 
         // Remove this from "in" to keep "in" unchanged.

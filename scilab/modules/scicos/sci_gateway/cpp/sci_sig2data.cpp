@@ -75,8 +75,8 @@ extern "C"
 
 static const std::string funname = "sig2data";
 
-static const std::wstring Values(L"values");
-static const std::wstring Time(L"time");
+static const std::string Values("values");
+static const std::string Time("time");
 
 types::Function::ReturnValue sci_sig2data(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

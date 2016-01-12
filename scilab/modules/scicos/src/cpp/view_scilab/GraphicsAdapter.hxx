@@ -32,13 +32,13 @@ public:
     GraphicsAdapter(const Controller& c, model::Block* adaptee);
     ~GraphicsAdapter();
 
-    static const std::wstring getSharedTypeStr()
+    static const std::string getSharedTypeStr()
     {
-        return L"graphics";
+        return "graphics";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::string getTypeStr();
+    std::string getShortTypeStr();
 
     types::InternalType* getGrIContent() const;
     void setGrIContent(types::InternalType* v);

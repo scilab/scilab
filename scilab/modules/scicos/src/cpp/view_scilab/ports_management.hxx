@@ -156,7 +156,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
         {
             if (ids.empty())
             {
-                return new types::String(L"");
+                return new types::String("");
             }
             types::String* o = new types::String((int)ids.size(), 1);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
@@ -214,7 +214,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
             {
                 bool v;
                 controller.getObjectProperty(*it, PORT, p, v);
-                o->set(i, (v == false) ? L"E" : L"I");
+                o->set(i, (v == false) ? "E" : "I");
             }
             return o;
         }
@@ -299,18 +299,18 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
             {
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
-                    char* c_str = NULL;
+                    std::string str;
                     if (i >= current->getSize())
                     {
                         // If the input isn't large enough, fill each port with empty strings
-                        c_str = wide_string_to_UTF8(L"");
+                        str = "";
                     }
                     else
                     {
-                        c_str = wide_string_to_UTF8(current->get(i));
+                        str = current->get(i);
                     }
-                    controller.setObjectProperty(*it, PORT, p, std::string(c_str));
-                    FREE(c_str);
+
+                    controller.setObjectProperty(*it, PORT, p, str);
                 }
                 return true;
             }
@@ -324,8 +324,8 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
                     return false;
                 }
 
-                std::wstring E = L"E";
-                std::wstring I = L"I";
+                std::string E = "E";
+                std::string I = "I";
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
                     if (current->get(i) == I)

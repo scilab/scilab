@@ -54,8 +54,8 @@ public:
 
     static Adapters& instance();
 
-    adapters_index_t lookup_by_typename(const std::wstring& name);
-    std::wstring get_typename(adapters_index_t index);
+    adapters_index_t lookup_by_typename(const std::string& name);
+    std::string get_typename(adapters_index_t index);
     const model::BaseObject* descriptor(types::InternalType* v);
     types::InternalType* allocate_view(ScicosID id, kind_t kind);
 
@@ -63,19 +63,19 @@ private:
 
     struct adapter_t
     {
-        adapter_t(const std::wstring& n, adapters_index_t k) : name(n), kind(k) {};
+        adapter_t(const std::string& n, adapters_index_t k) : name(n), kind(k) {};
 
         inline bool operator<(const adapter_t& v) const
         {
             return name < v.name;
         }
 
-        inline bool operator<(const std::wstring& v) const
+        inline bool operator<(const std::string& v) const
         {
             return name < v;
         }
 
-        std::wstring name;
+        std::string name;
         adapters_index_t kind;
     };
     typedef std::vector<adapter_t> adapters_t;

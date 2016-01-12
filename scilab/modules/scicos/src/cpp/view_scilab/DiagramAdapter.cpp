@@ -50,10 +50,10 @@ namespace view_scilab
 namespace
 {
 
-const std::wstring Deleted (L"Deleted");
-const std::wstring TextSharedTypeStr (L"Text");
-const std::wstring BlockSharedTypeStr (L"Block");
-const std::wstring LinkSharedTypeStr (L"Link");
+const std::string Deleted ("Deleted");
+const std::string TextSharedTypeStr ("Text");
+const std::string BlockSharedTypeStr ("Block");
+const std::string LinkSharedTypeStr ("Link");
 
 struct props
 {
@@ -119,7 +119,7 @@ struct objs
                     else
                     {
                         // The diagram doesn't have the list of his children adapters. Create it through BlockAdapter::model::get()
-                        std::wstring Model = L"model";
+                        std::string Model = "model";
                         property<BlockAdapter>::props_t_it found = std::lower_bound(property<BlockAdapter>::fields.begin(), property<BlockAdapter>::fields.end(), Model);
                         if (found != property<BlockAdapter>::fields.end())
                         {
@@ -450,10 +450,7 @@ struct version
 
             model::Diagram* adaptee = adaptor.getAdaptee();
 
-            char* c_str = wide_string_to_UTF8(current->get(0));
-            std::string version (c_str);
-            FREE(c_str);
-
+            std::string version (current->get(0));
             controller.setObjectProperty(adaptee->id(), DIAGRAM, VERSION_NUMBER, version);
             return true;
         }
@@ -507,10 +504,10 @@ DiagramAdapter::DiagramAdapter(const Controller& c, org_scilab_modules_scicos::m
     if (property<DiagramAdapter>::properties_have_not_been_set())
     {
         property<DiagramAdapter>::fields.reserve(4);
-        property<DiagramAdapter>::add_property(L"props", &props::get, &props::set);
-        property<DiagramAdapter>::add_property(L"objs", &objs::get, &objs::set);
-        property<DiagramAdapter>::add_property(L"version", &version::get, &version::set);
-        property<DiagramAdapter>::add_property(L"contrib", &contrib::get, &contrib::set);
+        property<DiagramAdapter>::add_property("props", &props::get, &props::set);
+        property<DiagramAdapter>::add_property("objs", &objs::get, &objs::set);
+        property<DiagramAdapter>::add_property("version", &version::get, &version::set);
+        property<DiagramAdapter>::add_property("contrib", &contrib::get, &contrib::set);
     }
 
     // objs::set will set the adapter's content (listObjects, from_vec & to_vec) if needed
@@ -555,11 +552,11 @@ DiagramAdapter::~DiagramAdapter()
     contrib_content->killMe();
 }
 
-std::wstring DiagramAdapter::getTypeStr()
+std::string DiagramAdapter::getTypeStr()
 {
     return getSharedTypeStr();
 }
-std::wstring DiagramAdapter::getShortTypeStr()
+std::string DiagramAdapter::getShortTypeStr()
 {
     return getSharedTypeStr();
 }

@@ -216,18 +216,16 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
     types::MList* m = pIT->getAs<types::MList>();
 
     /* check for a type "scicos model" */
-    if (wcscmp(m->getTypeStr().data(), L"model"))
+    if (strcmp(m->getTypeStr().data(), "model"))
     {
         Scierror(888, _("%s : First argument must be a Typed list.\n"), name.data());
         return types::Function::Error;
     }
 
-    char* c = wide_string_to_UTF8(m->getTypeStr().data());
-    std::string blockname(c);
-    FREE(c);
+    std::string blockname(m->getTypeStr().data());
 
     /* 2 : model.sim  */
-    pIT = m->getField(L"sim");
+    pIT = m->getField("sim");
     if (pIT->isList())
     {
         l = pIT->getAs<types::List>();
@@ -250,8 +248,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
     else if (il_sim->isString())
     {
         types::String* funStr = il_sim->getAs<types::String>();
-        wchar_t* w_str = funStr->get(0);
-        char* c_str = wide_string_to_UTF8(w_str);
+        char* c_str = funStr->get(0);
         void* f = funnum2(c_str); // Search associated function number of function name
         // Block is defined by a C or Fortran function
         if (f != nullptr)
@@ -262,7 +259,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
         // Block is defined by a predefined scilab function
         else
         {
-            ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(w_str);
+            ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(c_str);
             if (pEP)
             {
                 //linked functions
@@ -270,7 +267,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
             }
             else
             {
-                types::InternalType* pMacro = symbol::Context::getInstance()->get(symbol::Symbol(w_str));
+                types::InternalType* pMacro = symbol::Context::getInstance()->get(symbol::Symbol(c_str));
                 if (pMacro && pMacro->isCallable())
                 {
                     //macros
@@ -324,7 +321,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
 
     /* check input ports */
     /* 3 : model.in  */
-    pIT = m->getField(L"in");
+    pIT = m->getField("in");
     d = pIT->getAs<types::Double>();
     const int sizeIn = d->getSize();
     Block.nin = d->getSize();
@@ -359,7 +356,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
         }
 
         /* 4 : model.in2  */
-        pIT = m->getField(L"in2");
+        pIT = m->getField("in2");
         d = pIT->getAs<types::Double>();
         const int sizeIn2 = d->getSize();
         const double* const vIn2 = d->get();
@@ -376,7 +373,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
         }
 
         /* 5 : model.intyp  */
-        pIT = m->getField(L"intyp");
+        pIT = m->getField("intyp");
         d = pIT->getAs<types::Double>();
         const int sizeIntyp = d->getSize();
         const double* const vIntype = d->get();
@@ -489,7 +486,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
 
     /* check output ports */
     /* 6 : model.out  */
-    pIT = m->getField(L"out");
+    pIT = m->getField("out");
     d = pIT->getAs<types::Double>();
     const int sizeOut = d->getSize();
     Block.nout = d->getSize();
@@ -527,7 +524,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
         }
 
         /* 7 : model.out2  */
-        pIT = m->getField(L"out2");
+        pIT = m->getField("out2");
         d = pIT->getAs<types::Double>();
         const int sizeOut2 = d->getSize();
         const double* const vOut2 = d->get();
@@ -544,7 +541,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
         }
 
         /* 5 : model.intyp  */
-        pIT = m->getField(L"intyp");
+        pIT = m->getField("intyp");
         d = pIT->getAs<types::Double>();
         const int sizeOuttyp = d->getSize();
         const double* const vOuttype = d->get();
@@ -660,7 +657,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
 
     /* event output port  */
     /* 10 : model.evtout  */
-    pIT = m->getField(L"evtout");
+    pIT = m->getField("evtout");
     d = pIT->getAs<types::Double>();
     Block.nevout = d->getSize();
     if (Block.nevout > 0)
@@ -672,7 +669,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
             return types::Function::Error;
         }
 
-        pIT = m->getField(L"firing");
+        pIT = m->getField("firing");
         types::Double* firing = pIT->getAs<types::Double>();
         if (Block.nevout == firing->getSize())
         {
@@ -693,7 +690,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
 
     /* continuous state  */
     /* 11 : model.state  */
-    m->getField(L"state");
+    m->getField("state");
     d = pIT->getAs<types::Double>();
     Block.nx        = d->getSize();
     Block.x         = nullptr;
@@ -760,7 +757,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
 
     /* discrete state  */
     /* 12 : model.dstate  */
-    m->getField(L"dstate");
+    m->getField("dstate");
     d = pIT->getAs<types::Double>();
     Block.nz = d->getSize();
     if (Block.nz > 0)
@@ -781,7 +778,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
 
     /* discrete object state  */
     /* 13 : model.odstate  */
-    pIT = m->getField(L"odstate");
+    pIT = m->getField("odstate");
     l = pIT->getAs<types::List>();
     Block.noz    = l->getSize();
     Block.ozsz   = nullptr;
@@ -908,7 +905,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
 
     /* real parameters */
     /* 14 : model.rpar  */
-    pIT = m->getField(L"rpar");
+    pIT = m->getField("rpar");
     d = pIT->getAs<types::Double>();
     Block.nrpar = d->getSize();
     Block.rpar = nullptr;
@@ -930,7 +927,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
 
     /* integer parameters */
     /* 15 : model.ipar  */
-    pIT = m->getField(L"ipar");
+    pIT = m->getField("ipar");
     d = pIT->getAs<types::Double>();
     Block.nipar = d->getSize();
     Block.ipar = nullptr;
@@ -952,7 +949,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
 
     /* object parameters */
     /* 16 : model.opar  */
-    pIT = m->getField(L"opar");
+    pIT = m->getField("opar");
     l = pIT->getAs<types::List>();
     Block.nopar = l->getSize();
     Block.oparsz = nullptr;
@@ -1101,13 +1098,13 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
 
     /* labels */
     /* 20 : model.label  */
-    pIT = m->getField(L"label");
+    pIT = m->getField("label");
     s = pIT->getAs<types::String>();
-    Block.label = wide_string_to_UTF8(s->get()[0]);
+    Block.label = os_strdup(s->get()[0]);
 
     /* zero crossing */
     /* 21 : model.nzcross  */
-    pIT = m->getField(L"nzcross");
+    pIT = m->getField("nzcross");
     d = pIT->getAs<types::Double>();
     Block.ng = static_cast<int>(d->get()[0]);
     Block.g = nullptr;
@@ -1141,7 +1138,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
 
     /* mode */
     /* 22 : model.nmode  */
-    pIT = m->getField(L"nmode");
+    pIT = m->getField("nmode");
     d = pIT->getAs<types::Double>();
     Block.nmode = static_cast<int>(d->get()[0]);
     if (Block.nmode > 0)
@@ -1161,9 +1158,9 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
 
     /* uids */
     /* 23 : model.uid  */
-    pIT = m->getField(L"uid");
+    pIT = m->getField("uid");
     s = pIT->getAs<types::String>();
-    Block.uid = wide_string_to_UTF8(s->get()[0]);
+    Block.uid = os_strdup(s->get()[0]);
 
     if ((Block.work = (void **)MALLOC(sizeof(void *))) == nullptr)
     {

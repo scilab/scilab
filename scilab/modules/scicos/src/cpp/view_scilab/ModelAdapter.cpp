@@ -52,11 +52,11 @@ namespace view_scilab
 namespace
 {
 
-const std::wstring modelica (L"modelica");
-const std::wstring model (L"model");
-const std::wstring inputs (L"inputs");
-const std::wstring outputs (L"outputs");
-const std::wstring parameters (L"parameters");
+const std::string modelica ("modelica");
+const std::string model ("model");
+const std::string inputs ("inputs");
+const std::string outputs ("outputs");
+const std::string parameters ("parameters");
 
 types::InternalType* get_with_vec2var(const ModelAdapter& adaptor, const Controller& controller, object_properties_t p)
 {
@@ -154,9 +154,7 @@ struct sim
                 return false;
             }
 
-            char* c_str = wide_string_to_UTF8(current->get(0));
-            std::string name(c_str);
-            FREE(c_str);
+            std::string name(current->get(0));
 
             // If the input is a scalar string, then the functionApi is 0.
             int api = 0;
@@ -185,9 +183,8 @@ struct sim
                 get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "model", "sim(1)", 1, 1);
                 return false;
             }
-            char* c_str = wide_string_to_UTF8(Name->get(0));
-            std::string name(c_str);
-            FREE(c_str);
+
+            std::string name(Name->get(0));
 
             types::Double* Api = current->get(1)->getAs<types::Double>();
             if (Api->getSize() != 1)
@@ -450,10 +447,10 @@ void decodeDims(std::vector<int>::iterator& prop_it, std::vector<int>& dims)
 
 void encodeDims(std::vector<int>& prop_content, types::GenericType* v)
 {
-    const int iDims = v->getDims();
+    int iDims = (int)v->getDims();
     prop_content.push_back(iDims);
 
-    const int index = prop_content.size();
+    int index = (int)prop_content.size();
     prop_content.resize(index + iDims);
 
     memcpy(&prop_content[index], v->getDimsArray(), iDims * sizeof(int));
@@ -500,8 +497,8 @@ bool encode(std::vector<int>& prop_content, T* v)
 {
     encodeDims(prop_content, v);
 
-    const int index = prop_content.size();
-    const int len = required_length(prop_content, v);
+    int index = (int)prop_content.size();
+    int len = (int)required_length(prop_content, v);
     prop_content.resize(index + len);
 
     // Using contiguity of the memory, we save the input into 'prop_content'
@@ -515,7 +512,7 @@ types::Double* decode(std::vector<int>::iterator& prop_it)
     std::vector<int> dims;
     decodeDims(prop_it, dims);
 
-    bool isComplex = *prop_it++;
+    bool isComplex = (*prop_it++) != 0;
 
     types::Double* v = new types::Double(static_cast<int>(dims.size()), &dims[0], isComplex);
     memcpy(v->getReal(), &(*prop_it), v->getSize() * sizeof(double));
@@ -537,8 +534,8 @@ bool encode(std::vector<int>& prop_content, types::Double* v)
     // Flag for complex
     prop_content.push_back(v->isComplex());
 
-    const int index = prop_content.size();
-    const int len = required_length(prop_content, v);
+    int index = (int)prop_content.size();
+    int len = (int)required_length(prop_content, v);
     prop_content.resize(index + len);
 
     // Using contiguity of the memory, we save the input into 'prop_content'
@@ -584,22 +581,24 @@ bool encode(std::vector<int>& prop_content, types::String* v)
 {
     encodeDims(prop_content, v);
 
-    const int index = prop_content.size();
+    int index = (int)prop_content.size();
+    int size = (int)v->getSize();
 
     std::vector<char*> utf8;
-    utf8.reserve(v->getSize());
+    utf8.reserve(size);
 
     std::vector<size_t> str_len;
-    str_len.reserve(v->getSize());
+    str_len.reserve(size);
 
     int offset = 0;
-    for (int i = 0; i < v->getSize(); i++)
+
+    for (int i = 0; i < size; i++)
     {
-        char* str = wide_string_to_UTF8(v->get(i));
+        char* str = v->get(i);
         utf8.push_back(str);
 
         // adding the '\0' byte to the len
-        const size_t len = strlen(str) + 1;
+        int len = (int)strlen(str) + 1;
         str_len.push_back(len);
 
         offset += (len * sizeof(char) + sizeof(int) - 1) / sizeof(int);
@@ -607,20 +606,15 @@ bool encode(std::vector<int>& prop_content, types::String* v)
     }
 
     // reserve space for the string offsets and contents
-    prop_content.resize(index + v->getSize() + offset);
+    prop_content.resize(index + size + offset);
 
     size_t len = str_len[0];
-    memcpy(&prop_content[index + v->getSize()], &(*utf8[0]), len * sizeof(char));
-    for (int i = 1; i < v->getSize(); i++)
+    memcpy(&prop_content[index + size], &(*utf8[0]), len * sizeof(char));
+
+    for (int i = 1; i < size; i++)
     {
         len = str_len[i];
         memcpy(&prop_content[index + v->getSize() + prop_content[index + i - 1]], &(*utf8[i]), len * sizeof(char));
-    }
-
-    // free all the string, after being copied
-    for (std::vector<char*>::iterator it = utf8.begin(); it != utf8.end(); it++)
-    {
-        FREE(*it);
     }
 
     return true;
@@ -820,7 +814,7 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
                     if (!superPorts.empty())
                     {
                         // Arbitrarily take the highest possible value in case the user enters a wrong number
-                        portIndex = superPorts.size();
+                        portIndex = (int)superPorts.size();
                     }
                     else
                     {
@@ -1171,9 +1165,7 @@ struct blocktype
             return false;
         }
 
-        char* c_str = wide_string_to_UTF8(current->get(0));
-        std::string type (c_str);
-        FREE(c_str);
+        std::string type(current->get(0));
 
         // the value validation is performed on the model
         return controller.setObjectProperty(adaptee, BLOCK, SIM_BLOCKTYPE, type) != FAIL;
@@ -1272,9 +1264,7 @@ struct label
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        char* c_str = wide_string_to_UTF8(current->get(0));
-        std::string label(c_str);
-        FREE(c_str);
+        std::string label(current->get(0));
 
         controller.setObjectProperty(adaptee, BLOCK, LABEL, label);
         return true;
@@ -1438,10 +1428,7 @@ struct uid
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        char* c_str = wide_string_to_UTF8(current->get(0));
-        std::string uid(c_str);
-        FREE(c_str);
-
+        std::string uid(current->get(0));
         controller.setObjectProperty(adaptee, BLOCK, UID, uid);
         return true;
     }
@@ -1455,29 +1442,29 @@ static void initialize_fields()
     if (property<ModelAdapter>::properties_have_not_been_set())
     {
         property<ModelAdapter>::fields.reserve(23);
-        property<ModelAdapter>::add_property(L"sim", &sim::get, &sim::set);
-        property<ModelAdapter>::add_property(L"in", &in::get, &in::set);
-        property<ModelAdapter>::add_property(L"in2", &in2::get, &in2::set);
-        property<ModelAdapter>::add_property(L"intyp", &intyp::get, &intyp::set);
-        property<ModelAdapter>::add_property(L"out", &out::get, &out::set);
-        property<ModelAdapter>::add_property(L"out2", &out2::get, &out2::set);
-        property<ModelAdapter>::add_property(L"outtyp", &outtyp::get, &outtyp::set);
-        property<ModelAdapter>::add_property(L"evtin", &evtin::get, &evtin::set);
-        property<ModelAdapter>::add_property(L"evtout", &evtout::get, &evtout::set);
-        property<ModelAdapter>::add_property(L"state", &state::get, &state::set);
-        property<ModelAdapter>::add_property(L"dstate", &dstate::get, &dstate::set);
-        property<ModelAdapter>::add_property(L"odstate", &odstate::get, &odstate::set);
-        property<ModelAdapter>::add_property(L"rpar", &rpar::get, &rpar::set);
-        property<ModelAdapter>::add_property(L"ipar", &ipar::get, &ipar::set);
-        property<ModelAdapter>::add_property(L"opar", &opar::get, &opar::set);
-        property<ModelAdapter>::add_property(L"blocktype", &blocktype::get, &blocktype::set);
-        property<ModelAdapter>::add_property(L"firing", &firing::get, &firing::set);
-        property<ModelAdapter>::add_property(L"dep_ut", &dep_ut::get, &dep_ut::set);
-        property<ModelAdapter>::add_property(L"label", &label::get, &label::set);
-        property<ModelAdapter>::add_property(L"nzcross", &nzcross::get, &nzcross::set);
-        property<ModelAdapter>::add_property(L"nmode", &nmode::get, &nmode::set);
-        property<ModelAdapter>::add_property(L"equations", &equations::get, &equations::set);
-        property<ModelAdapter>::add_property(L"uid", &uid::get, &uid::set);
+        property<ModelAdapter>::add_property("sim", &sim::get, &sim::set);
+        property<ModelAdapter>::add_property("in", &in::get, &in::set);
+        property<ModelAdapter>::add_property("in2", &in2::get, &in2::set);
+        property<ModelAdapter>::add_property("intyp", &intyp::get, &intyp::set);
+        property<ModelAdapter>::add_property("out", &out::get, &out::set);
+        property<ModelAdapter>::add_property("out2", &out2::get, &out2::set);
+        property<ModelAdapter>::add_property("outtyp", &outtyp::get, &outtyp::set);
+        property<ModelAdapter>::add_property("evtin", &evtin::get, &evtin::set);
+        property<ModelAdapter>::add_property("evtout", &evtout::get, &evtout::set);
+        property<ModelAdapter>::add_property("state", &state::get, &state::set);
+        property<ModelAdapter>::add_property("dstate", &dstate::get, &dstate::set);
+        property<ModelAdapter>::add_property("odstate", &odstate::get, &odstate::set);
+        property<ModelAdapter>::add_property("rpar", &rpar::get, &rpar::set);
+        property<ModelAdapter>::add_property("ipar", &ipar::get, &ipar::set);
+        property<ModelAdapter>::add_property("opar", &opar::get, &opar::set);
+        property<ModelAdapter>::add_property("blocktype", &blocktype::get, &blocktype::set);
+        property<ModelAdapter>::add_property("firing", &firing::get, &firing::set);
+        property<ModelAdapter>::add_property("dep_ut", &dep_ut::get, &dep_ut::set);
+        property<ModelAdapter>::add_property("label", &label::get, &label::set);
+        property<ModelAdapter>::add_property("nzcross", &nzcross::get, &nzcross::set);
+        property<ModelAdapter>::add_property("nmode", &nmode::get, &nmode::set);
+        property<ModelAdapter>::add_property("equations", &equations::get, &equations::set);
+        property<ModelAdapter>::add_property("uid", &uid::get, &uid::set);
     }
 }
 
@@ -1498,12 +1485,12 @@ ModelAdapter::~ModelAdapter()
 {
 }
 
-std::wstring ModelAdapter::getTypeStr()
+std::string ModelAdapter::getTypeStr()
 {
     return getSharedTypeStr();
 }
 
-std::wstring ModelAdapter::getShortTypeStr()
+std::string ModelAdapter::getShortTypeStr()
 {
     return getSharedTypeStr();
 }

@@ -30,13 +30,13 @@ public:
     TextAdapter(const TextAdapter& adapter);
     ~TextAdapter();
 
-    static const std::wstring getSharedTypeStr()
+    static const std::string getSharedTypeStr()
     {
-        return L"Text";
+        return "Text";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::string getTypeStr();
+    std::string getShortTypeStr();
 };
 
 } /* namespace view_scilab */

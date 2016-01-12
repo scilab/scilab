@@ -276,7 +276,7 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string v)
+update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::string& v)
 {
     model::BaseObject* baseObject = getObject(uid);
     if (baseObject == nullptr)

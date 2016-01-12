@@ -55,7 +55,7 @@ public:
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string v);
+    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::string& v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<double>& v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<int>& v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<bool>& v);

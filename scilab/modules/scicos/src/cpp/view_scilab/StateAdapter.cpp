@@ -50,14 +50,14 @@ static void initialize_fields()
     if (property<StateAdapter>::properties_have_not_been_set())
     {
         property<StateAdapter>::fields.reserve(8);
-        property<StateAdapter>::add_property(L"x", &dummy_property::get, &dummy_property::set);
-        property<StateAdapter>::add_property(L"z", &dummy_property::get, &dummy_property::set);
-        property<StateAdapter>::add_property(L"oz", &dummy_property::get, &dummy_property::set);
-        property<StateAdapter>::add_property(L"iz", &dummy_property::get, &dummy_property::set);
-        property<StateAdapter>::add_property(L"tevts", &dummy_property::get, &dummy_property::set);
-        property<StateAdapter>::add_property(L"evtspt", &dummy_property::get, &dummy_property::set);
-        property<StateAdapter>::add_property(L"pointi", &dummy_property::get, &dummy_property::set);
-        property<StateAdapter>::add_property(L"outtb", &dummy_property::get, &dummy_property::set);
+        property<StateAdapter>::add_property("x", &dummy_property::get, &dummy_property::set);
+        property<StateAdapter>::add_property("z", &dummy_property::get, &dummy_property::set);
+        property<StateAdapter>::add_property("oz", &dummy_property::get, &dummy_property::set);
+        property<StateAdapter>::add_property("iz", &dummy_property::get, &dummy_property::set);
+        property<StateAdapter>::add_property("tevts", &dummy_property::get, &dummy_property::set);
+        property<StateAdapter>::add_property("evtspt", &dummy_property::get, &dummy_property::set);
+        property<StateAdapter>::add_property("pointi", &dummy_property::get, &dummy_property::set);
+        property<StateAdapter>::add_property("outtb", &dummy_property::get, &dummy_property::set);
     }
 }
 
@@ -77,11 +77,11 @@ StateAdapter::~StateAdapter()
 {
 }
 
-std::wstring StateAdapter::getTypeStr()
+std::string StateAdapter::getTypeStr()
 {
     return getSharedTypeStr();
 }
-std::wstring StateAdapter::getShortTypeStr()
+std::string StateAdapter::getShortTypeStr()
 {
     return getSharedTypeStr();
 }

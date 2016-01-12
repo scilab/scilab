@@ -30,13 +30,13 @@ public:
     ScsAdapter(const ScsAdapter& adapter);
     ~ScsAdapter();
 
-    static const std::wstring getSharedTypeStr()
+    static const std::string getSharedTypeStr()
     {
-        return L"scs";
+        return "scs";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::string getTypeStr();
+    std::string getShortTypeStr();
 };
 
 } /* namespace view_scilab */

@@ -50,13 +50,13 @@ using namespace org_scilab_modules_scicos;
 static const std::string funame = "scicos_setfield";
 
 template<class Adaptor, class Adaptee>
-types::InternalType* set(types::InternalType* adaptor_type, const std::wstring& field, types::InternalType* value)
+types::InternalType* set(types::InternalType* adaptor_type, const std::string& field, types::InternalType* value)
 {
     Adaptor* adaptor = adaptor_type->getAs<Adaptor>();
 
     if (!adaptor->setProperty(field, value, Controller()))
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.c_str(), 2, field.c_str());
+        Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%s\".\n"), funame.c_str(), 2, field.c_str());
         return adaptor_type;
     }
 
@@ -90,7 +90,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
         return types::Function::Error;
     }
 
-    std::wstring field = field_name->get(0);
+    std::string field = field_name->get(0);
     types::InternalType* value = in[1];
     types::InternalType* adaptor = in[2];
 

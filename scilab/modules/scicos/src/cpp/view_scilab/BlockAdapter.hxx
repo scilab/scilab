@@ -35,13 +35,13 @@ public:
     BlockAdapter(const BlockAdapter& adapter);
     ~BlockAdapter();
 
-    static const std::wstring getSharedTypeStr()
+    static const std::string getSharedTypeStr()
     {
-        return L"Block";
+        return "Block";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::string getTypeStr();
+    std::string getShortTypeStr();
 
     types::InternalType* getDocContent() const;
     void setDocContent(types::InternalType* v);

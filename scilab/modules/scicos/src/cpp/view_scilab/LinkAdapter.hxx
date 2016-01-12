@@ -31,13 +31,13 @@ public:
     LinkAdapter(const LinkAdapter& adapter);
     ~LinkAdapter();
 
-    static const std::wstring getSharedTypeStr()
+    static const std::string getSharedTypeStr()
     {
-        return L"Link";
+        return "Link";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::string getTypeStr();
+    std::string getShortTypeStr();
 
     link_t getFrom() const;
     void setFrom(const link_t& v);

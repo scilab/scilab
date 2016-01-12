@@ -31,13 +31,13 @@ public:
     ModelAdapter(const Controller& c, model::Block* adaptee, DiagramAdapter* diagramAdapter);
     ~ModelAdapter();
 
-    static const std::wstring getSharedTypeStr()
+    static const std::string getSharedTypeStr()
     {
-        return L"model";
+        return "model";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::string getTypeStr();
+    std::string getShortTypeStr();
 
     DiagramAdapter* getDiagram() const;
     void setDiagram(DiagramAdapter* diagramAdapter);

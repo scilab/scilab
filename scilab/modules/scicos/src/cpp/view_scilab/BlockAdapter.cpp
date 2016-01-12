@@ -187,10 +187,7 @@ struct gui
             return false;
         }
 
-        wchar_t* w_name = current->get(0);
-        char* name = wide_string_to_UTF8(w_name);
-        std::string stName(name);
-        FREE(name);
+        std::string stName(current->get(0));
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
         controller.setObjectProperty(adaptee, BLOCK, INTERFACE_FUNCTION, stName);
@@ -227,10 +224,10 @@ BlockAdapter::BlockAdapter(const Controller& c, org_scilab_modules_scicos::model
     if (property<BlockAdapter>::properties_have_not_been_set())
     {
         property<BlockAdapter>::fields.reserve(4);
-        property<BlockAdapter>::add_property(L"graphics", &graphics::get, &graphics::set);
-        property<BlockAdapter>::add_property(L"model", &model::get, &model::set);
-        property<BlockAdapter>::add_property(L"gui", &gui::get, &gui::set);
-        property<BlockAdapter>::add_property(L"doc", &doc::get, &doc::set);
+        property<BlockAdapter>::add_property("graphics", &graphics::get, &graphics::set);
+        property<BlockAdapter>::add_property("model", &model::get, &model::set);
+        property<BlockAdapter>::add_property("gui", &gui::get, &gui::set);
+        property<BlockAdapter>::add_property("doc", &doc::get, &doc::set);
     }
 
     setListObjects(new types::List());
@@ -288,12 +285,12 @@ BlockAdapter::~BlockAdapter()
     doc_content->killMe();
 }
 
-std::wstring BlockAdapter::getTypeStr()
+std::string BlockAdapter::getTypeStr()
 {
     return getSharedTypeStr();
 }
 
-std::wstring BlockAdapter::getShortTypeStr()
+std::string BlockAdapter::getShortTypeStr()
 {
     return getSharedTypeStr();
 }

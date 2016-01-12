@@ -35,13 +35,13 @@ public:
     DiagramAdapter(const DiagramAdapter& adapter);
     ~DiagramAdapter();
 
-    static const std::wstring getSharedTypeStr()
+    static const std::string getSharedTypeStr()
     {
-        return L"diagram";
+        return "diagram";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::string getTypeStr();
+    std::string getShortTypeStr();
 
     types::List* getListObjects() const;
     void setListObjects(types::List* v);

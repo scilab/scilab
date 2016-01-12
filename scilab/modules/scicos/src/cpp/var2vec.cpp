@@ -156,16 +156,14 @@ static void encode(types::String* input, std::vector<double> &ret)
     totalSize += iElements;
 
     // Reserve space for the string offsets and contents
-    char** utf8 = new char*[iElements];
+    char** utf8 = input->get();
     size_t* pLengths = new size_t[iElements];
     int* offsets = new int[iElements];
     int offset_cur = 0, offset_acc = 0;
     for (int i = 0; i < iElements; ++i)
     {
-        char* str = wide_string_to_UTF8(input->get(i));
-        utf8[i] = str;
         // Adding the '\0' byte to the length
-        const size_t len = strlen(str) + 1;
+        const size_t len = strlen(utf8[i]) + 1;
         pLengths[i] = len;
 
         offset_cur = static_cast<int>((len * sizeof(char) + sizeof(double) - 1) / sizeof(double));
@@ -202,12 +200,6 @@ static void encode(types::String* input, std::vector<double> &ret)
         data += offsets[i] - offsets[i - 1];
     }
 
-    // Free all the strings, after being copied
-    for (int i = 0; i < iElements; ++i)
-    {
-        FREE(utf8[i]);
-    }
-    delete[] utf8;
     delete[] offsets;
     delete[] pLengths;
 }

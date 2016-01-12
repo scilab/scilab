@@ -38,12 +38,12 @@ namespace view_scilab
 namespace
 {
 
-const std::wstring scsopt(L"scsopt");
-const std::wstring ThreeD(L"3D");
-const std::wstring Background(L"Background");
-const std::wstring Link(L"Link");
-const std::wstring ID(L"ID");
-const std::wstring Cmap(L"Cmap");
+const std::string scsopt("scsopt");
+const std::string ThreeD("3D");
+const std::string Background("Background");
+const std::string Link("Link");
+const std::string ID("ID");
+const std::string Cmap("Cmap");
 
 struct dummy_property
 {
@@ -121,9 +121,7 @@ struct title
         }
         else if (current->getSize() == 2)
         {
-            char* Path = wide_string_to_UTF8(current->get(1));
-            path = std::string(Path);
-            FREE(Path);
+            path = current->get(1);
         }
         else
         {
@@ -131,9 +129,7 @@ struct title
             return false;
         }
 
-        char* Title = wide_string_to_UTF8(current->get(0));
-        title = std::string(Title);
-        FREE(Title);
+        title = current->get(0);
 
         controller.setObjectProperty(adaptee, DIAGRAM, TITLE, title);
         controller.setObjectProperty(adaptee, DIAGRAM, PATH, path);
@@ -279,9 +275,7 @@ struct context
             std::vector<std::string> context (current->getSize());
             for (int i = 0; i < (int)context.size(); ++i)
             {
-                char* c_str = wide_string_to_UTF8(current->get(i));
-                context[i] = std::string(c_str);
-                FREE(c_str);
+                context[i] = current->get(i);
             }
 
             controller.setObjectProperty(adaptee, DIAGRAM, DIAGRAM_CONTEXT, context);
@@ -397,16 +391,16 @@ static void initialize_fields()
     if (property<ParamsAdapter>::properties_have_not_been_set())
     {
         property<ParamsAdapter>::fields.reserve(10);
-        property<ParamsAdapter>::add_property(L"wpar", &wpar::get, &wpar::set);
-        property<ParamsAdapter>::add_property(L"title", &title::get, &title::set);
-        property<ParamsAdapter>::add_property(L"tol", &tol::get, &tol::set);
-        property<ParamsAdapter>::add_property(L"tf", &tf::get, &tf::set);
-        property<ParamsAdapter>::add_property(L"context", &context::get, &context::set);
-        property<ParamsAdapter>::add_property(L"void1", &dummy_property::get, &dummy_property::set);
-        property<ParamsAdapter>::add_property(L"options", &options::get, &options::set);
-        property<ParamsAdapter>::add_property(L"void2", &dummy_property::get, &dummy_property::set);
-        property<ParamsAdapter>::add_property(L"void3", &dummy_property::get, &dummy_property::set);
-        property<ParamsAdapter>::add_property(L"doc", &doc::get, &doc::set);
+        property<ParamsAdapter>::add_property("wpar", &wpar::get, &wpar::set);
+        property<ParamsAdapter>::add_property("title", &title::get, &title::set);
+        property<ParamsAdapter>::add_property("tol", &tol::get, &tol::set);
+        property<ParamsAdapter>::add_property("tf", &tf::get, &tf::set);
+        property<ParamsAdapter>::add_property("context", &context::get, &context::set);
+        property<ParamsAdapter>::add_property("void1", &dummy_property::get, &dummy_property::set);
+        property<ParamsAdapter>::add_property("options", &options::get, &options::set);
+        property<ParamsAdapter>::add_property("void2", &dummy_property::get, &dummy_property::set);
+        property<ParamsAdapter>::add_property("void3", &dummy_property::get, &dummy_property::set);
+        property<ParamsAdapter>::add_property("doc", &doc::get, &doc::set);
     }
 }
 
@@ -430,11 +424,11 @@ ParamsAdapter::~ParamsAdapter()
     doc_content->killMe();
 }
 
-std::wstring ParamsAdapter::getTypeStr()
+std::string ParamsAdapter::getTypeStr()
 {
     return getSharedTypeStr();
 }
-std::wstring ParamsAdapter::getShortTypeStr()
+std::string ParamsAdapter::getShortTypeStr()
 {
     return getSharedTypeStr();
 }
