@@ -21,6 +21,6 @@
  * @param value
  * @return
  */
-TCLSCI_IMPEXP int setenvtcl(char *string, char *value);
+TCLSCI_IMPEXP int setenvtcl(const char *string, const char *value);
 
 #endif /* __SETENVTCL_H__ */
