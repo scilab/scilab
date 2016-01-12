@@ -28,13 +28,11 @@ const std::string fname = "mcisendstring";
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_mcisendstring(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    std::wstring param1;
+    std::string param1;
     types::String* pS = nullptr;
 
     int out2 = 0;
-    std::wstring out3(L"OK");
-
-    wchar_t output[2048];
+    std::string out3("OK");
 
     if (in.size() != 1)
     {
@@ -63,17 +61,16 @@ types::Function::ReturnValue sci_mcisendstring(types::typed_list &in, int _iRetC
     }
 
     param1 = pS->get()[0];
-    char* test = wide_string_to_UTF8(param1.data());
     char tout[2048];
-    MCIERROR err = mciSendString(test, tout, sizeof(tout), NULL);
+    MCIERROR err = mciSendString(param1.data(), tout, sizeof(tout), NULL);
     out2 = (int)err;
     if (err)
     {
-        wchar_t errtxt[128];
+        char errtxt[128];
 
-        if (mciGetErrorStringW(err, errtxt, 128) == FALSE)
+        if (mciGetErrorStringA(err, errtxt, 128) == FALSE)
         {
-            os_swprintf(errtxt, L"%ls", L"Unknown MCI error");
+            os_sprintf(errtxt, "%s", "Unknown MCI error");
         }
 
         out3 = errtxt;

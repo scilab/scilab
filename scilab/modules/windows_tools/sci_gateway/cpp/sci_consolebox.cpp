@@ -35,7 +35,7 @@ types::Function::ReturnValue sci_consolebox(types::typed_list &in, int _iRetCoun
     if (getScilabMode() != SCILAB_STD)
     {
         sciprint(_("Only on Windows Mode, not in Console Mode.\n"));
-        out.push_back(new types::String(L"off"));
+        out.push_back(new types::String("off"));
         return types::Function::OK;
     }
 
@@ -45,11 +45,11 @@ types::Function::ReturnValue sci_consolebox(types::typed_list &in, int _iRetCoun
     {
         if (GetConsoleState())
         {
-            out.push_back(new types::String(L"on"));
+            out.push_back(new types::String("on"));
         }
         else
         {
-            out.push_back(new types::String(L"off"));
+            out.push_back(new types::String("off"));
         }
         return types::Function::OK;
     }
@@ -69,19 +69,19 @@ types::Function::ReturnValue sci_consolebox(types::typed_list &in, int _iRetCoun
         return types::Function::Error;
     }
 
-    std::wstring wcsAction(pS1->get(0));
+    std::string action(pS1->get(0));
 
-    if (wcsAction == L"on")
+    if (action == "on")
     {
         SetConsoleState(1);
         ShowScilex();
     }
-    else if (wcsAction == L"off")
+    else if (action == "off")
     {
         SetConsoleState(0);
         HideScilex();
     }
-    else if (wcsAction == L"toggle")
+    else if (action == "toggle")
     {
         SwitchConsole();
     }
@@ -93,11 +93,11 @@ types::Function::ReturnValue sci_consolebox(types::typed_list &in, int _iRetCoun
 
     if (GetConsoleState())
     {
-        out.push_back(new types::String(L"on"));
+        out.push_back(new types::String("on"));
     }
     else
     {
-        out.push_back(new types::String(L"off"));
+        out.push_back(new types::String("off"));
     }
 
     return types::Function::OK;

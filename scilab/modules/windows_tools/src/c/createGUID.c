@@ -15,21 +15,22 @@
 #include <unknwn.h>
 #include "createGUID.h"
 #include "os_string.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define _OLEAUT32_
 /*--------------------------------------------------------------------------*/
-wchar_t *createGUID(void)
+char *createGUID(void)
 {
     GUID guid;
     wchar_t* pwstrGUID = NULL;
-    wchar_t* ret = NULL;
+    char* ret = NULL;
 
     CoCreateGuid (&guid);
     StringFromCLSID(&guid, &pwstrGUID);
 
     //remove first '{' and last '}'
     pwstrGUID[wcslen(pwstrGUID) - 1] = L'\0';
-    ret = os_wcsdup(pwstrGUID + 1);
+    ret = wide_string_to_UTF8(pwstrGUID + 1);
     CoTaskMemFree(pwstrGUID);
     return ret;
 }

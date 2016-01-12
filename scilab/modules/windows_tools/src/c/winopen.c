@@ -20,16 +20,16 @@
 #include "charEncoding.h"
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
-BOOL winopen(wchar_t *scilabfilename)
+BOOL winopen(const  char* scilabfilename)
 {
     BOOL bOK = FALSE;
-    wchar_t *wcfilename = NULL;
+    char *filename = NULL;
     HINSTANCE error = NULL;
 
-    wcfilename = expandPathVariableW(scilabfilename);
-    if (wcfilename)
+    filename = expandPathVariable(scilabfilename);
+    if (filename)
     {
-        error = ShellExecuteW(NULL, L"open", wcfilename, NULL, NULL, SW_SHOWNORMAL);
+        error = ShellExecuteA(NULL, "open", filename, NULL, NULL, SW_SHOWNORMAL);
         if ( error <= (HINSTANCE)32)
         {
             bOK = FALSE;
@@ -39,7 +39,7 @@ BOOL winopen(wchar_t *scilabfilename)
             bOK = TRUE;
         }
 
-        FREE(wcfilename);
+        FREE(filename);
     }
     return bOK;
 }

@@ -29,8 +29,8 @@ const std::string fname = "findfileassociation";
 types::Function::ReturnValue sci_findfileassociation(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* pS = nullptr;
-    std::wstring param1;
-    std::wstring param2(L"open");
+    std::string param1;
+    std::string param2("open");
 
     int rhs = static_cast<int>(in.size());
     if (rhs != 1 && rhs != 2)
@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_findfileassociation(types::typed_list &in, int 
         param2 = pS->get()[0];
     }
 
-    wchar_t* output = FindFileAssociation(param1.data(), param2.data()) ;
+    char* output = FindFileAssociation(param1.data(), param2.data()) ;
     if (output)
     {
         out.push_back(new types::String(output));

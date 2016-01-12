@@ -65,11 +65,11 @@ types::Function::ReturnValue sci_createGUID(types::typed_list &in, int _iRetCoun
     }
 
     types::String* guid = new types::String(count, 1);
-    wchar_t** wcs = guid->get();
+    char** s = guid->get();
 
     for (int i = 0; i < count; ++i)
     {
-        wcs[i] = createGUID();
+        s[i] = createGUID();
     }
 
     out.push_back(guid);

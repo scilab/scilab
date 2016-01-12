@@ -28,9 +28,9 @@ const std::string fname = "winqueryreg";
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_winqueryreg(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    std::wstring param1;
-    std::wstring param2;
-    std::wstring param3;
+    std::string param1;
+    std::string param2;
+    std::string param3;
     types::String* pS = nullptr;
 
     int rhs = static_cast<int>(in.size());
@@ -93,8 +93,8 @@ types::Function::ReturnValue sci_winqueryreg(types::typed_list &in, int _iRetCou
 
         param3 = pS->get()[0];
 
-        bool bKey = param1 == L"key";
-        bool bValue = param1 == L"name";
+        bool bKey = param1 == "key";
+        bool bValue = param1 == "name";
 
         if (bKey || bValue)
         {
@@ -112,7 +112,7 @@ types::Function::ReturnValue sci_winqueryreg(types::typed_list &in, int _iRetCou
             {
                 bool res = false;
 #define MAX_ELMT_REGLIST 255
-                std::vector<std::wstring> listKeysName;
+                std::vector<std::string> listKeysName;
 
                 if (count > MAX_ELMT_REGLIST)
                 {
@@ -132,10 +132,10 @@ types::Function::ReturnValue sci_winqueryreg(types::typed_list &in, int _iRetCou
                 {
                     int i = 0;
                     pS = new types::String(count, 1);
-                    wchar_t** p = pS->get();
+                    char** p = pS->get();
                     for (auto l : listKeysName)
                     {
-                        p[i++] = os_wcsdup(l.data());
+                        p[i++] = os_strdup(l.data());
                     }
 
                     out.push_back(pS);
@@ -160,7 +160,7 @@ types::Function::ReturnValue sci_winqueryreg(types::typed_list &in, int _iRetCou
     }
 
     bool isStringKey = false;
-    std::wstring outputSt;
+    std::string outputSt;
     int outputInt = 0;
     bool bTest = WindowsQueryRegistry(param1, param2, param3, outputSt, outputInt, isStringKey);
     if (bTest)

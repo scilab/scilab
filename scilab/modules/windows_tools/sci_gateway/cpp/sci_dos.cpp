@@ -40,7 +40,7 @@ int sci_dos(char *fname, void* pvApiCtx)
     int *piAddressVarOne = NULL;
     int iType1	= 0;
     int m1 = 0, n1 = 0;
-    wchar_t *pStVarOne = NULL;
+    char* pStVarOne = NULL;
     int lenStVarOne = 0;
 
     char **Output = NULL;
@@ -160,14 +160,14 @@ int sci_dos(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarOne + 1));
+    pStVarOne = (char*)MALLOC(sizeof(char) * (lenStVarOne + 1));
     if (pStVarOne)
     {
         double exitCode = 0.;
         BOOL DetachProcessOption = FALSE;
         BOOL *StatusExit = NULL;
 
-        sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+        sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);

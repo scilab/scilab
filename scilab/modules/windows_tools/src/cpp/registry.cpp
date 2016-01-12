@@ -27,7 +27,7 @@ extern "C"
 #define MAX_VALUE_NAME 16383
 /*--------------------------------------------------------------------------*/
 
-static bool WindowsOpenRegistry(const std::wstring& root, const std::wstring& key, HKEY* out)
+static bool WindowsOpenRegistry(const std::string& root, const std::string& key, HKEY* out)
 {
     DWORD OpensKeyOptions = 0;
     HKEY hKeyToOpen = GetHkeyrootFromString(root);
@@ -38,10 +38,10 @@ static bool WindowsOpenRegistry(const std::wstring& root, const std::wstring& ke
 
 #ifdef _WIN64 /* Scilab x64 on x64 windows */
     OpensKeyOptions = KEY_ENUMERATE_SUB_KEYS | KEY_QUERY_VALUE | KEY_WOW64_64KEY;
-    if ( RegOpenKeyExW(hKeyToOpen, key.data(), 0, OpensKeyOptions, out) != ERROR_SUCCESS)
+    if ( RegOpenKeyExA(hKeyToOpen, key.data(), 0, OpensKeyOptions, out) != ERROR_SUCCESS)
     {
         OpensKeyOptions = KEY_ENUMERATE_SUB_KEYS | KEY_QUERY_VALUE | KEY_WOW64_32KEY;
-        if (RegOpenKeyExW(hKeyToOpen, key.data(), 0, OpensKeyOptions, out) != ERROR_SUCCESS)
+        if (RegOpenKeyExA(hKeyToOpen, key.data(), 0, OpensKeyOptions, out) != ERROR_SUCCESS)
         {
             return false;
         }
@@ -71,7 +71,7 @@ static bool WindowsOpenRegistry(const std::wstring& root, const std::wstring& ke
     return true;
 }
 
-bool WindowsQueryRegistry(const std::wstring& param1, const std::wstring& param2, const std::wstring& param3, std::wstring& out1, int& out2, bool& isStringKey)
+bool WindowsQueryRegistry(const std::string& param1, const std::string& param2, const std::string& param3, std::string& out1, int& out2, bool& isStringKey)
 {
     bool res = true;
     HKEY key;
@@ -82,13 +82,13 @@ bool WindowsQueryRegistry(const std::wstring& param1, const std::wstring& param2
         return false;
     }
 
-    if (RegQueryValueExW(key, param3.data(), NULL, &type, NULL, NULL) == ERROR_SUCCESS)
+    if (RegQueryValueExA(key, param3.data(), NULL, &type, NULL, NULL) == ERROR_SUCCESS)
     {
         if ( (type == REG_EXPAND_SZ) || (type == REG_SZ) )
         {
             DWORD Length = PATH_MAX;
-            wchar_t Line[PATH_MAX];
-            if (RegQueryValueExW(key, param3.data(), NULL, &type, (LPBYTE)&Line, &Length) == ERROR_SUCCESS )
+            char Line[PATH_MAX];
+            if (RegQueryValueExA(key, param3.data(), NULL, &type, (LPBYTE)&Line, &Length) == ERROR_SUCCESS )
             {
                 out1 = Line;
                 isStringKey = true;
@@ -98,7 +98,7 @@ bool WindowsQueryRegistry(const std::wstring& param1, const std::wstring& param2
         {
             DWORD size = 4;
             int Num = 0;
-            if (RegQueryValueExW(key, param3.data(), NULL, &type, (LPBYTE)&Num, &size) == ERROR_SUCCESS )
+            if (RegQueryValueExA(key, param3.data(), NULL, &type, (LPBYTE)&Num, &size) == ERROR_SUCCESS )
             {
                 out2 = Num;
                 isStringKey = false;
@@ -115,7 +115,7 @@ bool WindowsQueryRegistry(const std::wstring& param1, const std::wstring& param2
     return res;
 }
 /*--------------------------------------------------------------------------*/
-bool WindowsQueryRegistryValuesList(const std::wstring& param1, const std::wstring& param2, int dimMax, std::vector<std::wstring>& ListKeys)
+bool WindowsQueryRegistryValuesList(const std::string& param1, const std::string& param2, int dimMax, std::vector<std::string>& ListKeys)
 {
     HKEY key;
 
@@ -126,11 +126,11 @@ bool WindowsQueryRegistryValuesList(const std::wstring& param1, const std::wstri
 
     for (int i = 0; i < dimMax; ++i)
     {
-        wchar_t achKey[MAX_KEY_LENGTH];
+        char achKey[MAX_KEY_LENGTH];
         DWORD cbName = MAX_KEY_LENGTH;
         DWORD Type = 0;
 
-        if (RegEnumValueW(key, i, achKey, &cbName, NULL, &Type, NULL, NULL) != ERROR_SUCCESS)
+        if (RegEnumValueA(key, i, achKey, &cbName, NULL, &Type, NULL, NULL) != ERROR_SUCCESS)
         {
             RegCloseKey(key);
             return false;
@@ -146,7 +146,7 @@ bool WindowsQueryRegistryValuesList(const std::wstring& param1, const std::wstri
     return true;
 }
 
-bool WindowsQueryRegistryKeysList(const std::wstring& param1, const std::wstring& param2, int dimMax, std::vector<std::wstring>& ListKeys)
+bool WindowsQueryRegistryKeysList(const std::string& param1, const std::string& param2, int dimMax, std::vector<std::string>& ListKeys)
 {
     HKEY key;
 
@@ -157,10 +157,10 @@ bool WindowsQueryRegistryKeysList(const std::wstring& param1, const std::wstring
 
     for (int i = 0; i < dimMax; ++i)
     {
-        wchar_t achKey[MAX_KEY_LENGTH];
+        char achKey[MAX_KEY_LENGTH];
         DWORD cbName = MAX_KEY_LENGTH;
 
-        if (RegEnumKeyW(key, i, achKey, cbName) != ERROR_SUCCESS)
+        if (RegEnumKey(key, i, achKey, cbName) != ERROR_SUCCESS)
         {
             RegCloseKey(key);
             return false;
@@ -176,34 +176,34 @@ bool WindowsQueryRegistryKeysList(const std::wstring& param1, const std::wstring
     return true;
 }
 /*--------------------------------------------------------------------------*/
-HKEY GetHkeyrootFromString(const std::wstring& param)
+HKEY GetHkeyrootFromString(const std::string& param)
 {
-    if (param == L"HKEY_CLASSES_ROOT" || param == L"HKCR")
+    if (param == "HKEY_CLASSES_ROOT" || param == "HKCR")
     {
         return HKEY_CLASSES_ROOT;
     }
 
-    if (param == L"HKEY_CURRENT_USER" || param == L"HKCU")
+    if (param == "HKEY_CURRENT_USER" || param == "HKCU")
     {
         return HKEY_CURRENT_USER;
     }
 
-    if (param == L"HKEY_LOCAL_MACHINE" || param == L"HKLM")
+    if (param == "HKEY_LOCAL_MACHINE" || param == "HKLM")
     {
         return HKEY_LOCAL_MACHINE;
     }
 
-    if (param == L"HKEY_USERS" || param == L"HKU")
+    if (param == "HKEY_USERS" || param == "HKU")
     {
         return HKEY_USERS;
     }
 
-    if (param == L"HKEY_DYN_DATA" || param == L"HKDD")
+    if (param == "HKEY_DYN_DATA" || param == "HKDD")
     {
         return HKEY_DYN_DATA;
     }
 
-    if (param == L"HKEY_CURRENT_CONFIG" || param == L"HKCC")
+    if (param == "HKEY_CURRENT_CONFIG" || param == "HKCC")
     {
         return HKEY_CURRENT_CONFIG;
     }
@@ -211,7 +211,7 @@ HKEY GetHkeyrootFromString(const std::wstring& param)
     return NULL;
 }
 /*--------------------------------------------------------------------------*/
-static bool WindowsQueryRegistryNumberOfItemsInList(const std::wstring& param1, const std::wstring& param2, int& _key, int& _value)
+static bool WindowsQueryRegistryNumberOfItemsInList(const std::string& param1, const std::string& param2, int& _key, int& _value)
 {
     HKEY        key;
     TCHAR       achClass[PATH_MAX] = TEXT(""); // buffer for class name
@@ -256,13 +256,13 @@ static bool WindowsQueryRegistryNumberOfItemsInList(const std::wstring& param1, 
     return true;
 }
 /*--------------------------------------------------------------------------*/
-bool WindowsQueryRegistryNumberOfValuesInList(const std::wstring& param1, const std::wstring& param2, int& number)
+bool WindowsQueryRegistryNumberOfValuesInList(const std::string& param1, const std::string& param2, int& number)
 {
     int key = 0;
     return WindowsQueryRegistryNumberOfItemsInList(param1, param2, key, number);
 }
 /*--------------------------------------------------------------------------*/
-bool WindowsQueryRegistryNumberOfKeysInList(const std::wstring& param1, const std::wstring& param2, int& number)
+bool WindowsQueryRegistryNumberOfKeysInList(const std::string& param1, const std::string& param2, int& number)
 {
     int value = 0;
     return WindowsQueryRegistryNumberOfItemsInList(param1, param2, number, value);

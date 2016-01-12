@@ -28,7 +28,7 @@
 * @param[out] isStringKey
 * @return true or false
 */
-bool WindowsQueryRegistry(const std::wstring& param1, const std::wstring& param2, const std::wstring& param3, std::wstring& out1, int& out2, bool& isStringKey);
+bool WindowsQueryRegistry(const std::string& param1, const std::string& param2, const std::string& param3, std::string& out1, int& out2, bool& isStringKey);
 
 /**
 * WindowsQueryRegistryValuesList
@@ -39,7 +39,7 @@ bool WindowsQueryRegistry(const std::wstring& param1, const std::wstring& param2
 * @param[out] ListKeys (values)
 * @return true or false
 */
-bool WindowsQueryRegistryValuesList(const std::wstring& param1, const std::wstring& param2, int dimMax, std::vector<std::wstring>& ListKeys);
+bool WindowsQueryRegistryValuesList(const std::string& param1, const std::string& param2, int dimMax, std::vector<std::string>& ListKeys);
 
 /**
 * WindowsQueryRegistryKeysList
@@ -50,7 +50,7 @@ bool WindowsQueryRegistryValuesList(const std::wstring& param1, const std::wstri
 * @param[out] ListKeys (values)
 * @return true or false
 */
-bool WindowsQueryRegistryKeysList(const std::wstring& param1, const std::wstring& param2, int dimMax, std::vector<std::wstring>& ListKeys);
+bool WindowsQueryRegistryKeysList(const std::string& param1, const std::string& param2, int dimMax, std::vector<std::string>& ListKeys);
 
 
 /**
@@ -61,7 +61,7 @@ bool WindowsQueryRegistryKeysList(const std::wstring& param1, const std::wstring
 * @param[out] Number
 * @return true or false
 */
-bool WindowsQueryRegistryNumberOfValuesInList(const std::wstring& param1, const std::wstring& param2, int& number);
+bool WindowsQueryRegistryNumberOfValuesInList(const std::string& param1, const std::string& param2, int& number);
 
 /**
 * WindowsQueryRegistryNumberOfKeysInList
@@ -71,7 +71,7 @@ bool WindowsQueryRegistryNumberOfValuesInList(const std::wstring& param1, const 
 * @param[out] Number
 * @return true or false
 */
-bool WindowsQueryRegistryNumberOfKeysInList(const std::wstring& param1, const std::wstring& param2, int &Number);
+bool WindowsQueryRegistryNumberOfKeysInList(const std::string& param1, const std::string& param2, int &Number);
 
 /**
 * GetHkeyrootFromString
@@ -79,7 +79,7 @@ bool WindowsQueryRegistryNumberOfKeysInList(const std::wstring& param1, const st
 * @param[in] string example "HKEY_CLASSES_ROOT"
 * @return HKEY
 */
-HKEY GetHkeyrootFromString(const std::wstring& param);
+HKEY GetHkeyrootFromString(const std::string& param);
 
 
 #endif /* __REGISTY_H__ */

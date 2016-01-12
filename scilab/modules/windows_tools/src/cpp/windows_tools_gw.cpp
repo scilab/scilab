@@ -17,18 +17,18 @@ extern "C"
 #include "gw_windows_tools.h"
 }
 
-#define MODULE_NAME L"windows_tools"
+#define MODULE_NAME "windows_tools"
 int WindowsToolsModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"win64", &sci_win64, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"winqueryreg", &sci_winqueryreg, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"dos", &sci_dos, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"consolebox", &sci_consolebox, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"createGUID", &sci_createGUID, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"winopen", &sci_winopen, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"findfileassociation", &sci_findfileassociation, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mcisendstring", &sci_mcisendstring, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"istssession", &sci_istssession, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getsystemmetrics", &sci_getsystemmetrics, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("win64", &sci_win64, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("winqueryreg", &sci_winqueryreg, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("dos", &sci_dos, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("consolebox", &sci_consolebox, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("createGUID", &sci_createGUID, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("winopen", &sci_winopen, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("findfileassociation", &sci_findfileassociation, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("mcisendstring", &sci_mcisendstring, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("istssession", &sci_istssession, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction("getsystemmetrics", &sci_getsystemmetrics, MODULE_NAME));
     return 1;
 }

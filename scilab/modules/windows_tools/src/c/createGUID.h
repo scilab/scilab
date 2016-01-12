@@ -18,7 +18,7 @@
 * Creates a GUID, a unique 128-bit int used for CLSIDs and interface identifiers.
 * @return a string (GUID)
 */
-wchar_t *createGUID(void);
+char *createGUID(void);
 
 #endif /* __CREATEGUID_H__ */
 /*--------------------------------------------------------------------------*/
