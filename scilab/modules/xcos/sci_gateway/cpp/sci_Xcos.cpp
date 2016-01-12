@@ -76,9 +76,7 @@ types::Function::ReturnValue sci_Xcos(types::typed_list &in, int _iRetCount, typ
 
         for (int i = 0; i < arg1->getSize(); ++i)
         {
-            char* c_str = wide_string_to_UTF8(arg1->get(0));
-            char* file = getFullFilename(c_str);
-            FREE(c_str);
+            char* file = getFullFilename(arg1->get(0));
             if (file == nullptr)
             {
                 return types::Function::Error;
@@ -141,15 +139,13 @@ types::Function::ReturnValue sci_Xcos(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        char* c_str = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
-        char* file = getFullFilename(c_str);
-        FREE(c_str);
+        char* file = getFullFilename(in[0]->getAs<types::String>()->get(0));
         if (file == nullptr)
         {
             return types::Function::Error;
         }
 
-        if (callXcos(funname, file, o->id()))
+        if (callXcos(funname, file, (long)o->id()))
         {
             FREE(file);
             return types::Function::Error;

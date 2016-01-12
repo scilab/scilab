@@ -71,9 +71,7 @@ types::Function::ReturnValue sci_xcosDiagramToScilab(types::typed_list &in, int 
         out.resize(_iRetCount);
         for (int i = 0; i < _iRetCount; i++)
         {
-            char* f = wide_string_to_UTF8(files->get(i));
-            out[i] = importFile(f);
-            FREE(f);
+            out[i] = importFile(files->get(i));
             if (out[i] == nullptr)
             {
                 return types::Function::Error;
@@ -93,9 +91,7 @@ types::Function::ReturnValue sci_xcosDiagramToScilab(types::typed_list &in, int 
         }
         for (int i = 0; i < _iRetCount; i++)
         {
-            char* f = wide_string_to_UTF8(files->get(i));
-            bool success = exportFile(1 + i, f, in[1 + i]);
-            FREE(f);
+            bool success = exportFile(1 + i, files->get(i), in[1 + i]);
             if (!success)
             {
                 return types::Function::Error;
