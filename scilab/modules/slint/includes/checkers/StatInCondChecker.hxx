@@ -28,7 +28,7 @@ class StatInCondChecker : public SLintChecker
 
 public:
 
-    StatInCondChecker(const std::wstring & checkerId, const int _max) : SLintChecker(checkerId), max(_max) { }
+    StatInCondChecker(const std::string & checkerId, const int _max) : SLintChecker(checkerId), max(_max) { }
     ~StatInCondChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

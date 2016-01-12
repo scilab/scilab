@@ -27,7 +27,7 @@ class FunctionArgsOrderChecker : public SLintChecker
 
 public:
 
-    FunctionArgsOrderChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    FunctionArgsOrderChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~FunctionArgsOrderChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

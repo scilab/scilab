@@ -26,14 +26,14 @@ namespace slint
 class DecimalChecker : public SLintChecker
 {
 
-    const wchar_t character;
+    const char character;
     const bool checkDot;
 
 public:
 
-    DecimalChecker(const std::wstring & checkerId, const wchar_t _character) : SLintChecker(checkerId), character(_character), checkDot(false) { }
-    DecimalChecker(const std::wstring & checkerId, const bool _checkDot) : SLintChecker(checkerId), character(L'\0'), checkDot(_checkDot) { }
-    DecimalChecker(const std::wstring & checkerId, const wchar_t _character, const bool _checkDot) : SLintChecker(checkerId), character(_character), checkDot(_checkDot) { }
+    DecimalChecker(const std::string & checkerId, const char _character) : SLintChecker(checkerId), character(_character), checkDot(false) { }
+    DecimalChecker(const std::string & checkerId, const bool _checkDot) : SLintChecker(checkerId), character('\0'), checkDot(_checkDot) { }
+    DecimalChecker(const std::string & checkerId, const char _character, const bool _checkDot) : SLintChecker(checkerId), character(_character), checkDot(_checkDot) { }
 
     ~DecimalChecker() { }
 

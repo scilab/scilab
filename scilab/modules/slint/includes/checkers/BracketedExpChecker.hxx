@@ -27,7 +27,7 @@ class BracketedExpChecker : public SLintChecker
 
 public:
 
-    BracketedExpChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    BracketedExpChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~BracketedExpChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

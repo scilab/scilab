@@ -36,16 +36,16 @@ class SLintChecker
 {
 
     void * data;
-    const std::wstring checkerId;
+    const std::string checkerId;
 
 protected:
 
-    static std::unordered_set<std::wstring> constants;
+    static std::unordered_set<std::string> constants;
 
 public:
 
-    SLintChecker(const std::wstring & _checkerId) : data(nullptr), checkerId(_checkerId) { }
-    SLintChecker() : data(nullptr), checkerId(L"") { }
+    SLintChecker(const std::string & _checkerId) : data(nullptr), checkerId(_checkerId) { }
+    SLintChecker() : data(nullptr), checkerId("") { }
 
     virtual ~SLintChecker() { }
 
@@ -97,16 +97,16 @@ public:
     /**
      * Get the checker id
      */
-    virtual const std::wstring & getId() const;
+    virtual const std::string & getId() const;
 
     /**
      * Check if the name corresponds to a Scilab's constant
      */
-    static bool isScilabConstant(const std::wstring & name);
+    static bool isScilabConstant(const std::string & name);
 
 private:
 
-    static std::unordered_set<std::wstring> init();
+    static std::unordered_set<std::string> init();
 };
 
 } // namespace slint

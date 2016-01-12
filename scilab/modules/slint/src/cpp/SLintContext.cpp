@@ -33,7 +33,7 @@ const SciFilePtr & SLintContext::getSciFile() const
     return currentFile;
 }
 
-const std::wstring & SLintContext::getFilename() const
+const std::string & SLintContext::getFilename() const
 {
     return currentFile->getFilename();
 }
@@ -48,7 +48,7 @@ unsigned int SLintContext::getCodeLength() const
     return currentFile->getCodeLength();
 }
 
-const wchar_t * SLintContext::getCode() const
+const char * SLintContext::getCode() const
 {
     return currentFile->getCode();
 }
@@ -134,12 +134,12 @@ const ast::Exp * SLintContext::topLoop()
     return loopStack.top();
 }
 
-const std::unordered_set<std::wstring> & SLintContext::getFunIn() const
+const std::unordered_set<std::string> & SLintContext::getFunIn() const
 {
     return funIn;
 }
 
-const std::unordered_set<std::wstring> & SLintContext::getFunOut() const
+const std::unordered_set<std::string> & SLintContext::getFunOut() const
 {
     return funOut;
 }
@@ -154,12 +154,12 @@ bool SLintContext::isFunOut(const symbol::Symbol & sym) const
     return isFunOut(sym.getName());
 }
 
-bool SLintContext::isFunIn(const std::wstring & name) const
+bool SLintContext::isFunIn(const std::string & name) const
 {
     return funIn.find(name) != funIn.end();
 }
 
-bool SLintContext::isFunOut(const std::wstring & name) const
+bool SLintContext::isFunOut(const std::string & name) const
 {
     return funOut.find(name) != funOut.end();
 }
@@ -257,7 +257,7 @@ bool SLintContext::isAssignedVar(const ast::SimpleVar & var) const
     return false;
 }
 
-std::wstring SLintContext::getRHSCallName() const
+std::string SLintContext::getRHSCallName() const
 {
     if (LHSExp)
     {
@@ -271,7 +271,7 @@ std::wstring SLintContext::getRHSCallName() const
             }
         }
     }
-    return L"";
+    return "";
 }
 
 void SLintContext::getInOut(const ast::FunctionDec * e)
@@ -295,12 +295,12 @@ bool SLintContext::isPrivateFunction(const symbol::Symbol & sym) const
     return currentFile->isPrivateFunction(sym);
 }
 
-const ast::FunctionDec * SLintContext::getPrivateFunction(const std::wstring & name) const
+const ast::FunctionDec * SLintContext::getPrivateFunction(const std::string & name) const
 {
     return currentFile->getPrivateFunction(name);
 }
 
-bool SLintContext::isExternPrivateFunction(const symbol::Symbol & sym, std::wstring & name) const
+bool SLintContext::isExternPrivateFunction(const symbol::Symbol & sym, std::string & name) const
 {
     const std::vector<SciFilePtr> & files = project.getFiles();
     for (const auto & file : files)
@@ -322,7 +322,7 @@ void SLintContext::addPublicFunction(const ast::FunctionDec * fundec)
     }
 }
 
-const ast::FunctionDec * SLintContext::getPublicFunction(const std::wstring & name) const
+const ast::FunctionDec * SLintContext::getPublicFunction(const std::string & name) const
 {
     auto i = publicFunctions.find(name);
     if (i == publicFunctions.end())

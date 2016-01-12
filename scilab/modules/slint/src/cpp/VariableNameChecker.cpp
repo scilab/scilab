@@ -16,7 +16,7 @@ namespace slint
 {
 void VariableNameChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
-    std::wstring name;
+    std::string name;
     if (e.isSimpleVar())
     {
         if (context.getLHSExp())

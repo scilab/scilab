@@ -27,7 +27,7 @@ class EqEqChecker : public SLintChecker
 
 public:
 
-    EqEqChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    EqEqChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~EqEqChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

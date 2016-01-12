@@ -32,7 +32,7 @@ void ReturnsCountChecker::postCheckNode(const ast::Exp & e, SLintContext & conte
     if (e.isFunctionDec())
     {
         const unsigned int count = stack.top();
-        if (maxReturns >= 0 && count > maxReturns)
+        if (maxReturns >= 0 && count > (unsigned int)maxReturns)
         {
             result.report(context, e.getLocation(), *this, _("Too many return instructions: %d max."), maxReturns);
         }

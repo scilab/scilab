@@ -26,7 +26,7 @@ class OldNotChecker : public SLintChecker
 
 public:
 
-    OldNotChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    OldNotChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~OldNotChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

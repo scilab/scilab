@@ -21,8 +21,8 @@ void PrintfChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLi
     const ast::CallExp & ce = static_cast<const ast::CallExp &>(e);
     if (ce.getName().isSimpleVar())
     {
-        const std::wstring & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
-        if (name == L"printf" || name == L"mprintf" || name  == L"sprintf" || name == L"msprintf")
+        const std::string & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
+        if (name == "printf" || name == "mprintf" || name  == "sprintf" || name == "msprintf")
         {
             ast::exps_t args = ce.getArgs();
             if (!args.empty())
@@ -30,15 +30,15 @@ void PrintfChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLi
                 const ast::Exp & first = *args.front();
                 if (first.isStringExp())
                 {
-                    const std::wstring & format = static_cast<const ast::StringExp &>(first).getValue();
+                    const std::string & format = static_cast<const ast::StringExp &>(first).getValue();
                     unsigned int percents = 0;
-                    for (std::wstring::const_iterator i = format.begin(), end = format.end(); i != end; ++i)
+                    for (std::string::const_iterator i = format.begin(), end = format.end(); i != end; ++i)
                     {
-                        if (*i == L'%')
+                        if (*i == '%')
                         {
                             if (std::next(i) != end)
                             {
-                                if (*std::next(i) != L'%')
+                                if (*std::next(i) != '%')
                                 {
                                     ++percents;
                                 }

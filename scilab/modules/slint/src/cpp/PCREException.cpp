@@ -22,9 +22,9 @@ extern "C"
 namespace slint
 {
 
-PCREException::PCREException(const std::wstring & pattern, const std::string & error, const int offset)
+PCREException::PCREException(const std::string & pattern, const std::string & error, const int offset)
 {
-    msg = std::string("Error in regex pattern: ") + error + "\n" + scilab::UTF8::toUTF8(pattern) + "\n" + std::string(offset, ' ') + "^";
+    msg = std::string("Error in regex pattern: ") + error + "\n" + pattern + "\n" + std::string(offset, ' ') + "^";
 }
 
 

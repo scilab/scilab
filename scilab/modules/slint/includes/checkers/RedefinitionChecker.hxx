@@ -26,7 +26,7 @@ class RedefinitionChecker : public SLintChecker
 
 public:
 
-    RedefinitionChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    RedefinitionChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~RedefinitionChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

@@ -26,7 +26,7 @@ class ImplicitListChecker : public SLintChecker
 
 public:
 
-    ImplicitListChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    ImplicitListChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~ImplicitListChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

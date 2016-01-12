@@ -31,7 +31,7 @@ class NestedBlocksChecker : public SLintChecker
 
 public:
 
-    NestedBlocksChecker(const std::wstring & checkerId, const int _max) : SLintChecker(checkerId), max(_max) { }
+    NestedBlocksChecker(const std::string & checkerId, const int _max) : SLintChecker(checkerId), max(_max) { }
     ~NestedBlocksChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

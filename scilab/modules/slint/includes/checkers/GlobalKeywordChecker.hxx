@@ -26,7 +26,7 @@ class GlobalKeywordChecker : public SLintChecker
 
 public:
 
-    GlobalKeywordChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    GlobalKeywordChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~GlobalKeywordChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

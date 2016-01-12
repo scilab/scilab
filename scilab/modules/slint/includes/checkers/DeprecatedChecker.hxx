@@ -57,12 +57,12 @@ class DeprecatedChecker : public SLintChecker
         }
     };
 
-    static std::unordered_map<std::wstring, std::wstring> deprecated;
-    static std::unordered_map<std::wstring, std::shared_ptr<SLintChecker>> partiallyDeprecated;
+    static std::unordered_map<std::string, std::string> deprecated;
+    static std::unordered_map<std::string, std::shared_ptr<SLintChecker>> partiallyDeprecated;
 
 public:
 
-    DeprecatedChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    DeprecatedChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~DeprecatedChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);
@@ -76,8 +76,8 @@ public:
 
 private:
 
-    static std::unordered_map<std::wstring, std::wstring> initDep();
-    static std::unordered_map<std::wstring, std::shared_ptr<SLintChecker>> initPartDep();
+    static std::unordered_map<std::string, std::string> initDep();
+    static std::unordered_map<std::string, std::shared_ptr<SLintChecker>> initPartDep();
 };
 
 } // namespace slint

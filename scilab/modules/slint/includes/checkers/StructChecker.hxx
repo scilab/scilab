@@ -31,12 +31,12 @@ class StructChecker : public SLintChecker
     PCREMatcher matcher;
     int minimalLen;
     int maximalLen;
-    std::unordered_set<std::wstring> fields;
-    std::unordered_map<std::wstring, std::unordered_set<std::wstring>> vars;
+    std::unordered_set<std::string> fields;
+    std::unordered_map<std::string, std::unordered_set<std::string>> vars;
 
 public:
 
-    StructChecker(const std::wstring & checkerId, const std::wstring & pattern, int _minimalLen, int _maximalLen) : SLintChecker(checkerId), matcher(pattern), minimalLen(_minimalLen), maximalLen(_maximalLen)  { }
+    StructChecker(const std::string & checkerId, const std::string & pattern, int _minimalLen, int _maximalLen) : SLintChecker(checkerId), matcher(pattern), minimalLen(_minimalLen), maximalLen(_maximalLen)  { }
     ~StructChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

@@ -36,7 +36,7 @@ class XMLConfig
 
 public:
 
-    static void getOptions(const std::wstring & path, SLintOptions & options);
+    static void getOptions(const std::string & path, SLintOptions & options);
 
 private:
 
@@ -47,8 +47,8 @@ private:
         XMLtools::getBool(node, "enable", enable);
         if (enable)
         {
-            std::wstring id;
-            XMLtools::getWString(node, "id", id);
+            std::string id;
+            XMLtools::getString(node, "id", id);
 
             return new T(id);
         }

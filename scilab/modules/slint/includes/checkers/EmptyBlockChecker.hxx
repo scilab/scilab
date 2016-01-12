@@ -26,7 +26,7 @@ class EmptyBlockChecker : public SLintChecker
 
 public:
 
-    EmptyBlockChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    EmptyBlockChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~EmptyBlockChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

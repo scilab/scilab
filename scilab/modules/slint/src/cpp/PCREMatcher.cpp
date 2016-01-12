@@ -22,7 +22,7 @@ extern "C"
 namespace slint
 {
 
-PCREMatcher::PCREMatcher(const std::wstring & _pattern) : pattern(_pattern)
+PCREMatcher::PCREMatcher(const std::string & _pattern) : pattern(_pattern)
 {
     if (_pattern.empty())
     {
@@ -32,7 +32,7 @@ PCREMatcher::PCREMatcher(const std::wstring & _pattern) : pattern(_pattern)
     {
         const char * error = nullptr;
         int errorOffset = -1;
-        re = pcre_compile(scilab::UTF8::toUTF8(pattern).c_str(), PCRE_UTF8, &error, &errorOffset, nullptr);
+        re = pcre_compile(pattern.c_str(), PCRE_UTF8, &error, &errorOffset, nullptr);
         if (!re)
         {
             if (error)
@@ -55,28 +55,26 @@ PCREMatcher::~PCREMatcher()
     }
 }
 
-bool PCREMatcher::match(const std::wstring & str, const bool full) const
+bool PCREMatcher::match(const std::string & str, const bool full) const
 {
     if (!pattern.empty())
     {
-        return match(str.c_str(), str.size(), full);
+        return match(str.c_str(), (int)str.size(), full);
     }
     return true;
 }
 
-bool PCREMatcher::match(const wchar_t * str, const bool full) const
+bool PCREMatcher::match(const char * str, const bool full) const
 {
-    return match(str, wcslen(str), full);
+    return match(str, (int)strlen(str), full);
 }
 
-bool PCREMatcher::match(const wchar_t * str, const unsigned int len, const bool full) const
+bool PCREMatcher::match(const char * str, const unsigned int len, const bool full) const
 {
     if (!pattern.empty())
     {
         int resVect[3];
-        char * _str = wide_string_to_UTF8(str);
-        int result = pcre_exec(re, nullptr, _str, len, 0, 0, resVect, sizeof(resVect) / sizeof(int));
-        FREE(_str);
+        int result = pcre_exec(re, nullptr, str, len, 0, 0, resVect, sizeof(resVect) / sizeof(int));
         if (full)
         {
             if (result == 1 && resVect[0] == 0 && resVect[1] == len)
@@ -94,7 +92,7 @@ bool PCREMatcher::match(const wchar_t * str, const unsigned int len, const bool 
     return true;
 }
 
-const std::wstring & PCREMatcher::getPattern() const
+const std::string & PCREMatcher::getPattern() const
 {
     return pattern;
 }

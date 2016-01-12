@@ -18,7 +18,7 @@ void IllegalCallsChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
 {
     if (e.getParent()->isCallExp() || e.getParent()->isSeqExp())
     {
-        const std::wstring & name = static_cast<const ast::SimpleVar &>(e).getSymbol().getName();
+        const std::string & name = static_cast<const ast::SimpleVar &>(e).getSymbol().getName();
         if (illegal.find(name) != illegal.end())
         {
             result.report(context, e.getLocation(), *this, _("Illegal call: %s."), name);

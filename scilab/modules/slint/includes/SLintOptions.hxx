@@ -51,8 +51,8 @@ public:
 private:
 
     MapCheckers checkers;
-    std::unordered_set<std::wstring> excludedFiles;
-    std::wstring id;
+    std::unordered_set<std::string> excludedFiles;
+    std::string id;
 
 public:
 
@@ -62,9 +62,9 @@ public:
     MapCheckers & getCheckers();
     FileCheckers & getFileCheckers();
     void addExcludedFile(const std::string & filename);
-    bool isExcluded(const std::wstring & filename) const;
+    bool isExcluded(const std::string & filename) const;
     void setId(const std::string & _id);
-    const std::wstring & getId() const;
+    const std::string & getId() const;
 
     template<typename... Args>
     void add(SLintChecker * checker, Args... args)

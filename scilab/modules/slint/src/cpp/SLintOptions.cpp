@@ -44,20 +44,20 @@ SLintOptions::FileCheckers & SLintOptions::getFileCheckers()
 
 void SLintOptions::addExcludedFile(const std::string & filename)
 {
-    excludedFiles.emplace(scilab::UTF8::toWide(filename));
+    excludedFiles.emplace(filename);
 }
 
-bool SLintOptions::isExcluded(const std::wstring & filename) const
+bool SLintOptions::isExcluded(const std::string & filename) const
 {
     return excludedFiles.find(filename) != excludedFiles.end();
 }
 
 void SLintOptions::setId(const std::string & _id)
 {
-    id = scilab::UTF8::toWide(_id);
+    id = _id;
 }
 
-const std::wstring & SLintOptions::getId() const
+const std::string & SLintOptions::getId() const
 {
     return id;
 }

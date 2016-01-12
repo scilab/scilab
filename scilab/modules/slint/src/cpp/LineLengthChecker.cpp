@@ -21,20 +21,21 @@ void LineLengthChecker::preCheckNode(const ast::Exp & e, SLintContext & context,
 {
     if (max > 0)
     {
-	if (context.isFirstLevelFn())
-	{
-	    std::vector<unsigned int> out;
-	    if (!context.checkLineLength((unsigned int)max, out))
-	    {
-		std::wostringstream wos;
-		for (std::vector<unsigned int>::const_iterator i = out.begin(), end = std::prev(out.end()); i != end; ++i)
-		{
-		    wos << *i << L", ";
-		}
-		wos << *std::prev(out.end());
-		result.report(context, e.getLocation(), *this, _("Maximum line length exceeded at lines: %s."), wos.str());
-	    }
-	}
+        if (context.isFirstLevelFn())
+        {
+            std::vector<unsigned int> out;
+            if (!context.checkLineLength((unsigned int)max, out))
+            {
+                std::ostringstream os;
+                for (std::vector<unsigned int>::const_iterator i = out.begin(), end = std::prev(out.end()); i != end; ++i)
+                {
+                    os << *i << ", ";
+                }
+
+                os << *std::prev(out.end());
+                result.report(context, e.getLocation(), *this, _("Maximum line length exceeded at lines: %s."), os.str());
+            }
+        }
     }
 }
 

@@ -28,7 +28,7 @@ class LineLengthChecker : public SLintChecker
 
 public:
 
-    LineLengthChecker(const std::wstring & checkerId, const int _max) : SLintChecker(checkerId), max(_max) { }
+    LineLengthChecker(const std::string & checkerId, const int _max) : SLintChecker(checkerId), max(_max) { }
     ~LineLengthChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

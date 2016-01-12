@@ -23,8 +23,8 @@ void LoadSaveChecker::preCheckNode(const ast::Exp & e, SLintContext & context, S
         const ast::CallExp & ce = static_cast<const ast::CallExp &>(e);
         if (ce.getName().isSimpleVar())
         {
-            const std::wstring & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
-            if (name == L"load" || name == L"save")
+            const std::string & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
+            if (name == "load" || name == "save")
             {
                 const ast::exps_t args = ce.getArgs();
                 if (args.size() == 0)

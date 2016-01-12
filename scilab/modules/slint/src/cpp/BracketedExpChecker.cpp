@@ -24,24 +24,24 @@ void BracketedExpChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
         bool bracketed = true;
         if (context.getPosition(oe.getLocation(), pos))
         {
-            const wchar_t * code = context.getCode();
+            const char * code = context.getCode();
             do
             {
                 --pos.first;
             }
-            while (pos.first >= 0 && (code[pos.first] == L' ' || code[pos.first] == L'\t'));
+            while (pos.first >= 0 && (code[pos.first] == ' ' || code[pos.first] == '\t'));
             if (pos.first == -1)
             {
                 bracketed = false;
             }
             else
             {
-                while (pos.second < context.getCodeLength() && (code[pos.second] == L' ' || code[pos.second] == L'\t'))
+                while (pos.second < context.getCodeLength() && (code[pos.second] == ' ' || code[pos.second] == '\t'))
                 {
                     ++pos.second;
                 }
 
-                if (pos.second == context.getCodeLength() || code[pos.first] != L'(' || code[pos.second] != L')')
+                if (pos.second == context.getCodeLength() || code[pos.first] != '(' || code[pos.second] != ')')
                 {
                     bracketed = false;
                 }

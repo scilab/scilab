@@ -17,7 +17,7 @@ namespace slint
 void FunctionNameChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
     const ast::FunctionDec & fdec = static_cast<const ast::FunctionDec &>(e);
-    const std::wstring & name = fdec.getSymbol().getName();
+    const std::string & name = fdec.getSymbol().getName();
     if (!matcher.match(name))
     {
         result.report(context, e.getLocation(), *this, _("Function name doesn\'t match the pattern: %s, %s"), name, matcher.getPattern());

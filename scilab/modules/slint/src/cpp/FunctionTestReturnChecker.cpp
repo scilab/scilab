@@ -20,7 +20,7 @@ void FunctionTestReturnChecker::preCheckNode(const ast::Exp & e, SLintContext & 
     const ast::CallExp & ce = static_cast<const ast::CallExp &>(e);
     if (ce.getName().isSimpleVar())
     {
-        const std::wstring & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
+        const std::string & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
         auto i = funs.find(name);
         if (i != funs.end())
         {

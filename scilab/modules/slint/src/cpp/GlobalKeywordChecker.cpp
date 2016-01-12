@@ -20,8 +20,8 @@ void GlobalKeywordChecker::preCheckNode(const ast::Exp & e, SLintContext & conte
     const ast::CallExp & ce = static_cast<const ast::CallExp &>(e);
     if (ce.getName().isSimpleVar())
     {
-        const std::wstring & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
-        if (name == L"global")
+        const std::string & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
+        if (name == "global")
         {
             result.report(context, ce.getName().getLocation(), *this, _("Function 'global' not allowed."));
         }

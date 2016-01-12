@@ -34,45 +34,45 @@ public:
     virtual ~SLintResult() { }
 
     template<typename... Args>
-    void report(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & err, Args... args)
+    void report(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & err, Args... args)
     {
         handleMessage(context, loc, checker, make_string(err, args...));
     }
 
-    template<typename... Args>
-    void report(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & err, Args... args)
-    {
-        wchar_t * _err = to_wide_string(err.c_str());
-        handleMessage(context, loc, checker, make_string(std::wstring(_err), args...));
-        FREE(_err);
-    }
+    //template<typename... Args>
+    //void report(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & err, Args... args)
+    //{
+    //    char * _err = to_wide_string(err.c_str());
+    //    handleMessage(context, loc, checker, make_string(std::string(_err), args...));
+    //    FREE(_err);
+    //}
 
     virtual void handleFiles(const std::vector<SciFilePtr> & files) = 0;
-    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg) = 0;
+    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & msg) = 0;
 
     virtual void finalize() { }
 
 private:
 
     template<typename... Args>
-    const std::wstring make_string(const std::wstring & err, Args... args)
+    const std::string make_string(const std::string & err, Args... args)
     {
-        std::wostringstream wos;
-        make_string(wos, err.c_str(), args...);
-        return wos.str();
+        std::ostringstream os;
+        make_string(os, err.c_str(), args...);
+        return os.str();
     }
 
-    void make_string(std::wostringstream & out, const wchar_t * p)
+    void make_string(std::ostringstream & out, const char * p)
     {
         out << p;
     }
 
     template<typename T, typename... Args>
-    void make_string(std::wostringstream & out, const wchar_t * p, const T & value, Args... args)
+    void make_string(std::ostringstream & out, const char* p, const T & value, Args... args)
     {
         while (*p)
         {
-            if (*p == L'%' && *(++p) != L'%')
+            if (*p == '%' && *(++p) != '%')
             {
                 out << value;
                 ++p;

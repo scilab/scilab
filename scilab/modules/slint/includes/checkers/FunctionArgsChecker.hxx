@@ -26,7 +26,7 @@ class FunctionArgsChecker : public SLintChecker
 
 public:
 
-    FunctionArgsChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    FunctionArgsChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~FunctionArgsChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

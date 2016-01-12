@@ -21,7 +21,7 @@ void RedefinitionChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
     if (context.isAssignedVar(var))
     {
         const symbol::Symbol & sym = var.getSymbol();
-        const std::wstring & name = sym.getName();
+        const std::string & name = sym.getName();
         if (SLintChecker::isScilabConstant(name))
         {
             result.report(context, e.getLocation(), *this, _("Redefinition of Scilab\'s constant: %s."), name);

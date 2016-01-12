@@ -62,35 +62,35 @@ void FunctionArgsChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
 
     if (!in_dup.empty())
     {
-        std::wostringstream wos;
+        std::ostringstream os;
         for (std::set<symbol::Symbol>::const_iterator i = in_dup.begin(), end = std::prev(in_dup.end()); i != end; ++i)
         {
-            wos << i->getName() << L", ";
+            os << i->getName() << ", ";
         }
-        wos << std::prev(in_dup.end())->getName();
-        result.report(context, e.getLocation(), *this, _("Duplicated function arguments: %s."), wos.str());
+        os << std::prev(in_dup.end())->getName();
+        result.report(context, e.getLocation(), *this, _("Duplicated function arguments: %s."), os.str());
     }
 
     if (!out_dup.empty())
     {
-        std::wostringstream wos;
+        std::ostringstream os;
         for (std::set<symbol::Symbol>::const_iterator i = out_dup.begin(), end = std::prev(out_dup.end()); i != end; ++i)
         {
-            wos << i->getName() << L", ";
+            os << i->getName() << ", ";
         }
-        wos << std::prev(out_dup.end())->getName();
-        result.report(context, e.getLocation(), *this, _("Duplicated function output values: %s."), wos.str());
+        os << std::prev(out_dup.end())->getName();
+        result.report(context, e.getLocation(), *this, _("Duplicated function output values: %s."), os.str());
     }
 
     if (!inter.empty())
     {
-        std::wostringstream wos;
+        std::ostringstream os;
         for (std::set<symbol::Symbol>::const_iterator i = inter.begin(), end = std::prev(inter.end()); i != end; ++i)
         {
-            wos << i->getName() << L", ";
+            os << i->getName() << ", ";
         }
-        wos << std::prev(inter.end())->getName();
-        result.report(context, e.getLocation(), *this, _("Function arguments used as output values: %s."), wos.str());
+        os << std::prev(inter.end())->getName();
+        result.report(context, e.getLocation(), *this, _("Function arguments used as output values: %s."), os.str());
     }
 }
 

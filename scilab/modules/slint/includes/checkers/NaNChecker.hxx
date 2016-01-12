@@ -26,7 +26,7 @@ class NaNChecker : public SLintChecker
 
 public:
 
-    NaNChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    NaNChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~NaNChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

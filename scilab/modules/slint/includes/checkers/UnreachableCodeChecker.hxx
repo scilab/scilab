@@ -26,7 +26,7 @@ class UnreachableCodeChecker : public SLintChecker
 
 public:
 
-    UnreachableCodeChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    UnreachableCodeChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~UnreachableCodeChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

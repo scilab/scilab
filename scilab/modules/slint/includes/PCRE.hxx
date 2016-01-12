@@ -33,7 +33,7 @@ struct PCRETraits
     typedef pcre16 pcre_t;
     typedef pcre16_extra pcre_extra_t;
 
-    inline static pcre16 * pcre_compile(const wchar_t * pattern, int options, const char ** errptr, int * erroffset, const unsigned char * tableptr)
+    inline static pcre16 * pcre_compile(const char * pattern, int options, const char ** errptr, int * erroffset, const unsigned char * tableptr)
     {
         return pcre16_compile((PCRE_SPTR16)pattern, PCRE_UTF16 | options, errptr, erroffset, tableptr);
     }
@@ -48,7 +48,7 @@ struct PCRETraits
         pcre16_free_study(extra);
     }
 
-    inline static int pcre_exec(const pcre16 * code, const pcre16_extra * extra, const wchar_t * subject, int length, int startoffset, int options, int * ovector, int ovecsize)
+    inline static int pcre_exec(const pcre16 * code, const pcre16_extra * extra, const char * subject, int length, int startoffset, int options, int * ovector, int ovecsize)
     {
         return pcre16_exec(code, extra, (PCRE_SPTR16)subject, length, startoffset, options, ovector, ovecsize);
     }
@@ -57,7 +57,7 @@ struct PCRETraits
     typedef pcre32 pcre_t;
     typedef pcre32_extra pcre_extra_t;
 
-    inline static pcre32 * pcre_compile(const wchar_t * pattern, int options, const char ** errptr, int * erroffset, const unsigned char * tableptr)
+    inline static pcre32 * pcre_compile(const char * pattern, int options, const char ** errptr, int * erroffset, const unsigned char * tableptr)
     {
         return pcre32_compile((PCRE_SPTR32)pattern, PCRE_UTF32 | options, errptr, erroffset, tableptr);
     }
@@ -72,7 +72,7 @@ struct PCRETraits
         pcre32_free_study(extra);
     }
 
-    inline static int pcre_exec(const pcre32 * code, const pcre32_extra * extra, const wchar_t * subject, int length, int startoffset, int options, int * ovector, int ovecsize)
+    inline static int pcre_exec(const pcre32 * code, const pcre32_extra * extra, const char * subject, int length, int startoffset, int options, int * ovector, int ovecsize)
     {
         return pcre32_exec(code, extra, (PCRE_SPTR32)subject, length, startoffset, options, ovector, ovecsize);
     }

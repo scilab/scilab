@@ -33,7 +33,7 @@ class BreaksInLoopChecker : public SLintChecker
 
 public:
 
-    BreaksInLoopChecker(const std::wstring & checkerId, const int _maxBreaks, const int _maxContinues) : SLintChecker(checkerId), maxBreaks(_maxBreaks), maxContinues(_maxContinues) { }
+    BreaksInLoopChecker(const std::string & checkerId, const int _maxBreaks, const int _maxContinues) : SLintChecker(checkerId), maxBreaks(_maxBreaks), maxContinues(_maxContinues) { }
     ~BreaksInLoopChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

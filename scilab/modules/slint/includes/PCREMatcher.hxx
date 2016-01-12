@@ -24,18 +24,18 @@ namespace slint
 class PCREMatcher
 {
 
-    const std::wstring pattern;
+    const std::string pattern;
     pcre * re;
 
 public:
 
-    PCREMatcher(const std::wstring & _pattern);
+    PCREMatcher(const std::string & _pattern);
     ~PCREMatcher();
 
-    bool match(const std::wstring & str, const bool full = true) const;
-    bool match(const wchar_t * str, const bool full = true) const;
-    bool match(const wchar_t * str, const unsigned int len, const bool full = true) const;
-    const std::wstring & getPattern() const;
+    bool match(const std::string & str, const bool full = true) const;
+    bool match(const char * str, const bool full = true) const;
+    bool match(const char * str, const unsigned int len, const bool full = true) const;
+    const std::string & getPattern() const;
 };
 
 } // namespace slint

@@ -25,22 +25,22 @@ namespace slint
 SLintScilabResult::SLintScilabResult() { }
 SLintScilabResult::~SLintScilabResult() { }
 
-void SLintScilabResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+void SLintScilabResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & msg)
 {
     auto & mmap = results[context.getFilename()];
-    mmap.emplace(loc, checker.getId() + L": " + msg);
+    mmap.emplace(loc, checker.getId() + ": " + msg);
 }
 
 void SLintScilabResult::finalize()
 {
     for (const auto & p1 : results)
     {
-        std::wstring str = L"In " + p1.first + L":\n";
-        scilabWriteW(str.c_str());
+        std::string str = "In " + p1.first + ":\n";
+        scilabWrite(str.c_str());
         for (const auto & p2 : p1.second)
         {
-            std::wstring str = L"  At line " + std::to_wstring(p2.first.first_line) + L": " + p2.second + L"\n";
-            scilabWriteW(str.c_str());
+            std::string str = "  At line " + std::to_string(p2.first.first_line) + ": " + p2.second + "\n";
+            scilabWrite(str.c_str());
         }
     }
 }
@@ -48,7 +48,7 @@ void SLintScilabResult::finalize()
 SLintScilabOut::SLintScilabOut() { }
 SLintScilabOut::~SLintScilabOut() { }
 
-void SLintScilabOut::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+void SLintScilabOut::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & msg)
 {
     results[context.getFilename()][checker.getId()].emplace_back(loc, msg);
 }
@@ -74,31 +74,31 @@ types::Struct * SLintScilabOut::getStruct() const
 
      */
 
-    types::Struct * st = new types::Struct(results.size(), 1);
-    st->addField(L"file");
-    st->addField(L"info");
+    types::Struct * st = new types::Struct((int)results.size(), 1);
+    st->addField("file");
+    st->addField("info");
     int index = 0;
     for (const auto & p1 : results)
     {
         types::SingleStruct * sst = st->get(index++);
         types::Struct * info = new types::Struct(1, 1);
-        sst->set(L"file", new types::String(p1.first.c_str()));
-        sst->set(L"info", info);
+        sst->set("file", new types::String(p1.first.c_str()));
+        sst->set("info", info);
         types::SingleStruct * sst_info = info->get(0);
 
         for (const auto & p2 : p1.second)
         {
             // p2: { Id => { Location, Msg } }
-            const std::wstring & id = p2.first;
-            const std::vector<std::pair<Location, std::wstring>> & infos = p2.second;
+            const std::string & id = p2.first;
+            const std::vector<std::pair<Location, std::string>> & infos = p2.second;
 
             if (!infos.empty())
             {
                 info->addField(id);
-                types::Struct * loc_msg = new types::Struct(infos.size(), 1);
+                types::Struct * loc_msg = new types::Struct((int)infos.size(), 1);
                 sst_info->set(id, loc_msg);
-                loc_msg->addField(L"loc");
-                loc_msg->addField(L"msg");
+                loc_msg->addField("loc");
+                loc_msg->addField("msg");
 
                 int index_info = 0;
                 for (const auto & p3 : infos)
@@ -109,8 +109,8 @@ types::Struct * SLintScilabOut::getStruct() const
                     loc[1] = p3.first.last_line;
                     loc[2] = p3.first.first_column;
                     loc[3] = p3.first.last_column;
-                    loc_msg->get(index_info)->set(L"loc", pDbl);
-                    loc_msg->get(index_info++)->set(L"msg", new types::String(p3.second.c_str()));
+                    loc_msg->get(index_info)->set("loc", pDbl);
+                    loc_msg->get(index_info++)->set("msg", new types::String(p3.second.c_str()));
                 }
             }
         }

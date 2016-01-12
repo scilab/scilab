@@ -26,7 +26,7 @@ class NotNotChecker : public SLintChecker
 
 public:
 
-    NotNotChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    NotNotChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~NotNotChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

@@ -21,8 +21,8 @@ void StructChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLi
         const ast::CallExp & ce = static_cast<const ast::CallExp &>(e);
         if (ce.getName().isSimpleVar())
         {
-            const std::wstring & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
-            if (name == L"struct")
+            const std::string & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
+            if (name == "struct")
             {
                 // we have a struct definition
                 const ast::exps_t args = ce.getArgs();
@@ -41,7 +41,7 @@ void StructChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLi
                         const ast::Exp & arg = **i;
                         if (arg.isStringExp())
                         {
-                            const std::wstring & field = static_cast<const ast::StringExp &>(arg).getValue();
+                            const std::string & field = static_cast<const ast::StringExp &>(arg).getValue();
                             if (!matcher.match(field))
                             {
                                 result.report(context, arg.getLocation(), *this, _("Field name doesn\'t match the pattern: %s, %s"), field, matcher.getPattern());
@@ -76,7 +76,7 @@ void StructChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLi
                         const ast::AssignExp & ae = *static_cast<const ast::AssignExp *>(ce.getParent());
                         if (ae.getLeftExp().isSimpleVar())
                         {
-                            const std::wstring & Lname = static_cast<const ast::SimpleVar &>(ae.getLeftExp()).getSymbol().getName();
+                            const std::string & Lname = static_cast<const ast::SimpleVar &>(ae.getLeftExp()).getSymbol().getName();
                             vars[Lname] = fields;
                         }
                         else if (ae.getLeftExp().isArrayListExp())
@@ -94,7 +94,7 @@ void StructChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLi
         const ast::SimpleVar & var = static_cast<const ast::SimpleVar &>(e);
         if (const ast::AssignExp * ae = context.getAssignExp())
         {
-            if (&ae->getLeftExp() == &e && context.getRHSCallName() != L"struct")
+            if (&ae->getLeftExp() == &e && context.getRHSCallName() != "struct")
             {
                 vars.erase(var.getSymbol().getName());
             }
@@ -106,12 +106,12 @@ void StructChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLi
         const ast::FieldExp & fe = static_cast<const ast::FieldExp &>(e);
         if (fe.getHead()->isSimpleVar() && fe.getTail()->isSimpleVar())
         {
-            const std::wstring & sname = static_cast<const ast::SimpleVar *>(fe.getHead())->getSymbol().getName();
+            const std::string & sname = static_cast<const ast::SimpleVar *>(fe.getHead())->getSymbol().getName();
             auto i = vars.find(sname);
             if (i != vars.end())
             {
-                const std::unordered_set<std::wstring> & sfields = i->second;
-                const std::wstring & fname = static_cast<const ast::SimpleVar *>(fe.getTail())->getSymbol().getName();
+                const std::unordered_set<std::string> & sfields = i->second;
+                const std::string & fname = static_cast<const ast::SimpleVar *>(fe.getTail())->getSymbol().getName();
                 if (sfields.find(fname) == sfields.end())
                 {
                     if (&e == context.getLHSExp())

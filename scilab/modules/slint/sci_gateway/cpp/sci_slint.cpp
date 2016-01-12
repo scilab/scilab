@@ -41,7 +41,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
 {
     slint::SLintResult * results = nullptr;
     bool printResults = false;
-    const unsigned size = in.size();
+    size_t size = in.size();
     types::String * conf = nullptr;
     types::String * outFile = nullptr;
 
@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
             {
                 if (in[1]->getAs<types::Bool>()->getSize() == 1)
                 {
-                    printResults = in[1]->getAs<types::Bool>()->get(0);
+                    printResults = in[1]->getAs<types::Bool>()->get(0) != 0;
                 }
                 else
                 {
@@ -95,7 +95,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
             {
                 if (in[2]->getAs<types::Bool>()->getSize() == 1)
                 {
-                    printResults = in[2]->getAs<types::Bool>()->get(0);
+                    printResults = in[2]->getAs<types::Bool>()->get(0) != 0;
                 }
                 else
                 {
@@ -132,7 +132,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
         }
         else
         {
-            slint::XMLConfig::getOptions(L"SCI/modules/slint/etc/slint.xml", options);
+            slint::XMLConfig::getOptions("SCI/modules/slint/etc/slint.xml", options);
         }
 
         if (outFile)

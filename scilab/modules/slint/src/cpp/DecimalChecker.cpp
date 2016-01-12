@@ -21,12 +21,12 @@ void DecimalChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SL
     std::pair<unsigned int, unsigned int> out;
     if (context.getPosition(de.getLocation(), out))
     {
-        const wchar_t * const code = context.getCode();
-        if (character != L'\0')
+        const char * const code = context.getCode();
+        if (character != '\0')
         {
-            for (const wchar_t * c = code + out.first; c < code + out.second; ++c)
+            for (const char * c = code + out.first; c < code + out.second; ++c)
             {
-                if ((*c == L'e' || *c == L'E' || *c == L'd' || *c == L'D') && *c != character)
+                if ((*c == 'e' || *c == 'E' || *c == 'd' || *c == 'D') && *c != character)
                 {
                     result.report(context, e.getLocation(), *this, _("Bad decimal exponent: %s was expected and %s was found."), character, *c);
                 }
@@ -34,7 +34,7 @@ void DecimalChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SL
         }
         if (checkDot)
         {
-            if (*(code + out.first) == L'.')
+            if (*(code + out.first) == '.')
             {
                 result.report(context, e.getLocation(), *this, _("Decimal numbers musn\'t begin by a dot."));
             }

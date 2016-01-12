@@ -25,11 +25,11 @@ namespace slint
  */
 class IllegalCallsChecker : public SLintChecker
 {
-    std::set<std::wstring> illegal;
+    std::set<std::string> illegal;
 
 public:
 
-    IllegalCallsChecker(const std::wstring & checkerId, const std::vector<std::wstring> & _illegal) : SLintChecker(checkerId), illegal(_illegal.begin(), _illegal.end()) { }
+    IllegalCallsChecker(const std::string & checkerId, const std::vector<std::string> & _illegal) : SLintChecker(checkerId), illegal(_illegal.begin(), _illegal.end()) { }
     ~IllegalCallsChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

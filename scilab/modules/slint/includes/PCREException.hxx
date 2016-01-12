@@ -25,7 +25,7 @@ class PCREException : public std::exception
 
 public:
 
-    PCREException(const std::wstring & pattern, const std::string & error, const int offset);
+    PCREException(const std::string & pattern, const std::string & error, const int offset);
 
 #ifdef _MSC_VER
     virtual const char * what() const;

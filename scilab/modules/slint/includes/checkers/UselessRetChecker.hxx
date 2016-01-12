@@ -31,7 +31,7 @@ class UselessRetChecker : public SLintChecker
 
 public:
 
-    UselessRetChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    UselessRetChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~UselessRetChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

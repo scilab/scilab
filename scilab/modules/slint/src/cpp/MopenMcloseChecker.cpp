@@ -27,8 +27,8 @@ void MopenMcloseChecker::preCheckNode(const ast::Exp & e, SLintContext & context
         const ast::CallExp & ce = static_cast<const ast::CallExp &>(e);
         if (ce.getName().isSimpleVar())
         {
-            const std::wstring & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
-            if (name == L"mopen")
+            const std::string & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
+            if (name == "mopen")
             {
                 if (ce.getParent()->isAssignExp())
                 {
@@ -63,13 +63,13 @@ void MopenMcloseChecker::preCheckNode(const ast::Exp & e, SLintContext & context
                     result.report(context, e.getLocation(), *this, _("Open file is not assigned."));
                 }
             }
-            else if (name == L"mclose")
+            else if (name == "mclose")
             {
                 const ast::exps_t args = ce.getArgs();
                 if (!args.empty())
                 {
                     const ast::Exp & first = *args.front();
-                    if (first.isStringExp() && static_cast<const ast::StringExp &>(first).getValue() == L"all")
+                    if (first.isStringExp() && static_cast<const ast::StringExp &>(first).getValue() == "all")
                     {
                         result.report(context, e.getLocation(), *this, _("The instruction mclose(\"all\") may have any side effects."));
                         if (!fd.empty())
@@ -97,14 +97,14 @@ void MopenMcloseChecker::postCheckNode(const ast::Exp & e, SLintContext & contex
     {
         if (!fd.top().empty())
         {
-            std::wostringstream wos;
+            std::ostringstream os;
             auto & map = fd.top();
             for (auto i = map.begin(), end = std::prev(map.end()); i != end; ++i)
             {
-                wos << i->first.getName() << L", ";
+                os << i->first.getName() << ", ";
             }
-            wos << std::prev(map.end())->first.getName();
-            result.report(context, e.getLocation(), *this, _("Open files not closed: %s."), wos.str());
+            os << std::prev(map.end())->first.getName();
+            result.report(context, e.getLocation(), *this, _("Open files not closed: %s."), os.str());
         }
         fd.pop();
     }

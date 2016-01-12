@@ -32,9 +32,9 @@ extern "C"
 }
 
 #ifdef _MSC_VER
-#define DEFAULT_FILESPEC L"*.*"
+#define DEFAULT_FILESPEC "*.*"
 #else
-#define DEFAULT_FILESPEC L"*"
+#define DEFAULT_FILESPEC "*"
 #endif
 
 namespace slint
@@ -62,16 +62,16 @@ void SLint::check()
     }
 }
 
-void SLint::setFiles(const std::wstring & files)
+void SLint::setFiles(const std::string & files)
 {
-    std::vector<std::wstring> v = {files};
+    std::vector<std::string> v = {files};
     setFiles(v);
 }
 
 void SLint::setFiles(types::String * files)
 {
     const unsigned size = files->getSize();
-    std::vector<std::wstring> filesVector;
+    std::vector<std::string> filesVector;
     filesVector.reserve(size);
 
     for (unsigned i = 0; i < size; ++i)
@@ -81,18 +81,18 @@ void SLint::setFiles(types::String * files)
     setFiles(filesVector);
 }
 
-void SLint::setFiles(const std::vector<std::wstring> & files)
+void SLint::setFiles(const std::vector<std::string> & files)
 {
     for (const auto & file : files)
     {
-        std::wstring full = getFullPath(file);
+        std::string full = getFullPath(file);
         if (!visitor.getOptions().isExcluded(full))
         {
-            if (isdirW(full.c_str()))
+            if (isdir(full.c_str()))
             {
                 collectInDirectory(full);
             }
-            else if (hasSuffix(full, L".sci"))
+            else if (hasSuffix(full, ".sci"))
             {
                 SciFilePtr sf = parseFile(full);
                 if (sf.get())
@@ -109,27 +109,27 @@ const std::vector<SciFilePtr> & SLint::getFiles() const
     return scifiles;
 }
 
-void SLint::collectInDirectory(const std::wstring & path)
+void SLint::collectInDirectory(const std::string & path)
 {
-    std::wstring _path = path + DIR_SEPARATORW;
+    std::string _path = path + DIR_SEPARATOR;
     int size = -1;
 
-    wchar_t ** files = findfilesW(_path.c_str(), DEFAULT_FILESPEC, &size, FALSE);
+    char ** files = findfiles(_path.c_str(), DEFAULT_FILESPEC, &size, FALSE);
     if (size > 0 && files)
     {
-        std::vector<std::wstring> filesVector;
+        std::vector<std::string> filesVector;
         for (int i = 0; i < size; ++i)
         {
             filesVector.emplace_back(_path + files[i]);
         }
-        freeArrayOfWideString(files, size);
+        freeArrayOfString(files, size);
         setFiles(filesVector);
     }
 }
 
-SciFilePtr SLint::parseFile(const std::wstring & filename)
+SciFilePtr SLint::parseFile(const std::string & filename)
 {
-    std::ifstream src(scilab::UTF8::toUTF8(filename), std::ios::in | std::ios::binary | std::ios::ate);
+    std::ifstream src(filename, std::ios::in | std::ios::binary | std::ios::ate);
     if (src.is_open())
     {
         src.seekg(0, src.end);
@@ -140,16 +140,13 @@ SciFilePtr SLint::parseFile(const std::wstring & filename)
         src.read(buffer, len);
         src.close();
 
-        wchar_t * _buffer = to_wide_string(buffer);
-        delete[] buffer;
         Parser parser;
-
         ThreadManagement::LockParser();
-        parser.parse(_buffer);
+        parser.parse(buffer);
 
         if (parser.getExitStatus() != Parser::Succeded)
         {
-            FREE(_buffer);
+            FREE(buffer);
             delete parser.getTree();
             ThreadManagement::UnlockParser();
             throw FileException(filename, parser.getErrorMessage());
@@ -158,36 +155,32 @@ SciFilePtr SLint::parseFile(const std::wstring & filename)
         else
         {
             ThreadManagement::UnlockParser();
-            return SciFilePtr(new SciFile(filename, _buffer, parser.getTree()));
+            return SciFilePtr(new SciFile(filename, buffer, parser.getTree()));
         }
     }
 
-    wchar_t * error = to_wide_string(_("Cannot open the file"));
-    std::wstring _error(error);
-    FREE(error);
-
-    throw FileException(filename, _error);
+    throw FileException(filename, _("Cannot open the file"));
 }
 
-bool SLint::hasSuffix(const std::wstring & filename, const std::wstring & suffix)
+bool SLint::hasSuffix(const std::string & filename, const std::string & suffix)
 {
     return filename.size() >= suffix.size() && filename.compare(filename.size() - suffix.size(), suffix.size(), suffix) == 0;
 }
 
-std::wstring SLint::getFullPath(const std::wstring & path)
+std::string SLint::getFullPath(const std::string & path)
 {
     const unsigned SIZE = PATH_MAX * 4;
-    wchar_t * fullpath = (wchar_t *)MALLOC(SIZE * sizeof(wchar_t));
-    wchar_t * expandedPath = expandPathVariableW(const_cast<wchar_t *>(path.c_str()));
-    std::wstring _fullpath;
-    if (get_full_pathW(fullpath, expandedPath, SIZE))
+    char * fullpath = (char *)MALLOC(SIZE * sizeof(char));
+    char * expandedPath = expandPathVariable(path.c_str());
+    std::string _fullpath;
+    if (get_full_path(fullpath, expandedPath, SIZE))
     {
         FREE(expandedPath);
-        _fullpath = std::wstring(fullpath);
+        _fullpath = std::string(fullpath);
     }
     else
     {
-        _fullpath = std::wstring(expandedPath);
+        _fullpath = std::string(expandedPath);
         FREE(expandedPath);
     }
     FREE(fullpath);

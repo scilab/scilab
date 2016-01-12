@@ -30,7 +30,7 @@ class MopenMcloseChecker : public SLintChecker
 
 public:
 
-    MopenMcloseChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    MopenMcloseChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~MopenMcloseChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

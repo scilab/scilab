@@ -31,7 +31,7 @@ class VariableNameChecker : public SLintChecker
 
 public:
 
-    VariableNameChecker(const std::wstring & checkerId, const std::wstring & pattern, int _minimalLen, int _maximalLen) : SLintChecker(checkerId), matcher(pattern), minimalLen(_minimalLen), maximalLen(_maximalLen) { }
+    VariableNameChecker(const std::string & checkerId, const std::string & pattern, int _minimalLen, int _maximalLen) : SLintChecker(checkerId), matcher(pattern), minimalLen(_minimalLen), maximalLen(_maximalLen) { }
     ~VariableNameChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

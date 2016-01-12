@@ -29,15 +29,15 @@ extern "C"
 namespace slint
 {
 
-SLintXmlResult::SLintXmlResult(const std::wstring & _path) : current(nullptr), path(_path)
+SLintXmlResult::SLintXmlResult(const std::string & _path) : current(nullptr), path(_path)
 {
-    const std::wstring fullpath = SLint::getFullPath(path);
-    out = new std::ofstream(scilab::UTF8::toUTF8(fullpath), std::ios::out);
+    const std::string fullpath = SLint::getFullPath(path);
+    out = new std::ofstream(fullpath, std::ios::out);
     if (!out->is_open())
     {
         delete out;
         out = nullptr;
-        throw FileException(fullpath, L"Can\'t open it.");
+        throw FileException(fullpath, "Can\'t open it.");
     }
     else
     {
@@ -63,12 +63,12 @@ void SLintXmlResult::finalize()
     out = nullptr;
 }
 
-const std::string SLintXmlResult::getStr(const std::wstring & str)
+const std::string SLintXmlResult::getStr(const std::string & str)
 {
-    return scilab::UTF8::toUTF8(replaceByEntities(str));
+    return replaceByEntities(str);
 }
 
-void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & msg)
 {
     if (context.getSciFile().get() != current.get())
     {
@@ -87,7 +87,7 @@ void SLintXmlResult::print(const SciFilePtr & file)
     (*out) << "  <File name=\"" << getStr(file->getFilename()) << "\">\n";
 }
 
-void SLintXmlResult::print(const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+void SLintXmlResult::print(const Location & loc, const SLintChecker & checker, const std::string & msg)
 {
     (*out) << "    <Result>\n";
     print(loc);
@@ -112,36 +112,36 @@ void SLintXmlResult::print(const SLintChecker & checker)
            << "\"/>\n";
 }
 
-void SLintXmlResult::print(const std::wstring & msg)
+void SLintXmlResult::print(const std::string & msg)
 {
     (*out) << "      <Message text=\"" << getStr(msg)
            << "\"/>\n";
 }
 
-std::wstring SLintXmlResult::replaceByEntities(const std::wstring & seq)
+std::string SLintXmlResult::replaceByEntities(const std::string & seq)
 {
-    std::vector<wchar_t> buf;
+    std::vector<char> buf;
     for (auto c : seq)
     {
-        if (c == L'<')
+        if (c == '<')
         {
-            pushEntity(buf, L"&#0060;", 7);
+            pushEntity(buf, "&#0060;", 7);
         }
-        else if (c == L'>')
+        else if (c == '>')
         {
-            pushEntity(buf, L"&#0062;", 7);
+            pushEntity(buf, "&#0062;", 7);
         }
-        else if (c == L'\'')
+        else if (c == '\'')
         {
-            pushEntity(buf, L"&#0039;", 7);
+            pushEntity(buf, "&#0039;", 7);
         }
-        else if (c == L'\"')
+        else if (c == '\"')
         {
-            pushEntity(buf, L"&#0034;", 7);
+            pushEntity(buf, "&#0034;", 7);
         }
-        else if (c == L'&')
+        else if (c == '&')
         {
-            pushEntity(buf, L"&#0038;", 7);
+            pushEntity(buf, "&#0038;", 7);
         }
         else
         {
@@ -149,7 +149,7 @@ std::wstring SLintXmlResult::replaceByEntities(const std::wstring & seq)
         }
     }
 
-    return std::wstring(buf.begin(), buf.end());
+    return std::string(buf.begin(), buf.end());
 }
 
 } // namespace slint

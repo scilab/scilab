@@ -19,11 +19,11 @@ void NestedBlocksChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
 {
     if (max >= 0)
     {
-	stack.emplace_back(&e);
-	if (stack.size() == (1 + (unsigned int)max))
-	{
-	    result.report(context, stack.back()->getLocation(), *this, _("Too many nested blocks: %d max."), max);
-	}
+        stack.emplace_back(&e);
+        if (stack.size() == (1 + (unsigned int)max))
+        {
+            result.report(context, stack.back()->getLocation(), *this, _("Too many nested blocks: %d max."), max);
+        }
     }
 }
 

@@ -26,7 +26,7 @@ class UselessOpChecker : public SLintChecker
 
 public:
 
-    UselessOpChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    UselessOpChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~UselessOpChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

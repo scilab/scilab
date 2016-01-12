@@ -39,21 +39,21 @@ public:
 
     SLint(SLintOptions & options, SLintResult & result);
 
-    void setFiles(const std::vector<std::wstring> & files);
+    void setFiles(const std::vector<std::string> & files);
     void setFiles(types::String * files);
-    void setFiles(const std::wstring & files);
+    void setFiles(const std::string & files);
     const std::vector<SciFilePtr> & getFiles() const;
     void check();
     const SLintVisitor & getVisitor() const;
 
-    static std::wstring getFullPath(const std::wstring & path);
+    static std::string getFullPath(const std::string & path);
 
 private:
 
-    SciFilePtr parseFile(const std::wstring & filename);
-    void collectInDirectory(const std::wstring & path);
+    SciFilePtr parseFile(const std::string & filename);
+    void collectInDirectory(const std::string & path);
 
-    static bool hasSuffix(const std::wstring & filename, const std::wstring & suffix);
+    static bool hasSuffix(const std::string & filename, const std::string & suffix);
 };
 
 } // namespace slint

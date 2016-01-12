@@ -26,16 +26,16 @@ void NaNChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintR
 
         if (oe.getLeft().isSimpleVar())
         {
-            const std::wstring & name = static_cast<const ast::SimpleVar &>(oe.getLeft()).getSymbol().getName();
-            if (name == L"%nan")
+            const std::string & name = static_cast<const ast::SimpleVar &>(oe.getLeft()).getSymbol().getName();
+            if (name == "%nan")
             {
                 hasNaN = true;
             }
         }
         if (!hasNaN && oe.getRight().isSimpleVar())
         {
-            const std::wstring & name = static_cast<const ast::SimpleVar &>(oe.getRight()).getSymbol().getName();
-            if (name == L"%nan")
+            const std::string & name = static_cast<const ast::SimpleVar &>(oe.getRight()).getSymbol().getName();
+            if (name == "%nan")
             {
                 hasNaN = true;
             }

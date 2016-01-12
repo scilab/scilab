@@ -46,19 +46,19 @@ void SpacesAroundOpChecker::preCheckNode(const ast::Exp & e, SLintContext & cont
         {
             if (pos.first < pos.second)
             {
-                const wchar_t * op = context.getCode() + pos.second;
-                while (*op == L' ' || *op == L'\t' || *op == L')')
+                const char * op = context.getCode() + pos.second;
+                while (*op == ' ' || *op == '\t' || *op == ')')
                 {
                     ++op;
                 }
-                if (isPower && *op == L'*')
+                if (isPower && *op == '*')
                 {
                     ++opSize;
                 }
 
-                if (*(op - 1) != L' ' || (!isAssign && *(op - 2) == L' ') || *(op + opSize) != L' ' || (!isAssign && *(op + opSize + 1) == L' '))
+                if (*(op - 1) != ' ' || (!isAssign && *(op - 2) == ' ') || *(op + opSize) != ' ' || (!isAssign && *(op + opSize + 1) == ' '))
                 {
-                    result.report(context, e.getLocation(), *this, _("Operator %s should be surrounded by single spaces."), std::wstring(op, op + opSize));
+                    result.report(context, e.getLocation(), *this, _("Operator %s should be surrounded by single spaces."), std::string(op, op + opSize));
                 }
             }
         }

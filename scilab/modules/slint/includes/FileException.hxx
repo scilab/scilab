@@ -25,7 +25,7 @@ class FileException : public std::exception
 
 public:
 
-    FileException(const std::wstring & filename, const std::wstring & error);
+    FileException(const std::string & filename, const std::string & error);
 
 #ifdef _MSC_VER
     virtual const char * what() const;

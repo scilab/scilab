@@ -83,19 +83,19 @@ bool XMLtools::getString(xmlNode * node, const char * attrName, std::string & ou
     return false;
 }
 
-bool XMLtools::getWString(xmlNode * node, const char * attrName, std::wstring & out)
-{
-    xmlAttr * attr = xmlHasProp(node, (const xmlChar *)attrName);
-    if (attr)
-    {
-        wchar_t * content = to_wide_string((const char *)attr->children->content);
-        out = std::wstring(content);
-        FREE(content);
-
-        return true;
-    }
-    return false;
-}
+//bool XMLtools::getString(xmlNode * node, const char * attrName, std::string & out)
+//{
+//    xmlAttr * attr = xmlHasProp(node, (const xmlChar *)attrName);
+//    if (attr)
+//    {
+//        char * content = to_wide_string((const char *)attr->children->content);
+//        out = std::string(content);
+//        FREE(content);
+//
+//        return true;
+//    }
+//    return false;
+//}
 
 bool XMLtools::getBool(xmlNode * node, const char * attrName, bool & out)
 {
@@ -117,9 +117,9 @@ bool XMLtools::getBool(xmlNode * node, const char * attrName, bool & out)
     return false;
 }
 
-xmlDoc * XMLtools::readXML(const std::wstring & path)
+xmlDoc * XMLtools::readXML(const std::string & path)
 {
-    const std::string fullpath = scilab::UTF8::toUTF8(SLint::getFullPath(path));
+    const std::string fullpath = SLint::getFullPath(path);
     xmlParserCtxt * ctxt = xmlNewParserCtxt();
     if (!ctxt)
     {

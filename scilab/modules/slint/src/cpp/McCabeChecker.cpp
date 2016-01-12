@@ -19,11 +19,11 @@ void McCabeChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLi
 {
     if (max > 0)
     {
-	const unsigned int cpx = mccabe.getComplexity(static_cast<const ast::FunctionDec &>(e));
-	if (cpx > (unsigned int)max)
-	{
-	    result.report(context, e.getLocation(), *this, _("McCabe\'s complexity is %d and is greater than %d."), cpx, max);
-	}
+        const unsigned int cpx = mccabe.getComplexity(static_cast<const ast::FunctionDec &>(e));
+        if (cpx > (unsigned int)max)
+        {
+            result.report(context, e.getLocation(), *this, _("McCabe\'s complexity is %d and is greater than %d."), cpx, max);
+        }
     }
 }
 

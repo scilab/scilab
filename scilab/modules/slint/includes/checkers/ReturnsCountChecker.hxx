@@ -31,7 +31,7 @@ class ReturnsCountChecker : public SLintChecker
 
 public:
 
-    ReturnsCountChecker(const std::wstring & checkerId, const int _maxReturns) : SLintChecker(checkerId), maxReturns(_maxReturns) { }
+    ReturnsCountChecker(const std::string & checkerId, const int _maxReturns) : SLintChecker(checkerId), maxReturns(_maxReturns) { }
     ~ReturnsCountChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

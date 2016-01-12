@@ -15,15 +15,15 @@
 namespace slint
 {
 
-std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::deprecated = initDep();
-std::unordered_map<std::wstring, std::shared_ptr<SLintChecker>> DeprecatedChecker::partiallyDeprecated = initPartDep();
+std::unordered_map<std::string, std::string> DeprecatedChecker::deprecated = initDep();
+std::unordered_map<std::string, std::shared_ptr<SLintChecker>> DeprecatedChecker::partiallyDeprecated = initPartDep();
 
 void DeprecatedChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
     const ast::CallExp & ce = static_cast<const ast::CallExp &>(e);
     if (ce.getName().isSimpleVar())
     {
-        const std::wstring & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
+        const std::string & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
         const auto i = deprecated.find(name);
         if (i != deprecated.end())
         {
@@ -84,47 +84,47 @@ void DeprecatedChecker::__Mfprintf::preCheckNode(const ast::Exp & e, SLintContex
     }
 }
 
-std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
+std::unordered_map<std::string, std::string> DeprecatedChecker::initDep()
 {
     // TODO: get this list from a conf file
-    std::unordered_map<std::wstring, std::wstring> map;
-    map.emplace(L"znaupd", L"eigs");
-    map.emplace(L"zneupd", L"eigs");
-    map.emplace(L"dseupd", L"eigs");
-    map.emplace(L"dneupd", L"eigs");
-    map.emplace(L"dnaupd", L"eigs");
-    map.emplace(L"dsaupd", L"eigs");
-    map.emplace(L"m_circle", L"");
-    map.emplace(L"lex_sort", L"gsort");
-    map.emplace(L"plot2d1", L"plot2d");
-    map.emplace(L"plotframe", L"");
-    map.emplace(L"xset", L"set");
-    map.emplace(L"xget", L"get");
-    map.emplace(L"isoview", L"");
-    map.emplace(L"xclear", L"");
-    map.emplace(L"datatipSetStruct", L"");
-    map.emplace(L"datatipGetStruct", L"");
-    map.emplace(L"fcontour2d", L"contour2d");
-    map.emplace(L"fcontour", L"contour");
-    map.emplace(L"fac3d", L"plot3d");
-    map.emplace(L"str2code", L"");
-    map.emplace(L"code2str", L"");
-    map.emplace(L"perl", L"");
-    map.emplace(L"gspec", L"spec");
-    map.emplace(L"gschur", L"schur");
-    map.emplace(L"rafiter", L"taucs_chsolve");
-    map.emplace(L"numdiff", L"numderivative");
-    map.emplace(L"derivative", L"numderivative");
-    map.emplace(L"mvvacov", L"cov");
+    std::unordered_map<std::string, std::string> map;
+    map.emplace("znaupd", "eigs");
+    map.emplace("zneupd", "eigs");
+    map.emplace("dseupd", "eigs");
+    map.emplace("dneupd", "eigs");
+    map.emplace("dnaupd", "eigs");
+    map.emplace("dsaupd", "eigs");
+    map.emplace("m_circle", "");
+    map.emplace("lex_sort", "gsort");
+    map.emplace("plot2d1", "plot2d");
+    map.emplace("plotframe", "");
+    map.emplace("xset", "set");
+    map.emplace("xget", "get");
+    map.emplace("isoview", "");
+    map.emplace("xclear", "");
+    map.emplace("datatipSetStruct", "");
+    map.emplace("datatipGetStruct", "");
+    map.emplace("fcontour2d", "contour2d");
+    map.emplace("fcontour", "contour");
+    map.emplace("fac3d", "plot3d");
+    map.emplace("str2code", "");
+    map.emplace("code2str", "");
+    map.emplace("perl", "");
+    map.emplace("gspec", "spec");
+    map.emplace("gschur", "schur");
+    map.emplace("rafiter", "taucs_chsolve");
+    map.emplace("numdiff", "numderivative");
+    map.emplace("derivative", "numderivative");
+    map.emplace("mvvacov", "cov");
 
     return map;
 }
 
-std::unordered_map<std::wstring, std::shared_ptr<SLintChecker>> DeprecatedChecker::initPartDep()
+std::unordered_map<std::string, std::shared_ptr<SLintChecker>> DeprecatedChecker::initPartDep()
 {
-    std::unordered_map<std::wstring, std::shared_ptr<SLintChecker>> map;
-    map.emplace(L"svd", std::shared_ptr<SLintChecker>(new __Svd()));
-    map.emplace(L"mfprintf", std::shared_ptr<SLintChecker>(new __Mfprintf()));
+    std::unordered_map<std::string, std::shared_ptr<SLintChecker>> map;
+    map.emplace("svd", std::shared_ptr<SLintChecker>(new __Svd()));
+    map.emplace("mfprintf", std::shared_ptr<SLintChecker>(new __Mfprintf()));
 
     return map;
 }

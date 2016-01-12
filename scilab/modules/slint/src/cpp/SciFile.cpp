@@ -22,7 +22,7 @@ namespace slint
 
 SciFile::SciFile() : code(nullptr), tree(nullptr), main(nullptr) { }
 
-SciFile::SciFile(const std::wstring & _filename, const wchar_t * _code, const ast::Exp * _tree) : filename(_filename), code(_code), tree(_tree)
+SciFile::SciFile(const std::string & _filename, const char * _code, const ast::Exp * _tree) : filename(_filename), code(_code), tree(_tree)
 {
     initLines();
     analyzeTree();
@@ -30,16 +30,16 @@ SciFile::SciFile(const std::wstring & _filename, const wchar_t * _code, const as
 
 SciFile::~SciFile()
 {
-    FREE(const_cast<wchar_t *>(code));
+    FREE(const_cast<char *>(code));
     delete tree;
 }
 
-const std::wstring & SciFile::getFilename() const
+const std::string & SciFile::getFilename() const
 {
     return filename;
 }
 
-const wchar_t * SciFile::getCode() const
+const char * SciFile::getCode() const
 {
     return code;
 }
@@ -125,27 +125,27 @@ void SciFile::initLines()
     codeLength = 0;
     if (code)
     {
-        const wchar_t * p = code;
+        const char * p = code;
         lines.emplace_back(0, 0);
         while (*p)
         {
-            if (*p == L'\n') // Unix EOL
+            if (*p == '\n') // Unix EOL
             {
-                lines.back().second = p - code - 1;
+                lines.back().second = (unsigned int)(p - code - 1);
                 lines.emplace_back(p - code + 1, 0);
                 ++p;
             }
-            else if (*p == L'\r')
+            else if (*p == '\r')
             {
-                if (*(p + 1) == L'\n') // Windows EOL
+                if (*(p + 1) == '\n') // Windows EOL
                 {
-                    lines.back().second = p - code - 1;
+                    lines.back().second = (unsigned int)(p - code - 1);
                     lines.emplace_back(p - code + 2, 0);
                     p += 2;
                 }
                 else // Old mac EOL
                 {
-                    lines.back().second = p - code - 1;
+                    lines.back().second = (unsigned int)(p - code - 1);
                     lines.emplace_back(p - code + 1, 0);
                     ++p;
                 }
@@ -156,8 +156,8 @@ void SciFile::initLines()
             }
         }
 
-        lines.back().second = p - code - 1;
-        codeLength = p - code;
+        lines.back().second = (unsigned int)(p - code - 1);
+        codeLength = (unsigned int)(p - code);
     }
 
     /*for (const auto & line : lines)
@@ -166,17 +166,17 @@ void SciFile::initLines()
       }*/
 }
 
-bool SciFile::isEmptyLine(const wchar_t * line, const unsigned len) const
+bool SciFile::isEmptyLine(const char * line, const unsigned len) const
 {
     // An empty line is (^[\t ]*//) or (^[\t ]*$)
     for (unsigned i = 0; i < len; ++i)
     {
-        const wchar_t c = line[i];
-        if (c == L' ' || c == L'\t')
+        const char c = line[i];
+        if (c == ' ' || c == '\t')
         {
             continue;
         }
-        else if (c == L'/' && (i < len - 1) && line[i + 1] == L'/')
+        else if (c == '/' && (i < len - 1) && line[i + 1] == '/')
         {
             return true;
         }
@@ -218,7 +218,7 @@ bool SciFile::isPrivateFunction(const symbol::Symbol & sym) const
     return privateFunctions.find(sym.getName()) != privateFunctions.end();
 }
 
-const ast::FunctionDec * SciFile::getPrivateFunction(const std::wstring & name) const
+const ast::FunctionDec * SciFile::getPrivateFunction(const std::string & name) const
 {
     auto i = privateFunctions.find(name);
     if (i != privateFunctions.end())

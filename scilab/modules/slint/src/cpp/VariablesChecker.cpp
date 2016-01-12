@@ -26,8 +26,8 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
             assigned.top().emplace(fd.getSymbol().getName(), p);
         }
 
-        assigned.emplace(std::unordered_map<std::wstring, std::pair<Location, ast::AssignListExp *>>());
-        used.emplace(std::unordered_map<std::wstring, const ast::Exp *>());
+        assigned.emplace(std::unordered_map<std::string, std::pair<Location, ast::AssignListExp *>>());
+        used.emplace(std::unordered_map<std::string, const ast::Exp *>());
 
         // a function cans refer to itself
         std::pair<Location, ast::AssignListExp *> p = { e.getLocation(), nullptr };
@@ -45,7 +45,7 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                     // if we are not in the context on a nested assignment in a function call (foo(a,b=2))
                     if (!var.getParent()->getParent() || !var.getParent()->getParent()->isCallExp())
                     {
-                        const std::wstring & name = var.getSymbol().getName();
+                        const std::string & name = var.getSymbol().getName();
                         auto i = used.top().find(name);
                         if (!context.topLoop() || (i == used.top().end()) || !isParentOf(context.topLoop(), i->second))
                         {
@@ -87,7 +87,7 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                 else if (!e.getParent()->isFieldExp() || static_cast<const ast::FieldExp *>(e.getParent())->getTail() != &e)
                 {
                     const symbol::Symbol & sym = var.getSymbol();
-                    const std::wstring & name = sym.getName();
+                    const std::string & name = sym.getName();
                     if (used.top().find(name) == used.top().end())
                     {
                         used.top().emplace(name, context.topLoop());
@@ -117,7 +117,7 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
 
                                        titi is private but usable in tata.
                                     */
-                                    std::wstring fname;
+                                    std::string fname;
                                     if (context.isExternPrivateFunction(sym, fname))
                                     {
                                         result.report(context, e.getLocation(), *this, _("Use of a private macro \'%s\' defined in an other file %s."), name, fname);
@@ -140,7 +140,7 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                                 {
                                     if (e->isSimpleVar())
                                     {
-                                        const std::wstring & prevName = static_cast<ast::SimpleVar *>(e)->getSymbol().getName();
+                                        const std::string & prevName = static_cast<ast::SimpleVar *>(e)->getSymbol().getName();
                                         assigned.top().erase(prevName);
                                         if (prevName == name)
                                         {
@@ -165,7 +165,7 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
             /*else if (e.isVarDec())
             {
                 const ast::VarDec & vd = static_cast<const ast::VarDec &>(e);
-                const std::wstring & name = vd.getSymbol().getName();
+                const std::string & name = vd.getSymbol().getName();
                 std::pair<Location, ast::AssignListExp *> p = { vd.getLocation(), nullptr };
                 assigned.top().emplace(name, p);
                 used.top().erase(name);

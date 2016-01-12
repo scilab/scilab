@@ -54,16 +54,16 @@ namespace slint
             std::pair<unsigned int, unsigned int> out;
             if (context.getPosition(e->getLocation(), out) && out.first < out.second)
             {
-                const wchar_t * line = context.getCode() + out.first;
+                const char * line = context.getCode() + out.first;
                 const unsigned len = out.second - out.first;
                 for (unsigned i = len - 1; i >= 0; --i)
                 {
-                    const wchar_t c = line[i];
-                    if (c == L' ' || c == L'\t')
+                    const char c = line[i];
+                    if (c == ' ' || c == '\t')
                     {
                         continue;
                     }
-                    else if (c == L';')
+                    else if (c == ';')
                     {
                         break;
                     }

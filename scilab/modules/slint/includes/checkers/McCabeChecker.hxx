@@ -30,7 +30,7 @@ class McCabeChecker : public SLintChecker
 
 public:
 
-    McCabeChecker(const std::wstring & checkerId, const int _max) : SLintChecker(checkerId), max(_max) { }
+    McCabeChecker(const std::string & checkerId, const int _max) : SLintChecker(checkerId), max(_max) { }
     ~McCabeChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

@@ -26,7 +26,7 @@ class SpacesInArgsChecker : public SLintChecker
 
 public:
 
-    SpacesInArgsChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    SpacesInArgsChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~SpacesInArgsChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

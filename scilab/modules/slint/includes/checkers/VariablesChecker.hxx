@@ -28,12 +28,12 @@ namespace slint
 class VariablesChecker : public SLintChecker
 {
 
-    std::stack<std::unordered_map<std::wstring, std::pair<Location, ast::AssignListExp *>>> assigned;
-    std::stack<std::unordered_map<std::wstring, const ast::Exp *>> used;
+    std::stack<std::unordered_map<std::string, std::pair<Location, ast::AssignListExp *>>> assigned;
+    std::stack<std::unordered_map<std::string, const ast::Exp *>> used;
 
 public:
 
-    VariablesChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    VariablesChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~VariablesChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

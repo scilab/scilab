@@ -26,7 +26,7 @@ class SingleInstrChecker : public SLintChecker
 
 public:
 
-    SingleInstrChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    SingleInstrChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~SingleInstrChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

@@ -30,11 +30,11 @@ namespace slint
 class FunctionTestReturnChecker : public SLintChecker
 {
 
-    std::unordered_map<std::wstring, std::vector<unsigned int>> funs;
+    std::unordered_map<std::string, std::vector<unsigned int>> funs;
 
 public:
 
-    FunctionTestReturnChecker(const std::wstring & checkerId, const std::unordered_map<std::wstring, std::vector<unsigned int>> & _funs) : SLintChecker(checkerId), funs(_funs) { }
+    FunctionTestReturnChecker(const std::string & checkerId, const std::unordered_map<std::string, std::vector<unsigned int>> & _funs) : SLintChecker(checkerId), funs(_funs) { }
     ~FunctionTestReturnChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

@@ -23,7 +23,7 @@ namespace slint
 
 std::unordered_map<std::string, XMLConfig::CBType> XMLConfig::callbacks = initCallbacks();
 
-void XMLConfig::getOptions(const std::wstring & path, SLintOptions & options)
+void XMLConfig::getOptions(const std::string & path, SLintOptions & options)
 {
     xmlDoc * doc = slint::XMLtools::readXML(path);
     xmlNode * root = xmlDocGetRootElement(doc);
@@ -50,13 +50,13 @@ SLintChecker * XMLConfig::createFromXmlNode<FunctionNameChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
-        std::wstring pattern;
+        std::string id;
+        std::string pattern;
         int min = -1;
         int max = -1;
 
-        XMLtools::getWString(node, "id", id);
-        XMLtools::getWString(node, "namePattern", pattern);
+        XMLtools::getString(node, "id", id);
+        XMLtools::getString(node, "namePattern", pattern);
         XMLtools::getInt(node, "minLength", min);
         XMLtools::getInt(node, "maxLength", max);
 
@@ -73,13 +73,13 @@ SLintChecker * XMLConfig::createFromXmlNode<VariableNameChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
-        std::wstring pattern;
+        std::string id;
+        std::string pattern;
         int min = -1;
         int max = -1;
 
-        XMLtools::getWString(node, "id", id);
-        XMLtools::getWString(node, "namePattern", pattern);
+        XMLtools::getString(node, "id", id);
+        XMLtools::getString(node, "namePattern", pattern);
         XMLtools::getInt(node, "minLength", min);
         XMLtools::getInt(node, "maxLength", max);
 
@@ -96,10 +96,10 @@ SLintChecker * XMLConfig::createFromXmlNode<McCabeChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
+        std::string id;
         int max = -1;
 
-        XMLtools::getWString(node, "id", id);
+        XMLtools::getString(node, "id", id);
         XMLtools::getInt(node, "max", max);
 
         return new McCabeChecker(id, max);
@@ -115,14 +115,14 @@ SLintChecker * XMLConfig::createFromXmlNode<DecimalChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
-        std::wstring character;
+        std::string id;
+        std::string character;
         bool checkDot = false;
 
-        XMLtools::getWString(node, "id", id);
-        XMLtools::getWString(node, "character", character);
+        XMLtools::getString(node, "id", id);
+        XMLtools::getString(node, "character", character);
         XMLtools::getBool(node, "checkDot", checkDot);
-        wchar_t c = character.empty() ? L'\0' : character.at(0);
+        char c = character.empty() ? '\0' : character.at(0);
 
         return new DecimalChecker(id, c, checkDot);
     }
@@ -137,10 +137,10 @@ SLintChecker * XMLConfig::createFromXmlNode<LineLengthChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
+        std::string id;
         int max = -1;
 
-        XMLtools::getWString(node, "id", id);
+        XMLtools::getString(node, "id", id);
         XMLtools::getInt(node, "max", max);
 
         return new LineLengthChecker(id, max);
@@ -156,10 +156,10 @@ SLintChecker * XMLConfig::createFromXmlNode<LinesCountChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
+        std::string id;
         int max = -1;
 
-        XMLtools::getWString(node, "id", id);
+        XMLtools::getString(node, "id", id);
         XMLtools::getInt(node, "max", max);
 
         return new LinesCountChecker(id, max);
@@ -175,13 +175,13 @@ SLintChecker * XMLConfig::createFromXmlNode<StructChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
-        std::wstring pattern;
+        std::string id;
+        std::string pattern;
         int min = -1;
         int max = -1;
 
-        XMLtools::getWString(node, "id", id);
-        XMLtools::getWString(node, "fieldPattern", pattern);
+        XMLtools::getString(node, "id", id);
+        XMLtools::getString(node, "fieldPattern", pattern);
         XMLtools::getInt(node, "minLength", min);
         XMLtools::getInt(node, "maxLength", max);
 
@@ -198,11 +198,11 @@ SLintChecker * XMLConfig::createFromXmlNode<BreaksInLoopChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
+        std::string id;
         int maxBreaks = -1;
         int maxContinues = -1;
 
-        XMLtools::getWString(node, "id", id);
+        XMLtools::getString(node, "id", id);
         XMLtools::getInt(node, "maxBreaks", maxBreaks);
         XMLtools::getInt(node, "maxContinues", maxContinues);
 
@@ -219,10 +219,10 @@ SLintChecker * XMLConfig::createFromXmlNode<NestedBlocksChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
+        std::string id;
         int max = -1;
 
-        XMLtools::getWString(node, "id", id);
+        XMLtools::getString(node, "id", id);
         XMLtools::getInt(node, "max", max);
 
         return new NestedBlocksChecker(id, max);
@@ -238,10 +238,10 @@ SLintChecker * XMLConfig::createFromXmlNode<ReturnsCountChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
+        std::string id;
         int max = -1;
 
-        XMLtools::getWString(node, "id", id);
+        XMLtools::getString(node, "id", id);
         XMLtools::getInt(node, "max", max);
 
         return new ReturnsCountChecker(id, max);
@@ -257,10 +257,10 @@ SLintChecker * XMLConfig::createFromXmlNode<StatInCondChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
+        std::string id;
         int max = -1;
 
-        XMLtools::getWString(node, "id", id);
+        XMLtools::getString(node, "id", id);
         XMLtools::getInt(node, "max", max);
 
         return new StatInCondChecker(id, max);
@@ -276,15 +276,15 @@ SLintChecker * XMLConfig::createFromXmlNode<IllegalCallsChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
-        std::vector<std::wstring> names;
+        std::string id;
+        std::vector<std::string> names;
         for (xmlNode * child = node->children; child; child = child->next)
         {
             const std::string nodeName((const char *)child->name);
             if (nodeName == "keyword")
             {
-                std::wstring name;
-                XMLtools::getWString(child, "name", name);
+                std::string name;
+                XMLtools::getString(child, "name", name);
                 if (!name.empty())
                 {
                     names.emplace_back(name);
@@ -292,7 +292,7 @@ SLintChecker * XMLConfig::createFromXmlNode<IllegalCallsChecker>(xmlNode * node)
             }
         }
 
-        XMLtools::getWString(node, "id", id);
+        XMLtools::getString(node, "id", id);
 
         return new IllegalCallsChecker(id, names);
     }
@@ -307,15 +307,15 @@ SLintChecker * XMLConfig::createFromXmlNode<FunctionTestReturnChecker>(xmlNode *
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
-        std::unordered_map<std::wstring, std::vector<unsigned int>> namesArgs;
+        std::string id;
+        std::unordered_map<std::string, std::vector<unsigned int>> namesArgs;
         for (xmlNode * child = node->children; child; child = child->next)
         {
             const std::string nodeName((const char *)child->name);
             if (nodeName == "keyword")
             {
-                std::wstring name;
-                XMLtools::getWString(child, "name", name);
+                std::string name;
+                XMLtools::getString(child, "name", name);
                 if (!name.empty())
                 {
                     std::vector<unsigned int> arg;
@@ -327,7 +327,7 @@ SLintChecker * XMLConfig::createFromXmlNode<FunctionTestReturnChecker>(xmlNode *
             }
         }
 
-        XMLtools::getWString(node, "id", id);
+        XMLtools::getString(node, "id", id);
 
         return new FunctionTestReturnChecker(id, namesArgs);
     }
@@ -342,13 +342,13 @@ SLintChecker * XMLConfig::createFromXmlNode<SelectChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
+        std::string id;
         bool checkDefault = false;
         bool checkHomogeneity = false;
         bool checkEmpty = false;
         bool checkOneCase = false;
 
-        XMLtools::getWString(node, "id", id);
+        XMLtools::getString(node, "id", id);
         XMLtools::getBool(node, "default", checkDefault);
         XMLtools::getBool(node, "homogeneity", checkHomogeneity);
         XMLtools::getBool(node, "empty", checkEmpty);
@@ -367,10 +367,10 @@ SLintChecker * XMLConfig::createFromXmlNode<CommentRatioChecker>(xmlNode * node)
     XMLtools::getBool(node, "enable", enable);
     if (enable)
     {
-        std::wstring id;
+        std::string id;
         double ratio = 0;
 
-        XMLtools::getWString(node, "id", id);
+        XMLtools::getString(node, "id", id);
         XMLtools::getDouble(node, "ratioMin", ratio);
         if (ratio < 0)
         {

@@ -31,7 +31,7 @@ class SelectChecker : public SLintChecker
 
 public:
 
-    SelectChecker(const std::wstring & checkerId, const bool _checkDefault, const bool _checkHomogeneity, const bool _checkEmpty, const bool _checkOneCase) : SLintChecker(checkerId), checkDefault(_checkDefault), checkHomogeneity(_checkHomogeneity), checkEmpty(_checkEmpty), checkOneCase(_checkOneCase) { }
+    SelectChecker(const std::string & checkerId, const bool _checkDefault, const bool _checkHomogeneity, const bool _checkEmpty, const bool _checkOneCase) : SLintChecker(checkerId), checkDefault(_checkDefault), checkHomogeneity(_checkHomogeneity), checkEmpty(_checkEmpty), checkOneCase(_checkOneCase) { }
 
     ~SelectChecker() { }
 

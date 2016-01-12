@@ -32,14 +32,14 @@ class SLintScilabResult : public SLintResult
 
 protected:
 
-    std::unordered_map<std::wstring, std::multimap<Location, std::wstring>> results;
+    std::unordered_map<std::string, std::multimap<Location, std::string>> results;
 
 public:
 
     SLintScilabResult();
     virtual ~SLintScilabResult();
     virtual void handleFiles(const std::vector<SciFilePtr> & files) { }
-    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg);
+    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & msg);
     virtual void finalize();
 };
 
@@ -47,14 +47,14 @@ class SLintScilabOut : public SLintResult
 {
 
     // { Filename => { Id => { Location, Msg } }
-    std::unordered_map<std::wstring, std::unordered_map<std::wstring, std::vector<std::pair<Location, std::wstring>>>> results;
+    std::unordered_map<std::string, std::unordered_map<std::string, std::vector<std::pair<Location, std::string>>>> results;
 
 public:
 
     SLintScilabOut();
     virtual ~SLintScilabOut();
     virtual void handleFiles(const std::vector<SciFilePtr> & files) { }
-    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg);
+    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & msg);
     virtual void finalize();
 
     types::Struct * getStruct() const;

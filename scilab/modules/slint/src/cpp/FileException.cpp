@@ -21,9 +21,9 @@ extern "C"
 namespace slint
 {
 
-FileException::FileException(const std::wstring & filename, const std::wstring & error)
+FileException::FileException(const std::string & filename, const std::string & error)
 {
-    msg = std::string("Error with file ") + scilab::UTF8::toUTF8(filename) + ":\n" + scilab::UTF8::toUTF8(error);
+    msg = std::string("Error with file ") + filename + ":\n" + error;
 }
 
 #ifdef _MSC_VER

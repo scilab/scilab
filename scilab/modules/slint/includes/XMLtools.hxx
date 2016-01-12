@@ -30,9 +30,9 @@ public:
     static bool getUIntVector(xmlNode * node, const char * attrName, std::vector<unsigned int> & out);
     static bool getInt(xmlNode * node, const char * attrName, int & out);
     static bool getString(xmlNode * node, const char * attrName, std::string & out);
-    static bool getWString(xmlNode * node, const char * attrName, std::wstring & out);
+//    static bool getString(xmlNode * node, const char * attrName, std::string & out);
     static bool getBool(xmlNode * node, const char * attrName, bool & out);
-    static xmlDoc * readXML(const std::wstring & path);
+    static xmlDoc * readXML(const std::string & path);
     static void errorFunction(void * ctx, const char * msg, ...);
     static std::vector<std::string> tokenize(const std::string & str, const char delim);
 

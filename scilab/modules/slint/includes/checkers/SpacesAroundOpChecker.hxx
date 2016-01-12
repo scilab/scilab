@@ -26,7 +26,7 @@ class SpacesAroundOpChecker : public SLintChecker
 
 public:
 
-    SpacesAroundOpChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    SpacesAroundOpChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~SpacesAroundOpChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

@@ -31,7 +31,7 @@ class CommentRatioChecker : public SLintChecker
 
 public:
 
-    CommentRatioChecker(const std::wstring & checkerId, const double _ratioMin) : SLintChecker(checkerId), count(0), ratioMin(_ratioMin) { }
+    CommentRatioChecker(const std::string & checkerId, const double _ratioMin) : SLintChecker(checkerId), count(0), ratioMin(_ratioMin) { }
     ~CommentRatioChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

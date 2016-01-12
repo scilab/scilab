@@ -29,7 +29,7 @@ class TodoChecker : public SLintChecker
 
 public:
 
-    TodoChecker(const std::wstring & checkerId) : SLintChecker(checkerId), todo(L"[tT][oO][dD][oO][^a-zA-Z0-9]+") { }
+    TodoChecker(const std::string & checkerId) : SLintChecker(checkerId), todo("[tT][oO][dD][oO][^a-zA-Z0-9]+") { }
     ~TodoChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

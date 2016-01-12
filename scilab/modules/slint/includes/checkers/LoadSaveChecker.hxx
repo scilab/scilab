@@ -26,7 +26,7 @@ class LoadSaveChecker : public SLintChecker
 
 public:
 
-    LoadSaveChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    LoadSaveChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~LoadSaveChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

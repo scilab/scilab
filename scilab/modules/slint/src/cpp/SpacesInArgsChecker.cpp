@@ -27,7 +27,7 @@ void SpacesInArgsChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
         args = static_cast<const ast::CallExp &>(e).getArgs();
     }
 
-    const wchar_t * code = context.getCode();
+    const char * code = context.getCode();
     const unsigned int len = context.getCodeLength();
     bool first = true;
     for (const auto arg : args)
@@ -35,25 +35,25 @@ void SpacesInArgsChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
         std::pair<unsigned int, unsigned int> pos;
         if (context.getPosition(arg->getLocation(), pos))
         {
-            const wchar_t next = code[pos.second];
-            if (next == L' ' || next == L'\t')
+            const char next = code[pos.second];
+            if (next == ' ' || next == '\t')
             {
                 result.report(context, e.getLocation(), *this, _("No space after function argument."));
             }
             if (pos.first >= 2)
             {
-                const wchar_t prev = code[pos.first - 1];
+                const char prev = code[pos.first - 1];
                 if (first)
                 {
-                    if (prev == L' ' || prev == L'\t')
+                    if (prev == ' ' || prev == '\t')
                     {
                         result.report(context, e.getLocation(), *this, _("No space before first function argument."));
                     }
                 }
                 else
                 {
-                    const wchar_t pprev = code[pos.first - 2];
-                    if (prev != L' ' || pprev != L',')
+                    const char pprev = code[pos.first - 2];
+                    if (prev != ' ' || pprev != ',')
                     {
                         result.report(context, e.getLocation(), *this, _("A function argument must be preceded by a single space."));
                     }

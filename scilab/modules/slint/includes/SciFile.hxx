@@ -26,23 +26,23 @@ namespace slint
 
 class SciFile
 {
-    std::wstring filename;
-    const wchar_t * code;
+    std::string filename;
+    const char * code;
     unsigned int codeLength;
     const ast::Exp * tree;
     std::vector<std::pair<unsigned int, unsigned int>> lines;
     const ast::FunctionDec * main;
-    std::unordered_map<std::wstring, const ast::FunctionDec *> privateFunctions;
+    std::unordered_map<std::string, const ast::FunctionDec *> privateFunctions;
 
 public:
 
     SciFile();
-    SciFile(const std::wstring & filename, const wchar_t * _code, const ast::Exp * _tree);
+    SciFile(const std::string & filename, const char * _code, const ast::Exp * _tree);
 
     ~SciFile();
 
-    const std::wstring & getFilename() const;
-    const wchar_t * getCode() const;
+    const std::string & getFilename() const;
+    const char * getCode() const;
     unsigned int getCodeLength() const;
     const ast::Exp * getTree() const;
     bool checkLineLength(const unsigned int max, std::vector<unsigned int> & out) const;
@@ -51,7 +51,7 @@ public:
     bool getPosition(const Location & loc, std::pair<unsigned int, unsigned int> & out) const;
     bool getFromPositionToEOL(const Location & loc, std::pair<unsigned int, unsigned int> & out) const;
     bool isPrivateFunction(const symbol::Symbol & sym) const;
-    const ast::FunctionDec * getPrivateFunction(const std::wstring & name) const;
+    const ast::FunctionDec * getPrivateFunction(const std::string & name) const;
     const ast::FunctionDec * getMain() const;
 
 private:
@@ -59,7 +59,7 @@ private:
     void initLines();
     void analyzeTree();
 
-    bool isEmptyLine(const wchar_t * line, const unsigned len) const;
+    bool isEmptyLine(const char * line, const unsigned len) const;
 };
 
 typedef std::shared_ptr<SciFile> SciFilePtr;

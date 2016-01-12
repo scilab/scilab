@@ -31,7 +31,7 @@ class FunctionNameChecker : public SLintChecker
 
 public:
 
-    FunctionNameChecker(const std::wstring & checkerId, const std::wstring & pattern, int _minimalLen, int _maximalLen) : SLintChecker(checkerId), matcher(pattern), minimalLen(_minimalLen), maximalLen(_maximalLen) { }
+    FunctionNameChecker(const std::string & checkerId, const std::string & pattern, int _minimalLen, int _maximalLen) : SLintChecker(checkerId), matcher(pattern), minimalLen(_minimalLen), maximalLen(_maximalLen) { }
     ~FunctionNameChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

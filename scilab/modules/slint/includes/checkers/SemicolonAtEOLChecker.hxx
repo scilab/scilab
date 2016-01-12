@@ -26,7 +26,7 @@ class SemicolonAtEOLChecker : public SLintChecker
 
 public:
 
-    SemicolonAtEOLChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    SemicolonAtEOLChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~SemicolonAtEOLChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);

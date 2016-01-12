@@ -42,7 +42,7 @@ void FunctionArgsOrderChecker::preCheckNode(const ast::Exp & e, SLintContext & c
         }
         if (!assignments.empty())
         {
-            const std::wstring & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
+            const std::string & name = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol().getName();
             const ast::FunctionDec * fundec = context.getPublicFunction(name);
             if (!fundec)
             {

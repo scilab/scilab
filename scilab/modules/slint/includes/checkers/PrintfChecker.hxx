@@ -26,7 +26,7 @@ class PrintfChecker : public SLintChecker
 
 public:
 
-    PrintfChecker(const std::wstring & checkerId) : SLintChecker(checkerId) { }
+    PrintfChecker(const std::string & checkerId) : SLintChecker(checkerId) { }
     ~PrintfChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);
