@@ -93,7 +93,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
 
             iTotalSize = (int)in[iPos]->getAs<types::Double>()->get(0);
 
-            Signalprocessingfunctions* spFunctionsManager = new Signalprocessingfunctions(L"corr");
+            Signalprocessingfunctions* spFunctionsManager = new Signalprocessingfunctions("corr");
             Signalprocessing::addSignalprocessingfunctions(spFunctionsManager);
 
             //get xmacro

@@ -45,7 +45,7 @@ class SIGNAL_PROCESSING_IMPEXP Signalprocessingfunctions
 {
 
 public :
-    Signalprocessingfunctions(const std::wstring& callerName);
+    Signalprocessingfunctions(const std::string& callerName);
     ~Signalprocessingfunctions();
 
     void setDgetx(types::Callable*);
@@ -66,8 +66,8 @@ public :
 private :
 
     std::vector<types::InternalType*> m_FArgs;
-    std::map<std::wstring, void*> m_staticFunctionMap;
-    std::wstring m_wstrCaller;
+    std::map<std::string, void*> m_staticFunctionMap;
+    std::string m_strCaller;
 
     types::Callable* m_pCallDgetx;
     types::Callable* m_pCallDgety;

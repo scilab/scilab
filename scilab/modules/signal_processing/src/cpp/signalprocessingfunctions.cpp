@@ -41,10 +41,10 @@ Signalprocessingfunctions* Signalprocessing::getSignalprocessingfunctions()
     return m_Signalprocessingfunctions;
 }
 
-Signalprocessingfunctions::Signalprocessingfunctions(const std::wstring& callerName)
+Signalprocessingfunctions::Signalprocessingfunctions(const std::string& callerName)
 {
 
-    m_wstrCaller = callerName;
+    m_strCaller = callerName;
 
     m_pCallDgetx = NULL;
     m_pCallDgety = NULL;
@@ -56,10 +56,10 @@ Signalprocessingfunctions::Signalprocessingfunctions(const std::wstring& callerN
     m_pStringDgetyStatic = NULL;
 
     // init static functions
-    if (callerName == L"corr")
+    if (callerName == "corr")
     {
-        m_staticFunctionMap[L"corexx"] = (void*)C2F(corexx);
-        m_staticFunctionMap[L"corexy"] = (void*)C2F(corexy);
+        m_staticFunctionMap["corexx"] = (void*)C2F(corexx);
+        m_staticFunctionMap["corexy"] = (void*)C2F(corexy);
 
     }
 }
@@ -211,9 +211,8 @@ void Signalprocessingfunctions::callDgety(double* y, int* siz, int* iss)
 
     if (out.size() != iRetCount)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallDgety->getName().c_str());
+        const char* pstrName = m_pCallDgety->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -237,17 +236,15 @@ void Signalprocessingfunctions::callDgety(double* y, int* siz, int* iss)
 
     if (out[0]->isDouble() == false)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallDgety->getName().c_str());
+        const char* pstrName = m_pCallDgety->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
     types::Double* pDblOut = out[0]->getAs<types::Double>();
     if (pDblOut->isComplex())
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallDgety->getName().c_str());
+        const char* pstrName = m_pCallDgety->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -304,9 +301,8 @@ void Signalprocessingfunctions::callDgetx(double* x, int* siz, int* iss)
 
     if (out.size() != iRetCount)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallDgetx->getName().c_str());
+        const char* pstrName = m_pCallDgetx->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
@@ -330,17 +326,15 @@ void Signalprocessingfunctions::callDgetx(double* x, int* siz, int* iss)
 
     if (out[0]->isDouble() == false)
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallDgetx->getName().c_str());
+        const char* pstrName = m_pCallDgetx->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
     types::Double* pDblOut = out[0]->getAs<types::Double>();
     if (pDblOut->isComplex())
     {
-        char* pstrName = wide_string_to_UTF8(m_pCallDgetx->getName().c_str());
+        const char* pstrName = m_pCallDgetx->getName().c_str();
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
-        FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
 
