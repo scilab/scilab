@@ -34,8 +34,8 @@ types::Function::ReturnValue sci_gamma(types::typed_list &in, int _iRetCount, ty
 
     if (in[0]->isList() || in[0]->isTList() || in[0]->isMList())
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gamma";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        std::string stFuncName = "%" + in[0]->getShortTypeStr() + "_gamma";
+        return Overload::call(stFuncName, in, _iRetCount, out);
     }
 
     if (in[0]->isDouble() == false)
@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_gamma(types::typed_list &in, int _iRetCount, ty
 
     if (pDblIn->getDims() > 2)
     {
-        return Overload::call(L"%hm_gamma", in, _iRetCount, out);
+        return Overload::call("%hm_gamma", in, _iRetCount, out);
     }
 
     types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
