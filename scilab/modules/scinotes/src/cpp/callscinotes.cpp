@@ -25,28 +25,21 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_scinotes;
 /*--------------------------------------------------------------------------*/
-int callSciNotesW(wchar_t **_wcfilenames, int _nbfiles)
+int callSciNotesW(char** _filenames, int _nbfiles)
 {
-    if ( (_wcfilenames) && (_nbfiles > 0) )
+    if ( (_filenames) && (_nbfiles > 0) )
     {
         int i = 0;
         for (i = 0; i < _nbfiles; i++)
         {
-            if (_wcfilenames[i])
+            if (_filenames[i])
             {
-                wchar_t *wcFullFilename = getFullFilenameW(_wcfilenames[i]);
-                if (wcFullFilename)
+                char *cFullFilename = getFullFilename(_filenames[i]);
+                if (cFullFilename)
                 {
-                    char *fullFilename = wide_string_to_UTF8(wcFullFilename);
-                    if (fullFilename)
-                    {
-                        SciNotes::scinotes(getScilabJavaVM(), fullFilename);
-                        FREE(fullFilename);
-                        fullFilename = NULL;
-                    }
-
-                    FREE(wcFullFilename);
-                    wcFullFilename = NULL;
+                    SciNotes::scinotes(getScilabJavaVM(), cFullFilename);
+                    FREE(cFullFilename);
+                    cFullFilename = NULL;
                 }
             }
         }
@@ -58,28 +51,21 @@ int callSciNotesW(wchar_t **_wcfilenames, int _nbfiles)
     return 0;
 }
 
-int callSciNotesWWithLineNumberAndFunction(wchar_t **_wcfilenames, double* pdblLineNumber, char *functionName, int _nbfiles)
+int callSciNotesWWithLineNumberAndFunction(char** _filenames, double* pdblLineNumber, char *functionName, int _nbfiles)
 {
-    if ( (_wcfilenames) && (_nbfiles > 0) )
+    if ( (_filenames) && (_nbfiles > 0) )
     {
         int i = 0;
         for (i = 0; i < _nbfiles; i++)
         {
-            if (_wcfilenames[i])
+            if (_filenames[i])
             {
-                wchar_t *wcFullFilename = getFullFilenameW(_wcfilenames[i]);
-                if (wcFullFilename)
+                char *cFullFilename = getFullFilename(_filenames[i]);
+                if (cFullFilename)
                 {
-                    char *fullFilename = wide_string_to_UTF8(wcFullFilename);
-                    if (fullFilename)
-                    {
-                        SciNotes::scinotes(getScilabJavaVM(), fullFilename, (int)pdblLineNumber[i], functionName);
-                        FREE(fullFilename);
-                        fullFilename = NULL;
-                    }
-
-                    FREE(wcFullFilename);
-                    wcFullFilename = NULL;
+                    SciNotes::scinotes(getScilabJavaVM(), cFullFilename, (int)pdblLineNumber[i], functionName);
+                    FREE(cFullFilename);
+                    cFullFilename = NULL;
                 }
             }
         }
@@ -91,42 +77,24 @@ int callSciNotesWWithLineNumberAndFunction(wchar_t **_wcfilenames, double* pdblL
     return 0;
 }
 
-int callSciNotesWWithOption(wchar_t **_wcfilenames, wchar_t** option, int _nboptions, int _nbfiles)
+int callSciNotesWWithOption(char** _filenames, char** option, int _nboptions, int _nbfiles)
 {
-    if ( (_wcfilenames) && (_nbfiles > 0) )
+    if ( (_filenames) && (_nbfiles > 0) )
     {
         int i = 0;
-        char ** opt = NULL;
-        if (_nboptions)
-        {
-            opt = new char*[_nboptions];
-            for (int i = 0; i < _nboptions; i++)
-            {
-                opt[i] = wide_string_to_UTF8(option[i]);
-            }
-        }
-
         for (i = 0; i < _nbfiles; i++)
         {
-            if (_wcfilenames[i])
+            if (_filenames[i])
             {
-                wchar_t *wcFullFilename = getFullFilenameW(_wcfilenames[i]);
-                if (wcFullFilename)
+                char *cFullFilename = getFullFilename(_filenames[i]);
+                if (cFullFilename)
                 {
-                    char *fullFilename = wide_string_to_UTF8(wcFullFilename);
-                    if (fullFilename)
-                    {
-                        SciNotes::scinotes(getScilabJavaVM(), fullFilename, opt, _nboptions);
-                        FREE(fullFilename);
-                        fullFilename = NULL;
-                    }
-
-                    FREE(wcFullFilename);
-                    wcFullFilename = NULL;
+                    SciNotes::scinotes(getScilabJavaVM(), cFullFilename, option, _nboptions);
+                    FREE(cFullFilename);
+                    cFullFilename = NULL;
                 }
             }
         }
-        FREE(opt);
     }
     else
     {
