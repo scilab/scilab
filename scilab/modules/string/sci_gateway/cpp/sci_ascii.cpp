@@ -151,26 +151,16 @@ types::Double* StringToDouble(types::String* _pst)
     int iTotalLen = 0;
     int iSize = _pst->getSize();
 
-    char** pst = new char*[iSize];
+    char** pst = _pst->get();
     int* pstLen = new int[iSize];
     for (int i = 0 ; i < iSize ; i++)
     {
-        pst[i] = os_strdup(_pst->get(i));
         pstLen[i] = (int)strlen(pst[i]);
         iTotalLen += pstLen[i];
     }
 
     if (iTotalLen == 0)
     {
-        for (int i = 0; i < iSize; ++i)
-        {
-            if (pst[i])
-            {
-                FREE(pst[i]);
-            }
-        }
-
-        delete[] pst;
         delete[] pstLen;
         return types::Double::Empty();
     }
@@ -188,11 +178,9 @@ types::Double* StringToDouble(types::String* _pst)
             //transform character value as double.
             pdbl[index] = (unsigned char)pst[i][j];
         }
-        FREE(pst[i]);
     }
 
     delete[] pstLen;
-    delete[] pst;
     return pOut;
 }
 /*--------------------------------------------------------------------------*/

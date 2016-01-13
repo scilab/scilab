@@ -18,6 +18,7 @@
 #include "freeArrayOfString.h"
 #include "sci_malloc.h"
 #include "os_string.h"
+#include "charEncoding.h"
 /*----------------------------------------------------------------------------*/
 char** strings_strrev(char **Input_strings, int Dim_Input_strings)
 {
@@ -30,31 +31,36 @@ char** strings_strrev(char **Input_strings, int Dim_Input_strings)
             int i = 0;
             for (i = 0; i < Dim_Input_strings; i++)
             {
-                Output_strings[i] = scistrrev(Input_strings[i]);
-                if (Output_strings[i] == NULL)
+                wchar_t* w = to_wide_string(Input_strings[i]);
+                wchar_t* o = scistrrev(w);
+                if (o == NULL)
                 {
                     freeArrayOfString(Output_strings, i);
                     return NULL;
                 }
+
+                Output_strings[i] = wide_string_to_UTF8(o);
+                FREE(o);
+                FREE(w);
             }
         }
     }
     return Output_strings;
 }
 /*----------------------------------------------------------------------------*/
-char* scistrrev(char* str)
+wchar_t* scistrrev(wchar_t* str)
 {
-    char *revstr = NULL;
+    wchar_t *revstr = NULL;
     if (str)
     {
 #ifdef _MSC_VER
-        revstr = _strrev(str);
+        revstr = _wcsrev(os_wcsdup(str));
 #else
         int iLen = 0;
         int j = 0;
 
-        iLen = (int)strlen(str);
-        revstr = (char*)MALLOC((iLen + 1) * sizeof(char));
+        iLen = (int)wcslen(str);
+        revstr = (wchar_t*)MALLOC((iLen + 1) * sizeof(wchar_t));
         /* copy character by character to reverse string */
         for (j = 0 ; j < iLen ; j++)
         {

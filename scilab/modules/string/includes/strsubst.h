@@ -40,11 +40,4 @@ STRING_IMPEXP char **strsubst_reg(const char **strings_input, int strings_dim, c
 STRING_IMPEXP char *strsub(const char* input_string, const char* string_to_search, const char* replacement_string);
 STRING_IMPEXP char *strsub_reg(const char* input_string, const char* string_to_search, const char* replacement_string, int *ierr);
 
-
-STRING_IMPEXP wchar_t **wcssubst(const wchar_t** _pwstInput, int _iInputSize, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace);
-STRING_IMPEXP wchar_t **wcssubst_reg(const wchar_t** _pwstInput, int _iInputSize, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace, int* _piErr);
-
-STRING_IMPEXP wchar_t *wcssub(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace);
-STRING_IMPEXP wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace, int* _piErr);
-
 #endif /* __STRSUBST_H__ */

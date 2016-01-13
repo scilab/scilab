@@ -112,7 +112,7 @@ static types::Double* lengthStrings(types::String* _pS)
 
     for (int i = 0 ; i < _pS->getSize() ; i++)
     {
-        pdbl[i] = static_cast<double>(strlen(pst[i]));
+        pdbl[i] = static_cast<double>(get_codepoint_count(pst[i]));
     }
     return pD;
 }

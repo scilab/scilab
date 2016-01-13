@@ -22,48 +22,48 @@
 
 
 /*------------------------------------------------------------------------*/
-char** stringTokens(const char* str, const char* delim, int* sizeoutputs)
+wchar_t** stringTokens(wchar_t* str, wchar_t* delim, int* sizeOutputs)
 {
-    char **outputs = NULL;
-    *sizeoutputs = 0;
+    wchar_t **Outputs = NULL;
+    *sizeOutputs = 0;
     if (str)
     {
         if (delim)
         {
             int i = 0;
-            char *pstToken = NULL;
-            char *pstWork = os_strdup(str);
-            char *pstState = NULL;
+            wchar_t *pwstToken = NULL;
+            wchar_t *pwstWork = os_wcsdup(str);
+            wchar_t *pwstState = NULL;
 
             //compute size of outputs array
-            for (pstToken = os_strtok(pstWork, delim, &pstState);
-                    pstToken != NULL;
-                    pstToken = os_strtok(NULL, delim, &pstState), (*sizeoutputs)++)
+            for (pwstToken = os_wcstok(pwstWork, delim, &pwstState);
+                pwstToken != NULL;
+                pwstToken = os_wcstok(NULL, delim, &pwstState), (*sizeOutputs)++)
             {
                 ;
             }
 
-            if (*sizeoutputs == 0)
+            if (*sizeOutputs == 0)
             {
-                FREE(pstWork);
+                FREE(pwstWork);
                 return NULL;
             }
 
             //alloc output array
-            outputs = (char**)MALLOC(sizeof(char*) * *sizeoutputs);
+            Outputs = (wchar_t**)MALLOC(sizeof(wchar_t*) * *sizeOutputs);
 
-            FREE(pstWork);
-            pstWork = os_strdup(str);
-            for (pstToken = os_strtok(pstWork, delim, &pstState);
-                    pstToken != NULL;
-                    pstToken = os_strtok(NULL, delim, &pstState), i++)
+            FREE(pwstWork);
+            pwstWork = os_wcsdup(str);
+            for (pwstToken = os_wcstok(pwstWork, delim, &pwstState);
+                pwstToken != NULL;
+                pwstToken = os_wcstok(NULL, delim, &pwstState), i++)
             {
-                outputs[i] = os_strdup(pstToken);
+                Outputs[i] = os_wcsdup(pwstToken);
             }
 
-            FREE(pstWork);
+            FREE(pwstWork);
         }
     }
-    return outputs;
+    return Outputs;
 }
 /*--------------------------------------------------------------------------*/

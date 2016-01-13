@@ -23,7 +23,7 @@
 
 #include "dynlib_string.h"
 
-STRING_IMPEXP BOOL* isasciiStringW(wchar_t* input_string, int* returnedSize);
+STRING_IMPEXP BOOL* isasciiString(const char* input_string, int* returnedSize);
 STRING_IMPEXP BOOL* isasciiMatrix(double* input_string, int matrixSize);
 
 #endif /* __ISASCII_H__ */

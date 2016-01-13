@@ -27,7 +27,7 @@
 #include <wchar.h>
 #include "dynlib_string.h"
 
-STRING_IMPEXP char** stringTokens(const char* str, const char* delim, int* sizeOutputs);
+STRING_IMPEXP wchar_t** stringTokens(wchar_t* str, wchar_t* delim, int* sizeOutputs);
 
 #endif /* __TOKENS_H__ */
 /*------------------------------------------------------------------------*/

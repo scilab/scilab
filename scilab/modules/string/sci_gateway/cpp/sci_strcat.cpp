@@ -80,13 +80,13 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
 
     if (in.size() == 3)
     {
-        wchar_t wcMode = in[2]->getAs<types::String>()->get(0)[0];
-        switch (wcMode)
+        char mode = in[2]->getAs<types::String>()->get(0)[0];
+        switch (mode)
         {
-            case L'r' :
+            case 'r' :
                 iMode = 1;
                 break;
-            case L'c' :
+            case 'c' :
                 iMode = 2;
                 break;
             default :

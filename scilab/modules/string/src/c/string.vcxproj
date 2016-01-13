@@ -250,7 +250,6 @@
   <ItemGroup>
     <ClCompile Include="..\cpp\os_wtoi.cpp" />
     <ClCompile Include="..\cpp\sort_inter.cpp" />
-    <ClCompile Include="convstr.c" />
     <ClCompile Include="cvstr.c" />
     <ClCompile Include="DllMainString.c" />
     <ClCompile Include="getfastcode.c" />
@@ -332,7 +331,6 @@
     <ClInclude Include="..\..\includes\complex_array.h" />
     <ClInclude Include="..\cpp\sort_inter.h" />
     <ClInclude Include="config.h" />
-    <ClInclude Include="convstr.h" />
     <ClInclude Include="CreateEmptystr.h" />
     <ClInclude Include="isalphanum.h" />
     <ClInclude Include="isascii.h" />

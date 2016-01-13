@@ -15,8 +15,14 @@
 #include <string.h>
 #include "isascii.h"
 #include "sci_malloc.h"
+#include "charEncoding.h"
+
+#ifdef _MSC_VER
+#include <ctype.h>
+#define isascii __isascii
+#endif
 /*--------------------------------------------------------------------------*/
-BOOL* isasciiStringW(wchar_t* input_string, int* returnedSize)
+BOOL* isasciiStringW(const wchar_t* input_string, int* returnedSize)
 {
     BOOL *returnedValues = NULL;
     *returnedSize = 0;
@@ -34,7 +40,7 @@ BOOL* isasciiStringW(wchar_t* input_string, int* returnedSize)
             {
                 for (i = 0; i < length_input_string; i++)
                 {
-                    if ( iswascii(input_string[i]) )
+                    if (iswascii(input_string[i]))
                     {
                         returnedValues[i] = TRUE;
                     }
@@ -47,6 +53,14 @@ BOOL* isasciiStringW(wchar_t* input_string, int* returnedSize)
         }
     }
     return returnedValues;
+}
+/*--------------------------------------------------------------------------*/
+BOOL* isasciiString(const char* input_string, int* returnedSize)
+{
+    wchar_t* ws = to_wide_string(input_string);
+    BOOL* ret = isasciiStringW(ws, returnedSize);
+    FREE(ws);
+    return ret;
 }
 
 BOOL* isasciiMatrix(double* inputValues, int inputSize)

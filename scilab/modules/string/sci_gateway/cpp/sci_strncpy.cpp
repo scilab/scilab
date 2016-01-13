@@ -76,7 +76,8 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
     int j = 0; /* Input parameter two is dimension one */
     for (int i = 0 ; i < pString->getSize() ; i++)
     {
-        char* output   = NULL;
+        wchar_t* input = to_wide_string(pString->get(i));
+        wchar_t* output   = NULL;
         int sizeOfCopy      = 0;
 
         if (pDouble->isScalar() == false)
@@ -84,7 +85,7 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
             j = i; /* Input parameter One & two have same dimension */
         }
 
-        if (pDouble->get(j) < strlen(pString->get(i)))
+        if (pDouble->get(j) < wcslen(input))
         {
             int iLen = (int)pDouble->get(j);
             if (iLen < 0)
@@ -92,27 +93,31 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
                 iLen = 0;
             }
 
-            output = (char*)MALLOC(sizeof(char) * (iLen + 1));
+            output = (wchar_t*)MALLOC(sizeof(wchar_t) * (iLen + 1));
             sizeOfCopy = iLen;
         }
         else
         {
-            int iLen = (int)strlen(pString->get(i));
-            output = (char*)MALLOC(sizeof(char) * (iLen + 1));
+            int iLen = (int)wcslen(input);
+            output = (wchar_t*)MALLOC(sizeof(wchar_t) * (iLen + 1));
             sizeOfCopy = iLen;
         }
 
         if (output)
         {
-            strncpy(output, pString->get(i), sizeOfCopy);
+            wcsncpy(output, input, sizeOfCopy);
             output[sizeOfCopy] = '\0';
 
-            pOutString->set(i, output);
+            char* o = wide_string_to_UTF8(output);
+            pOutString->set(i, o);
+            FREE(input);
+            FREE(o);
             FREE(output);
             output = NULL;
         }
         else
         {
+            FREE(input);
             delete pOutString;
             Scierror(999, _("%s: No more memory.\n"), "strncpy");
             return types::Function::Error;

@@ -14,24 +14,25 @@
 #include "strsplit.h"
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
+#include "charEncoding.h"
 /*----------------------------------------------------------------------------*/
-char** strsplit(const char* stringToSplit, double *indices, int sizeIndices, strsplit_error *ierr)
+wchar_t **wide_strsplit(wchar_t * wcstringToSplit, double *indices, int sizeIndices, strsplit_error *ierr)
 {
-    char** splitted = NULL;
+    wchar_t **splitted = NULL;
     *ierr = STRSPLIT_NO_ERROR;
 
-    if (stringToSplit)
+    if (wcstringToSplit)
     {
         int lengthToCopy = 0;
-        int lenString = (int)strlen(stringToSplit);
+        int lenString = (int)wcslen(wcstringToSplit);
         int i = 0, j = 0;
-        char* strDest = NULL;
-        const char* strSrc = NULL;
+        wchar_t* wcStrDest = NULL;
+        wchar_t* wcStrSrc = NULL;
 
         for (i = 0; i < sizeIndices; i++)
         {
             /* Check 2nd input matrix position */
-            if ( ((int)indices[i] <= 0) || ((int)indices[i] >= lenString) )
+            if (((int)indices[i] <= 0) || ((int)indices[i] >= lenString))
             {
                 *ierr = STRSPLIT_INCORRECT_VALUE_ERROR;
                 return NULL;
@@ -40,9 +41,9 @@ char** strsplit(const char* stringToSplit, double *indices, int sizeIndices, str
             /* check 2nd input order */
             if (sizeIndices > 1)
             {
-                if ( i < (sizeIndices - 1) )
+                if (i < (sizeIndices - 1))
                 {
-                    if ((int)indices[i] > (int)indices[i + 1])
+                    if ((int)indices[i] >(int)indices[i + 1])
                     {
                         *ierr = STRSPLIT_INCORRECT_ORDER_ERROR;
                         return NULL;
@@ -51,7 +52,7 @@ char** strsplit(const char* stringToSplit, double *indices, int sizeIndices, str
             }
         }
 
-        splitted = (char**)MALLOC(sizeof(char*) * (sizeIndices + 1));
+        splitted = (wchar_t**)MALLOC(sizeof(wchar_t*) * (sizeIndices + 1));
         if (splitted == NULL)
         {
             *ierr = STRSPLIT_MEMORY_ALLOCATION_ERROR;
@@ -70,38 +71,56 @@ char** strsplit(const char* stringToSplit, double *indices, int sizeIndices, str
                 lengthToCopy = (int)indices[i] - (int)indices[i - 1];
             }
 
-            splitted[i] = (char*)MALLOC(sizeof(char) * (lengthToCopy + 1));
-            strDest = splitted[i];
+            splitted[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lengthToCopy + 1));
+            wcStrDest = splitted[i];
 
             if (splitted[i] == NULL)
             {
-                freeArrayOfString(splitted, sizeIndices);
+                freeArrayOfWideString(splitted, sizeIndices);
                 *ierr = STRSPLIT_MEMORY_ALLOCATION_ERROR;
                 return NULL;
             }
-            
-            strSrc = &stringToSplit[j];
-            memcpy(strDest, strSrc, lengthToCopy * sizeof(char));
-            strDest[lengthToCopy] = 0;
+            wcStrSrc = &wcstringToSplit[j];
+            memcpy(wcStrDest, wcStrSrc, lengthToCopy * sizeof(wchar_t));
+            wcStrDest[lengthToCopy] = 0;
 
             j = (int)indices[i];
         }
 
         lengthToCopy = lenString - (int)indices[sizeIndices - 1];
-        splitted[sizeIndices] = (char*)MALLOC(sizeof(char) * (lengthToCopy + 1));
-        strDest = splitted[sizeIndices];
+        splitted[sizeIndices] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lengthToCopy + 1));
+        wcStrDest = splitted[sizeIndices];
 
         if (splitted[sizeIndices] == NULL)
         {
-            freeArrayOfString(splitted, sizeIndices + 1);
+            freeArrayOfWideString(splitted, sizeIndices + 1);
             *ierr = STRSPLIT_MEMORY_ALLOCATION_ERROR;
             return NULL;
         }
 
-        strSrc = &stringToSplit[j];
-        memcpy(strDest, strSrc, lengthToCopy * sizeof(char));
-        strDest[lengthToCopy] = 0;
+        wcStrSrc = &wcstringToSplit[j];
+        memcpy(wcStrDest, wcStrSrc, lengthToCopy * sizeof(wchar_t));
+        wcStrDest[lengthToCopy] = 0;
     }
     return splitted;
+}
+
+char** strsplit(const char* stringToSplit, double *indices, int sizeIndices, strsplit_error *ierr)
+{
+    wchar_t* w = to_wide_string(stringToSplit);
+    wchar_t** o = wide_strsplit(w, indices, sizeIndices, ierr);
+    if (*ierr == STRSPLIT_NO_ERROR)
+    {
+        char** output = (char**)MALLOC(sizeof(char*) * (sizeIndices + 1));
+        for (int i = 0; i < sizeIndices + 1; ++i)
+        {
+            output[i] = wide_string_to_UTF8(o[i]);
+        }
+
+        freeArrayOfWideString(o, sizeIndices + 1);
+        return output;
+    }
+
+    return NULL;
 }
 /*----------------------------------------------------------------------------*/

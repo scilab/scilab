@@ -17,6 +17,7 @@
 #include <wctype.h> /* iswalpha */
 #include "isletter.h"
 #include "sci_malloc.h"
+#include "charEncoding.h"
 
 /*--------------------------------------------------------------------------*/
 BOOL *isletter(char *input_string, int *sizeArray)
@@ -25,17 +26,19 @@ BOOL *isletter(char *input_string, int *sizeArray)
     if (input_string)
     {
         int i = 0;
-        int length_input_string = (int)strlen(input_string);
-        *sizeArray = length_input_string;
+        wchar_t* in = to_wide_string(input_string);
+        int len = (int)wcslen(in);
 
-        if (length_input_string > 0)
+        *sizeArray = len;
+
+        if (len > 0)
         {
-            returnedValues = (BOOL*)MALLOC(sizeof(BOOL) * length_input_string);
+            returnedValues = (BOOL*)MALLOC(sizeof(BOOL) * len);
             if (returnedValues)
             {
-                for (i = 0; i < length_input_string; i++)
+                for (i = 0; i < len; i++)
                 {
-                    if ( isalpha(input_string[i]) )
+                    if (iswalpha(in[i]))
                     {
                         returnedValues[i] = TRUE;
                     }
@@ -46,38 +49,8 @@ BOOL *isletter(char *input_string, int *sizeArray)
                 }
             }
         }
-    }
-    return returnedValues;
-}
-/*--------------------------------------------------------------------------*/
-BOOL *isletterW(wchar_t *wcInput_string, int *sizeArray)
-{
-    BOOL *returnedValues = NULL;
-    if (wcInput_string)
-    {
-        int i = 0;
-        int length_input_string = (int)wcslen(wcInput_string);
 
-        *sizeArray = length_input_string;
-
-        if (length_input_string > 0)
-        {
-            returnedValues = (BOOL*)MALLOC(sizeof(BOOL) * length_input_string);
-            if (returnedValues)
-            {
-                for (i = 0; i < length_input_string; i++)
-                {
-                    if ( iswalpha(wcInput_string[i]) )
-                    {
-                        returnedValues[i] = TRUE;
-                    }
-                    else
-                    {
-                        returnedValues[i] = FALSE;
-                    }
-                }
-            }
-        }
+        FREE(in);
     }
     return returnedValues;
 }

@@ -26,6 +26,7 @@ extern "C"
 #include "core_math.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "charEncoding.h"
 }
 
 #include <sciprint.h>
@@ -35,8 +36,9 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     types::String* pOutString   = NULL;
     types::String* pString      = NULL;
     types::String* pCharSample  = NULL;
-    char* seps                  = NULL;
-    int sizeSeps                = 0;
+    wchar_t* seps = NULL;
+    wchar_t* input = NULL;
+    int sizeSeps = 0;
 
     if (in.size() > 2 || in.size() == 0)
     {
@@ -84,25 +86,30 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
         sizeSeps = pCharSample->getSize();
-        seps = (char*)MALLOC((sizeSeps + 1) * sizeof(char));
+        seps = (wchar_t*)MALLOC((sizeSeps + 1) * sizeof(wchar_t));
         for (int i = 0; i < sizeSeps ; i++)
         {
-            int iLen = (int)strlen(pCharSample->get(i));
+            wchar_t* t = to_wide_string(pCharSample->get()[i]);
+            int iLen = (int)wcslen(t);
             if (iLen > 1 || iLen < 0)
             {
+                FREE(t);
+                FREE(seps);
                 Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), "tokens", 2);
                 delete pOutString;
                 return types::Function::Error;
             }
-            seps[i] = pCharSample->get(i)[0];
+
+            seps[i] = t[0];
+            FREE(t);
         }
     }
     else // default delimiters are ' ' and Tabulation
     {
         sizeSeps = 2;
-        seps = (char*)MALLOC((sizeSeps + 1) * sizeof(char));
-        seps[0] = ' ';
-        seps[1] = '\t';
+        seps = (wchar_t*)MALLOC((sizeSeps + 1) * sizeof(wchar_t));
+        seps[0] = L' ';
+        seps[1] = L'\t';
     }
 
     seps[sizeSeps] = '\0';
@@ -111,7 +118,8 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     int dimsArray[2] = {0, 1};
     int dims = 2;
 
-    char** Output_Strings = stringTokens(pString->get(0), seps, &dimsArray[0]);
+    input = to_wide_string(pString->get()[0]);
+    wchar_t** Output_Strings = stringTokens(input, seps, &dimsArray[0]);
     FREE(seps);
     if (Output_Strings == NULL)
     {
@@ -122,11 +130,12 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     else
     {
         pOutString  = new types::String(dims, dimsArray);
-        pOutString->set(Output_Strings);
-
         for (int i = 0 ; i < dimsArray[0] ; i++)
         {
+            char* c = wide_string_to_UTF8(Output_Strings[i]);
+            pOutString->set(i, c);
             FREE(Output_Strings[i]);
+            FREE(c);
         }
         FREE(Output_Strings);
     }

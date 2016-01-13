@@ -71,7 +71,12 @@ types::Function::ReturnValue sci_strspn(types::typed_list &in, int _iRetCount, t
             j = i;
         }
 
-        pOutDouble->set(i, (double)strspn( pString->get(i), pStrSample->get(j)));
+        wchar_t* w = to_wide_string(pString->get()[i]);
+        wchar_t* s = to_wide_string(pStrSample->get()[j]);
+
+        pOutDouble->set(i, (double)wcsspn(w, s));
+        FREE(s);
+        FREE(w);
     }
 
     out.push_back(pOutDouble);

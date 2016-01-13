@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_isascii(types::typed_list &in, int _iRetCount, 
         }
 
         int iResultSize = 0;
-        int* pbResult = (int*)isasciiStringW((wchar_t*)s.c_str(), &iResultSize);
+        int* pbResult = (int*)isasciiString(s.c_str(), &iResultSize);
         if (pbResult == NULL)
         {
             out.push_back(types::Double::Empty());

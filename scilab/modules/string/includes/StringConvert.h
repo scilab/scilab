@@ -22,6 +22,5 @@
 * @return number of \n found
 */
 STRING_IMPEXP int StringConvert(char *str);
-STRING_IMPEXP int StringConvertW(wchar_t *str);
 
 #endif /* __STRINGCONVERT_H__ */

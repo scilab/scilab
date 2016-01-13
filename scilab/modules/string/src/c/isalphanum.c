@@ -16,6 +16,8 @@
 #include <ctype.h>
 #include "isalphanum.h"
 #include "sci_malloc.h"
+#include "charEncoding.h"
+
 /*--------------------------------------------------------------------------*/
 BOOL *isalphanum(const char* input_string, int *returnedSize)
 {
@@ -25,7 +27,8 @@ BOOL *isalphanum(const char* input_string, int *returnedSize)
     if (input_string)
     {
         int i = 0;
-        int length_input_string = (int)strlen(input_string);
+        wchar_t* in = to_wide_string(input_string);
+        int length_input_string = (int)wcslen(in);
         *returnedSize = length_input_string;
 
         if (length_input_string > 0)
@@ -35,7 +38,7 @@ BOOL *isalphanum(const char* input_string, int *returnedSize)
             {
                 for (i = 0; i < length_input_string; i++)
                 {
-                    if (isalnum(input_string[i]))
+                    if (iswalnum(in[i]))
                     {
                         returnedValues[i] = TRUE;
                     }
@@ -46,6 +49,8 @@ BOOL *isalphanum(const char* input_string, int *returnedSize)
                 }
             }
         }
+
+        FREE(in);
     }
     return returnedValues;
 }

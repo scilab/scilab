@@ -125,20 +125,40 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     {
         //pcre
         pcre_error_code iPcreStatus = PCRE_FINISHED_OK;
-        for (int i = 0 ; i < pS->getSize() ; i++)
+        for (int i = 0; i < pS->getSize(); i++)
         {
-            int iStart      = 0;
-            int iEnd        = 0;
-            int iStep       = 0;
+            int iStart = 0;
+            int iEnd = 0;
+            int iStep = 0;
+            int iwStep = 0;
 
             do
             {
                 iPcreStatus = pcre_private(pstData + iStep, pstSearch[i], &iStart, &iEnd, NULL, NULL);
                 if (iPcreStatus == PCRE_FINISHED_OK)
                 {
-                    pstrResult[iValues].data        = iStart + iStep + 1;
-                    pstrResult[iValues].position    = i + 1;
-                    iStep                           += iEnd;
+                    //convert strat and end to codepoint value
+                    char* pstTempStart = NULL;
+                    char* pstTempEnd = NULL;
+                    wchar_t* pwstTempStart = NULL;
+                    wchar_t* pwstTempEnd = NULL;
+
+                    pstTempStart = os_strdup(pstData + iStep);
+                    pstTempEnd = os_strdup(pstData + iStep);
+                    pstTempEnd[iEnd] = 0;
+                    pstTempStart[iStart] = 0;
+
+
+                    pwstTempStart = to_wide_string(pstTempStart);
+                    pwstTempEnd = to_wide_string(pstTempEnd);
+
+                    int iwStart = (int)wcslen(pwstTempStart);
+                    int iwEnd = (int)wcslen(pwstTempEnd);
+
+                    pstrResult[iValues].data = iwStart + iwStep + 1;
+                    pstrResult[iValues].position = i + 1;
+                    iStep += iEnd;
+                    iwStep += iwEnd;
                     iValues++;
                 }
                 else
@@ -151,27 +171,30 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
                     }
                     break;
                 }
-            }
-            while (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd);
+            } while (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd);
         }
     }
     else
     {
         for (int i = 0 ; i < pS->getSize() ; i++)
         {
-            char* pCur = pstData;
+            wchar_t* pwstData = to_wide_string(pstData);
+            wchar_t* pCur = pwstData;
+            wchar_t* pwstSearch = to_wide_string(pstSearch[i]);
             do
             {
-                pCur = strstr(pCur, pstSearch[i]);
+                pCur = wcsstr(pCur, pwstSearch);
                 if (pCur != NULL)
                 {
-                    pstrResult[iValues].data      = (int)(pCur - pstData + 1);
+                    pstrResult[iValues].data      = (int)(pCur - pwstData + 1);
                     pstrResult[iValues].position  = i + 1;
                     pCur++;
                     iValues++;
                 }
-            }
-            while (pCur != NULL && pCur[0] != L'\0');
+            } while (pCur != NULL && pCur[0] != L'\0');
+
+            FREE(pwstSearch);
+            FREE(pwstData);
         }
     }
 

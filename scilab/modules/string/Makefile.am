@@ -9,7 +9,6 @@ STRING_CPP_SOURCES = \
     src/cpp/os_wtoi.cpp
 
 STRING_C_SOURCES = \
-    src/c/convstr.c \
     src/c/men_Sutils.c \
     src/c/tokens.c \
     src/c/strsplit.c \
@@ -150,7 +149,6 @@ libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 libscistring_la_includedir=$(pkgincludedir)
 libscistring_la_include_HEADERS = \
 includes/complex_array.h \
-includes/convstr.h \
 includes/cvstr.h \
 includes/dynlib_string_gw.h \
 includes/dynlib_string.h \

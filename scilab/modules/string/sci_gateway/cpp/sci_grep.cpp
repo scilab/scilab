@@ -121,38 +121,14 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
     grepresults.positions = NULL;
     grepresults.values = NULL;
 
-    char** pStr1 = (char**)MALLOC(sizeof(char*) * pS1->getSize());
-    for (int i = 0 ; i < pS1->getSize() ; i++)
-    {
-        pStr1[i] = os_strdup(pS1->get(i));
-    }
-
-    char** pStr2 = (char**)MALLOC(sizeof(char*) * pS2->getSize());
-    for (int i = 0 ; i < pS2->getSize() ; i++)
-    {
-        pStr2[i] = os_strdup(pS2->get(i));
-    }
-
     if (bRegularExpression)
     {
-        code_error_grep = GREP_NEW(&grepresults, pStr1, pS1->getSize(), pStr2, pS2->getSize());
+        code_error_grep = GREP_NEW(&grepresults, pS1->get(), pS1->getSize(), pS2->get(), pS2->getSize());
     }
     else
     {
-        code_error_grep = GREP_OLD(&grepresults, pStr1, pS1->getSize(), pStr2, pS2->getSize());
+        code_error_grep = GREP_OLD(&grepresults, pS1->get(), pS1->getSize(), pS2->get(), pS2->getSize());
     }
-
-    for (int i = 0; i < pS1->getSize(); i++)
-    {
-        FREE(pStr1[i]);
-    }
-    FREE(pStr1);
-
-    for (int i = 0; i < pS2->getSize(); i++)
-    {
-        FREE(pStr2[i]);
-    }
-    FREE(pStr2);
 
     switch (code_error_grep)
     {
@@ -289,7 +265,6 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
 static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two)
 {
     int x = 0, y = 0;
-    char *save = NULL;
     int iRet = GREP_OK;
     pcre_error_code answer = PCRE_FINISHED_OK;
     for (x = 0; x <  mn_one ; x++)
@@ -322,8 +297,7 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
         {
             int Output_Start = 0;
             int Output_End = 0;
-            save = os_strdup(Inputs_param_two[x]);
-            answer = pcre_private(Inputs_param_one[y], save, &Output_Start, &Output_End, NULL, NULL);
+            answer = pcre_private(Inputs_param_one[y], Inputs_param_two[x], &Output_Start, &Output_End, NULL, NULL);
 
             if ( answer == PCRE_FINISHED_OK )
             {
@@ -338,12 +312,6 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
             {
                 pcre_error("grep", answer);
                 iRet = GREP_ERROR;
-            }
-
-            if (save)
-            {
-                FREE(save);
-                save = NULL;
             }
         }
     }

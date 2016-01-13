@@ -26,14 +26,14 @@ char **strsubst(const char **strings_input, int strings_dim, const char *string_
 {
     char **replacedStrings = NULL;
 
-    if ( (strings_input) && (string_to_search) && (replacement_string) )
+    if ((strings_input) && (string_to_search) && (replacement_string))
     {
         int i = 0;
         replacedStrings = (char**)MALLOC(sizeof(char*) * strings_dim);
         for (i = 0; i < strings_dim; i++)
         {
             const char *str = strings_input[i];
-            replacedStrings[i] = strsub (str, string_to_search, replacement_string);
+            replacedStrings[i] = strsub(str, string_to_search, replacement_string);
         }
     }
     return replacedStrings;
@@ -43,7 +43,7 @@ char **strsubst_reg(const char **strings_input, int strings_dim, const char *str
 {
     char **replacedStrings = NULL;
 
-    if ( (strings_input) && (string_to_search) && (replacement_string) )
+    if ((strings_input) && (string_to_search) && (replacement_string))
     {
         int i = 0;
         replacedStrings = (char**)MALLOC(sizeof(char*) * strings_dim);
@@ -73,22 +73,22 @@ char *strsub(const char* input_string, const char* string_to_search, const char*
         return os_strdup(input_string);
     }
 
-    occurrence_str = strstr (input_string, string_to_search);
+    occurrence_str = strstr(input_string, string_to_search);
     if (occurrence_str == NULL)
     {
         return os_strdup(input_string);
     }
 
-    if (strlen (replacement_string) > strlen (string_to_search))
+    if (strlen(replacement_string) > strlen(string_to_search))
     {
         count = 0;
-        len = (int)strlen (string_to_search);
+        len = (int)strlen(string_to_search);
         if (len)
         {
             occurrence_str = input_string;
             while (occurrence_str != NULL && *occurrence_str != '\0')
             {
-                occurrence_str = strstr (occurrence_str, string_to_search);
+                occurrence_str = strstr(occurrence_str, string_to_search);
                 if (occurrence_str != NULL)
                 {
                     occurrence_str += len;
@@ -103,7 +103,7 @@ char *strsub(const char* input_string, const char* string_to_search, const char*
         len = (int)strlen(input_string);
     }
 
-    replacedString = (char*)MALLOC (sizeof(char) * (len + 1));
+    replacedString = (char*)MALLOC(sizeof(char) * (len + 1));
     if (replacedString == NULL)
     {
         return NULL;
@@ -111,10 +111,10 @@ char *strsub(const char* input_string, const char* string_to_search, const char*
 
     occurrence_str = input_string;
     result_str = replacedString;
-    len = (int)strlen (string_to_search);
+    len = (int)strlen(string_to_search);
     while (*occurrence_str != '\0')
     {
-        if (*occurrence_str == string_to_search[0] && strncmp (occurrence_str, string_to_search, len) == 0)
+        if (*occurrence_str == string_to_search[0] && strncmp(occurrence_str, string_to_search, len) == 0)
         {
             const char *N = NULL;
             N = replacement_string;
@@ -179,7 +179,7 @@ char *strsub_reg(const char* input_string, const char* string_to_search, const c
 
     len = (int)wcslen(wcreplacement_string) + (int)wcslen(wcinput_string);
 
-    wcreplacedString = (wchar_t*)MALLOC (sizeof(wchar_t) * (len + 1));
+    wcreplacedString = (wchar_t*)MALLOC(sizeof(wchar_t) * (len + 1));
     if (wcreplacedString == NULL)
     {
         FREE(replacement_string);
@@ -196,7 +196,7 @@ char *strsub_reg(const char* input_string, const char* string_to_search, const c
         int wcOutput_End = 0;
 
         char *	strOutput_Start = os_strdup(input_string);
-        char *  strOutput_End =  os_strdup(input_string);
+        char *  strOutput_End = os_strdup(input_string);
 
         wchar_t *wcstrOutput_Start = NULL;
         wchar_t *wcstrOutput_End = NULL;
@@ -245,165 +245,5 @@ char *strsub_reg(const char* input_string, const char* string_to_search, const c
     FREE(wcreplacement_string);
 
     return replacedString;
-}
-/*-------------------------------------------------------------------------------------*/
-wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace, int* _piErr)
-{
-    pcre_error_code iPcreStatus = PCRE_FINISHED_OK;
-    int iStart = 0;
-    int iEnd = 0;
-    int iLen = 0;
-
-    wchar_t* pwstOutput = NULL;
-
-    if (_pwstInput == NULL)
-    {
-        return NULL;
-    }
-
-    if (_pwstSearch == NULL || _pwstReplace == NULL)
-    {
-        return os_wcsdup(_pwstInput);
-    }
-
-    iPcreStatus = wide_pcre_private((wchar_t*)_pwstInput, (wchar_t*)_pwstSearch, &iStart, &iEnd, NULL, NULL);
-    if (iPcreStatus != PCRE_FINISHED_OK)
-    {
-        *_piErr = iPcreStatus;
-        return os_wcsdup(_pwstInput);
-    }
-
-    //compute new size of output string
-    iLen += (int)wcslen(_pwstReplace) - (iEnd - iStart);
-
-    pwstOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(_pwstInput) + iLen + 1));
-    memset(pwstOutput, 0x00, sizeof(wchar_t) * (wcslen(_pwstInput) + iLen + 1));
-
-    //copy start of original string
-    wcsncpy(pwstOutput, _pwstInput, iStart);
-    //copy replace string
-    wcscpy(pwstOutput + wcslen(pwstOutput), _pwstReplace);
-    //copy end of original string
-    wcscpy(pwstOutput + wcslen(pwstOutput), _pwstInput + iEnd);
-
-    *_piErr = iPcreStatus;
-    return pwstOutput;
-}
-/*-------------------------------------------------------------------------------------*/
-wchar_t **wcssubst_reg(const wchar_t** _pwstInput, int _iInputSize, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace, int* _piErr)
-{
-    wchar_t** pwstOutput = NULL;
-
-    if (_pwstInput != NULL && _pwstSearch != NULL && _pwstReplace != NULL)
-    {
-        int i = 0;
-        pwstOutput = (wchar_t**)MALLOC(sizeof(wchar_t*) * _iInputSize);
-        for (i = 0 ; i < _iInputSize ; i++)
-        {
-            const wchar_t* pwst = _pwstInput[i];
-            pwstOutput[i] = wcssub_reg(pwst, _pwstSearch, _pwstReplace, _piErr);
-        }
-    }
-    return pwstOutput;
-}
-/*-------------------------------------------------------------------------------------*/
-wchar_t **wcssubst(const wchar_t** _pwstInput, int _iInputSize, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace)
-{
-    wchar_t** pwstOutput = NULL;
-
-    if (_pwstInput != NULL && _pwstSearch != NULL && _pwstReplace != NULL)
-    {
-        int i = 0;
-        pwstOutput = (wchar_t**)MALLOC(sizeof(wchar_t*) * _iInputSize);
-        for (i = 0 ; i < _iInputSize ; i++)
-        {
-            const wchar_t* pwst = _pwstInput[i];
-            if (wcslen(pwst) == 0)
-            {
-                pwstOutput[i] = os_wcsdup(L"");
-            }
-            else
-            {
-                pwstOutput[i] = wcssub(pwst, _pwstSearch, _pwstReplace);
-            }
-        }
-    }
-    return pwstOutput;
-}
-/*-------------------------------------------------------------------------------------*/
-wchar_t *wcssub(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace)
-{
-    int i               = 0;
-    int iOccurs         = 0;
-    size_t iReplace     = 0;
-    size_t iSearch      = 0;
-    size_t iOffset      = 0;
-
-    size_t* piStart     = NULL;
-
-    const wchar_t* pwstPos  = NULL;
-    wchar_t* pwstOutput     = NULL;
-
-    if (_pwstInput == NULL)
-    {
-        return NULL;
-    }
-
-    if (_pwstInput[0] == L'\0')
-    {
-        return os_wcsdup(L"");
-    }
-
-    if (_pwstSearch == NULL || _pwstReplace == NULL)
-    {
-        return os_wcsdup(_pwstInput);
-    }
-
-    iSearch     = wcslen(_pwstSearch);
-    iReplace    = wcslen(_pwstReplace);
-    piStart     = (size_t*)MALLOC(sizeof(size_t) * wcslen(_pwstInput));
-    pwstPos     = _pwstInput;
-
-    while (pwstPos)
-    {
-        pwstPos = wcsstr(pwstPos, _pwstSearch);
-        if (pwstPos)
-        {
-            piStart[iOccurs++]  = pwstPos - _pwstInput;
-            iOffset             += iReplace - iSearch;
-            pwstPos++;
-        }
-    }
-
-    pwstOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(_pwstInput) + iOffset + 1));
-    memset(pwstOutput, 0x00, sizeof(wchar_t) * (wcslen(_pwstInput) + iOffset + 1));
-
-    if (iOccurs == 0)
-    {
-        wcscpy(pwstOutput, _pwstInput);
-    }
-    else
-    {
-        for (i = 0 ; i < iOccurs ; i++)
-        {
-            if (i == 0)
-            {
-                //copy start of original string
-                wcsncpy(pwstOutput, _pwstInput, piStart[i]);
-            }
-            else
-            {
-                //copy start of original string
-                wcsncpy(pwstOutput + wcslen(pwstOutput), _pwstInput + piStart[i - 1] + iSearch, piStart[i] - (iSearch + piStart[i - 1]));
-            }
-            //copy replace string
-            wcscpy(pwstOutput + wcslen(pwstOutput), _pwstReplace);
-        }
-        //copy end of original string
-        wcscpy(pwstOutput + wcslen(pwstOutput), _pwstInput + piStart[iOccurs - 1] + iSearch);
-    }
-
-    FREE(piStart);
-    return pwstOutput;
 }
 /*-------------------------------------------------------------------------------------*/

@@ -25,7 +25,5 @@
 */
 STRING_IMPEXP char **partfunction(const char** stringInput, int m, int n, int *vectInput, int row);
 
-STRING_IMPEXP wchar_t **partfunctionW(wchar_t** _pwstStringInput, int _iRows, int _iCols, int *_piVectInput, int _iVectSize);
-
 #endif /* __PARTFUNCTION_H__ */
 /*---------------------------------------------------------------------------*/

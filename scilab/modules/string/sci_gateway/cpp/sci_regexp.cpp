@@ -46,6 +46,7 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
     int iPcreStatus = 0;
     int iStart = 0;
     int iStep = 0;
+    int iwStep = 0;
     int iEnd = 0;
     int* piStart = NULL;
     int* piEnd = NULL;
@@ -133,9 +134,28 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
         {
             if (iEnd != iStart)
             {
-                piStart[iOccurs]    = iStart + iStep;
-                piEnd[iOccurs++]    = iEnd + iStep;
-                iStep               += iEnd;
+                //convert strat and end to codepoint value
+                char* pstTempStart = NULL;
+                char* pstTempEnd = NULL;
+                wchar_t* pwstTempStart = NULL;
+                wchar_t* pwstTempEnd = NULL;
+
+                pstTempStart = os_strdup(pstInput + iStep);
+                pstTempEnd = os_strdup(pstInput + iStep);
+                pstTempEnd[iEnd] = 0;
+                pstTempStart[iStart] = 0;
+
+
+                pwstTempStart = to_wide_string(pstTempStart);
+                pwstTempEnd = to_wide_string(pstTempEnd);
+
+                int iwStart = (int)wcslen(pwstTempStart);
+                int iwEnd = (int)wcslen(pwstTempEnd);
+
+                piStart[iOccurs] = iwStart + iwStep;
+                piEnd[iOccurs++] = iwEnd + iwStep;
+                iStep += iEnd;
+                iwStep += iwEnd;
             }
             else if (iEnd == 0 && pstInput[iStep] != '\0')
             {
@@ -220,11 +240,15 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
             pS = new types::String(iOccurs, 1);
             for (int i = 0 ; i < iOccurs ; i++)
             {
-                char* pstTemp = new char[piEnd[i] - piStart[i] + 1];
-                strncpy(pstTemp, pstInput + piStart[i], piEnd[i] - piStart[i]);
-                pstTemp[piEnd[i] - piStart[i]] = 0;
+                wchar_t* pwstTemp = new wchar_t[piEnd[i] - piStart[i] + 1];
+                wchar_t* pwstInput = to_wide_string(pstInput);
+                wcsncpy(pwstTemp, pwstInput + piStart[i], piEnd[i] - piStart[i]);
+                pwstTemp[piEnd[i] - piStart[i]] = 0;
+                char* pstTemp = wide_string_to_UTF8(pwstTemp);
                 pS->set(i, 0, pstTemp);
                 delete[] pstTemp;
+                delete[] pwstInput;
+                delete[] pwstTemp;
             }
         }
         out.push_back(pS);

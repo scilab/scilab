@@ -173,7 +173,7 @@ static int check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
 consist of a regular expression, in delimiters and optionally followed by
 options, followed by a set of test data, terminated by an empty line. */
 
-pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Start, int *Output_End, char*** _pstCapturedString, int* _piCapturedStringCount)
+pcre_error_code pcre_private(const char *INPUT_LINE, const char *INPUT_PAT, int *Output_Start, int *Output_End, char*** _pstCapturedString, int* _piCapturedStringCount)
 {
     /* ALL strings are managed as UTF-8 by default */
     int options = PCRE_UTF8;
@@ -1146,68 +1146,5 @@ SKIP_DATA:
     }
 
     return PCRE_EXIT;
-}
-/*-------------------------------------------------------------------------------*/
-pcre_error_code wide_pcre_private(wchar_t* _pwstInput, wchar_t* _pwstPattern, int* _piStart, int* _piEnd, wchar_t*** _pstCapturedString, int* _piCapturedStringCount)
-{
-    pcre_error_code iPcreStatus = PCRE_FINISHED_OK;
-    int i               = 0;
-    int iStart          = 0;
-    int iEnd            = 0;
-
-    char* pstInput      = wide_string_to_UTF8(_pwstInput);
-    char* pstPattern    = wide_string_to_UTF8(_pwstPattern);
-    char** pstCaptured  = NULL;//(char**)MALLOC(sizeof(char*) * (strlen(pstInput) + 1));
-
-    iPcreStatus = pcre_private(pstInput, pstPattern, &iStart, &iEnd, &pstCaptured, _piCapturedStringCount);
-    if (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd)
-    {
-        char* pstTempStart      = NULL;
-        char* pstTempEnd        = NULL;
-        wchar_t* pwstTempStart  = NULL;
-        wchar_t* pwstTempEnd    = NULL;
-
-        pstTempStart            = os_strdup(pstInput);
-        pstTempEnd              = os_strdup(pstInput);
-        pstTempEnd[iEnd]        = 0;
-        pstTempStart[iStart]    = 0;
-
-
-        pwstTempStart           = to_wide_string(pstTempStart);
-        pwstTempEnd             = to_wide_string(pstTempEnd);
-
-        *_piStart               = (int)wcslen(pwstTempStart);
-        *_piEnd                 = (int)wcslen(pwstTempEnd);
-
-        if (_piCapturedStringCount && *_piCapturedStringCount > 0)
-        {
-            /*convert captured field in wide char*/
-            *_pstCapturedString = (wchar_t**)MALLOC(sizeof(wchar_t*) * *_piCapturedStringCount);
-            for (i = 0 ; i < *_piCapturedStringCount ; i++)
-            {
-                (*_pstCapturedString)[i] = to_wide_string(pstCaptured[i]);
-            }
-            freeArrayOfString(pstCaptured, *_piCapturedStringCount);
-        }
-
-        FREE(pstTempStart);
-        FREE(pstTempEnd);
-        FREE(pwstTempStart);
-        FREE(pwstTempEnd);
-    }
-    else
-    {
-        *_piStart   = iStart;
-        *_piEnd     = iEnd;
-        if (_piCapturedStringCount && *_piCapturedStringCount > 0)
-        {
-            /*free unused captured field*/
-            freeArrayOfString(pstCaptured, *_piCapturedStringCount);
-        }
-    }
-
-    FREE(pstInput);
-    FREE(pstPattern);
-    return iPcreStatus;
 }
 /*-------------------------------------------------------------------------------*/

@@ -23,9 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="convstr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cvstr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -171,9 +168,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="convstr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CreateEmptystr.h">
