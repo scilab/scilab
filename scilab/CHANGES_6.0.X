@@ -69,6 +69,7 @@ Bug Fixes
 
 * Bug #14313 fixed - Parser did not create a column separator after spaces and '...' at the end of lines
 
+* Bug #14316 fixed - Operation scalar^matrix was identical to scalar.^matrix instead of being expm( log(scalar) * matrix )
 
 Dependencies
 =============

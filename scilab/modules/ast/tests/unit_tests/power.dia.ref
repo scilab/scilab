@@ -34,13 +34,13 @@ assert_checkequal(C ^ r, [-21+%i*28,-30+%i*40;-45+%i*60,-66+%i*88]);
 assert_checkalmostequal(C ^ c, [-27.051150278703-%i*25.062777693306, 12.961689280285+%i*11.342742208568; 19.442533920428+%i*17.014113312852,-7.6086163582745-%i*8.048664380454]);
 // double ^ DOUBLE
 //r ^ R
-assert_checkequal(r ^ R, [2,4;8,16]);
+assert_checkalmostequal(r ^ R, expm(log(r) * R));
 //r ^ C
-assert_checkalmostequal(r ^ C, [ 0.3669139494866+%i*1.9660554808225,-3.7307483073443+%i*1.4427463627567;-4.2053829899227-%i*6.8054943911569, 11.836965865504-%i*10.765047101564]);
+assert_checkalmostequal(r ^ C, expm(log(r) * C));
 //c ^ R
-assert_checkequal(c ^ R, [ 1+%i*2,-3+%i*4;-11-%i*2,-7-%i*24]);
+assert_checkalmostequal(c ^ R, expm(log(c) * R));
 //c ^ C
-assert_checkalmostequal(c ^ C, [-0.2225171568018+%i*0.1007091311361, 0.0393715559770-%i*0.0448190190488;-0.0042471622281+%i*0.0139380758833,-0.0004586250484-%i*0.0035291890346]);
+assert_checkalmostequal(c ^ C, expm(log(c) * C));
 //POLY
 //poly ^ double
 //pR ^ r
@@ -57,3 +57,9 @@ assert_checkequal(pC ^ R, [1+%i+(2+%i*2)*%s^2+(3+%i*3)*%s^3,%i*2+(%i*8)*%s^2+(%i
 assert_checkequal(PR ^ r, [2+8*%s^2+12*%s^3+8*%s^4+24*%s^5+18*%s^6,2+8*%s^2+12*%s^3+8*%s^4+24*%s^5+18*%s^6;2+8*%s^2+12*%s^3+8*%s^4+24*%s^5+18*%s^6,2+8*%s^2+12*%s^3+8*%s^4+24*%s^5+18*%s^6]);
 //PC ^ r
 assert_checkequal(PC ^ r, [%i*4+(%i*16)*%s^2+(%i*24)*%s^3+(%i*16)*%s^4+(%i*48)*%s^5+(%i*36)*%s^6,%i*4+(%i*16)*%s^2+(%i*24)*%s^3+(%i*16)*%s^4+(%i*48)*%s^5+(%i*36)*%s^6;%i*4+(%i*16)*%s^2+(%i*24)*%s^3+(%i*16)*%s^4+(%i*48)*%s^5+(%i*36)*%s^6,%i*4+(%i*16)*%s^2+(%i*24)*%s^3+(%i*16)*%s^4+(%i*48)*%s^5+(%i*36)*%s^6]);
+// Error handling for non-square matrices
+msg1 = msprintf(_("%s: Wrong size for input argument #%d: Square matrix expected.\n"), "%s_pow", 2);
+msg2= msprintf(_("%s: Wrong size for input argument #%d: Square matrix expected.\n"), "%s_pow", 1);
+NonSquare = [1 2; 3 4; 5 6];
+assert_checkerror("2^NonSquare", msg1);
+assert_checkerror("NonSquare^2", msg2);
