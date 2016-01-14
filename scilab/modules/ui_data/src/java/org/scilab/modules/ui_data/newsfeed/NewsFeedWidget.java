@@ -152,7 +152,6 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
         }
 
         display(getHTML(newsHtmlBuilder));
-        System.out.println(getHTML(newsHtmlBuilder));
     }
 
     private String getLinkHtml(String name, String url, String description) {
