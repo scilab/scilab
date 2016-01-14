@@ -10,8 +10,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function elements = atomsGetHomeListboxElts()
-    items_str  = [];
-    items_mat  = [];
+    items_str  = "";
+    items_mat  = "";
 
     installed  = atomsGetInstalled();
     tmp = atomsAutoloadList("all")
@@ -21,14 +21,13 @@ function elements = atomsGetHomeListboxElts()
 
         items_str  = atomsSetInstalledList(installed)
         items_mat = installed(:,1)
+        if isempty(items_str)
+            items_str = "";
+            items_mat = "";
+        end
         items_mat = [emptystr(items_mat)+"module" items_mat ]
 
-        if items_str==[] then
-            elements("items_str") = "";
-        else
-            elements("items_str") = items_str;
-        end
-
+        elements("items_str") = items_str;
         elements("items_mat") = items_mat;
     else
         elements = [];

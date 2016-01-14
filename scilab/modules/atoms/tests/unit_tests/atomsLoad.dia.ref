@@ -55,7 +55,7 @@ atomsRemove("toolbox_5V6");
 	the package toolbox_5V6 (1.2-1) is currently loaded, It will be removed at next Scilab start
 	the package toolbox_4V6 (1.1-1) is currently loaded, It will be removed at next Scilab start
 	the package toolbox_2V6 (1.0-1) is currently loaded, It will be removed at next Scilab start
-	the package toolbox_1V6 (2.0-1) is currently loaded, It will be removed at next Scilab start
+	the package toolbox_1V6 (2.0-4) is currently loaded, It will be removed at next Scilab start
 // Restore original values
 // =============================================================================
 atomsRestoreConfig(%T);
