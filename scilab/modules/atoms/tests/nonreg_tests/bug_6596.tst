@@ -31,7 +31,7 @@ atomsGui();
 // The list of installed modules should be starred on the left and appears on the
 // right
 
-atomsRemove("toolbox_1") then pause, end
+atomsRemove("toolbox_1");
 
 // Some cleaning
 atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));
