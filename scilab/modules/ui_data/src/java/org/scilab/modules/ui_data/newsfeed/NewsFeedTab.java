@@ -19,6 +19,7 @@ import org.scilab.modules.ui_data.newsfeed.actions.UpdateAction;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -68,6 +69,8 @@ public class NewsFeedTab extends SwingScilabDockablePanel implements SimpleTab {
 
         addMenuBar(createMenuBar());
         addToolBar(createToolBar());
+        TextBox infobar = ScilabTextBox.createTextBox();
+        addInfoBar(infobar);
 
         registerClosingOperation();
         WindowsConfigurationManager.restorationFinished(this);
@@ -101,7 +104,7 @@ public class NewsFeedTab extends SwingScilabDockablePanel implements SimpleTab {
     }
 
     public void addInfoBar(TextBox infoBar) {
-        //setInfoBar(infoBarToAdd);
+        setInfoBar(infoBar);
     }
 
     public void addToolBar(ToolBar toolBar) {

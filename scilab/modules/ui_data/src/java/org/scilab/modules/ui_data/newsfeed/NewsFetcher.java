@@ -66,8 +66,9 @@ public class NewsFetcher {
             String dateStr = getItemValue(item, "pubDate");
             Date date = formatter.parse(dateStr);
             String description = getItemValue(item, "description");
+            String content = getItemValue(item, "content:encoded");
             String link = getItemValue(item, "link");
-            newsList.add(new News(title, date, description, link));
+            newsList.add(new News(title, date, description, content, link));
         }
         return newsList;
     }

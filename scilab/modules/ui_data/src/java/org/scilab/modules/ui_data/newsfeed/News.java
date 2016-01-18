@@ -22,12 +22,14 @@ public class News {
     private String title;
     private Date date;
     private String description;
+    private String content;
     private String link;
 
-    public News(String title, Date date, String description, String link) {
+    public News(String title, Date date, String description, String content, String link) {
         this.title = title;
         this.date = date;
         this.description = description;
+        this.content = content;
         this.link = link;
     }
 
@@ -41,6 +43,10 @@ public class News {
 
     String getDescription() {
         return description;
+    }
+
+    String getContent() {
+        return content;
     }
 
     String getLink() {

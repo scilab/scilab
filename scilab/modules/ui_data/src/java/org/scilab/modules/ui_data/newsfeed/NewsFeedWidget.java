@@ -50,6 +50,7 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
     private static final String NEXT_HTML_ID = "next";
     private static final String NEWS_TITLE_HTML_ID = "news_title";
     private static final String NEWS_DATE_HTML_ID = "news_date";
+    private static final String NEWS_CONTENT_HTML_ID = "news_content";
     private static final String NEWS_LINK_HTML_ID = "news_link";
     private static final String NEWS_DESCRIPTION_HTML_ID = "news_description";
 
@@ -137,14 +138,18 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
         String nextLinkHtml = getSpanHtml(getLinkHtml("next", "next", nextIconHtml), NEXT_HTML_ID);
         newsHtmlBuilder.append(getDivHtml(String.format("%s %s", previousLinkHtml, nextLinkHtml), NAVIGATION_HTML_ID));
 
-        // Add news title & date
-        String newsTitleHtml = getSpanHtml(news.getTitle(), NEWS_TITLE_HTML_ID);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy HH:mm");
-        String dateStr = simpleDateFormat.format(news.getDate());
-        String newsDateHtml = getSpanHtml(dateStr, NEWS_DATE_HTML_ID);
-        newsHtmlBuilder.append(getDivHtml(String.format("%s - %s", newsTitleHtml, newsDateHtml)));
-
-        newsHtmlBuilder.append(getDivHtml(news.getDescription(), NEWS_DESCRIPTION_HTML_ID));
+        if (news.getContent() != null) {
+            // if given, use RSS item content
+            newsHtmlBuilder.append(getDivHtml(news.getContent(), NEWS_CONTENT_HTML_ID));
+        } else {
+            // otherwise get content from title, date, description
+            String newsTitleHtml = getSpanHtml(news.getTitle(), NEWS_TITLE_HTML_ID);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy HH:mm");
+            String dateStr = simpleDateFormat.format(news.getDate());
+            String newsDateHtml = getSpanHtml(dateStr, NEWS_DATE_HTML_ID);
+            newsHtmlBuilder.append(getDivHtml(String.format("%s - %s", newsTitleHtml, newsDateHtml)));
+            newsHtmlBuilder.append(getDivHtml(news.getDescription(), NEWS_DESCRIPTION_HTML_ID));
+        }
 
         // Add news link if exist
         if (news.getLink() != null) {
