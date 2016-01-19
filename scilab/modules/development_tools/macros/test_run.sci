@@ -723,10 +723,14 @@ function status = test_single(_module, _testPath, _testName)
     "mode(3);" ;
     "lines(28,72);";
     "lines(0);" ;
+    "function []=bugmes(), printf(''error on test'');endfunction"
     "function %onprompt" ;
+    "   [msg, num] = lasterror();" ;
+    "   if (num <> 0) then" ;
+    "       bugmes()" ;
+    "   end" ;
     "   quit;" ;
     "endfunction" ;
-    "function []=bugmes(), printf(''error on test'');endfunction"
     "predef(''all'');";
     "tmpdirToPrint = msprintf(''TMPDIR1=''''%s'''';//\n'',TMPDIR);"
     ];
