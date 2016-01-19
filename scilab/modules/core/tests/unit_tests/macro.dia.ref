@@ -282,22 +282,22 @@ deff("[ydot]=simul(t,y,a)","ydot=a")
 a=2;
 //appel le plus imple
 y=ode(0,0,1:2,simul)
- y  =
-    2.    4.
+ y  = 
+   2.   4.
 if norm(y-[a 2*a]) >1000*%eps then bugmes();quit;end
 y=ode(0,0,1:2,simul)
- y  =
-    2.    4.
+ y  = 
+   2.   4.
 if norm(y-[a 2*a]) >1000*%eps then bugmes();quit;end
 //appel avec passage d'arguments supplementaires
 deff("[ydot]=simul(t,y,a)","ydot=a")
 y=ode(0,0,1:2,list(simul,a))
- y  =
-    2.    4.
+ y  = 
+   2.   4.
 if norm(y-[a 2*a]) >1000*%eps then bugmes();quit;end
 y=ode(0,0,1:2,list(simul,a))
- y  =
-    2.    4.
+ y  = 
+   2.   4.
 if norm(y-[a 2*a]) >1000*%eps then bugmes();quit;end
 //
 //non linear
@@ -342,7 +342,7 @@ if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
 //resume in external
 deff("[ydot]=simul(t,y,a)","ydot=a,tt=resume([tt,t])")
 tt=[]
- tt  =
+ tt  = 
     []
 deff("[x]=calcul(n)",text)
 deff("[ydot]=simul(t,y,a)","ydot=a")
@@ -403,7 +403,7 @@ if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
 //
 deff("[ydot]=simul(t,y,a)","ydot=b(a),tt=resume([tt,t])")
 tt=[]
- tt  =
+ tt  = 
     []
 deff("[x]=calcul(n)",text)
 deff("[ydot]=simul(t,y,a)","ydot=b(a)")
@@ -460,7 +460,7 @@ if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
 //
 deff("[ydot]=simul(t,y,a)","ydot=b(a),tt=resume([tt,t])")
 tt=[]
- tt  =
+ tt  = 
     []
 deff("[x]=calcul(n)",text)
 deff("[ydot]=simul(t,y,a)","ydot=b(a)")
@@ -483,12 +483,12 @@ if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
 text=["deff(''[x]=b(a)'',''if a==1 then x=1,else x=a,prod([1 1]),end''),"
 "b,"
 "x=b(n),"]
- text  =
+ text  = 
 !deff('[x]=b(a)','if a==1 then x=1,else x=a,prod([1 1]),end'),  !
-!                                                                   !
-!b,                                                                 !
-!                                                                   !
-!x=b(n),                                                            !
+!                                                               !
+!b,                                                             !
+!                                                               !
+!x=b(n),                                                        !
 deff("[x]=t8(n)",text')
 y=t8(10);
 if y<>10 then bugmes();quit;end
@@ -538,7 +538,7 @@ if cplist(hrn , rlist(z+1,z-1,[]))==0 then bugmes();quit;end
 //
 //
 text=["aa=1,if a==2 then aa=b(a),end"]
- text  =
+ text  = 
  aa=1,if a==2 then aa=b(a),end
 fic=file("open",TMPDIR+"/test_macro_exec","unknown");
 write(fic,text)
@@ -547,12 +547,12 @@ deff("[x]=b(a)","x=a,prod([1 1])")
 deff("[x]=t9(a)","exec(TMPDIR+''/test_macro_exec''),x=aa")
 y=t9(2)
 aa=1,if a==2 then aa=b(a),end
- aa  =
-    1.
- aa  =
-    2.
- y  =
-    2.
+ aa  = 
+   1.
+ aa  = 
+   2.
+ y  = 
+   2.
 if y<>2 then bugmes();quit;end
 ierr = execstr("file(""rewind"",fic);","errcatch");
 assert_checkequal(ierr, 999);
@@ -561,30 +561,30 @@ refMsg = msprintf(gettext("%s: Unknown file format.\n"), "file");
 assert_checkequal(errMsg, refMsg);
 y=t9(2)
 aa=1,if a==2 then aa=b(a),end
- aa  =
-    1.
- aa  =
-    2.
- y  =
-    2.
+ aa  = 
+   1.
+ aa  = 
+   2.
+ y  = 
+   2.
 if y<>2 then bugmes();quit;end
 //
 deff("[x]=t9(a)","exec(TMPDIR+''/test_macro_exec''),x=aa")
 y=t9(2)
 aa=1,if a==2 then aa=b(a),end
- aa  =
-    1.
- aa  =
-    2.
- y  =
-    2.
+ aa  = 
+   1.
+ aa  = 
+   2.
+ y  = 
+   2.
 if y<>2 then bugmes();quit;end
 y=t9(2)
 aa=1,if a==2 then aa=b(a),end
- aa  =
-    1.
- aa  =
-    2.
- y  =
-    2.
+ aa  = 
+   1.
+ aa  = 
+   2.
+ y  = 
+   2.
 if y<>2 then bugmes();quit;end

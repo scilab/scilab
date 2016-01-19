@@ -36,4 +36,4 @@ J=0.001;
 format("v",7);
 diary(TMPDIR+"/bug797.dia");
 disp(J);
-    0.001
+   0.001

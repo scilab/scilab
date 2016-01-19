@@ -31,214 +31,214 @@ mode(ref);
 exec mode : -1
 exec mode : 0
  a  = 
-    1.
+   1.
  b  = 
-    2.
+   2.
  c  = 
-    3.
+   3.
  d  = 
-    4.
+   4.
  e  = 
-    5.
+   5.
  f  = 
-    6.
+   6.
  g  = 
-    7.
+   7.
  h  = 
-    8.
+   8.
  i  = 
-    9.
+   9.
  j  = 
-    10.
+   10.
 printf("exec mode : %d\n", mode());
 exec mode : 1
 a = 1
  a  = 
-    1.
+   1.
 b = 2,c=3
  b  = 
-    2.
+   2.
  c  = 
-    3.
+   3.
 d = 4,if(1) e = 5
 end;
  d  = 
-    4.
+   4.
  e  = 
-    5.
+   5.
 f = 6,if(1)
     g = 7
 end;
  f  = 
-    6.
+   6.
  g  = 
-    7.
+   7.
 h = 8,if(1)
     i = 9
 end;j=10
  h  = 
-    8.
+   8.
  i  = 
-    9.
+   9.
  j  = 
-    10.
+   10.
 exec mode : 2
  a  = 
-    1.
+   1.
  b  = 
-    2.
+   2.
  c  = 
-    3.
+   3.
  d  = 
-    4.
+   4.
  e  = 
-    5.
+   5.
  f  = 
-    6.
+   6.
  g  = 
-    7.
+   7.
  h  = 
-    8.
+   8.
  i  = 
-    9.
+   9.
  j  = 
-    10.
+   10.
 printf("exec mode : %d\n", mode());
 exec mode : 3
 a = 1
  a  = 
-    1.
+   1.
 b = 2,c=3
  b  = 
-    2.
+   2.
  c  = 
-    3.
+   3.
 d = 4,if(1) e = 5
 end;
  d  = 
-    4.
+   4.
  e  = 
-    5.
+   5.
 f = 6,if(1)
     g = 7
 end;
  f  = 
-    6.
+   6.
  g  = 
-    7.
+   7.
 h = 8,if(1)
     i = 9
 end;j=10
  h  = 
-    8.
+   8.
  i  = 
-    9.
+   9.
  j  = 
-    10.
+   10.
 script mode : -1
 script mode : 0
  a  = 
-    1.
+   1.
  b  = 
-    2.
+   2.
  c  = 
-    3.
+   3.
  d  = 
-    4.
+   4.
  e  = 
-    5.
+   5.
  f  = 
-    6.
+   6.
  g  = 
-    7.
+   7.
  h  = 
-    8.
+   8.
  i  = 
-    9.
+   9.
  j  = 
-    10.
+   10.
 printf("script mode : %d\n", mode());
 script mode : 1
 a = 1
  a  = 
-    1.
+   1.
 b = 2,c=3
  b  = 
-    2.
+   2.
  c  = 
-    3.
+   3.
 d = 4,if(1) e = 5
 end;
  d  = 
-    4.
+   4.
  e  = 
-    5.
+   5.
 f = 6,if(1)
     g = 7
 end;
  f  = 
-    6.
+   6.
  g  = 
-    7.
+   7.
 h = 8,if(1)
     i = 9
 end;j=10
  h  = 
-    8.
+   8.
  i  = 
-    9.
+   9.
  j  = 
-    10.
+   10.
 script mode : 2
  a  = 
-    1.
+   1.
  b  = 
-    2.
+   2.
  c  = 
-    3.
+   3.
  d  = 
-    4.
+   4.
  e  = 
-    5.
+   5.
  f  = 
-    6.
+   6.
  g  = 
-    7.
+   7.
  h  = 
-    8.
+   8.
  i  = 
-    9.
+   9.
  j  = 
-    10.
+   10.
 printf("script mode : %d\n", mode());
 script mode : 3
 a = 1
  a  = 
-    1.
+   1.
 b = 2,c=3
  b  = 
-    2.
+   2.
  c  = 
-    3.
+   3.
 d = 4,if(1) e = 5
 end;
  d  = 
-    4.
+   4.
  e  = 
-    5.
+   5.
 f = 6,if(1)
     g = 7
 end;
  f  = 
-    6.
+   6.
  g  = 
-    7.
+   7.
 h = 8,if(1)
     i = 9
 end;j=10
  h  = 
-    8.
+   8.
  i  = 
-    9.
+   9.
  j  = 
-    10.
+   10.

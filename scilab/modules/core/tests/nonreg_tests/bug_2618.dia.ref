@@ -20,7 +20,7 @@ try
 catch
     r=%t
 end
- r  =
+ r  = 
 if ~r then bugmes();quit;end
 [str,n]=lasterror();
 if n == 0 then bugmes();quit;end
@@ -33,7 +33,7 @@ try
 catch
     r=%t
 end
- r  =
+ r  = 
 if ~r then bugmes();quit;end
 [str,n]=lasterror();
 if n == 0 then bugmes();quit;end
