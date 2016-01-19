@@ -7,7 +7,6 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>[types [ [,names]]=typename()
-            typename(name, type)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -25,18 +24,6 @@
                     <para>a column vector of strings: the names associated to type codes.</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>type</term>
-                <listitem>
-                    <para>an integer: the type code of new data type.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>name</term>
-                <listitem>
-                    <para>a string: the name associated to the type code.</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -49,28 +36,14 @@
             coded data types formal names are defined in an other way, see <link linkend="overloading">overloading</link>).
         </para>
         <para>
-            Called without right hand side argument, <function>typename</function> returns
-            information on defined data types.
+            <function>typename</function> returns information on defined data types.
         </para>
-        <para>
-            Called with right hand side argument, <function>typename</function> associates a name
-            to a data type code.
-        </para>
-        <para>
-            <code>typename('',type)</code> suppress the data type given by its code
-            <varname>type</varname> out of the table of known data types.
-        </para>
-        <para>Number max. of defined types is 50.</para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 [typs,nams]=typename();
 disp("First type (double) : " + string(typs(1)) + " / " + nams(1));
-typename("mytype",1024);
-[typs,nams]=typename();
-disp(typs($))
-disp(nams($)) // returns mytype
 ]]></programlisting>
     </refsection>
     

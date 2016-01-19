@@ -123,6 +123,9 @@ Other feature changes
 
  * The third argument of deff function has been removed, because there is no longer a distinction between compiled/non-compiled function in scilab 6 and the profiling is managed otherwise.
 
+* Input argument of typename function have been removed and the functionnality too.
+
+
 API modification
 ================
 
@@ -197,7 +200,7 @@ Bug Fixes
 
 * Bug #14028 fixed - force flag of genlib did not rebuild bin file.
 
-* Bug #14030 fixed - Linear algebra demo crashed due to a bad delete in schur implementation and free a NULL pointer in fft implementation. 
+* Bug #14030 fixed - Linear algebra demo crashed due to a bad delete in schur implementation and free a NULL pointer in fft implementation.
 
 * Bug #14036 fixed - tag and user_data properties were not displayed and not documented for light entity.
 
