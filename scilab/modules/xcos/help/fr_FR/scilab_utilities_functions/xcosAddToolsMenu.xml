@@ -60,7 +60,7 @@ xcosAddToolsMenu("met à jour le block", "myUpdateFunction(blk, scs_m)");
 ]]></programlisting>
         </para>
     </refsection>
-    <refsection id="SeeAlso_loadXcos">
+    <refsection id="SeeAlso_xcosAddToolsMenu">
         <title>Voir aussi</title>
         <itemizedlist>
             <listitem>

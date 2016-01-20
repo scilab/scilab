@@ -50,7 +50,7 @@ xcosAddToolsMenu("update block", "myExternalFunction(blk, scs_m)");
 ]]></programlisting>
         </para>
     </refsection>
-    <refsection id="SeeAlso_loadXcos">
+    <refsection id="SeeAlso_xcosUpdateBlock">
         <title>Voir aussi</title>
         <itemizedlist>
             <listitem>
