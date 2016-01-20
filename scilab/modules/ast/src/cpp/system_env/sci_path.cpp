@@ -170,7 +170,7 @@ char* computeSCI()
 
     char *DirTmp = NULL;
 
-    if (!GetModuleFileNameA((HINSTANCE)GetModuleHandleA("libScilab"), ScilabModuleName, MAX_PATH))
+    if (!GetModuleFileNameA((HINSTANCE)GetModuleHandleA("core"), ScilabModuleName, MAX_PATH))
     {
         return NULL;
     }
