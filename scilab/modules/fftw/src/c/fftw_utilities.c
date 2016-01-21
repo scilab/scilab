@@ -12,7 +12,6 @@
  *
  */
 #include <math.h>
-#include <malloc.h>
 #include "fftw_utilities.h"
 #include "sci_malloc.h"
 #include "callfftw.h"
@@ -333,7 +332,7 @@ void ExecuteFFTWPlan(enum Plan_Type type, const fftw_plan p, double *ri, double 
     switch (type)
     {
         case C2C_PLAN:
-                call_fftw_execute_split_dft(p, ri, ii, ro, io);
+            call_fftw_execute_split_dft(p, ri, ii, ro, io);
             break;
         case C2R_PLAN:
             call_fftw_execute_split_dft_c2r(p, ri, ii, ro);
