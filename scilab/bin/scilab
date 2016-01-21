@@ -736,8 +736,9 @@ set_macox_specific_path()
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
-                10)
+                10|11)
                     # Specific libBLAS.dylib & libLAPACK.dylib version for 10.10
+                    # (not used in scilab 5.5.2 yet, though)
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
                     ;;
@@ -753,32 +754,43 @@ set_macox_specific_path()
 }
 
 #
-# Scilab will not work on some Mac OSX version
-# Check version number and ask user if he wants to go on.
+# Version checks for Mac
 #
+dialog_try_or_exit() 
+{
+    osascript $BINPATH/checkmacosx.applescript "$1" || exit 128
+}
+
+fail_macosx_too_old()
+{
+    # Version <= 10.6.4
+    dialog_try_or_exit "This version of Scilab will probably fail on this system ($macosxVersion): Scilab requires 10.6.5 (Snow Leopard) or newer system."
+}
 check_macosx_version()
 {
-
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
-                9|10)
-                   # We force to install JRE on Lion
+                7|8|9)
+                   # We force to install JRE on Lion and later...
                    /usr/libexec/java_home --request > /dev/null
                    ;;
-                8)
-                    if test $macosxBuildVersion -le 3; then
-                        # Version <= 10.8.3
-                        osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.8.3 (Mountain Lion) or newer system" || exit 128
+		10|11)
+		   # ... but not on Yosemite or El Capitan:
+		   # there will be a (better) error at launch
+		   ;;
+                6)
+                    if test $macosxBuildVersion -le 4; then
+                        fail_macosx_too_old
                     fi
                     ;;
                 *)
-                    osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.8.3 (Mountain Lion) or newer system" || exit 128
+                    fail_macosx_too_old
                     ;;
             esac
             ;;
         *)
-            osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.8.3 (Mountain Lion) or newer system" || exit 128
+            fail_macosx_too_old
             ;;
     esac
 }
