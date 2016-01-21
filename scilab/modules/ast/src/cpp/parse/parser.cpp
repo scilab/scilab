@@ -32,6 +32,7 @@ extern "C"
 #ifdef __APPLE__
 #include "PATH_MAX.h"
 #endif
+#include "os_wfopen.h"
 }
 
 extern FILE*    yyin;
@@ -57,7 +58,17 @@ void Parser::parseFile(const std::wstring& fileName, const std::wstring& progNam
     {
         ParserSingleInstance::disableParseTrace();
     }
-    ParserSingleInstance::parseFile(fileName, progName);
+
+    try
+    {
+        ParserSingleInstance::parseFile(fileName, progName);
+    }
+    catch (const ast::InternalError& ie)
+    {
+        ParserSingleInstance::setTree(nullptr);
+        ParserSingleInstance::setExitStatus(Parser::Failed);
+    }
+
     this->setExitStatus(ParserSingleInstance::getExitStatus());
     this->setControlStatus(ParserSingleInstance::getControlStatus());
     if (getExitStatus() == Parser::Succeded)
@@ -85,7 +96,7 @@ void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::ws
     yylloc.first_line = yylloc.last_line = 1;
     yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
-    _wfopen_s(&yyin, fileName.c_str(), L"r");
+    yyin = os_wfopen(fileName.c_str(), L"r");
 #else
     char* pstTemp = wide_string_to_UTF8(fileName.c_str());
     yyin = fopen(pstTemp, "r");

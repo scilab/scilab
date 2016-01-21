@@ -193,8 +193,12 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 out.push_back(new types::Double(999));
                 //to lock last error information
                 ConfigVariable::setLastErrorCall();
-                ConfigVariable::setLastErrorMessage(parser.getErrorMessage());
-                ConfigVariable::setLastErrorNumber(999);
+                // when the parser can not open file the error is already set in lasterror.
+                if (wcscmp(parser.getErrorMessage(), L""))
+                {
+                    ConfigVariable::setLastErrorMessage(parser.getErrorMessage());
+                    ConfigVariable::setLastErrorNumber(999);
+                }
                 delete parser.getTree();
                 ThreadManagement::UnlockParser();
                 return types::Function::OK;
