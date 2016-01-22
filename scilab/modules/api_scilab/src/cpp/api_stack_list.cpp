@@ -64,7 +64,7 @@ static SciErr getCommonMatrixOfPolyInList(void* _pvCtx, int* _piParent, int _iIt
 static SciErr createCommonMatrixOfPolyInList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg);
 static SciErr readCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 static SciErr createCommonMatrixOfStringInList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings);
-static SciErr createCommonPointerInList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, const void* _pvPtr);
+static SciErr createCommonPointerInList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr);
 static SciErr readCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 static SciErr createCommonBooleanSparseMatrixInList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos);
 static SciErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg);
@@ -2147,7 +2147,7 @@ SciErr readBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, in
 /*********************
 * Pointer functions *
 *********************/
-SciErr getPointerInList(void* _pvCtx, int* _piParent, int _iItemPos, void const** _pvPtr)
+SciErr getPointerInList(void* _pvCtx, int* _piParent, int _iItemPos, void** _pvPtr)
 {
     int* piAddr  = NULL;
 
@@ -2168,17 +2168,17 @@ SciErr getPointerInList(void* _pvCtx, int* _piParent, int _iItemPos, void const*
     return sciErr;
 }
 
-SciErr createPointerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, const void* _pvPtr)
+SciErr createPointerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, void* _pvPtr)
 {
     return createCommonPointerInList(_pvCtx, NULL, _piParent, _iItemPos, _pvPtr);
 }
 
-SciErr createPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, const void* _pvPtr)
+SciErr createPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr)
 {
     return createCommonPointerInList(_pvCtx, _pstName, _piParent, _iItemPos, _pvPtr);
 }
 
-SciErr createCommonPointerInList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, const void* _pvPtr)
+SciErr createCommonPointerInList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr)
 {
     SciErr sciErr        = sciErrInit();
     const char* funcName = NULL;
@@ -2222,7 +2222,7 @@ SciErr createCommonPointerInList(void* _pvCtx, const char* _pstName, int* _piPar
     return sciErr;
 }
 
-SciErr readPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void const** _pvPtr)
+SciErr readPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void** _pvPtr)
 {
     SciErr sciErr = sciErrInit();
     int iNbItem    = 0;

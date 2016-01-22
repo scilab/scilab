@@ -1,17 +1,17 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- *
- * Please note that piece of code will be rewrited for the Scilab 6 family
- * However, the API (profile of the functions in the header files) will be
- * still available and supported in Scilab 6.
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+* Please note that piece of code will be rewrited for the Scilab 6 family
+* However, the API (profile of the functions in the header files) will be
+* still available and supported in Scilab 6.
+*/
 
 #include "gatewaystruct.hxx"
 #include "pointer.hxx"
@@ -24,7 +24,7 @@ extern "C"
 #include "localization.h"
 }
 
-SciErr getPointer(void* _pvCtx, int* _piAddress, void const** _pvPtr)
+SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 {
     SciErr sciErr = sciErrInit();
     int iType = 0;
@@ -52,7 +52,7 @@ SciErr getPointer(void* _pvCtx, int* _piAddress, void const** _pvPtr)
     return sciErr;
 }
 
-SciErr createPointer(void* _pvCtx, int _iVar, const void* _pvPtr)
+SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 {
     SciErr sciErr = sciErrInit();
 
@@ -88,7 +88,7 @@ SciErr createPointer(void* _pvCtx, int _iVar, const void* _pvPtr)
     return sciErr;
 }
 
-SciErr createNamedPointer(void* _pvCtx, const char* _pstName, const void* _pvPtr)
+SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void* _pvPtr)
 {
     SciErr sciErr = sciErrInit();
 
@@ -119,10 +119,10 @@ SciErr createNamedPointer(void* _pvCtx, const char* _pstName, const void* _pvPtr
     return sciErr;
 }
 
-SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void const ** _pvPtr)
+SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)
 {
     int* piAddr = NULL;
-    const void *pvPtr = NULL;
+    void *pvPtr = NULL;
 
     SciErr sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
     if (sciErr.iErr)

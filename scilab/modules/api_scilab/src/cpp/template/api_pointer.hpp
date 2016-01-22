@@ -22,7 +22,7 @@ scilabVar API_PROTO(createPointer)(scilabEnv env, void* val)
     return (scilabVar)new types::Pointer(val);
 }
 
-scilabStatus API_PROTO(getPointer)(scilabEnv env, scilabVar var, const void** val)
+scilabStatus API_PROTO(getPointer)(scilabEnv env, scilabVar var, void** val)
 {
     types::Pointer* p = (types::Pointer*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -36,7 +36,7 @@ scilabStatus API_PROTO(getPointer)(scilabEnv env, scilabVar var, const void** va
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(setPointer)(scilabEnv env, scilabVar var, const void* val)
+scilabStatus API_PROTO(setPointer)(scilabEnv env, scilabVar var, void* val)
 {
     types::Pointer* p = (types::Pointer*)var;
 #ifdef __API_SCILAB_SAFE__

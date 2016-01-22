@@ -1342,43 +1342,43 @@ SciErr readBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, in
  *********************/
 
 /**
- * Get a pointer from a list
- * @param[in] _piParent pointer to the parent
- * @param[in] _iItemPos item position in the parent list
- * @param[out] _pvPtr return pointer value
- * @return if the operation succeeded ( 0 ) or not ( !0 )
- */
-SciErr getPointerInList(void* _pvCtx, int* _piParent, int _iItemPos, void const** _pvPtr);
+* Get a pointer from a list
+* @param[in] _piParent pointer to the parent
+* @param[in] _iItemPos item position in the parent list
+* @param[out] _pvPtr return pointer value
+* @return if the operation succeeded ( 0 ) or not ( !0 )
+*/
+SciErr getPointerInList(void* _pvCtx, int* _piParent, int _iItemPos, void** _pvPtr);
 
 /**
- * Create a pointer in a list
- * @param[in] _iVar variable number
- * @param[in] _piParent pointer to the parent
- * @param[in] _iItemPos item position in the parent list
- * @param[in] _pvPtr return pointer value
- * @return if the operation succeeded ( 0 ) or not ( !0 )
- */
-SciErr createPointerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, const void* _pvPtr);
+* Create a pointer in a list
+* @param[in] _iVar variable number
+* @param[in] _piParent pointer to the parent
+* @param[in] _iItemPos item position in the parent list
+* @param[in] _pvPtr return pointer value
+* @return if the operation succeeded ( 0 ) or not ( !0 )
+*/
+SciErr createPointerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, void* _pvPtr);
 
 /**
- * Read a pointer from a named list
- * @param[in] _pstName variable name
- * @param[in] _piParent pointer to the parent
- * @param[in] _iItemPos item position in the parent list
- * @param[out] _pvPtr return pointer value
- * @return if the operation succeeded ( 0 ) or not ( !0 )
- */
-SciErr readPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void const** _pvPtr);
+* Read a pointer from a named list
+* @param[in] _pstName variable name
+* @param[in] _piParent pointer to the parent
+* @param[in] _iItemPos item position in the parent list
+* @param[out] _pvPtr return pointer value
+* @return if the operation succeeded ( 0 ) or not ( !0 )
+*/
+SciErr readPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void** _pvPtr);
 
 /**
- * Create a pointer in a named list
- * @param[in] _pstName variable name
- * @param[in] _piParent pointer to the parent
- * @param[in] _iItemPos item position in the parent list
- * @param[in] _pvPtr pointer value
- * @return if the operation succeeded ( 0 ) or not ( !0 )
- */
-SciErr createPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, const void* _pvPtr);
+* Create a pointer in a named list
+* @param[in] _pstName variable name
+* @param[in] _piParent pointer to the parent
+* @param[in] _iItemPos item position in the parent list
+* @param[in] _pvPtr pointer value
+* @return if the operation succeeded ( 0 ) or not ( !0 )
+*/
+SciErr createPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr);
 
 /**
  * Check if the variable type is list

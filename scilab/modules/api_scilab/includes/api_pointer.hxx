@@ -35,7 +35,7 @@ private :
 
 public :
     Pointer();
-    Pointer(const void* _p);
+    Pointer(void* _p);
 
     virtual ~Pointer()
     {
@@ -55,8 +55,8 @@ public :
     static Pointer* getAsPointer(types::InternalType* _pIT);
     virtual int getSize();
 
-    const void* get();
-    void set(const void* _p);
+    void* get();
+    void set(void* _p);
 
 };
 }

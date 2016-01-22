@@ -23,51 +23,51 @@ extern "C" {
 #include "dynlib_api_scilab.h"
 
     /**
-     * Get pointer variable
-     * @param[in] _piAddress variable address
-     * @param[out] _pvPtr return pointer
-     * @return if the operation succeeded ( 0 ) or not ( !0 )
-     */
-    SciErr getPointer(void* _pvCtx, int* _piAddress, void const** _pvPtr);
+    * Get pointer variable
+    * @param[in] _piAddress variable address
+    * @param[out] _pvPtr return pointer
+    * @return if the operation succeeded ( 0 ) or not ( !0 )
+    */
+    SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr);
 
     /**
-     * Create pointer variable
-     * @param[in] _iVar variable number
-     * @param[in] _pvPtr pointer
-     * @return if the operation succeeded ( 0 ) or not ( !0 )
-     */
-    SciErr createPointer(void* _pvCtx, int _iVar, const void* _pvPtr);
+    * Create pointer variable
+    * @param[in] _iVar variable number
+    * @param[in] _pvPtr pointer
+    * @return if the operation succeeded ( 0 ) or not ( !0 )
+    */
+    SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr);
 
     /**
-     * Create named pointer variable
-     * @param[in] _pstName variable name
-     * @param[in] _pvPtr pointer
-     * @return if the operation succeeded ( 0 ) or not ( !0 )
-     */
-    SciErr createNamedPointer(void* _pvCtx, const char* _pstName, const void* _pvPtr);
+    * Create named pointer variable
+    * @param[in] _pstName variable name
+    * @param[in] _pvPtr pointer
+    * @return if the operation succeeded ( 0 ) or not ( !0 )
+    */
+    SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void* _pvPtr);
 
     /**
-     * Read pointer named variable
-     * @param[in] _pstName variable name
-     * @param[out] _pvPtr return pointer
-     * @return if the operation succeeded ( 0 ) or not ( !0 )
-     */
-    SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void const ** _pvPtr);
+    * Read pointer named variable
+    * @param[in] _pstName variable name
+    * @param[out] _pvPtr return pointer
+    * @return if the operation succeeded ( 0 ) or not ( !0 )
+    */
+    SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr);
 
     /* shortcut functions */
 
     /**
-     * Check if the variable is of pointer type
-     * @param[in] _piAddress variable address
-     * @return 1 for true and 0 for false
-     */
+    * Check if the variable is of pointer type
+    * @param[in] _piAddress variable address
+    * @return 1 for true and 0 for false
+    */
     int isPointerType(void* _pvCtx, int* _piAddress);
 
     /**
-     * check if the named variable type of pointer type
-     * @param[in] _pstName variable name
-     * @return 1 for true and 0 for false
-     */
+    * check if the named variable type of pointer type
+    * @param[in] _pstName variable name
+    * @return 1 for true and 0 for false
+    */
     int isNamedPointerType(void* _pvCtx, const char* _pstName);
 
 #ifdef __cplusplus
