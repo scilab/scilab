@@ -84,6 +84,7 @@ extern "C"
 #endif
 
 #include "InitializeTclTk.h"
+#include "dynamic_link.h"
 
     /* Defined without include to avoid useless header dependency */
     extern BOOL isItTheDisabledLib(void);
@@ -391,14 +392,6 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
 
     clearScilabPreferences();
 
-    //close console scope
-    //symbol::Context::getInstance()->scope_end();
-
-    // close macros scope before close dynamic library.
-    // all pointers allocated by a dynamic library have to be free before dlclose.
-    symbol::Context::getInstance()->scope_end();
-
-    //execute scilab.quit
     if (_pSEI->pstFile)
     {
         //-f option execute exec('%s',-1)
@@ -411,10 +404,14 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     }
     else if (_pSEI->iNoStart == 0)
     {
+        //execute scilab.quit
         execScilabQuitTask(_pSEI->iSerialize != 0);
         //call all modules.quit
         EndModules();
     }
+
+    // close macros scope
+    symbol::Context::getInstance()->scope_end();
 
     //close gateways scope
     symbol::Context::getInstance()->scope_end();
@@ -423,10 +420,25 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     symbol::Context::getInstance()->clearAll();
     //destroy context
     symbol::Context::destroyInstance();
+
 #ifndef NDEBUG
     //uncomment to print mem leak log
     //types::Inspector::displayMemleak();
 #endif
+
+    //close dynamic linked libraries
+    std::vector<ConfigVariable::DynamicLibraryStr*>* pDLLIst = ConfigVariable::getDynamicLibraryList();
+    int size = pDLLIst->size();
+    for (int i = 0; i < size; i++)
+    {
+        ConfigVariable::DynamicLibraryStr* pStr = ConfigVariable::getDynamicLibrary(i);
+        if (pStr)
+        {
+            DynLibHandle iLib = pStr->hLib;
+            ConfigVariable::removeDynamicLibrary(i);
+            Sci_dlclose(iLib);
+        }
+    }
 
     // cleanup Java dependent features
     saveCWDInPreferences();

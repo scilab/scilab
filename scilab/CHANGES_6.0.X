@@ -133,6 +133,8 @@ Bug Fixes
 
 * Bug #12044 fixed - Adding or substracting the empty matrix now return an empty matrix.
 
+* Bug #12419 fixed - objects were cleared before the scilab.quit was called
+
 * Bug #12928 fixed - int functions with %nan and %inf return wrong values.
 
 * Bug #13709 fixed - unique function sometimes returned wrong index values.
