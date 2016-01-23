@@ -6569,6 +6569,10 @@ case "$host_os" in
 $as_echo_n "checking Mac OS X Version... " >&6; }
     macosx_version=`defaults read loginwindow SystemVersionStampAsString`
     case $macosx_version in
+         10.11*)
+              { $as_echo "$as_me:${as_lineno-$LINENO}: result: Mac OS X 10.11 - El Capitan." >&5
+$as_echo "Mac OS X 10.11 - El Capitan." >&6; }
+         ;;
          10.10*)
               { $as_echo "$as_me:${as_lineno-$LINENO}: result: Mac OS X 10.10 - Yosemite." >&5
 $as_echo "Mac OS X 10.10 - Yosemite." >&6; }
