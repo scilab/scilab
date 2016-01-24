@@ -156,6 +156,14 @@ public :
     static void setWarningStop(bool _bWarningStop);
     static bool getWarningStop(void);
 
+    // WarningStop
+private :
+    static bool m_bOldEmptyBehaviour;
+
+public :
+    static void setOldEmptyBehaviour(bool _bOldEmptyBehaviour);
+    static bool getOldEmptyBehaviour(void);
+
     //HOME
 private :
     static std::wstring m_HOME;
@@ -215,13 +223,13 @@ public:
 private:
     static bool m_bVerbose;
 
-public : 
+public :
     static void setVerbose(bool _bVerbose);
     static bool getVerbose(void);
 
 
     //silent error ( try catch, errcatch, ... )
-private : 
+private :
     static bool m_iSilentError;
 public:
     static void setSilentError(bool _iSilentError);

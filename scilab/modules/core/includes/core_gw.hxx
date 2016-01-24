@@ -87,6 +87,7 @@ CPP_GATEWAY_PROTOTYPE(sci_tlist_gw);
 CPP_GATEWAY_PROTOTYPE(sci_mlist_gw);
 CPP_GATEWAY_PROTOTYPE(sci_isfield);
 CPP_GATEWAY_PROTOTYPE(sci_fieldnames);
+CPP_GATEWAY_PROTOTYPE(sci_oldEmptyBehaviour);
 
 #ifndef NDEBUG
 CPP_GATEWAY_PROTOTYPE(sci_inspectorGetItemCount);

@@ -286,6 +286,25 @@ bool ConfigVariable::getWarningStop(void)
 ** \}
 */
 
+/*
+** Old Empty Behaviour
+** \{
+*/
+bool ConfigVariable::m_bOldEmptyBehaviour = false;
+
+void ConfigVariable::setOldEmptyBehaviour(bool _bOldEmptyBehaviour)
+{
+    m_bOldEmptyBehaviour = _bOldEmptyBehaviour;
+}
+
+bool ConfigVariable::getOldEmptyBehaviour(void)
+{
+    return m_bOldEmptyBehaviour;
+}
+/*
+** \}
+*/
+
 
 /*
 ** HOME
