@@ -21,6 +21,8 @@ libsciui_data_la_root_DATA =  license.txt
 #### ui_data : init scripts ####
 libsciui_data_la_etcdir = $(mydatadir)/etc
 libsciui_data_la_etc_DATA = \
+	etc/newsfeed.css \
+	etc/newsfeed.xml \
 	etc/ui_data.quit \
 	etc/ui_data.start \
 	etc/variablebrowser_menubar.xml \
