@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-12-17 10:08+0100\n"
+"Revision-Date: 2016-01-25 15:00+0100\n"
 
 # File: modules/core/sci_gateway/c/sci_debug.c, line: 40
 #, c-format
@@ -879,12 +879,12 @@ msgid "Scilab Version Info."
 msgstr ""
 
 #
-# File: modules/core/src/cpp/InitScilab.cpp, line: 700
+# File: modules/core/src/cpp/InitScilab.cpp, line: 718
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
 #
-# File: modules/core/src/cpp/InitScilab.cpp, line: 701
+# File: modules/core/src/cpp/InitScilab.cpp, line: 719
 msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
@@ -909,7 +909,7 @@ msgstr ""
 
 #
 # File: modules/core/src/cpp/banner.cpp, line: 38
-msgid "Copyright (c) 2011-2015 (Scilab Enterprises)\n"
+msgid "Copyright (c) 2011-2016 (Scilab Enterprises)\n"
 msgstr ""
 
 #

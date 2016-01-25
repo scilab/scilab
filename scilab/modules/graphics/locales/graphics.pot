@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-12-17 10:09+0100\n"
+"Revision-Date: 2016-01-25 15:00+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 80
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 219
@@ -3471,30 +3471,35 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/ged.sci, line: 12
+msgid "The ged function is not available on MacOSX."
+msgstr ""
+
+#
+# File: modules/graphics/macros/ged.sci, line: 16
 msgid "Tcl/Tk interface not installed."
 msgstr ""
 
 #
-# File: modules/graphics/macros/ged.sci, line: 25
-# File: modules/graphics/macros/ged.sci, line: 33
+# File: modules/graphics/macros/ged.sci, line: 29
+# File: modules/graphics/macros/ged.sci, line: 37
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/ged.sci, line: 28
-# File: modules/graphics/macros/ged.sci, line: 36
+# File: modules/graphics/macros/ged.sci, line: 32
+# File: modules/graphics/macros/ged.sci, line: 40
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/ged.sci, line: 136
+# File: modules/graphics/macros/ged.sci, line: 140
 msgid "Entity picker cannot be enabled, user data figure field is already used"
 msgstr ""
 
 #
-# File: modules/graphics/macros/ged.sci, line: 143
+# File: modules/graphics/macros/ged.sci, line: 147
 msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
 

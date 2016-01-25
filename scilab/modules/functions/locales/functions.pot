@@ -15,36 +15,36 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-12-17 10:09+0100\n"
+"Revision-Date: 2016-01-25 15:00+0100\n"
 
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 104
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 100
 # File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 52
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 122
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 144
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 118
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 140
 # File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 73
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 132
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 128
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 154
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 150
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 182
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 178
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
@@ -64,8 +64,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 325
-# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 429
+# File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 323
 # File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 232
 #, c-format
 msgid "Recursion limit reached (%d).\n"
