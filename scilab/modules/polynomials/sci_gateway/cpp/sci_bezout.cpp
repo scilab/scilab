@@ -99,7 +99,7 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
     int ipb[6];
 
     C2F(recbez)(pdblIn[0], piDegree, pdblIn[1], piDegree + 1, pdblOut, ipb, pdblWork, &dblErr);
-    delete pdblWork;
+    delete[] pdblWork;
 
     // create result
     int np = ipb[1] - ipb[0];
@@ -128,7 +128,7 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
         delete pSPU;
     }
 
-    delete pdblOut;
+    delete[] pdblOut;
 
     // return result
     out.push_back(pPolyGCD);

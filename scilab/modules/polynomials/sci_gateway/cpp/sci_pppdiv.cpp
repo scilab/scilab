@@ -291,15 +291,15 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         out.push_back(pPolyOut);
     }
 
-    delete pdblInR[0];
+    delete[] pdblInR[0];
     if (pbComplex[0] || pbComplex[1])
     {
-        delete pdblInI[0];
+        delete[] pdblInI[0];
     }
 
     if (pbComplex[1] == false)
     {
-        delete pdblInI[1];
+        delete[] pdblInI[1];
     }
 
     return types::Function::OK;
