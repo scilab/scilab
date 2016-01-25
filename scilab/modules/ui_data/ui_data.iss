@@ -26,6 +26,8 @@ Source: modules\{#UI_DATA}\etc\{#UI_DATA}.start;DestDir: {app}\modules\{#UI_DATA
 Source: modules\{#UI_DATA}\etc\{#UI_DATA}.quit;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#UI_DATA}\etc\*.xml;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#UI_DATA}\etc\*.xsl;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#UI_DATA}\etc\*.css;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+
 ;
 Source: modules\{#UI_DATA}\license.txt; DestDir: {app}\modules\{#UI_DATA}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
