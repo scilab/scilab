@@ -102,7 +102,7 @@ public:
 
     /*remove global variable and all visibility references */
     //clearglobal("a")
-    void removeGlobal(const Symbol& key);
+    bool removeGlobal(const Symbol& key);
 
     /*remove all global variables and references */
     //clearglobal

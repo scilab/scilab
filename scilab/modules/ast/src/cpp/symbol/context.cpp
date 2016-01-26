@@ -462,22 +462,40 @@ void Context::setGlobal(const Symbol& _key)
     globals->push_back(_key);
 }
 
-void Context::removeGlobal(const Symbol& _key)
+bool Context::removeGlobal(const Symbol& _key)
 {
+    // skip permanant variables : %modalWarning, %toolboxes, %toolboxes_dir
+    if (_key.getName() == L"%modalWarning"  ||
+            _key.getName() == L"%toolboxes"     ||
+            _key.getName() == L"%toolboxes_dir")
+    {
+        return false;
+    }
+
     variables.removeGlobal(_key, m_iLevel);
     globals->remove(_key);
+    return true;
 }
 
 void Context::removeGlobalAll()
 {
     std::list<Symbol>::iterator it = globals->begin();
+
     while (it != globals->end())
     {
-        removeGlobal(*it);
+        if (removeGlobal(*it) == false)
+        {
+            globals->remove(*it);
+        }
+
         it = globals->begin();
     }
 
     globals->clear();
+
+    globals->emplace_back(L"%modalWarning");
+    globals->emplace_back(L"%toolboxes");
+    globals->emplace_back(L"%toolboxes_dir");
 }
 
 void Context::print(std::wostream& ostr, bool sorted) const

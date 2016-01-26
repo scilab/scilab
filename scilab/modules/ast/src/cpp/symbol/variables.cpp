@@ -327,7 +327,7 @@ bool Variables::getGlobalNameForWho(std::list<std::wstring>& lstVarName, int* iV
 {
     for (auto it : vars)
     {
-        if (it.second->empty() == false && it.second->isGlobal())
+        if (it.second->isGlobal())
         {
             std::wstring wstrVarName(it.first.getName().c_str());
             lstVarName.push_back(wstrVarName);

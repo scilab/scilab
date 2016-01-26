@@ -80,7 +80,7 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            pIT = pCtx->getCurrentLevel(pstVar);
+            pIT = pCtx->get(pstVar);
             pCtx->setGlobal(pstVar);
         }
 
