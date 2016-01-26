@@ -44,6 +44,7 @@ import com.mxgraph.swing.handler.mxGraphHandler;
 import com.mxgraph.swing.util.mxGraphTransferable;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.view.mxGraph;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 
 /**
  * Handle double click operation on the graph.
@@ -144,7 +145,14 @@ public class GraphHandler extends mxGraphHandler {
      */
     private void createTextBlock(MouseEvent e) {
         // allocate
-        final TextBlock textBlock = (TextBlock) XcosCellFactory.createBlock(BlockInterFunction.TEXT_f);
+        final TextBlock textBlock;
+        try {
+            textBlock = (TextBlock) XcosCellFactory.createBlock(BlockInterFunction.TEXT_f);
+        } catch (ScilabInterpreterManagement.InterpreterException ex) {
+            // this is unexpected report : Scilab might not be accessible at all
+            throw new RuntimeException(ex);
+        }
+
 
         // set the position of the block
         final mxPoint pt = graphComponent.getPointForEvent(e);

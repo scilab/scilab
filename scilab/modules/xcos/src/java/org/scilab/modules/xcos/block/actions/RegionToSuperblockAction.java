@@ -52,6 +52,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import static java.util.stream.Collectors.toList;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
@@ -400,6 +401,8 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
             moveToChild(controller, parentGraph, superBlock, brokenLinks, toBeMoved);
 
             BlockPositioning.updateBlockView(parentGraph, superBlock);
+        } catch (ScilabInterpreterManagement.InterpreterException ex) {
+            // Scilab seems to be blocked, just consume the exception at this point
         } finally {
             parentGraph.getModel().endUpdate();
             parentGraph.info(XcosMessages.EMPTY_INFO);
@@ -415,7 +418,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
      *            the selected blocks
      * @return the allocated super block (without specific listeners)
      */
-    private SuperBlock allocateSuperBlock(final JavaController controller, final XcosDiagram parentGraph, final Object[] selection) {
+    private SuperBlock allocateSuperBlock(final JavaController controller, final XcosDiagram parentGraph, final Object[] selection) throws ScilabInterpreterManagement.InterpreterException {
         final SuperBlock superBlock = (SuperBlock) XcosCellFactory.createBlock(INTERFUNCTION_NAME);
 
         /*

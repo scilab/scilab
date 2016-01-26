@@ -878,7 +878,13 @@ public class XcosDiagram extends ScilabGraph {
             f = BlockInterFunction.SPLIT_f;
         }
 
-        final SplitBlock splitBlock = (SplitBlock) XcosCellFactory.createBlock(f);
+        final SplitBlock splitBlock;
+        try {
+            splitBlock = (SplitBlock) XcosCellFactory.createBlock(f);
+        } catch (InterpreterException ex) {
+            // something goes wrong
+            throw new RuntimeException(ex);
+        }
 
         // snap the center of the split block on the grid
         mxGeometry geom = splitBlock.getGeometry();

@@ -242,7 +242,7 @@ public final class XcosCellFactory {
      *            the interface function
      * @return A new instance of a block.
      */
-    public static BasicBlock createBlock(BlockInterFunction func) {
+    public static BasicBlock createBlock(BlockInterFunction func) throws InterpreterException {
         return createBlock(func, func.name());
     }
 
@@ -255,7 +255,7 @@ public final class XcosCellFactory {
      *            the interface function
      * @return A new instance of a block.
      */
-    public static BasicBlock createBlock(String interfaceFunction) {
+    public static BasicBlock createBlock(String interfaceFunction) throws InterpreterException {
         Optional<BlockInterFunction> func = EnumSet.allOf(BlockInterFunction.class).stream().filter(f -> f.name().equals(interfaceFunction)).findFirst();
 
         final BasicBlock block;
@@ -269,36 +269,31 @@ public final class XcosCellFactory {
         return block;
     }
 
-    private static BasicBlock createBlock(BlockInterFunction func, String interfaceFunction) {
+    private static BasicBlock createBlock(BlockInterFunction func, String interfaceFunction) throws InterpreterException {
         return createBlock(new JavaController(), func, interfaceFunction);
     }
 
-    private static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction) {
+    private static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction) throws InterpreterException {
         BasicBlock block;
-        try {
-            ScicosObjectOwner last;
+        ScicosObjectOwner last;
 
-            if (BlockInterFunction.BASIC_BLOCK.name().equals(interfaceFunction)) {
-                // deliver all the MVC speed for the casual case
-                last = new ScicosObjectOwner(controller.createObject(Kind.BLOCK), Kind.BLOCK);
-            } else {
-                // allocate an empty block that will be filled later
-                synchronousScilabExec("xcosCellCreated(" + interfaceFunction + "(\"define\")); ");
-                last = getLastCreated();
-            }
+        if (BlockInterFunction.BASIC_BLOCK.name().equals(interfaceFunction)) {
+            // deliver all the MVC speed for the casual case
+            last = new ScicosObjectOwner(controller.createObject(Kind.BLOCK), Kind.BLOCK);
+        } else {
+            // allocate an empty block that will be filled later
+            synchronousScilabExec("xcosCellCreated(" + interfaceFunction + "(\"define\")); ");
+            last = getLastCreated();
+        }
 
-            // defensive programming
-            if (last == null) {
-                System.err.println("XcosCellFactory#createBlock : unable to allocate " + interfaceFunction);
-                return null;
-            }
+        // defensive programming
+        if (last == null) {
+            throw new InterpreterException("XcosCellFactory#createBlock : unable to allocate " + interfaceFunction);
+        }
 
-            if (EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(last.getKind())) {
-                block = createBlock(controller, func, interfaceFunction, last.getUID(), last.getKind());
-            } else {
-                block = null;
-            }
-        } catch (InterpreterException e) {
+        if (EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(last.getKind())) {
+            block = createBlock(controller, func, interfaceFunction, last.getUID(), last.getKind());
+        } else {
             block = null;
         }
 

@@ -47,6 +47,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.handler.mxGraphTransferHandler;
 import com.mxgraph.swing.util.mxGraphTransferable;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 
 /**
  * A palette block is the representation of the block in the palette. All the
@@ -122,11 +123,11 @@ public final class PaletteBlockCtrl {
     public synchronized Transferable getTransferable() throws ScicosFormatException {
         Transferable transfer = transferable.get();
         if (transfer == null) {
-            BasicBlock block = XcosCellFactory.createBlock(model.getName());
-            if (block == null) {
-                if (LOG.isLoggable(Level.FINEST)) {
-                    LOG.finest(String.format(UNABLE_TO_LOAD_BLOCK, getModel().getData().getEvaluatedPath()));
-                }
+            BasicBlock block;
+            try {
+                block = XcosCellFactory.createBlock(model.getName());
+            } catch (ScilabInterpreterManagement.InterpreterException ex) {
+                LOG.finest(String.format(UNABLE_TO_LOAD_BLOCK, model.getName()));
                 getView().setEnabled(false);
                 throw new InvalidDnDOperationException();
             }
