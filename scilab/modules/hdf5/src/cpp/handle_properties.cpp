@@ -2692,7 +2692,7 @@ static bool export_handle_matplot(int parent, int uid)
             {
                 size *= 3;
             }
-            else if ((ImageType)imagetype == MATPLOT_GL_RGBA)
+            else if ((GLType)imagetype == MATPLOT_GL_RGBA)
             {
                 size *= 4;
             }

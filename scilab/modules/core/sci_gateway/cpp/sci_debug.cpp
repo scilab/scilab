@@ -30,7 +30,7 @@ extern "C"
 #include "Thread_Wrapper.h"
 }
 
-typedef enum EnumCommand
+enum EnumCommand
 {
     AbortCommand,
     BreakCommand,
