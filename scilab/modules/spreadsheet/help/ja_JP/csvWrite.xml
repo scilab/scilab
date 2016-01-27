@@ -2,6 +2,15 @@
 <!--
  * Copyright (C) 2010-2011 - INRIA - Allan CORNET
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ * === LICENSE_END ===
  -->
 <refentry version="5.0-subset Scilab" xml:id="csvWrite" xml:lang="ja"
           xmlns="http://docbook.org/ns/docbook"
@@ -137,7 +146,6 @@ mgetl(filename)
 // コメントを指定
 comments = [
 "// Copyright (C) INRIA"
-"//  This file must be used under the terms of the CeCILL."
 ];
 csvWrite(M, filename,[],[],[],comments);
 mgetl(filename)
