@@ -18,22 +18,19 @@
 //
 
 function bug_1304()
-disp("bug_1304")
+    disp("bug_1304")
 endfunction
 
 // Reference tree generated using sci2exp
 reftree = tlist(["program","name","outputs","inputs","statements","nblines"],"bug_1304",list(),..
-	list(),..
-	list(list("EOL"),..
-	tlist(["equal","expression","lhs","endsymbol"],..
-	tlist(["funcall","rhs","name","lhsnb"],list(tlist(["cste","value"],"bug_1304")),"disp",1),..
-	list(tlist(["variable","name"],"ans")),""),list("EOL"),list("EOL"),..
-	tlist(["funcall","rhs","name","lhsnb"],[],"return",0),list("EOL")),5);
+list(),..
+list(list("EOL"),..
+tlist(["equal","expression","lhs","endsymbol"],..
+tlist(["funcall","rhs","name","lhsnb"],list(tlist(["cste","value"],"bug_1304")),"disp",1),..
+list(tlist(["variable","name"],"ans")),""),list("EOL"),..
+tlist(["funcall","rhs","name","lhsnb"],[],"return",0),list("EOL")),3);
 
 if ~and(macr2tree(bug_1304)==reftree) then pause;end
-
-// Test with input which is not a variable reference
-reftree.name = "ans";
 if ~and(macr2tree(evstr("bug_1304"))==reftree) then pause;end
 
 clear bug_1304
@@ -43,35 +40,33 @@ clear bug_1304
 //
 
 function f = bug_1304()
-function internal_bug_1304()
-disp("internal_bug_1304()")
-endfunction
-f = internal_bug_1304
+    function internal_bug_1304()
+        disp("internal_bug_1304()")
+    endfunction
+    f = internal_bug_1304
 endfunction
 
 // Reference tree generated using sci2exp
 reftree = tlist(["program","name","outputs","inputs","statements","nblines"],"bug_1304",..
-	list(tlist(["variable","name"],"f")),list(),..
-	list(list("EOL"),..
-	tlist(["inline","prototype","definition"],"internal_bug_1304()",..
-	["";"disp(""internal_bug_1304()"")";" "]),list("EOL"),..
-	tlist(["equal","expression","lhs","endsymbol"],..
-	tlist(["variable","name"],"internal_bug_1304"),list(tlist(["variable","name"],"f")),""),..
-	list("EOL"),list("EOL"),tlist(["funcall","rhs","name","lhsnb"],[],"return",0),list("EOL")),..
-	6);
-if ~and(macr2tree(bug_1304)==reftree) then pause;end
+list(tlist(["variable","name"],"f")),list(),..
+list(list("EOL"),..
+tlist(["inline","prototype","definition"],"internal_bug_1304()",..
+["disp(""internal_bug_1304()"")"]),list("EOL"),..
+tlist(["equal","expression","lhs","endsymbol"],..
+tlist(["variable","name"],"internal_bug_1304"),list(tlist(["variable","name"],"f")),""),..
+list("EOL"),tlist(["funcall","rhs","name","lhsnb"],[],"return",0),list("EOL")),..
+6);
 
-// Test with input which is not a variable reference
-reftree.name = "ans";
+if ~and(macr2tree(bug_1304)==reftree) then pause;end
 if ~and(macr2tree(evstr("bug_1304"))==reftree) then pause;end
 
 // Reference tree generated using sci2exp
-reftree = tlist(["program","name","outputs","inputs","statements","nblines"],"ans",..
-	list(),list(),..
-	list(list("EOL"),..
-	tlist(["equal","expression","lhs","endsymbol"],..
-	tlist(["funcall","rhs","name","lhsnb"],list(tlist(["cste","value"],"internal_bug_1304()")),..
-	"disp",1),list(tlist(["variable","name"],"ans")),""),list("EOL"),list("EOL"),..
-	tlist(["funcall","rhs","name","lhsnb"],[],"return",0),list("EOL")),5);
+reftree = tlist(["program","name","outputs","inputs","statements","nblines"],"internal_bug_1304",..
+list(),list(),..
+list(list("EOL"),..
+tlist(["equal","expression","lhs","endsymbol"],..
+tlist(["funcall","rhs","name","lhsnb"],list(tlist(["cste","value"],"internal_bug_1304()")),..
+"disp",1),list(tlist(["variable","name"],"ans")),""),list("EOL"),..
+tlist(["funcall","rhs","name","lhsnb"],[],"return",0),list("EOL")),3);
 
 if ~and(macr2tree(bug_1304())==reftree) then pause;end
