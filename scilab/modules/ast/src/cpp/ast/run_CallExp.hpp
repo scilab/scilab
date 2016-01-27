@@ -131,6 +131,16 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     }
     types::InternalType* pIT = getResult();
 
+    // pIT can be NULL if one of call return nothing. foo()(1) with foo return nothing.
+    if(pIT == NULL)
+    {
+        clearResult();
+        std::wostringstream os;
+        os << _W("Cannot extract from nothing.") << std::endl;
+        CoverageInstance::stopChrono((void*)&e);
+        throw ast::InternalError(os.str(), 999, e.getLocation());
+    }
+
     types::typed_list out;
     types::typed_list in;
     types::optional_list opt;
