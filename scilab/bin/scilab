@@ -734,13 +734,19 @@ detect_macosx_version()
 set_macox_specific_path()
 {
 
+    PATH_TO_SPECIFIC_10_11=$SCIBINARYBASE/lib/thirdparty/10.11/
     PATH_TO_SPECIFIC_10_10=$SCIBINARYBASE/lib/thirdparty/10.10/
     PATH_TO_SPECIFIC_10_6=$SCIBINARYBASE/lib/thirdparty/10.6/
 
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
-                10|11)
+		11)
+                    # not used yet
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_11${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_11${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
+                10)
                     # Specific libBLAS.dylib & libLAPACK.dylib version for 10.10
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
