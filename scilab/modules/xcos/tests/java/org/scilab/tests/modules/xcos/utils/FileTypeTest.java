@@ -19,6 +19,7 @@ package org.scilab.tests.modules.xcos.utils;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
+import java.rmi.server.UID;
 
 import org.junit.Assume;
 import org.junit.Before;
@@ -83,7 +84,7 @@ public class FileTypeTest {
         File tmp = File.createTempFile("xcosTest", XcosFileType.XCOS.getDottedExtension());
 
         JavaController controller = new JavaController();
-        XcosFileType.XCOS.save(tmp.getCanonicalPath(), new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM));
+        XcosFileType.XCOS.save(tmp.getCanonicalPath(), new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString()));
 
         assert XcosFileType.XCOS == XcosFileType.findFileType(tmp);
 
@@ -96,7 +97,7 @@ public class FileTypeTest {
         File tmp = File.createTempFile("xcosTest", XcosFileType.ZCOS.getDottedExtension());
 
         JavaController controller = new JavaController();
-        XcosFileType.ZCOS.save(tmp.getCanonicalPath(), new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM));
+        XcosFileType.ZCOS.save(tmp.getCanonicalPath(), new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, new UID().toString()));
 
         assert XcosFileType.ZCOS == XcosFileType.findFileType(tmp);
 

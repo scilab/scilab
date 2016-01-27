@@ -304,7 +304,9 @@ public class testAxes {
         initAxes.setBoxTypeAsEnum(BoxType.intToEnum(boxType));
 
         initAxes.setHiddenAxisColor(randomGen.nextInt());
-        initAxes.setTightLimits(randomGen.nextBoolean());
+        initAxes.setXTightLimits(randomGen.nextBoolean());
+        initAxes.setYTightLimits(randomGen.nextBoolean());
+        initAxes.setZTightLimits(randomGen.nextBoolean());
         initAxes.setDataBounds(dataBounds);
         initAxes.setRealDataBounds(realDataBounds);
         initAxes.setZoomEnabled(randomGen.nextBoolean());
@@ -603,10 +605,22 @@ public class testAxes {
         assert retHiddenAxisColor.equals(initAxes.getHiddenAxisColor());
     }
     @Test
-    public void testReflectSetGetTightLimits() {
-        controller.setProperty(axesID, __GO_TIGHT_LIMITS__, initAxes.getTightLimits());
-        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_TIGHT_LIMITS__);
-        assert retTightLimits.equals(initAxes.getTightLimits());
+    public void testReflectSetGetXTightLimits() {
+        controller.setProperty(axesID, __GO_X_TIGHT_LIMITS__, initAxes.getXTightLimits());
+        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_X_TIGHT_LIMITS__);
+        assert retTightLimits.equals(initAxes.getXTightLimits());
+    }
+    @Test
+    public void testReflectSetGetYTightLimits() {
+        controller.setProperty(axesID, __GO_Y_TIGHT_LIMITS__, initAxes.getYTightLimits());
+        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_Y_TIGHT_LIMITS__);
+        assert retTightLimits.equals(initAxes.getYTightLimits());
+    }
+    @Test
+    public void testReflectSetGetZTightLimits() {
+        controller.setProperty(axesID, __GO_Z_TIGHT_LIMITS__, initAxes.getZTightLimits());
+        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_Z_TIGHT_LIMITS__);
+        assert retTightLimits.equals(initAxes.getZTightLimits());
     }
     @Test
     public void testReflectSetGetDataBounds() {
@@ -1026,10 +1040,22 @@ public class testAxes {
         assert retHiddenAxisColor.equals(initAxes.getHiddenAxisColor());
     }
     @Test
-    public void testFastSetGetTightLimits() {
-        controller.setProperty(axesID, __GO_TIGHT_LIMITS__, initAxes.getTightLimits());
-        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_TIGHT_LIMITS__);
-        assert retTightLimits.equals(initAxes.getTightLimits());
+    public void testFastSetGetXTightLimits() {
+        controller.setProperty(axesID, __GO_X_TIGHT_LIMITS__, initAxes.getXTightLimits());
+        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_X_TIGHT_LIMITS__);
+        assert retTightLimits.equals(initAxes.getXTightLimits());
+    }
+    @Test
+    public void testFastSetGetYTightLimits() {
+        controller.setProperty(axesID, __GO_Y_TIGHT_LIMITS__, initAxes.getYTightLimits());
+        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_Y_TIGHT_LIMITS__);
+        assert retTightLimits.equals(initAxes.getYTightLimits());
+    }
+    @Test
+    public void testFastSetGetZTightLimits() {
+        controller.setProperty(axesID, __GO_Z_TIGHT_LIMITS__, initAxes.getZTightLimits());
+        Boolean retTightLimits = (Boolean) controller.getProperty(axesID, __GO_Z_TIGHT_LIMITS__);
+        assert retTightLimits.equals(initAxes.getZTightLimits());
     }
     @Test
     public void testFastSetGetDataBounds() {

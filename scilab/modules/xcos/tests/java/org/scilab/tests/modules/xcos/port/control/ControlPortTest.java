@@ -16,6 +16,7 @@
 
 package org.scilab.tests.modules.xcos.port.control;
 
+import java.rmi.server.UID;
 import org.junit.Before;
 import org.junit.Test;
 import org.scilab.modules.xcos.JavaController;
@@ -39,31 +40,31 @@ public class ControlPortTest {
 
     @Test
     public void checkType() {
-        ControlPort port = new ControlPort(controller.createObject(Kind.PORT));
+        ControlPort port = new ControlPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
         assert port.getType() == null;
     }
 
     @Test
     public void checkDefaultOrientation() {
-        ControlPort port = new ControlPort(controller.createObject(Kind.PORT));
+        ControlPort port = new ControlPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
         assert port.getOrientation() == Orientation.NORTH;
     }
 
     @Test
     public void checkStyle() {
-        ControlPort port = new ControlPort(controller.createObject(Kind.PORT));
-        assert port.getStyle().contains("ControlPort");
+        ControlPort port = new ControlPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
+        assert port.getStyle().contains(null);
     }
 
     @Test
     public void checkClassHierarchy() {
-        ControlPort port = new ControlPort(controller.createObject(Kind.PORT));
+        ControlPort port = new ControlPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
         assert port instanceof BasicPort;
     }
 
     @Test
     public void checkDefaultGeometry() {
-        ControlPort port = new ControlPort(controller.createObject(Kind.PORT));
+        ControlPort port = new ControlPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
         assert port.getGeometry().getWidth() == DEFAULT_PORTSIZE;
         assert port.getGeometry().getHeight() == DEFAULT_PORTSIZE;
     }

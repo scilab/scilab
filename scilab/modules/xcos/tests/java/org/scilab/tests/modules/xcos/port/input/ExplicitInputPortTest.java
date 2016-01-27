@@ -16,6 +16,7 @@
 
 package org.scilab.tests.modules.xcos.port.input;
 
+import java.rmi.server.UID;
 import org.junit.Before;
 import org.junit.Test;
 import org.scilab.modules.xcos.JavaController;
@@ -41,32 +42,32 @@ public class ExplicitInputPortTest {
 
     @Test
     public void checkType() {
-        ExplicitInputPort port = new ExplicitInputPort(controller.createObject(Kind.PORT));
+        ExplicitInputPort port = new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
         assert port.getType() == Type.EXPLICIT;
     }
 
     @Test
     public void checkDefaultOrientation() {
-        ExplicitInputPort port = new ExplicitInputPort(controller.createObject(Kind.PORT));
+        ExplicitInputPort port = new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
         assert port.getOrientation() == Orientation.WEST;
     }
 
     @Test
     public void checkStyle() {
-        ExplicitInputPort port = new ExplicitInputPort(controller.createObject(Kind.PORT));
-        assert port.getStyle().contains("ExplicitInputPort");
+        ExplicitInputPort port = new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
+        assert port.getStyle().contains(null);
     }
 
     @Test
     public void checkClassHierarchy() {
-        ExplicitInputPort port = new ExplicitInputPort(controller.createObject(Kind.PORT));
+        ExplicitInputPort port = new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
         assert port instanceof InputPort;
         assert port instanceof BasicPort;
     }
 
     @Test
     public void checkDefaultGeometry() {
-        ExplicitInputPort port = new ExplicitInputPort(controller.createObject(Kind.PORT));
+        ExplicitInputPort port = new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
         assert port.getGeometry().getWidth() == DEFAULT_PORTSIZE;
         assert port.getGeometry().getHeight() == DEFAULT_PORTSIZE;
     }
