@@ -92,6 +92,8 @@ public class LinkWriter extends ScilabWriter {
             String escaped = value[0].replace('\n', ' ');
             shared.stream.writeAttribute("value", escaped);
 
+            new JGraphXWriter(shared).write(uid, kind);
+
             shared.stream.writeEndElement(); // localName
         }
     }
