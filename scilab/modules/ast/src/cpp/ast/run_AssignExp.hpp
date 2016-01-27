@@ -240,6 +240,14 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             //x(?) = ?
             types::InternalType *pOut = NULL;
 
+            if (e.getRightExp().isReturnExp())
+            {
+                // We can't put in the previous scope a variable create like that : a(2)=resume(1)
+                std::wostringstream os;
+                os << _W("Indexing not allowed for output arguments of resume.\n");
+                throw ast::InternalError(os.str(), 79, e.getLeftExp().getLocation());
+            }
+
             /*getting what to assign*/
             types::InternalType* pITR = e.getRightVal();
             if (pITR == NULL)
