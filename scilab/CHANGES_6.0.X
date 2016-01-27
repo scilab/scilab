@@ -57,6 +57,8 @@ Bug Fixes
 
 * Bug #14245 fixed - Problem in recursive extraction using list with struct.
 
+* Bug #14247 fixed - sqrt function did not work on hypermatrices (non regression test).
+
 * Bug #14249 fixed - ctrl-c can be used to stop writing control expression.
 
 * Bug #14251 fixed - `spec` leaked some memory.
