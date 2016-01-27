@@ -83,6 +83,14 @@ Dependencies
   - Batik 1.8
   - FOP 2.0
 
+User interface
+==============
+
+* Scilab default window size is now 1366x768 (instead of 800x600).
+
+* A Newsfeed component has been added to display some news about Scilab.
+
+
         Changes between version 6.0.0-alpha-1 and 6.0.0-alpha-2
         =======================================================
 

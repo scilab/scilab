@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Scilab>
     <!-- Console default configuration -->
-    <Window height="600" uuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881" width="800" x="0" y="0" state="0">
+    <Window height="768" uuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881" width="1366" x="0" y="0" state="0">
         <DockingPortNode>
             <SplitNode dockingRegion="west" orientation="horizontal" percentage="0.27132487" region="left">
                 <DockingPortNode>
