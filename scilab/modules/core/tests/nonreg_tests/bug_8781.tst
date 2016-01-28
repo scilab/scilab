@@ -18,6 +18,6 @@
 msg1 = msprintf(gettext("%s: Wrong type for input argument #%d.\n"), "error", 1);
 msg2 = msprintf(gettext("%s: Wrong type for input argument #%d.\n"), "error", 2);
 assert_checkerror("error(1+%i)", msg1);
-assert_checkerror("error(%i, 1)", msg1);
+assert_checkerror("error(%i, 1)", msg2);
 assert_checkerror("error(45+%i, [''A''; ''multi'';''line'';''error'';''message''])", msg1);
 assert_checkerror("error(52, %i)", msg2);

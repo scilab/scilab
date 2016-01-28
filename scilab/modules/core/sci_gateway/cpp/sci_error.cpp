@@ -48,35 +48,27 @@ types::Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, ty
     if (in.size() == 1)
     {
         // RHS == 1
-        if (in[0]->isString() == false && in[0]->isDouble() == false)
+        if (in[0]->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 1);
             return types::Function::Error;
         }
 
-        if (in[0]->isString() == true)
+        types::String* pStrError = in[0]->getAs<types::String>();
+        std::string strErr = "";
+        char* pstError = NULL;
+        for (int i = 0; i < pStrError->getSize() - 1; i++)
         {
-            types::String* pStrError = in[0]->getAs<types::String>();
-            std::string strErr = "";
-            char* pstError = NULL;
-            for (int i = 0; i < pStrError->getSize() - 1; i++)
-            {
-                pstError = wide_string_to_UTF8(pStrError->get(i));
-                strErr = strErr + std::string(pstError) + std::string("\n");
-                FREE(pstError);
-            }
-
-            pstError = wide_string_to_UTF8(pStrError->get(pStrError->getSize() - 1));
-            strErr = strErr + std::string(pstError);
+            pstError = wide_string_to_UTF8(pStrError->get(i));
+            strErr = strErr + std::string(pstError) + std::string("\n");
             FREE(pstError);
+        }
 
-            Scierror(DEFAULT_ERROR_CODE, "%s", strErr.c_str());
-        }
-        else
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "error", 1);
-            return types::Function::Error;
-        }
+        pstError = wide_string_to_UTF8(pStrError->get(pStrError->getSize() - 1));
+        strErr = strErr + std::string(pstError);
+        FREE(pstError);
+
+        Scierror(DEFAULT_ERROR_CODE, "%s", strErr.c_str());
     }
     else
     {
@@ -117,19 +109,25 @@ types::Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, ty
             pStr = in[0]->getAs<types::String>();
         }
 
+        if (pDbl->isComplex())
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", iPosDouble);
+            return types::Function::Error;
+        }
+
         if (pDbl->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "error", iPosDouble);
+            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "error", iPosDouble);
             return types::Function::Error;
         }
 
         if (pStr->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "error", iPosString);
+            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "error", iPosString);
             return types::Function::Error;
         }
 
-        if (pDbl->get(0) <= 0 || pDbl->isComplex())
+        if (pDbl->get(0) <= 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), "error", iPosDouble);
             return types::Function::Error;
