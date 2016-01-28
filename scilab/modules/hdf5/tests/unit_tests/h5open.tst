@@ -26,12 +26,12 @@ h5write(a,"Dset_1",[1 2;3 4]);
 h5close(a);
 
 try
-    h5open(SCI + "/COPYING-FR");
+    h5open(SCI + "/COPYING");
     error("h5open should produce an error");
 catch
 end
 
-copyfile(SCI+"/COPYING-FR",TMPDIR+"/z.h5");
+copyfile(SCI+"/COPYING",TMPDIR+"/z.h5");
 try
     h5open(TMPDIR+"/z.h5");
     error("h5open should produce an error");

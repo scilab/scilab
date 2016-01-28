@@ -107,12 +107,12 @@ clf()
 plot2d3(m(:,1), m(:,2)/n)
 xtitle("empirical probabilities of B(70,0.5)")
 // 最後の例 : scilabライセンスにおける単語の頻度を計算
-text = read(SCI+"/license.txt",-1,1,"(A)"); // scilabライセンスを読む
+text = read(SCI+"/COPYING",-1,1,"(A)");     // scilabライセンスを読む
 bigstr = strcat(text," ");                  // 全ての行を一つの大きな文字列にする
 sep =  [" " "," "." ";" "*" ":" "-" """"];  // 単語セパレータ
 words = tokens(bigstr, sep);                // 大きな文字列を単語に分割
 m = tabul(words);                           // 各単語の出現頻度を計算
-[occ , p] = gsort(m(2));                     // 降順に頻度をソート
+[occ , p] = gsort(m(2));                    // 降順に頻度をソート
 results = [m(1)(p) string(occ)]             // 結果を表示
  ]]></programlisting>
     </refsection>
