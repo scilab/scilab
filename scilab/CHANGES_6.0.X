@@ -51,6 +51,9 @@ Bug Fixes
 
 * Bug #13990 fixed - Windows installer did not ship all localization files.
 
+* Bug #13999 fixed - editor() was modal. It locked the console using an
+  external editor.
+
 * Bug #14178 fixed - tcl/tk unavailability on MacOS is now documented.
 
 * Bug #14041 fixed - genlib crash when the file is locked by another program.
