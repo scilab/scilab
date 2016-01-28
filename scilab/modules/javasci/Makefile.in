@@ -19,6 +19,15 @@
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
 # 
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
+# === LICENSE_END ===
 #
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -1012,9 +1021,9 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 @JAVASCI_FALSE@clean-local:
+@JAVASCI_FALSE@install-html-local:
 @JAVASCI_FALSE@install-data-local:
 @JAVASCI_FALSE@distclean-local:
-@JAVASCI_FALSE@install-html-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
