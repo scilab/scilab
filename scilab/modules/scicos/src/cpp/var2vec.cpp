@@ -305,6 +305,9 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
                 case types::InternalType::ScilabUInt64 :
                     encode(in->getAs<types::UInt64>(), out);
                     break;
+                default :
+                    Scierror(999, _("%s: Wrong type for input argument #%d: unknown integer type.\n"), var2vecName.c_str(), 1);
+                    return false;
             }
             break;
         case sci_boolean :
@@ -327,7 +330,7 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
                 case types::InternalType::ScilabMList :
                     encode(in->getAs<types::List>(), out);
                     break;
-                case types::InternalType::ScilabStruct :
+                default : // types::InternalType::ScilabStruct
                     //encode(in->getAs<types::Struct>(), out);
                     Scierror(999, _("%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"), var2vecName.c_str(), 1, "Double", "Integer", "Boolean", "String", "List");
                     return false;
