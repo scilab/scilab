@@ -152,6 +152,8 @@ API modification
 Bug Fixes
 =========
 
+* Bug #6057 fixed  - trailing space after minus sign has been removed from the display of values
+
 * Bug #11511 fixed - error() did non accept string matrix (non regression test).
 
 * Bug #12044 fixed - Adding or substracting the empty matrix now return an empty matrix.
@@ -290,6 +292,8 @@ Bug Fixes
 * Bug #14228 fixed - Setting rotation_angles property to a matrix of any size did not return error message.
 
 * Bug #14232 fixed - Typos in Xcos.
+
+* Bug #14303 fixed - matrix display for large number was not correctly aligned
 
 
 
