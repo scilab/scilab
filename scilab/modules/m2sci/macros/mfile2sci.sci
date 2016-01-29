@@ -201,7 +201,7 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
         func_proto=part(func_proto,1:keq)+strsubst(stripblanks(part(func_proto,keq+1:kpar-1))," ","_")+part(func_proto,kpar:length(func_proto))
 
         wold = who("get");
-        deff(func_proto,[firstline;txt(2:$)],"n")
+        deff(func_proto,[firstline;txt(2:$)])
         w = who("get");
         w(find(w == "deff")) = [];
         w(find(w == "wold")) = [];

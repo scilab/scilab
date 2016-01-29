@@ -33,7 +33,7 @@ deff('[y]=t(x)',[
 '      y=u,'
 '    end'
 '  end'
-'end'],'n')
+'end'])
 //
 if t(0)<>0 then pause,end
 if t(1)<>0 then pause,end
@@ -51,7 +51,7 @@ if t(-1)-t1(-1)<>0 then pause,end
 
 // for in macro
 //--------------------------------------
-deff('[k]=tt1()','k=0,for i=1:5 ,k=k+1;if k==3 then break,end,end,k=k+1','n')
+deff('[k]=tt1()','k=0,for i=1:5 ,k=k+1;if k==3 then break,end,end,k=k+1')
 if tt1()<>4 then pause,end
 if tt1()<>4 then pause,end
 clear tt1
@@ -62,7 +62,7 @@ deff('[k]=tt1()',[
 '  k=k+1;';
 '  if k==3 then break,end,';
 '  if k==-1 then 1,end,';
-'end,k=k+1'],'n')
+'end,k=k+1'])
 if tt1()<>4 then pause,end
 if tt1()<>4 then pause,end
 
@@ -75,13 +75,13 @@ deff('[k]=tt1()',[
 '  if k==3 then break,end,';
 '  for j=1:5,j,end,';
 'end,';
-'k=k+1'],'n')
+'k=k+1'])
 if tt1()<>4 then pause,end
 if tt1()<>4 then pause,end
 
 // while
 //----------------------------------------
-deff('[k]=tt1()','k=0,while k<10 ,k=k+1;if k==3 then break,end,end,k=k+1','n')
+deff('[k]=tt1()','k=0,while k<10 ,k=k+1;if k==3 then break,end,end,k=k+1')
 if tt1()<>4 then pause,end
 if tt1()<>4 then pause,end
 clear tt1
@@ -92,7 +92,7 @@ deff('[k]=tt1()',[
 '  k=k+1;';
 '  if k==3 then break,end,';
 '  if k==-1 then 1,end,';
-'end,k=k+1'],'n')
+'end,k=k+1'])
 if tt1()<>4 then pause,end
 if tt1()<>4 then pause,end
 
@@ -105,7 +105,7 @@ deff('[k]=tt1()',[
 '  if k==3 then break,end,';
 '  for j=1:5,j,end,';
 'end,';
-'k=k+1'],'n')
+'k=k+1'])
 if tt1()<>4 then pause,end
 if tt1()<>4 then pause,end
 //
@@ -157,7 +157,7 @@ if or(c<>[1 2 3 4]) then pause,end
 
 
 
-deff('c=foo(n)','c=[];for k=1:5,if k==n then continue,end,c=[c,k],end','n')
+deff('c=foo(n)','c=[];for k=1:5,if k==n then continue,end,c=[c,k],end')
 if or(foo(3)<>[1 2 4 5]) then pause,end
 if or(foo(5)<>[1 2 3 4]) then pause,end
 
@@ -168,7 +168,7 @@ n=4;
 c=[];for i=1:3,for k=1:4,if k==n&i==2 then continue,end,c=[c,k];end;end
 if or(c<> [1,2,3,4, 1,2,3, 1,2,3,4]) then pause,end
 
-deff('c=foo(n)','c=[];for i=1:3,for k=1:4,if k==n&i==2 then continue,end,c=[c,k];end;end','n')
+deff('c=foo(n)','c=[];for i=1:3,for k=1:4,if k==n&i==2 then continue,end,c=[c,k];end;end')
 if or(foo(3)<>[1,2,3,4, 1,2,4, 1,2,3,4]) then pause,end
 if or(foo(4)<>[1,2,3,4, 1,2,3, 1,2,3,4]) then pause,end
 
@@ -181,7 +181,7 @@ if or(c<>[1 2 4 5]) then pause,end
 n=5;
 c=[];k=0;while k<5,k=k+1;if k==n then continue,end,c=[c,k];end
 if or(c<>[1 2 3 4]) then pause,end
-deff('c=foo(n)','c=[];k=0;while k<5,k=k+1;if k==n then continue,end,c=[c,k],end','n')
+deff('c=foo(n)','c=[];k=0;while k<5,k=k+1;if k==n then continue,end,c=[c,k],end')
 if or(foo(3)<>[1 2 4 5]) then pause,end
 if or(foo(5)<>[1 2 3 4]) then pause,end
 
@@ -193,6 +193,6 @@ c=[];for i=1:3,k=0;while k<4,k=k+1;,if k==n&i==2 then continue,end,c=[c,k];end;e
 if or(c<> [1,2,3,4, 1,2,3, 1,2,3,4]) then pause,end
 
 clear foo
-deff('c=foo(n)','c=[];for i=1:3,k=0;while k<4,k=k+1;if k==n&i==2 then continue,end,c=[c,k];end;end','n')
+deff('c=foo(n)','c=[];for i=1:3,k=0;while k<4,k=k+1;if k==n&i==2 then continue,end,c=[c,k];end;end')
 if or(foo(3)<>[1,2,3,4, 1,2,4, 1,2,3,4]) then pause,end
 if or(foo(4)<>[1,2,3,4, 1,2,3, 1,2,3,4]) then pause,end

@@ -174,7 +174,7 @@ function standard_draw (o, frame, draw_ports, up)
         sz   = sz - e   ;
     end
     //@@ Alan,28/11/08 : protect variables of standard_draw
-    deff("ierr=exec_gr_i(gr_i)","ierr=execstr(gr_i,''errcatch'',''n'');") ; //** on line function definition
+    deff("ierr=exec_gr_i(gr_i)","ierr=execstr(gr_i,''errcatch'');") ; //** on line function definition
     //** Check of the graphics object has generated any error
     if exec_gr_i(gr_i)<>0 then
         messagebox(["Error in Icon defintion"; lasterror()],"modal")

@@ -21,7 +21,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>deff('[s1, s2, ...] = newfunction(e1, e2,...)',text [,opt])</synopsis>
+        <synopsis>deff('[s1, s2, ...] = newfunction(e1, e2,...)',text)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -44,28 +44,6 @@
                     <para>matriz de strings.</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>opt</term>
-                <listitem>
-                    <para>string opcional:</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>'c'</term>
-                            <listitem>
-                                <para>a função é "compilada" para ser eficiente
-                                    (padrão);
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>'n'</term>
-                            <listitem>
-                                <para>a função não é "compilada".</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -77,20 +55,11 @@
             em um arquivo de texto e carregada através de <function>exec</function> ou
             <function>exec</function>.
         </para>
-        <para>Aspas em instruções (delimitando strings ou indicando transposição
-            de matrizes) devem ser dobradas para serem interpretadas corretamente (ver
-            quote). Isto pode tornar a escrita um tanto estranha. Uma alternativa em
-            tais casos é definir funções em arquivos, como de uso, para carregá-las no
-            Scilab através de <function>exec</function> (com a opção
-            <literal>'n'</literal>) e utilizar <function>sci2exp</function> para uma
-            impressão das instruções <function>deff</function> correspondentes.
-        </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 deff('[x]=myplus(y,z)','x=y+z')
-
 deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
  ]]></programlisting>
     </refsection>
@@ -102,9 +71,6 @@ deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
             </member>
             <member>
                 <link linkend="function">function</link>
-            </member>
-            <member>
-                <link linkend="profile">profile</link>
             </member>
             <member>
                 <link linkend="quote">quote</link>

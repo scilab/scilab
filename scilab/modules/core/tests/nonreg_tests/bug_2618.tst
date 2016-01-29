@@ -29,7 +29,7 @@ if n == 0 then pause,end
 
 //catched error in a uncompiled function in a try
 clear ev
-deff(" r=ev(str)","execstr(''r=''+str),","n")
+deff(" r=ev(str)","execstr(''r=''+str),")
 r=%f;a = 1;
 try
     ev("a*z");
@@ -76,7 +76,7 @@ if n == 0 then pause,end
 
 //catched error in a exec'ed uncompiled function in a try in a compiled function
 clear ev foo
-deff(" r=ev(str)","execstr(''r=''+str),","n")
+deff(" r=ev(str)","execstr(''r=''+str),")
 function r=foo()
     r=%f;a=1;
     try
@@ -94,7 +94,7 @@ if n == 0 then pause,end
 
 //catched error in an uncompiled function in a try in a compiled function
 clear ev foo
-deff(" r=ev(str)","execstr(''r=''+str),","n")
+deff(" r=ev(str)","execstr(''r=''+str),")
 function r=foo()
     r=%f;
     try
@@ -118,7 +118,7 @@ deff("r=foo()",[
 "   ev(a*z);"
 "catch"
 "   r=%t"
-"end"],"n")
+"end"])
 r=foo();
 if ~r then pause,end
 [str,n]=lasterror();
@@ -128,14 +128,14 @@ if n == 0 then pause,end
 
 //catched error in a uncompiled function in a try in a uncompiled function
 clear ev foo
-deff(" r=ev(str)","execstr(''r=''+str),","n")
+deff(" r=ev(str)","execstr(''r=''+str),")
 deff("r=foo()",[
 "r=%f;a = 1;"
 "try"
 "   ev(a*z);"
 "catch"
 "   r=%t"
-"end"],"n")
+"end"])
 r=foo();
 if ~r then pause,end
 [str,n]=lasterror();

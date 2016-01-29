@@ -21,7 +21,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>deff('[s1, s2, ...] = newfunction(e1, e2, ...)',text [,opt])</synopsis>
+        <synopsis>deff('[s1, s2, ...] = newfunction(e1, e2, ...)',text)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -44,26 +44,6 @@
                     <para>a matrix of character strings.</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>opt</term>
-                <listitem>
-                    <para>an optional character string:</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>'c'</term>
-                            <listitem>
-                                <para>function is "compiled" to be more efficient (default);</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>'n'</term>
-                            <listitem>
-                                <para>function is not "compiled".</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -77,17 +57,12 @@
             Quotes in the instructions (delimiting strings or meaning matrix transposition)
             have to be doubled to be interpreted correctly (see help <link linkend="quote">quote</link>). This can make
             writing up a little awkward.
-            An option in such cases is to define functions in files as usual, to load them into
-            Scilab by <function>exec</function> (with the <literal>'n'</literal> option) and to use
-            <function>sci2exp</function> to get a printout of corresponding <function>deff</function>
-            instructions.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 deff('[x]=myplus(y,z)','x=y+z')
-
 deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
  ]]></programlisting>
     </refsection>
@@ -99,9 +74,6 @@ deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
             </member>
             <member>
                 <link linkend="function">function</link>
-            </member>
-            <member>
-                <link linkend="profile">profile</link>
             </member>
             <member>
                 <link linkend="quote">quote</link>

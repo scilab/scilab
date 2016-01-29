@@ -188,7 +188,7 @@ function   funcallname=lst_funcall(fil,fnamvect)
         strsubst(stripblanks(part(func_proto,keq+1:kpar-1))," ","_")+..
         part(func_proto,kpar:length(func_proto))
 
-        deff(func_proto,[firstline;txt(2:$)],"n")
+        deff(func_proto,[firstline;txt(2:$)])
         w=who("get");
         mname=w(1);
 

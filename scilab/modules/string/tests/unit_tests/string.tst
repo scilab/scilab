@@ -47,7 +47,7 @@ assert_checkequal(in, "x");
 assert_checkequal(text, [" "; "y = x + 1"; " "]);
 //===============================
 mymacro = null();
-deff("y = mymacro(x)", "y = x + 1", "n");
+deff("y = mymacro(x)", "y = x + 1");
 [out, in, text]=string(mymacro);
 assert_checkequal(out, "y");
 assert_checkequal(in, "x");

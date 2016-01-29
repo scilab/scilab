@@ -23,7 +23,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>deff('[s1, s2, ...] = newfunction(e1, e2, ...)',text [,opt])</synopsis>
+        <synopsis>deff('[s1, s2, ...] = newfunction(e1, e2, ...)',text)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -46,30 +46,6 @@
                     <para>матрица символьных строк.</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>opt</term>
-                <listitem>
-                    <para>необязательная символьная строка:</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>'c'</term>
-                            <listitem>
-                                <para>
-                                    функция "скомпилирована" для большей производительности (по умолчанию);
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>'n'</term>
-                            <listitem>
-                                <para>
-                                    функция не "скомпилирована".
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -81,17 +57,6 @@
             свойства, что и любая другая функция, определённая в
             текстовом файле и загруженная с помощью функции
             <function>exec</function>.
-        </para>
-        <para>
-            Кавычки в инструкциях (разделяющие строки или означающие
-            транспонирование матрицы) должны быть удвоены для правильной
-            интерпретации (см. справку <link linkend="quote">кавычки</link>). Это может сделать написание
-            несколько неудобным. Как вариант, в таких случаях можно
-            определять функции в файлах, как обычно, для загрузки их в
-            Scilab с помощью функции <function>exec</function> (с опцией
-            <literal>'n'</literal>) и можно использовать функцию
-            <function>sci2exp</function> для получения распечатки
-            соответствующих инструкций в функции <function>deff</function>.
         </para>
     </refsection>
     <refsection>
@@ -109,9 +74,6 @@ deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
             </member>
             <member>
                 <link linkend="function">function</link>
-            </member>
-            <member>
-                <link linkend="profile">profile</link>
             </member>
             <member>
                 <link linkend="quote">кавычка</link>

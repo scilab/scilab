@@ -100,14 +100,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>11</term>
-                <listitem>
-                    <para>
-                        некомпилированная функция (Scilab-код). Функция, созданная с помощью <link linkend="deff">deff</link> с аргументом <literal>'n'</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>13</term>
                 <listitem>
                     <para>
