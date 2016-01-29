@@ -54,7 +54,7 @@ public class RoundBlock extends BasicBlock {
          */
         if (child instanceof InputPort) {
             final InputPort port = (InputPort) child;
-            port.setOrientation(getPortOrientation(index));
+            port.setOrientation(getInputPortOrientation(index));
 
         }
 
@@ -68,28 +68,23 @@ public class RoundBlock extends BasicBlock {
      *            the port ordering
      * @return the selected orientation
      */
-    // CSOFF: MagicNumber
-    private Orientation getPortOrientation(int order) {
+    private Orientation getInputPortOrientation(int order) {
         final Orientation ret;
 
         switch (order) {
-            case 1:
+            case 0:
                 ret = Orientation.SOUTH;
                 break;
-
-            case 2:
+            case 1:
                 ret = Orientation.WEST;
                 break;
-
-            case 3:
+            case 2:
                 ret = Orientation.NORTH;
                 break;
-
             default:
                 ret = Orientation.WEST;
                 break;
         }
         return ret;
     }
-    // CSON: MagicNumber
 }
