@@ -33,6 +33,7 @@ import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
@@ -53,6 +54,10 @@ public class NewsFeedTab extends SwingScilabDockablePanel implements SimpleTab {
 
     private NewsFeedWidget newsFeedWidget;
     private NewsFeedController newsFeedController;
+
+    static {
+        ScilabTabFactory.getInstance().addTabFactory(NewsFeedTabFactory.getInstance());
+    }
 
     public static NewsFeedTab getInstance() {
         if (instance == null) {
@@ -84,13 +89,7 @@ public class NewsFeedTab extends SwingScilabDockablePanel implements SimpleTab {
     }
 
     public static void displayTab() {
-        if (instance == null) {
-            if (!WindowsConfigurationManager.restoreUUID(NEWSFEED_UUID)) {
-                NewsFeedTabFactory.getInstance().getTab(NEWSFEED_UUID);
-                instance.createTabWindow();
-            }
-        }
-        instance.setVisible(true);
+        WindowsConfigurationManager.restoreWindow(NEWSFEED_UUID);
     }
 
     public void startNewsFeed() {
@@ -152,13 +151,6 @@ public class NewsFeedTab extends SwingScilabDockablePanel implements SimpleTab {
         swingScilabToolBar.addSeparator();
         swingScilabToolBar.add(HelpAction.createPushButton());
         return toolBar;
-    }
-
-    private SwingScilabWindow createTabWindow() {
-        SwingScilabWindow window = SwingScilabWindow.createWindow(true);
-        window.addTab(this);
-        window.setVisible(true);
-        return window;
     }
 
     private void registerClosingOperation() {

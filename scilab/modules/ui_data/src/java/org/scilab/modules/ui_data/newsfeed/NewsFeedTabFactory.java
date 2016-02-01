@@ -17,7 +17,7 @@ package org.scilab.modules.ui_data.newsfeed;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.AbstractScilabTabFactory;
-import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
+
 
 /**
  * Factory to create news feed tabs For now, manages one tab only
@@ -28,22 +28,15 @@ public class NewsFeedTabFactory extends AbstractScilabTabFactory {
     public static final String PACKAGE = "";
     public static final String CLASS = "org.scilab.modules.ui_data.newsfeed.NewsFeedTabFactory";
 
-    static {
-        ScilabTabFactory.getInstance().addTabFactory(NewsFeedTabFactory.getInstance());
-    }
-
     private static NewsFeedTabFactory instance = null;
 
     public NewsFeedTabFactory() {
-        if (instance == null) {
+        if (instance == null)
             instance = this;
-        }
     }
 
     public SwingScilabDockablePanel getTab(String uuid) {
-        NewsFeedTab newsFeedTab = NewsFeedTab.getInstance();
-        ScilabTabFactory.getInstance().addToCache(newsFeedTab);
-        return newsFeedTab;
+        return NewsFeedTab.getInstance();
     }
 
     public String getPackage() {
@@ -57,7 +50,6 @@ public class NewsFeedTabFactory extends AbstractScilabTabFactory {
     public String getApplication() {
         return APPLICATION;
     }
-
 
     public boolean isAValidUUID(String uuid) {
         return NewsFeedTab.NEWSFEED_UUID.equals(uuid);
