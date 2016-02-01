@@ -176,6 +176,8 @@ public class NewsFeedTab extends SwingScilabDockablePanel implements SimpleTab {
                                            ListIterator<SwingScilabDockablePanel> it) {
             }
         });
+
+        ClosingOperationsManager.addDependencyWithRoot(this);
     }
 
     private void stopNewsFeed() {
