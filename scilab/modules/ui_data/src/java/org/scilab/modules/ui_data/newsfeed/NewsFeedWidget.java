@@ -143,6 +143,7 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
 
         if (news.getContent() != null) {
             // if given, use RSS item content
+            newsHtmlBuilder.append(getDivHtml(news.getTitle(), NEWS_TITLE_HTML_ID));
             newsHtmlBuilder.append(getDivHtml(news.getContent(), NEWS_CONTENT_HTML_ID));
         } else {
             // otherwise get content from title, date, description

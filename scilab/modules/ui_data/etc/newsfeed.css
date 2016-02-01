@@ -3,7 +3,8 @@
 }
 
 #news_title {
-    font-weight: bold
+    font-weight: bold;
+    margin-bottom: 10px
 }
 
 #news_date {
