@@ -584,6 +584,17 @@ assign			"="
   return scan_throw(VARFLOAT);
 }
 
+<INITIAL,MATRIX>[0-9]+[\.]/[\*^\\\/]		{
+
+  yylval.number = atof(yytext);
+#ifdef TOKENDEV
+  std::cout << "--> [DEBUG] NUMBER WITH DOT AS LAST CHARACTER : " << yytext << std::endl;
+#endif
+//  scan_step();
+  unput('.');
+  yylloc.last_column--;
+  return scan_throw(NUM);
+}
 
 <INITIAL,MATRIX>{number}		{
   yylval.number = atof(yytext);

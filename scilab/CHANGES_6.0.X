@@ -39,6 +39,8 @@ earlier versions:
 Bug Fixes
 =========
 
+* Bug #9560  fixed - (1./M) was parsed as (1. / M) instead of (1 ./ M)
+
 * Bug #13918 fixed - Unmanaged operations on hypermatrix did not call overload functions.
 
 * Bug #13298 fixed - Static analysis bugs detected by PVS-Studio fixed.
