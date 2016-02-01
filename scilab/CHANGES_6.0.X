@@ -75,6 +75,8 @@ Bug Fixes
 
 * Bug #14316 fixed - Operation scalar^matrix was identical to scalar.^matrix instead of being expm( log(scalar) * matrix )
 
+* Bug #14331 fixed - The third argument of lsq crashed Scilab.
+
 Dependencies
 =============
 
