@@ -318,12 +318,8 @@ char *getCmdLine(void)
 
     static int nextLineLocationInWideString = 0;
 
-    if (isatty(fileno(stdin)))
-    {
-        /* We are not in a pipe */
-        printPrompt(WRITE_PROMPT);
-        setCharDisplay(DISP_BRIGHT);
-    }
+    printPrompt(WRITE_PROMPT);
+    setCharDisplay(DISP_BRIGHT);
     setTokenInteruptExecution(RESET_TOKEN);
 
     if (commandLine == NULL || commandLine[nextLineLocationInWideString] == L'\0')

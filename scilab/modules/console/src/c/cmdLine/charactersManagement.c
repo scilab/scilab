@@ -57,11 +57,9 @@ int addChar(wchar_t ** CommandLine, int key, unsigned int *cursorLocation)
         }
         /* Add the new character to the command line. */
         (*CommandLine)[*cursorLocation] = (wchar_t) key;
-        if (isatty(fileno(stdin)))
-        {
-            /* We are not in a pipe */
-            printf("%lc", (*CommandLine)[*cursorLocation]);
-        }
+
+        printf("%lc", (*CommandLine)[*cursorLocation]);
+
         sizeOfCmd++;
         (*CommandLine)[sizeOfCmd] = L'\0';
         (*cursorLocation)++;

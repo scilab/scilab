@@ -119,6 +119,9 @@
     <ClCompile Include="..\cpp\scilabRead.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="getpipeline.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jni\DropFiles.i">
@@ -237,6 +240,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="windows\TermLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getpipeline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
