@@ -335,6 +335,7 @@ Bug Fixes
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`
+* [#2835](http://bugzilla.scilab.org/show_bug.cgi?id=2835): On negative "initial event", EVTDLY_c took no notice of the input.
 * [#2919](http://bugzilla.scilab.org/show_bug.cgi?id=2919): The `fchamp` example and demo were unclear and badly rendered
 * [#4327](http://bugzilla.scilab.org/show_bug.cgi?id=4327): Overloading did not support custom types names longer than 8 characters
 * [#5723](http://bugzilla.scilab.org/show_bug.cgi?id=5723): Cross-references were missing between axis_properties and axes_properties help pages

@@ -60,10 +60,13 @@ SCICOS_BLOCKS_IMPEXP void evtdly4(scicos_block *block, int flag)
             i = *work;
             t = get_scicos_time();
             (*i)++; /*increase counter*/
-            dt = block->rpar[1] + (*i) * block->rpar[0] - t;
-            /* on event enabled, use the default delay if not scheduled */
-            if (block->rpar[1] >= 0 && dt < 0)
+            if (block->rpar[1] >= 0)
             {
+                dt = block->rpar[1] + (*i) * block->rpar[0] - t;
+            }
+            else
+            {
+                /* On negative initial event, only delay the input */
                 dt = block->rpar[0];
             }
             block->evout[0] = dt;
