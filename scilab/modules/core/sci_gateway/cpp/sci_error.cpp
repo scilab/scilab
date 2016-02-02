@@ -50,7 +50,7 @@ types::Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, ty
         // RHS == 1
         if (in[0]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "error", 1);
             return types::Function::Error;
         }
 

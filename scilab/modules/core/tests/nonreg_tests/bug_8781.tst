@@ -16,8 +16,9 @@
 // Calling error with complex value is ok for Scilab
 
 msg1 = msprintf(gettext("%s: Wrong type for input argument #%d.\n"), "error", 1);
+msg1bis = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "error", 1);
 msg2 = msprintf(gettext("%s: Wrong type for input argument #%d.\n"), "error", 2);
-assert_checkerror("error(1+%i)", msg1);
+assert_checkerror("error(1+%i)", msg1bis);
 assert_checkerror("error(%i, 1)", msg2);
 assert_checkerror("error(45+%i, [''A''; ''multi'';''line'';''error'';''message''])", msg1);
 assert_checkerror("error(52, %i)", msg2);
