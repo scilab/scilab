@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function []=repl_poss(expr,varargin)
     // Display information for replacement for a statement in converted file

@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function instr=old2newinstr(instr,oldname,newname)
     // This function replaces by a new name (given in a input argument:newname) in a Scilab instruction all the variables names and functions names matching to a given name in a input argument:oldname

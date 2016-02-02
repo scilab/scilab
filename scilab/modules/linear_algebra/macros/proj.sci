@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [y]=proj(x1,x2)
     //[y]=proj(x1,x2)  projection on x2 parallel to x1

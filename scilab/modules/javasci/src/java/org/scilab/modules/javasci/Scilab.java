@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 package org.scilab.modules.javasci;
@@ -738,7 +737,7 @@ public class Scilab {
                         err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
                         break;
                     case sci_uint64:
-                    //                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
+                        //                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
                     case sci_int64:
                         //                    err = Call_Scilab.putLong(varname, sciInteger.getData_());
                         break;

@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
       subroutine dmrdsp(mpn,dn,mpd,dd,nl,mm,nn,var,lvar,maxc,mode,ll,
      1    lunit,cw,iw)
 c!but

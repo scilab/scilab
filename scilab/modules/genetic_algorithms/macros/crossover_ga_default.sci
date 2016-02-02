@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [Crossed_Indiv1, Crossed_Indiv2] = crossover_ga_default(Indiv1,Indiv2,param)
     if ~isdef("param","local") then

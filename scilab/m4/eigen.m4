@@ -10,7 +10,6 @@ dnl This file was originally licensed under the terms of the CeCILL v2.1,
 dnl and continues to be available under such terms.
 dnl For more information, see the COPYING file which you should have received
 dnl along with this program.
-dnl === LICENSE_END ===
 dnl
 dnl AC_EIGEN
 dnl ------------------------------------------------------

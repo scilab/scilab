@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function []=updatevarslist(instr_lhs)
     // (2 functions in this file: merge_vars() at the end)

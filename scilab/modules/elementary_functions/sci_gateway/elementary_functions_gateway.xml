@@ -12,7 +12,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
@@ -38,7 +37,7 @@
  Don't touch if you do not know what you are doing
 -->
     <!-- =================== -->
-
+    
     <PRIMITIVE gatewayId="6" primitiveId="1" primitiveName="abs" />
     <PRIMITIVE gatewayId="6" primitiveId="2" primitiveName="real" />
     <PRIMITIVE gatewayId="6" primitiveId="3" primitiveName="imag" />

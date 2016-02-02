@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -38,7 +37,7 @@ public class VariableBrowserTab {
      */
     public static SwingScilabDockablePanel getVariableBrowserInstance() {
         final SwingScilabDockablePanel varbrowser = ScilabVariableBrowser
-                                          .createVarBrowserTab();
+                .createVarBrowserTab();
         ScilabTabFactory.getInstance().addToCache(varbrowser);
 
         ClosingOperationsManager.registerClosingOperation(varbrowser,

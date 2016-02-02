@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 add_help_chapter("Funções de Saída",SCI+"/modules/output_stream/help/pt_BR",%T);
 

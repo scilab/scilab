@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [x1,x2]=riccati(a,b,c,dom,typ)
     //[x1,[x2]]=riccati(a,b,c,dom,[typ]) is a Riccati solver

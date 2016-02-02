@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function M=%b_i_b(varargin)
     //insertion of a boolean matrix in an matrix of boolean for more than 2 indices
 

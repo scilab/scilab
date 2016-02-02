@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function r=intl(a,b,z0,r,f,ea,er)
     //If f is a complex-valued function, intl(a,b,z0,r,f) computes

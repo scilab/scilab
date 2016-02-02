@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function X = sylv(A,B,C,flag)
     //  solve  A*X+X*B=C if flag=='c' or  A*X*B+X=C if flag=='d'

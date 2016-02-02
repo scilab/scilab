@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function plotframe(rect,axisdata,options,legs,subwindow)
     // plotframe - fixes scales, tics and grid on a graphic,

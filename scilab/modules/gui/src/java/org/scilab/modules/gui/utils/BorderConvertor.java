@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 package org.scilab.modules.gui.utils;
@@ -66,14 +65,14 @@ public class BorderConvertor {
         GraphicController controller = GraphicController.getController();
         Integer styleInt = (Integer) controller.getProperty(borderId, __GO_UI_FRAME_BORDER_STYLE__);
         FrameBorderType style;
-        
+
         if (styleInt == null) {
             // Default border : NONE
             style = FrameBorderType.NONE;
         } else {
             style = FrameBorderType.intToEnum(styleInt);
         }
-        
+
         Border border = null;
 
         switch (style) {

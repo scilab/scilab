@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
 C/MEMBR ADD NAME=DWMPMU,SSI=0
       subroutine dwmpmu(mp1r,d1,nl1,mp2r,mp2i,d2,nl2,
      & mp3r,mp3i,d3,l,m,n)

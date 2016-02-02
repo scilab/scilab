@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function M=%hm_i_i(varargin)
     //insertion of an hypermatrix in a matrix  derived from %hm_i_hm

@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [X1,X2,zero]=ric_desc(H,E)
     //[X1,X2,zero]=ric_desc(H [,E])  Descriptor Riccati solver with

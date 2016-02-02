@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function [m,n]=%cblock_size(M)
     n=size(definedfields(M),"*")-1;
     m=size(getfield(2,M),1);

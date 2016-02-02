@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipSetStyle">
     <refnamediv>
@@ -102,9 +101,9 @@
             e=gce();e=e.children;
             d1=datatipCreate(e(1),540);
             function str=mydisplay(h)
-			pt = h.data;
-			str=msprintf('%0.2g \n %0.2g', pt(1), pt(2))
-			endfunction
+            pt = h.data;
+            str=msprintf('%0.2g \n %0.2g', pt(1), pt(2))
+            endfunction
             datatipSetDisplay(d1,"mydisplay")
             datatipSetStyle(e(1),2,%f)
             datatipSetOrientation(d1,"upper left");

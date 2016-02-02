@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -50,25 +49,25 @@ public abstract class ContouredObject extends GraphicObject {
 
     private boolean selected;
     private final Integer selectedColor = new Integer(-3);
-    
+
     /** Mark sizes
      *  The class Mark only handles a single size.
      *  The mark_sizes array is used to handle different sizes for the marks.
-     *  The mark_sizes array is empty in case of a single size.  
+     *  The mark_sizes array is empty in case of a single size.
      *  */
     private Integer[] mark_sizes;
 
     /** Mark foreground colors
      *  The class Mark only handles a single foreground color.
      *  The mark_foregrounds array is used to handle different foreground colors for the marks.
-     *  The mark_foregrounds array is empty in case of a single color. 
+     *  The mark_foregrounds array is empty in case of a single color.
      *  */
     private Integer[] mark_foregrounds;
 
     /** Mark background colors
      *  The class Mark only handles a single background color.
      *  The mark_backgrounds array is used to handle different background colors for the marks.
-     *  The mark_backgrounds array is empty in case of a single color. 
+     *  The mark_backgrounds array is empty in case of a single color.
      *  */
     private Integer[] mark_backgrounds;
 
@@ -91,9 +90,9 @@ public abstract class ContouredObject extends GraphicObject {
 
         copy.line = new Line(line);
         copy.mark = new Mark(mark);
-        copy.mark_sizes = mark_sizes; 
+        copy.mark_sizes = mark_sizes;
         copy.mark_foregrounds = mark_foregrounds;
-        copy.mark_backgrounds = mark_backgrounds; 
+        copy.mark_backgrounds = mark_backgrounds;
 
         return copy;
     }
@@ -473,10 +472,10 @@ public abstract class ContouredObject extends GraphicObject {
      * @param mark the mark to set
      */
     public UpdateStatus setMark(Mark mark) {
-    	mark_sizes = new Integer[0];
-    	mark_foregrounds = new Integer[0];
-    	mark_backgrounds = new Integer[0];
-    	this.mark = mark;
+        mark_sizes = new Integer[0];
+        mark_foregrounds = new Integer[0];
+        mark_backgrounds = new Integer[0];
+        this.mark = mark;
         return UpdateStatus.Success;
     }
 
@@ -509,7 +508,7 @@ public abstract class ContouredObject extends GraphicObject {
      * @param background the background to set
      */
     public UpdateStatus setMarkBackground(Integer background) {
-    	mark_backgrounds = new Integer[0];
+        mark_backgrounds = new Integer[0];
         mark.setBackground(background);
         return UpdateStatus.Success;
     }
@@ -519,9 +518,9 @@ public abstract class ContouredObject extends GraphicObject {
      * @param backgrounds the background colors to set
      */
     public UpdateStatus setMarkBackgrounds(Integer[] backgrounds) {
-		mark_backgrounds = backgrounds;
+        mark_backgrounds = backgrounds;
         mark.setBackground(-3);
-    	return UpdateStatus.Success;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -553,7 +552,7 @@ public abstract class ContouredObject extends GraphicObject {
      * @param foreground the foreground to set
      */
     public UpdateStatus setMarkForeground(Integer foreground) {
-    	mark_foregrounds = new Integer[0];
+        mark_foregrounds = new Integer[0];
         mark.setForeground(foreground);
         return UpdateStatus.Success;
     }
@@ -563,9 +562,9 @@ public abstract class ContouredObject extends GraphicObject {
      * @param foregrounds the foreground colors to set
      */
     public UpdateStatus setMarkForegrounds(Integer[] foregrounds) {
-		mark_foregrounds = foregrounds;
+        mark_foregrounds = foregrounds;
         mark.setForeground(-3);
-    	return UpdateStatus.Success;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -631,17 +630,17 @@ public abstract class ContouredObject extends GraphicObject {
      * @param size the size to set
      */
     public UpdateStatus setMarkSize(Integer size) {
-    	mark_sizes = new Integer[0];
-    	return mark.setSize(size);
+        mark_sizes = new Integer[0];
+        return mark.setSize(size);
     }
- 
+
     /**
      * Set the mark sizes
      * @param sizes the sizes to set
      */
     public UpdateStatus setMarkSizes(Integer[] sizes) {
-		mark_sizes = sizes;
-    	return UpdateStatus.Success;
+        mark_sizes = sizes;
+        return UpdateStatus.Success;
     }
 
     /**

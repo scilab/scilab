@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function r=%spb_g_b(a,b)
     //  perform a|b where a is a boolean sparse matrix

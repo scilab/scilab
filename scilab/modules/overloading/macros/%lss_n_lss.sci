@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [r]=%lss_n_lss(s1,s2)
     //%lss_n_lss(s1,s2) : inequality test s1<>s2

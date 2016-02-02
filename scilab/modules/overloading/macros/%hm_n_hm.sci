@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function r=%hm_n_hm(a,b)
     r=and(a.dims==b.dims)
     if r then

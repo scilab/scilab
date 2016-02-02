@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [Xp,dima,dimb,dim]=spantwo(A,B)
     //Given two matrices A and B with same number of rows,

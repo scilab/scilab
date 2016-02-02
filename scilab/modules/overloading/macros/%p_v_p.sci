@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function h=%p_v_p(h1,h2)
     // h=%p_v_p(h1,h2) <=> h=(I+h1*h2)\h1 with h1 h2 polynomial matrices

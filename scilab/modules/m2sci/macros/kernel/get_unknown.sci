@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [sci_equiv]=get_unknown(varname,lhslist)
     // Handle cases where varname appear in an expression while it is not known.

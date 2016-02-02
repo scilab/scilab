@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function f=%p_l_p(p2,p1)
     // f=%p_l_p(p2,p1) <=> f=p2\p1 for polynomial matrices

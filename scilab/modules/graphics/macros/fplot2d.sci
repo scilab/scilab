@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function []=fplot2d(xr,f,style,strf,leg,rect,nax,void)
     // 2D plot of function f : a Scilab function or the name (as a string)

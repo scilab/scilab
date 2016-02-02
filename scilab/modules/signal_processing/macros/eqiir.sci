@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)
     //[cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)

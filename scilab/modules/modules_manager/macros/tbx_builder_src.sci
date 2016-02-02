@@ -11,7 +11,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 // Run the module+"/src/builder_src.sce" script if it exists
 

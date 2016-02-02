@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [r, err] = intc(a, b, f, abserr, relerr)
     // If f is a complex-valued macro, intc(a, b, f) computes

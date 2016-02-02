@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [m]=find_freq(epsilon,A,n)
     //Search for m such that n=K(1-m1)K(m)/(K(m1)K(1-m))

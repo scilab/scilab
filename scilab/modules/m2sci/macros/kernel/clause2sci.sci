@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [sci_clause,nblines]=clause2sci(mtlb_clause,nblines,leveltemp)
     // M2SCI function

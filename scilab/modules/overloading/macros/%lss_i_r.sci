@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [s2]=%lss_i_r(i,j,s1,s2)
     //s2=%lss_i_r(i,j,s1,s2) <=>  s2(i,j)=s1

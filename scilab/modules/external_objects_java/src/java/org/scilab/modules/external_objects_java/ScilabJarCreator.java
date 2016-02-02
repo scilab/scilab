@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -124,7 +123,7 @@ public class ScilabJarCreator {
         for (String filePath : paths) {
             File file = new File(filePath);
             if (file.isDirectory()) {
-                for (File childFile: file.listFiles()) {
+                for (File childFile : file.listFiles()) {
                     expandedPaths.addAll(expandPaths(childFile.getPath()));
                 }
             } else {

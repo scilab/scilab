@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction;
@@ -40,8 +39,8 @@ public class OnePointRubberBox extends RubberBox implements PointRubberBox {
         super(drawerVisitor);
         double[][] factors = axes.getScaleTranslateFactors();
         firstPoint = new Vector3d(initialRect[0] * factors[0][0] + factors[1][0],
-                initialRect[1] * factors[0][1] + factors[1][1],
-                0);
+                                  initialRect[1] * factors[0][1] + factors[1][1],
+                                  0);
         secondPoint = firstPoint;
         status = Status.WAIT_POINT_B;
         setEnable(true);

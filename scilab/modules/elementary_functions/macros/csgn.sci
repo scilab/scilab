@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function s = csgn(z)
     //Kahan, W., “Branch cuts for complex elementary functions, or, Much ado about nothing's sign bit”,
     //  Proceedings of the joing IMA/SIAM conference on The State of the Art

@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 // same as before but return the value in pixels
 function dist = pixDist2Arc( point, upperLeft, width, heigth, sector1, sector2 )

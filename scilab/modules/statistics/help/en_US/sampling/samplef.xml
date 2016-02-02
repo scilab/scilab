@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="samplef">
@@ -43,20 +42,25 @@
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>matrix of positive real values. Indicates the corresponding frequencies of the values in <literal>X</literal>.
+                    <para>
+                        matrix of positive real values. Indicates the corresponding frequencies of the values in <literal>X</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>Optional parameter. Admissible values are <literal>{'*'}, 1, 2, 'r' </literal> or <literal>'c'</literal>. The orientation to sample rows or columns. See Description below.</para>
+                    <para>
+                        Optional parameter. Admissible values are <literal>{'*'}, 1, 2, 'r' </literal> or <literal>'c'</literal>. The orientation to sample rows or columns. See Description below.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>s</term>
                 <listitem>
-                    <para> vector or matrix containing the sampled values of <literal>X</literal> at frequencies <literal>f</literal>.</para>
+                    <para>
+                         vector or matrix containing the sampled values of <literal>X</literal> at frequencies <literal>f</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -98,7 +102,9 @@
     </refsection>
     <refsection>
         <title> Random number generator </title>
-        <para> <literal>samplef</literal> is based on <link linkend="grand">grand</link> for generating the random samples. Use <literal>grand("setsd", seed)</literal> to change the seed for <literal>samplef</literal>.</para>
+        <para>
+             <literal>samplef</literal> is based on <link linkend="grand">grand</link> for generating the random samples. Use <literal>grand("setsd", seed)</literal> to change the seed for <literal>samplef</literal>.
+        </para>
         <programlisting role="example"><![CDATA[
             seed = getdate("s");
             grand("setsd", seed); //sets the seed to current date

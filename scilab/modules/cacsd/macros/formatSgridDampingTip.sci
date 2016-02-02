@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function str = formatSgridDampingTip(datatipHandle)
     //This function is called by the datatip mechanism to format the tip

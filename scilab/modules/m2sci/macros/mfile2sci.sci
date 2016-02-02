@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
     // This function performs translation of a single M-file

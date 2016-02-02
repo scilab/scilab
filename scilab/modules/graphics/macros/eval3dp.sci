@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [x,y,z]=eval3dp(fun,p1,p2)
     // eval3d - retourne une representation par facettes d'une fonction z=f(u,v)

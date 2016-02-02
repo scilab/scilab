@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function f=%s_d_p(p1,p2)
     // %s_d_p(M,p)=M.*p

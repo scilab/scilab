@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function evans(n,d,kmax)
     // Seuil maxi et mini (relatifs) de discretisation en espace
     // Copyright INRIA

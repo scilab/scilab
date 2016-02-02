@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [A,B,C,D]=abcd(sl)
     // Retrieves [A,B,C,D] matrices from linear system sl

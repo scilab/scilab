@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -104,11 +103,11 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, Widget 
     protected boolean hasLayout = false;
     private Border defaultBorder = null;
     private SwingScilabCanvas canvas = null;
-    
+
     // BJ: This EditorEventListener leads to a huge leak mem openning many Axes withih Frames.
     // DO NOT ACTIVATE THIS until EditorEventListener can manage Axes within Frames (Only Figure is working now)
     //private EditorEventListener editorEventHandler = null;
-    
+
     private ScilabEventListener eventHandler;
     private boolean eventEnabled = false;
 
@@ -860,7 +859,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, Widget 
             repaint();
         }
     }
-    
+
     /**
      * Set the event handler of the Canvas
      * @param funName the name of the Scilab function to call
@@ -893,7 +892,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, Widget 
             eventEnabled = false;
         }
     }
-    
+
     /**
      * Turn on event handling.
      */

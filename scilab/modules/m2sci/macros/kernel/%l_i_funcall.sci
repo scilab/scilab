@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function funcall=%l_i_funcall(field,inslist,funcall)
     if field=="dims" then

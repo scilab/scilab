@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
     //   mod_curv  - Edition  de courbe interactive

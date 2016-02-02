@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 package org.scilab.modules.graphic_objects.graphicObject;
@@ -53,7 +52,7 @@ public interface Visitor {
     void visit(Fec fec) throws ObjectRemovedException;
 
     void visit(Figure figure);
-    
+
     void visit(Frame frame);
 
     void visit(Grayplot grayplot) throws ObjectRemovedException;

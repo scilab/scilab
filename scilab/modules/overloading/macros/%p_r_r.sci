@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function f=%p_r_r(m,f)
     // f=%p_r_r(p1,p2) <=> f= p1*(p2^(-1))

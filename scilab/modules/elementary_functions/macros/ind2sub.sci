@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function varargout = ind2sub(dims, I)
     //  ind2sub is used to determine the equivalent subscript values

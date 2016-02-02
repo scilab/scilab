@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function S = pol2str(p)
     if type(p) <> 2 & (typeof(p)~="hypermat" | type(p(:))~=2) then

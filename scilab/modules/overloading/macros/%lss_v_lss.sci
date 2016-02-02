@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [s]=%lss_v_lss(s1,s2)
     //s=%lss_v_lss(s1,s2)  <=> s = s1 "feedback" with s2

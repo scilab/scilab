@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprintoutput)
     // This function translates Matlab interpreted code tree of a function to Scilab

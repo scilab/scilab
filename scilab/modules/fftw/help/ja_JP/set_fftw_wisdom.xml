@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="set_fftw_wisdom">
@@ -37,23 +36,23 @@
     <refsection>
         <title>注意</title>
         <para> 
-	  この関数は, 
-	  MKL intelライブラリを使用する
-	  Scilabバージョンでは実装されていません
-	  (特にWindows用のScilab公式版).
+            この関数は, 
+            MKL intelライブラリを使用する
+            Scilabバージョンでは実装されていません
+            (特にWindows用のScilab公式版).
         </para>
     </refsection>
     <refsection>
-      <title>説明</title>
-      <para>
-        この関数は文字列行列により fftw wisdom を設定します.
-        <literal>get_fftw_wisdom</literal> および
-        <literal>set_fftw_wisdom</literal> を使用することで,
-	同じデータの大きさと
-	<link linkend="fft">fft</link>関数に同じオプションにして
-	多くのコールを行う場合に
-	fft効率を最適化できるようになります.
-      </para>
+        <title>説明</title>
+        <para>
+            この関数は文字列行列により fftw wisdom を設定します.
+            <literal>get_fftw_wisdom</literal> および
+            <literal>set_fftw_wisdom</literal> を使用することで,
+            同じデータの大きさと
+            <link linkend="fft">fft</link>関数に同じオプションにして
+            多くのコールを行う場合に
+            fft効率を最適化できるようになります.
+        </para>
     </refsection>
     <refsection>
         <title>例</title>

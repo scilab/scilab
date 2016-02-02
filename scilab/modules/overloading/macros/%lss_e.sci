@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [f1,f2,f3,f4,f5,f6,f7]=%lss_e(i,j,f)
     // f= f(i,j)

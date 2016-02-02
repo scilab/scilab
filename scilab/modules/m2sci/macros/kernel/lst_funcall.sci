@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function   funcallname=lst_funcall(fil,fnamvect)
     //  LST_FUNCALL function (used by "translatepaths" function) Creates a list of vectors. The first component of each vector is the name of a M-file (found in the Paths to translate), followed by the called functions by this file

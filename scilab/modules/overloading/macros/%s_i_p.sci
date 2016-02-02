@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function M=%s_i_p(varargin)
     //insertion of an polynomial matrix in an matrix of numbers for more than 2 indices

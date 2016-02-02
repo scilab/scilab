@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -85,7 +84,7 @@ public class ModifiedFlowLayout extends FlowLayout {
                 Component c = target.getComponent(i);
                 if (c.isVisible()) {
                     Dimension d = minimum ? c.getMinimumSize()
-                                          : c.getPreferredSize();
+                                  : c.getPreferredSize();
                     if ((x == 0) || ((x + d.width) <= maxwidth)) {
                         if (x > 0) {
                             x += hgap;

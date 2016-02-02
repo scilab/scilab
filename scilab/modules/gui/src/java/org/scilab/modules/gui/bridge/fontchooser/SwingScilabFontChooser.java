@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -77,9 +76,9 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
 
     private final JList fontSizeList;
     private final String[] availableFontSizes = {"8", "10", "11", "12",
-                           "13", "14", "16", "18", "20",
-                           "24", "30", "36", "40",
-                           "48", "60", "72"
+                                                 "13", "14", "16", "18", "20",
+                                                 "24", "30", "36", "40",
+                                                 "48", "60", "72"
                                                 };
 
     private final boolean calledFromScinotes;

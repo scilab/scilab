@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [r]=%m_n_l(l1,l2)
     // r= %m_n_l(l1,l2) <=> l1==l2    l2:list l1:function

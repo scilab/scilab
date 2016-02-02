@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function f1=%r_x_s(f1,n2)
     // %r_x_s(r,M)=r.*M      rational .* constant
     //author Serge Steer INRIA

@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
 C/MEMBR ADD NAME=MPDIAG,SSI=0
       subroutine mpdiag(d,m,n,diag,dd,mr,nr)
       integer d(*),dd(*),diag

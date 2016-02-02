@@ -11,7 +11,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [result,err] = get_param(list_name,param_name,param_default)
     [nargout,nargin] = argn();

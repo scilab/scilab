@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function r = %r_o_r(l1, l2)
     r = ((l1.num == l2.num  & l1.den==l2.den)   | ..

@@ -12,7 +12,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="xls_read">
@@ -38,11 +37,11 @@
             <varlistentry>
                 <term>Sheetpos</term>
                 <listitem>
-                  <para>
-		    数値: 
-                    Excelストリームにおけるシートの開始位置. この位置は
-                    <link linkend="xls_open">xls_open</link>により返された値です.
-                  </para>
+                    <para>
+                        数値: 
+                        Excelストリームにおけるシートの開始位置. この位置は
+                        <link linkend="xls_open">xls_open</link>により返された値です.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -80,9 +79,10 @@
             使用することができます.
         </para>
         <para>
-          <warning>
-	    BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.
-	  </warning> 
+            <warning>
+                BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.
+            </warning>
+             
         </para>
     </refsection>
     <refsection>
@@ -110,9 +110,11 @@ mclose(fd)
     <refsection>
         <title>参考文献</title>
         <para>
-	  この関数は,OpenOfficeのExcelストリームに関する説明
-	  (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">
-	    http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>)に基づいています.
+            この関数は,OpenOfficeのExcelストリームに関する説明
+            (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">
+                http://sc.openoffice.org/spreadsheetfileformat.pdf
+            </ulink>
+            )に基づいています.
         </para>
     </refsection>
     <refsection>

@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  -->
 <refentry version="5.0-subset Scilab" xml:id="csvRead" xml:lang="ja"
           xmlns="http://docbook.org/ns/docbook"
@@ -172,7 +171,7 @@
             オプションの入力引数に空の行列<literal>[]</literal>を指定すると,
             デフォルト値が設定されます.
         </para>
-         
+        
         <para>
             入力引数 "conversion" が "double" の時,
             .csvの中の数値以外のフィールド(例:文字列)は NaNに変換されます.

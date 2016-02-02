@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
 c
       subroutine zqnbd(indqn,simul,dh,n,binf,bsup,x,f,g,zero,napmax,
      &itmax,indic,izig,nfac,imp,io,epsx,epsf,epsg,x1,x2,g1,dir,df0,

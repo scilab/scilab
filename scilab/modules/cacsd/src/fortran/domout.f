@@ -11,7 +11,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
 
      $     ,istate,iopt,w,lrw,iw,liw,jacl2,mf,job)
 C!but

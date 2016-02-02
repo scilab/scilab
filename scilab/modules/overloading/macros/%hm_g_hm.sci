@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function r=%hm_g_hm(a,b)
     // define the operation a | b for boolean hypermatrices a and b

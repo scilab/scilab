@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [x,dim,dima]=spanplus(a,b,tol)
     //[X,dim,dima]=spanplus(A,B,tol) computes an orthogonal basis of

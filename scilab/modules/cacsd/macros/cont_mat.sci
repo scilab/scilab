@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function c=cont_mat(a,b)
     //c=cont_mat(a,b) or c=cont_mat(sl) is the controllability matrix.

@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [helppart,txt,batch]=m2sci_syntax(txt)
     // Make minor changes on M-file data syntax to have it readable by Scilab

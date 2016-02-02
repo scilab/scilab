@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function f1=%r_x_p(f1,f2)
     // %r_x_p(r,p)=r.*p

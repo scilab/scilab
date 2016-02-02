@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function [p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)
     //square-root algorithm for the algebraic Riccati equation.
     //

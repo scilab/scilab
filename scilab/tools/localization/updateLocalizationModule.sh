@@ -13,7 +13,6 @@
 # and continues to be available under such terms.
 # For more information, see the COPYING file which you should have received
 # along with this program.
-# === LICENSE_END ===
 #
 # This script goes into a module and updates the localization file by checking
 # the _( and gettext( calls in the code

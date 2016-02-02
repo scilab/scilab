@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function r=%spb_e(i,j,a)
     // r=a(i,j) for f sparse in some special cases

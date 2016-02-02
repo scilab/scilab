@@ -9,7 +9,6 @@
  % and continues to be available under such terms.
  % For more information, see the COPYING file which you should have received
  % along with this program.
- % === LICENSE_END ===
 
 % Old versions of Scilab (before Scilab 4 I think) did not manage
 % multiple operators such as in the following cases

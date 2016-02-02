@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_scilab" scilab:needs-examples="no" xml:lang="en">
@@ -26,9 +25,13 @@
         <para>The previous API is still available for backward compatibility. But the new API is the only one that will be maintained in the long term. The old API will be deprecated in a soon-to-come release (most likely in Scilab 6.1), and will likely be removed entirely in the subsequent release (most likely in Scilab 6.2).</para>
         <para>This new API has better performance than the old one, because it accesses the internal types directly. The API is also simpler, because it does not rely on the “stack” object that was at the core of earlier versions of Scilab, and which has been removed from Scilab 6. The API naming convention should also be clearer than the old version, and even simpler than comparable APIs in similar products.</para>
         <para>Thus, new gateways should only use this new API.</para>
-        <para>To use the API, only “api_scilab.h” needs to be included in your C code; all API functions are then available. If you write C++ code, you can use the API the same way. You only need to wrap the <literal>#include “api_scilab.h”</literal> in an <literal>extern “C” { … }</literal> block. More information are provided in <link linkend="api_scilab_getting_started">API Scilab getting started</link>.</para>
+        <para>
+            To use the API, only “api_scilab.h” needs to be included in your C code; all API functions are then available. If you write C++ code, you can use the API the same way. You only need to wrap the <literal>#include “api_scilab.h”</literal> in an <literal>extern “C” { … }</literal> block. More information are provided in <link linkend="api_scilab_getting_started">API Scilab getting started</link>.
+        </para>
         <title>Code optimization</title>
-        <para>If your code does an important amount of access of variables, in particular in loops, then you may want to compile with the <literal>__API_SCILAB_UNSAFE__</literal> flag defined (through a “#define” positioned before the “#include “api_scilab.h”, or -D in the compiler options). It does not change the API’s behavior but reduces the amount of input and output parameters checked done when you call the APIs, thus may improve the performance.</para>
+        <para>
+            If your code does an important amount of access of variables, in particular in loops, then you may want to compile with the <literal>__API_SCILAB_UNSAFE__</literal> flag defined (through a “#define” positioned before the “#include “api_scilab.h”, or -D in the compiler options). It does not change the API’s behavior but reduces the amount of input and output parameters checked done when you call the APIs, thus may improve the performance.
+        </para>
     </refsection>
     <refsection>
         <title>See Also</title>

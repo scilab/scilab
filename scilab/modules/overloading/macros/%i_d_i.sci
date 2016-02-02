@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function i1=%i_d_i(i1,i2)
     t1=inttype(i1); t2=inttype(i2);

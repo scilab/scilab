@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function h=conv(u,v,Shape)
     if and(size(u)>1) then
         error( msprintf(_("%s: Wrong size for argument #%d: Vector expected.\n"),"conv",1))

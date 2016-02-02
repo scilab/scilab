@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function f=%r_c_s(f,m)
     // f=%r_c_s(r,m) <=> f=[r, m]   [rational, constant]

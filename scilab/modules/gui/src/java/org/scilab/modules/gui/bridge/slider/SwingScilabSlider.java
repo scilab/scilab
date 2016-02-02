@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -69,7 +68,7 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
     private ChangeListener changeListener;
 
     private Border defaultBorder = null;
-    
+
     private int previousValueCallback = 0;
 
     static {
@@ -169,23 +168,23 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Widge
             public void stateChanged(ChangeEvent changeEvent) {
                 JSlider source = (JSlider) changeEvent.getSource();
                 if (!source.getValueIsAdjusting()) {
-                	previousValueCallback = getValue();
+                    previousValueCallback = getValue();
                     updateModel();
                     if (callback != null) {
                         callback.actionPerformed(null);
                     }
                 } else {
-                	int offset = Math.abs(getValue()-previousValueCallback);
-                	previousValueCallback = getValue();
-                	// When the user has clicked on the slider itself (not the knob)
-                	// and the knob makes a step of getMajorTickSpacing() value
-                	// ==> We do not call the callback (Bug #13549)
-                	if (offset != getMajorTickSpacing() && offset != 0) {
+                    int offset = Math.abs(getValue() - previousValueCallback);
+                    previousValueCallback = getValue();
+                    // When the user has clicked on the slider itself (not the knob)
+                    // and the knob makes a step of getMajorTickSpacing() value
+                    // ==> We do not call the callback (Bug #13549)
+                    if (offset != getMajorTickSpacing() && offset != 0) {
                         updateModel();
                         if (callback != null) {
                             callback.actionPerformed(null);
                         }
-                	}
+                    }
                 }
             }
         };

@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function X = lyap(A,C,flag)
     //  solve  A'*X+X*A=C if flag=='c' or  A'*X*A-X=C if flag=='d'

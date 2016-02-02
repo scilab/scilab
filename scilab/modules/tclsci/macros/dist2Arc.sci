@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 // compute the distance between a point and the arc
 // in 2D included in an axis aligned rectangle whose upper left
 // corner is upperLeft and its wifth and heigth is defined.

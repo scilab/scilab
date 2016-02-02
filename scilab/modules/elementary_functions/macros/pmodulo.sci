@@ -12,7 +12,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function i = pmodulo(n, m)
     //i=pmodulo(n,m) the "positive modulo" of m et n.

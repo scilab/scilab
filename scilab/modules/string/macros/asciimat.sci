@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function y=asciimat(x)
     // This function converts a matrix of string into a matrix of ascii codes using ascii() Scilab function

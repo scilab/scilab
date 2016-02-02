@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [txt,space]=format_txt(txt,instr,bprettyprintformat,nextinstr)
     // Add EOL and returns spaces to have good indentation (called by tree2code)

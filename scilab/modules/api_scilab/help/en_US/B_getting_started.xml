@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_scilab_getting_started" xml:lang="en">
@@ -29,32 +28,90 @@
             <refsection id="api_scilab_entrypoint">
                 <para></para>
                 <literallayout>
-            int <varname>your_new_gateway</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, int nin, <link linkend="api_types_scilabVar"><command>scilabVar</command></link>* in, int nopt, <link linkend="api_types_scilabOpt"><command>scilabOpt</command></link> opt, int nout, <link linkend="api_types_scilabVar"><command>scilabVar</command></link>* out)
+                    int <varname>your_new_gateway</varname>(
+                    <link linkend="api_types_scilabEnv">
+                        <command>scilabEnv</command>
+                    </link>
+                    env, int nin, 
+                    <link linkend="api_types_scilabVar">
+                        <command>scilabVar</command>
+                    </link>
+                    *in, int nopt, 
+                    <link linkend="api_types_scilabOpt">
+                        <command>scilabOpt</command>
+                    </link>
+                    opt, int nout, 
+                    <link linkend="api_types_scilabVar">
+                        <command>scilabVar</command>
+                    </link>
+                    *out)
                 </literallayout>
-            <itemizedlist>
-                 <listitem>
-                    <para><varname>env</varname>: <literal><link linkend="api_types_scilabEnv"><command>scilabEnv</command></link></literal> variable provided by kernel. You must forward it to API functions.</para>
-                </listitem>
-                 <listitem>
-                    <para><varname>nin</varname>: number of input arguments.</para>
-                </listitem>
-                 <listitem>
-                    <para><varname>in</varname>: array of <literal><link linkend="api_types_scilabVar"><command>scilabVar</command></link></literal> containing input parameters.</para>
-                </listitem>
-                 <listitem>
-                    <para><varname>nopt</varname>: number of optional paramters.</para>
-                </listitem>
-                 <listitem>
-                    <para><varname>opt</varname>: <literal><link linkend="api_types_scilabOpt"><command>scilabOpt</command></link></literal> containing optional parameters. Use <link linkend="api_optional_scilab_getOptional"><varname>scilab_getOptional</varname></link> to get optional information.</para>
-                </listitem>
-                 <listitem>
-                    <para><varname>nout</varname>: number of expected output paramters.</para>
-                </listitem>
-                 <listitem>
-                    <para><varname>out</varname>: preallocated array of <literal><link linkend="api_types_scilabVar"><command>scilabVar</command></link></literal> with a size of <varname>nout</varname>.</para>
-                </listitem>
-            </itemizedlist>
-            <para>Return 0 or STATUS_OK for OK and other value or STATUS_ERROR to trigger an error.</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <varname>env</varname>: 
+                            <literal>
+                                <link linkend="api_types_scilabEnv">
+                                    <command>scilabEnv</command>
+                                </link>
+                            </literal>
+                             variable provided by kernel. You must forward it to API functions.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>nin</varname>: number of input arguments.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>in</varname>: array of 
+                            <literal>
+                                <link linkend="api_types_scilabVar">
+                                    <command>scilabVar</command>
+                                </link>
+                            </literal>
+                             containing input parameters.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>nopt</varname>: number of optional paramters.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>opt</varname>: 
+                            <literal>
+                                <link linkend="api_types_scilabOpt">
+                                    <command>scilabOpt</command>
+                                </link>
+                            </literal>
+                             containing optional parameters. Use 
+                            <link linkend="api_optional_scilab_getOptional">
+                                <varname>scilab_getOptional</varname>
+                            </link>
+                            to get optional information.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>nout</varname>: number of expected output paramters.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>out</varname>: preallocated array of 
+                            <literal>
+                                <link linkend="api_types_scilabVar">
+                                    <command>scilabVar</command>
+                                </link>
+                            </literal>
+                             with a size of <varname>nout</varname>.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <para>Return 0 or STATUS_OK for OK and other value or STATUS_ERROR to trigger an error.</para>
             </refsection>
         </para>
         <para>
@@ -72,133 +129,195 @@
                         Several tasks are performed:
                         <orderedlist inheritnum="inherit">
                             <listitem>
-                                <para>Check the type of the variable: matrix of double (complex or not), string, etc with <link linkend="api_common_scilab_getType"><varname>scilab_getType</varname></link></para>
+                                <para>
+                                    Check the type of the variable: matrix of double (complex or not), string, etc with 
+                                    <link linkend="api_common_scilab_getType">
+                                        <varname>scilab_getType</varname>
+                                    </link>
+                                </para>
                                 <para>
                                     Other functions are also provided:
                                     <itemizedlist>
                                         <listitem>
                                             <para>
-                                                <link linkend="api_common_scilab_getType"><varname>scilab_isDouble</varname></link>
+                                                <link linkend="api_common_scilab_getType">
+                                                    <varname>scilab_isDouble</varname>
+                                                </link>
                                             </para>
                                         </listitem>
                                         <listitem>
                                             <para>
-                                                <link linkend="api_common_scilab_getType"><varname>scilab_isBoolean</varname></link>
+                                                <link linkend="api_common_scilab_getType">
+                                                    <varname>scilab_isBoolean</varname>
+                                                </link>
                                             </para>
                                         </listitem>
                                         <listitem>
                                             <para>
-                                                <link linkend="api_common_scilab_getType"><varname>scilab_isString</varname></link>
+                                                <link linkend="api_common_scilab_getType">
+                                                    <varname>scilab_isString</varname>
+                                                </link>
                                             </para>
                                         </listitem>
                                         <listitem>
                                             <para>
-                                                <link linkend="api_common_scilab_getType"><varname>scilab_isInt</varname></link>
+                                                <link linkend="api_common_scilab_getType">
+                                                    <varname>scilab_isInt</varname>
+                                                </link>
                                             </para>
                                         </listitem>
                                         <listitem>
                                             <para>
-                                                <link linkend="api_common_scilab_getType"><varname>scilab_isPoly</varname></link>
+                                                <link linkend="api_common_scilab_getType">
+                                                    <varname>scilab_isPoly</varname>
+                                                </link>
                                             </para>
                                         </listitem>
                                         <listitem>
                                             <para>
-                                                <link linkend="api_common_scilab_getType"><varname>scilab_isList</varname></link>
+                                                <link linkend="api_common_scilab_getType">
+                                                    <varname>scilab_isList</varname>
+                                                </link>
                                             </para>
                                         </listitem>
                                         <listitem>
                                             <para>
-                                                <link linkend="api_common_scilab_getType"><varname>scilab_isTList</varname></link>
+                                                <link linkend="api_common_scilab_getType">
+                                                    <varname>scilab_isTList</varname>
+                                                </link>
                                             </para>
                                         </listitem>
                                         <listitem>
                                             <para>
-                                                <link linkend="api_common_scilab_getType"><varname>scilab_isMList</varname></link>
+                                                <link linkend="api_common_scilab_getType">
+                                                    <varname>scilab_isMList</varname>
+                                                </link>
                                             </para>
                                         </listitem>
                                         <listitem>
                                             <para>
-                                                <link linkend="api_common_scilab_getType"><varname>scilab_isHandle</varname></link>
+                                                <link linkend="api_common_scilab_getType">
+                                                    <varname>scilab_isHandle</varname>
+                                                </link>
                                             </para>
                                         </listitem>
                                         <listitem>
                                             <para>
-                                                <link linkend="api_common_scilab_getType"><varname>scilab_isStruct</varname></link>
+                                                <link linkend="api_common_scilab_getType">
+                                                    <varname>scilab_isStruct</varname>
+                                                </link>
                                             </para>
                                         </listitem>
                                         <listitem>
                                             <para>
-                                                <link linkend="api_common_scilab_getType"><varname>scilab_isCell</varname></link>
+                                                <link linkend="api_common_scilab_getType">
+                                                    <varname>scilab_isCell</varname>
+                                                </link>
                                             </para>
                                         </listitem>
                                         <listitem>
                                             <para>
-                                                <link linkend="api_common_scilab_getType"><varname>scilab_isPointer</varname></link>
+                                                <link linkend="api_common_scilab_getType">
+                                                    <varname>scilab_isPointer</varname>
+                                                </link>
                                             </para>
                                         </listitem>
                                     </itemizedlist>
                                 </para>
                             </listitem>
                             <listitem>
-                                <para>If it is relevant, check if the input argument is complex or not with <link linkend="api_common_scilab_isComplex">scilab_isComplex</link></para>
+                                <para>
+                                    If it is relevant, check if the input argument is complex or not with <link linkend="api_common_scilab_isComplex">scilab_isComplex</link>
+                                </para>
                             </listitem>
                             <listitem>
-                                <para>Dealing with integer, further checks should be done on the precision of the integer with <link linkend="api_integer_scilab_getIntegerPrecision">scilab_getIntegerPrecision</link></para>
+                                <para>
+                                    Dealing with integer, further checks should be done on the precision of the integer with <link linkend="api_integer_scilab_getIntegerPrecision">scilab_getIntegerPrecision</link>
+                                </para>
                             </listitem>
                             <listitem>
                                 <para>Check the dimensions of the variable: square matrix, scalar, etc</para>
                                 <itemizedlist>
                                     <listitem>
                                         <para>
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_getDim</varname></link>
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_getDim</varname>
+                                            </link>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_getDim2d</varname></link>
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_getDim2d</varname>
+                                            </link>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_getDimArray</varname></link>
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_getDimArray</varname>
+                                            </link>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_getSize</varname></link>
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_getSize</varname>
+                                            </link>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_isEmpty</varname></link>
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_isEmpty</varname>
+                                            </link>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_isMatrix2d</varname></link>
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_isMatrix2d</varname>
+                                            </link>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_isScalar</varname></link>
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_isScalar</varname>
+                                            </link>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_isSquare</varname></link>
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_isSquare</varname>
+                                            </link>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_isVector</varname></link>,
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_isNVector</varname></link>,
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_isRowVector</varname></link>,
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_isColVector</varname></link>
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_isVector</varname>
+                                            </link>
+                                            ,
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_isNVector</varname>
+                                            </link>
+                                            ,
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_isRowVector</varname>
+                                            </link>
+                                            ,
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_isColVector</varname>
+                                            </link>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <link linkend="api_common_scilab_getDim"><varname>scilab_isHypermat</varname></link>
+                                            <link linkend="api_common_scilab_getDim">
+                                                <varname>scilab_isHypermat</varname>
+                                            </link>
                                         </para>
                                     </listitem>
                                 </itemizedlist>
@@ -226,7 +345,10 @@
                     <para>Create the output arguments for the Scilab engine</para>
                     <para>Once the application code has been executed, usually, some data will be returned to the Scilab interpreter.</para>
                     <para>
-                        For example, to create in the Scilab engine memory a matrix of double, the C function <literal><link linkend="api_double_scilab_createDoubleMatrix">scilab_createDoubleMatrix</link></literal>
+                        For example, to create in the Scilab engine memory a matrix of double, the C function 
+                        <literal>
+                            <link linkend="api_double_scilab_createDoubleMatrix">scilab_createDoubleMatrix</link>
+                        </literal>
                         should be called.
                     </para>
                 </listitem>

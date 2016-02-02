@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function T = temp_law_csa(T, step_mean, step_var, temp_stage, n,param)
     T = T * log(1+temp_stage)/log(2+temp_stage);

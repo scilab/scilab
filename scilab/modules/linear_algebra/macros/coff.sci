@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [n,d]=coff(m,var)
     //[N,d]=coff(M [,var]) computes (s*eye-M)^-1

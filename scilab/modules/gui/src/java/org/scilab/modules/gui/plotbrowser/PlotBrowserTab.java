@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 package org.scilab.modules.gui.plotbrowser;
@@ -31,7 +30,7 @@ public class PlotBrowserTab {
 
     public static SwingScilabDockablePanel getPlotBrowserInstance(Integer objectID) {
         final SwingScilabDockablePanel plotbrowser = PlotBrowser
-                                           .createPlotBrowserTab(objectID);
+                .createPlotBrowserTab(objectID);
         ScilabTabFactory.getInstance().addToCache(plotbrowser);
 
         ClosingOperationsManager.registerClosingOperation(plotbrowser,
@@ -54,7 +53,7 @@ public class PlotBrowserTab {
 
             //@Override
             public void updateDependencies(List<SwingScilabDockablePanel> list,
-            ListIterator<SwingScilabDockablePanel> it) {
+                                           ListIterator<SwingScilabDockablePanel> it) {
             }
         });
 

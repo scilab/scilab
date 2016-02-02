@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function bval=multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
     // This function converts M-Files containing more than one functio

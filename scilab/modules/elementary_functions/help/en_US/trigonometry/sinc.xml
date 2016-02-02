@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="sinc" xml:lang="en">
@@ -56,8 +55,8 @@ x=linspace(-10,10,3000);
 plot2d(x,sinc(x))
  ]]></programlisting>
         <scilab:image>
-x=linspace(-10,10,3000);
-plot2d(x,sinc(x))
+            x=linspace(-10,10,3000);
+            plot2d(x,sinc(x))
         </scilab:image>
         <programlisting role="example"><![CDATA[
 [X,Y] = meshgrid(-10:0.25:10,-10:0.25:10);
@@ -65,9 +64,9 @@ f = sinc(sqrt((X).^2+(Y).^2));
 mesh(X,Y,f);
  ]]></programlisting>
         <scilab:image>
-[X,Y] = meshgrid(-10:0.25:10,-10:0.25:10);
-f = sinc(sqrt((X).^2+(Y).^2));
-mesh(X,Y,f);
+            [X,Y] = meshgrid(-10:0.25:10,-10:0.25:10);
+            f = sinc(sqrt((X).^2+(Y).^2));
+            mesh(X,Y,f);
         </scilab:image>
     </refsection>
     <refsection role="see also">

@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function %GridBagC_p(t)
     printf("GridBag Layout\n");
     printf("  Grid          : %s\n", sci2exp(t.grid));

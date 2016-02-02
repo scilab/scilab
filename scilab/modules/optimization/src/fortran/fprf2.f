@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
 c
       subroutine fprf2(iflag,ntot,nv,io,zero,s2,eps,al,imp,u,eta,mm1,jc,
      &                 ic,r,a,e,rr,xpr,y,w1,w2)

@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
       subroutine dimin(lig1,col1,v1,d1,v2,d2,lig2,col2,ligr,colr,ierr)
 c!but
 c

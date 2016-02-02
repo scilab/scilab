@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 // Purpose : this file provides functions to test scilab for each modules
 // Under Linux/Unix it is called by the command "make check"

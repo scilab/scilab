@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
     //Calculate the group delay of a digital filter

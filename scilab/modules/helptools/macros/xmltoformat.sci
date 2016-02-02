@@ -13,7 +13,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function generated_files = xmltoformat(output_format,dirs,titles,directory_language,default_language)
 

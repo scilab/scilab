@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -40,7 +39,7 @@ public interface SimpleWindow {
      * @param newWindowTitle the title we want to set for the window
      */
     void setTitle(String newWindowTitle);
- 
+
     /**
      * Sets a InfoBar to a window
      * @param newInfoBar the Scilab InfoBar to set to the Scilab window

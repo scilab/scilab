@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [fmin,fmax]=nyquistfrequencybounds(H,bounds)
     //find frequencies that reaches the nyquist bounds on real an imag part

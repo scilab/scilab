@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="legend_properties" xml:lang="en">
@@ -236,8 +235,8 @@ position=[(x1-as(1)*bnds(1))/(as(1)*bnds(3)),...
                 <term>line_width</term>
                 <listitem>
                     <para>This field specifies the width (in axes coordinates) of the line shown in the legend.
-		    This value is a real between 0 and 1.
-		    </para>
+                        This value is a real between 0 and 1.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

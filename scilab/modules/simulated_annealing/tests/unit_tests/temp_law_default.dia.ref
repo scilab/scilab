@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 //<-- CLI SHELL MODE -->
 T = temp_law_default(10, 9, 8, 7, 6, []);
 if norm(T - 0.9*10) > 1e-3 then bugmes();quit;end

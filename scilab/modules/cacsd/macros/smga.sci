@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [a,b1,b2,c1,c2,d11,d12,d21,d22]=smga(slp,r)
     //Matrix extractions (for use with h_inf,lft and other);

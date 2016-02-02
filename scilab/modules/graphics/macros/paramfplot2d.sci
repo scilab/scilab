@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function paramfplot2d(f,x,theta,flag,rect)
     //animated plot of x-->f(x,t) for t=theta(1),theta(2),etc

@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -151,23 +150,23 @@ public class DatatipTextDrawer extends TextManager {
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1].times(0.5));
                 delta = delta.setY(0);
-                delta = delta.setX(Math.sqrt(2)*(-finalSize));
+                delta = delta.setX(Math.sqrt(2) * (-finalSize));
             }
             if (datatip.getOrientation() == 5) {
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1].times(0.5));
                 delta = delta.setY(0);
-                delta = delta.setX(Math.sqrt(2)*finalSize);
+                delta = delta.setX(Math.sqrt(2) * finalSize);
             }
             if (datatip.getOrientation() == 6) {
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0].times(0.5));
                 delta = delta.setX(0);
-                delta = delta.setY(Math.sqrt(2)*finalSize);
+                delta = delta.setY(Math.sqrt(2) * finalSize);
             }
             if (datatip.getOrientation() == 7) {
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0].times(0.5));
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
                 delta = delta.setX(0);
-                delta = delta.setY(Math.sqrt(2)*(-finalSize));
+                delta = delta.setY(Math.sqrt(2) * (-finalSize));
             }
         }
 
@@ -233,23 +232,23 @@ public class DatatipTextDrawer extends TextManager {
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1].times(0.5));
                 delta = delta.setY(0);
-                delta = delta.setX(Math.sqrt(2)*(-finalSize));
+                delta = delta.setX(Math.sqrt(2) * (-finalSize));
             }
             if (datatip.getOrientation() == 5) {
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1].times(0.5));
                 delta = delta.setY(0);
-                delta = delta.setX(Math.sqrt(2)*finalSize);
+                delta = delta.setX(Math.sqrt(2) * finalSize);
             }
             if (datatip.getOrientation() == 6) {
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0].times(0.5));
                 delta = delta.setX(0);
-                delta = delta.setY(Math.sqrt(2)*finalSize);
+                delta = delta.setY(Math.sqrt(2) * finalSize);
             }
             if (datatip.getOrientation() == 7) {
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0].times(0.5));
                 cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
                 delta = delta.setX(0);
-                delta = delta.setY(Math.sqrt(2)*(-finalSize));
+                delta = delta.setY(Math.sqrt(2) * (-finalSize));
             }
 
             cornerPositions[0] = cornerPositions[0].plus(delta);

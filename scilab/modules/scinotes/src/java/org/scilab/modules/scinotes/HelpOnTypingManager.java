@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -133,38 +132,38 @@ public final class HelpOnTypingManager implements KeyListener {
                         int[] ret;
                         String kw;
                         switch (kwe.getType()) {
-                        case ScilabLexerConstants.OSKEYWORD :
-                            kw = doc.getText(kwe.getStart(), kwe.getLength());
-                            if ("if".equals(kw)) {
-                                if (complete("end", textPane, doc, pos)) {
-                                    doc.insertString(pos + 1, " then\nend", null);
-                                    ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 9);
-                                    textPane.setCaretPosition(ret[0]);
+                            case ScilabLexerConstants.OSKEYWORD :
+                                kw = doc.getText(kwe.getStart(), kwe.getLength());
+                                if ("if".equals(kw)) {
+                                    if (complete("end", textPane, doc, pos)) {
+                                        doc.insertString(pos + 1, " then\nend", null);
+                                        ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 9);
+                                        textPane.setCaretPosition(ret[0]);
+                                    }
+                                } else if (!"end".equals(kw)) {
+                                    if (complete("end", textPane, doc, pos)) {
+                                        doc.insertString(pos + 1, "\nend", null);
+                                        ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 4);
+                                        textPane.setCaretPosition(ret[0]);
+                                    }
                                 }
-                            } else if (!"end".equals(kw)) {
-                                if (complete("end", textPane, doc, pos)) {
-                                    doc.insertString(pos + 1, "\nend", null);
-                                    ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 4);
-                                    textPane.setCaretPosition(ret[0]);
+                                break;
+                            case ScilabLexerConstants.SKEYWORD :
+                                kw = doc.getText(kwe.getStart(), kwe.getLength());
+                                if ("elseif".equals(kw)) {
+                                    doc.insertString(pos + 1, " then", null);
+                                    textPane.setCaretPosition(pos + 1);
                                 }
-                            }
-                            break;
-                        case ScilabLexerConstants.SKEYWORD :
-                            kw = doc.getText(kwe.getStart(), kwe.getLength());
-                            if ("elseif".equals(kw)) {
-                                doc.insertString(pos + 1, " then", null);
-                                textPane.setCaretPosition(pos + 1);
-                            }
-                            break;
-                        case ScilabLexerConstants.FKEYWORD :
-                            /* We have 'function' or 'endfunction' */
-                            if ("f".equals(doc.getText(kwe.getStart(), 1)) && complete("endfunction", textPane, doc, pos)) {
-                                doc.insertString(pos + 1, "()\nendfunction", null);
-                                textPane.getIndentManager().indentDoc(pos + 3, pos + 14);
-                                textPane.setCaretPosition(pos + 1);
-                            }
-                            break;
-                        default :
+                                break;
+                            case ScilabLexerConstants.FKEYWORD :
+                                /* We have 'function' or 'endfunction' */
+                                if ("f".equals(doc.getText(kwe.getStart(), 1)) && complete("endfunction", textPane, doc, pos)) {
+                                    doc.insertString(pos + 1, "()\nendfunction", null);
+                                    textPane.getIndentManager().indentDoc(pos + 3, pos + 14);
+                                    textPane.setCaretPosition(pos + 1);
+                                }
+                                break;
+                            default :
                         }
                     } catch (BadLocationException exc) {
                         System.err.println(exc);
@@ -181,32 +180,32 @@ public final class HelpOnTypingManager implements KeyListener {
                 try {
                     String str;
                     switch (c) {
-                    case '(' :
-                        if (complete(')', textPane, doc, pos)) {
-                            str = "()";
-                        } else {
+                        case '(' :
+                            if (complete(')', textPane, doc, pos)) {
+                                str = "()";
+                            } else {
+                                return;
+                            }
+                            break;
+                        case '[' :
+                            if (complete(']', textPane, doc, pos)) {
+                                str = "[]";
+                            } else {
+                                return;
+                            }
+                            break;
+                        case '{' :
+                            if (complete('}', textPane, doc, pos)) {
+                                str = "{}";
+                            } else {
+                                return;
+                            }
+                            break;
+                        case '\"' :
+                            str = "\"\"";
+                            break;
+                        default :
                             return;
-                        }
-                        break;
-                    case '[' :
-                        if (complete(']', textPane, doc, pos)) {
-                            str = "[]";
-                        } else {
-                            return;
-                        }
-                        break;
-                    case '{' :
-                        if (complete('}', textPane, doc, pos)) {
-                            str = "{}";
-                        } else {
-                            return;
-                        }
-                        break;
-                    case '\"' :
-                        str = "\"\"";
-                        break;
-                    default :
-                        return;
                     }
 
                     doc.insertString(pos, str, null);

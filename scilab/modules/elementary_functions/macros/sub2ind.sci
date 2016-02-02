@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function I = sub2ind(dims, varargin)
     //sub2ind is used to determine the equivalent single index

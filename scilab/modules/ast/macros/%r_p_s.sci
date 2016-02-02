@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function f=%r_p_s(f,s)
     // %r_p_s(p,n) computes f^s for f a rational matrix s scalar or vector

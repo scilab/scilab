@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
 c
       subroutine n1fc1o(unit,job,i1,i2,i3,i4,i5,d1,d2,d3,d4)
 c

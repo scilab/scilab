@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function r=%c_b_c(varargin)
     if  size(varargin)==2 then
         if type(varargin(1))==10 & type(varargin(2))==10 then

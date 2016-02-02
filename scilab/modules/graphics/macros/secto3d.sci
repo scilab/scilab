@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [m,x]=secto3d(seclist,npas)
     //Etant donnee une surface 3D decrite par une liste (seclist) de sections

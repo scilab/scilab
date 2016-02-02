@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [Kopt,gamaopt]=h_inf_st(D,r)
     //compute a matrix K such that largest singular value of

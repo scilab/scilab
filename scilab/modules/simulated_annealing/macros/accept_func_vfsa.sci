@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function Level = accept_func_vfsa(F_current, F_neigh, T)
     Level = 1 / (1 + exp(-(F_current - F_neigh)/max(T,%eps)));

@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function []=fplot3d1(xr,yr,f,theta,alpha,leg,flag,ebox)
     // Trace la surface d\'efinie par un external f ( ex macro [z]=f(x,y))

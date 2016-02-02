@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -35,7 +34,7 @@ public class PaletteManagerTreeWillExpandListener implements TreeWillExpandListe
 
     @Override
     public void treeWillCollapse(TreeExpansionEvent e)
-            throws ExpandVetoException {
+    throws ExpandVetoException {
         JTree tree = (JTree) e.getSource();
         JSplitPane splitPanel = (JSplitPane) tree.getParent().getParent().getParent();
         splitPanel.resetToPreferredSizes();
@@ -43,7 +42,7 @@ public class PaletteManagerTreeWillExpandListener implements TreeWillExpandListe
 
     @Override
     public void treeWillExpand(TreeExpansionEvent e)
-            throws ExpandVetoException {
+    throws ExpandVetoException {
         JTree tree = (JTree) e.getSource();
         JSplitPane splitPanel = (JSplitPane) tree.getParent().getParent().getParent();
         splitPanel.resetToPreferredSizes();

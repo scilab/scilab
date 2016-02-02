@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -859,12 +858,12 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleLiterallayout(final Map<String, String> attributes, final String contents) throws SAXException {
-        
+
         //replace \n by <br>
         String s = contents.replace("\n", "<BR>");
         //replace spaces by &nbsp;
         s = s.replace(" ", "&nbsp;");
-        
+
         return encloseContents("code", "literallayout", s);
     }
 

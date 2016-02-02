@@ -12,7 +12,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -486,7 +485,7 @@ public class Uicontrol extends GraphicObject {
     private TitlePositionType titlePosition = TitlePositionType.TOP;
 
     private EventHandler eventHandler;
-    
+
     /**
      * All uicontrol properties
      */
@@ -1767,15 +1766,15 @@ public class Uicontrol extends GraphicObject {
     public String getEventHandler() {
         return eventHandler.getEventHandlerString();
     }
-    
+
     public UpdateStatus setEventHandlerEnable(Boolean eventHandlerEnabled) {
         return eventHandler.setEventHandlerEnabled(eventHandlerEnabled);
     }
-    
+
     public boolean getEventHandlerEnable() {
         return eventHandler.getEventHandlerEnabled();
     }
-    
+
     public void accept(Visitor visitor) {
     }
 }

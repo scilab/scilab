@@ -10,7 +10,6 @@ function flag=xcos_debug_gui(flag,block)
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
     if scicos_debug()==0  then return;end
     gui =  findobj("tag","Xcos_debug_gui");

@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [sl,U]=ssrand(nout,nin,nstate,flag)
     //flag=list('co',dim_cont_subs)

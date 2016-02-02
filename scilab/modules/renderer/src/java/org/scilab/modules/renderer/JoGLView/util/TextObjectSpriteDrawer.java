@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  */
 
 package org.scilab.modules.renderer.JoGLView.util;
@@ -132,7 +131,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
      * @param stringArray the text to check
      */
     protected void loadDeps(String[][] stringArray) {
-    loop: {
+        loop: {
             for (String[] textLine : stringArray) {
                 for (String text : textLine) {
                     if (text != null) {
@@ -382,14 +381,14 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
      */
     protected float computeAlignmentFactor(Text text) {
         switch (text.getAlignmentAsEnum()) {
-        case LEFT:
-            return 0f;
-        case CENTER:
-            return 1f / 2f;
-        case RIGHT:
-            return 1f;
-        default:
-            return 0f;
+            case LEFT:
+                return 0f;
+            case CENTER:
+                return 1f / 2f;
+            case RIGHT:
+                return 1f;
+            default:
+                return 0f;
         }
     }
 

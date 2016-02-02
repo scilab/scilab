@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 // Create the XConfiguration.xml if it is not present in SCIHOME
 // This function is useful when Scilab is launched in nwni mode for the first

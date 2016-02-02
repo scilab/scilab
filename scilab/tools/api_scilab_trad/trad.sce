@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 //trad(inputFile) -> convert inputFile in place.
 //trad(inputFile, backupFile) -> convert inputFile in place and save exiting file in backupFile

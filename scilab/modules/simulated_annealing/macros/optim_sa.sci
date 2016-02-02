@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [x_best, f_best, mean_list, var_list, temp_list, f_history, x_history , iter ] = optim_sa(x0, sa_f, ItExt, ItInt, T0, Log, param)
     // Simulated annealing

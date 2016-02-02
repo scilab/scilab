@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -30,13 +29,13 @@ public class Line {
     /** Line style */
     public enum LineType { SOLID, DASH, DASH_DOT, LONG_DASH_DOT, BIG_DASH_DOT, BIG_DASH_LONG_DASH, DOT, DOUBLE_DOT, LONG_BLANK_DOT, BIG_BLANK_DOT;
 
-        /**
-         * Converts a scilab line style index to the corresponding line type.
-         * @param sciIndex the scilab index.
-         * @return the line type as enum.
-         */
-        public static LineType fromScilabIndex(Integer sciIndex) {
-            switch (sciIndex) {
+                           /**
+                            * Converts a scilab line style index to the corresponding line type.
+                            * @param sciIndex the scilab index.
+                            * @return the line type as enum.
+                            */
+    public static LineType fromScilabIndex(Integer sciIndex) {
+        switch (sciIndex) {
             case 1:
                 return SOLID;
             case 2:
@@ -59,23 +58,23 @@ public class Line {
                 return BIG_BLANK_DOT;
             default:
                 return SOLID;
-            }
         }
+    }
 
-        /**
-         * Converts the line type to the corresponding scilab line style index.
-         * @return  the scilab line style index corresponding to this line type.
-         */
-        public int asScilabIndex() {
-            return ordinal() + 1;
-        }
+    /**
+     * Converts the line type to the corresponding scilab line style index.
+     * @return  the scilab line style index corresponding to this line type.
+     */
+    public int asScilabIndex() {
+        return ordinal() + 1;
+    }
 
-        /**
-         * Converts the line type to a 16-bit pattern.
-         * @return the 16-bit pattern corresponding to the line type.
-         */
-        public short asPattern() {
-            switch (this) {
+    /**
+     * Converts the line type to a 16-bit pattern.
+     * @return the 16-bit pattern corresponding to the line type.
+     */
+    public short asPattern() {
+        switch (this) {
             case DASH:
                 return (short) 0x07FF; // 5 blanks, 11 solids
             case DASH_DOT:
@@ -97,9 +96,9 @@ public class Line {
             default:
             case SOLID:
                 return (short) 0xFFFF; // 16 solids, unused equivalent to no stipple
-            }
         }
     }
+                         }
 
     /** Specifies whether the line is drawn or not */
     private boolean mode;

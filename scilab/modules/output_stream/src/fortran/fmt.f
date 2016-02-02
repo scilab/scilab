@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
       subroutine fmt(a,maxc,typ,n1,n2)
 c!but
 c     ce sous programme determine le format d'ecriture le plus court

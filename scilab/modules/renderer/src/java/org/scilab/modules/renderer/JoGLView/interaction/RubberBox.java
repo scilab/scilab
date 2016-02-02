@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction;
@@ -525,7 +524,7 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
     @Override
     public void keyReleased(KeyEvent e) {
     }
-    
+
     public double[] getResults() {
         double[][] factors = axes.getScaleTranslateFactors();
         double result[] = {

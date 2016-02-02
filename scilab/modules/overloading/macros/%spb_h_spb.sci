@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function r=%spb_h_spb(a,b)
     //  perform logical elementwise and a&b where a and b are boolean sparse

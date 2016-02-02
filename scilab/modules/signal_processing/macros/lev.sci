@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [ar,sigma2,rc]=lev(r)
     //[ar,sigma2,rc]=lev(r)

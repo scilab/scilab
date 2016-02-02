@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function %BorderCo_p(t)
     printf("Border Layout\n");
     printf("  Position      : %s\n", sci2exp(t.position));

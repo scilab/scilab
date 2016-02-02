@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function x=idct(a,varargin)
     if type(a)==1|(typeof(a)=="hypermat"&type(a.entries)==1) then
         x=dct(a,1,varargin(:))

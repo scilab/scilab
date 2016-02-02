@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -36,7 +35,7 @@ public class LogView implements GraphicView {
             GraphicController.getController().register(me);
         }
     }
-    
+
     public static void deleteLogView() {
         if (me != null) {
             GraphicController.getController().unregister(me);
@@ -45,13 +44,13 @@ public class LogView implements GraphicView {
     }
 
     public static HashMap<Integer, String> pierreDeRosette = new HashMap<Integer, String>();
-    
+
     static {
         Field[] fields = GraphicObjectProperties.class.getFields();
-        for(int i = 0 ; i < fields.length ; ++i) {
+        for (int i = 0 ; i < fields.length ; ++i) {
             try {
                 pierreDeRosette.put(fields[i].getInt(null), fields[i].getName());
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

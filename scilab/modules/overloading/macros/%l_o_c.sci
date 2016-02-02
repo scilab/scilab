@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function r=%l_o_c(l1,l2)
     //%l_o_c(l1,l2) is l1==l2 , l1 list  l2 string

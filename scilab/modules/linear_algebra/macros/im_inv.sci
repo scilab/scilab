@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [X,dim,Y]=im_inv(A,B,tol)
     //[X,dim]=im_inv(A,B [,tol]) computes (A^-1)(B) i.e vectors whose

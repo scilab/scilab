@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function r=%msp_n_msp(l1,l2)
     [ij,v,mn]=spget(l1);l1=sparse(ij,v,mn)

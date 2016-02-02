@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function [d]=%b_tril(a,k)
     // Copyright INRIA (modified by bruno, June 10 2004)
     [lhs,rhs] = argn()

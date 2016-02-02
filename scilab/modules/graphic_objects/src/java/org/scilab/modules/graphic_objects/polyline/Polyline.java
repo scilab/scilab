@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 
@@ -250,7 +249,7 @@ public class Polyline extends ClippableContouredObject {
                         setDatatips((Integer[]) value);
                         break;
                     case DATATIPSCOUNT:
-                    	// nothing should be done
+                        // nothing should be done
                         break;
                     case TIP_DISPLAY_FNC:
                         setDisplayFunction((String) value);

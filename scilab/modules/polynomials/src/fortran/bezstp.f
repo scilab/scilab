@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
       subroutine bezstp(p1,n1,p2,n2,a,na,u,nu,l,x,v,w,best,ipb,errr)
       double precision a(na,*),u(nu,*),x(na,*),v(nu,*),p1(*),p2(*)
       integer ipb(6)

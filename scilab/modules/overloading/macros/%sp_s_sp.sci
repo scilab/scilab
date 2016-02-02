@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function s=%sp_s_sp(a,b)
     // %spas - adds 2 sparse matrices (special cases)

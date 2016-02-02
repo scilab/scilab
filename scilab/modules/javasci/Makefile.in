@@ -27,7 +27,6 @@
 # and continues to be available under such terms.
 # For more information, see the COPYING file which you should have received
 # along with this program.
-# === LICENSE_END ===
 #
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -42,7 +41,6 @@
 # and continues to be available under such terms.
 # For more information, see the COPYING file which you should have received
 # along with this program.
-# === LICENSE_END ===
 #
 
 ##########
@@ -1020,10 +1018,10 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@JAVASCI_FALSE@clean-local:
-@JAVASCI_FALSE@install-html-local:
-@JAVASCI_FALSE@install-data-local:
 @JAVASCI_FALSE@distclean-local:
+@JAVASCI_FALSE@install-data-local:
+@JAVASCI_FALSE@install-html-local:
+@JAVASCI_FALSE@clean-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \

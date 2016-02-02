@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [K,R]=kpure(sl,eps)
     //if sl is a transfert function N(S)/D(s) kpure looks for K producing

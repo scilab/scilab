@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
     // H-infinity optimal control for the continuous-time plant P

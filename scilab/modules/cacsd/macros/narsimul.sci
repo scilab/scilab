@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 
 function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)

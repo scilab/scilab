@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function f2=%p_m_r(n1,f2)
     // r=%p_m_r(p,f)  <=> r= p*f with p=polynomial matrix

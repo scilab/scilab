@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
 c
       subroutine satur (n,x,binf,bsup,d,ttmin,ttsup,topt,tg,td,
      &                   tmi,icoi,icos,iproj)

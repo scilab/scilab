@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function hallchart(modules,args,colors)
     defaultmodules=[-20 -10 -6 -4 -2 2 4 6 10 20];//in dB

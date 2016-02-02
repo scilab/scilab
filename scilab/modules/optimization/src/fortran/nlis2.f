@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
 c
       subroutine nlis2 (simul,prosca,n,xn,fn,fpn,t,tmin,tmax,d,d2,g,gd,
      1     amd,amf,imp,io,logic,nap,napmax,x,tol,a,tps,tnc,gg,izs,rzs

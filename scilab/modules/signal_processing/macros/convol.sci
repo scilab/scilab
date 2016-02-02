@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function [y,e1]=convol(h,x,e0)
     //  convol - convolution
     //%CALLING SEQUENCE

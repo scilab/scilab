@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [F_out, X_out, Ind_out] = pareto_filter(F_in, X_in)
     [nargout,nargin] = argn();

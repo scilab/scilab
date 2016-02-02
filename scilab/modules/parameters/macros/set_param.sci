@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [plist,err] = set_param(list_name,param_name,param_value)
     [nargout,nargin] = argn();

@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 add_help_chapter("Calcul différentiel, Intégration",SCI+"/modules/differential_equations/help/fr_FR",%T);
 

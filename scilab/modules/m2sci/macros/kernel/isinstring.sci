@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function r=isinstring(str,pos)
     // Finds if the character pointed by pos is in a string (return %T) or not (return %F)

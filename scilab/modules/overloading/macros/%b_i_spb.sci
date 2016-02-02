@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function a=%b_i_spb(i,j,b,a)
     // %spis(i,j,b,a) insert full matrix b into sparse matrix a for some special cases
     // a(i,j)=b

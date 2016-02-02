@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
 C/MEMBR ADD NAME=WMPINS,SSI=0
       subroutine wmpins(mat1r,mat1i,dep1,lig1,col1,mat2r,mat2i,
      & dep2,lig2,col2,matrr,matri,depr,ligr,colr)

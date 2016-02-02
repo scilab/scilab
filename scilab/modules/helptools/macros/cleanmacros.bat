@@ -10,7 +10,6 @@ rem This file was originally licensed under the terms of the CeCILL v2.1,
 rem and continues to be available under such terms.
 rem For more information, see the COPYING file which you should have received
 rem along with this program.
-rem === LICENSE_END ===
 
 @del *.bin 2>NUL
 @del lib 2>NUL

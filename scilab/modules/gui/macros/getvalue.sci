@@ -12,7 +12,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [%ok,%1,%2,%3,%4,%5,...
     %6,%7,%8,%9,%10,...

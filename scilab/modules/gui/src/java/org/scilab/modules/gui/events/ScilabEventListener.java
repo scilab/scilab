@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 package org.scilab.modules.gui.events;
@@ -49,7 +48,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     // Remove this constructor
-    // once event_handler call are unified using handle 
+    // once event_handler call are unified using handle
     public ScilabEventListener(String callback, Integer windowsUID, boolean useHandle) {
         eventTranslator.setClickAction(SciTranslator.UNMANAGED);
         this.callback = callback;
@@ -60,7 +59,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
     private void callScilab() {
         // @FIXME : choose to send it to scilab or to display it
         //
-        if (useHandle) { 
+        if (useHandle) {
             InterpreterManagement.requestScilabExec(callback + "(getcallbackobject(" + windowsUID + ")," + mouseX + ',' + mouseY + ',' + eventTranslator.getClickAction() + ')');
         } else {
             int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
@@ -73,7 +72,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
     private void invokeScilab() {
         // @FIXME : choose to send it to scilab or to display it
         //
-        if (useHandle) { 
+        if (useHandle) {
             InterpreterManagement.requestScilabExec(callback + "(getcallbackobject(" + windowsUID + ")," + mouseX + ',' + mouseY + ',' + eventTranslator.javaClick2Scilab() + ')');
         } else {
             int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
@@ -168,8 +167,8 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     public void mouseReleased(MouseEvent arg0) {
-        if (eventTranslator.getClickAction() == SciTranslator.UNMANAGED || 
-                eventTranslator.getClickAction() == SciTranslator.SCIMOVED) { 
+        if (eventTranslator.getClickAction() == SciTranslator.UNMANAGED ||
+                eventTranslator.getClickAction() == SciTranslator.SCIMOVED) {
             eventTranslator.setClickAction(
                 SciTranslator.javaButton2Scilab(arg0.getButton(),
                                                 SciTranslator.RELEASED,

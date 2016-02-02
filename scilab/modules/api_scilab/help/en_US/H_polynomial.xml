@@ -11,7 +11,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_poly" xml:lang="en">
@@ -22,39 +21,150 @@
     </refnamediv>
     <refsynopsisdiv>
         <refsection id="api_poly_scilab_createPolyMatrix">
-            <literal><link linkend="api_types_scilabVar"><command>scilabVar</command></link> <varname>scilab_createPolyMatrix</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, const wchar_t* varname, int dim, const int* dims, int complex)</literal>
-            <para>Create a polynomial matrix in <varname>varname</varname> with <varname>dim</varname> dimensions (<varname>dims</varname>[0], <varname>dims</varname>[1], ..., <varname>dims</varname>[<varname>dim</varname>-1]).</para>
-            <para><varname>complex</varname>: 0 to real matrix or 1 to complex matrix</para>
+            <literal>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createPolyMatrix</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, const wchar_t* varname, int dim, const int* dims, int complex)
+            </literal>
+            <para>
+                Create a polynomial matrix in <varname>varname</varname> with <varname>dim</varname> dimensions (<varname>dims</varname>[0], <varname>dims</varname>[1], ..., <varname>dims</varname>[<varname>dim</varname>-1]).
+            </para>
+            <para>
+                <varname>complex</varname>: 0 to real matrix or 1 to complex matrix
+            </para>
         </refsection>
         <refsection id="api_poly_scilab_createPolyMatrix2d">
-            <literal><link linkend="api_types_scilabVar"><command>scilabVar</command></link> <varname>scilab_createPolyMatrix2d</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, const wchar_t* varname, int row, int col, int complex)</literal>
-            <para>Create a matrix of polynomial in <varname>varname</varname> with <literal>2</literal> dimensions <literal>M(row, col)</literal>.</para>
-            <para><varname>complex</varname>: 0 to real matrix or 1 to complex matrix</para>
+            <literal>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createPolyMatrix2d</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, const wchar_t* varname, int row, int col, int complex)
+            </literal>
+            <para>
+                Create a matrix of polynomial in <varname>varname</varname> with <literal>2</literal> dimensions <literal>M(row, col)</literal>.
+            </para>
+            <para>
+                <varname>complex</varname>: 0 to real matrix or 1 to complex matrix
+            </para>
         </refsection>
         <refsection id="api_poly_scilab_createPoly">
-            <literal><link linkend="api_types_scilabVar"><command>scilabVar</command></link> <varname>scilab_createPoly</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, const wchar_t* varname, int val, int complex)</literal>
-            <para>Create a scalar polynomial in <varname>varname</varname>.</para>
-            <para><varname>complex</varname>: 0 to real matrix or 1 to complex matrix</para>
+            <literal>
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                <varname>scilab_createPoly</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, const wchar_t* varname, int val, int complex)
+            </literal>
+            <para>
+                Create a scalar polynomial in <varname>varname</varname>.
+            </para>
+            <para>
+                <varname>complex</varname>: 0 to real matrix or 1 to complex matrix
+            </para>
         </refsection>
         <refsection id="api_poly_scilab_getPolyVarname">
-            <literal>int <varname>scilab_getPolyVarname</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, const wchar_t** varname)</literal>
-            <para>Fill <varname>varname</varname> with polynomial symbol.</para>
+            <literal>
+                int <varname>scilab_getPolyVarname</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, 
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, const wchar_t** varname)
+            </literal>
+            <para>
+                Fill <varname>varname</varname> with polynomial symbol.
+            </para>
         </refsection>
         <refsection id="api_poly_scilab_getPolyArray">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getPolyArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int index, double** real)</literal>
-            <para>Get pointer on internal array of polynomial of <varname>var</varname> at position <varname>index</varname>.</para>
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getPolyArray</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, 
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int index, double** real)
+            </literal>
+            <para>
+                Get pointer on internal array of polynomial of <varname>var</varname> at position <varname>index</varname>.
+            </para>
         </refsection>
         <refsection id="api_poly_scilab_getComplexPolyArray">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_getComplexPolyArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int index, double** real, double** img)</literal>
-            <para>Get pointers on internal array of polynomial of <varname>var</varname> at position <varname>index</varname>.</para>
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_getComplexPolyArray</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, 
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int index, double** real, double** img)
+            </literal>
+            <para>
+                Get pointers on internal array of polynomial of <varname>var</varname> at position <varname>index</varname>.
+            </para>
         </refsection>
         <refsection id="api_poly_scilab_setPolyArray">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_setPolyArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int index, int rank, const double* real)</literal>
-            <para>Set values of polynomial variable <literal>var</literal> at position <varname>index</varname>.</para>
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setPolyArray</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, 
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int index, int rank, const double* real)
+            </literal>
+            <para>
+                Set values of polynomial variable <literal>var</literal> at position <varname>index</varname>.
+            </para>
         </refsection>
         <refsection id="api_poly_scilab_setComplexPolyArray">
-            <literal><link linkend="api_types_scilabStatus"><command>scilabStatus</command></link> <varname>scilab_setComplexPolyArray</varname>(<link linkend="api_types_scilabEnv"><command>scilabEnv</command></link> env, <link linkend="api_types_scilabVar"><command>scilabVar</command></link> var, int index, int rank, const double* real, const double* img)</literal>
-            <para>Set values of complex polynomial variable <literal>var</literal> at position <varname>index</varname>.</para>
+            <literal>
+                <link linkend="api_types_scilabStatus">
+                    <command>scilabStatus</command>
+                </link>
+                <varname>scilab_setComplexPolyArray</varname>(
+                <link linkend="api_types_scilabEnv">
+                    <command>scilabEnv</command>
+                </link>
+                env, 
+                <link linkend="api_types_scilabVar">
+                    <command>scilabVar</command>
+                </link>
+                var, int index, int rank, const double* real, const double* img)
+            </literal>
+            <para>
+                Set values of complex polynomial variable <literal>var</literal> at position <varname>index</varname>.
+            </para>
         </refsection>
     </refsynopsisdiv>
     <refsection>

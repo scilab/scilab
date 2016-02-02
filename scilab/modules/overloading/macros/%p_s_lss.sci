@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function s2=%p_s_lss(d1,s2)
     //s=%p_s_lss(s1,d2) <=> s=p-s1

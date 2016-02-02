@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function %ip_p(x)
     disp(sci2exp(x(1),0)+":"+sci2exp(x(2),0)+":"+sci2exp(x(3),0))

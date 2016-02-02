@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function plot3d2(x,y,z,vect,theta,alpha,leg,flag,ebox)
     // plot3d2(x,y,z,vect,T,A,leg,flags,ebox)

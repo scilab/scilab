@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 function r=%s_b_s(varargin)
     //a:b:c where a and b are double
     if round(varargin(1))<>varargin(1)|round(varargin(2))<>varargin(2) then

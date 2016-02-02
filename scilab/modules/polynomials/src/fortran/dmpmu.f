@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
 C/MEMBR ADD NAME=DMPMU,SSI=0
 c     Copyright INRIA
       subroutine dmpmu(mp1,d1,nl1,mp2,d2,nl2,mp3,d3,l,m,n)

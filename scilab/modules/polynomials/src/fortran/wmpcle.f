@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
       subroutine wmpcle(pm1r,pm1i,d1,m,n,d2,epsr,epsa)
 c!but
 c     Dans une matrice polynomiale pm1 cette routine met (pour

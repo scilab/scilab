@@ -9,7 +9,6 @@ c This file was originally licensed under the terms of the CeCILL v2.1,
 c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
-c === LICENSE_END ===
 C/MEMBR ADD NAME=WDMPAD,SSI=0
 c     Copyright INRIA
       subroutine wdmpad(pm1r,pm1i,d1,l1,pm2r,d2,l2,pm3r,pm3i,d3,

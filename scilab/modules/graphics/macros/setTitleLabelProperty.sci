@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,current_figure,cur_draw_mode)
     // SETTITLELABELPROPERTY function

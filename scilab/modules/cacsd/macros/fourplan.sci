@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [P11,P12,P21,P22]=fourplan(P,r)
     //returns the four plants associated with the augmented plant P.

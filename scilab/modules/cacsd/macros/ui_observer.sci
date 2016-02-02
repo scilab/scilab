@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,Alfa,Beta)
     // ------------Unknown input observer------------------

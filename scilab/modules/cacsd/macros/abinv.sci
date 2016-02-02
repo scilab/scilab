@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
     //Output nulling subspace (maximal unobservable subspace) for

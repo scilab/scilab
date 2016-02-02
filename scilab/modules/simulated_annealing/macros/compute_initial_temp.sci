@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function T_init = compute_initial_temp(x0, cit_f, proba_init, ItMX, param)
 

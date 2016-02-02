@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function  [mtlbpath,ismtlb]=mtlbtoolfun(namefun)
     //This function return true if the function namefun is in a matlab toolbox and determinates the access path

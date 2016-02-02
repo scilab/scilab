@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function h=%s_v_r(h1,h2)
     // %s_v_r(h1,h2) = (I+h1*h2)\h1. h1 constant h2 rational

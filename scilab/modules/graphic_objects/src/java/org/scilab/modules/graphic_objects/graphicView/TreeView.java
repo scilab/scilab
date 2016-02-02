@@ -10,7 +10,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
 package org.scilab.modules.graphic_objects.graphicView;
@@ -49,7 +48,7 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener {
     public void show() {
         frame.setVisible(true);
     }
-    
+
     public void hide() {
         frame.setVisible(false);
     }

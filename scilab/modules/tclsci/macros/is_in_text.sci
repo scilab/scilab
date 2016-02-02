@@ -8,7 +8,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function r=is_in_text(h,xy)
     if h.Type == "Text" & h.text_box_mode=="filled" then

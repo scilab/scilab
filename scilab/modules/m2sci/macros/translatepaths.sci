@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// === LICENSE_END ===
 
 function   transorder=translatepaths(Paths,res_path)
     // Perform translation of Matlab M-files to Scilab for all M-files found in Paths

@@ -13,7 +13,6 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- * === LICENSE_END ===
  *
  */
  Scilab
@@ -34,7 +33,7 @@
     <gateway name="sci_sident"      function="sident"   type="0" />
     <gateway name="sci_sorder"      function="sorder"   type="0" />
     <gateway name="sci_findbd"      function="findBD"   type="0" />
-
+    
     <!-- gateways CPP -->
     <gateway name="sci_arl2_ius"    function="arl2_ius" type="1" />
     <gateway name="sci_ldiv"        function="ldiv"     type="1" />
