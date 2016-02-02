@@ -31,7 +31,7 @@
         <ScrollableBlockIncrement useCache="true" value="20"/>
         <VerticalWrapAllowed useCache="true" value="false"/>
         <HorizontalWrapAllowed useCache="true" value="false"/>
-        <FontName useCache="true" value="Droid Sans Mono"/>
+        <FontName useCache="true" value="Monospaced"/>
         <FontStyle useCache="true" value="0"/>
         <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
         <FontSize useCache="true" value="13"/>
