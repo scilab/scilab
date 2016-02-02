@@ -161,6 +161,17 @@ public :
         return L"i";
     }
 
+    virtual bool isNativeType() override
+    {
+        return true;
+    }
+
+    virtual void fillDefaultValues() override
+    {
+        int size = GenericType::getSize();
+        memset(this->m_pRealData, 0x00, sizeof(T) * size);
+    }
+
 protected :
     inline InternalType::ScilabType getType(void);
     inline InternalType::ScilabId   getId(void);

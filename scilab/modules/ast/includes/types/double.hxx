@@ -338,6 +338,20 @@ public :
         return this;
     }
 
+    virtual bool isNativeType() override
+    {
+        return true;
+    }
+
+    virtual void fillDefaultValues() override
+    {
+        int size = getSize();
+        memset(m_pRealData, 0x00, sizeof(double) * size);
+        if (isComplex())
+        {
+            memset(m_pImgData, 0x00, sizeof(double) * size);
+        }
+    }
 
 private:
     virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;

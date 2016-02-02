@@ -23,6 +23,7 @@
 namespace types
 {
 bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index);
+bool getArgsDims(typed_list* _pArgsIn, std::vector<int>& dims); //only for insertNew
 bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>& index, std::vector<int>& dims);
 bool getScalarImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<double>& index);
 

@@ -108,6 +108,88 @@ double getIndex(InternalType* val)
 }
 
 //get only scalar index
+bool getArgsDims(typed_list* _pArgsIn, std::vector<int>& dims)
+{
+    //input size must be equal to ref dims
+    int dimsIn = static_cast<int>(_pArgsIn->size());
+
+    //same dims and less than internal limit
+    if (dimsIn > MAX_DIMS)
+    {
+        return false;
+    }
+
+    dims.reserve(dimsIn);
+
+    for (int i = 0; i < dimsIn; ++i)
+    {
+        InternalType* in = (*_pArgsIn)[i];
+        //input arg type must be scalar double, int8, int16, ...
+        if (in->isGenericType() && in->getAs<GenericType>()->isScalar())
+        {
+            int ind = static_cast<int>(getIndex(in));
+            if (ind == 0)
+            {
+                return false;
+            }
+
+            dims.push_back(ind);
+        }
+        else if (in->isImplicitList())
+        {
+            ImplicitList* pIL = in->getAs<ImplicitList>();
+            if (pIL->isComputable() == false)
+            {
+                return false;
+            }
+
+            int size = pIL->getSize();
+            if (size <= 0)
+            {
+                return false;
+            }
+
+
+            double start = getIndex(pIL->getStart());
+            double step = getIndex(pIL->getStep());
+            if (step > 0)
+            {
+                double real_end = start + step * (size - 1);
+                dims.push_back(real_end);
+            }
+            else if (step < 0)
+            {
+                dims.push_back(start);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            //failed, so use entire process
+            return false;
+        }
+    }
+
+
+    //remove last dims == 1
+    while (dims.size() > 2)
+    {
+        if (dims.back() != 1)
+        {
+            break;
+        }
+
+        dims.pop_back();
+    }
+
+    return true;
+}
+
+
+//get only scalar index
 bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index)
 {
     //input size must be equal to ref dims
@@ -282,11 +364,8 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 int sizeRef = viewAsVector ? _pRef->getSize() : pdims[i];
                 double start = evalute(pIL->getStart(), sizeRef);
                 double step = evalute(pIL->getStep(), sizeRef);
-                double end = evalute(pIL->getEnd(), sizeRef);
 
-                //printf("%.2f : %.2f : %.2f\n", start, step, end);
-
-                int size = (end - start) / step + 1;
+                int size = pIL->getSize();
                 if (size <= 0)
                 {
                     //manage implicit that return []
@@ -295,12 +374,9 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 }
 
                 std::vector<int> idx(size);
-                int* pi = idx.data();
-                pi[0] = start - 1; //0-indexed
-                for (int j = 1; j < size; ++j)
-                {
-                    pi[j] = pi[j - 1] + step;
-                }
+
+                double val = start - 1;
+                std::generate(idx.begin(), idx.end(), [&val, step]{ double s = val; val += step; return (int)s; });
 
                 lstIdx.push_back(idx);
                 finalSize *= size;
@@ -324,6 +400,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
     int previousSize = 1;
     int currentDim = 0;
     int previousDims = 1;
+    int* p = index.data();
     while (lstIdx.empty() == false)
     {
         std::vector<int>& v = lstIdx.front();
@@ -347,13 +424,14 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                     int idx3 = previousDims * m;
                     for (int j = 0; j < previousSize; ++j)
                     {
-                        index[idx2 + j] += idx3;
+                        p[idx2 + j] += idx3;
                     }
                 }
             }
         }
         else
         {
+            int* p = index.data();
             int occ = finalSize / (currentSize * previousSize);
             for (int n = 0; n < occ; ++n)
             {
@@ -368,7 +446,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                     int idx3 = previousDims * pv[m];
                     for (int j = 0; j < previousSize; ++j)
                     {
-                        index[idx2 + j] += idx3;
+                        p[idx2 + j] += idx3;
                     }
                 }
             }
@@ -460,7 +538,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     //not enough information to compute indexes.
                     _pArgsOut->push_back(NULL);
                     bUndefine = true;
-                    pIL->killMe();;
+                    pIL->killMe();
                     continue;
                 }
                 //evalute polynom with "MaxDim"

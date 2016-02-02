@@ -82,9 +82,17 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
         if (isComplex() == false && pIns->isComplex() == false)
         {
-            if (set(index, *pRealData) != NULL)
+            if (isNativeType() && index < m_iSize)
             {
+                m_pRealData[index] = *pRealData;
                 return this;
+            }
+            else
+            {
+                if (set(index, *pRealData) != NULL)
+                {
+                    return this;
+                }
             }
         }
 
@@ -117,25 +125,58 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         {
             if (sizeIn == 1)
             {
-                for (int & i : indexes)
+                if (isNativeType())
                 {
-                    if (set(i, *pRealData) == NULL)
+                    for (int i : indexes)
                     {
-                        status = false;
-                        break;
+                        if (i >= m_iSize)
+                        {
+                            status = false;
+                            break;
+                        }
+
+                        m_pRealData[i] = *pRealData;
+                    }
+                }
+                else
+                {
+                    for (int i : indexes)
+                    {
+                        if (set(i, *pRealData) == NULL)
+                        {
+                            status = false;
+                            break;
+                        }
                     }
                 }
             }
             else
             {
-                for (int & i : indexes)
+                if (isNativeType())
                 {
-                    if (set(i, *pRealData) == NULL)
+                    for (int i : indexes)
                     {
-                        status = false;
-                        break;
+                        if (i >= m_iSize)
+                        {
+                            status = false;
+                            break;
+                        }
+                        
+                        m_pRealData[i] = *pRealData;
+                        ++pRealData;
                     }
-                    ++pRealData;
+                }
+                else
+                {
+                    for (int i : indexes)
+                    {
+                        if (set(i, *pRealData) == NULL)
+                        {
+                            status = false;
+                            break;
+                        }
+                        ++pRealData;
+                    }
                 }
             }
 
@@ -452,13 +493,34 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 template <typename T>
 GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
 {
+    bool bComplex = getImg() != NULL;
+
+    std::vector<int> dims;
+    if (getArgsDims(_pArgs, dims))
+    {
+        InternalType *pOut = NULL;
+        while (dims.size() < 2)
+        {
+            dims.push_back(1);
+        }
+        pOut = createEmpty((int)dims.size(), dims.data(), bComplex);
+        ArrayOf* pArrayOut = pOut->getAs<ArrayOf>();
+        pArrayOut->fillDefaultValues();
+        ArrayOf* pOut2 = pArrayOut->insert(_pArgs, this);
+        if (pOut != pOut2)
+        {
+            delete pOut;
+        }
+
+        return pOut2;
+    }
+
     typed_list pArg;
     InternalType *pOut = NULL;
 
     int iDims = (int)_pArgs->size();
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
-    bool bComplex = getImg() != NULL;
     bool bUndefine = false;
     bool bIsImpli = false;
 
@@ -602,26 +664,53 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
 
     //fill with null item
     ArrayOf* pArrayOut = pOut->getAs<ArrayOf>();
-    T* pRealData = pArrayOut->get();
-    if (bComplex)
-    {
-        T* pImgData = pArrayOut->getImg();
-        for (int i = 0; i < pArrayOut->getSize(); i++)
-        {
-            pArrayOut->deleteData(pRealData[i]);
-            pRealData[i] = getNullValue();
-            pArrayOut->deleteData(pImgData[i]);
-            pImgData[i] = getNullValue();
-        }
-    }
-    else
-    {
-        for (int i = 0; i < pArrayOut->getSize(); i++)
-        {
-            pArrayOut->deleteData(pRealData[i]);
-            pRealData[i] = getNullValue();
-        }
-    }
+    pArrayOut->fillDefaultValues();
+    //T* pRealData = pArrayOut->get();
+    //if (bComplex)
+    //{
+    //    int size = pArrayOut->getSize();
+    //    T* pImgData = pArrayOut->getImg();
+
+    //    if (isNativeType())
+    //    {
+    //        T val = getNullValue();
+    //        for (int i = 0; i < size; i++)
+    //        {
+    //            pRealData[i] = val;
+    //            pImgData[i] = val;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (int i = 0; i < size; i++)
+    //        {
+    //            pArrayOut->deleteData(pRealData[i]);
+    //            pRealData[i] = getNullValue();
+    //            pArrayOut->deleteData(pImgData[i]);
+    //            pImgData[i] = getNullValue();
+    //        }
+    //    }
+    //}
+    //else
+    //{
+    //    int size = pArrayOut->getSize();
+    //    if (isNativeType())
+    //    {
+    //        T val = getNullValue();
+    //        for (int i = 0; i < size; i++)
+    //        {
+    //            pRealData[i] = val;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (int i = 0; i < size; i++)
+    //        {
+    //            pArrayOut->deleteData(pRealData[i]);
+    //            pRealData[i] = getNullValue();
+    //        }
+    //    }
+    //}
 
     if (bIsImpli && (pArrayOut->getSize() != getSize()))
     {

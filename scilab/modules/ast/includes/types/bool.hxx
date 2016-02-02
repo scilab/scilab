@@ -53,8 +53,8 @@ public:
 
 
     /*zero or one set filler*/
-    bool                    setFalse();
-    bool                    setTrue();
+    Bool*                   setFalse();
+    Bool*                   setTrue();
 
     /*Config management*/
     void                    whoAmI();
@@ -79,6 +79,17 @@ public:
     }
 
     virtual bool transpose(InternalType *& out);
+
+    virtual bool isNativeType() override
+    {
+        return true;
+    }
+
+    virtual void fillDefaultValues() override
+    {
+        int size = getSize();
+        memset(m_pRealData, 0x00, sizeof(int) * size);
+    }
 
 protected :
     inline ScilabType       getType(void)

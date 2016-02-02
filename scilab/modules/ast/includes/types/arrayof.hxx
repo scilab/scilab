@@ -210,6 +210,32 @@ public :
         return m_pImgData != NULL;
     }
 
+    //type does not need to delete or clone ( int, double, ... )
+    virtual bool isNativeType()
+    {
+        return false;
+    }
+
+    virtual void fillDefaultValues()
+    {
+        int size = getSize();
+        if (isComplex())
+        {
+            for (int i = 0; i < size; ++i)
+            {
+                set(i, getNullValue());
+                setImg(i, getNullValue());
+            }
+        }
+        else
+        {
+            for (int i = 0; i < size; ++i)
+            {
+                set(i, getNullValue());
+            }
+        }
+    }
+
     virtual ArrayOf<T>* setComplex(bool _bComplex)
     {
         typedef ArrayOf<T>* (ArrayOf<T>::*setcplx_t)(bool);
