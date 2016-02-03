@@ -15,6 +15,8 @@
 
 // <-- CLI SHELL MODE -->
 
-execstr("mclose(1");
-execstr("mclose(1°");
+errmsg = ["mclose(1";"^";"Error: syntax error, unexpected end of line, expecting "","" or )"];
+assert_checkerror("execstr(""mclose(1"")", errmsg);
 
+errmsg = ["mclose(1°";"        ^~^";"Error: syntax error, unexpected identifier, expecting "","" or )"];
+assert_checkerror("execstr(""mclose(1°"")", errmsg);

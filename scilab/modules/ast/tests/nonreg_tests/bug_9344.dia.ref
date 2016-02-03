@@ -13,9 +13,7 @@
 // <-- Short Description -->
 // Parser did not display anything when failing on UTF-8 char
 // <-- CLI SHELL MODE -->
-execstr("mclose(1");
-at line     1 of executed string 
-at line    31 of executed file   TMPDIR/bug_9344.tst
-mclose(1
-^
-Error: syntax error, unexpected end of line, expecting "," or )
+errmsg = ["mclose(1";"^";"Error: syntax error, unexpected end of line, expecting "","" or )"];
+assert_checkerror("execstr(""mclose(1"")", errmsg);
+errmsg = ["mclose(1°";"        ^~^";"Error: syntax error, unexpected identifier, expecting "","" or )"];
+assert_checkerror("execstr(""mclose(1°"")", errmsg);
