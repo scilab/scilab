@@ -885,7 +885,7 @@ do_scinotes()
         if test "$SCIARG" = "-indent"; then
             INDENT="['indent','trailing','quote']"
         else
-            ARGS="$ARGS '$SCIARG', "
+            ARGS="$ARGS '$SCIARG' "
         fi
     done
     ARGS="$ARGS]"
@@ -922,7 +922,7 @@ do_xcos()
                 fi
                 SIMULATE=1
             else
-                ARGS="$ARGS '$SCIARG', "
+                ARGS="$ARGS '$SCIARG' "
             fi
         done
         ARGS="$ARGS ]"
