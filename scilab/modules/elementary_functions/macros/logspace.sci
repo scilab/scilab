@@ -42,5 +42,5 @@ function y=logspace(d1, d2, n)
     if d2==%pi then
         d2 = log10(%pi);
     end
-    y=10^( d1*ones(1,n) + [(d2-d1)*(0:n-2)/(floor(n)-1),d2-d1]);
+    y=10 .^( d1*ones(1,n) + [(d2-d1)*(0:n-2)/(floor(n)-1),d2-d1]);
 endfunction
