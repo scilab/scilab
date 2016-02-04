@@ -45,11 +45,11 @@ static BOOL IsASciNotesFileSCE(char *chainefichier);
 static BOOL IsASciNotesFileSCI(char *chainefichier);
 static BOOL IsASciNotesFileTST(char *chainefichier);
 /*--------------------------------------------------------------------------*/
-#define MSG_SCIMSG1 "%s -e load(getlongpathname('%s'));disp(getlongpathname('%s')+ascii(32)+'loaded');"
-#define MSG_SCIMSG2_XCOS "%s -e xcos(getlongpathname('%s'));"
+#define MSG_SCIMSG1 "load(getlongpathname('%s'));disp(getlongpathname('%s')+ascii(32)+'loaded');"
+#define MSG_SCIMSG2_XCOS "xcos(getlongpathname('%s'));"
 #define MSG_SCIMSG3_XCOS "execstr('xcos(getlongpathname(''%s''));','errcatch');"
-#define MSG_SCIMSG4 "%s -e exec(getlongpathname('%s'));"
-#define MSG_SCIMSG5_EDITOR "%s -e editor(getlongpathname('%s'));"
+#define MSG_SCIMSG4 "exec(getlongpathname('%s'));"
+#define MSG_SCIMSG5_EDITOR "editor(getlongpathname('%s'));"
 /* we try to launch scilab editor */
 #define MSG_SCIMSG6_EDITOR "execstr('editor(getlongpathname(''%s''));','errcatch');"
 #define MSG_SCIMSG7 "Scilab Communication"
@@ -132,8 +132,6 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
         BOOL bConverted = FALSE;
         char FinalFileName[(MAX_PATH * 2) + 1];
         char *ShortPath = NULL;
-        char PathWScilex[(MAX_PATH * 2) + 1];
-
 
         /* Recuperation du nom du fichier au format 8.3 */
         ShortPath = getshortpathname(fichier, &bConverted);
@@ -145,7 +143,6 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
             ShortPath = NULL;
         }
 
-        GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), PathWScilex, MAX_PATH);
         ReturnedValue = 1;
 
         switch (OpenCode)
@@ -155,29 +152,13 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
             {
                 if (!HaveAnotherWindowScilab() || haveMutexClosingScilab())
                 {
-                    if (with_module(L"scinotes"))
-                    {
-                        wsprintf(Cmd, MSG_SCIMSG5_EDITOR, PathWScilex, FinalFileName);
-                    }
-                    else
-                    {
-                        MessageBox(NULL, "Please install editor module.", "Error", MB_ICONSTOP);
-                        exit(0);
-                    }
+                    wsprintf(Cmd, MSG_SCIMSG5_EDITOR, FinalFileName);
                 }
                 else
                 {
                     char *ScilabDestination = NULL;
 
-                    if (with_module(L"scinotes"))
-                    {
-                        wsprintf(Cmd, MSG_SCIMSG6_EDITOR, FinalFileName);
-                    }
-                    else
-                    {
-                        MessageBox(NULL, "Please install editor module.", "Error", MB_ICONSTOP);
-                        exit(0);
-                    }
+                    wsprintf(Cmd, MSG_SCIMSG6_EDITOR, FinalFileName);
 
                     ScilabDestination = getLastScilabFound();
                     if (ScilabDestination)
@@ -188,15 +169,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                     }
                     else
                     {
-                        if (with_module(L"scinotes"))
-                        {
-                            wsprintf(Cmd, MSG_SCIMSG5_EDITOR, PathWScilex, FinalFileName);
-                        }
-                        else
-                        {
-                            MessageBox(NULL, "Please install editor module.", "Error", MB_ICONSTOP);
-                            exit(0);
-                        }
+                        wsprintf(Cmd, MSG_SCIMSG5_EDITOR, FinalFileName);
                     }
                 }
             }
@@ -207,7 +180,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                 if (IsABinOrSavFile(FinalFileName) == TRUE)
                 {
                     /* C'est un fichier .BIN ou .SAV d'ou load */
-                    wsprintf(Cmd, MSG_SCIMSG1, PathWScilex, FinalFileName, FinalFileName);
+                    wsprintf(Cmd, MSG_SCIMSG1, FinalFileName, FinalFileName);
                 }
                 else
                 {
@@ -216,29 +189,13 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                         ExtensionFileIntoLowerCase(FinalFileName);
                         if (!HaveAnotherWindowScilab() || haveMutexClosingScilab())
                         {
-                            if (with_module(L"xcos"))
-                            {
-                                wsprintf(Cmd, MSG_SCIMSG2_XCOS, PathWScilex, FinalFileName);
-                            }
-                            else
-                            {
-                                MessageBox(NULL, "Please install xcos module.", "Error", MB_ICONSTOP);
-                                exit(0);
-                            }
+                            wsprintf(Cmd, MSG_SCIMSG2_XCOS, FinalFileName);
                         }
                         else
                         {
                             char *ScilabDestination = NULL;
 
-                            if (with_module(L"xcos"))
-                            {
-                                wsprintf(Cmd, MSG_SCIMSG3_XCOS, FinalFileName);
-                            }
-                            else
-                            {
-                                MessageBox(NULL, "Please install xcos module.", "Error", MB_ICONSTOP);
-                                exit(0);
-                            }
+                            wsprintf(Cmd, MSG_SCIMSG3_XCOS, FinalFileName);
 
                             ScilabDestination = getLastScilabFound();
                             if (ScilabDestination)
@@ -249,21 +206,13 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                             }
                             else
                             {
-                                if (with_module(L"xcos"))
-                                {
-                                    wsprintf(Cmd, MSG_SCIMSG2_XCOS, PathWScilex, FinalFileName);
-                                }
-                                else
-                                {
-                                    MessageBox(NULL, "Please install xcos module.", "Error", MB_ICONSTOP);
-                                    exit(0);
-                                }
+                                wsprintf(Cmd, MSG_SCIMSG2_XCOS, FinalFileName);
                             }
                         }
                     }
                     else
                     {
-                        wsprintf(Cmd, MSG_SCIMSG4, PathWScilex, FinalFileName);
+                        wsprintf(Cmd, MSG_SCIMSG4, FinalFileName);
                     }
                 }
             }

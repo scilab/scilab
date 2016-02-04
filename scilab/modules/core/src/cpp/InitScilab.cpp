@@ -135,6 +135,7 @@ ScilabEngineInfo* InitScilabEngineInfo()
     pSEI->iForceQuit = 0;           // management of -quit argument
     pSEI->iCommandOrigin = NONE;
 
+    pSEI->iCodeAction = -1; //default value, no code action ( used on windows by file associations -O -X -P arguments)
     return pSEI;
 }
 
@@ -332,6 +333,13 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         }
         iMainRet = ConfigVariable::getExitStatus();
         iScript = 1;
+
+        if (_pSEI->iCodeAction != 0)
+        {
+            //alloc in main to manage shell interaction
+            FREE(_pSEI->pstExec);
+            _pSEI->pstExec = NULL;
+        }
     }
     else if (_pSEI->pstFile)
     {

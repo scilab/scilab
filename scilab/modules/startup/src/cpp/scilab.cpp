@@ -37,6 +37,8 @@ extern "C"
 
     extern char *getCmdLine(void);
 #ifdef _MSC_VER
+#include "FilesAssociations.h"
+#include "PATH_MAX.h"
     jmp_buf ScilabJmpEnv;
 #else
     extern jmp_buf ScilabJmpEnv;
@@ -180,6 +182,33 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
                 _pSEI->pstExec = argv[i];
             }
         }
+        else if (!strcmp("-O", argv[i]))
+        {
+            i++;
+            if (argc >= i)
+            {
+                _pSEI->pstExec = argv[i];
+                _pSEI->iCodeAction = 0;
+            }
+        }
+        else if (!strcmp("-X", argv[i]))
+        {
+            i++;
+            if (argc >= i)
+            {
+                _pSEI->pstExec = argv[i];
+                _pSEI->iCodeAction = 1;
+            }
+        }
+        else if (!strcmp("-P", argv[i]))
+        {
+            i++;
+            if (argc >= i)
+            {
+                _pSEI->pstExec = argv[i];
+                _pSEI->iCodeAction = 2;
+            }
+        }
         else if (!strcmp("-l", argv[i]))
         {
             i++;
@@ -305,6 +334,26 @@ int main(int argc, char *argv[])
         setScilabMode(SCILAB_STD);
         setScilabInputMethod(&ConsoleRead);
         setScilabOutputMethod(&ConsolePrintf);
+
+#ifdef _MSC_VER
+        if (pSEI->iCodeAction != -1)
+        {
+            //manage calls from explorer ( double click on sce file , ... )
+            char* Cmd = (char*)MALLOC(((PATH_MAX * 2) + 1) * sizeof(char));
+            strcpy(Cmd, "");
+            int ret = CommandByFileExtension(pSEI->pstExec, pSEI->iCodeAction, Cmd);
+
+            if (ret && Cmd[0] != '\0')
+            {
+                pSEI->pstExec = Cmd; //Cmd must be freed in StartScilabEngine after process.
+            }
+            else
+            {
+                pSEI->iCodeAction = -1;
+            }
+        }
+#endif
+
 #if defined(__APPLE__)
         return initMacOSXEnv(pSEI);
 #endif // !defined(__APPLE__)
