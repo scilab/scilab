@@ -141,7 +141,7 @@ void AnalysisVisitor::visit(ast::ListExp & e)
         }
     }
 
-    GVN::Value * ONEValue = getGVN().getValue(1);
+    GVN::Value * ONEValue = getGVN().getValue(int64_t(1));
     SymbolicDimension ONE(getGVN(), ONEValue);
     GVN::Value * v;
 

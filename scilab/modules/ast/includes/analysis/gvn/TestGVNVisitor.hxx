@@ -165,21 +165,21 @@ private:
             case ast::OpExp::eq:
                 if (LV.value == RV.value)
                 {
-                    setResult(gvn.getValue(1));
+                    setResult(gvn.getValue(int64_t(1)));
                 }
                 else
                 {
-                    setResult(gvn.getValue(0));
+                    setResult(gvn.getValue(int64_t(0)));
                 }
                 break;
             case ast::OpExp::ne:
                 if (LV.value != RV.value)
                 {
-                    setResult(gvn.getValue(1));
+                    setResult(gvn.getValue(int64_t(1)));
                 }
                 else
                 {
-                    setResult(gvn.getValue(0));
+                    setResult(gvn.getValue(int64_t(0)));
                 }
                 break;
         }

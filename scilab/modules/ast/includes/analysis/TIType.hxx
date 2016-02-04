@@ -39,7 +39,7 @@ struct TIType
     bool scalar;
 
     TIType(const Type _type = UNKNOWN) : type(_type), scalar(true) { }
-    TIType(GVN & gvn) : type(UNKNOWN), rows(gvn, 0.), cols(gvn, 0.), scalar(false) { }
+    TIType(GVN & gvn) : type(UNKNOWN), rows(gvn, int64_t(0)), cols(gvn, int64_t(0)), scalar(false) { }
     TIType(GVN & gvn, const Type _type) : type(_type), rows(gvn, _type == EMPTY ? 0 : 1), cols(gvn, _type == EMPTY ? 0 : 1), scalar(_type != EMPTY) { }
     TIType(GVN & gvn, const Type _type, const int _rows, const int _cols) : type(_type), rows(gvn, _rows), cols(gvn, _cols), scalar(_rows == 1 && _cols == 1) { }
     TIType(GVN & /*gvn*/, Type _type, const SymbolicDimension & _rows, const SymbolicDimension & _cols) : type(_type), rows(_rows), cols(_cols), scalar(_rows == 1 && _cols == 1) { }
@@ -156,8 +156,8 @@ struct TIType
         else if ((this->type != COMPLEX || type.type != DOUBLE) && this->type != type.type)
         {
             this->type = UNKNOWN;
-            rows.setValue(0.);
-            cols.setValue(0.);
+            rows.setValue(int64_t(0));
+            cols.setValue(int64_t(0));
         }
         else if ((!scalar || !type.scalar) && (rows != type.rows || cols != type.cols))
         {

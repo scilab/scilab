@@ -64,7 +64,7 @@ bool DiagAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
     bool isOneDim = false;
     GVN::Value * dim;
     TIType & type = R1.getType();
-    GVN::Value * ONE = visitor.getGVN().getValue(1);
+    GVN::Value * ONE = visitor.getGVN().getValue(int64_t(1));
     isOneDim = visitor.getCM().check(ConstraintManager::EQUAL, type.rows.getValue(), ONE);
     if (isOneDim)
     {
@@ -81,7 +81,7 @@ bool DiagAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
 
     if (isOneDim)
     {
-        SymbolicDimension sdim = index == 0 ? SymbolicDimension(&visitor.getGVN(), dim) : SymbolicDimension(&visitor.getGVN(), visitor.getGVN().getValue(OpValue::Kind::PLUS, *dim, *visitor.getGVN().getValue(std::abs(index))));
+        SymbolicDimension sdim = index == 0 ? SymbolicDimension(&visitor.getGVN(), dim) : SymbolicDimension(&visitor.getGVN(), visitor.getGVN().getValue(OpValue::Kind::PLUS, *dim, *visitor.getGVN().getValue(int64_t(std::abs(index)))));
         TIType resT(visitor.getGVN(), R1.getType().type, sdim, sdim);
         e.getDecorator().setResult(Result(resT, visitor.getDM().getTmpId(resT, false)));
     }

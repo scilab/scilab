@@ -169,6 +169,13 @@ public:
     Value * getExistingValue(const symbol::Symbol & sym);
 
     /**
+    * \brief Get a value associated with an integer
+    * \param x an integer
+    * \return a Value
+    */
+    Value * getValue(const int64_t x);
+
+    /**
      * \brief Get a value associated with a double
      * \param x a double
      * \return a Value
