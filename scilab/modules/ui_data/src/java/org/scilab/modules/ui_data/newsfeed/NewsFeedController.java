@@ -34,7 +34,6 @@ import java.util.ListIterator;
 public class NewsFeedController implements ActionListener {
 
     private List<News> news;
-    private ListIterator<News> newsIterator = null;
     private News currentNews;
 
     private static final int NO_TIME_INTERVAL = -1;
@@ -118,20 +117,47 @@ public class NewsFeedController implements ActionListener {
     }
 
     public void previousNews() {
-        currentNews = getIterator().previous();
+        // defensive programming
+        if (news.isEmpty()) {
+            return;
+        }
+
+        if (currentNews == null) {
+            currentNews = news.get(news.size() - 1);
+        } else {
+            int index = news.indexOf(currentNews);
+            index--;
+
+            if (index >= 0) {
+                currentNews = news.get(index);
+            } else {
+                currentNews = news.get(news.size() - 1);
+            }
+        }
+
         fireNewsFeedEvent(NewsFeedEvent.NEWS_CHANGED);
     }
 
     public void nextNews() {
-        currentNews = getIterator().next();
-        fireNewsFeedEvent(NewsFeedEvent.NEWS_CHANGED);
-    }
-
-    public ListIterator<News> getIterator() {
-        if ((newsIterator == null) || !newsIterator.hasNext()) {
-            newsIterator = news.listIterator();
+        // defensive programming
+        if (news.isEmpty()) {
+            return;
         }
-        return newsIterator;
+
+        if (currentNews == null) {
+            currentNews = news.get(0);
+        } else {
+            int index = news.indexOf(currentNews);
+            index++;
+
+            if (index < news.size()) {
+                currentNews = news.get(index);
+            } else {
+                currentNews = news.get(0);
+            }
+        }
+
+        fireNewsFeedEvent(NewsFeedEvent.NEWS_CHANGED);
     }
 
     private boolean isOK() {
@@ -155,8 +181,6 @@ public class NewsFeedController implements ActionListener {
             e.printStackTrace();
             fireNewsFeedErrorEvent(NewsFeedUIMessages.NEWS_FEED_UNAVAILABLE_ERROR);
         }
-
-        newsIterator = null;
     }
 
     private void readSettings() {
