@@ -101,6 +101,10 @@ public class NewsFeedController implements ActionListener {
         }
     }
 
+    public NewsFetcher getNewsFetcher() {
+        return newsFetcher;
+    }
+
     public News getCurrentNews() {
         return currentNews;
     }

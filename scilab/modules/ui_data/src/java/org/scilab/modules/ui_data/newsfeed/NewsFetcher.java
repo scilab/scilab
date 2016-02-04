@@ -47,6 +47,11 @@ public class NewsFetcher {
         rssURL = new URL(urlSetting);
     }
 
+    public URL getURL() {
+        return rssURL;
+    }
+
+
     public boolean isOK() {
         return rssURL != null;
     }
