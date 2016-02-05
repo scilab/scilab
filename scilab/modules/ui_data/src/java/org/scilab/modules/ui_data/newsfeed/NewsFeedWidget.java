@@ -56,6 +56,7 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
     private static final String NEWS_DATE_HTML_ID = "news_date";
     private static final String NEWS_CONTENT_HTML_ID = "news_content";
     private static final String NEWS_LINK_HTML_ID = "news_link";
+    private static final String NEWS_MEDIA_CONTENT_HTML_ID = "news_media_content";
     private static final String NEWS_DESCRIPTION_HTML_ID = "news_description";
 
     private final NewsFeedController newsFeedController;
@@ -145,6 +146,12 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
             newsHtmlBuilder.append(getDivHtml(news.getDescription(), NEWS_DESCRIPTION_HTML_ID));
         }
 
+        // Add media content (image) if exist
+        NewsMediaContent mediaContent = news.getMediaContent();
+        if (mediaContent != null) {
+            newsHtmlBuilder.append(getDivHtml(getImageHtml(mediaContent.getURL(), mediaContent.getWidth(), mediaContent.getHeight()), NEWS_MEDIA_CONTENT_HTML_ID));
+        }
+
         // Add news link if exist
         if (news.getLink() != null) {
             newsHtmlBuilder.append(getDivHtml(getLinkHtml(news.getLink(), news.getLink()), NEWS_LINK_HTML_ID));
@@ -160,6 +167,11 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
                 }
             }
         }, getHTML(newsHtmlBuilder));
+    }
+
+    private String getImageHtml(String url, String width, String height) {
+        // Cannot setup border with CSS, limitation of CSS support of HTMLEditorKit
+        return String.format("<img src='%s' border='0' width='%s', height='%s'/>", url, width, height);
     }
 
     private String getLinkHtml(String url, String description) {
