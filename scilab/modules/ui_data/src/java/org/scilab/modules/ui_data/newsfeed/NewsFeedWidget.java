@@ -32,6 +32,7 @@ import javax.swing.UIManager;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -101,8 +102,6 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
         }), BorderLayout.EAST);
 
         scrollPane = new JScrollPane(editorPane);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         setLayout(new BorderLayout());
         add(headerPane, BorderLayout.NORTH);
@@ -200,13 +199,12 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
         try	{
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    scrollPane.getHorizontalScrollBar().setValue(0);
-                    scrollPane.getVerticalScrollBar().setValue(0);
-
                     headerButton.setAction(titleAction);
                     headerButton.setToolTipText(titleAction.getValue(Action.NAME).toString());
 
                     editorPane.setText(htmlContent);
+                    // reset position to the upper left
+                    editorPane.setCaretPosition(0);
                 }
             });
         } catch (Exception e) {
