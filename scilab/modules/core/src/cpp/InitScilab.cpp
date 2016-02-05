@@ -334,7 +334,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         iMainRet = ConfigVariable::getExitStatus();
         iScript = 1;
 
-        if (_pSEI->iCodeAction != 0)
+        if (_pSEI->iCodeAction != -1)
         {
             //alloc in main to manage shell interaction
             FREE(_pSEI->pstExec);
