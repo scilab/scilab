@@ -178,7 +178,6 @@ public class NewsFeedController implements ActionListener {
             news = newsFetcher.fetchNews();
         } catch (Exception e) {
             System.err.println(e);
-            e.printStackTrace();
             fireNewsFeedErrorEvent(NewsFeedUIMessages.NEWS_FEED_UNAVAILABLE_ERROR);
         }
     }
@@ -196,7 +195,6 @@ public class NewsFeedController implements ActionListener {
             }
         } catch (Exception e) {
             System.err.println(e);
-            e.printStackTrace();
             fireNewsFeedErrorEvent(NewsFeedUIMessages.NEWS_FEED_CONFIGURATION_ERROR);
         }
     }

@@ -220,7 +220,6 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -233,7 +232,6 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
             try {
                 return settingsFile.toURI().toURL();
             } catch (MalformedURLException e) {
-                e.printStackTrace();
                 return null;
             }
         } else {
