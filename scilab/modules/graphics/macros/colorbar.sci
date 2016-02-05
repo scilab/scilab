@@ -1,13 +1,16 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Bruno Pincon
 // Copyright (C) Serge Steer (adaptation to new graphic system)
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
-function colorbar(varargin)
+function colorbar(umin, umax, colminmax, fmt)
 
     //  PURPOSE
     //     Draw a colorbar for a plot3d, fec, Sgrayplot, etc...
@@ -37,21 +40,13 @@ function colorbar(varargin)
     //     see the help page
 
     // Check number of input argument
-    if size(varargin)<2 | size(varargin)>4 then
+    [lhs, rhs] = argn();
+    if rhs < 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "colorbar", 2, 4));
     end
-    umin=varargin(1);
-    umax=varargin(2);
-    if size(varargin) > 2 then
-        colminmax=varargin(3);
-    end
-    if size(varargin) > 3 then
-        fmt=varargin(4);
-    end
-
     nb_grad = 5
     if ~exists("fmt","local") then
-        fmt="%-5.2g"
+        fmt="%-5.2g";
     else
         if type(fmt)<>10|size(fmt,"*")<>1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: %s data structure expected.\n"), "colorbar", 4, "string (containing a C format)"));

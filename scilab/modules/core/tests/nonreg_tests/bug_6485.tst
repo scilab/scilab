@@ -6,7 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
-// <-- LONG TIME EXECUTION --> 
+// <-- LONG TIME EXECUTION -->
 //
 // <-- Non-regression test for bug 6485 -->
 //
@@ -19,4 +19,4 @@
 
 // <-- CLI SHELL MODE -->
 //
-stacksize('max'); tic;a=rand(3000,3000);b=a*a';[c,d]=lu(b);inv(a);[u,s,v]=svd(a);toc;
+tic;a=rand(3000,3000);b=a*a';[c,d]=lu(b);inv(a);[u,s,v]=svd(a);toc;

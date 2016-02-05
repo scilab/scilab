@@ -412,8 +412,8 @@
         <add as="displayedLabel" value="x  == %s&lt;br/&gt;x' == %s"/>
     </add>
     <!-- MODELICA -->
-    <add as="MBLOCK" extend="Icon">
-        <add as="image" value="$SCILAB/modules/xcos/images/blocks/Modelica.svg"/>
+    <add as="MBLOCK" extend="blockWithLabel">
+        <add as="displayedLabel" value="Modelica&lt;BR&gt; generic"/>
     </add>
     <add as="FROMMO" extend="blockWithLabel">
         <add as="shape" value="hexagon"/>
@@ -551,7 +551,7 @@
         <add as="displayedLabel" value="Mat. 3D"/>
     </add>
     <add as="CSCOPXY3D" extend="Icon">
-        <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY.svg"/>
+        <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY3D.svg"/>
     </add>
     <add as="CANIMXY3D" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/3DSCOPE.svg"/>
@@ -567,7 +567,6 @@
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/ASCOPE.svg"/>
     </add>
     <add as="AFFICH_m" extend="Affiche"/>
-    <add as="AFFICH_f" extend="Affiche"/>
     <add as="TRASH_f" extend="blockWithLabel">
         <add as="displayedLabel" value="Trash"/>
     </add>
@@ -759,8 +758,8 @@
         <add as="fillColor" value="white"/>
     </add>
     <add as="RELATIONALOP" extend="blockWithLabel">
-        <!-- FIXME : Show parameters over block  -->
         <add as="displayedLabel" value="Relational&lt;BR&gt;         op : &amp;&lt;"/>
+        <!-- new value for the label defined in the interface function of block -->  
     </add>
     <add as="TEXT_f" extend="Label">
         <!-- <add as="displayedLabel" value="Text"/>  -->
@@ -772,7 +771,7 @@
     <add as="fortran_block" extend="blockWithLabel">
         <add as="displayedLabel" value="Fortran block:&lt;BR&gt;%4$s"/>
     </add>
-    <add as="DEBUG_SCICOS" extend="blockWithLabel">
+    <add as="DEBUG" extend="blockWithLabel">
         <add as="displayedLabel" value="Debug:&lt;BR&gt;%2$s"/>
     </add>
     <add as="EXPRESSION" extend="blockWithLabel">
@@ -928,8 +927,7 @@
     <add as="MUX_f" extend="MUX"/>
     <add as="MEMORY_f" extend="blockWithLabel"/>
     <add as="LOGICAL_OP" extend="blockWithLabel">
-        <!-- FIXME : Show parameters over block  -->
-        <add as="displayedLabel" value="Logical op :&lt;BR&gt;         AND"/>
+        <add as="displayedLabel" value="AND"/>
     </add>
     <add as="generic_block" extend="blockWithLabel">
         <add as="displayedLabel" value="GENERIC"/>

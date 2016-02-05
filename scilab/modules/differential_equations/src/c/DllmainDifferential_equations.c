@@ -1,19 +1,28 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #include <windows.h>
 #include "machine.h"
+#include "common_structure.h"
 #include "dynlib_differential_equations.h"
+/*--------------------------------------------------------------------------*/
+//for Visual Leak Detector in debug compilation mode
+//#define DEBUG_VLD
+#if defined(DEBUG_VLD) && defined(_DEBUG)
+#include <vld.h>
+#endif
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../../../bin/libintl.lib")
 /*--------------------------------------------------------------------------*/
@@ -189,73 +198,6 @@ DIFFERENTIAL_EQUATIONS_IMPEXP struct
 {
     char namef[6];
 } C2F(cintg);
-
-DIFFERENTIAL_EQUATIONS_IMPEXP struct
-{
-    double rownr3[2];
-    double t0;
-    double tlast;
-    double toutc;
-    int lg0;
-    int lg1;
-    int lgx;
-    int iownr3[2];
-    int irfnd;
-    int itaskc;
-    int ngc;
-    int nge;
-} C2F(lsr001);
-
-DIFFERENTIAL_EQUATIONS_IMPEXP struct
-{
-    double tret;
-    double rowns[209];
-    double ccmax;
-    double el0;
-    double h__;
-    double hmin;
-    double hmxi;
-    double hu;
-    double rc;
-    double tn;
-    double uround;
-    int illin;
-    int init;
-    int lyh;
-    int lewt;
-    int lacor;
-    int lsavf;
-    int lwm;
-    int liwm;
-    int mxstep;
-    int mxhnil;
-
-    int nhnil;
-    int ntrep;
-    int nslast;
-    int nyh;
-    int iowns[6];
-    int icf;
-    int ierpj;
-    int iersl;
-    int jcur;
-
-    int jstart;
-    int kflag;
-    int l;
-    int meth;
-    int miter;
-    int maxord;
-    int maxcor;
-    int msbp;
-    int mxncf;
-    int n;
-    int nq;
-    int nst;
-    int nfe;
-    int nje;
-    int nqu;
-} C2F(ls0001);
 
 /*--------------------------------------------------------------------------*/
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)

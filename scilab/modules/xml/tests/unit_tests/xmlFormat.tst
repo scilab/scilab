@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
 
+// <-- CLI SHELL MODE -->
+
 doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
 // An error
 
@@ -22,4 +24,3 @@ assert_checkequal(doc.root.children(2).content,"plop");
 assert_checkequal(doc.root.children(3).content,"1.23456");
 assert_checkequal(evstr(doc.root.children(3).content),1.23456);
 xmlDelete(doc);
-

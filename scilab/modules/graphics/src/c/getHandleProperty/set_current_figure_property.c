@@ -6,11 +6,14 @@
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -51,6 +54,8 @@ int set_current_figure_property(void* _pvCtx, int iObjUID, void* _pvData, int va
     int iCurFigUID = 0;
     int iAxesUID = 0;
     int* piAxesUID = &iAxesUID;
+    int iType = -1;
+    int *piType = &iType;
 
     if (iObjUID != 0)
     {
@@ -75,6 +80,15 @@ int set_current_figure_property(void* _pvCtx, int iObjUID, void* _pvData, int va
             Scierror(999, _("'%s' handle does not or no longer exists.\n"), "Figure");
             return SET_PROPERTY_ERROR;
         }
+
+        // Check new current figure is a figure
+        getGraphicObjectProperty(iCurFigUID, __GO_TYPE__, jni_int,  (void**)&piType);
+        if (iType != __GO_FIGURE__)
+        {
+            Scierror(999, _("Wrong value for '%s' property: A '%s' handle expected.\n"), "current_figure", "Figure");
+            return SET_PROPERTY_ERROR;
+        }
+
         setCurrentFigure(iCurFigUID);
         getGraphicObjectProperty(iCurFigUID, __GO_SELECTED_CHILD__, jni_int,  (void**)&piAxesUID);
         setCurrentSubWin(iAxesUID);

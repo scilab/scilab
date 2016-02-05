@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "machine.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"

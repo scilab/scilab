@@ -5,11 +5,14 @@
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
  * Copyright (C) 2010-2011 - DIGITEO - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -25,12 +28,15 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.image.BufferedImage;
 import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
+import javax.imageio.ImageIO;
 import javax.print.Doc;
 import javax.print.DocFlavor;
 import javax.print.DocPrintJob;
@@ -50,6 +56,7 @@ import javax.swing.text.Document;
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.FileExporter;
+import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingView;
@@ -59,7 +66,9 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.frame.SwingScilabScrollableFrame;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.tab.SwingScilabPanel;
 import org.scilab.modules.gui.colorchooser.ColorChooser;
 import org.scilab.modules.gui.colorchooser.ScilabColorChooser;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -71,7 +80,6 @@ import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.gui.messagebox.ScilabMessageBox;
-import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.ImageExporter;
@@ -241,7 +249,7 @@ public class CallScilabBridge {
      * @param status true to set the menu enabled
      */
     public static void setMenuEnabled(int parentUID, String menuName, boolean status) {
-        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(parentUID);
         if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
         }
@@ -255,7 +263,7 @@ public class CallScilabBridge {
      * @param status true to set the menu enabled
      */
     public static void setSubMenuEnabled(int parentUID, String parentMenuName, int menuItemPosition, boolean status) {
-        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(parentUID);
         if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
         }
@@ -273,7 +281,7 @@ public class CallScilabBridge {
      * @param menuName the name of the menu
      */
     public static void removeMenu(int parentUID, String menuName) {
-        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        SwingScilabPanel parentTab = (SwingScilabPanel) SwingView.getFromId(parentUID);
         if (parentTab != null) { /** Parent must exist */
             parentTab.getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
         }
@@ -292,13 +300,20 @@ public class CallScilabBridge {
      * @param figureId id of the figure to export
      * @return the ID of the File Chooser in the UIElementMapper
      */
-
     public static int newExportFileChooser(int figureId) {
         FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(figureId);
         return 0;
     }
 
-
+    /**
+     * Create a new Graphic Export File Chooser in Scilab GUIs
+     * @param figureId id of the figure to export
+     * @return the ID of the File Chooser in the UIElementMapper
+     */
+    public static int exportUI(int figureId) {
+        FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(ScilabNativeView.ScilabNativeView__getFigureFromIndex(figureId));
+        return 0;
+    }
 
     /**********************/
     /*                    */
@@ -338,7 +353,22 @@ public class CallScilabBridge {
      * @param id the id of the messageBox
      */
     public static void messageBoxDisplayAndWait(int id) {
-        ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
+        final int finalId = id;
+        try {
+            SwingUtilities.invokeAndWait(new Runnable() {
+
+                @Override
+                public void run() {
+                    ((MessageBox) UIElementMapper.getCorrespondingUIElement(finalId)).displayAndWait();
+                }
+            });
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -465,43 +495,6 @@ public class CallScilabBridge {
      */
     public static void setMessageBoxIcon(int id, String name) {
         ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).setIcon(name);
-    }
-
-    /******************/
-    /*                */
-    /* TOOLBAR BRIDGE */
-    /*                */
-    /******************/
-
-    /**
-     * Set the visibility of a Toolbar
-     * @param parentUID the parent (figure or console) UID
-     * @param status true to set the Toolbar visible
-     */
-    public static void setToolbarVisible(int parentUID, boolean status) {
-        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
-        if (parentTab != null) {
-            boolean oldStatus = parentTab.getToolBar().getAsSimpleToolBar().isVisible();
-            if (oldStatus != status) {
-                parentTab.getToolBar().getAsSimpleToolBar().setVisible(status);
-                BarUpdater.updateBars(parentTab.getParentWindowId(), parentTab.getMenuBar(),
-                                      parentTab.getToolBar(), parentTab.getInfoBar(), parentTab.getName(), parentTab.getWindowIcon());
-            }
-        }
-    }
-
-    /**
-     * Get the visibility of a Toolbar
-     * @param parentUID the parent (figure or console) UID
-     * @return true to set the Toolbar visible
-     */
-    public static boolean isToolbarVisible(int parentUID) {
-        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
-        if (parentTab != null) {
-            return parentTab.getToolBar().getAsSimpleToolBar().isVisible();
-        } else {
-            return false;
-        }
     }
 
     /**********************/
@@ -875,8 +868,8 @@ public class CallScilabBridge {
      * @param figID the ID of the figure to print
      * @return execution status
      */
-    public static boolean printFigure(int figID) {
-        return printFigure(figID, true, true);
+    public static boolean print_figure(int figureId) {
+        return printFigure(ScilabNativeView.ScilabNativeView__getFigureFromIndex(figureId), true, true);
     }
 
     /**
@@ -900,11 +893,28 @@ public class CallScilabBridge {
             if (isWindowsPlateform()) {
                 Figure figure = (Figure) GraphicController.getController().getObjectFromId(figID);
                 int figureID = figure.getId();
-                SwingScilabCanvas canvas;
-                canvas = ((SwingScilabTab) SwingView.getFromId(figID)).getContentCanvas();
-                ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage(), printerJob, scilabPageFormat);
-                if (scilabPrint != null) {
-                    return true;
+                BufferedImage bimage = null;
+                if (figure.getVisible()) {
+                    bimage = ((SwingScilabDockablePanel) SwingView.getFromId(figID)).getContentCanvas().dumpAsBufferedImage();
+                } else {
+                    try {
+                        File tmpPrinterFile = File.createTempFile("scilabfigure", ".png");
+                        tmpPrinterFile.delete();
+                        FileExporter.fileExport(figID, tmpPrinterFile.getAbsolutePath(), "PNG", 1, 0);
+                        bimage = ImageIO.read(tmpPrinterFile);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                }
+
+                if (bimage != null) {
+                    ScilabPrint scilabPrint = new ScilabPrint(bimage, printerJob, scilabPageFormat);
+                    if (scilabPrint != null) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 } else {
                     return false;
                 }
@@ -1180,6 +1190,14 @@ public class CallScilabBridge {
      * Copy figure to clipboard
      * @param figID the ID of the figure
      */
+    public static void clipboard_figure(int figureId) {
+        copyFigureToClipBoard(ScilabNativeView.ScilabNativeView__getFigureFromIndex(figureId));
+    }
+
+    /**
+     * Copy figure to clipboard
+     * @param figID the ID of the figure
+     */
     public static void copyFigureToClipBoard(int figID) {
         Image figureImage = ImageExporter.imageExport(figID);
         if (figureImage != null) {
@@ -1282,7 +1300,9 @@ public class CallScilabBridge {
      */
     public static void requestFocus(int uicontrolUID) {
         SwingViewObject uicontrol = SwingView.getFromId(uicontrolUID);
-        if (uicontrol instanceof SwingScilabFrame) {
+        if (uicontrol instanceof SwingScilabScrollableFrame) {
+            ((SwingScilabScrollableFrame) uicontrol).requestFocus();
+        } else if (uicontrol instanceof SwingScilabFrame) {
             ((SwingScilabFrame) uicontrol).requestFocus();
         } else {
             ((Widget) uicontrol).requestFocus();
@@ -1337,7 +1357,7 @@ public class CallScilabBridge {
     /******************/
 
     public static void fireClosingFinished(int figUID) {
-        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(figUID);
+        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(figUID);
         ClosingOperationsManager.removeFromDunnoList(parentTab);
     }
 }

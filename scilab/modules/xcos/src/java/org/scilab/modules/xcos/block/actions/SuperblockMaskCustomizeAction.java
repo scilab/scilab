@@ -2,12 +2,16 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -45,9 +49,12 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
-import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.ScilabTypeCoder;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -104,15 +111,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
         }
 
         SuperBlock block = (SuperBlock) graph.getSelectionCell();
-        block.createChildDiagram(); // assert that diagram is an xcos one
 
-        XcosDiagram parentGraph = block.getParentDiagram();
-        if (parentGraph == null) {
-            block.setParentDiagram(Xcos.findParent(block));
-            parentGraph = block.getParentDiagram();
-            Logger.getLogger(SuperblockMaskCustomizeAction.class.getName()).severe("Parent diagram was null");
-        }
-        CustomizeFrame frame = new CustomizeFrame(parentGraph);
+        CustomizeFrame frame = new CustomizeFrame(graph);
         CustomizeFrame.CustomizeFrameModel model = frame.getController().getModel();
         model.setBlock(block);
         model.importFromBlock();
@@ -422,7 +422,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                      * reconstruct pol fields. The default types of the values.
                      *
                      * This field indicate the dimension of each entry (-1.0 is
-                     * automatic). FIXME: type the data there instead of using
+                     * automatic). TODO: type the data there instead of using
                      * the generic "pol".
                      */
                     polFields.add(new ScilabString("pol"));
@@ -443,7 +443,9 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                                                          new ScilabList(Arrays.asList(new ScilabString(varNames), new ScilabString(varDesc), polFields))));
                 }
 
-                getBlock().setExprs(exprs);
+                JavaController controller = new JavaController();
+                VectorOfDouble vec = new ScilabTypeCoder().var2vec(exprs);
+                controller.setObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, vec);
 
                 /*
                  * Trace the exprs update.
@@ -461,7 +463,10 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                 ScilabString varNames;
                 ScilabString varDesc;
 
-                ScilabType rawExprs = getBlock().getExprs();
+                JavaController controller = new JavaController();
+                VectorOfDouble vec = new VectorOfDouble();
+                controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, vec);
+                ScilabType rawExprs = new ScilabTypeCoder().vec2var(vec);
 
                 // Xcos from Scilab 5.2.0 version
                 // so set default values

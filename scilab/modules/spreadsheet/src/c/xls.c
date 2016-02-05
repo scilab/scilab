@@ -4,11 +4,14 @@
  * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
  * Copyright (C) 2005-2008 - INRIA - Pierrick MODE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,7 +19,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "core_math.h"
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "sciprint.h"
 #include "returnanan.h"
 #include "xls.h"
@@ -35,7 +38,7 @@ extern int ripole(char *inputfile, char *outputfile, int debug, int verbose);
 /*------------------------------------------------------------------*/
 /*Prototype*/
 static double NumFromRk2(long rk);
-static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, double *cur_pos, int *err);
+static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, long long *cur_pos, int *err);
 static void getSST(int *fd, short Len, int BIFF, int *ns, char ***sst, int *err);
 static void getBOF(int *fd , int* Data, int *err);
 static void getString(int *fd, short *count, short *Len, int flag, char **str, int *err);
@@ -50,7 +53,7 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
     /*---------------Declaration Des Variables*--------------------*/
     unsigned short Opcode = 0, Len = 0;   /*Code Operationnel et Longueur du tag a lire*/
     double *valeur = NULL;    /*Tableau Recapitulatif (Final) des valeurs de la feuille Excel*/
-    double pos = 0;
+    long long pos = 0;
 
     int one = 1;
     int three = 3;
@@ -84,8 +87,7 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
     *chainesind = (int *) NULL;
     *err = 0;
 
-    pos = (double)(*cur_pos);
-    C2F(mseek) (fd, &pos, "set", err);
+    *err = mseek(*fd, (long long) * cur_pos, SEEK_SET);
     if (*err > 0)
     {
         goto ErrL;
@@ -109,7 +111,7 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
         return;
     }
 
-    C2F(mtell) (fd, &pos, err);
+    pos = mtell(*fd);
     if (*err > 0)
     {
         goto ErrL;
@@ -117,7 +119,7 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
 
     while (1)
     {
-        C2F(mseek) (fd, &pos, "set", err);
+        *err = mseek(*fd, pos, SEEK_SET);
         if (*err > 0)
         {
             goto ErrL;
@@ -139,8 +141,8 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 *N = hauteur;
                 *M = longueur;
                 *data = valeur;
+                pos = pos + 4 + Len;
                 *cur_pos = (int)pos;
-                *cur_pos = *cur_pos + 4 + Len;
                 return;
             case 638: /*RK*/
                 C2F(mgetnc) (fd, (void*)&row, &one, typ_ushort, err);
@@ -364,7 +366,6 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
 
                 break;
         }
-
         pos = pos + 4 + Len;
     }
 
@@ -409,7 +410,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
      */
     /*---------------D�claration Des Variables*--------------------*/
     int k, one = 1;
-    double cur_pos, init_pos;
+    long long cur_pos, init_pos;
     unsigned short Opcode, Len;
     /*BOF data*/
     int BOFData[7]; /*[BIFF  Version DataType Identifier Year HistoryFlags LowestXlsVersion]*/
@@ -421,7 +422,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
       *err=1;
       return;
       }*/
-    C2F(mtell) (fd, &cur_pos, err);
+    cur_pos = mtell(*fd);
     init_pos = cur_pos;
 
     /* first record should be a BOF */
@@ -442,7 +443,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
         return;
     }
 
-    C2F(mtell) (fd, &cur_pos, err);
+    cur_pos = mtell(*fd);
     if (*err > 0)
     {
         goto Err2;
@@ -451,7 +452,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     /* loops on records till an EOF is found */
     while (1)
     {
-        C2F(mseek) (fd, &cur_pos, "set", err);
+        *err = mseek(*fd, cur_pos, SEEK_SET);
         if (*err > 0)
         {
             goto Err2;
@@ -477,7 +478,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
                 getBoundsheets(fd, Sheetnames, Abspos, nsheets, &cur_pos, err);
                 for (k = 0; k < *nsheets; k++)
                 {
-                    (*Abspos)[k] += init_pos;
+                    (*Abspos)[k] += (int)init_pos;
                 }
                 if (*err > 0)
                 {
@@ -935,14 +936,14 @@ static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, c
     l1 = 4 * rt;
     if (richString)
     {
-        double dl1 = (double)l1;
-        C2F(mseek) (fd, &dl1, "cur", err);
+        long long lll1 = (long long)l1;
+        *err = mseek(*fd, lll1, SEEK_CUR);
         *PosInRecord += (short)l1;
     }
     if (extendedString)
     {
-        double dsz = (double)sz;
-        C2F(mseek) (fd, &dsz, "cur", err);
+        long long llsz = (long long)sz;
+        *err = mseek(*fd, llsz, SEEK_CUR);
         *PosInRecord += (short)sz;
     }
 
@@ -974,13 +975,13 @@ ErrL:
     }
 }
 
-static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, double *cur_pos, int *err)
+static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, long long *cur_pos, int *err)
 {
     /* the global workbook contains a sequence of boudsheets this procedure reads all
     * the sequence and returns a vector o sheetnames, a vector of absolute sheet positions*/
     int abspos; /* Absolute stream position of BoF*/
     char visibility, sheettype; /*Visiblity , Sheet type*/
-    double pos;
+    long long pos;
     unsigned short Opcode;
     unsigned short Len;
     int one = 1;
@@ -996,7 +997,7 @@ static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nshe
     ns = 0;
     while (1)
     {
-        C2F(mseek) (fd, cur_pos, "set", err);
+        *err = mseek(*fd, *cur_pos, SEEK_SET);
         if (*err > 0)
         {
             goto ErrL;
@@ -1053,7 +1054,7 @@ static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nshe
     i = -1;
     while (1)
     {
-        C2F(mseek) (fd, cur_pos, "set", err);
+        *err = mseek(*fd, *cur_pos, SEEK_SET);
         if (*err > 0)
         {
             goto ErrL;

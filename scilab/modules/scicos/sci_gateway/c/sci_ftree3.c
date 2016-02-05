@@ -24,16 +24,15 @@
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
 #include "gw_scicos.h"
-#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intree3) (char *fname, unsigned long fname_len); /*fortran subroutine */
+extern int C2F(intree3) (char *fname, void* pvApiCtx); /*fortran subroutine */
 /*--------------------------------------------------------------------------*/
-int sci_ftree3(char *fname, unsigned long fname_len)
+int sci_ftree3(char *fname, void* pvApiCtx)
 {
-    CheckLhs(2, 2);
-    CheckRhs(7, 7);
-    C2F(intree3)(fname, fname_len);
-    PutLhsVar();
+    //CheckLhs(2, 2);
+    //CheckRhs(7, 7);
+    //C2F(intree3)(fname, pvApiCtx);
+    //PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

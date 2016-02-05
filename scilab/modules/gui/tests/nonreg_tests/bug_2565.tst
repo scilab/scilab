@@ -19,7 +19,7 @@
 f = figure(1);
 h = uicontrol(f,"style","listbox",..
     "position",[10 10 150 150],..
-    "string",["\Q\q"])
+    "string",["\Q\q"]);
 
 if get(h,"string") <> "\Q\q" then pause; end
 

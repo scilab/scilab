@@ -2,26 +2,33 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #ifndef __XMLOBJECTS_HXX__
 #define __XMLOBJECTS_HXX__
 
+#include <iostream>
 #include <string>
 #include <sstream>
 #include <typeinfo>
+#include <set>
 
 extern "C"
 {
 #include "xml_mlist.h"
 #include "dynlib_xml_scilab.h"
 }
+
+//#define SCILAB_DEBUG_XML
 
 namespace org_modules_xml
 {
@@ -37,6 +44,11 @@ class XML_SCILAB_IMPEXP XMLObject
 {
 
 public:
+
+#ifdef SCILAB_DEBUG_XML
+    static std::set<XMLObject *> pointers;
+#endif
+
     /**
      * Default constructor
      */
@@ -47,6 +59,10 @@ public:
      */
     virtual ~ XMLObject()
     {
+#ifdef SCILAB_DEBUG_XML
+        //std::cout << "Delete = " << (void*)this << std::endl;
+        pointers.erase(this);
+#endif
     }
 
     /**
@@ -110,9 +126,19 @@ public:
     /**
      * @return the object id
      */
-    int getId() const
+    inline int getId() const
     {
         return id;
+    }
+
+    inline bool isValid() const
+    {
+        return valid;
+    }
+
+    inline void invalid()
+    {
+        valid = false;
     }
 
     /**
@@ -134,6 +160,7 @@ public:
 protected:
     int id;
     int scilabType;
+    bool valid;
 
     static VariableScope *scope;
 

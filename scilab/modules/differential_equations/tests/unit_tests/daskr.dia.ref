@@ -1,12 +1,16 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Scilab Enterprises - 2013 - Paul Bignier
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING,
-// which you should have received as part of this distribution.
-// The terms are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 // =============================================================================
 //<-- ENGLISH IMPOSED -->
 //C-----------------------------------------------------------------------
@@ -132,6 +136,8 @@ deff("s=gr2(t,y,yd)","s=y(1)")
 assert_checkalmostequal(nn(1),81.163512,0.009);
 // Same problem, with psol and pjac macros
 // Redefine pjac to use res2
+prot = funcprot();
+funcprot(0);
 function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
     ires = 0;
     SQuround = 1.490D-08;
@@ -160,15 +166,14 @@ function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
         ydot(i) = ypsave;
     end
 endfunction
-Warning : redefining function: pjac                    . Use funcprot(0) to avoid this message
-
+funcprot(prot);
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,"gr2",info,psol,pjac);
 assert_checkalmostequal(nn(1),81.163512,0.003);
 deff("s=gr2(t,y,yd)","s=y(1)")
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,gr2,info,psol,pjac);
 assert_checkalmostequal(nn(1),81.163512,0.003);
 info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
-//           Hot Restart
+// Hot Restart
 [yy,nn,hotd]=daskr([y0,y0d],t0,t,atol,rtol,"res2","jac2",ng,"gr2",info);
 t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(3:4,qq);y0d1=yy(4:5,qq);
 [yy,nn,hotd]=daskr([y01,y0d1],t01,t,atol,rtol,"res2","jac2",ng,"gr2",info,hotd);

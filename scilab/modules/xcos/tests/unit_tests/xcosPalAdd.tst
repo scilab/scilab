@@ -21,9 +21,9 @@ endfunction
 
 function xcosPalLoad(pal, category)
     if typeof(pal) <> "string" then pause, end
-    if size(pal, '*') <> 1 then pause, end
+    if size(pal, "*") <> 1 then pause, end
     if typeof(category) <> "string" then pause, end
-    if and([size(category, 'r') > 1, size(category, 'c') > 1]) then pause, end
+    if and([size(category, "r") > 1, size(category, "c") > 1]) then pause, end
 endfunction
 
 funcprot(prot);
@@ -37,6 +37,6 @@ if ~xcosPalAdd(pal) then pause, end
 if ~xcosPalAdd(pal, "my Summation blocks") then pause, end
 if ~xcosPalAdd(pal, ["Customs" "my Summation blocks"]) then pause, end
 
-export_to_hdf5(TMPDIR + "/palette.sod", "pal");
+save(TMPDIR + "/palette.sod", "pal");
 if ~xcosPalAdd(TMPDIR + "/palette.sod") then pause, end
 

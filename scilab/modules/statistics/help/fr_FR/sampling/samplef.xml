@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * Copyright (C) 2014 - Scilab Enterprises - Pierre-Aime Agnel
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="samplef">
+    <refnamediv>
+        <refname>samplef</refname>
+        <refpurpose>Tirage avec remise d'un échantillon d'une population suivant les valeurs de fréquences données.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>s = samplef(n, X, f, orient)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>Entier positif (taille de l'échantillon à tirer).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>Matrice. Population, les échantillons sont tirés de cette matrice.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>
+                        Matrice de valeurs réelles positives. Indique la fréquence de chaque élément de <literal>X</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orient</term>
+                <listitem>
+                    <para>
+                        Paramètre optionnel. Les valeurs possibles sont <literal>{'*'}, 1, 2, 'r' </literal> ou <literal>'c'</literal>. Orientations possibles pour le tirage de valeurs de X. Voir la description ci-dessous.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>
+                         vecteur ou matrice contenant le tirage des valeurs de <literal>X</literal> aux fréquences <literal>f</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Cette fonction renvoie <literal>s</literal>, un vecteur de longueur <literal>n</literal>.
+            Il contient un tirage de <literal>n</literal> échantillons, avec remise, d'éléments
+            de la matrice <literal>X</literal>,  chaque élément étant compté avec une fréquence donnée
+            par sa valeur correspondante dans le vecteur <literal>f</literal>.
+        </para>
+        <para>
+            <literal>s=samplef(n,X,f)</literal> (ou
+            <literal>s=samplef(n,X,f,'*')</literal>) renvoie un vecteur <literal>s</literal>
+            dont les valeurs sont un tirage de <literal>n</literal> valeurs de <literal>X</literal>,
+            chaque valeur étant tirée avec une probabilité proportionelle à sa valeur correspondante dans
+            <literal>f</literal> après normalisation, ce tirage étant fait avec remise.
+            <literal>f</literal> et <literal>X</literal> doivent contenir le même nombre de valeurs.
+        </para>
+        <para>
+            <literal>s=samplef(n,X,f,'r')</literal>           (ou, de manière équivalente,
+            <literal>s=samplef(n,X,f,1)) </literal>   renvoie une matrice de taille
+            <literal>size(X,'r') * n</literal>.  Elle contient un tirage de <literal>n</literal> lignes de
+            <literal>X</literal>, chaque ligne étant tirée avec une probabilité proportionelle
+            à sa valeur correspondante dans <literal>f</literal> après normalisation, ce tirage étant fait
+            avec remise. La taille de <literal>f</literal> doit être identique au nombre de lignes de <literal>X</literal>.
+        </para>
+        <para>
+            <literal>s=samplef(n,X,f,'c')</literal>           (ou, de manière équivalente,
+            <literal>s=samplef(n,X,f,2))</literal>    renvoie une matrice de taille
+            <literal>n * size(X,'c')</literal>.  Elle contient un tirage de <literal>n</literal> colonnes de
+            <literal>X</literal>, chaque colonne étant tirée avec une probabilité proportionelle
+            à sa valeur correspondante dans <literal>f</literal> après normalisation, ce tirage étant fait
+            avec remise. La taille de <literal>f</literal> doit être identique au nombre de colonnes de <literal>X</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Générateur de nombres aléatoires</title>
+        <para>
+             <literal>samplef</literal> se fonde sur la fonction <link linkend="grand">grand</link> pour générer les tirages aléatoires. Utiliser <literal>grand("setsd", seed)</literal> pour changer la graine aléatoire de <literal>samplef</literal>.
+        </para>
+        <programlisting role="example"><![CDATA[
+            seed = getdate("s");
+            grand("setsd", seed); //positionne la graine à la date du jour
+
+            seed = 0;
+            grand("setsd", seed); //positionne la graine à sa valeur par défaut
+            ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+X = [3 7 9;22 4 2];
+f1 = [10 1 1 1 1 1];
+f2 = [1; 15];
+f3 = [10 1 1];
+s=samplef(20, X, f1)      //la première valeur de la matrice X a une fréquence de 10/15
+s=samplef(20, X, f2, 'r') //la seconde ligne de la matrice X sera choisie avec une fréquence 15/16
+s=samplef(20, X, f3, 'c') //la première colonne sera choisie avec une fréquence 10/12
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sample">sample</link>
+            </member>
+            <member>
+                <link linkend="samwr">samwr</link>
+            </member>
+            <member>
+                <link linkend="grand">grand</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

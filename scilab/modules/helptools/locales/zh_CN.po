@@ -8,26 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-08-30 21:04+0000\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: \n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Scilab的‘%s’模块在-nogui或-nwni模式中无效。\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s：不能读取第%d个输入参数。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
@@ -52,9 +44,6 @@ msgstr "Scilab模块'%s'尚未安装。\n"
 
 msgid "Version"
 msgstr "版本"
-
-msgid "Description"
-msgstr "说明"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -91,10 +80,6 @@ msgstr "%s：目录 %s 不存在或者禁止读文件。"
 
 msgid "-- Deleting help files --\n"
 msgstr "-- 删除帮助文件 --\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
@@ -139,7 +124,7 @@ msgid "%s: File skipped %s."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 msgid " * Add some comments about XML file"
@@ -212,22 +197,6 @@ msgstr ""
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s：第一个输入参数值错误：应该为%d。\n"
 
-#, c-format
-msgid "%s: This function is only supported on Windows platforms.\n"
-msgstr "%s：只在Windows平台下可使用这个函数。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr "%s：输入参数的数目错误：最多应该%d个。\n"
-
-#, c-format
-msgid "%s: hhc.exe not found.\n"
-msgstr "%s：没有找到hhc.exe。\n"
-
-#, c-format
-msgid "%s: no file generate.\n"
-msgstr "%s：没有生成文件。\n"
-
 msgid "Help chapter"
 msgstr "帮助章节"
 
@@ -293,10 +262,6 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个字符串。\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"
 
@@ -317,9 +282,10 @@ msgstr "%s：这个CHAPTER文件的第%d行的格式不正确。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为一个以 .last_successful_build 结尾的字符串。\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
+msgstr ""
+"%s：输入参数#%d的值错误：应该为一个以 .last_successful_build 结尾的字符串。\n"
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formated at line %d\n"
@@ -333,3 +299,7 @@ msgstr "%s：输入参数#%d的值错误：应该为matrix oriented typed list�
 #, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s：两个mlist类型必须有相同的域（field）。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr "%s：输入参数的数目错误：最多应该%d个。\n"

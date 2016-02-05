@@ -4,65 +4,81 @@
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2010-2011 - DIGITEO - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.gui.bridge.listbox;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.listbox.SimpleListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ColorBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.widget.ViewMethods;
-import org.scilab.modules.types.ScilabDouble;
-import org.scilab.modules.types.ScilabInteger;
-import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.gui.utils.SwingScilabListItem;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab ListBox in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabListBox extends JScrollPane implements SwingViewObject, SimpleListBox, ViewMethods {
+public class SwingScilabListBox extends JScrollPane implements SwingViewObject, Widget {
 
     private static final long serialVersionUID = 3507396207331058895L;
 
+    private static final int COLORS_COEFF = 255;
+
     private Integer uid;
+
+    private Border defaultBorder = null;
 
     private CommonCallBack callback;
 
-    private MouseListener mouseListener;
+    private ListSelectionListener listListener;
 
     private AdjustmentListener adjustmentListener;
 
@@ -71,39 +87,70 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      */
     private JList list;
 
+    private ListCellRenderer defaultRenderer = null;
+    private ListCellRenderer listRenderer = null;
+
     /**
      * Constructor
      */
     public SwingScilabListBox() {
         super();
         getViewport().add(getList());
+        defaultRenderer = getList().getCellRenderer();
 
-        mouseListener = new MouseListener() {
-            public void mouseClicked(MouseEvent e) {
+        listRenderer = new ListCellRenderer() {
+            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+                if (value instanceof SwingScilabListItem) {
+                    SwingScilabListItem item = (SwingScilabListItem) value;
+                    label.setText(item.toString());
+                    label.setIcon(item.getIcon());
+
+                    if (isSelected == false && item.getBackground() != null) {
+                        label.setBackground(item.getBackground());
+                    }
+
+                    if (isSelected == false && item.getForeground() != null) {
+                        label.setForeground(item.getForeground());
+                    }
+                } else {
+                    label.setText("");
+                    label.setIcon(null);
+                }
+                return label;
+            }
+        };
+
+        getList().setCellRenderer(listRenderer);
+
+        listListener = new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+
+                //value not ready
+                if (e.getValueIsAdjusting()) {
+                    return;
+                }
+
                 // Scilab indices in Value begin at 1 and Java indices begin at 0
                 int[] javaIndices = getList().getSelectedIndices().clone();
                 Double[] scilabIndices = new Double[javaIndices.length];
                 for (int i = 0; i < getList().getSelectedIndices().length; i++) {
                     scilabIndices[i] = (double) javaIndices[i] + 1;
                 }
+
                 GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, scilabIndices);
-                if (e.getButton() == MouseEvent.BUTTON1 && callback != null) {
+                if (callback != null) {
                     callback.actionPerformed(null);
                 }
             }
-            public void mouseEntered(MouseEvent arg0) { }
-            public void mouseExited(MouseEvent arg0) { }
-            public void mousePressed(MouseEvent arg0) { }
-            public void mouseReleased(MouseEvent arg0) { }
         };
-        getList().addMouseListener(mouseListener);
+        getList().addListSelectionListener(listListener);
+
         adjustmentListener = new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent arg0) {
                 int listboxtopValue = getList().getUI().locationToIndex(getList(), getViewport().getViewPosition()) + 1;
-
-                GraphicObject obj = GraphicModel.getModel().getObjectFromId(uid);
-                ScilabDouble value = new ScilabDouble(listboxtopValue);
-                GraphicController.getController().setProperty(obj, "listboxtop", value);
+                GraphicController.getController().setProperty(uid, __GO_UI_LISTBOXTOP__, new Integer[] { listboxtopValue });
             }
         };
         getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
@@ -137,7 +184,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * To set the Background color of the element.
      * @param color the Color
      */
-    public void setBackground(Color color) {
+    public void setListBackground(Color color) {
         getList().setBackground(color);
     }
 
@@ -205,8 +252,8 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
 
     /**
      * Sets the visibility status of an UIElement
-     * @param newVisibleState the visibility status we want to set for the UIElement
-     *                      (true if the UIElement is visible, false if not)
+     * @param newVisibleState the visibility status we want to set for the
+     * UIElement (true if the UIElement is visible, false if not)
      */
     public void setVisible(boolean newVisibleState) {
         super.setVisible(newVisibleState);
@@ -216,20 +263,22 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
     /**
      * Sets the enable status of an UIElement
      * @param newEnableState the enable status we want to set for the UIElement
-     *                      (true if the UIElement is enabled, false if not)
+     * (true if the UIElement is enabled, false if not)
      */
     public void setEnabled(boolean newEnableState) {
-        if (newEnableState != super.isEnabled()) {
-            super.setEnabled(newEnableState);
-            getList().setEnabled(newEnableState);
-            if (newEnableState) {
-                if (mouseListener != null) {
-                    getList().addMouseListener(mouseListener);
-                }
-            } else {
-                if (mouseListener != null) {
-                    getList().removeMouseListener(mouseListener);
-                }
+        if (newEnableState == isEnabled()) {
+            return;
+        }
+
+        super.setEnabled(newEnableState);
+        getList().setEnabled(newEnableState);
+        if (newEnableState) {
+            if (listListener != null) {
+                getList().addListSelectionListener(listListener);
+            }
+        } else {
+            if (listListener != null) {
+                getList().removeListSelectionListener(listListener);
             }
         }
     }
@@ -296,7 +345,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
     public String[] getAllItemsText() {
         String[] retValue = new String[getList().getModel().getSize()];
         for (int i = 0; i < getList().getModel().getSize(); i++) {
-            retValue[i] = (String) getList().getModel().getElementAt(i);
+            retValue[i] = getList().getModel().getElementAt(i).toString();
         }
         return retValue;
     }
@@ -328,30 +377,126 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
      */
     public void setText(String[] text) {
-        /* Do we need to update the strings */
-        /* Test performed to avoid loops when the model is updated from here */
-        boolean updateNeeded = false;
-        String[] previousText = getAllItemsText();
-        if (previousText.length != text.length) {
-            updateNeeded = true;
-        } else {
-            for (int k = 0; k < text.length; k++) {
-                if (text[k].compareTo(previousText[k]) != 0) {
-                    updateNeeded = true;
-                    break;
+        DefaultListModel model = new DefaultListModel();
+
+        // check numbers of columns
+        GraphicController controller = GraphicController.getController();
+        Integer nbCol = (Integer) controller.getProperty(getId(), __GO_UI_STRING_COLNB__);
+
+        /* Remove the listener to avoid the callback to be executed */
+        getList().removeListSelectionListener(listListener);
+
+        boolean tryColorBox = true;
+        boolean tryColor = true;
+        boolean tryIcon = true;
+        int nbRow = text.length / nbCol;
+
+        for (int i = 0; i < nbRow; i++) {
+            Icon icon = null;
+            String str = null;
+            Color background = null;
+            Color foreground = null;
+
+            //4 cols :
+            // - 1st icon or colorBox
+            // - 2nd text
+            // - 3rd BG
+            // - 4th FG
+
+            //3 cols :  2 cases
+            // - 1st icon or colorBox
+            // - 2nd text
+            // - 3rd BG
+            //or
+            // - 1st text
+            // - 2nd BG
+            // - 3rd FG
+
+            //2 cols : 2 cases
+            // - 1st icon or colorBox
+            // - 2nd text
+            //or
+            // - 1st text
+            // - 2nd BG
+
+            if (tryColorBox) { //color
+                try {
+                    //format #FFFFFF
+                    if (text[i].startsWith("#") == false) {
+                        throw new NumberFormatException();
+                    }
+
+                    Color color = Color.decode(text[i]);
+                    icon = ColorBox.createColorBox(16, 16, color);
+                } catch (NumberFormatException e) {
+                    tryColorBox = false;
+                    model.clear();
+                    //restart loop with icon
+                    i = -1;
+                    continue;
+                }
+            }
+
+            if (tryIcon) {
+                try {
+                    icon = FindIconHelper.loadIcon(text[i]);
+                } catch (IOException e) {
+                    tryIcon = false;
+                    model.clear();
+                    //restart loop with text only
+                    i = -1;
+                    continue;
+                }
+            }
+
+            if (tryColor) {
+                try {
+                    int colIndex = 0;
+                    if (tryColorBox || tryIcon) {
+                        colIndex = 1;
+                    }
+
+                    str = text[(nbRow * colIndex) + i];
+                    if (nbCol > (1 + colIndex)) {
+                        if (text[nbRow * (1 + colIndex) + i].startsWith("#") == false) {
+                            throw new NumberFormatException();
+                        }
+
+                        background = Color.decode(text[nbRow * (1 + colIndex) + i]);
+                        if (nbCol > (2 + colIndex)) {
+                            if (text[nbRow * (2 + colIndex) + i].startsWith("#") == false) {
+                                throw new NumberFormatException();
+                            }
+                            foreground = Color.decode(text[nbRow * (2 + colIndex) + i]);
+                        }
+                    }
+
+                    //add item in list box
+                    model.addElement(new SwingScilabListItem(str, icon, background, foreground));
+                } catch (NumberFormatException e) {
+                    tryColor = false;
+                    model.clear();
+                    //restart loop with text only
+                    i = -1;
+                    continue;
+                }
+            } else { //text only
+                for (int j = 0; j < nbCol; j++) {
+                    model.addElement(new SwingScilabListItem(text[nbRow * j + i], icon, background, foreground));
                 }
             }
         }
-        if (!updateNeeded) {
-            return;
-        }
 
-        DefaultListModel model = new DefaultListModel();
-        for (int i = 0; i < text.length; i++) {
-            model.addElement(text[i]);
-        }
+        //reset selected index
+        getList().setSelectedIndex(-1);
         getList().setModel(model);
-        revalidate();
+        invalidate();
+        //take care to add listener BEFORE set Property to avoid multiple remove and multiple add
+        getList().addListSelectionListener(listListener);
+    }
+
+    public void setEmptyText() {
+        setText(new String[] {});
     }
 
     /**
@@ -360,13 +505,6 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      */
     public void setHorizontalAlignment(String alignment) {
         // Nothing to do here
-    }
-
-    public void setVerticalalignment(String alignment) {
-        SwingViewWidget.setVerticalAlignment(this, alignment);
-    }
-    public void setHorizontalalignment(String alignment) {
-        SwingViewWidget.setHorizontalAlignment(this, alignment);
     }
 
     /**
@@ -401,15 +539,15 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         }
 
         /* Remove the listener to avoid the callback to be executed */
-        if (mouseListener != null) {
-            getList().removeMouseListener(mouseListener);
+        if (listListener != null) {
+            getList().removeListSelectionListener(listListener);
         }
 
         getList().setSelectedIndices(javaIndices);
 
         /* Put back the listener */
-        if (mouseListener != null) {
-            getList().addMouseListener(mouseListener);
+        if (listListener != null) {
+            getList().addListSelectionListener(listListener);
         }
     }
 
@@ -452,8 +590,11 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * Set the Relief of the ListBox
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setWidgetRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+    public void setRelief(String reliefType) {
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -482,12 +623,14 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
     }
 
     /**
-     * Adjusts the view so that the element given by index is displayed at the top of the ListBox.
-     * @param index the index of the element to be displayed at the top of the ListBox.
+     * Adjusts the view so that the element given by index is displayed at the
+     * top of the ListBox.
+     * @param index the index of the element to be displayed at the top of the
+     * ListBox.
      */
     public void setListBoxTop(int index) {
         getVerticalScrollBar().removeAdjustmentListener(adjustmentListener);
-        if (index > 0 & index != getListBoxTop()) {
+        if (index > 0 & index != getListBoxTop() && getList().getModel().getSize() != 0) {
             getViewport().setViewPosition(getList().getUI().indexToLocation(getList(), index - 1));
             doLayout();
         }
@@ -524,87 +667,70 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        GraphicController controller = GraphicController.getController();
+        switch (property) {
+            case __GO_UI_VALUE__: {
+                Double[] indexes = (Double[]) value;
+                int[] index = new int[indexes.length];
+                for (int i = 0; i < indexes.length; i++) {
+                    index[i] = indexes[i].intValue();
+                }
+                setSelectedIndices(index);
+                break;
+            }
+            case __GO_UI_BACKGROUNDCOLOR__: {
+                Double[] allColors = ((Double[]) value);
+                if (allColors[0] != -1) {
+                    setListBackground(new Color((int) (allColors[0] * COLORS_COEFF), (int) (allColors[1] * COLORS_COEFF), (int) (allColors[2] * COLORS_COEFF)));
+                } else {
+                    resetBackground();
+                }
+                break;
+            }
+            case __GO_UI_STRING__: {
+                // Listboxes manage string vectors
+                setText((String[]) value);
+                break;
+            }
+            case __GO_UI_MAX__: {
+                Double maxValue = ((Double) value);
+                // Enable/Disable multiple selection
+                double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
+                setMultipleSelectionEnabled(maxValue - minValue > 1);
+                break;
+            }
+            case __GO_UI_MIN__: {
+                Double minValue = ((Double) value);
+                // Enable/Disable multiple selection
+                Double maxValue = (Double) controller.getProperty(uid, __GO_UI_MAX__);
+                setMultipleSelectionEnabled(maxValue - minValue > 1);
+                break;
+            }
+            case __GO_UI_LISTBOXTOP__: {
+                Integer[] listboxtopValue = ((Integer[]) value);
+                if (listboxtopValue.length > 0) {
+                    setListBoxTop(listboxtopValue[0]);
+                }
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+                break;
+            }
+        }
     }
 
-    public void setBackgroundcolor(Double[] color) {
-        SwingViewWidget.setBackgroundcolor(this, color);
+    public void resetBackground() {
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("List.background");
+        if (color != null) {
+            getList().setBackground(color);
+        }
     }
 
-    public void setForegroundcolor(Double[] color) {
-        SwingViewWidget.setForegroundcolor(this, color);
-    }
-
-    public void setString(String[] text) {
-        SwingViewWidget.setText(uid, this, text);
-    }
-
-    public void setCallback(String callback) {
-        SwingViewWidget.setCallback(uid, this, callback);
-    }
-
-    public void setPosition(Double[] position) {
-        SwingViewWidget.setPostion(uid, this, position);
-    }
-
-    public void setParent(int id) {
-        SwingViewWidget.setParent(this, id);
-    }
-
-    /* font*/
-    public void setFontweight(String value) {
-        SwingViewWidget.setFontWeight(this, value);
-    }
-
-    public void setFontname(String value) {
-        SwingViewWidget.setFontName(this, value);
-    }
-
-    public void setFontangle(String value) {
-        SwingViewWidget.setFontAngle(this, value);
-    }
-
-    public void setFontunits(double value) {
-        SwingViewWidget.setFontUnits(uid, this, value);
-    }
-
-    public void setFontsize(double value) {
-        SwingViewWidget.setFontSize(uid, this, value);
-    }
-
-    public void setMax(double value) {
-        SwingViewWidget.setMax(uid, this, value);
-    }
-
-    public void setMin(double value) {
-        SwingViewWidget.setMin(uid, this, value);
-    }
-
-    public void setValue(Double[] value) {
-        SwingViewWidget.setValue(uid, this, value);
-    }
-
-    public void setRelief(String value) {
-        SwingViewWidget.setRelief(this, value);
-    }
-
-    public void setSliderstep(Double[] value) {
-        SwingViewWidget.setSliderStep(this, value);
-    }
-
-    public void setListboxtop(Integer[] value) {
-        SwingViewWidget.setListBoxTop(this, value);
-    }
-
-    public void setEnable(boolean value) {
-        SwingViewWidget.setEnable(this, value);
-    }
-
-    public void setCallbacktype(int value) {
-        SwingViewWidget.setCallbackType(uid, this, value);
-    }
-
-    public void setTooltipstring(String[] value) {
-        SwingViewWidget.setToolTipString(this, value);
+    public void resetForeground() {
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("List.foreground");
+        if (color != null) {
+            getList().setForeground(color);
+        }
     }
 }

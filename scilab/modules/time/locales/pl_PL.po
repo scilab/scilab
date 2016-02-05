@@ -8,20 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-10-25 20:41+0000\n"
-"Last-Translator: Grzegorz Szostek <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:00+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: pl\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być pomiędzy %d "
-"i %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
@@ -50,7 +44,7 @@ msgstr ""
 "%s: Nieprawidłowa wartość dla argumentu wejściowego #%d: oczekiwano '%s'\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Niewłaściwy rozmiar parametru wejściowego #%d: oczekiwano ciąg znaków.\n"
 
@@ -70,6 +64,10 @@ msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany '%s' lub "
 "integer.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -144,8 +142,7 @@ msgstr ""
 "macierz m*3lub m*6.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego nr %d: %s musi być pomiędzy "
 "%d a %d.\n"
@@ -184,15 +181,16 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument: Same size expected.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego: oczekiwano tego samego "
-"rozmiaru.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentów wejściowych: oczekiwano typ integer.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
@@ -207,7 +205,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: You must call tic() before calling toc().\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
 
 #, c-format

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -25,9 +28,9 @@ import org.scilab.modules.commons.xml.XConfiguration;
  */
 public final class HelpOnTypingManager implements KeyListener {
 
-    private static HelpOnTypingManager instance = new HelpOnTypingManager();
-    private static boolean openers;
-    private static boolean keywords;
+    private static HelpOnTypingManager instance;
+    private boolean openers;
+    private boolean keywords;
 
     /**
      * Constructor
@@ -40,16 +43,27 @@ public final class HelpOnTypingManager implements KeyListener {
     }
 
     /**
+     * Clean
+     */
+    public static void close() {
+        instance = null;
+    }
+
+    /**
      * @return the singleton instance of HelpOnTypingManager
      */
     public static HelpOnTypingManager getInstance() {
+        if (instance == null) {
+            instance = new HelpOnTypingManager();
+        }
+
         return instance;
     }
 
     /**
      * @param b true if autocompletion on '(', '{', ...
      */
-    public static void enableOpeners(boolean b) {
+    public void enableOpeners(boolean b) {
         openers = b;
         SciNotesOptions.getSciNotesDisplay().autoCompleteOpeners = b;
         XConfiguration.set(XConfiguration.getXConfigurationDocument(), SciNotesOptions.DISPLAYPATH + "/@auto-complete-openers", Boolean.toString(b));
@@ -58,7 +72,7 @@ public final class HelpOnTypingManager implements KeyListener {
     /**
      * @param b true if autocompletion on 'if', 'function', ...
      */
-    public static void enableKeywords(boolean b) {
+    public void enableKeywords(boolean b) {
         keywords = b;
         SciNotesOptions.getSciNotesDisplay().autoCompleteKeywords = b;
         XConfiguration.set(XConfiguration.getXConfigurationDocument(), SciNotesOptions.DISPLAYPATH + "/@auto-complete-keywords", Boolean.toString(b));
@@ -67,21 +81,21 @@ public final class HelpOnTypingManager implements KeyListener {
     /**
      * @return true if help on typing is active
      */
-    public static boolean isActive() {
+    public boolean isActive() {
         return openers || keywords;
     }
 
     /**
      * @return true if help on typing for the openers is active
      */
-    public static boolean isOpenersActive() {
+    public boolean isOpenersActive() {
         return openers;
     }
 
     /**
      * @return true if help on typing for the openers is active
      */
-    public static boolean isKeywordsActive() {
+    public boolean isKeywordsActive() {
         return keywords;
     }
 
@@ -121,13 +135,17 @@ public final class HelpOnTypingManager implements KeyListener {
                             case ScilabLexerConstants.OSKEYWORD :
                                 kw = doc.getText(kwe.getStart(), kwe.getLength());
                                 if ("if".equals(kw)) {
-                                    doc.insertString(pos + 1, " then\nend", null);
-                                    ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 9);
-                                    textPane.setCaretPosition(ret[0]);
+                                    if (complete("end", textPane, doc, pos)) {
+                                        doc.insertString(pos + 1, " then\nend", null);
+                                        ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 9);
+                                        textPane.setCaretPosition(ret[0]);
+                                    }
                                 } else if (!"end".equals(kw)) {
-                                    doc.insertString(pos + 1, "\nend", null);
-                                    ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 4);
-                                    textPane.setCaretPosition(ret[0]);
+                                    if (complete("end", textPane, doc, pos)) {
+                                        doc.insertString(pos + 1, "\nend", null);
+                                        ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 4);
+                                        textPane.setCaretPosition(ret[0]);
+                                    }
                                 }
                                 break;
                             case ScilabLexerConstants.SKEYWORD :
@@ -139,7 +157,7 @@ public final class HelpOnTypingManager implements KeyListener {
                                 break;
                             case ScilabLexerConstants.FKEYWORD :
                                 /* We have 'function' or 'endfunction' */
-                                if ("f".equals(doc.getText(kwe.getStart(), 1))) {
+                                if ("f".equals(doc.getText(kwe.getStart(), 1)) && complete("endfunction", textPane, doc, pos)) {
                                     doc.insertString(pos + 1, "()\nendfunction", null);
                                     textPane.getIndentManager().indentDoc(pos + 3, pos + 14);
                                     textPane.setCaretPosition(pos + 1);
@@ -152,44 +170,83 @@ public final class HelpOnTypingManager implements KeyListener {
                     }
                 }
             } else if (openers) {
-                try {
-                    char ch = doc.getText(pos, 1).charAt(0);
-                    if (c == ch && (c == ')' || c == ']' || c == '}' || c == '\"')) {
-                        e.consume();
-                        textPane.setCaretPosition(pos + 1);
+                if (SciNotesOptions.getSciNotesPreferences().completeAtEOL) {
+                    int end = doc.getDefaultRootElement().getElement(doc.getDefaultRootElement().getElementIndex(pos)).getEndOffset() - 1;
+                    if (pos != end) {
                         return;
                     }
+                }
+
+                try {
+                    String str;
+                    switch (c) {
+                        case '(' :
+                            if (complete(')', textPane, doc, pos)) {
+                                str = "()";
+                            } else {
+                                return;
+                            }
+                            break;
+                        case '[' :
+                            if (complete(']', textPane, doc, pos)) {
+                                str = "[]";
+                            } else {
+                                return;
+                            }
+                            break;
+                        case '{' :
+                            if (complete('}', textPane, doc, pos)) {
+                                str = "{}";
+                            } else {
+                                return;
+                            }
+                            break;
+                        case '\"' :
+                            str = "\"\"";
+                            break;
+                        default :
+                            return;
+                    }
+
+                    doc.insertString(pos, str, null);
+                    e.consume();
+                    textPane.setCaretPosition(pos + 1);
                 } catch (BadLocationException exc) {
                     System.err.println(exc);
                 }
-
-                String str = null;
-                switch (c) {
-                    case '(' :
-                        str = "()";
-                        break;
-                    case '[' :
-                        str = "[]";
-                        break;
-                    case '{' :
-                        str = "{}";
-                        break;
-                    case '\"' :
-                        str = "\"\"";
-                        break;
-                    default :
-                }
-
-                if (str != null) {
-                    try {
-                        doc.insertString(pos, str, null);
-                        e.consume();
-                        textPane.setCaretPosition(pos + 1);
-                    } catch (BadLocationException exc) {
-                        System.err.println(exc);
-                    }
-                }
             }
         }
+    }
+
+    private static boolean complete(char next, ScilabEditorPane pane, ScilabDocument doc, int pos) throws BadLocationException {
+        MatchingBlockManager matchLR = pane.getMatchingBlockManager(true);
+        MatchingBlockScanner scanner = matchLR.getScanner();
+        MatchingBlockScanner.MatchingPositions mpos = scanner.getNextBlock(pos, true);
+        if (mpos != null) {
+            char mc = doc.getText(mpos.secondB, 1).charAt(0);
+            if (mc != next) {
+                return true;
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
+    private static boolean complete(String next, ScilabEditorPane pane, ScilabDocument doc, int pos) throws BadLocationException {
+        MatchingBlockManager matchLR = pane.getMatchingBlockManager(true);
+        MatchingBlockScanner scanner = matchLR.getScanner();
+        MatchingBlockScanner.MatchingPositions mpos = scanner.getNextBlock(pos, true);
+        if (mpos != null) {
+            String ms = doc.getText(mpos.secondB, mpos.secondE - mpos.secondB);
+            if (!next.equals(ms)) {
+                return true;
+            }
+
+            return false;
+        }
+
+        return true;
     }
 }

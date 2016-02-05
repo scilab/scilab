@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [a,b,sig]=reglin(x,y,dflag)
     // Solves a linear regression
@@ -25,10 +28,13 @@ function [a,b,sig]=reglin(x,y,dflag)
     if n2<>p2 then
         error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),"reglin",1,2));
     end;
+    if or(isnan(x)) | or(isnan(y)) then
+        error(msprintf(_("%s: NaNs detected, please use %s() instead.\n"), "reglin", "nanreglin"))
+    end
 
     xmoy=sum(x,2)/n2
     ymoy=sum(y,2)/n2
-    // We use armax for apropriate orders which will perform
+    // We use armax for appropriate orders which will perform
     // nothing but a least square
     // We could directly call pinv or \
     [arc,la,lb,sig]=armax(0,0,y-ymoy*ones(1,n2),x-xmoy*ones(1,n2),0,dflag);

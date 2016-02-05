@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - DIGITEO - Allan SIMON
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,6 +18,7 @@ package org.scilab.modules.ui_data.variableeditor;
 
 import java.awt.Component;
 
+import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -25,13 +29,13 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.TableModel;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
@@ -73,7 +77,7 @@ import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoManager;
  * @author Allan SIMON
  * @author Calixte DENIZET
  */
-public class SwingScilabVariableEditor extends SwingScilabTab implements SimpleVariableEditor {
+public class SwingScilabVariableEditor extends SwingScilabDockablePanel implements SimpleVariableEditor {
 
     /**
      * Prefix used in the tabs titles.
@@ -84,9 +88,9 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements SimpleV
     private static final long serialVersionUID = 1L;
 
     private final ScilabTabbedPane tabPane;
-    private final PushButton refreshButton;
-    private final PushButton undoButton;
-    private final PushButton redoButton;
+    private final JButton refreshButton;
+    private final JButton undoButton;
+    private final JButton redoButton;
 
     /**
      * Create a JTable with data Model.
@@ -194,26 +198,28 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements SimpleV
      */
     public ToolBar createToolBar() {
         ToolBar toolBar = ScilabToolBar.createToolBar();
-        toolBar.add(refreshButton);
-        toolBar.addSeparator();
-        toolBar.add(CreateVariableFromSelectionAction.createButton(this, UiDataMessages.CREATE));
-        toolBar.add(CreateNewVariableAction.createButton(this, UiDataMessages.CREATENEWVAR));
-        toolBar.addSeparator();
-        toolBar.add(CutAction.createButton(this, UiDataMessages.CUT));
-        toolBar.add(CopyAction.createButton(this, UiDataMessages.COPY));
-        toolBar.add(PasteAction.createButton(this, UiDataMessages.PASTE));
-        toolBar.addSeparator();
-        toolBar.add(undoButton);
-        toolBar.add(redoButton);
-        toolBar.addSeparator();
-        toolBar.add(SizeColumnsToFitAction.createButton(this, UiDataMessages.FIT));
-        toolBar.addSeparator();
-        toolBar.add(SetPrecisionShortAction.createButton(this, UiDataMessages.SHORT));
-        toolBar.add(SetPrecisionShorteAction.createButton(this, UiDataMessages.SHORTE));
-        toolBar.add(SetPrecisionLongAction.createButton(this, UiDataMessages.LONG));
-        toolBar.add(SetPrecisionLongeAction.createButton(this, UiDataMessages.LONGE));
-        toolBar.addSeparator();
-        toolBar.add(PlotAction.createButton(this, UiDataMessages.PLOTSELECTION));
+        SwingScilabToolBar stb = (SwingScilabToolBar) toolBar.getAsSimpleToolBar();
+
+        stb.add(refreshButton);
+        stb.addSeparator();
+        stb.add(CreateVariableFromSelectionAction.createButton(this, UiDataMessages.CREATE));
+        stb.add(CreateNewVariableAction.createButton(this, UiDataMessages.CREATENEWVAR));
+        stb.addSeparator();
+        stb.add(CutAction.createButton(this, UiDataMessages.CUT));
+        stb.add(CopyAction.createButton(this, UiDataMessages.COPY));
+        stb.add(PasteAction.createButton(this, UiDataMessages.PASTE));
+        stb.addSeparator();
+        stb.add(undoButton);
+        stb.add(redoButton);
+        stb.addSeparator();
+        stb.add(SizeColumnsToFitAction.createButton(this, UiDataMessages.FIT));
+        stb.addSeparator();
+        stb.add(SetPrecisionShortAction.createButton(this, UiDataMessages.SHORT));
+        stb.add(SetPrecisionShorteAction.createButton(this, UiDataMessages.SHORTE));
+        stb.add(SetPrecisionLongAction.createButton(this, UiDataMessages.LONG));
+        stb.add(SetPrecisionLongeAction.createButton(this, UiDataMessages.LONGE));
+        stb.addSeparator();
+        stb.add(PlotAction.createButton(this, UiDataMessages.PLOTSELECTION));
 
         return toolBar;
     }

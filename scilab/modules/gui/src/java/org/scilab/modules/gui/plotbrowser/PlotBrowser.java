@@ -2,17 +2,20 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Marcos CARDINOT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.plotbrowser;
 
 import javax.swing.SwingUtilities;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -85,7 +88,7 @@ public class PlotBrowser {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingPlotBrowser.PLOTBROWSERUUID);
             if (!success) {
                 PlotBrowserTab.getPlotBrowserInstance(objectID);
-                SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
+                SwingScilabWindow window = SwingScilabWindow.createWindow(true);
                 window.addTab(plotBrowserTab);
                 window.setLocation(0, 0);
                 window.setSize(300, 700);
@@ -114,7 +117,7 @@ public class PlotBrowser {
      * Close PlotBrowser
      */
     public void close() {
-        ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabTab) plotBrowserTab);
+        ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockablePanel) plotBrowserTab);
     }
 
     /**

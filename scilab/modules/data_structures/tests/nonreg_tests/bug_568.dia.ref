@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -19,7 +20,6 @@
 //    and 2.8 alpha
 //
 //    fixed in CVS version
-// exec( "/home/huynh/poubelle/testNonReg/bug568.sce");
-// exec("e:\testNonReg\bug568.sce");
 aa=zeros(4,4,11);
-if execstr('bb(1,1,:)=aa(1,1,:)','errcatch') <> 15 then bugmes();quit;end
+bb(1,1,:)=aa(1,1,:);
+assert_checkequal(aa(1,1,:), bb);

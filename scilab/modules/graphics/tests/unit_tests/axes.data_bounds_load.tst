@@ -1,0 +1,31 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Bruno JOFRET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+//
+// load axes moving data_bounds
+// emulate some xcos scope behaviour
+//
+
+f = gcf();
+subplot(211);
+a1 = gca();
+a1.data_bounds = [0, -2; 30 , 2];
+a1.axes_visible = "on";
+subplot(212);
+a2 = gca();
+a2.data_bounds = [0, -2; 30 , 2];
+a2.axes_visible = "on";
+
+tmax = 1d5-1;
+refreshperiod=30;
+tstep = 0.1;
+for tmin=0:refreshperiod:tmax
+    a1.data_bounds = [tmin, -2; tmin + refreshperiod , 2];
+    a2.data_bounds = [tmin, -2; tmin + refreshperiod , 2];
+end

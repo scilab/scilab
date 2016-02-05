@@ -3,17 +3,20 @@
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) DIGITEO - 2011 - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 /*--------------------------------------------------------------------------*/
 #include "gw_jvm.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "addToClasspath.h"
 #include "getClasspath.h"
@@ -21,28 +24,27 @@
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_javaclasspath(char *fname, unsigned long fname_len)
+int sci_javaclasspath(char *fname, void* pvApiCtx)
 {
     int *piAddressVarOne = NULL;
     int iType = 0;
     SciErr sciErr;
 
-    Rhs = Max(Rhs, 0);
     CheckRhs(0, 1);
     CheckLhs(0, 1);
 
     if (Rhs == 0)
     {
-        int nbRow = 0;
-        int nbCol = 1;
-        char **Strings = NULL;
+        int iRows = 0;
+        int iCols = 1;
+        char **pstClasspath = NULL;
 
-        Strings = getClasspath(&nbRow);
-        createMatrixOfString(pvApiCtx, Rhs + 1, nbRow, nbCol, Strings);
+        pstClasspath = getClasspath(&iRows);
+        createMatrixOfString(pvApiCtx, Rhs + 1, iRows, iCols, pstClasspath);
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
-        freeArrayOfString(Strings, nbRow * nbCol);
+        freeArrayOfString(pstClasspath, iRows * iCols);
     }
     else
     {
@@ -65,83 +67,26 @@ int sci_javaclasspath(char *fname, unsigned long fname_len)
         if ( iType == sci_strings )
         {
             char **pStVarOne = NULL;
-            int *lenStVarOne = NULL;
-            static int n1 = 0, m1 = 0;
+            static int iCols = 0, iRows = 0;
             int i = 0;
 
-            /* get dimensions */
-            sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-            if (sciErr.iErr)
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &iRows, &iCols, &pStVarOne))
             {
-                printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
-
-            lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
-            if (lenStVarOne == NULL)
-            {
-                Scierror(999, _("%s: No more memory.\n"), fname);
-                return 0;
-            }
-
-            /* get lengths */
-            sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-            if (sciErr.iErr)
-            {
-                if (lenStVarOne)
-                {
-                    FREE(lenStVarOne);
-                    lenStVarOne = NULL;
-                }
-                printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-                return 0;
-            }
-
-            pStVarOne = (char **)MALLOC(sizeof(char*) * (m1 * n1));
-            if (pStVarOne == NULL)
-            {
-                if (lenStVarOne)
-                {
-                    FREE(lenStVarOne);
-                    lenStVarOne = NULL;
-                }
-                Scierror(999, _("%s: No more memory.\n"), fname);
-                return 0;
-            }
-            for (i = 0; i < m1 * n1; i++)
-            {
-                pStVarOne[i] = (char*)MALLOC(sizeof(char*) * (lenStVarOne[i] + 1));
-            }
-
-            /* get strings */
-            sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-            if (sciErr.iErr)
-            {
-                freeArrayOfString(pStVarOne, m1 * n1);
-                if (lenStVarOne)
-                {
-                    FREE(lenStVarOne);
-                    lenStVarOne = NULL;
-                }
-                printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-                return 0;
-            }
-
-            for (i = 0; i < m1 * n1 ; i++)
+            for (i = 0; i < iRows * iCols ; i++)
             {
                 if (!addToClasspath(pStVarOne[i], STARTUP))
                 {
                     Scierror(999, _("%s: Could not add URL to system classloader : %s.\n"), fname, pStVarOne[i]);
-                    freeArrayOfString(pStVarOne, m1 * n1);
+                    freeArrayOfString(pStVarOne, iRows * iCols);
                     return 0;
                 }
             }
             LhsVar(1) = 0;
             PutLhsVar();
-            freeArrayOfString(pStVarOne, m1 * n1);
+            freeArrayOfString(pStVarOne, iRows * iCols);
         }
         else
         {

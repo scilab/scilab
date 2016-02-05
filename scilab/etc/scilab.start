@@ -2,60 +2,25 @@
 // Copyright (C) 2007-2008 - INRIA
 // Copyright (C) 2009-2011 - DIGITEO
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 // Main Scilab initialisation file
 
 mode(-1);  // silent execution mode
 
 // clean database when restarted ======================================
-predef("clear"); //unprotect all variables
-clear  // erase all variables
+//predef("clear"); //unprotect all variables
+clear;  // erase all variables
 clearglobal();
 
-// Set stack size   ===================================================
-function setStackSize()
-  defaultstacksize = 10000000;
-  old = stacksize()
-  params = sciargs();
-  nparam = find(params == "-mem");
-  if (nparam) then
-    ierr = execstr("newstacksize=" + params(nparam + 1), "errcatch");
-    if (ierr == 0) then
-      if old(1) <> newstacksize then
-        stacksize(newstacksize);
-      end
-    else
-      if old(1) <> defaultstacksize then
-        stacksize(defaultstacksize);
-      end
-    end
-  else
-    if old(1) <> defaultstacksize then
-      stacksize(defaultstacksize);
-    end
-  end
-endfunction
-setStackSize();
-clear setStackSize;
-
-// Special variables definition =======================================
-oldieee=ieee()
-ieee(2);
-%inf = 1/0;
-ieee(0);
-%nan = %inf-%inf;
-// boolean variables
-%T = %t;
-%F = %f;
 %tk = (with_module("tclsci") & getscilabmode() <> "NWNI");
-
-ieee(oldieee);
-clear oldieee
 
 // Default Obsolete Warning policy  ===================================
 global %modalWarning;
@@ -69,25 +34,21 @@ clear %modalWarning;
 PWD = pwd();
 
 // Startup message  ===================================================
-if (sciargs() <> "-nb") & ~fromjava() & ~fromc() & getscilabmode() == "STD" then
-  write(%io(2),[" ";gettext("Startup execution:")]);
-  write(%io(2),gettext("  loading initial environment"));
+// if (sciargs() <> "-nb") & ~fromjava() & ~fromc() & getscilabmode() == "STD" then
+if (sciargs() <> "-nb") & getscilabmode() == "STD" then
+  printf("\n\n%s\n", gettext("Startup execution:"));
+  printf(gettext("  loading initial environment") + "\n");
 end
 
-if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & ~fromjava() & ~fromc() & sciargs()<>"-nb")
+//if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & ~fromjava() & ~fromc() & sciargs()<>"-nb")
+if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & sciargs()<>"-nb")
    [v, opts] = getversion()
-   write(%io(2), strsubst(v, "scilab-", "Scilab ") + " (" + opts($-1) + ", " + opts($) + ")");
+   printf(strsubst(v, "scilab-", "Scilab ") + " (" + opts($-1) + ", " + opts($) + ")\n");
    clear v opts;
 end
 
 // loads modules ======================================================
 modules    = getmodules();
-
-// Map 'load' to 'old binary files load' called %_load to be able to load Scilab libraries
-warning("off");
-load = %_load;
-warning("on");
-
 for i=1:size(modules,"*")
   startFile = "SCI/modules/" + modules(i) + "/etc/" + modules(i) + ".start";
   ierr=exec(startFile, 'errcatch', -1);
@@ -97,10 +58,10 @@ for i=1:size(modules,"*")
      exit(2);
    end
 end
-clear modules i load ierr startFile;
+clear modules i ierr startFile;
 
 // Create some configuration variables ================================
-home = getenv("HOME", SCI);
+//home = getenv("HOME", SCI);
 if getos() <> "Windows" then
   if getenv("PRINTERS", "ndef") == "ndef" then
     setenv("PRINTERS", "lp");
@@ -141,21 +102,29 @@ if sciargs()<>"-nouserstartup" then
 
   startupfiles = [ SCIHOME + filesep() + ".scilab"     ; .. // Home directory startup
                    SCIHOME + filesep() + "scilab.ini" ];    //  ""      ""    startup
-
-  if SCIHOME <> pwd() then
-    startupfiles = [ startupfiles     ; ..
-                     ".scilab"        ; .. // Working directory startup
-                     "scilab.ini" ]   ;    //  ""         ""    startup
-  end
-
   for i = 1:size(startupfiles, "*")
     if isfile(startupfiles(i)) then
       exec(startupfiles(i),-1);
     end
   end
 
-  clear i;
-  clear startupfiles;
+  // execute .scilab and scilab.start only
+  // if last exec does not change current directory to SCIHOME
+  // See bug #4150
+  workingDirectory = pwd();
+  if SCIHOME <> workingDirectory then
+
+      workingfiles = [ workingDirectory + filesep() + ".scilab"     ; .. // Working directory startup
+                       workingDirectory + filesep() + "scilab.ini" ];    //  ""      ""    startup
+
+      for i = 1:size(startupfiles, "*")
+        if isfile(startupfiles(i)) then
+          exec(startupfiles(i),-1);
+        end
+      end
+  end
+
+  clear i startupfiles workingfiles workingDirectory;
 end
 
 // Menus/toolbar can now be enabled ====================================
@@ -183,3 +152,9 @@ if getscilabmode() == "STD" then
 end
 // ====================================================================
 clear ans
+
+printf("------------------------------------------------------------\n");
+printf("This is alpha version: avoid using in production\n");
+printf("but please report any problem at http://bugzilla.scilab.org.\n");
+printf("Thank you!\n");
+printf("------------------------------------------------------------\n");

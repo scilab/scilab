@@ -11,7 +11,7 @@ function subdemolist = demo_gateway()
     demopath = get_absolute_file_path("gui.dem.gateway.sce");
     add_demo(gettext("GUI"), demopath + "gui.dem.gateway.sce");
 
-    subdemolist = [_("Dialogs")   ,"dialog.dem.sce" ; ..
+    subdemolist = [_("Dialogs")   ,"dialogs/dialogs.dem.gateway.sce" ; ..
     _("Uicontrols 1") ,"uicontrol.dem.sce" ];
 
     subdemolist = [ subdemolist ;
@@ -22,6 +22,12 @@ function subdemolist = demo_gateway()
 
     subdemolist = [ subdemolist ;
     _("Show images with uicontrols ") ,  "uicontrol_image.dem.sce" ];
+
+    subdemolist = [ subdemolist ;
+    _("Listboxes and Popupmenus") ,  "uicontrol_listbox_popupmenu.dem.sce" ];
+
+    subdemolist = [ subdemolist ;
+    _("Uicontrols rendering") ,  "usedeprecatedskin.dem.sce" ];
 
     subdemolist(:,2) = demopath + subdemolist(:,2);
 endfunction

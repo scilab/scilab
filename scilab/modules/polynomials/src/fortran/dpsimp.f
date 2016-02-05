@@ -1,11 +1,14 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) 1990-2008 - INRIA - Serge STEER
 c
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
       subroutine dpsimp(a,na,b,nb,a1,na1,b1,nb1,w,ierr)
 c!    but
 c     Etant donnes une fraction rationnelle donnee par ses polynomes
@@ -37,7 +40,8 @@ c     chevauchent, l'adresse de a1 (resp b1) doit etre au moins egale a
 c     l'adresse de a  (resp b)
 c
 c     w    :  tableau de travail de taille:
-c             2*(na+nb)+min(na,nb)+10*max(na,nb)+3*max(na,nb)**2+4
+c             n0 = max(na,nb) + 1
+c             2*(na+nb)+min(na,nb)+10*n0+3*n0**2+4
 c     ierr :
 c             en entree ierr specifie l'espace memoire disponible dans w
 c             en sortie:
@@ -89,8 +93,8 @@ c
 
       n0=max(na1,nb1)+1
       lfree=lw+10*n0+3*n0*n0
-      if(lfree.ge.maxw.and.na1.gt.0.and.nb1.gt.0) ierr=2
-      if(lfree.ge.maxw.or.na1.eq.0.or.nb1.eq.0) then
+      if(lfree.gt.maxw.and.na1.gt.0.and.nb1.gt.0) ierr=2
+      if(lfree.gt.maxw.or.na1.eq.0.or.nb1.eq.0) then
          if(nz.eq.0) then
             call dcopy(na1+1,a(la0),1,a1,1)
             call dcopy(nb1+1,b(lb0),1,b1,1)

@@ -20,7 +20,7 @@ function demo_winfilt()
         plot2d(fr', log(wfm)')
         xtitle(" ", _("frequency"), _("magnitude"));
         xtitle([_("Windowed FIR Low pass Filter"); ..
-        _("Kaiser window,cut-off:0.2"); ..
+        _("Kaiser window, cut-off: 0.2"); ..
         _("length 33")]);
 
         halt(_("Press Return to continue ... \n"));
@@ -35,7 +35,7 @@ function demo_winfilt()
         plot2d(fr',log(wfm)')
         xtitle(" ", _("frequency"), _("magnitude"));
         xtitle([_("Windowed FIR Low pass Filter"); ..
-        _("Hamming window,cut-off:0.2,0.3"); ..
+        _("Hamming window, cut-off: 0.2, 0.3"); ..
         _("length 127")]);
 
         halt(_("Press Return to continue ... \n"));
@@ -51,7 +51,7 @@ function demo_winfilt()
         plot2d(fr',log(wfm)')
         xtitle(" ", _("frequency"), _("magnitude"));
         xtitle([_("Windowed FIR Band pass Filter"); ..
-        _("Chebyshev window,cut-off:0.15,0.35"); ..
+        _("Chebyshev window, cut-off: 0.15, 0.35"); ..
         _("length 55")]);
 
         halt(_("Press Return to continue ... \n"));

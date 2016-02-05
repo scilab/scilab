@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction;
@@ -34,24 +37,13 @@ public class OnePointRubberBox extends RubberBox implements PointRubberBox {
 
     public OnePointRubberBox(DrawerVisitor drawerVisitor, double initialRect[]) {
         super(drawerVisitor);
-        firstPoint = new Vector3d(initialRect[0], initialRect[1], 0);
+        double[][] factors = axes.getScaleTranslateFactors();
+        firstPoint = new Vector3d(initialRect[0] * factors[0][0] + factors[1][0],
+                                  initialRect[1] * factors[0][1] + factors[1][1],
+                                  0);
         secondPoint = firstPoint;
         status = Status.WAIT_POINT_B;
         setEnable(true);
-    }
-
-    public double[] getResults() {
-        double result[] = {
-            mouseButton - 1,
-            Math.min(firstPoint.getX(), secondPoint.getX()),
-            Math.max(firstPoint.getY(), secondPoint.getY()),
-            Math.max(firstPoint.getZ(), secondPoint.getZ()),
-            Math.abs(firstPoint.getX() - secondPoint.getX()),
-            Math.abs(firstPoint.getY() - secondPoint.getY()),
-            Math.abs(firstPoint.getZ() - secondPoint.getZ())
-        };
-
-        return result;
     }
 
     @Override

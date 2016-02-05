@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.events;
@@ -36,6 +39,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
     private SciTranslator eventTranslator = new SciTranslator();
     private boolean freedom = true;
     private boolean inCanvas = false;
+    private boolean useHandle = true;
 
     public ScilabEventListener(String callback, Integer windowsUID) {
         eventTranslator.setClickAction(SciTranslator.UNMANAGED);
@@ -43,11 +47,24 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
         this.windowsUID	= windowsUID;
     }
 
+    // Remove this constructor
+    // once event_handler call are unified using handle
+    public ScilabEventListener(String callback, Integer windowsUID, boolean useHandle) {
+        eventTranslator.setClickAction(SciTranslator.UNMANAGED);
+        this.callback = callback;
+        this.windowsUID = windowsUID;
+        this.useHandle = useHandle;
+    }
+
     private void callScilab() {
         // @FIXME : choose to send it to scilab or to display it
         //
-        int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
-        InterpreterManagement.requestScilabExec(callback + '(' + windowsId + ',' + mouseX + ',' + mouseY + ',' + eventTranslator.getClickAction() + ')');
+        if (useHandle) {
+            InterpreterManagement.requestScilabExec(callback + "(getcallbackobject(" + windowsUID + ")," + mouseX + ',' + mouseY + ',' + eventTranslator.getClickAction() + ')');
+        } else {
+            int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
+            InterpreterManagement.requestScilabExec(callback + '(' + windowsId + ',' + mouseX + ',' + mouseY + ',' + eventTranslator.getClickAction() + ')');
+        }
         //
         //System.out.println("call " + callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
     }
@@ -55,8 +72,12 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
     private void invokeScilab() {
         // @FIXME : choose to send it to scilab or to display it
         //
-        int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
-        InterpreterManagement.requestScilabExec(callback + '(' + windowsId + ',' + mouseX + ',' + mouseY + ',' + eventTranslator.javaClick2Scilab() + ')');
+        if (useHandle) {
+            InterpreterManagement.requestScilabExec(callback + "(getcallbackobject(" + windowsUID + ")," + mouseX + ',' + mouseY + ',' + eventTranslator.javaClick2Scilab() + ')');
+        } else {
+            int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
+            InterpreterManagement.requestScilabExec(callback + '(' + windowsId + ',' + mouseX + ',' + mouseY + ',' + eventTranslator.javaClick2Scilab() + ')');
+        }
         //
         //System.out.println("invoke " + callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');
     }
@@ -138,6 +159,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
                 public void run() {
                     invokeScilab();
                     freedom = true;
+                    eventTranslator.setClickAction(SciTranslator.UNMANAGED);
                 }
             };
             launchMe.start();
@@ -145,8 +167,8 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     public void mouseReleased(MouseEvent arg0) {
-        // TODO Auto-generated method stub
-        if (eventTranslator.getClickAction() == SciTranslator.UNMANAGED) {
+        if (eventTranslator.getClickAction() == SciTranslator.UNMANAGED ||
+                eventTranslator.getClickAction() == SciTranslator.SCIMOVED) {
             eventTranslator.setClickAction(
                 SciTranslator.javaButton2Scilab(arg0.getButton(),
                                                 SciTranslator.RELEASED,
@@ -171,6 +193,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
             mouseY = arg0.getY();
             callScilab();
         }
+        eventTranslator.setClickAction(SciTranslator.UNMANAGED);
     }
 
     public void mouseMoved(MouseEvent arg0) {
@@ -178,6 +201,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
         mouseX = arg0.getX();
         mouseY = arg0.getY();
         callScilab();
+        eventTranslator.setClickAction(SciTranslator.UNMANAGED);
     }
 
 }

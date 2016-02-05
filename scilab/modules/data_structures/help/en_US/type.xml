@@ -100,14 +100,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>11</term>
-                <listitem>
-                    <para>
-                        an un-compiled function (Scilab code). A function created with <link linkend="deff">deff</link> with argument <literal>'n'</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>13</term>
                 <listitem>
                     <para>
@@ -231,9 +223,6 @@ type(l)
 
 deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y']);
 type(mymacro)
-
-deff('[x]=myplus(y,z)','x=y+z','n');
-type(myplus)
 
 ]]></programlisting>
     </refsection>

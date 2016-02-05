@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ordmmd" xml:lang="en">
@@ -85,11 +88,11 @@
     <refsection>
         <title>Examples</title>
         <para>
-            In the following example, we compute an ordering for a symmetric 
-            sparse matrix. 
-            We use the <literal>sp2adj</literal> function to compute the adjacency structure. 
+            In the following example, we compute an ordering for a symmetric
+            sparse matrix.
+            We use the <literal>sp2adj</literal> function to compute the adjacency structure.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A = [
 4. 1. 2. 0.5 2.
 1. 0.5 0. 0. 0.
@@ -103,11 +106,11 @@ n = size(A,"r");
 [perm,invp,nofsub]=ordmmd(xadj,iadj,n)
  ]]></programlisting>
         <para>
-            In the following example, we compute an ordering for a symmetric 
-            sparse matrix. 
+            In the following example, we compute an ordering for a symmetric
+            sparse matrix.
             We check that <literal>invp</literal> is the inverse of <literal>perm</literal>.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     A = [
     0.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  2.,  0.,  0. ;
     0.,  0.,  4.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0. ;
@@ -124,7 +127,7 @@ n = size(A,"r");
     A=sparse(A);
     [xadj,adjncy,anz]=sp2adj(A);
     [perm,invp,nofsub]=ordmmd(xadj,adjncy,n);
-    perm(invp) 
+    perm(invp)
  ]]></programlisting>
         <para>
             In the following example, we compare the sparsity pattern of the Cholesky
@@ -135,7 +138,7 @@ n = size(A,"r");
             15, while the matrix <literal>P'*A*P</literal> has a Cholesky decomposition with
             9 nonzeros.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A = [
 4. 1. 2. 0.5 2.
 1. 0.5 0. 0. 0.
@@ -160,7 +163,7 @@ P=spzeros(n,n);
 for i=1:n
     P(perm(i),i)=1;
 end
-// See the sparsity pattern of the Cholesky factors 
+// See the sparsity pattern of the Cholesky factors
 // of P'*A*P
 U = sparse(chol(full(P'*A*P)));
 subplot(2,1,2);
@@ -172,7 +175,7 @@ xtitle("Sparsity pattern of U, such that P''*A*P=U''*U");
             4. 1. 2. 0.5 2.
             1. 0.5 0. 0. 0.
             2. 0. 3. 0. 0.
-            0.5 0. 0. 5./8. 0.
+            0.5 0. 0. 0.625 0.
             2. 0. 0. 0. 16.
             ];
             A = sparse(A);

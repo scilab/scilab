@@ -558,6 +558,9 @@ C XP,YP =     Local copies of PX and PY -- coordinates of P
 C
       XP = PX
       YP = PY
+C
+      CS2VAL = 0.
+C
       IF (N .LT. 10  .OR.  NR .LT. 1  .OR.  DX .LE. 0.  .OR.
      .    DY .LE. 0.  .OR.  RMAX .LT. 0.) RETURN
 C

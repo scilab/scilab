@@ -817,8 +817,8 @@
             <block name="CBLOCK4">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CBLOCK4.png"/>
             </block>
-            <block name="DEBUG_SCICOS">
-                <icon variable="SCI" path="/modules/xcos/images/palettes/DEBUG_SCICOS.png"/>
+            <block name="DEBUG">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DEBUG.png"/>
             </block>
             <block name="EXPRESSION">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/EXPRESSION.png"/>

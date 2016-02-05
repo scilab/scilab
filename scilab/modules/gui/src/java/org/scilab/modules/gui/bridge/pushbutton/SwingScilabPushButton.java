@@ -4,31 +4,43 @@
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.gui.bridge.pushbutton;
 
-import java.awt.Dimension;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
+
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
@@ -37,7 +49,6 @@ import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.widget.ViewMethods;
 import org.scilab.modules.gui.widget.Widget;
 
 /**
@@ -45,7 +56,7 @@ import org.scilab.modules.gui.widget.Widget;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabPushButton extends JButton implements SwingViewObject, SimplePushButton, ViewMethods {
+public class SwingScilabPushButton extends JButton implements SwingViewObject , Widget {
 
     private static final long serialVersionUID = 2277539556048935959L;
 
@@ -56,25 +67,29 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
     private boolean isLaTeX;
     private int fontSize;
 
+    private Border defaultBorder = null;
+
     /**
      * Constructor
      */
     public SwingScilabPushButton() {
         super();
-        setFocusable(false);
+        //setFocusable(false);
 
-        /* Avoid the L&F to erase user background settings */
-        setContentAreaFilled(false);
-        setOpaque(true);
-        addPropertyChangeListener(ICON_CHANGED_PROPERTY, new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                final Icon newIcon = (Icon) evt.getNewValue();
-                final boolean iconEnable = newIcon != null;
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            /* Avoid the L&F to erase user background settings */
+            setContentAreaFilled(false);
+            setOpaque(true);
 
-                setContentAreaFilled(iconEnable);
-                setOpaque(!iconEnable);
-            }
-        });
+            addPropertyChangeListener(ICON_CHANGED_PROPERTY, new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent evt) {
+                    final Icon newIcon = (Icon) evt.getNewValue();
+                    final boolean iconEnable = newIcon != null;
+                    setContentAreaFilled(iconEnable);
+                    setOpaque(!iconEnable);
+                }
+            });
+        }
     }
 
     /**
@@ -82,25 +97,32 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      * @return the text
      */
     public String getBaseText() {
-        return this.text;
+        return text;
     }
 
     /**
      * @param text to use for the menu, if it's enclosed between '$' then it's interpreted as
      * a LaTeX string, in this case the setIcon method of this object is used.
      */
-    public void setString(String[] text) {
-        SwingViewWidget.setText(uid, this, text);
+    public void setText(String text) {
+        if (text == null) {
+            this.text = null;
+            isLaTeX = false;
+            super.setIcon(null);
+            super.setText(null);
+        } else {
+            this.text = text;
+            isLaTeX = ScilabSpecialTextUtilities.setText(this, text);
+            if (isLaTeX) {
+                super.setText("");
+            } else {
+                super.setText(text);
+            }
+        }
     }
 
-    public void setText(String text) {
-        this.text = text;
-        isLaTeX = ScilabSpecialTextUtilities.setText(this, text);
-        if (isLaTeX) {
-            super.setText("");
-        } else {
-            super.setText(text);
-        }
+    public void setEmptyText() {
+        setText(null);
     }
 
     /**
@@ -148,7 +170,6 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      */
     public void setDims(Size newSize) {
         setSize(newSize.getWidth(), newSize.getHeight());
-        setPreferredSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
     }
 
     /**
@@ -156,11 +177,6 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      * @param newPosition the position to set to the PushButton
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
-
-    public void setPosition(Double[] newPosition) {
-        SwingViewWidget.setPostion(uid, this, newPosition);
-    }
-
     public void setPosition(Position newPosition) {
         Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
         setLocation(javaPosition.getX(), javaPosition.getY());
@@ -174,9 +190,6 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
         super.setIcon(new ImageIcon(filename));
     }
 
-    public void setCallback(String callback) {
-        SwingViewWidget.setCallback(uid, this, callback);
-    }
     /**
      * Add a callback to the pushbutton
      * @param callback the callback to set.
@@ -195,15 +208,6 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      */
     public void setEnabled(boolean status) {
         super.setEnabled(status);
-        /* (Des)Activate the callback */
-        if (callback != null) {
-            if (status) {
-                removeActionListener(callback); /* To be sure the callback is not added two times */
-                addActionListener(callback);
-            } else {
-                removeActionListener(callback);
-            }
-        }
     }
 
     /**
@@ -250,9 +254,6 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
         setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
     }
 
-    public void setHorizontalalignment(String alignment) {
-        SwingViewWidget.setHorizontalAlignment(this, alignment);
-    }
     /**
      * Set the vertical alignment for the PushButton text
      * @param alignment the value for the alignment (See ScilabAlignment.java)
@@ -261,15 +262,15 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
         setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
     }
 
-    public void setVerticalalignment(String alignment) {
-        SwingViewWidget.setVerticalAlignment(this, alignment);
-    }
     /**
      * Set the Relief of the PushButton
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setWidgetRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+    public void setRelief(String reliefType) {
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -313,81 +314,57 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
         return uid;
     }
 
-    public void setBackgroundcolor(Double[] color) {
-        SwingViewWidget.setBackgroundcolor(this, color);
-    }
-
-    public void setForegroundcolor(Double[] color) {
-        SwingViewWidget.setForegroundcolor(this, color);
-    }
-
-    public void setParent(int id) {
-        SwingViewWidget.setParent(this, uid);
-    }
-
     /**
      * Generic update method
      * @param property property name
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        switch (property) {
+            case __GO_UI_ICON__ : {
+                String iconName = (String)value;
+                if (iconName == null || iconName.equals("")) {
+                    super.setIcon(null);
+                } else {
+                    File file = new File((String)value);
+                    if (file.exists() == false) {
+                        String filename = FindIconHelper.findImage((String)value);
+                        file = new File(filename);
+                    }
+
+                    try {
+                        BufferedImage icon = ImageIO.read(file);
+                        setIcon(new ImageIcon(icon));
+                    } catch (IOException e) {
+                    }
+                }
+                break;
+            }
+            default : {
+                SwingViewWidget.update(this, property, value);
+            }
+        }
     }
 
-    /* font*/
-    public void setFontweight(String value) {
-        SwingViewWidget.setFontWeight(this, value);
+    public void setBackground(Color color) {
+        setContentAreaFilled(false);
+        setOpaque(true);
+        super.setBackground(color);
     }
 
-    public void setFontname(String value) {
-        SwingViewWidget.setFontName(this, value);
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Button.background");
+        if (color != null) {
+            setContentAreaFilled(true);
+            setOpaque(false);
+            super.setBackground(color);
+        }
     }
 
-    public void setFontangle(String value) {
-        SwingViewWidget.setFontAngle(this, value);
-    }
-
-    public void setFontunits(double value) {
-        SwingViewWidget.setFontUnits(uid, this, value);
-    }
-
-    public void setFontsize(double value) {
-        SwingViewWidget.setFontSize(uid, this, value);
-    }
-
-    public void setMax(double value) {
-        SwingViewWidget.setMax(uid, this, value);
-    }
-
-    public void setMin(double value) {
-        SwingViewWidget.setMin(uid, this, value);
-    }
-
-    public void setValue(Double[] value) {
-        SwingViewWidget.setValue(uid, this, value);
-    }
-
-    public void setRelief(String value) {
-        SwingViewWidget.setRelief(this, value);
-    }
-
-    public void setSliderstep(Double[] value) {
-        SwingViewWidget.setSliderStep(this, value);
-    }
-
-    public void setListboxtop(Integer[] value) {
-        SwingViewWidget.setListBoxTop(this, value);
-    }
-
-    public void setEnable(boolean value) {
-        SwingViewWidget.setEnable(this, value);
-    }
-
-    public void setCallbacktype(int value) {
-        SwingViewWidget.setCallbackType(uid, this, value);
-    }
-
-    public void setTooltipstring(String[] value) {
-        SwingViewWidget.setToolTipString(this, value);
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Button.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
     }
 }

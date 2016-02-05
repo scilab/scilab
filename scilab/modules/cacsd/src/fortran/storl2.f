@@ -1,11 +1,14 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
 c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 
       subroutine storl2(neq,tq,tg,ng,imin,tabc,iback,ntback,tback,
      &     nch,mxsol,w,ierr)
@@ -46,6 +49,7 @@ C!
       dimension tq(0:*), tabc(mxsol,0:*), ntback(iback),
      &          tback(mxsol,0:*), xx(1),tg(ng+1),w(*)
 C
+cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
       common /sortie/ io,info,ll
 C
       ierr = 0

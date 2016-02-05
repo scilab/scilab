@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
 
+// <-- CLI SHELL MODE -->
 
 doc = xmlReadStr("<root><a b=""b"" c=""c"" d=""d""><b>b</b></a><c>c</c></root>");
 assert_checkequal(size(doc.root.children), [1 2]);

@@ -4,11 +4,14 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -59,7 +62,7 @@ int set_parent_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType,
         }
         else
         {
-            Scierror(999, _("Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"), "parent", "Figure", "Frame uicontrol");
+            Scierror(999, _("Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
             return SET_PROPERTY_ERROR;
         }
 
@@ -75,7 +78,8 @@ int set_parent_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType,
         if (iParentType != __GO_FIGURE__)
         {
             getGraphicObjectProperty(iParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
-            if (iParentType != __GO_UICONTROL__ || iParentStyle != __GO_UI_FRAME__)
+            if (iParentType != __GO_UICONTROL__ ||
+                    (iParentStyle != __GO_UI_FRAME__ && iParentStyle != __GO_UI_TAB__ && iParentStyle != __GO_UI_LAYER__))
             {
                 Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
                 return SET_PROPERTY_ERROR;
@@ -90,7 +94,7 @@ int set_parent_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType,
     {
         if ((valueType != sci_handles) && (valueType != sci_matrix))    /* sci_matrix used for adding menus in console menu */
         {
-            Scierror(999, _("Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"), "parent", "Figure", "Uimenu");
+            Scierror(999, _("Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"), "Parent", "Figure", "Uimenu");
             return SET_PROPERTY_ERROR;
         }
         else
@@ -98,11 +102,48 @@ int set_parent_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType,
             return setMenuParent(iObjUID, _pvData, valueType, nbRow, nbCol);
         }
     }
-    else
+
+    if (iObjType == __GO_AXES__)
     {
-        Scierror(999, _("Parent property can not be modified directly.\n"));
-        return SET_PROPERTY_ERROR;
+        if (valueType == sci_handles)
+        {
+            iParentUID = getObjectFromHandle((long)((long long*)_pvData)[0]);
+        }
+        else if (valueType == sci_matrix)
+        {
+            iParentUID = getFigureFromIndex((int)((double*)_pvData)[0]);
+        }
+        else
+        {
+            Scierror(999, _("Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (iParentUID == 0)
+        {
+            // Can not set the parent
+            Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
+            return SET_PROPERTY_ERROR;
+        }
+
+        getGraphicObjectProperty(iParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+
+        if (iParentType != __GO_FIGURE__)
+        {
+            getGraphicObjectProperty(iParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
+            if (iParentStyle != __GO_UI_FRAME__)
+            {
+                Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
+                return SET_PROPERTY_ERROR;
+            }
+        }
+
+        setGraphicObjectRelationship(iParentUID, iObjUID);
+        return SET_PROPERTY_SUCCEED;
     }
+
+    Scierror(999, _("Parent property can not be modified directly.\n"));
+    return SET_PROPERTY_ERROR;
 }
 
 /*------------------------------------------------------------------------*/

@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,23 +21,43 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include "BasicAlgos.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "core_math.h"
 #include "freeArrayOfString.h"
+#include "returnanan.h"
+
 /*------------------------------------------------------------------------*/
 double sciFindStPosMin(const double x[], int n)
 {
-    double min = 0.;
+    double min = -1.0;
     int i = 0;
+    char hasNeg = 0;
 
     if (n <= 0)
     {
-        return -1.0;
+        return min;
     }
 
-    min = x[0];
+    for (i = 0; i < n; i++)
+    {
+        if (x[i] > 0)
+        {
+            min = x[i];
+            break;
+        }
+        else if (!hasNeg && x[i] <= 0)
+        {
+            hasNeg = 1;
+        }
+    }
 
-    for (i = 1 ; i < n ; i++)
+    if (i == n && !hasNeg)
+    {
+        // we have only NaN
+        return C2F(returnanan)();
+    }
+
+    for (; i < n ; i++)
     {
         if (x[i] > 0.0 && x[i] < min)
         {

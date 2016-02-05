@@ -849,7 +849,7 @@ C
 C  ---------------------------------------------------------------------
 C
 C***REFERENCE
-C      K. E. Brenan, S. L. Campbell, and L. R. Petzold, Numerical 
+C      K. E. Brenan, S. L. Campbell, and L. R. Petzold, Numerical
 C      Solution of Initial-Value Problems in Differential-Algebraic
 C      Equations, Elsevier, New York, 1989.
 C
@@ -859,12 +859,10 @@ C***END PROLOGUE  DDASRT
 C
 C**End
 C
-      
-      
+
+
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 
-      include 'stack.h'
-      
       LOGICAL DONE
       EXTERNAL RES, JAC, G
       DIMENSION Y(*),YPRIME(*)
@@ -891,7 +889,7 @@ C     SET POINTERS INTO RWORK
      *  LDELTA=51)
 C
 C***FIRST EXECUTABLE STATEMENT  DDASRT
-     
+
       IF(INFO(1).NE.0)GO TO 100
 C
 C-----------------------------------------------------------------------
@@ -1295,7 +1293,7 @@ C     TEST H VS. HMAX
       IF (INFO(7) .EQ. 0) GO TO 526
          RH = ABS(H)/RWORK(LHMAX)
          IF (RH .GT. 1.0D0) H = H/RH
-526   CONTINUE     
+526   CONTINUE
 C
       CALL DDASTP(TN,Y,YPRIME,NEQ,
      *   RES,JAC,H,RWORK(LWT),INFO(1),IDID,RPAR,IPAR,
@@ -1586,10 +1584,8 @@ C***DATE WRITTEN   821001   (YYMMDD)
 C***REVISION DATE  900926   (YYMMDD)
 C***END PROLOGUE  DRCHEK
 C
-      
-      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 
-      include 'stack.h'
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 
       PARAMETER (LNGE=16, LIRFND=18, LLAST=19, LIMAX=20,
      *           LT0=41, LTLAST=42, LALPHR=43, LX2=44)
@@ -1641,7 +1637,7 @@ C          IRFND = 1 IF IT DID, = 0 IF NOT.
 C          STORED IN THE GLOBAL ARRAY IWORK.
 C INFO3  = COPY OF INFO(3) (INPUT ONLY).
 C-----------------------------------------------------------------------
-C     
+C
       H = PSI(1)
       IRT = 0
       DO 10 I = 1,NG
@@ -1777,8 +1773,6 @@ C***END PROLOGUE  DROOTS
 C
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 
-      include 'stack.h'
-      
       INTEGER NG, JFLAG, JROOT, IMAX, LAST
       DOUBLE PRECISION HMIN, X0, X1, G0, G1, GX, X, ALPHA, X2
       DIMENSION G0(NG), G1(NG), GX(NG), JROOT(NG)

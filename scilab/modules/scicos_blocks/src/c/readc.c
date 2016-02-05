@@ -21,11 +21,11 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "machine.h"
 #include "charEncoding.h"
-#include "cvstr.h"
 #include "mget.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
@@ -94,7 +94,10 @@ ipar[10+lfil:9+lfil++ny+ievt] = reading mask
             {
                 /*     read a new buffer */
                 m = ipar[6] * ipar[7];
-                F2C(cvstr)(&three, &(ipar[2]), type, &job, sizeof(type));
+                for (i = 0; i < three; ++i)
+                {
+                    type[i] = (char) ipar[i + 2];
+                }
                 for (i = 2; i >= 0; i--)
                     if (type[i] != ' ')
                     {
@@ -105,7 +108,7 @@ ipar[10+lfil:9+lfil++ny+ievt] = reading mask
                 mget2(fd, ipar[8], buffer, m, type, &ierr);
                 if (ierr > 0)
                 {
-                    sciprint(_("Read error!\n"));
+                    scicos_print(_("Read error!\n"));
                     fclose(fd);
                     z[3] = 0.0;
                     *flag = -1;
@@ -158,12 +161,15 @@ ipar[10+lfil:9+lfil++ny+ievt] = reading mask
     }
     else if (*flag == 4)
     {
-        F2C(cvstr)(&(ipar[1]), &(ipar[10]), str, &job, sizeof(str));
+        for (i = 0; i < ipar[1]; ++i)
+        {
+            str[i] = (char) ipar[i + 10];
+        }
         str[ipar[1]] = '\0';
         wcfopen(fd, str, "rb");
         if (!fd )
         {
-            sciprint(_("Could not open the file!\n"));
+            scicos_print(_("Could not open the file!\n"));
             *flag = -1;
             return;
         }
@@ -171,7 +177,10 @@ ipar[10+lfil:9+lfil++ny+ievt] = reading mask
         /* skip first records */
         if (ipar[9] > 1)
         {
-            F2C(cvstr)(&three, &(ipar[2]), type, &job, sizeof(type));
+            for (i = 0; i < three; ++i)
+            {
+                type[i] = (char) ipar[i + 2];
+            }
             for (i = 2; i >= 0; i--)
                 if (type[i] != ' ')
                 {
@@ -182,7 +191,7 @@ ipar[10+lfil:9+lfil++ny+ievt] = reading mask
             irep = fseek(fd, offset, 0) ;
             if ( irep != 0 )
             {
-                sciprint(_("Read error\n"));
+                scicos_print(_("Read error\n"));
                 *flag = -1;
                 fclose(fd);
                 z[3] = 0.0;
@@ -191,7 +200,10 @@ ipar[10+lfil:9+lfil++ny+ievt] = reading mask
         }
         /* read first buffer */
         m = ipar[6] * ipar[7];
-        F2C(cvstr)(&three, &(ipar[2]), type, &job, sizeof(type));
+        for (i = 0; i < three; ++i)
+        {
+            type[i] = (char) ipar[i + 2];
+        }
         for (i = 2; i >= 0; i--)
             if (type[i] != ' ')
             {
@@ -201,7 +213,7 @@ ipar[10+lfil:9+lfil++ny+ievt] = reading mask
         mget2(fd, ipar[8], buffer, m, type, &ierr);
         if (ierr > 0)
         {
-            sciprint(_("Read error!\n"));
+            scicos_print(_("Read error!\n"));
             *flag = -1;
             fclose(fd);
             z[3] = 0.0;

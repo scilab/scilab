@@ -1,33 +1,46 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Vincent Couvert
- * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.gui.bridge.slider;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
+import javax.swing.AbstractAction;
 import javax.swing.JScrollBar;
+import javax.swing.JSlider;
+import javax.swing.KeyStroke;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.slider.SimpleSlider;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
@@ -35,18 +48,15 @@ import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.widget.ViewMethods;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab Slider in GUIs
- * @author Vincent COUVERT
- * @author Marouane BEN JELLOUL
+ * @author Antoine ELIAS
  */
-public class SwingScilabSlider extends JScrollBar implements SwingViewObject, SimpleSlider, ViewMethods {
+public class SwingScilabSlider extends JSlider implements SwingViewObject, Widget {
 
     private static final long serialVersionUID = -4262320156090829309L;
-
-    private static final int MIN_KNOB_SIZE = 40;
 
     private static final int MINIMUM_VALUE = 0;
     private static final int MAXIMUM_VALUE = 10000;
@@ -55,7 +65,78 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
 
     private CommonCallBack callback;
 
-    private AdjustmentListener adjustmentListener;
+    private ChangeListener changeListener;
+
+    private Border defaultBorder = null;
+
+    private int previousValueCallback = 0;
+
+    static {
+        if (OS.get() == OS.UNIX) {
+            // Force Slider on Unix not to display value upon
+            UIManager.put("Slider.paintValue", false);
+        }
+    }
+
+    class CtrlLeftAction extends AbstractAction {
+        private static final long serialVersionUID = -3289281207742516486L;
+
+        public void actionPerformed(ActionEvent arg0) {
+            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+            Double[] step = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
+            int value = SwingScilabSlider.this.getValue();
+
+            double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
+            int newValue = Math.max(MINIMUM_VALUE, value - (int)(step[1] * ratio));
+            setValue(newValue);
+        }
+    }
+
+    class LeftAction extends AbstractAction {
+        private static final long serialVersionUID = 2099826485447918397L;
+
+        public void actionPerformed(ActionEvent arg0) {
+            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+            Double[] step = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
+            int value = SwingScilabSlider.this.getValue();
+
+            double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
+            int newValue = Math.max(MINIMUM_VALUE, value - (int)(step[0] * ratio));
+            setValue(newValue);
+        }
+    }
+
+    class RightAction extends AbstractAction {
+        private static final long serialVersionUID = 8666161246122371904L;
+
+        public void actionPerformed(ActionEvent arg0) {
+            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+            Double[] step = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
+            int value = SwingScilabSlider.this.getValue();
+
+            double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
+            int newValue = Math.min(MAXIMUM_VALUE, value + (int)(step[0] * ratio));
+            setValue(newValue);
+        }
+    }
+
+    class CtrlRightAction extends AbstractAction {
+        private static final long serialVersionUID = -1364255463511656338L;
+
+        public void actionPerformed(ActionEvent arg0) {
+            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+            Double[] step = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__);
+            int value = SwingScilabSlider.this.getValue();
+
+            double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
+            int newValue = Math.min(MAXIMUM_VALUE, value + (int)(step[1] * ratio));
+            setValue(newValue);
+        }
+    }
 
     /**
      * Constructor
@@ -64,18 +145,63 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
         super();
         // needed to have slider working with GLCanvas
         setOpaque(true);
-        setFocusable(true); /* Enable to manage the slider using keyboard (See bug #10840) */
         setMinimum(MINIMUM_VALUE);
-        setMaximum(MAXIMUM_VALUE + getVisibleAmount());
-        adjustmentListener = new AdjustmentListener() {
-            public void adjustmentValueChanged(AdjustmentEvent arg0) {
-                updateModel();
-                if (callback != null) {
-                    callback.actionPerformed(null);
+        setMaximum(MAXIMUM_VALUE);
+        setValue(0);
+
+        /* some keys binding */
+        getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "LeftAction");
+        getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "LeftAction");
+        getActionMap().put("LeftAction", new LeftAction());
+        getInputMap().put(KeyStroke.getKeyStroke("UP"), "RightAction");
+        getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "RightAction");
+        getActionMap().put("RightAction", new RightAction());
+        getInputMap().put(KeyStroke.getKeyStroke("control UP"), "CtrlRightAction");
+        getInputMap().put(KeyStroke.getKeyStroke("control RIGHT"), "CtrlRightAction");
+        getActionMap().put("CtrlRightAction", new CtrlRightAction());
+        getInputMap().put(KeyStroke.getKeyStroke("control DOWN"), "CtrlLeftAction");
+        getInputMap().put(KeyStroke.getKeyStroke("control LEFT"), "CtrlLeftAction");
+        getActionMap().put("CtrlLeftAction", new CtrlLeftAction());
+
+
+        changeListener = new ChangeListener() {
+            public void stateChanged(ChangeEvent changeEvent) {
+                JSlider source = (JSlider) changeEvent.getSource();
+                if (!source.getValueIsAdjusting()) {
+                    previousValueCallback = getValue();
+                    updateModel();
+                    if (callback != null) {
+                        callback.actionPerformed(null);
+                    }
+                } else {
+                    int offset = Math.abs(getValue() - previousValueCallback);
+                    previousValueCallback = getValue();
+                    // When the user has clicked on the slider itself (not the knob)
+                    // and the knob makes a step of getMajorTickSpacing() value
+                    // ==> We do not call the callback (Bug #13549)
+                    if (offset != getMajorTickSpacing() && offset != 0) {
+                        updateModel();
+                        if (callback != null) {
+                            callback.actionPerformed(null);
+                        }
+                    }
                 }
             }
         };
-        addAdjustmentListener(adjustmentListener);
+        addChangeListener(changeListener);
+
+        // Fix for bug #13543
+        this.addMouseWheelListener(new MouseWheelListener() {
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                int notches = e.getWheelRotation();
+                int step = (e.isControlDown() ? getMajorTickSpacing() : getMinorTickSpacing());
+                if (notches < 0) {
+                    setValue(getValue() + step);
+                } else {
+                    setValue(getValue() - step);
+                }
+            }
+        });
     }
 
     /**
@@ -188,6 +314,9 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
         this.setName(text);
     }
 
+    public void setEmptyText() {
+        this.setName(null);
+    }
     /**
      * Set the horizontal alignment for the Slider text
      * @param alignment the value for the alignment (See ScilabAlignment.java)
@@ -224,8 +353,11 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
      * Set the Relief of the Slider
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setWidgetRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+    public void setRelief(String reliefType) {
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -233,18 +365,12 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
      * @param space the increment value
      */
     public void setMajorTickSpacing(double space) {
-        /* Remove the listener to avoid the callback to be executed */
-        removeAdjustmentListener(adjustmentListener);
-
         double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
         double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-        setBlockIncrement((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
-        int oldMax = getMaximum() - getVisibleAmount();
-        setVisibleAmount(Math.max((int) ((MAXIMUM_VALUE - MINIMUM_VALUE) / space), MIN_KNOB_SIZE));
-        setMaximum(oldMax + getVisibleAmount());
 
-        /* Put back the listener */
-        addAdjustmentListener(adjustmentListener);
+        double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
+        int newspace = (int)(space * ratio);
+        super.setMajorTickSpacing(newspace);
     }
 
     /**
@@ -252,15 +378,12 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
      * @param space the increment value
      */
     public void setMinorTickSpacing(double space) {
-        /* Remove the listener to avoid the callback to be executed */
-        removeAdjustmentListener(adjustmentListener);
-
         double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
         double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-        setUnitIncrement((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
 
-        /* Put back the listener */
-        addAdjustmentListener(adjustmentListener);
+        double ratio = (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin);
+        int newspace = (int)(space * ratio);
+        super.setMinorTickSpacing(newspace);
     }
 
     /**
@@ -308,14 +431,14 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
      */
     public void setUserValue(double value) {
         /* Remove the listener to avoid the callback to be executed */
-        removeAdjustmentListener(adjustmentListener);
+        removeChangeListener(changeListener);
 
         double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
         double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-        super.setValue(MINIMUM_VALUE + (int) ((value - userMin) * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
+        setValue(MINIMUM_VALUE + (int) ((value - userMin) * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
 
         /* Put back the listener */
-        addAdjustmentListener(adjustmentListener);
+        addChangeListener(changeListener);
     }
 
     /**
@@ -340,7 +463,69 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        GraphicController controller = GraphicController.getController();
+
+        switch (property) {
+            case __GO_UI_MAX__: {
+                Double maxValue = (Double) value;
+                // Update the slider properties
+                Double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
+                setMaximumValue(maxValue);
+                Double[] sliderStep = ((Double[]) controller.getProperty(uid, __GO_UI_SLIDERSTEP__));
+                double minorSliderStep = sliderStep[0].doubleValue();
+                double majorSliderStep = sliderStep[1].doubleValue();
+                if (minValue <= maxValue) {
+                    setMinorTickSpacing(minorSliderStep);
+                    setMajorTickSpacing(majorSliderStep);
+                }
+                break;
+            }
+            case __GO_UI_MIN__ : {
+                Double minValue = (Double)value;
+                // Update the slider properties
+                Double maxValue = (Double) controller.getProperty(uid, __GO_UI_MAX__);
+                setMinimumValue(minValue);
+                Double[] sliderStep = ((Double[]) controller.getProperty(uid, __GO_UI_SLIDERSTEP__));
+                double minorSliderStep = sliderStep[0].doubleValue();
+                double majorSliderStep = sliderStep[1].doubleValue();
+                if (minValue <= maxValue) {
+                    setMinorTickSpacing(minorSliderStep);
+                    setMajorTickSpacing(majorSliderStep);
+                }
+                break;
+            }
+            case __GO_POSITION__ : {
+                Double[] dblValues = SwingViewWidget.updatePosition(this, uid, value);
+                if (dblValues[2].intValue() > dblValues[3].intValue()) {
+                    setHorizontal();
+                } else {
+                    setVertical();
+                }
+                break;
+            }
+            case __GO_UI_SLIDERSTEP__ : {
+                Double[] sliderStep = ((Double[]) value);
+                double minorSliderStep = sliderStep[0].doubleValue();
+                double majorSliderStep = sliderStep[1].doubleValue();
+                setMinorTickSpacing(minorSliderStep);
+                setMajorTickSpacing(majorSliderStep);
+                break;
+            }
+            case __GO_UI_VALUE__ : {
+                Double[] doubleValue = ((Double[]) value);
+                if (doubleValue.length != 0) {
+                    setUserValue(doubleValue[0]);
+                } else {
+                    Double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
+                    setUserValue(minValue);
+                }
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+                break;
+            }
+        }
     }
 
     /**
@@ -354,89 +539,17 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
         GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
     }
 
-
-    public void setBackgroundcolor(Double[] color) {
-        SwingViewWidget.setBackgroundcolor(this, color);
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Slider.background");
+        if (color != null) {
+            setBackground(color);
+        }
     }
 
-    public void setForegroundcolor(Double[] color) {
-        SwingViewWidget.setForegroundcolor(this, color);
-    }
-
-    public void setString(String[] text) {
-        SwingViewWidget.setText(uid, this, text);
-    }
-
-    public void setCallback(String callback) {
-        SwingViewWidget.setCallback(uid, this, callback);
-    }
-
-    public void setPosition(Double[] position) {
-        SwingViewWidget.setPostion(uid, this, position);
-    }
-
-    public void setParent(int id) {
-        SwingViewWidget.setParent(this, id);
-    }
-
-    /* font*/
-    public void setFontweight(String value) {
-        SwingViewWidget.setFontWeight(this, value);
-    }
-
-    public void setFontname(String value) {
-        SwingViewWidget.setFontName(this, value);
-    }
-
-    public void setFontangle(String value) {
-        SwingViewWidget.setFontAngle(this, value);
-    }
-
-    public void setFontunits(double value) {
-        SwingViewWidget.setFontUnits(uid, this, value);
-    }
-
-    public void setFontsize(double value) {
-        SwingViewWidget.setFontSize(uid, this, value);
-    }
-
-    public void setMax(double value) {
-        SwingViewWidget.setMax(uid, this, value);
-    }
-
-    public void setMin(double value) {
-        SwingViewWidget.setMin(uid, this, value);
-    }
-
-    public void setValue(Double[] value) {
-        SwingViewWidget.setValue(uid, this, value);
-    }
-
-    public void setRelief(String value) {
-        SwingViewWidget.setRelief(this, value);
-    }
-
-    public void setSliderstep(Double[] value) {
-        SwingViewWidget.setSliderStep(this, value);
-    }
-
-    public void setListboxtop(Integer[] value) {
-        SwingViewWidget.setListBoxTop(this, value);
-    }
-
-    public void setEnable(boolean value) {
-        SwingViewWidget.setEnable(this, value);
-    }
-
-    public void setCallbacktype(int value) {
-        SwingViewWidget.setCallbackType(uid, this, value);
-    }
-
-    public void setTooltipstring(String[] value) {
-        SwingViewWidget.setToolTipString(this, value);
-    }
-
-    public void setHorizontalalignment(String alignment) {
-        SwingViewWidget.setHorizontalAlignment(this, alignment);
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Slider.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
     }
 }

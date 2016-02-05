@@ -188,12 +188,12 @@ assert_checkequal(l(1)(3*5, 9*3), ref);
 assert_checkequal(type(l(1)), 13);
 
 clear toto;
-deff("a = toto(x,y)", "a = x + y;", "n");
+deff("a = toto(x,y)", "a = x + y;");
 save(TMPDIR + "/savemacro.sod", "toto");
 clear toto;
 load(TMPDIR + "/savemacro.sod");
 assert_checkequal(toto(3*5, 9*3), ref);
-assert_checkequal(type(toto), 11);
+assert_checkequal(type(toto), 13);
 
 
 //create plot3d with light
@@ -221,4 +221,45 @@ md5_2 = getmd5(TMPDIR + "/saveplot2.png");
 assert_checkequal(md5_1, md5_2);
 
 
+// Scicos objects
+clear;
+loadXcosLibs();
 
+d = scicos_diagram();
+save(TMPDIR + "/diagram.sod", "d");
+refD = d;
+clear d;
+load(TMPDIR + "/diagram.sod");
+assert_checktrue(and(d==refD));
+
+b = scicos_block();
+save(TMPDIR + "/Block.sod", "b");
+refB = b;
+clear b;
+load(TMPDIR + "/Block.sod");
+assert_checktrue(and(b==refB));
+
+t = TEXT_f("define");
+save(TMPDIR + "/Text.sod", "t");
+refT = t;
+clear t;
+load(TMPDIR + "/Text.sod");
+assert_checktrue(and(t==refT));
+
+l = scicos_link();
+save(TMPDIR + "/Link.sod", "l");
+refL = l;
+clear l;
+load(TMPDIR + "/Link.sod");
+assert_checktrue(and(l==refL));
+
+d = scicos_diagram();
+S = scicos_block();
+subD = scicos_diagram(objs = list(scicos_link()));
+S.model.rpar = subD;
+d.objs(1) = S;
+save(TMPDIR + "/SuperBlock.sod", "d");
+refD = d;
+clear d;
+load(TMPDIR + "/SuperBlock.sod");
+assert_checktrue(and(d==refD));

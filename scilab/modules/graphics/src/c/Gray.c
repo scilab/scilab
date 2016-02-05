@@ -5,18 +5,21 @@
  * Copyright (C) 2004-2005 - INRIA - Fabrice Leray
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 /*------------------------------------------------------------------------
  *    Graphic library
  --------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "math_graphics.h"
 #include "PloEch.h"
 
@@ -29,7 +32,7 @@
 #include "sciprint.h"
 #include "GrayPlot.h"
 
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "localization.h"
 #include "Plot2d.h"
 #include "get_ticks_utils.h"
@@ -39,8 +42,9 @@
 #include "graphicObjectProperties.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
+#include "Sciwarning.h"
 
-int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, long int l1)
+int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, char *logflags, long int l1)
 {
     int iSubwinUID = 0;
     int iGrayplotUID = 0;
@@ -57,6 +61,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     int autoScale = 0;
     int firstPlot = 0;
     int logFlags[3];
+    char dataflag = 0;
     int autoSubticks = 0;
 
     int iTmp = 0;
@@ -87,6 +92,16 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     getGraphicObjectProperty(iSubwinUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piTmp);
     autoScale = iTmp;
 
+    /* Reset x and y logflags */
+    if (firstPlot)
+    {
+        logFlags[0] = getBooleanLogFlag(logflags[1]);
+        logFlags[1] = getBooleanLogFlag(logflags[2]);
+
+        setGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LOG_FLAG__, &logFlags[0], jni_bool, 1);
+        setGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOG_FLAG__, &logFlags[1], jni_bool, 1);
+    }
+
     if (autoScale)
     {
         /* compute and merge new specified bounds with the data bounds */
@@ -107,6 +122,15 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
             case '6' :
             case '8':
             case '9':
+                /* Force data bounds to the x and y bounds */
+                if ((int)strlen(logflags) < 1)
+                {
+                    dataflag = 'g';
+                }
+                else
+                {
+                    dataflag = logflags[0];
+                }
 
                 getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[0] = iTmp;
@@ -121,7 +145,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
                 textLogFlags[2] = getTextLogFlag(logFlags[2]);
 
                 /* Force data bounds to the x and y bounds */
-                compute_data_bounds2(0, 'g', textLogFlags, xx, yy, nn1, nn2, drect);
+                compute_data_bounds2(0, dataflag, textLogFlags, xx, yy, nn1, nn2, drect);
                 break;
         }
 
@@ -172,7 +196,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
         }
         else
         {
-            sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+            Sciwarning(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
     }
 
@@ -323,7 +347,7 @@ int C2F(implot)(unsigned char *z, int *n1, int *n2, char *strflag, double *brect
         }
         else
         {
-            sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+            Sciwarning(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
     }
 
@@ -476,7 +500,7 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
         }
         else
         {
-            sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+            Sciwarning(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
     }
 

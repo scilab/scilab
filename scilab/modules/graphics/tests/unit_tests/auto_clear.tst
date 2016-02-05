@@ -14,13 +14,13 @@ a.auto_clear = "on";
 
 plot3d();
 
-assert_checkequal(size(a.children), [1 1])
-assert_checkequal(a.children(1).type, "Plot3d")
+assert_checkequal(size(a.children), [1 1]);
+assert_checkequal(a.children(1).type, "Plot3d");
 
 plot2d();
-assert_checkequal(size(a.children), [1 1])
-assert_checkequal(a.children(1).type, "Compound")
+assert_checkequal(size(a.children), [1 1]);
+assert_checkequal(a.children(1).type, "Compound");
 
-xpoly([0 1], [0 1])
-assert_checkequal(size(a.children), [1 1])
-assert_checkequal(a.children(1).type, "Polyline")
+xpoly([0 1], [0 1]);
+assert_checkequal(size(a.children), [1 1]);
+assert_checkequal(a.children(1).type, "Polyline");

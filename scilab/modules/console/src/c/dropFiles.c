@@ -3,11 +3,14 @@
  * Copyright (C) 2005-2008 - INRIA - Allan CORNET
  * Copyright (C) 2012 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,15 +19,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dropFiles.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "storeCommand.h" /* storecommand */
 #include "FindFileExtension.h"
 #include "URIFileToFilename.h"
-#include "../../../string/includes/stricmp.h"
-#include "../../../core/src/c/with_module.h"
-#if _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "with_module.h"
+#include "os_string.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define BIN_EXTENSION_FILE ".bin"
 #define SAV_EXTENSION_FILE ".sav"
@@ -122,13 +123,13 @@ static char *getCommandByFileExtension(char *File, char *FileExtension)
                   (stricmp(FileExtension, ZCOS_EXTENSION_FILE) == 0) ||
                   (stricmp(FileExtension, XCOS_EXTENSION_FILE) == 0))
         {
-            if (with_module("xcos"))
+            if (with_module(L"xcos"))
             {
                 command = buildCommand(FORMAT_COS_COSF_XCOS_EXTENSION_FILES, File);
             }
             else
             {
-                command = strdup(XCOS_NOT_INSTALLED);
+                command = os_strdup(XCOS_NOT_INSTALLED);
             }
         }
         else if (stricmp(FileExtension, SCI_EXTENSION_FILE) == 0)

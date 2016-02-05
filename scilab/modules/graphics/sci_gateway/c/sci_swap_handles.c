@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,7 +17,7 @@
 /* file: sci_swap_handles.c                                               */
 /* desc : interface for swap_handles routine                              */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "HandleManagement.h"
@@ -26,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_swap_handles(char * fname, unsigned long fname_len)
+int sci_swap_handles(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -41,10 +44,18 @@ int sci_swap_handles(char * fname, unsigned long fname_len)
     int secondHdlRow = 0;
     int iHandle_1 = 0;
     int iHandle_2 = 0;
+    int iType_1 = 0;
+    int iType_2 = 0;
+    int * piType_1 = &iType_1;
+    int * piType_2 = &iType_2;
     int iParent_1 = 0;
     int* piParent_1 = &iParent_1;
     int iParent_2 = 0;
     int* piParent_2 = &iParent_2;
+    int iParentType_1 = 0;
+    int iParentType_2 = 0;
+    int * piParentType_1 = &iParentType_1;
+    int * piParentType_2 = &iParentType_2;
     int iChildrenCount = 0;
     int *piChildrenCount = &iChildrenCount;
     int* piChildrenUID = NULL;
@@ -100,8 +111,14 @@ int sci_swap_handles(char * fname, unsigned long fname_len)
     h = (long) * (secondHdlStkIndex);
     iHandle_2 = getObjectFromHandle(h);
 
+    getGraphicObjectProperty(iHandle_1, __GO_TYPE__, jni_int, (void **)&piType_1);
+    getGraphicObjectProperty(iHandle_2, __GO_TYPE__, jni_int, (void **)&piType_2);
+
     iParent_1 = getParentObject(iHandle_1);
     iParent_2 = getParentObject(iHandle_2);
+
+    getGraphicObjectProperty(iParent_1, __GO_TYPE__, jni_int, (void **)&piParentType_1);
+    getGraphicObjectProperty(iParent_2, __GO_TYPE__, jni_int, (void **)&piParentType_2);
 
     // Check if objects do not have the same parent
     if (iParent_1 == iParent_2)
@@ -122,12 +139,16 @@ int sci_swap_handles(char * fname, unsigned long fname_len)
         }
 
         setGraphicObjectProperty(iParent_1, __GO_CHILDREN__, piChildrenUID, jni_int_vector, iChildrenCount);
-
     }
-    else
+    else if (iType_1 == iType_2 || iParentType_1 == iParentType_2)
     {
         setGraphicObjectRelationship(iParent_1, iHandle_2);
         setGraphicObjectRelationship(iParent_2, iHandle_1);
+    }
+    else
+    {
+        Scierror(999, _("%s: Handles do not have the same parent type neither the same type.\n"), fname);
+        return 0;
     }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

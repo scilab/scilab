@@ -32,7 +32,6 @@
     <refsection id="Description_xcosValidateCompareBlock">
         <title>説明</title>
         この関数は2つのブロックを比較する際に使用されます.
-        
         <para>
             この関数は,各ブロックのフィールドを調べて,2つの値を比較します.
             この関数は2つのブロックが等しい場合にtrue,そうでない場合にfalseを返します.
@@ -55,7 +54,6 @@
       block1 = CONST_m("define");
       block2 = CONST_m("define");
       [status, message] = xcosValidateCompareBlock(block1,block2)
-
       block2.model.rpar = 42;
       [status, message] = xcosValidateCompareBlock(block1,block2)
       ]]></programlisting>

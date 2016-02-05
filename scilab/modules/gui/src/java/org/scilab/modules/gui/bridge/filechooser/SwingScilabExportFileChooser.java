@@ -3,16 +3,20 @@
  * Copyright (C) 2008 - INRIA - Sylvestre Koumar
  * Copyright (C) 2011 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.bridge.filechooser;
 
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Window;
 import java.io.File;
 import java.util.ArrayList;
@@ -28,7 +32,7 @@ import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.gui.SwingView;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.localization.Messages;
@@ -53,7 +57,6 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
     private final String emfDesc = Messages.gettext("Enhanced Metafile image (EMF)");
     private final String epsDesc = Messages.gettext("Encapsulated PostScript image (EPS)");
     private final String psDesc = Messages.gettext("PostScript image (PS)");
-    private final String figDesc = Messages.gettext("FIG image");
     private final String pdfDesc = Messages.gettext("PDF image");
     private final String svgDesc = Messages.gettext("SVG image");
     private final String allFilesDesc = Messages.gettext("All files");
@@ -66,7 +69,6 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
     private final String emf = "emf";
     private final String eps = "eps";
     private final String ps = "ps";
-    private final String fig = "fig";
     private final String pdf = "pdf";
     private final String svg = "svg";
     private final String allFiles = "*";
@@ -82,7 +84,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
     public SwingScilabExportFileChooser(Integer figureUID) {
         super();
         this.figureUID = figureUID;
-        SwingScilabTab tab = (SwingScilabTab) SwingView.getFromId(figureUID);
+        SwingScilabDockablePanel tab = (SwingScilabDockablePanel) SwingView.getFromId(figureUID);
         setParentFrame(tab.getParentWindow());
         exportCustomFileChooser(figureUID);
     }
@@ -113,7 +115,6 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         v.add(new FileMask(gif, gifDesc));
         v.add(new FileMask(bmp, bmpDesc));
         v.add(new FileMask(ppm, ppmDesc));
-        v.add(new FileMask(fig, figDesc));
         v.add(new FileMask(allFiles, allFilesDesc)); // should always be at the last position
 
         super.setDialogTitle(Messages.gettext("Export"));
@@ -137,7 +138,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 
         //Title for preview panel
         TitledBorder titlePreview;
-        titlePreview = BorderFactory.createTitledBorder(Messages.gettext("Preview"));
+        titlePreview = BorderFactory.createTitledBorder(Messages.gettext("Preview selected image file"));
         panelPreview.setBorder(titlePreview);
 
         //add preview image
@@ -157,18 +158,6 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         int selection = super.showSaveDialog(parentWindow);
         if (selection == JFileChooser.APPROVE_OPTION && super.getSelectedFile() != null) {
             this.exportName = super.getSelectedFile().getAbsolutePath();
-
-            //Test if there is a file with the same name
-            if (new File(this.exportName).exists()) {
-                int actionDialog = JOptionPane.showConfirmDialog(
-                                       parentWindow, Messages.gettext("Replace existing file?"),
-                                       Messages.gettext("File already exists"),
-                                       JOptionPane.YES_NO_OPTION);
-
-                if (actionDialog != JOptionPane.YES_OPTION) {
-                    return;
-                }
-            }
 
             /* Bug 3849 fix */
             ConfigManager.saveLastOpenedDirectory(new File(exportName).getParentFile().getPath());
@@ -191,7 +180,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 
             if (extensionCombo.equals(allFiles)) {
                 exportManager();
-            } else if (extensionCombo.equals(emf) || extensionCombo.equals(eps) || extensionCombo.equals(ps) || extensionCombo.equals(fig) || extensionCombo.equals(pdf) || extensionCombo.equals(svg)) {
+            } else if (extensionCombo.equals(emf) || extensionCombo.equals(eps) || extensionCombo.equals(ps) || extensionCombo.equals(pdf) || extensionCombo.equals(svg)) {
                 vectorialExport(extensionCombo);
             } else {
                 bitmapExport(extensionCombo);
@@ -199,6 +188,21 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         } else {
             ;    // no file chosen
         }
+    }
+
+    private boolean canWriteFile(String name) {
+        if (new File(name).exists()) {
+            Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
+            Window parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, c);
+            int actionDialog = JOptionPane.showConfirmDialog(parentWindow, Messages.gettext("Replace existing file?"),
+                               Messages.gettext("File already exists"),
+                               JOptionPane.YES_NO_OPTION);
+            if (actionDialog != JOptionPane.YES_OPTION) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -231,34 +235,22 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
             return;
         } else if (userExtension.equals(bmp)) {
             bitmapExport(userExtension);
-
         } else if (userExtension.equals(gif)) {
             bitmapExport(userExtension);
-
         } else if (userExtension.equals(jpg[0]) || userExtension.equals(jpg[1])) {
             bitmapExport(userExtension);
-
         } else if (userExtension.equals(png)) {
             bitmapExport(userExtension);
-
         } else if (userExtension.equals(ppm)) {
             bitmapExport(userExtension);
-
         } else if (userExtension.equals(emf)) {
             vectorialExport(userExtension);
-
         } else if (userExtension.equals(eps)) {
             vectorialExport(userExtension);
-
-        } else if (userExtension.equals(fig)) {
-            vectorialExport(userExtension);
-
         } else if (userExtension.equals(pdf)) {
             vectorialExport(userExtension);
-
         } else if (userExtension.equals(svg)) {
             vectorialExport(userExtension);
-
         } else {
             //fileName with a wrong extension + "by extension (.*)" selected
             JOptionPane.showMessageDialog(
@@ -272,6 +264,9 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
      * @param userExtension extension caught by the user
      */
     public void bitmapExport(String userExtension) {
+        Cursor old = getCursor();
+        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
         ExportData exportData = new ExportData(figureUID, this.exportName, userExtension, null);
 
         String actualFilename = exportData.getExportName();
@@ -281,7 +276,13 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
             actualFilename += "." + userExtension;
         }
 
+        if (!canWriteFile(actualFilename)) {
+            return;
+        }
+
         FileExporter.fileExport(figureUID, actualFilename, exportData.getExportExtension(), -1, 0);
+
+        setCursor(old);
     }
 
     /**
@@ -289,9 +290,18 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
      * @param userExtension extension caught by the user
      */
     public void vectorialExport(String userExtension) {
-        SwingScilabTab tab = (SwingScilabTab) SwingView.getFromId(figureUID);
+        SwingScilabDockablePanel tab = (SwingScilabDockablePanel) SwingView.getFromId(figureUID);
         Component c = DrawerVisitor.getVisitor(figureUID).getComponent();
         ExportData exportData = new ExportData(figureUID, this.exportName, userExtension, null);
+
+        String actualFilename = exportData.getExportName();
+        if (this.getExtension(actualFilename) == null) {
+            actualFilename += "." + userExtension;
+        }
+
+        if (!canWriteFile(actualFilename)) {
+            return;
+        }
 
         ExportOptionWindow exportOptionWindow = new ExportOptionWindow(exportData);
         exportOptionWindow.displayOptionWindow(tab);

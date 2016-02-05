@@ -3,11 +3,14 @@
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,102 +21,105 @@ import java.util.ArrayList;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.legend.Legend;
-import org.scilab.modules.graphic_objects.utils.LegendLocation;
 
 
 /**
-* Implements all legend manipulation functions for the editor.
-*
-* @author Caio Souza <caioc2bolado@gmail.com>
-* @author Pedro Souza <bygrandao@gmail.com>
-*
-* @since 2012-06-01
-*/
+ * Implements all legend manipulation functions for the editor.
+ *
+ * @author Caio Souza <caioc2bolado@gmail.com>
+ * @author Pedro Souza <bygrandao@gmail.com>
+ *
+ * @since 2012-06-01
+ */
 public class LegendHandler {
 
     public static Integer searchLegend(Integer uid) {
-
         if (uid == null) {
             return null;
         }
-        Integer childCount = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
+
+        int childCount = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
         Integer[] child = (Integer[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN__);
-        for (Integer i = 0; i < childCount; i++) {
-            Integer type = (Integer)GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_TYPE__);
-            if (type == GraphicObjectProperties.__GO_LEGEND__) {
-                return child[i];
+        if (child != null) {
+            for (int i = 0; i < childCount; i++) {
+                Object o = GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_TYPE__);
+                if (o instanceof Integer) {
+                    Integer type = (Integer) o;
+                    if (type == GraphicObjectProperties.__GO_LEGEND__) {
+                        return child[i];
+                    }
+                }
             }
         }
         return null;
     }
 
     /**
-    * Set or create a legend for one polyline.
-    *
-    * @param axes The axes that will recieve the legend.
-    * @param polyline The polyline to set/create legend.
-    * @param text The text for the legend.
-    */
+     * Set or create a legend for one polyline.
+     *
+     * @param axes The axes that will recieve the legend.
+     * @param polyline The polyline to set/create legend.
+     * @param text The text for the legend.
+     */
 
-    public static void setLegend(Integer axes, Integer polyline, String text) {
-        GraphicController controller = GraphicController.getController();
-        if (text == null || text == "" || polyline == null || axes == null) {
+    public static void setLegend(Integer legend, Integer axes, Integer polyline, String text) {
+        if (text == null || text == "" || polyline == null || axes == null || legend == null) {
             return;
         }
-        Integer iLegend = searchLegend(axes);
-        Legend legend = (Legend) controller.getObjectFromId(iLegend);
+
         Integer[] dimension = { 0, 0 };
         ArrayList<String> texts = new ArrayList<String>();
         ArrayList<Integer> links = new ArrayList<Integer>();
         texts.add(text);
-        if (iLegend != null) {
-            String[] textOld = legend.getTextArray();
-            Integer[] linksOld = legend.getLinks();
-            Integer length = linksOld.length;
-            for (Integer i = 0; i < length; i++) {
-                if (polyline != linksOld[i]) {
-                    texts.add(textOld[i]);
-                    links.add(linksOld[i]);
-                } else {
-                    removeLegend(axes, polyline);
-                    setLegend(axes, polyline, text);
+        if (legend != null) {
+            String[] textOld = (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+            Integer[] linksOld = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
+            int length = linksOld.length;
+            for (int i = 0; i < length; i++) {
+                if (linksOld[i].equals(polyline)) {
+                    textOld[length - i - 1] = text;
+                    GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__, textOld);
                     return;
                 }
             }
-            CommonHandler.delete(iLegend);
+
+            for (Integer i = 0; i < length; i++) {
+                texts.add(textOld[i]);
+                links.add(linksOld[i]);
+            }
+            CommonHandler.delete(legend);
         }
-        iLegend = controller.askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LEGEND__));
-        legend = (Legend) controller.getObjectFromId(iLegend);
+        legend = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LEGEND__));
+        GraphicController.getController().setGraphicObjectRelationship(axes, legend);
 
         links.add(polyline);
         String[] textToSet = new String[texts.size()];
         texts.toArray(textToSet);
-        dimension[0] = links.size();
+        Integer[] linksToSet = new Integer[links.size()];
+        links.toArray(linksToSet);
+        dimension[0] = linksToSet.length;
         dimension[1] = 1;
         if (dimension[0] != 0) {
-            legend.setTextArrayDimensions(dimension);
-            legend.setLineMode(true);
-            legend.setTextWithoutResize(textToSet);
-            legend.setLinks(links);
-            legend.setLegendLocation(LegendLocation.IN_UPPER_RIGHT);
+            GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, dimension);
+            GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LINE_MODE__, true);
+            GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__, textToSet);
+            GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LINKS__, linksToSet);
+            GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 0);
         }
-
-        controller.setGraphicObjectRelationship(axes, iLegend);
     }
 
     /**
-    * Remove a legend from axes.
-    *
-    * @param axes The axes to remove the legend.
-    * @param polyline The polyline that is linked to the legend.
-    */
+     * Remove a legend from axes.
+     *
+     * @param axes The axes to remove the legend.
+     * @param polyline The polyline that is linked to the legend.
+     */
 
     public static void removeLegend(Integer axes, Integer polyline) {
-
         if (polyline == null || axes == null) {
             return;
         }
+
         Integer legend = searchLegend(axes);
         Integer[] dimension = { 0, 0 };
         ArrayList<String> texts = new ArrayList<String>();
@@ -123,15 +129,15 @@ public class LegendHandler {
         } else {
             String[] textOld = (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__);
             Integer[] linksOld = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
-            Integer remove = -1;
-            for (Integer i = 0; i < linksOld.length; i++) {
+            int remove = -1;
+            for (int i = 0; i < linksOld.length; i++) {
                 if (polyline != linksOld[i]) {
                     links.add(linksOld[i]);
                 } else {
                     remove = i;
                 }
             }
-            for (Integer i = 0; i < textOld.length; i++) {
+            for (int i = 0; i < textOld.length; i++) {
                 if (i != (textOld.length - remove - 1)) {
                     texts.add(textOld[i]);
                 }
@@ -139,7 +145,7 @@ public class LegendHandler {
         }
         String[] textToSet = new String[texts.size()];
         texts.toArray(textToSet);
-        String[] linksToSet = new String[links.size()];
+        Integer[] linksToSet = new Integer[links.size()];
         links.toArray(linksToSet);
         dimension[0] = linksToSet.length;
         dimension[1] = 1;
@@ -155,15 +161,14 @@ public class LegendHandler {
     }
 
     /**
-    * Get the text of the legend.
-    *
-    * @param axes The axes where is the legend.
-    * @param polyline The polyline that is linked to the legend.
-    * @return The text of the legend.
-    */
+     * Get the text of the legend.
+     *
+     * @param axes The axes where is the legend.
+     * @param polyline The polyline that is linked to the legend.
+     * @return The text of the legend.
+     */
 
     public static String getLegendText(Integer axes, Integer polyline) {
-
         if (polyline != null && axes != null) {
             Integer legend = searchLegend(axes);
             if (legend == null) {
@@ -171,7 +176,7 @@ public class LegendHandler {
             } else {
                 String[] textOld = (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__);
                 Integer[] linksOld = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
-                for (Integer i = 0; i < linksOld.length; i++) {
+                for (int i = 0; i < linksOld.length; i++) {
                     if (linksOld[i] == polyline) {
                         return textOld[linksOld.length - i - 1];
                     }
@@ -182,15 +187,14 @@ public class LegendHandler {
     }
 
     /**
-    * Drag the given legend.
-    *
-    * @param legend  the legend uid.
-    * @param position click position (x,y).
-    * @param nextPosition dragged position (x,y).
-    */
+     * Drag the given legend.
+     *
+     * @param legend  the legend uid.
+     * @param position click position (x,y).
+     * @param nextPosition dragged position (x,y).
+     */
 
     public static void dragLegend(Integer legend, Integer[] position, Integer[] nextPosition) {
-
         ObjectSearcher searcher = new ObjectSearcher();
         Integer axes = searcher.searchParent(legend, GraphicObjectProperties.__GO_AXES__);
         Integer figure = searcher.searchParent(legend, GraphicObjectProperties.__GO_FIGURE__);
@@ -215,13 +219,12 @@ public class LegendHandler {
     }
 
     /**
-    * Get the links of a Legend
-    *
-    * @param legend The legend to get the links
-    * @return Links of the legend
-    */
+     * Get the links of a Legend
+     *
+     * @param legend The legend to get the links
+     * @return Links of the legend
+     */
     public static Integer[] getLinks(Integer legend) {
-
         if (legend == null) {
             return null;
         } else {
@@ -230,13 +233,12 @@ public class LegendHandler {
     }
 
     /**
-    * Get the text of a Legend
-    *
-    * @param legend The legend to get the text
-    * @return Text of the legend
-    */
+     * Get the text of a Legend
+     *
+     * @param legend The legend to get the text
+     * @return Text of the legend
+     */
     public static String[] getText(Integer legend) {
-
         if (legend == null) {
             return null;
         } else {
@@ -245,13 +247,12 @@ public class LegendHandler {
     }
 
     /**
-    * Get the position of a Legend
-    *
-    * @param legend The legend to get the position
-    * @return The legend position
-    */
+     * Get the position of a Legend
+     *
+     * @param legend The legend to get the position
+     * @return The legend position
+     */
     public static Double[] getPosition(Integer legend) {
-
         if (legend == null) {
             return null;
         } else {

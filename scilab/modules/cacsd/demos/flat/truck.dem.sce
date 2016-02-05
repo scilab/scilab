@@ -14,7 +14,6 @@ function demo_truck()
     state     = truck_solve(initial,final);
     my_handle = scf(100001);
     clf(my_handle,"reset");
-    my_handle.pixmap = "off" ;
     toolbar(my_handle.figure_id,"off") ;
     display_truck_trajectory(state);
 

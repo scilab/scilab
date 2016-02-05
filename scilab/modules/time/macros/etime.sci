@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Vincent Couvert
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function t=etime(t1,t0)
 
@@ -32,7 +35,7 @@ function t=etime(t1,t0)
     end
 
     if size(t1,"*")<>size(t0,"*") then
-        error(msprintf(gettext("%s: Wrong size for input argument: Same size expected.\n"),"etime"));
+        error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"),"etime"), 1, 2);
     end
 
     if size(t1,2)==10 then

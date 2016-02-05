@@ -1,4 +1,4 @@
-    <package name="org.scilab.modules.scinotes">
+        <package name="org.scilab.modules.scinotes">
     <object name="SciNotes">
         <method name="scinotes" returnType="void" modifier="static"/>
         <method name="scinotes" returnType="void" modifier="static">

@@ -1,10 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge STEER
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function hallchart(modules,args,colors)
     defaultmodules=[-20 -10 -6 -4 -2 2 4 6 10 20];//in dB
@@ -74,7 +77,8 @@ function hallchart(modules,args,colors)
         ec.foreground=colors(1);
         ec.line_style=7;
         ec.clip_state="clipgrf";
-        datatipInitStruct(ec,"formatfunction","formatHallModuleTip","module",modules(i))
+        ec.display_function = "formatHallModuleTip";
+        ec.display_function_data = modules(i);
         if 2*int(i/2)==i then
             xs=xc(i)+radius(i)*cos(%pi/6)
             ys=yc+radius(i)*sin(%pi/6)
@@ -107,7 +111,8 @@ function hallchart(modules,args,colors)
         ec.foreground=colors(2);
         ec.line_style=7;
         ec.clip_state="clipgrf";
-        datatipInitStruct(ec,"formatfunction","formatHallPhaseTip","phase",args(i))
+        ec.display_function = "formatHallPhaseTip";
+        ec.display_function_data = args(i);
         xstring(xc,yc(i)+radius(i),msprintf("%g°",args(i)));
         el=gce();
         el.font_foreground=colors(2);
@@ -122,18 +127,3 @@ function hallchart(modules,args,colors)
     end
     fig.immediate_drawing=immediate_drawing;
 endfunction
-
-function str=formatHallModuleTip(curve,pt,index)
-    //this function is called by the datatip mechanism to format the tip
-    //string for the Hall charts iso module curves
-    ud=datatipGetStruct(curve);
-    str=msprintf("%.2g"+_("dB"), ud.module);
-endfunction
-
-function str=formatHallPhaseTip(curve,pt,index)
-    //This function is called by the datatip mechanism to format the tip
-    //string for the Hall charts iso phase curves
-    ud=datatipGetStruct(curve);
-    str=msprintf("%.2g°", ud.phase);
-endfunction
-

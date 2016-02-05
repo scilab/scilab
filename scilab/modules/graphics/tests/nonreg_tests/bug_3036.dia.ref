@@ -14,8 +14,8 @@
 // After a stacksize problem (lack of memory) during a surface plot, it is no longer possible to plot in the graphics window: nothing appears.
 xdel(winsid());
 x=linspace(-%pi,%pi,1000)';
-ierr = execstr('surf(x,x,sin(x)*cos(x)'');','errcatch');
-if ierr <> 17 then bugmes();quit;end
+ierr = execstr("surf(x,x,sin(x)*cos(x)'');","errcatch");
+if ierr <> 0 then bugmes();quit;end
 x=linspace(-%pi,%pi,100)';
 plot(x,x);
 curfig = gcf();

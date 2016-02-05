@@ -11,7 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=9976
 //
 // <-- Short Description -->
-//    The inverse cdfbet function returned wrong value instead 0
+//    The inverse cdfbet function returned wrong value instead of 0
 // =============================================================================
 a = 1;
 b = 2;

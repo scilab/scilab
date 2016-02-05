@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
 // 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [tree]=sci_MFUN(tree)
 // M2SCI function
@@ -26,17 +29,17 @@ if lhs==1 then
   else
     tree.lhs=list(V,S)
   end
-  insert(Equal(tree.lhs,tree))
+  m2sci_insert(Equal(tree.lhs,tree))
   tree=list()
   
   if rhs==2 then
-    insert(Equal(list(),Funcall("disp",1,list(S),list())),1)
+    m2sci_insert(Equal(list(),Funcall("disp",1,list(S),list())),1)
   end
 else
   tree.lhs=list(tree.lhs($:-1:1))
 
   if rhs==2 then
-    insert(Equal(list(),Funcall("disp",1,list(tree.lhs(1),tree.lhs(2)),list())),1)
+    m2sci_insert(Equal(list(),Funcall("disp",1,list(tree.lhs(1),tree.lhs(2)),list())),1)
   end
 
   tree.lhs(1).dims=list(Unknown,Unknown)

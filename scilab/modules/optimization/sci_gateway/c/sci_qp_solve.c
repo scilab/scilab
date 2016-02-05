@@ -3,11 +3,14 @@
 * Copyright (C) 2008 - INRIA - Serge Steer
 * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -15,11 +18,13 @@
 #include <string.h>
 #include "gw_optimization.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
+#include "scisparse.h"
+#include "Sciwarning.h"
 /*--------------------------------------------------------------------------*/
 /* fortran subroutines */
 extern int C2F(qpgen2)(double *dmat, double *dvec, int *fddmat, int *n,
@@ -34,7 +39,7 @@ extern int C2F(spt)(int *m, int *n, int *nel, int *it, int *ptr,
                     double *A_R,  double *A_I, int *mnel,  int *A_icol,
                     double *At_R, double *At_I, int *At_mnel, int *At_icol);
 /*--------------------------------------------------------------------------*/
-int sci_qp_solve(char *fname, unsigned long fname_len)
+int sci_qp_solve(char *fname,  void* pvApiCtx)
 {
     SciErr sciErr;
     static int un = 1, deux = 2;
@@ -94,7 +99,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &n, &nbis, &Q);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -119,7 +124,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &nbis, &unbis, &p);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         printError(&sciErr, 0);
         return 1;
     }
@@ -148,7 +153,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
         sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &nbis, &m, &C);
         if (sciErr.iErr)
         {
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
             printError(&sciErr, 0);
             return 1;
         }
@@ -195,7 +200,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr4, &mbis, &unbis, &b);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
         printError(&sciErr, 0);
         return 1;
     }
@@ -221,7 +226,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddr5, &pipo, &unbis, &me);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
         printError(&sciErr, 0);
         return 1;
     }
@@ -374,14 +379,14 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
         {
             if (getWarningMode())
             {
-                sciprint(_("\n%s: Warning: The minimization problem has no solution. The results may be inaccurate.\n\n"), fname);
+                Sciwarning(_("\n%s: Warning: The minimization problem has no solution. The results may be inaccurate.\n\n"), fname);
             }
         }
         else if (*ierr == 2)
         {
             if (getWarningMode())
             {
-                sciprint(_("\n%s: Warning: Q is not symmetric positive definite. The results may be inaccurate.\n\n"), fname);
+                Sciwarning(_("\n%s: Warning: Q is not symmetric positive definite. The results may be inaccurate.\n\n"), fname);
             }
         }
         ReturnArguments(pvApiCtx);

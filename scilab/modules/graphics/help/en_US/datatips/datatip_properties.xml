@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="datatip_properties">
+    <refnamediv>
+        <refname>datatip properties</refname>
+        <refpurpose>description of the Datatip
+            entity properties
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>The Datatip entity is a leaf of the graphics entities hierarchy. This
+            entity defines the parameters for datatips.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>parent: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>children: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>visible: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>box_mode: </term>
+                <listitem>
+                    <para>
+                        This field contains the default <literal>box_mode</literal> property
+                        value for the datatip. Its value should be <literal>"on" </literal>(box
+                        drawn) or <literal>"off"</literal> (no box drawn).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>label_mode: </term>
+                <listitem>
+                    <para>
+                        This field contains the default <literal>label_mode</literal> property
+                        value for the datatip. Its value should be <literal>"on" </literal>(label
+                        written) or <literal>"off"</literal> (no label written).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orientation: </term>
+                <listitem>
+                    <para>This field sets the position on the text box with respect to polyline point. 
+                        The possible values are 0 (upper left), 1 (upper right), 2 (lower left), 3 (lower right), 4 (left), 5 (right), 
+                        6 (upper) or 7 (lower).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z_component: </term>
+                <listitem>
+                    <para>
+                        This field adds z position in the box. Its value should be <literal>"on" </literal>
+                        (z position written) or <literal>"off"</literal> (no z position written).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>auto_orientation: </term>
+                <listitem>
+                    <para>
+                        This field contains the default <literal>auto_orientation</literal> property
+                        value for the datatip. Its value should be <literal>"on" </literal>(automatic orientation)
+                        or <literal>"off"</literal> (no automatic orientation). In the <literal>"off"</literal> case, 
+                        See <literal>orientation</literal> property.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>interp_mode: </term>
+                <listitem>
+                    <para>This field sets the interpolation mode for tip location. Its value should be 
+                        <literal>"on" </literal>(interpolation is made between mesh points) or <literal>"off"
+                        </literal>
+                        (the tips can only be located at the mesh points).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>display_function: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>font_foreground: </term>
+                <listitem>
+                    <para>
+                        This field contains the default <literal>font_foreground</literal> property
+                        Its value should be a color index (relative to the current colormap).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>foreground: </term>
+                <listitem>
+                    <para>
+                        This field contains the default <literal>foreground</literal> property
+                        used to draw the box. Its value should be a color index (relative
+                        to the current colormap).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>background: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_mode: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_style: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_size_unit: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_size: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_foreground: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_background: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>user_data: </term>
+                <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tag: </term>
+                <listitem>
+                    <para>This fields contains a string generally used to identify the control.
+                        See <literal>
+                            <link linkend="figure_properties">figure_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="polyline_properties">polyline_properties</link>
+            </member>
+            <member>
+                <link linkend="figure_properties">figure_properties</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.2</revnumber>
+                <revremark>
+                    <para>
+                        New "orientation" values available: "left", "right", "upper", "lower".
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

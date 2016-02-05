@@ -38,7 +38,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include "../../modules/core/includes/MALLOC.h"
+#include "sci_malloc.h"
 /*
 Credit for primes table: Aaron Krowne
  http://br.endernet.org/~akrowne/

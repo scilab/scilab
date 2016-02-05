@@ -3,11 +3,14 @@
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -61,7 +64,7 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "math.h"
 
 /*help funtion*/
@@ -245,38 +248,38 @@ BOOL translatePoint(int uid, int index, double x, double y, double z, int flagX,
 
     int size = getDataSize_(uid);
 
-	if (index >= 0 && index < size) 
-	{
-		datax = getDataX(uid);
-		if (datax == NULL) return FALSE;
-		datay = getDataY(uid);
-		if (datay == NULL) return FALSE;
-
-    if (flagX) {
-		    datax[index] = pow(10.,log10(datax[index]) + x);
-    } else {
-        datax[index] += x;
-    }
-
-    if (flagY) {
-		    datay[index] = pow(10.,log10(datay[index]) + y);
-    } else {
-        datay[index] += y;
-    }
-
-		if (z != 0 && isZCoordSet(uid))
-		{
-			dataz = getDataZ(uid);
-      if (flagZ) {
-		      dataz[index] = pow(10.,log10(dataz[index]) + z);
-      } else {
-          dataz[index] += z;
-      }
-		}
+    if (index >= 0 && index < size) 
+    {
+	datax = getDataX(uid);
+	if (datax == NULL) return FALSE;
+	datay = getDataY(uid);
+	if (datay == NULL) return FALSE;
+	
+	if (flagX) {
+	    datax[index] *= pow(10., x);
+	} else {
+	    datax[index] += x;
 	}
-	/*update*/
-	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, &uid, jni_int, 1);
-	return TRUE;
+	
+	if (flagY) {
+	    datay[index] *= pow(10., y);
+	} else {
+	    datay[index] += y;
+	}
+
+	if (z != 0 && isZCoordSet(uid))
+	{
+	    dataz = getDataZ(uid);
+	    if (flagZ) {
+		dataz[index] *= pow(10., z);
+	    } else {
+		dataz[index] += z;
+	    }
+	}
+    }
+    /*update*/
+    setGraphicObjectProperty(uid, __GO_DATA_MODEL__, &uid, jni_int, 1);
+    return TRUE;
 }
 
 BOOL setPointValue(int uid, int index, double x, double y, double z)

@@ -15,7 +15,7 @@
             <literal>(s_1,s_2,...,s_lhs)</literal> -- выходные переменные, а
             <literal>(e_1,e_2,...,e_rhs)</literal> -- входные переменные. Чтобы ввести эту 
             команду в Scilab, нужно написать несколько строк в fortran-подпрограмме  
-            <literal>user</literal> Scilab'а. См. <link linkend="intersci">intersci</link> или документацию по Scilab'у для дополнительной информации.
+            <literal>user</literal> Scilab'а.
         </para>
     </refsection>
     <refsection role="see also">
@@ -26,9 +26,6 @@
             </member>
             <member>
                 <link linkend="link">link</link>
-            </member>
-            <member>
-                <link linkend="intersci">intersci</link>
             </member>
         </simplelist>
     </refsection>

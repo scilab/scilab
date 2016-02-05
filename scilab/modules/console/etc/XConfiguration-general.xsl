@@ -55,6 +55,17 @@
                         <xsl:call-template name="context"/>
                     </actionPerformed>
                 </NumericalSpinner>
+                <Label gridx="1" gridy="4" weightx="0" text="_(Recursion limit: )"/>
+                <Panel gridx="2" gridy="1" weightx="1"/>
+                <NumericalSpinner gridx="3" gridy="4" weightx="0" length="3"
+                    increment="1"
+                    min-value="10"
+                    listener="ActionListener"
+                    value="{@recursion-limit}">
+                    <actionPerformed choose="recursion-limit">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </NumericalSpinner>
             </Grid>
         </Title>
     </xsl:template>
@@ -107,7 +118,47 @@
                 <Panel gridx="2" gridy="2" weightx="1" fill="both"/>
             </Grid>
         </Title>
-        
+    </xsl:template>
+
+    <xsl:template match="startup">
+        <VSpace height="10"/>
+        <Title text="_(Start-up directory)">
+            <Grid>
+                <Radiobutton value="{@use}" expected-value="current" listener="ActionListener" text="_(Use current working directory)" gridx="1" gridy="1" fill="none" weightx="0" anchor="west">
+                    <actionPerformed choose="use">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </Radiobutton>
+                
+                <Radiobutton value="{@use}" expected-value="previous" listener="ActionListener" text="_(Use previous working directory)" gridx="1" gridy="2" fill="none" weightx="0" anchor="west">
+                    <actionPerformed choose="use">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </Radiobutton>
+                
+                <Radiobutton value="{@use}" expected-value="default" listener="ActionListener" text="_(Use default directory)" gridx="1" gridy="3" fill="none" weightx="0" anchor="west">
+                    <actionPerformed choose="use">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </Radiobutton>
+                
+                <FileSelector gridx="2" gridy="3" weightx="1" anchor="above_baseline"
+                              listener="EntryListener"
+                              href="{@default}"
+                              desc="_(Default startup directory)"
+                              dir-selection="true"
+                              check-entry="true">
+                    <xsl:attribute name="enable">
+                        <xsl:if test="@use='default'">
+                            <xsl:text>true</xsl:text>
+                        </xsl:if>
+                    </xsl:attribute>
+                    <entryChanged choose="default">
+                        <xsl:call-template name="context"/>
+                    </entryChanged>
+                </FileSelector>
+            </Grid>
+        </Title>
     </xsl:template>
     
     <xsl:template match="tools">
@@ -164,6 +215,9 @@
                         <xsl:call-template name="context"/>
                     </actionPerformed>
                 </Checkbox>
+                <Button gridx="3" gridy="6" weightx="0" text="_(Reset layout)" listener="ActionListener">
+                    <actionPerformed callback="Reset layout"/>
+                </Button>
             </Grid>
         </Title>
     </xsl:template>

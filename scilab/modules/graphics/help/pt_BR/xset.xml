@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xset" xml:lang="en">
@@ -242,18 +245,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xset("pixmap",flag)</term>
-                <listitem>
-                    <para>se flag=0, os gráficos são diretamente exibidos na tela. Se
-                        flag=1, os gráficos são feitos em um pixmap (mapa de pixel) e
-                        enviados à janela de gráficos através do comando
-                        <literal>xset("wshow")</literal>. O pixmap é limpo com o comando
-                        <literal>xset("wwpc")</literal>. Note que o comando usual
-                        <literal>clf()</literal> também limpa o pixmap.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>xset("thickness",value)</term>
                 <listitem>
                     <para>ajusta o valor de espessura das linhas em pixel (0 e 1 têm o
@@ -306,7 +297,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xset("wpos",x,y)</term>
+                <term>xset("wpos",[x,y])</term>
                 <listitem>
                     <para>ajusta a posição do ponto superior esquerdo da janela de
                         gráficos.
@@ -319,7 +310,7 @@
                     <para>se flag= 1então o gráfico é automaticamente redimensionado
                         para preencher a janela de gráficos.
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 xdel();
 xset("wresize",1);
 plot2d();
@@ -329,28 +320,12 @@ xset("wdim",1000,500)
                         gráfico é redimensionada. O cursor no canto superior esquerdo ou as
                         setas do teclado podem ser utilizadas para rolar o gráfico .
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 xdel();
 plot2d();
 xset("wresize",0);
 xset("wdim",1000,500)
  ]]></programlisting>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>xset("wshow")</term>
-                <listitem>
-                    <para>
-                        ver <literal>xset("pixmap",1)</literal> acima.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>xset("wwpc")</term>
-                <listitem>
-                    <para>
-                        ver <literal>xset("pixmap",1)</literal> acima.
-                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -363,9 +338,6 @@ xset("wdim",1000,500)
             </member>
             <member>
                 <link linkend="getcolor">getcolor</link>
-            </member>
-            <member>
-                <link linkend="getsymbol">getsymbol</link>
             </member>
             <member>
                 <link linkend="ged">ged</link>

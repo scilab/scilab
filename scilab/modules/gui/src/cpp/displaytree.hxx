@@ -2,27 +2,36 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
+ * Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 
-#ifndef __DISPLAY_TREE__
-#define __DISPLAY_TREE__
+#ifndef __DISPLAYTREE__
+#define __DISPLAYTREE__
 
 #include <vector>
-#include <sstream>
 #include <string>
+#include <sstream>
 
-using namespace std;
+#include "dynlib_gui.h"
+#include "list.hxx"
 
-#define TREE_REF_NAME "uitree"
+#define TREE_REF_NAME L"uitree"
 
-bool bParseListItem(void* _pvApiCtx, int *_piCurrentItem, int icountItem, std::vector<std::string> *_pvStructList, std::string _szLevel);
+static const std::wstring Label(L"label");
+static const std::wstring Icon(L"icon");
+static const std::wstring Callback(L"callback");
 
-#endif /* __DISPLAY_TREE__ */
+GUI_IMPEXP bool parseListItem(types::List* pIn, int icountItem, std::vector<std::string> &_pvStructList, const std::string& _szLevel);
+
+#endif /* __DISPLAYTREE__ */

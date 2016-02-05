@@ -10,11 +10,14 @@
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -36,9 +39,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_string.h"
 
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -56,7 +57,7 @@
 #include "loadTextRenderingAPI.h"
 #include "sciprint.h"
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
@@ -114,16 +115,55 @@ int sciSetLineStyle(int iObjUID, int linestyle)
     return -1;
 }
 
-int sciSetMarkSize(int iObjUID, int marksize)
+int sciSetMarkSize(int iObjUID, int *markSizes, int numMarkSizes)
 {
-    if (marksize < 0)
+	BOOL status;
+	int k;
+
+	if ( markSizes == NULL || numMarkSizes < 1 )
+	{
+		Scierror(999, _("Wrong value for '%s' property: Number of mark sizes %d.\n"), "mark_size", numMarkSizes);
+		return -1;
+	}
+
+	// check values >= 0
+	for ( k = 0; k < numMarkSizes; ++k )
+	{
+	    if ( markSizes[k] < 0 )
+		{
+			Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "mark_size", 0);
+			return -1;
+		}
+	}
+
+	if ( numMarkSizes == 1 )
+	{
+		status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZE__, &markSizes[0], jni_int, numMarkSizes);		
+	}
+	else
+	{
+		status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZES__, markSizes, jni_int_vector, numMarkSizes);		
+	}
+
+    if (status == TRUE)
     {
-        Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "mark_size", 0);
+		return 0;
+    }
+
+    printSetGetErrorMessage("mark_size");
+    return -1;
+}
+
+int sciSetMarkOffset(int iObjUID, int offset)
+{
+    if (offset < 0)
+    {
+        Scierror(999, _("The mark offset must be greater or equal than %d.\n"), 0);
         return -1;
     }
     else
     {
-        BOOL status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZE__, &marksize, jni_int, 1);
+        BOOL status = setGraphicObjectProperty(iObjUID, __GO_MARK_OFFSET__, &offset, jni_int, 1);
 
         if (status == TRUE)
         {
@@ -131,7 +171,28 @@ int sciSetMarkSize(int iObjUID, int marksize)
         }
     }
 
-    printSetGetErrorMessage("mark_size");
+    printSetGetErrorMessage("mark_offset");
+    return -1;
+}
+
+int sciSetMarkStride(int iObjUID, int stride)
+{
+    if (stride < 1)
+    {
+        Scierror(999, _("The mark stride must be greater or equal than %d.\n"), 1);
+        return -1;
+    }
+    else
+    {
+        BOOL status = setGraphicObjectProperty(iObjUID, __GO_MARK_STRIDE__, &stride, jni_int, 1);
+
+        if (status == TRUE)
+        {
+            return 0;
+        }
+    }
+
+    printSetGetErrorMessage("mark_stride");
     return -1;
 }
 
@@ -184,36 +245,6 @@ int
 sciSetDefaultValues (void)
 {
     // FIXME : To be removed
-    return 0;
-}
-
-/**sciSetSelectedSubWin
- * Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
- * It has been adapted to the MVC. Its should be implemented entirely
- * within the MVC (as the setGraphicObjectRelationship function).
- * @param char * psubwinobj: the pointer to the entity sub window
- * @return 0 if OK or -1 if NOT OK
- */
-int
-sciSetSelectedSubWin (int iObjUID)
-{
-    int iType = -1;
-    int *piType = &iType;
-    int iParent = 0;
-    int* piParent = &iParent;
-
-    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
-
-    /* Check that the object is an AXES */
-    if (iType != __GO_AXES__)
-    {
-        Scierror(999, _("Handle is not a SubWindow.\n"));
-        return -1;
-    }
-
-    iParent = getParentObject(iObjUID);
-    setGraphicObjectProperty(iParent, __GO_SELECTED_CHILD__, &iObjUID, jni_int, 1);
-
     return 0;
 }
 

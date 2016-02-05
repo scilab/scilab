@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,9 +17,16 @@ extern "C"
 {
 #include "createGraphicObject.h"
 #include "getScilabJavaVM.h"
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "FigureModel.h"
+#include "AxesModel.h"
+#include "CurrentSubwin.h"
+#include "api_scilab.h"
 }
 
 #include "CallGraphicController.hxx"
+#include "CallXmlLoader.hxx"
 #include "Builder.hxx"
 #include "DataController.hxx"
 
@@ -75,7 +85,81 @@ int createLabel(int parent, int type)
 
 int createNewFigureWithAxes()
 {
-    return Builder::createNewFigureWithAxes(getScilabJavaVM());
+    int iUserDataSize = 0;
+    int* piUserDataSize = &iUserDataSize;
+    int id = 0;
+    int on = 1;
+    int off = 0;
+
+    id = Builder::createNewFigureWithAxes(getScilabJavaVM());
+
+    //clone user_data is needed
+    getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
+    if (iUserDataSize != 0)
+    {
+        int* pUserData = NULL;
+
+        getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+
+        if(sizeof(void*) == 4) //32 bits
+        {
+            increaseValRef(NULL, (int*)*(int*)pUserData);
+        }
+        else //64 bits
+        {
+            increaseValRef(NULL, (int*)*(long long*)pUserData);
+        }
+
+        setGraphicObjectProperty(id, __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
+    }
+
+    //clone gda user_data is needed
+    getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
+    if (iUserDataSize != 0)
+    {
+        int* pUserData = NULL;
+        getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+        setGraphicObjectProperty(getCurrentSubWin(), __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
+    }
+
+    setGraphicObjectProperty(id, __GO_MENUBAR_VISIBLE__, (void*)&off, jni_bool, 1);
+    setGraphicObjectProperty(id, __GO_TOOLBAR_VISIBLE__, (void*)&off, jni_bool, 1);
+    setGraphicObjectProperty(id, __GO_INFOBAR_VISIBLE__, (void*)&off, jni_bool, 1);
+
+    setGraphicObjectProperty(id, __GO_MENUBAR_VISIBLE__, (void*)&on, jni_bool, 1);
+    setGraphicObjectProperty(id, __GO_TOOLBAR_VISIBLE__, (void*)&on, jni_bool, 1);
+    setGraphicObjectProperty(id, __GO_INFOBAR_VISIBLE__, (void*)&on, jni_bool, 1);
+
+    return id;
+}
+
+int createFigure(int iDockable, int iMenubarType, int iToolbarType, int iDefaultAxes, int iVisible)
+{
+    int id = 0;
+    int iUserDataSize = 0;
+    int* piUserDataSize = &iUserDataSize;
+
+    id = Builder::createFigure(getScilabJavaVM(), iDockable != 0, iMenubarType, iToolbarType, iDefaultAxes != 0, iVisible != 0);
+
+    //clone gdf user_data is needed
+    getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
+    if (iUserDataSize != 0)
+    {
+        int* pUserData = NULL;
+        getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+        setGraphicObjectProperty(id, __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
+    }
+
+    //clone gda user_data is needed
+    getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
+    if (iUserDataSize != 0)
+    {
+        int* pUserData = NULL;
+        getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+        setGraphicObjectProperty(getCurrentSubWin(), __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
+    }
+
+    return id;
 }
 
 void cloneMenus(int model, int newParent)
@@ -85,12 +169,40 @@ void cloneMenus(int model, int newParent)
 
 int cloneAxesModel(int parent)
 {
-    return Builder::cloneAxesModel(getScilabJavaVM(), parent);
+    int id = Builder::cloneAxesModel(getScilabJavaVM(), parent);
+    int iUserDataSize = 0;
+    int* piUserDataSize = &iUserDataSize;
+
+    //clone user_data is needed
+    getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
+    if (iUserDataSize != 0)
+    {
+        int* pUserData = NULL;
+        getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+        setGraphicObjectProperty(id, __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
+    }
+
+    return id;
 }
 
 int createSubWin(int parent)
 {
-    return Builder::createSubWin(getScilabJavaVM(), parent);
+    int id = 0;
+    int iUserDataSize = 0;
+    int* piUserDataSize = &iUserDataSize;
+
+    id = Builder::createSubWin(getScilabJavaVM(), parent);
+
+    //clone user_data is needed
+    getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
+    if (iUserDataSize != 0)
+    {
+        int* pUserData = NULL;
+        getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+        setGraphicObjectProperty(id, __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
+    }
+
+    return id;
 }
 
 int createText(int iParentsubwinUID, char** text, int nbRow, int nbCol, double x, double y, BOOL autoSize, double* userSize, int  centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, int align)
@@ -188,4 +300,19 @@ int createLight(int parent, int type, BOOL visible, double* pos, double* dir, do
                                 ambient, ambient == NULL ? 0 : 3,
                                 diffuse, diffuse == NULL ? 0 : 3,
                                 specular, specular == NULL ? 0 : 3);
+}
+
+int xmlload(char* xmlfile)
+{
+    return CallXmlLoader::Load(getScilabJavaVM(), xmlfile);
+}
+
+int xmldomload(char* xmlfile)
+{
+    return CallXmlLoader::DomLoad(getScilabJavaVM(), xmlfile);
+}
+
+char* xmlsave(int id, char* xmlfile, BOOL isReverse)
+{
+    return CallXmlLoader::Save(getScilabJavaVM(), id, xmlfile, isReverse == 1);
 }

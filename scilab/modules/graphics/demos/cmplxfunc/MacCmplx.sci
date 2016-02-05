@@ -95,8 +95,6 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
     // make axes transparent
     my_title_axes.filled = "off";
 
-    my_title_axes.margins = [ 0.08 0.08 0.08 0.08 ]
-
     Rs = string(R);
 
     if TypeDomain == "Square" then
@@ -116,6 +114,7 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
     my_title_axes.title.text       = the_title;
     my_title_axes.title.font_size  = 3;
     my_title_axes.title.font_style = 2;
+    my_title_axes.margins = [ 0.08 0.08 0.08 0.08 ]
 
     // plot Im(z)
     // ============================================

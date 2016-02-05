@@ -3,11 +3,14 @@
  *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *  Copyright (C) 2011-2012 - DIGITEO - Pierre Lando
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -22,7 +25,7 @@
 #include "NgonGridMatplotDataDecomposer.hxx"
 #include "Plot3DDecomposer.hxx"
 #include "PolylineDecomposer.hxx"
-#include "TriangleMeshFecDataDecomposer.hxx"
+#include "MeshFecDataDecomposer.hxx"
 #include "NormalGenerator.hxx"
 
 extern "C"
@@ -103,7 +106,7 @@ int getDataSize(int id)
         case __GO_FAC3D__ :
             return Fac3DDecomposer::getDataSize(id);
         case __GO_FEC__ :
-            return TriangleMeshFecDataDecomposer::getDataSize(id);
+            return MeshFecDataDecomposer::getDataSize(id);
         case __GO_GRAYPLOT__ :
             return NgonGridGrayplotDataDecomposer::getDataSize(id);
         case __GO_MATPLOT__ :
@@ -131,7 +134,7 @@ void fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int
             Fac3DDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
             break;
         case __GO_FEC__ :
-            TriangleMeshFecDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+            MeshFecDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
             break;
         case __GO_GRAYPLOT__ :
             NgonGridGrayplotDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
@@ -204,7 +207,7 @@ void fillTextureCoordinates(int id, float* BUFF, int bufferLength)
             Fac3DDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
             break;
         case __GO_FEC__ :
-            TriangleMeshFecDataDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
+            MeshFecDataDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
             break;
         case __GO_POLYLINE__ :
             PolylineDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
@@ -222,7 +225,7 @@ void fillColors(int id, float* BUFF, int bufferLength, int elementsSize)
     switch (iType)
     {
         case __GO_FEC__ :
-            TriangleMeshFecDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
+            MeshFecDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
             break;
         case __GO_GRAYPLOT__ :
             NgonGridGrayplotDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
@@ -252,7 +255,7 @@ int getIndicesSize(int id)
         case __GO_FAC3D__ :
             return Fac3DDecomposer::getIndicesSize(id);
         case __GO_FEC__ :
-            return TriangleMeshFecDataDecomposer::getIndicesSize(id);
+            return MeshFecDataDecomposer::getIndicesSize(id);
         case __GO_GRAYPLOT__ :
             return NgonGridGrayplotDataDecomposer::getIndicesSize(id);
         case __GO_MATPLOT__ :
@@ -279,7 +282,7 @@ int fillIndices(int id, int* buffer, int bufferLength, int logMask)
         case __GO_FAC3D__ :
             return Fac3DDecomposer::fillIndices(id, buffer, bufferLength, logMask);
         case __GO_FEC__ :
-            return TriangleMeshFecDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+            return MeshFecDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
         case __GO_GRAYPLOT__ :
             return NgonGridGrayplotDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
         case __GO_MATPLOT__ :
@@ -305,7 +308,7 @@ int getWireIndicesSize(int id)
         case __GO_FAC3D__ :
             return Fac3DDecomposer::getWireIndicesSize(id);
         case __GO_FEC__ :
-            return TriangleMeshFecDataDecomposer::getWireIndicesSize(id);
+            return MeshFecDataDecomposer::getWireIndicesSize(id);
         case __GO_PLOT3D__ :
             return Plot3DDecomposer::getWireIndicesSize(id);
         case __GO_POLYLINE__ :
@@ -327,7 +330,7 @@ int fillWireIndices(int id, int* buffer, int bufferLength, int logMask)
         case __GO_FAC3D__ :
             return Fac3DDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
         case __GO_FEC__ :
-            return TriangleMeshFecDataDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
+            return MeshFecDataDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
         case __GO_PLOT3D__ :
             return Plot3DDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
         case __GO_POLYLINE__ :

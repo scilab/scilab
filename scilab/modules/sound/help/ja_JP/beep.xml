@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2006 - INRIA - Allan CORNET 
+    * 
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="beep">
+    <refnamediv>
+        <refname>beep</refname>
+        <refpurpose>ビープ音を生成</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>beep();
+            beep('on')
+            beep('off')
+            s=beep()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>beep()</literal> は,使用する
+            コンピュータのデフォルトのビープ音を生成します.
+        </para>
+        <para>
+            <literal>beep('on')</literal> はビープをonにします.
+        </para>
+        <para>
+            <literal>beep('off')</literal>はビープをoffにします.
+        </para>
+        <para>
+            <literal>s=beep()</literal> は現在のビープモード(on または off)
+            を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+beep() // サウンドを作成
+beep("off") // サウンドを無効にする
+]]></programlisting>
+    </refsection>
+</refentry>

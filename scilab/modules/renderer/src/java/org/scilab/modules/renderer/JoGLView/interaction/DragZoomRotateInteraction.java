@@ -3,11 +3,14 @@
  * Copyright (C) 2009-2012 - DIGITEO - Pierre Lando
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 package org.scilab.modules.renderer.JoGLView.interaction;
 
@@ -233,6 +236,7 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                         doRotation(e);
                         break;
                     }
+                    break;
                 case XY_TRANSLATION_MODIFIER:
                     if (translateEnabled) {
                         doXYTranslation(e);
@@ -269,6 +273,13 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                     Double[] bounds = currentAxes.getDisplayedBounds();
 
                     Integer[] winSize = (Integer[]) GraphicController.getController().getProperty(currentAxes.getParent(), GraphicObjectProperties.__GO_AXES_SIZE__);
+                    if (winSize == null) {
+                        // We are in a Frame
+                        Double[] position = (Double[]) GraphicController.getController().getProperty(currentAxes.getParent(), GraphicObjectProperties.__GO_POSITION__);
+                        winSize = new Integer[2];
+                        winSize[0] = position[2].intValue();
+                        winSize[1] = position[3].intValue();
+                    }
                     Double[] axesBounds = (Double[]) GraphicController.getController().getProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_AXES_BOUNDS__);
                     Double[] axesMargins = (Double[]) GraphicController.getController().getProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_MARGINS__);
                     Integer view = (Integer) GraphicController.getController().getProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_VIEW__);

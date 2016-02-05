@@ -3,37 +3,38 @@
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.gui.editor;
 
 
-import org.scilab.modules.graphic_objects.PolylineData;
-import org.scilab.modules.graphic_objects.SurfaceData;
-import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
+import org.scilab.modules.graphic_objects.PolylineData;
+import org.scilab.modules.graphic_objects.SurfaceData;
 
 
 /**
-* Implements all object common manipulation functions for the editor.
-*
-* @author Caio Souza <caioc2bolado@gmail.com>
-* @author Pedro Souza <bygrandao@gmail.com>
-*
-* @since 2012-07-26
-*/
+ * Implements all object common manipulation functions for the editor.
+ *
+ * @author Caio Souza <caioc2bolado@gmail.com>
+ * @author Pedro Souza <bygrandao@gmail.com>
+ *
+ * @since 2012-07-26
+ */
 public class CommonHandler {
     /**
      * Checks if the object exists.
@@ -71,6 +72,26 @@ public class CommonHandler {
     }
 
     /**
+     * Checks if the object uses mark mode.
+     *
+     * @param uid object unique identifier.
+     * @return the polyline style.
+     */
+    public static int getStyle(Integer uid) {
+        return (Integer) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_POLYLINE_STYLE__);
+    }
+
+    /**
+     * Checks if the object uses mark mode.
+     *
+     * @param uid object unique identifier.
+     * @return the bar width.
+     */
+    public static int getBarWidth(Integer uid) {
+        return (Integer) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_BAR_WIDTH__);
+    }
+
+    /**
      * Get the mark style from the given object.
      *
      * @param uid object unique identifier.
@@ -96,10 +117,8 @@ public class CommonHandler {
      * @param uid object unique identifier.
      * @return Mark size.
      */
-    public static MarkSizeUnitType getMarkSizeUnit(Integer uid) {
-        //        return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__);
-        ContouredObject co = (ContouredObject)GraphicController.getController().getObjectFromId(uid);
-        return co.getMarkSizeUnit();
+    public static Integer getMarkSizeUnit(Integer uid) {
+        return (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__);
     }
 
     /**
@@ -109,23 +128,11 @@ public class CommonHandler {
      * @param newColor Color to be used.
      * @return Returns the old color of the object.
      */
-    public static Integer setColor(Integer uid, Integer newColor) {
-
+    public static void setSelected(Integer uid, boolean selected) {
         if (uid == null) {
-            return 0;
+            return;
         }
-        Integer oldColor;
-        Boolean markon = isMarkEnabled(uid);
-        if (markon == true) {
-            oldColor = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
-            GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_MARK_FOREGROUND__, newColor );
-        } else {
-            oldColor = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_LINE_COLOR__);
-            GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_LINE_COLOR__, newColor );
-        }
-
-        return oldColor;
-
+        GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_SELECTED__, selected);
     }
 
     /**
@@ -153,30 +160,24 @@ public class CommonHandler {
             return null;
         }
         return dup;
-
     }
 
     /**
      * Inserts the given object in the given axes.
      *
-     * @param iAxes Axes unique identifier.
+     * @param axes Axes unique identifier.
      * @param uid object unique identifier.
      */
-    public static void insert(Integer iAxes, Integer uid) {
-        GraphicController controller = GraphicController.getController();
-        GraphicObject obj = controller.getObjectFromId(uid);
-
-        Integer typeName = obj.getType();
-
+    public static void insert(Integer axes, Integer uid) {
+        Integer typeName = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
         if (typeName == GraphicObjectProperties.__GO_POLYLINE__) {
-            Integer iCompound = controller.askObject(Type.COMPOUND);
-            controller.objectCreated(iCompound);
-            controller.setGraphicObjectRelationship(iAxes, iCompound);
-            controller.setGraphicObjectRelationship(iCompound, uid);
+            Integer newCompound = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
+            GraphicController.getController().setGraphicObjectRelationship(axes, newCompound);
+            GraphicController.getController().setGraphicObjectRelationship(newCompound, uid);
         } else if (typeName == GraphicObjectProperties.__GO_PLOT3D__ ||
                    typeName == GraphicObjectProperties.__GO_FAC3D__  ||
                    typeName == GraphicObjectProperties.__GO_GRAYPLOT__) {
-            controller.setGraphicObjectRelationship(iAxes, uid);
+            GraphicController.getController().setGraphicObjectRelationship(axes, uid);
         }
     }
 
@@ -256,8 +257,8 @@ public class CommonHandler {
      * @return the parent igure UID
      */
     public static Integer getParentFigure(Integer object) {
-
-        return (Integer)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        GraphicObject go = GraphicController.getController().getObjectFromId(object);
+        return go.getParentFrameOrFigure();
     }
 
     /**
@@ -296,11 +297,11 @@ public class CommonHandler {
     }
 
     /**
-    * Clone the object background color(if colormap from both figures are different this won't work)
-    *
-    * @param objectFrom The object to get the backgound color
-    * @param objectTo The object to set the background color
-    */
+     * Clone the object background color(if colormap from both figures are different this won't work)
+     *
+     * @param objectFrom The object to get the backgound color
+     * @param objectTo The object to set the background color
+     */
     public static void cloneBackgroundColor(Integer objectFrom, Integer objectTo) {
 
         Integer color = getBackground(objectFrom);
@@ -357,6 +358,38 @@ public class CommonHandler {
         return data;
     }
 
+    public static void toLogScale(double[] data, boolean[] logScale) {
+        if (logScale[0] || logScale[1] || logScale[2]) {
+            for (int i = 0; i < data.length; i += 3) {
+                if (logScale[0]) {
+                    data[i] = Math.log10(data[i]);
+                }
+                if (logScale[1]) {
+                    data[i + 1] = Math.log10(data[i + 1]);
+                }
+                if (logScale[2]) {
+                    data[i + 2] = Math.log10(data[i + 2]);
+                }
+            }
+        }
+    }
+
+    public static void toInverseLogScale(double[] data, boolean[] logScale) {
+        if (logScale[0] || logScale[1] || logScale[2]) {
+            for (int i = 0; i < data.length; i += 3) {
+                if (logScale[0]) {
+                    data[i] = Math.pow(10., data[i]);
+                }
+                if (logScale[1]) {
+                    data[i + 1] = Math.pow(10., data[i + 1]);
+                }
+                if (logScale[2]) {
+                    data[i + 2] = Math.pow(10., data[i + 2]);
+                }
+            }
+        }
+    }
+
     /**
      * Used to compute the correct position to insert a point
      * R1: Given index i, it calculates the straight line between the points i and i+1 from curPolyline
@@ -370,11 +403,14 @@ public class CommonHandler {
      * @return The position in 3d coordinates (x, y ,z) and ratio between polyline data and interpoled data ( dx, dy )
      */
     public static double[] computeIntersection(Integer polyline, int i, double[] point2d) {
-
         double[] datax = (double[])PolylineData.getDataX(polyline);
         double[] datay = (double[])PolylineData.getDataY(polyline);
         double[] dataz = (double[])PolylineData.getDataZ(polyline);
         Integer axes = (Integer)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
+        boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, __GO_X_AXIS_LOG_FLAG__),
+                                            (Boolean)GraphicController.getController().getProperty(axes, __GO_Y_AXIS_LOG_FLAG__),
+                                            (Boolean)GraphicController.getController().getProperty(axes, __GO_Z_AXIS_LOG_FLAG__)
+                                           };
         Axes obj = (Axes)GraphicController.getController().getObjectFromId(axes);
         //Points of R1
         double[] c3d1 = AxesDrawer.compute3dViewCoordinates(obj, new double[] { point2d[0], point2d[1], 1.0});
@@ -382,6 +418,11 @@ public class CommonHandler {
         //Points of R2
         double[] p3d1 = {datax[i], datay[i], dataz[i]};
         double[] p3d2 = {datax[i + 1], datay[i + 1], dataz[i + 1]};
+
+        toLogScale(c3d1, logFlags);
+        toLogScale(c3d2, logFlags);
+        toLogScale(p3d1, logFlags);
+        toLogScale(p3d2, logFlags);
 
         /*
          * Computes the intersection between the lines
@@ -396,10 +437,9 @@ public class CommonHandler {
         double u = (dot(nl, q0) - dot(nl, p0)) / dot(nl, p1);
         double[] point = plus(p0, scalar(p1, u));
 
-        double dx = (point[0] - p3d1[0]) / (p3d2[0] - p3d1[0]);
-        double dy = (point[1] - p3d1[1]) / (p3d2[1] - p3d1[1]);
+        toInverseLogScale(point, logFlags);
 
-        return new double[] {point[0], point[1], point[2], dx, dy};
+        return new double[] {point[0], point[1], point[2], u, u};
     }
 
     private static double dot(double[] p, double[] q) {

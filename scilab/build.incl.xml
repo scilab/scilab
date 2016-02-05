@@ -77,21 +77,19 @@
         <pathelement location="${avalon-framework.jar}"/>
         <pathelement location="${jeuclid-core.jar}"/>
         <pathelement location="${jlatexmath.jar}"/>
+        <pathelement location="${freehep-graphics2d.jar}"/>
+        <pathelement location="${freehep-graphicsio-emf.jar}"/>
+        <pathelement location="${freehep-graphicsio.jar}"/>
     </path>
     <target name="init">
         <!-- Check the version of Java. If it changes after the configure
          or if there is a mistake in the build system
-    -->
-        <fail message="JDK 1.6 or 1.7 required. Found ${ant.java.version}">
-            <condition>
-                <not>
-                    <or>
-                        <equals arg1="${ant.java.version}" arg2="1.6"/>
-                        <equals arg1="${ant.java.version}" arg2="1.7"/>
-                    </or>
-                </not>
-            </condition>
-        </fail>
+         Note: all class names are the same as in m4/java.m4
+        -->
+        <available property="jdk1.6+" classname="java.util.ArrayDeque"/>
+        <available property="jdk1.7+" classname="java.nio.file.Path"/>
+        <available property="jdk1.8+" classname="java.util.stream.DoubleStream"/>
+        <fail message="Require JDK 1.8 or higher. Found ${ant.java.version}" unless="jdk1.8+"/>
         <mkdir dir="${classes.dir}"/>
         <mkdir dir="${classes.test.dir}"/>
         <mkdir dir="${build.jar.dir}"/>
@@ -106,7 +104,7 @@
     </target>
     <!-- Compile sources -->
     <target name="compile" description="Build sources" depends="init">
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6" encoding="utf-8">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" debuglevel="lines,vars,source" verbose="off" listfiles="on" includeAntRuntime="no" source="8" target="8" encoding="utf-8">
             <compilerarg value="-Xlint" />
             <!--  Silent some warnings -->
             <compilerarg value="-Xlint:-unchecked" />
@@ -118,7 +116,6 @@
             <compilerarg value="-Xlint:-serial" />
             <!--  Silent warning about the serializable -->
             <compilerarg value="-Xlint:-options" />
-            <!-- Silent 'bootstrap class path not set in conjunction with -source 1.6'. We don't want to manage the detection of rt.jar. See https://blogs.oracle.com/darcy/entry/bootclasspath_older_source -->
         </javac>
     </target>
     

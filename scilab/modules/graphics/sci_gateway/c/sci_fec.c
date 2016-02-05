@@ -4,11 +4,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,7 +19,7 @@
 /* file: sci_fec.c                                                        */
 /* desc : interface for sci_fec routine                                   */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "GetCommandArg.h"
@@ -27,7 +30,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_fec(char *fname, unsigned long fname_len)
+int sci_fec(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0, mn1 = 0;
@@ -68,7 +71,7 @@ int sci_fec(char *fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
 
@@ -80,7 +83,7 @@ int sci_fec(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (FirstOpt() < 5)
+    if (FirstOpt(pvApiCtx) < 5)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 5);
         return -1;
@@ -98,7 +101,7 @@ int sci_fec(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -115,7 +118,7 @@ int sci_fec(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         printError(&sciErr, 0);
         return 1;
     }
@@ -140,16 +143,18 @@ int sci_fec(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m3, &n3, &l3);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         printError(&sciErr, 0);
         return 1;
     }
 
-    if (n3 != 5)
+    if (n3 < 5)
     {
-        Scierror(999, _("%s: Wrong number of columns for input argument #%d: %d expected.\n"), fname, 3, 5);
+        Scierror(999, _("%s: Wrong number of columns for input argument #%d: at least %d expected.\n"), fname, 3, 5);
         return 0;
     }
+    // remove number and flag
+    n3 -= 2;
 
     //get variable address
     sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddr4);
@@ -163,7 +168,7 @@ int sci_fec(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr4, &m4, &n4, &l4);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
         printError(&sciErr, 0);
         return 1;
     }
@@ -203,7 +208,7 @@ int sci_fec(char *fname, unsigned long fname_len)
     }
     mn1 = m1 * n1;
 
-    Objfec ((l1), (l2), (l3), (l4), &mn1, &m3, strf, legend, rect, nax, zminmax, colminmax, colOut, withMesh, flagNax);
+    Objfec ((l1), (l2), (l3), (l4), &mn1, &m3, &n3, strf, legend, rect, nax, zminmax, colminmax, colOut, withMesh, flagNax);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

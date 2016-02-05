@@ -1,10 +1,26 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2011 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ */
+
 package org.scilab.modules.xcos;
 
 import java.util.List;
 import java.util.ListIterator;
 import java.util.UUID;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
@@ -17,7 +33,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import com.mxgraph.swing.mxGraphOutline;
 
 @SuppressWarnings(value = { "serial" })
-public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
+public final class ViewPortTab extends SwingScilabDockablePanel implements SimpleTab {
     public static final String DEFAULT_WIN_UUID = "xcos-viewport-default-window";
     public static final String DEFAULT_TAB_UUID = "xcos-viewport-default-tab";
 
@@ -51,12 +67,12 @@ public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
         }
 
         @Override
-        public String askForClosing(List<SwingScilabTab> list) {
+        public String askForClosing(List<SwingScilabDockablePanel> list) {
             return null;
         }
 
         @Override
-        public void updateDependencies(List<SwingScilabTab> list, ListIterator<SwingScilabTab> it) {
+        public void updateDependencies(List<SwingScilabDockablePanel> list, ListIterator<SwingScilabDockablePanel> it) {
         }
 
     }
@@ -121,10 +137,10 @@ public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
         }
         ScilabTabFactory.getInstance().addToCache(tab);
 
-        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab, new ClosingOperation(graph));
-        ClosingOperationsManager.addDependency((SwingScilabTab) XcosTab.get(graph), (SwingScilabTab) tab);
+        ClosingOperationsManager.registerClosingOperation((SwingScilabDockablePanel) tab, new ClosingOperation(graph));
+        ClosingOperationsManager.addDependency((SwingScilabDockablePanel) XcosTab.get(graph), (SwingScilabDockablePanel) tab);
 
-        WindowsConfigurationManager.registerEndedRestoration((SwingScilabTab) tab, new EndedRestoration(graph));
+        WindowsConfigurationManager.registerEndedRestoration((SwingScilabDockablePanel) tab, new EndedRestoration(graph));
     }
 
     /*
@@ -145,7 +161,7 @@ public final class ViewPortTab extends SwingScilabTab implements SimpleTab {
         if (configuration != null) {
             win = configuration;
         } else {
-            win = new SwingScilabWindow();
+            win = SwingScilabWindow.createWindow(true);
         }
 
         win.addTab(this);

@@ -4,39 +4,59 @@
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2010-2011 - DIGITEO - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.bridge.label;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.StyleSheet;
 
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
+import org.scilab.modules.gui.bridge.label.SwingScilabLabel.IconLabel.IconType;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.label.SimpleLabel;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -47,32 +67,38 @@ import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.WebBrowser;
-import org.scilab.modules.gui.widget.ViewMethods;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab Labels in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabLabel extends JScrollPane implements SwingViewObject, SimpleLabel, ViewMethods {
+public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Widget {
+
+    private enum LabelStyle {
+        TEXT, LATEX, MATHML, HTML
+    };
 
     private static final long serialVersionUID = 7177323379068859441L;
 
     private Integer uid;
 
-    private JComponent label = new JLabel();
+    private JComponent label = new JLabel(" ");
 
-    private boolean isJLabel = true;
+    private Border defaultBorder = null;
 
-    private String horizontalAlignment = "left"; /* Horizontal alignment property */
+    private LabelStyle labelStyle = null;
 
-    private String verticalAlignment = "middle"; /* Vertical alignment property */
+    private String horizontalAlignment = "left"; //Horizontal alignment property
 
-    private final JPanel alignmentPanel = new JPanel(); /* Used for alignment */
+    private String verticalAlignment = "middle"; // Vertical alignment property
+
+    private final JPanel alignmentPanel = new JPanel(); // Used for alignment
 
     private final GridBagLayout alignmentLayout = new GridBagLayout();
 
-    private String labelText = ""; /* Used to save user given text */
+    private String labelText = ""; // Used to save user given text
 
     private static HyperlinkListener urlOpener = new HyperlinkListener() {
         public void hyperlinkUpdate(HyperlinkEvent event) {
@@ -88,11 +114,11 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     public SwingScilabLabel() {
         super();
         alignmentPanel.setLayout(alignmentLayout);
-        alignmentPanel.add(label);
-        getViewport().add(alignmentPanel);
+        setViewportView(label);
         setBorder(BorderFactory.createEmptyBorder());
         setViewportBorder(BorderFactory.createEmptyBorder());
         setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         // Initialize display
         setAlignment();
     }
@@ -105,7 +131,9 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         super.setFont(font);
         if (label != null) {
             label.setFont(font);
-            if (!isJLabel) {
+            setMinimumSize(label.getMinimumSize());
+
+            if (labelStyle == LabelStyle.HTML) {
                 StyleSheet styleSheet = ((HTMLDocument) ((JTextPane) label).getDocument()).getStyleSheet();
                 styleSheet.addRule("body {font-family:" + font.getName() + ";}");
                 styleSheet.addRule("body {font-size:" + font.getSize() + "pt;}");
@@ -134,6 +162,13 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         }
     }
 
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        if (label != null) {
+            label.setEnabled(enabled);
+        }
+    }
+
     /**
      * To set the Background color of the element.
      * @param color the Color
@@ -144,6 +179,9 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
             alignmentPanel.setBackground(color);
         }
         if (label != null) {
+            if (label instanceof JLabel) {
+                ((JLabel) label).setOpaque(true);
+            }
             label.setBackground(color);
         }
     }
@@ -167,7 +205,8 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     }
 
     /**
-     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * element
      * @return the position of the element
      * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
@@ -183,11 +222,12 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     public void setDims(Size newSize) {
         setSize(newSize.getWidth(), newSize.getHeight());
         // Need validate to force alignement to be applyed
-        validate();
+        //setMinimumSize(new Dimension(Math.max((int) label.getMinimumSize().getWidth(), newSize.getWidth()), (int) label.getMinimumSize().getHeight()));
     }
 
     /**
-     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * element
      * @param newPosition the position to set to the element
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
@@ -249,12 +289,6 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         setAlignment();
     }
 
-    public void setVerticalalignment(String alignment) {
-        SwingViewWidget.setVerticalAlignment(this, alignment);
-    }
-    public void setHorizontalalignment(String alignment) {
-        SwingViewWidget.setHorizontalAlignment(this, alignment);
-    }
     /**
      * Set the vertical alignment for the Label text
      * @param alignment the value for the alignment (See ScilabAlignment.java)
@@ -269,8 +303,11 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      * Set the Relief of the Label
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setWidgetRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+    public void setRelief(String reliefType) {
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -315,98 +352,165 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     public void setText(String newText) {
         // Save the data given by the user so that it can be retrieved
         // (Java adds HTML tags in the getlabel().getText() returned value)
+
+        // <math></math>    : LateXLabel ( MathML )
+        // <html></html>    : JTextPane for clickable links
+        // $...$            : LateXLabel ( LateX )
+        // else             : JLabel
+
         labelText = newText;
-        if (labelText.startsWith("<")) {
-            // Try if we are in MathML
-            if (isJLabel && ScilabSpecialTextUtilities.setText(label, newText)) {
-                // MathML in JLabel : OK
-                // Rendering will be done using Icon
-                ((JLabel) label).setText(null);
-            } else if (!isJLabel) {
-                // Try rendering in a new JLabel
-                if (ScilabSpecialTextUtilities.setText(new JLabel(), newText)) {
-                    // MathML in JEditorPane : Change component
-                    changeLabelType(!isJLabel);
-                    ScilabSpecialTextUtilities.setText(label, newText);
-                    // Rendering will be done using Icon
-                    ((JLabel) label).setText(null);
+
+        if (labelText != null) {
+            if (labelText.startsWith("<math>") && labelText.endsWith("</math>")) {
+                boolean mathML = ScilabSpecialTextUtilities.setText(new JLabel(), labelText);
+
+                //if MAthML rendering failed use normal renderer ( JLabel)
+                if (mathML) {
+                    changeLabelType(LabelStyle.MATHML);
+                    ((IconLabel) label).setText(labelText);
                 } else {
-                    // HTML in JEditorPane : OK
-                    ((JEditorPane) label).setText(newText);
+                    changeLabelType(LabelStyle.TEXT);
+                    ((JLabel) label).setText(labelText);
                 }
-            } else {
-                // HTML in JLabel :
-                changeLabelType(!isJLabel);
-                ((JEditorPane) label).setText(newText);
-            }
-        } else {
-            if (!isJLabel) {
-                changeLabelType(!isJLabel);
+                return;
             }
 
-            if (!ScilabSpecialTextUtilities.setText(label, newText)) {
-                // Normal Text
-                ((JLabel) label).setText(newText);
-            } else {
-                // Latex or MathML : Rendering will be done using Icon
-                ((JLabel) label).setText(null);
+            if (labelText.startsWith("<html>") && labelText.endsWith("</html>")) {
+                changeLabelType(LabelStyle.HTML);
+                ((JEditorPane) label).setText(labelText);
+                return;
             }
+
+            if (labelText.startsWith("<a href") && labelText.endsWith("</a>")) {
+                changeLabelType(LabelStyle.HTML);
+                ((JEditorPane) label).setText(labelText);
+                return;
+            }
+
+            if (labelText.startsWith("$") && labelText.endsWith("$")) {
+                boolean latex = ScilabSpecialTextUtilities.setText(new JLabel(), labelText);
+
+                //if MAthML rendering failed use normal renderer ( JLabel)
+                if (latex) {
+                    changeLabelType(LabelStyle.LATEX);
+                    ((IconLabel) label).setText(labelText);
+                } else {
+                    changeLabelType(LabelStyle.TEXT);
+                    ((JLabel) label).setText(labelText);
+                }
+                return;
+            }
+        }
+
+        //force window to redraw all component
+        JFrame win = (JFrame)SwingUtilities.getAncestorOfClass(JFrame.class, this);
+        if (win != null) {
+            win.invalidate();
+        }
+
+        changeLabelType(LabelStyle.TEXT);
+        ((JLabel) label).setText(labelText);
+        setMinimumSize(label.getMinimumSize());
+
+
+        //force window to redraw all component
+        if (win != null) {
+            win.validate();
         }
 
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
-     * Change Label type to switch between JLabel abd JEditorPane
-     * JLabel is quicker on simple text
-     * JEditorPane can enable HyperLinks
+     * Change Label type to switch between JLabel abd JEditorPane JLabel is
+     * quicker on simple text JEditorPane can enable HyperLinks
      * @param isHtmlLabel
      */
-    private void changeLabelType(boolean isJLabel) {
-        this.isJLabel = isJLabel;
+    private void changeLabelType(LabelStyle style) {
+
+        if (labelStyle == style) {
+            return;
+        }
+
+        labelStyle = style;
         Color bgColor = label.getBackground();
         Color fgColor = label.getForeground();
         Font font = label.getFont();
         Dimension dims = label.getSize();
         label.setVisible(false);
 
-        alignmentPanel.remove(label);
+        switch (labelStyle) {
+            case LATEX:
+                alignmentPanel.remove(label);
+                label = new IconLabel(IconType.LATEX);
+                setViewportView(label);
+                setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+                break;
+            case MATHML:
+                alignmentPanel.remove(label);
+                label = new IconLabel(IconType.MATHML);
+                setViewportView(label);
+                setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+                break;
+            case HTML: {
+                JTextPane newLabel = new JTextPane();
+                newLabel.addHyperlinkListener(urlOpener);
+                newLabel.setContentType("text/html");
+                newLabel.setEditable(false);
+                StyleSheet styleSheet = ((HTMLDocument) newLabel.getDocument()).getStyleSheet();
+                styleSheet.addRule("body {font-family:" + font.getName() + ";}");
+                styleSheet.addRule("body {font-size:" + font.getSize() + "pt;}");
+                if (font.isBold()) {
+                    styleSheet.addRule("body {font-weight:bold;}");
+                } else {
+                    styleSheet.addRule("body {font-weight:normal;}");
+                }
+                if (font.isItalic()) {
+                    styleSheet.addRule("body {font-style:italic;}");
+                } else {
+                    styleSheet.addRule("body {font-style:normal;}");
+                }
 
-        if (!isJLabel) {
-            JTextPane newLabel = new JTextPane();
-            newLabel.addHyperlinkListener(urlOpener);
-            newLabel.setContentType("text/html");
-            newLabel.setEditable(false);
-            StyleSheet styleSheet = ((HTMLDocument) newLabel.getDocument()).getStyleSheet();
-            styleSheet.addRule("body {font-family:" + font.getName() + ";}");
-            styleSheet.addRule("body {font-size:" + font.getSize() + "pt;}");
-            if (font.isBold()) {
-                styleSheet.addRule("body {font-weight:bold;}");
-            } else {
-                styleSheet.addRule("body {font-weight:normal;}");
+                label = newLabel;
+                alignmentPanel.add(label);
+                setViewportView(alignmentPanel);
+                setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                break;
             }
-            if (font.isItalic()) {
-                styleSheet.addRule("body {font-style:italic;}");
-            } else {
-                styleSheet.addRule("body {font-style:normal;}");
+            case TEXT: {
+                alignmentPanel.remove(label);
+                label = new JLabel();
+                setViewportView(label);
+                //refresh icon
+                update(__GO_UI_ICON__, GraphicController.getController().getProperty(getId(), __GO_UI_ICON__));
+                ((JLabel) label).setOpaque(false);
+                setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+                break;
             }
-            label = newLabel;
-        } else {
-            label = new JLabel();
         }
 
-        label.setBackground(bgColor);
+        setBackground(bgColor);
         label.setForeground(fgColor);
         label.setFont(font);
         label.setSize(dims);
         label.setVisible(true);
-        alignmentPanel.add(label);
-        alignmentPanel.revalidate();
+        setAlignment();
     }
 
     /**
      * Set alignment of the text component
      */
     private void setAlignment() {
+
+        if (labelStyle != LabelStyle.HTML) {
+            ((JLabel) label).setVerticalAlignment(ScilabAlignment.toSwingAlignment(verticalAlignment));
+            ((JLabel) label).setHorizontalAlignment(ScilabAlignment.toSwingAlignment(horizontalAlignment));
+            return;
+        }
+
         GridBagConstraints gbc = new GridBagConstraints();
 
         gbc.gridx = 0;
@@ -459,7 +563,6 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         }
 
         alignmentLayout.setConstraints(label, gbc);
-        alignmentPanel.revalidate();
     }
 
     /**
@@ -484,88 +587,197 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        switch (property) {
+            case __GO_UI_ICON__: {
+                if (labelStyle == LabelStyle.TEXT) {
+                    String icon = (String) value;
+                    if (icon != null && icon.equals("") == false) {
+                        File file = new File((String) value);
+                        if (file.exists() == false) {
+                            String filename = FindIconHelper.findImage((String) value);
+                            file = new File(filename);
+                        }
+
+                        try {
+                            ((JLabel) label).setIcon(new ImageIcon(ImageIO.read(file)));
+                        } catch (IOException e) {
+                        }
+                    } else {
+                        ((JLabel) label).setIcon(null);
+                    }
+                }
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+            }
+        }
     }
 
-
-    public void setBackgroundcolor(Double[] color) {
-        SwingViewWidget.setBackgroundcolor(this, color);
+    public void resetBackground() {
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("Label.background");
+        if (color != null) {
+            //bypass setBackground
+            if (label instanceof JLabel) {
+                ((JLabel) label).setOpaque(true);
+            }
+            label.setBackground(color);
+        }
     }
 
-    public void setForegroundcolor(Double[] color) {
-        SwingViewWidget.setForegroundcolor(this, color);
+    public void resetForeground() {
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("Label.foreground");
+        if (color != null) {
+            label.setForeground(color);
+        }
     }
 
-    public void setString(String[] text) {
-        SwingViewWidget.setText(uid, this, text);
-    }
+    /**
+     * Component to display LaTeX Thank you Calixte
+     */
+    public static class IconLabel extends JLabel {
+        public enum IconType {
+            LATEX, MATHML
+        };
 
-    public void setCallback(String callback) {
-        SwingViewWidget.setCallback(uid, this, callback);
-    }
+        private static final long serialVersionUID = 3885565301114930030L;
+        private final static Font DEFAULTFONT = new Font("serif", Font.PLAIN, 12);
+        private final static boolean isWindows = System.getProperty("os.name").toLowerCase().indexOf("win") != -1;
 
-    public void setPosition(Double[] position) {
-        SwingViewWidget.setPostion(uid, this, position);
-    }
+        private Icon icon;
+        private Icon iconDisable;
+        private float fontSize;
+        private String text;
+        private Dimension preferred;
+        IconType type = IconType.MATHML;
 
-    public void setParent(int id) {
-        SwingViewWidget.setParent(this, id);
-    }
+        public IconLabel(IconType type) {
+            super();
+            fontSize = 12f;
+            icon = null;
+            iconDisable = null;
+            preferred = new Dimension(0, 0);
+            this.type = type;
+        }
 
-    /* font*/
-    public void setFontweight(String value) {
-        SwingViewWidget.setFontWeight(this, value);
-    }
+        /**
+         * Set the LaTeX content
+         * @param text the LaTeX
+         */
+        public void setText(String text) {
+            this.text = text;
+            update();
+        }
 
-    public void setFontname(String value) {
-        SwingViewWidget.setFontName(this, value);
-    }
+        /**
+         * Get the LaTeX content
+         * @return the LaTeX string
+         */
+        public String getText() {
+            return text;
+        }
 
-    public void setFontangle(String value) {
-        SwingViewWidget.setFontAngle(this, value);
-    }
+        public Dimension getPreferredSize() {
+            return preferred;
+        }
 
-    public void setFontunits(double value) {
-        SwingViewWidget.setFontUnits(uid, this, value);
-    }
+        public Dimension getMinimumSize() {
+            return getPreferredSize();
+        }
 
-    public void setFontsize(double value) {
-        SwingViewWidget.setFontSize(uid, this, value);
-    }
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (isOpaque() && getBackground() != null) {
+                final Color old = g.getColor();
+                g.setColor(getBackground());
+                g.fillRect(0, 0, getWidth(), getHeight());
+                g.setColor(old);
+            }
 
-    public void setMax(double value) {
-        SwingViewWidget.setMax(uid, this, value);
-    }
+            int h = getHorizontalAlignment();
+            int v = getVerticalAlignment();
 
-    public void setMin(double value) {
-        SwingViewWidget.setMin(uid, this, value);
-    }
+            int x = 0;
+            int y = 0;
 
-    public void setValue(Double[] value) {
-        SwingViewWidget.setValue(uid, this, value);
-    }
+            if (h == JLabel.CENTER) {
+                x = (getSize().width - icon.getIconWidth()) / 2;
+            } else if (h == JLabel.RIGHT) {
+                x = getSize().width - icon.getIconWidth();
+            }
 
-    public void setRelief(String value) {
-        SwingViewWidget.setRelief(this, value);
-    }
+            if (v == JLabel.CENTER) {
+                y = (getSize().height - icon.getIconHeight()) / 2;
+            } else if (v == JLabel.BOTTOM) {
+                y = getSize().height - icon.getIconHeight();
+            }
 
-    public void setSliderstep(Double[] value) {
-        SwingViewWidget.setSliderStep(this, value);
-    }
+            if (type == IconType.LATEX) {
+                TeXIcon latex = (TeXIcon) icon;
+                if (isEnabled()) {
+                    latex.setForeground(getForeground());
+                    latex.paintIcon(this, g, x, y);
+                } else {
+                    if (isWindows && (UIManager.getColor("Label.disabledForeground") instanceof Color) && (UIManager.getColor("Label.disabledShadow") instanceof Color)) {
+                        latex.setForeground(UIManager.getColor("Label.disabledShadow"));
+                        latex.paintIcon(this, g, x + 1, y + 1);
+                        latex.setForeground(UIManager.getColor("Label.disabledForeground"));
+                        latex.paintIcon(this, g, x, y);
+                    } else {
+                        latex.setForeground(getBackground().brighter());
+                        latex.paintIcon(this, g, x + 1, y + 1);
+                        latex.setForeground(getBackground().darker());
+                        latex.paintIcon(this, g, x, y);
+                    }
+                }
+            } else { //MathML
+                //enable/disable is made @ icon generation in ScilabSpecialTextUtilities
+                if (isEnabled()) {
+                    icon.paintIcon(this, g, x, y);
+                } else {
+                    icon.paintIcon(this, g, x + 1, y + 1);
+                    iconDisable.paintIcon(this, g, x, y);
+                }
+            }
+        }
 
-    public void setListboxtop(Integer[] value) {
-        SwingViewWidget.setListBoxTop(this, value);
-    }
+        public void setFont(Font f) {
+            this.fontSize = f.getSize2D();
+            update();
+        }
 
-    public void setEnable(boolean value) {
-        SwingViewWidget.setEnable(this, value);
-    }
+        public Font getFont() {
+            return DEFAULTFONT;
+        }
 
-    public void setCallbacktype(int value) {
-        SwingViewWidget.setCallbackType(uid, this, value);
-    }
+        /**
+         * Update the component
+         */
+        private void update() {
+            if (text.equals("") == false) {
+                if (type == IconType.LATEX) {
+                    icon = new TeXFormula(text).new TeXIconBuilder().setStyle(TeXConstants.STYLE_DISPLAY).setSize(fontSize).build();
+                } else {
+                    if (isEnabled()) {
+                        icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, (int) fontSize);
+                    } else {
+                        if (isWindows && (UIManager.getColor("Label.disabledForeground") instanceof Color) && (UIManager.getColor("Label.disabledShadow") instanceof Color)) {
+                            icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, (int) fontSize, UIManager.getColor("Label.disabledShadow"));
+                            iconDisable = ScilabSpecialTextUtilities.compileMathMLExpression(text, (int) fontSize, UIManager.getColor("Label.disabledForeground"));
+                        } else {
+                            icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, (int) fontSize, getBackground().brighter());
+                            iconDisable = ScilabSpecialTextUtilities.compileMathMLExpression(text, (int) fontSize, getBackground().darker());
+                        }
+                    }
+                }
+                preferred = new Dimension(icon.getIconWidth(), icon.getIconHeight());
+                revalidate();
+            }
+        }
 
-    public void setTooltipstring(String[] value) {
-        SwingViewWidget.setToolTipString(this, value);
+        public void setEnabled(boolean enabled) {
+            super.setEnabled(enabled);
+            update();
+        }
     }
 }

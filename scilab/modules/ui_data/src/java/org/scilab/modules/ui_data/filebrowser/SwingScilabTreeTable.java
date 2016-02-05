@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -32,6 +35,7 @@ import java.util.regex.Pattern;
 import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -43,15 +47,16 @@ import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.SwingWorker;
 import javax.swing.tree.TreePath;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.filebrowser.actions.ChangeCWDAction;
 import org.scilab.modules.ui_data.filebrowser.actions.EditFileWithDefaultAppAction;
 import org.scilab.modules.ui_data.filebrowser.actions.ExecuteFileInConsoleAction;
 import org.scilab.modules.ui_data.filebrowser.actions.ExecuteFileInXcosAction;
+import org.scilab.modules.ui_data.filebrowser.actions.ExecuteMatFileAction;
 import org.scilab.modules.ui_data.filebrowser.actions.LoadFileAsGraphAction;
 import org.scilab.modules.ui_data.filebrowser.actions.LoadFileInScilabAction;
 import org.scilab.modules.ui_data.filebrowser.actions.OpenFileInSciNotesAction;
@@ -83,6 +88,9 @@ public class SwingScilabTreeTable extends JTable {
             return INSETS;
         }
     };
+
+    private SwingWorker dirRefresher;
+    private ScilabFileBrowserModel model;
 
     private Method isLocationInExpandControl;
 
@@ -217,14 +225,14 @@ public class SwingScilabTreeTable extends JTable {
     /**
      * @return the Next button used in history
      */
-    public PushButton getNextButton() {
+    public JButton getNextButton() {
         return history.getNextButton();
     }
 
     /**
      * @return the Previous button used in history
      */
-    public PushButton getPreviousButton() {
+    public JButton getPreviousButton() {
         return history.getPreviousButton();
     }
 
@@ -294,12 +302,22 @@ public class SwingScilabTreeTable extends JTable {
      * @param baseDir the base directory
      * @param addInHistory if true the dir is add in the history
      */
-    public void setBaseDir(String baseDir, boolean addInHistory) {
-        ScilabFileBrowserModel model = (ScilabFileBrowserModel) tree.getModel();
+    public synchronized void setBaseDir(String baseDir, boolean addInHistory) {
+        boolean cancelled = false;
+        ScilabFileBrowserModel model;
+        if (dirRefresher != null) {
+            dirRefresher.cancel(true);
+            dirRefresher = null;
+            model = this.model;
+            this.model = null;
+            cancelled = true;
+        } else {
+            model = (ScilabFileBrowserModel) tree.getModel();
+        }
         combobox.setBaseDir(baseDir);
         if (model != null) {
             File f = new File(baseDir);
-            if (!baseDir.equals(model.getBaseDir()) && f.exists() && f.isDirectory() && f.canRead()) {
+            if (cancelled || (!baseDir.equals(model.getBaseDir()) && f.exists() && f.isDirectory() && f.canRead())) {
                 tree.setModel(null);
                 if (addInHistory) {
                     history.addPathInHistory(baseDir);
@@ -359,6 +377,7 @@ public class SwingScilabTreeTable extends JTable {
         final ActionMap actions = getActionMap();
         actions.put("scinotes", new OpenFileInSciNotesAction(this));
         actions.put("xcos", new ExecuteFileInXcosAction(this));
+        actions.put("mat", new ExecuteMatFileAction(this));
         actions.put("console", new ExecuteFileInConsoleAction(this));
         actions.put("load", new LoadFileInScilabAction(this));
         actions.put("graph", new LoadFileAsGraphAction(this));
@@ -403,22 +422,22 @@ public class SwingScilabTreeTable extends JTable {
         JPopupMenu popup = new JPopupMenu();
         JMenuItem item = new JMenuItem(UiDataMessages.OPENINSCINOTES);
         item.addActionListener(actions.get("scinotes"));
-        item.setIcon(new ImageIcon(ScilabSwingUtilities.findIcon("accessories-text-editor")));
+        item.setIcon(new ImageIcon(FindIconHelper.findIcon("accessories-text-editor")));
         popup.add(item);
 
         item = new JMenuItem(UiDataMessages.EXECINCONSOLE);
         item.addActionListener(actions.get("console"));
-        item.setIcon(new ImageIcon(ScilabSwingUtilities.findIcon("media-playback-start")));
+        item.setIcon(new ImageIcon(FindIconHelper.findIcon("media-playback-start")));
         popup.add(item);
 
         item = new JMenuItem(UiDataMessages.OPENINXCOS);
         item.addActionListener(actions.get("xcos"));
-        item.setIcon(new ImageIcon(ScilabSwingUtilities.findIcon("utilities-system-monitor")));
+        item.setIcon(new ImageIcon(FindIconHelper.findIcon("utilities-system-monitor")));
         popup.add(item);
 
         item = new JMenuItem(UiDataMessages.LOADINSCILAB);
         item.addActionListener(actions.get("load"));
-        item.setIcon(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")));
+        item.setIcon(new ImageIcon(FindIconHelper.findIcon("scilab")));
         popup.add(item);
 
         if (actions.get("edit") != null || actions.get("open") != null) {
@@ -440,6 +459,12 @@ public class SwingScilabTreeTable extends JTable {
         popup.pack();
 
         return popup;
+    }
+
+
+    public synchronized void setDirRefresher(SwingWorker refresher, ScilabFileBrowserModel model) {
+        dirRefresher = refresher;
+        this.model = model;
     }
 
     /**

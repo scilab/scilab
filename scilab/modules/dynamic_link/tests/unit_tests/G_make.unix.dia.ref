@@ -13,7 +13,7 @@ if getos() == 'Windows' then
 	    '  @echo ------------------------------------------',
 	    ' '];
   mputl(txt,TMPDIR+'/makefile.mak');
-  current_dir = pwd();
+  current_dir = pwd();  
   cd TMPDIR;
   files = G_make(['',''],'message');
   cd(current_dir);

@@ -14,8 +14,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=7298
 //
 // <-- Short Description -->
-// Creating a superblock diagram using the region to superblock action throw an
-// exception on updating the exported ports.
+// Creating a superblock diagram using the region to superblock action
+// throws an exception on updating the exported ports.
 
 xcos();
 // put 2 SUM_f blocks

@@ -4,22 +4,17 @@
  * Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.label;
-
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_POSITION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_ROTATION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_ANGLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
@@ -29,13 +24,22 @@ import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.Camera;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.utils.Utils;
-import org.scilab.modules.graphic_objects.utils.ViewType;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
+
+import java.awt.Dimension;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_ROTATION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_ANGLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 
 /**
  *
@@ -65,6 +69,41 @@ public class LabelManager {
         this.textureManager = textureManager;
     }
 
+    public Dimension[] getLabelsSize(ColorMap colorMap, Axes axes, AxesDrawer drawer) {
+        final Label xl = (Label) GraphicController.getController().getObjectFromId(axes.getXAxisLabel());
+        final Label yl = (Label) GraphicController.getController().getObjectFromId(axes.getYAxisLabel());
+        final Label tl = (Label) GraphicController.getController().getObjectFromId(axes.getTitle());
+        final Dimension[] dims = new Dimension[3];
+        final Label[] labels = new Label[] {xl, yl, tl};
+        final LabelPositioner[] positioners = new LabelPositioner[] {drawer.getXAxisLabelPositioner(axes), drawer.getYAxisLabelPositioner(axes), drawer.getTitlePositioner(axes) };
+        for (int i = 0; i < 3; i++) {
+            if (labels[i] != null && !labels[i].isEmpty() && labels[i].getAutoPosition() && labels[i].getAutoRotation()) {
+                final Texture texture = getTexture(colorMap, labels[i]);
+                dims[i] = texture.getDataProvider().getTextureSize();
+                final double a = positioners[i].getAutoRotationAngle();
+                if (a == 90 || a == 270) {
+                    final int t = dims[i].width;
+                    dims[i].width = dims[i].height;
+                    dims[i].height = t;
+                }
+            } else {
+                dims[i] = new Dimension();
+            }
+        }
+
+        return dims;
+    }
+
+    public Dimension getXLabelSize(ColorMap colorMap, Axes axes, AxesDrawer drawer) {
+        final Label xl = (Label) GraphicController.getController().getObjectFromId(axes.getXAxisLabel());
+        if (xl != null && !xl.isEmpty()) {
+            final Texture texture = getTexture(colorMap, xl);
+            return texture.getDataProvider().getTextureSize();
+        }
+
+        return new Dimension();
+    }
+
     /**
      * Draws the given {@see Label} with the given {@see DrawingTools}.
      * @param drawingTools the given {@see DrawingTools}.
@@ -89,13 +128,13 @@ public class LabelManager {
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentId);
 
         /* Get the positioner associated to the label */
-        if (parentAxes.getXLabel().equals(label.getIdentifier())) {
+        if (parentAxes.getXAxisLabel().equals(label.getIdentifier())) {
             labelPositioner = axesDrawer.getXAxisLabelPositioner(parentAxes);
-        } else if (parentAxes.getYLabel().equals(label.getIdentifier())) {
+        } else if (parentAxes.getYAxisLabel().equals(label.getIdentifier())) {
             labelPositioner = axesDrawer.getYAxisLabelPositioner(parentAxes);
-        } else if (parentAxes.getZLabel().equals(label.getIdentifier())) {
+        } else if (parentAxes.getZAxisLabel().equals(label.getIdentifier())) {
             labelPositioner = axesDrawer.getZAxisLabelPositioner(parentAxes);
-            drawnFlag = (parentAxes.getView() == ViewType.VIEW_3D);
+            drawnFlag = (parentAxes.getViewAsEnum() == Camera.ViewType.VIEW_3D);
         } else if (parentAxes.getTitle().equals(label.getIdentifier())) {
             labelPositioner = axesDrawer.getTitlePositioner(parentAxes);
         } else {
@@ -143,8 +182,6 @@ public class LabelManager {
         /* Un scale/translate the label position to be drawn */
         Vector3d labelUserPosition = computeUnscaledAxesCoords(new Vector3d(label.getPosition()), factors);
 
-
-
         /* Logarithmic scaling must be applied to the label's user position to obtain object coordinates */
         labelUserPosition = ScaleUtils.applyLogScale(labelUserPosition, logFlags);
 
@@ -161,7 +198,6 @@ public class LabelManager {
         if (label.getAutoPosition()) {
             Vector3d cornerPos = labelPositioner.getLowerLeftCornerPosition();
             Vector3d objectCornerPos = axesDrawer.getObjectCoordinates(cornerPos);
-
             /* Apply inverse scaling to obtain user coordinates */
             objectCornerPos = ScaleUtils.applyInverseLogScale(objectCornerPos, logFlags);
 
@@ -177,22 +213,17 @@ public class LabelManager {
 
         /* Compute and set the label's corners */
         Transformation projection = axesDrawer.getProjection();
-
         Vector3d[] projCorners = labelPositioner.getProjCorners();
-
         Vector3d[] corners = computeCorners(projection, projCorners, parentAxes);
-
         Double[] coordinates = cornersToCoordinateArray(corners);
 
         /* Set the computed coordinates */
         label.setCorners(coordinates);
 
-
         double rotationAngle = 0.0;
 
         if (label.getAutoRotation()) {
             rotationAngle = labelPositioner.getRotationAngle();
-
             label.setFontAngle(Math.PI * rotationAngle / 180.0);
 
             /*
@@ -213,7 +244,7 @@ public class LabelManager {
                     /* Draw in window coordinates */
                     Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
                     Vector3d projLabelPos = canvasProjection.project(labelPos);
-
+                    projLabelPos = new Vector3d(Math.round(projLabelPos.getX()), Math.round(projLabelPos.getY()), Math.round(projLabelPos.getZ()));
                     drawingTools.getTransformationManager().useWindowCoordinate();
                     drawingTools.draw(labelSprite, labelAnchor, projLabelPos, rotationAngle);
                     drawingTools.getTransformationManager().useSceneCoordinate();
@@ -223,7 +254,6 @@ public class LabelManager {
                 }
             }
         }
-
     }
 
     /**

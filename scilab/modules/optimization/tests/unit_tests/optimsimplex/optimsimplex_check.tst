@@ -1,14 +1,20 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 // <-- CLI SHELL MODE -->
+
+funcprot(0);
 
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
@@ -172,3 +178,4 @@ cmd = "optimsimplex_check ( s1 );";
 assert_checkerror(cmd,"%s: Number of columns of x is %d, which is different from dimension = %d.",[],"optimsimplex_check" , 2 , 3);
 s1 = optimsimplex_destroy(s1);
 
+funcprot(1);

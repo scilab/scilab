@@ -20,9 +20,10 @@ figureSize = [800, 600];
 
 // check that final figure size is the one specified
 hf = gcf();
-xset ("wpdim", figureSize);
+xset ("wpdim", figureSize(1), figureSize(2));
 if (hf.figure_size <> figureSize) then pause; end;
 
+sleep(200);//Wait for MVC update
 
 figureSize = [640, 480];
 hf.figure_size = figureSize;

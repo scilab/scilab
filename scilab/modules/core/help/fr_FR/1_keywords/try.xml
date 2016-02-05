@@ -38,7 +38,7 @@
             mot clé <literal>catch</literal> sont ignorées et les instructions
             comprises entre les mots clés <literal>catch</literal> et
             <literal>end</literal> sont exécutées en utilisant le mode de gestion des
-            erreurs par défaut (voir <link linkend="errcatch">errcatch</link>).
+            erreurs par défaut.
         </para>
         <para>L'erreur mémorisée peut être retrouvée en utilisant la fonction
             <link linkend="lasterror">lasterror</link>.
@@ -57,17 +57,17 @@
             Notez également que <literal>try-catch</literal> est plus ou moins
             similaire à :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 if execstr("<instructions du bloc try>","errcatch")<>0 then
   <instructions du bloc catch>
 end
  ]]></programlisting>
         <para>
-            Il utilise le même mécanisme interne que <link linkend="errcatch">errcatch</link>. C'est pourquoi <link linkend="errcatch">errcatch</link> ou <emphasis>execstr(...,"errcatch")
+            Il utilise le même mécanisme interne que "errcatch". C'est pourquoi <emphasis>execstr(...,"errcatch")
             </emphasis>
             ne peut pas être utilisé à l'intérieur d'une structure
             <literal>try</literal>-<literal>catch</literal>. Un tel contexte est
-            détecté et gérère un message d'erreur spécifique (cette erreur est masquée
+            détecté et génère un message d'erreur spécifique (cette erreur est masquée
             et mémorisée comme n'importe quelle autre erreur si elle se produit dans
             le bloc <literal>try</literal>).
         </para>
@@ -78,20 +78,20 @@ end
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // premier exemple
 file_path=TMPDIR+'/wrong'
 try
   u=mopen(file_path,'r')
   x=mget(10,'c',u)
 catch
-  disp(['le fichier '+file_path+ 'ne peut pas être lu', 
+  disp(['le fichier '+file_path+ 'ne peut pas être lu',
         'on utilise la valeur  par défaut de x'])
   x=1:10
-end 
-[error_message,error_number]=lasterror(%t) 
+end
+[error_message,error_number]=lasterror(%t)
  ]]></programlisting>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 // 2ème exemple (structures try/catch imbriquées)
 function nestedtry(a,b)
 disp("DEBUT")
@@ -131,9 +131,6 @@ nestedtry("une chaîne","une chaîne")
             </member>
             <member>
                 <link linkend="lasterror">lasterror</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
             </member>
         </simplelist>
     </refsection>

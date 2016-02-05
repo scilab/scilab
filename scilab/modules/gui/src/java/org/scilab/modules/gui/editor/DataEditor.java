@@ -2,12 +2,16 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -24,6 +28,7 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.CallRenderer;
@@ -206,14 +211,16 @@ public class DataEditor {
     public void onLeftMouseDown(MouseEvent event) {
         picked = picker.pickPoint(curPolyline, event.getX(), event.getY());
         if (picked != null && picked.point != -1) {
-            Integer figureUid = (Integer) GraphicController.getController().getProperty(curPolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+            GraphicObject go = 	GraphicController.getController().getObjectFromId(curPolyline);
+            Integer figureUid = go.getParentFrameOrFigure();
             DrawerVisitor.getVisitor(figureUid).getInteractionManager().setTranslationEnable(false);
         }
     }
 
     public void onLeftMouseRelease(MouseEvent event) {
         if (picked != null && picked.point != -1) {
-            Integer figureUid = (Integer) GraphicController.getController().getProperty(curPolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+            GraphicObject go = 	GraphicController.getController().getObjectFromId(curPolyline);
+            Integer figureUid = go.getParentFrameOrFigure();
             DrawerVisitor.getVisitor(figureUid).getInteractionManager().setTranslationEnable(true);
         }
     }
@@ -225,9 +232,7 @@ public class DataEditor {
      */
     public void onDrag(Integer[] lastClick, Integer[] newClick) {
         if (picked != null && picked.point != -1) {
-
             if (!picked.isSegment) {
-
                 double[] datax = (double[])PolylineData.getDataX(curPolyline);
                 double[] datay = (double[])PolylineData.getDataY(curPolyline);
                 double[] dataz = (double[])PolylineData.getDataZ(curPolyline);
@@ -236,7 +241,7 @@ public class DataEditor {
                 Vector3d planePoint = new Vector3d(datax[picked.point], datay[picked.point], dataz[picked.point]);
                 //Vector3d planeNorm = new Vector3d(0.0, 0.0, 1.0);
                 //2d coords for current click
-                double[] pos = {1.0 * newClick[0], 1.0 * newClick[1], 1.0};
+                double[] pos = {newClick[0].doubleValue(), newClick[1].doubleValue(), 1.0};
                 double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
 
                 Axes axesObj = AxesHandler.getAxesFromUid(axes);
@@ -258,11 +263,7 @@ public class DataEditor {
                 Vector3d pointNew = dir.times(u);
                 pointNew = pointNew.plus(v0);
 
-                boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__),
-                                                    (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__),
-                                                    (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)
-                                                   };
-                PolylineData.translatePoint(curPolyline, picked.point, pointNew.getX() - planePoint.getX(), pointNew.getY() - planePoint.getY(), 0.0 , logFlags[0] ? 1 : 0, logFlags[1] ? 1 : 0, logFlags[2] ? 1 : 0);
+                PolylineData.translatePoint(curPolyline, picked.point, pointNew.getX() - planePoint.getX(), pointNew.getY() - planePoint.getY(), 0.0 , 0, 0, 0);
 
             } else {
                 PolylineHandler.getInstance().dragPolyline(curPolyline, lastClick, newClick);
@@ -309,13 +310,6 @@ public class DataEditor {
                 /*double click over a segment insert a new point*/
                 double[] pos = {1.0 * event.getX(), 1.0 * event.getY(), 1.0};
                 double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
-                boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__),
-                                                    (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__),
-                                                    (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)
-                                                   };
-                c2d[0] = CommonHandler.InverseLogScale(c2d[0], logFlags[0]);
-                c2d[1] = CommonHandler.InverseLogScale(c2d[1], logFlags[1]);
-                c2d[2] = CommonHandler.InverseLogScale(c2d[2], logFlags[2]);
                 double[] point = CommonHandler.computeIntersection(curPolyline, picked.point, c2d);
                 PolylineData.insertPoint(curPolyline, picked.point, point[0], point[1], point[2]);
             }
@@ -338,13 +332,6 @@ public class DataEditor {
         picked = picker.pickPoint(curPolyline, clickPos[0], clickPos[1]);
         double[] pos = {1.0 * clickPos[0], 1.0 * clickPos[1], 1.0};
         double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
-        boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__),
-                                            (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__),
-                                            (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)
-                                           };
-        c2d[0] = CommonHandler.InverseLogScale(c2d[0], logFlags[0]);
-        c2d[1] = CommonHandler.InverseLogScale(c2d[1], logFlags[1]);
-        c2d[2] = CommonHandler.InverseLogScale(c2d[2], logFlags[2]);
         double[] point = CommonHandler.computeIntersection(curPolyline, picked.point, c2d);
         PolylineData.insertPoint(curPolyline, picked.point, point[0], point[1], point[2]);
     }

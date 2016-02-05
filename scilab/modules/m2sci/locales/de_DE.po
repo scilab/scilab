@@ -14,12 +14,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: de\n"
 
-#, c-format
-msgid "-- Creation of [%s] (Macros) --\n"
-msgstr "--Erzeugung von [%s] (Makros)--\n"
+msgid "Input file"
+msgstr "Eingabedatei"
+
+msgid "Input directory"
+msgstr "Eingabe-Verzeichnis"
 
 msgid "Select the directory to convert"
 msgstr "Das Verzeichnis, welches konvertiert werden soll, auswählen"
@@ -170,8 +172,7 @@ msgid "lhs cannot be a %s."
 msgstr "lhs kann kein %s sein."
 
 #, c-format
-msgid ""
-"recursive extraction with one index of type %s is not yet implemented."
+msgid "recursive extraction with one index of type %s is not yet implemented."
 msgstr ""
 "Rekursive Extraktion mit einem Index des Typs %s ist noch nicht "
 "implementiert."
@@ -188,8 +189,7 @@ msgid "Matlab function %s not yet converted."
 msgstr "Matlab Funktion  %s ist noch nicht konvertiert."
 
 #, c-format
-msgid ""
-"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "mtlb(%s) kann durch %s() ersetzt werden oder %s oder %s ist eine M-Datei "
 "oder nicht."
@@ -398,18 +398,6 @@ msgstr "Typ %d ist noch nicht implementiert."
 msgid "Matlab to Scilab conversion tool"
 msgstr "Konversionsprogramm Matlab nach Scilab"
 
-msgid "&File"
-msgstr "&Datei"
-
-msgid "&Tools"
-msgstr "&Zusatzprogramme"
-
-msgid "&Edit"
-msgstr "&Editieren"
-
-msgid "&?"
-msgstr "&?"
-
 msgid "File"
 msgstr "Datei"
 
@@ -476,12 +464,6 @@ msgstr "Verzeichnis-Name: "
 msgid "Browse"
 msgstr "Durchsuchen"
 
-msgid "Input directory"
-msgstr "Eingabe-Verzeichnis"
-
-msgid "Input file"
-msgstr "Eingabedatei"
-
 msgid "File name: "
 msgstr "Dateiname: "
 
@@ -502,8 +484,20 @@ msgid "%s: %s module is not installed.\n"
 msgstr "%s: %s Modul ist nicht installiert.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: falsche Anzahl an Eingangsargumenten: %d erwartet.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not read variables in %s"
+msgstr ""
 
 msgid "OFF"
 msgstr "AUS"
@@ -617,8 +611,7 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Ende der mfile2sci() Sitzung ******"
 
 #, c-format
-msgid ""
-"At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Mindestens ein Operand von %s ist eine leere Matrix, Scilabs Äquivalent ist "
 "[]."
@@ -638,8 +631,7 @@ msgstr ""
 "M2SCI Programmfehler: Extraktion einer unbekannten Variable %s in varslist."
 
 #, c-format
-msgid ""
-"recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 "Rekursives Einfügen in eine Variable, welche keine Zelle oder ein Strukt "
 "ist: %s."
@@ -785,8 +777,7 @@ msgstr "%s() mit Übersprungsparameter aufgerufen."
 
 #, c-format
 msgid "Not enough information on %s to set the proper flag."
-msgstr ""
-"Nicht genug Information bei %s, um das richtige Kennzeichen zu setzen."
+msgstr "Nicht genug Information bei %s, um das richtige Kennzeichen zu setzen."
 
 #, c-format
 msgid "Global variable %s added to M2SCI variable list."
@@ -807,8 +798,7 @@ msgstr "Scilab %s() arbeitet nicht mit kompexen Werten: %s Aufruf ignoriert."
 msgid "Unhandled class: %s."
 msgstr "nicht unterstützte Klasse: %s."
 
-msgid ""
-"isequal requires fields are in the same order for structs to be equal."
+msgid "isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "isequal benötigt Felder in der gleichen Ordnung für Strukturen, die gleich "
 "sein müssen."

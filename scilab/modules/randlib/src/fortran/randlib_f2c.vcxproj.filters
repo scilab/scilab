@@ -117,9 +117,6 @@
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\randlib_gateway.xml" />
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="Output_stream_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>

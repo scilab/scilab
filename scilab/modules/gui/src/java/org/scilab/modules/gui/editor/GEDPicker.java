@@ -3,31 +3,40 @@
  * Copyright (C) 2013 - Pedro Arthur dos S. Souza
  * Copyright (C) 2013 - Caio Lucas dos S. Souza
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.gui.editor;
 
 
-import java.util.LinkedList;
-import java.util.List;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.CallGraphicController;
+import org.scilab.modules.renderer.CallRenderer;
 
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
-import org.scilab.modules.graphic_objects.ObjectData;
+
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.SurfaceData;
-import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
-import org.scilab.modules.renderer.CallRenderer;
-import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
-import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
+import org.scilab.modules.graphic_objects.ObjectData;
+import org.scilab.modules.gui.editor.CommonHandler;
+import org.scilab.modules.gui.editor.AxesHandler;
+
+import java.lang.Math;
+import java.util.List;
+import java.util.LinkedList;
 /**
  *
  * GED Object picker for all Graphics Objects
@@ -208,9 +217,9 @@ public class GEDPicker {
         if (CommonHandler.isMarkEnabled(obj)) {
 
             Integer markSize = CommonHandler.getMarkSize(obj);
-            MarkSizeUnitType unit = CommonHandler.getMarkSizeUnit(obj);
+            Integer unit = CommonHandler.getMarkSizeUnit(obj);
 
-            int finalSize = (unit == MarkSizeUnitType.TABULATED) ? (8 + 2 * markSize) : markSize;
+            int finalSize = (unit == 1) ? (8 + 2 * markSize) : markSize;
             finalSize /= 2;
             double deltax = Math.abs((dx / delta) * finalSize);
             double deltay = Math.abs((dy / delta) * finalSize);
@@ -242,8 +251,8 @@ public class GEDPicker {
      * @return true if picked the surface otherwise returns false
      */
     boolean getSurface(Integer obj, Integer[] position) {
-
-        Integer figure = (Integer)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        GraphicObject go = GraphicController.getController().getObjectFromId(obj);
+        Integer figure = go.getParentFrameOrFigure();
         double[] mat = DrawerVisitor.getVisitor(figure).getAxesDrawer().getProjection(axesUID).getMatrix();
         double[][] factors = axes.getScaleTranslateFactors();
 
@@ -271,11 +280,12 @@ public class GEDPicker {
      * @return true if picked the legend otherwise returns false
      */
     boolean getLegend(Integer obj, Integer[] position) {
-
         Integer[] axesSize = {0, 0};
+        Double delta;
         Double[] axesBounds = { 0., 0. }, dPosition = { 0., 0. }, legendPos = { 0., 0. }, legendBounds = { 0., 0., 0., 0. }, dimension = { 0., 0. };
 
-        Integer figure = (Integer)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        GraphicObject go = GraphicController.getController().getObjectFromId(obj);
+        Integer figure = go.getParentFrameOrFigure();
         axesSize = (Integer[])GraphicController.getController().getProperty(figure, GraphicObjectProperties.__GO_AXES_SIZE__);
         axesBounds = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_AXES_BOUNDS__);
         legendPos = (Double[])GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_POSITION__);
@@ -484,8 +494,8 @@ public class GEDPicker {
      * @return true if picked the fec otherwise returns false
      */
     boolean getFec(Integer obj, Integer[] position) {
-
-        double[] triangles = (double[])ObjectData.getFecTriangles(obj);
+        int numVerticesByElem = ObjectData.getFecNumVerticesByElement(obj);
+        double[] elements = (double[])ObjectData.getFecElements(obj);
         double[] data = (double[])ObjectData.getFecData(obj);
 
         double[] pos = { position[0] * 1.0, position[1] * 1.0, 0.0 };
@@ -500,18 +510,20 @@ public class GEDPicker {
         int idx1, idx2, idx3;
         Vector3d p1, p2, p3;
 
-        int tSize = triangles.length / 5;
+        int tSize = elements.length / (numVerticesByElem + 2);
         for (int i = 0; i < tSize; i++) {
-            idx1 = (int)triangles[tSize + i];
-            idx2 = (int)triangles[2 * tSize + i];
-            idx3 = (int)triangles[3 * tSize + i];
+            idx1 = (int)elements[tSize + i];
+            for (int j = 2; j < numVerticesByElem; ++j) {
+                idx2 = (int)elements[j * tSize + i];
+                idx3 = (int)elements[(j + 1) * tSize + i];
 
-            p1 = new Vector3d(data[(idx1 - 1) * 3], data[(idx1 - 1) * 3 + 1], data[(idx1 - 1) * 3 + 2]);
-            p2 = new Vector3d(data[(idx2 - 1) * 3], data[(idx2 - 1) * 3 + 1], data[(idx2 - 1) * 3 + 2]);
-            p3 = new Vector3d(data[(idx3 - 1) * 3], data[(idx3 - 1) * 3 + 1], data[(idx3 - 1) * 3 + 2]);
+                p1 = new Vector3d(data[(idx1 - 1) * 3], data[(idx1 - 1) * 3 + 1], data[(idx1 - 1) * 3 + 2]);
+                p2 = new Vector3d(data[(idx2 - 1) * 3], data[(idx2 - 1) * 3 + 1], data[(idx2 - 1) * 3 + 2]);
+                p3 = new Vector3d(data[(idx3 - 1) * 3], data[(idx3 - 1) * 3 + 1], data[(idx3 - 1) * 3 + 2]);
 
-            if (testTri(p1, p2, p3, l0, dir)) {
-                return true;
+                if (testTri(p1, p2, p3, l0, dir)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -661,8 +673,8 @@ public class GEDPicker {
         }
 
         Integer size = CommonHandler.getMarkSize(obj);
-        MarkSizeUnitType unit = CommonHandler.getMarkSizeUnit(obj);
-        int finalSize = (unit == MarkSizeUnitType.TABULATED) ? (8 + 2 * size) : size;
+        Integer unit = CommonHandler.getMarkSizeUnit(obj);
+        int finalSize = (unit == 1) ? (8 + 2 * size) : size;
         finalSize /= 2;
 
         if ((Math.abs(point[0] - c2d[0]) <= dx * finalSize) && (Math.abs(point[1] - c2d[1]) <= dy * finalSize)) {
@@ -675,8 +687,8 @@ public class GEDPicker {
     }
 
     boolean isInsideAxes(Integer figureUID, Integer[] position) {
-        //Double[] rotAngles = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
-        //boolean default2dView = (rotAngles[0] == 0.0 && rotAngles[1] == 270.0);
+        Double[] rotAngles = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
+        boolean default2dView = (rotAngles[0] == 0.0 && rotAngles[1] == 270.0);
         //        if (default2dView) {
         Double[] dataBounds = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_DATA_BOUNDS__);
         double[] c2d = AxesDrawer.compute2dViewFromPixelCoordinates(axes, new double[] { 1.0 * position[0], 1.0 * position[1], 0.0 });

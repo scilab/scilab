@@ -16,4 +16,4 @@
 //    get() with wrong argument causes EXCEPTION_ACCESS_VIOLATION error.
 
 
-if get("parent") <> gcf() then pause; end
+assert_checktrue(isempty(get("parent")));

@@ -1,12 +1,16 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
 # Copyright (C) 2010 - DIGITEO - Sylvestre Ledru
+# Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 
 # TODO:
 # * see if we can do more factorization (on the lexer for example)
@@ -23,20 +27,30 @@ OCAMLLIBS=nums.cma
 
 ### XML2Modelica
 
-XML2Modelica_SOURCES = $(MLS_XML2Modelica)
-MLS_XML2Modelica= $(srcdir)/src/xml2modelica/xMLTree.ml $(srcdir)/src/xml2modelica/linenum.ml $(srcdir)/src/xml2modelica/stringParser.ml $(srcdir)/src/xml2modelica/stringLexer.ml $(srcdir)/src/xml2modelica/xMLParser.ml $(srcdir)/src/xml2modelica/xMLLexer.ml\
-	$(srcdir)/src/xml2modelica/modelicaCodeGenerator.ml $(srcdir)/src/xml2modelica/xML2Modelica.ml
+XML2Modelica_SOURCES = \
+	$(srcdir)/src/xml2modelica/xMLTree.ml \
+	$(srcdir)/src/xml2modelica/linenum.mll \
+	$(srcdir)/src/xml2modelica/stringParser.ml \
+	$(srcdir)/src/xml2modelica/stringLexer.ml \
+	$(srcdir)/src/xml2modelica/xMLParser.ml \
+	$(srcdir)/src/xml2modelica/xMLLexer.ml \
+	$(srcdir)/src/xml2modelica/modelicaCodeGenerator.ml \
+	$(srcdir)/src/xml2modelica/xML2Modelica.ml
+
+XML2Modelica_SOURCES_mly = $(XML2Modelica_SOURCES:.mly=.ml)
+MLS_XML2Modelica = $(XML2Modelica_SOURCES_mly:.mll=.ml)
+MLIS_XML2Modelica = $(MLS_XML2Modelica:.ml=.mli)
 
 BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
 
 
-### Translator 
+### Translator
 
 modelicat_SOURCES = \
 	$(srcdir)/src/translator/parsing/syntax.ml \
 	$(srcdir)/src/translator/parsing/parser.mly \
 	$(srcdir)/src/translator/parsing/lexer.mll \
-	$(srcdir)/src/translator/parsing/linenum.ml \
+	$(srcdir)/src/translator/parsing/linenum.mll \
 	$(srcdir)/src/translator/compilation/types.ml \
 	$(srcdir)/src/translator/compilation/nameResolve.ml \
 	$(srcdir)/src/translator/instantiation/instantiation.ml \
@@ -62,7 +76,7 @@ INCLUDE_modelicat = -I $(srcdir)/src/translator/compilation \
 
 modelicac_SOURCES = \
 	$(srcdir)/src/modelica_compiler/parseTree.ml \
-	$(srcdir)/src/modelica_compiler/linenum.ml \
+	$(srcdir)/src/modelica_compiler/linenum.mll \
 	$(srcdir)/src/modelica_compiler/parser.mly \
 	$(srcdir)/src/modelica_compiler/lexer.mll \
 	$(srcdir)/src/modelica_compiler/precompilation.ml \
@@ -81,8 +95,8 @@ modelicac_SOURCES = \
 	$(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 
 modelicac_SOURCES_mly = $(modelicac_SOURCES:.mly=.ml)
-MLS = $(modelicac_SOURCES_mly:.mll=.ml)
-MLIS = $(MLS:.ml=.mli)
+MLS_modelicac = $(modelicac_SOURCES_mly:.mll=.ml)
+MLIS_modelicac = $(MLS:.ml=.mli)
 
 BASE_PATH_MODELICAC = $(srcdir)/src/modelica_compiler
 
@@ -93,62 +107,74 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 
 # @TODO check how to avoid the rebuild of the parser/lexer
 
-%.cmo: %.ml %.cmi
+.cmi.cmo:
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
-		$(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
+		echo $(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $*.ml; \
+		$(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $*.ml; \
 	else \
-		echo $(OCAMLC) $(INCLUDE)  -c $<; \
-		$(OCAMLC) $(INCLUDE)  -c $<; \
+		echo $(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $*.ml; \
+		$(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $*.ml; \
 	fi
 
-.ml.cmx:
+.cmi.cmx:
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLOPT) $(INCLUDE_modelicat) -c $<; \
-		$(OCAMLOPT) $(INCLUDE_modelicat) -c $<; \
+		echo $(OCAMLOPT) $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) -c $*.ml; \
+		$(OCAMLOPT) $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) -c $*.ml; \
 	else \
-		echo $(OCAMLOPT) $(INCLUDE) -c $<; \
-		$(OCAMLOPT) $(INCLUDE) -c $<; \
+		echo $(OCAMLOPT) $(INCLUDE) $(OCAMLOPTFLAGS) -c $*.ml; \
+		$(OCAMLOPT) $(INCLUDE) $(OCAMLOPTFLAGS) -c $*.ml; \
 	fi
-
 
 .mli.cmi:
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat) -c $<; \
-		$(OCAMLC) $(INCLUDE_modelicat) -c $<; \
+		echo $(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $<; \
+		$(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $<; \
 	else \
-		echo $(OCAMLC) $(INCLUDE) -c $<; \
-		$(OCAMLC) $(INCLUDE) -c $<; \
+		echo $(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $<; \
+		$(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $<; \
 	fi
 
 .ml.mli:
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat) -i $< > $@; \
-		$(OCAMLC) $(INCLUDE_modelicat) -i $< > $@; \
+		echo $(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -i $< > $@; \
+		$(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -i $< > $@; \
 	else \
-		echo $(OCAMLC) $(INCLUDE) -i $< > $@; \
-		$(OCAMLC) $(INCLUDE) -i $< > $@; \
+		echo $(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -i $< > $@; \
+		$(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -i $< > $@; \
 	fi
-
 
 .mll.ml:
 	$(OCAMLLEX) $<
 
 .mly.ml:
 	$(OCAMLYACC) $<
+	@rm $*.mli
 
-# Build the binaries
+# Build the binaries, disabling parallel building
 
-modelicac:$(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
-	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
+modelicac: $(modelicac_SOURCES)
+	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicac:.ml=.cmx)
+	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicac:.ml=.cmx)
 
+modelicac.ocamlc: $(modelicac_SOURCES)
+	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicac:.ml=.cmo)
+	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicac:.ml=.cmo)
 
-XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx) 
-	$(OCAMLOPT) -o XML2Modelica $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx) 
+XML2Modelica: $(XML2Modelica_SOURCES)
+	$(MAKE) MAKEFLAGS=-j1 $(MLS_XML2Modelica:.ml=.cmx)
+	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx)
 
-modelicat: $(MLIS_modelicat:.mli=.cmi) $(MLS_modelicat:.ml=.cmo) $(MLS_modelicat:.ml=.cmx)
-	$(OCAMLOPT) -o modelicat $(INCLUDE_modelicat) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmx) 
+XML2Modelica.ocamlc: $(XML2Modelica_SOURCES)
+	$(MAKE) MAKEFLAGS=-j1 $(MLS_XML2Modelica:.ml=.cmo)
+	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS) $(MLS_XML2Modelica:.ml=.cmo)
 
+modelicat: $(modelicat_SOURCES)
+	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicat:.ml=.cmx)
+	$(OCAMLOPT) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicat:.ml=.cmx)
+
+modelicat.ocamlc: $(modelicat_SOURCES)
+	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicat:.ml=.cmo)
+	$(OCAMLC) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicat:.ml=.cmo)
 
 CLEANFILES = $(BASE_PATH)/*/*.cmi \
 	$(BASE_PATH)/*/*.o \
@@ -156,8 +182,10 @@ CLEANFILES = $(BASE_PATH)/*/*.cmi \
 	$(BASE_PATH)/*/*.cm[aiox] \
 	$(BASE_PATH)/*/parser.mli \
 	$(BASE_PATH)/*/lexer.mli \
+	$(BASE_PATH)/*/linenum.mli \
 	$(BASE_PATH)/*/parser.ml \
 	$(BASE_PATH)/*/lexer.ml \
+	$(BASE_PATH)/*/linenum.ml \
 	$(BASE_PATH)/translator/*/*.cmi \
 	$(BASE_PATH)/translator/*/*.o \
 	$(BASE_PATH)/translator/*/*.a \
@@ -187,8 +215,10 @@ CLEANFILES = $(BASE_PATH)/*/*.cmi \
 
 #BUILT_SOURCES = depend
 
-depend: 
-	$(OCAMLDEP) $(INCLUDE_modelicat) $(INCLUDE) $(MLIS) $(MLS) $(MLIS_XML2Modelica) $(MLS_XML2Modelica) $(MLIS_modelicat) $(MLS_modelicat) > .depend
+depend: $(MLS_XML2Modelica) $(MLS_modelicac) $(MLS_modelicat)
+	$(OCAMLDEP) -all $(INCLUDE) $(MLS_XML2Modelica) $(MLIS_XML2Modelica) > .depend
+	$(OCAMLDEP) -all $(INCLUDE_modelicat) $(MLS_modelicat) $(MLIS_modelicat) >> .depend
+	$(OCAMLDEP) -all $(INCLUDE) $(MLS_modelicac) $(MLIS_modelicac) >> .depend
 
 include .depend
 

@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function txt=%p_string(p)
     [m,n]=size(p)
@@ -50,18 +53,34 @@ function txt=%p_string(p)
                 if knz(1)>1 then
                     C=C+s
                 else
-                    C(2:$)=C(2:$)+s
+                    if ~isempty(s) && (size(C, "*") >= 2)
+                        C(2:$)=C(2:$)+s
+                    end
                 end
 
-                i=min(find(knz>2))
-                blank=" "
-                e=blank(ones(1,i-1))
-                if size(knz,"*")>=i then e=[e string(knz(i:$)-1)],end
+                i=min(find(knz>2));
+                blank=" ";
+                if ~isempty(i)
+                    e=blank(ones(1,i-1));
+                else
+                    e = [];
+                end
+                if size(knz,"*")>=i then
+                    e=[e string(knz(i:$)-1)];
+                end
 
                 lc=cumsum(length(C))
                 C=strcat(C)
                 E="";
-                for i=1:size(c,"*"),E=E+part(" ",1:(lc(i)-length(E)))+e(i);end
+                if isempty(e)
+                    for i=1:size(c,"*")
+                        E = E + part(" ", 1:(lc(i) - length(E)));
+                    end
+                else
+                    for i=1:size(c,"*")
+                        E = E + part(" ", 1:(lc(i) - length(E))) + e(i);
+                    end
+                end
                 txt(2*l-1:2*l,k)=[E;C];
             end
         end

@@ -2,17 +2,24 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.graphic_objects.graphicView;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
+
 import org.scilab.modules.graphic_objects.ScilabNativeView;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 public class ScilabView extends ScilabNativeView implements GraphicView {
 
@@ -37,8 +44,17 @@ public class ScilabView extends ScilabNativeView implements GraphicView {
     }
 
     public void updateObject(Integer id, int property) {
-        if (property == GraphicObjectProperties.__GO_ID__) {
-            ScilabNativeView__updateObject(id, property);
+        switch (property) {
+            case __GO_ID__ :
+            case __GO_CHILDREN__ :
+            case __GO_PARENT__ :
+            case __GO_TAG__ : {
+                ScilabNativeView__updateObject(id, property);
+                break;
+            }
+            default : {
+                break;
+            }
         }
     }
 

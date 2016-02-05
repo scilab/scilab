@@ -1,10 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function clf(varargin)
 
@@ -46,35 +49,56 @@ function clf(varargin)
 
     nbHandles = size(h,"*");
 
+    if nbHandles == 0 then
+        return;
+    end
+
     // check that all the handles are figures
     for k=1:nbHandles
         curFig = h(k);
-        if curFig.type <> "Figure" then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A vector of ''Figure'' handle expected."), "clf", 1));
+        if curFig.type <> "Figure" & (curFig.type <> "uicontrol" | curFig.style <> "frame") then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A vector of ''Figure'' or ''Frame'' handle expected."), "clf", 1));
         end
     end
 
     // delete childrens
     for k=1:nbHandles
         curFig = h(k)
+        if curFig.type == "uicontrol" then
+            haveAxes = %F;
+            for kChild = 1:size(curFig.children, "*")
+                if curFig.children(kChild).type=="Axes" then
+                    haveAxes = %T;
+                    break
+                end
+            end
+            delete(curFig.children);
+            if haveAxes then
+                newaxes(curFig);
+            end
+        else
+            // drawlater
+            immediateMode = curFig.immediate_drawing;
+            curFig.immediate_drawing = "off";
 
-        // drawlater
-        immediateMode = curFig.immediate_drawing;
-        curFig.immediate_drawing = "off";
+            delete(curFig.children);
 
-        delete(curFig.children);
-        
-        // drawnow
-        curFig.immediate_drawing = immediateMode;
+            // drawnow
+            curFig.immediate_drawing = immediateMode;
+
+            curFig.info_message = "";
+        end
     end
-    
-    curFig.info_message = "";
+
 
     // reset figures to default values if needed
     if (job == "reset") then
         defaultFig = gdf();
         for k = 1: nbHandles
             curFig = h(k);
+            if curFig.type == "uicontrol" then
+                continue;
+            end
 
             // drawlater
             immediateMode = curFig.immediate_drawing;
@@ -88,7 +112,6 @@ function clf(varargin)
             "figure_name",
             "color_map",
             "info_message",
-            "pixmap",
             "pixel_drawing_mode",
             "immediate_drawing",
             "background",
@@ -110,7 +133,6 @@ function clf(varargin)
 
             // drawnow
             curFig.immediate_drawing = immediateMode;
-
         end
     end
 

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="titled_border_properties">
+    <refnamediv>
+        <refname>Titled border properties</refname>
+        <refpurpose>Description of the titled borders properties.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            titledBorder = createBorder("titled", title)
+            titledBorder = createBorder("titled", border)
+            titledBorder = createBorder("titled", border, title)
+            titledBorder = createBorder("titled", border, title, justification, position)
+            titledBorder = createBorder("titled", border, title, justification, position, font)
+            titledBorder = createBorder("titled", border, title, justification, position, font, color)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>title</term>
+                <listitem>
+                    <para>String</para>
+                    <para>The title of the border.</para>
+                    <para>If the <literal>border</literal> argument is not given, then a default border (based on current look and feel) will be created.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>border</term>
+                <listitem>
+                    <para>Border object</para>
+                    <para>A border created by <link linkend="createBorder">createBorder</link>.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>justification</term>
+                <listitem>
+                    <para>"left" | "center" | "right" | {"leading"} | "trailing"</para>
+                    <para>The justification of the title.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>position</term>
+                <listitem>
+                    <para>"above_top" | {"top"} | "below_top" | "above_bottom" | "bottom" | "below_bottom"</para>
+                    <para>The vertical position of the title related to the border.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>font</term>
+                <listitem>
+                    <para>Font object</para>
+                    <para>A border font created by <link linkend="createBorderFont">createBorderFont</link>.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>color</term>
+                <listitem>
+                    <para>String</para>
+                    <para>The color of the title.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>titledBorder</term>
+                <listitem>
+                    <para>The created border.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function creates a titled border for <literal>frame</literal> uicontrols. See <link linkend="uicontrol_properties">uicontrol properties</link> for more details.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="createBorder">createBorder</link>
+            </member>
+            <member>
+                <link linkend="createBorderFont">createBorderFont</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function <function>createBorder</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

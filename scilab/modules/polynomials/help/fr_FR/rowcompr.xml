@@ -53,7 +53,9 @@
             de <literal>A</literal>. <literal>rk</literal> est le rang normal de A.
         </para>
         <para>
-            Attention : élimination des termes "petits" (à utiliser avec précaution).
+            <warning>
+                Attention : élimination des termes "petits" (à utiliser avec précaution).
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

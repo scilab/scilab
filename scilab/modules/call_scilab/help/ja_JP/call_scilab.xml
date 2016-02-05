@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="call_scilab" xml:lang="ja">
+    <refnamediv>
+        <refname>call_scilab</refname>
+        <refpurpose>
+            call_scilabは,
+            C/C++コードからScilabエンジンをコールする機能を提供する
+            インターフェイスです.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            Scilabはネーティブな(C/C++)アプリケーションからコールできる
+            可能性を提供します.
+        </para>
+        <para>
+            このモジュールにより,
+            他のコード/アプリケーションからScilabの機能をインターフェイスする
+            ために,
+            または,他の言語からScilabの機能をインターフェイスできるようにする
+            ために,
+            C/C++からScilabをコールできるようになります.
+        </para>
+        <para>
+            Scilab 5.2.0以降, 全てのScilabデータ型をcall_scilabで
+            処理できるようになりました.
+            これは,<link linkend="api_scilab">API_Scilab</link>により
+            行われました.
+        </para>
+        <para>
+            このヘルプは,call_scilab APIの機能を説明します.
+        </para>
+        <para>
+            注意: <link linkend="javasci">javasci</link> モジュールは
+            call_scilabに基づいています.
+        </para>
+        <para>注意:
+            古いAPI (stackX.h) はScilab 6.0以降では利用できません.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="c"><![CDATA[
+// 簡単な call_scilab の例
+#include <stdio.h> /* stderr */
+#include "api_scilab.h" /* Scilabメモリにアクセスする関数を提供 */
+#include "call_scilab.h" /* Scilabエンジンをコールする関数を提供 */
+// Filename: simple_call_scilab.c
+int main(void)
+{
+/****** 初期化 **********/
+#ifdef _MSC_VER
+ if ( StartScilab(NULL,NULL,NULL) == FALSE )
+#else
+ if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE )
+#endif
+  {
+   fprintf(stderr,"Error while calling StartScilab\n");
+   return -1;
+  }
+/****** 実際のScilabタスク *******/
+ SendScilabJob("myMatrix=['sample','for the help']");
+ SendScilabJob("disp(myMatrix);"); // !sample  for the help  !を表示します
+ SendScilabJob("disp([2,3]+[-44,39]);"); // - 42.    42.  を表示します
+/****** 終了 **********/
+ if ( TerminateScilab(NULL) == FALSE ) {
+  fprintf(stderr,"Error while calling TerminateScilab\n");
+  return -2;
+ }
+ return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>新規メソッドを追加:
+                    <itemizedlist>
+                        <listitem>
+                            <literal>CallScilab.h</literal> が削除されました (Scilab 5.2.0以降で廃止). <literal>call_scilab.h</literal>で置換されました.
+                        </listitem>
+                        <listitem>
+                            関数 <literal>int getLastErrorValue(void);</literal> が追加されました. Scilabで生成された直近のエラーコードを返します.
+                        </listitem>
+                        <listitem>
+                            関数 <literal>const char* getLastErrorMessageSingle();</literal> が追加されました. Scilabで生成された直近のエラーメッセージを返します.
+                        </listitem>
+                        <listitem>
+                            call_scilab.hの廃止された関数を削除:
+                            <literal>C2F(readmat), C2F(creadmat), C2F(creadbmat), C2F(creadcmat), C2F(readchain), C2F(creadchain),  C2F(creadchains), GetLengthStringMatrixByName, C2F(matptr), C2F(cmatptr), C2F(cmatcptr),  C2F(cmatsptr), C2F(cmatbptr), getlengthchain</literal>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="api_scilab_legacy">api Scilab</link>
+            </member>
+            <member>
+                <link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link>
+            </member>
+            <member>
+                <link linkend="DoubleManagement_callscilab">Matrix Management</link>
+            </member>
+            <member>
+                <link linkend="BooleanManagement_callscilab">Boolean Management</link>
+            </member>
+            <member>
+                <link linkend="ComplexManagement_callscilab">Complex Management</link>
+            </member>
+            <member>
+                <link linkend="StringManagement_callscilab">String Management</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

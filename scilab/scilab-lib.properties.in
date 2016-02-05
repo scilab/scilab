@@ -1,5 +1,10 @@
-; Definition of lib used in Scilab 
+; Definition of lib used in Scilab
 
+freehep-graphics2d.jar=@FREEHEP_GRAPHICS2D@
+
+freehep-graphicsio-emf.jar=@FREEHEP_GRAPHICSIO_EMF@
+
+freehep-graphicsio.jar=@FREEHEP_GRAPHICSIO@
 
 commons-logging.jar=@COMMONS_LOGGING@
 
@@ -22,6 +27,8 @@ jrosetta-engine.jar=@JROSETTA_ENGINE@
 checkstyle.jar=@CHECKSTYLE@
 
 junit4.jar=@JUNIT4@
+
+hamcrest-all.jar=@HAMCREST@
 
 cobertura.jar=@COBERTURA@
 
@@ -129,6 +136,6 @@ library.external_objects_java.name=org.scilab.modules.external_objects_java.jar
 
 build_javasci=@JAVASCI_ENABLE@
 
-build_xcos=@xcos_ENABLE@
+build_xcos=@XCOS_ENABLE@
 
 

@@ -6,8 +6,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>drawaxis([options])
-            // options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics
+        <synopsis>
+            drawaxis([options]) // options : x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics
+            e = drawaxis([options])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -90,12 +91,21 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>e</term>
+                <listitem>
+                    <para>
+                        handle, le handle de l'axe créé.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
         <para>
-            <literal>drawaxis</literal> est utilisée pour dessiner un axe vertical ou horizontal. La direction de l'axe est donnée par dir <literal>dir = 'u'</literal> ou <literal>'d'</literal> donne un axe horizontal avec des graduations 
+            <literal>drawaxis</literal> est utilisée pour dessiner un axe vertical ou horizontal. Cette fonction renvoie le handle de l'axe créé. 
+            La direction de l'axe est donnée par dir <literal>dir = 'u'</literal> ou <literal>'d'</literal> donne un axe horizontal avec des graduations 
             dirigées vers le haut (<literal>'u'</literal>) ou le bas (<literal>'d'</literal>). 
             <literal>dir = 'r'</literal> ou <literal>'l'</literal> donne un axe vertical avec des graduations allant vers la droite (<literal>'r'</literal>) ou vers la gauche (<literal>'l'</literal>). 
         </para>
@@ -132,20 +142,20 @@
         <programlisting role="example"><![CDATA[ 
 plot2d(1:10,1:10,1,"020")
 // axe horizontal
-drawaxis(x=2:7,y=4,dir='u',tics='v')
+e = drawaxis(x=2:7,y=4,dir='u',tics='v')
 // axe horizontal en haut du cadre
 drawaxis(x=2:7,dir='u',tics='v') 
 // axe horizontal en bas du cadre
-drawaxis(x=2:7,dir='d',tics='v') 
+e = drawaxis(x=2:7,dir='d',tics='v') 
 
 // axe horizontal donné par une plage de variation 
 drawaxis(x=[2,7,3],y=4,dir='d',tics='r') 
 
 // axe vertical
-drawaxis(x=4,y=2:7,dir='r',tics='v')
-drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
-drawaxis(y=2:7,dir='r',tics='v')
-drawaxis(y=2:7,dir='l',tics='v')
+e = drawaxis(x=4,y=2:7,dir='r',tics='v')
+e = drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
+e = drawaxis(y=2:7,dir='r',tics='v')
+e = drawaxis(y=2:7,dir='l',tics='v')
 
 // axe horizontal avec chaînes de caractères au dessus des graduations
 drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
@@ -153,8 +163,8 @@ drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
 drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
 
 // axe horizontal avec 'i' 
-drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
-drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
+e = drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
+e = drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
 
 // encore un axe horizontal
 drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 

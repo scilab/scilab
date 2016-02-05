@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Marcos CARDINOT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.plotbrowser;
@@ -14,7 +17,7 @@ package org.scilab.modules.gui.plotbrowser;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 
@@ -25,9 +28,9 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 */
 public class PlotBrowserTab {
 
-    public static SwingScilabTab getPlotBrowserInstance(Integer objectID) {
-        final SwingScilabTab plotbrowser = PlotBrowser
-                                           .createPlotBrowserTab(objectID);
+    public static SwingScilabDockablePanel getPlotBrowserInstance(Integer objectID) {
+        final SwingScilabDockablePanel plotbrowser = PlotBrowser
+                .createPlotBrowserTab(objectID);
         ScilabTabFactory.getInstance().addToCache(plotbrowser);
 
         ClosingOperationsManager.registerClosingOperation(plotbrowser,
@@ -44,13 +47,13 @@ public class PlotBrowserTab {
             }
 
             //@Override
-            public String askForClosing(final List<SwingScilabTab> list) {
+            public String askForClosing(final List<SwingScilabDockablePanel> list) {
                 return null;
             }
 
             //@Override
-            public void updateDependencies(List<SwingScilabTab> list,
-            ListIterator<SwingScilabTab> it) {
+            public void updateDependencies(List<SwingScilabDockablePanel> list,
+                                           ListIterator<SwingScilabDockablePanel> it) {
             }
         });
 

@@ -52,7 +52,7 @@
             Диапазон <code>atan(y, x)</code> равен <latex>(-\pi, \pi]</latex>.
         </para>
         <para>
-            Для вещественных аргументов обе формы дают идентичные значения, если 
+            Для вещественных аргументов обе формы дают идентичные значения, если
             <literal>x&gt;0</literal>.
         </para>
         <para>
@@ -63,19 +63,19 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // примеры со второй формой
 x=[1,%i,-1,%i]
 phase_x = atan(imag(x),real(x))
 atan(0,-1)
 atan(-%eps,-1)
- 
+
 // переходы
 atan(-%eps + 2*%i)
 atan(+%eps + 2*%i)
 atan(-%eps - 2*%i)
 atan(+%eps - 2*%i)
- 
+
 // значения в точках перехода
 ieee(2)
 atan(%i)
@@ -87,6 +87,9 @@ atan(-%i)
         <simplelist type="inline">
             <member>
                 <link linkend="tan">tan</link>
+            </member>
+            <member>
+                <link linkend="unwrap">unwrap</link>
             </member>
             <member>
                 <link linkend="ieee">ieee</link>

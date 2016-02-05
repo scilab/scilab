@@ -6,11 +6,14 @@
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -19,7 +22,7 @@
 /* desc : function to modify in Scilab the callback field of              */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-#include "sci_types.h"
+#include <string.h>
 #include "setHandleProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
@@ -28,7 +31,7 @@
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*------------------------------------------------------------------------*/
 int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
@@ -46,7 +49,7 @@ int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
     {
         if (nbCol != 1)
         {
-            Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
+            Scierror(999, _("Wrong size for '%s' property: string expected.\n"), "Callback");
             return SET_PROPERTY_ERROR;
         }
         cbString = (char*)_pvData;
@@ -60,7 +63,7 @@ int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
             return SET_PROPERTY_ERROR;
         }
 
-        getMatrixOfDoubleInList(pvApiCtx, (int*)_pvData, 1, &iRows, &iCols, &pdblData);
+        getMatrixOfDoubleInList(_pvCtx, (int*)_pvData, 1, &iRows, &iCols, &pdblData);
         if (iRows * iCols != 1)
         {
             Scierror(999, _("Wrong size for '%s' property: A real expected.\n"), "callback_type");
@@ -72,21 +75,21 @@ int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
         }
 
 
-        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 2, &iRows, &iCols, NULL, NULL);
+        getMatrixOfStringInList(_pvCtx, (int*)_pvData, 2, &iRows, &iCols, NULL, NULL);
         if (iRows * iCols != 1)
         {
-            Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
+            Scierror(999, _("Wrong size for '%s' property: string expected.\n"), "Callback");
             return SET_PROPERTY_ERROR;
         }
 
-        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, NULL);
+        getMatrixOfStringInList(_pvCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, NULL);
         cbString = (char*)MALLOC(sizeof(char) * (iLen + 1));
-        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, &cbString);
+        getMatrixOfStringInList(_pvCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, &cbString);
     }
     else
     {
 
-        Scierror(999, _("Wrong type for '%s' property: A string or a 2-item list expected.\n"), "Callback");
+        Scierror(999, _("Wrong type for '%s' property: string or 2-item list expected.\n"), "Callback");
         return SET_PROPERTY_ERROR;
     }
 

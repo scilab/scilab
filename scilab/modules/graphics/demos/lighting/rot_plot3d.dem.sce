@@ -21,7 +21,11 @@ function demo_rot_light()
 
     for i=1:360
         sleep(5);
-        a.rotation_angles = [70 i];
+        if (is_handle_valid(a)) then
+            a.rotation_angles = [70 i];
+        else
+            break
+        end
     end
     // DEMO END
 endfunction

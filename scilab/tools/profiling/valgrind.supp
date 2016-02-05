@@ -11,61 +11,38 @@
    fun:tgetnum
 }
 {
-   dl_init/static_initialization_and_destruction
+   scilab-console/tgetstr
    Memcheck:Leak
-   fun:_Znwm
+   ...
+   fun:tgetstr
+}
+{
+   dynamic-leak/dlerror_run
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_dlerror_run
+}
+{
+   dynamic-leak/dl_init
+   Memcheck:Leak
+   match-leak-kinds: reachable
    ...
    fun:_dl_init
 }
 {
-   PThread auto cleanup at exit
+   dynamic-leak/dl_allocate_tls
    Memcheck:Leak
-   fun:calloc
+   match-leak-kinds: possible
+   ...
    fun:_dl_allocate_tls
-   fun:pthread_create*
+   ...
 }
 {
-   Last error messages
-   Memcheck:Leak
-   fun:malloc
-   fun:strdup
-   fun:addErrorMessage
-}
-{
-   Realloc the stack on freemem64
-   Memcheck:Leak
-   fun:realloc
-   fun:freemem64
-   fun:TerminateCorePart2
-   fun:ExitScilab
-   fun:realmain
-   fun:main
-   fun:__libc_start_main
-   obj:/home/davidcl/work/branches/master-review/scilab/.libs/lt-scilab-cli-bin
-   obj:*
-   obj:*
-   obj:*
-   obj:*
-}
-{
-   Last getCmdLine free issue
-   Memcheck:Leak
-   fun:malloc
-   fun:getCmdLine
-   fun:getCommandLine
-   fun:watchGetCommandLine
-   fun:start_thread
-   fun:clone
-}
-{
-   Fixeable but crash-ed using javasci
-   Memcheck:Leak
-   fun:malloc
-   fun:wide_string_to_UTF8
-   fun:getCmdLine
-   fun:getCommandLine
-   fun:watchGetCommandLine
-   fun:start_thread
-   fun:clone
+   hdf5/H5_build_extpath
+   Memcheck:Addr4
+   fun:H5_build_extpath
+   fun:H5F_open
+   ...
 }
 

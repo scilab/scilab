@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 nx    = 10;
 
 nev   = 3;
@@ -19,9 +21,9 @@ ipntr   = zeros(14, 1);
 _select = zeros(ncv, 1);
 d       = zeros(nev, 1);
 z       = zeros(nx, nev);
-resid   = zeros(nx, 1); 
+resid   = zeros(nx, 1);
 v       = zeros(nx, ncv);
-workd   = zeros(3 * nx, 1); 
+workd   = zeros(3 * nx, 1);
 workl   = zeros(ncv * ncv + 8 * ncv, 1);
 
 // Build the symmetric test matrix
@@ -51,14 +53,14 @@ while(ido <> 99)
   // either convergence is indicated or maxitr has been exceeded.
 
   [ido, resid, v, iparam, ipntr, workd, workl, info_dsaupd] = dsaupd(ido, bmat, nx, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_dsaupd);
-  
+
   if(info_dsaupd < 0)
     printf('\nError with dsaupd, info = %d\n',info_dsaupd);
     printf('Check the documentation of dsaupd\n\n');
   end
-  
+
   if(ido == -1 | ido == 1)
-    // Perform matrix vector multiplication 
+    // Perform matrix vector multiplication
     workd(ipntr(2):ipntr(2) + nx - 1) = A * workd(ipntr(1):ipntr(1) + nx - 1);
   end
 end
@@ -77,4 +79,4 @@ if(info_dseupd < 0)
 end
 
 
-assert_checkalmostequal(A * z, z * diag(d), sqrt(%eps), 1.e-10); 
+assert_checkalmostequal(A * z, z * diag(d), sqrt(%eps), 1.e-10);

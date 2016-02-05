@@ -5,11 +5,14 @@
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Yann Collette
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="plot2d" xml:lang="en">
@@ -95,7 +98,7 @@
                         <varlistentry>
                             <term>rect</term>
                             <listitem>
-                                <para>sets the mimimal bounds requested for the plot. The
+                                <para>sets the minimal bounds requested for the plot. The
                                     associated value should be a real vector with four entries:
                                     <literal>[xmin,ymin,xmax,ymax]</literal>.
                                 </para>
@@ -123,7 +126,7 @@
                             <term>axesflag</term>
                             <listitem>
                                 <para>specifies how the axes are drawn. The associated value
-                                    should be an integer ranging from 0 to 5.
+                                    should be an integer ranging from 0 to 5 or 9 (default value).
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -259,7 +262,7 @@
                                     <varlistentry>
                                         <term>y=0</term>
                                         <listitem>
-                                            <para>no computation, the plot use the previus (or
+                                            <para>no computation, the plot use the previous (or
                                                 default) scale
                                             </para>
                                         </listitem>
@@ -309,7 +312,7 @@
                                     <varlistentry>
                                         <term>y=7</term>
                                         <listitem>
-                                            <para>like y=1 but the previus plot(s) are redrawn to
+                                            <para>like y=1 but the previous plot(s) are redrawn to
                                                 use the new scale
                                             </para>
                                         </listitem>
@@ -317,7 +320,7 @@
                                     <varlistentry>
                                         <term>y=8</term>
                                         <listitem>
-                                            <para>like y=2 but the previus plot(s) are redrawn to
+                                            <para>like y=2 but the previous plot(s) are redrawn to
                                                 use the new scale
                                             </para>
                                         </listitem>
@@ -405,7 +408,7 @@
             <varlistentry>
                 <term>rect</term>
                 <listitem>
-                    <para>This option may be used to set the mimimal bounds requested
+                    <para>This option may be used to set the minimal bounds requested
                         for the plot. If this option is specified, the associated value
                         should be a real vector with four entries:
                     </para>
@@ -616,7 +619,7 @@
                             <listitem>
                                 <para>axes are drawn, the y-axis is displayed on the left
                                     (axes_visible=["on" "on"];box="off",y_location="left"). This
-                                    is the default value
+                                    is the default value.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -779,7 +782,7 @@ a.children // list the children of the axes.
 // There are a compound made of two polylines and a legend 
 poly1= a.children(1).children(1); //store polyline handle into poly1 
 poly1.foreground = 4; // another way to change the style...
-poly1.thickness = 3;  // ...and the tickness of a curve.
+poly1.thickness = 3;  // ...and the thickness of a curve.
 poly1.clip_state='off'; // clipping control
 leg = a.children(2); // store legend handle into leg
 leg.font_style = 9; 
@@ -802,7 +805,7 @@ a.isoview='off';
             // There are a compound made of two polylines and a legend 
             poly1= a.children(1).children(1); //store polyline handle into poly1 
             poly1.foreground = 4; // another way to change the style...
-            poly1.thickness = 3;  // ...and the tickness of a curve.
+            poly1.thickness = 3;  // ...and the thickness of a curve.
             poly1.clip_state='off'; // clipping control
             leg = a.children(2); // store legend handle into leg
             leg.font_style = 9; 

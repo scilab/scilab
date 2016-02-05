@@ -2,11 +2,14 @@
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 // Internal function
 
@@ -27,30 +30,30 @@ function atomsDownload(url_in,file_out,md5sum)
     // Check input parameters type
     // =========================================================================
     if type(url_in) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"), "atomsDownload", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsDownload", 1));
     end
 
     if type(file_out) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"), "atomsDownload", 2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsDownload", 2));
     end
 
     if (rhs>2) & (type(md5sum) <> 10) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"), "atomsDownload", 3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsDownload", 3));
     end
 
     // Check input parameters size
     // =========================================================================
 
     if size(url_in, "*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDownload",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDownload",1));
     end
 
     if size(file_out, "*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDownload",2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDownload",2));
     end
 
     if (rhs>2) & (size(md5sum,"*") <> 1) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDownload",3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDownload",3));
     end
 
     // Check input parameters value
@@ -106,6 +109,7 @@ function atomsDownload(url_in,file_out,md5sum)
 
     // Build the command
     // =========================================================================
+    winId = [];
 
     if regexp(url_in, "/^(https?|ftp):\/\//", "o") == 1 then
         proxy_host_arg = "";
@@ -162,6 +166,11 @@ function atomsDownload(url_in,file_out,md5sum)
             end
 
         end
+
+        if WGET & atomsGetConfig("useProxy") == "False" then
+            proxy_user_arg = " --no-proxy";
+        end
+
 
         if getos() == "Windows" & CURL then
             download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F) + """" + proxy_host_arg + proxy_user_arg + timeout_arg + " -s """ + url_in + """ -o """ + file_out + """";
@@ -253,5 +262,9 @@ function atomsDownload(url_in,file_out,md5sum)
 
     end
 
-    atomsCloseProgressBar(winId);
+    // Close progress bar handle, if not closed yet
+    // =========================================================================
+    if (~isempty(winId))
+        atomsCloseProgressBar(winId);
+    end
 endfunction

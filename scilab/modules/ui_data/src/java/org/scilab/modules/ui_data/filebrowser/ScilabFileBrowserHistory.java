@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -20,16 +23,16 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
 /**
@@ -39,14 +42,14 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
 @SuppressWarnings(value = { "serial" })
 public class ScilabFileBrowserHistory {
 
-    private static final String PREVIOUSICON = ScilabSwingUtilities.findIcon("go-previous");
-    private static final String NEXTICON = ScilabSwingUtilities.findIcon("go-next");
+    private static final String PREVIOUSICON = FindIconHelper.findIcon("go-previous");
+    private static final String NEXTICON = FindIconHelper.findIcon("go-next");
 
     private final SwingScilabTreeTable stt;
     private final List<String> history = new ArrayList<String>();
     private int position = -1;
-    private final PushButton previous;
-    private final PushButton next;
+    private final JButton previous;
+    private final JButton next;
     private final JPopupMenu popup;
     private Timer timer;
 
@@ -59,12 +62,12 @@ public class ScilabFileBrowserHistory {
         this.popup = new JPopupMenu();
         this.popup.setBorderPainted(true);
 
-        previous = ScilabPushButton.createPushButton();
-        previous.setIcon(PREVIOUSICON);
+        previous = new JButton();
+        previous.setIcon(new ImageIcon(PREVIOUSICON));
+        ScilabLAF.setDefaultProperties(previous);
 
-        final SwingScilabPushButton swingPrevious = (SwingScilabPushButton) previous.getAsSimplePushButton();
-        swingPrevious.setToolTipText(UiDataMessages.PREVIOUSDIR);
-        swingPrevious.addMouseListener(new MouseAdapter() {
+        previous.setToolTipText(UiDataMessages.PREVIOUSDIR);
+        previous.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (timer == null) {
@@ -90,7 +93,7 @@ public class ScilabFileBrowserHistory {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (SwingUtilities.isRightMouseButton(e) && previous.isEnabled() && (!popup.isVisible() || popup.getInvoker() != swingPrevious)) {
+                if (SwingUtilities.isRightMouseButton(e) && previous.isEnabled() && (!popup.isVisible() || popup.getInvoker() != previous)) {
                     showPopup(true);
                 } else if (SwingUtilities.isLeftMouseButton(e) && !popup.isVisible() && previous.isEnabled()) {
                     ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(position - 1), false);
@@ -100,12 +103,12 @@ public class ScilabFileBrowserHistory {
             }
         });
 
-        next = ScilabPushButton.createPushButton();
-        next.setIcon(NEXTICON);
+        next = new JButton();
+        next.setIcon(new ImageIcon(NEXTICON));
+        ScilabLAF.setDefaultProperties(next);
 
-        final SwingScilabPushButton swingNext = (SwingScilabPushButton) next.getAsSimplePushButton();
-        swingNext.setToolTipText(UiDataMessages.NEXTDIR);
-        swingNext.addMouseListener(new MouseAdapter() {
+        next.setToolTipText(UiDataMessages.NEXTDIR);
+        next.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (timer == null) {
@@ -131,7 +134,7 @@ public class ScilabFileBrowserHistory {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (SwingUtilities.isRightMouseButton(e) && next.isEnabled() && (!popup.isVisible() || popup.getInvoker() != swingNext)) {
+                if (SwingUtilities.isRightMouseButton(e) && next.isEnabled() && (!popup.isVisible() || popup.getInvoker() != next)) {
                     showPopup(false);
                 } else if (SwingUtilities.isLeftMouseButton(e) && !popup.isVisible() && next.isEnabled()) {
                     ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(position + 1), false);
@@ -181,11 +184,11 @@ public class ScilabFileBrowserHistory {
         }
         popup.pack();
 
-        SwingScilabPushButton button;
+        JButton button;
         if (prev) {
-            button = (SwingScilabPushButton) previous.getAsSimplePushButton();
+            button = previous;
         } else {
-            button = (SwingScilabPushButton) next.getAsSimplePushButton();
+            button = next;
         }
 
         popup.show(button, 0, button.getBounds(null).height);
@@ -210,14 +213,14 @@ public class ScilabFileBrowserHistory {
     /**
      * @return the previous button
      */
-    public PushButton getPreviousButton() {
+    public JButton getPreviousButton() {
         return previous;
     }
 
     /**
      * @return the next button
      */
-    public PushButton getNextButton() {
+    public JButton getNextButton() {
         return next;
     }
 

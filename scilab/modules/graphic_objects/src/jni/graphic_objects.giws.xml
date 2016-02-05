@@ -1,5 +1,18 @@
 <?xml version="1.0"?>
 <package name="org.scilab.modules.graphic_objects">
+    <object name="CallXmlLoader">
+        <method name="Load" returnType="int" modifier="static">
+            <parameter name="filename" type="String"/>
+        </method>
+        <method name="Save" returnType="String" modifier="static">
+            <parameter name="figure" type="int"/>
+            <parameter name="filename" type="String"/>
+            <parameter name="isReverse" type="boolean"/>
+        </method>
+        <method name="DomLoad" returnType="int" modifier="static">
+            <parameter name="filename" type="String"/>
+        </method>
+    </object>
     <object name="CallGraphicController">
         <method name="deleteGraphicObject" returnType="void" modifier="static">
             <parameter name="id" type="int"/>
@@ -86,16 +99,5 @@
         <method name="buildFigureMenuBar" returnType="void" modifier="static">
             <parameter name="figureId" type="int"/>
         </method>
-        <method name="runSetProperty" returnType="boolean" modifier="static">
-            <parameter name="id" type="int"/>
-        </method>
-        <method name="getPropertyHandler" returnType="int" modifier="static" />
-        <method name="getPropertyLastError" returnType="String[]" modifier="static" />
-        <method name="getProperty" returnType="int" modifier="static">
-            <parameter name="id" type="int"/>
-            <parameter name="propName" type="String"/>
-            <parameter name="stackPos" type="int"/>
-        </method>
-        <method name="cleanSetProperty" returnType="void" modifier="static" />
     </object>
 </package>

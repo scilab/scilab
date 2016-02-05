@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="layout" xml:lang="ja">
+    <refnamediv>
+        <refname>Layout</refname>
+        <refpurpose>
+            uicontrolおよびfigure用の異なる配置および拘束の説明.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            配置は,figureまたは<literal>frame</literal> uicontrolsが
+            ネストしたuicontrolの位置および表示を管理する方法を
+            制御します.
+            配置オプションは,
+            <link linkend="createLayoutOptions">createLayoutOptions</link>関数
+            により作成/設定できます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>プロパティ</title>
+        <variablelist>
+            <varlistentry>
+                <term>nolayout | none</term>
+                <listitem>
+                    <para>配置は適用されず, 
+                        ネストしたuicontrolは拘束されません.
+                    </para>
+                    <para>ネストしたuicontrolの位置は手動で配置する必要があり,
+                        これらの大きさは固定されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>grid</term>
+                <listitem>
+                    <para>
+                        グリッド配置が,
+                        ネストした全uicontrolに適用されます.
+                    </para>
+                    <para>
+                        ネストしたuicontrolは,
+                        <literal>layout_options</literal>で定義した
+                        左から右および上から下方向のグリッドに配置されます.
+                    </para>
+                    <para>
+                        グリッド配置の情報については,
+                        <link linkend="grid_layout_options_properties">grid配置オプション
+                        </link>
+                        を参照ください.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>border</term>
+                <listitem>
+                    <para>
+                        境界配置が,
+                        ネストした全uicontrolに適用されます.
+                    </para>
+                    <para>
+                        ネストしたuicontrolは,親フレームの境界または中心に配置されます.
+                    </para>
+                    <para>
+                        境界配置の情報については,
+                        <link linkend="border_layout_options_properties">border配置オプション
+                        </link>
+                        を参照ください.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gridbag</term>
+                <listitem>
+                    <para>
+                        gridbag配置がネストした全uicontrolに適用されます.
+                    </para>
+                    <para>
+                        ネストしたuicontrolは,
+                        grid配置と同じ仮想グリッドに配置されますが,
+                        複数のグリッド空間を専有でき,
+                        水平または垂直方向の空間を埋めることができます.
+                    </para>
+                    <para>gridbag配置によりリサイズの際にuicontrolの動作を
+                        より細かく制御できるようになります.
+                    </para>
+                    <para>
+                        gridbag配置の情報については,
+                        <link linkend="gridbag_layout_options_properties">
+                            gridbag配置オプション
+                        </link>
+                        を参照ください.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>配置拘束</title>
+        <para>配置内のuicontrolの動作を定義する拘束.</para>
+        <para>
+            配置内のネストした全要素は,親の配置に関する
+            <literal>constraint</literal> 属性を定義する必要があります.
+            配置は,子に定義されると同時に親の上にも定義されます.
+        </para>
+        <para>
+            拘束は,
+            <link linkend="createConstraints">createConstraints</link> 関数
+            により作成/設定できます.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

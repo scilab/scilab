@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -114,6 +117,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private String infoBar = "";
     private String shortName = "";
     private String title = "";
+
     private Timer selectionTimer;
     private Timer matcherTimer;
 
@@ -371,7 +375,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * that there is no horizontal scrollbar.
      */
     public boolean getScrollableTracksViewportWidth() {
-        return ((ScilabDocument) getDocument()).getView() instanceof ScilabView && !edComponent.isSplited();
+        if (((ScilabDocument) getDocument()).getView() instanceof ScilabView) {
+            return !edComponent.isSplited();
+        } else {
+            return super.getScrollableTracksViewportWidth();
+        }
     }
 
     /**
@@ -544,7 +552,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 requestFocus();
-                setCaretPosition(pos);
+                if (getCaret() != null) {
+                    setCaretPosition(pos);
+                }
             }
         });
     }
@@ -556,6 +566,18 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         FocusListener[] l = getFocusListeners();
         for (int i = 0; i < l.length; i++) {
             removeFocusListener(l[i]);
+        }
+        if (getCaret() instanceof SciNotesCaret) {
+            ((SciNotesCaret) getCaret()).clean();
+            super.setCaret(null);
+            if (selectionTimer != null && selectionTimer.isRunning()) {
+                selectionTimer.stop();
+                selectionTimer = null;
+            }
+            if (matcherTimer != null && matcherTimer.isRunning()) {
+                matcherTimer.stop();
+                matcherTimer = null;
+            }
         }
     }
 
@@ -736,6 +758,12 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         tab = null;
         com = null;
         trailingWhite = null;
+        editor = null;
+        lexer = null;
+        helpOnTyping = null;
+        xln = null;
+        rightTextPane = null;
+        edComponent = null;
         enableMatchingKeywords(false);
         enableMatchingOpeners(false);
         if (matchLR != null) {
@@ -746,16 +774,14 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             matchRL.desactivateMouseOver();
             matchRL = null;
         }
+        kwListeners = null;
     }
 
     /**
      * Destroy this component
      */
     public void destroy() {
-        FocusListener[] fls = getFocusListeners();
-        for (FocusListener fl : fls) {
-            removeFocusListener(fl);
-        }
+        close();
         disableAll();
     }
 
@@ -792,7 +818,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void updateTitle() {
         if (editor != null) {
-            editor.updateTabTitle();
+            int index = editor.getTextPaneIndex(this);
+            if (index != -1) {
+                editor.updateTabTitle(index);
+            }
         }
     }
 
@@ -1082,7 +1111,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * Activate or desactivate the help on typing
      */
     public void activateHelpOnTyping() {
-        boolean isActive = HelpOnTypingManager.isActive();
+        boolean isActive = HelpOnTypingManager.getInstance().isActive();
         if (isActive && helpOnTyping == null) {
             helpOnTyping = HelpOnTypingManager.getInstance();
             addKeyListener(helpOnTyping);
@@ -1156,21 +1185,23 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                 if (selectionTimer == null) {
                     selectionTimer = new Timer(1000, new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            final String str = getSelectedText();
-                            if (str != null && str.length() != 0) {
-                                int tok = lexer.getKeyword(getSelectionStart(), false);
-                                int s = lexer.start + lexer.yychar();
-                                if (ScilabLexerConstants.isSearchable(tok) && getSelectionStart() == s && getSelectionEnd() == s + lexer.yylength()) {
-                                    highlightWords(tok, SearchManager.generatePattern(str, false, true, false), false);
-                                } else {
-                                    highlightWords(str, false);
-                                }
+                            try {
+                                final String str = getSelectedText();
+                                if (str != null && str.length() != 0) {
+                                    int tok = lexer.getKeyword(getSelectionStart(), false);
+                                    int s = lexer.start + lexer.yychar();
+                                    if (ScilabLexerConstants.isSearchable(tok) && getSelectionStart() == s && getSelectionEnd() == s + lexer.yylength()) {
+                                        highlightWords(tok, SearchManager.generatePattern(str, false, true, false), false);
+                                    } else {
+                                        highlightWords(str, false);
+                                    }
 
-                                if (highlightedWords.size() > 1 && editor != null && editor.getInfoBar() != null) {
-                                    editor.getInfoBar().setText(String.format(SciNotesMessages.OCCURENCES_FOUND, Integer.toString(highlightedWords.size())));
+                                    if (highlightedWords.size() > 1 && editor != null && editor.getInfoBar() != null) {
+                                        editor.getInfoBar().setText(String.format(SciNotesMessages.OCCURENCES_FOUND, Integer.toString(highlightedWords.size())));
+                                    }
+                                    removeHighlightOnPosition(getSelectionStart());
                                 }
-                                removeHighlightOnPosition(getSelectionStart());
-                            }
+                            } catch (Exception ee) { }
                             selectionTimer = null;
                         }
                     });
@@ -1187,8 +1218,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (highlightEnable) {
             repaint();
         }
-
-        int pos = getCaretPosition();
 
         if (matchingKeywordsEnable || matchingOpenersEnable) {
             if (matcherTimer == null) {
@@ -1212,7 +1241,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
 
         if (!readonly && !binary && editor != null) {
-            editor.getInfoBar().setText(((ScilabDocument) getDocument()).getCurrentFunction(pos));
+            editor.getInfoBar().setText(((ScilabDocument) getDocument()).getCurrentFunction(getCaretPosition()));
         }
     }
 
@@ -1472,6 +1501,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * clean
+     */
+    public static void clean() {
+        focused = null;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public String toString() {
@@ -1496,12 +1532,27 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * {@inheritDoc}
      */
     public String getSelectedText() {
-        String str = ((SciNotesCaret) getCaret()).getSelectedText();
-        if (str == null) {
-            return super.getSelectedText();
-        } else {
-            return str;
+        if (getCaret() instanceof SciNotesCaret) {
+            String str = ((SciNotesCaret) getCaret()).getSelectedText();
+            if (str == null) {
+                return super.getSelectedText();
+            } else {
+                return str;
+            }
         }
+
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int getCaretPosition() {
+        if (getCaret() != null) {
+            return super.getCaretPosition();
+        }
+
+        return 0;
     }
 
     /**

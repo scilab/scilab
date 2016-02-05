@@ -3,11 +3,14 @@
  * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009-2010 - DIGITEO - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -21,20 +24,19 @@ import java.lang.ref.WeakReference;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 import com.mxgraph.swing.mxGraphComponent;
 
@@ -85,7 +87,7 @@ public abstract class DefaultAction extends CommonCallBack {
              */
             String iconName = (String) getClass().getField("SMALL_ICON").get(null);
             if (iconName != null && !iconName.isEmpty()) {
-                icon = new ImageIcon(ScilabSwingUtilities.findIcon(iconName));
+                icon = new ImageIcon(FindIconHelper.findIcon(iconName));
             }
 
             mnemonic = getClass().getField("MNEMONIC_KEY").getInt(null);
@@ -149,15 +151,14 @@ public abstract class DefaultAction extends CommonCallBack {
      *            the associated klass
      * @return the push button
      */
-    protected static PushButton createButton(ScilabGraph graph, final Class <? extends DefaultAction > klass) {
+    protected static JButton createButton(ScilabGraph graph, final Class <? extends DefaultAction > klass) {
         DefaultAction action = GraphActionManager.getInstance(graph, klass);
-        PushButton item = ScilabPushButton.createPushButton();
+        JButton item = new JButton();
 
-        SwingScilabPushButton swingItem = (SwingScilabPushButton) item.getAsSimplePushButton();
-        swingItem.setAction(action);
+        item.setAction(action);
 
         // Hide the text on buttons
-        swingItem.setHideActionText(true);
+        item.setHideActionText(true);
 
         return item;
     }

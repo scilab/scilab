@@ -22,7 +22,7 @@
 function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,cor)
     //store modified parameters in compiled structure state,sim
     //newparameters gives modified blocks numbers in original structure scs_m
-    //cor is the correspondance table from original structure to compiled one
+    //cor is the correspondence table from original structure to compiled one
     xptr=sim.xptr
     zptr=sim.zptr
     ozptr=sim.ozptr
@@ -34,19 +34,19 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
     opar=sim.opar
     ztyp=sim.ztyp
     labels=sim.labels
-    st=state.x
-    dst=state.z
-    odst=state.oz
-    st0=%state0.x
-    dst0=%state0.z
-    odst0=%state0.oz
+    x=state.x
+    z=state.z
+    oz=state.oz
+    x0=%state0.x
+    z0=%state0.z
+    oz0=%state0.oz
 
     Impl=%f
-    if xptr($)-1 < size(st,"*") then
-        std=st($/2+1:$)
-        st=st(1:$/2)
-        std0=st0($/2+1:$)
-        st0=st0(1:$/2)
+    if xptr($)-1 < size(x,"*") then
+        xd=x($/2+1:$)
+        x=x(1:$/2)
+        xd0=x0($/2+1:$)
+        x0=x0(1:$/2)
         Impl=%t
     end
 
@@ -96,43 +96,43 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
                 nek=prod(size(statek))-(xptr(kc+1)-xptr(kc))
                 sel=xptr(kc+1):xptr($)-1
                 if nek<>0&sel<>[] then
-                    st(nek+sel)=st(sel)
-                    st0(nek+sel)=st0(sel)
+                    x(nek+sel)=x(sel)
+                    x0(nek+sel)=x0(sel)
                     if Impl then
-                        std(nek+sel)=std(sel)
-                        std0(nek+sel)=std0(sel)
+                        xd(nek+sel)=xd(sel)
+                        xd0(nek+sel)=xd0(sel)
                     end
                 end
 
                 if nek<0 then
-                    st($+nek+1:$)=[],st0($+nek+1:$)=[],
-                    if Impl then std($+nek+1:$)=[],std0($+nek+1:$)=[],end
+                    x($+nek+1:$)=[],x0($+nek+1:$)=[],
+                    if Impl then xd($+nek+1:$)=[],xd0($+nek+1:$)=[],end
                 end
 
                 xptr(kc+1:$)=xptr(kc+1:$)+nek
-                st(xptr(kc):xptr(kc+1)-1)=statek(:),
-                st0(xptr(kc):xptr(kc+1)-1)=statek(:),
+                x(xptr(kc):xptr(kc+1)-1)=statek(:),
+                x0(xptr(kc):xptr(kc+1)-1)=statek(:),
                 if Impl then
                     if statekd==[] then statekd=0*statek,end
-                    std(xptr(kc):xptr(kc+1)-1)=statekd(:),
-                    std0(xptr(kc):xptr(kc+1)-1)=statekd(:),
+                    xd(xptr(kc):xptr(kc+1)-1)=statekd(:),
+                    xd0(xptr(kc):xptr(kc+1)-1)=statekd(:),
                 end
 
                 //Change discrete state
                 nek=prod(size(dstatek))-(zptr(kc+1)-zptr(kc))
                 sel=zptr(kc+1):zptr($)-1
                 if nek<>0&sel<>[] then
-                    dst(nek+sel)=dst(sel)
-                    dst0(nek+sel)=dst0(sel)
+                    z(nek+sel)=z(sel)
+                    z0(nek+sel)=z0(sel)
                 end
 
                 if nek<0 then
-                    dst($+nek+1:$)=[],dst0($+nek+1:$)=[],
+                    z($+nek+1:$)=[],z0($+nek+1:$)=[],
                 end
 
                 zptr(kc+1:$)=zptr(kc+1:$)+nek
-                dst(zptr(kc):zptr(kc+1)-1)=dstatek(:)
-                dst0(zptr(kc):zptr(kc+1)-1)=dstatek(:)
+                z(zptr(kc):zptr(kc+1)-1)=dstatek(:)
+                z0(zptr(kc):zptr(kc+1)-1)=dstatek(:)
 
                 //Change objects discrete state
                 if ((type(odstatek)<>15) | ...
@@ -152,12 +152,12 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
                 sel=ozptr(kc+1):ozptr($)-1
 
                 if nek<>0&sel<>[] then
-                    while lstsize(odst)<max(nek+sel), odst($+1)=[], end
-                    while lstsize(odst0)<max(nek+sel), odst0($+1)=[], end
+                    while lstsize(oz)<max(nek+sel), oz($+1)=[], end
+                    while lstsize(oz0)<max(nek+sel), oz0($+1)=[], end
                     if nek>0 then sel=gsort(sel), end
                     for j=sel
-                        odst(j+nek)=odst(j)
-                        odst0(j+nek)=odst0(j)
+                        oz(j+nek)=oz(j)
+                        oz0(j+nek)=oz0(j)
                     end
                 end
                 ozptr(kc+1:$)=ozptr(kc+1:$)+nek;
@@ -165,26 +165,26 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
                 if ((type(odstatek)==15) & (type(fun)==15)) then
                     if ((fun(2)==5) | (fun(2)==10005)) then // sciblocks
                         if lstsize(odstatek)>0 then
-                            odst(ozptr(kc))=odstatek;
-                            odst0(ozptr(kc))=odstatek;
+                            oz(ozptr(kc))=odstatek;
+                            oz0(ozptr(kc))=odstatek;
                         end
                     elseif ((fun(2)==4) | (fun(2)==10004) | (fun(2)==2004)) then  // C blocks
                         for j=1:lstsize(odstatek)
-                            odst(ozptr(kc)+j-1)=odstatek(j);
-                            odst0(ozptr(kc)+j-1)=odstatek(j);
+                            oz(ozptr(kc)+j-1)=odstatek(j);
+                            oz0(ozptr(kc)+j-1)=odstatek(j);
                         end
                     end
                 end
 
-                //## rebuild odst list if nek < 0
+                //## rebuild oz list if nek < 0
                 if nek < 0 then
-                    n_odst = list(); n_odst0 = list();
+                    n_oz = list(); n_oz0 = list();
                     for j=1:max(ozptr)-1
-                        n_odst(j)=odst(j);
-                        n_odst0(j)=odst0(j);
+                        n_oz(j)=oz(j);
+                        n_oz0(j)=oz0(j);
                     end
-                    odst = n_odst; odst0 = n_odst0;
-                    clear n_odst; clear n_odst0;
+                    oz = n_oz; oz0 = n_oz0;
+                    clear n_oz; clear n_oz0;
                 end
 
                 //Change real parameters
@@ -286,19 +286,19 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
     sim.labels=labels
 
     if Impl then
-        state.x=[st;std]
+        state.x=[x;xd]
     else
-        state.x=st
+        state.x=x
     end
 
-    state.z=dst
-    state.oz=odst
+    state.z=z
+    state.oz=oz
     if Impl then
-        %state0.x=[st0;std0]
+        %state0.x=[x0;xd0]
     else
-        %state0.x=st0
+        %state0.x=x0
     end
-    %state0.z=dst0
-    %state0.oz=odst0
+    %state0.z=z0
+    %state0.oz=oz0
 
 endfunction

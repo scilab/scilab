@@ -6,12 +6,12 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 // Maple code used to create reference
-// Digits := 40:
-// writeto("asech.ref"): interface(prettyprint = 0):
-// for i from 1/100 by 1/100  to 1 do  print(i,evalf[30](arcsech(i), 30)) end do:
+// Digits := 40: 
+// writeto("asech.ref"): interface(prettyprint = 0): 
+// for i from 1/100 by 1/100  to 1 do  print(i,evalf[30](arcsech(i), 30)) end do: 
 // writeto(terminal):
-// writeto("asechi.ref"): interface(prettyprint = 0):
-// for i from 1 by 1 to 100 do  print(i,evalf[30](Im(arcsech(i)), 30)) end do:
+// writeto("asechi.ref"): interface(prettyprint = 0): 
+// for i from 1 by 1 to 100 do  print(i,evalf[30](Im(arcsech(i)), 30)) end do: 
 // writeto(terminal):
 ieee(2);
 pi=%pi;eps=%eps;Inf=%inf;NaN=%nan; //used to make following code runnable under Matlab
@@ -217,19 +217,19 @@ refi=[1, 0.
 99, 1.56069514491764083331407059845
 100, 1.56079616012072950610569941457
 ];
-     x=ref(:,1);
-     e=max(abs((ref(:,2)-asech(x))./ref(:,2)));
-     if e>20*eps then bugmes();quit;end
-     x=-ref(:,1);
-     e=max(abs((ref(:,2)+imult(pi)-asech(x))./(ref(:,2)+imult(pi))));
-     if e>10*eps then bugmes();quit;end
-     x=refi(:,1);
-     e=max(abs((imult(refi(:,2))-asech(x))./refi(:,2)));
-     if e>10*eps then bugmes();quit;end
-     x=-refi(:,1);
-     e=max(abs((imult(pi-refi(:,2))-asech(x))./(pi-refi(:,2))));
-     if e>10*eps then bugmes();quit;end
-     if asech(0)<>Inf then bugmes();quit;end
-     if imag(asech(Inf))<>pi/2 then bugmes();quit;end
-     if ~isnan(asech(NaN)) then bugmes();quit;end
-     if asech([])<>[] then bugmes();quit;end
+ x=ref(:,1);
+ e=max(abs((ref(:,2)-asech(x))./ref(:,2)));
+ assert_checkfalse(e>20*eps);
+ x=-ref(:,1);
+ e=max(abs((ref(:,2)+imult(pi)-asech(x))./(ref(:,2)+imult(pi))));
+ assert_checkfalse(e>10*eps);
+ x=refi(:,1);
+ e=max(abs((imult(refi(:,2))-asech(x))./refi(:,2)));
+ assert_checkfalse(e>10*eps);
+ x=-refi(:,1);
+ e=max(abs((imult(pi-refi(:,2))-asech(x))./(pi-refi(:,2))));
+ assert_checkfalse(e>10*eps);
+ assert_checkequal(asech(0), Inf);
+ assert_checkalmostequal(imag(asech(Inf)), pi/2);
+ assert_checktrue(isnan(asech(NaN)));
+ assert_checkequal(asech([]), []);

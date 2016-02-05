@@ -2,11 +2,14 @@
 // Copyright (C) INRIA
 // Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function %st_p(s)
 
@@ -54,7 +57,7 @@ function %st_p(s)
             // then we do not call sci2exp
             // because the returned value will be ignored at line 64: size(str,"*")==1
             // Note that ll(1)/2 elements could be the max because of colon, semi-colon and brackets added between elements by sci2exp
-            if sz(1)==1 & type(value) <> 9 & prod(sz) < ll(1) then // This line can avoid some stacksize error when field contains a big matrix
+            if sz(1)==1 & type(value) <> 9 & prod(sz) < ll(1) then // This line can avoid some memory issues when field contains a big matrix
                 str=sci2exp(value,ll(1))
             else
                 str="["+strcat(string(size(value)),"x")+" "+tp+"]"

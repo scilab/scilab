@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011-2012 - DIGITEO - Manuel JULIACHS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.legend;
@@ -36,6 +39,7 @@ import org.scilab.forge.scirenderer.tranformations.TransformationStack;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
+import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.legend.Legend;
@@ -92,10 +96,10 @@ public class LegendDrawer {
     private LegendSpriteDrawer legendSpriteDrawer;
 
     /** The relative line width */
-    private static final double LINE_WIDTH = 0.1;
+    public static final double LINE_WIDTH = 0.1;
 
     /** The relative y-offset */
-    private static final double Y_OFFSET = 0.01;
+    public static final double Y_OFFSET = 0.01;
 
     /** The relative tick and label size (arbitrarily chosen) */
     private static final double TICK_LABEL_SIZE = 0.055;
@@ -146,6 +150,28 @@ public class LegendDrawer {
         lineIndices.setData(lineIndexData);
     }
 
+    public Dimension computeDimensions(Axes parentAxes, Legend legend) {
+        LegendLocation loc = legend.getLegendLocationAsEnum();
+        if (loc != LegendLocation.IN_UPPER_RIGHT && loc != LegendLocation.IN_UPPER_LEFT &&
+                loc != LegendLocation.IN_LOWER_RIGHT && loc != LegendLocation.IN_LOWER_LEFT) {
+            Figure figure = (Figure) GraphicController.getController().getObjectFromId(parentAxes.getParentFigure());
+            final ColorMap colorMap = figure.getColorMap();
+            final Integer[] links = legend.getLinks();
+            final int nbValidLinks = getNumberValidLinks(legend);
+            if (nbValidLinks < links.length) {
+                dispose(legend.getIdentifier());
+                updateLinks(legend, nbValidLinks);
+            }
+
+            if (nbValidLinks > 0) {
+                Texture legendSprite = getTexture(colorMap, legend);
+                return legendSprite.getDataProvider().getTextureSize();
+            }
+        }
+
+        return null;
+    }
+
     /**
      * Draws the given Legend.
      * @param legend the Legend to draw.
@@ -153,13 +179,13 @@ public class LegendDrawer {
      */
     public void draw(Legend legend) throws SciRendererException {
         /* The coordinates of the legend box's lower-left corner */
-        double [] legendCorner = new double[] {0.25, 0.75, Z_FRONT};
+        double[] legendCorner = new double[] {0.25, 0.75, Z_FRONT};
 
         DrawingTools drawingTools = visitor.getDrawingTools();
         ColorMap colorMap = visitor.getColorMap();
         Canvas canvas = visitor.getCanvas();
 
-        Integer [] links = legend.getLinks();
+        Integer[] links = legend.getLinks();
 
         /*
          * Determine whether any links have become invalid,
@@ -194,8 +220,8 @@ public class LegendDrawer {
         Integer parentAxesID = legend.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesID);
 
-        Double [] axesBounds = parentAxes.getAxesBounds();
-        Double [] margins = parentAxes.getMargins();
+        Double[] axesBounds = parentAxes.getAxesBounds();
+        Double[] margins = parentAxes.getMargins();
 
         int xAxisLocation = AxisLocation.enumToInt(parentAxes.getXLocation());
         int yAxisLocation = AxisLocation.enumToInt(parentAxes.getYLocation());
@@ -213,15 +239,11 @@ public class LegendDrawer {
         }
 
         Texture legendSprite = null;
-
-        if (nbValidLinks > 0) {
-            legendSprite = getTexture(colorMap, legend);
-        }
-
         double normSpriteWidth = 0;
         double normSpriteHeight = 0;
 
         if (nbValidLinks > 0) {
+            legendSprite = getTexture(colorMap, legend);
             Dimension textureSize = legendSprite.getDataProvider().getTextureSize();
             normSpriteWidth = textureSize.getWidth() / (double) canvasWidth;
             normSpriteHeight = textureSize.getHeight() / (double) canvasHeight;
@@ -230,16 +252,19 @@ public class LegendDrawer {
         double lineWidth;
 
         /* The legend box's width and height */
-        double [] legendDims = new double[2];
+        double[] legendDims = new double[2];
 
-        double [] axesPos = new double[2];
-        double [] axesDims = new double[2];
+        double[] axesPos = new double[2];
+        double[] axesDims = new double[2];
 
-        lineWidth = LINE_WIDTH * (axesBounds[2]) * (1.0 - margins[0] - margins[1]);
+        lineWidth = legend.getLineWidth() * (axesBounds[2]) * (1.0 - margins[0] - margins[1]);
 
-        double xOffset = lineWidth / 8.0;
+        double xOffset = LINE_WIDTH * (axesBounds[2]) * (1.0 - margins[0] - margins[1]) / 8.0;
         double yOffset = (Y_OFFSET * (axesBounds[3]) * (1.0 - margins[2] - margins[3]));
 
+        /*
+         * If one of these relations is modified, then AxesDrawer::computeMargins should be modified too
+         */
         legendDims[0] = normSpriteWidth + lineWidth + 3.0 * xOffset;
         legendDims[1] = normSpriteHeight + 2.0 * yOffset;
 
@@ -254,8 +279,8 @@ public class LegendDrawer {
         axesDims[1] = axesBounds[3];
 
         /* The {x, y} coordinates of the axes box's lower-left and upper-right corners (as defined by bounds and margins) */
-        double [] llBoxCorner = new double[2];
-        double [] urBoxCorner = new double[2];
+        double[] llBoxCorner = new double[2];
+        double[] urBoxCorner = new double[2];
 
         LegendLocation legendLocation = legend.getLegendLocation();
 
@@ -265,53 +290,65 @@ public class LegendDrawer {
         urBoxCorner[0] = axesPos[0] + (1.0 - margins[1]) * axesDims[0];
         urBoxCorner[1] = axesPos[1] + (1.0 - margins[2]) * axesDims[1];
 
-        if (legendLocation == LegendLocation.IN_UPPER_RIGHT) {
-            legendCorner[0] = (float) (urBoxCorner[0] - xOffset - legendDims[0]);
-            legendCorner[1] = (float) (urBoxCorner[1] - yOffset - legendDims[1]);
-        } else if (legendLocation == LegendLocation.IN_UPPER_LEFT) {
-            legendCorner[0] = (float) (llBoxCorner[0] + xOffset);
-            legendCorner[1] = (float) (urBoxCorner[1] - yOffset - legendDims[1]);
-        } else if (legendLocation == LegendLocation.IN_LOWER_RIGHT) {
-            legendCorner[0] = (float) (urBoxCorner[0] - xOffset - legendDims[0]);
-            legendCorner[1] = (float) (llBoxCorner[1] + yOffset);
-        } else if (legendLocation == LegendLocation.IN_LOWER_LEFT) {
-            legendCorner[0] = (float) (llBoxCorner[0] + xOffset);
-            legendCorner[1] = (float) (llBoxCorner[1] + yOffset);
-        } else if (legendLocation == LegendLocation.OUT_UPPER_RIGHT) {
-            legendCorner[0] = (float) (urBoxCorner[0] + xOffset);
-            legendCorner[1] = (float) (urBoxCorner[1] - legendDims[1]);
-        } else if (legendLocation == LegendLocation.OUT_UPPER_LEFT) {
-            legendCorner[0] = (float) (llBoxCorner[0] - xOffset - legendDims[0]);
-            legendCorner[1] = (float) (urBoxCorner[1] - legendDims[1]);
-        } else if (legendLocation == LegendLocation.OUT_LOWER_RIGHT) {
-            legendCorner[0] = (float) (urBoxCorner[0] + xOffset);
-            legendCorner[1] = (float) (llBoxCorner[1]);
-        } else if (legendLocation == LegendLocation.OUT_LOWER_LEFT) {
-            legendCorner[0] = (float) (llBoxCorner[0] - xOffset - legendDims[0]);
-            legendCorner[1] = (float) (llBoxCorner[1]);
-        } else if (legendLocation == LegendLocation.UPPER_CAPTION) {
-            legendCorner[0] = (float) (llBoxCorner[0]);
-            legendCorner[1] = (float) (urBoxCorner[1] + yOffset);
+        switch (legendLocation) {
+            case IN_UPPER_RIGHT:
+                legendCorner[0] = (float) (urBoxCorner[0] - xOffset - legendDims[0]);
+                legendCorner[1] = (float) (urBoxCorner[1] - yOffset - legendDims[1]);
+                break;
+            case IN_UPPER_LEFT:
+                legendCorner[0] = (float) (llBoxCorner[0] + xOffset);
+                legendCorner[1] = (float) (urBoxCorner[1] - yOffset - legendDims[1]);
+                break;
+            case IN_LOWER_RIGHT:
+                legendCorner[0] = (float) (urBoxCorner[0] - xOffset - legendDims[0]);
+                legendCorner[1] = (float) (llBoxCorner[1] + yOffset);
+                break;
+            case IN_LOWER_LEFT:
+                legendCorner[0] = (float) (llBoxCorner[0] + xOffset);
+                legendCorner[1] = (float) (llBoxCorner[1] + yOffset);
+                break;
+            case OUT_UPPER_RIGHT:
+                legendCorner[0] = (float) (urBoxCorner[0] + xOffset);
+                legendCorner[1] = (float) (urBoxCorner[1] - legendDims[1]);
+                break;
+            case OUT_UPPER_LEFT:
+                legendCorner[0] = (float) (llBoxCorner[0] - xOffset - legendDims[0]);
+                legendCorner[1] = (float) (urBoxCorner[1] - legendDims[1]);
+                break;
+            case OUT_LOWER_RIGHT:
+                legendCorner[0] = (float) (urBoxCorner[0] + xOffset);
+                legendCorner[1] = (float) (llBoxCorner[1]);
+                break;
+            case OUT_LOWER_LEFT:
+                legendCorner[0] = (float) (llBoxCorner[0] - xOffset - legendDims[0]);
+                legendCorner[1] = (float) (llBoxCorner[1]);
+                break;
+            case UPPER_CAPTION:
+                legendCorner[0] = (float) (llBoxCorner[0]);
+                legendCorner[1] = (float) (urBoxCorner[1] + yOffset);
 
-            /* x-axis at the top */
-            if (xAxisLocation == 1) {
-                /* To do: use the actual label+tick bounding box height */
-                legendCorner[1] += TICK_LABEL_SIZE;
-            }
-        } else if (legendLocation == LegendLocation.LOWER_CAPTION) {
-            legendCorner[0] = (float) (llBoxCorner[0]);
-            legendCorner[1] = (float) (llBoxCorner[1] - yOffset - legendDims[1]);
+                /* x-axis at the top */
+                if (xAxisLocation == 1) {
+                    /* To do: use the actual label+tick bounding box height */
+                    legendCorner[1] += TICK_LABEL_SIZE;
+                }
+                break;
+            case LOWER_CAPTION:
+                legendCorner[0] = (float) (llBoxCorner[0]);
+                legendCorner[1] = (float) (llBoxCorner[1] - yOffset - legendDims[1]);
 
-            /* x-axis at the bottom */
-            if (xAxisLocation == 0) {
-                /* To do: use the actual label+tick bounding box height */
-                legendCorner[1] -= TICK_LABEL_SIZE;
-            }
-        } else if (legendLocation == LegendLocation.BY_COORDINATES) {
-            Double [] legPos = legend.getPosition();
+                /* x-axis at the bottom */
+                if (xAxisLocation == 0) {
+                    /* To do: use the actual label+tick bounding box height */
+                    legendCorner[1] -= TICK_LABEL_SIZE;
+                }
+                break;
+            case BY_COORDINATES:
+                Double[] legPos = legend.getPosition();
 
-            legendCorner[0] = (float) (axesPos[0] + legPos[0] * axesBounds[2]);
-            legendCorner[1] = (float) (axesPos[1] + (1.0 - legPos[1]) * axesBounds[3] - legendDims[1]);
+                legendCorner[0] = (float) (axesPos[0] + legPos[0] * axesBounds[2]);
+                legendCorner[1] = (float) (axesPos[1] + (1.0 - legPos[1]) * axesBounds[3] - legendDims[1]);
+                break;
         }
 
         /* y-axis positioned to the left */
@@ -328,7 +365,7 @@ public class LegendDrawer {
         /* Afterwards, draw the elements making up the Legend using the previously computed values */
 
         /* Legend background vertex data: lower-left, lower-right, upper-left and upper-right corners */
-        float [] rectangleVertexData = new float[] {
+        float[] rectangleVertexData = new float[] {
             (float)legendCorner[0], (float)legendCorner[1], Z_FRONT, 1.0f,
             (float)(legendCorner[0] + legendDims[0]), (float)legendCorner[1], Z_FRONT, 1.0f,
             (float)legendCorner[0], (float)(legendCorner[1] + legendDims[1]), Z_FRONT, 1.0f,
@@ -373,10 +410,10 @@ public class LegendDrawer {
         drawingTools.draw(legendRectangle, appearance);
 
         /* Lines: 3 vertices each, left, middle, and right */
-        float [] lineVertexData = new float[] {0.25f, 0.75f, Z_FRONT, 1.0f,
-                                               0.5f, 0.75f, Z_FRONT, 1.0f,
-                                               0.75f, 0.75f, Z_FRONT, 1.0f
-                                              };
+        float[] lineVertexData = new float[] {0.25f, 0.75f, Z_FRONT, 1.0f,
+                                              0.5f, 0.75f, Z_FRONT, 1.0f,
+                                              0.75f, 0.75f, Z_FRONT, 1.0f
+                                             };
 
         double normSpriteMargin = 0.0;
 
@@ -387,11 +424,11 @@ public class LegendDrawer {
         lineVertexData[0] = (float) (legendCorner[0] + xOffset);
         lineVertexData[1] = (float) (legendCorner[1] + normSpriteMargin + yOffset);
 
+        lineVertexData[4] = lineVertexData[0] + 0.5f * (float) lineWidth;
+        lineVertexData[5] = lineVertexData[1];
+
         lineVertexData[8] = lineVertexData[0] + (float) lineWidth;
         lineVertexData[9] = lineVertexData[1];
-
-        lineVertexData[4] = 0.5f * (lineVertexData[0] + lineVertexData[8]);
-        lineVertexData[5] = lineVertexData[1];
 
         float deltaHeight = 0.0f;
 
@@ -404,11 +441,11 @@ public class LegendDrawer {
         lineVertexData[9] = lineVertexData[9] + 0.5f * deltaHeight;
 
         /* Bar vertex data: lower-left, lower-right, upper-left and upper-right corners */
-        float [] barVertexData = new float[] {0.25f, 0.75f, Z_FRONT, 1.0f,
-                                              0.75f, 0.75f, Z_FRONT, 1.0f,
-                                              0.25f, 1.00f, Z_FRONT, 1.0f,
-                                              0.75f, 1.00f, Z_FRONT, 1.0f
-                                             };
+        float[] barVertexData = new float[] {0.25f, 0.75f, Z_FRONT, 1.0f,
+                                             0.75f, 0.75f, Z_FRONT, 1.0f,
+                                             0.25f, 1.00f, Z_FRONT, 1.0f,
+                                             0.75f, 1.00f, Z_FRONT, 1.0f
+                                            };
 
         float barHeight = BAR_HEIGHT * deltaHeight;
 
@@ -427,7 +464,7 @@ public class LegendDrawer {
         for (Integer link : links) {
             Polyline currentLine = (Polyline) GraphicController.getController().getObjectFromId(link);
 
-            drawLegendItem(drawingTools, colorMap, currentLine, barVertexData, lineVertexData);
+            drawLegendItem(legend, drawingTools, colorMap, currentLine, barVertexData, lineVertexData);
 
             /* Update the vertex data's vertical position */
             lineVertexData[1] += deltaHeight;
@@ -441,7 +478,7 @@ public class LegendDrawer {
         }
 
         /* Legend text */
-        float [] spritePosition = new float[] {lineVertexData[8] + (float) xOffset, (float) (legendCorner[1] + yOffset), Z_FRONT};
+        float[] spritePosition = new float[] {lineVertexData[8] + (float) xOffset, (float) (legendCorner[1] + yOffset), Z_FRONT};
 
         /* Draw the sprite only if there are valid links */
         if (nbValidLinks > 0) {
@@ -453,7 +490,7 @@ public class LegendDrawer {
         projectionStack.pop();
 
         /* Output the position if required */
-        Double [] legendPosition = new Double[2];
+        Double[] legendPosition = new Double[2];
 
         if (axesDims[0] == 0.0) {
             axesDims[0] = 1.0;
@@ -474,6 +511,7 @@ public class LegendDrawer {
     /**
      * Draw the legend item corresponding to the given polyline.
      * It draws either a horizontal line or bar depending on the polyline's properties (style, fill and line modes).
+     * @param legend the Legend.
      * @param drawingTools the DrawingTools {@see DrawingTools} used to draw the Legend.
      * @param colorMap the colorMap used.
      * @param polyline the given polyline.
@@ -481,7 +519,7 @@ public class LegendDrawer {
      * @param lineVertexData a line's vertex data (3 consecutive (x,y,z,w) quadruplets: left, middle and right vertices).
      * @throws org.scilab.forge.scirenderer.SciRendererException if the draw fail.
      */
-    private void drawLegendItem(DrawingTools drawingTools, ColorMap colorMap, Polyline polyline, float[] barVertexData, float[] lineVertexData) throws SciRendererException {
+    private void drawLegendItem(Legend legend, DrawingTools drawingTools, ColorMap colorMap, Polyline polyline, float[] barVertexData, float[] lineVertexData) throws SciRendererException {
         int polylineStyle = polyline.getPolylineStyle();
 
         int lineColor = polyline.getLineColor();
@@ -559,10 +597,30 @@ public class LegendDrawer {
             if (barDrawn) {
                 drawingTools.draw(markTexture, AnchorPosition.CENTER, barVertices);
             } else {
-                drawingTools.draw(markTexture, AnchorPosition.CENTER, lineVertices);
+                int marksCount = legend.getMarksCount();
+                float[] data;
+                if (marksCount != 0) {
+                    switch (marksCount) {
+                        case 1:
+                            data = new float[] {lineVertexData[4], lineVertexData[5], lineVertexData[6], lineVertexData[7]};
+                            break;
+                        case 2:
+                            data = new float[] {lineVertexData[0], lineVertexData[1], lineVertexData[2], lineVertexData[3],
+                                                lineVertexData[8], lineVertexData[9], lineVertexData[10], lineVertexData[11]
+                                           };
+                            break;
+                        default:
+                            data = new float[] {lineVertexData[0], lineVertexData[1], lineVertexData[2], lineVertexData[3],
+                                                lineVertexData[4], lineVertexData[5], lineVertexData[6], lineVertexData[7],
+                                                lineVertexData[8], lineVertexData[9], lineVertexData[10], lineVertexData[11]
+                                           };
+                            break;
+                    }
+                    lineVertices.setData(data, 4);
+                    drawingTools.draw(markTexture, AnchorPosition.CENTER, lineVertices);
+                }
             }
         }
-
     }
 
     /**
@@ -629,7 +687,7 @@ public class LegendDrawer {
      */
     private int getNumberValidLinks(Legend legend) {
         int nbValidLinks = 0;
-        Integer [] links = legend.getLinks();
+        Integer[] links = legend.getLinks();
 
         for (Integer link : links) {
             Polyline currentLine = (Polyline) GraphicController.getController().getObjectFromId(link);
@@ -653,7 +711,7 @@ public class LegendDrawer {
      */
     private void updateLinks(Legend legend, int nbValidLinks) {
         int i1 = 0;
-        ArrayList <Integer> newLinks = new ArrayList<Integer>(0);
+        ArrayList <Integer> newLinks = new ArrayList<Integer>(legend.getLinks().length);
         String[] newStrings;
         Integer[] newDims = new Integer[2];
 

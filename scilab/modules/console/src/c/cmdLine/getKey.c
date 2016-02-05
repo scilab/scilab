@@ -2,14 +2,18 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Karim Mamode
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 #include <wchar.h>
+#include <string.h>
 #include <wctype.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -25,7 +29,7 @@
 #include "initConsoleMode.h"
 #include "cliPrompt.h"
 #include "getKey.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "HistoryManager.h"
 #include "charEncoding.h"
 #include "cliDisplayManagement.h"
@@ -86,10 +90,11 @@ static void caseHomeOrEndKey(wchar_t * commandLine, unsigned int *cursorLocation
 
 /*
  * If second key was L'['
- * It means this could be an arrow key or delete key.
+ * It means this could be an arrow key, a delete key or home/end key.
  */
 static void caseDelOrArrowKey(wchar_t ** commandLine, unsigned int *cursorLocation)
 {
+    int * cmd = *commandLine;
     switch (getwchar())
     {
         case L'A':
@@ -114,6 +119,13 @@ static void caseDelOrArrowKey(wchar_t ** commandLine, unsigned int *cursorLocati
                 updateTokenInScilabHistory(commandLine);
                 break;
             }
+            //home or end key in some consoles
+        case L'H':
+            begLine(cmd, cursorLocation);
+            break;
+        case L'F':
+            endLine(cmd, cursorLocation);
+            break;
     }
 }
 
@@ -138,6 +150,7 @@ static void caseMetaKey(wchar_t ** commandLine, unsigned int *cursorLocation)
         case L'O':
             caseHomeOrEndKey(*commandLine, cursorLocation);
             break;
+
     }
 }
 
@@ -218,6 +231,7 @@ static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
     if (getTokenInteruptExecution() == DO_NOT_SEND_COMMAND)
     {
         resetCommandLine(commandLine, cursorLocation);
+        return;
     }
 
     switch (key)
@@ -314,10 +328,6 @@ char *getCmdLine(void)
 
     if (commandLine == NULL || commandLine[nextLineLocationInWideString] == L'\0')
     {
-        if (commandLine != NULL)
-        {
-            FREE(commandLine);
-        }
         commandLine = MALLOC(1024 * sizeof(*commandLine));
         *commandLine = L'\0';
         nextLineLocationInWideString = 0;
@@ -363,6 +373,11 @@ char *getCmdLine(void)
         return NULL;
     }
 
+    if (commandLine[nextLineLocationInWideString] == L'\0')
+    {
+        FREE(commandLine);
+        commandLine = NULL;
+    }
     return multiByteString;
 }
 

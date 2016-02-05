@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+*
+*  ======================================================================
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
+*
+*  This file is distributed under the same license as the Scilab package.
+* =======================================================================
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="jcreatejar">
+    
+    <refnamediv>
+        
+        <refname>jcreatejar</refname>
+        
+        <refpurpose>
+            
+            ファイル/ディレクトリからJava ARchive (JAR) を作成
+            
+        </refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            jcreatejar(jarFilePath, filePaths[, rootPath[, manifestFilePath]])
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>パラメータ</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>jarFilePath</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        JARのファイルパスの説明を有する文字列.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>filePaths</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        JARに含まれる
+                        
+                        入力ファイル/ディレクトリのパスを有する
+                        
+                        行/列文字列行列
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>rootPath</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        オプションの文字列で,
+                        
+                        全ての入力ファイル/ディレクトリのJARにおける
+                        
+                        相対パスを計算する際に使用されるパスを設定.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>manifestFilePath</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        オプション文字列で,
+                        
+                        JARに含まれるmanifestデータのファイルパスを指定.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            一連の入力ファイル/ディレクトリからJAR (Java ARchive) ファイルを
+            
+            作成します.
+            
+            典型的な使用例は, (Javaクラスを含む) Javaパッケージです.
+            
+            例えば, 関数 
+            
+            <link linkend="ilib_build_jar">ilib_build_jar</link> は
+            
+            Javaソースを有するツールボックスを構築する際に
+            
+            <literal>jcreatejar</literal>を使用します.
+            
+            しかし, <literal>jcreatejar</literal> は任意の型の
+            
+            ファイルを圧縮する際にも使用できます
+            
+            (例えば, ネットワーク経由でファイルを送信する場合).
+            
+        </para>
+        
+        <para>
+            
+            多くの場合, JARファイルは単一のファイルツリーから作成され,
+            
+            JARファイル内のパスツリーは入力パスツリーと同じです.
+            
+            このため, <literal>jcreatejar</literal>に 
+            
+            一連のファイルとディレクトリが指定された場合,
+            
+            これらのファイル/ディレクトリのルートパスを自動的に求め,
+            
+            ルートパスに対して相対的にJAR内のパスを設定します.
+            
+            ルートパスは<literal>rootPath</literal>引数により
+            
+            明示的に指定することも可能です.
+            
+        </para>
+        
+        <para>
+            
+            JARファイルはJARの内容を記述するデータを含むmanifestを有します.
+            
+            JAR内では, このmanifestは<literal>META-INF</literal>フォルダの
+            
+            ファイル<literal>MANIFEST.MF</literal> です.
+            
+            このmanifestファイルは自動的に入力ツリーのこの場所で見つけるか,
+            
+            <literal>manifestFilePath</literal> 引数でmanifestのパスを
+            
+            指定することができます.
+            
+            manifestファイルが見つからない場合,デフォルトのmanifestが
+            
+            JAR内で作成されます.
+            
+            注意: manifestが指定された場合, version 属性を有する必要があります.
+            
+            そうでない場合, JAR内のmanifestは空になります.
+            
+        </para>
+        
+        <para>
+            
+            引数 <literal>jarFilePath</literal> に保存された
+            
+            JARディストリビューションのファイルパスは
+            
+            は拡張子 <literal>.jar</literal>を有している必要があります.
+            
+            出力先のJARファイルが既に存在している場合,
+            
+            上書きされます.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+// Example of jcreatejar: create a JAR containing a Java package
+
+// Create a directory for package sources
+jar_src_path = fullfile(TMPDIR, 'jarPackageExample');
+mkdir(jar_src_path);
+
+// Create a Java source and compiles it to a Java class
+function createJavaClass(class_name, code)
+    class_src_path = fullfile(jar_src_path, class_name + '.java');
+    fd = mopen(class_src_path, 'wt');
+    mputl(code, fd);
+    mclose(fd);
+    jcompile(class_src_path);
+endfunction
+
+// Create a class in the root of the package
+createJavaClass('Class1', msprintf( ..
+    'package jarPackageExample;\n' + ..
+    'public class Class1 {}'));
+
+// Create another class in a folder of the package
+mkdir(fullfile(jar_src_path, 'folder'));
+createJavaClass('folder/Class2', msprintf( ..
+    'package jarPackageExample.folder;\n' + ..
+    'public class Class2 {}'));
+
+// The compiled package is in TMPDIR in JIMS folder
+jar_tmp_path = fullfile(TMPDIR, 'JIMS/bin/jarPackageExample');
+
+// Create the package JAR
+jar_dest_path = fullfile(TMPDIR, 'jarPackageExample.jar');
+jcreatejar(jar_dest_path, jar_tmp_path);
+      ]]></programlisting>
+        
+        <programlisting role="example"><![CDATA[
+// Example of jcreatejar: create a JAR containing images, and add a manifest
+
+// Create the manifest file
+manifest_path = fullfile(TMPDIR, 'MANIFEST.MF');
+manifest = msprintf('Manifest-Version: 1.0\nName: Scilab images');
+fd = mopen(manifest_path, 'wt');
+mputl(manifest, fd);
+mclose(fd);
+
+// Create the JAR
+jar_src_path = fullfile(SCI, 'modules/gui/images/icons');
+jar_dest_path = fullfile(TMPDIR, 'jarImagesExample.jar');
+jcreatejar(jar_dest_path, jar_src_path, '', manifest_path);
+      ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="jcompile">jcompile</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="javaclasspath">javaclasspath</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>
+                    
+                    関数が導入されました.
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+
+
+

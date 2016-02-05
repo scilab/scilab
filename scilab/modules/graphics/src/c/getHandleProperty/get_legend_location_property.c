@@ -6,11 +6,14 @@
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -32,7 +35,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_legend_location_property(void* _pvCtx, int iObjUID)
+void* get_legend_location_property(void* _pvCtx, int iObjUID)
 {
     int iLegendLocation = 0;
     int* piLegendLocation = &iLegendLocation;
@@ -42,58 +45,58 @@ int get_legend_location_property(void* _pvCtx, int iObjUID)
     if (piLegendLocation == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "legend_location");
-        return -1;
+        return NULL;
     }
 
     if (iLegendLocation == 0)
     {
-        return sciReturnString(_pvCtx, "in_upper_right");
+        return sciReturnString("in_upper_right");
     }
     else if (iLegendLocation == 1)
     {
-        return sciReturnString(_pvCtx, "in_upper_left");
+        return sciReturnString("in_upper_left");
     }
     else if (iLegendLocation == 2)
     {
-        return sciReturnString(_pvCtx, "in_lower_right");
+        return sciReturnString("in_lower_right");
     }
     else if (iLegendLocation == 3)
     {
-        return sciReturnString(_pvCtx, "in_lower_left");
+        return sciReturnString("in_lower_left");
     }
     else if (iLegendLocation == 4)
     {
-        return sciReturnString(_pvCtx, "out_upper_right");
+        return sciReturnString("out_upper_right");
     }
     else if (iLegendLocation == 5)
     {
-        return sciReturnString(_pvCtx, "out_upper_left");
+        return sciReturnString("out_upper_left");
     }
     else if (iLegendLocation == 6)
     {
-        return sciReturnString(_pvCtx, "out_lower_right");
+        return sciReturnString("out_lower_right");
     }
     else if (iLegendLocation == 7)
     {
-        return sciReturnString(_pvCtx, "out_lower_left");
+        return sciReturnString("out_lower_left");
     }
     else if (iLegendLocation == 8)
     {
-        return sciReturnString(_pvCtx, "upper_caption");
+        return sciReturnString("upper_caption");
     }
     else if (iLegendLocation == 9)
     {
-        return sciReturnString(_pvCtx, "lower_caption");
+        return sciReturnString("lower_caption");
     }
     else if (iLegendLocation == 10)
     {
-        return sciReturnString(_pvCtx, "by_coordinates");
+        return sciReturnString("by_coordinates");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "legend_location");
     }
 
-    return -1;
+    return NULL;
 }
 /*------------------------------------------------------------------------*/

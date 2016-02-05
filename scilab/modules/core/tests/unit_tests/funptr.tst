@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Allan CORNET
@@ -8,13 +9,13 @@
 //================================================
 // test funptr
 //================================================
-ptr = funptr('pwd');
-if ptr <> 34031 then pause,end
+errmsg =  msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "funptr", 1);
+assert_checkerror('ptr = funptr(1)', errmsg);
 
-ierr = execstr('ptr = funptr(1)','errcatch');
-if ierr <> 999 then pause,end
+ptr = funptr("pwd");
+assert_checkequal(ptr, "pwd");
 
 ptr = funptr('FCT_NOT_IN_SCILAB');
-if ptr <> 0 then pause,end
+assert_checkequal(ptr, 0);
 
 //================================================

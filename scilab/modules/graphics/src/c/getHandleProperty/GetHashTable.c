@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -20,7 +23,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "getDictionaryGetProperties.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /**
  * use for the singleton to know if the hashtable has already be created.
  */
@@ -60,7 +63,6 @@ static getHashTableCouple propertyGetTable[] =
     {"figure_id", get_figure_id_property},
     {"rotation_style", get_rotation_style_property},
     {"immediate_drawing", get_immediate_drawing_property},
-    {"pixmap", get_pixmap_property},
     {"type", get_type_property},
     {"parent", get_parent_property},
     {"current_axes", get_current_axes_property},
@@ -89,6 +91,8 @@ static getHashTableCouple propertyGetTable[] =
     {"mark_size", get_mark_size_property},
     {"mark_foreground", get_mark_foreground_property},
     {"mark_background", get_mark_background_property},
+    {"mark_offset", get_mark_offset_property},
+    {"mark_stride", get_mark_stride_property},
     {"bar_layout", get_bar_layout_property},
     {"bar_width", get_bar_width_property},
     {"x_shift", get_x_shift_property},
@@ -132,6 +136,7 @@ static getHashTableCouple propertyGetTable[] =
     {"axes_bounds", get_axes_bounds_property},
     {"data_bounds", get_data_bounds_property},
     {"margins", get_margins_property},
+    {"auto_margins", get_auto_margins_property},
     {"tics_color", get_tics_color_property},
     {"tics_style", get_tics_style_property},
     {"sub_tics", get_sub_tics_property},
@@ -146,6 +151,8 @@ static getHashTableCouple propertyGetTable[] =
     {"tics_labels", get_tics_labels_property},
     {"box", get_box_property},
     {"grid", get_grid_property},
+    {"grid_thickness", get_grid_thickness_property},
+    {"grid_style", get_grid_style_property},
     {"axes_visible", get_axes_visible_property},
     {"hiddencolor", get_hidden_color_property},
     {"isoview", get_isoview_property},
@@ -206,6 +213,8 @@ static getHashTableCouple propertyGetTable[] =
     {"anti_aliasing", get_anti_aliasing_property},
     {"UID", get_UID},
     {"showhiddenhandles", GetConsoleShowHiddenHandles},
+    {"showhiddenproperties", GetConsoleShowHiddenProperties},
+    {"usedeprecatedskin", GetConsoleUseDeprecatedLF},
     {"resizefcn", get_figure_resizefcn_property},
     {"tooltipstring", GetUicontrolTooltipString},
     {"closerequestfcn", get_figure_closerequestfcn_property},
@@ -224,7 +233,30 @@ static getHashTableCouple propertyGetTable[] =
     {"light_type", get_light_type_property},
     {"direction", get_direction_property},
     {"image_type", get_image_type_property},
-    {"datatips", get_datatips_property}
+    {"datatips", get_datatips_property},
+    {"display_function_data", get_display_function_data_property},
+    {"resize", get_resize_property},
+    {"toolbar", get_toolbar_property},
+    {"toolbar_visible", get_toolbar_visible_property},
+    {"menubar", get_menubar_property},
+    {"menubar_visible", get_menubar_visible_property},
+    {"infobar_visible", get_infobar_visible_property},
+    {"dockable", get_dockable_property},
+    {"layout", get_layout_property},
+    {"constraints", get_constraints_property},
+    {"rect", get_rect_property},
+    {"layout_options", get_layout_options_property},
+    {"border", get_border_property},
+    {"groupname", get_groupname_property},
+    {"title_position", get_title_position_property},
+    {"title_scroll", get_title_scroll_property},
+    {"scrollable", get_scrollable_property},
+    {"icon", GetUicontrolIcon},
+    {"line_width", get_line_width_property},
+    {"marks_count", get_marks_count_property},
+    {"ticks_format", get_ticks_format_property},
+    {"ticks_st", get_ticks_st_property},
+    {"colors", get_colors_property}
 };
 
 /*--------------------------------------------------------------------------*/
@@ -260,14 +292,15 @@ GetPropertyHashTable *createScilabGetHashTable(void)
 }
 
 /*--------------------------------------------------------------------------*/
-int callGetProperty(void* _pvCtx, int iObjUID, char *propertyName)
+
+void* callGetProperty(void* _pvCtx, int iObjUID, char *propertyName)
 {
     getPropertyFunc accessor = searchGetHashtable(getHashTable, propertyName);
 
     if (accessor == NULL)
     {
         Scierror(999, _("Unknown property: %s.\n"), propertyName);
-        return -1;
+        return NULL;
     }
     return accessor(_pvCtx, iObjUID);
 }

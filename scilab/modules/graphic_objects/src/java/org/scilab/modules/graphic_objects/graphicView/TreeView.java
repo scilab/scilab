@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.graphic_objects.graphicView;
@@ -30,6 +33,8 @@ import javax.swing.tree.TreeSelectionModel;
 
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorder;
 
 public abstract class TreeView implements GraphicView, TreeSelectionListener {
 
@@ -42,6 +47,10 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener {
 
     public void show() {
         frame.setVisible(true);
+    }
+
+    public void hide() {
+        frame.setVisible(false);
     }
 
     protected TreeView() {
@@ -103,13 +112,13 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener {
         }
 
         public String toString() {
-            return graphicObject.getType() + " : @" + graphicObject.getIdentifier().toString();
+            return typeToString(graphicObject.getType()) + " : @" + graphicObject.getIdentifier().toString();
         }
 
         public String toHTML() {
             StringBuffer strBuff = new StringBuffer();
             strBuff.append("<html><body>");
-            strBuff.append("<h1>Graphic Object of type: " + graphicObject.getType() + "</h1>");
+            strBuff.append("<h1>Graphic Object of type: " + typeToString(graphicObject.getType()) + "</h1>");
             strBuff.append("<h2> Id : " + graphicObject.getIdentifier() + "</h2>");
             strBuff.append("<table border=\"1\">");
             strBuff.append("<tr><th>Property Name</th><th>Value</th></tr>");
@@ -126,9 +135,27 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener {
                         strBuff.append(strings[i] + ",");
                     }
                     strBuff.append("}");
+                } else if (values instanceof Integer[]) {
+                    Integer[] ints = (Integer []) values;
+                    strBuff.append("{");
+                    for (int i = 0; i < ints.length ; ++i) {
+                        strBuff.append(ints[i] + ",");
+                    }
+                    strBuff.append("}");
+                } else if (values instanceof Double[]) {
+                    Double[] vals = (Double []) values;
+                    strBuff.append("{");
+                    for (int i = 0; i < vals.length ; ++i) {
+                        strBuff.append(vals[i] + ",");
+                    }
+                    strBuff.append("}");
                 } else {
                     if (values != null) {
-                        strBuff.append(values.toString());
+                        if (values.getClass().getPackage().getName().contains("scilab")) {
+                            strBuff.append(values.getClass().getCanonicalName());
+                        } else {
+                            strBuff.append(values.toString());
+                        }
                     } else {
                         strBuff.append("??? NULL ???");
                     }
@@ -146,11 +173,33 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener {
                     strBuff.append("</td></tr>");
                 }
             }
+
+            // UiControl
+            if (graphicObject instanceof Uicontrol) {
+                Uicontrol uiControl = (Uicontrol) graphicObject;
+                strBuff.append("<tr><td>STYLE</td><td>" + typeToString(uiControl.getStyle()) + "</td>");
+                strBuff.append("<tr><td>LAYOUT</td><td>" + uiControl.getLayoutAsEnum() + "</td>");
+                strBuff.append("<tr><td>GROUP NAME</td><td>" + uiControl.getGroupName() + "</td>");
+                strBuff.append("<tr><td>FRAME_BORDER</td><td>" + uiControl.getFrameBorder() + "</td>");
+            }
+
+            if (graphicObject instanceof FrameBorder) {
+                FrameBorder frameBorder = (FrameBorder) graphicObject;
+                strBuff.append("<tr><td>STYLE</td><td>" + frameBorder.getStyleAsEnum().toString() + "</td>");
+            }
+
             strBuff.append("</table>");
             strBuff.append("</body></html>");
             return strBuff.toString();
         }
+
+        private String typeToString(Integer key) {
+            return LogView.pierreDeRosette.get(key);
+        }
     }
+
+
+
     /** Required by TreeSelectionListener interface. */
     public void valueChanged(TreeSelectionEvent e) {
         Object node = tree.getLastSelectedPathComponent();

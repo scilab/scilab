@@ -148,12 +148,13 @@
                     <emphasis role="bold">Output port size</emphasis>
                 </para>
                 <para> An vector of two integers defining the expected
-                signal dimensions ([#rows #columns]).  By default this
-                field is set to [-1 -2] which means that the
-                dimensions are inherited from the upper level. It
-                should be useful to assign fixed values for separate
-                compilation of the super block (Code Generation
-                ). </para>
+                    signal dimensions ([#rows #columns]).  By default this
+                    field is set to [-1 -2] which means that the
+                    dimensions are inherited from the upper level. It
+                    should be useful to assign fixed values for separate
+                    compilation of the super block (Code Generation
+                    ). 
+                </para>
                 <para> Properties : Type 'vec' of size -1.</para>
             </listitem>
             <listitem>
@@ -161,15 +162,16 @@
                     <emphasis role="bold">Output port type</emphasis>
                 </para>
                 <para> An  integer defining the expected signal type.
-                By default this
-                field is set to 1 which means that the type
-                is inherited from the upper level. It
-                should be useful to assign a fix value for separate
-                compilation of the super block (Code Generation
-                ).</para>
+                    By default this
+                    field is set to 1 which means that the type
+                    is inherited from the upper level. It
+                    should be useful to assign a fix value for separate
+                    compilation of the super block (Code Generation
+                    ).
+                </para>
                 <para> Properties : Type 'vec' of size 1.</para>
             </listitem>
-
+            
         </itemizedlist>
     </refsection>
     <refsection id="Defaultproperties_IN_f">
@@ -239,32 +241,27 @@
     <refsection id="Example_IN_f">
         <title>Example</title>
         <para>
-            In the following example the Super block is an amplitude modulator. The IN_f block is used as a modulation signal input. Its data type is defined by the input type of the gain block that is a scalar double data type.
+            In the following example the Super block is an amplitude modulator. 
+            The IN_f block is used as a modulation signal input. 
+            Its data type is defined by the input type of the gain block that is a scalar double data type.
         </para>
-        <para><link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/IN_f_en_US.zcos">
-                Open this example in Xcos
-            </link>
-        </para>
-        <para/>
         <para>
-            <mediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../examples/portaction_pal/en_US/IN_f_en_US.zcos"/>
-                </imageobject>
-            </mediaobject>
-            <mediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../examples/portaction_pal/en_US/IN_f_internal_en_US.zcos"/>
-                </imageobject>
-            </mediaobject>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/IN_f_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/portaction_pal/en_US/IN_f_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
         <para>
             The following figure shows the output of the bloc :
         </para>
-        <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/IN_f_en_US.zcos");
-xcos_simulate(scs_m, 4);
-]]></scilab:image>
+        <scilab:image>
+            <![CDATA[
+			importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/IN_f_en_US.zcos");
+			xcos_simulate(scs_m, 4);]]>
+        </scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_IN_f">
         <title>Interfacing function</title>

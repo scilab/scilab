@@ -4,11 +4,14 @@
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2011 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -38,7 +41,8 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -72,7 +76,7 @@ import org.scilab.modules.localization.Messages;
  * @author Calixte DENIZET
  */
 @SuppressWarnings(value = { "serial" })
-public final class CommandHistory extends SwingScilabTab implements SimpleTab {
+public final class CommandHistory extends SwingScilabDockablePanel implements SimpleTab {
 
     public static final String COMMANDHISTORYUUID = "856207f6-0a60-47a0-b9f4-232feedd4bf4";
 
@@ -86,7 +90,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
     private static DefaultMutableTreeNode scilabHistoryRootNode;
     private static DefaultMutableTreeNode currentSessionNode;
     private static DefaultTreeModel scilabHistoryTreeModel;
-    private static SwingScilabTab browserTab;
+    private static SwingScilabDockablePanel browserTab;
     private static JScrollPane scrollPane;
 
     private static boolean modelLoaded;
@@ -162,7 +166,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
      * Create a new Command History tab
      * @return the corresponding tab
      */
-    public static SwingScilabTab createCommandHistoryTab() {
+    public static SwingScilabDockablePanel createCommandHistoryTab() {
         browserTab = new CommandHistory();
         WindowsConfigurationManager.restorationFinished(browserTab);
 
@@ -391,7 +395,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
     /**
      * @return the browserTab
      */
-    public static SwingScilabTab getBrowserTab() {
+    public static SwingScilabDockablePanel getBrowserTab() {
         return browserTab;
     }
 
@@ -403,7 +407,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
             boolean success = WindowsConfigurationManager.restoreUUID(COMMANDHISTORYUUID);
             if (!success) {
                 CommandHistoryTabFactory.getInstance().getTab(COMMANDHISTORYUUID);
-                SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
+                SwingScilabWindow window = SwingScilabWindow.createWindow(true);
                 window.addTab(browserTab);
                 window.setLocation(0, 0);
                 window.setSize(500, 500);
@@ -475,16 +479,17 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
      */
     private static ToolBar createToolBar() {
         ToolBar toolBar = ScilabToolBar.createToolBar();
+        SwingScilabToolBar stb = (SwingScilabToolBar) toolBar.getAsSimpleToolBar();
 
-        toolBar.add(CopyAction.createPushButton());
-        toolBar.add(CutAction.createPushButton());
-        toolBar.add(DeleteAction.createPushButton());
+        stb.add(CopyAction.createPushButton());
+        stb.add(CutAction.createPushButton());
+        stb.add(DeleteAction.createPushButton());
 
-        toolBar.addSeparator();
-        toolBar.add(PrefsAction.createPushButton());
-        toolBar.addSeparator();
+        stb.addSeparator();
+        stb.add(PrefsAction.createPushButton());
+        stb.addSeparator();
 
-        toolBar.add(HelpAction.createPushButton());
+        stb.add(HelpAction.createPushButton());
 
         return toolBar;
     }

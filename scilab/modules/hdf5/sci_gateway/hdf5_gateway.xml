@@ -1,71 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
- -->
-<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-<GATEWAY name="hdf5">
-    
-    <!--
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ */
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
 
- gatewayId is the position in the hashtable 'Interfaces' defined in the
- file SCI/modules/core/src/c/callinterf.h
-
- primitiveId is the position in the hashtable '<module>Table Tab[]' defined
- in the file modules/<module>/sci_gateway/c/gw_<module>.c
-
- primitiveName is the name of the Scilab function
-
  Don't touch if you do not know what you are doing
-
 -->
-    <PRIMITIVE gatewayId="62" primitiveId="1" primitiveName="export_to_hdf5" />
-    <PRIMITIVE gatewayId="62" primitiveId="2" primitiveName="import_from_hdf5" />
-    <PRIMITIVE gatewayId="62" primitiveId="3" primitiveName="listvar_in_hdf5" />
-    <PRIMITIVE gatewayId="62" primitiveId="4" primitiveName="is_hdf5_file" />
-    <PRIMITIVE gatewayId="62" primitiveId="5" primitiveName="h5dump" />
-    <PRIMITIVE gatewayId="62" primitiveId="6" primitiveName="h5open" />
-    <PRIMITIVE gatewayId="62" primitiveId="7" primitiveName="h5close" />
-    <PRIMITIVE gatewayId="62" primitiveId="8" primitiveName="h5read" />
-    <PRIMITIVE gatewayId="62" primitiveId="9" primitiveName="h5ls" />
-    <PRIMITIVE gatewayId="62" primitiveId="10" primitiveName="%H5Object_p" />
-    <PRIMITIVE gatewayId="62" primitiveId="11" primitiveName="%H5Object_e" />
-    <PRIMITIVE gatewayId="62" primitiveId="12" primitiveName="h5group" />
-    <PRIMITIVE gatewayId="62" primitiveId="13" primitiveName="h5rm" />
-    <PRIMITIVE gatewayId="62" primitiveId="14" primitiveName="h5dataset" />
-    <PRIMITIVE gatewayId="62" primitiveId="15" primitiveName="h5write" />
-    <PRIMITIVE gatewayId="62" primitiveId="16" primitiveName="h5attr" />
-    <PRIMITIVE gatewayId="62" primitiveId="17" primitiveName="h5writeattr" />
-    <PRIMITIVE gatewayId="62" primitiveId="18" primitiveName="h5ln" />
-    <PRIMITIVE gatewayId="62" primitiveId="19" primitiveName="h5readattr" />
-    <PRIMITIVE gatewayId="62" primitiveId="20" primitiveName="h5flush" />
-    <PRIMITIVE gatewayId="62" primitiveId="21" primitiveName="h5cp" />
-    <PRIMITIVE gatewayId="62" primitiveId="22" primitiveName="h5isFile" />
-    <PRIMITIVE gatewayId="62" primitiveId="23" primitiveName="h5isGroup" />
-    <PRIMITIVE gatewayId="62" primitiveId="24" primitiveName="h5isSet" />
-    <PRIMITIVE gatewayId="62" primitiveId="25" primitiveName="h5isAttr" />
-    <PRIMITIVE gatewayId="62" primitiveId="26" primitiveName="h5isSpace" />
-    <PRIMITIVE gatewayId="62" primitiveId="27" primitiveName="h5isType" />
-    <PRIMITIVE gatewayId="62" primitiveId="28" primitiveName="h5isRef" />
-    <PRIMITIVE gatewayId="62" primitiveId="29" primitiveName="h5isList" />
-    <PRIMITIVE gatewayId="62" primitiveId="30" primitiveName="h5mount" />
-    <PRIMITIVE gatewayId="62" primitiveId="31" primitiveName="h5umount" />
-    <PRIMITIVE gatewayId="62" primitiveId="32" primitiveName="h5mv" />
-    <PRIMITIVE gatewayId="62" primitiveId="33" primitiveName="h5get" />
-    <PRIMITIVE gatewayId="62" primitiveId="34" primitiveName="h5label" />
-    <PRIMITIVE gatewayId="62" primitiveId="35" primitiveName="h5exists" />
-    <PRIMITIVE gatewayId="62" primitiveId="36" primitiveName="h5isCompound" />
-    <PRIMITIVE gatewayId="62" primitiveId="37" primitiveName="%H5Object_fieldnames" />
-    <PRIMITIVE gatewayId="62" primitiveId="38" primitiveName="h5isArray" />
-    <PRIMITIVE gatewayId="62" primitiveId="39" primitiveName="h5isVlen" />
-</GATEWAY>
+<module name="hdf5">
+    <gateway name="sci_hdf5_save"                       function="save"                     type="1" />
+    <gateway name="sci_hdf5_save"                       function="hdf5_save"                type="1" />
+    <gateway name="sci_hdf5_load"                       function="load"                     type="1" />
+    <gateway name="sci_hdf5_load"                       function="hdf5_load"                type="1" />
+    <gateway name="sci_hdf5_load_v1"                    function="hdf5_load_v1"             type="0" />
+    <gateway name="sci_hdf5_load_v2"                    function="hdf5_load_v2"             type="0" />
+    <gateway name="sci_hdf5_load_v3"                    function="hdf5_load_v3"             type="1" />
+    <gateway name="sci_hdf5_listvar"                    function="hdf5_listvar"             type="1" />
+    <gateway name="sci_hdf5_listvar"                    function="listvarinfile"            type="1" />
+    <gateway name="sci_hdf5_listvar_v2"                 function="hdf5_listvar_v2"          type="0" />
+    <gateway name="sci_hdf5_listvar_v3"                 function="hdf5_listvar_v3"          type="1" />
+    <gateway name="sci_hdf5_is_file"                    function="hdf5_is_file"             type="0" />
+    <gateway name="sci_hdf5_file_version"               function="hdf5_file_version"        type="1" />
+    <gateway name="sci_h5dump"                          function="h5dump"                   type="0" />
+    <gateway name="sci_h5open"                          function="h5open"                   type="0" />
+    <gateway name="sci_h5close"                         function="h5close"                  type="0" />
+    <gateway name="sci_h5read"                          function="h5read"                   type="0" />
+    <gateway name="sci_h5ls"                            function="h5ls"                     type="0" />
+    <gateway name="sci_percent_H5Object_p"              function="%H5Object_p"              type="0" />
+    <gateway name="sci_percent_H5Object_e"              function="%H5Object_e"              type="0" />
+    <gateway name="sci_h5group"                         function="h5group"                  type="0" />
+    <gateway name="sci_h5rm"                            function="h5rm"                     type="0" />
+    <gateway name="sci_h5dataset"                       function="h5dataset"                type="0" />
+    <gateway name="sci_h5write"                         function="h5write"                  type="0" />
+    <gateway name="sci_h5attr"                          function="h5attr"                   type="0" />
+    <gateway name="sci_h5attr"                          function="h5writeattr"              type="0" />
+    <gateway name="sci_h5ln"                            function="h5ln"                     type="0" />
+    <gateway name="sci_h5readattr"                      function="h5readattr"               type="0" />
+    <gateway name="sci_h5flush"                         function="h5flush"                  type="0" />
+    <gateway name="sci_h5cp"                            function="h5cp"                     type="0" />
+    <gateway name="sci_h5isFile"                        function="h5isFile"                 type="0" />
+    <gateway name="sci_h5isGroup"                       function="h5isGroup"                type="0" />
+    <gateway name="sci_h5isSet"                         function="h5isSet"                  type="0" />
+    <gateway name="sci_h5isAttr"                        function="h5isAttr"                 type="0" />
+    <gateway name="sci_h5isSpace"                       function="h5isSpace"                type="0" />
+    <gateway name="sci_h5isType"                        function="h5isType"                 type="0" />
+    <gateway name="sci_h5isRef"                         function="h5isRef"                  type="0" />
+    <gateway name="sci_h5isList"                        function="h5isList"                 type="0" />
+    <gateway name="sci_h5mount"                         function="h5mount"                  type="0" />
+    <gateway name="sci_h5umount"                        function="h5umount"                 type="0" />
+    <gateway name="sci_h5mv"                            function="h5mv"                     type="0" />
+    <gateway name="sci_h5get"                           function="h5get"                    type="0" />
+    <gateway name="sci_h5label"                         function="h5label"                  type="0" />
+    <gateway name="sci_h5exists"                        function="h5exists"                 type="0" />
+    <gateway name="sci_h5isCompound"                    function="h5isCompound"             type="0" />
+    <gateway name="sci_percent_H5Object_fieldnames"     function="%H5Object_fieldnames"     type="0" />
+    <gateway name="sci_h5isArray"                       function="h5isArray"                type="0" />
+    <gateway name="sci_h5isVlen"                        function="h5isVlen"                 type="0" />
+</module>

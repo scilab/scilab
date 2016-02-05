@@ -135,7 +135,7 @@ int spcColExchange( MatrixPtr Matrix, int Col1, int Col2 );
  *      performance on matrices where growth is low, as is often the
  *      case with ill-conditioned matrices.  Once a valid threshold is
  *      given, it becomes the new default.  The default value of
- *      RelThreshold was choosen for use with nearly diagonally
+ *      RelThreshold was chosen for use with nearly diagonally
  *      dominant matrices such as node- and modified-node admittance
  *      matrices.  For these matrices it is usually best to use
  *      diagonal pivoting.  For matrices without a strong diagonal, it

@@ -30,7 +30,7 @@ if ~result then bugmes();quit;end
 [%cpr,ok] = xcos_compile(scs_m);
 --------------------------------------------\
  Main Modelica : TMPDIR/RLC_Modelica_im.mo
-
  Flat Modelica : TMPDIR/RLC_Modelica_imf.mo
  Simulation C code :TMPDIR/RLC_Modelica_im.c
+WARNING: Diagram contains implicit blocks, compiling for implicit Solver.
 if ~ok then bugmes();quit;end

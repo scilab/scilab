@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -27,12 +30,12 @@ import javax.swing.JButton;
 import javax.swing.JToggleButton;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.localization.Messages;
@@ -218,14 +221,12 @@ public final class ToolBarBuilder {
                             pushButton = new JButton();
                         }
 
-                        pushButton.setFocusable(false);
-                        pushButton.setContentAreaFilled(true);
-                        pushButton.setOpaque(false);
+                        ScilabLAF.setDefaultProperties(pushButton);
 
                         for (int i = 0; i < buttonAttributes.getLength(); i++) {
                             if (buttonAttributes.item(i).getNodeName().equals(ICON)) {
                                 // Icon file
-                                pushButton.setIcon(new ImageIcon(ScilabSwingUtilities.findIcon(buttonAttributes.item(i).getNodeValue())));
+                                pushButton.setIcon(new ImageIcon(FindIconHelper.findIcon(buttonAttributes.item(i).getNodeValue())));
                             } else if (buttonAttributes.item(i).getNodeName().equals(ENABLED)) {
                                 // Enable are disable the button
                                 pushButton.setEnabled(buttonAttributes.item(i).getNodeValue().equals(TRUE));

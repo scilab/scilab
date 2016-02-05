@@ -1,13 +1,16 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 
-      subroutine clunit( lunit, name, mode)
+      function clunit( lunit, name, mode)
 c ====================================================================
 c
 c     system dependent routine to allocate files
@@ -41,45 +44,31 @@ c           fortran : len
 c
 c ====================================================================
 c
-      include 'stack.h'
+c     input
+c
       integer       lunit,mode(*)
       character*(*) name
+c
+c     output
+c
+      integer       clunit
 c
 c      integer        nunit,unit(50)
 c      common /units/ nunit,unit
 c
-      integer       iacc,ifor,ista,k,rec
+      integer       iacc,ifor,ista,k,rec,err
       character*11  for,sta,acc
       character*800  nomfic
       double precision res
-c
-      if ( lunit.eq.rte) then
-c     attach units  rte   to terminal in
-         call addfile (lunit,1,0,1,001,char(0),ierr)
-         if(ierr.ne.0) then
-            call error(112)
-            return
-         endif
-         goto 100
-      elseif(lunit.eq.wte ) then
-c     attach units   wte  to terminal out
-         call addfile (lunit,1,0,1,000,char(0),ierr)
-         if(ierr.ne.0) then
-            call error(112)
-            return
-         endif
-         goto 100
-      endif
-
+      err = 0
 c
 c ----------
 c close file
 c ----------
 c
- 
       if ( lunit.lt.0 ) then
 c     .  preserve permanent files
-         if (lunit.eq.-rte.or.lunit.eq.-wte) goto 100
+         if (lunit.eq.-5.or.lunit.eq.-6) goto 100
 c     .  close file and put it out of the table
          call getfiletype(-lunit,ltype,info)
          if(info.eq.0) then
@@ -143,7 +132,7 @@ c     .        unit is free
                   return
                endif
             elseif(info.eq.1) then
-c     .        unit is out of bounds
+c     .        cannot add file with negativ lunit
                call error(66)
                return
             else
@@ -159,13 +148,13 @@ c     .        unit is not free
             endif
          else
 c     .     file is defined by its name
-            call getfiledesc(lunit) 
+            call getfiledesc(lunit)
             if(lunit.lt.0) then
                err = 66
                return
             endif
 c     .     get full file name
-            call cluni0(name, nomfic, k)    
+            call cluni0(name, nomfic, k)
             if ( iacc.ne.0 ) then
                open( lunit, file=nomfic(1:k), form=for,
      1              access=acc , status=sta,recl=rec, err=30)
@@ -205,5 +194,7 @@ c --------------
 c end of program
 c --------------
 c
-  100 continue
+  100 clunit = err
+      return
+
       end

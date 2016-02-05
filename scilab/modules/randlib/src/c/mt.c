@@ -155,7 +155,7 @@ int set_state_mt_simple(double s)
 
 /*
 *  Initialization by "set_state_simple_mt()" is an example. Theoretically,
-*  there are 2^19937-1 possible states as an intial state.
+*  there are 2^19937-1 possible states as an initial state.
 *   This function allows to choose any of 2^19937-1 ones.
 *   Essential bits in "seed_array[]" is following 19937 bits:
 *      (seed_array[0]&UPPER_MASK), seed_array[1], ..., seed_array[N-1].

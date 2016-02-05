@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011-2012 - DIGITEO - Manuel JULIACHS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.label;
@@ -23,7 +26,7 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import java.awt.Dimension;
 
 /**
- * LabelPositioner class.
+ * LabelPositioner class
  *
  * Computes the position of a Label in box coordinates [-1, +1]^3, as used
  * when rulers are drawn {@see AxesDrawer}, where -1 and +1 respectively map
@@ -304,7 +307,6 @@ public abstract class LabelPositioner {
      */
     public void positionLabel() {
         computeAnchorPoint();
-
         computeRotationAngle();
 
         /* Depends on the rotation angle and must therefore be computed afterwards. */
@@ -339,8 +341,6 @@ public abstract class LabelPositioner {
         /* Compute and set a zero displacement */
         labelDisplacement = new Vector3d(0.0, 0.0, 0.0);
 
-        position = position.plus(labelDisplacement);
-
         return position;
     }
 
@@ -351,9 +351,9 @@ public abstract class LabelPositioner {
      */
     private void computeRotationAngle() {
         if (autoRotation) {
-            rotationAngle = getAutoRotationAngle();
+            setRotationAngle(getAutoRotationAngle());
         } else {
-            rotationAngle = userRotationAngle;
+            setRotationAngle(userRotationAngle);
         }
     }
 
@@ -435,7 +435,6 @@ public abstract class LabelPositioner {
     public Vector3d getLowerLeftCornerPosition() {
         Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
         Vector3d labelPoint = new Vector3d(anchorPoint);
-
         Vector3d projLabelPoint = new Vector3d(projAnchorPoint);
 
         Vector3d projRightPoint = projLabelPoint.plus(projHalfWidth);

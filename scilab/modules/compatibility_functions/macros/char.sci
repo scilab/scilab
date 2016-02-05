@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function y=char(varargin)
     // Case : One input argument
@@ -30,48 +33,48 @@ function y=char(varargin)
     if rhs==1 then
         if typeof(varargin(1))=="ce" then // input argument is a cell of characters arrays
             c=varargin(1)
-            lst=c.entries
             if size(c)==1 then // cell contains one element
-                if typeof(lst)=="hypermat" then // cell elements are characters arrays
-                    if type(lst.entries)==10 then
-                        t=emptystr(size(lst,1),1)
-                        lst=matrix(lst,[size(lst,1),size(lst,"*")/size(lst,1)])
+                lst = c{1};
+                if size(lst, 2) > 2 then
+                    if type(lst) == 10 then
+                        t = emptystr(size(lst,1),1);
+                        lst = matrix(lst,[size(lst,1),size(lst,"*")/size(lst,1)]);
                         for j=1:size(lst,2)
-                            t=t+lst(:,j)
+                            t = t+lst(:,j);
                         end
-                        y=[y;t]
+                        y = [y;t];
                     else
                         error(msprintf(gettext("%s: Wrong type for input argument: Cell elements must be character arrays.\n"),"char"));
                     end
-                elseif type(lst)==10 then // cell elements are a string matrix
-                    t=emptystr(size(lst,1),1)
+                elseif type(lst) == 10 then // cell elements are a string matrix
+                    t = emptystr(size(lst,1),1);
                     for k=1:size(lst,2)
-                        t=t+lst(:,k)
+                        t = t+lst(:,k);
                     end
-                    y=[y,t]
+                    y = [y,t];
                 else
                     error(msprintf(gettext("%s: Wrong type for input argument: Cell elements must be character arrays.\n"),"char"));
                 end
             else // cell contains more than one element
-                for i=1:size(lst)
-                    if typeof(lst(i))=="hypermat" then
-                        if type(lst(i).entries)==10 then
-                            ctemp=lst(i)
-                            t=emptystr(size(ctemp,1),1)
-                            ctemp=matrix(ctemp,[size(ctemp,1),size(ctemp,"*")/size(ctemp,1)])
+                for i=1:size(c, "*")
+                    if size(c{i}, 2) > 2 then
+                        if type(c{i}) == 10 then
+                            ctemp = c{i};
+                            t = emptystr(size(ctemp,1),1);
+                            ctemp = matrix(ctemp,[size(ctemp,1),size(ctemp,"*")/size(ctemp,1)]);
                             for j=1:size(ctemp,2)
-                                t=t+ctemp(:,j)
+                                t = t+ctemp(:,j);
                             end
-                            y=[y;t]
+                            y = [y;t];
                         else
                             error(msprintf(gettext("%s: Wrong type for input argument: Cell elements must be character arrays.\n"),"char"));
                         end
-                    elseif type(lst(i))==10 then
-                        t=emptystr(size(lst(i),1),1)
-                        for k=1:size(lst(i),2)
-                            t=t+lst(i)(:,k)
+                    elseif type(c{i}) == 10 then
+                        t = emptystr(size(c{i},1),1);
+                        for k=1:size(c{i},2)
+                            t = t+c{i}(:,k);
                         end
-                        y=[y;t]
+                        y = [y;t];
                     else
                         error(msprintf(gettext("%s: Wrong type for input argument: Cell elements must be character arrays.\n"),"char"));
                     end
@@ -79,24 +82,24 @@ function y=char(varargin)
             end
             // Add blank at the length of strings
             bl=" "
-            maxstr=max(length(y))
+            maxstr = max(length(y));
             for i=1:size(y,"*")
-                nb_bl=maxstr-length(y(i))
+                nb_bl = maxstr-length(y(i));
                 if nb_bl>0 then
-                    y(i)=y(i)+part(bl,ones(1,nb_bl))
+                    y(i) = y(i)+part(bl,ones(1,nb_bl));
                 end
             end
-        elseif type(varargin(1))==1|type(varargin(1))==8 then // Input is a matrix of integers (or reals)
-            y=asciimat(varargin(1))
-        elseif type(varargin(1))==10 then // Input is a matrix of strings
+        elseif (type(varargin(1))==1|type(varargin(1))==8) & size(varargin(1),2)<3 then // Input is a matrix of integers (or reals)
+            y = asciimat(varargin(1));
+        elseif type(varargin(1))==10 & size(varargin(1),2)<3 then // Input is a matrix of strings
             for i=1:size(varargin(1),1)
-                y(i)=strcat(varargin(1)(i,:))
+                y(i) = strcat(varargin(1)(i,:));
             end
-        elseif typeof(varargin(1))=="hypermat" then // Input is a hypermatrix of strings
-            if type(varargin(1).entries)==10 then
-                y=varargin(1)
-            elseif type(varargin(1).entries)==1|type(varargin(1).entries)==8 then // Input is a hypermatrix of integers (or reals)
-                y=asciimat(varargin(1))
+        elseif size(varargin(1), 2) > 2 then
+            if type(varargin(1)) == 10 then
+                y=varargin(1);
+            elseif type(varargin(1))==1|type(varargin(1))==8 then // Input is a hypermatrix of integers (or reals)
+                y=asciimat(varargin(1));
             else
                 error(msprintf(gettext("%s: This feature has not been implemented.\n"),"char"));
             end
@@ -106,36 +109,36 @@ function y=char(varargin)
         // More than one input argument
     elseif rhs > 1 then
         for i=1:size(varargin)
-            if typeof(varargin(i))=="hypermat" then // Input sti is a hypermatrix of strings
+            if size(varargin(i), 2) > 2 then
                 lst=varargin(i)
-                if type(lst.entries)==10 then
-                    t=emptystr(size(lst,1),1)
-                    lst=matrix(lst,[size(lst,1),size(lst,"*")/size(lst,1)])
+                if type(lst) == 10 then
+                    t = emptystr(size(lst,1),1);
+                    lst = matrix(lst,[size(lst,1),size(lst,"*")/size(lst,1)]);
                     for j=1:size(lst,2)
-                        t=t+lst(:,j)
+                        t = t+lst(:,j);
                     end
-                    y=[y;t]
+                    y = [y;t];
                 else
                     error(msprintf(gettext("%s: Wrong type for input arguments: String expected.\n"),"char"));
                 end
             elseif type(varargin(i))==10 then // Input sti is a matrix of strings
-                lst=varargin(i)
-                t=emptystr(size(lst,1),1)
+                lst = varargin(i);
+                t = emptystr(size(lst,1),1);
                 for k=1:size(lst,2)
-                    t=t+lst(:,k)
+                    t = t+lst(:,k);
                 end
-                y=[y;t]
+                y = [y;t];
             else
                 error(msprintf(gettext("%s: Wrong type for input arguments: String expected.\n"),"char"));
             end
         end
         // Add blanks at the length of strings
         bl=" "
-        maxstr=max(length(y))
+        maxstr = max(length(y))
         for i=1:size(y,"*")
-            nb_bl=maxstr-length(y(i))
+            nb_bl = maxstr-length(y(i));
             if nb_bl>0 then
-                y(i)=y(i)+part(bl,ones(1,nb_bl))
+                y(i) = y(i)+part(bl,ones(1,nb_bl));
             end
         end
     end

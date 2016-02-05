@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,21 +17,15 @@
 #define __GW_SIGNAL__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_signal_processing.h"
+#include "dynlib_signal_processing_gw.h"
 #include "machine.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
 SIGNAL_PROCESSING_IMPEXP int gw_signal_processing(void);
 /*--------------------------------------------------------------------------*/
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_ffir)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_fft)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_corr)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_fiir)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_rpem)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_amell)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_delip)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_remez)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_syredi)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int sci_conv2(char *fname, unsigned long fname_len);
-
+EXTERN_SIGNAL_PROCESSING_GW STACK_GATEWAY_PROTOTYPE(sci_remez);
+EXTERN_SIGNAL_PROCESSING_GW STACK_GATEWAY_PROTOTYPE(sci_amell);
+EXTERN_SIGNAL_PROCESSING_GW STACK_GATEWAY_PROTOTYPE(sci_conv2);
 #endif /*  __GW_SIGNAL__ */
 /*--------------------------------------------------------------------------*/
 

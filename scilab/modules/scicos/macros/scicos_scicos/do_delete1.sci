@@ -32,13 +32,13 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
     // K and all other relevant objects (link, splits,..)
     //
     // deleted objects:
-    //  - are replaced by the value : mlist('Deleted')
+    //  - are replaced by the value : mlist("Deleted")
     //  - not to change the indexing: use do_purge to suppress them and to renumber objects
     //
     //**  Perform deletion of [scs_m] object whose index are given in the vector
     //**  [K] and all other relevant objects (link, splits,..) in recursive way
     //
-    //**  Deleted objects are replaced by the value : mlist('Deleted')
+    //**  Deleted objects are replaced by the value : mlist("Deleted")
     //**  ---> not to change the indexing:
     //**  ---> use [do_purge] to suppress them and to renumber objects
     //**  Similar strategy is used for the ghraphics object: to mantain the coherency
@@ -155,7 +155,7 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
                         end
                         o1.to=o2.to;
 
-                        DEL = [DEL connected(1)] // supress one link
+                        DEL = [DEL connected(1)] // suppress one link
                         DELL=[DELL  connected(1)]
                         scs_m.objs(connected(2))=o1 //change link
 
@@ -203,7 +203,7 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
                         o1.to=o2.to;
 
 
-                        DEL=[DEL connected(1)] // supress one link
+                        DEL=[DEL connected(1)] // suppress one link
                         DELL=[DELL  connected(1)]
                         scs_m.objs(connected(2))=o1 //change link
 
@@ -251,5 +251,3 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
         scs_m.objs(k) = mlist("Deleted"); //** mark the object as "Deleted"
     end
 endfunction
-
-

@@ -3,11 +3,14 @@
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  *
  */
@@ -29,6 +32,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.scinotes.SciNotesAutosave;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.SciNotesOptions;
@@ -117,8 +121,20 @@ public final class SaveFile {
      * @return true if saved
      */
     public static boolean doSave(ScilabEditorPane textPane, int index, File fOut, EditorKit editorKit, boolean addEOL, boolean silent) {
+        return doSave(textPane, index, fOut, editorKit, addEOL, silent, SciNotesOptions.getSciNotesAutosave().autoSave);
+    }
+
+    /**
+     * save text in JEditorPane
+     * @param textPane JEditorPane
+     * @param fOut File
+     * @param editorKit EditorKit
+     * @return true if saved
+     */
+    public static boolean doSave(ScilabEditorPane textPane, int index, File fOut, EditorKit editorKit, boolean addEOL, boolean silent, boolean backup) {
         ScilabDocument styledDocument = (ScilabDocument) textPane.getDocument();
         boolean enc = false;
+        File backupOut = null;
         if (!styledDocument.getEncoding().equalsIgnoreCase(SciNotesOptions.getSciNotesPreferences().encoding)) {
             if (!silent) {
                 String msg = String.format(SciNotesMessages.DIFFERENT_ENCODINGS, styledDocument.getEncoding(), SciNotesOptions.getSciNotesPreferences().encoding);
@@ -131,8 +147,15 @@ public final class SaveFile {
             }
         }
 
+        if (backup) {
+            backupOut = SciNotesAutosave.getBackupFile(fOut.getName());
+        }
+
         try {
             fOut.createNewFile();
+            if (backupOut != null) {
+                backupOut.createNewFile();
+            }
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -142,6 +165,10 @@ public final class SaveFile {
                 ScilabModalDialog.show(textPane.getEditor(), SciNotesMessages.NOTWRITABLE, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
             }
             return false;
+        }
+
+        if (backupOut != null && !backupOut.canWrite()) {
+            backupOut = null;
         }
 
         // get default eol
@@ -161,32 +188,38 @@ public final class SaveFile {
         OutputStreamWriter osw = null;
         FileOutputStream fos = null;
 
-        try {
-            fos = new FileOutputStream(fOut);
-            osw = new OutputStreamWriter(fos, SciNotesOptions.getSciNotesPreferences().encoding);
-            bw = new BufferedWriter(osw);
-            editorKit.write(bw, styledDocument, 0, styledDocument.getLength());
-            bw.flush();
-            bReturn = true;
-        } catch (IOException e) {
-            System.err.println(e);
-            bReturn = false;
-        } catch (BadLocationException e) {
-            System.err.println(e);
-            bReturn = false;
-        } finally {
-            try {
-                if (fos != null) {
-                    fos.close();
+        File[] files = new File[] {fOut, backupOut};
+
+        for (File file : files) {
+            if (file != null) {
+                try {
+                    fos = new FileOutputStream(file);
+                    osw = new OutputStreamWriter(fos, SciNotesOptions.getSciNotesPreferences().encoding);
+                    bw = new BufferedWriter(osw);
+                    editorKit.write(bw, styledDocument, 0, styledDocument.getLength());
+                    bw.flush();
+                    bReturn = true;
+                } catch (IOException e) {
+                    System.err.println(e);
+                    bReturn = false;
+                } catch (BadLocationException e) {
+                    System.err.println(e);
+                    bReturn = false;
+                } finally {
+                    try {
+                        if (fos != null) {
+                            fos.close();
+                        }
+                        if (osw != null) {
+                            osw.close();
+                        }
+                        if (bw != null) {
+                            bw.close();
+                        }
+                    } catch (IOException e) {
+                        System.err.println(e);
+                    }
                 }
-                if (osw != null) {
-                    osw.close();
-                }
-                if (bw != null) {
-                    bw.close();
-                }
-            } catch (IOException e) {
-                System.err.println(e);
             }
         }
 

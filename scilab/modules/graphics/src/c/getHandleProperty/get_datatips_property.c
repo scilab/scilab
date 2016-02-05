@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Gustavo Barbosa Libotte <gustavolibotte@gmail.com>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -19,7 +22,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "HandleManagement.h"
@@ -27,10 +30,10 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
-int get_datatips_property(void* _pvCtx, int iObjUID)
+void* get_datatips_property(void* _pvCtx, int iObjUID)
 {
     int i = 0;
-    int status = 0;
+    void* status = 0;
     int iDatatipCount = 0;
     int* piDatatipCount = &iDatatipCount;
     int* piDatatip = NULL;
@@ -39,7 +42,7 @@ int get_datatips_property(void* _pvCtx, int iObjUID)
     getGraphicObjectProperty(iObjUID, __GO_DATATIPS_COUNT__, jni_int, (void **)&piDatatipCount);
     if (piDatatipCount == NULL || iDatatipCount == 0)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
 
     getGraphicObjectProperty(iObjUID, __GO_DATATIPS__, jni_int_vector, (void **)&piDatatip);
@@ -50,7 +53,7 @@ int get_datatips_property(void* _pvCtx, int iObjUID)
         plDatatip[i] = getHandle(piDatatip[i]);
     }
 
-    status = sciReturnColHandleVector(_pvCtx, plDatatip, iDatatipCount);
+    status = sciReturnColHandleVector(plDatatip, iDatatipCount);
     FREE(plDatatip);
 
     return status;

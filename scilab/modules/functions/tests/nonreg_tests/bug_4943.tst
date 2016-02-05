@@ -15,13 +15,13 @@
 // <-- Short Description -->
 // execstr does not check input arguments.
 // =============================================================================
-ierr = execstr('a=zzzzzzz','errcatch','n');
+ierr = execstr("a=zzzzzzz","errcatch","n");
 // =============================================================================
 ierr = execstr("ierr = execstr(''a=zzzzzzz'',''errcatch'',''nooon'');","errcatch");
 if ierr <> 999 then pause,end
 // =============================================================================
-ierr = execstr('a=zzzzzzz','errcatch');
-if ierr <> 4 then pause,end
+ierr = execstr("a=zzzzzzz","errcatch");
+if ierr <> 999 then pause,end
 // =============================================================================
 ierr = execstr("ierr = execstr(''a=zzzzzzz'',''errBADcatch'');","errcatch");
 if ierr <> 999 then pause,end

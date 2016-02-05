@@ -2,11 +2,14 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 //
 // optimsimplex_new --
@@ -58,7 +61,7 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
             errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "optimsimplex_coords", 0,1);
             error(errmsg)
         end
-        coords = argindefault ( rhs , varargin , 1 , [] )
+        coords = optim_argindefault ( rhs , varargin , 1 , [] )
         assert_typereal ( coords , "coords" , 1 );
         newobj = tlist(["TSIMPLEX",...
         "verbose","x","n","fv","nbve"]);
@@ -265,7 +268,7 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
     endfunction
     // Generates an error if the given variable is not of type function (macro)
     function assert_typefunction ( var , varname , ivar )
-        if ( type ( var ) <> 13 ) then
+        if ( and(type ( var ) <> [11 13] )) then
             errmsg = msprintf(gettext("%s: Expected function but for variable %s at input #%d, got %s instead."),"assert_typefunction", varname , ivar , typeof(var) );
             error(errmsg);
         end
@@ -284,7 +287,7 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
         error(errmsg);
     endfunction
 
-    function argin = argindefault ( rhs , vararglist , ivar , default )
+    function argin = optim_argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
         // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
@@ -327,9 +330,9 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
                 error(errmsg)
             end
             x0   = varargin(2);
-            fun = argindefault ( rhs , varargin , 3 , [] )
-            len = argindefault ( rhs , varargin , 4 , 1.0 )
-            data = argindefault ( rhs , varargin , 5 , [] )
+            fun = optim_argindefault ( rhs , varargin , 3 , [] )
+            len = optim_argindefault ( rhs , varargin , 4 , 1.0 )
+            data = optim_argindefault ( rhs , varargin , 5 , [] )
             //
             // Check inputs
             //
@@ -363,9 +366,9 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
                 error(errmsg)
             end
             x0   = varargin(2);
-            fun = argindefault ( rhs , varargin , 3 , [] )
-            len = argindefault ( rhs , varargin , 4 , 1.0 )
-            data = argindefault ( rhs , varargin , 5 , [] )
+            fun = optim_argindefault ( rhs , varargin , 3 , [] )
+            len = optim_argindefault ( rhs , varargin , 4 , 1.0 )
+            data = optim_argindefault ( rhs , varargin , 5 , [] )
             //
             // Check inputs
             //
@@ -394,10 +397,10 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
                 error(errmsg)
             end
             x0   = varargin(2);
-            fun = argindefault ( rhs , varargin , 3 , [] )
-            deltausual = argindefault ( rhs , varargin , 4 , 0.05 )
-            deltazero = argindefault ( rhs , varargin , 5 , 0.0075 )
-            data = argindefault ( rhs , varargin , 6 , [] )
+            fun = optim_argindefault ( rhs , varargin , 3 , [] )
+            deltausual = optim_argindefault ( rhs , varargin , 4 , 0.05 )
+            deltazero = optim_argindefault ( rhs , varargin , 5 , 0.0075 )
+            data = optim_argindefault ( rhs , varargin , 6 , [] )
             //
             // Check inputs
             //
@@ -433,8 +436,8 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
             boundsmin = varargin(4);
             boundsmax = varargin(5);
             n = length ( x0 )
-            nbve = argindefault ( rhs , varargin , 6 , n+1 )
-            data = argindefault ( rhs , varargin , 7 , [] )
+            nbve = optim_argindefault ( rhs , varargin , 6 , n+1 )
+            data = optim_argindefault ( rhs , varargin , 7 , [] )
             //
             // Check inputs
             //
@@ -468,8 +471,8 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
                 error(errmsg)
             end
             simplex0   = varargin(2);
-            fun = argindefault ( rhs , varargin , 3 , [] )
-            data = argindefault ( rhs , varargin , 4 , [] )
+            fun = optim_argindefault ( rhs , varargin , 3 , [] )
+            data = optim_argindefault ( rhs , varargin , 4 , [] )
             //
             // Check inputs
             //
@@ -507,8 +510,8 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
             error(errmsg)
         end
         coords = varargin(1);
-        fun = argindefault ( rhs , varargin , 2 , [] )
-        data = argindefault ( rhs , varargin , 3 , [] )
+        fun = optim_argindefault ( rhs , varargin , 2 , [] )
+        data = optim_argindefault ( rhs , varargin , 3 , [] )
         //
         // Check inputs
         //

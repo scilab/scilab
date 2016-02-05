@@ -1,6 +1,0 @@
-LIBRARY    dynamic_link.dll
-
-
-EXPORTS
-GetDynFunc
-iislink_

@@ -3,21 +3,24 @@
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.graphic_objects.axes;
 
-import java.util.ArrayList;
-
+import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
-import org.scilab.modules.graphic_objects.utils.AxisLocation;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,9 +31,42 @@ public class AxisProperty {
     /**
      * AxisProperty properties names
      */
-    public enum AxisPropertyProperty { VISIBLE, REVERSE, GRIDCOLOR, LABEL, AXISLOCATION,
+    public enum AxisPropertyProperty { VISIBLE, REVERSE, GRIDCOLOR, GRIDTHICKNESS, GRIDSTYLE, LABEL, AXISLOCATION,
                                        LOGFLAG, UNKNOWNPROPERTY
                                      }
+
+    /**
+     * Axis location type
+     * BOTTOM, TOP, MIDDLE, ORIGIN are allowed for an x-axis,
+     * LEFT, RIGHT, MIDDLE or ORIGIN are allowed for a y-axis
+     */
+    public static enum AxisLocation { BOTTOM, TOP, MIDDLE, ORIGIN, LEFT, RIGHT;
+
+
+                                      /**
+                                       * Converts an integer to the corresponding enum
+                                       * @param intValue the integer value
+                                       * @return the axis location enum
+                                       */
+    public static AxisLocation intToEnum(Integer intValue) {
+        switch (intValue) {
+            case 0:
+                return AxisLocation.BOTTOM;
+            case 1:
+                return AxisLocation.TOP;
+            case 2:
+                return AxisLocation.MIDDLE;
+            case 3:
+                return AxisLocation.ORIGIN;
+            case 4:
+                return AxisLocation.LEFT;
+            case 5:
+                return AxisLocation.RIGHT;
+            default:
+                return null;
+        }
+    }
+                                    }
 
     /** Specifies whether the axis is visible or not */
     private boolean visible;
@@ -40,6 +76,12 @@ public class AxisProperty {
 
     /** Grid color */
     private int gridColor;
+
+    /** Grid thickness */
+    private double gridThickness;
+
+    /** Grid style */
+    private Line.LineType gridStyle;
 
     /** Axis label UID */
     private Integer label;
@@ -58,6 +100,8 @@ public class AxisProperty {
         visible = false;
         reverse = false;
         gridColor = 0;
+        gridThickness = -1;
+        gridStyle = Line.LineType.DASH_DOT;
 
         /* Sets the label to the null object */
         label = 0;
@@ -75,6 +119,8 @@ public class AxisProperty {
         visible = axisProperty.visible;
         reverse = axisProperty.reverse;
         gridColor = axisProperty.gridColor;
+        gridThickness = axisProperty.gridThickness;
+        gridStyle = axisProperty.gridStyle;
 
         label = 0;
 
@@ -95,6 +141,10 @@ public class AxisProperty {
             return AxisPropertyProperty.REVERSE;
         } else if (propertyName.equals("GridColor")) {
             return AxisPropertyProperty.GRIDCOLOR;
+        } else if (propertyName.equals("GridThickness")) {
+            return AxisPropertyProperty.GRIDTHICKNESS;
+        } else if (propertyName.equals("GridStyle")) {
+            return AxisPropertyProperty.GRIDSTYLE;
         } else if (propertyName.equals("Label")) {
             return AxisPropertyProperty.LABEL;
         } else if (propertyName.equals("AxisLocation")) {
@@ -118,6 +168,10 @@ public class AxisProperty {
             return getReverse();
         } else if (property == AxisPropertyProperty.GRIDCOLOR) {
             return getGridColor();
+        } else if (property == AxisPropertyProperty.GRIDTHICKNESS) {
+            return getGridThickness();
+        } else if (property == AxisPropertyProperty.GRIDSTYLE) {
+            return getGridStyle();
         } else if (property == AxisPropertyProperty.LABEL) {
             return getLabel();
         } else if (property == AxisPropertyProperty.AXISLOCATION) {
@@ -142,6 +196,10 @@ public class AxisProperty {
             setReverse((Boolean) value);
         } else if (property == AxisPropertyProperty.GRIDCOLOR) {
             setGridColor((Integer) value);
+        } else if (property == AxisPropertyProperty.GRIDTHICKNESS) {
+            setGridThickness((Double) value);
+        } else if (property == AxisPropertyProperty.GRIDSTYLE) {
+            setGridStyle((Integer) value);
         } else if (property == AxisPropertyProperty.LABEL) {
             setLabel((Integer) value);
         } else if (property == AxisPropertyProperty.AXISLOCATION) {
@@ -192,6 +250,45 @@ public class AxisProperty {
     public UpdateStatus setGridColor(Integer gridColor) {
         if (this.gridColor != gridColor) {
             this.gridColor = gridColor;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the gridThickness
+     */
+    public Double getGridThickness() {
+        return gridThickness;
+    }
+
+    /**
+     * @param gridThickness the gridThickness to set
+     */
+    public UpdateStatus setGridThickness(Double gridThickness) {
+        if (this.gridThickness != gridThickness) {
+            this.gridThickness = gridThickness;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the gridStyle
+     */
+    public Integer getGridStyle() {
+        return gridStyle.asScilabIndex();
+    }
+
+    /**
+     * @param gridStyle the gridStyle to set
+     */
+    public UpdateStatus setGridStyle(Integer gridStyle) {
+        Line.LineType type = Line.LineType.fromScilabIndex(gridStyle);
+        if (this.gridStyle != type) {
+            this.gridStyle = type;
             return UpdateStatus.Success;
         }
 
@@ -407,6 +504,34 @@ public class AxisProperty {
     }
 
     /**
+     * @return the ticks labels format
+     */
+    public String getFormat() {
+        return ticks.getFormat();
+    }
+
+    /**
+     * @param format the ticks labels format set
+     */
+    public UpdateStatus setFormat(String format) {
+        return ticks.setFormat(format);
+    }
+
+    /**
+     * @return the ticks labels scale-translate factors
+     */
+    public Double[] getSTFactors() {
+        return ticks.getSTFactors();
+    }
+
+    /**
+     * @param factors the ticks labels scale-translate factors
+     */
+    public UpdateStatus setSTFactors(Double[] factors) {
+        return ticks.setSTFactors(factors);
+    }
+
+    /**
      * Supposes all ticks labels have the same font color.
      * To be corrected.
      * @return the ticks labels font color
@@ -441,5 +566,4 @@ public class AxisProperty {
     public UpdateStatus setFontFractional(Boolean fontFractional) {
         return ticks.setFontFractional(fontFractional);
     }
-
 }

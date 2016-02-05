@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.forge.scirenderer;
@@ -116,6 +119,52 @@ public interface DrawingTools {
      * @throws SciRendererException if the texture is not drawable.
      */
     void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle) throws SciRendererException;
+
+    /**
+     * Draw the given texture at all given position with selected colors.
+     * @param texture the texture to draw.
+     * @param anchor the texture anchor position.
+     * @param positions the positions where the texture will be drawn.
+     * @param colors the colors of the texture.
+     * @throws SciRendererException if the texture is not drawable.
+     */
+    void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, Color auxColor, ElementsBuffer colors) throws SciRendererException;
+
+    /**
+     * Draw the given texture at all given position with the given rotation angle with selected colors.
+     * @param texture the texture to draw.
+     * @param anchor the texture anchor position.
+     * @param positions the positions where the texture will be drawn.
+     * @param rotationAngle the rotation angle.
+     * @param colors the colors of the texture.
+     * @throws SciRendererException if the texture is not drawable.
+     */
+    void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle, Color auxColor, ElementsBuffer colors) throws SciRendererException;
+
+    /**
+     * Draw the given texture at all given position with given offset and stride with the given rotation angle.
+     * @param texture the texture to draw.
+     * @param anchor the texture anchor position.
+     * @param positions the positions where the texture will be drawn.
+     * @param offset the position of the first mark.
+     * @param stride the spacing between two marks.
+     * @param rotationAngle the rotation angle.
+     * @throws SciRendererException if the texture is not drawable.
+     */
+    void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle) throws SciRendererException;
+
+    /**
+     * Draw the given texture at all given position with given offset and stride with the given rotation angle with the given color.
+     * @param texture the texture to draw.
+     * @param anchor the texture anchor position.
+     * @param positions the positions where the texture will be drawn.
+     * @param offset the position of the first mark.
+     * @param stride the spacing between two marks.
+     * @param rotationAngle the rotation angle.
+     * @param colors the colors of the texture.
+     * @throws SciRendererException if the texture is not drawable.
+     */
+    void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, Color auxColor, ElementsBuffer colors) throws SciRendererException;
 
     /**
      * Draw the given texture at given position.

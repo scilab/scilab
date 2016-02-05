@@ -154,8 +154,15 @@
                 </Select>
             </Grid>
         </Title>
+	<VSpace height="10"/>
+	<Title text="_(Completion)">
+	    <Checkbox checked="{@complete-at-eol}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Auto-complete brackets when cursor is at the end of a line)">
+              <actionPerformed choose="complete-at-eol">
+		<xsl:call-template name="context"/>
+              </actionPerformed>
+            </Checkbox>
+	</Title>
     </xsl:template>
-    
     
     
     <xsl:template match="scinotes-display">
@@ -180,7 +187,7 @@
                     </actionPerformed>
                 </Checkbox>
                 
-                <Radiobutton value="{@whereami}" expected-value="true" listener="ActionListener" text="_(Whereami compatible)" gridx="2" gridy="2" fill="none" weightx="0" anchor="west" enable="{@show-line-numbers}">
+                <Radiobutton value="{@whereami}" expected-value="true" listener="ActionListener" text="_(Local numbering)" gridx="2" gridy="2" fill="none" weightx="0" anchor="west" enable="{@show-line-numbers}">
                     <actionPerformed choose="whereami">
                         <xsl:call-template name="context"/>
                     </actionPerformed>
@@ -511,6 +518,7 @@
                 <FileSelector gridx="3" gridy="2" href="{@single-directory}" mask="*"
                       desc="_(Choose an autosave directory)"
                       dir-selection = "true"
+                      check-entry = "false"
                       listener="EntryListener">
                     <xsl:attribute name="enable">
                         <xsl:if test="@enable='true' and @source-flag='false'">

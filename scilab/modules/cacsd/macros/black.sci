@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1998-2010 - INRIA - Serge Steer
 // Copyright (C) 2010 - DIGITEO - Yann COLLETTE
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function black(varargin)
@@ -193,7 +196,8 @@ function black(varargin)
 
         xpoly(phi(k,:),d(k,:));e1=gce()
         e1.foreground=k;
-        datatipInitStruct(e1,"formatfunction","formatBlackTip","freq",frq(kf,:))
+        e1.display_function = "formatBlackTip";
+        e1.display_function_data = frq(kf,:);
 
         // glue entities relative to a single black curve
         E=[E glue([e2 e1])]
@@ -218,17 +222,4 @@ function black(varargin)
         legend([c e]',[comments(:); "2.3"+_("dB")])
     end
     fig.immediate_drawing=immediate_drawing;
-endfunction
-
-function str=formatBlackTip(curve,pt,index)
-    //This function is called by the datatip mechanism to format the tip
-    //string for black curves.
-    ud=datatipGetStruct(curve);
-    if index<>[] then
-        f=ud.freq(index)
-    else //interpolated
-        [d,ptp,i,c]=orthProj(curve.data,pt)
-        f=ud.freq(i)+(ud.freq(i+1)-ud.freq(i))*c
-    end
-    str=msprintf("%.4g°\n%.4g"+_("dB")+"\n%.4g"+_("Hz"), pt,f);
 endfunction

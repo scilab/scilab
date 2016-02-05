@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="hallchart">
@@ -18,7 +21,6 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>hallchart([ modules [,args [,colors]]])</synopsis>
-        
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -87,7 +89,6 @@
     i=4; //-4dB曲線のインデックス
     ci=c(i); //-4dB曲線のハンドル
     ci.children(1).foreground=color('red'); //赤で描く
-
     j=3; // the index of the -45°曲線のインデックス
     cj=c(10+j); // -45° 曲線のハンドル
     cj.children(1).thickness=3;//線幅を太くする
@@ -99,7 +100,6 @@
             i=4;
             ci=c(i);
             ci.children(1).foreground=color('red');
-            
             j=3;
             cj=c(10+j);
             cj.children(1).thickness=3;

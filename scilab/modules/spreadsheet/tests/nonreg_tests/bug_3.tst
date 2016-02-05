@@ -1,7 +1,7 @@
 // =============================================================================
 // Copyright (C) 2010 - 2012 - INRIA - Allan CORNET
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // =============================================================================
 r_string = csvRead(SCI+"/modules/spreadsheet/" + "tests/nonreg_tests/bug_3.csv", ",", [], "string");
 r_double = csvRead(SCI+"/modules/spreadsheet/" + "tests/nonreg_tests/bug_3.csv", ",", ".", "double");

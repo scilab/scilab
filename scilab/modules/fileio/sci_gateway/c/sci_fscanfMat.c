@@ -3,32 +3,32 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2010 - 2011 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "expandPathVariable.h"
-
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "fscanfMat.h"
 
 /*--------------------------------------------------------------------------*/
 static void freeVar(char** filename, char** expandedFilename, char** Format, char** separator);
 /*--------------------------------------------------------------------------*/
-int sci_fscanfMat(char *fname, unsigned long fname_len)
+int sci_fscanfMat(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -43,7 +43,6 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
 
     fscanfMatResult *results = NULL;
 
-    Nbvars = 0;
     CheckRhs(1, 3);
     CheckLhs(1, 2);
 
@@ -63,7 +62,7 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
 
         if (isStringType(pvApiCtx, piAddressVarThree) == 0 || isScalar(pvApiCtx, piAddressVarThree) == 0)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
             return 0;
         }
 
@@ -104,7 +103,7 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
         if (isStringType(pvApiCtx, piAddressVarTwo) == 0 || isScalar(pvApiCtx, piAddressVarTwo) == 0)
         {
             freeVar(&filename, &expandedFilename, &Format, &separator);
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -117,7 +116,7 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
     }
     else
     {
-        Format = strdup(DEFAULT_FSCANFMAT_FORMAT);
+        Format = os_strdup(DEFAULT_FSCANFMAT_FORMAT);
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
@@ -132,7 +131,7 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
     if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
         freeVar(&filename, &expandedFilename, &Format, &separator);
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return 0;
     }
 
@@ -160,6 +159,8 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
             {
                 break;
             }
+
+            freeFscanfMatResult(results);
         }
     }
     else
@@ -208,7 +209,7 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
             {
                 if (results->text)
                 {
-                    sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, results->sizeText, 1, results->text);
+                    sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, results->sizeText, 1, (char const * const*) results->text);
                     if (sciErr.iErr)
                     {
                         FREE(filename);
@@ -237,33 +238,37 @@ int sci_fscanfMat(char *fname, unsigned long fname_len)
             PutLhsVar();
             return 0;
         }
-        break;
         case FSCANFMAT_MOPEN_ERROR:
         {
             Scierror(999, _("%s: can not open file %s.\n"), fname, filename);
+            FREE(filename);
+            return 0;
         }
-        break;
         case FSCANFMAT_READLINES_ERROR:
         {
             Scierror(999, _("%s: can not read file %s.\n"), fname, filename);
+            FREE(filename);
+            return 0;
         }
-        break;
         case FSCANFMAT_FORMAT_ERROR:
         {
             Scierror(999, _("%s: Invalid format.\n"), fname);
+            FREE(filename);
+            return 0;
         }
-        break;
         case FSCANFMAT_MEMORY_ALLOCATION:
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            FREE(filename);
+            return 0;
         }
-        break;
         default:
         case FSCANFMAT_ERROR:
         {
             Scierror(999, _("%s: error.\n"), fname);
+            FREE(filename);
+            return 0;
         }
-        break;
     }
 
     FREE(filename);

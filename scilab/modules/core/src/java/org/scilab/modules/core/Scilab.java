@@ -7,11 +7,14 @@
  * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
  * Copyright (C) 2011 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -30,12 +33,13 @@ import org.flexdock.docking.DockingManager;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
@@ -57,6 +61,7 @@ public class Scilab {
 
     static {
         System.setProperty("java.protocol.handler.pkgs", "org.scilab.modules.commons");
+        XConfiguration.getXConfigurationDocument();
     }
 
     /** Index of windows vista version */
@@ -188,7 +193,7 @@ public class Scilab {
             MenuBarBuilder.buildConsoleMenuBar(consoleId);
 
             SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-            SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
+            SwingScilabDockablePanel consoleTab = (SwingScilabDockablePanel) sciConsole.getParent();
 
             WindowsConfigurationManager.restorationFinished(consoleTab);
 

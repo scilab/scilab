@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scicos
+*
+* Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+* Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+*
+* See the file ./license.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="DERIV" xml:lang="ja">
+    <refnamediv>
+        <refname>DERIV</refname>
+        <refpurpose>微分</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>ブロックのスクリーンショット</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/palettes/DERIV.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_DERIV">
+        <title>内容</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="DERIV">微分</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_DERIV">パレット</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_DERIV">説明</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_DERIV">デフォルトプロパティ</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_DERIV">例</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_DERIV">インターフェイス用関数</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_DERIV">計算用関数</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_DERIV">
+        <title>パレット</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Continuous_pal">連続時間システムパレット
+                    </link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_DERIV">
+        <title>説明</title>
+        <para>
+            微分ブロックは入力の時間tに関する微分を計算します.
+        </para>
+        <latex>
+            $$
+            y(t) = {u(t) - u(t-h)} over h
+            $$
+        </latex>
+        <para>
+            微分ブロックには設定はなく,ブロックの出力初期値はゼロです.
+        </para>
+    </refsection>
+    <refsection id="Defaultproperties_DERIV">
+        <title>デフォルトプロパティ</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">常にアクティブ:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">直達項:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">ゼロ交差:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">モード:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">標準入力:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- ポート 1 : 大きさ [-1,1] /
+                        1型
+                    </emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">標準出力:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- ポート 1 : 大きさ [-1,1] /
+                        1型
+                    </emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">アクティベーション入力の数/大きさ:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">アクティベーション出力の数/大きさ:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">連続時間状態量:</emphasis>
+                    no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">離散時間状態量:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis>
+                    no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">計算用関数の名前:</emphasis>
+                    <emphasis role="italic">deriv</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_DERIV">
+        <title>例</title>
+        <para>
+            この例では,振幅2,周波数 1.25Hzの
+            sin入力信号の微分波形を計算/表示します.
+        </para>
+        <para>
+            DERIVATIVEブロックの入力および出力波形を以下に示します:
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/DERIV_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/continuous_pal/DERIV_Example.zcos"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/DERIV_Example.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
+    </refsection>
+    <refsection id="Interfacingfunction_DERIV">
+        <title>インターフェイス用関数</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/Linear/DERIV.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_DERIV">
+        <title>計算用関数</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/deriv.c (Type 4)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

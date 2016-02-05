@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <stdlib.h>
@@ -20,7 +23,7 @@
 BOOL isComplexVar(char *variableName)
 {
     /* 0 = not complex */
-    return isNamedVarComplex(pvApiCtx, variableName) != 0;
+    return isNamedVarComplex(NULL, variableName) != 0;
 }
 
 sci_int_types getIntegerPrecision(char *variableName)
@@ -28,7 +31,7 @@ sci_int_types getIntegerPrecision(char *variableName)
     SciErr sciErr;
     int iPrec;
 
-    sciErr = getNamedMatrixOfIntegerPrecision(pvApiCtx, variableName, &iPrec);
+    sciErr = getNamedMatrixOfIntegerPrecision(NULL, variableName, &iPrec);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -42,7 +45,7 @@ double *getDouble(char *variableName, int *nbRow, int *nbCol)
     SciErr sciErr;
     double *matrixOfDouble = NULL;
 
-    sciErr = readNamedMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol, NULL);
+    sciErr = readNamedMatrixOfDouble(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -52,7 +55,7 @@ double *getDouble(char *variableName, int *nbRow, int *nbCol)
     matrixOfDouble = (double *)malloc(((*nbRow) * (*nbCol)) * sizeof(double));
 
     /* Load the matrix */
-    sciErr = readNamedMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol, matrixOfDouble);
+    sciErr = readNamedMatrixOfDouble(NULL, variableName, nbRow, nbCol, matrixOfDouble);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -66,7 +69,7 @@ int putDouble(char *variableName, double *variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
-    sciErr = createNamedMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol, variable);
+    sciErr = createNamedMatrixOfDouble(NULL, variableName, nbRow, nbCol, variable);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -81,7 +84,7 @@ double *getDoubleComplexReal(char *variableName, int *nbRow, int *nbCol)
     double *matrixOfDoubleComplexReal = NULL;
     double *matrixOfDoubleComplexImg = NULL;
 
-    sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol, NULL, NULL);
+    sciErr = readNamedComplexMatrixOfDouble(NULL, variableName, nbRow, nbCol, NULL, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -92,7 +95,7 @@ double *getDoubleComplexReal(char *variableName, int *nbRow, int *nbCol)
     matrixOfDoubleComplexImg = (double *)malloc(((*nbRow) * (*nbCol)) * sizeof(double));
 
     /* Load the matrix */
-    sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol, matrixOfDoubleComplexReal, matrixOfDoubleComplexImg);
+    sciErr = readNamedComplexMatrixOfDouble(NULL, variableName, nbRow, nbCol, matrixOfDoubleComplexReal, matrixOfDoubleComplexImg);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -107,7 +110,7 @@ double *getDoubleComplexImg(char *variableName, int *nbRow, int *nbCol)
     double *matrixOfDoubleComplexReal = NULL;
     double *matrixOfDoubleComplexImg = NULL;
 
-    sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol, NULL, NULL);
+    sciErr = readNamedComplexMatrixOfDouble(NULL, variableName, nbRow, nbCol, NULL, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -118,7 +121,7 @@ double *getDoubleComplexImg(char *variableName, int *nbRow, int *nbCol)
     matrixOfDoubleComplexImg = (double *)malloc(((*nbRow) * (*nbCol)) * sizeof(double));
 
     /* Load the matrix */
-    sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol, matrixOfDoubleComplexReal, matrixOfDoubleComplexImg);
+    sciErr = readNamedComplexMatrixOfDouble(NULL, variableName, nbRow, nbCol, matrixOfDoubleComplexReal, matrixOfDoubleComplexImg);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -132,7 +135,7 @@ int putDoubleComplex(char* variableName, double *variable, int nbRow, int nbCol,
 {
     SciErr sciErr;
 
-    sciErr = createNamedComplexMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol, variable, imag);
+    sciErr = createNamedComplexMatrixOfDouble(NULL, variableName, nbRow, nbCol, variable, imag);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -146,7 +149,7 @@ BOOL *getBoolean(char *variableName, int *nbRow, int *nbCol)
     SciErr sciErr;
     BOOL *matrixOfBoolean = NULL;
 
-    sciErr = readNamedMatrixOfBoolean(pvApiCtx, variableName, nbRow, nbCol, NULL);
+    sciErr = readNamedMatrixOfBoolean(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -156,7 +159,7 @@ BOOL *getBoolean(char *variableName, int *nbRow, int *nbCol)
     matrixOfBoolean = (BOOL *) malloc(((*nbRow) * (*nbCol)) * sizeof(BOOL));
 
     /* Load the matrix */
-    sciErr = readNamedMatrixOfBoolean(pvApiCtx, variableName, nbRow, nbCol, matrixOfBoolean);
+    sciErr = readNamedMatrixOfBoolean(NULL, variableName, nbRow, nbCol, matrixOfBoolean);
 
     if (sciErr.iErr)
     {
@@ -171,7 +174,7 @@ int putBoolean(char *variableName, BOOL * variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
-    sciErr = createNamedMatrixOfBoolean(pvApiCtx, variableName, nbRow, nbCol, variable);
+    sciErr = createNamedMatrixOfBoolean(NULL, variableName, nbRow, nbCol, variable);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -187,7 +190,7 @@ byte *getByte(char *variableName, int *nbRow, int *nbCol)
     SciErr sciErr;
     byte *matrixOfByte = NULL;
 
-    sciErr = readNamedMatrixOfInteger8(pvApiCtx, variableName, nbRow, nbCol, NULL);
+    sciErr = readNamedMatrixOfInteger8(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -197,7 +200,7 @@ byte *getByte(char *variableName, int *nbRow, int *nbCol)
     matrixOfByte = (byte *) malloc(((*nbRow) * (*nbCol)) * sizeof(byte));
 
     /* Load the matrix */
-    sciErr = readNamedMatrixOfInteger8(pvApiCtx, variableName, nbRow, nbCol, (char *)matrixOfByte);
+    sciErr = readNamedMatrixOfInteger8(NULL, variableName, nbRow, nbCol, (char *)matrixOfByte);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -211,7 +214,7 @@ int putByte(char *variableName, byte * variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
-    sciErr = createNamedMatrixOfInteger8(pvApiCtx, variableName, nbRow, nbCol, (const char *)variable);
+    sciErr = createNamedMatrixOfInteger8(NULL, variableName, nbRow, nbCol, (const char *)variable);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -225,7 +228,7 @@ byte *getUnsignedByte(char *variableName, int *nbRow, int *nbCol)
     SciErr sciErr;
     byte *matrixOfByte = NULL;
 
-    sciErr = readNamedMatrixOfUnsignedInteger8(pvApiCtx, variableName, nbRow, nbCol, NULL);
+    sciErr = readNamedMatrixOfUnsignedInteger8(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -235,7 +238,7 @@ byte *getUnsignedByte(char *variableName, int *nbRow, int *nbCol)
     matrixOfByte = (byte *) malloc(((*nbRow) * (*nbCol)) * sizeof(byte));
 
     /* Load the matrix */
-    sciErr = readNamedMatrixOfUnsignedInteger8(pvApiCtx, variableName, nbRow, nbCol, matrixOfByte);
+    sciErr = readNamedMatrixOfUnsignedInteger8(NULL, variableName, nbRow, nbCol, matrixOfByte);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -249,7 +252,7 @@ int putUnsignedByte(char *variableName, byte * variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
-    sciErr = createNamedMatrixOfUnsignedInteger8(pvApiCtx, variableName, nbRow, nbCol, variable);
+    sciErr = createNamedMatrixOfUnsignedInteger8(NULL, variableName, nbRow, nbCol, variable);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -265,7 +268,7 @@ short *getShort(char *variableName, int *nbRow, int *nbCol)
     SciErr sciErr;
     short *matrixOfShort = NULL;
 
-    sciErr = readNamedMatrixOfInteger16(pvApiCtx, variableName, nbRow, nbCol, NULL);
+    sciErr = readNamedMatrixOfInteger16(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -275,7 +278,7 @@ short *getShort(char *variableName, int *nbRow, int *nbCol)
     matrixOfShort = (short *)malloc(((*nbRow) * (*nbCol)) * sizeof(short));
 
     /* Load the matrix */
-    sciErr = readNamedMatrixOfInteger16(pvApiCtx, variableName, nbRow, nbCol, matrixOfShort);
+    sciErr = readNamedMatrixOfInteger16(NULL, variableName, nbRow, nbCol, matrixOfShort);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -289,7 +292,7 @@ int putShort(char *variableName, short *variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
-    sciErr = createNamedMatrixOfInteger16(pvApiCtx, variableName, nbRow, nbCol, variable);
+    sciErr = createNamedMatrixOfInteger16(NULL, variableName, nbRow, nbCol, variable);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -303,7 +306,7 @@ unsigned short *getUnsignedShort(char *variableName, int *nbRow, int *nbCol)
     SciErr sciErr;
     unsigned short *matrixOfShort = NULL;
 
-    sciErr = readNamedMatrixOfUnsignedInteger16(pvApiCtx, variableName, nbRow, nbCol, NULL);
+    sciErr = readNamedMatrixOfUnsignedInteger16(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -313,7 +316,7 @@ unsigned short *getUnsignedShort(char *variableName, int *nbRow, int *nbCol)
     matrixOfShort = (unsigned short *)malloc(((*nbRow) * (*nbCol)) * sizeof(unsigned short));
 
     /* Load the matrix */
-    sciErr = readNamedMatrixOfUnsignedInteger16(pvApiCtx, variableName, nbRow, nbCol, matrixOfShort);
+    sciErr = readNamedMatrixOfUnsignedInteger16(NULL, variableName, nbRow, nbCol, matrixOfShort);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -327,7 +330,7 @@ int putUnsignedShort(char *variableName, unsigned short *variable, int nbRow, in
 {
     SciErr sciErr;
 
-    sciErr = createNamedMatrixOfUnsignedInteger16(pvApiCtx, variableName, nbRow, nbCol, variable);
+    sciErr = createNamedMatrixOfUnsignedInteger16(NULL, variableName, nbRow, nbCol, variable);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -343,7 +346,7 @@ int *getInt(char *variableName, int *nbRow, int *nbCol)
     SciErr sciErr;
     int *matrixOfInt = NULL;
 
-    sciErr = readNamedMatrixOfInteger32(pvApiCtx, variableName, nbRow, nbCol, NULL);
+    sciErr = readNamedMatrixOfInteger32(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -353,7 +356,7 @@ int *getInt(char *variableName, int *nbRow, int *nbCol)
     matrixOfInt = (int *)malloc(((*nbRow) * (*nbCol)) * sizeof(int));
 
     /* Load the matrix */
-    sciErr = readNamedMatrixOfInteger32(pvApiCtx, variableName, nbRow, nbCol, matrixOfInt);
+    sciErr = readNamedMatrixOfInteger32(NULL, variableName, nbRow, nbCol, matrixOfInt);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -367,7 +370,7 @@ int putInt(char *variableName, int *variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
-    sciErr = createNamedMatrixOfInteger32(pvApiCtx, variableName, nbRow, nbCol, variable);
+    sciErr = createNamedMatrixOfInteger32(NULL, variableName, nbRow, nbCol, variable);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -381,7 +384,7 @@ unsigned int *getUnsignedInt(char *variableName, int *nbRow, int *nbCol)
     SciErr sciErr;
     int *matrixOfInt = NULL;
 
-    sciErr = readNamedMatrixOfUnsignedInteger32(pvApiCtx, variableName, nbRow, nbCol, NULL);
+    sciErr = readNamedMatrixOfUnsignedInteger32(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -391,7 +394,7 @@ unsigned int *getUnsignedInt(char *variableName, int *nbRow, int *nbCol)
     matrixOfInt = (int *)malloc(((*nbRow) * (*nbCol)) * sizeof(int));
 
     /* Load the matrix */
-    sciErr = readNamedMatrixOfUnsignedInteger32(pvApiCtx, variableName, nbRow, nbCol, (unsigned int *)matrixOfInt);
+    sciErr = readNamedMatrixOfUnsignedInteger32(NULL, variableName, nbRow, nbCol, (unsigned int *)matrixOfInt);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -405,7 +408,7 @@ int putUnsignedInt(char *variableName, unsigned int *variable, int nbRow, int nb
 {
     SciErr sciErr;
 
-    sciErr = createNamedMatrixOfUnsignedInteger32(pvApiCtx, variableName, nbRow, nbCol, variable);
+    sciErr = createNamedMatrixOfUnsignedInteger32(NULL, variableName, nbRow, nbCol, variable);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -417,22 +420,22 @@ int putUnsignedInt(char *variableName, unsigned int *variable, int nbRow, int nb
 ////////////////////// long / int64
 #ifdef __SCILAB_INT64__
 
-long *getLong(char *variableName, int *nbRow, int *nbCol)
+long long *getLong(char *variableName, int *nbRow, int *nbCol)
 {
     SciErr sciErr;
-    long *matrixOfLong = NULL;
+    long long *matrixOfLong = NULL;
 
-    sciErr = readNamedMatrixOfInteger64(pvApiCtx, variableName, nbRow, nbCol, NULL);
+    sciErr = readNamedMatrixOfInteger64(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
     }
 
     /* Alloc the memory */
-    matrixOfLong = (long *)malloc(((*nbRow) * (*nbCol)) * sizeof(long));
+    matrixOfLong = (long long *)malloc(((*nbRow) * (*nbCol)) * sizeof(long long));
 
     /* Load the matrix */
-    sciErr = readNamedMatrixOfInteger64(pvApiCtx, variableName, nbRow, nbCol, matrixOfLong);
+    sciErr = readNamedMatrixOfInteger64(NULL, variableName, nbRow, nbCol, matrixOfLong);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -442,11 +445,11 @@ long *getLong(char *variableName, int *nbRow, int *nbCol)
 
 }
 
-int putLong(char *variableName, long *variable, int *nbRow, int *nbCol)
+int putLong(char *variableName, long *variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
-    sciErr = createNamedMatrixOfInteger64(pvApiCtx, variableName, nbRow, nbCol, variable);
+    sciErr = createNamedMatrixOfInteger64(NULL, variableName, nbRow, nbCol, variable);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -460,7 +463,7 @@ unsigned long *getUnsignedLong(char *variableName, int *nbRow, int *nbCol)
     SciErr sciErr;
     long *matrixOfLong = NULL;
 
-    sciErr = readNamedMatrixOfUnsignedInteger64(pvApiCtx, variableName, nbRow, nbCol, NULL);
+    sciErr = readNamedMatrixOfUnsignedInteger64(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -470,7 +473,7 @@ unsigned long *getUnsignedLong(char *variableName, int *nbRow, int *nbCol)
     matrixOfLong = (long *)malloc(((*nbRow) * (*nbCol)) * sizeof(long));
 
     /* Load the matrix */
-    sciErr = readNamedMatrixOfUnsignedInteger64(pvApiCtx, variableName, nbRow, nbCol, matrixOfLong);
+    sciErr = readNamedMatrixOfUnsignedInteger64(NULL, variableName, nbRow, nbCol, matrixOfLong);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -480,11 +483,11 @@ unsigned long *getUnsignedLong(char *variableName, int *nbRow, int *nbCol)
 
 }
 
-int putUnsignedLong(char *variableName, unsigned long *variable, int *nbRow, int *nbCol)
+int putUnsignedLong(char *variableName, unsigned long *variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
-    sciErr = createNamedMatrixOfUnsignedInteger64(pvApiCtx, variableName, nbRow, nbCol, variable);
+    sciErr = createNamedMatrixOfUnsignedInteger64(NULL, variableName, nbRow, nbCol, variable);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -503,8 +506,8 @@ char **getString(char *variableName, int *nbRow, int *nbCol)
     int *piLen = NULL;
     char **pstData = NULL;
 
-    //first call to retrieve dimensions
-    sciErr = readNamedMatrixOfString(pvApiCtx, variableName, nbRow, nbCol, NULL, NULL);
+    //fisrt call to retrieve dimensions
+    sciErr = readNamedMatrixOfString(NULL, variableName, nbRow, nbCol, NULL, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -513,7 +516,7 @@ char **getString(char *variableName, int *nbRow, int *nbCol)
     piLen = (int *)malloc(sizeof(int) * (*nbRow) * (*nbCol));
 
     //second call to retrieve length of each string
-    sciErr = readNamedMatrixOfString(pvApiCtx, variableName, nbRow, nbCol, piLen, NULL);
+    sciErr = readNamedMatrixOfString(NULL, variableName, nbRow, nbCol, piLen, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -526,7 +529,7 @@ char **getString(char *variableName, int *nbRow, int *nbCol)
         pstData[i] = (char *)malloc(sizeof(char) * (piLen[i] + 1)); //+ 1 for null termination
     }
     //third call to retrieve data
-    sciErr = readNamedMatrixOfString(pvApiCtx, variableName, nbRow, nbCol, piLen, pstData);
+    sciErr = readNamedMatrixOfString(NULL, variableName, nbRow, nbCol, piLen, pstData);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -540,7 +543,7 @@ int putString(char *variableName, char **variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
-    sciErr = createNamedMatrixOfString(pvApiCtx, variableName, nbRow, nbCol, variable);
+    sciErr = createNamedMatrixOfString(NULL, variableName, nbRow, nbCol, variable);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -553,7 +556,7 @@ int putSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nb
 {
     SciErr sciErr;
 
-    sciErr = createNamedSparseMatrix(pvApiCtx, variableName, nbRow, nbCol, colPosL, nbRowItem, colPos, data);
+    sciErr = createNamedSparseMatrix(NULL, variableName, nbRow, nbCol, colPosL, nbRowItem, colPos, data);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -566,7 +569,7 @@ int putComplexSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem,
 {
     SciErr sciErr;
 
-    sciErr = createNamedComplexSparseMatrix(pvApiCtx, variableName, nbRow, nbCol, colPosL, nbRowItem, colPos, data, imag);
+    sciErr = createNamedComplexSparseMatrix(NULL, variableName, nbRow, nbCol, colPosL, nbRowItem, colPos, data, imag);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -579,7 +582,7 @@ int putBooleanSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem,
 {
     SciErr sciErr;
 
-    sciErr = createNamedBooleanSparseMatrix(pvApiCtx, variableName, nbRow, nbCol, colPosL, nbRowItem, colPos);
+    sciErr = createNamedBooleanSparseMatrix(NULL, variableName, nbRow, nbCol, colPosL, nbRowItem, colPos);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -592,7 +595,7 @@ int putPolynomial(char * variableName, char * polyVarName, double ** data, int n
 {
     SciErr sciErr;
 
-    sciErr = createNamedMatrixOfPoly(pvApiCtx, variableName, polyVarName, nbRow, nbCol, nbCoef, data);
+    sciErr = createNamedMatrixOfPoly(NULL, variableName, polyVarName, nbRow, nbCol, nbCoef, data);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -605,7 +608,7 @@ int putComplexPolynomial(char * variableName, char * polyVarName, double ** data
 {
     SciErr sciErr;
 
-    sciErr = createNamedComplexMatrixOfPoly(pvApiCtx, variableName, polyVarName, nbRow, nbCol, nbCoef, data, imag);
+    sciErr = createNamedComplexMatrixOfPoly(NULL, variableName, polyVarName, nbRow, nbCol, nbCoef, data, imag);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -617,7 +620,7 @@ int putComplexPolynomial(char * variableName, char * polyVarName, double ** data
 
 BOOL isExistingVariable(char *variableName)
 {
-    int iExisting = isNamedVarExist(pvApiCtx, variableName);
+    int iExisting = isNamedVarExist(NULL, variableName);
 
     return iExisting != 0;      /* 0 = not existing variable */
 }

@@ -5,8 +5,5 @@ EXPORTS
 ;
 ; scilab_windows
 ;
- strdup_windows
- wstrdup_windows
- CallWindowsShell
-;
-
+CallWindowsShell
+CallWindowsShellW

@@ -2,22 +2,28 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.gui.bridge.checkboxmenuitem;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.UIManager;
 import javax.swing.JToggleButton.ToggleButtonModel;
+import javax.swing.border.Border;
 
 import org.scilab.modules.commons.utils.StringBlockingResult;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
@@ -52,6 +58,8 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
     private String text = "";
 
     private Integer uid;
+
+    private Border defaultBorder = null;
 
     /**
      * Constructor
@@ -100,6 +108,11 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
         } else {
             super.setText(text);
         }
+    }
+
+    public void setEmptyText() {
+        this.text = null;
+        this.setText(null);
     }
 
     /**
@@ -223,8 +236,11 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
      * Set the Relief of the Menu
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setWidgetRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+    public void setRelief(String reliefType) {
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -417,6 +433,21 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
          */
         public void forceSelected(boolean status) {
             super.setSelected(status);
+        }
+
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("CheckBoxMenuItem.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("CheckBoxMenuItem.foreground");
+        if (color != null) {
+            setForeground(color);
         }
     }
 }

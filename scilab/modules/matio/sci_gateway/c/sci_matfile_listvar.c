@@ -3,11 +3,14 @@
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,13 +19,11 @@
 #include "gw_matio.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_string.h"
 
-int sci_matfile_listvar(char *fname, unsigned long fname_len)
+int sci_matfile_listvar(char *fname, void* pvApiCtx)
 {
     int nbRow = 0, nbCol = 0;
     mat_t *matfile = NULL;
@@ -35,6 +36,7 @@ int sci_matfile_listvar(char *fname, unsigned long fname_len)
     int * fd_addr = NULL;
     double tmp_dbl;
     SciErr sciErr;
+    int iErr = 0;
 
     CheckRhs(1, 1);
     CheckLhs(1, 3);
@@ -96,7 +98,7 @@ int sci_matfile_listvar(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
             return FALSE;
         }
-        varnames[nbvar - 1] = strdup(matvar->name);
+        varnames[nbvar - 1] = os_strdup(matvar->name);
         varclasses = (double*) REALLOC(varclasses, nbvar * sizeof(double));
         if (varclasses  == NULL)
         {
@@ -119,50 +121,78 @@ int sci_matfile_listvar(char *fname, unsigned long fname_len)
     Mat_VarFree(matvar);
 
     /* Return the variable names list */
-    nbRow = nbvar;
-    nbCol = 1;
-    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, nbRow, nbCol, varnames);
-    if (sciErr.iErr)
+    if (nbvar == 0)
     {
-        printError(&sciErr, 0);
-        return 0;
-    }
-    LhsVar(1) = Rhs + 1;
+        /* No variables found in MatFile */
 
-    /* Return the variable classes */
-    if (Lhs >= 2)
+        /* Return the empty names */
+        iErr = createEmptyMatrix(pvApiCtx, Rhs + 1);
+        if (iErr)
+        {
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
+        LhsVar(1) = Rhs + 1;
+
+        /* Return the empty classes if asked */
+        if (Lhs >= 2)
+        {
+            iErr = createEmptyMatrix(pvApiCtx, Rhs + 2);
+            if (iErr)
+            {
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 0;
+            }
+            LhsVar(2) = Rhs + 2;
+        }
+
+        /* Return the empty types if asked */
+        if (Lhs >= 3)
+        {
+            iErr = createEmptyMatrix(pvApiCtx, Rhs + 3);
+            if (iErr)
+            {
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 0;
+            }
+            LhsVar(3) = Rhs + 3;
+        }
+    }
+    else
     {
-        sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 2, nbRow, nbCol, varclasses);
+        nbRow = nbvar;
+        nbCol = 1;
+        sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, nbRow, nbCol, varnames);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 0;
         }
-        LhsVar(2) = Rhs + 2;
-    }
+        LhsVar(1) = Rhs + 1;
 
-    /* Return the variable types */
-    if (Lhs >= 3)
-    {
-        sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 3, nbRow, nbCol, vartypes);
-        if (sciErr.iErr)
+        /* Return the variable classes */
+        if (Lhs >= 2)
         {
-            printError(&sciErr, 0);
-            return 0;
+            sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 2, nbRow, nbCol, varclasses);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+            LhsVar(2) = Rhs + 2;
         }
-        LhsVar(2) = Rhs + 2;
-    }
 
-    /* Return the variable types */
-    if (Lhs >= 3)
-    {
-        sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 3, nbRow, nbCol, vartypes);
-        if (sciErr.iErr)
+        /* Return the variable types */
+        if (Lhs >= 3)
         {
-            printError(&sciErr, 0);
-            return 0;
+            sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 3, nbRow, nbCol, vartypes);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+            LhsVar(3) = Rhs + 3;
         }
-        LhsVar(3) = Rhs + 3;
     }
 
     freeArrayOfString(varnames, nbvar);

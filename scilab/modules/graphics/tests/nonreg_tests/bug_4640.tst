@@ -19,8 +19,8 @@ plot2d(0:1,0:1,rect=[0 0 1 1],nax=[1 6 1 6]);
 a = gca();
 p = a.x_ticks.locations;
 v0 = a.x_ticks.labels;
-drawaxis(x=a.x_ticks.locations,y=0.5,dir="u",tics="v",val=v0)
+drawaxis(x=a.x_ticks.locations,y=0.5,dir="u",tics="v",val=v0);
 e=gce();
 v1="$"+v0+"$";
-e.tics_labels=v1'; 
+e.tics_labels=v1';
 

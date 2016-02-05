@@ -1,10 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1984-2011 - INRIA - Serge STEER
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function nyquist(varargin)
     // Nyquist plot
@@ -165,7 +168,8 @@ function nyquist(varargin)
         for k=1:mn
             xpoly([R(k,:) R(k,$:-1:1)],[I(k,:) -I(k,$:-1:1)]);
             e=gce();e.foreground=k;
-            datatipInitStruct(e,"formatfunction","formatNyquistTip","freq",[F(kf,:) F(kf,$:-1:1)])
+            e.display_function = "formatNyquistTip";
+            e.display_function_data = [F(kf,:) -1*F(kf,$:-1:1)];
             Curves=[Curves,e];
             kf=kf+ilf;
         end
@@ -173,7 +177,8 @@ function nyquist(varargin)
         for k=1:mn
             xpoly(R(k,:),I(k,:));
             e=gce();e.foreground=k;
-            datatipInitStruct(e,"formatfunction","formatNyquistTip","freq",F(kf,:))
+            e.display_function = "formatNyquistTip";
+            e.display_function_data = F(kf,:);
             Curves=[Curves,e];
             kf=kf+ilf;
         end
@@ -193,6 +198,9 @@ function nyquist(varargin)
     L=0;
     DIc=0.2;
     while %t
+        if isempty(Ic) then
+            break
+        end
         ksup=find(Ic-L>DIc);
         if ksup==[] then break,end
         kk1=min(ksup);
@@ -270,17 +278,4 @@ function nyquist(varargin)
         legend(Curves, comments);
     end
     fig.immediate_drawing=immediate_drawing;
-endfunction
-
-function str=formatNyquistTip(curve,pt,index)
-    //This function is called by the datatip mechanism to format the tip
-    //string for the nyquist curves.
-    ud=datatipGetStruct(curve);
-    if index<>[] then
-        f=ud.freq(index);
-    else //interpolated
-        [d,ptp,i,c]=orthProj(curve.data,pt);
-        f=ud.freq(i)+(ud.freq(i+1)-ud.freq(i))*c;
-    end
-    str=msprintf("%.4g%+.4gi\n%.4g"+_("Hz"), pt,f);
 endfunction

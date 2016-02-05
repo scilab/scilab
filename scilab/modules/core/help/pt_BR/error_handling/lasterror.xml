@@ -85,9 +85,6 @@ if ierr>0 then disp(lasterror()),end
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
-                <link linkend="errcatch">errcatch</link>
-            </member>
-            <member>
                 <link linkend="execstr">execstr</link>
             </member>
             <member>

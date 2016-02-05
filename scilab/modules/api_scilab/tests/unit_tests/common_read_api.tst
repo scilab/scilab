@@ -12,7 +12,7 @@ mkdir(pathconvert(TMPDIR+"/common_read_api"));
 cd(pathconvert(TMPDIR+"/common_read_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/common_read_api.c",pathconvert(TMPDIR+"/common_read_api/common_read_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("common_read",["common_read","common_read"],"common_read_api.c",[],"","",cflags);
+ilib_build("gw_common_read",["common_read","common_read"],"common_read_api.c",[],"","",cflags);
 exec("loader.sce");
 
              
@@ -25,12 +25,7 @@ bsp=sparse([1,2;4,5;3,10],[%t,%t,%t]);common_read(bsp);
 i8 = int8([1,2,3]);common_read(i8);
 ui32 = uint32([3;2;1]);common_read(ui32);
 str = ["may", "the", "puffin"; "be", "with","you"];common_read(str);
-if with_module('umfpack') then
-    Cp = taucs_chfact(sp);
-    l = list(list(d, p, list(b, sp)), list(i8, bsp), list(ui32, str), Cp);
-else
-    l = list(list(d, p, list(b, sp)), list(i8, bsp), list(ui32, str));
-end
+l = list(list(d, p, list(b, sp)), list(i8, bsp), list(ui32, str));
 common_read(l)
 endfunction
 read_all;

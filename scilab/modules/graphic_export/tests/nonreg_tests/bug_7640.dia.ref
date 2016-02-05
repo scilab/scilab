@@ -35,3 +35,8 @@ xs2pdf(0, "t1.pdf");
 if ~isfile("t1.pdf") then bugmes();quit;end
 info = fileinfo("t1.pdf");
 if info(1) == 0 then bugmes();quit;end
+//emf
+xs2emf(0, "t1.emf");
+if ~isfile("t1.emf") then bugmes();quit;end
+info = fileinfo("t1.emf");
+if info(1) == 0 then bugmes();quit;end

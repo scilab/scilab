@@ -229,7 +229,7 @@
                 </para>
                 <para> A vector of strings including JGraphX key values style properties.</para>
                 <para>
-                    These style can be used to place text or to change port aspect (eg. round, green port). This is set in semicolon separated key=value set. For exemple <literal>"shape=ellipse;fillColor=green"</literal> for a round and green port
+                    These style can be used to place text or to change port aspect (eg. round, green port). This is set in semicolon separated key=value set. For example <literal>"shape=ellipse;fillColor=green"</literal> for a round and green port
                 </para>
                 <para> 
                     Size : nul or number of regular input ports.
@@ -244,7 +244,7 @@
                 </para>
                 <para> A vector of strings including JGraphX key values style properties.</para>
                 <para>
-                    These style can be used to place text or to change port aspect (eg. round, green port). This is set in semicolon separated key=value set. For exemple <literal>"shape=ellipse;fillColor=green"</literal> for a round and green port
+                    These style can be used to place text or to change port aspect (eg. round, green port). This is set in semicolon separated key=value set. For example <literal>"shape=ellipse;fillColor=green"</literal> for a round and green port
                 </para>
                 <para> 
                     Size : nul or number of regular output ports.
@@ -286,7 +286,7 @@
                 <para> A string.</para>
                 <para> A vector of strings including JGraphX key values style properties.</para>
                 <para>
-                    These style can be used to place text or to change block aspect (eg. shape, image, text). This is set in semicolon separated key=value set. For exemple <literal>"shape=ellipse;fillColor=red"</literal> for a round and green block
+                    These style can be used to place text or to change block aspect (eg. shape, image, text). This is set in semicolon separated key=value set. For example <literal>"shape=ellipse;fillColor=red"</literal> for a round and green block
                 </para>
                 <para> 
                     Size : nul or 1.

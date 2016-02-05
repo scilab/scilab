@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -34,11 +35,11 @@ if norm(Df1-Df) > prec then pause,end
 Df       = 1;
 
 T        = %inf; // Inf
-[P,Q]    = cdfchi("PQ", T, Df);
+[P,Q]    = cdft("PQ", T, Df);
 assert_checkequal(P, 1);
 assert_checkequal(Q, 0);
 
 T        = %nan; // NaN
-[P,Q]    = cdfchi("PQ", T, Df);
+[P,Q]    = cdft("PQ", T, Df);
 assert_checkequal(P, %nan);
 assert_checkequal(Q, %nan);

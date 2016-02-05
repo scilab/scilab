@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -19,7 +22,7 @@
 extern "C"
 {
 #include "expandPathVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "BOOL.h"
 }
@@ -36,12 +39,9 @@ XMLValidationSchema::XMLValidationSchema(const char *path, std::string * error):
         FREE(expandedPath);
         if (!pctxt)
         {
-            if (errorBuffer)
-            {
-                delete errorBuffer;
-            }
-            errorBuffer = new std::string(gettext("Cannot create a validation context"));
-            *error = *errorBuffer;
+            errorBuffer.clear();
+            errorBuffer.append(gettext("Cannot create a validation context"));
+            *error = errorBuffer;
         }
         else
         {
@@ -49,12 +49,9 @@ XMLValidationSchema::XMLValidationSchema(const char *path, std::string * error):
             xmlSchemaFreeParserCtxt(pctxt);
             if (!validationFile)
             {
-                if (errorBuffer)
-                {
-                    delete errorBuffer;
-                }
-                errorBuffer = new std::string(gettext("Cannot parse the schema"));
-                *error = *errorBuffer;
+                errorBuffer.clear();
+                errorBuffer.append(gettext("Cannot parse the schema"));
+                *error = errorBuffer;
             }
             else
             {
@@ -84,12 +81,7 @@ XMLValidationSchema::~XMLValidationSchema()
         }
     }
 
-    if (errorBuffer)
-    {
-        delete errorBuffer;
-
-        errorBuffer = 0;
-    }
+    errorBuffer.clear();
 }
 
 bool XMLValidationSchema::validate(const XMLDocument & doc, std::string * error) const
@@ -97,16 +89,12 @@ bool XMLValidationSchema::validate(const XMLDocument & doc, std::string * error)
     bool ret;
     xmlSchemaValidCtxt *vctxt = xmlSchemaNewValidCtxt((xmlSchema *) validationFile);
 
-    if (errorBuffer)
-    {
-        delete errorBuffer;
-    }
-    errorBuffer = new std::string("");
+    errorBuffer.clear();
 
     if (!vctxt)
     {
-        errorBuffer->append(gettext("Cannot create a validation context"));
-        *error = *errorBuffer;
+        errorBuffer.append(gettext("Cannot create a validation context"));
+        *error = errorBuffer;
         return false;
     }
 
@@ -119,7 +107,7 @@ bool XMLValidationSchema::validate(const XMLDocument & doc, std::string * error)
 
     if (ret)
     {
-        *error = *errorBuffer;
+        *error = errorBuffer;
     }
 
     return ret == 0;
@@ -131,24 +119,20 @@ bool XMLValidationSchema::validate(xmlTextReader * reader, std::string * error) 
     int last;
     int valid;
 
-    if (errorBuffer)
-    {
-        delete errorBuffer;
-    }
-    errorBuffer = new std::string();
+    errorBuffer.clear();
 
     if (!reader)
     {
-        errorBuffer->append(gettext("Cannot read the stream"));
-        *error = *errorBuffer;
+        errorBuffer.append(gettext("Cannot read the stream"));
+        *error = errorBuffer;
         return false;
     }
 
     vctxt = xmlSchemaNewValidCtxt(getValidationFile < xmlSchema > ());
     if (!vctxt)
     {
-        errorBuffer->append(gettext("Cannot create a validation context"));
-        *error = *errorBuffer;
+        errorBuffer.append(gettext("Cannot create a validation context"));
+        *error = errorBuffer;
         return false;
     }
 
@@ -156,7 +140,10 @@ bool XMLValidationSchema::validate(xmlTextReader * reader, std::string * error) 
     xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc) XMLValidation::errorReaderFunction, 0);
     xmlTextReaderSchemaValidateCtxt(reader, vctxt, 0);
 
-    while ((last = xmlTextReaderRead(reader)) == 1) ;
+    while ((last = xmlTextReaderRead(reader)) == 1)
+    {
+        ;
+    }
     valid = xmlTextReaderIsValid(reader);
 
     xmlTextReaderSetErrorHandler(reader, 0, 0);
@@ -166,7 +153,7 @@ bool XMLValidationSchema::validate(xmlTextReader * reader, std::string * error) 
 
     if (last == -1 || valid != 1)
     {
-        *error = *errorBuffer;
+        *error = errorBuffer;
         return false;
     }
 
@@ -187,3 +174,4 @@ const std::string XMLValidationSchema::toString() const
 }
 
 }
+

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Pedro SOUZA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" scilab:needs-examples="no" xml:id="light_properties">
+    <refnamediv>
+        <refname>light properties</refname>
+        <refpurpose>光源の概要</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            lightエンティティは外観照明を変更するためのプロパティを有します.
+            照明は軸内では不可視ですが,曲面の外観に影響を与えます.
+            (照明の詳細については<link linkend="lighting">照明</link>を参照ください).
+        </para>
+        <para>
+            光源は
+            <link linkend="light">light</link> 関数により作成でき,
+            <link linkend="delete">delete</link> 関数により削除されます.
+        </para>
+        <scilab:image>
+            plot3d();
+            l = light();
+            s = gce();
+            s.diffuse_color = [0 0 0.8];
+            s.ambient_color = [0 0 1];
+            s.use_color_material = "off";
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>lightプロパティのリスト</title>
+        <variablelist>
+            <varlistentry>
+                <term>visible: </term>
+                <listitem>
+                    <para>
+                        このフィールドは光源の有効(<literal>"on"</literal>)または
+                        無効(<literal>"off"</literal>)を定義します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>light_type: </term>
+                <listitem>
+                    <para>
+                        このフィールドは使用される光の型を定義します.
+                        以下の2種類の光を利用できます:
+                        <literal>"directional"</literal> および <literal>"point"</literal>.
+                        方向性(directional)光源は,曲面から無限遠に位置する光源で,平行線となります.
+                    </para>
+                    <para>
+                        点(point)光源は,全ての方向に放射する空間の点として
+                        定義されます.
+                        デフォルト値は <literal>"point"</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>direction: </term>
+                <listitem>
+                    <para>
+                        このフィールドは方向性光源の光線方向を定義します.
+                        方向は,原点からのベクトルを表す
+                        3要素ベクトル<literal>"[x, y, z]"</literal>により変更できます.
+                    </para>
+                    <para>
+                        デフォルト値は <literal>"[0 0 1]"</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>position: </term>
+                <listitem>
+                    <para>
+                        このフィールドは,点光源の光源位置を定義します.
+                        位置は3要素ベクトル<literal>"[x, y, z]"</literal>により変更できます.
+                    </para>
+                    <para>
+                        デフォルト値は<literal>"[0 0 1]"</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ambient_color: </term>
+                <listitem>
+                    <para>
+                        このフィールドは光源のアンビエント色を定義します.
+                        この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
+                        (各要素の範囲は[0, 1])により定義されます.
+                    </para>
+                    <para>
+                        デフォルト値は<literal>"[0.1 0.1 0.1]"</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>diffuse_color: </term>
+                <listitem>
+                    <para>
+                        このフィールドは光源の拡散色を定義します.
+                        この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
+                        (各要素の範囲は[0, 1])により定義されます.
+                    </para>
+                    <para>
+                        デフォルト値は<literal>"[1 1 1]"</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>specular_color: </term>
+                <listitem>
+                    <para>
+                        このフィールドは光源の鏡面反射色を定義します.
+                        この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
+                        (各要素の範囲は[0, 1])により定義されます.
+                    </para>
+                    <para>
+                        デフォルト値は <literal>"[1 1 1]"</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>user_data: </term>
+                <listitem>
+                    <para>This field can be use to store any scilab variable and to retrieve it.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tag: </term>
+                <listitem>
+                    <para>This field can be use to store a character string generally used to identify the light entity. It allows to give it a "name". Mainly used in conjunction with findobj() and get()/set() functions.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+        // 点光源
+        plot3d;l=light();s=gce();
+        for i=0:1000
+            sleep(5);
+            x = 2*cos(i*%pi/180);
+            y = 2*sin(i*%pi/180);
+            z = 2;
+            l.position = [x y z];
+        end
+
+        // 方向性光源に光源を変更
+        l.light_type = "directional";
+        l.direction = [1 0 1];
+        l.ambient_color = [0.1 0.1 0.1];
+        s.diffuse_color = [0.4 0.4 0.4];
+        s.use_color_material = "off";
+        s.color_flag = 0;
+        s.thickness = 0;
+        s.hiddencolor = -1;
+        s.specular_color = [0.6 0.6 0.6];
+        sleep(5000);
+
+        l2 = light(ambient_color=[0 0 0], diffuse_color = [0.8 0.8 1], type="point", position=[0 3 4]);
+        sleep(5000);
+        delete(l);
+        l2.specular_color = [1 0.6 0];
+        ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lighting">照明</link>
+            </member>
+            <member>
+                <link linkend="light">light</link>
+            </member>
+            <member>
+                <link linkend="delete">delete</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

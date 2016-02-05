@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Djalel Abdemouche
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -37,7 +40,7 @@ GRAPHICS_IMPEXP void Objstring(char** fname, int nbRow, int nbCol, double  x, do
 
 GRAPHICS_IMPEXP void Objplot2d(int ptype, char logflags[], double x[], double y[], int* n1, int* n2, int style[], char strflag[], char legend[], double brect[], int aaint[], BOOL flagNax);
 
-GRAPHICS_IMPEXP void Objgrayplot(double x[], double y[], double z[], int* n1, int* n2, char strflag[], double brect[], int aaint[], BOOL flagNax);
+GRAPHICS_IMPEXP void Objgrayplot(double x[], double y[], double z[], int* n1, int* n2, char strflag[], double brect[], int aaint[], BOOL flagNax, char logflag[]);
 
 GRAPHICS_IMPEXP void Objmatplot(double z[], int* n1, int* n2, char strflag[], double brect[], int aaint[], BOOL flagNax);
 
@@ -51,6 +54,6 @@ GRAPHICS_IMPEXP void Objdrawaxis(char dir, char tics, double* x, int* nx, double
 
 GRAPHICS_IMPEXP void Objnumb(char* fname, unsigned long fname_len, int n, int flag, double x, double y, double* angle, double* box);
 
-GRAPHICS_IMPEXP void Objfec(double x[], double y[], double noeud[], double* fun, int* n, int* m, char strflag[], char legend[], double brect[], int aaint[], double Zminmax[], int Colminmax[], int ColOut[], BOOL WithMesh, BOOL flagNax);
+GRAPHICS_IMPEXP void Objfec(double x[], double y[], double noeud[], double* fun, int* n, int* m, int* p, char strflag[], char legend[], double brect[], int aaint[], double Zminmax[], int Colminmax[], int ColOut[], BOOL WithMesh, BOOL flagNax);
 
 #endif /* _SCI_CALL_H_ */

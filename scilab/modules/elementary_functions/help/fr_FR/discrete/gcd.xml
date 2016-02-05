@@ -12,10 +12,26 @@
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>p  </term>
+                <term>p</term>
                 <listitem>
                     <para>
-                        vecteur ligne de polynômes <literal>p = [p1,..,pn] (type égal à 2) ou d'entiers (type égal à 8)</literal>
+                        vecteur ligne de polynômes <literal>p = [p1,..,pn] (type égal à 2) ou d'entiers (type égal à 1 ou 8)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pgcd</term>
+                <listitem>
+                    <para>
+                        vecteur de même type que <literal>p</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>
+                        matrice de même type que <literal>p</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -33,26 +49,34 @@
             Le PGCD d'une matrice <literal>p</literal> de réels peut s'obtenir en la convertissant en polynôme
             avant d'appeler <literal>gcd</literal>, grâce à la commande <literal>p = inv_coeff(p, 0)</literal>.
         </para>
+        <para>
+            Si <literal>p</literal> est donné comme un flottant entier (type 1), alors il est traité comme un <literal>int32</literal>.
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-//cas des polynômes
-s=poly(0,'s');
-p=[s,s*(s+1)^2,2*s^2+s^3];
-[pgcd,u]=gcd(p);
+// Cas des polynômes
+s = %s;
+p = [s  s*(s+1)^2 2*s^2+s^3];
+[pgcd,u] = gcd(p);
 p*u
 
-//cas des entiers
-V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
-[thegcd,U]=gcd(V)
+// Cas des entiers
+V = int32([2^2*3^5 2^3*3^2 2^2*3^4*5]);
+[thegcd,U] = gcd(V)
+V*U
+
+// Cas des doubles
+V = [2^2*3^5 2^3*3^2 2^2*3^4*5];
+[thegcd,U] = gcd(V)
 V*U
 
 gcd(uint8([15 20]))
 
-gcd([iconvert(15,4) iconvert(20,4)])
+gcd([iconvert(15, 4) iconvert(20, 4)])
 
-gcd(iconvert([15 20],4))
+gcd(iconvert([15 20], 4))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

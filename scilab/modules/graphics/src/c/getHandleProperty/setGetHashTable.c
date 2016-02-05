@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,13 +21,10 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <ctype.h>
-#include "stricmp.h"
 
 #include "setGetHashTable.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 /* see http://www.cse.yorku.ca/~oz/hash.html */
 /* like in hashtable_localization by Allan Cornet */
@@ -73,7 +73,7 @@ int insertGetHashtable(GetPropertyHashTable * hashTable, char * key, getProperty
 {
     /* allocate a new key because the hashtable claims ownership */
     /* and will free it when destroyed */
-    char * copyKey  =  strdup(key);
+    char * copyKey  =  os_strdup(key);
     if (copyKey == NULL)
     {
         return 0 ;
@@ -101,7 +101,7 @@ int insertSetHashtable(SetPropertyHashTable * hashTable, char * key, setProperty
 {
     /* allocate a new key because the hashtable claims ownership */
     /* and will free it when destroyed */
-    char * copyKey   = strdup(key);
+    char * copyKey   = os_strdup(key);
     if (copyKey == NULL)
     {
         return 0 ;

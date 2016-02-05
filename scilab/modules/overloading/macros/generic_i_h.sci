@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function h=generic_i_h(i,v,h)
     hsave=h
@@ -16,6 +19,7 @@ function h=generic_i_h(i,v,h)
     if and(type(i($))<>[1 2 4 8 129 15]) then
         i($+1)=:
     end
+
     n=lstsize(i)
     hdl=h;hind=[]
     for k=1:lstsize(i)// walk down in the handle tree
@@ -30,7 +34,6 @@ function h=generic_i_h(i,v,h)
         else
             error("Invalid path")
         end
-
         if type(hdl)<>9 then //a leaf found
             property=hdl
             hdl=lasthandle
@@ -38,20 +41,20 @@ function h=generic_i_h(i,v,h)
             if (k+1)==size(i) then
                 index=i($)
             else
-                if i(2)=="locations" & size(v,"*") <> size(property(3),"*") | i(2)=="labels" & size(v,"*") <> size(property(2),"*") then
-                    error(msprintf(_("%s: Incompatible sizes for properties ''%s'' and ''%s'': Same sizes expected.\n"), "generic_i_h", i(1)+".locations", i(1)+".labels"));
-                else
-                    index=list(i(k+1:$))
-                end
+                index=list(i(k+1:$))
             end
             break
         end
     end
+
     if hind<>[] then // a property found
         if type(index)==15 & and(type(property)<>[15 16 17]) then
             property(index(:))=v
         else
             if or(size(index)<>[-1 -1]) then
+                if (index(1)=="locations" | index(1)=="labels") & size(v,"*") ~= 1 & size(property(index),"*") ~= size(v,"*") then
+                    error(msprintf(_("%s: Incompatible sizes for properties ''%s'' and ''%s'': Same sizes expected.\n"), "generic_i_h", string(i($-2))+".locations", string(i($-2))+".labels"));
+                end
                 property(index)=v
             else
                 property=v
@@ -69,5 +72,5 @@ function h=generic_i_h(i,v,h)
     else
         error(msprintf(_("%s: Wrong type for input argument #%d.\n"),"generic_i_h",1));
     end
-    h= hsave
+    h = hsave
 endfunction

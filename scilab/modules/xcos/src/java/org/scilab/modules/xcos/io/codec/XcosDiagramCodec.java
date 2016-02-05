@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -24,11 +28,12 @@ import org.scilab.modules.graph.io.ScilabGraphCodec;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.ScicosParameters;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -37,6 +42,7 @@ import org.w3c.dom.NodeList;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.model.mxGraphModel;
+import com.mxgraph.model.mxICell;
 
 /**
  * Codec for an {@link org.scilab.modules.xcos.graph.XcosDiagram} instance.
@@ -81,8 +87,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      * @param exclude
      *            Optional array of fieldnames to be ignored.
      * @param idrefs
-     *            Optional array of fieldnames to be converted to/from
-     *            references.
+     *            Optional array of fieldnames to be converted to/from references.
      * @param mapping
      *            Optional mapping from field- to attributenames.
      */
@@ -94,9 +99,13 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      * Register this codec into the {@link mxCodecRegistry}.
      */
     public static void register() {
-        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, null, null);
+        JavaController controller = new JavaController();
+
+        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, ""), DIAGRAM_IGNORED_FIELDS, null,
+                null);
         mxCodecRegistry.register(diagramCodec);
-        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
+        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new XcosDiagram(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, ""),
+                SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
         mxCodecRegistry.register(superBlockDiagramCodec);
     }
 
@@ -115,9 +124,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      *            Value of the property to be encoded.
      * @param node
      *            XML node that contains the encoded object.
-     * @see com.mxgraph.io.mxObjectCodec#encodeValue(com.mxgraph.io.mxCodec,
-     *      java.lang.Object, java.lang.String, java.lang.Object,
-     *      org.w3c.dom.Node)
+     * @see com.mxgraph.io.mxObjectCodec#encodeValue(com.mxgraph.io.mxCodec, java.lang.Object, java.lang.String, java.lang.Object, org.w3c.dom.Node)
      */
     @Override
     protected void encodeValue(mxCodec enc, Object obj, String fieldname, Object value, Node node) {
@@ -173,20 +180,36 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      *            the {@link Current} field name
      * @param value
      *            the current field value
-     * @see com.mxgraph.io.mxObjectCodec#setFieldValue(java.lang.Object,
-     *      java.lang.String, java.lang.Object)
+     * @see com.mxgraph.io.mxObjectCodec#setFieldValue(java.lang.Object, java.lang.String, java.lang.Object)
      */
     @Override
     protected void setFieldValue(Object obj, String fieldname, Object value) {
         Field field;
         try {
             field = ScicosParameters.class.getDeclaredField(fieldname);
-            ScicosParameters params = ((XcosDiagram) obj).getScicosParameters();
+            ScicosParameters params = new ScicosParameters(((XcosDiagram) obj).getUID(), ((XcosDiagram) obj).getKind());
             super.setFieldValue(params, fieldname, value);
         } catch (SecurityException e) {
             field = null;
         } catch (NoSuchFieldException e) {
             field = null;
+        }
+
+        // pre 6.0.0 Xcos have an mxCell defaultParent whereas it should be an XcosCell
+        if (field == null && "defaultParent".equals(fieldname) && !(value instanceof XcosCell)) {
+            XcosDiagram diag = (XcosDiagram) obj;
+            XcosCell defaultParent = (XcosCell) diag.getDefaultParent();
+            mxICell root = (mxICell) diag.getModel().getRoot();
+
+            /*
+             * Restore the initial hierarchy mxCell -> root XcosCell -> default parent with diagram uid / kind BasicBlock BasicLink . . .
+             */
+
+            Object[] cells = diag.getChildCells(value);
+            root.remove(0);
+            diag.addCells(cells, defaultParent);
+
+            return;
         }
 
         if (field == null) {
@@ -195,10 +218,14 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc} <BR>
+     * <BR>
+     * <B>UPDATED TO COVER</B>
      *
-     * Strip out any node with an invalid parent id. (5.3.1 diagrams may
-     * contains invalid default parents, remove them.)
+     * <UL>
+     * <LI>Strip out any node with an invalid parent id. (5.3.1 diagrams may contains invalid default parents, remove them.)</LI>
+     * <LI>Remove cell where id end with "#identifier#identifier"</LI>
+     * </UL>
      */
     @Override
     public Node beforeDecode(mxCodec dec, Node node, Object obj) {
@@ -239,13 +266,19 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      */
     private void cleanUpNode(final Set<String> ids, final Collection<Node> trash, Node cell) {
         final Node id = cell.getAttributes().getNamedItem("id");
+        final String idValue = id.getNodeValue();
         final Node parent = cell.getAttributes().getNamedItem("parent");
 
         if (id instanceof Element) {
-            ids.add(id.getNodeValue());
+            ids.add(idValue);
         }
         if (parent instanceof Element && !ids.contains(parent.getNodeValue())) {
             trash.add(parent);
+        }
+
+        // remove dual identifier cells
+        if (idValue.endsWith(XcosDiagram.HASH_IDENTIFIER + XcosDiagram.HASH_IDENTIFIER)) {
+            trash.add(cell);
         }
     }
 
@@ -259,15 +292,14 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      * @param node
      *            the cureent node
      * @return the updated object
-     * @see org.scilab.modules.graph.io.ScilabGraphCodec#beforeEncode(com.mxgraph.io.mxCodec,
-     *      java.lang.Object, org.w3c.dom.Node)
+     * @see org.scilab.modules.graph.io.ScilabGraphCodec#beforeEncode(com.mxgraph.io.mxCodec, java.lang.Object, org.w3c.dom.Node)
      */
     @Override
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
         final Package p = Package.getPackage("org.scilab.modules.xcos");
 
-        trace(enc, node, new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP).append(p.getSpecificationVersion())
-              .append(SEP).append(p.getImplementationVersion()).toString());
+        trace(enc, node, new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP).append(p.getSpecificationVersion()).append(SEP)
+              .append(p.getImplementationVersion()).toString());
 
         return super.beforeEncode(enc, obj, node);
     }
@@ -282,8 +314,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      * @param obj
      *            Object decoded.
      * @return The Object transformed
-     * @see org.scilab.modules.graph.io.ScilabGraphCodec#afterDecode(com.mxgraph.io.mxCodec,
-     *      org.w3c.dom.Node, java.lang.Object)
+     * @see org.scilab.modules.graph.io.ScilabGraphCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
      */
     @Override
     public Object afterDecode(mxCodec dec, Node node, Object obj) {
@@ -291,27 +322,6 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 
         final mxGraphModel model = (mxGraphModel) diag.getModel();
         final Object parent = diag.getDefaultParent();
-
-        // main update loop
-        final mxGraphModel.Filter filter = new mxGraphModel.Filter() {
-            @Override
-            public boolean filter(Object cell) {
-                if (cell instanceof BasicBlock) {
-                    final BasicBlock block = (BasicBlock) cell;
-
-                    // update parent diagram
-                    block.setParentDiagram(diag);
-
-                    // restore default root in case of a wrong hierarchy.
-                    return block.getParent() != parent;
-                }
-                return false;
-            }
-        };
-        final Collection<Object> blocks = mxGraphModel.filterDescendants(model, filter);
-        if (!blocks.isEmpty()) {
-            diag.addCells(blocks.toArray());
-        }
 
         // pre-5.3 diagram may be saved in a locked state
         // unlock it

@@ -5,11 +5,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -38,8 +41,8 @@
 #include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
-static int getZoomedObject(const char * fname);
-static BOOL getZoomRect(const char * fname, int attribPos, double rect[4]);
+static int getZoomedObject(void* pvApiCtx, const char * fname);
+static BOOL getZoomRect(void* pvApiCtx, const char * fname, int attribPos, double rect[4]);
 /*--------------------------------------------------------------------------*/
 /**
  * Get the [xmin, ymin, xmax, ymax] vector specified as input argument
@@ -48,7 +51,7 @@ static BOOL getZoomRect(const char * fname, int attribPos, double rect[4]);
  * @param[out] rect retrieved rectangle
  * @return TRUE if the rect could be retrieved, false otherwise
  */
-static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
+static BOOL getZoomRect(void* pvApiCtx, const char * fname, int attribPos, double rect[4])
 {
     SciErr sciErr;
     int nbRow = 0;
@@ -69,7 +72,7 @@ static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, attribPos);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, attribPos);
         return 1;
     }
 
@@ -103,7 +106,7 @@ static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
  * @return NULL if the input argument is not correct,
  *              the object to zoom otherwise
  */
-static int getZoomedObject(const char * fname)
+static int getZoomedObject(void* pvApiCtx, const char * fname)
 {
     SciErr sciErr;
     int nbRow  = 0;
@@ -159,7 +162,7 @@ static int getZoomedObject(const char * fname)
 
 }
 /*--------------------------------------------------------------------------*/
-int sci_zoom_rect(char *fname, unsigned long fname_len)
+int sci_zoom_rect(char *fname, void *pvApiCtx)
 {
     int iFigureUID = 0;
     int* piChildrenUID = NULL;
@@ -187,7 +190,7 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
         /* with handle a figure or subwindow */
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            int iZoomedObject = getZoomedObject(fname);
+            int iZoomedObject = getZoomedObject(pvApiCtx, fname);
             if (iZoomedObject == 0)
             {
                 return -1;
@@ -197,7 +200,7 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
         else if (checkInputArgumentType(pvApiCtx, 1, sci_matrix))
         {
             double rect[4];
-            if (getZoomRect(fname, 1, rect))
+            if (getZoomRect(pvApiCtx, fname, 1, rect))
             {
                 /* rectangle found */
                 //int status = sciZoom2D(getCurrentSubWin(), rect);
@@ -248,8 +251,8 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
             return -1;
         }
 
-        iZoomedObject = getZoomedObject(fname);
-        if (iZoomedObject == 0 || !getZoomRect(fname, 2, rect))
+        iZoomedObject = getZoomedObject(pvApiCtx, fname);
+        if (iZoomedObject == 0 || !getZoomRect(pvApiCtx, fname, 2, rect))
         {
             return -1;
         }

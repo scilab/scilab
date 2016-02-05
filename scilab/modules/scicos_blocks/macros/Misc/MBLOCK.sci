@@ -117,7 +117,7 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
             funam=stripblanks(Tfunam)","errcatch")
 
             if ierr<>0 then
-                //You loose ! Try again ! Insert coin !
+                //You lose! Try again! Insert coin!
                 //messagebox("Error, try again please!","modal","error");
                 messagebox("Error in evaluation of variables.","modal","error");
                 ok=%f

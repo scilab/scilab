@@ -213,14 +213,10 @@
         <title>Example</title>
         <para>
             The following example translate the sine input signal to a different range and cut part of it.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/lookuptables_pal/en_US/INTRPLBLK_f_en_US.zcos">
-                Open this example in Xcos.
-            </link>
         </para>
         <para>
             <latex>X=\{-1.0;-0.5;0;0.5;1.0\}\ Y=\{-6;-6;0;0;6\}</latex>
         </para>
-        <para/>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/lookuptables_pal/en_US/INTRPLBLK_f_en_US.zcos">
                 <inlinemediaobject>
@@ -229,11 +225,12 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+        </para>
+        
+        <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/lookuptables_pal/en_US/INTRPLBLK_f_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
     </refsection>
     <refsection id="Interfacingfunction_INTRPLBLK_f">
         <title>Interfacing function</title>

@@ -3,11 +3,14 @@
  * Copyright (C) 2008 - INRIA - Sylvestre Koumar
  * Copyright (C) 2011 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.bridge.filechooser;
@@ -30,12 +33,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_export.ExportParams;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -73,7 +76,7 @@ public class ExportOptionWindow implements ActionListener {
         parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, (JComponent) tab);
         optionDialog = new JDialog(parentWindow);
         optionDialog.setTitle(String.format(Messages.gettext("Option for %s format"), exportData.getExportExtension().toUpperCase()));
-        optionDialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
+        optionDialog.setIconImage(new ImageIcon(FindIconHelper.findIcon("scilab")).getImage());
     }
 
     /**
@@ -166,9 +169,10 @@ public class ExportOptionWindow implements ActionListener {
 
             int orientation = exportData.getExportProperties().elementAt(0).equalsIgnoreCase("landscape") ? ExportParams.LANDSCAPE : ExportParams.PORTRAIT;
 
+            Cursor old = parentWindow.getCursor();
             parentWindow.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             String err = FileExporter.fileExport(figId, fileName, exportData.getExportExtension(), 1f, orientation);// 1f is the jpeg quality compression and it is useless here
-            parentWindow.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            parentWindow.setCursor(old);
 
             if (err.length() != 0) {
                 ScilabModalDialog.show(parentTab, String.format(Messages.gettext("An error occurred during export: %s"), err), Messages.gettext("Export error"), IconType.ERROR_ICON);

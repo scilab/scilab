@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="fec_properties">
@@ -70,11 +73,11 @@
                 <term>triangles: </term>
                 <listitem>
                     <para>
-                        This is a five column matrix <literal>[tn,n1,n2,n3,flag]</literal>.
-                        <literal>tn(j)</literal> is the triangle number. <literal>n1(j)</literal>,
-                        <literal>n2(j)</literal> and <literal>n3(j)</literal> are the index of the nodes
-                        which constitute the triangle. (<literal>flag(j)</literal> is not
-                        used).
+                        This is a  <literal>[Ntr,N+2]</literal> matrix. Each line of <varname>triangles</varname> specifies a convex polygon 
+                        of the  mesh <literal>triangles(j) = [number,node1,node2,node3, ..., nodeN, flag]</literal>. 
+                        <literal>node1,node2,node3, ..., nodeN</literal> are the number of the nodes which constitutes 
+                        the polygon. number is the number of the polygons and flag is an integer 
+                        not used.
                     </para>
                 </listitem>
             </varlistentry>
@@ -91,7 +94,7 @@
                         <literal>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</literal> is filled with the
                         color <literal>i</literal>). By default the <literal>z_bounds</literal> property value
                         is <literal>[0,0]</literal>. In this case, the <literal>zmin</literal> and <literal>zmax</literal> are
-                        autommatically set to the minumum and maximum of the <literal>func</literal> argument.
+                        autommatically set to the minimum and maximum of the <literal>func</literal> argument.
                     </para>
                 </listitem>
             </varlistentry>
@@ -186,7 +189,7 @@
                 <term>user_data: </term>
                 <listitem>
                     <para>This field can be use to store any scilab variable in the fec data
-                        structure, and to retreive it.
+                        structure, and to retrieve it.
                     </para>
                 </listitem>
             </varlistentry>

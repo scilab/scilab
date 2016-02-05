@@ -55,6 +55,7 @@ c
      *  resg,resk,reskh,result,uflow,wg,wgk,xgk
       integer j,jtw,jtwm1
       external f
+      common/ierajf/iero
 c
       dimension fv1(10),fv2(10),wg(5),wgk(11),xgk(11)
 c
@@ -140,13 +141,16 @@ c           the integral, and estimate the absolute error.
 c
       resg = 0.0d+00
       fc = f(centr)
+      if(iero.gt.0) return
       resk = wgk(11)*fc
       resabs = dabs(resk)
       do 10 j=1,5
         jtw = 2*j
         absc = hlgth*xgk(jtw)
         fval1 = f(centr-absc)
+        if(iero.gt.0) return
         fval2 = f(centr+absc)
+        if(iero.gt.0) return
         fv1(jtw) = fval1
         fv2(jtw) = fval2
         fsum = fval1+fval2
@@ -158,7 +162,9 @@ c
         jtwm1 = 2*j-1
         absc = hlgth*xgk(jtwm1)
         fval1 = f(centr-absc)
+        if(iero.gt.0) return
         fval2 = f(centr+absc)
+        if(iero.gt.0) return
         fv1(jtwm1) = fval1
         fv2(jtwm1) = fval2
         fsum = fval1+fval2

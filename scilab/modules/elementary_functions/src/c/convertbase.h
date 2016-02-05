@@ -2,16 +2,21 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 #ifndef __CONVERTBASE_H__
 #define __CONVERTBASE_H__
+
+#include "dynlib_elementary_functions.h"
 
 typedef enum
 {
@@ -30,7 +35,7 @@ typedef enum
 * @param[out] int if 0 no error
 * @return converted value (decimal)
 */
-double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err);
+ELEMENTARY_FUNCTIONS_IMPEXP double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err);
 
 /**
 * Convert decimal to base N number in string
@@ -40,7 +45,7 @@ double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err)
 * @param[out] error value
 * @return a matrix of string of size mn
 */
-char **convertMatrixOfDec2Base(const double* dValues, int mn, int numberbase, unsigned int nbDigits, error_convertbase *err);
+ELEMENTARY_FUNCTIONS_IMPEXP char **convertMatrixOfDec2Base(const double* dValues, int mn, int numberbase, unsigned int nbDigits, error_convertbase *err);
 
 #endif /* __CONVERTBASE_H__ */
 /*--------------------------------------------------------------------------*/

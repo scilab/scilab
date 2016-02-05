@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scicos
+*
+* Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+* Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+*
+* See the file ./license.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Continuous_pal" xml:lang="ja">
+    <refnamediv>
+        <refname>Continuous_pal</refname>
+        <refpurpose>連続時間システムパレット</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>ブロックのスクリーンショット</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="CLINDUMMY_f" fileref="../../../../../../modules/xcos/images/palettes/CLINDUMMY_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="CLR" fileref="../../../../../../modules/xcos/images/palettes/CLR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="CLSS" fileref="../../../../../../modules/xcos/images/palettes/CLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="DERIV" fileref="../../../../../../modules/xcos/images/palettes/DERIV.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="INTEGRAL_f" fileref="../../../../../../modules/xcos/images/palettes/INTEGRAL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="INTEGRAL_m" fileref="../../../../../../modules/xcos/images/palettes/INTEGRAL_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="PID" fileref="../../../../../../modules/xcos/images/palettes/PID.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="TCLSS" fileref="../../../../../../modules/xcos/images/palettes/TCLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="TIME_DELAY" fileref="../../../../../../modules/xcos/images/palettes/TIME_DELAY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="VARIABLE_DELAY" fileref="../../../../../../modules/xcos/images/palettes/VARIABLE_DELAY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="PDE" fileref="../../../../../../modules/xcos/images/palettes/PDE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Module_Continuous_pal">
+        <title>モジュール</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_Continuous_pal">
+        <title>説明</title>
+        <para>
+            連続時間システムパレットは,基本的な線形ブロックを有します.
+        </para>
+    </refsection>
+    <refsection id="Blocks_Continuous_pal">
+        <title>ブロック</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="CLINDUMMY_f">CLINDUMMY_f — Dummy</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="CLR">CLR — 連続系伝達関数</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="CLSS">CLSS - 連続系状態空間システム</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="DERIV">DERIV - 微係数</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="INTEGRAL_f">INTEGRAL_f - 積分</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="INTEGRAL_m">INTEGRAL_m — 積分</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="PID">PID - PID レギュレータ</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="TCLSS">TCLSS — ジャンプを有する連続系線形システム
+                    </link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="TIME_DELAY">TIME_DELAY - 時間遅延</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="VARIABLE_DELAY">VARIABLE_DELAY — 可変遅延
+                    </link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

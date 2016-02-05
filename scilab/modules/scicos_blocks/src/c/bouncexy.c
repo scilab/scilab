@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2012 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -19,7 +22,7 @@
 #include "dynlib_scicos_blocks.h"
 #include "scoUtils.h"
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "elementary_functions.h"
 
 #include "setGraphicObjectProperty.h"
@@ -33,9 +36,7 @@
 #include "scicos.h"
 
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 
 #include "FigureList.h"
 #include "BuildObjects.h"
@@ -131,8 +132,9 @@ static int getArc(int iAxeUID, scicos_block * block, int row);
  * Set the bounds
  *
  * \param block the block
+ * \param iAxeUID the axe id
  */
-static BOOL setBounds(scicos_block * block);
+static BOOL setBounds(scicos_block * block, int iAxeUID);
 
 /*****************************************************************************
  * Simulation function
@@ -162,7 +164,7 @@ SCICOS_BLOCKS_IMPEXP void bouncexy(scicos_block * block, scicos_flag flag)
                 set_block_error(-5);
             }
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -171,7 +173,7 @@ SCICOS_BLOCKS_IMPEXP void bouncexy(scicos_block * block, scicos_flag flag)
 
         case StateUpdate:
             iFigureUID = getFigure(block);
-            if (iFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 // allocation error
                 set_block_error(-5);
@@ -391,7 +393,7 @@ static int getFigure(scicos_block * block)
 
     iFigureUID = getFigureFromIndex(figNum);
     // create on demand
-    if (iFigureUID == NULL)
+    if (iFigureUID == 0)
     {
         iFigureUID = createNewFigureWithAxes();
         setGraphicObjectProperty(iFigureUID, __GO_ID__, &figNum, jni_int, 1);
@@ -409,7 +411,7 @@ static int getFigure(scicos_block * block)
         setGraphicObjectProperty(iAxe, __GO_BOX_TYPE__, &i__1, jni_int, 1);
         setGraphicObjectProperty(iAxe, __GO_ISOVIEW__, &b_true, jni_bool, 1);
 
-        setBounds(block);
+        setBounds(block, iAxe);
     }
 
     if (sco->scope.cachedFigureUID == 0)
@@ -429,7 +431,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     // assert the sco is not NULL
     if (sco == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
@@ -443,7 +445,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     /*
      * Allocate if necessary
      */
-    if (iAxe == NULL)
+    if (iAxe == 0)
     {
         cloneAxesModel(iFigureUID);
         iAxe = findChildWithKindAt(iFigureUID, __GO_AXES__, 0);
@@ -452,7 +454,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     /*
      * Setup on first access
      */
-    if (iAxe != NULL)
+    if (iAxe != 0)
     {
         // allocate the polylines through the getter
         for (i = 0; i < block->insz[0]; i++)
@@ -462,7 +464,7 @@ static int getAxe(int iFigureUID, scicos_block * block)
     }
     else
     {
-        return NULL;
+        return 0;
     }
 
     /*
@@ -486,7 +488,7 @@ static int getArc(int iAxeUID, scicos_block * block, int row)
     // assert the sco is not NULL
     if (sco == NULL || sco->scope.cachedArcsUIDs == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     // fast path for an existing object
@@ -504,14 +506,14 @@ static int getArc(int iAxeUID, scicos_block * block, int row)
     {
         iArc = createGraphicObject(__GO_ARC__);
 
-        if (iArc != NULL)
+        if (iArc != 0)
         {
             createDataObject(iArc, __GO_ARC__);
             setGraphicObjectRelationship(iAxeUID, iArc);
         }
         else
         {
-            return NULL;
+            return 0;
         }
     }
 
@@ -541,11 +543,8 @@ static int getArc(int iAxeUID, scicos_block * block, int row)
     return sco->scope.cachedArcsUIDs[row];
 }
 
-static BOOL setBounds(scicos_block * block)
+static BOOL setBounds(scicos_block * block, int iAxeUID)
 {
-    int iFigureUID;
-    int iAxeUID;
-
     double dataBounds[6];
 
     dataBounds[0] = block->rpar[0]; // xMin
@@ -554,9 +553,6 @@ static BOOL setBounds(scicos_block * block)
     dataBounds[3] = block->rpar[3]; // yMax
     dataBounds[4] = -1.0;       // zMin
     dataBounds[5] = 1.0;        // zMax
-
-    iFigureUID = getFigure(block);
-    iAxeUID = getAxe(iFigureUID, block);
 
     return setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 }

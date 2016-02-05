@@ -67,7 +67,7 @@
             before the point where the error happened.
         </para>
         <para>
-            This function is especially useful while using <link linkend="errcatch">errcatch</link> or <link linkend="execstr">execstr</link>.
+            This function is especially useful while using <link linkend="execstr">execstr</link>.
         </para>
         <para>The recorded error message may be retained for a further call to
             <literal>lasterror</literal> using
@@ -86,9 +86,6 @@ end
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="errcatch">errcatch</link>
-            </member>
             <member>
                 <link linkend="execstr">execstr</link>
             </member>

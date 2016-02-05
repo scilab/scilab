@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Sylvestre LEDRU
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,32 +19,35 @@
 #include "dl_genErrorMessage.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "sci_malloc.h"
 /*---------------------------------------------------------------------------*/
-void dl_genErrorMessage(char *fname, int errorCode, char* SharedLibraryName)
+void dl_genErrorMessage(const wchar_t * _pwstCallerName, int _iErr, const wchar_t * _pwstLibraryName)
 {
-    switch (errorCode)
+    char* pstCaller = wide_string_to_UTF8(_pwstCallerName);
+    char* pstLibName = wide_string_to_UTF8(_pwstLibraryName);
+    switch (_iErr)
     {
         case -1:
-            Scierror(236, _("%s: The shared archive was not loaded: %s\n"), fname, GetLastDynLibError());
+            Scierror(236, _("%s: The shared archive was not loaded: %s\n"), pstCaller, GetLastDynLibError());
             break;
-
         case -2:
-            Scierror(999, _("%s: Cannot open shared files. Max entry %d reached.\n"), fname, ENTRYMAX);
+            //never occurs now
             break;
-
         case -3:
-            Scierror(999, _("%s: Shared lib %s does not exist.\n"), fname, SharedLibraryName);
+            Scierror(999, _("%s: Shared lib %s does not exist.\n") , pstCaller, pstLibName);
             break;
-
         case -4:
-            Scierror(999, _("%s: Already loaded from library %s\n"), fname, SharedLibraryName);
+            Scierror(999, _("%s: Already loaded from library %s\n"), pstCaller, pstLibName);
             break;
         case -5:
-            Scierror(235, _("%s: problem with one of the entry point.\n"), fname, GetLastDynLibError());
+            Scierror(235, _("%s: problem with one of the entry point.\n"), pstCaller);
             break;
         default:
-            Scierror(999, _("%s: An error occurred: %s\n"), fname, GetLastDynLibError());
+            Scierror(999, _("%s: An error occurred: %s\n"), pstCaller, GetLastDynLibError());
             break;
     }
+
+    FREE(pstLibName);
+    FREE(pstCaller);
 }
 /*---------------------------------------------------------------------------*/

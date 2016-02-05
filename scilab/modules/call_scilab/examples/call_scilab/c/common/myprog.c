@@ -13,6 +13,7 @@
 #endif
 #include <unistd.h>
 #include <string.h>
+
 #include "api_scilab.h"
 #include "call_scilab.h" /* Provide functions to call Scilab engine */
 
@@ -31,6 +32,7 @@
 /*------------------------------------------------------------*/
 static int first_example(void)
 {
+    void* pvApiCtx = NULL;
     static double A[] = {1, 2, 3, 4};
     int mA = 2, nA = 2;
     static double b[] = {4, 5};

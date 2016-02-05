@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -46,7 +49,7 @@ import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
@@ -76,7 +79,7 @@ import org.w3c.dom.NodeList;
  * @author Calixte DENIZET
  */
 @SuppressWarnings(value = { "serial" })
-public class SearchFile extends SwingScilabTab {
+public class SearchFile extends SwingScilabDockablePanel {
 
     public static final String SEARCHDONE = "SearchFile.SearchDone";
 
@@ -116,7 +119,7 @@ public class SearchFile extends SwingScilabTab {
      * Set the parent window
      */
     public void setParentWindow() {
-        parentWindow = new SwingScilabWindow();
+        parentWindow = SwingScilabWindow.createWindow(true);
         parentWindow.addTab(this);
         parentWindow.setVisible(true);
     }
@@ -171,8 +174,8 @@ public class SearchFile extends SwingScilabTab {
      */
     public void changeToolBar() {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
-        Set<SwingScilabTab> set = win.getDockingPort().getDockables();
-        for (SwingScilabTab tab : set) {
+        Set<SwingScilabDockablePanel> set = win.getDockingPort().getDockables();
+        for (SwingScilabDockablePanel tab : set) {
             if (tab == editor) {
                 addToolBar(editor.getToolBar());
                 break;
@@ -308,7 +311,7 @@ public class SearchFile extends SwingScilabTab {
         CommonCallBack callback = new CommonCallBack(null) {
             @Override
             public void callBack() {
-                ClosingOperationsManager.startClosingOperation((SwingScilabTab) SearchFile.this);
+                ClosingOperationsManager.startClosingOperation((SwingScilabDockablePanel) SearchFile.this);
             }
 
             @Override

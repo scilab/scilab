@@ -34,7 +34,7 @@
             a execução de uma dessas sentenças, o erro é registrado, as sentenças
             restantes até <literal>catch</literal>são puladas e as sentenças entre as
             palavras-chaves <literal>catch</literal> e <literal>end</literal> são
-            executadas usando-se o modo de manipulação de erros padrão (ver: <link linkend="errcatch">errcatch</link>).
+            executadas usando-se o modo de manipulação de erros padrão.
         </para>
         <para>
             A mensagem de erro registrada pode ser recuperada pela função <link linkend="lasterror">lasterror</link> .
@@ -82,9 +82,6 @@ end
             </member>
             <member>
                 <link linkend="lasterror">lasterror</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
             </member>
         </simplelist>
     </refsection>

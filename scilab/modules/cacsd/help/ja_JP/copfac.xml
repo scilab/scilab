@@ -3,17 +3,20 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="copfac">
     <refnamediv>
         <refname>copfac</refname>
-        <refpurpose>右既約分解 </refpurpose>
+        <refpurpose>連続時間動的システムの右既約分解</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -26,7 +29,7 @@
                 <term>G</term>
                 <listitem>
                     <para>
-                        <literal>syslin</literal> リスト  (連続時間線形システム )
+                        連続時間線形動的システム
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,7 +54,7 @@
                 <term>N,M,XT,YT</term>
                 <listitem>
                     <para>
-                        <literal>syslin</literal>リストで表される線形システム
+                        <literal>syslin</literal>連続時間線形動的システム
                     </para>
                 </listitem>
             </varlistentry>
@@ -88,5 +91,19 @@
                 <link linkend="lcf">lcf</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> は連続時間線形動的システムについて
+                    確認されるようになりました.
+                    この変換は
+                    <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink>により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

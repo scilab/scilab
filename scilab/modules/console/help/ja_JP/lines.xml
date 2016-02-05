@@ -3,11 +3,14 @@
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002 - INRIA
     * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="lines">
@@ -17,17 +20,30 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>lines([nl [,nc]])
-            ncl=lines()
+        <synopsis>lines(nl)
+            lines(nl, nc)
+            lines(ncl)
+            ncl = lines()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
-                <term>nl : 整数, 垂直方向のページ切替制御の行数. </term>
+                <term>nl</term>
                 <listitem>
-                    <para>0の場合,垂直方向のページ切替制御は行われません.</para>
+                    <para>整数, 垂直方向のページ切替制御の行数.</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>0の場合,垂直方向のページ切替制御は行われません.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -1の場合: 垂直ページング制御をウインドウの現在
+                                の大きさにリセット.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -82,5 +98,25 @@
                 <link linkend="print">print</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>lines はデフォルトで 0に設定されます. 
+                            引数 -1 が追加されます.
+                            詳細については, SEP #67 を参照ください.
+                        </listitem>
+                        <listitem>
+                            lines は,
+                            入力引数として 1x2 ベクトル [nc, nl] を管理します.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

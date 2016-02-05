@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function [y,x]=csim(u,dt,sl,x0,tol)
@@ -49,7 +52,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     end
     if sltyp=="rational" then sl=tf2ss(sl),end
     if sl.dt<>"c" then
-        warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"csim",1));
+        warning(msprintf(gettext("%s: Input argument #%d is assumed continuous time.\n"),"csim",1));
     end
     //
     [a,b,c,d]=sl(2:5);
@@ -93,9 +96,14 @@ function [y,x]=csim(u,dt,sl,x0,tol)
             comp(uu),
             u(1)=uu,
         end
-    else error(44,2)
+    else error(msprintf(gettext("%s: Wrong type for input argument #%d: Function expected"), "csim", 2));
     end;
     //
+    if isempty(dt) then
+        y = [];
+        x = [];
+        return
+    end
     if rhs==3 then x0=sl(6),end
     if imp==1|step==1 then x0=0*x0,end
     nt=size(dt,"*");x=0*ones(ma,nt);
@@ -160,6 +168,6 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         end;
         k=k+n
     end;
-    y=c*x+d*ut
+    y = c*x + d*ut
     if lhs==2 then x=v1*v2*x,end
 endfunction

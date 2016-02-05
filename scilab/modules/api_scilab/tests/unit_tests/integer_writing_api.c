@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution. The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,10 +17,10 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
-int read_integer(char *fname, unsigned long fname_len)
+int read_integer(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     //output variable info
@@ -57,7 +60,7 @@ int read_integer(char *fname, unsigned long fname_len)
     CheckInputArgument(pvApiCtx, 6, 6);
     CheckOutputArgument(pvApiCtx, 6, 6);
 
-    //get varialbe address
+    //get variable address
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr8);
     if (sciErr.iErr)
     {
@@ -252,6 +255,13 @@ int read_integer(char *fname, unsigned long fname_len)
         return 0;
     }
 
+    FREE(pcDataOut);
+    FREE(pucDataOut);
+    FREE(psDataOut);
+    FREE(pusDataOut);
+    FREE(piDataOut);
+    FREE(puiDataOut);
+
     //assign allocated variables to Lhs position
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
@@ -265,7 +275,7 @@ int read_integer(char *fname, unsigned long fname_len)
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn)
 {
     int i = 0;
-    void* pvDataOut = (void*)malloc(_iSize * _iRows * _iCols);
+    void* pvDataOut = (void*)MALLOC(_iSize * _iRows * _iCols);
     for (i = 0 ; i < _iRows * _iCols ; i++)
     {
         int iVal = 0;

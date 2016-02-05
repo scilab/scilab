@@ -19,9 +19,9 @@
 // Dynamic link doesn't detect intel fortran compiler version 11 on Windows
 
 // Please be sure that you have installed Intel fortran 11
-// launch scilab 
+// launch scilab
 
 r = findmsifortcompiler();
-if r <> ifort11 then pause,end
+if r == "unknown" then pause,end
 
 // And checks that others tests about dynamic link work

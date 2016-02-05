@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: de\n"
 
 #, c-format
@@ -22,30 +22,11 @@ msgid "%s: The file %s does not exist.\n"
 msgstr "%s: Die Datei %s existiert nicht.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
 msgstr "%s: Falsches Eingangsargument #%d: Pfad zu Scilabskript erwartet.\n"
 
-msgid "&File"
-msgstr "&Datei"
-
-msgid "&Tools"
-msgstr "Zusatzprogramme"
-
-msgid "&Edit"
-msgstr "Editieren"
-
-msgid "&?"
-msgstr "&?"
-
-msgid "File"
-msgstr "Datei"
-
-msgid "Close"
-msgstr "Schließen"
-
-msgid "Demos"
-msgstr "Demos"
+msgid "Demonstrations"
+msgstr ""
 
 msgid " -- View Code -- "
 msgstr " - Code anzeigen - "

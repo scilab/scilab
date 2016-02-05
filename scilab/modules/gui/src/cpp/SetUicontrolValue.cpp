@@ -4,19 +4,22 @@
  * Copyright (C) 2011-2012 - DIGITEO - Vincent COUVERT
  * Sets the value property of an uicontrol object
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
-#include <math.h>
-
-#include "GetUicontrolStyle.hxx"
-#include "SetUicontrolValue.hxx"
-#include "stack-c.h"
+extern "C"
+{
+#include <stdio.h>
+#include "GetUicontrol.h"
+}
 
 int SetUicontrolValue(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
@@ -61,7 +64,7 @@ int SetUicontrolValue(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
         if (nbCol > 1)
         {
             /* Wrong value size */
-            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "Value");
+            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string expected.\n")), "Value");
             return SET_PROPERTY_ERROR;
         }
 
@@ -120,6 +123,24 @@ int SetUicontrolValue(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
 
     if (objectStyle == __GO_UI_POPUPMENU__ || objectStyle == __GO_UI_LISTBOX__)
     {
+        int iDataSize = 0;
+        int* piDataSize = & iDataSize;
+        getGraphicObjectProperty(iObjUID, __GO_UI_STRING_SIZE__, jni_int, (void**)&piDataSize);
+        if (piDataSize == NULL)
+        {
+            Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Value");
+            return SET_PROPERTY_ERROR;
+        }
+
+        for (int i = 0 ; i < valueSize ; i++)
+        {
+            if (truncatedValue[i] < 0 || truncatedValue[i] > iDataSize)
+            {
+                Scierror(999, _("'%s' value must be between 0 and %d.\n"), "Value", iDataSize);
+                return SET_PROPERTY_ERROR;
+            }
+        }
+
         status = setGraphicObjectProperty(iObjUID, __GO_UI_VALUE__, truncatedValue, jni_double_vector, valueSize);
     }
     else

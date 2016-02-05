@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargin" xml:lang="ru">
+    <refnamediv>
+        <refname>varargin</refname>
+        <refpurpose>
+            переменное число аргументов в списке входных аргументов
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция, чьим последним входным аргументом является
+            <literal>varargin</literal>, может быть вызвана с
+            бОльшим числом входных аргументов, чем указано в списке
+            входных аргументов. Аргументы вызова, переданные внутрь в форме ключевого слова <literal>varargin</literal> затем могут быть получены внутри функции в
+            списке с именем <literal>varargin</literal>.
+        </para>
+        <para>
+            Допустим, что ключевое слово <literal>varargin</literal>
+            является <literal>n</literal>-ным аргументом в списке
+            формальных входных аргументов, тогда, если функция
+            вызывается с меньшим числом, чем <literal>n-1</literal>,
+            входных аргументов, то список
+            <literal>varargin</literal> не будет определён. Если же
+            функция вызывается с <literal>n-1</literal> аргументами,
+            то список <literal>varargin</literal> будет пустым
+            списком.
+        </para>
+        <para>
+            <literal>function y = ex(varargin)</literal> может быть
+            вызвана с любым числом аргументов. Внутри функции
+            <literal>ex</literal> входные аргументы могут быть
+            получены в <literal>varargin(i)</literal>,
+            <literal>i=1:length(varargin)</literal>.
+        </para>
+        <para>
+            Если же это не последний аргумент функции, то
+            <literal>varargin</literal> будет обычным именем
+            входного аргумента без особого значения.
+        </para>
+        <para>
+            Общее число фактических входных аргументов даётся с
+            помощью <code>argn(2)</code>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примечание</title>
+        <para>
+            Синтаксис именованных аргументов, такой как <literal>foo(...,key=value)</literal>, не совместим с использованием <literal>varargin</literal>. Причина в том, что имена (то есть ключи), связанные со значениями, не хранятся в списке <literal>varargin</literal>. Рассмотрим пример:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+function foo(varargin)
+    disp([varargin(1),varargin(2)])
+endfunction
+        ]]></programlisting>
+        <screen>
+            -->foo(a=1,b=2)
+            1.    2.
+            -->foo(b=1,a=2)
+            1.    2.
+        </screen>
+        <para>
+            Результат одинаковый, но аргументы были переставлены.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+function exampl(a,varargin)
+    [lhs,rhs]=argn(0)
+    if rhs>=1 then
+        disp(varargin)
+    end
+endfunction
+
+exampl(1)
+exampl()
+exampl(1,2,3)
+l=list('a',%s,%t);
+exampl(1,l(2:3))
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="argn">argn</link>
+            </member>
+            <member>
+                <link linkend="function">function</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+            <member>
+                <link linkend="varargout">varargout</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

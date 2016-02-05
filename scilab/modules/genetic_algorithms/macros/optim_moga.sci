@@ -1,11 +1,15 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+// Copyright (C) 2014 - Michael Baudin <michael.baudin@contrib.scilab.org>
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_moga(ga_f, pop_size, nb_generation, p_mut, p_cross, Log, param)
 
@@ -22,6 +26,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_moga(ga_f, pop
     [selection_func,err] = get_param(param,"selection_func",selection_ga_elitist);
     [nb_couples,err]     = get_param(param,"nb_couples",100);
     [pressure,err]       = get_param(param,"pressure",0.05);
+    [output_func, err] = get_param(param, "output_func", output_moga_default);
 
     if ~isdef("ga_f","local") then
         error(gettext("optim_moga: ga_f is mandatory"));
@@ -55,7 +60,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_moga(ga_f, pop
     end
 
     Pop = list();
-    Pop = init_func(pop_size,param);
+    Pop = init_func(pop_size, param);
 
     if (nargout>=3) then
         pop_init = Pop;
@@ -90,9 +95,6 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_moga(ga_f, pop
 
     // The genetic algorithm
     for i=1:nb_generation
-        if (Log) then
-            printf(gettext("%s: iteration %d / %d"), "optim_moga", i, nb_generation);
-        end
         //
         // Selection
         //
@@ -101,19 +103,13 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_moga(ga_f, pop
         Wheel = cumsum(Efficiency);
         for j=1:nb_couples
             // Selection of the first individual in the couple
-            Shoot = grand(1,1,"def")*Wheel($);
-            Index = 1;
-            while((Wheel(Index)<Shoot)&(Index<length(Wheel)))
-                Index = Index + 1;
-            end
+            Shoot = grand(1,1,"unf", 0, Wheel($));
+            Index = find(Shoot <= Wheel, 1);
             Indiv1(j)           = Pop(Index);
             MO_FObj_Indiv1(j,:) = MO_FObj_Pop(Index,:);
             // Selection of the second individual in the couple
-            Shoot = grand(1,1,"def")*Wheel($);
-            Index = 1;
-            while((Wheel(Index)<Shoot)&(Index<length(Wheel)))
-                Index = Index + 1;
-            end
+            Shoot = grand(1,1,"unf", 0, Wheel($));
+            Index = find(Shoot <= Wheel, 1);
             Indiv2(j)           = Pop(Index);
             MO_FObj_Indiv2(j,:) = MO_FObj_Pop(Index,:);
         end
@@ -201,13 +197,16 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_moga(ga_f, pop
         // Recombination
         //
 
-        [Pop,FObj_Pop,Efficiency,MO_FObj_Pop] = selection_func(Pop,Indiv1,Indiv2,FObj_Pop,FObj_Indiv1,FObj_Indiv2, ...
-        MO_FObj_Pop,MO_FObj_Indiv1,MO_FObj_Indiv2,param);
+        [Pop, FObj_Pop, Efficiency, MO_FObj_Pop] = selection_func(Pop, Indiv1, Indiv2, FObj_Pop, FObj_Indiv1, FObj_Indiv2, ...
+                MO_FObj_Pop, MO_FObj_Indiv1, MO_FObj_Indiv2, param);
         if (Log) then
-            printf(gettext(" - min / max value found = %f / %f\n"), min(FObj_Pop), max(FObj_Pop));
+            stop = output_func(i, nb_generation, Pop, MO_FObj_Pop, param);
+            if stop then
+                break
+            end
         end
     end
 
-    pop_opt      = codage_func(Pop,"decode",param);
+    pop_opt      = codage_func(Pop, 'decode', param);
     fobj_pop_opt = MO_FObj_Pop;
 endfunction

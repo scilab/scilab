@@ -3,11 +3,14 @@
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  * Copyright (C) 2011-2013 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,6 +18,7 @@ package org.scilab.modules.xcos.modelica;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -26,8 +30,11 @@ import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
+import javax.xml.namespace.QName;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.modelica.model.Model;
 import org.scilab.modules.xcos.modelica.model.Model.Identifiers;
@@ -134,7 +141,7 @@ public final class ModelicaController {
         dialog.setTitle(ModelicaMessages.MODELICA_SETTINGS);
         dialog.setAlwaysOnTop(false);
 
-        final ImageIcon icon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+        final ImageIcon icon = new ImageIcon(FindIconHelper.findIcon("scilab"));
         dialog.setIconImage(icon.getImage());
 
         ModelicaController controller;
@@ -295,7 +302,17 @@ public final class ModelicaController {
      */
     private void updateIdentifiers(Identifiers identifiers) {
         if (identifiers != null) {
-            statistics.setRelaxedVariables(identifiers.getImplicitVariable().size());
+            List<JAXBElement<String>> allIds = identifiers.getParameterOrExplicitVariableOrImplicitVariable();
+            final QName implicit_name = new QName("", "implicit_variable");
+
+            long implicit_count = 0l;
+            for (JAXBElement<String> e : allIds) {
+                if (e.getName().equals(implicit_name)) {
+                    implicit_count++;
+                }
+            }
+
+            statistics.setRelaxedVariables(implicit_count);
         }
     }
 
@@ -389,8 +406,8 @@ public final class ModelicaController {
                 final Double notUsed2 = TerminalAccessor.getData(TerminalAccessor.WEIGHT, terminal);
                 final Double notUsed3 = TerminalAccessor.getData(TerminalAccessor.INITIAL, terminal);
 
-                final Double notUsed4 = TerminalAccessor.getData(TerminalAccessor.MAX, terminal);
-                final Double notUsed5 = TerminalAccessor.getData(TerminalAccessor.MIN, terminal);
+                //                final Double notUsed4 = TerminalAccessor.getData(TerminalAccessor.MAX, terminal);
+                //                final Double notUsed5 = TerminalAccessor.getData(TerminalAccessor.MIN, terminal);
 
             } else {
                 // recursive call

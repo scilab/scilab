@@ -66,6 +66,7 @@ function [x,y,typ]=func_block(job,arg1,arg2)
     //                        'z' if zero-crossing.
     //          firing      - boolean initial clock firing if true
     //
+    warnobsolete("scifunc_block_m");
     x=[];
     y=[];
     typ=[];

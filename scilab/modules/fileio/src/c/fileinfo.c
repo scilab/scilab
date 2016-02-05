@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -19,139 +22,79 @@
 #include "PATH_MAX.h"
 #include "fileinfo.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "returnanan.h"
+#include "os_string.h"
 #include "expandPathVariable.h"
-/*--------------------------------------------------------------------------*/
-#define FILEINFO_ARRAY_SIZE 13
 
-#define FILEINFO_TOTAL_SIZE_INDICE 0
-#define FILEINFO_MODE_INDICE       1
-#define FILEINFO_UID_INDICE        2
-#define FILEINFO_GID_INDICE        3
-#define FILEINFO_DEV_INDICE        4
-#define FILEINFO_MTIME_INDICE      5
-#define FILEINFO_CTIME_INDICE      6
-#define FILEINFO_ATIME_INDICE      7
-#define FILEINFO_RDEV_INDICE       8
-#define FILEINFO_BLKSIZE_INDICE    9
-#define FILEINFO_BLOCKS_INDICE    10
-#define FILEINFO_INO_INDICE       11
-#define FILEINFO_NLINK_INDICE     12
-
-#define FILEINFO_DEFAULT_ERROR    -1
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-static double *fileinfo_Windows(char *filepathname, int *ierr);
+static double* fileinfo_WindowsW(wchar_t* _pwstFilename, int* _piErr);
 #else
-static double *fileinfo_Others(char *filepathname, int *ierr);
+static double* fileinfo_OthersW(wchar_t* _pwstFilename, int* _piErr);
 #endif
 /*--------------------------------------------------------------------------*/
-double * fileinfo(char *filename, int *ierr)
+double* filesinfoW(wchar_t** _pwstFilename, int _iSize, int* _piErr)
 {
-    char *expandedpath = NULL;
-    double *FILEINFO_ARRAY = NULL;
-
-    if (filename == NULL)
+    int i = 0, j = 0;
+    double *FILES_INFO_ARRAY = (double*)MALLOC(sizeof(double ) * _iSize * FILEINFO_ARRAY_SIZE);
+    for (i = 0 ; i < _iSize ; i++)
     {
-        *ierr = FILEINFO_DEFAULT_ERROR;
-        return NULL;
-    }
+        wchar_t* pwstExp = expandPathVariableW(_pwstFilename[i]);
 
-    expandedpath = expandPathVariable(filename);
-    if (expandedpath)
-    {
+        if (pwstExp)
+        {
+            double *FILEINFO_ARRAY = NULL;
 #ifdef _MSC_VER
-        FILEINFO_ARRAY = fileinfo_Windows(expandedpath, ierr);
+            FILEINFO_ARRAY = fileinfo_WindowsW(pwstExp, &_piErr[i]);
 #else
-        FILEINFO_ARRAY = fileinfo_Others(expandedpath, ierr);
+            FILEINFO_ARRAY = fileinfo_OthersW(pwstExp, &_piErr[i]);
 #endif
-        FREE(expandedpath);
-        expandedpath = NULL;
-    }
-
-    return FILEINFO_ARRAY;
-}
-/*--------------------------------------------------------------------------*/
-double * filesinfo(char **filenames, int dim_filenames, int *ierrs)
-{
-    double *FILES_INFO_ARRAY = NULL;
-
-    if (dim_filenames > 0)
-    {
-        int i = 0;
-        int j = 0;
-        FILES_INFO_ARRAY = (double*)MALLOC(sizeof(double ) * (dim_filenames * FILEINFO_ARRAY_SIZE));
-        if (FILES_INFO_ARRAY == NULL)
-        {
-            return NULL;
-        }
-
-        for (i = 0; i < dim_filenames; i++)
-        {
-            int k = 0;
-            int ierr = 0;
-            double * FILEINFO_ARRAY = fileinfo(filenames[i], &ierr);
-            if (FILEINFO_ARRAY == NULL)
+            if (FILEINFO_ARRAY != NULL)
             {
-                FILEINFO_ARRAY = (double*)MALLOC(sizeof(double) * FILEINFO_ARRAY_SIZE);
-
-                FILEINFO_ARRAY[FILEINFO_TOTAL_SIZE_INDICE] = C2F(returnanan)();
-                FILEINFO_ARRAY[FILEINFO_MODE_INDICE] = C2F(returnanan)();
-                FILEINFO_ARRAY[FILEINFO_UID_INDICE] =  C2F(returnanan)();
-                FILEINFO_ARRAY[FILEINFO_GID_INDICE] =  C2F(returnanan)();
-                FILEINFO_ARRAY[FILEINFO_DEV_INDICE] =  C2F(returnanan)();
-                FILEINFO_ARRAY[FILEINFO_MTIME_INDICE] =  C2F(returnanan)();
-                FILEINFO_ARRAY[FILEINFO_CTIME_INDICE] =  C2F(returnanan)();
-                FILEINFO_ARRAY[FILEINFO_ATIME_INDICE] =  C2F(returnanan)();
-                FILEINFO_ARRAY[FILEINFO_RDEV_INDICE] =  C2F(returnanan)();
-                FILEINFO_ARRAY[FILEINFO_BLKSIZE_INDICE] =  C2F(returnanan)();
-                FILEINFO_ARRAY[FILEINFO_BLOCKS_INDICE] =  C2F(returnanan)();
-                FILEINFO_ARRAY[FILEINFO_INO_INDICE] =  C2F(returnanan)();
-                FILEINFO_ARRAY[FILEINFO_NLINK_INDICE] =  C2F(returnanan)();
+                for (j = 0 ; j < FILEINFO_ARRAY_SIZE ; j++)
+                {
+                    FILES_INFO_ARRAY[i + j * _iSize] = FILEINFO_ARRAY[j];
+                }
             }
-
-            for (k = 0; k < FILEINFO_ARRAY_SIZE; k++)
+            else
             {
-                FILES_INFO_ARRAY[j + k] = FILEINFO_ARRAY[k];
+                for (j = 0 ; j < FILEINFO_ARRAY_SIZE ; j++)
+                {
+                    FILES_INFO_ARRAY[i + j * _iSize] = C2F(returnanan)();
+                }
             }
-            j = j + FILEINFO_ARRAY_SIZE;
             FREE(FILEINFO_ARRAY);
-            FILEINFO_ARRAY = NULL;
-            ierrs[i] = ierr;
+            FREE(pwstExp);
         }
     }
     return FILES_INFO_ARRAY;
 }
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-static double *fileinfo_Windows(char *filepathname, int *ierr)
+static double *fileinfo_WindowsW(wchar_t* _pwstFilename, int *_piErr)
 {
     struct _stat buf;
-    wchar_t* wcpath = to_wide_string(filepathname);
     wchar_t DriveTemp[PATH_MAX + FILENAME_MAX + 1];
 
     double *FILEINFO_ARRAY = NULL;
     int result = 0;
 
-    *ierr = 0;
+    *_piErr = 0;
 
-    if (wcpath == NULL)
+    if (_pwstFilename == NULL)
     {
-        *ierr = FILEINFO_DEFAULT_ERROR;
+        *_piErr = FILEINFO_DEFAULT_ERROR;
         return NULL;
     }
 
-    swprintf(DriveTemp, wcslen(wcpath) + 1, L"%s", wcpath);
+    os_swprintf(DriveTemp, PATH_MAX + FILENAME_MAX + 1, L"%ls", _pwstFilename);
     if ( (DriveTemp[wcslen(DriveTemp) - 1] == L'/') || (DriveTemp[wcslen(DriveTemp) - 1] == L'\\') )
     {
         DriveTemp[wcslen(DriveTemp) - 1] = L'\0';
     }
 
     result = _wstat(DriveTemp, &buf );
-
-    FREE(wcpath);
-    wcpath = NULL;
 
     if ( result != 0 )
     {
@@ -160,7 +103,7 @@ static double *fileinfo_Windows(char *filepathname, int *ierr)
             UINT DriveType = GetDriveTypeW(DriveTemp);
             if ( (DriveType == DRIVE_UNKNOWN) || (DriveType == DRIVE_NO_ROOT_DIR) )
             {
-                *ierr = result;
+                *_piErr = result;
                 return NULL;
             }
             else
@@ -181,18 +124,20 @@ static double *fileinfo_Windows(char *filepathname, int *ierr)
                     FILEINFO_ARRAY[FILEINFO_BLOCKS_INDICE] = 0;
                     FILEINFO_ARRAY[FILEINFO_INO_INDICE] = 0;
                     FILEINFO_ARRAY[FILEINFO_NLINK_INDICE] = 0;
-                    *ierr = result;
+                    *_piErr = result;
                 }
                 else
                 {
-                    *ierr = FILEINFO_DEFAULT_ERROR;
+                    *_piErr = FILEINFO_DEFAULT_ERROR;
+                    FREE(FILEINFO_ARRAY);
                     return NULL;
                 }
             }
         }
         else
         {
-            *ierr = result;
+            *_piErr = result;
+            FREE(FILEINFO_ARRAY);
             return NULL;
         }
     }
@@ -214,11 +159,12 @@ static double *fileinfo_Windows(char *filepathname, int *ierr)
             FILEINFO_ARRAY[FILEINFO_BLOCKS_INDICE] = 0;/* number of blocks allocated */
             FILEINFO_ARRAY[FILEINFO_INO_INDICE] = (double) buf.st_ino;/* inode */
             FILEINFO_ARRAY[FILEINFO_NLINK_INDICE] = (double) buf.st_nlink;/* number of hard links */
-            *ierr = result;
+            *_piErr = result;
         }
         else
         {
-            *ierr = FILEINFO_DEFAULT_ERROR;
+            *_piErr = FILEINFO_DEFAULT_ERROR;
+            FREE(FILEINFO_ARRAY);
             return NULL;
         }
     }
@@ -226,15 +172,17 @@ static double *fileinfo_Windows(char *filepathname, int *ierr)
 }
 /*--------------------------------------------------------------------------*/
 #else
-static double *fileinfo_Others(char *filepathname, int *ierr)
+static double* fileinfo_OthersW(wchar_t* _pwstFilename, int* _piErr)
 {
     struct stat buf;
     double *FILEINFO_ARRAY = NULL;
     int result = 0;
 
-    *ierr = 0;
+    char* pstFilename = wide_string_to_UTF8(_pwstFilename);
+    *_piErr = 0;
 
-    result = stat(filepathname, &buf );
+    result = stat(pstFilename, &buf );
+    FREE(pstFilename);
     if (result == 0)
     {
         FILEINFO_ARRAY = (double*)MALLOC(sizeof(double) * FILEINFO_ARRAY_SIZE);
@@ -256,11 +204,11 @@ static double *fileinfo_Others(char *filepathname, int *ierr)
         }
         else
         {
-            *ierr = FILEINFO_DEFAULT_ERROR;
+            *_piErr = FILEINFO_DEFAULT_ERROR;
             return NULL;
         }
     }
-    *ierr = result;
+    *_piErr = result;
     return FILEINFO_ARRAY;
 }
 #endif

@@ -49,12 +49,9 @@ leaf22 = uiCreateNode('leaf 2.2', 'iconLeaf2.2', 'callbackLeaf2.2')
 node1 = uiCreateNode('Node 1', 'iconNode1', 'callbackNode1')
 node2 = uiCreateNode('Node 2', 'iconNode2', 'callbackNode2')
 root = uiCreateNode('Root', 'iconRoot', 'callbackRoot')
-
 myTree1 = uiCreateTree(node1, leaf11, leaf12)
 myTree2 = uiCreateTree(node2, leaf21, leaf22)
-
 concatTree = uiConcatTree(myTree1, myTree2)
-
 uiDisplayTree(concatTree)
  ]]></programlisting>
     </refsection>

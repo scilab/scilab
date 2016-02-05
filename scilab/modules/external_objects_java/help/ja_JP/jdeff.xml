@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="jdeff">
+    <refnamediv>
+        <refname>jdeff</refname>
+        <refpurpose>静的JavaメソッドをScilabマクロにマップ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            jdeff(className, javaMethodName, scilabMacroName)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>className</term>
+                <listitem>
+                    <para>クラス名を指定する文字列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>javaMethodName</term>
+                <listitem>
+                    <para>
+                        クラス内のメソッド名を指定する文字列
+                        (このメソッドはスタティックである必要があります)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>scilabMacroName</term>
+                <listitem>
+                    <para>マクロ名を指定する文字列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            静的JavaメソッドをScilabマクロにマップする簡易な手法を提供します.
+            (可能な場合,)結果は自動的にアンラップされます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+               jdeff("java.lang.Double", "parseDouble", "str2number");
+               PI = str2number("3.141592653589");
+               PI - %pi
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link type="scilab" linkend="scilab.help/deff">deff</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数が導入されました. 'JIMS'モジュールに基づきます.
+                    JIMSモジュールとの動作上の主な違いは,
+                    <link linkend="jautoUnwrap">jautoUnwrap</link>がデフォルトで
+                    有効になっていることです.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

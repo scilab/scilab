@@ -86,7 +86,6 @@ sig = x_mdialog('enter sine signal',txt,['1';'10';'0'])
 mag = evstr(sig(1))
 frq = evstr(sig(2))
 ph  = evstr(sig(3))
-
 rep = x_mdialog(['System Simulation';'with PI regulator'],...
                  ['P gain';'I gain '],[' ';' '])
  ]]></programlisting>

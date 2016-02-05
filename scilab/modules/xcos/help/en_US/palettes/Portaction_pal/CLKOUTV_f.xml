@@ -198,26 +198,18 @@
         <para>
             The Super bloc below is mainly a frequency divider by 4, associated to an one event generation at time 
             <emphasis>
-                <literal>t= 3 s</literal>
+                <literal>t = 3 s</literal>
             </emphasis>
             .
         </para>
-        <para><link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/CLKOUTV_f_en_US.zcos">
-                Open this example in Xcos
-            </link>
-        </para>
-        <para/>
         <para>
-            <mediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../examples/portaction_pal/en_US/CLKOUTV_f_en_US.zcos"/>
-                </imageobject>
-            </mediaobject>
-            <mediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../examples/portaction_pal/en_US/CLKOUTV_f_internal_en_US.zcos"/>
-                </imageobject>
-            </mediaobject>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/CLKOUTV_f_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/portaction_pal/en_US/CLKOUTV_f_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
         <para>
             The following figure shows the output of the bloc :

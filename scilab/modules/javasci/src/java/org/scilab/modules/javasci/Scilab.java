@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - INRIA - Sylvestre LEDRU
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.javasci;
@@ -38,17 +41,17 @@ import org.scilab.modules.javasci.JavasciException.ScilabErrorException;
 
 /**
  * This class provides the capability to access to the Scilab engine from
- * a Java application.<br />
- * <br />
- * Example:<br />
+ * a Java application.<BR>
+ * <BR>
+ * Example:<BR>
  * <code>
- * Scilab sci = new Scilab();<br />
- * if (sci.open()) {<br />
- * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
- * ScilabDouble aOriginal = new ScilabDouble(a);<br />
- * sci.put("a",aOriginal);<br />
- * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<br />
- * }<br />
+ * Scilab sci = new Scilab();<BR>
+ * if (sci.open()) {<BR>
+ * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<BR>
+ * ScilabDouble aOriginal = new ScilabDouble(a);<BR>
+ * sci.put("a",aOriginal);<BR>
+ * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<BR>
+ * }<BR>
  * </code>
  * @see org.scilab.modules.types
  */
@@ -60,7 +63,7 @@ public class Scilab {
     private boolean advancedMode = false;
 
     /**
-     * Creator of the Scilab Javasci object. <br />
+     * Creator of the Scilab Javasci object. <BR>
      * Scilab data path is autodetected and advanced features disabled
      */
     public Scilab() throws InitializationException {
@@ -68,13 +71,13 @@ public class Scilab {
     }
 
     /**
-     * Creator of the Scilab Javasci object with a specific Scilab path.<br />
+     * Creator of the Scilab Javasci object with a specific Scilab path.<BR>
      * Advanced features are disabled (faster)
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * Scilab sci = new Scilab("/path/to/Scilab/data/dir/");<br />
-     * <br />
+     * Scilab sci = new Scilab("/path/to/Scilab/data/dir/");<BR>
+     * <BR>
      * </code>
      * @param SCI provide the path to Scilab data
      */
@@ -83,13 +86,13 @@ public class Scilab {
     }
 
     /**
-     * Creator of the Scilab Javasci object in advanced mode<br />
+     * Creator of the Scilab Javasci object in advanced mode<BR>
      * Scilab data path is autodetected
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * Scilab sci = new Scilab(true); // Starts in advanced mode<br />
-     * <br />
+     * Scilab sci = new Scilab(true); // Starts in advanced mode<BR>
+     * <BR>
      * </code>
      * @param advancedMode true enables the advanced mode (GUI, graphics, Tcl/Tk, sciNotes...). Smaller.
      */
@@ -98,17 +101,17 @@ public class Scilab {
     }
 
     /**
-     * Creator of the Scilab Javasci object. <br />
-     * Under GNU/Linux / Mac OS X, try to detect Scilab base path<br />
-     * if the property SCI is set, use it<br />
-     * if not, try with the global variable SCI<br />
-     * if not, throws a new exception<br />
-     * Under Windows, use also the registery<br />
-     * <br />
-     * Example:<br />
+     * Creator of the Scilab Javasci object. <BR>
+     * Under GNU/Linux / Mac OS X, try to detect Scilab base path<BR>
+     * if the property SCI is set, use it<BR>
+     * if not, try with the global variable SCI<BR>
+     * if not, throws a new exception<BR>
+     * Under Windows, use also the registery<BR>
+     * <BR>
+     * Example:<BR>
      * <code>
-     * Scilab sci = new Scilab("/path/to/Scilab/data/dir/",true); // Starts in advanced mode<br />
-     * <br />
+     * Scilab sci = new Scilab("/path/to/Scilab/data/dir/",true); // Starts in advanced mode<BR>
+     * <BR>
      * </code>
      * @param SCIPath the path to Scilab data
      * @param advancedMode true enables the advanced mode (GUI, graphics, Tcl/Tk, sciNotes...). Smaller.
@@ -150,16 +153,16 @@ public class Scilab {
     }
 
     /**
-     * Open a connection to the Scilab engine<br />
-     * This function is based on Call_ScilabOpen from call_scilab<br />
-     * Note: For now, only one instance of Scilab can be launched<br />
-     * A second launch will return FALSE<br />
-     * <br />
-     * Example:<br />
+     * Open a connection to the Scilab engine<BR>
+     * This function is based on Call_ScilabOpen from call_scilab<BR>
+     * Note: For now, only one instance of Scilab can be launched<BR>
+     * A second launch will return FALSE<BR>
+     * <BR>
+     * Example:<BR>
      * <code>
-     * Scilab sci = new Scilab();<br />
-     * sci.open();<br />
-     * <br />
+     * Scilab sci = new Scilab();<BR>
+     * sci.open();<BR>
+     * <BR>
      * </code>
      * @return if the operation is successful
      * @throws AlreadyRunningException Scilab is already running
@@ -185,16 +188,16 @@ public class Scilab {
     }
 
     /**
-     * Open a connection to the Scilab engine and run the command job<br />
-     * This function is based on Call_ScilabOpen from call_scilab<br />
-     * Note: For now, only one instance of Scilab can be launched<br />
-     * A second launch will return FALSE<br />
-     * <br />
-     * Example:<br />
+     * Open a connection to the Scilab engine and run the command job<BR>
+     * This function is based on Call_ScilabOpen from call_scilab<BR>
+     * Note: For now, only one instance of Scilab can be launched<BR>
+     * A second launch will return FALSE<BR>
+     * <BR>
+     * Example:<BR>
      * <code>
-     * Scilab sci = new Scilab();<br />
-     * sci.open("a=%pi;");<br />
-     * <br />
+     * Scilab sci = new Scilab();<BR>
+     * sci.open("a=%pi;");<BR>
+     * <BR>
      * </code>
      * @param job The job to run on startup
      * @return if the operation is successful
@@ -208,16 +211,16 @@ public class Scilab {
     }
 
     /**
-     * Open a connection to the Scilab engine and run commands job<br />
-     * This function is based on Call_ScilabOpen from call_scilab<br />
-     * Note: For now, only one instance of Scilab can be launched<br />
-     * A second launch will return FALSE<br />
-     * <br />
-     * Example:<br />
+     * Open a connection to the Scilab engine and run commands job<BR>
+     * This function is based on Call_ScilabOpen from call_scilab<BR>
+     * Note: For now, only one instance of Scilab can be launched<BR>
+     * A second launch will return FALSE<BR>
+     * <BR>
+     * Example:<BR>
      * <code>
-     * Scilab sci = new Scilab();<br />
-     * sci.open(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<br />
-     * <br />
+     * Scilab sci = new Scilab();<BR>
+     * sci.open(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<BR>
+     * <BR>
      * </code>
      * @param jobs The serie of jobs to run on startup
      * @return if the operation is successful
@@ -231,16 +234,16 @@ public class Scilab {
 
 
     /**
-     * Open a connection to the Scilab engine and run thefile scriptFilename<br />
-     * This function is based on Call_ScilabOpen from call_scilab<br />
-     * Note: For now, only one instance of Scilab can be launched<br />
-     * A second launch will return FALSE<br />
-     * <br />
-     * Example:<br />
+     * Open a connection to the Scilab engine and run thefile scriptFilename<BR>
+     * This function is based on Call_ScilabOpen from call_scilab<BR>
+     * Note: For now, only one instance of Scilab can be launched<BR>
+     * A second launch will return FALSE<BR>
+     * <BR>
+     * Example:<BR>
      * <code>
-     * Scilab sci = new Scilab();<br />
-     * sci.open(new File("/tmp/myscript.sce"));<br />
-     * <br />
+     * Scilab sci = new Scilab();<BR>
+     * sci.open(new File("/tmp/myscript.sce"));<BR>
+     * <BR>
      * </code>
      * @param scriptFilename The script to execute on startup
      * @return if the operation is successful
@@ -255,13 +258,13 @@ public class Scilab {
 
 
     /**
-     * Execute a single command in Scilab<br />
+     * Execute a single command in Scilab<BR>
      * This function is based on SendScilabJob from call_scilab
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * sci.exec("a=2*%pi");<br />
-     * <br />
+     * sci.exec("a=2*%pi");<BR>
+     * <BR>
      * </code>
      * @param job the job to execute
      * @return if the operation is successful
@@ -277,14 +280,14 @@ public class Scilab {
 
 
     /**
-     * Execute a single command in Scilab<br />
-     * Returns a ScilabErrorException in case of Scilab problem<br />
+     * Execute a single command in Scilab<BR>
+     * Returns a ScilabErrorException in case of Scilab problem<BR>
      * This function is based on SendScilabJob from call_scilab
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * sci.exec("a=2*%pi");<br />
-     * <br />
+     * sci.exec("a=2*%pi");<BR>
+     * <BR>
      * </code>
      * @param job the job to execute
      * @since 5.4.0
@@ -298,13 +301,13 @@ public class Scilab {
 
 
     /**
-     * Execute several commands in Scilab<br />
+     * Execute several commands in Scilab<BR>
      * This function is based on SendScilabJob from call_scilab
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * sci.exec(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<br />
-     * <br />
+     * sci.exec(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<BR>
+     * <BR>
      * </code>
      * @param jobs the serie of job to execute
      * @return if the operation is successful
@@ -319,14 +322,14 @@ public class Scilab {
     }
 
     /**
-     * Execute several commands in Scilab<br />
-     * Returns a ScilabErrorException in case of Scilab problem<br />
+     * Execute several commands in Scilab<BR>
+     * Returns a ScilabErrorException in case of Scilab problem<BR>
      * This function is based on SendScilabJob from call_scilab
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * sci.exec(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<br />
-     * <br />
+     * sci.exec(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<BR>
+     * <BR>
      * </code>
      * @param jobs the serie of job to execute
      * @since 5.4.0
@@ -339,17 +342,17 @@ public class Scilab {
     }
 
     /**
-     * Execute a Scilab script .sce/.sci and throws an exception in case<br />
-     * of a Scilab error<br />
-     * Returns a ScilabErrorException in case of Scilab problem<br />
-     * This function is based on SendScilabJob from call_scilab<br />
+     * Execute a Scilab script .sce/.sci and throws an exception in case<BR>
+     * of a Scilab error<BR>
+     * Returns a ScilabErrorException in case of Scilab problem<BR>
+     * This function is based on SendScilabJob from call_scilab<BR>
      * Note that this function is a direct call on the Scilab function exec:
      * <code> this.exec("exec('" + scriptFilename + "');");</code>
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * sci.exec(new File("/tmp/myscript.sci"));<br />
-     * <br />
+     * sci.exec(new File("/tmp/myscript.sci"));<BR>
+     * <BR>
      * </code>
      * @param scriptFilename the script to execute
      * @since 5.4.0
@@ -362,16 +365,16 @@ public class Scilab {
     }
 
     /**
-     * Execute a Scilab script .sce/.sci and throws an exception in case<br />
-     * the file is not found<br />
-     * This function is based on SendScilabJob from call_scilab<br />
+     * Execute a Scilab script .sce/.sci and throws an exception in case<BR>
+     * the file is not found<BR>
+     * This function is based on SendScilabJob from call_scilab<BR>
      * Note that this function is a direct call on the Scilab function exec:
      * <code> this.exec("exec('" + scriptFilename + "');");</code>
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * sci.exec(new File("/tmp/myscript.sci"));<br />
-     * <br />
+     * sci.exec(new File("/tmp/myscript.sci"));<BR>
+     * <BR>
      * </code>
      * @param scriptFilename the script to execute
      * @return if the operation is successful
@@ -386,14 +389,14 @@ public class Scilab {
 
     /**
      * Detect if a variable (varname) exists in Scilab
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
-     * ScilabDouble aOriginal = new ScilabDouble(a);<br />
-     * sci.put("a",aOriginal);<br />
-     * assert sci.isExistingVariable("a") == true;<br />
-     * <br />
+     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<BR>
+     * ScilabDouble aOriginal = new ScilabDouble(a);<BR>
+     * sci.put("a",aOriginal);<BR>
+     * assert sci.isExistingVariable("a") == true;<BR>
+     * <BR>
      * </code>
      * @param varname the variable to check
      * @return if the variable exists or not
@@ -404,13 +407,13 @@ public class Scilab {
 
 
     /**
-     * Shutdown Scilab<br />
+     * Shutdown Scilab<BR>
      * This function is based on TerminateScilab from call_scilab
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * sci.close();<br />
-     * <br />
+     * sci.close();<BR>
+     * <BR>
      * </code>
      * @return if the operation is successful
      */
@@ -421,12 +424,12 @@ public class Scilab {
 
     /**
      * Return the last error code
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * sci.open("a=1+"); // Wrong operation<br />
-     * sci.getLastErrorCode() // Returns 2<br />
-     * <br />
+     * sci.open("a=1+"); // Wrong operation<BR>
+     * sci.getLastErrorCode() // Returns 2<BR>
+     * <BR>
      * </code>
      * @return the error code
      */
@@ -437,12 +440,12 @@ public class Scilab {
 
     /**
      * Return the last error message
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * sci.open("a=1+");<br />
-     * System.err.println(sci.getLastErrorMessage());<br />
-     * <br />
+     * sci.open("a=1+");<BR>
+     * System.err.println(sci.getLastErrorMessage());<BR>
+     * <BR>
      * </code>
      * @return the error message itself
      */
@@ -452,14 +455,14 @@ public class Scilab {
 
 
     /**
-     * Detect if a Scilab graphic window is still opened<br />
+     * Detect if a Scilab graphic window is still opened<BR>
      * This function is based on ScilabHaveAGraph from call_scilab
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * sci.exec("plot3d();");<br />
-     * sci.isGraphicOpened();<br />
-     * <br />
+     * sci.exec("plot3d();");<BR>
+     * sci.isGraphicOpened();<BR>
+     * <BR>
      * </code>
      * @return if the graphic is open or not
      */
@@ -469,14 +472,14 @@ public class Scilab {
 
     /**
      * Return the code type of a variable varname
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * sci.exec("a = 2*%pi");<br />
-     * if (sci.getVariableType("a") == ScilabTypeEnum.sci_matrix) {<br />
-     *      System.out.println("a is a double matrix");<br />
-     * }<br />
-     * <br />
+     * sci.exec("a = 2*%pi");<BR>
+     * if (sci.getVariableType("a") == ScilabTypeEnum.sci_matrix) {<BR>
+     *      System.out.println("a is a double matrix");<BR>
+     * }<BR>
+     * <BR>
      * </code>
      * @param varName the name of the variable
      * @return the type of the variable
@@ -489,14 +492,14 @@ public class Scilab {
 
     /**
      * Return the code type of a variable varname in the current Scilab session
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * sci.exec("a = 2*%pi");<br />
-     * if (sci.getVariableType("a") == ScilabTypeEnum.sci_matrix) {<br />
-     *      System.out.println("a is a double matrix");<br />
-     * }<br />
-     * <br />
+     * sci.exec("a = 2*%pi");<BR>
+     * if (sci.getVariableType("a") == ScilabTypeEnum.sci_matrix) {<BR>
+     *      System.out.println("a is a double matrix");<BR>
+     * }<BR>
+     * <BR>
      * </code>
      * @param varName the name of the variable
      * @return the type of the variable
@@ -522,17 +525,17 @@ public class Scilab {
     }
 
     /**
-     * Returns a variable named varname<br />
+     * Returns a variable named varname<BR>
      * Throws an exception if the datatype is not managed or if the variable is not available
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
-     * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<br />
-     * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<br />
-     * sci.put("a",aOriginal);<br />
-     * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<br />
-     * <br />
+     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<BR>
+     * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<BR>
+     * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<BR>
+     * sci.put("a",aOriginal);<BR>
+     * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<BR>
+     * <BR>
      * </code>
      * @param varname the name of the variable
      * @return return the variable
@@ -543,17 +546,17 @@ public class Scilab {
     }
 
     /**
-     * Returns a reference variable named varname<br />
+     * Returns a reference variable named varname<BR>
      * Throws an exception if the datatype is not managed or if the variable is not available
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
-     * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<br />
-     * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<br />
-     * sci.put("a",aOriginal);<br />
-     * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<br />
-     * <br />
+     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<BR>
+     * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<BR>
+     * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<BR>
+     * sci.put("a",aOriginal);<BR>
+     * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<BR>
+     * <BR>
      * </code>
      * @param varname the name of the variable
      * @return return the variable
@@ -564,17 +567,17 @@ public class Scilab {
     }
 
     /**
-     * Returns a variable named varname in the current Scilab session<br />
+     * Returns a variable named varname in the current Scilab session<BR>
      * Throws an exception if the datatype is not managed or if the variable is not available
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
-     * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<br />
-     * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<br />
-     * sci.put("a",aOriginal);<br />
-     * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<br />
-     * <br />
+     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<BR>
+     * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<BR>
+     * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<BR>
+     * sci.put("a",aOriginal);<BR>
+     * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<BR>
+     * <BR>
      * </code>
      * @param varname the name of the variable
      * @return return the variable
@@ -585,17 +588,17 @@ public class Scilab {
     }
 
     /**
-     * Returns a variable named varname in the current Scilab session<br />
+     * Returns a variable named varname in the current Scilab session<BR>
      * Throws an exception if the datatype is not managed or if the variable is not available
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
-     * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<br />
-     * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<br />
-     * sci.put("a",aOriginal);<br />
-     * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<br />
-     * <br />
+     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<BR>
+     * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<BR>
+     * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<BR>
+     * sci.put("a",aOriginal);<BR>
+     * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<BR>
+     * <BR>
      * </code>
      * @param varname the name of the variable
      * @return return the variable
@@ -639,16 +642,16 @@ public class Scilab {
     }
 
     /**
-     * Send to Scilab a variable theVariable named varname<br />
+     * Send to Scilab a variable theVariable named varname<BR>
      * Throws an exception if the datatype is not managed or if the variable is not available
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * boolean [][]a={{true, true, false, false},{true, false, true, false}};<br />
-     * ScilabBoolean aOriginal = new ScilabBoolean(a);<br />
-     * sci.put("a",aOriginal);<br />
-     * ScilabBoolean aFromScilab = (ScilabBoolean)sci.get("a");<br />
-     * <br />
+     * boolean [][]a={{true, true, false, false},{true, false, true, false}};<BR>
+     * ScilabBoolean aOriginal = new ScilabBoolean(a);<BR>
+     * sci.put("a",aOriginal);<BR>
+     * ScilabBoolean aFromScilab = (ScilabBoolean)sci.get("a");<BR>
+     * <BR>
      * </code>
      * @param varname the name of the variable
      * @param theVariable the variable itself
@@ -660,16 +663,16 @@ public class Scilab {
     }
 
     /**
-     * Send to the current Scilab session a variable theVariable named varname<br />
+     * Send to the current Scilab session a variable theVariable named varname<BR>
      * Throws an exception if the datatype is not managed or if the variable is not available
-     * <br />
-     * Example:<br />
+     * <BR>
+     * Example:<BR>
      * <code>
-     * boolean [][]a={{true, true, false, false},{true, false, true, false}};<br />
-     * ScilabBoolean aOriginal = new ScilabBoolean(a);<br />
-     * sci.put("a",aOriginal);<br />
-     * ScilabBoolean aFromScilab = (ScilabBoolean)sci.get("a");<br />
-     * <br />
+     * boolean [][]a={{true, true, false, false},{true, false, true, false}};<BR>
+     * ScilabBoolean aOriginal = new ScilabBoolean(a);<BR>
+     * sci.put("a",aOriginal);<BR>
+     * ScilabBoolean aFromScilab = (ScilabBoolean)sci.get("a");<BR>
+     * <BR>
      * </code>
      * @param varname the name of the variable
      * @param theVariable the variable itself

@@ -1,0 +1,67 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Pierre-Aime Agnel
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- Non-regression test for bug 13339 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=13339
+//
+// <-- Short Description -->
+// Kronecker product does not work on hypermatrices
+//
+// <-- CLI SHELL MODE -->
+
+
+//==============================================================================
+// Nominal behaviour on Kronecker Product on hypermatrix
+//==============================================================================
+
+A = ones(2, 3, 3);
+A(2, 2, 2) = 2;
+
+B = hypermat([2, 2, 2], 1:8);
+
+// A.*.B must be the hypermatrix B pasted on each element of A multiplied by the
+// value of the element of A
+res = A .*. B;
+
+// res must be of size 4, 6, 6
+assert_checkalmostequal([4, 6, 6], size(res));
+
+// res(1:2, 1:2, 1:2) must be B
+assert_checkalmostequal(B, res(1:2, 1:2, 1:2));
+
+// res(3:4, 3:4, 3:4) must be 2*B as it corresponds to exactly A(2, 2, 2) .* B
+assert_checkalmostequal(2 .* B, res(3:4, 3:4, 3:4));
+
+
+//==============================================================================
+// Nominal behaviour on Kronecker Product on matrix and hypermatrix
+//==============================================================================
+C = [1 2; 3 4; 5 6];
+res = A .*. C;
+
+// Size of result must be [4 6 3]
+assert_checkalmostequal([6, 6, 3], size(res));
+
+// Values of C must be pasted on A
+assert_checkalmostequal(2 .* C, res(4:6, 3:4, 2));
+
+res = C .*. A;
+assert_checkalmostequal([6, 6, 3], size(res));
+assert_checkalmostequal(3 .* A, res(3:4, 1:3, 1:3));
+
+D = [1 1; 0 0];
+res_mat = C .*. D;
+
+D = hypermat([2, 2, 1], [1 0 1 0]);
+C = hypermat([3, 2, 1], [1 3 5 2 4 6]);
+
+res = C .*. D;
+
+assert_checkalmostequal(res_mat, res(:,:,1));
+

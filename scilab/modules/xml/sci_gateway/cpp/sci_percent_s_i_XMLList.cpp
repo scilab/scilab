@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -27,7 +30,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_s_i_XMLList(char *fname, unsigned long fname_len)
+int sci_percent_s_i_XMLList(char *fname, void* pvApiCtx)
 {
     XMLNodeList *a;
     int lhsid;
@@ -102,10 +105,13 @@ int sci_percent_s_i_XMLList(char *fname, unsigned long fname_len)
     }
     else if (isNamedVarExist(pvApiCtx, "%s_xmlFormat"))
     {
-        Nbvars = Max(Nbvars, Lhs + Rhs);
-        SciString(&iBegin, (char *)"%s_xmlFormat", &mlhs, &mrhs);
-        Nbvars = Max(Nbvars, Lhs + Rhs + mlhs + mrhs);
+        callScilabFunction(pvApiCtx, "%s_xmlFormat", iBegin, mlhs, mrhs);
+        //Call function directly in scilab 6 C++ api
+        //Nbvars = std::max(Nbvars, Lhs + Rhs);
+        //SciString(&iBegin, (char *)"%s_xmlFormat", &mlhs, &mrhs);
+        //Nbvars = std::max(Nbvars, Lhs + Rhs + mlhs + mrhs);
 
+        iBegin = nbInputArgument(pvApiCtx) + mrhs + 1;
         err = getVarAddressFromPosition(pvApiCtx, iBegin, &retaddr);
         if (err.iErr)
         {

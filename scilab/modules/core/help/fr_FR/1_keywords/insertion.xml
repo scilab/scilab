@@ -3,7 +3,7 @@
     <refnamediv>
         <refname>insertion</refname>
         <refpurpose>insertion/modification dans une
-            variable  
+            variable
         </refpurpose>
     </refnamediv>
     <refnamediv xml:id="affectation">
@@ -88,7 +88,7 @@
                                             pour <literal>l</literal> variant de 1 à
                                             <literal>size(i,'*')</literal> et <literal>k</literal> variant de
                                             1 à <literal>size(j,'*')</literal>, les autres composantes
-                                            
+
                                             initiales de <literal>x</literal> sont inchangées.
                                         </para>
                                     </listitem>
@@ -188,9 +188,9 @@
                                     <listitem>
                                         <para>
                                             <literal>x(i)=[]</literal> supprime les termes
-                                            
-                                            
-                                            spécifiés par <literal>i</literal>.  
+
+
+                                            spécifiés par <literal>i</literal>.
                                         </para>
                                     </listitem>
                                 </itemizedlist>
@@ -200,13 +200,13 @@
                             <term>Le : symbole</term>
                             <listitem>
                                 <para>
-                                    Le symbole <literal> : </literal> signifiant "tous les éléments". 
+                                    Le symbole <literal> : </literal> signifiant "tous les éléments".
                                 </para>
                                 <itemizedlist>
                                     <listitem>
                                         <para>
                                             <literal>x(i,:)=a</literal> est interprété comme
-                                            
+
                                             <literal>x(i,1:size(x,2))=a</literal>
                                         </para>
                                     </listitem>
@@ -232,7 +232,7 @@
                             <term>Vecteurs de booléens</term>
                             <listitem>
                                 <para>  Si un indice
-                                    
+
                                     (<literal>i</literal> ou <literal>j</literal> ) est un vecteur de booléens, il
                                     est interprété comme <literal>find(i)</literal> ou <literal>find(j)</literal>,
                                     respectivement.
@@ -322,7 +322,7 @@
                                 <listitem>
                                     <para>
                                         un polynôme. Si <literal>i</literal> est un
-                                        
+
                                         vecteur de polynômes ou de polynômes implicites il est
                                         interprété comme <literal>horner(i,m)</literal> où
                                         <literal>m=size(l)</literal>. Même si cette fonctionnalité marche
@@ -345,7 +345,7 @@
                                 </listitem>
                                 <listitem>
                                     <para>une chaîne de caractères associée à un nom
-                                        
+
                                         d'entrée de sous-liste.
                                     </para>
                                 </listitem>
@@ -370,7 +370,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // CAS DES MATRICES
 a=[1 2 3;4 5 6]
 a(1,2)=10
@@ -416,7 +416,7 @@ dts(2)('b')(1,2)=-100
                 <link linkend="horner">horner</link>
             </member>
             <member>
-                <link linkend="parents">parents</link>
+                <link linkend="parentheses">parentheses</link>
             </member>
             <member>
                 <link linkend="extraction">extraction</link>

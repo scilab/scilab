@@ -9,20 +9,25 @@
         <synopsis>[yp [,yp1 [,yp2 [,yp3]]]]=interp(xp, x, y, d [, out_mode])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
-                <term>xp</term>
+                <term>x,y</term>
                 <listitem>
-                    <para>実数ベクトルまたは行列</para>
+                    <para>
+                        同じ大きさ <literal>n</literal> の実数ベクトル: 
+                        補間および関連する3次スプライン
+                        (以下,<literal>s(X)</literal>と呼びます)または
+                        サブスプライン関数を定義します.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x,y,d</term>
+                <term>d</term>
                 <listitem>
-                    <para>同じ大きさの実数ベクトルで,
-                        3次スプラインまたはサブスプライン関数を定義します
-                        (以下では<literal>s</literal>と呼ばれます)
+                    <para>size(x)の実数ベクトル: 
+                        微分 s'(x). 多くの場合, s'(x) は関数splin(x, y,..)により
+                        適当に推定されます.
                     </para>
                 </listitem>
             </varlistentry>
@@ -30,8 +35,19 @@
                 <term>out_mode</term>
                 <listitem>
                     <para>
-                        範囲 [x1,xn] の外側で<literal>s</literal>の評価値を定義する
-                        (オプションの) 文字列
+                        (オプション)<latex>[x_1,\ x_n]</latex>の外側で. 
+                        <literal>X</literal> に対する<literal>s(X)</literal>を定義します.
+                        利用可能な値: "by_zero" | "by_nan" | "C0" | "natural" | "linear" | "periodic"
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xp</term>
+                <listitem>
+                    <para>
+                        実数ベクトルまたは行列: 
+                        <literal>Y</literal> が未知の座標で,
+                        <literal>s(xp)</literal>で推定されます		      
                     </para>
                 </listitem>
             </varlistentry>
@@ -39,9 +55,9 @@
                 <term>yp</term>
                 <listitem>
                     <para>
-                        <literal>xp</literal>と同じ大きさのベクトルまたは行列で,
-                        (<literal>xp</literal> (yp(i)=s(xp(i) または yp(i,j)=s(xp(i,j)において)
-                        <literal>s</literal>を要素毎に評価したもの)
+                        size(xp)のベクトルまたは行列:
+                        <literal>yp(i) = s(xp(i))</literal> または
+                        <literal>yp(i,j) = s(xp(i,j))</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -49,9 +65,9 @@
                 <term>yp1, yp2, yp3</term>
                 <listitem>
                     <para>
-                        <literal>xp</literal>と同じ大きさのベクトル(または行列)で,
-                        <literal>xp</literal>上における<literal>s</literal>の逐次微分の
-                        要素毎の評価
+                        size(x) のベクトル(または行列):
+                        微分<literal>s'(xp)</literal>, <literal>s''(xp)</literal> および
+                        <literal>s'''(xp)</literal>の要素毎の評価.
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,23 +76,21 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>yi=s(xi), di = s'(xi)</literal>の時,
-            スプラインまたはサブスプライン関数(<link linkend="splin">splin</link>参照)
-            を定義する3つのベクトル <literal>(x,y,d)</literal>を指定すると,
-            この関数は,<literal>xp(i)</literal>において
-            <literal>s</literal> (および要すれば<literal>s', s'', s'''</literal>)
-            を評価します:
+            指定した点の<literal>(x,y)</literal> 集合を補間する3次スプライン関数 <literal>s(X)</literal> 
+            は,<latex>[x_1,\ x_n]</latex>の範囲で定義された,連続で微分可能な関数です.
+            これは,3次元多項式の集合からなり,その各々は<latex>p_k(X)</latex>が
+            <latex>[x_k,\ x_{k+1}]</latex>で定義され,
+            隣接する多項式と値と傾きで接続されています.
+            つまり, <latex>X\ \in\ [x_k,\ x_{k+1}],\ s(X) = p_k(X)</latex>の各々について,
+            <latex>s(x_i) = y_i,\quad \mbox{and}\quad s'(x_i) = d_i</latex>を記述できます.	
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/interp_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <latex style="display" align="center"><![CDATA[ yp_i = s(xp_i) \quad or \quad yp_{i,j} = s(xp_{i,j})  ]]></latex>
+        <latex style="display" align="center"><![CDATA[ yp1_i = s'(xp_i) \quad or \quad yp1_{i,j} = s'(xp_{i,j})  ]]></latex>
+        <latex style="display" align="center"><![CDATA[ yp2_i = s''(xp_i) \quad or \quad yp2_{i,j} = s''(xp_{i,j})  ]]></latex>
+        <latex style="display" align="center"><![CDATA[ yp3_i = s'''(xp_i) \quad or \quad yp3_{i,j} = s'''(xp_{i,j})  ]]></latex>
         <para>
             <literal>out_mode</literal>パラメータは
-            補外,すなわち,<literal>xp(i)</literal>が[x1,xn]の範囲にない場合
+            補外,すなわち,<literal>xp(i)</literal>が<latex>[x_1,\ x_n]</latex> の範囲にない場合
             の評価規則を設定します :
         </para>
         <variablelist>
@@ -89,50 +103,34 @@
             <varlistentry>
                 <term>"by_nan"</term>
                 <listitem>
-                    <para>Nanによる補外</para>
+                    <para>Nan (%nan)による補外</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"C0"</term>
                 <listitem>
                     <para>以下のように定義される補外 :</para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/interp_equation2.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = y_1 ]]></latex>
+                    <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = y_n ]]></latex>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"natural"</term>
                 <listitem>
                     <para>以下のように定義される補外
-                        (<emphasis>p_i</emphasis> は[x_i,x_{i+1}]
-                        において<literal>s</literal>を定義する
-                        多項式です) :
+                        (<latex>p_i(x)</latex> は,<latex>[x_i,\ x_{i+1}]</latex>
+                        において<literal>s(X)</literal>を定義する多項式です)
                     </para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/interp_equation3.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = p_1(xp_i) ]]></latex>
+                    <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = p_{n-1}(xp_i) ]]></latex>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"linear"</term>
                 <listitem>
-                    <para>補外は以下のように低意義されます :</para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/interp_equation4.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <para>補外は以下のように定義されます :</para>
+                    <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = y_1 + d_1.(xp_i - x_1) ]]></latex>
+                    <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = y_n + d_n.(xp_i - x_n) ]]></latex>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -141,6 +139,7 @@
                     <para>
                         <literal>s</literal> は周期性により拡張されます.
                     </para>
+                    <latex style="display" align="center"><![CDATA[ yp_i = s( x_1 + ( (xp_i-x_1)\ \mbox{modulo}\ [x_n-x_1] ) ) ]]></latex>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -149,7 +148,6 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 // splin および lsq_splinの例を参照
-
 // スプラインおよびサブスプラインの C2およびC1連続性を示す例
 a = -8; b = 8;
 x = linspace(a,b,20)';
@@ -174,7 +172,33 @@ subplot(3,1,3)
 plot2d(xx, [yy2k yy2f])
 legends(["not_a_knot spline","fast sub-spline"], [1 2], "lr",%f)
 xtitle("spline interpolation (second derivatives)")
-
+ ]]></programlisting>
+        <scilab:image>
+            a = -8; b = 8;
+            x = linspace(a,b,20)';
+            y = sinc(x);
+            dk = splin(x,y);  // not_a_knot
+            df = splin(x,y, "fast");
+            xx = linspace(a,b,800)';
+            [yyk, yy1k, yy2k] = interp(xx, x, y, dk); 
+            [yyf, yy1f, yy2f] = interp(xx, x, y, df); 
+            clf()
+            subplot(3,1,1)
+            plot2d(xx, [yyk yyf])
+            plot2d(x, y, style=-9)
+            legends(["not_a_knot spline","fast sub-spline","interpolation points"],...
+            [1 2 -9], "ur",%f)
+            xtitle("spline interpolation")
+            subplot(3,1,2)
+            plot2d(xx, [yy1k yy1f])
+            legends(["not_a_knot spline","fast sub-spline"], [1 2], "ur",%f)
+            xtitle("spline interpolation (derivatives)")
+            subplot(3,1,3)
+            plot2d(xx, [yy2k yy2f])
+            legends(["not_a_knot spline","fast sub-spline"], [1 2], "lr",%f)
+            xtitle("spline interpolation (second derivatives)")
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // 異なる補外の方法を示す例
 x = linspace(0,1,11)';
 y = cosh(x-0.5);
@@ -188,6 +212,19 @@ clf()
 plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
 xtitle(" different way to evaluate a spline outside its domain")
  ]]></programlisting>
+        <scilab:image>
+            x = linspace(0,1,11)';
+            y = cosh(x-0.5);
+            d = splin(x,y);
+            xx = linspace(-0.5,1.5,401)';
+            yy0 = interp(xx,x,y,d,"C0");
+            yy1 = interp(xx,x,y,d,"linear");
+            yy2 = interp(xx,x,y,d,"natural");
+            yy3 = interp(xx,x,y,d,"periodic");  
+            clf()
+            plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
+            xtitle(" different way to evaluate a spline outside its domain")
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -199,5 +236,14 @@ xtitle(" different way to evaluate a spline outside its domain")
                 <link linkend="lsq_splin">lsq_splin</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>以前では, 入力引数の虚部は暗黙のうちに無視されていました.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

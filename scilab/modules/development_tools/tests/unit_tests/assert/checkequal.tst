@@ -1,30 +1,33 @@
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 
 function flag = MY_assert_equal ( computed , expected )
-  if ( and ( computed==expected ) ) then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
+    if ( and ( computed==expected ) ) then
+        flag = 1;
+    else
+        flag = 0;
+    end
+    if flag <> 1 then pause,end
 endfunction
 
 function checkassert ( flag , errmsg , ctype )
-  if ( ctype == "success" ) then
-    MY_assert_equal ( (flag==%t) & (errmsg==""), %t )
-  else
-    MY_assert_equal ( (flag==%f) & (errmsg<>""), %t )
-  end
+    if ( ctype == "success" ) then
+        MY_assert_equal ( (flag==%t) & (errmsg==""), %t )
+    else
+        MY_assert_equal ( (flag==%f) & (errmsg<>""), %t )
+    end
 endfunction
 
 format("v",10);
@@ -40,7 +43,7 @@ MY_assert_equal ( ierr , 10000 );
 //
 instr = "[o1,o2,o3]=assert_checkequal ( 1 , 1 )";
 ierr=execstr(instr,"errcatch");
-MY_assert_equal ( ierr , 59 );
+MY_assert_equal ( ierr , 999 );
 
 //////////////////////////////////////////
 // Check error message when type of arguments is false
@@ -113,13 +116,13 @@ checkassert ( flag , errmsg , "success" );
 // Check various types
 //
 //  Mlist
-s=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
-t=s; 
+s=mlist(["V","name","value"],["a","b";"c" "d"],[1 2; 3 4]);
+t=s;
 assert_checkequal(s, t);
 //
 //  Tlist
-s=tlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
-t=s; 
+s=tlist(["V","name","value"],["a","b";"c" "d"],[1 2; 3 4]);
+t=s;
 assert_checkequal(s, t);
 //
 // Polynomial
@@ -131,6 +134,11 @@ assert_checkequal(s, t);
 s=spzeros(3,5);
 t=s;
 assert_checkequal(s, t);
+s(1)=12;
+instr="assert_checkequal(s, t)";
+ierr=execstr(instr,"errcatch");
+MY_assert_equal(ierr, 10000);
+
 //
 // Boolean
 s=(ones(3,5)==ones(3,5));
@@ -141,6 +149,11 @@ assert_checkequal(s, t);
 s=(spzeros(3,5)==spzeros(3,5));
 t=s;
 assert_checkequal(s, t);
+s(1)=%f;
+instr="assert_checkequal(s, t)";
+ierr=execstr(instr,"errcatch");
+MY_assert_equal(ierr, 10000);
+
 //
 // Integer  8
 s=int8(3);
@@ -156,6 +169,24 @@ assert_checkequal(s, t);
 s=list("foo",2);
 t=s;
 assert_checkequal(s, t);
+//
+// Hypermatrix
+// - Double
+s = rand(2,2,2);
+t = s;
+assert_checkequal(s,t);
+// - int8
+s = int8(rand(2,2,2));
+t = s;
+assert_checkequal(s,t);
+// - wrong type
+s = rand(2,2,2);
+t = int8(s);
+instr="assert_checkequal(s, t)";
+ierr=execstr(instr,"errcatch");
+MY_assert_equal(ierr, 10000);
+
+
 
 
 

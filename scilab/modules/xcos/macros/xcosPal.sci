@@ -2,16 +2,19 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
 //
 
 function pal = xcosPal(name, scs_m)
-    // Instanciate a new Xcos palette on Scilab.
+    // Instantiate a new Xcos palette on Scilab.
     //
     // Calling Sequence
     //   pal = xcosPal();
@@ -26,7 +29,7 @@ function pal = xcosPal(name, scs_m)
     //   pal: palette tlist; the palette instance
     //
     // Description
-    // Instanciate a new palette diagram.
+    // Instantiate a new palette diagram.
     //
     // The optional name argument can be used to set a name to the palette. The optional scs_m argument can be used to import diagrams as palettes.
     //
@@ -60,10 +63,10 @@ function pal = xcosPal(name, scs_m)
 
     if exists("name", "l") == 0 then
         name = "New palette";
-    elseif isempty(name) then
-        name = "New palette";
     elseif typeof(name) == "diagram" then
         scs_m = name;
+        name = "New palette";
+    elseif isempty(name) then
         name = "New palette";
     end
     // loading the scicos_diagram macro
@@ -83,7 +86,7 @@ function pal = xcosPal(name, scs_m)
     [],        [],      [],      []);
 
     // find palette name
-    if ~isempty(scs_m.objs) then
+    if length(scs_m.objs) > 0 then
         name = scs_m.props.title(1);
     end
 

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="AssignOutputVariable"  xml:lang="ja">
+    <refnamediv>
+        <refname>AssignOutputVariable</refname>
+        <refpurpose>
+            Cゲートウェイ内で作成され, Scilab に出力変数として返されるパラメータを指定するCゲートウェイ関数.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>AssignOutputVariable(pvApiCtx, RankPos) = RankVar;</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>RankPos</term>
+                <listitem>
+                    <para>出力引数のランクを与える整数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>RankVar</term>
+                <listitem>
+                    <para>
+                        Cゲートウェイ内で生成され, Scilab出力引数として返されるパラメータのランク
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            Cゲートウェイ内で作成され, Scilab に出力変数として返されるパラメータを指定するCゲートウェイ関数.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>この例はdoubleの行列を入力として取り, 以下を返します:</para>
+        <itemizedlist>
+            <listitem>
+                <para>ライン数 (最初の出力引数)</para>
+            </listitem>
+            <listitem>
+                <para>行数 (2番目の出力引数)</para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            整数を処理するScilab中間パラメータを作成しますが,
+            使用したり,出力引数として返したりしません.
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+#include "api_scilab.h"
+int sci_mysizedouble(char * fname, void* pvApiCtx)
+{
+    SciErr      sciErr;
+    int         m_in_row;
+    int         n_in_col;
+    int*        piAddr = NULL;
+    double*     pdblData = NULL;
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+    /* 次元を取得 */
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &m_in_row, &n_in_col, &pdblData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+    sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, &m_in_row); // m_in_rowパラメータは引数として送信される行列のライン数を処理します
+    sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 2, 1, 1, &m_in_row); // 同じ値を保存しますが,使用したり,Scilabに返したりしません.
+    sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 3, 1, 1, &n_in_col); // n_in_colパラメータは引数として送信される行列の列数を処理します.
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1; // パラメータ "nbInputArgument(pvApiCtx) + 1" を出力引数として設定
+    AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 3; // パラメータ "nbInputArgument(pvApiCtx) + 3" を出力引数として設定
+    ReturnArguments(pvApiCtx);
+    return 0;
+}
+ ]]>
+        </programlisting>
+    </refsection>
+</refentry>

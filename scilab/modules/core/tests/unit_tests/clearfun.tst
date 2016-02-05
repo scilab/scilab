@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -13,8 +14,7 @@ if clearfun('myfunctionname') <> %F then pause,end
 ptr = funptr('pwd');
 newfun("MY_PWD",ptr);
 
-if clearfun("MY_PWD") <> %T then pause,end
+assert_checktrue(clearfun("MY_PWD"));
 //================================================
-
-ierr = execstr('a = clearfun(2);','errcatch');
-if ierr <> 999 then pause,end
+errmsg =  msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "clearfun", 1);
+assert_checkerror('a = clearfun(2);', errmsg);

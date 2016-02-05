@@ -61,7 +61,8 @@
 #include "sciprint.h"
 #include "others_generators.h"
 #include "localization.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
+#include "Sciwarning.h"
 
 /***********************************************************************/
 /* Private part.                                                       */
@@ -239,7 +240,7 @@ int set_seed_clcg4(int g, double s0, double s1, double s2, double s3)
         init_generator_clcg4(g, InitialSeed);
         if (getWarningMode())
         {
-            sciprint(_("WARNING: %s\n"), _("be aware that you may have lost synchronization\n    between the virtual generator %d and the others.\n    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."), g);
+            Sciwarning(_("WARNING: %s\n"), _("be aware that you may have lost synchronization\n    between the virtual generator %d and the others.\n    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."), g);
         }
         return ( 1 );
     }

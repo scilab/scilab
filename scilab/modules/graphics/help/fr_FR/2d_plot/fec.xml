@@ -3,7 +3,7 @@
     <refnamediv>
         <refname>fec</refname>
         <refpurpose>dessin en pseudo-couleurs d'une surface
-            définie sur une triangulation
+            définie sur un maillage constitué de polygones convexes
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -36,11 +36,11 @@
                 <term>triangles</term>
                 <listitem>
                     <para>
-                        une matrice <literal>[Ntr,5]</literal>. Chaque ligne de
-                        <literal>triangles</literal> représente un triangle du maillage
-                        <literal>triangle(j) = [number,node1,node2,node3,flag]</literal>.
-                        <literal>node1,node2,node3</literal> sont les numéros des sommets qui
-                        constituent le triangle j. number est le numéro du triangle et flag
+                        une matrice <literal>[Ntr, N+2]</literal>. Chaque ligne de
+                        <varname>triangles</varname> représente un polygone du maillage
+                        <literal>triangles(j) = [number,node1,node2,node3, ..., nodeN, flag]</literal>.
+                        <literal>node1,node2,node3, ..., nodeN</literal> sont les numéros des sommets qui
+                        constituent le polygone j. number est le numéro du polygone et flag
                         est un entier qui n'est pas utilisé par fec.
                     </para>
                 </listitem>
@@ -54,13 +54,16 @@
             <varlistentry>
                 <term>zminmax</term>
                 <listitem>
-                    <para>parfait pour faire des animations avec fec. zminmax est un
+                    <para>
+                        parfait pour faire des animations avec fec. <varname>zminmax</varname> est un
                         vecteur de taille 2 [zmin zmax] qui donne les z associés à  la
                         première et la dernière couleur (de la table des couleurs courante).
                         Plus exactement si la table des couleurs a nc couleurs et si on note
-                        dz = (zmax-zmin)/nc, alors la partie de la triangulation où zmin +
-                        (i-1)dz &lt;= z &lt; zmin + i dz est remplie avec la couleur i). Par
-                        défaut zmin = min(func) et zmax = max(func). Si vous voulez faire
+                        <emphasis>dz = (zmax-zmin)/nc</emphasis>, alors la partie du maillage où <emphasis>zmin +
+                            (i-1)dz &lt;= z &lt; zmin + i dz
+                        </emphasis>
+                        est remplie avec la couleur <emphasis>i</emphasis>). Par
+                        défaut <emphasis>zmin = min(func)</emphasis> et <emphasis>zmax = max(func)</emphasis>. Si vous voulez faire
                         une animation avec des valeurs de func changeant en fonction du
                         temps, prenez zmin et zmax égaux au minimum et maximum globaux.
                         ATTENTION : pour les valeurs de func plus grandes que zmax la
@@ -81,10 +84,28 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>colout</term>
+                <listitem>
+                    <para>un vecteur de 2 entiers [under_min_col upper_max_col]</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mesh</term>
+                <listitem>
+                    <para>un booléen, valeur par défaut %f (doit être %t pour afficher le maillage)</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
+        <para>Cette fonction est utile pour afficher les solutions des équations obtenues par la méthode des éléments finis, ou
+            simplement pour afficher une fonction basée sur un maillage constitué de polygones.
+        </para>
+        <para>
+            Pour des raisons historiques, le troisième argument d'entrée est nommé <varname>triangles</varname>, mais <function>fec</function> accepte tous les types de polygones convexes.
+        </para>
         <para>Voir les fonctions de démonstration dans le répertoire
             <literal>demos/fec</literal>.
         </para>
@@ -273,6 +294,34 @@ show_window()
             xtitle("fec using the jet colormap")
             show_window()
         </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+// define a mapping with one quadrangle (4 vertices, 1 quadrangle)
+x = [1 2 2 1];
+y = [1 1 2 2];
+T = [1 1 2 3 4 0];
+z = [-1; -1; 1; 1];  // values of the func at each vertices
+
+clf()
+f = gcf();
+f.color_map = jetcolormap(12);
+colorbar(-1,1);
+fec(x,y,T,z,mesh=%t)
+xtitle("fec using the hot colormap, composed by one quadrangle")
+ ]]></programlisting>
+        <scilab:image>
+            // define a mapping with one quadrangle (4 vertices, 1 quadrangle)
+            x = [1 2 2 1];
+            y = [1 1 2 2];
+            T = [1 1 2 3 4 0];
+            z = [-1 -1 1 1];  // values of the func at each vertices
+            
+            clf()
+            f = gcf();
+            f.color_map = jetcolormap(12);
+            colorbar(-1,1);
+            fec(x,y,T,z,mesh=%t)
+            xtitle("fec using the hot colormap, composed by one quadrangle")
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
@@ -284,5 +333,18 @@ show_window()
                 <link linkend="Sgrayplot">Sgrayplot</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.2</revnumber>
+                <revremark>
+                    <para>
+                        Le maillage peut désormais être consitué de polygones convexes.
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

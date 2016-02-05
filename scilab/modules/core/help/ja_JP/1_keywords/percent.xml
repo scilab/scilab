@@ -22,8 +22,9 @@
             例えば,関数 <literal>%rmr</literal> は乗算(<literal>m</literal>)
             処理<literal>x*y</literal>を有理行列(<literal>r</literal>)
             <literal>x</literal> および <literal>y</literal> に関して実行します.
-            コード記法はディレクトリ<literal>SCIDIR/macros/percent</literal>の
-            readmeファイルにより指定されています.
+            コード記法は,
+	    <link linkend="overloading">オーバーローディング</link>の
+	    ヘルプページに記載されています.
         </para>
     </refsection>
     <refsection>

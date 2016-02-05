@@ -24,7 +24,8 @@
             <literal>'off'</literal> は警告メッセージを無効にします.
         </para>
         <para>
-            <literal>'query'</literal> は, <literal>'on'</literal> または <literal>'off'</literal> の状態を取得します.
+            <literal>'query'</literal> は, <literal>'on'</literal> または
+	    <literal>'off'</literal> の状態を取得します.
         </para>
     </refsection>
     <refsection>
@@ -51,6 +52,9 @@ warning(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"
             </member>
             <member>
                 <link linkend="msprintf">msprintf</link>
+            </member>
+            <member>
+                <link linkend="messagebox">messagebox</link>
             </member>
         </simplelist>
     </refsection>

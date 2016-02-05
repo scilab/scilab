@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function t=sci2exp(a,nom,lmax)
@@ -69,11 +72,18 @@ function t=sci2exp(a,nom,lmax)
     case 10 then
         t=str2exp(a,lmax)
     case 13 then
+        tree=macr2tree(a);
+        strfun=tree2code(tree);
+        name="%fun";
         if named then
-            t=fun2string(a,nom)
-        else
-            t=fun2string(a,"%fun")
+            name=nom;
         end
+        idx=strindex(strfun(1), "=");
+        idx2=strindex(part(strfun(1), idx:$), "(") + idx - 1;
+        str=part(strfun(1), 1:idx) + " "+ name + part(strfun(1), idx2:length(strfun(1)));
+        strfun(1)=str;
+        strfun($)=[];
+        t=strfun;
         t(1)=part(t(1),10:length(t(1)))
         t($)=[]
         t=sci2exp(t,lmax)
@@ -105,12 +115,13 @@ function t=str2exp(a,lmax)
 
     [m,n]=size(a),
     dots="."+"."
-    t=[];
+    t="";
     quote="''"
 
     a=strsubst(a,quote,quote+quote)
     dquote=""""
     a=strsubst(a,dquote,dquote+dquote)
+    a = strsubst(a, ascii(10), """+ascii(10)+""")
     a=quote(ones(a))+a+quote(ones(a))
 
     for i=1:m
@@ -167,7 +178,7 @@ function t=mat2exp(a,lmax)
     end
     a=String(a);
     dots="."+"."
-    t=[];
+    t="";
     if n==1 then
         x=strcat(a,";")
         lx=length(x)
@@ -407,6 +418,8 @@ function t=mlist2exp(l,lmax)
             t1=mlist2exp(lk,lmax)
         elseif type(lk)==9 then
             t1=h2exp(lk,lmax)
+        elseif type(lk)==128 then
+            t1=mlist2exp(user2mlist(lk),lmax)
         else
             t1=sci2exp(lk,lmax)
         end
@@ -577,7 +590,6 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
     f36="''figure_id'', ";
     f37="''info_message'', ";
     f38="''color_map'', ";
-    f39="''pixmap'', ";
     f40="''pixel_drawing_mode'', ";
     f41="''anti_aliasing'', ";
     f42="''immediate_drawing'', ";
@@ -587,7 +599,7 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
     f46="''event_handler_enable'', ";
     f47="''resizefcn'', ";
     f48="''closerequestfcn'', ";
-    x=[];
+    x="";
 
 
     if a.type=="uicontrol"
@@ -639,7 +651,13 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
         x=x+f16+"''"+a.Relief+"''"+", ";
         f17_strg=String(a.sliderStep); f17_strg="["+f17_strg(1)+" "+f17_strg(2)+"]";
         if a.sliderStep <> [0.01 0.1] then x=x+f17+f17_strg+", "; end
-        if a.String <>"" then x=x+f18+"''"+a.String+"''"+" ,"; end
+        if a.String <>"" then
+            if isempty(a.String)
+                x = x + f18 + "'''' ,";
+            else
+                x=x+f18+"''"+a.String+"''"+" ,";
+            end
+        end
         if a.Style <> "pushbutton" then x=x+f19+"''"+a.Style+"''"+", "; end
         if a.TooltipString <> "" then x=x+f20+"''"+a.TooltipString+"''"+", "; end
         if a.Units <> "pixels" then x=x+f21+"''"+a.Units+"''"+", "; end
@@ -678,15 +696,10 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
                 named=%f
             elseif type(a.userdata) == 13 then
                 if named then
-                    t=fun2string(a,nom)
+                    f28_strg=sci2exp(a.userdata,nom)
                 else
-                    t=fun2string(a,"%fun")
+                    f28_strg=sci2exp(a.userdata,"%fun")
                 end
-                t(1)=part(t(1),10:length(t(1)))
-                t($)=[]
-                t=sci2exp(t,lmax)
-                t(1)="createfun("+t(1)
-                t($)=t($)+")"
             elseif type(a.userdata) == 15 then
                 f28_strg=list2exp(a.userdata);
             elseif type(a.userdata) == 16 then
@@ -740,7 +753,6 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
         f36_strg=String(a.figure_id);
         x=x+f36+f36_strg+", ";
         if a.info_message<>"" then x=x+f37+"''"+a.info_message+"''"+", "; end
-        if a.pixmap <> "off" then x=x+f39+"''"+a.pixmap+"''"+", ";end
         if a.pixel_drawing_mode <> "copy" then x=x+f40+"''"+a.pixel_drawing_mode+"''"+", "; end
         if a.anti_aliasing <> "off" then x=x+f41+"''"+a.anti_aliasing+"''"+", "; end
         if a.immediate_drawing <>"on" then x=x+f42+"''"+a.immediate_drawing+"''"+", "; end
@@ -770,15 +782,10 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
                 named=%f
             elseif type(a.userdata) == 13 then
                 if named then
-                    t=fun2string(a,nom)
+                    f47_strg=sci2exp(a.userdata,nom)
                 else
-                    t=fun2string(a,"%fun")
+                    f47_strg=sci2exp(a.userdata,"%fun")
                 end
-                t(1)=part(t(1),10:length(t(1)))
-                t($)=[]
-                t=sci2exp(t,lmax)
-                t(1)="createfun("+t(1)
-                t($)=t($)+")"
             elseif type(a.userdata) == 15 then
                 f47_strg=list2exp(a.userdata);
             elseif type(a.userdata) == 16 then
@@ -814,6 +821,17 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
         end
     else
         error(msprintf(gettext("%s: This feature has not been implemented: Variable translation of type %s.\n"),"sci2exp",string(a.type)));
+    end
+
+endfunction
+
+function ml = user2mlist(u)
+
+    fn = getfield(1, u);
+    ml = mlist(fn);
+
+    for k=1:size(fn,"*")
+        ml(k) = eval("u."+fn(k));
     end
 
 endfunction

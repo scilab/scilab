@@ -1,11 +1,14 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
 c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 c
       subroutine wbdiag(lda,n,ar,ai,rmax,er,ei,bs,xr,xi,
      *     yr,yi,scale,job,fail)
@@ -49,7 +52,7 @@ c
 c  *er       a singly subscripted real array containing the real
 c            parts of the eigenvalues.
 c
-c  *ei       a singly subscripted real array containg the imaginary
+c  *ei       a singly subscripted real array containing the imaginary
 c            parts of the eigenvalues.
 c
 c  *bs       a singly subscripted integer array that contains block

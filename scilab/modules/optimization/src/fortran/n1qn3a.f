@@ -1,11 +1,14 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
 c
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 c
       subroutine n1qn3a (simul,prosca,ctonb,ctcab,n,x,f,g,dxmin,df1,
      /                   epsg,impres,io,mode,niter,nsim,m,d,gg,diag,aux,
@@ -91,8 +94,8 @@ c
 c---- debut de l'iteration. On cherche x(k+1) de la forme x(k) + t*d,
 c     avec t > 0. On connait d.
 c
-c         debut de la boucle: etiquette 100,
-c         sortie de la boucle: goto 1000.
+c     Si impres<0 et l'itération est un multiple de -impres,
+c     alors on appelle la fonction fournie, avec indic=1.
 c
 100   iter=iter+1
       if (impres.lt.0) then
@@ -101,7 +104,6 @@ c
               call simul (indic,n,x,f,g,izs,rzs,dzs)
 c             error in user function
               if(indic.eq.0) goto 1000
-              goto 100
           endif
       endif
       if (impres.ge.4) then

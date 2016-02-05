@@ -1,31 +1,36 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - Samuel GOUGEON
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
 // This is the demonstration script of Matplot1
 // used when calling Matplot1 without any parameter.
 //
 
 function %_Matplot1()
-    clf
-    f = gcf()
     nc = 200    // Number of colors
     np = 2      // Number of periods
     nx = 350
     ny = 300
-    f.color_map = hsvcolormap(nc);
     [X,Y] = meshgrid(-nx/2:nx/2, -ny/2:ny/2);
     R = sqrt(X.^2+Y.^2);
     R = (R-min(R))/(max(R)-min(R))*nc*np;
     R = 1+pmodulo(R,nc);
     xmin = -15, xmax = 40, ymin = -0.03, ymax = 0.01
 
-    Matplot1(R,[xmin ymin xmax ymax])
+    Matplot1(R,[xmin ymin xmax ymax]);
+
+    f = gcf();
+    my_plot_desc  = _("Classical Matplot1");
+    f.figure_name = my_plot_desc;
+    f.color_map = hsvcolormap(nc);
 
     a = gca()
     a.data_bounds=[xmin ymin ; xmax ymax];

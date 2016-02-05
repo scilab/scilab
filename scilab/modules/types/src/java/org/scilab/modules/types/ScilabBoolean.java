@@ -4,11 +4,14 @@
  *  Copyright (C) 2010-2010 - DIGITEO - Clement DAVID
  *  Copyright (C) 2011-2011 - DIGITEO - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -17,6 +20,7 @@ package org.scilab.modules.types;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.util.Arrays;
 
 /**
  * This class provides a representation on the Scilab boolean datatype<br>
@@ -24,9 +28,9 @@ import java.io.ObjectOutput;
  * This class is {@link java.io.Serializable} and any modification could impact
  * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
- * Example:<br />
+ * Example:<BR>
  * <code>
- * boolean [][]a={{true,false,true}, {true,true,true}};<br />
+ * boolean [][]a={{true,false,true}, {true,true,true}};<BR>
  * ScilabBoolean aMatrix = new ScilabBoolean(a);
  * </code>
  *
@@ -199,6 +203,11 @@ public class ScilabBoolean implements ScilabType {
         return data == null;
     }
 
+    @Override
+    public int hashCode() {
+        return Arrays.deepHashCode(data);
+    }
+
     /**
      * @see org.scilab.modules.types.ScilabType#equals(Object)
      */
@@ -250,7 +259,7 @@ public class ScilabBoolean implements ScilabType {
     }
 
     /**
-     * Display the representation in the Scilab language of the type<br />
+     * Display the representation in the Scilab language of the type<BR>
      * Note that the representation can be copied/pasted straight into Scilab
      *
      * @return the pretty print

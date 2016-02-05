@@ -3,32 +3,34 @@
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  * Copyright (C) 2011-2013 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.modelica.model;
 
 import java.math.BigInteger;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
  * Describe an output of the modelica world.
  *
- * <p>
- * Java class for Output complex type.
+ * <p>Java class for Output complex type.
  *
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="Output">
@@ -57,7 +59,11 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Output", propOrder = { "name", "order", "dependencies" })
+@XmlType(name = "Output", propOrder = {
+    "name",
+    "order",
+    "dependencies"
+})
 public class Output {
 
     @XmlElement(required = true)
@@ -70,7 +76,9 @@ public class Output {
     /**
      * Gets the value of the name property.
      *
-     * @return possible object is {@link String }
+     * @return
+     *     possible object is
+     *     {@link String }
      *
      */
     public String getName() {
@@ -81,7 +89,8 @@ public class Output {
      * Sets the value of the name property.
      *
      * @param value
-     *            allowed object is {@link String }
+     *     allowed object is
+     *     {@link String }
      *
      */
     public void setName(String value) {
@@ -91,7 +100,9 @@ public class Output {
     /**
      * Gets the value of the order property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getOrder() {
@@ -102,7 +113,8 @@ public class Output {
      * Sets the value of the order property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setOrder(BigInteger value) {
@@ -112,7 +124,9 @@ public class Output {
     /**
      * Gets the value of the dependencies property.
      *
-     * @return possible object is {@link Output.Dependencies }
+     * @return
+     *     possible object is
+     *     {@link Output.Dependencies }
      *
      */
     public Output.Dependencies getDependencies() {
@@ -123,20 +137,19 @@ public class Output {
      * Sets the value of the dependencies property.
      *
      * @param value
-     *            allowed object is {@link Output.Dependencies }
+     *     allowed object is
+     *     {@link Output.Dependencies }
      *
      */
     public void setDependencies(Output.Dependencies value) {
         this.dependencies = value;
     }
 
+
     /**
-     * <p>
-     * Java class for anonymous complex type.
+     * <p>Java class for anonymous complex type.
      *
-     * <p>
-     * The following schema fragment specifies the expected content contained
-     * within this class.
+     * <p>The following schema fragment specifies the expected content contained within this class.
      *
      * <pre>
      * &lt;complexType>
@@ -153,7 +166,9 @@ public class Output {
      *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = { "variable" })
+    @XmlType(name = "", propOrder = {
+        "variable"
+    })
     public static class Dependencies {
 
         protected String variable;
@@ -161,7 +176,9 @@ public class Output {
         /**
          * Gets the value of the variable property.
          *
-         * @return possible object is {@link String }
+         * @return
+         *     possible object is
+         *     {@link String }
          *
          */
         public String getVariable() {
@@ -172,7 +189,8 @@ public class Output {
          * Sets the value of the variable property.
          *
          * @param value
-         *            allowed object is {@link String }
+         *     allowed object is
+         *     {@link String }
          *
          */
         public void setVariable(String value) {

@@ -3,18 +3,20 @@
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.graphic_objects.contouredObject;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
-import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 
 /**
  * Mark class
@@ -23,6 +25,27 @@ import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 public class Mark {
     /** Mark properties */
     public enum MarkPropertyType { MODE, STYLE, SIZEUNIT, SIZE, FOREGROUND, BACKGROUND };
+
+    /** Mark size unit type */
+    public enum MarkSizeUnitType { POINT, TABULATED;
+
+                                   /**
+                                    * Converts an integer to the corresponding enum
+                                    * @param intValue the integer value
+                                    * @return the mark size unit type enum
+                                    */
+    public static MarkSizeUnitType intToEnum(Integer intValue) {
+        switch (intValue) {
+            case 0:
+                return MarkSizeUnitType.POINT;
+            case 1:
+                return MarkSizeUnitType.TABULATED;
+            default:
+                return null;
+        }
+    }
+                                 }
+
 
     /** Specifies whether marks must be drawn or not */
     private boolean mode;
@@ -47,7 +70,8 @@ public class Mark {
         super();
         mode = false;
         style = 0;
-        markSizeUnit = MarkSizeUnitType.TABULATED;
+        markSizeUnit = MarkSizeUnitType.POINT;
+        size = 0;
         foreground = 0;
         background = 0;
     }
@@ -75,7 +99,7 @@ public class Mark {
     /**
      * @param background the background to set
      */
-    public UpdateStatus setBackground(int background) {
+    public UpdateStatus setBackground(Integer background) {
         if (this.background != background) {
             this.background = background;
             return UpdateStatus.Success;
@@ -94,7 +118,7 @@ public class Mark {
     /**
      * @param foreground the foreground to set
      */
-    public UpdateStatus setForeground(int foreground) {
+    public UpdateStatus setForeground(Integer foreground) {
         if (this.foreground != foreground) {
             this.foreground = foreground;
             return UpdateStatus.Success;
@@ -132,7 +156,7 @@ public class Mark {
     /**
      * @param size the size to set
      */
-    public UpdateStatus setSize(int size) {
+    public UpdateStatus setSize(Integer size) {
         if (this.size == size) {
             return UpdateStatus.NoChange;
         }
@@ -150,7 +174,7 @@ public class Mark {
     /**
      * @param mode the mode to set
      */
-    public UpdateStatus setMode(boolean mode) {
+    public UpdateStatus setMode(Boolean mode) {
         if (this.mode == mode) {
             return UpdateStatus.NoChange;
         }
@@ -168,7 +192,7 @@ public class Mark {
     /**
      * @param style the style to set
      */
-    public UpdateStatus setStyle(int style) {
+    public UpdateStatus setStyle(Integer style) {
         if (this.style == style) {
             return UpdateStatus.NoChange;
         }

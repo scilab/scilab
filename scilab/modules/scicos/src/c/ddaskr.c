@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Scilab Enterprises - 2013 - Paul Bignier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -400,13 +403,13 @@ int DDaskrSetUserData (void * ddaskr_mem, void * User_data)
     if (ddaskr_mem == NULL)
     {
         DDASProcessError(NULL, IDA_MEM_NULL, "DDASKR", "DDaskrSetUserData", MSG_NO_MEM);
-        return(IDA_MEM_NULL);
+        return (IDA_MEM_NULL);
     }
     ddas_mem = (DDaskrMem) ddaskr_mem;
 
     user_data = User_data;
 
-    return(IDA_SUCCESS);
+    return (IDA_SUCCESS);
 }
 
 /* =============================
@@ -480,7 +483,7 @@ int DDaskrSetStopTime (void * ddaskr_mem, realtype tCrit)
  * Ensure that ddaskr will consider it via flag info[16], and stock it in iwork[33].
  */
 
-int DDaskrSetMaxNumSteps (void * ddaskr_mem, int maxnh)
+int DDaskrSetMaxNumSteps (void * ddaskr_mem, long int maxnh)
 {
     DDaskrMem ddas_mem = NULL;
 
@@ -756,7 +759,7 @@ int DDaskrSolve (void * ddaskr_mem, realtype tOut, realtype * tOld, N_Vector yOu
     if (tOld == NULL)
     {
         DDASProcessError(ddas_mem, IDA_ILL_INPUT, "DDASKR", "DDaskrSolve", MSG_TRET_NULL);
-        return(IDA_ILL_INPUT);
+        return (IDA_ILL_INPUT);
     }
 
     if ((itask != DDAS_NORMAL) && (itask != DDAS_ONE_STEP))
@@ -1026,14 +1029,14 @@ int DDaskrSetErrHandlerFn (void * ddaskr_mem, DDASErrHandlerFn ehFun, void * eh_
     if (ddaskr_mem == NULL)
     {
         DDASProcessError(NULL, IDA_MEM_NULL, "DDASKR", "DDaskrSetErrHandlerFn", MSG_NO_MEM);
-        return(IDA_MEM_NULL);
+        return (IDA_MEM_NULL);
     }
 
     ddas_mem = (DDaskrMem) ddaskr_mem;
 
     ehfun = ehFun;
 
-    return(IDA_SUCCESS);
+    return (IDA_SUCCESS);
 }
 
 /* =============================

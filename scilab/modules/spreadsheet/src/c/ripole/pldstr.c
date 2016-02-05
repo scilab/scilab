@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -9,11 +8,12 @@
 
 #include "logger.h"
 #include "pldstr.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 
+#include "os_string.h"
+
 #ifdef _MSC_VER
-#include "strdup_windows.h"
 #define vsnprintf _vsnprintf
 #endif
 
@@ -44,9 +44,9 @@ char *PLD_strstr(char *haystack, char *needle, int insensitive)
 
     if (insensitive > 0)
     {
-        hs = strdup(haystack);
+        hs = os_strdup(haystack);
         PLD_strlower((unsigned char*) hs);
-        ne = strdup(needle);
+        ne = os_strdup(needle);
         PLD_strlower((unsigned char*) ne);
     }
     else
@@ -334,7 +334,7 @@ char *PLD_strtok( struct PLD_strtok *st, char *line, char *delimeters )
 
     result = st->start;
 
-    if ((st->start) && (st->start != '\0'))
+    if ((st->start) && (*st->start != '\0'))
     {
         stop = strpbrk( st->start, delimeters ); /* locate our next delimeter */
 

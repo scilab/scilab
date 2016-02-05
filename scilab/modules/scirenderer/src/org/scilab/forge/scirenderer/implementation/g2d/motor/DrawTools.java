@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte Denizet
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
@@ -60,18 +63,18 @@ public final class DrawTools {
         area.add(new Area(stroke.createStrokedShape(contour)));
 
 
-        g2d.setColor(t.colors[0]);
+        g2d.setColor(t.getColor(0));
         g2d.fill(area);
 
 
-        float[] col = t.colors[1].getComponents(null);
-        GradientPaint gp = new GradientPaint((float) v1[0], (float) v1[1], t.colors[1], (float) pv1[0], (float) pv1[1], new Color(col[0], col[1], col[2], 0.0f));
+        float[] col = t.getColor(1).getComponents(null);
+        GradientPaint gp = new GradientPaint((float) v1[0], (float) v1[1], t.getColor(1), (float) pv1[0], (float) pv1[1], new Color(col[0], col[1], col[2], 0.0f));
         g2d.setPaint(gp);
         g2d.fill(area);
 
 
-        col = t.colors[2].getComponents(null);
-        gp = new GradientPaint((float) v2[0], (float) v2[1], t.colors[2], (float) pv2[0], (float) pv2[1], new Color(col[0], col[1], col[2], 0.0f));
+        col = t.getColor(2).getComponents(null);
+        gp = new GradientPaint((float) v2[0], (float) v2[1], t.getColor(2), (float) pv2[0], (float) pv2[1], new Color(col[0], col[1], col[2], 0.0f));
         g2d.setPaint(gp);
         g2d.fill(area);
 

@@ -33,17 +33,12 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 currentlnf = getlookandfeel();
-
 // CDE/Motifのルックアンドフィール
 setlookandfeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel")
-
 sleep(3000);
-
 // métalのルックアンドフィール
 setlookandfeel("javax.swing.plaf.metal.MetalLookAndFeel")
-
 sleep(3000);
-
 setlookandfeel(currentlnf)
  ]]></programlisting>
     </refsection>

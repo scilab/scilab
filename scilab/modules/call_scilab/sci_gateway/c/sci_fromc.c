@@ -1,46 +1,51 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include "gw_core.h"
-#include "stack-c.h"
-#include "MALLOC.h"
+#include "api_scilab.h"
+#include "sci_malloc.h"
 #include "fromc.h"
-/*--------------------------------------------------------------------------*/
-int sci_fromc(char *fname, unsigned long fname_len)
-{
-    static int n1;
-    int *paramoutINT = (int*)MALLOC(sizeof(int));
+#include "localization.h"
+#include "Scierror.h"
+#include "gw_call_scilab.h"
 
-    Rhs = Max(0, Rhs);
-    CheckRhs(0, 0);
-    CheckLhs(1, 1);
+/*--------------------------------------------------------------------------*/
+int sci_fromc(char *fname, void* pvApiCtx)
+{
+    CheckInputArgument(pvApiCtx, 0, 0);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
     if ( IsFromC() )
     {
-        *paramoutINT = (int)(TRUE);
+        if (createScalarBoolean(pvApiCtx, 1, TRUE))
+        {
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
     }
     else
     {
-        *paramoutINT = (int)(FALSE);
+        if (createScalarBoolean(pvApiCtx, 1, FALSE))
+        {
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
     }
 
-    n1 = 1;
-    CreateVarFromPtr(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
-    if (paramoutINT)
-    {
-        FREE(paramoutINT);
-        paramoutINT = NULL;
-    }
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -60,7 +60,7 @@ function [eq_pts_mes]=eval_pts_EF(a,b,nelem,kind,nint,nodes,x,xi,w,N,mesures)
         uh="";
         for l=1:n
             l1=nodes(l,nel);
-            uh=addf(uh,mulf(msprintfv(psi(l)),u(l1)));
+            uh=addfv(uh,"("+msprintfv(psi(l))+")*("+u(l1)+")");
         end
         eq_pts_mes(npt) = uh;
     end

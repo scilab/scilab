@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -24,16 +27,20 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.widget.Widget;
 
 /**
@@ -86,7 +93,31 @@ public final class SwingViewMenu {
                 break;
             case __GO_UI_ICON__ :
                 if (!((String) value).equals("")) {
-                    ((SwingScilabMenuItem) uimenu).setIcon(new ImageIcon(ScilabSwingUtilities.findIcon((String) value, "16x16")));
+                    File file = new File((String)value);
+                    if (file.exists() == false) {
+                        String filename = FindIconHelper.findImage((String)value);
+                        file = new File(filename);
+                    }
+
+                    try {
+                        BufferedImage icon = ImageIO.read(file);
+                        if (uimenu instanceof SwingScilabMenuItem) {
+                            ((SwingScilabMenuItem) uimenu).setIcon(new ImageIcon(icon));
+                        } else if (uimenu instanceof SwingScilabMenu) {
+                            ((SwingScilabMenu) uimenu).setIcon(new ImageIcon(icon));
+                        } else if (uimenu instanceof SwingScilabMenu) {
+                            ((SwingScilabCheckBoxMenuItem) uimenu).setIcon(new ImageIcon(icon));
+                        }
+                    } catch (IOException e) {
+                    }
+                } else {
+                    if (uimenu instanceof SwingScilabMenuItem) {
+                        ((SwingScilabMenuItem) uimenu).setIcon(null);
+                    } else if (uimenu instanceof SwingScilabMenu) {
+                        ((SwingScilabMenu) uimenu).setIcon(null);
+                    } else if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
+                        ((SwingScilabCheckBoxMenuItem) uimenu).setIcon(null);
+                    }
                 }
                 break;
             case __GO_UI_LABEL__ :

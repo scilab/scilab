@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [tree]=sci_eig(tree)
     // M2SCI function
@@ -66,7 +69,7 @@ function [tree]=sci_eig(tree)
         if lhs==1 then
             al=gettempvar(1)
             be=gettempvar(2)
-            insert(Equal(list(al,be),Funcall("spec",1,tree.rhs,list(al,be))))
+            m2sci_insert(Equal(list(al,be),Funcall("spec",1,tree.rhs,list(al,be))))
             tree=Operation("./",list(al,be),tree.lhs)
 
             tree.out(1).dims=list(m,1)
@@ -75,7 +78,7 @@ function [tree]=sci_eig(tree)
             al=gettempvar(1)
             be=gettempvar(2)
 
-            insert(Equal(list(al,be,tree.lhs(1)),Funcall("eig",1,tree.rhs,list(al,be,tree.lhs(1)))))
+            m2sci_insert(Equal(list(al,be,tree.lhs(1)),Funcall("eig",1,tree.rhs,list(al,be,tree.lhs(1)))))
 
             tree=Operation("./",list(al,be),list(tree.lhs(1)))
             tree=Funcall("diag",1,list(tree),tree.out)
@@ -87,7 +90,7 @@ function [tree]=sci_eig(tree)
         end
         // eig(A,B,flag)
     else
-        no_equiv(msprintf(gettext("%s, flag IGNORED."),expression2code(tree)))
+        no_equiv(msprintf(gettext("%s, flag IGNORED."), strcat(expression2code(tree), "")))
 
         tree.rhs(3)=null()
 

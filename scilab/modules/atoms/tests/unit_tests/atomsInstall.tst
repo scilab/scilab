@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- ENGLISH IMPOSED -->
 // <-- CLI SHELL MODE -->
 
 load("SCI/modules/atoms/macros/atoms_internals/lib");
@@ -18,163 +19,163 @@ atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
 // Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
+atomsRepositorySetOfl("http://scene10.6.0.test.atoms.scilab.org");
 
 // Install the toolbox 5
 // =============================================================================
 
-atomsInstall("toolbox_5");
+atomsInstall("toolbox_5V6");
 
 // Check if the module is really installed
-if ~atomsIsInstalled("toolbox_5")           then pause, end
-if ~atomsIsInstalled(["toolbox_5" "1.0"])   then pause, end
-if ~atomsIsInstalled(["toolbox_5" "1.0-1"]) then pause, end
-if ~atomsIsInstalled("toolbox_4")           then pause, end
-if ~atomsIsInstalled("toolbox_2")           then pause, end
-if ~atomsIsInstalled("toolbox_1")           then pause, end
+if ~atomsIsInstalled("toolbox_5V6")           then pause, end
+if ~atomsIsInstalled(["toolbox_5V6" "1.0"])   then pause, end
+if ~atomsIsInstalled(["toolbox_5V6" "1.0-1"]) then pause, end
+if ~atomsIsInstalled("toolbox_4V6")           then pause, end
+if ~atomsIsInstalled("toolbox_2V6")           then pause, end
+if ~atomsIsInstalled("toolbox_1V6")           then pause, end
 
 // Remove the module
-atomsRemove("toolbox_5");
+atomsRemove("toolbox_5V6");
 
 // Install the toolbox 5 (version is mentioned)
 // =============================================================================
 
-atomsInstall(["toolbox_5" "1.0"]);
+atomsInstall(["toolbox_5V6" "1.0"]);
 
 // Check if the module is really installed
-if ~atomsIsInstalled("toolbox_5")           then pause, end
-if ~atomsIsInstalled(["toolbox_5" "1.0"])   then pause, end
-if ~atomsIsInstalled(["toolbox_5" "1.0-1"]) then pause, end
-if ~atomsIsInstalled("toolbox_4")           then pause, end
-if ~atomsIsInstalled("toolbox_2")           then pause, end
-if ~atomsIsInstalled("toolbox_1")           then pause, end
+if ~atomsIsInstalled("toolbox_5V6")           then pause, end
+if ~atomsIsInstalled(["toolbox_5V6" "1.0"])   then pause, end
+if ~atomsIsInstalled(["toolbox_5V6" "1.0-1"]) then pause, end
+if ~atomsIsInstalled("toolbox_4V6")           then pause, end
+if ~atomsIsInstalled("toolbox_2V6")           then pause, end
+if ~atomsIsInstalled("toolbox_1V6")           then pause, end
 
 // Remove the module
-atomsRemove("toolbox_5");
+atomsRemove("toolbox_5V6");
 
 // Install the toolbox 5 (version + packaging version are mentioned)
 // =============================================================================
 
-atomsInstall(["toolbox_5" "1.0-1"]);
+atomsInstall(["toolbox_5V6" "1.0-1"]);
 
 // Check if the module is really installed
-if ~atomsIsInstalled("toolbox_5")           then pause, end
-if ~atomsIsInstalled(["toolbox_5" "1.0"])   then pause, end
-if ~atomsIsInstalled(["toolbox_5" "1.0-1"]) then pause, end
-if ~atomsIsInstalled("toolbox_4")           then pause, end
-if ~atomsIsInstalled("toolbox_2")           then pause, end
-if ~atomsIsInstalled("toolbox_1")           then pause, end
+if ~atomsIsInstalled("toolbox_5V6")           then pause, end
+if ~atomsIsInstalled(["toolbox_5V6" "1.0"])   then pause, end
+if ~atomsIsInstalled(["toolbox_5V6" "1.0-1"]) then pause, end
+if ~atomsIsInstalled("toolbox_4V6")           then pause, end
+if ~atomsIsInstalled("toolbox_2V6")           then pause, end
+if ~atomsIsInstalled("toolbox_1V6")           then pause, end
 
 // Remove the module
-atomsRemove("toolbox_5");
+atomsRemove("toolbox_5V6");
 
 // Install the toolbox 5 (user section)
 // =============================================================================
 
-atomsInstall("toolbox_5","user");
+atomsInstall("toolbox_5V6","user");
 
-if ~atomsIsInstalled("toolbox_5","user") then pause, end
-if ~atomsIsInstalled("toolbox_4","user") then pause, end
-if ~atomsIsInstalled("toolbox_2","user") then pause, end
-if ~atomsIsInstalled("toolbox_1","user") then pause, end
+if ~atomsIsInstalled("toolbox_5V6","user") then pause, end
+if ~atomsIsInstalled("toolbox_4V6","user") then pause, end
+if ~atomsIsInstalled("toolbox_2V6","user") then pause, end
+if ~atomsIsInstalled("toolbox_1V6","user") then pause, end
 
-if atomsIsInstalled("toolbox_5","allusers") then pause, end
-if atomsIsInstalled("toolbox_4","allusers") then pause, end
-if atomsIsInstalled("toolbox_2","allusers") then pause, end
-if atomsIsInstalled("toolbox_1","allusers") then pause, end
+if atomsIsInstalled("toolbox_5V6","allusers") then pause, end
+if atomsIsInstalled("toolbox_4V6","allusers") then pause, end
+if atomsIsInstalled("toolbox_2V6","allusers") then pause, end
+if atomsIsInstalled("toolbox_1V6","allusers") then pause, end
 
-atomsRemove("toolbox_5","user");
+atomsRemove("toolbox_5V6","user");
 
-if atomsIsInstalled("toolbox_5","user") then pause, end
-if atomsIsInstalled("toolbox_4","user") then pause, end
-if atomsIsInstalled("toolbox_2","user") then pause, end
-if atomsIsInstalled("toolbox_1","user") then pause, end
+if atomsIsInstalled("toolbox_5V6","user") then pause, end
+if atomsIsInstalled("toolbox_4V6","user") then pause, end
+if atomsIsInstalled("toolbox_2V6","user") then pause, end
+if atomsIsInstalled("toolbox_1V6","user") then pause, end
 
 // Install the toolbox 5 (allusers section)
 // =============================================================================
 
-atomsInstall("toolbox_5","allusers");
+atomsInstall("toolbox_5V6","allusers");
 
-if ~atomsIsInstalled("toolbox_5","allusers") then pause, end
-if ~atomsIsInstalled("toolbox_4","allusers") then pause, end
-if ~atomsIsInstalled("toolbox_2","allusers") then pause, end
-if ~atomsIsInstalled("toolbox_1","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_5V6","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_4V6","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_2V6","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_1V6","allusers") then pause, end
 
-if atomsIsInstalled("toolbox_5","user") then pause, end
-if atomsIsInstalled("toolbox_4","user") then pause, end
-if atomsIsInstalled("toolbox_2","user") then pause, end
-if atomsIsInstalled("toolbox_1","user") then pause, end
+if atomsIsInstalled("toolbox_5V6","user") then pause, end
+if atomsIsInstalled("toolbox_4V6","user") then pause, end
+if atomsIsInstalled("toolbox_2V6","user") then pause, end
+if atomsIsInstalled("toolbox_1V6","user") then pause, end
 
-atomsRemove("toolbox_5","allusers");
+atomsRemove("toolbox_5V6","allusers");
 
-if atomsIsInstalled("toolbox_5","allusers") then pause, end
-if atomsIsInstalled("toolbox_4","allusers") then pause, end
-if atomsIsInstalled("toolbox_2","allusers") then pause, end
-if atomsIsInstalled("toolbox_1","allusers") then pause, end
+if atomsIsInstalled("toolbox_5V6","allusers") then pause, end
+if atomsIsInstalled("toolbox_4V6","allusers") then pause, end
+if atomsIsInstalled("toolbox_2V6","allusers") then pause, end
+if atomsIsInstalled("toolbox_1V6","allusers") then pause, end
 
 // Install the toolbox 5 (Both section)
 // =============================================================================
 
-atomsInstall("toolbox_5","allusers");
-atomsInstall("toolbox_5","user");
+atomsInstall("toolbox_5V6","allusers");
+atomsInstall("toolbox_5V6","user");
 
-if ~atomsIsInstalled("toolbox_5","allusers") then pause, end
-if ~atomsIsInstalled("toolbox_4","allusers") then pause, end
-if ~atomsIsInstalled("toolbox_2","allusers") then pause, end
-if ~atomsIsInstalled("toolbox_1","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_5V6","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_4V6","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_2V6","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_1V6","allusers") then pause, end
 
-if ~atomsIsInstalled("toolbox_5","user") then pause, end
-if ~atomsIsInstalled("toolbox_4","user") then pause, end
-if ~atomsIsInstalled("toolbox_2","user") then pause, end
-if ~atomsIsInstalled("toolbox_1","user") then pause, end
+if ~atomsIsInstalled("toolbox_5V6","user") then pause, end
+if ~atomsIsInstalled("toolbox_4V6","user") then pause, end
+if ~atomsIsInstalled("toolbox_2V6","user") then pause, end
+if ~atomsIsInstalled("toolbox_1V6","user") then pause, end
 
-atomsRemove("toolbox_5","allusers");
-if atomsIsInstalled("toolbox_5","allusers") then pause, end
-if atomsIsInstalled("toolbox_4","allusers") then pause, end
-if atomsIsInstalled("toolbox_2","allusers") then pause, end
-if atomsIsInstalled("toolbox_1","allusers") then pause, end
+atomsRemove("toolbox_5V6","allusers");
+if atomsIsInstalled("toolbox_5V6","allusers") then pause, end
+if atomsIsInstalled("toolbox_4V6","allusers") then pause, end
+if atomsIsInstalled("toolbox_2V6","allusers") then pause, end
+if atomsIsInstalled("toolbox_1V6","allusers") then pause, end
 
-if ~atomsIsInstalled("toolbox_5","user") then pause, end
-if ~atomsIsInstalled("toolbox_4","user") then pause, end
-if ~atomsIsInstalled("toolbox_2","user") then pause, end
-if ~atomsIsInstalled("toolbox_1","user") then pause, end
+if ~atomsIsInstalled("toolbox_5V6","user") then pause, end
+if ~atomsIsInstalled("toolbox_4V6","user") then pause, end
+if ~atomsIsInstalled("toolbox_2V6","user") then pause, end
+if ~atomsIsInstalled("toolbox_1V6","user") then pause, end
 
-atomsInstall("toolbox_5","allusers");
-atomsRemove("toolbox_5","user");
+atomsInstall("toolbox_5V6","allusers");
+atomsRemove("toolbox_5V6","user");
 
-if atomsIsInstalled("toolbox_5","user") then pause, end
-if atomsIsInstalled("toolbox_4","user") then pause, end
-if atomsIsInstalled("toolbox_2","user") then pause, end
-if atomsIsInstalled("toolbox_1","user") then pause, end
+if atomsIsInstalled("toolbox_5V6","user") then pause, end
+if atomsIsInstalled("toolbox_4V6","user") then pause, end
+if atomsIsInstalled("toolbox_2V6","user") then pause, end
+if atomsIsInstalled("toolbox_1V6","user") then pause, end
 
-if ~atomsIsInstalled("toolbox_5","allusers") then pause, end
-if ~atomsIsInstalled("toolbox_4","allusers") then pause, end
-if ~atomsIsInstalled("toolbox_2","allusers") then pause, end
-if ~atomsIsInstalled("toolbox_1","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_5V6","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_4V6","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_2V6","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_1V6","allusers") then pause, end
 
-atomsRemove("toolbox_5","allusers");
+atomsRemove("toolbox_5V6","allusers");
 
 // Install the toolbox 7 (Local package)
 // =============================================================================
 
-atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7_1.0-1.bin.zip","allusers");
-atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7_1.0-1.bin.zip","user");
+atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7V6_1.0-1.bin.zip","allusers");
+atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7V6_1.0-1.bin.zip","user");
 
-if ~atomsIsInstalled("toolbox_7","allusers") then pause, end
-if ~atomsIsInstalled("toolbox_7","user")     then pause, end
+if ~atomsIsInstalled("toolbox_7V6","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_7V6","user")     then pause, end
 
-atomsRemove("toolbox_7","allusers");
+atomsRemove("toolbox_7V6","allusers");
 
-if atomsIsInstalled("toolbox_7","allusers")  then pause, end
-if ~atomsIsInstalled("toolbox_7","user")     then pause, end
+if atomsIsInstalled("toolbox_7V6","allusers")  then pause, end
+if ~atomsIsInstalled("toolbox_7V6","user")     then pause, end
 
-atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7_1.0-1.bin.zip","allusers");
-atomsRemove("toolbox_7","user");
+atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7V6_1.0-1.bin.zip","allusers");
+atomsRemove("toolbox_7V6","user");
 
-if atomsIsInstalled("toolbox_7","user")      then pause, end
-if ~atomsIsInstalled("toolbox_7","allusers") then pause, end
+if atomsIsInstalled("toolbox_7V6","user")      then pause, end
+if ~atomsIsInstalled("toolbox_7V6","allusers") then pause, end
 
-atomsRemove("toolbox_7","allusers");
+atomsRemove("toolbox_7V6","allusers");
 
 // Restore original values
 // =============================================================================

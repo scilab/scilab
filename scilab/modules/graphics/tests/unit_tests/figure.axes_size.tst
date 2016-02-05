@@ -14,7 +14,7 @@
 // Create a default figure
 my_figure = scf();
 clf(my_figure,"reset");
-sleep(200)//Wait for MVC update
+sleep(200);//Wait for MVC update
 // Get default values
 my_default_figure_size = my_figure.figure_size;
 my_default_axes_size   = my_figure.axes_size;
@@ -22,7 +22,7 @@ my_default_axes_size   = my_figure.axes_size;
 // auto_resize = "on"
 my_figure.auto_resize = "on";
 my_figure.axes_size = my_default_axes_size + 200;
-sleep(200)//Wait for MVC update
+sleep(200);//Wait for MVC update
 if or( my_figure.figure_size <> (my_default_figure_size + 200) ) then pause; end
 if or( my_figure.axes_size   <> (my_default_axes_size   + 200) ) then pause; end
 

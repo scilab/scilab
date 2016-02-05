@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.axes.ruler;
@@ -18,6 +21,7 @@ import org.scilab.forge.scirenderer.texture.TextureDrawer;
 import org.scilab.forge.scirenderer.texture.TextureDrawingTools;
 import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
@@ -68,7 +72,7 @@ public class AxesRulerSpriteFactory implements RulerSpriteFactory {
         ColorMap figureColorMap;
         try {
             GraphicController controller = GraphicController.getController();
-            Figure parentFigure = (Figure) controller.getObjectFromId(axes.getParentFigure());
+            AxesContainer parentFigure = (AxesContainer) controller.getObjectFromId(axes.getParentFigure());
             figureColorMap = parentFigure.getColorMap();
         } catch (NullPointerException e) {
             figureColorMap = null;
@@ -193,6 +197,16 @@ public class AxesRulerSpriteFactory implements RulerSpriteFactory {
      * @return a simple texture representing the given value with the adapted format.
      */
     private Texture createSimpleSprite(String text, TextureManager textureManager) {
+        if (FormattedTextSpriteDrawer.isLatex(text) || FormattedTextSpriteDrawer.isMathML(text)) {
+            FormattedTextSpriteDrawer textObjectSpriteDrawer = new FormattedTextSpriteDrawer(colorMap, text, axisProperty.getTicks().getDefaultFont());
+            Texture texture = textureManager.createTexture();
+            texture.setMagnificationFilter(Texture.Filter.LINEAR);
+            texture.setMinifyingFilter(Texture.Filter.LINEAR);
+            texture.setDrawer(textObjectSpriteDrawer);
+
+            return texture;
+        }
+
         Font font = FontManager.getSciFontManager().getFontFromIndex(axisProperty.getFontStyle(), axisProperty.getFontSize());
         final TextEntity textEntity = new TextEntity(text);
         textEntity.setTextAntiAliased(true);

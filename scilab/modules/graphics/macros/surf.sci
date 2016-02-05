@@ -1,14 +1,16 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function surf(varargin)
-
     [lhs,rhs]=argn(0);
 
     if ~rhs
@@ -171,8 +173,6 @@ function surf(varargin)
     end
 
 
-
-
     // P1 is the position of the first PropertyName field.
     Property = P1;
 
@@ -227,10 +227,10 @@ function surf(varargin)
         Property = Property+2;
     end
 
-
-
-
-
+    if isempty(XX) | isempty(YY) | isempty(ZZ) then
+        // Nothing will be drawn so return (see http://bugzilla.scilab.org/13180 )
+        return
+    end
 
     // surf is made now !
     // with default option to simulate the Matlab mode
@@ -248,12 +248,6 @@ function surf(varargin)
     e.hiddencolor=0; // to avoid painting the hidden facets
     e.color_flag=4; // Matlab special flat mode by default (different from mode 2)
     e.cdata_mapping = "scaled"
-
-
-
-
-
-
 
 
     // F.Leray
@@ -341,8 +335,6 @@ function surf(varargin)
 
 endfunction
 
-
-
 //
 //function [C] = build_interp_color(C,colormap_size)
 //// C is considered as a data value in Matlab
@@ -368,13 +360,6 @@ function k=getIndexInStringTable(pattern,table)
     k=find(part(table,1:length(str))==str);
 
 endfunction
-
-
-
-
-
-
-
 
 function [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode)
 
@@ -487,10 +472,6 @@ function [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode
     end
 
 endfunction
-
-
-
-
 
 function [XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C,current_figure, cur_draw_mode)
 
@@ -633,7 +614,6 @@ function [XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C,current_figure, cur_dr
     end
 
 endfunction
-
 
 // If an error occurs in the surf code, we need to catch it
 // order to reset some default values

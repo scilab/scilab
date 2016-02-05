@@ -46,7 +46,10 @@
             </listitem>
             <listitem>
                 <para>
-                    Si <literal>A</literal> est un scalaire et <literal>b</literal> est une matrice <literal>A^b</literal> et <literal>A.^b</literal> sont deux matrices de même taille que b dont les termes sont égaux à <literal> a^(b(i,j))</literal>.
+                    Si <literal>A</literal> est un scalaire et <literal>b</literal> est une matrice carrée <literal>A^b</literal> est la matrice <literal>expm(log(A)*b)</literal>.
+                </para>
+                <para>
+                    Si <literal>A</literal> est un scalaire et <literal>b</literal> est une matrice <literal>A.^b</literal> est une matrice de même taille que b dont les termes sont égaux à <literal> a^(b(i,j))</literal>.
                 </para>
             </listitem>
             <listitem>
@@ -65,6 +68,11 @@
         <para>
             -
             Les opérateurs <literal>**</literal> et <literal>^</literal> sont synonymes.
+        </para>
+        <para>
+            <warning>
+                L'élévation à la puissance est associative à droite dans Scilab contrairement à Matlab&#174; et Octave. Par exemple 2^3^4 est égal à 2^(3^4) dans Scilab mais est égal à (2^3)^4 dans Matlab&#174; et Octave.
+            </warning>
         </para>
     </refsection>
     <refsection>

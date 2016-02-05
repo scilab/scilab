@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - Scilab Enterprises - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 package org.scilab.modules.gui.graphicWindow;
 
@@ -17,11 +20,9 @@ import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.io.Serializable;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.SwingViewObject;
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 
 /**
  * @author Pierre Lando
@@ -60,23 +61,10 @@ public class PanelLayout implements LayoutManager, Serializable {
             if (child.equals(canvas)) {
                 canvas.setBounds(0, 0, parent.getWidth(), parent.getHeight());
                 parent.setComponentZOrder(child, parent.getComponentCount() - 1);
-            }
-
-            Integer figureIdentifier = ((SwingScilabCanvas) parent).getFigure().getIdentifier();
-            String resizeFcn = (String) GraphicController.getController().getProperty(figureIdentifier, GraphicObjectProperties.__GO_RESIZEFCN__);
-            if (resizeFcn != null && !resizeFcn.equals("")) {
-                String resizeCommand = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
-                                       + "gcbo = getcallbackobject(" + figureIdentifier + ");"
-                                       + resizeFcn
-                                       + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
-                InterpreterManagement.requestScilabExec(resizeCommand);
-            }
-
-            /* Here you can perform the layout of UI object. */
-            if (child instanceof SwingViewObject) {
+            } else if (child instanceof SwingViewObject) {
+                /* Here you can perform the layout of UI object. */
                 Integer id = ((SwingViewObject) child).getId();
-                ((SwingViewObject) child).update(GraphicObjectProperties.__GO_POSITION__,
-                                                 GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_POSITION__));
+                ((SwingViewObject) child).update(GraphicObjectProperties.__GO_POSITION__, GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_POSITION__));
             }
         }
     }

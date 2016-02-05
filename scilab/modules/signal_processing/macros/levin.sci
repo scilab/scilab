@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - G. Le Vey
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [la, sig, lb] = levin(n, Cov)
     // [la, sig, lb] = levin(n, Cov)
@@ -67,23 +70,23 @@ function [la, sig, lb] = levin(n, Cov)
     end
     for j=0:n-1
         //
-        //   Bloc permutation matrix
-        //
-        jd = jmat(j+1, d);
-        //
         //   Levinson algorithm
         //
-        r1 = jd*cv((p+1)*d+1:(p+2+j)*d, :);
-        r2 = jd*cv(p*d+1:(p+1+j)*d, :);
-        r3 = jd*cv((p-1-j)*d+1:p*d, :);
-        r4 = jd*cv((p-j)*d+1:(p+1)*d, :);
-        c1 = coeff(a); c2 = coeff(b);
-        sig1 = c1*r4; gam1 = c2*r2;
+        r1 = flipdim(cv((p+1)*d+1:(p+2+j)*d, :), 1, d);
+        r2 = flipdim(cv(p*d+1:(p+1+j)*d, :),     1, d);
+        r3 = flipdim(cv((p-1-j)*d+1:p*d, :),     1, d);
+        r4 = flipdim(cv((p-j)*d+1:(p+1)*d, :),   1, d);
+        c1 = coeff(a);
+        c2 = coeff(b);
+        sig1 = c1*r4;
+        gam1 = c2*r2;
         k1 = (c1*r1)*inv(gam1);
         k2 = (c2*r3)*inv(sig1);
         a1 = a-k1*z*b;
         b = -k2*a+z*b;
         a = a1;
-        la(j+1) = a; lb(j+1) = b; sig(j+1) = sig1;
+        la(j+1) = a;
+        lb(j+1) = b;
+        sig(j+1) = sig1;
     end
 endfunction

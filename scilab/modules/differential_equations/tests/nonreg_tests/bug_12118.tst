@@ -25,7 +25,7 @@ x0 = [1; 0];
 t0 = 0;
 t  = linspace(0, 10, 100);
 
-refMsg = msprintf(_("%s: external must be real.\n"), "ode");
+refMsg = msprintf(_("%s: Wrong type for output argument #%d: Real matrix expected.\n"), "f", 1);
 assert_checkerror("y = ode(zeros(1, 1), t0, t, f);", refMsg);
 assert_checkerror("y = ode(zeros(1, 2), t0, t, f);", refMsg);
 assert_checkerror("y = ode(zeros(1, 3), t0, t, f);", refMsg);

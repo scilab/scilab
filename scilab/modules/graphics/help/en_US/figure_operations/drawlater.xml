@@ -4,11 +4,14 @@
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) INRIA - Fabrice Leray
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="drawlater">
@@ -24,10 +27,10 @@
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
-        <para>This function can be used not to display immediatly onto the
+        <para>This function can be used not to display immediately onto the
             <literal>current figure</literal> the next created graphics objects - i.e. by
             calling high level functions such as plotting functions or setting
-            properties to existant objects. The <literal>immediate_drawing</literal>
+            properties to existent objects. The <literal>immediate_drawing</literal>
             property of the current figure is set to <literal>'off'</literal> in order to
             postpon the next drawings.
         </para>
@@ -38,8 +41,11 @@
             To enable back the <literal>immediate_drawing</literal> for the current
             figure, you can use <literal>drawnow</literal> function.
         </para>
-        <para>Warning : note that between drawlater and drawnow calls, the current
-            figure may have changed. Therefore, this must be used carefully.
+        <para>
+            <warning>
+                Warning : note that between drawlater and drawnow calls, the current
+                figure may have changed. Therefore, this must be used carefully.
+            </warning>
         </para>
     </refsection>
     <refsection>
@@ -77,7 +83,6 @@ plot2d // draw these axes and children later...
 subplot(211) // Warning: we change the axes
 plot2d1 // default drawing mode
 
-draw(a) // ...axes only is visible providing you not redraw the window
 drawnow() // all is visible
  ]]></programlisting>
     </refsection>

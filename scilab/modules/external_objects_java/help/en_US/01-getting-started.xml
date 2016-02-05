@@ -5,11 +5,14 @@
 * Copyright (C) 2013 - S/E - Sylvestre Ledru
 * Copyright (C) 2012 - CNES - Simon Billemont
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 *
 -->
@@ -63,7 +66,7 @@ public class HelloWorld {
       ]]></programlisting>
         <programlisting role="example"><![CDATA[
 // How to compile the Java code from Scilab
-javacode=mgetl('/tmp/HelloWorld.java')
+javacode=mgetl(fullfile(TMPDIR, 'HelloWorld.java'));
 jcompile("com.foo.HelloWorld",javacode);
       ]]></programlisting>
         <para>Once the compiled version of this Java class exists, we can start Scilab and try to get Scilab to show us the various messages.
@@ -149,7 +152,7 @@ public class Inspector {
         </para>
         <programlisting role="example"><![CDATA[
 // How to compile the Java code from Scilab
-javacode= mgetl('/tmp/Inspector.java')
+javacode= mgetl(fullfile(TMPDIR, 'Inspector.java'));
 jcompile("com.foo.Inspector",javacode);
       ]]></programlisting>
         To start, import the Inspector class and create an Inspector object:

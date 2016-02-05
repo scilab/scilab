@@ -2,9 +2,7 @@ C/MEMBR ADD NAME=STODE,SSI=0
       subroutine stode (neq, y, yh, nyh, yh1, ewt, savf, acor,
      1   wm, iwm, f, jac, pjac, slvs)
 clll. optimize
-      
-      include 'stack.h'
-      
+
       external f, jac, pjac, slvs
       integer neq, nyh, iwm
       integer iownd, ialth, ipup, lmax, meo, nqnyh, nslp,
@@ -19,6 +17,7 @@ clll. optimize
      1   r, rh, rhdn, rhsm, rhup, told, vnorm
       dimension neq(*), y(*), yh(nyh,*), yh1(*), ewt(*), savf(*),
      1   acor(*), wm(*), iwm(*)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rownd, conit, crate, el(13), elco(13,12),
      1   hold, rmax, tesco(3,12),
      2   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround, iownd(14),

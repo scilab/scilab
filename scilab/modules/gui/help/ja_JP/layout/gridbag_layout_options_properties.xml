@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gridbag_layout_options_properties">
+    <refnamediv>
+        <refname>gridbag配置オプションプロパティ</refname>
+        <refpurpose>gridbag配置オプションプロパティの説明.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            layout_options = createLayoutOptions("gridbag")
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>layout_options</term>
+                <listitem>
+                    <para>作成されたlayout_options</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は,
+            uicontrols <literal>layout_options</literal>属性を
+            設定するgridbag配置オプションを作成します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+          //Creates the figure with a gridbag layout
+          f = figure( ...
+          "dockable"        , "off",...
+          "infobar_visible" , "off",...
+          "toolbar"         , "none",...
+          "menubar_visible" , "off",...
+          "menubar"         , "none",...
+          "default_axes"    , "off",...
+          "layout"          , "gridbag",...
+          "visible"         , "on");
+          redf_grid   = [1, 1, 2, 1]; //Red frame is placed at 1x1 and is a 2x1 rectangle
+          greenf_grid = [3, 1, 1, 2]; //Green frame is at 3x1 and is a 1x2 rectangle
+          bluef_grid  = [1, 2, 1, 1]; //Blue frame is at 2x1 and is a 1x1 rectangle
+          yelf_grid   = [1, 3, 2, 2]; //Yellow frame is at 1x3 and is a 2x2 rectangle
+          magf_grid   = [3, 4, 1, 1]; //Magenta frame is at 3x4 and is a 1x1 rectangle
+          cyanf_grid  = [2, 2, 1, 1]; //Cyan is at 2x2 and is a 1x1 rectangle
+          whitf_grid  = [3, 3, 1, 1]; //White is at 3x3 and is a 1x1 rectangle
+          c = createConstraints("gridbag",[1, 1, 1, 1], [1, 1], "both", "center", [0, 0], [50, 50]);
+          c.grid = redf_grid;
+          u_grid1 = uicontrol(f , ...
+          "style"               , "frame"                     , ...
+          "backgroundcolor"     , [1 0 0]                     , ...
+          "constraints"         , c);
+          sleep(500);
+          c.grid = greenf_grid;
+          c.weight = [0.1,1] //Last column will fill horizontal space 10 times less than other columns
+          u_grid2 = uicontrol(f , ...
+          "style"               , "frame"                     , ...
+          "backgroundcolor"     , [0 1 0]                     , ...
+          "constraints"         , c);
+          sleep(500);
+          c.grid = bluef_grid;
+          c.weight = [1,1]
+          c.fill = "none" //This will force the blue square to be at the preferred size
+          u_grid3 = uicontrol(f , ...
+          "style"               , "frame"                     , ...
+          "backgroundcolor"     , [0 0 1]                     , ...
+          "constraints"         , c);
+          sleep(500);
+          c.grid = cyanf_grid;
+          c.fill = "vertical" // this will fill the empty space with cyan vertically
+          c.anchor = "right" //this will position the cyan stripe on the right
+          c.padding = [100,0] //this will extend the cyan stripe horizontally up to 100 pixel if space is available
+          u_grid1 = uicontrol(f , ...
+          "style"               , "frame"                     , ...
+          "backgroundcolor"     , [0 1 1]                     , ...
+          "constraints"         , c);
+          sleep(500);
+          c.grid = yelf_grid;
+          c.fill = "both"
+          c.anchor ="center"
+          c.padding = [0,0]
+          u_grid4 = uicontrol(f , ...
+          "style"               , "frame"                     , ...
+          "backgroundcolor"     , [1 1 0]                     , ...
+          "constraints"         , c);
+          sleep(500);
+          c.grid = whitf_grid;
+          c.weight = [0.1,1]
+          u_grid1 = uicontrol(f , ...
+          "style"               , "frame"                     , ...
+          "backgroundcolor"     , [1 1 1]                     , ...
+          "constraints"         , c);
+          sleep(500);
+          c.grid = magf_grid;
+          c.weight = [0.1,1]
+          u_grid5 = uicontrol(f , ...
+          "style"               , "frame"                     , ...
+          "backgroundcolor"     , [1 0 1]                     , ...
+          "constraints"         , c);
+          ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="layout">layout</link>
+            </member>
+            <member>
+                <link linkend="createLayoutOptions">createLayoutOptions</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数 <function>createBorder</function> が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

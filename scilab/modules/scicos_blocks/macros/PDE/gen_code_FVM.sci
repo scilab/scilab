@@ -129,7 +129,7 @@ function [equations,flag_type,impl_type]=gen_code_FVM(a1,b1,a2,b2,a3,b3,a4,b4,..
                 elseif (i == N) then
                     F=subfv(F,mulfv(clb,b5));
                 end
-                C=addf(mulfv(multMatVect(coef51(i,:),vec2(1:N)),b5),mulf3v(msprintfv(h*a6_ev(i)),b6,vec2(i)));
+                C=addfv(mulfv(multMatVect(coef51(i,:),vec2(1:N)),b5),mulf3v(msprintfv(h*a6_ev(i)),b6,vec2(i)));
                 equations(i)="   res["+string(i-1)+"]="+subfv(F,C)+";";
             end
         end

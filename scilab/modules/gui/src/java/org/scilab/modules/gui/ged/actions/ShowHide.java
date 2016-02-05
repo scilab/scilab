@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Marcos CARDINOT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.ged.actions;
@@ -16,8 +19,6 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.ged.MessagesGED;
 import org.scilab.modules.gui.ged.SwingInspector;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 
 /**
  * Show/Hide button class.
@@ -26,7 +27,7 @@ import org.scilab.modules.gui.pushbutton.ScilabPushButton;
  */
 public class ShowHide extends CommonCallBack {
     private static boolean click = true;
-    private static PushButton button;
+    private static SwingScilabPushButton button;
 
     /**
      * Constructor.
@@ -51,9 +52,9 @@ public class ShowHide extends CommonCallBack {
      * @param title tooltip for the button.
      * @return the button.
      */
-    public static PushButton createButton(String title) {
-        button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new ShowHide(title));
+    public static SwingScilabPushButton createButton(String title) {
+        button = new SwingScilabPushButton();
+        button.addActionListener(new ShowHide(title));
         button.setToolTipText(title);
         setIcon(1);
 
@@ -391,16 +392,13 @@ public class ShowHide extends CommonCallBack {
     public static void setIcon(int intValue) {
         switch (intValue) {
             case 0:
-                ((SwingScilabPushButton) button.getAsSimplePushButton())
-                .setIcon(new ImageIcon(SwingInspector.icon_expand_all));
+                button.setIcon(new ImageIcon(SwingInspector.icon_expand_all));
                 break;
             case 1:
-                ((SwingScilabPushButton) button.getAsSimplePushButton())
-                .setIcon(new ImageIcon(SwingInspector.icon_collapse_all));
+                button.setIcon(new ImageIcon(SwingInspector.icon_collapse_all));
                 break;
             default:
-                ((SwingScilabPushButton) button.getAsSimplePushButton())
-                .setIcon(new ImageIcon(SwingInspector.icon_expand_all));
+                button.setIcon(new ImageIcon(SwingInspector.icon_expand_all));
                 break;
         }
     }

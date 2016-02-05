@@ -6,11 +6,14 @@
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -25,6 +28,7 @@
 
 #define spINSIDE_SPARSE
 #include "../../sparse/includes/spConfig.h"
+#include "isanan.h"
 
 #include "SetProperty.h"
 #include "DrawObjects.h"
@@ -34,7 +38,7 @@
 #include "sciprint.h"
 #include "Scierror.h"
 
-#include "MALLOC.h"             /* MALLOC */
+#include "sci_malloc.h"             /* MALLOC */
 #include "scitokenize.h"
 #include "localization.h"
 #include "get_ticks_utils.h"
@@ -48,6 +52,7 @@
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
+#include "Sciwarning.h"
 
 /*--------------------------------------------------------------------
  *  plot2dn(ptype,Logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
@@ -387,7 +392,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
         }
         else
         {
-            sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+            Sciwarning(_("Warning: Nax does not work with logarithmic scaling.\n"));
         }
 
     }
@@ -583,7 +588,7 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
     }
 
     /* back to default values for  x=[] and y = [] */
-    if (drect[2] == LARGEST_REAL || drect[3] == -LARGEST_REAL)
+    if (drect[2] == LARGEST_REAL || drect[3] == -LARGEST_REAL || C2F(isanan)(&drect[2]) || C2F(isanan)(&drect[3]))
     {
         if (logflags[1] != 'l')
         {
@@ -597,7 +602,7 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
         drect[3] = 10.0;
     }
 
-    if (drect[0] == LARGEST_REAL || drect[1] == -LARGEST_REAL)
+    if (drect[0] == LARGEST_REAL || drect[1] == -LARGEST_REAL || C2F(isanan)(&drect[0]) || C2F(isanan)(&drect[1]))
     {
         if (logflags[0] != 'l')
         {
@@ -626,6 +631,8 @@ BOOL update_specification_bounds(int iSubwinUID, double rect[6], int flag)
 
         rect[4] = dataBounds[4];
         rect[5] = dataBounds[5];
+
+        releaseGraphicObjectProperty(__GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
     }
 
     setGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);
@@ -655,10 +662,10 @@ int re_index_brect(double *brect, double *drect)
 BOOL strflag2axes_properties(int iSubwinUID, char *strflag)
 {
     BOOL haschanged = FALSE;
-    BOOL tightLimitsPrev = FALSE;
+    BOOL xTightLimitsPrev = FALSE, yTightLimitsPrev = FALSE, zTightLimitsPrev = FALSE;
     BOOL isoviewPrev = FALSE;
     int boxPrev = 0;
-    int tightLimits = 0;
+    int tightLimits = 0, xTightLimits = 0, yTightLimits = 0, zTightLimits = 0;
     int firstPlot = 0;
     int axisVisible = 0;
     int boxType = 0;
@@ -688,8 +695,13 @@ BOOL strflag2axes_properties(int iSubwinUID, char *strflag)
     getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOCATION__, jni_int, (void**)&piTmp);
     yLocationPrev = iTmp;
 
-    getGraphicObjectProperty(iSubwinUID, __GO_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
-    tightLimitsPrev = iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_X_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
+    xTightLimitsPrev = iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_Y_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
+    yTightLimitsPrev = iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_Z_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
+    zTightLimitsPrev = iTmp;
+
     getGraphicObjectProperty(iSubwinUID, __GO_ISOVIEW__, jni_bool, (void **)&piTmp);
     isoviewPrev = iTmp;
 
@@ -706,7 +718,9 @@ BOOL strflag2axes_properties(int iSubwinUID, char *strflag)
         case '7':
         case '8':
             tightLimits = 1;
-            setGraphicObjectProperty(iSubwinUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_X_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_Y_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_Z_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
             break;
         case '3':
         case '4':
@@ -717,7 +731,9 @@ BOOL strflag2axes_properties(int iSubwinUID, char *strflag)
         case '6':
             /* pretty axes */
             tightLimits = 0;
-            setGraphicObjectProperty(iSubwinUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_X_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_Y_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_Z_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
             break;
     }
 
@@ -837,8 +853,13 @@ BOOL strflag2axes_properties(int iSubwinUID, char *strflag)
     getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOCATION__, jni_int, (void**)&piTmp);
     yLocation = iTmp;
 
-    getGraphicObjectProperty(iSubwinUID, __GO_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
-    tightLimits = iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_X_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
+    xTightLimits = iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_Y_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
+    yTightLimits = iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_Z_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
+    zTightLimits = iTmp;
+
     getGraphicObjectProperty(iSubwinUID, __GO_ISOVIEW__, jni_bool, (void **)&piTmp);
     isoview = iTmp;
 
@@ -846,7 +867,9 @@ BOOL strflag2axes_properties(int iSubwinUID, char *strflag)
     if (axesVisible[0] != axesVisiblePrev[0]
             || axesVisible[1] != axesVisiblePrev[1]
             || axesVisible[2] != axesVisiblePrev[2]
-            || xLocation != xLocationPrev || yLocation != yLocationPrev || boxType != boxPrev || tightLimits != tightLimitsPrev || isoview != isoviewPrev)
+            || xLocation != xLocationPrev || yLocation != yLocationPrev || boxType != boxPrev
+            || xTightLimits != xTightLimitsPrev || yTightLimits != yTightLimitsPrev || zTightLimits != zTightLimitsPrev
+            || isoview != isoviewPrev)
     {
         haschanged = TRUE;
     }

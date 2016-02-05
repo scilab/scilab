@@ -35,7 +35,7 @@ set(h, "string", "un|mot|accentué");
 set(h, "value", [1 3]);
 
 // save
-save(TMPDIR + filesep() + "bug_3675.bin", "f", "h", "h2", "figure")
+save(TMPDIR + filesep() + "bug_3675.bin", "f", "h", "h2")
 
 // close the figure
 delete(f);

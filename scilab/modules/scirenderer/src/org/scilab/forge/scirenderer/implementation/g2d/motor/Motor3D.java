@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012-2013 - Scilab Enterprises - Calixte Denizet
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
@@ -15,6 +18,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -208,9 +212,12 @@ public class Motor3D {
         }
     }
 
-    public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle) {
+    public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, org.scilab.forge.scirenderer.shapes.appearance.Color auxColor, ElementsBuffer colors) {
         FloatBuffer positionsBuffer = positions.getData();
         float[] buffer;
+        offset = offset < 0 ? 0 : offset;
+        stride = stride < 1 ? 1 : stride;
+        Color[] colorsArray = null;
 
         positionsBuffer.rewind();
         if (positionsBuffer.hasArray()) {
@@ -221,9 +228,27 @@ public class Motor3D {
         }
         Vector3d[] verticesArray = getMultiVectors(buffer, transf, false);
 
-        for (Vector3d v : verticesArray) {
+        if (colors != null) {
+            FloatBuffer colorsBuffer = colors.getData();
+            colorsBuffer.rewind();
+            if (colorsBuffer.hasArray()) {
+                buffer = colorsBuffer.array();
+            } else {
+                buffer = new float[colorsBuffer.limit()];
+                colorsBuffer.get(buffer);
+            }
+            colorsArray = getMultiColors(buffer);
+        }
+
+        for (int i = offset; i < verticesArray.length; i += stride) {
             try {
-                SpritedRectangle o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle);
+                Vector3d v = verticesArray[i];
+                SpritedRectangle o;
+                if (colorsArray == null) {
+                    o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle, null, null);
+                } else {
+                    o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle, (Color) auxColor, colorsArray[i]);
+                }
                 add(o);
             } catch (InvalidPolygonException e) { }
         }
@@ -231,7 +256,7 @@ public class Motor3D {
 
     public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, Vector3d position, double rotationAngle) {
         try {
-            add(new SpritedRectangle(transf.project(position), texture, anchor, textureDrawingTools, rotationAngle));
+            add(new SpritedRectangle(transf.project(position), texture, anchor, textureDrawingTools, rotationAngle, null, null));
         } catch (InvalidPolygonException e) { }
     }
 
@@ -240,14 +265,19 @@ public class Motor3D {
      * @param tri the triangle to add
      */
     private void add(Triangle tri) {
-        Vector3d normal = tri.getNormal();
-        if (normal != null) {
-            //normal = transf.projectDirection(normal);
-            if ((mode == FaceCullingMode.CW && normal.getZ() > 0) || (mode == FaceCullingMode.CCW && normal.getZ() < 0) || mode == FaceCullingMode.BOTH) {
-                Scene.addToRoot(is2DView(), tri);
-            }
+        final boolean is2d = is2DView();
+        if (is2d) {
+            Scene.addToRoot(is2d, tri);
         } else {
-            Scene.addToRoot(is2DView(), tri);
+            Vector3d normal = tri.getNormal();
+            if (normal != null) {
+                //normal = transf.projectDirection(normal);
+                if ((mode == FaceCullingMode.CW && normal.getZ() > 0) || (mode == FaceCullingMode.CCW && normal.getZ() < 0) || mode == FaceCullingMode.BOTH) {
+                    Scene.addToRoot(is2d, tri);
+                }
+            } else {
+                Scene.addToRoot(is2d, tri);
+            }
         }
     }
 
@@ -272,7 +302,7 @@ public class Motor3D {
      * @param vertices a buffer containing vertices
      * @param colors a buffer containing the colors
      * @param defaultColor the color to use when colors is null
-     * @param indices a buffer containg the index of the vertices to retrieve
+     * @param indices a buffer containing the index of the vertices to retrieve
      * @return an array of length 2 containing the vertices array and the colors array
      */
     private Object[] getArrays(FloatBuffer vertices, FloatBuffer colors, Color defaultColor, FloatBuffer textureCoords, IntBuffer indices) {
@@ -351,7 +381,7 @@ public class Motor3D {
      * @param vertices a buffer containing vertices
      * @param colors a buffer containing the colors
      * @param defaultColor the color to use when colors is null
-     * @param indices a buffer containg the index of the vertices to retrieve
+     * @param indices a buffer containing the index of the vertices to retrieve
      * @param drawingMode the drawing mode
      * @param stroke the Stroke to use to draw a segment
      */
@@ -431,7 +461,7 @@ public class Motor3D {
      * @param normals a buffer containing the normals (not used)
      * @param colors a buffer containing the colors
      * @param defaultColor the color to use when colors is null
-     * @param indices a buffer containg the index of the vertices to retrieve
+     * @param indices a buffer containing the index of the vertices to retrieve
      * @param drawingMode the drawing mode
      */
     private void addTriangles(FloatBuffer vertices, FloatBuffer normals, FloatBuffer colors, Color defaultColor, IntBuffer indices, FloatBuffer textureCoords, final BufferedImage image, Texture texture, Geometry.FillDrawingMode drawingMode, G2DLightManager lightManager) {
@@ -508,7 +538,7 @@ public class Motor3D {
      * @param vertices an array of float containing (vertices.length / G2DElementsBuffer.ELEMENT_SIZE) vectors coordinates
      * @param t the transformation to use for the projection
      * @param dir if true t.projectDirection() is used rather than t.project()
-     * @return an array of Vector3d containg the vertices
+     * @return an array of Vector3d containing the vertices
      */
     private static final Vector3d[] getMultiVectors(final float[] vertices, final Transformation t, final boolean dir) {
         Vector3d[] v = new Vector3d[vertices.length / G2DElementsBuffer.ELEMENT_SIZE];
@@ -532,7 +562,7 @@ public class Motor3D {
     /**
      * Convert an array of float into an array of Vector3d objects
      * @param vertices an array of float containing (vertices.length / G2DElementsBuffer.ELEMENT_SIZE) vectors coordinates
-     * @return an array of Vector3d containg the vertices
+     * @return an array of Vector3d containing the vertices
      */
     private static final Vector3d[] getMultiVectors(final float[] vertices) {
         Vector3d[] v = new Vector3d[vertices.length / G2DElementsBuffer.ELEMENT_SIZE];

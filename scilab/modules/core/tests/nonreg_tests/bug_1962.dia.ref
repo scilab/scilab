@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Serge Steer
@@ -16,12 +17,10 @@ funcprot(0);
 function ok=clear(varargin),ok=%t,endfunction
 clear xxyyzz
  ans  =
- 
-  T  
+  T
 if ~ans then bugmes();quit;end
 clear('xxyyzz')
  ans  =
- 
-  T  
+  T
 if ~ans then bugmes();quit;end
 clear=null() //reset initial definition

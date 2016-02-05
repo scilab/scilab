@@ -5,23 +5,33 @@
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Sets the background of an uicontrol object
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
-#include "SetUicontrolBackgroundColor.hxx"
-#include "stack-c.h"
+extern "C"
+{
+#include "addColor.h"
+#include "SetUicontrol.h"
+}
+
 int SetUicontrolBackgroundColor(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Color can be [R, G, B] or "R|G|B" */
 
     double* allColors = NULL;
-    BOOL status = FALSE;;
+    BOOL status = FALSE;
     int nbValues = 0;
+    int iType = -1;
+    int *piType = &iType;
+    int iColorIndex = 0;
 
     if (valueType == sci_strings)
     {
@@ -68,7 +78,18 @@ int SetUicontrolBackgroundColor(void* _pvCtx, int iObjUID, void* _pvData, int va
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(iObjUID, __GO_UI_BACKGROUNDCOLOR__, allColors, jni_double_vector, 3);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **) &piType);
+    switch (iType)
+    {
+    case __GO_FIGURE__ :
+        iColorIndex = addColor(iObjUID, allColors);
+        status = setGraphicObjectProperty(iObjUID, __GO_BACKGROUND__, &iColorIndex, jni_int, 1);
+        break;
+    default :
+        status = setGraphicObjectProperty(iObjUID, __GO_UI_BACKGROUNDCOLOR__, allColors, jni_double_vector, 3);
+        break;
+    }
+
 
     if (valueType == sci_strings)
     {

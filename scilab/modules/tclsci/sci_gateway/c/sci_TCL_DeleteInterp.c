@@ -3,11 +3,14 @@
  *  Copyright (C) 2005-2008 - INRIA - Allan CORNET
  *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -18,13 +21,19 @@
 #include "localization.h"
 #include "InitializeTclTk.h"
 #include "GlobalTclInterp.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_TCL_DeleteInterp(char *fname, unsigned long l)
+int sci_TCL_DeleteInterp(char *fname, void* pvApiCtx)
 {
-    CheckRhs(0, 1);
-    CheckLhs(1, 1);
+    SciErr sciErr;
 
-    if (Rhs == 1)
+    int* piAddrl2 = NULL;
+    char* l2 = NULL;
+
+    CheckInputArgument(pvApiCtx, 0, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+    if (nbInputArgument(pvApiCtx) == 1)
     {
 
         if (!existsGlobalInterp())
@@ -33,13 +42,26 @@ int sci_TCL_DeleteInterp(char *fname, unsigned long l)
             return 0;
         }
 
-        if (GetType(1) == sci_strings)
+        if (checkInputArgumentType(pvApiCtx, 1, sci_strings))
         {
-            static int l2, n2, m2;
+            static int n2, m2;
             Tcl_Interp *TCLinterpreter = NULL;
 
-            GetRhsVar(1, STRING_DATATYPE, &m2, &n2, &l2);
-            TCLinterpreter = Tcl_GetSlave(getTclInterp(), cstk(l2));
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl2);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 1.
+            if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                return 1;
+            }
+            TCLinterpreter = Tcl_GetSlave(getTclInterp(), (l2));
+            freeAllocatedSingleString(l2);
             releaseTclInterp();
             if (TCLinterpreter == NULL)
             {
@@ -58,7 +80,7 @@ int sci_TCL_DeleteInterp(char *fname, unsigned long l)
             return 0;
         }
     }
-    else /* Rhs == 0 */
+    else // nbInputArgument(pvApiCtx) == 0
     {
         releaseTclInterp();
 
@@ -66,8 +88,8 @@ int sci_TCL_DeleteInterp(char *fname, unsigned long l)
         InitializeTclTk();
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

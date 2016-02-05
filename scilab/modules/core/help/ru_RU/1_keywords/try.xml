@@ -33,7 +33,7 @@
             инструкций, то ошибка записывается, оставшиеся инструкции вплоть до ключевого слова 
             <literal>catch</literal> пропускаются, и исполняются инструкции между ключевыми словами 
             <literal>catch</literal> и <literal>end</literal>, используя  режим обработки ошибок по 
-            умолчанию (см. <link linkend="errcatch">errcatch</link>).      
+            умолчанию.
         </para>
         <para>
             Записанная ошибка может быть извлечена с помощью функции 
@@ -56,8 +56,8 @@ if execstr("<try instructions>","errcatch")<>0 then
 end
  ]]></programlisting>
         <para>
-            Она использует тот же внутренний механизм, что и <link linkend="errcatch">errcatch</link>. 
-            Именно по этой причине <link linkend="errcatch">errcatch</link> или
+            Она использует тот же внутренний механизм, что и. 
+            Именно по этой причине или
             <emphasis>execstr(...,"errcatch")</emphasis> не могут быть включены в управляющую структуру
             <literal>try</literal>-<literal>catch</literal>. Этот контекст обнаруживается и формируется
             особое сообщение об ошибке (эта ошибка отлавливается и хранится как и любая другая ошибка, если на неё поставлена ловушка в блоке <literal>try</literal>).
@@ -121,9 +121,6 @@ nestedtry("строка","строка")
             </member>
             <member>
                 <link linkend="lasterror">lasterror</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
             </member>
         </simplelist>
     </refsection>

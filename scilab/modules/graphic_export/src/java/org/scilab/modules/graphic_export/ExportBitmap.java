@@ -3,11 +3,14 @@
  * Copyright (C) 2008 - INRIA - Sylvestre Koumar
  * Copyright (C) 2011 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -50,7 +53,10 @@ public class ExportBitmap {
             for (int i = 0; i < MAX_ATTEMPT && ret != Export.SUCCESS; i++) {
                 try {
                     fos = new FileOutputStream(file);
-                    ImageIO.write(image, ext, fos);
+                    boolean writerFound = ImageIO.write(image, ext, fos);
+                    if (writerFound == false) {
+                        return Export.NOWRITER_ERROR;
+                    }
                     fos.close();
                     ret = Export.SUCCESS;
                 } catch (FileNotFoundException e) {
@@ -71,22 +77,26 @@ public class ExportBitmap {
      * @param compressionQuality the compression rate
      * @param file the output file
      */
-    public static boolean writeJPEG(BufferedImage image, float compressionQuality, File file) throws IOException {
-        Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("jpeg");
+    public static int writeJPEG(BufferedImage image, float compressionQuality, File file) throws IOException {
+        Iterator iter = ImageIO.getImageWritersByFormatName("jpeg");
         ImageWriter writer;
         if (iter.hasNext()) {
             writer = (ImageWriter) iter.next();
         } else {
-            return false;
+            return Export.NOWRITER_ERROR;
         }
         ImageWriteParam param = writer.getDefaultWriteParam();
         param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
         param.setCompressionQuality(compressionQuality);
         FileImageOutputStream output = new FileImageOutputStream(file);
         writer.setOutput(output);
-        writer.write(null, new IIOImage(image, null, null), param);
+        try {
+            writer.write(null, new IIOImage(image, null, null), param);
+        } catch (IOException e) {
+            return Export.NOWRITER_ERROR;
+        }
         writer.dispose();
         output.close();
-        return true;
+        return Export.SUCCESS;
     }
 }

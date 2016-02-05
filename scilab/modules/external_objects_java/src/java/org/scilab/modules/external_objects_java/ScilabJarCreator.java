@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -107,13 +110,12 @@ public class ScilabJarCreator {
                 closeJarArchive(jarOutputStream);
                 deleteJarArchive(jarFilePath);
             } catch (Exception e2) {}
-            e.printStackTrace();
-            throw new ScilabJavaException(String.format("Cannot create jar archive %s : %s\n", jarFilePath, e.getMessage()));
+            throw new ScilabJavaException(String.format("Cannot create jar archive %s: %s", jarFilePath, e.getMessage()));
         }
     }
 
     /**
-     * Recursively list all chidren file paths contained in a list of paths
+     * Recursively list all children file paths contained in a list of paths
      * @param paths the paths to expand
      */
     private static List<String> expandPaths(String... paths) throws IOException {
@@ -121,7 +123,7 @@ public class ScilabJarCreator {
         for (String filePath : paths) {
             File file = new File(filePath);
             if (file.isDirectory()) {
-                for (File childFile: file.listFiles()) {
+                for (File childFile : file.listFiles()) {
                     expandedPaths.addAll(expandPaths(childFile.getPath()));
                 }
             } else {
@@ -236,7 +238,7 @@ public class ScilabJarCreator {
                 jarOutputStream.close();
             }
         } catch (IOException e) {
-            throw new ScilabJavaException(String.format("Cannot close jar stream : %s\n", e.getMessage()));
+            throw new ScilabJavaException(String.format("Cannot close jar stream: %s\n", e.getMessage()));
         }
     }
 
@@ -252,10 +254,10 @@ public class ScilabJarCreator {
                     throw new ScilabJavaException(String.format("Cannot delete jar archive %s.\n", jarFilePath));
                 }
             } else {
-                throw new ScilabJavaException(String.format("Cannot delete jar archive %s : File is write protected.\n", jarFilePath));
+                throw new ScilabJavaException(String.format("Cannot delete jar archive %s: File is write protected.\n", jarFilePath));
             }
         } else {
-            throw new ScilabJavaException(String.format("Cannot delete jar archive %s : No such file.\n", jarFilePath));
+            throw new ScilabJavaException(String.format("Cannot delete jar archive %s: No such file.\n", jarFilePath));
         }
     }
 }

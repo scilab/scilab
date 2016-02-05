@@ -6,7 +6,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[tg,fr]=group(npts,a1i,a2i,b1i,b2i)</synopsis>
+        <synopsis>
+            [tg [,fr]] = group(npts, H) (call with a siso transfert function)
+            [tg [,fr]] = group(npts, C) (call with a vector of transfert functions, cascaded second order representation)
+            
+            [tg [,fr]] = group(npts, F) (call with the vector of an FIR filter coefficients)
+            [tg [,fr]] = group(npts, a1i, a2i, b1i, b2i) (call with 4 vectors of numbers, cascaded second order Deczky representation)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -50,7 +56,7 @@
             <varlistentry>
                 <term>fr</term>
                 <listitem>
-                    <para>grid of frequency values where group delay is evaluated</para>
+                    <para>grid of normalized frequency values where group delay is evaluated</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -76,17 +82,19 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-z=poly(0,'z');
-h=z/(z-.5);
-[tg,fr]=group(100,h);
-plot(fr,tg)
+        <programlisting role="example"><![CDATA[
+        s = poly(0, "s");
+        h_cont = syslin("c", 1/(s-10));
+        h = ss2tf(cls2dls(tf2ss(h_cont), 0.1));
+        [tg, fr] = group(100, h);
+        plot(fr, tg)
  ]]></programlisting>
         <scilab:image><![CDATA[
-z=poly(0,'z');
-h=z/(z-.5);
-[tg,fr]=group(100,h);
-plot(fr,tg)
+s = poly(0, "s");
+h_cont = syslin("c", 1/(s-10));
+h = ss2tf(cls2dls(tf2ss(h_cont), 0.1));
+[tg, fr] = group(100, h);
+plot(fr, tg)
 ]]>     </scilab:image>
     </refsection>
 </refentry>

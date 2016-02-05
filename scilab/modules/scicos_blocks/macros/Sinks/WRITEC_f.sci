@@ -91,7 +91,7 @@ function [x,y,typ]=WRITEC_f(job,arg1,arg2)
             frmt1=part(frmt1,1:3)
 
             if ok then
-                ipar=[length(fname1);_str2code(frmt1);N;swap;_str2code(fname1)]
+                ipar=[length(ascii(fname1));ascii(frmt1)';N;swap;ascii(fname1)']
                 if prod(size(dstate))<>(nin+1)*N+2 then
                     dstate=[-1;lunit;zeros((nin+1)*N,1)]
                 end
@@ -119,7 +119,7 @@ function [x,y,typ]=WRITEC_f(job,arg1,arg2)
         model.in=in
         model.evtin=1
         model.dstate=[-1;lunit;zeros((nin+1)*N,1)]
-        model.ipar=[length(fname);_str2code(frmt);N;swap;_str2code(fname)]
+        model.ipar=[length(ascii(fname));ascii(frmt)';N;swap;ascii(fname)']
         model.blocktype="d"
         model.dep_ut=[%t %f]
 

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -17,7 +20,7 @@ extern "C"
 {
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 namespace org_modules_completion
@@ -42,7 +45,7 @@ const char ** StructFieldsGetter::getFieldsName(int * mlist, char ** fieldPath, 
 
     *fieldsSize = 0;
 
-    sciErr = getListItemNumber(pvApiCtx, mlist, &nbItem);
+    sciErr = getListItemNumber(NULL, mlist, &nbItem);
     if (sciErr.iErr)
     {
         return 0;
@@ -53,13 +56,13 @@ const char ** StructFieldsGetter::getFieldsName(int * mlist, char ** fieldPath, 
         return 0;
     }
 
-    sciErr = getListItemAddress(pvApiCtx, mlist, 1, &fieldsAddr);
+    sciErr = getListItemAddress(NULL, mlist, 1, &fieldsAddr);
     if (sciErr.iErr)
     {
         return 0;
     }
 
-    if (getAllocatedMatrixOfString(pvApiCtx, fieldsAddr, &rows, &cols, &pstData))
+    if (getAllocatedMatrixOfString(NULL, fieldsAddr, &rows, &cols, &pstData))
     {
         return 0;
     }
@@ -89,7 +92,7 @@ const char ** StructFieldsGetter::getFieldsName(int * mlist, char ** fieldPath, 
         {
             freeArrayOfString(pstData, rc);
             int * itemAddr = 0;
-            sciErr = getListItemAddress(pvApiCtx, mlist, i + 1, &itemAddr);
+            sciErr = getListItemAddress(NULL, mlist, i + 1, &itemAddr);
             if (sciErr.iErr)
             {
                 return 0;

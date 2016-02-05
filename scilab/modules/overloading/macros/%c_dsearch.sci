@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) - 2013 - Samuel GOUGEON
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [i_bin, counts, outside] = %c_dsearch(T, bins, discrete)
 
@@ -27,9 +30,9 @@ function [i_bin, counts, outside] = %c_dsearch(T, bins, discrete)
         tmp = find(inds(2:$)~=inds(1:$-1))+1
         counts(inds(tmp(1:$-1))) = tmp(2:$)-tmp(1:$-1)
         counts($) = sum(T==bins($))
-        
-    // SORTED CASE
-    // -----------
+
+        // SORTED CASE
+        // -----------
     else
         if or(bins2~=bins)
             msg = _("%c: input argument #%d must be sorted in lexicographic order\n")
@@ -37,7 +40,7 @@ function [i_bin, counts, outside] = %c_dsearch(T, bins, discrete)
         end
         T0 = T
         [T, k] = gsort(T0,"g","i")
-        
+
         // index of the first T(i) >= bins(1)
         i0 = min(find(strcmp(T(:), bins(1))>=0))
         if i0==[] then
@@ -46,7 +49,7 @@ function [i_bin, counts, outside] = %c_dsearch(T, bins, discrete)
         // Initializations
         i_bin = zeros(T)
         counts = zeros(bins(2:$))
-        
+
         // Loop over the bins
         nT = size(T,"*")
         for i = 1:size(bins,"*")-1
@@ -62,7 +65,7 @@ function [i_bin, counts, outside] = %c_dsearch(T, bins, discrete)
                 break
             end
         end
-        
+
         // Taking into account the original T order
         i_bin = i_bin(:)
         i_bin(k(:)) = i_bin

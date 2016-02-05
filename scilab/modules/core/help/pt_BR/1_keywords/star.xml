@@ -23,6 +23,12 @@
             Pode ser usado para definir um novo operador (ver <link linkend="overloading">overloading</link>) com a
             mesma precedência que * ou /.
         </para>
+        <para>
+            <note>
+                Remark that <code>/*</code> start to comment a block of code and
+                <code>*/</code> end to comment this block.
+            </note>
+        </para>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
@@ -35,6 +41,9 @@
             </member>
             <member>
                 <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="comments">comments</link>
             </member>
         </simplelist>
     </refsection>

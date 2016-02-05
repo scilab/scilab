@@ -309,7 +309,6 @@ usecanvas(%F);
 plot2d();
 uicontrol("String", "Close the window", "Position", [10 10 100, 25], "Callback", "delete(gcf())");
 messagebox("You can see the button on the figure.", "Usecanvas example", "info");
-
 // GLCanvasの使用例 (uicontrolsとグラフィックを混用せずに, uicontrolsは不可視)
 usecanvas(%T);
 plot2d();

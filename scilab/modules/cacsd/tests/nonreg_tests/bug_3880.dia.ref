@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Serge.Steer@inria.fr
@@ -14,11 +15,5 @@
 //
 s=%s/(2*%pi);
 g=20*(s+1)/(s*(s+5)*(s^2+2*s+10));
-gs=syslin('c',g)
- gs  =
- 
-                     20 + 3.1830989s                    
-    -------------------------------------------------   
-                           2            3            4  
-    7.9577472s + 0.5066059s + 0.0282201s + 0.0006416s   
-if execstr('[gg,wcp]=g_margin(gs)','errcatch')<>0 then bugmes();quit;end
+gs=syslin("c",g);
+if execstr("[gg,wcp]=g_margin(gs)","errcatch")<>0 then bugmes();quit;end

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.forge.scirenderer.implementation.jogl.lightning;
@@ -29,7 +32,7 @@ public class JoGLLight implements Light {
     private Color diffuseColor = new Color(0, 0, 0);
     private Color specularColor = new Color(0, 0, 0);
     private Vector3d position = new Vector3d(0, 0, 0);
-    private Vector3d spotDirection = new Vector3d(0, 0, -1);
+    private Vector3d spotDirection = new Vector3d(0, 0, 1);
     private Vector3d direction = new Vector3d(0, 0, 0);
     private float spotAngle = 180;
     private boolean isDirectional = false;
@@ -56,7 +59,12 @@ public class JoGLLight implements Light {
         gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_DIFFUSE, diffuseColor.getRGBComponents(null), 0);
         gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_SPECULAR, specularColor.getRGBComponents(null), 0);
         if (isDirectional) {
-            gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_POSITION, direction.getDataAsFloatArray(4), 0);
+            float[] pos = position.getDataAsFloatArray(4);
+            pos[3] = 0.0f;
+            pos[0] = -pos[0];
+            pos[1] = -pos[1];
+            pos[2] = -pos[2];
+            gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_POSITION, pos, 0);
         } else {
             float[] pos = position.getDataAsFloatArray(4);
             pos[3] = 1.0f;
@@ -143,6 +151,9 @@ public class JoGLLight implements Light {
             this.direction = direction;
             float[] dir = direction.getDataAsFloatArray(4);
             dir[3] = 0.0f;
+            dir[0] = -dir[0];
+            dir[1] = -dir[1];
+            dir[2] = -dir[2];
             gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_POSITION, dir, 0);
         }
     }

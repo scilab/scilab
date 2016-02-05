@@ -52,10 +52,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function gives the Kalman update and error covariance. To do this, we have to enter <varname>f</varname>, 
+            This function gives the Kalman update and error covariance. To do this, we have to enter <varname>f</varname>,
             <varname>g</varname>, <varname>h</varname> which are based on the state space model:
         </para>
-        <para> 
+        <para>
             <literal>
                 x(k+1)=<varname>f</varname>*x(k)+<varname>g</varname>*u(k)+v(k)
             </literal>
@@ -66,11 +66,11 @@
             </literal>
         </para>
         <para>
-            with <literal>v(k)</literal> (resp. <literal>w(k)</literal>) is the process noise (resp. the observation noise) 
+            with <literal>v(k)</literal> (resp. <literal>w(k)</literal>) is the process noise (resp. the observation noise)
             supposed to be drawn from a zero mean Gaussian white noise with the covariance <varname>q</varname> (resp. <varname>r</varname>).
         </para>
         <para>
-            Precisely, Kalman filter is a recursive estimator which gives the estimate of the current state and the error covariance. 
+            Precisely, Kalman filter is a recursive estimator which gives the estimate of the current state and the error covariance.
             Its advantage is the fact that it only needs the estimated state from the previous step and the current measurement.
         </para>
         <para>
@@ -79,7 +79,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    Innovation (output error): 
+                    Innovation (output error):
                     <literal>
                         E=<varname>y</varname>-<varname>h</varname>*<varname>x0</varname>
                     </literal>
@@ -88,7 +88,7 @@
             
             <listitem>
                 <para>
-                    Output Error covariance: 
+                    Output Error covariance:
                     <literal>
                         S=<varname>h</varname>*<varname>p0</varname>*<varname>h</varname>'+<varname>r</varname>
                     </literal>
@@ -96,7 +96,7 @@
             </listitem>
             <listitem>
                 <para>
-                    Kalman gain: 
+                    Kalman gain:
                     <literal>
                         K=<varname>p0</varname>*<varname>h</varname>'*S^-1
                     </literal>
@@ -104,7 +104,7 @@
             </listitem>
             <listitem>
                 <para>
-                    Correction of state estimation: 
+                    Correction of state estimation:
                     <literal>
                         <varname>x</varname>=<varname>x0</varname>+K*E
                     </literal>
@@ -112,7 +112,7 @@
             </listitem>
             <listitem>
                 <para>
-                    Correction of estimation of error covariance: 
+                    Correction of estimation of error covariance:
                     <literal>
                         <varname>p</varname>=<varname>p0</varname>-K*<varname>h</varname>*<varname>p0</varname>
                     </literal>
@@ -120,7 +120,7 @@
             </listitem>
             <listitem>
                 <para>
-                    State prediction: 
+                    State prediction:
                     <literal>
                         <varname>x1</varname>=<varname>f</varname>*<varname>x</varname>
                     </literal>
@@ -128,7 +128,7 @@
             </listitem>
             <listitem>
                 <para>
-                    Error covariance prediction: 
+                    Error covariance prediction:
                     <literal>
                         <varname>p1</varname>=<varname>f</varname>*<varname>p</varname>*<varname>f</varname>'+<varname>g</varname>*<varname>q</varname>*<varname>g</varname>'
                     </literal>
@@ -142,7 +142,7 @@
 // Construction of the sinusoid
 w=%pi/4; // angular frequency
 T=0.1; // period
-t=0:T:500
+t=0:T:500;
 signal=cos(w*t);
 // Sinusoid with noise
 v=rand(t,"normal");
@@ -181,7 +181,7 @@ xtitle("Comparison between sinusoid (green) and extraction with Kalman filter (r
             <member>
                 <link linkend="srkf">srkf</link>
             </member>
-            <member> 
+            <member>
                 <link linkend="sskf">sskf</link>
             </member>
         </simplelist>

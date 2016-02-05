@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="createBorderFont">
+    <refnamediv>
+        <refname>createBorderFont</refname>
+        <refpurpose>uicontrol境界のフォントを作成.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            createBorderFont(fontname, fontsize)
+            createBorderFont(fontname, fontsize, fontweight)
+            createBorderFont(fontname, fontsize, fontweight, fontangle)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>fontname</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>
+                        この引数はフォント名を設定します.
+                        この名前は利用可能なフォントに基づき有効なものである必要があります.
+                    </para>
+                    <para>
+                        <literal>fontname</literal> が <literal>""</literal>の時, 
+                        フォントはルックアンドフィールのデフォルトフォントとなります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fontsize</term>
+                <listitem>
+                    <para>実数スカラー</para>
+                    <para>この引数はフォントの大きさをポイントで設定します.</para>
+                    <para>
+                        <literal>fontsize</literal> が <literal>0</literal>の場合,
+                        フォントの大きさはルックアンドフィールのデフォルト値となります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fontweight</term>
+                <listitem>
+                    <para>{"normal"} | "bold"</para>
+                    <para>この引数はフォントの重みを設定します.</para>
+                    <para>
+                        <literal>fontweight</literal> が指定されない場合, 
+                        フォントの重みはルックアンドフィールのデフォルト値となります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fontangle</term>
+                <listitem>
+                    <para>{"normal"} | "italic"</para>
+                    <para>この引数はフォントの傾きを設定します.</para>
+                    <para>
+                        <literal>fontangle</literal> が指定されない場合, 
+                        フォントの傾きはルックアンドフィールのデフォルト値となります.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は,
+            <literal>frame</literal> uicontrolsで境界をカスタマイズするための
+            "Border Font"(境界フォント)を作成します.
+            詳細については,<link linkend="createBorder">createBorder</link>および
+            関連ページを参照ください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数 <function>createBorderFont</function> が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

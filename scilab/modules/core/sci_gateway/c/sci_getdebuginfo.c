@@ -2,19 +2,22 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <string.h>
 #include <stdio.h>
 #include "gw_core.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "version.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER
 #include "getdynamicDebugInfo_Windows.h"
@@ -24,8 +27,9 @@
 #include "getdynamicdebuginfo.h"
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getdebuginfo)(char *fname, unsigned long fname_len)
+int sci_getdebuginfo(char *fname, void* pvApiCtx)
 {
+    SciErr sciErr;
     char **outputDynamicList = NULL;
     char **outputStaticList = NULL;
     static int n1 = 1, m1 = 0;
@@ -38,19 +42,30 @@ int C2F(sci_getdebuginfo)(char *fname, unsigned long fname_len)
     outputDynamicList = getDynamicDebugInfo_Windows(&m1);
     outputStaticList = getStaticDebugInfo_Windows(&m2);
 #else
-    outputDynamicList = getDynamicDebugInfo(&m1);
+    outputDynamicList = getDynamicDebugInfo(&m1, pvApiCtx);
     outputStaticList = getStaticDebugInfo(&m2);
 #endif
 
-    CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, outputDynamicList);
+    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m1, n1, (char const* const*) outputDynamicList);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
     LhsVar(1) = Rhs + 1;
 
     if (Lhs == 2)
     {
-        CreateVarFromPtr(Rhs + 2, MATRIX_OF_STRING_DATATYPE, &m2, &n2, outputStaticList);
+        sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m2, n2, (char const* const*) outputStaticList);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
         LhsVar(2) = Rhs + 2;
     }
-
     freeArrayOfString(outputDynamicList, m1);
     freeArrayOfString(outputStaticList, m2);
 

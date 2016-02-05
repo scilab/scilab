@@ -65,9 +65,11 @@ function demo_riemann()
     "style"               , "pushbutton", ..
     "string"              , "QUIT", ..
     "units"               , "pixels", ..
-    "position"            , [ 350 15 100 40 ], ..
-    "background"          , [1 1 1], ..
+    "position"            , [ 350 15 100 30 ], ..
+    "background"          , [0.9 0.9 0.9], ..
+    "Relief"              , "groove", ..
     "callback"            , "quit_riemann", ..
+    "callback_type"       , 10, ..
     "tag"                 , "pushbutton_bac" ..
     );
 
@@ -76,8 +78,10 @@ function demo_riemann()
     "style"               , "pushbutton", ..
     "string"              , "PAUSE", ..
     "units"               , "pixels", ..
-    "position"            , [ 150 15 100 40 ], ..
-    "background"          , [1 1 1], ..
+    "position"            , [ 150 15 100 30 ], ..
+    "background"          , [0.9 0.9 0.9], ..
+    "Relief"              , "groove", ..
+    "callback_type"       , 10, ..
     "callback"            , "pause_riemann", ..
     "tag"                 , "my_pause_button" ..
     );
@@ -87,9 +91,11 @@ function demo_riemann()
     "style"               , "pushbutton", ..
     "string"              , "PLAY", ..
     "units"               , "pixels", ..
-    "position"            , [ 150 15 100 40 ], ..
-    "background"          , [1 1 1], ..
+    "position"            , [ 150 15 100 30 ], ..
+    "background"          , [0.9 0.9 0.9], ..
     "callback"            , "play_riemann", ..
+    "callback_type"       , 10, ..
+    "Relief"              , "groove", ..
     "visible"             , "off", ..
     "tag"                 , "my_play_button" ..
     );
@@ -99,7 +105,7 @@ function demo_riemann()
     my_rotation_dir = [0 1];
     my_counter      = 0;
 
-    for k = 1:1000
+    for k = 1:10000
 
         if quit_var == 1 then
             if isHandleExistAndValid("my_handle") then
@@ -143,7 +149,6 @@ function demo_riemann()
             quit_var = 1;
         end
     end
-
 
 endfunction
 

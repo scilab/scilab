@@ -3,11 +3,14 @@
  * Copyright (C) 2008 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -30,26 +33,14 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.graphic_objects.DataLoader;
 
 public class SwingScilabCanvasImpl {
-
-    private static final long serialVersionUID = -3110280842744630282L;
 
     static boolean forceGLCanvas = false;
     static boolean noGLJPanel = false;
     static boolean testCanvasAtStartup = false;
 
     static {
-        try {
-            GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities(GLProfile.getDefault()));
-            tmpCanvas.getContext().makeCurrent();
-            GL gl = tmpCanvas.getGL();
-            DataLoader.setABGRExt(gl.isExtensionAvailable("GL_EXT_abgr") ? 1 : 0);
-            tmpCanvas.getContext().release();
-            tmpCanvas = null;
-        } catch (Exception e) { }
-
         if (testCanvasAtStartup && OS.get() != OS.MAC) {
             long lastTime = Calendar.getInstance().getTimeInMillis();
 
@@ -180,7 +171,6 @@ public class SwingScilabCanvasImpl {
 
             }
         }
-
     }
 
     static boolean enableGLCanvas = forceGLCanvas || noGLJPanel;

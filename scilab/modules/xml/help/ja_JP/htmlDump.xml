@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+*
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="htmlDump" xml:lang="ja">
+    <refnamediv>
+        <refname>htmlDump</refname>
+        <refpurpose>HTML文書をダンプ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            str = htmlDump(xmlDoc [, indent])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>xmlDoc</term>
+                <listitem>
+                    <para>xmlDoc, XML文書</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>indent</term>
+                <listitem>
+                    <para>indent, 論理値</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>str, 文字列の行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>HTML文書をダンプします. indentがfalseの場合 (デフォルト値: true), インデントは行われず, 復改が追加されます.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    doc = htmlReadStr(["<!DOCTYPE html PUBLIC ""-//W3C//DTD HTML 4.01//EN""";
+                       """http://www.w3.org/TR/html4/strict.dtd"">";
+                       "<html lang=""en"">";
+                       "  <head>";
+                       "    <meta http-equiv=""content-type"" content=""text/html; charset=utf-8"">";
+                       "    <title>title</title>";
+                       "    <link rel=""stylesheet"" type=""text/css"" href=""style.css"">";
+                       "    <script type=""text/javascript"" src=""script.js""></script>";
+                       "  </head>";
+                       "  <body>";
+                       "  </body>";
+                       "</html>"]);
+    // HTML文書をダンプ
+    htmlDump(doc)
+    // インデントせずにHTML文書をダンプ
+    htmlDump(doc, %f)
+    // 文書に関連するリソースを開放
+    xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xmlWrite">htmlWrite</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HTML機能追加.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

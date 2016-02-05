@@ -2,12 +2,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="error_table" xml:lang="ja">
     <refnamediv>
         <refname>error_table</refname>
-        <refpurpose>エラーメッセージのテーブル</refpurpose>
+        <refpurpose>エラーメッセージの表</refpurpose>
     </refnamediv>
     <refsection>
         <title>説明</title>
         <para>このページは
-            定義済みエラーメッセージとそれらの関連するエラー番号のテーブルを示します.
+            定義済みエラーメッセージとそれらの関連するエラー番号の表を示します.
             これらのエラーメッセージのいくつかは,
             パーサエラーや特定の組み込みエラーのために
             Scilab自体で使用されています.
@@ -32,9 +32,6 @@
         <para>14 "Eye variable undefined in this context."</para>
         <para>15 "Submatrix incorrectly defined."</para>
         <para>16 "Incorrect command!"</para>
-        <para>17 "stack size exceeded! Use stacksize function to increase
-            it."
-        </para>
         <para>18 "Too many variables."</para>
         <para>19 "Problem is singular."</para>
         <para>* 20 "Wrong type for argument #%d: Square matrix expected."</para>
@@ -55,7 +52,7 @@
         <para>34 "Syntax error in a '%s' instruction."
             (if,while,select/case)
         </para>
-        <para>* 36 "Wrong input argument %d."</para>
+        <para>* 36 "Wrong input argument #%d."</para>
         <para>* 37 "Incorrect function at line %d."</para>
         <para>38 "Wrong file name."</para>
         <para>39 "Incorrect number of input arguments."</para>
@@ -71,10 +68,10 @@
         <para>49 "Incorrect file or format."</para>
         <para>50 "Subroutine '%s' not found."</para>
         <para>* 52 "Wrong type for argument #%d: Real matrix expected."</para>
-        <para>* 53 "Wrong type for input argument %d: Real or complex matrix
+        <para>* 53 "Wrong type for input argument #%d: Real or complex matrix
             expected."
         </para>
-        <para>* 54 "Wrong type for input argument %d: Polynomial expected."</para>
+        <para>* 54 "Wrong type for input argument #%d: Polynomial expected."</para>
         <para>* 55 "Wrong type for argument #%d: String expected."</para>
         <para>* 56 "Wrong type for argument #%d: List expected."</para>
         <para>57 "Problem with comparison symbol..."</para>
@@ -126,7 +123,7 @@
         </para>
         <para>* 94 "Wrong type for argument #%d: In discrete time expected."</para>
         <para>* 95 "Wrong type for argument #%d: SISO expected."</para>
-        <para>* 96 "time domain of argument %d is not defined."</para>
+        <para>* 96 "time domain of argument #%d is not defined."</para>
         <para>* 97 "Wrong type for argument #%d: A system in state space or
             transfer matrix form expected."
         </para>
@@ -212,7 +209,7 @@
         <para>213 "%s: Wrong type for argument #%d: Working integer matrix
             expected."
         </para>
-        <para>214 "Argument %d of %s: wrong type argument, expecting a
+        <para>214 "Argument #%d of %s: wrong type argument, expecting a
             vector"
         </para>
         <para>* 215 "%dth argument type must be boolean."</para>
@@ -225,7 +222,7 @@
         <para>* 218 "Wrong type for argument #%d: Handle to sparse lu factors
             expected."
         </para>
-        <para>* 219 "Wrong type argument %d: Sparse or full scalar matrix
+        <para>* 219 "Wrong type argument #%d: Sparse or full scalar matrix
             expected."
         </para>
         <para>220 "Null variable cannot be used here."</para>
@@ -315,15 +312,31 @@
         <para>278 "%s: Input arguments should have the same formal variable
             name."
         </para>
+        <para>
+            <note>
+                将来のリリースでは変更される可能性があるため,
+                このリストの使用は避けてください.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    error(43);
+    // Display "Not implemented in scilab..."
+    error(42);
+    // Display "Incompatible input argument."
+    lasterror()
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="warning">warning</link>
+                <link linkend="error">error</link>
             </member>
             <member>
-                <link linkend="errcatch">errcatch</link>
+                <link linkend="warning">warning</link>
             </member>
             <member>
                 <link linkend="execstr">execstr</link>

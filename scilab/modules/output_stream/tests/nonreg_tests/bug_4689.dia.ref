@@ -17,16 +17,18 @@
 fileout = pathconvert(TMPDIR+"/bug_diary.txt",%F);
 id = diary(fileout);
 disp("Hello world");
- 
- Hello world   
+ Hello world
 diary(id, 'close');
 mgetl(fileout)
  ans  =
- 
+!                          !
+!                          !
 !disp("Hello world");  !
-!                         !
-!                         !
-!                         !
-! Hello world             !
-!                         !
+!                          !
+!                          !
+!                          !
+! Hello world              !
+!                          !
+!                          !
+!                          !
 !diary(id, 'close');   !

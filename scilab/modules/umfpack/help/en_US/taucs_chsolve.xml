@@ -40,7 +40,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function must be used in conjonction with <link linkend="taucs_chfact">taucs_chfact</link> which
+            This function must be used in conjunction with <link linkend="taucs_chfact">taucs_chfact</link> which
             computes the Cholesky factorization of a sparse real s.p.d. matrix.
             When the matrix <literal>A</literal> is provided, one iterative refinement
             step is done (the refined solution is accepted if it improves the

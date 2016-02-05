@@ -15,13 +15,13 @@ x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,"yellow");bar(x,y2);
 
 subplot(2,3,2);
-xtitle("grouped homogenisation");
+xtitle("grouped homogenization");
 x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,"yellow");bar(x,y2);
 barhomogenize();
 
 subplot(2,3,3);
-xtitle("stacked homogenisation");
+xtitle("stacked homogenization");
 x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,"yellow");bar(x,y2);
 barhomogenize("stacked",1);
@@ -65,7 +65,7 @@ assert_checkequal(a3.y_ticks.labels, ["0";"2";"4";"6";"8";"10";"12"]);
 assert_checkequal(a3.z_ticks.labels, []);
 assert_checkequal(a3.sub_ticks, [0,1]);
 assert_checktrue(abs(a3.data_bounds - [0.55,0;3.45,11]) < 0.05);
-assert_checkequal(a3.margins, [0.125,0.125,0.125,0.125]);
+assert_checkequal(a3.margins(2:$), [0.125,0.125,0.125]);
 assert_checktrue(abs(a3.axes_bounds - [0,0,0.3333333333,0.5]) < 0.0005);
 
 // Check Second

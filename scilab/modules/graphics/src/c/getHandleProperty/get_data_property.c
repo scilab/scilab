@@ -6,11 +6,14 @@
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -28,7 +31,7 @@
 #include "returnPropertyList.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "SetPropertyStatus.h"
 
 #include "getGraphicObjectProperty.h"
@@ -37,7 +40,7 @@
 #include "returnProperty.h"
 /*--------------------------------------------------------------------------*/
 /* the matplot data can have several type */
-int getmatplotdata(void * _pvCtx, int iObjUID)
+void* getmatplotdata(int iObjUID)
 {
     int datatype = 0;
     int * piDataType = &datatype;
@@ -50,7 +53,7 @@ int getmatplotdata(void * _pvCtx, int iObjUID)
     int * piImagetype = &imagetype;
     int gltype = 0;
     int * piGltype = &gltype;
-    int status = SET_PROPERTY_ERROR;
+    void* status = NULL;
     getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNumX);
     getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNumY);
     getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_MATPLOT_DATA_TYPE__, jni_int, (void **)&piDataType);
@@ -60,7 +63,7 @@ int getmatplotdata(void * _pvCtx, int iObjUID)
 
     if (!data)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
 
     switch ((DataType)datatype)
@@ -68,60 +71,60 @@ int getmatplotdata(void * _pvCtx, int iObjUID)
         case MATPLOT_HM1_Char :
         {
             int dims[3] = {numY - 1, numX - 1, 1};
-            status = sciReturnHypermatOfInteger8(_pvCtx, dims, 3, (char*)data);
+            status = sciReturnHypermatOfInteger8(dims, 3, (char*)data);
             break;
         }
         case MATPLOT_HM1_UChar :
         {
             int dims[3] = {numY - 1, numX - 1, 1};
-            status = sciReturnHypermatOfUnsignedInteger8(_pvCtx, dims, 3, (unsigned char*)data);
+            status = sciReturnHypermatOfUnsignedInteger8(dims, 3, (unsigned char*)data);
             break;
         }
         case MATPLOT_HM3_Char :
         {
             int dims[3] = {numY - 1, numX - 1, 3};
-            status = sciReturnHypermatOfInteger8(_pvCtx, dims, 3, (char*)data);
+            status = sciReturnHypermatOfInteger8(dims, 3, (char*)data);
             break;
         }
         case MATPLOT_HM3_UChar :
         {
             int dims[3] = {numY - 1, numX - 1, 3};
-            status = sciReturnHypermatOfUnsignedInteger8(_pvCtx, dims, 3, (unsigned char*)data);
+            status = sciReturnHypermatOfUnsignedInteger8(dims, 3, (unsigned char*)data);
             break;
         }
         case MATPLOT_HM1_Double :
         {
             int dims[3] = {numY - 1, numX - 1, 1};
-            status = sciReturnHypermatOfDouble(_pvCtx, dims, 3, (double*)data);
+            status = sciReturnHypermatOfDouble(dims, 3, (double*)data);
             break;
         }
         case MATPLOT_HM3_Double :
         {
             int dims[3] = {numY - 1, numX - 1, 3};
-            status = sciReturnHypermatOfDouble(_pvCtx, dims, 3, (double*)data);
+            status = sciReturnHypermatOfDouble(dims, 3, (double*)data);
             break;
         }
         case MATPLOT_HM4_Char :
         {
             int dims[3] = {numY - 1, numX - 1, 4};
-            status = sciReturnHypermatOfInteger8(_pvCtx, dims, 3, (char*)data);
+            status = sciReturnHypermatOfInteger8(dims, 3, (char*)data);
             break;
         }
         case MATPLOT_HM4_UChar :
         {
             int dims[3] = {numY - 1, numX - 1, 4};
-            status = sciReturnHypermatOfUnsignedInteger8(_pvCtx, dims, 3, (unsigned char*)data);
+            status = sciReturnHypermatOfUnsignedInteger8(dims, 3, (unsigned char*)data);
             break;
         }
         case MATPLOT_HM4_Double :
         {
             int dims[3] = {numY - 1, numX - 1, 4};
-            status = sciReturnHypermatOfDouble(_pvCtx, dims, 3, (double*)data);
+            status = sciReturnHypermatOfDouble(dims, 3, (double*)data);
             break;
         }
         case MATPLOT_Char :
         {
-            status = sciReturnMatrixOfInteger8(_pvCtx, (char*)data, numY - 1, numX - 1);
+            status = sciReturnMatrixOfInteger8((char*)data, numY - 1, numX - 1);
             break;
         }
         case MATPLOT_UChar :
@@ -129,41 +132,41 @@ int getmatplotdata(void * _pvCtx, int iObjUID)
 
             if ((ImageType)imagetype == MATPLOT_RGB)
             {
-                status = sciReturnMatrixOfUnsignedInteger8(_pvCtx, (unsigned char*)data, 3 * (numY - 1), numX - 1);
+                status = sciReturnMatrixOfUnsignedInteger8((unsigned char*)data, 3 * (numY - 1), numX - 1);
             }
             else if ((ImageType)imagetype == MATPLOT_GL_RGBA)
             {
-                status = sciReturnMatrixOfUnsignedInteger8(_pvCtx, (unsigned char*)data, 4 * (numY - 1), numX - 1);
+                status = sciReturnMatrixOfUnsignedInteger8((unsigned char*)data, 4 * (numY - 1), numX - 1);
             }
             else
             {
-                status = sciReturnMatrixOfUnsignedInteger8(_pvCtx, (unsigned char*)data, numY - 1, numX - 1);
+                status = sciReturnMatrixOfUnsignedInteger8((unsigned char*)data, numY - 1, numX - 1);
             }
             break;
         }
         case MATPLOT_Short :
         {
-            status = sciReturnMatrixOfInteger16(_pvCtx, (short*)data, numY - 1, numX - 1);
+            status = sciReturnMatrixOfInteger16((short*)data, numY - 1, numX - 1);
             break;
         }
         case MATPLOT_UShort :
         {
-            status = sciReturnMatrixOfUnsignedInteger16(_pvCtx, (unsigned short*)data, numY - 1, numX - 1);
+            status = sciReturnMatrixOfUnsignedInteger16((unsigned short*)data, numY - 1, numX - 1);
             break;
         }
         case MATPLOT_Int :
         {
-            status = sciReturnMatrixOfInteger32(_pvCtx, (int*)data, numY - 1, numX - 1);
+            status = sciReturnMatrixOfInteger32((int*)data, numY - 1, numX - 1);
             break;
         }
         case MATPLOT_UInt :
         {
-            status = sciReturnMatrixOfUnsignedInteger32(_pvCtx, (unsigned int*)data, numY - 1, numX - 1);
+            status = sciReturnMatrixOfUnsignedInteger32((unsigned int*)data, numY - 1, numX - 1);
             break;
         }
         case MATPLOT_Double :
         {
-            status = sciReturnMatrix(_pvCtx, (double*)data, numY - 1, numX - 1);
+            status = sciReturnMatrix((double*)data, numY - 1, numX - 1);
             break;
         }
     }
@@ -173,7 +176,7 @@ int getmatplotdata(void * _pvCtx, int iObjUID)
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the grayplot data is now given as a tlist (like for surface and champ objects) */
-int getgrayplotdata(int iObjUID)
+void* getgrayplotdata(int iObjUID)
 {
     char * variable_tlist[] = {"grayplotdata", "x", "y", "z"};
     int numX = 0;
@@ -185,11 +188,11 @@ int getgrayplotdata(int iObjUID)
     double* dataZ = NULL;
 
     /* Add 'variable' tlist items to stack */
-    returnedList * tList = createReturnedList(3, variable_tlist);
+    void* tList = createReturnedList(3, variable_tlist);
 
     if (tList == NULL)
     {
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNumX);
@@ -203,14 +206,14 @@ int getgrayplotdata(int iObjUID)
     addColVectorToReturnedList(tList, dataY, numY);
     addMatrixToReturnedList(tList, dataZ, numX, numY);
 
-    destroyReturnedList(tList);
+    //destroyReturnedList(tList);
 
-    return 0;
+    return tList;
 }
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the champ data is now given as a tlist (like for surface objects) */
-int getchampdata(int iObjUID)
+void* getchampdata(int iObjUID)
 {
     char * variable_tlist[] = {"champdata", "x", "y", "fx", "fy"};
     int* dimensions = NULL;
@@ -221,11 +224,11 @@ int getchampdata(int iObjUID)
 
     /* Add 'variable' tlist items to stack */
 
-    returnedList * tList = createReturnedList(4, variable_tlist);
+    void* tList = createReturnedList(4, variable_tlist);
 
     if (tList == NULL)
     {
-        return -1;
+        return tList;
     }
 
     getGraphicObjectProperty(iObjUID, __GO_CHAMP_DIMENSIONS__, jni_int_vector, (void **)&dimensions);
@@ -240,12 +243,12 @@ int getchampdata(int iObjUID)
     addMatrixToReturnedList(tList, arrowDirectionsX, dimensions[0], dimensions[1]);
     addMatrixToReturnedList(tList, arrowDirectionsY, dimensions[0], dimensions[1]);
 
-    destroyReturnedList(tList);
+    //destroyReturnedList(tList);
 
-    return 0;
+    return tList;
 }
 /*--------------------------------------------------------------------------*/
-int get3ddata(int iObjUID)
+void* get3ddata(int iObjUID)
 {
     char *variable_tlist_color[] = {"3d", "x", "y", "z", "color"};
     char *variable_tlist[] = {"3d", "x", "y", "z"};
@@ -260,7 +263,7 @@ int get3ddata(int iObjUID)
     int nbCol = 0;
     int *piNbCol = &nbCol;
 
-    returnedList * tList = NULL;
+    void* tList = NULL;
 
     getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
@@ -303,7 +306,7 @@ int get3ddata(int iObjUID)
             }
 
         }
-        destroyReturnedList(tList);
+        //destroyReturnedList(tList);
     }
     else /* no color provided in input*/
     {
@@ -335,13 +338,13 @@ int get3ddata(int iObjUID)
             addMatrixToReturnedList(tList, dataZ, nbRow, nbCol);
         }
 
-        destroyReturnedList(tList);
+        //destroyReturnedList(tList);
     }
 
-    return 0;
+    return tList;
 }
 /*------------------------------------------------------------------------*/
-int get_tip_data_property(void* _pvCtx, int iObjUID)
+void* get_tip_data_property(void* _pvCtx, int iObjUID)
 {
     double *tip_data = NULL;
 
@@ -350,13 +353,13 @@ int get_tip_data_property(void* _pvCtx, int iObjUID)
     if (tip_data == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "data");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnRowVector(_pvCtx, tip_data, 3);
+    return sciReturnRowVector(tip_data, 3);
 }
 /*------------------------------------------------------------------------*/
-int get_data_property(void* _pvCtx, int iObjUID)
+void* get_data_property(void* _pvCtx, int iObjUID)
 {
     int type = -1;
     int *piType = &type;
@@ -365,7 +368,7 @@ int get_data_property(void* _pvCtx, int iObjUID)
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
-        return -1;
+        return NULL;
     }
 
     switch (type)
@@ -378,7 +381,7 @@ int get_data_property(void* _pvCtx, int iObjUID)
         case __GO_GRAYPLOT__ :
             return getgrayplotdata(iObjUID);
         case __GO_MATPLOT__ :
-            return getmatplotdata(_pvCtx, iObjUID);
+            return getmatplotdata(iObjUID);
         case __GO_DATATIP__ :
             return get_tip_data_property(_pvCtx, iObjUID);
         default :
@@ -386,30 +389,29 @@ int get_data_property(void* _pvCtx, int iObjUID)
         {
             int nbRow  =  0;
             int nbCol  =  0;
-            int status = SET_PROPERTY_ERROR;
+            void* status = NULL;
             /* Warning the following function allocates data */
             double* data = sciGetPoint(iObjUID, &nbRow, &nbCol);
 
             if (data == NULL && nbRow == 0 && nbCol == 0)
             {
                 /* Empty data */
-                sciReturnEmptyMatrix(_pvCtx);
-                status = SET_PROPERTY_SUCCEED;
+                status = sciReturnEmptyMatrix();
             }
             else if (data == NULL && nbRow == -1 && nbCol == -1)
             {
                 /* data allocation failed */
                 Scierror(999, _("%s: No more memory."), "get_data_property");
-                status = SET_PROPERTY_ERROR;
+                status = NULL;
             }
             else if (data == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "data");
-                return -1;
+                return NULL;
             }
             else
             {
-                status = sciReturnMatrix(_pvCtx, data, nbRow, nbCol);
+                status = sciReturnMatrix(data, nbRow, nbCol);
                 FREE(data);
             }
 

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include "sci_rankqr.h"
@@ -19,7 +22,7 @@ extern int C2F(dcopy)();
 extern int C2F(mb03od)();
 extern int C2F(dorgqr)();
 
-int sci_rrankqr(char *fname, unsigned long fname_len)
+int sci_rrankqr(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -81,7 +84,7 @@ int sci_rrankqr(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, A);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, A);
         return 1;
     }
 
@@ -125,7 +128,7 @@ int sci_rrankqr(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, RCOND);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, RCOND);
             return 1;
         }
 
@@ -161,7 +164,7 @@ int sci_rrankqr(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, RCOND);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, RCOND);
             return 1;
         }
 
@@ -183,7 +186,7 @@ int sci_rrankqr(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, JPVT);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, JPVT);
             return 1;
         }
 
@@ -312,5 +315,6 @@ int sci_rrankqr(char *fname, unsigned long fname_len)
     AssignOutputVariable(pvApiCtx, 4) = RANK;
     AssignOutputVariable(pvApiCtx, 5) = SVAL;
 
+    ReturnArguments(pvApiCtx);
     return 0;
 }

@@ -68,7 +68,7 @@
                             <term>Real scalars or vectors or matrices</term>
                             <listitem>
                                 <para>In this case the values given as indices should be positive and
-                                     only their integer part are taken into account.
+                                    only their integer part are taken into account.
                                 </para>
                                 <itemizedlist>
                                     <listitem>
@@ -81,7 +81,7 @@
                                             <literal>l</literal> from 1 to
                                             <literal>size(i,'*')</literal> and <literal>k</literal> from
                                             1 to <literal>size(j,'*')</literal>, other initial
-                                            entries of <literal>x</literal> are unchanged. 
+                                            entries of <literal>x</literal> are unchanged.
                                         </para>
                                     </listitem>
                                     <listitem>
@@ -92,7 +92,7 @@
                                             <literal>l</literal> from 1 to <literal>size(i,'*')</literal>
                                             and <literal>k</literal> from 1 to
                                             <literal>size(j,'*')</literal>, other initial entries
-                                            of <literal>x</literal> are unchanged. 
+                                            of <literal>x</literal> are unchanged.
                                         </para>
                                     </listitem>
                                     <listitem>
@@ -112,7 +112,7 @@
                                             columns of <literal>x</literal> or kills columns specified by
                                             <literal>j</literal> if <literal>i</literal> matches all rows of
                                             <literal>x</literal>. In other cases <literal>x(i,j)=[]</literal>
-                                            produce an error. 
+                                            produce an error.
                                         </para>
                                     </listitem>
                                     <listitem>
@@ -121,7 +121,7 @@
                                             vector returns a new <literal>x</literal> matrix such as
                                             <literal>x(int(i(l)))=a(l)</literal> for <literal>l</literal> from 1 to
                                             <literal>size(i,'*')</literal>, other initial entries
-                                            of <literal>x</literal> are unchanged. 
+                                            of <literal>x</literal> are unchanged.
                                         </para>
                                     </listitem>
                                     <listitem>
@@ -130,7 +130,7 @@
                                             scalar returns a new <literal>x</literal> matrix such as
                                             <literal>x(int(i(l)))=a</literal> for <literal>l</literal> from 1 to
                                             <literal>size(i,'*')</literal>, other initial entries
-                                            of <literal>x</literal> are unchanged. 
+                                            of <literal>x</literal> are unchanged.
                                         </para>
                                         <para>
                                             If <literal>i</literal> maximum value exceed
@@ -297,7 +297,7 @@
                                 <literal>l(k1) = lk1</literal>
                             </para>
                             <para>
-                                And the <literal>l(k1)...(kn)(i,j)=a</literal> and  <literal>l(list(k1,...,kn,list(i,j))=a</literal> 
+                                And the <literal>l(k1)...(kn)(i,j)=a</literal> and  <literal>l(list(k1,...,kn,list(i,j))=a</literal>
                                 instructions are interpreted as:
                             </para>
                             <para>
@@ -355,7 +355,7 @@
                             </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para> 
+                                    <para>
                                         real positive scalar.
                                     </para>
                                 </listitem>
@@ -385,7 +385,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // MATRIX CASE
 a=[1 2 3;4 5 6]
 a(1,2)=10
@@ -431,7 +431,7 @@ dts(2)('b')(1,2)=-100
                 <link linkend="horner">horner</link>
             </member>
             <member>
-                <link linkend="parents">parents</link>
+                <link linkend="parentheses">parentheses</link>
             </member>
             <member>
                 <link linkend="extraction">extraction</link>

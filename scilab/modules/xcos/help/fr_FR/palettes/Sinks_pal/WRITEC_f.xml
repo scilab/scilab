@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry
@@ -298,10 +301,6 @@ box "Champ #N";
             les dates des événements, nous utilisons un bloc TIME_f et un multiplexeur pour former le vecteur d'entrée du bloc WRITEC_f
             qui enregistre les données dans le fichier <emphasis>"TMPDIR/writec_f.datas"</emphasis>. Vous pouvez ensuite lire les ces
             données avec le bloc <link linkend="READC_f">READC_f</link>.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos">
-                Ouvrir cet exemple dans Xcos
-            </link>
-            .
         </para>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos">

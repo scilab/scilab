@@ -46,7 +46,7 @@
                     <para>2-vector of discrete cut-off frequencies (i.e.,
                         <literal>0&lt;frq&lt;.5</literal>). For <literal>'lp'</literal> and
                         <literal>'hp'</literal> filters only <literal>frq(1)</literal> is
-                        used (in this case, <varname>frq</varname> can be a scalar). 
+                        used (in this case, <varname>frq</varname> can be a scalar).
                         For <literal>'bp'</literal> and <literal>'sb'</literal> filters
                         <literal>frq(1)</literal> is the upper cut-off frequency and
                         <literal>frq(2)</literal> is the lower cut-off frequency.
@@ -123,21 +123,21 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
 [hzm,fr]=frmag(hz,256);
 plot2d(fr',hzm')
-xtitle('Discrete IIR filter band pass  0.15 < fr < 0.25 ',' ',' ');
+xtitle('Discrete IIR filter: band pass  0.15 < fr < 0.25 ',' ',' ');
 q=poly(0,'q');     //to express the result in terms of the delay operator q=z^-1
 hzd=horner(hz,1/q)
 ]]>     </programlisting>
-        <scilab:image><![CDATA[ 
+        <scilab:image><![CDATA[
 hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
 [hzm,fr]=frmag(hz,256);
 plot2d(fr',hzm')
-xtitle('Discrete IIR filter band pass  0.15 < fr < 0.25 ',' ',' ');
+xtitle('Discrete IIR filter: band pass  0.15 < fr < 0.25 ',' ',' ');
 ]]>     </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Poles Zeros Gain filter representation
 [p,z,g]=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
 g*poly(z,'z')/poly(p,'z')

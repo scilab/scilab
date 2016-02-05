@@ -3,30 +3,30 @@
 * Copyright (C) INRIA
 * Copyright (C) DIGITEO - 2010 - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 #include <string.h>
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "expandPathVariable.h"
-
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "fprintfMat.h"
 
 static void freeVar(char** filename, char** expandedFilename, char*** textAdded, int m4n4, char** Format, char** separator);
 /*--------------------------------------------------------------------------*/
-int sci_fprintfMat(char *fname, unsigned long fname_len)
+int sci_fprintfMat(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -48,7 +48,6 @@ int sci_fprintfMat(char *fname, unsigned long fname_len)
     int m4n4 = 0;
     int i = 0;
 
-    Nbvars = 0;
     CheckRhs(2, 5);
     CheckLhs(1, 1);
 
@@ -65,7 +64,7 @@ int sci_fprintfMat(char *fname, unsigned long fname_len)
 
         if (isStringType(pvApiCtx, piAddressVarThree) == 0 || isScalar(pvApiCtx, piAddressVarThree) == 0)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
             return 0;
         }
 
@@ -82,7 +81,7 @@ int sci_fprintfMat(char *fname, unsigned long fname_len)
     }
     else
     {
-        Format = strdup(DEFAULT_FPRINTFMAT_FORMAT);
+        Format = os_strdup(DEFAULT_FPRINTFMAT_FORMAT);
     }
 
     if ( Rhs >= 4 )
@@ -134,7 +133,7 @@ int sci_fprintfMat(char *fname, unsigned long fname_len)
                 isScalar(pvApiCtx, piAddressVarFive) == 0)
         {
             freeVar(&filename, &expandedFilename, &textAdded, m4n4, &Format, &separator);
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
 
@@ -147,7 +146,7 @@ int sci_fprintfMat(char *fname, unsigned long fname_len)
     }
     else
     {
-        separator = strdup(DEFAULT_FPRINTFMAT_SEPARATOR);
+        separator = os_strdup(DEFAULT_FPRINTFMAT_SEPARATOR);
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
@@ -187,7 +186,7 @@ int sci_fprintfMat(char *fname, unsigned long fname_len)
     if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
         freeVar(&filename, &expandedFilename, &textAdded, m4n4, &Format, &separator);
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
         return 0;
     }
 

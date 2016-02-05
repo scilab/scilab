@@ -3,11 +3,14 @@
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //==============================================================================
 
 function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
@@ -19,7 +22,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     //  help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci.
     //  help_from_sci(dirname,helpdir) // process dirname/*.sci and create helpdir/*.xml help files.
     //  help_from_sci(dirname,helpdir,demodir) // as above but also creating demodir/*.dem.sce demo files.
-    //  [helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrixes.
+    //  [helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrices.
     // Parameters
     //  funname: the name of a single .sci source file to be processed.
     //  dirname: directory name where all .sci files will be processed.
@@ -258,15 +261,24 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
                 in = "";
             end
         else
+
             in = strsplit(line, i(1) + 1);
             in = stripblanks(in(2));
             code = in;  // store original line for the demos.
             if (doing ~= "Examples") then // Replacing characters like <, > or & should not be done in the Examples
                 in = strsubst(in, "&", "&amp;"); // remove elements that make xml crash.
                 in = strsubst(in, "< ", "&lt; ");
-                if strindex(in ,"<") then if isempty(regexp(in, "/\<*[a-z]\>/")) then in = strsubst(in, "<", "&lt;"); end; end
+                if strindex(in ,"<") then
+                    if ~helpfromsci_isxmlstr(in) then
+                        in = strsubst(in, "<", "&lt;");
+                    end;
+                end
                 in = strsubst(in, " >", " &gt;");
-                if strindex(in, ">") then if isempty(regexp(in, "/\<*[a-z]\>/")) then in = strsubst(in, ">", "&gt;"); end; end
+                if strindex(in, ">") then
+                    if ~helpfromsci_isxmlstr(in) then
+                        in = strsubst(in, ">", "&gt;");
+                    end;
+                end
             end
         end
 
@@ -361,6 +373,17 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
             printf(gettext("%s: File skipped %s."), "help_from_sci", out + ".demo.sce");
             demotxt = "";
         end
+    end
+endfunction
+//==============================================================================
+function tf = helpfromsci_isxmlstr(str)
+    // Returns %t if the current string is a xml line
+    if ( ~isempty(regexp(str, "/\<*[a-z]\>/")) ) then
+        tf=%t
+    elseif ( ~isempty(regexp(str, "/\<(.*)\/\>/")) ) then
+        tf=%t
+    else
+        tf=%f
     end
 endfunction
 //==============================================================================

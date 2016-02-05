@@ -13,7 +13,7 @@ function subdemolist = demo_gateway()
     _("IIR filter design")                 , "iir.dem.sce"
     _("Minimax FIR filter design")         , "remezfilt.dem.sce"
     _("Discrete IIR filter")               , "iirfilt.dem.sce"
-    _("Wiegner filter")                    , "wiener.dem.sce"
+    _("Wiener filter")                     , "wiener.dem.sce"
     _("Bode plots")                        , "bode.dem.sce"
     _("Window FIR filters")                , "winfilt.dem.sce"
     _("1-D convolution")                   , "conv.dem.sce"

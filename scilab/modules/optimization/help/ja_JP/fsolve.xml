@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fsolve" xml:lang="ja">
@@ -168,16 +171,12 @@ fct(int *n, double x[],double v[],int *iflag)
         <programlisting role="example"><![CDATA[
 // fsolve に関する簡単な例
 a=[1,7;2,8];b=[10;11];
-
 deff('[y]=fsol1(x)','y=a*x+b');
 deff('[y]=fsolj1(x)','y=a');
-
 [xres]=fsolve([100;100],fsol1);
 a*xres+b
-
 [xres]=fsolve([100;100],fsol1,fsolj1);
 a*xres+b
-
 // See SCI/modules/optimization/sci_gateway/fortran/Ex-fsolve.f
 [xres]=fsolve([100;100],'fsol1','fsolj1',1.e-7);
 a*xres+b
@@ -196,18 +195,14 @@ endfunction
 function J=dFdx(x)  // Fの微分を定義
    J=1-dt*(2*x-3*x^2);
 endfunction
-
 r = 0.04257794928862307 ;
 dt = 10;
-
 [x,v,info]=fsolve(r,list(feuler,r),dFdx); // fsolveは解を見つけることができません
 disp(v); // 残差
 disp(info); // 終了インジケータ
-
 [x,v,info]=fsolve(1,list(feuler,r),dFdx); // fsolve は解を見つけます
 disp(v); // 残差
 disp(info); // 終了インジケータ
-
 clf();x=linspace(0,1,1000);plot(x,feuler(x))
 a=gca();a.grid=[5 5];
  ]]></programlisting>

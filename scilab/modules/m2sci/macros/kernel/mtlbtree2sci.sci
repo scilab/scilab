@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprintoutput)
     // Conversion of a Matlab function tree to Scilab (and code generation)
@@ -65,27 +68,28 @@ function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprintoutput)
         crp=lhsstr+" = "+scitree.name+rhsstr;
     end
 
+
     // Convert Matlab instruction tree to Scilab
     while ninstr<=size(mtlbtree.statements)-3
         //Case : sup_equal instruction
         // Add converted tree to scitree and also inserted instructions
         if typeof(mtlbtree.statements(ninstr))=="sup_equal"
 
-            sci_stat=list()
+            sci_stat=list();
             for i=1:size(mtlbtree.statements(ninstr).sup_instr)
-                [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr).sup_instr(i),nblines)
+                [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr).sup_instr(i),nblines);
 
-                sci_stat=update_instr_list(sci_stat,converted_tree)
+                sci_stat=update_instr_list(sci_stat,converted_tree);
             end
 
-            scitree.statements($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_stat,mtlbtree.statements(ninstr).nb_opr)
+            scitree.statements($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_stat,mtlbtree.statements(ninstr).nb_opr);
         else
 
-            [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr),nblines)
+            [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr),nblines);
 
             // Add converted tree to scitree and also inserted instructions
 
-            scitree.statements=update_instr_list(scitree.statements,converted_tree)
+            scitree.statements=update_instr_list(scitree.statements,converted_tree);
 
             // Generate code corresponding to scitree.statements
         end
@@ -96,12 +100,12 @@ function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprintoutput)
             end
         end
 
-        scitree.statements=list(scitree.statements($))
+        scitree.statements=list(scitree.statements($));
 
         // Disp percentage of conversion done
-        msprintf(gettext("%s line %s out of %s..."),margin, string(nblines), string(mtlbtree.nblines))
-        ninstr=ninstr+1
-        tmpvarnb=0
+        msprintf(gettext("%s line %s out of %s..."),margin, string(nblines), string(mtlbtree.nblines));
+        ninstr=ninstr+1;
+        tmpvarnb=0;
     end
 
     if scitree.statements(1)<>list("EOL") then

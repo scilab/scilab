@@ -1,0 +1,69 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- WINDOWS ONLY -->
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 13986 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=13986
+//
+// <-- Short Description -->
+// setdefaultlanguage does not set correctly in Windows registry
+old = getlanguage();
+lang = [ ...
+    "zh_TW" ...
+    "zh_CN" ...
+    "uk_UA" ...
+    "ru_RU" ...
+    "pt_BR" ...
+    "pl_PL" ...
+    "ja_JP" ...
+    "it_IT" ...
+    "fr_FR" ...
+    "es_ES" ...
+    "en_US" ...
+    "de_DE" ...
+    "cs_CZ" ...
+    "ca_ES"];
+for l = lang
+    setdefaultlanguage(l);
+    val = winqueryreg("HKEY_CURRENT_USER", "SOFTWARE\Scilab\" + getversion() + "\Settings", "LANGUAGE");
+    assert_checkequal(val, l);
+end
+在主控模式下無法切換此選單上的語言.
+重新啟動 Scilab 以套用選單.
+不可以在正在运行的控制台中改变菜单的语言。
+重启 Scilab 以将改变应用到菜单。
+У запущеній консолі мову меню змінити не можна.
+Перезапустіть Scilab, щоб застосувати зміни у меню.
+Не удалось сменить язык для меню в запущенном командном окне.
+Перезапустите Scilab для обновления меню.
+O idioma para menus não pode ser modificada em um console que esteja sendo executado.
+Reinicie o Scilab para aplicar as mudanças aos menus.
+Zmiana języka menu nie może być wykonana przy uruchomionej konsoli.
+Zrestartuj Scilab, aby zastosować zmiany w menu.
+メニューの言語は,実行中のコンソールでは変更できません.
+メニューに適用するためにScilabを再起動してください.
+La lingua dei menù non può essere cambiata in un terminale attivo.
+Riavviare Scilab per applicarla ai menù.
+Le langage des menus ne peut pas être changé dans une console en cours de fonctionnement.
+Redémarrer Scilab pour appliquer les changements aux menus.
+El idioma de los menús no puede ser modificado en una consola en ejecución.
+Reinicie Scilab para aplicar a los menús.
+The language for menus cannot be changed on a running console.
+Restart Scilab to apply to menus.
+Die Sprache für Menüs kann nicht bei laufender Konsole geändert werden.
+Starten Sie Scilab, um dies auf Menüs anzuwenden.
+Jazyk po nabídky nelze změnit na spuštěné konzoli.
+Restartujte Scilab pro použití do nabídek.
+No es pot canviar l'idioma dels menús en una consola en execució.
+Reinicieu el Scilab per aplicar-ho als menús.
+setdefaultlanguage(old);
+Le langage des menus ne peut pas être changé dans une console en cours de fonctionnement.
+Redémarrer Scilab pour appliquer les changements aux menus.

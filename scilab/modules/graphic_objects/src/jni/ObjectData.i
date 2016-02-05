@@ -3,13 +3,18 @@
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
+
+// swig -java -package org.scilab.modules.graphic_objects -outdir ../java/org/scilab/modules/graphic_objects/ ObjectData.i
 
 %module ObjectData
  
@@ -68,7 +73,7 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "math.h"
 
 double * getChampX(int uid)
@@ -164,26 +169,41 @@ int _getSegsSize(int uid) {
 %}
 
 %typemap(out) double * FEC {
-	$result = (*jenv)->NewDoubleArray(jenv, _getFecTrianglesSize(arg1));
-	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getFecTrianglesSize(arg1), $1);
+	$result = (*jenv)->NewDoubleArray(jenv, _getFecElementsSize(arg1));
+	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getFecElementsSize(arg1), $1);
 }
 
-%apply double * FEC { double * getFecTriangles(int uid) }
+%apply double * FEC { double * getFecElements(int uid) }
 %{
 
-double * getFecTriangles(int uid) {
+double * getFecElements(int uid) {
 
-    double * triangles;
-    getGraphicObjectProperty(uid, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, (void**)&triangles);
-    return triangles;
+    double * elements;
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_FEC_ELEMENTS__, jni_double_vector, (void**)&elements);
+    return elements;
 }
 
-int _getFecTrianglesSize(int uid) {
+int _getFecElementsSize(int uid) {
     
     int indices;
     int * pIndices = &indices;
+    int nVertex = 0;
+    int* piNVertex = &nVertex;
+
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**)&pIndices);
-    return indices * 5;
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, jni_int, (void**) &piNVertex);
+    
+    return indices * (nVertex + 2);
+}
+
+int getFecNumVerticesByElement(int uid) {
+    
+    int nVertex = 0;
+    int* piNVertex = &nVertex;
+
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, jni_int, (void**) &piNVertex);
+    
+    return nVertex;
 }
 
 %}
@@ -262,7 +282,8 @@ double * getChampX(int uid);
 double * getChampY(int uid);
 double * getArrows(int uid);
 double * getSegsData(int uid);
-double * getFecTriangles(int uid);
+double * getFecElements(int uid);
 double * getFecData(int uid);
 double * getArcUpperLeftPoint(int uid);
 double * getArcData(int uid);
+int getFecNumVerticesByElement(int uid);

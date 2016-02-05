@@ -40,9 +40,6 @@
     <ClCompile Include="src\c\serialization.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_mpi.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_mpi_bcast.c">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - A. Khorshidi
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_null">
+    <refnamediv>
+        <refname>null (Matlab function)</refname>
+        <refpurpose>Null space of a matrix</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Matlab/Scilab equivalent</title>
+        <informaltable border="1" width="100%">
+            <tr>
+                <td align="center">
+                    <emphasis role="bold">Matlab</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis role="bold">Scilab</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <programlisting role="example"><![CDATA[
+null
+]]></programlisting>
+                </td>
+                <td>
+                    <programlisting role="example"><![CDATA[
+kernel
+]]></programlisting>
+                </td>
+            </tr>
+        </informaltable>
+    </refsection>
+    <refsection>
+        <title>Particular cases</title>
+        <variablelist>
+            <varlistentry>
+                <term>null(A,'r')</term>
+                <listitem>
+                    <para>
+                        There is no Scilab equivalent for <emphasis role="bold">"r"</emphasis> option.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <informaltable border="1" width="100%">
+            <tr>
+                <td align="center">
+                    <emphasis role="bold">Matlab</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis role="bold">Scilab</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <programlisting role="example"><![CDATA[
+a=[1 3 2; 2 -3 -5];
+null(a)
+size(null(a),2)
+]]></programlisting>
+                </td>
+                <td>
+                    <programlisting role="example"><![CDATA[
+a=[1 3 2; 2 -3 -5];
+kernel(a)
+size(kernel(a),2) // Nullity of a
+]]></programlisting>
+                </td>
+            </tr>
+        </informaltable>
+    </refsection>
+</refentry>

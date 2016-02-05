@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte Denizet
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
@@ -42,13 +45,17 @@ public class SpritedRectangle extends ConvexObject {
     private double rotationAngle;
     private Texture.Filter filter;
     private Vector3d position;
+    private Color fillColor;
+    private Color borderColor;
 
-    public SpritedRectangle(Vector3d vertex, Texture sprite, AnchorPosition anchor, G2DTextureDrawingTools drawingTools, double rotationAngle) throws InvalidPolygonException {
+    public SpritedRectangle(Vector3d vertex, Texture sprite, AnchorPosition anchor, G2DTextureDrawingTools drawingTools, double rotationAngle, Color borderColor, Color fillColor) throws InvalidPolygonException {
         super(getSpriteVertices(vertex, sprite, anchor, rotationAngle), null);
         this.sprite = sprite;
         this.drawingTools = drawingTools;
         this.rotationAngle = rotationAngle;
         this.position = vertex;
+        this.fillColor = fillColor;
+        this.borderColor = borderColor;
     }
 
     public SpritedRectangle(Vector3d vertex, Transformation transf, BufferedImage image, Texture.Filter filter) throws InvalidPolygonException {
@@ -295,7 +302,7 @@ public class SpritedRectangle extends ConvexObject {
                 g2d.translate(vertices[0].getX(), vertices[0].getY());
             }
 
-            drawingTools.accept(sprite);
+            drawingTools.accept(sprite, borderColor, fillColor);
             g2d.setTransform(oldTransf);
             g2d.setStroke(oldStroke);
         } else {

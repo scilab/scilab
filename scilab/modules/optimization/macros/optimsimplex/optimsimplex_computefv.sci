@@ -2,11 +2,14 @@
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 //
 // optimsimplex_computefv --
@@ -16,7 +19,7 @@
 //   data : user-defined data
 //
 function [ this , data ] = optimsimplex_computefv ( varargin )
-    function argin = argindefault ( rhs , vararglist , ivar , default )
+    function argin = optim_argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
         // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
@@ -41,7 +44,7 @@ function [ this , data ] = optimsimplex_computefv ( varargin )
     end
     this = varargin(1)
     fun = varargin(2)
-    data = argindefault ( rhs , varargin , 3 , [] )
+    data = optim_argindefault ( rhs , varargin , 3 , [] )
     if (typeof(data)=="constant") then
         if ( data == [] ) then
             this = optimsimplex_compsomefv ( this , fun , 1:this.nbve )

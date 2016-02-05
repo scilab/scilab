@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
@@ -29,30 +30,31 @@
 //    endfunction
 
 function [a,b,c,d,e]=test()
-  a=1;b=2;c=3;d=4;e=5;
+    a=1;b=2;c=3;d=4;e=5;
 endfunction
 
 [out.a.t1,out.a.t2,out.a.t3,out.a.t4]=test();
-
-if or(out<>mlist(["st","dims","a"],int32([1,1]),..
-		   mlist(["st","dims","t4","t3","t2","t1"],int32([1,1]),4,3,2,1))) then pause,end
+stRef = struct("a",struct("t4",4,"t3",3,"t2",2,"t1",1));
+assert_checkequal(out,stRef);
 
 clear out
+
 [out.a.t1,t2,out.a.t3,t4]=test();
-if or(out<>mlist(["st","dims","a"],int32([1,1]),..
-		   mlist(["st","dims","t3","t1"],int32([1,1]),3,1))) then pause,end
-if t2<>2 then pause,end
-if t4<>4 then pause,end
+stRef = struct("a",struct("t3",3,"t1",1));
+assert_checkequal(out,stRef);
+assert_checkequal(t2,2);
+assert_checkequal(t4,4);
 
 clear a
 [a.t1,a.t2,a.t3,a.t4]=test();
-if or(a<>mlist(["st","dims","t4","t3","t2","t1"],int32([1,1]),4,3,2,1)) then pause,end
+stRef = struct("t4",4,"t3",3,"t2",2,"t1",1);
+assert_checkequal(a,stRef);
 
 clear a
 [t1,a.t2,t3,a.t4]=test();
-if or(a<>mlist(["st","dims","t4","t2"],int32([1,1]),4,2)) then pause,end
-if t1<>1 then pause,end
-if t3<>3 then pause,end
+stRef = struct("t4",4,"t2",2);
+assert_checkequal(t1,1);
+assert_checkequal(t3,3);
 
 [t1,t2,t3,t4]=test();
-if or([t1 t2 t3 t4]<>[1 2 3 4]) then pause,end
+assert_checkequal([t1 t2 t3 t4], [1 2 3 4]);

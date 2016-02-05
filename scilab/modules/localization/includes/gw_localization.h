@@ -3,29 +3,25 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #ifndef __GW_LOCALIZATION__
 #define __GW_LOCALIZATION__
-#include "dynlib_localization.h"
 /*--------------------------------------------------------------------------*/
-LOCALIZATION_IMPEXP int gw_localization(void);
+#include "dynlib_localization_gw.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
-/* interface for the previous function Table */
-/*--------------------------------------------------------------------------*/
-LOCALIZATION_IMPEXP int sci_setlanguage(char *fname, unsigned long fname_len);
-LOCALIZATION_IMPEXP int sci_getlanguage(char *fname, unsigned long fname_len);
-LOCALIZATION_IMPEXP int sci_getdefaultlanguage(char *fname, unsigned long fname_len);
-LOCALIZATION_IMPEXP int sci_gettext(char *fname, unsigned long fname_len);
-LOCALIZATION_IMPEXP int sci_setdefaultlanguage(char *fname, unsigned long fname_len);
-LOCALIZATION_IMPEXP int sci_addlocalizationdomain(char *fname, unsigned long fname_len);
-
+STACK_GATEWAY_PROTOTYPE(sci_addlocalizationdomain);
+STACK_GATEWAY_PROTOTYPE(sci_gettext);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_LOCALIZATION__ */
 /*--------------------------------------------------------------------------*/

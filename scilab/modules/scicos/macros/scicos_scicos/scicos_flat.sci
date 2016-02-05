@@ -116,7 +116,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                         else
                             hilite_path([path,k], "There is another local GOTO in this diagram with the same tag ''"+loc_mat($,3)+"''",%t);
                         end
-                        disp(mprintf("%s: goto tag not unique", "scicos_flat"));
+                        disp(msprintf("%s: goto tag not unique", "scicos_flat"));
                         ok=%f;return
                     end
                 else
@@ -161,14 +161,14 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                 if ksup==0 then
                     scs_m=scs_m_s
                     hilite_path([path,k],gettext("I/O blocks must be only used in a Super Block"),%f)
-                    disp(mprintf("%s: Port out of hierarchy", "scicos_flat"));
+                    disp(msprintf("%s: Port out of hierarchy", "scicos_flat"));
                     ok=%f;return
                 end
                 connected=get_connected(scs_m,k)
                 if connected==[] then
                     scs_m=scs_m_s
                     hilite_path([path,k],gettext("This Super block input port is not connected."),%t)
-                    disp(mprintf("%s: Not connected super block input", "scicos_flat"));
+                    disp(msprintf("%s: Not connected super block input", "scicos_flat"));
                     ok=%f;return
                 end
                 if or(o.gui==["IN_f","INIMPL_f"]) then
@@ -205,7 +205,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                 //ficitious blocks
                 Pinds=[];if exists("Pind") then Pinds=Pind,end
                 Pind=[] //base of ports numbering
-                //mprintf("entering superblock at level "+string(size(path,'*'))+"\r\n")
+                //msprintf("entering superblock at level "+string(size(path,'*'))+"\r\n")
                 nb_pin=size(scs_m.objs(k).graphics("pin"),1);
                 nb_pein=size(scs_m.objs(k).graphics("pein"),1);
                 for port_type=["pin","pout","pein","peout"]
@@ -266,7 +266,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                 //Analyze the superblock contents
                 [cors,corinvs,lt,cur_fictitious,scop_mat,ok, localIN, localOUT, localEIN, localEOUT]=scicos_flat(o.model.rpar,cur_fictitious,MaxBlock)
                 if ~ok then
-                    disp(mprintf("%s: Invalid super block at %d", "scicos_flat", k));
+                    disp(msprintf("%s: Invalid super block at %d", "scicos_flat", k));
                     return
                 end
 
@@ -276,7 +276,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                     ok=%f;
                     msg=gettext("Input ports are not numbered properly.")
                     hilite_path(path,msg,%t)
-                    disp(mprintf("%s: Input ports are not numbered properly.", "scicos_flat"))
+                    disp(msprintf("%s: Input ports are not numbered properly.", "scicos_flat"))
                     return
                 end
                 localOUT=-gsort(-localOUT);
@@ -284,7 +284,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                     ok=%f;
                     msg=gettext("Output ports are not numbered properly.")
                     hilite_path(path,msg,%t)
-                    disp(mprintf("%s: Output ports are not numbered properly.", "scicos_flat"))
+                    disp(msprintf("%s: Output ports are not numbered properly.", "scicos_flat"))
                     return
                 end
                 localEIN=-gsort(-localEIN);
@@ -292,7 +292,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                     ok=%f;
                     msg=gettext("Event input ports are not numbered properly.")
                     hilite_path(path,msg,%t)
-                    disp(mprintf("%s: Event input ports are not numbered properly.", "scicos_flat"))
+                    disp(msprintf("%s: Event input ports are not numbered properly.", "scicos_flat"))
                     return
                 end
                 localEOUT=-gsort(-localEOUT);
@@ -300,7 +300,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                     ok=%f;
                     msg=gettext("Event output ports are not numbered properly.")
                     hilite_path(path,msg,%t)
-                    disp(mprintf("%s: Event output ports are not numbered properly.", "scicos_flat"))
+                    disp(msprintf("%s: Event output ports are not numbered properly.", "scicos_flat"))
                     return
                 end
 
@@ -417,7 +417,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                 messagebox(["Error In Compilation. You cannot have multiple GotoTagVisibility";..
                 " with the same tag value in the same scs_m"],"modal")
                 ok=%f;
-                disp(mprintf("%s: Multiple GotoTagVisibility at the same level", "scicos_flat"));
+                disp(msprintf("%s: Multiple GotoTagVisibility at the same level", "scicos_flat"));
                 return
             end
         end
@@ -428,7 +428,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                 if size(index,"*")>1 then
                     messagebox(["Error in compilation";"Multiple GOTO are taged by the same GotoTagVisibility"],"modal")
                     ok=%f
-                    disp(mprintf("%s: Shared GotoTagVisibility across GOTO", "scicos_flat"));
+                    disp(msprintf("%s: Shared GotoTagVisibility across GOTO", "scicos_flat"));
                     return
                 end
                 index1=find((sco_mat(:,2)=="-1")&(sco_mat(:,3)==tag_exprs(i,1))&(sco_mat(:,5)==tag_exprs(i,2)))

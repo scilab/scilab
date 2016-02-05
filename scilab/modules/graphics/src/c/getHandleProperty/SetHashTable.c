@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -21,11 +24,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "getDictionarySetProperties.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
+#include "os_string.h"
 #include "BOOL.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 
 /**
 * use for the singleton to know if the hashtable has already be created.
@@ -65,7 +66,6 @@ static setHashTableCouple propertySetTable[] =
     {"figure_id", set_figure_id_property},
     {"rotation_style", set_rotation_style_property},
     {"immediate_drawing", set_immediate_drawing_property},
-    {"pixmap", set_pixmap_property},
     {"parent", set_parent_property},
     {"current_axes", set_current_axes_property},
     {"current_figure", set_current_figure_property},
@@ -92,6 +92,8 @@ static setHashTableCouple propertySetTable[] =
     {"mark_size", set_mark_size_property},
     {"mark_foreground", set_mark_foreground_property},
     {"mark_background", set_mark_background_property},
+    {"mark_offset", set_mark_offset_property},
+    {"mark_stride", set_mark_stride_property},
     {"bar_layout", set_bar_layout_property},
     {"bar_width", set_bar_width_property},
     {"x_shift", set_x_shift_property},
@@ -135,6 +137,7 @@ static setHashTableCouple propertySetTable[] =
     {"axes_bounds", set_axes_bounds_property},
     {"data_bounds", set_data_bounds_property},
     {"margins", set_margins_property},
+    {"auto_margins", set_auto_margins_property},
     {"tics_color", set_tics_color_property},
     {"tics_style", set_tics_style_property},
     {"sub_tics", set_sub_tics_property},
@@ -149,6 +152,8 @@ static setHashTableCouple propertySetTable[] =
     {"tics_labels", set_tics_labels_property},
     {"box", set_box_property},
     {"grid", set_grid_property},
+    {"grid_thickness", set_grid_thickness_property},
+    {"grid_style", set_grid_style_property},
     {"axes_visible", set_axes_visible_property},
     {"hiddencolor", set_hidden_color_property},
     {"isoview", set_isoview_property},
@@ -207,6 +212,8 @@ static setHashTableCouple propertySetTable[] =
     {"grid_position", set_grid_position_property},
     {"anti_aliasing", set_anti_aliasing_property},
     {"showhiddenhandles", SetConsoleShowHiddenHandles},
+    {"showhiddenproperties", SetConsoleShowHiddenProperties},
+    {"usedeprecatedskin", SetConsoleUseDeprecatedLF},
     {"resizefcn", set_figure_resizefcn_property},
     {"tooltipstring", SetUicontrolTooltipString},
     {"closerequestfcn", set_figure_closerequestfcn_property},
@@ -225,7 +232,31 @@ static setHashTableCouple propertySetTable[] =
     {"light_type", set_light_type_property},
     {"direction", set_direction_property},
     {"image_type", set_image_type_property},
-    {"datatips", set_datatips_property}
+    {"datatips", set_datatips_property},
+    {"display_function_data", set_display_function_data_property},
+    {"resize", set_resize_property},
+    {"toolbar", set_toolbar_property},
+    {"toolbar_visible", set_toolbar_visible_property},
+    {"menubar", set_menubar_property},
+    {"menubar_visible", set_menubar_visible_property},
+    {"infobar_visible", set_infobar_visible_property},
+    {"dockable", set_dockable_property},
+    {"layout", set_layout_property},
+    {"constraints", set_constraints_property},
+    {"rect", set_rect_property},
+    {"layout_options", set_layout_options_property},
+    {"border", set_border_property},
+    {"groupname", set_groupname_property},
+    {"title_position", set_title_position_property},
+    {"title_scroll", set_title_scroll_property},
+    {"default_axes", set_default_axes_property},
+    {"scrollable", set_scrollable_property},
+    {"icon", SetUicontrolIcon},
+    {"line_width", set_line_width_property},
+    {"marks_count", set_marks_count_property},
+    {"ticks_format", set_ticks_format_property},
+    {"ticks_st", set_ticks_st_property},
+    {"colors", set_colors_property}
 };
 
 /*--------------------------------------------------------------------------*/
@@ -261,14 +292,14 @@ SetPropertyHashTable *createScilabSetHashTable(void)
 }
 
 /*--------------------------------------------------------------------------*/
-int callSetProperty(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char *propertyName)
+int callSetProperty(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol, const char *propertyName)
 {
     setPropertyFunc accessor = searchSetHashtable(setHashTable, propertyName);
 
     if (accessor == NULL)
     {
-        //Scierror(999, _("Unknown property: %s.\n"), propertyName);
-        return -1;
+        Scierror(999, _("Unknown property: %s.\n"), propertyName);
+        return NULL;
     }
     return accessor(_pvCtx, iObjUID, _pvData, valueType, nbRow, nbCol);
 }
@@ -300,7 +331,7 @@ char **getDictionarySetProperties(int *sizearray)
         *sizearray = propertyCount;
         for (i = 0; i < propertyCount ; i++)
         {
-            dictionary[i] = strdup(propertySetTable[i].key);
+            dictionary[i] = os_strdup(propertySetTable[i].key);
         }
     }
     return dictionary;

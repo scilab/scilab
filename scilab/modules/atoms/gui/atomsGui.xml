@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scilabgui usedeprecatedskin="off" version="1.0">
+    <figure axes_size="1000,600" background="33" default_axes="off" dockable="off" figure_position="0,0" icon="software-update-notinstalled" infobar_visible="off" layout="border" menubar="none" tag="atomsFigure" toolbar="none" toolbar_visible="off" visible="off">
+        <frame backgroundcolor="1.0,1.0,1.0" borderoptpadding="5,5" layout="border" tag="MainFrame">
+            <frame backgroundcolor="1.0,1.0,1.0" borderposition="bottom" borderpreferredsize="0,40" layout="border" margins="5.0,5.0,5.0,5.0" tag="msgFrame">
+                <border style="titled" title="">
+                    <title color="black" style="line" thickness="1"/>
+                </border>
+                <text backgroundcolor="1.0,1.0,1.0" fontsize="12.0" horizontalalignment="center" tag="msgText"/>
+            </frame>
+            <layer tag="LayerFrame">
+                <frame backgroundcolor="1.0,1.0,1.0" layout="border" tag="HomeFrame">
+                    <border style="titled" title="">
+                        <title color="black" style="line" thickness="1"/>
+                    </border>
+                    <listbox backgroundcolor="1.0,1.0,1.0" callback="cbAtomsGui" callback_type="0" fontsize="12.0" tag="HomeListbox"/>
+                </frame>
+                <frame backgroundcolor="1.0,1.0,1.0" layout="border" tag="DescFrame" visible="off">
+                    <border fontangle="normal" fontname="" fontsize="14" fontweight="normal" justification="0" style="titled" title="">
+                        <title color="black" style="line" thickness="1"/>
+                    </border>
+                    <frame backgroundcolor="1.0,1.0,1.0" borderposition="bottom" gridoptgrid="1,4" gridoptpadding="20,0" layout="grid">
+                        <checkbox backgroundcolor="1.0,1.0,1.0" callback="cbAtomsGui" callback_type="0" tag="autoloadCheck"/>
+                        <pushbutton callback="cbAtomsGui" callback_type="0" enable="off" tag="installButton"/>
+                        <pushbutton callback="cbAtomsGui" callback_type="0" enable="off" tag="removeButton"/>
+                        <pushbutton callback="cbAtomsGui" callback_type="0" tag="backButton"/>
+                    </frame>
+                    <text backgroundcolor="1.0,1.0,1.0" fontsize="12.0" max="2.0" sliderstep="0.02,0.2" tag="Desc"/>
+                </frame>
+            </layer>
+            <frame backgroundcolor="1.0,1.0,1.0" borderposition="left" borderpreferredsize="300,0" layout="border" tag="LeftFrame">
+                <border style="titled" title="">
+                    <title color="black" style="line" thickness="1"/>
+                </border>
+                <listbox callback="cbAtomsGui" callback_type="0" fontsize="12.0" tag="LeftListbox"/>
+            </frame>
+        </frame>
+        <menu tag="help">
+            <menu callback="cbAtomsGui" tag="helpMenu"/>
+        </menu>
+        <menu tag="home">
+            <menu callback="cbAtomsGui" tag="closeMenu"/>
+            <menu callback="xinfo(_('Updating the list of packages. Please wait... until Done.'));atomsSystemUpdate();xinfo(_('Update done.'));" tag="updatePackages"/>
+            <menu callback="cbAtomsGui" tag="homeMenu"/>
+        </menu>
+    </figure>
+</scilabgui>

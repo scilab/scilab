@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Vincent COUVERT
@@ -16,23 +17,23 @@
 // This is however not expedient when dealing with large structs and matrices.
 
 g = cell(2,1);
-g(2).entries = [1,2;3,4];
-if or(g(2).entries <> [1,2;3,4]) then pause; end
-g(2).entries(1,1) = 9;
-if or(g(2).entries <> [9,2;3,4]) then pause; end
-g(2).entries(1,2) = 10;
-if or(g(2).entries <> [9,10;3,4]) then pause; end
-g(2).entries(2,1) = 11;
-if or(g(2).entries <> [9,10;11,4]) then pause; end
-g(2).entries(2,2) = 12;
-if or(g(2).entries <> [9,10;11,12]) then pause; end
-g(2).entries(1) = 111;
-if or(g(2).entries <> [111,10;11,12]) then pause; end
-g(2).entries(3) = 222;
-if or(g(2).entries <> [111,222;11,12]) then pause; end
-g(2).entries(2) = 333;
-if or(g(2).entries <> [111,222;333,12]) then pause; end
-g(2).entries(4) = 444;
-if or(g(2).entries <> [111,222;333,444]) then pause; end
+g{2} = [1,2;3,4];
+if or(g{2} <> [1,2;3,4]) then pause; end
+g{2}(1,1) = 9;
+if or(g{2} <> [9,2;3,4]) then pause; end
+g{2}(1,2) = 10;
+if or(g{2} <> [9,10;3,4]) then pause; end
+g{2}(2,1) = 11;
+if or(g{2} <> [9,10;11,4]) then pause; end
+g{2}(2,2) = 12;
+if or(g{2} <> [9,10;11,12]) then pause; end
+g{2}(1) = 111;
+if or(g{2} <> [111,10;11,12]) then pause; end
+g{2}(3) = 222;
+if or(g{2} <> [111,222;11,12]) then pause; end
+g{2}(2) = 333;
+if or(g{2} <> [111,222;333,12]) then pause; end
+g{2}(4) = 444;
+if or(g{2} <> [111,222;333,444]) then pause; end
 
 

@@ -3,11 +3,14 @@
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  * Copyright (C) 2011-2011 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -164,81 +167,81 @@ public enum TerminalAccessor {
             firePropertyChange(terminal, value, aValue);
         }
     },
-    /**
-     * Max of the value
-     */
-    MAX(ModelicaMessages.MAX, Double.class, true) {
-        @Override
-        protected Object getData(Terminal terminal) {
-            if (terminal.getMax() == null) {
-                terminal.setMax(new ModelicaValue());
-            }
-
-            if (terminal.getMax().getValue().isEmpty()) {
-                return Double.valueOf(0.0);
-            }
-
-            final String value = terminal.getMax().getValue();
-            return Double.valueOf(value);
-        }
-
-        @Override
-        public void setData(Object aValue, Terminal terminal) {
-            final Object value = getData(terminal);
-            terminal.getMax().setValue(aValue.toString());
-            firePropertyChange(terminal, value, aValue);
-        }
-    },
-    /**
-     * Min of the value
-     */
-    MIN(ModelicaMessages.MIN, Double.class, true) {
-        @Override
-        protected Double getData(Terminal terminal) {
-            if (terminal.getMin() == null) {
-                terminal.setMin(new ModelicaValue());
-            }
-
-            if (terminal.getMin().getValue().isEmpty()) {
-                return Double.valueOf(0.0);
-            }
-
-            final String value = terminal.getMin().getValue();
-            return Double.valueOf(value);
-        }
-
-        @Override
-        public void setData(Object aValue, Terminal terminal) {
-            final Object value = getData(terminal);
-            terminal.getMin().setValue(aValue.toString());
-            firePropertyChange(terminal, value, aValue);
-        }
-    },
-    /**
-     * Nominal value
-     */
-    NOMINAL(ModelicaMessages.NOMINAL, Double.class, true) {
-        @Override
-        protected Double getData(Terminal terminal) {
-            if (terminal.getNominalValue() == null) {
-                terminal.setNominalValue(new ModelicaValue());
-            }
-
-            if (terminal.getNominalValue().getValue().isEmpty()) {
-                return Double.valueOf(0.0);
-            }
-
-            final String value = terminal.getNominalValue().getValue();
-            return Double.valueOf(value);
-        }
-
-        @Override
-        public void setData(Object aValue, Terminal terminal) {
-            final Object value = getData(terminal);
-            terminal.getNominalValue().setValue(aValue.toString());
-            firePropertyChange(terminal, value, aValue);
-        }
-    },
+    //    /**
+    //     * Max of the value
+    //     */
+    //    MAX(ModelicaMessages.MAX, Double.class, true) {
+    //        @Override
+    //        protected Object getData(Terminal terminal) {
+    //            if (terminal.getMax() == null) {
+    //                terminal.setMax(new ModelicaValue());
+    //            }
+    //
+    //            if (terminal.getMax().getValue().isEmpty()) {
+    //                return Double.valueOf(0.0);
+    //            }
+    //
+    //            final String value = terminal.getMax().getValue();
+    //            return Double.valueOf(value);
+    //        }
+    //
+    //        @Override
+    //        public void setData(Object aValue, Terminal terminal) {
+    //            final Object value = getData(terminal);
+    //            terminal.getMax().setValue(aValue.toString());
+    //            firePropertyChange(terminal, value, aValue);
+    //        }
+    //    },
+    //    /**
+    //     * Min of the value
+    //     */
+    //    MIN(ModelicaMessages.MIN, Double.class, true) {
+    //        @Override
+    //        protected Double getData(Terminal terminal) {
+    //            if (terminal.getMin() == null) {
+    //                terminal.setMin(new ModelicaValue());
+    //            }
+    //
+    //            if (terminal.getMin().getValue().isEmpty()) {
+    //                return Double.valueOf(0.0);
+    //            }
+    //
+    //            final String value = terminal.getMin().getValue();
+    //            return Double.valueOf(value);
+    //        }
+    //
+    //        @Override
+    //        public void setData(Object aValue, Terminal terminal) {
+    //            final Object value = getData(terminal);
+    //            terminal.getMin().setValue(aValue.toString());
+    //            firePropertyChange(terminal, value, aValue);
+    //        }
+    //    },
+    //    /**
+    //     * Nominal value
+    //     */
+    //    NOMINAL(ModelicaMessages.NOMINAL, Double.class, true) {
+    //        @Override
+    //        protected Double getData(Terminal terminal) {
+    //            if (terminal.getNominalValue() == null) {
+    //                terminal.setNominalValue(new ModelicaValue());
+    //            }
+    //
+    //            if (terminal.getNominalValue().getValue().isEmpty()) {
+    //                return Double.valueOf(0.0);
+    //            }
+    //
+    //            final String value = terminal.getNominalValue().getValue();
+    //            return Double.valueOf(value);
+    //        }
+    //
+    //        @Override
+    //        public void setData(Object aValue, Terminal terminal) {
+    //            final Object value = getData(terminal);
+    //            terminal.getNominalValue().setValue(aValue.toString());
+    //            firePropertyChange(terminal, value, aValue);
+    //        }
+    //    },
     /**
      * Comment to the terminal
      */

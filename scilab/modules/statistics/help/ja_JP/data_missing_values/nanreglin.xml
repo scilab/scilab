@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="nanreglin">
+    <refnamediv>
+        <refname>nanreglin</refname>
+        <refpurpose>線形回帰</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[a,b]=nanreglin(x,y)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y, a, b</term>
+                <listitem>
+                    <para>数値ベクトルまたは行列.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            回帰問題 y=a*x+b を最小二乗法で解きます.
+            <literal>x</literal> と <literal>y</literal> は行列で,大きさは
+            <literal>x(p,n)</literal> および <literal>y(q,n)</literal> (ただし <literal>n</literal> は
+            サンプル数) です.
+        </para>
+        <para>
+            推定器 <literal>a</literal> は, 大きさ<literal>(q,p)</literal>の行列,
+            <literal>b</literal> は,大きさ<literal>(q,1)</literal>のベクトルです.
+        </para>
+        <para>
+            <literal>y</literal> の各線は独立した問題として処理されます.
+            <literal>x</literal>または<literal>y</literal>に NaN
+            (<literal>x(i,j) = %nan</literal> または <literal>y(i,j) = %nan</literal>)
+            が含まれる場合,点 [x(:,j); y(i,j)] が存在しないように
+            <literal>x(:,j)</literal> と <literal>y(i,j)</literal> は無視されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>
+            グラフィカルな例 #1:
+        </para>
+        <programlisting role="example"><![CDATA[
+// 以下の例では,2つの問題は共に2本の直線を表します:
+// 1本は(0,0)から(10,10)へ,もう一つは(0,20)から(10,30)へ.
+// 全ての点が並んでおり,NaNが無視されるため,
+// reglinとnanreglinは同じ値を見つけます.
+subplot(211)
+x = 0:10;
+y = 20:30;
+[a1, b1] = reglin(x, [x ; y]);
+plot(x', (a1*x+repmat(b1,1,11))', "red")
+subplot(212)
+y2 = y;
+y2(2:10) = %nan; // y2(1) と y2(11) は変更されません.
+[a2, b2] = nanreglin(x, [x ; y2])
+plot(x', (a2*x+repmat(b2,1,11))', "blue")
+ ]]></programlisting>
+        <scilab:image>
+            subplot(211)
+            x = 0:10;
+            y = 20:30;
+            [a1, b1] = reglin(x, [x ; y]);
+            plot(x', (a1*x+repmat(b1,1,11))', "red")
+            subplot(212)
+            y2 = y;
+            y2(2:10) = %nan;
+            [a2, b2] = nanreglin(x, [x ; y2])
+            plot(x', (a2*x+repmat(b2,1,11))', "blue")
+        </scilab:image>
+        <para>
+            グラフィカルな例 #2:
+        </para>
+        <programlisting role="example"><![CDATA[
+// 両方の問題は,(0,0)から(2,2)への直線 (reglin(x, x))を表します.
+// 最初の問題(reglin(x, y))の2番目の引数は式 y = 1 で表される線,
+// 2番目の問題(reglin(x, y2))の第2引数はyの中央の点 (%nan を指定)を無視します.
+// 残りの2点が(0,0)と(2,0)のため,線は式 y = 0 を表します.
+subplot(211)
+x = 0:2;
+y = [0 3 0];
+[a1, b1] = reglin(x, [x ; y]);
+plot(x', (a1*x+repmat(b1,1,3))', "red")
+subplot(212)
+y2 = y;
+y2(2) = %nan; // y2 = [0 %nan 0];
+[a2, b2] = nanreglin(x, [x ; y2]);
+plot(x', (a2*x+repmat(b2,1,3))', "blue")
+ ]]></programlisting>
+        <scilab:image>
+            subplot(211)
+            x = 0:2;
+            y = [0 3 0];
+            [a1, b1] = reglin(x, [x ; y]);
+            plot(x', (a1*x+repmat(b1,1,3))', "red")
+            subplot(212)
+            y2 = y;
+            y2(2) = %nan; // y2 = [0 %nan 0];
+            [a2, b2] = nanreglin(x, [x ; y2]);
+            plot(x', (a2*x+repmat(b2,1,3))', "blue")
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="reglin">reglin</link>
+            </member>
+            <member>
+                <link linkend="pinv">pinv</link>
+            </member>
+            <member>
+                <link linkend="leastsq">leastsq</link>
+            </member>
+            <member>
+                <link linkend="qr">qr</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>導入</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

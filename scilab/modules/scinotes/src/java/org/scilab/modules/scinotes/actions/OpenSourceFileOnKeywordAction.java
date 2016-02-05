@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -37,8 +40,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.KeywordEvent;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
@@ -84,6 +87,13 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
     public OpenSourceFileOnKeywordAction(String name, SciNotes editor, boolean onMenu) {
         this(name, editor);
         this.onMenu = onMenu;
+    }
+
+    /**
+     * Clean
+     */
+    public static void close() {
+        mainFrame = null;
     }
 
     /**
@@ -165,7 +175,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
 
         mainFrame = new JFrame();
         mainFrame.setAlwaysOnTop(true);
-        mainFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
+        mainFrame.setIconImage(new ImageIcon(FindIconHelper.findIcon("scilab")).getImage());
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         windowAlreadyExist = true;

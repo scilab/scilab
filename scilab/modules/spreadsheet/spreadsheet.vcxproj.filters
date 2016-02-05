@@ -14,13 +14,13 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{161996ad-c6a7-4b3a-9399-661831bc6390}</UniqueIdentifier>
+      <UniqueIdentifier>{d5acb340-d343-4f16-a530-02aeba1eaf4f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{7f5c10fb-d9f5-4d01-8be1-a6a730fb9003}</UniqueIdentifier>
+      <UniqueIdentifier>{44ecf66c-a25d-4ae4-9d47-b3a8d11aeee3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{797cad15-667e-45f1-93a8-a1d93f52adbc}</UniqueIdentifier>
+      <UniqueIdentifier>{c568adf1-6931-4d3b-9568-470c1d7bd9c4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\ripole">
       <UniqueIdentifier>{a9229e67-395b-400e-b702-4a6b69e2440b}</UniqueIdentifier>
@@ -35,9 +35,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Makefile.am" />
     <None Include="spreadsheet.iss" />
     <None Include="sci_gateway\spreadsheet_gateway.xml" />
@@ -102,12 +99,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sci_gateway\c\gw_csv_helpers.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_spreadsheet.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_csvDefault.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -123,10 +114,13 @@
     <ClCompile Include="sci_gateway\c\sci_csvWrite.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_xls_open.c">
+    <ClCompile Include="src\c\xls.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_xls_read.c">
+    <ClCompile Include="sci_gateway\cpp\sci_xls_open.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xls_read.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\checkCsvWriteFormat.c">
@@ -176,6 +170,9 @@
     </ClCompile>
     <ClCompile Include="src\c\ripole\ripole.c">
       <Filter>Source Files\ripole</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\gw_csv_helpers.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

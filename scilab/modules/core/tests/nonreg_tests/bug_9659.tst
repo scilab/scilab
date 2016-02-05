@@ -8,15 +8,15 @@
 // <-- Non-regression test for bug 9659 -->
 //
 // <-- CLI SHELL MODE -->
-// 
+//
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=9659
 //
 // <-- Short Description -->
 // "error(246)" returned a bad message for overloading.
 
-// assert_checkerror does not manage multiline error, see bug 9572 
-if execstr("sin(""z"")","errcatch") <> 246 then pause, end
+// assert_checkerror does not manage multiline error, see bug 9572
+if execstr("sin(""z"")","errcatch") == 0 then pause, end
 
 msgerror = gettext("Function not defined for given argument type(s),\n");
 msgerror = strsubst(msgerror, "\n", "");
@@ -24,7 +24,7 @@ msgerror = [msgerror; msprintf(gettext("  check arguments or define function %s 
 msg = lasterror();
 if ~and(msg == msgerror) then pause, end
 
-if execstr("sin(int8(12))","errcatch") <> 246 then pause, end
+if execstr("sin(int8(12))","errcatch") == 0 then pause, end
 msgerror = gettext("Function not defined for given argument type(s),\n");
 msgerror = strsubst(msgerror, "\n", "");
 msgerror = [msgerror; msprintf(gettext("  check arguments or define function %s for overloading.\n"), "%i_sin")];

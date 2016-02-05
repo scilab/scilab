@@ -1,0 +1,48 @@
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ */
+
+#include "checkers/NestedBlocksChecker.hxx"
+
+namespace slint
+{
+
+void NestedBlocksChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
+{
+    if (max >= 0)
+    {
+	stack.emplace_back(&e);
+	if (stack.size() == (1 + (unsigned int)max))
+	{
+	    result.report(context, stack.back()->getLocation(), *this, _("Too many nested blocks: %d max."), max);
+	}
+    }
+}
+
+void NestedBlocksChecker::postCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
+{
+    if (max >= 0)
+    {
+	if (!stack.empty())
+	{
+	    stack.erase(std::prev(stack.end()));
+	}
+    }
+}
+
+const std::string NestedBlocksChecker::getName() const
+{
+    return "NestedBlocksChecker";
+}
+}

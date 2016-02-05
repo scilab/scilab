@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="nanreglin">
+    <refnamediv>
+        <refname>nanreglin</refname>
+        <refpurpose>Régréssion linéaire</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>[a,b]=nanreglin(x,y)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y, a, b</term>
+                <listitem>
+                    <para>Vecteurs or Matrices numériques.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Résout le problème de régréssion <literal>y=a*x+b</literal> au sens des moindres carrés.
+            <literal>x</literal> et <literal>y</literal> sont deux matrices de taille
+            <literal>x(p,n)</literal> et <literal>y(q,n)</literal>, où <literal>n</literal>
+            est le nombre d'échantillons.
+        </para>
+        <para>
+            L'estimateur <literal>a</literal> est une matrice de taille <literal>(q,p)</literal> et <literal>b</literal> est un
+            vecteur de taille <literal>(q,1)</literal>.
+        </para>
+        <para>
+            Chaque ligne de <literal>y</literal> est traitée comme un problème indépendant, si <literal>x</literal>
+            ou <literal>y</literal> contient un NaN (<literal>x(i,j) = %nan</literal> ou <literal>y(i,j) = %nan</literal>),
+            alors <literal>x(:,j)</literal> et <literal>y(i,j)</literal> sont ignorés,
+            comme si le point [x(:,j); y(i,j)] n'existait pas.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <para>
+            Exemple graphique #1 :
+        </para>
+        <programlisting role="example"><![CDATA[
+// Dans l'exemple suivant, les deux problèmes représentent deux lignes droites :
+// l'une va de (0,0) à (10,10) et l'autre va de (0,20) à (10,30).
+// reglin et nanreglin trouvent les mêmes valeurs parce-que tous les points sont alignés et les NaN ont été ignorés.
+subplot(211)
+x = 0:10;
+y = 20:30;
+[a1, b1] = reglin(x, [x ; y]);
+plot(x', (a1*x+repmat(b1,1,11))', "red")
+
+subplot(212)
+y2 = y;
+y2(2:10) = %nan; // Leaving y2(1) and y2(11) unchanged.
+[a2, b2] = nanreglin(x, [x ; y2])
+plot(x', (a2*x+repmat(b2,1,11))', "blue")
+ ]]></programlisting>
+        <scilab:image>
+            subplot(211)
+            x = 0:10;
+            y = 20:30;
+            [a1, b1] = reglin(x, [x ; y]);
+            plot(x', (a1*x+repmat(b1,1,11))', "red")
+            subplot(212)
+            y2 = y;
+            y2(2:10) = %nan;
+            [a2, b2] = nanreglin(x, [x ; y2])
+            plot(x', (a2*x+repmat(b2,1,11))', "blue")
+        </scilab:image>
+        <para>
+            Exemple graphique #2 :
+        </para>
+        <programlisting role="example"><![CDATA[
+// Maintenant les deux problèmes représentent une ligne droite (reglin(x, x)) de (0,0) à (2,2),
+// mais alors que le deuxième argument du premier problème (reglin(x, y)) représente
+// une droite plate (d'équation y = 1), le second argument du deuxième problème
+// (reglin(x, y2)) ignore le point central de y (mis à %nan) donc la droite est maintenant
+// d'équation y = 0, parce-que les deux points restants sont (0,0) et (2,0).
+subplot(211)
+x = 0:2;
+y = [0 3 0];
+[a1, b1] = reglin(x, [x ; y]);
+plot(x', (a1*x+repmat(b1,1,3))', "red")
+
+subplot(212)
+y2 = y;
+y2(2) = %nan; // y2 = [0 %nan 0];
+[a2, b2] = nanreglin(x, [x ; y2]);
+plot(x', (a2*x+repmat(b2,1,3))', "blue")
+ ]]></programlisting>
+        <scilab:image>
+            subplot(211)
+            x = 0:2;
+            y = [0 3 0];
+            [a1, b1] = reglin(x, [x ; y]);
+            plot(x', (a1*x+repmat(b1,1,3))', "red")
+            subplot(212)
+            y2 = y;
+            y2(2) = %nan; // y2 = [0 %nan 0];
+            [a2, b2] = nanreglin(x, [x ; y2]);
+            plot(x', (a2*x+repmat(b2,1,3))', "blue")
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="reglin">reglin</link>
+            </member>
+            <member>
+                <link linkend="pinv">pinv</link>
+            </member>
+            <member>
+                <link linkend="leastsq">leastsq</link>
+            </member>
+            <member>
+                <link linkend="qr">qr</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>Introduction</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

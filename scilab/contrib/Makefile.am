@@ -45,7 +45,12 @@ toolbox_skeleton/readme.txt \
 toolbox_skeleton/sci_gateway/builder_gateway.sce \
 toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce \
 toolbox_skeleton/sci_gateway/cpp/builder_gateway_cpp.sce \
+toolbox_skeleton/sci_gateway/cpp/sci_cpperror.cpp \
 toolbox_skeleton/sci_gateway/cpp/sci_cpp_find.cxx \
+toolbox_skeleton/sci_gateway/cpp/sci_cppfoo.cpp \
+toolbox_skeleton/sci_gateway/cpp/sci_cppmultiplybypi.cpp \
+toolbox_skeleton/sci_gateway/cpp/sci_cppsub.cpp \
+toolbox_skeleton/sci_gateway/cpp/sci_cppsum.cpp \
 toolbox_skeleton/sci_gateway/c/sci_cerror.c \
 toolbox_skeleton/sci_gateway/c/sci_csub.c \
 toolbox_skeleton/sci_gateway/c/sci_csum.c \
@@ -95,10 +100,12 @@ xcos_toolbox_skeleton/help/fr_FR/build_help.sce \
 xcos_toolbox_skeleton/images/gif/TBX_MUT_STYLE.gif \
 xcos_toolbox_skeleton/images/gif/TBX_NOOP.gif \
 xcos_toolbox_skeleton/images/gif/TBX_SUM_c.gif \
+xcos_toolbox_skeleton/images/gif/TBX_SUM_modelica.gif \
 xcos_toolbox_skeleton/images/gif/TBX_SUM_sci.gif \
 xcos_toolbox_skeleton/images/svg/TBX_MUT_STYLE.svg \
 xcos_toolbox_skeleton/images/svg/TBX_NOOP.svg \
 xcos_toolbox_skeleton/images/svg/TBX_SUM_c.svg \
+xcos_toolbox_skeleton/images/svg/TBX_SUM_modelica.svg \
 xcos_toolbox_skeleton/images/svg/TBX_SUM_sci.svg \
 xcos_toolbox_skeleton/license.txt \
 xcos_toolbox_skeleton/macros/buildmacros.sce \
@@ -108,8 +115,10 @@ xcos_toolbox_skeleton/macros/TBX_NOOP.sci \
 xcos_toolbox_skeleton/macros/TBX_NOOP_sci.sci \
 xcos_toolbox_skeleton/macros/TBX_NOOP_sim.sci \
 xcos_toolbox_skeleton/macros/TBX_SUM_c.sci \
+xcos_toolbox_skeleton/macros/TBX_SUM_modelica.sci \
 xcos_toolbox_skeleton/macros/TBX_SUM_sci.sci \
 xcos_toolbox_skeleton/macros/TBX_SUM_sim.sci \
+xcos_toolbox_skeleton/macros/XcosToolboxSkeleton.mo \
 xcos_toolbox_skeleton/sci_gateway/builder_gateway.sce \
 xcos_toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce \
 xcos_toolbox_skeleton/sci_gateway/c/sci_tbx_sum.c \

@@ -3,228 +3,23 @@
  * Copyright (C) INRIA
  * ...
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "MALLOC.h"
-#include "stack-c.h"
-#include "do_xxprintf.h"
+#include "sci_malloc.h"
 #include "do_xxscanf.h"
 #include "scanf_functions.h"
 #include "cvstr.h"
 #include "localization.h"
 #include "Scierror.h"
-/*--------------------------------------------------------------------------*/
-int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
-{
-    int cur_i, i, j, i1, one = 1, zero = 0, k, l, iarg, colcount;
-    sfdir cur_type;
-    char ** temp;
-
-
-    /* create Scilab variable with each column of data */
-    if (ncol + Rhs > intersiz )
-    {
-        Scierror(998, _("%s: Too many directives in scanf.\n"), "Sci_Store");
-        return RET_BUG;
-    }
-    iarg = Rhs;
-    if (Lhs > 1)
-    {
-        if (nrow == 0) /* eof encountered before any data */
-        {
-            CreateVar(++iarg, MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &l);
-            LhsVar(1) = iarg;
-            *stk(l) = -1.0;
-            for ( i = 2; i <= Lhs ; i++)
-            {
-                iarg++;
-                CreateVar(iarg, MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &l);
-                LhsVar(i) = iarg;
-            }
-            PutLhsVar();
-            return 0;
-        }
-        CreateVar(++iarg, MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &l);
-        *stk(l) = (double) retval_s;
-        LhsVar(1) = iarg;
-        if (ncol == 0)
-        {
-            goto Complete;
-        }
-
-        for ( i = 0 ; i < ncol ; i++)
-        {
-            if ( (type[i] == SF_C) || (type[i] == SF_S) )
-            {
-                if ( (temp = (char**)MALLOC(nrow * ncol * sizeof(char*))) == NULL)
-                {
-                    return MEM_LACK;
-                }
-                k = 0;
-                for (j = 0; j < nrow; j++)
-                {
-                    temp[k++] = data[i + ncol * j].s;
-                }
-                CreateVarFromPtr(++iarg, MATRIX_OF_STRING_DATATYPE, &nrow, &one, temp);
-                FREE(temp);
-                /*for (j=0;j<nrow;j++) FREE(data[i+ncol*j].s);*/
-            }
-            else
-            {
-                CreateVar(++iarg, MATRIX_OF_DOUBLE_DATATYPE, &nrow, &one, &l);
-                for ( j = 0 ; j < nrow ; j++)
-                {
-                    *stk(l + j) = data[i + ncol * j].d;
-                }
-            }
-
-            LhsVar(i + 2) = iarg;
-        }
-        /*FREE(data);*/
-        /** we must complete the returned arguments up to Lhs **/
-Complete:
-        for ( i = ncol + 2; i <= Lhs ; i++)
-        {
-            iarg++;
-            CreateVar(iarg, MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &l);
-            LhsVar(i) = iarg;
-        }
-    }
-    else  /* Lhs==1 */
-    {
-        char *ltype = "cblock";
-        int multi = 0, endblk, ii, n;
-
-        cur_type = type[0];
-
-        for (i = 0; i < ncol; i++)
-            if (type[i] != cur_type)
-            {
-                multi = 1;
-                break;
-            }
-        if (multi)
-        {
-            i = (int)strlen(ltype);
-            iarg = Rhs;
-            CreateVarFromPtr(++iarg, STRING_DATATYPE, &one, &i, &ltype); /* the mlist type field */
-            cur_type = type[0];
-            i = 0;
-            cur_i = i;
-
-            while (1)
-            {
-                if (i < ncol)
-                {
-                    endblk = (type[i] != cur_type);
-                }
-                else
-                {
-                    endblk = 1;
-                }
-                if (endblk)
-                {
-                    colcount = i - cur_i;
-                    if (nrow == 0)
-                    {
-                        CreateVar(++iarg, MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &l);
-                    }
-                    else if ( (cur_type == SF_C) || (cur_type == SF_S) )
-                    {
-                        if ( (temp = (char **) MALLOC(nrow * colcount * sizeof(char **))) == NULL)
-                        {
-                            return MEM_LACK;
-                        }
-                        k = 0;
-                        for (i1 = cur_i; i1 < i; i1++)
-                            for (j = 0; j < nrow; j++)
-                            {
-                                temp[k++] = data[i1 + ncol * j].s;
-                            }
-                        CreateVarFromPtr(++iarg, MATRIX_OF_STRING_DATATYPE, &nrow, &colcount, temp);
-                        FREE(temp);
-                        /*for (i1=cur_i;i1<i;i1++)
-                          for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);*/
-                    }
-                    else
-                    {
-                        CreateVar(++iarg, MATRIX_OF_DOUBLE_DATATYPE, &nrow, &colcount, &l);
-                        ii = 0;
-                        for (i1 = cur_i; i1 < i; i1++)
-                        {
-                            for ( j = 0 ; j < nrow ; j++)
-                            {
-                                *stk(l + j + nrow * ii) = data[i1 + ncol * j].d;
-                            }
-                            ii++;
-                        }
-                    }
-                    if (i >= ncol)
-                    {
-                        break;
-                    }
-                    cur_i = i;
-                    cur_type = type[i];
-
-                }
-                i++;
-            }
-            n = iarg - Rhs; /* number of list fields*/
-
-            iarg++;
-            i = Rhs + 1;
-            C2F(mkmlistfromvars)(&i, &n);
-            LhsVar(1) = i;
-        }
-        else
-        {
-            if (nrow == 0)
-            {
-                CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &l);
-            }
-            else if ( (cur_type == SF_C) || (cur_type == SF_S) )
-            {
-                if ( (temp = (char **) MALLOC(nrow * ncol * sizeof(char *))) == NULL)
-                {
-                    return MEM_LACK;
-                }
-                k = 0;
-                for (i1 = 0; i1 < ncol; i1++)
-                    for (j = 0; j < nrow; j++)
-                    {
-                        temp[k++] = data[i1 + ncol * j].s;
-                    }
-                CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nrow, &ncol, temp);
-                FREE(temp);
-                /*for (i1=0;i1<ncol;i1++)
-                  for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);*/
-            }
-            else
-            {
-                CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &nrow, &ncol, &l);
-                ii = 0;
-                for (i1 = 0; i1 < ncol; i1++)
-                {
-                    for ( j = 0 ; j < nrow ; j++)
-                    {
-                        *stk(l + j + nrow * ii) = data[i1 + ncol * j].d;
-                    }
-                    ii++;
-                }
-            }
-        }
-        LhsVar(1) = Rhs + 1;
-    }
-    PutLhsVar();
-    return 0;
-}
-/*--------------------------------------------------------------------------*/
 /* ************************************************************************
  *   Store data scanned by a single call to do_scan in line rowcount of data
  *   table
@@ -257,7 +52,7 @@ int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, in
         }
         if ( (*data = (entry *) MALLOC(nc * nr * sizeof(entry))) == NULL)
         {
-            err = MEM_LACK;
+            err = DO_XXPRINTF_MEM_LACK;
             goto bad1;
         }
         for ( i = 0 ; i < nc ; i++)
@@ -271,14 +66,14 @@ int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, in
         /* check if number of data read match with previous number */
         if ( (n != nc ) || (*retval_s != *retval) )
         {
-            err = MISMATCH;
+            err = DO_XXPRINTF_MISMATCH;
             goto bad2;
         }
         /* check if types of data read match with previous types */
         for ( i = 0 ; i < nc ; i++)
             if (type[i] != type_s[i])
             {
-                err = MISMATCH;
+                err = DO_XXPRINTF_MISMATCH;
                 goto bad2;
             }
 
@@ -290,8 +85,8 @@ int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, in
             *nrow = nr;
             if ( (*data = (entry *) REALLOC(*data, nc * nr * sizeof(entry))) == NULL)
             {
-                err = MEM_LACK;
-                goto bad2;
+                err = DO_XXPRINTF_MEM_LACK;
+                goto bad1;
             }
         }
     }
@@ -339,8 +134,9 @@ bad1:
         {
             FREE(buf[j].c);
         }
-
+    return err;
 bad2:
+
     return err;
 }
 /*--------------------------------------------------------------------------*/

@@ -214,11 +214,7 @@
                 </literal>
             </emphasis>
             outputs of counter.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/JKFLIPFLOP_en_US.zcos">
-                Open this example in Xcos
-            </link>
         </para>
-        <para/>
         <para>
             <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/JKFLIPFLOP_en_US.zcos">
                 <inlinemediaobject>
@@ -227,11 +223,11 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+		</para>
+        <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/en_US/JKFLIPFLOP_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
     </refsection>
     <refsection role="see also" id="Seealso_JKFLIPFLOP">
         <title>See also</title>

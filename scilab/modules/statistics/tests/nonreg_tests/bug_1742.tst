@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2006-2008 - INRIA -Serge STEER <serge.steer@inria.fr>
@@ -13,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=1742
 //
 // <-- Short Description -->
-//    function [m]=msd(x,orien)
+//    function [m]=stdev(x,orien)
 //    //This function computes  the mean squared  deviation of the values of a
 //    //vector or matrix x.
 //
@@ -25,8 +26,8 @@
 
 x=matrix([5 2:8],2,4);
 
-if (msd(x)-3.5)                  >= %eps then pause,end
-if norm(msd(x,1)-[3 1 1 1]/2)    >= %eps then pause,end
-if norm(msd(x,'r')-[3 1 1 1]/2)  >= %eps then pause,end
-if norm(msd(x,2)-sqrt([2;5]))    >= %eps then pause,end
-if norm(msd(x,'c')-sqrt([2;5]))  >= %eps then pause,end
+if (stdev(x)-3.5)                  >= %eps then pause,end
+if norm(stdev(x,1,mean(x, 1))-[3 1 1 1]/2)    >= %eps then pause,end
+if norm(stdev(x,"r",mean(x, 1))-[3 1 1 1]/2)  >= %eps then pause,end
+if norm(stdev(x,2,mean(x, 2))-sqrt([2;5]))    >= %eps then pause,end
+if norm(stdev(x,"c",mean(x, 2))-sqrt([2;5]))  >= %eps then pause,end

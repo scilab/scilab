@@ -4,11 +4,14 @@
  * Copyright (C) 2010 - Calixte DENIZET
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -25,7 +28,7 @@ import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.view.View;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 
 /**
@@ -39,13 +42,13 @@ public class SciUndockingAction extends AbstractAction {
 
     private static final int UNDOCK_OFFSET = 30;
 
-    private SwingScilabTab associatedTab;
+    private SwingScilabDockablePanel associatedTab;
 
     /**
      * Constructor
      * @param tab the associated tab
      */
-    public SciUndockingAction(SwingScilabTab tab) {
+    public SciUndockingAction(SwingScilabDockablePanel tab) {
         associatedTab = tab;
     }
 
@@ -56,8 +59,7 @@ public class SciUndockingAction extends AbstractAction {
      */
     public void actionPerformed(ActionEvent arg0) {
         /** Create a new Window to dock the tab into */
-        SwingScilabWindow newWindow = new SwingScilabWindow();
-
+        SwingScilabWindow newWindow = SwingScilabWindow.createWindow(true);
         /** Save the tab dimensions to set them back after docking */
         Size oldtabSize = associatedTab.getDims();
         /** Save the old parent Window position to use it to set the new Window position */
@@ -81,7 +83,7 @@ public class SciUndockingAction extends AbstractAction {
         DockingManager.undock((Dockable) associatedTab);
         iter = port.getDockables().iterator();
         if (iter.hasNext()) {
-            SwingScilabTab tab = (SwingScilabTab) iter.next();
+            SwingScilabDockablePanel tab = (SwingScilabDockablePanel) iter.next();
             BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
         }
         DockingManager.dock(associatedTab, newWindow.getDockingPort());

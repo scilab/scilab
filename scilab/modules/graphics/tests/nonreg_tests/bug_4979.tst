@@ -15,10 +15,10 @@
 // <-- Short Description -->
 // Use unzoom on an empty figure resulted to a warning message :
 // Warning !!!
-// Scilab has found a critical error (Unknow exception).
+// Scilab has found a critical error (Unknown exception).
 // Save your data and restart Scilab.
 
-clf(gcf(),'reset');
+clf(gcf(),"reset");
 zoom_rect([0,0,1,1]);
 unzoom();
 a=gca();

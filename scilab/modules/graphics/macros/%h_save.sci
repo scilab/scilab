@@ -2,15 +2,18 @@
 // Copyright (C) 2004 - INRIA - Serge Steer
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
 // Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function %h_save(h,fd)
-    version=[5 5 0 0]
+    version=[5 5 2 0]
     mput(version,"uc",fd)
 
     // There are issues when saving characters with 'c' format
@@ -61,7 +64,6 @@ function save_graphichandle(h,fd)
 
         mput(size(h.color_map,"*"),"il",fd); // color_map
         mput(h.color_map,"dl",fd) ;
-        mput(bool2s(h.pixmap=="on"),characterFormat,fd) ; // pix_map
         mput(length(h.pixel_drawing_mode),characterFormat,fd); // pixel_drawing_mode
         mput(ascii(h.pixel_drawing_mode),characterFormat,fd);
         mput(length(h.anti_aliasing),characterFormat,fd); // anti_aliasing
@@ -217,7 +219,8 @@ function save_graphichandle(h,fd)
         mput(bool2s(h.cube_scaling=="on"),characterFormat,fd) // cube_scaling
         mput(h.rotation_angles,"dl",fd) // rotation_angles
         mput(ascii(h.log_flags),characterFormat,fd) // log_flags
-        mput(bool2s(h.tight_limits=="on"),characterFormat,fd) // tight_limits
+        mput(size(h.tight_limits,"*"),characterFormat,fd); // tight_limits
+        mput(bool2s(h.tight_limits=="on"),characterFormat,fd);
         mput(size(h.data_bounds,"*"),characterFormat,fd); // data_bounds
         mput(h.data_bounds,"dl",fd);
         mput(size(h.zoom_box,"*"),characterFormat,fd);  // zoom_box
@@ -284,6 +287,8 @@ function save_graphichandle(h,fd)
         mput(h.background,"il",fd) // background
         mput(h.mark_foreground,"il",fd) // mark_foreground
         mput(h.mark_background,"il",fd) // mark_background
+        mput(h.mark_offset,"il",fd) // mark_offset
+        mput(h.mark_stride,"il",fd) // mark_stride
 
         mput(size(h.x_shift,"*"),"sl",fd); mput(h.x_shift,"dl",fd); // x_shift
         mput(size(h.y_shift,"*"),"sl",fd); mput(h.y_shift,"dl",fd); // y_shift

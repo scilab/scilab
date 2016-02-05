@@ -4,11 +4,14 @@
  * Copyright (C) 2010 - DIGITEO - Vincent Couvert
  * Copyright (C) 2013 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -51,6 +54,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.event.HyperlinkEvent;
@@ -58,12 +62,14 @@ import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Swing implementation of a Scilab MessageBox
@@ -90,11 +96,16 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     private static final String SEPARATOR = "[--sep--]";
 
     /**
+     * The minimal fixed width of any mdialog inputs
+     */
+    private static final int X_MDIALOG_TEXTFIELD_SIZE = 10;
+
+    /**
      * Icons
      */
-    private final Icon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "48x48"));
-    private final Icon passwdIcon = new ImageIcon(ScilabSwingUtilities.findIcon("emblem-readonly", "48x48"));
-    private final Icon hourglassIcon = new ImageIcon(ScilabSwingUtilities.findIcon("process-working"));
+    private final Icon scilabIcon = new ImageIcon(FindIconHelper.findIcon("scilab", "48x48"));
+    private final Icon passwdIcon = new ImageIcon(FindIconHelper.findIcon("emblem-readonly", "48x48"));
+    private final Icon hourglassIcon = new ImageIcon(FindIconHelper.findIcon("process-working"));
 
     private int elementId;
 
@@ -104,8 +115,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 
     private Component parentWindow;
 
-    private final JButton btnOK = new JButton("OK");
-    private final JButton btnCancel = new JButton("Cancel");
+    private final JButton btnOK = new JButton(Messages.gettext("OK"));
+    private final JButton btnCancel = new JButton(Messages.gettext("Cancel"));
 
     /**
      * Used for x_dialog
@@ -451,14 +462,19 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                     final String initial = defaultInput[col * lineLabels.length + line];
 
                     final Component c;
-                    if ("T".equalsIgnoreCase(initial)) {
+                    if ("%T".equalsIgnoreCase(initial)) {
                         c = new JCheckBox();
                         ((JCheckBox) c).setSelected(true);
-                    } else if ("F".equalsIgnoreCase(initial)) {
+                    } else if ("%F".equalsIgnoreCase(initial)) {
                         c = new JCheckBox();
                         ((JCheckBox) c).setSelected(false);
                     } else {
                         c = new JTextField(initial);
+
+                        // force an initial width when the initial text is too small
+                        if (initial.length() < X_MDIALOG_TEXTFIELD_SIZE) {
+                            ((JTextField) c).setColumns(X_MDIALOG_TEXTFIELD_SIZE);
+                        }
                     }
 
                     textFields[col * lineLabels.length + line] = c;
@@ -486,13 +502,18 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                     localGroup.addComponent(rowLabels[row]);
                 }
                 horizontalGroup.addGroup(localGroup);
+                horizontalGroup.addGap(18, 18, 18);
             }
             for (int col = 0 ; col < numberOfColumns - 1; col++) {
-                final ParallelGroup localGroup = layout.createParallelGroup(Alignment.LEADING);
+                if (col > 0) {
+                    horizontalGroup.addPreferredGap(ComponentPlacement.RELATED);
+                }
+
+                final ParallelGroup localGroup = layout.createParallelGroup(Alignment.CENTER);
 
                 if (colLabels != null) {
                     // center the labels to be rendered like a spreadsheet
-                    localGroup.addComponent(colLabels[col + 1], Alignment.CENTER);
+                    localGroup.addComponent(colLabels[col + 1]);
                 }
 
                 // common case for the initial values
@@ -513,8 +534,13 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                     localGroup.addComponent(colLabels[col]);
                 }
                 verticalGroup.addGroup(localGroup);
+                verticalGroup.addGap(18, 18, 18);
             }
             for (int row = 0; row < lineLabels.length; row++) {
+                if (row > 0) {
+                    verticalGroup.addPreferredGap(ComponentPlacement.RELATED);
+                }
+
                 final ParallelGroup localGroup = layout.createParallelGroup(Alignment.BASELINE);
                 localGroup.addComponent(rowLabels[row]);
                 for (int col = 0 ; col < numberOfColumns - 1; col++) {
@@ -560,12 +586,14 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             objs[1] = createXchooseListBox();
 
             // And now the buttons
-            buttons = new Object[1];
+            buttons = new Object[2];
             if (buttonsLabels != null) {
                 btnCancel.setText(buttonsLabels[0]);
             }
+            btnOK.addActionListener(this);
             btnCancel.addActionListener(this);
             buttons[0] = btnCancel;
+            buttons[1] = btnOK;
         } else if (scilabDialogType == X_DIALOG_TYPE) {
             // Create a MessageBox for Scilab x_dialog
 
@@ -743,6 +771,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                     }
                 }
                 userValue = ""; /* To make getValueSize return a non zero value */
+            } else if (scilabDialogType == X_CHOOSE_TYPE) {
+                selectedItem = listBox.getSelectedIndex() + 1;
             }
             selectedButton = 1;
         } else if (ae.getSource() == btnCancel) {

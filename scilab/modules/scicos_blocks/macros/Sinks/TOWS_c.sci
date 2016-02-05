@@ -69,7 +69,7 @@ function [x, y, typ] = TOWS_c(job, arg1, arg2)
                 else
                     model.blocktype = "d";
                 end
-                model.ipar = [nz; length(varnam); ascii(varnam)'];
+                model.ipar = [nz; length(ascii(varnam)); ascii(varnam)'];
                 graphics.exprs = exprs;
                 x.graphics = graphics;
                 x.model = model;
@@ -92,7 +92,7 @@ function [x, y, typ] = TOWS_c(job, arg1, arg2)
         model.evtin     = [1];
         model.evtout    = [];
         model.rpar      = [];
-        model.ipar      = [nz; length(varnam); ascii(varnam)'];
+        model.ipar      = [nz; length(ascii(varnam)); ascii(varnam)'];
         model.blocktype = "d";
         model.firing    = [];
         model.dep_ut    = [%f %f];

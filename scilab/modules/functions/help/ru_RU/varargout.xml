@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargout" xml:lang="ru">
+    <refnamediv>
+        <refname>varargout</refname>
+        <refpurpose>
+            переменное число аргументов в списке выходных аргументов
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция, чей список выходных аргументов содержит <literal>varargout</literal> должен вызываться с бОльшим числом аргументов, чем указано в списке выходных аргументов. Аргументы вызова, переданные внутрь в форме ключевого слова <literal>varargout</literal>, извлекаются из списка <literal>varargout</literal>, определённого внутри функции.
+        </para>
+        <para>
+            <literal>varargout = function ex()</literal> может вызываться с любым количеством выходных аргументов. Внутри функции <literal>ex</literal> выходные аргументы могут храниться в <literal>varargout(i)</literal>.
+        </para>
+        <para>
+            Может также использоваться <literal>[X1,...,Xn,varargout] = function ex()</literal>. В этом случае переменные <literal>Xi</literal> и <literal>varargout(i)</literal> должны быть определены в функции.
+        </para>
+        <para>
+            Фактическое общее количество выходных аргументов даётся с помощью <code>argn(1)</code>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примечание</title>
+        <para>
+            Переменная <literal>varargout</literal> должна быть создана внутри функции и определена в виде <link linkend="list">списка</link>. Если <literal>varargout</literal> является единственной формальной выходной переменой, то список должен содержать хотя бы один элемент.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+function varargout=exampl()
+  varargout=list(1,2,3,4)
+endfunction
+
+x=exampl()
+[x,y]=exampl()
+[x,y,z]=exampl()
+
+function [a,b,varargout]=exampl1()
+  a='first'
+  b='second'
+  varargout=list(1,2,3,4)
+endfunction
+
+exampl1()
+[a,b]=exampl1()
+[a,b,c]=exampl1()
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="argn">argn</link>
+            </member>
+            <member>
+                <link linkend="function">function</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+            <member>
+                <link linkend="varargin">varargin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

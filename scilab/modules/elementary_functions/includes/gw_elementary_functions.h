@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -15,60 +18,60 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "dynlib_elementary_functions.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
 ELEMENTARY_FUNCTIONS_IMPEXP int gw_elementary_functions(void);
 /*--------------------------------------------------------------------------*/
-int sci_abs(char *fname, unsigned long fname_len);
-int sci_real(char *fname, unsigned long fname_len);
-int sci_imag(char *fname, unsigned long fname_len);
-int sci_conj(char *fname, unsigned long fname_len);
-int sci_round(char *fname, unsigned long fname_len);
-int sci_int(char *fname, unsigned long fname_len);
-int sci_size(char *fname, unsigned long fname_len);
-int sci_sum(char *fname, unsigned long fname_len);
-int sci_prod(char *fname, unsigned long fname_len);
-int sci_diag(char *fname, unsigned long fname_len);
-int sci_triu(char *fname, unsigned long fname_len);
-int sci_tril(char *fname, unsigned long fname_len);
-int sci_eye(char *fname, unsigned long fname_len);
-int sci_rand(char *fname, unsigned long fname_len);
-int sci_ones(char *fname, unsigned long fname_len);
-int sci_maxi(char *fname, unsigned long fname_len);
-int sci_kron(char *fname, unsigned long fname_len);
-int sci_scimatrix(char *fname, unsigned long fname_len);
-int sci_sin(char *fname, unsigned long fname_len);
-int sci_cos(char *fname, unsigned long fname_len);
-int sci_atan(char *fname, unsigned long fname_len);
-int sci_exp(char *fname, unsigned long fname_len);
-int sci_sqrt(char *fname, unsigned long fname_len);
-int sci_log(char *fname, unsigned long fname_len);
 int sci_chinesehat(char *fname, unsigned long fname_len);
-int sci_sign(char *fname, unsigned long fname_len);
-int sci_clean(char *fname, unsigned long fname_len);
-int sci_floor(char *fname, unsigned long fname_len);
-int sci_ceil(char *fname, unsigned long fname_len);
-int sci_expm(char *fname, unsigned long fname_len);
-int sci_cumsum(char *fname, unsigned long fname_len);
-int sci_cumprod(char *fname, unsigned long fname_len);
-int sci_testmatrix(char *fname, unsigned long fname_len);
-int sci_isreal(char *fname, unsigned long fname_len);
-int sci_frexp(char *fname, unsigned long fname_len);
-int sci_zeros(char *fname, unsigned long fname_len);
-int sci_tan(char *fname, unsigned long fname_len);
-int sci_log1p(char *fname, unsigned long fname_len);
-int sci_imult(char *fname, unsigned long fname_len);
-int sci_asin(char *fname, unsigned long fname_len);
-int sci_acos(char *fname, unsigned long fname_len);
-int sci_number_properties(char *fname, unsigned long fname_len);
-int sci_nearfloat(char *fname, unsigned long fname_len);
-int sci_dsearch(char *fname, unsigned long fname_len);
-int sci_isequal(char *fname, unsigned long fname_len);
-int sci_spones(char *fname, unsigned long fname_len);
-int sci_gsort(char *fname, unsigned long fname_len);
+//int sci_spones(char *fname, unsigned long fname_len);
 int sci_isequalbitwise(char *fname, unsigned long fname_len);
-int sci_rat(char *fname, unsigned long fname_len);
-int sci_base2dec(char *fname, unsigned long fname_len);
-int sci_dec2base(char *fname, unsigned long fname_len);
+
+// Scilab 6
+//STACK_GATEWAY_PROTOTYPE(sci_abs);
+//STACK_GATEWAY_PROTOTYPE(sci_acos);
+//STACK_GATEWAY_PROTOTYPE(sci_asin);
+//STACK_GATEWAY_PROTOTYPE(sci_atan);
+//STACK_GATEWAY_PROTOTYPE(sci_ceil);
+//STACK_GATEWAY_PROTOTYPE(sci_clean);
+//STACK_GATEWAY_PROTOTYPE(sci_conj);
+//STACK_GATEWAY_PROTOTYPE(sci_cos);
+//STACK_GATEWAY_PROTOTYPE(sci_cumprod);
+//STACK_GATEWAY_PROTOTYPE(sci_cumsum);
+//STACK_GATEWAY_PROTOTYPE(sci_diag);
+//STACK_GATEWAY_PROTOTYPE(sci_dsearch);
+//STACK_GATEWAY_PROTOTYPE(sci_exp);
+//STACK_GATEWAY_PROTOTYPE(sci_expm);
+//STACK_GATEWAY_PROTOTYPE(sci_floor);
+//STACK_GATEWAY_PROTOTYPE(sci_frexp);
+//STACK_GATEWAY_PROTOTYPE(sci_gsort);
+//STACK_GATEWAY_PROTOTYPE(sci_imag);
+//STACK_GATEWAY_PROTOTYPE(sci_imult);
+//STACK_GATEWAY_PROTOTYPE(sci_int);
+//STACK_GATEWAY_PROTOTYPE(sci_isreal);
+//STACK_GATEWAY_PROTOTYPE(sci_kron);
+//STACK_GATEWAY_PROTOTYPE(sci_log);
+//STACK_GATEWAY_PROTOTYPE(sci_log1p);
+//STACK_GATEWAY_PROTOTYPE(sci_scimatrix);
+//STACK_GATEWAY_PROTOTYPE(sci_maxi);
+//STACK_GATEWAY_PROTOTYPE(sci_mini);
+STACK_GATEWAY_PROTOTYPE(sci_nearfloat);
+STACK_GATEWAY_PROTOTYPE(sci_number_properties);
+//STACK_GATEWAY_PROTOTYPE(sci_prod);
+//STACK_GATEWAY_PROTOTYPE(sci_real);
+//STACK_GATEWAY_PROTOTYPE(sci_round);
+//STACK_GATEWAY_PROTOTYPE(sci_sign);
+//STACK_GATEWAY_PROTOTYPE(sci_sin);
+//STACK_GATEWAY_PROTOTYPE(sci_sqrt);
+//STACK_GATEWAY_PROTOTYPE(sci_tan);
+STACK_GATEWAY_PROTOTYPE(sci_testmatrix);
+//STACK_GATEWAY_PROTOTYPE(sci_tril);
+//STACK_GATEWAY_PROTOTYPE(sci_triu);
+STACK_GATEWAY_PROTOTYPE(sci_base2dec);
+STACK_GATEWAY_PROTOTYPE(sci_dec2base);
+STACK_GATEWAY_PROTOTYPE(sci_log10);
+C_GATEWAY_PROTOTYPE(sci_isvector);
+C_GATEWAY_PROTOTYPE(sci_issquare);
+
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */
 /*--------------------------------------------------------------------------*/
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Scilab>
     <!-- Console default configuration -->
-    <Window height="600" uuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881" width="800" x="0" y="0" state="0">
+    <Window height="768" uuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881" width="1366" x="0" y="0" state="0">
         <DockingPortNode>
             <SplitNode dockingRegion="west" orientation="horizontal" percentage="0.27132487" region="left">
                 <DockingPortNode>
@@ -13,12 +13,19 @@
                             <DockableNode dockableId="00000000-0000-0000-0000-000000000000"/>
                         </DockingPortNode>
                         <DockingPortNode>
-                            <SplitNode dockingRegion="north" orientation="vertical" percentage="0.5" region="left">
+                            <SplitNode dockingRegion="north" orientation="vertical" percentage="0.30" region="left">
                                 <DockingPortNode>
                                     <DockableNode dockableId="3b649047-6a71-4998-bd8e-00d367a4793c"/>
                                 </DockingPortNode>
                                 <DockingPortNode>
-                                    <DockableNode dockableId="856207f6-0a60-47a0-b9f4-232feedd4bf4"/>
+                                    <SplitNode dockingRegion="south" orientation="vertical" percentage="0.50" region="left">
+                                        <DockingPortNode>
+                                            <DockableNode dockableId="856207f6-0a60-47a0-b9f4-232feedd4bf4"/>
+                                        </DockingPortNode>
+                                        <DockingPortNode>
+                                            <DockableNode dockableId="DC0957B3-81DA-4E39-B0B5-E93B35412162"/>
+                                        </DockingPortNode>
+                                    </SplitNode>
                                 </DockingPortNode>
                             </SplitNode>
                         </DockingPortNode>
@@ -27,11 +34,12 @@
             </SplitNode>
         </DockingPortNode>
     </Window>
+    <NewsFeed depends="00000000-0000-0000-0000-000000000000" factory="org.scilab.modules.ui_data.newsfeed.NewsFeedTabFactory" height="500" load="" uuid="DC0957B3-81DA-4E39-B0B5-E93B35412162" width="200" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
     <Console factory="org.scilab.modules.core.ConsoleTabFactory" height="769" load="Console" uuid="00000000-0000-0000-0000-000000000000" width="576" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
     <VariableBrowser depends="00000000-0000-0000-0000-000000000000" factory="org.scilab.modules.ui_data.tabfactory.VariableBrowserTabFactory" height="383" load="" uuid="3b649047-6a71-4998-bd8e-00d367a4793c" width="308" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
     <CommandHistory depends="00000000-0000-0000-0000-000000000000" factory="org.scilab.modules.history_browser.CommandHistoryTabFactory" height="383" load="" uuid="856207f6-0a60-47a0-b9f4-232feedd4bf4" width="308" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
     <FileBrowser depends="00000000-0000-0000-0000-000000000000" factory="org.scilab.modules.ui_data.tabfactory.FileBrowserTabFactory" height="769" load="" uuid="3b649047-6a71-4998-bd8e-00d367a4793d" width="329" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
-    <!-- Xcos default configuration -->
+<!-- Xcos default configuration -->
     <Window height="500" uuid="xcos-palette-default-window" width="500" x="0" y="0" state="0">
         <DockingPortNode>
             <DockableNode dockableId="org.scilab.modules.xcos.palette.model"/>

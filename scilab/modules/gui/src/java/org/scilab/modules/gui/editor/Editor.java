@@ -3,11 +3,14 @@
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -41,17 +44,17 @@ import org.scilab.modules.localization.Messages;
 
 
 /**
-* Point and click figure editor.
-*
-* Provides polyline selection by mouse click,
-* copy, cut, paste, delete, hide, unhide polylines
-* by popup menus and keyboard shortcuts.
-*
-* @author Caio Souza <caioc2bolado@gmail.com>
-* @author Pedro Souza <bygrandao@gmail.com>
-*
-* @since 2012-06-01
-*/
+ * Point and click figure editor.
+ *
+ * Provides polyline selection by mouse click,
+ * copy, cut, paste, delete, hide, unhide polylines
+ * by popup menus and keyboard shortcuts.
+ *
+ * @author Caio Souza <caioc2bolado@gmail.com>
+ * @author Pedro Souza <bygrandao@gmail.com>
+ *
+ * @since 2012-06-01
+ */
 
 public class Editor {
 
@@ -62,7 +65,6 @@ public class Editor {
     EntityPicker.LegendInfo selectedLegend = null;
     Integer selected = null;
     Integer figureUid = null;
-    Integer oriColor = 0;
     Integer[] lastClick = { 0, 0 };
     Integer[] dragClick = { 0, 0 };
     EntityPicker entityPicker;
@@ -121,7 +123,6 @@ public class Editor {
      * @param event MouseEvent to retrieve click positon in figure.
      */
     public void onRightMouseClick(MouseEvent event) {
-
         if (!dataEditEnabled) {
             lastClick[0] = event.getX();
             lastClick[1] = event.getY();
@@ -483,15 +484,14 @@ public class Editor {
      * @param uid object unique identifier. Null uid unselect previous selection.
      */
     public void setSelected(Integer uid) {
-
         if (CommonHandler.objectExists(selected)) {
-            CommonHandler.setColor(selected, oriColor);
+            CommonHandler.setSelected(selected, false);
         }
 
         selected = uid;
 
         if (selected != null) {
-            oriColor = CommonHandler.setColor(selected, -3);
+            CommonHandler.setSelected(selected, true);
 
             boolean spl = (selectedType == SelectionType.SURFACE || selectedType == SelectionType.POLYLINE || selectedType == SelectionType.LEGEND);
 
@@ -516,25 +516,6 @@ public class Editor {
             editdata.setEnabled(false);
         }
     }
-
-    /**
-    * Get current color of the object line/mark.
-    *
-    * @return Returns the current color of the object.
-    */
-    public Integer getOriColor() {
-        return oriColor;
-    }
-
-    /**
-    * Set current color of the object line/mark.
-    *
-    * @param newScilabColor Color selected by user.
-    */
-    public void setOriColor(Integer newScilabColor) {
-        oriColor = newScilabColor;
-    }
-
 
     /**
      * Returns selected object unique identifier.
@@ -566,12 +547,11 @@ public class Editor {
     }
 
     /**
-    * Implements copy menu item action(Callback).
-    */
+     * Implements copy menu item action(Callback).
+     */
     public void onClickCopy() {
         if (selectedType != SelectionType.LEGEND) {
             ScilabClipboard.getInstance().copy(getSelected());
-            ScilabClipboard.getInstance().setCopiedColor(oriColor);
         }
     }
 
@@ -579,7 +559,6 @@ public class Editor {
      * Implements paste menu item action(Callback).
      */
     public void onClickPaste() {
-
         Integer currentObject, newObject, currentParent, newParent;
         boolean isDuplicated = false;
 
@@ -615,7 +594,6 @@ public class Editor {
         if (s != null && selectedType != SelectionType.LEGEND) {
             setSelected(null);
             ScilabClipboard.getInstance().cut(s);
-            ScilabClipboard.getInstance().setCopiedColor(oriColor);
         }
     }
 
@@ -632,8 +610,8 @@ public class Editor {
     }
 
     /**
-    * Implements clear menu item action(Callback).
-    */
+     * Implements clear menu item action(Callback).
+     */
     public void onClickClear() {
         setSelected(null);
         Integer axesTo = AxesHandler.clickedAxes(figureUid, lastClick);
@@ -643,8 +621,8 @@ public class Editor {
     }
 
     /**
-    * Implements hide menu item action(Callback).
-    */
+     * Implements hide menu item action(Callback).
+     */
     public void onClickHide() {
         if (getSelected() != null) {
             CommonHandler.setVisible(selected, false);
@@ -672,7 +650,6 @@ public class Editor {
      * @param axis axis number.
      */
     public void onClickLabel(AxesHandler.axisTo axis) {
-
         Integer axes = AxesHandler.clickedAxes(figureUid, lastClick);
         if (axes != null && axis != null) {
             String text = LabelHandler.getLabelText(axes, axis);
@@ -698,7 +675,6 @@ public class Editor {
      * @param polyline Polyline to be inserted in the legend.
      */
     public void onClickInsert(Integer polyline) {
-
         Integer axes = AxesHandler.clickedAxes(figureUid, lastClick);
         if (axes != null) {
             String text = LegendHandler.getLegendText(axes, polyline);
@@ -710,12 +686,12 @@ public class Editor {
                            null,
                            null,
                            text);
-            if (s != null) {
+            if (s != null && !s.equals(text)) {
                 Integer legend = LegendHandler.searchLegend(axes);
                 Integer[] links = LegendHandler.getLinks(legend);
                 String[] texts = LegendHandler.getText(legend);
                 Double[] position = LegendHandler.getPosition(legend);
-                LegendHandler.setLegend(axes, polyline, s);
+                LegendHandler.setLegend(legend, axes, polyline, s);
                 editorHistory.addAction(new ActionLegend(axes, links, texts, position));
             }
         }
@@ -725,7 +701,6 @@ public class Editor {
      * Implements legend remove action(Callback).
      */
     public void onClickRemove() {
-
         Integer axesTo = AxesHandler.clickedAxes(figureUid, lastClick);
         Integer legend = LegendHandler.searchLegend(axesTo);
         Integer[] links = LegendHandler.getLinks(legend);
@@ -756,8 +731,8 @@ public class Editor {
     }
 
     /**
-    * Starts the GED with the property selected by user.
-    */
+     * Starts the GED with the property selected by user.
+     */
     public void onClickGED() {
         if (DatatipManager.getFromUid(figureUid).pickAndHighlight(lastClick[0], lastClick[1])) {
             Inspector.getInspector(DatatipManager.getFromUid(figureUid).getSelectedTip());
@@ -768,22 +743,22 @@ public class Editor {
     }
 
     /**
-    * Implements Undo action(callBAck)
-    */
+     * Implements Undo action(callBAck)
+     */
     public void onClickUndo() {
         editorHistory.undo();
     }
 
     /**
-    * Implements Redo action(callBack)
-    */
+     * Implements Redo action(callBack)
+     */
     public void onClickRedo() {
         editorHistory.redo();
     }
 
     /**
-    * Implementes copyStyle action(callback)
-    */
+     * Implementes copyStyle action(callback)
+     */
     public void onClickCopyStyle() {
 
         Integer axes = AxesHandler.clickedAxes(figureUid, lastClick);
@@ -791,8 +766,8 @@ public class Editor {
     }
 
     /**
-    * Implementes pasteStyle action(callback)
-    */
+     * Implementes pasteStyle action(callback)
+     */
     public void onClickPasteStyle() {
         boolean flag = true;
         Integer axes = AxesHandler.clickedAxes(figureUid, lastClick);

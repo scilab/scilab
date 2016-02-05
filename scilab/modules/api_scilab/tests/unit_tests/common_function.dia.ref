@@ -10,7 +10,7 @@ mkdir(pathconvert(TMPDIR+"/common_function"));
 cd(pathconvert(TMPDIR+"/common_function"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/common_function_api.c",pathconvert(TMPDIR+"/common_function/common_function_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("common_function",["common_function","common_function"],"common_function_api.c",[],"","",cflags);
+ilib_build("gw_common_function",["common_function","common_function"],"common_function_api.c",[],"","",cflags);
 exec("loader.sce");
 l1 = [1,2*%i,3;%i,2,3*%i];
 l2 = ["may","the";"puffin","be";"with","you"];
@@ -23,23 +23,17 @@ Variable 1 information:
 	Type: double
 	Complex: Yes
 	Dimensions: 2 x 3
-
 Variable 2 information:
 	Type: strings
 	Dimensions: 3 x 2
-
 Variable 3 information:
 	Type: signed integer 8 bits
 	Dimensions: 1 x 3
-
 Variable 4 information:
 	Type: unsigned integer 16 bits
 	Dimensions: 1 x 3
-
 Variable 5 information:
 	Type: list
 	Dimensions: 3
-
  ans  =
- 
-  T  
+  T

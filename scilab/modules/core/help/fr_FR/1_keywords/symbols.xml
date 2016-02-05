@@ -83,7 +83,7 @@
             <tr>
                 <td> ()</td>
                 <td>
-                    <link linkend="parents">parents</link>
+                    <link linkend="parentheses">parentheses</link>
                 </td>
             </tr>
             <tr>
@@ -161,10 +161,10 @@
             <literal>{</literal> a la même signification que <literal>[</literal>
         </para>
         <para>
-            <literal>}</literal> a la même signification que  <literal>]</literal>
+            <literal>}</literal> a la même signification que <literal>]</literal>
         </para>
         <para>
-            <literal>@</literal> a la même signification que  <literal>~</literal>
+            <literal>@</literal> a la même signification que <literal>~</literal>
         </para>
         <para>
             <literal>`</literal> a la même signification que  &lt;

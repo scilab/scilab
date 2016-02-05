@@ -17,8 +17,8 @@
 currentPath = SCI + "/modules/xcos/tests/unit_tests/block_tests/ESELECT_f/";
 
 // Import the reference data (A_ref)
-ierr = import_from_hdf5(currentPath + "sinus_ref.sod");
-if ierr <> %t then pause; end
+ierr = execstr("load(currentPath + ""sinus_ref.sod"");", "errcatch");
+assert_checktrue(ierr == 0);
 
 // Import the diagram structure
 ierr = importXcosDiagram(currentPath + "sinus.zcos");

@@ -58,7 +58,7 @@
             текущей функции, в противном случае -- <literal>0</literal>.
         </para>
         <para>
-            <literal>exists(name,'nolocal')</literal> возвращает
+            <literal>exists(name,'n')</literal> возвращает
             <literal>1</literal>, если переменная с именем <literal>name</literal> существует на
             любом уровне вызывающего окружения (включая главный уровень командной строки Scilab'а) 
             текущей функции, в противном случае -- <literal>0</literal>.
@@ -77,8 +77,8 @@ exists("myNotLikelyToExistVariable")
  ]]></programlisting>
         <programlisting role="example"><![CDATA[ 
 deff('foo(x)',..
-['disp([exists(''a12''),exists(''a12'',''local'')])'
- 'disp([exists(''x''),exists(''x'',''local'')])'])
+['disp([exists(''a12''),exists(''a12'',''l'')])'
+ 'disp([exists(''x''),exists(''x'',''l'')])'])
 foo(1)
 a12=[];foo(1)
  

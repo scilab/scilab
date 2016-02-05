@@ -42,9 +42,6 @@
     <ClCompile Include="..\jni\ScilabPreferences.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_preferences.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_addModulePreferences.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -57,6 +54,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_preferences.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\preferences_gw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\ScilabPreferences.hxx">
@@ -65,10 +65,10 @@
     <ClInclude Include="..\..\includes\dynlib_preferences_scilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\gw_preferences.h">
+    <ClInclude Include="..\..\includes\getScilabPreference.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\getScilabPreference.h">
+    <ClInclude Include="..\..\includes\preferences_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
 
+// <-- CLI SHELL MODE -->
 
 doc = xmlReadStr("<root><a>bug</a><a>13</a><a>1.2345678</a><a>b</a><a>.23E-2</a></root>");
 xp = xmlXPath(doc, "//a/text()");

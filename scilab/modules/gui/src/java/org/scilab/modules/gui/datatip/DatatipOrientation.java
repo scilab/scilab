@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Gustavo Barbosa Libotte
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,6 +19,7 @@ import org.scilab.modules.gui.datatip.DatatipCommon;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 import org.scilab.modules.gui.editor.AxesHandler;
+import org.scilab.modules.gui.editor.EntityPicker;
 import org.scilab.modules.renderer.CallRenderer;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
@@ -34,8 +38,8 @@ public class DatatipOrientation {
     public static void setOrientation(Integer datatip) {
         Integer polyline = DatatipCommon.getParentPolyline(datatip);
         if (polyline != null) {
-            Double[] tip_pos = (Double[])GraphicController.getController().getProperty(datatip, __GO_DATATIP_DATA__);
-            DatatipCommon.Segment seg = DatatipCommon.getSegment(tip_pos[0], polyline);
+            Integer[] indexes = (Integer[])GraphicController.getController().getProperty(datatip, __GO_DATATIP_INDEXES__);
+            DatatipCommon.Segment seg = EntityPicker.getSegment(polyline, indexes[0]);
             if (seg != null) {
                 setOrientation(datatip, seg);
             }
@@ -50,7 +54,6 @@ public class DatatipOrientation {
     public static void setOrientation(Integer datatip, Integer lastClick[], Integer[] curClick) {
         int dx = curClick[0] - lastClick[0];
         int dy = curClick[1] - lastClick[1];
-
         Integer finalOrientation = 0;
 
         if (dx > 0) {
@@ -76,7 +79,6 @@ public class DatatipOrientation {
      * @param seg the line segment
      */
     public static void setOrientation(Integer datatip, DatatipCommon.Segment seg) {
-
         Double[] bounds;
         Integer finalOrientation;
 
@@ -182,7 +184,23 @@ public class DatatipOrientation {
                 GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
                 GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 3);
                 break;
-            case 4: // automatic
+            case 4: // left
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 4);
+                break;
+            case 5: // right
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 5);
+                break;
+            case 6: // upper
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 6);
+                break;
+            case 7: // lower
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 7);
+                break;
+            case 8: // automatic
                 GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, true);
                 break;
             default:

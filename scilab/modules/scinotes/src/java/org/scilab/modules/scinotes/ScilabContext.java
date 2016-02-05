@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - Calixte DENIZET
  * Copyright (C) 2011 - Scilab Enterprises -Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,10 +19,7 @@ package org.scilab.modules.scinotes;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.swing.text.ViewFactory;
 import javax.swing.text.View;
@@ -34,6 +34,7 @@ import org.w3c.dom.NodeList;
 
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 
+import org.scilab.modules.commons.xml.ScilabXPathFactory;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.gui.utils.ScilabFontUtils;
 
@@ -92,7 +93,7 @@ public class ScilabContext implements ViewFactory {
 
 
     public static void saveFont(Font font) {
-        XPathFactory xpathFactory = XPathFactory.newInstance();
+        XPathFactory xpathFactory = ScilabXPathFactory.newInstance();
         XPath xp = xpathFactory.newXPath();
         NodeList nodes;
         Document doc = XConfiguration.getXConfigurationDocument();

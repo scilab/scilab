@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="htmlRead" xml:lang="ja">
+    <refnamediv>
+        <refname>htmlRead</refname>
+        <refpurpose>ローカルまたはリモートファイルからHTMLストリームを読み込む</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            doc = htmlRead(path [, encoding])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>文字列, 読み込むファイルのパス.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>encoding</term>
+                <listitem>
+                    <para>文字列, ファイルエンコーディング.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>doc</term>
+                <listitem>
+                    <para>XMLDoc型のmlist</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>HTMLファイルを読込み, パースします. 返される文書により,
+            メモリ上に保持したDOMツリーにアクセスできます.
+        </para>
+        <para>一般に, HTMLファイルは,整形式であることがまれのため,
+            XMLパーサーにより読み込むことはできません.
+            このため,HTMLパーサが必要となり,より適合したものになります.
+        </para>
+        <para>HTMLファイルが一度パースされると, メモリ上でXMLファイルとして参照でき,
+            通常の操作が適用可能になります.
+        </para>
+        <para>encoding引数はファイルエンコーディングを明確に
+            指定する際に使用されます.
+        </para>
+        <para>
+            (メモリーリークを回避するために)<link linkend="xmlDelete">xmlDelete</link>
+            によりツリーを解放することはできません.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    doc = htmlRead("http://www.scilab.org");
+    e = doc.root.children(1).children(1)
+    e.name
+    e.content
+    // 'href'属性を有する全ノードを取得
+    q = xmlXPath(doc, "//*[@href]");
+    q(1).attributes
+    // 文書を削除
+    xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="htmlReadStr">htmlReadStr</link>
+            </member>
+            <member>
+                <link linkend="xmlGetOpenDocs">xmlGetOpenDocs</link>
+            </member>
+            <member>
+                <link linkend="xmlDelete">xmlDelete</link>
+            </member>
+            <member>
+                <link linkend="xmlDocument">xmlDocument</link>
+            </member>
+            <member>
+                <link linkend="xmlXPath">xmlXPath</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HTML機能が追加されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

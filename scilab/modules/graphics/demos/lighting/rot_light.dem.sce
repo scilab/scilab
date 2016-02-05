@@ -23,7 +23,11 @@ function demo_rot_light()
         x = 2*cos(i*%pi/180);
         y = 2*sin(i*%pi/180);
         z = 2;
-        l.position = [x y z];
+        if is_handle_valid(l) then
+            l.position = [x y z];
+        else
+            break
+        end
     end
     // DEMO END
 endfunction

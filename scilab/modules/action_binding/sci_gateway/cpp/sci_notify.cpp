@@ -1,136 +1,72 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
+
+#include "function.hxx"
+#include "action_binding_gw.hxx"
+#include "string.hxx"
 #include "Signal.hxx"
-#include "GiwsException.hxx"
 
 extern "C"
 {
-#include "gw_action_binding.h"
-#include "api_scilab.h"
+#include "getScilabJavaVM.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
-#include "freeArrayOfString.h"
-#include "getScilabJavaVM.h"
 }
-/*--------------------------------------------------------------------------*/
-using namespace org_scilab_modules_action_binding_utils;
 
 /*--------------------------------------------------------------------------*/
-int sci_notify(char *fname, unsigned long fname_len)
+types::Function::ReturnValue sci_notify(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    CheckRhs(1, 1);
-    CheckLhs(0, 1);
+    types::String* pString  = NULL;
+    wchar_t* wcsInput       = NULL;
 
-    int m1 = 0, n1 = 0;
-    int *piAddressVarOne = NULL;
-    char **pStVarOne = NULL;
-    int *lenStVarOne = NULL;
-    int iType = 0;
-    SciErr sciErr;
-
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if (sciErr.iErr)
+    if (in.size() != 1)
     {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "notify" , 1);
+        return types::Function::Error;
     }
-
-    sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-    if (sciErr.iErr)
+    if (in[0]->isString() == false)
     {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "notify", 1);
+        return types::Function::Error;
     }
+    pString = in[0]->getAs<types::String>();
 
-    if (iType != sci_strings)
+    if (pString->isScalar() == FALSE)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "notify" , 1);
+        return types::Function::Error;
     }
+    wcsInput = pString->get(0);
 
-    /* get dimensions */
-    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
-    if (m1 * n1 != 1)
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
-    }
-
-    lenStVarOne = (int *)MALLOC(sizeof(int));
-    if (lenStVarOne == NULL)
-    {
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        return 0;
-    }
-
-    /* get lengths */
-    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
-    pStVarOne = (char **)MALLOC(sizeof(char *));
-    if (pStVarOne == NULL)
-    {
-        FREE(lenStVarOne);
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        return 0;
-    }
-
-    pStVarOne[0] = (char *)MALLOC(sizeof(char *) * (lenStVarOne[0] + 1));
-
-    /* get strings */
-    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-    if (sciErr.iErr)
-    {
-        FREE(lenStVarOne);
-        FREE(pStVarOne[0]);
-        FREE(pStVarOne);
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
+    char* strInput = wide_string_to_UTF8(wcsInput);
     try
     {
-        Signal::notify(getScilabJavaVM(), pStVarOne[0]);
+        org_scilab_modules_action_binding_utils::Signal::notify(getScilabJavaVM(), strInput);
     }
     catch (const GiwsException::JniException & e)
     {
-        Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
-        return 0;
+        Scierror(999, _("%s: A Java exception arisen:\n%s"), "notify", e.whatStr().c_str());
+        FREE(strInput);
+        return types::Function::Error;
     }
+    FREE(strInput);
 
-    freeArrayOfString(pStVarOne, 1);
-    FREE(lenStVarOne);
-
-    LhsVar(1) = 0;
-    PutLhsVar();
-
-    return 0;
+    return types::Function::OK;
 }
 
 /*--------------------------------------------------------------------------*/

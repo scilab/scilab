@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2011 - DIGITEO - Sylvestre LEDRU
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,22 +17,18 @@
 #define __GW_MPI__
 
 #include "dynlib_mpi.h"
+#include "c_gateway_prototype.h"
 
-MPI_IMPEXP int gw_mpi(void);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_init);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_finalize);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_comm_size);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_comm_rank);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_recv);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_send);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_get_processor_name);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_bcast);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_irecv);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_isend);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_wait);
 
-typedef int (*MPI_Interf) (char *fname, unsigned long l);
-/*--------------------------------------------------------------------------*/
-/* interface for the previous function Table */
-/*--------------------------------------------------------------------------*/
-int sci_mpi_init(char *fname, unsigned long fname_len);
-int sci_mpi_finalize(char *fname, unsigned long fname_len);
-int sci_mpi_comm_size(char *fname, unsigned long fname_len);
-int sci_mpi_comm_rank(char *fname, unsigned long fname_len);
-int sci_mpi_recv(char *fname, unsigned long fname_len);
-int sci_mpi_send(char *fname, unsigned long fname_len);
-int sci_mpi_get_processor_name(char *fname, unsigned long fname_len);
-int sci_mpi_bcast(char *fname, unsigned long fname_len);
-int sci_mpi_irecv(char *fname, unsigned long fname_len);
-int sci_mpi_isend(char *fname, unsigned long fname_len);
-int sci_mpi_wait(char *fname, unsigned long fname_len);
 #endif /*  __GW_MPI__ */

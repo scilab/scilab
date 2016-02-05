@@ -70,7 +70,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
          # Don't follow the symlink since Java under MacOS is messy
          # Uses the wrapper providing by Apple to retrieve the path
          # See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
-           JAVAC=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/bin/javac
+           JAVAC=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.8+)/bin/javac
                DONT_FOLLOW_SYMLINK=yes
          ;;
     esac
@@ -223,7 +223,7 @@ EOF
 #
 # VARIABLES SET:
 #    JAVAC
-#    ac_java_jvm_version can be set to 1.4, 1.5, 1.6 or 1.7
+#    ac_java_jvm_version can be set to 1.4, 1.5, 1.6, 1.7, 1.8
 #    ac_java_jvm_dir can be set to the jvm's root directory
 #
 # DEPENDS ON:
@@ -254,7 +254,7 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
              *darwin* )
             AC_MSG_RESULT([Darwin (Mac OS X) found. Use the standard paths.])
             # See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
-            ac_java_jvm_dir=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
+            ac_java_jvm_dir=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.8+)
             JAVAC=$ac_java_jvm_dir/bin/javac
             ;;
         esac
@@ -306,6 +306,9 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
 
     # The class java.nio.file.Path is new to 1.7
     AC_JAVA_TRY_COMPILE([import java.nio.file.Path;], , "no", ac_java_jvm_version=1.7)
+
+    # The class java.util.stream.DoubleStream is new to 1.8
+    AC_JAVA_TRY_COMPILE([import java.util.stream.DoubleStream;], , "no", ac_java_jvm_version=1.8)
 
     if test "x$ac_java_jvm_version" = "x" ; then
         AC_MSG_ERROR([Could not detect Java version, 1.4 or newer is required])
@@ -393,7 +396,7 @@ AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
          else
         case "$host_os" in
              *darwin* )
-                       ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers -I$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/include/ -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/"
+                       ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers -I$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.8+)/include/ -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/"
                   ;;
               *)
                        AC_MSG_ERROR([Could not locate Java's jni.h include file])
@@ -471,8 +474,11 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
        # Sun
           machine=sparc
           ;;
-        powerpc|ppc64)
+        powerpc)
           machine=ppc
+          ;;
+        ppc64|ppc64le)
+          machine=ppc64
           ;;
         armv*)
           machine=arm
@@ -711,15 +717,15 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
 AC_DEFUN([AC_JAVA_WITH_JDK], [
     AC_ARG_WITH(jdk,
-    AC_HELP_STRING([--with-jdk=DIR],[use JDK from DIR]),
-    ok=$withval, ok=no)
-    if test "$ok" = "no" ; then
+    AC_HELP_STRING([--with-jdk=DIR],[use JDK from DIR]))
+
+    if test "$with_jdk" = "no" -o -z "$with_jdk"; then
         NO=op
-    elif test "$ok" = "yes" || test ! -d "$ok"; then
+    elif test "$with_jdk" = "yes" -o \( ! -d "$with_jdk" \); then
         AC_MSG_ERROR([--with-jdk=DIR option, must pass a valid DIR])
-    elif test "$ok" != "no" ; then
-        AC_MSG_RESULT([Use JDK path specified ($ok)])
-        ac_java_jvm_dir=$ok
+    elif test "$with_jdk" != "no" ; then
+        AC_MSG_RESULT([Use JDK path specified ($with_jdk)])
+        ac_java_jvm_dir=$with_jdk
         ac_java_jvm_name=jdk
     fi
 ])
@@ -805,7 +811,12 @@ AC_DEFUN([AC_JAVA_ANT], [
     AC_HELP_STRING([--with-ant=DIR],[Use ant from DIR]),
     ANTPATH=$withval, ANTPATH=no)
     if test "$ANTPATH" = "no" ; then
-        AC_JAVA_TOOLS_CHECK(ANT, ant)
+        if test -d "$SCI_SRCDIR_FULL/java/ant"; then # Scilab thirdparties
+            ANTPATH=$SCI_SRCDIR_FULL/java/ant
+            AC_JAVA_TOOLS_CHECK(ANT, ant, $ANTPATH/bin $ANTPATH)
+        else
+            AC_JAVA_TOOLS_CHECK(ANT, ant)
+        fi
     elif test ! -d "$ANTPATH"; then
         AC_MSG_ERROR([--with-ant=DIR option, must pass a valid DIR])
     else

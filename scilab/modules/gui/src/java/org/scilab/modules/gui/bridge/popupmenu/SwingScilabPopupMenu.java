@@ -4,44 +4,63 @@
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.gui.bridge.popupmenu;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Arrays;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.popupmenu.SimplePopupMenu;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ColorBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.widget.ViewMethods;
+import org.scilab.modules.gui.utils.SwingScilabListItem;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab PopupMenu in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, SimplePopupMenu, ViewMethods {
+public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, Widget {
 
     private static final long serialVersionUID = -4366581303317502544L;
 
@@ -51,23 +70,61 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
     private ActionListener defaultActionListener;
 
+    private Border defaultBorder = null;
+
+
+    private ListCellRenderer defaultRenderer = null;
+    private ListCellRenderer listRenderer = null;
+
     /**
      * Constructor
      */
     public SwingScilabPopupMenu() {
         super();
+
+        defaultRenderer = getRenderer();
+        listRenderer = new ListCellRenderer() {
+            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+                if (value instanceof SwingScilabListItem) {
+                    SwingScilabListItem item = (SwingScilabListItem) value;
+
+                    label.setText(item.toString());
+                    label.setIcon(item.getIcon());
+
+                    //index == -1 is for selected item after click
+                    //so let standard FG and BG
+                    if (index != - 1 && isSelected == false && item.getBackground() != null) {
+                        label.setBackground(item.getBackground());
+                    }
+
+                    if (index != - 1 && isSelected == false && item.getForeground() != null) {
+                        label.setForeground(item.getForeground());
+                    }
+                } else {
+                    label.setText("");
+                    label.setIcon(null);
+                }
+                return label;
+            }
+        };
+
+        setRenderer(listRenderer);
         /* Bug 3635 fixed: allow arrow keys to browse items */
         putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
         defaultActionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Double[] scilabIndices = new Double[1];
-                scilabIndices[0] = (double) getUserSelectedIndex();
-                GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, scilabIndices);
+                Double scilabIndices = (double) getUserSelectedIndex();
+                if (scilabIndices == -1) {
+                    GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, new Double[] {});
+                } else {
+                    GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, new Double[] {scilabIndices});
+                }
+
                 if (callback != null) {
                     callback.actionPerformed(null);
                 }
-
-
             }
         };
         addActionListener(defaultActionListener);
@@ -191,17 +248,10 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         // Nothing to do here
     }
 
-    public void setVerticalalignment(String alignment) {
-        SwingViewWidget.setVerticalAlignment(this, alignment);
-    }
-    public void setHorizontalalignment(String alignment) {
-        SwingViewWidget.setHorizontalAlignment(this, alignment);
-    }
-
     /**
-      * Set the vertical alignment for the PopupMenu text
-      * @param alignment the value for the alignment (See ScilabAlignment.java)
-      */
+     * Set the vertical alignment for the PopupMenu text
+     * @param alignment the value for the alignment (See ScilabAlignment.java)
+     */
     public void setVerticalAlignment(String alignment) {
         // Nothing to do here
     }
@@ -214,11 +264,9 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         /* Remove the listener to avoid the callback to be executed */
         removeActionListener(defaultActionListener);
 
-        for (int i = 0; i < getItemCount(); i++) {
-            // Scilab indices in Value begin at 1 and Java indices begin at 0
-            if (i == (index - 1)) {
-                getModel().setSelectedItem(getItemAt(i));
-            }
+        // Scilab indices in Value begin at 1 and Java indices begin at 0
+        if (index >= 0 && index <= getItemCount()) {
+            setSelectedIndex(index - 1);
         }
 
         /* Put back the listener */
@@ -230,14 +278,12 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * @return the index of the item selected
      */
     public int getUserSelectedIndex() {
-        Object itemSelected = getModel().getSelectedItem();
-        for (int i = 0; i < getItemCount(); i++) {
-            if (itemSelected.equals(getItemAt(i))) {
-                // Scilab indices in Value begin at 1 and Java indices begin at 0
-                return i + 1;
-            }
+        int index = getSelectedIndex();
+        if (index == - 1) {
+            return -1;
         }
-        return -1;
+
+        return index + 1;
     }
 
     /**
@@ -266,54 +312,134 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * @param text the text of the items
      */
     public void setText(String[] text) {
-        /* Do we need to update the strings */
-        /* Test performed to avoid loops when the model is updated from here */
-        boolean updateNeeded = false;
-        String[] previousText = getAllItemsText();
-        if (previousText.length != text.length) {
-            updateNeeded = true;
-        } else {
-            for (int k = 0; k < text.length; k++) {
-                if (!text[k].equals(previousText[k])) {
-                    updateNeeded = true;
-                    break;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+
+        //get numbers of columns
+        GraphicController controller = GraphicController.getController();
+        Integer nbCol = (Integer) controller.getProperty(getId(), __GO_UI_STRING_COLNB__);
+
+        /* Remove the listener to avoid the callback to be executed */
+        removeActionListener(defaultActionListener);
+
+        boolean tryColorBox = true;
+        boolean tryColor = true;
+        boolean tryIcon = true;
+        int nbRow = text.length / nbCol;
+
+        for (int i = 0; i < nbRow; i++) {
+            Icon icon = null;
+            String str = null;
+            Color background = null;
+            Color foreground = null;
+
+            //4 cols :
+            // - 1st icon or colorBox
+            // - 2nd text
+            // - 3rd BG
+            // - 4th FG
+
+            //3 cols :  2 cases
+            // - 1st icon or colorBox
+            // - 2nd text
+            // - 3rd BG
+            //or
+            // - 1st text
+            // - 2nd BG
+            // - 3rd FG
+
+            //2 cols : 2 cases
+            // - 1st icon or colorBox
+            // - 2nd text
+            //or
+            // - 1st text
+            // - 2nd BG
+
+            if (tryColorBox) { //color
+                try {
+                    //format #FFFFFF
+                    if (text[i].startsWith("#") == false) {
+                        throw new NumberFormatException();
+                    }
+
+                    Color color = Color.decode(text[i]);
+                    icon = ColorBox.createColorBox(16, 16, color);
+                } catch (NumberFormatException e) {
+                    tryColorBox = false;
+                    model.removeAllElements();
+                    //restart loop with icon
+                    i = -1;
+                    continue;
+                }
+            }
+
+            if (tryIcon) {
+                try {
+                    icon = FindIconHelper.loadIcon(text[i]);
+                } catch (IOException e) {
+                    tryIcon = false;
+                    model.removeAllElements();
+                    //restart loop with text only
+                    i = -1;
+                    continue;
+                }
+            }
+
+            if (tryColor) {
+                try {
+                    int colIndex = 0;
+                    if (tryColorBox || tryIcon) {
+                        colIndex = 1;
+                    }
+
+                    str = text[(nbRow * colIndex) + i];
+                    if (nbCol > (1 + colIndex)) {
+                        if (text[nbRow * (1 + colIndex) + i].startsWith("#") == false) {
+                            throw new NumberFormatException();
+                        }
+
+                        background = Color.decode(text[nbRow * (1 + colIndex) + i]);
+                        if (nbCol > (2 + colIndex)) {
+                            if (text[nbRow * (2 + colIndex) + i].startsWith("#") == false) {
+                                throw new NumberFormatException();
+                            }
+
+                            foreground = Color.decode(text[nbRow * (2 + colIndex) + i]);
+                        }
+                    }
+
+                    //add item in list box
+                    model.addElement(new SwingScilabListItem(str, icon, background, foreground));
+                } catch (NumberFormatException e) {
+                    tryColor = false;
+                    model.removeAllElements();
+                    //restart loop with text only
+                    i = -1;
+                    continue;
+                }
+            } else { //text only
+                for (int j = 0; j < nbCol; j++) {
+                    model.addElement(new SwingScilabListItem(text[nbRow * j + i], icon, background, foreground));
                 }
             }
         }
-        if (!updateNeeded) {
-            return;
-        }
 
-        /* Remove the listener to avoid the callback to be executed */
-        if (this.callback != null) {
-            removeActionListener(this.callback);
-        }
-
-        /* Clear previous items */
-        removeAllItems();
-
-        if (text.length == 1 & text[0].length() == 0) {
-            /* Clear the popup items */
-            return;
-        } else {
-            for (int i = 0; i < text.length; i++) {
-                addItem(new SwingScilabPopupMenuItem(text[i]));
-            }
-        }
-
-        /* Remove the listener to avoid the callback to be executed */
-        if (this.callback != null) {
-            addActionListener(this.callback);
-        }
-
+        //reset selected index
+        setSelectedIndex(-1);
+        setModel(model);
+        invalidate();
+        //take care to add listener BEFORE set Property to avoid multiple remove and multiple add
+        addActionListener(defaultActionListener);
     }
 
     /**
      * Set the Relief of the PopupMenu
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setWidgetRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+    public void setRelief(String reliefType) {
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -341,38 +467,6 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Class created as a workaround for bug: http://bugzilla.scilab.org/show_bug.cgi?id=7898
-     * This bug is a Java bug: http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4133743
-     *
-     * This workaround has been proposed by a user on Java bug tracker.
-     *
-     * The toString method will be used to display the elements, but because the class inherits its
-     * equals method from Object instead of String, none of the elements are considered duplicates.
-     *
-     */
-    private class SwingScilabPopupMenuItem {
-
-        private String textOfItem;
-
-        /**
-         * Constructor
-         * @param text the text displayed in the item
-         */
-        public SwingScilabPopupMenuItem(String text) {
-            textOfItem = text;
-        }
-
-        /**
-         * Overload Object toString() method
-         * @return the item converted to String
-         * @see java.lang.Object#toString()
-         */
-        @Override
-        public String toString() {
-            return textOfItem;
-        }
-    }
 
     /**
      * Set the UID
@@ -396,87 +490,61 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        switch (property) {
+            case __GO_UI_STRING__: {
+                setText((String[]) value);
+                break;
+            }
+            case __GO_UI_MAX__: {
+                Integer val = ((Double)value).intValue();
+                if (val > 1) {
+                    char[] chars = new char[val];
+                    Arrays.fill(chars, '*');
+                    String proto = new String(chars);
+                    setPrototypeDisplayValue(proto);
+                }
+                break;
+            }
+            case __GO_UI_VALUE__: {
+                Double[] doubleValue = ((Double[]) value);
+
+                //[] or 0 -> no selection
+                if (doubleValue.length == 0 || doubleValue[0] == 0) {
+                    setUserSelectedIndex(0);
+                    return;
+                }
+
+                int[] intValue = new int[doubleValue.length];
+                for (int k = 0; k < doubleValue.length; k++) {
+                    intValue[k] = doubleValue[k].intValue();
+                }
+
+                // Update selected items in the popupmenu
+                setUserSelectedIndex(intValue[0]);
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+                break;
+            }
+        }
     }
 
-    public void setBackgroundcolor(Double[] color) {
-        SwingViewWidget.setBackgroundcolor(this, color);
+    public void resetBackground() {
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("ComboBox.background");
+        if (color != null) {
+            setBackground(color);
+        }
     }
 
-    public void setForegroundcolor(Double[] color) {
-        SwingViewWidget.setForegroundcolor(this, color);
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ComboBox.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
     }
 
-    public void setString(String[] text) {
-        SwingViewWidget.setText(uid, this, text);
-    }
-
-    public void setCallback(String callback) {
-        SwingViewWidget.setCallback(uid, this, callback);
-    }
-
-    public void setPosition(Double[] position) {
-        SwingViewWidget.setPostion(uid, this, position);
-    }
-
-    public void setParent(int id) {
-        SwingViewWidget.setParent(this, id);
-    }
-
-    /* font*/
-    public void setFontweight(String value) {
-        SwingViewWidget.setFontWeight(this, value);
-    }
-
-    public void setFontname(String value) {
-        SwingViewWidget.setFontName(this, value);
-    }
-
-    public void setFontangle(String value) {
-        SwingViewWidget.setFontAngle(this, value);
-    }
-
-    public void setFontunits(double value) {
-        SwingViewWidget.setFontUnits(uid, this, value);
-    }
-
-    public void setFontsize(double value) {
-        SwingViewWidget.setFontSize(uid, this, value);
-    }
-
-    public void setMax(double value) {
-        SwingViewWidget.setMax(uid, this, value);
-    }
-
-    public void setMin(double value) {
-        SwingViewWidget.setMin(uid, this, value);
-    }
-
-    public void setValue(Double[] value) {
-        SwingViewWidget.setValue(uid, this, value);
-    }
-
-    public void setRelief(String value) {
-        SwingViewWidget.setRelief(this, value);
-    }
-
-    public void setSliderstep(Double[] value) {
-        SwingViewWidget.setSliderStep(this, value);
-    }
-
-    public void setListboxtop(Integer[] value) {
-        SwingViewWidget.setListBoxTop(this, value);
-    }
-
-    public void setEnable(boolean value) {
-        SwingViewWidget.setEnable(this, value);
-    }
-
-    public void setCallbacktype(int value) {
-        SwingViewWidget.setCallbackType(uid, this, value);
-    }
-
-    public void setTooltipstring(String[] value) {
-        SwingViewWidget.setToolTipString(this, value);
+    public void setEmptyText() {
+        setText(new String[] {});
     }
 }

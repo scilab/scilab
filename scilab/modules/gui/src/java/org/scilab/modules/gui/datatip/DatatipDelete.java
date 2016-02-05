@@ -1,25 +1,24 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Gustavo Barbosa Libotte
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.gui.datatip;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.editor.ObjectSearcher;
-import org.scilab.modules.gui.datatip.DatatipCommon;
 
 /**
  * Delete a datatip
@@ -39,17 +38,28 @@ public class DatatipDelete {
         Integer parent = (Integer) controller.getProperty(datatipUid, GraphicObjectProperties.__GO_PARENT__);
         //get parent datatips
         Integer[] tips = (Integer[]) controller.getProperty(parent, GraphicObjectProperties.__GO_DATATIPS__);
-        //convert [] in list
-        List<Integer> l = new LinkedList<Integer>(Arrays.asList(tips));
-        //remove me
-        l.remove((Object)datatipUid);
-        //convert list in []
-        Integer[] var = new Integer[l.size()];
-        l.toArray(var);
-        //update parent datatips without me
-        controller.setProperty(parent, GraphicObjectProperties.__GO_DATATIPS__, var);
-        //self destruction !
-        controller.deleteObject(datatipUid);
+        int index = -1;
+        for (int i = 0; i < tips.length; i++) {
+            if (tips[i] == datatipUid) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index != -1) {
+            Integer[] var = new Integer[tips.length - 1];
+            for (int i = 0; i < tips.length; i++) {
+                if (i < index) {
+                    var[i] = tips[i];
+                } else if (i > index) {
+                    var[i - 1] = tips[i];
+                }
+            }
+
+            controller.setProperty(parent, GraphicObjectProperties.__GO_DATATIPS__, var);
+            //self destruction !
+            controller.deleteObject(datatipUid);
+        }
     }
 
     /**
@@ -59,17 +69,8 @@ public class DatatipDelete {
     * @param indexRemove Index of the datatip to be removed.
     */
     public static void datatipRemoveProgramIndex(int polylineUid, int indexRemove) {
-
         Integer[] datatips = (new ObjectSearcher()).search(polylineUid, GraphicObjectProperties.__GO_DATATIP__, true);
-
-        if (datatips != null) {
-            /* use index from 1 .. lenght (like scilab vectors)*/
-            if (indexRemove >= 1 && indexRemove <= datatips.length) {
-                GraphicController.getController().removeRelationShipAndDelete(datatips[indexRemove - 1]);
-            }
-        }
-
-
+        deleteDatatip(datatips[datatips.length - indexRemove]);
     }
 
     /**
@@ -81,5 +82,4 @@ public class DatatipDelete {
     public static void datatipRemoveProgramHandler(int datatipUid, int figureUid) {
         deleteDatatip(datatipUid);
     }
-
 }

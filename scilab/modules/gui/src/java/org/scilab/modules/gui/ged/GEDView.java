@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Marcos CARDINOT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.ged;
@@ -14,7 +17,6 @@ package org.scilab.modules.gui.ged;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
-import org.scilab.modules.types.ScilabType;
 
 /**
  *
@@ -25,7 +27,6 @@ public class GEDView implements GraphicView {
 
     private static boolean visible = true;
     private static boolean autoresize = true;
-    private static boolean pixmap = false;
     private static Integer pixelDrawingMode = 3;
     private static Integer antialiasing = 0;
     private static Integer rotationType = 0;
@@ -70,13 +71,6 @@ public class GEDView implements GraphicView {
                     if (autoresize != c_autoresize) {
                         isValid = true;
                         autoresize = c_autoresize;
-                    }
-                    break;
-                case GraphicObjectProperties.__GO_PIXMAP__:
-                    boolean c_pixmap = (Boolean) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PIXMAP__);
-                    if (pixmap != c_pixmap) {
-                        isValid = true;
-                        pixmap = c_pixmap;
                     }
                     break;
                 case GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__:
@@ -252,11 +246,5 @@ public class GEDView implements GraphicView {
 
     public void close() {
         GraphicController.getController().unregister(this);
-    }
-
-    @Override
-    public void updateObject(Integer id, String propName) {
-        // TODO Auto-generated method stub
-
     }
 }

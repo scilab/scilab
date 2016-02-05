@@ -3,11 +3,14 @@
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  * Copyright (C) 2011-2011 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -22,6 +25,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -49,6 +53,7 @@ import org.scilab.modules.xcos.modelica.listener.FixDerivativesAction;
 import org.scilab.modules.xcos.modelica.listener.FixStatesAction;
 import org.scilab.modules.xcos.modelica.listener.SolveAction;
 import org.scilab.modules.xcos.modelica.listener.StatisticsUpdater;
+import org.scilab.modules.xcos.modelica.model.Model;
 import org.scilab.modules.xcos.modelica.model.Struct;
 import org.scilab.modules.xcos.modelica.model.Terminal;
 
@@ -86,6 +91,7 @@ public final class MainPanel extends JPanel {
     private javax.swing.JButton solveButton;
     private javax.swing.JLabel solver;
     private javax.swing.JComboBox solverComboBox;
+    private javax.swing.JProgressBar solverWaitBar;
     private javax.swing.JPanel variableStatusBar;
     private javax.swing.JPanel extendedStatus;
     private javax.swing.JPanel globalStatus;
@@ -144,7 +150,12 @@ public final class MainPanel extends JPanel {
      */
     private TreeModel createTreeModel() {
         final DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(
-            controller.getRoot());
+        controller.getRoot()) {
+            @Override
+            public String toString() {
+                return ((Model) getUserObject()).getName();
+            };
+        };
         final TreeModel model = new DefaultTreeModel(rootNode);
 
         for (Struct struct : controller.getRoot().getElements().getStruct()) {
@@ -162,7 +173,12 @@ public final class MainPanel extends JPanel {
      * @return the parent node
      */
     private MutableTreeNode createNodes(Struct struct) {
-        DefaultMutableTreeNode structNode = new DefaultMutableTreeNode(struct);
+        DefaultMutableTreeNode structNode = new DefaultMutableTreeNode(struct) {
+            @Override
+            public String toString() {
+                return ((Struct) getUserObject()).getName();
+            };
+        };
 
         for (Object child : struct.getSubnodes().getStructOrTerminal()) {
             // recursive call
@@ -179,24 +195,39 @@ public final class MainPanel extends JPanel {
      *            the current path
      * @return the terminals associated with the path
      */
-    private List<Terminal> getTerminals(TreePath path) {
+    private List<Terminal> getTerminals(final TreePath[] path) {
+        final List<Terminal> ret = new ArrayList<Terminal>();
+
+        for (TreePath p : path) {
+            final Object userObject = ((DefaultMutableTreeNode) p.getLastPathComponent()).getUserObject();
+            ret.addAll(getTerminals(userObject));
+        }
+        return ret;
+    }
+
+    private List<Terminal> getTerminals(Object userObject) {
         final List<Terminal> ret;
+        if (userObject instanceof Terminal) {
+            final Terminal t = (Terminal) userObject;
+            ret = Collections.singletonList(t);
+        } else if (userObject instanceof Struct) {
+            final Struct s = (Struct) userObject;
+            final Object subnodes = s.getSubnodes().getStructOrTerminal();
+            ret = getTerminals(subnodes);
+        } else if (userObject instanceof Model) {
+            final Model m = (Model) userObject;
+            ret = getTerminals(m.getElements().getStruct());
+        } else if (userObject instanceof Collection) {
+            final Collection c = (Collection) userObject;
 
-        // the root is not a Struct instance and thus return an empty list.
-        if (path.getPathCount() > 1) {
             ret = new ArrayList<Terminal>();
-            final Struct struct = (Struct) ((DefaultMutableTreeNode) path
-                                            .getLastPathComponent()).getUserObject();
-
-            for (Object child : struct.getSubnodes().getStructOrTerminal()) {
-                if (child instanceof Terminal) {
-                    ret.add((Terminal) child);
-                }
+            for (Object o : c) {
+                ret.addAll(getTerminals(o));
             }
-
         } else {
             ret = Collections.emptyList();
         }
+
         return ret;
     }
 
@@ -211,19 +242,22 @@ public final class MainPanel extends JPanel {
 
         solverComboBox.setModel(new javax.swing.DefaultComboBoxModel(
                                     ModelicaController.ComputationMethod.values()));
-        solverComboBox
-        .setToolTipText(ModelicaMessages.INITIAL_COMPUTING_METHOD);
-
+        solverComboBox.setToolTipText(ModelicaMessages.INITIAL_COMPUTING_METHOD);
         control.add(solverComboBox);
 
         embeddedParametersButton.setText(ModelicaMessages.PARAMETER_EMBEDDING);
         embeddedParametersButton
         .setToolTipText(ModelicaMessages.PARAMETER_EMBEDDING_EXPLAINED);
         control.add(embeddedParametersButton);
+
         generateJacobianButton.setText(ModelicaMessages.GENERATE_JACOBIAN);
         control.add(generateJacobianButton);
-        solveButton.setAction(new SolveAction(controller));
+
+        solveButton.setAction(new SolveAction(controller, solverWaitBar));
         control.add(solveButton);
+
+        control.add(solverWaitBar);
+
         controlBar.add(control);
     }
 
@@ -320,6 +354,7 @@ public final class MainPanel extends JPanel {
         controlBar = new javax.swing.JPanel();
         solver = new javax.swing.JLabel();
         solverComboBox = new javax.swing.JComboBox();
+        solverWaitBar = new javax.swing.JProgressBar();
         embeddedParametersButton = new javax.swing.JCheckBox();
         generateJacobianButton = new javax.swing.JCheckBox();
         solveButton = new javax.swing.JButton();
@@ -338,7 +373,7 @@ public final class MainPanel extends JPanel {
         tree.addTreeSelectionListener(new TreeSelectionListener() {
             @Override
             public void valueChanged(TreeSelectionEvent e) {
-                tableModel.setTerminals(getTerminals(e.getPath()));
+                tableModel.setTerminals(getTerminals(tree.getSelectionPaths()));
             }
         });
 

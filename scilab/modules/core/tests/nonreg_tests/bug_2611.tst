@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge STEER <serge.steer@inria.fr>
@@ -18,23 +19,23 @@
 funcprot(0);
 
 function r=test()
-  r=%f
-  try
-    for j=1:3, error('test',1001); end
-  catch
-    r=%t
-  end
+    r=%f
+    try
+        for j=1:3, error("test",1001); end
+    catch
+        r=%t
+    end
 endfunction
 if ~test() then pause,end
-if lasterror()<>'test' then pause,end
+if lasterror()<>"test" then pause,end
 
 
-deff('r=test()',['r=%f'
-'try,'
-'    for j=1:3, error(''test'',1001); end,'
-'catch'
-'    r=%t'
-'end'],'n')
+deff("r=test()",["r=%f"
+"try"
+"    for j=1:3, error(''test'',1001); end,"
+"catch"
+"    r=%t"
+"end"])
 if ~test() then pause,end
-if lasterror()<>'test' then pause,end
+if lasterror()<>"test" then pause,end
 

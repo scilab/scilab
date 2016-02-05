@@ -3,11 +3,14 @@
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,21 +18,12 @@ package org.scilab.modules.gui.tab;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
-import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
-import org.scilab.modules.gui.label.Label;
-import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.radiobutton.RadioButton;
-import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.tree.Tree;
@@ -242,165 +236,12 @@ public class ScilabTab extends ScilabContainer implements Tab {
     }
 
     /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    public int addMember(Frame member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a Frame from a Tab.
-     * @param member the Frame to remove
-     */
-    public void removeMember(Frame member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a pushbutton in a Tab.
-     * @param member the pushbutton to add
-     * @return the position of the pushbutton in the member list.
-     */
-    public int addMember(PushButton member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
      * We want to be able to add directly a Tree Overview in a Tab.
      * @param member the Tree Overview to add
      * @return the position of the Tree Overview in the member list.
      */
     public int addMember(Tree member) {
         return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a PushButton from a Tab.
-     * @param member the pushbutton to remove
-     */
-    public void removeMember(PushButton member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a editbox in a Tab.
-     * @param member the editbox to add
-     * @return the position of the editbox in the member list.
-     */
-    public int addMember(EditBox member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove an EditBox from a Tab.
-     * @param member the EditBox to remove
-     */
-    public void removeMember(EditBox member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a label in a Tab.
-     * @param member the label to add
-     * @return the position of the label in the member list.
-     */
-    public int addMember(Label member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a Label from a Tab.
-     * @param member the Label to remove
-     */
-    public void removeMember(Label member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a checkbox in a Tab.
-     * @param member the checkbox to add
-     * @return the position of the checkbox in the member list.
-     */
-    public int addMember(CheckBox member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a CheckBox from a Tab.
-     * @param member the CheckBox to remove
-     */
-    public void removeMember(CheckBox member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a RadioButton in a Tab.
-     * @param member the RadioButton to add
-     * @return the position of the RadioButton in the member list.
-     */
-    public int addMember(RadioButton member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a RadioButton from a Tab.
-     * @param member the RadioButton to remove
-     */
-    public void removeMember(RadioButton member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a Slider in a Tab.
-     * @param member the Slider to add
-     * @return the position of the Slider in the member list.
-     */
-    public int addMember(Slider member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a Slider from a Tab.
-     * @param member the Slider to remove
-     */
-    public void removeMember(Slider member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a ListBox in a Tab.
-     * @param member the ListBox to add
-     * @return the position of the ListBox in the member list.
-     */
-    public int addMember(ListBox member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a ListBox from a Tab.
-     * @param member the ListBox to remove
-     */
-    public void removeMember(ListBox member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a PopupMenu in a Tab.
-     * @param member the PopupMenu to add
-     * @return the position of the PopupMenu in the member list.
-     */
-    public int addMember(PopupMenu member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a PopupMenu from a Tab.
-     * @param member the PopupMenu to remove
-     */
-    public void removeMember(PopupMenu member) {
-        ScilabBridge.removeMember(this, member);
     }
 
     /**

@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - INRIA - Vincent COUVERT (Java version)
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
 */
 
@@ -19,7 +22,7 @@
 extern "C"
 {
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "FileExist.h"
@@ -29,7 +32,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "getFullFilename.h"
 #include "loadOnUseClassPath.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "FigureList.h"
 }
 /*--------------------------------------------------------------------------*/
@@ -41,9 +44,8 @@ using namespace org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
 static int sci_toprint_one_rhs(void* _pvCtx, const char *fname);
 static int sci_toprint_two_rhs(void* _pvCtx, const char *fname);
-
 /*--------------------------------------------------------------------------*/
-int sci_toprint(char *fname, unsigned long l)
+int sci_toprint(char *fname, void* pvApiCtx)
 {
     CheckInputArgument(pvApiCtx, 1, 2);
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -128,9 +130,9 @@ static int sci_toprint_one_rhs(void* _pvCtx, const char *fname)
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
         }
     }
-    else if (isDoubleType(pvApiCtx, piAddressVarOne))
+    else if (isDoubleType(_pvCtx, piAddressVarOne))
     {
-        if (isScalar(pvApiCtx, piAddressVarOne))
+        if (isScalar(_pvCtx, piAddressVarOne))
         {
             double dValue = 0.;
 
@@ -304,13 +306,10 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                     return 1;
                 }
 
-                for (i = 0; i < mnOne; i++)
+                if (mnOne > 0)
                 {
-                    if (i == 0)
-                    {
-                        sprintf(lines, "%s\n", pStVarOne[i]);
-                    }
-                    else
+                    sprintf(lines, "%s\n", pStVarOne[0]);
+                    for (i = 1; i < mnOne; ++i)
                     {
                         sprintf(lines, "%s%s\n", lines, pStVarOne[i]);
                     }

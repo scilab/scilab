@@ -3,28 +3,31 @@
  * Copyright (C) 2010 - 2012 - INRIA - Allan CORNET
  * Copyright (C) 2011 - INRIA - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  * This code is also published under the GPL v3 license.
  *
  */
 #include <string.h>
+
 #include "api_scilab.h"
 #include "sci_types.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "gw_csv_helpers.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "freeArrayOfString.h"
+
 // =============================================================================
-char *csv_getArgumentAsStringWithEmptyManagement(void* _pvCtx, int _iVar, const char *fname,
+char *csv_getArgumentAsStringWithEmptyManagement(void* pvApiCtx, int _iVar, const char *fname,
         const char *defaultValue,
         int *iErr)
 {
@@ -58,7 +61,7 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* _pvCtx, int _iVar, const 
             if (defaultValue)
             {
                 *iErr = 0;
-                returnedValue = strdup(defaultValue);
+                returnedValue = os_strdup(defaultValue);
             }
             else
             {
@@ -69,7 +72,7 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* _pvCtx, int _iVar, const 
         else
         {
             *iErr = API_ERROR_INVALID_TYPE;
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, _iVar);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, _iVar);
             return NULL;
         }
     }
@@ -80,7 +83,7 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* _pvCtx, int _iVar, const 
         if (*iErr == 0 )
         {
             *iErr = API_ERROR_CHECK_VAR_DIMENSION;
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, _iVar);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, _iVar);
             return NULL;
         }
 
@@ -95,12 +98,16 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* _pvCtx, int _iVar, const 
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return NULL;
         }
+        if (strlen(returnedValue) == 0)
+        {
+            returnedValue = os_strdup(defaultValue);
+        }
     }
     return returnedValue;
 }
 // =============================================================================
 
-char *csv_getArgumentAsString(void* _pvCtx, int _iVar,
+char *csv_getArgumentAsString(void* pvApiCtx, int _iVar,
                               const char *fname, int *iErr)
 {
     SciErr sciErr;
@@ -130,7 +137,7 @@ char *csv_getArgumentAsString(void* _pvCtx, int _iVar,
     if (iType != sci_strings)
     {
         *iErr = API_ERROR_INVALID_TYPE;
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return NULL;
     }
 
@@ -139,7 +146,7 @@ char *csv_getArgumentAsString(void* _pvCtx, int _iVar,
     if (*iErr == 0 )
     {
         *iErr = API_ERROR_CHECK_VAR_DIMENSION;
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, _iVar);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, _iVar);
         return NULL;
     }
 
@@ -157,7 +164,7 @@ char *csv_getArgumentAsString(void* _pvCtx, int _iVar,
     return returnedValue;
 }
 // =============================================================================
-double csv_getArgumentAsScalarDouble(void* _pvCtx, int _iVar,
+double csv_getArgumentAsScalarDouble(void* pvApiCtx, int _iVar,
                                      const char *fname, int *iErr)
 {
     SciErr sciErr;
@@ -202,7 +209,7 @@ double csv_getArgumentAsScalarDouble(void* _pvCtx, int _iVar,
     return dValue;
 }
 // =============================================================================
-int csv_getArgumentAsScalarBoolean(void* _pvCtx, int _iVar,
+int csv_getArgumentAsScalarBoolean(void* pvApiCtx, int _iVar,
                                    const char *fname, int *iErr)
 {
     SciErr sciErr;
@@ -247,7 +254,7 @@ int csv_getArgumentAsScalarBoolean(void* _pvCtx, int _iVar,
     return bValue;
 }
 // =============================================================================
-char **csv_getArgumentAsMatrixOfString(void* _pvCtx, int _iVar,
+char **csv_getArgumentAsMatrixOfString(void* pvApiCtx, int _iVar,
                                        const char *fname,
                                        int *m, int *n, int *iErr)
 {
@@ -281,7 +288,7 @@ char **csv_getArgumentAsMatrixOfString(void* _pvCtx, int _iVar,
     if (iType != sci_strings)
     {
         *iErr =  API_ERROR_INVALID_TYPE;
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, _iVar);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, _iVar);
         return NULL;
     }
 
@@ -302,7 +309,7 @@ char **csv_getArgumentAsMatrixOfString(void* _pvCtx, int _iVar,
     return pStringValues;
 }
 // =============================================================================
-int csv_isRowVector(void* _pvCtx, int _iVar)
+int csv_isRowVector(void* pvApiCtx, int _iVar)
 {
     SciErr sciErr;
     int *piAddressVar = NULL;
@@ -314,7 +321,7 @@ int csv_isRowVector(void* _pvCtx, int _iVar)
     return isRowVector(pvApiCtx, piAddressVar);
 }
 // =============================================================================
-int csv_isColumnVector(void* _pvCtx, int _iVar)
+int csv_isColumnVector(void* pvApiCtx, int _iVar)
 {
     SciErr sciErr;
     int *piAddressVar = NULL;
@@ -326,7 +333,7 @@ int csv_isColumnVector(void* _pvCtx, int _iVar)
     return isColumnVector(pvApiCtx, piAddressVar);
 }
 // =============================================================================
-int csv_isScalar(void* _pvCtx, int _iVar)
+int csv_isScalar(void* pvApiCtx, int _iVar)
 {
     SciErr sciErr;
     int *piAddressVar = NULL;
@@ -338,7 +345,7 @@ int csv_isScalar(void* _pvCtx, int _iVar)
     return isScalar(pvApiCtx, piAddressVar);
 }
 // =============================================================================
-int csv_isDoubleScalar(void* _pvCtx, int _iVar)
+int csv_isDoubleScalar(void* pvApiCtx, int _iVar)
 {
     SciErr sciErr;
     int *piAddressVar = NULL;
@@ -349,7 +356,7 @@ int csv_isDoubleScalar(void* _pvCtx, int _iVar)
         return 0;
     }
 
-    if (csv_isScalar(_pvCtx, _iVar))
+    if (csv_isScalar(pvApiCtx, _iVar))
     {
         int iType = 0;
         sciErr = getVarType(pvApiCtx, piAddressVar, &iType);
@@ -366,7 +373,7 @@ int csv_isDoubleScalar(void* _pvCtx, int _iVar)
     return 0;
 }
 // =============================================================================
-int csv_isEmpty(void* _pvCtx, int _iVar)
+int csv_isEmpty(void* pvApiCtx, int _iVar)
 {
     SciErr sciErr;
     int *piAddressVar = NULL;
@@ -384,7 +391,7 @@ int csv_isEmpty(void* _pvCtx, int _iVar)
     return isEmptyMatrix(pvApiCtx, piAddressVar);
 }
 // =============================================================================
-int *csv_getArgumentAsMatrixofIntFromDouble(void* _pvCtx, int _iVar,
+int *csv_getArgumentAsMatrixofIntFromDouble(void* pvApiCtx, int _iVar,
         const char *fname,
         int *m, int *n, int *iErr)
 {

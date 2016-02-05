@@ -6,11 +6,14 @@
  * Copyright (C) 2006 - INRIA - Vincent Couvert
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,14 +21,9 @@
 /* file: sci_get.c                                                        */
 /* desc : interface for sci_get routine                                   */
 /*------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_graphics.h"
-/*--------------------------------------------------------------------------*/
-
-#include "stricmp.h"
-#include "MALLOC.h"
-
 #include "HandleManagement.h"
-
 #include "GetHashTable.h"
 #include "BuildObjects.h"
 #include "localization.h"
@@ -37,127 +35,19 @@
 #include "getConsoleIdentifier.h"
 #include "returnProperty.h"
 
-#include "getGraphicObjectProperty.h"
-#include "graphicObjectProperties.h"
 #include "SetPropertyStatus.h"
 #include "GetScreenProperty.h"
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
-#include "sciprint.h"
-#include "getHandleProperty.h"
-/*--------------------------------------------------------------------------*/
-void convertDoubleToHandle(void* _pvCtx, int _iPos);
-void ScierrorGetProperty(int _iError, char* _pstProp, char* fname);
-/*--------------------------------------------------------------------------*/
-char *IntToStyle(int _iStyle)
-{
-    switch (_iStyle)
-    {
-        case __GO_UI_CHECKBOX__ :
-            return "checkbox";
-        case __GO_UI_EDIT__ :
-            return "edit";
-        case __GO_UI_FRAME__ :
-            return "frame";
-        case __GO_UI_IMAGE__ :
-            return "image";
-        case __GO_UI_LISTBOX__ :
-            return "listbox";
-        case __GO_UI_POPUPMENU__ :
-            return "popupmenu";
-        case __GO_UI_PUSHBUTTON__ :
-            return "pushbutton";
-        case __GO_UI_RADIOBUTTON__ :
-            return "radiobutton";
-        case __GO_UI_SLIDER__ :
-            return "slider";
-        case __GO_UI_TABLE__ :
-            return "table";
-        case __GO_UI_TEXT__ :
-            return "text";
-        default :
-            return "????";
-    }
-}
-/*--------------------------------------------------------------------------*/
-static char *getTypeNameFromInt(int _iType)
-{
-    switch (_iType)
-    {
-        case __GO_ARC__ :
-            return "Arc";
-        case __GO_AXES__ :
-            return "Axes";
-        case __GO_AXESMODEL__ :
-            return "AxesModel";
-        case __GO_AXIS__ :
-            return "Axis";
-        case __GO_CHAMP__ :
-            return "Champ";
-        case __GO_COMPOUND__ :
-            return "Compound";
-        case __GO_FAC3D__ :
-            return "Fac3d";
-        case __GO_FEC__ :
-            return "Fec";
-        case __GO_FIGURE__ :
-            return "Figure";
-        case __GO_FIGUREMODEL__ :
-            return "FigureModel";
-        case __GO_GRAYPLOT__ :
-            return "Grayplot";
-        case __GO_LABEL__ :
-            return "Label";
-        case __GO_LEGEND__ :
-            return "Legend";
-        case __GO_MATPLOT__ :
-            return "Matplot";
-        case __GO_PLOT3D__ :
-            return "Plot3d";
-        case __GO_POLYLINE__ :
-            return "Polyline";
-        case __GO_RECTANGLE__ :
-            return "Rectangle";
-        case __GO_SEGS__ :
-            return "Segs";
-        case __GO_TEXT__ :
-            return "Text";
-        case __GO_UICONTROL__ :
-            return "uicontrol";
-        case __GO_UIMENU__ :
-            return "uimenu";
-        case __GO_UICONTEXTMENU__ :
-            return "uicontextmenu";
-        case __GO_CONSOLE__ :
-            return "Console";
-        case __GO_SHOWHIDDENHANDLES__ :
-            return "ShowHiddenHandles";
-        case __GO_WAITBAR__ :
-            return "Waitbar";
-        case __GO_DATATIP__:
-            return "Datatip";
-        case __GO_LIGHT__ :
-            return "Light";
-        default :
-            return "????";
-    }
-}
-/*--------------------------------------------------------------------------*/
-int sciGet(void* _pvCtx, int iObjUID, char *marker)
-{
-    /* find the function in the hashtable relative to the property name */
-    /* and call it */
-    return callGetProperty(_pvCtx, iObjUID, marker) == -1;
-}
+#include "FigureList.h"
+#include "MALLOC.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_get(char *fname, unsigned long fname_len)
+int sci_get(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
     int* piAddrl1 = NULL;
-    double* pdbll1 = NULL;
-    int* piAddrstkAdr = NULL;
     long long* l1 = NULL;
     int* piAddrl2 = NULL;
     char* l2 = NULL;
@@ -165,50 +55,56 @@ int sci_get(char *fname, unsigned long fname_len)
     int m1 = 0, n1 = 0;
     long hdl = 0;
 
+    int lw = 0;
     int iObjUID = 0;
 
-    /* Root properties */
-    char **stkAdr = NULL;
     int status = SET_PROPERTY_ERROR;
-
-    if (((checkInputArgumentType(pvApiCtx, 1, sci_mlist))) || ((checkInputArgumentType(pvApiCtx, 1, sci_tlist))))
-    {
-        //lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
-        OverLoad(1);
-        return 0;
-    }
 
     CheckInputArgument(pvApiCtx, 1, 2);
     CheckOutputArgument(pvApiCtx, 0, 1);
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (isMListType(pvApiCtx, piAddrl1) || isTListType(pvApiCtx, piAddrl1))
+    {
+        OverLoad(1);
+        return 0;
+    }
 
     /*
      * The first input argument can be an ID or a marker (in this case, get returns the value of the current object */
     switch (getInputArgumentType(pvApiCtx, 1))
     {
-        case sci_matrix:                    /* tclsci handle */
-            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
-            if (sciErr.iErr)
+        case sci_matrix: //console handle
+        {
+            double dbll1 = 0;
+
+            if (isScalar(pvApiCtx, piAddrl1) == 0)
             {
-                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
                 return 1;
             }
 
             // Retrieve a matrix of double at position 1.
-            sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &pdbll1);
-            if (sciErr.iErr)
+            if (getScalarDouble(pvApiCtx, piAddrl1, &dbll1))
             {
-                printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
                 return 1;
             }
 
-            if ((int)pdbll1[0] == 0) /* Root property */
+            if ((int)dbll1 == 0) /* Console property */
             {
+                int* piAddrstkAdr = NULL;
+                char *stkAdr = NULL;
                 if (nbInputArgument(pvApiCtx) == 1)
                 {
-                    if (sciReturnHandle(pvApiCtx, getHandle(getConsoleIdentifier())) != 0)    /* Get Console handle */
+                    if (sciReturnHandle(getHandle(getConsoleIdentifier())) != 0)    /* Get Console handle */
                     {
-                        /* An error has occurred */
                         ReturnArguments(pvApiCtx);
                         return 0;
                     }
@@ -216,64 +112,38 @@ int sci_get(char *fname, unsigned long fname_len)
                     ReturnArguments(pvApiCtx);
                     return 0;
                 }
+
                 CheckInputArgument(pvApiCtx, 2, 2);
-                if ((checkInputArgumentType(pvApiCtx, 2, sci_strings)))
+                sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrstkAdr);
+                if (sciErr.iErr)
                 {
-                    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrstkAdr);
-                    if (sciErr.iErr)
-                    {
-                        printError(&sciErr, 0);
-                        return 1;
-                    }
-
-                    // Retrieve a matrix of string at position 2.
-                    if (getAllocatedMatrixOfString(pvApiCtx, piAddrstkAdr, &m1, &n1, &stkAdr))
-                    {
-                        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
-                        return 1;
-                    }
-
-
-                    if (m1 * n1 != 1)
-                    {
-                        freeAllocatedMatrixOfString(m1, n1, stkAdr);
-                        Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get", 2);
-                        return SET_PROPERTY_ERROR;
-                    }
-
-                    status = GetScreenProperty(pvApiCtx, stkAdr[0]);
-
-                    if (status != SET_PROPERTY_SUCCEED) /* Return property */
-                    {
-                        Scierror(999, _("%s: Could not read property '%s' for root object.\n"), "get", stkAdr[0]);
-                        freeAllocatedMatrixOfString(m1, n1, stkAdr);
-                        return FALSE;
-                    }
-                    freeAllocatedMatrixOfString(m1, n1, stkAdr);
+                    printError(&sciErr, 0);
+                    return 1;
                 }
-                else
+
+                // Retrieve a matrix of string at position 2.
+                if (getAllocatedSingleString(pvApiCtx, piAddrstkAdr, &stkAdr))
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get", 2);
-                    return FALSE;
+                    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
+                    return 1;
                 }
+
+                if (GetScreenProperty(pvApiCtx, stkAdr) != SET_PROPERTY_SUCCEED)
+                {
+                    Scierror(999, _("%s: Could not read property '%s' for console object.\n"), "get", stkAdr[0]);
+                    freeAllocatedSingleString(stkAdr);
+                    return 1;
+                }
+                freeAllocatedSingleString(stkAdr);
                 AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
                 ReturnArguments(pvApiCtx);
             }
-            else                    /* tclsci handle: should no more happen */
-            {
-                //lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
-                OverLoad(1);
-            }
+
             return 0;
             break;
+        }
         case sci_handles:          /* scalar argument (hdl + string) */
-            CheckInputArgument(pvApiCtx, 2, 2);
-            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return 1;
-            }
+            CheckInputArgument(pvApiCtx, 1, 2);
 
             // Retrieve a matrix of handle at position 1.
             sciErr = getMatrixOfHandle(pvApiCtx, piAddrl1, &m1, &n1, &l1);
@@ -291,6 +161,25 @@ int sci_get(char *fname, unsigned long fname_len)
                 return 0;
             }
 
+            if (nbInputArgument(pvApiCtx) == 1)
+            {
+                //get path from handle
+                int uic = getObjectFromHandle((long) * l1);
+                char* path = get_path(uic);
+                if (path[0] == '\0')
+                {
+                    Scierror(999, _("%s: Unable to get useful path from this handle.\n"), fname);
+                    return 1;
+                }
+
+                createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, path);
+                FREE(path);
+
+                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                ReturnArguments(pvApiCtx);
+                return 0;
+            }
+
             sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
             if (sciErr.iErr)
             {
@@ -298,64 +187,95 @@ int sci_get(char *fname, unsigned long fname_len)
                 return 1;
             }
 
+            if (isScalar(pvApiCtx, piAddrl2) == 0 || isStringType(pvApiCtx, piAddrl2) == 0)
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
+                return 1;
+            }
+
             // Retrieve a matrix of double at position 2.
             if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                 return 1;
             }
 
             hdl = (long) * l1; /* on recupere le pointeur d'objet par le handle */
             break;
         case sci_strings:          /* string argument (string) */
-            CheckInputArgument(pvApiCtx, 1, 1);
-            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl2);
-            if (sciErr.iErr)
+        {
+            char* pstFirst = NULL;
+            CheckInputArgument(pvApiCtx, 1, 2);
+
+            if (isScalar(pvApiCtx, piAddrl1) == 0)
             {
-                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
                 return 1;
             }
 
             // Retrieve a matrix of double at position 1.
-            if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
+            if (getAllocatedSingleString(pvApiCtx, piAddrl1, &pstFirst))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
             }
 
-            switch (l2[0])
+            if (strcmp(pstFirst, "default_figure") == 0 ||
+                    strcmp(pstFirst, "default_axes") == 0 ||
+                    strcmp(pstFirst, "current_figure") == 0 ||
+                    strcmp(pstFirst, "current_axes") == 0 ||
+                    strcmp(pstFirst, "current_entity") == 0 ||
+                    strcmp(pstFirst, "hdl") == 0 ||
+                    strcmp(pstFirst, "figures_id") == 0)
             {
-                case 'd' :
-                    if (strcmp(l2, "default_figure") == 0 ||
-                            strcmp(l2, "default_axes") == 0)
+                hdl = 0;
+                l2 = pstFirst;
+            }
+            else
+            {
+                int uid = search_path(pstFirst);
+                if (uid != 0)
+                {
+                    freeAllocatedSingleString(pstFirst);
+                    hdl = getHandle(uid);
+
+                    if (nbInputArgument(pvApiCtx) == 1)
                     {
-                        hdl = 0;
+                        createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, hdl);
+                        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                        ReturnArguments(pvApiCtx);
+                        return 0;
                     }
-                    break;
-                case 'c' :
-                    if (strcmp(l2, "current_figure") == 0 ||
-                            strcmp(l2, "current_axes") == 0 ||
-                            strcmp(l2, "current_entity") == 0)
+
+                    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+                    if (sciErr.iErr)
                     {
-                        hdl = 0;
+                        printError(&sciErr, 0);
+                        return 1;
                     }
-                    else if (strcmp(l2, "children") == 0 || strcmp(l2, "clip_box") == 0)
+
+                    if (isScalar(pvApiCtx, piAddrl2) == 0 || isStringType(pvApiCtx, piAddrl2) == 0)
                     {
-                        hdl = getHandle(getOrCreateDefaultSubwin());    /* on recupere le pointeur d'objet par le handle */
+                        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
+                        return 1;
                     }
-                    break;
-                case 'h' :
-                    if (strcmp(l2, "hdl") == 0)
+
+                    if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
                     {
-                        hdl = 0;
+                        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
+                        return 1;
                     }
-                    break;
-                default :
-                    getOrCreateDefaultSubwin();
-                    hdl = getHandle(getCurrentObject());
-                    break;
+                }
+                else
+                {
+                    createEmptyMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1);
+                    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                    ReturnArguments(pvApiCtx);
+                    return 0;
+                }
             }
             break;
+        }
         default:
             //lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
             OverLoad(1);
@@ -368,7 +288,7 @@ int sci_get(char *fname, unsigned long fname_len)
     if (hdl == 0)
     {
         /* No handle specified */
-        if (sciGet(pvApiCtx, 0, l2) != 0)
+        if (callGetProperty(pvApiCtx, 0, (l2)) != 0)
         {
             /* An error has occurred */
             freeAllocatedSingleString(l2);
@@ -381,564 +301,13 @@ int sci_get(char *fname, unsigned long fname_len)
         iObjUID = getObjectFromHandle(hdl);
         if (iObjUID != 0)
         {
-            int iType = 0;
-            int* piType = &iType;
-            getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void**)&piType);
-            if (iType != __GO_UICONTROL__ &&
-                    iType != __GO_FIGURE__ &&
-                    iType != __GO_AXES__ &&
-                    iType != __GO_ARC__  &&
-                    iType != __GO_AXIS__ &&
-                    iType != __GO_COMPOUND__ &&
-                    iType != __GO_FEC__ &&
-                    iType != __GO_GRAYPLOT__ &&
-                    iType != __GO_MATPLOT__ &&
-                    iType != __GO_TEXT__ &&
-                    iType != __GO_POLYLINE__ &&
-                    iType != __GO_LEGEND__ &&
-                    iType != __GO_RECTANGLE__ &&
-                    iType != __GO_CHAMP__ &&
-                    iType != __GO_SEGS__ &&
-                    iType != __GO_LABEL__ &&
-                    iType != __GO_FAC3D__ &&
-                    iType != __GO_PLOT3D__ &&
-                    iType != __GO_CONSOLE__ &&
-                    iType != __GO_DATATIP__)
+
+            if (callGetProperty(pvApiCtx, iObjUID, (l2)) != 0)
             {
-                //old school call
-                if (sciGet(pvApiCtx, iObjUID, l2) != 0)
-                {
-                    /* An error has occurred */
-                    freeAllocatedSingleString(l2);
-                    ReturnArguments(pvApiCtx);
-                    return 0;
-                }
-            }
-            else
-            {
-                char first = l2[0];
-                BOOL bDataProp = FALSE;
-                int ret = 0;
-
-                //some data are in C so don't call java
-                if (iType == __GO_FEC__ ||
-                        iType == __GO_GRAYPLOT__ ||
-                        iType == __GO_MATPLOT__ ||
-                        iType == __GO_TEXT__ ||
-                        iType == __GO_POLYLINE__ ||
-                        iType == __GO_RECTANGLE__ ||
-                        iType == __GO_CHAMP__ ||
-                        iType == __GO_SEGS__ ||
-                        iType == __GO_FAC3D__ ||
-                        iType == __GO_PLOT3D__)
-                {
-                    if (first == 'd')
-                    {
-                        if (stricmp(l2, "data") == 0)
-                        {
-                            get_data_property(pvApiCtx, iObjUID);
-                            bDataProp = TRUE;
-                        }
-                    }
-                }
-
-
-                if (iType == __GO_MATPLOT__)
-                {
-                    if (first == 'i')
-                    {
-                        if (stricmp(l2, "image_type") == 0)
-                        {
-                            get_image_type_property(pvApiCtx, iObjUID);
-                            bDataProp = TRUE;
-                        }
-                    }
-                }
-
-                if (iType == __GO_FEC__)
-                {
-                    if (first == 't')
-                    {
-                        if (stricmp(l2, "triangles") == 0)
-                        {
-                            get_triangles_property(pvApiCtx, iObjUID);
-                            bDataProp = TRUE;
-                        }
-                    }
-                }
-
-                if (bDataProp)
-                {
-                    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-                    ReturnArguments(pvApiCtx);
-                    freeAllocatedSingleString(l2);
-                    return 0;
-                }
-
-
-                if ((ret = getProperty(iObjUID, l2, nbInputArgument(pvApiCtx) + 1)) != 0)
-                {
-                    ScierrorGetProperty(ret, l2, fname);
-                    freeAllocatedSingleString(l2);
-                    return 0;
-                }
-
-                //global properties
-                switch (first)
-                {
-                    case 't' :
-                        if (stricmp(l2, "type") == 0)
-                        {
-                            int iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 1));
-                            int* piAddress = istk(iAddr);
-
-                            iType = (int)((double*)piAddress)[2];
-                            if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, getTypeNameFromInt(iType)))
-                            {
-                                freeAllocatedSingleString(l2);
-                                Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                                return 1;
-                            }
-                        }
-                        break;
-                    case 'c' :
-                        if (stricmp(l2, "children") == 0)
-                        {
-                            //we get all children, hidden and not hidden.
-                            //now hide hidden ones.
-
-                            //TODO : take care of __GO_SHOWHIDDENHANDLES__
-
-                            //get address of new created var.
-                            int i = 0;
-                            int iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 1));
-                            int* piAddress = istk(iAddr);
-                            int* piAddress2 = NULL;
-                            double* pAll = (double*)(piAddress + 4);
-                            int iSize = piAddress[1] * piAddress[2];
-                            char* pstState = NULL;
-
-                            piAddress[2] = 0; //reinit output col size
-
-                            for (i = 0 ; i < iSize ; i++)
-                            {
-                                if ((ret = getProperty((int)pAll[i], "hidden", nbInputArgument(pvApiCtx) + 2)) != 0)
-                                {
-                                    continue;
-                                }
-
-                                iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 2));
-                                piAddress2 = istk(iAddr);
-
-                                if (getAllocatedSingleString(pvApiCtx, piAddress2, &pstState))
-                                {
-                                    if (pstState)
-                                    {
-                                        freeAllocatedSingleString(pstState);
-                                    }
-
-                                    Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                if (strcmp(pstState, "on") != 0)
-                                {
-                                    pAll[piAddress[2]] = pAll[i];
-                                    //update output col size
-                                    piAddress[2]++;
-                                }
-
-                                freeAllocatedSingleString(pstState);
-                            }
-
-                            convertDoubleToHandle(pvApiCtx, 1);
-                        }
-                        break;
-                    case 'p' :
-                        if (stricmp(l2, "parent") == 0)
-                        {
-                            convertDoubleToHandle(pvApiCtx, 1);
-                        }
-                        break;
-                    case 'l' :
-                        if (stricmp(l2, "links") == 0)
-                        {
-                            convertDoubleToHandle(pvApiCtx, 1);
-                        }
-                        break;
-                }
-
-                //properties of UI_CONTROL
-                if (iType == __GO_UICONTROL__)
-                {
-                    switch (first)
-                    {
-                        case 's' :
-                            if (stricmp(l2, "style") == 0)
-                            {
-                                int iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 1));
-                                int* piAddress = istk(iAddr);
-
-                                iType = (int)((double*)piAddress)[2];
-                                if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, IntToStyle(iType)))
-                                {
-                                    freeAllocatedSingleString(l2);
-                                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                                    return 1;
-                                }
-                            }
-                            break;
-                    }
-                }
-
-
-                //figure
-                if (iType == __GO_FIGURE__)
-                {
-                    switch (first)
-                    {
-                    }
-                }
-
-                //axes
-                if (iType == __GO_AXES__)
-                {
-                    //special case for properties about axis x,y,z
-                    if (first == 'x' || first == 'y' || first == 'z')
-                    {
-                        if (strcmp(l2 + 1, "_label") == 0)
-                        {
-                            convertDoubleToHandle(pvApiCtx, 1);
-                        }
-                    }
-
-                    switch (first)
-                    {
-                        case 'l':
-                            if (stricmp(l2, "log_flags") == 0)
-                            {
-                                //convert string matrix of "on"/"off" into string "n/l"
-
-                                //init to non log view
-                                char pstLog[4] = {"nnn"};
-
-                                int i = 0;
-                                int iRows = 0;
-                                int iCols = 0;
-                                char** pstLogs = NULL;
-
-                                int iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 1));
-                                int* piAddress = istk(iAddr);
-
-                                getAllocatedMatrixOfString(pvApiCtx, piAddress, &iRows, &iCols, &pstLogs);
-
-                                for (i = 0 ; i < iRows * iCols ; i++)
-                                {
-                                    if (pstLogs[i][1] == 'n') //"on"
-                                    {
-                                        pstLog[i] = 'l';
-                                    }
-                                }
-
-                                createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstLog);
-                            }
-                            break;
-                        case 'd' :
-                            if (stricmp(l2, "data_bounds") == 0)
-                            {
-                                int iAddr = 0;
-                                int* piAddress = NULL;
-                                char* pstView = NULL;
-                                //depend of view
-                                if ((ret = getProperty(iObjUID, "view", nbInputArgument(pvApiCtx) + 2)) != 0)
-                                {
-                                    ScierrorGetProperty(ret, l2, fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 2));
-                                piAddress = istk(iAddr);
-
-                                if (getAllocatedSingleString(pvApiCtx, piAddress, &pstView))
-                                {
-                                    if (pstView)
-                                    {
-                                        freeAllocatedSingleString(pstView);
-                                    }
-
-                                    Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                if (strcmp(pstView, "2d") == 0)
-                                {
-                                    //force column size to 2 instead of 3
-                                    iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 1));
-                                    piAddress = istk(iAddr);
-                                    piAddress[1] = 2;
-                                    piAddress[2] = 2;
-                                }
-                                else //3d
-                                {
-                                    iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 1));
-                                    piAddress = istk(iAddr);
-                                    piAddress[1] = 2;
-                                    piAddress[2] = 3;
-                                }
-                            }
-                            break;
-                        case 's' :
-                            if (stricmp(l2, "sub_ticks") == 0)
-                            {
-                                int iAddr = 0;
-                                int* piAddress = NULL;
-                                char* pstView = NULL;
-                                //depend of view
-                                if ((ret = getProperty(iObjUID, "view", nbInputArgument(pvApiCtx) + 2)) != 0)
-                                {
-                                    ScierrorGetProperty(ret, l2, fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 2));
-                                piAddress = istk(iAddr);
-
-                                if (getAllocatedSingleString(pvApiCtx, piAddress, &pstView))
-                                {
-                                    if (pstView)
-                                    {
-                                        freeAllocatedSingleString(pstView);
-                                    }
-
-                                    Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                if (strcmp(pstView, "2d") == 0)
-                                {
-                                    //return only 2 grid color information
-                                    //force column size to 2 instead of 3
-                                    iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 1));
-                                    piAddress = istk(iAddr);
-                                    piAddress[2] = 2;
-                                }
-                            }
-                            break;
-                        case 'z' :
-                            if (stricmp(l2, "zoom_box") == 0)
-                            {
-                                int iAddr = 0;
-                                int* piAddress = NULL;
-                                char* pstZoom = NULL;
-                                //depend of zoom_enable
-                                if ((ret = getProperty(iObjUID, "zoom_enable", nbInputArgument(pvApiCtx) + 2)) != 0)
-                                {
-                                    ScierrorGetProperty(ret, l2, fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 2));
-                                piAddress = istk(iAddr);
-
-                                if (getAllocatedSingleString(pvApiCtx, piAddress, &pstZoom))
-                                {
-                                    if (pstZoom)
-                                    {
-                                        freeAllocatedSingleString(pstZoom);
-                                    }
-
-                                    Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                if (strcmp(pstZoom, "off") == 0)
-                                {
-                                    //if zoom is disable, returns []
-                                    createEmptyMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1);
-                                }
-                            }
-                            break;
-                        case 'g' :
-                            if (stricmp(l2, "grid") == 0)
-                            {
-                                int iAddr = 0;
-                                int* piAddress = NULL;
-                                char* pstView = NULL;
-                                //depend of view
-                                if ((ret = getProperty(iObjUID, "view", nbInputArgument(pvApiCtx) + 2)) != 0)
-                                {
-                                    freeAllocatedSingleString(l2);
-                                    Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
-                                    return 0;
-                                }
-
-                                iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 2));
-                                piAddress = istk(iAddr);
-
-                                if (getAllocatedSingleString(pvApiCtx, piAddress, &pstView))
-                                {
-                                    if (pstView)
-                                    {
-                                        freeAllocatedSingleString(pstView);
-                                    }
-
-                                    Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                if (strcmp(pstView, "2d") == 0)
-                                {
-                                    //return only 2 grid color information
-                                    //force column size to 2 instead of 3
-                                    iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 1));
-                                    piAddress = istk(iAddr);
-                                    piAddress[2] = 2;
-                                }
-                            }
-                        case 't' :
-                            if (stricmp(l2, "title") == 0)
-                            {
-                                convertDoubleToHandle(pvApiCtx, 1);
-                            }
-                            break;
-                    } //switch for axes
-                }
-
-                //arc
-                if (iType == __GO_ARC__)
-                {
-                    switch (first)
-                    {
-                        case 'd' :
-                            if (stricmp(l2, "data") == 0)
-                            {
-                                int iAddr = 0;
-                                int* piAddress = NULL;
-                                char* pstView = NULL;
-                                double dblParent = 0;
-                                int iParent = 0;
-                                //depend of view
-                                if ((ret = getProperty(iObjUID, "parent", nbInputArgument(pvApiCtx) + 2)) != 0)
-                                {
-                                    ScierrorGetProperty(ret, l2, fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 2));
-                                piAddress = istk(iAddr);
-                                iParent = (int) * (double*)(piAddress + 4);
-
-                                if ((ret = getProperty(iParent, "view", nbInputArgument(pvApiCtx) + 2)) != 0)
-                                {
-                                    ScierrorGetProperty(ret, l2, fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 2));
-                                piAddress = istk(iAddr);
-
-                                if (getAllocatedSingleString(pvApiCtx, piAddress, &pstView))
-                                {
-                                    if (pstView)
-                                    {
-                                        freeAllocatedSingleString(pstView);
-                                    }
-
-                                    Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                if (strcmp(pstView, "2d") == 0)
-                                {
-                                    //data is for 3d view
-                                    //change matrix size to 1x6 and remove z information
-                                    int i = 0;
-                                    double* data = NULL;
-                                    iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 1));
-                                    piAddress = istk(iAddr);
-                                    piAddress[2] = 6;
-                                    data = (double*)(piAddress + 4);
-                                    for (i = 2 ; i < 6 ; i++)
-                                    {
-                                        data[i] = data[i + 1];
-                                    }
-                                }
-                            }
-                            break;
-                    }
-                }
-
-
-                if (iType == __GO_ARC__ ||
-                        iType == __GO_AXIS__ ||
-                        iType == __GO_AXES__ ||
-                        iType == __GO_FEC__ ||
-                        iType == __GO_GRAYPLOT__ ||
-                        iType == __GO_MATPLOT__ ||
-                        iType == __GO_TEXT__ ||
-                        iType == __GO_POLYLINE__ ||
-                        iType == __GO_LEGEND__ ||
-                        iType == __GO_RECTANGLE__ ||
-                        iType == __GO_CHAMP__ ||
-                        iType == __GO_SEGS__ ||
-                        iType == __GO_LABEL__ ||
-                        iType == __GO_FAC3D__ ||
-                        iType == __GO_PLOT3D__)
-                {
-                    switch (first)
-                    {
-                        case 'c' :
-                            if (stricmp(l2, "clip_box") == 0)
-                            {
-                                int iAddr = 0;
-                                int* piAddress = NULL;
-                                char* pstState = NULL;
-                                //depend of clip_state
-                                if ((ret = getProperty(iObjUID, "clip_state", nbInputArgument(pvApiCtx) + 2)) != 0)
-                                {
-                                    ScierrorGetProperty(ret, l2, fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + 2));
-                                piAddress = istk(iAddr);
-
-                                if (getAllocatedSingleString(pvApiCtx, piAddress, &pstState))
-                                {
-                                    if (pstState)
-                                    {
-                                        freeAllocatedSingleString(pstState);
-                                    }
-
-                                    Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
-                                    freeAllocatedSingleString(l2);
-                                    return 0;
-                                }
-
-                                if (strcmp(pstState, "on") != 0)
-                                {
-                                    //if clip_state is disable, returns []
-                                    createEmptyMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1);
-                                }
-
-                                freeAllocatedSingleString(pstState);
-                            }
-                            break;
-                    }
-                }
-
+                /* An error has occurred */
+                freeAllocatedSingleString(l2);
+                ReturnArguments(pvApiCtx);
+                return 0;
             }
         }
         else
@@ -955,58 +324,4 @@ int sci_get(char *fname, unsigned long fname_len)
     return 0;
 }
 
-void convertDoubleToHandle(void* _pvCtx, int _iPos)
-{
-    int iAddr = iadr(*Lstk(nbArgumentOnStack(pvApiCtx) + _iPos));
-    int* piAddress = istk(iAddr);
-    int iRows = 0;
-    int iCols = 0;
-    double* pDbl = NULL;
-
-    getMatrixOfDouble(pvApiCtx, piAddress, &iRows, &iCols, &pDbl);
-
-    if (iRows * iCols == 0)
-    {
-        createEmptyMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + _iPos);
-    }
-    else if (iRows * iCols == 1)
-    {
-        long long llH = (long long)getHandle((int) * pDbl);
-        createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + _iPos, llH);
-    }
-    else
-    {
-        int i = 0;
-        long long* pllH = NULL;
-        pllH = (long long*)MALLOC(sizeof(long long) * iRows * iCols);
-        for (i = 0 ; i < iRows * iCols ; i++)
-        {
-            int iCol = i / iRows;
-            int iRow = i % iRows;
-            int iNewIdx = iRow * iCols + iCol;
-
-
-            pllH[iNewIdx] = (long long)getHandle((int)pDbl[i]);
-        }
-
-        createMatrixOfHandle(pvApiCtx, nbInputArgument(pvApiCtx) + _iPos, iCols, iRows, pllH);
-        FREE(pllH);
-    }
-}
-
-void ScierrorGetProperty(int _iError, char* _pstProp, char* fname)
-{
-    switch (_iError)
-    {
-        case 1:
-            Scierror(999, _("%s: An exception occurred in graphic controller.\n"), fname);
-            break;
-        case 2:
-            Scierror(999, _("Unknown property: %s.\n"), _pstProp);
-            break;
-        case 3:
-            Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
-            break;
-    }
-}
 /*--------------------------------------------------------------------------*/

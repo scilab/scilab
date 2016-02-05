@@ -3,11 +3,14 @@
 * Copyright (C) 2005-2008 - INRIA - Allan CORNET
 * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -19,14 +22,14 @@
 #else
 #include <windows.h>
 #include "EnvTclTk.h"
-#include "strdup_windows.h"
 #endif
+#include "os_string.h"
 #include "InitTclTk.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 #include "ScilabEval.h"
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"
@@ -43,11 +46,11 @@ static void *DaemonOpenTCLsci(void* in)
 /* Checks if tcl/tk has already been initialised and if not */
 /* initialise it. It must find the tcl script */
 {
-    char *SciPath							= NULL;
-    char *SciPathShort				= NULL;
-    char *TkScriptpathShort		= NULL;
-    BOOL tkStarted						= FALSE;
-    BOOL bOK									= FALSE;
+    char *SciPath           = NULL;
+    char *SciPathShort      = NULL;
+    char *TkScriptpathShort = NULL;
+    BOOL tkStarted          = FALSE;
+    BOOL bOK                = FALSE;
 
     char TkScriptpath[PATH_MAX];
     char MyCommand[2048]; /* @TODO: Check for buffer overflow */
@@ -211,11 +214,11 @@ static void *DaemonOpenTCLsci(void* in)
     // and run as if it's in the main program thread.
     startTclLoop();
     return (0);
-
 }
 /*--------------------------------------------------------------------------*/
 int OpenTCLsci(void)
 {
+    __threadKey key;
     __InitSignalLock(&InterpReadyLock);
     __InitSignal(&InterpReady);
     // Open TCL interpreter in a separated thread.
@@ -223,7 +226,7 @@ int OpenTCLsci(void)
     // Causes also Scilab let those application live their own lifes.
 
 
-    __CreateThread(&TclThread, &DaemonOpenTCLsci);
+    __CreateThread(&TclThread, &key, &DaemonOpenTCLsci);
     // Wait to be sure initialisation is complete.
     __LockSignal(&InterpReadyLock);
     __Wait(&InterpReady, &InterpReadyLock);
@@ -239,7 +242,6 @@ BOOL CloseTCLsci(void)
         if (isTkStarted())
         {
             setTkStarted(FALSE);
-            __Terminate(TclThread);
             __WaitThreadDie(TclThread);
             deleteTclInterp();
             TKmainWindow = NULL;
@@ -257,11 +259,12 @@ static char *GetSciPath(void)
     int i = 0;
     int lenPathUnix = 0;
 
-    SciPathTmp = getSCIpath();
+    SciPathTmp = getSCI();
 
     if (SciPathTmp)
     {
-        PathUnix = strdup(SciPathTmp);
+        PathUnix = os_strdup(SciPathTmp);
+        lenPathUnix = (int)strlen(PathUnix);
         for (i = 0; i < lenPathUnix; i++)
         {
             if (PathUnix[i] == '\\')

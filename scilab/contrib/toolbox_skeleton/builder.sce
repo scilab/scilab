@@ -7,7 +7,6 @@ mode(-1);
 lines(0);
 
 function main_builder()
-
     TOOLBOX_NAME  = "toolbox_skeleton";
     TOOLBOX_TITLE = "Toolbox Skeleton";
     toolbox_dir   = get_absolute_file_path("builder.sce");

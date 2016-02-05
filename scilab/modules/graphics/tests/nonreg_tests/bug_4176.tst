@@ -14,10 +14,9 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=4176
 //
 // <-- Short Description -->
-// Plotting huge amount of data nothing is displayed and no errors are displayed. 
-// 
+// Plotting huge amount of data nothing is displayed and no errors are displayed.
+//
 
-stacksize('max')
 Maximum=3e6
 dt=1/Maximum;
 t=0:dt:1;

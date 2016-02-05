@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // The accented letters used in text in Scicos diagram are not visible with xcos at least under Linux.
 
-// start xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5179.cos")
+// start xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5179.zcos")
 
 // Check that accented characters are visible in the diagram.
 

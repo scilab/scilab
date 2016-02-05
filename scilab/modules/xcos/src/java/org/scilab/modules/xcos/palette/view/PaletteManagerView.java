@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -22,7 +25,8 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -45,7 +49,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Implement the default view for the palette
  */
 @SuppressWarnings(value = { "serial" })
-public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
+public class PaletteManagerView extends SwingScilabDockablePanel implements SimpleTab {
     public static final String DEFAULT_WIN_UUID = "xcos-palette-default-window";
     public static final String DEFAULT_TAB_UUID = PaletteManager.MODEL_CLASS_PACKAGE;
 
@@ -86,13 +90,13 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
         }
 
         @Override
-        public String askForClosing(List<SwingScilabTab> list) {
+        public String askForClosing(List<SwingScilabDockablePanel> list) {
             return null;
         }
 
         @Override
-        public void updateDependencies(List<SwingScilabTab> list,
-                                       ListIterator<SwingScilabTab> it) {
+        public void updateDependencies(List<SwingScilabDockablePanel> list,
+                                       ListIterator<SwingScilabDockablePanel> it) {
         }
     }
 
@@ -117,8 +121,8 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
         }
         PaletteManager.getInstance().firePropertyChange("visible", false, true);
 
-        ClosingOperationsManager.addDependencyWithRoot((SwingScilabTab) tab);
-        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab,
+        ClosingOperationsManager.addDependencyWithRoot((SwingScilabDockablePanel) tab);
+        ClosingOperationsManager.registerClosingOperation((SwingScilabDockablePanel) tab,
                 new ClosingOperation());
         ScilabTabFactory.getInstance().addToCache(tab);
     }
@@ -163,7 +167,8 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
 
         /* Create the toolbar */
         final ToolBar toolbar = ScilabToolBar.createToolBar();
-        toolbar.add(LoadAsPalAction.createButton(null));
+        SwingScilabToolBar stb = (SwingScilabToolBar) toolbar.getAsSimpleToolBar();
+        stb.add(LoadAsPalAction.createButton(null));
 
         setToolBar(toolbar);
 
@@ -234,7 +239,7 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
         if (configuration != null) {
             win = configuration;
         } else {
-            win = new SwingScilabWindow();
+            win = SwingScilabWindow.createWindow(true);
         }
 
         win.addTab(this);

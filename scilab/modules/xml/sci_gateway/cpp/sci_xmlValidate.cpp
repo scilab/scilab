@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -30,7 +33,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlValidate(char *fname, unsigned long fname_len)
+int sci_xmlValidate(char *fname, void* pvApiCtx)
 {
     XMLValidation *validation = 0;
 
@@ -71,7 +74,7 @@ int sci_xmlValidate(char *fname, unsigned long fname_len)
         doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (id);
         if (!doc)
         {
-            Scierror(999, gettext("%s: XML document does not exist\n"), fname);
+            Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
             return 0;
         }
     }
@@ -149,7 +152,7 @@ int sci_xmlValidate(char *fname, unsigned long fname_len)
 
         if (clines.size())
         {
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast < const char *const *>(&(clines[0])));
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast < const char * const *>(&(clines[0])));
         }
         else
         {

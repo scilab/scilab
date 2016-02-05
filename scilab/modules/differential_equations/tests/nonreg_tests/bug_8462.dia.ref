@@ -28,19 +28,19 @@ Phi = sqrt(k*Cs^n*L^2/(D*Cs));
 // Conditions aux limites C'(1)=1 , dC'/dr'(0)=0
 global Phi L n
 function rhs=fsub(x,z) // dérivées du système d'équations différentielles
-global Phi L n
-// z(1)=C'
-// z(2)=dC'/dr'
-if x==0 then
-rhs = Phi^2 * z(1)^n;
-else
-rhs = Phi^2 * z(1)^n // - 2/x * z(2);
-end
+    global Phi L n
+    // z(1)=C'
+    // z(2)=dC'/dr'
+    if x==0 then
+        rhs = Phi^2 * z(1)^n;
+    else
+        rhs = Phi^2 * z(1)^n // - 2/x * z(2);
+    end
 endfunction
 function g=gsub(i,z) // conditions aux limites
-g(1)=z(2)
-g(2)=z(1)-1
-g=g'
+    g(1)=z(2)
+    g(2)=z(1)-1
+    g=g'
 endfunction
 o = 1; // nombre d'équations différentielles
 m = [2]; // ordre des équations différentielles du système (ici, 1 équations d'ordre 2)
@@ -52,10 +52,10 @@ x = linspace(L0,L,nx); // points de discrétisation
 ltol = m;
 tol = 1e-14;
 function [z,lhs]=ystart(x)
-z = zeros(2,1);
-z(1) = 1;
-z(2) = 0;
-lhs(1)= 0;
+    z = zeros(2,1);
+    z(1) = 1;
+    z(2) = 0;
+    lhs(1)= 0;
 endfunction
 ierr = 0;
 ierr = execstr("z = bvodeS(x,m,o,L0,L,fsub,gsub,zeta,ltol=ltol,tol=tol,ystart=ystart)", "errcatch");
@@ -69,4 +69,4 @@ ierr = execstr("z = bvodeS(x,m,o,L0,L,fsub,gsub,zeta,ltol=ltol,tol=tol,ystart=ys
  THE MAXIMUM NUMBER OF SUBINTERVALS IS MIN ( 515 (ALLOWED FROM FSPACE), 624 (ALLOWED FROM ISPACE) )
  THE NEW MESH (OF    5 SUBINTERVALS),     0.000000    0.000400    0.000800    0.001200    0.001600    0.002000
  FULL DAMPED NEWTON ITERATION,
-if ierr <> 98 then bugmes();quit;end
+if ierr <> 999 then bugmes();quit;end

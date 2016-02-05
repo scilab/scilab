@@ -40,3 +40,9 @@ xs2pdf(0, "t1.pdf");
 if ~isfile("t1.pdf") then pause, end
 info = fileinfo("t1.pdf");
 if info(1) == 0 then pause, end
+
+//emf
+xs2emf(0, "t1.emf");
+if ~isfile("t1.emf") then pause, end
+info = fileinfo("t1.emf");
+if info(1) == 0 then pause, end

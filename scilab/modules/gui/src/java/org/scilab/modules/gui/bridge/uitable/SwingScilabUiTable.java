@@ -3,27 +3,35 @@
  * Copyright (C) 2010 - Han DONG
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.bridge.uitable;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.JList;
-import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 
-import org.scilab.modules.gui.SwingViewWidget;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.uitable.SimpleUiTable;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -33,16 +41,19 @@ import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab UiTable in GUIs
  * @author Han DONG
  */
-public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, SimpleUiTable {
+public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, Widget {
 
     private static final long serialVersionUID = -5497171010652701217L;
 
     private Integer uid;
+
+    private Border defaultBorder = null;
 
     private JTable uiTable;
     private JList rowHeader;
@@ -124,8 +135,8 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
 
     /**
      * Sets the visibility status of an UIElement
-     * @param newVisibleState the visibility status we want to set for the UIElement
-     *                      (true if the UIElement is visible, false if not)
+     * @param newVisibleState the visibility status we want to set for the
+     * UIElement (true if the UIElement is visible, false if not)
      */
     public void setVisible(boolean newVisibleState) {
         super.setVisible(newVisibleState);
@@ -142,7 +153,8 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
     }
 
     /**
-     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * element
      * @return the position of the element
      * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
@@ -160,7 +172,8 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
     }
 
     /**
-     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * element
      * @param newPosition the position to set to the element
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
@@ -233,8 +246,11 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
      * Set the Relief of the UiTable
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
-    public void setWidgetRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+    public void setRelief(String reliefType) {
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -321,6 +337,12 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
         getLabel().setText(newText);
     }
 
+    public void setEmptyText() {
+        setColumnNames(new String[] {""});
+        setRowNames(new String[] {""});
+        setData(new String[] {""});
+    }
+
     /**
      * Sets the column names for uitable
      * @param names the String[] that contains column names
@@ -352,8 +374,8 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
 
     /**
      * Sets the Data for uitable
-     * @param text the String that contains row data delimited by a '|'
-     *        and column data delimited by " ". Example: 1.26 3.47 | a b | d e | a b
+     * @param text the String that contains row data delimited by a '|' and
+     * column data delimited by " ". Example: 1.26 3.47 | a b | d e | a b
      */
     public void setData(String[] text) {
         //initializes data structure with number of rows and columns
@@ -417,7 +439,65 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        GraphicController controller = GraphicController.getController();
+
+        switch (property) {
+            case __GO_UI_STRING__: {
+                // Update column names
+                String[] stringValue = (String[]) value;
+                if (stringValue.length == 0) {
+                    setColumnNames(new String[] {""});
+                    setRowNames(new String[] {""});
+                    setData(new String[] {""});
+                    return;
+                }
+                int colNb = ((Integer) controller.getProperty(uid, __GO_UI_STRING_COLNB__));
+                String[] colNames = new String[colNb - 1];
+                for (int k = 1; k < colNb; k++) {
+                    colNames[k - 1] = stringValue[k * (stringValue.length / colNb)];
+                }
+
+                setColumnNames(colNames);
+
+                // Update row names
+                String[] rowNames = new String[stringValue.length / colNb - 1];
+                for (int k = 1; k < stringValue.length / colNb; k++) {
+                    rowNames[k - 1] = stringValue[k];
+                }
+
+                setRowNames(rowNames);
+
+                // Update data
+                String[] tableData = new String[rowNames.length * colNames.length];
+                int kData = 0;
+                for (int kCol = 1; kCol <= colNames.length; kCol++) {
+                    for (int kRow = 1; kRow <= rowNames.length; kRow++) {
+                        tableData[kData++] = stringValue[kCol * (stringValue.length / colNb) + kRow];
+                    }
+                }
+
+                if (tableData.length != 0) {
+                    setData(tableData);
+                }
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+            }
+        }
     }
 
+    public void resetBackground() {
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("ScrollPane.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ScrollPane.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

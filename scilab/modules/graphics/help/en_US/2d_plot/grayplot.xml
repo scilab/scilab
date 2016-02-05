@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="grayplot">
@@ -49,7 +52,7 @@
                             key2=value2
                         </literal>
                         ,... where <literal>key1</literal>,
-                        <literal>key2,...</literal> can be one of the following: rect, nax, strf
+                        <literal>key2,...</literal> can be one of the following: rect, nax, strf, logflag
                         or axesflag and frameflag (see <literal>plot2d</literal>).
                     </para>
                 </listitem>
@@ -71,7 +74,7 @@
             <literal>z</literal> on a grid defined by <literal>x</literal> and <literal>y</literal>.
             Each rectangle on the grid is filled with a gray or color level depending
             on the average value of <literal>z</literal> on the corners of the
-            rectangle. If z contains %nan values, the surounding rectangles are not displayed.
+            rectangle. If z contains %nan values, the surrounding rectangles are not displayed.
         </para>
         <para>
             Enter the command <literal>grayplot()</literal> to see a demo.
@@ -121,5 +124,16 @@ grayplot(t,t,m)
                 <link linkend="Sfgrayplot">Sfgrayplot</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Option <function>logflag</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

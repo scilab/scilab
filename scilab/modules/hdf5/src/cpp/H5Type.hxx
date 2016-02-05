@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -100,14 +103,14 @@ public:
         return H5Tcopy(H5T_NATIVE_UINT);
     }
 
-    inline static hid_t getBaseType(long * data)
+    inline static hid_t getBaseType(long long * data)
     {
-        return H5Tcopy(H5T_NATIVE_LONG);
+        return H5Tcopy(H5T_NATIVE_LLONG);
     }
 
-    inline static hid_t getBaseType(unsigned long * data)
+    inline static hid_t getBaseType(unsigned long long * data)
     {
-        return H5Tcopy(H5T_NATIVE_ULONG);
+        return H5Tcopy(H5T_NATIVE_ULLONG);
     }
 
     inline static hid_t getBaseType(char ** data)
@@ -137,10 +140,6 @@ public:
 
         return (hid_t) - 1;
     }
-
-private:
-
-    void init();
 
     static std::map<std::string, hid_t> initMap()
     {
@@ -268,20 +267,29 @@ private:
         nameToType.insert(std::pair<std::string, hid_t>("H5T_MIPS_B64", H5T_MIPS_B64));
         nameToType.insert(std::pair<std::string, hid_t>("H5T_STD_REF_OBJ", H5T_STD_REF_OBJ));
         /*
-                        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D32BE", H5T_UNIX_D32BE));
-                        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D32LE", H5T_UNIX_D32LE));
-                        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D64BE", H5T_UNIX_D64BE));
-                        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D64LE", H5T_UNIX_D64LE));
-        		nameToType.insert(std::pair<std::string, hid_t>("H5T_STRING", H5T_STRING));
-        		nameToType.insert(std::pair<std::string, hid_t>("H5T_OPAQUE", H5T_OPAQUE));
-        		nameToType.insert(std::pair<std::string, hid_t>("H5T_COMPOUND", H5T_COMPOUND));
-        		nameToType.insert(std::pair<std::string, hid_t>("H5T_ENUM", H5T_ENUM));
-        		nameToType.insert(std::pair<std::string, hid_t>("H5T_VLEN", H5T_VLEN));
-        		nameToType.insert(std::pair<std::string, hid_t>("H5T_ARRAY", H5T_ARRAY));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D32BE", H5T_UNIX_D32BE));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D32LE", H5T_UNIX_D32LE));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D64BE", H5T_UNIX_D64BE));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D64LE", H5T_UNIX_D64LE));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_STRING", H5T_STRING));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_OPAQUE", H5T_OPAQUE));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_COMPOUND", H5T_COMPOUND));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_ENUM", H5T_ENUM));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_VLEN", H5T_VLEN));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_ARRAY", H5T_ARRAY));
         */
 
         return nameToType;
     }
+
+    static void cleanMap()
+    {
+        nameToType.clear();
+    }
+
+
+private:
+    void init();
 };
 }
 

@@ -1,13 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
- * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2013-2015 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.forge.scirenderer.ruler.graduations;
@@ -45,7 +48,7 @@ public abstract class AbstractGraduations implements Graduations {
 
     private final Graduations parentGraduations;
     private DecimalFormat numberFormat;
-    private List<Double> subValues;
+    protected List<Double> subValues;
 
     /**
      * Constructor from parent graduations.
@@ -164,12 +167,14 @@ public abstract class AbstractGraduations implements Graduations {
 
             if (maxDisplayedValue < 1e-3) {
                 numberFormat = new DecimalFormat("0.##########E00");
-            } else if (len <= 1e-3) {
+            } else if (false && len <= 1e-3) {
+                // desactivated for now...
+                // the user should be able to do that itself
                 numberFormat = new TinyIntervalFormat("0.####E00", "0.##E00");
             } else if (maxDisplayedValue >= 1e6) {
                 numberFormat = new DecimalFormat("0.##########E00");
             } else if (maxDisplayedValue < 1) {
-                numberFormat = new DecimalFormat("0.##########E00");
+                numberFormat = new DecimalFormat("0.######");
             } else {
                 numberFormat = new DecimalFormat("#,##0.####");
             }
@@ -224,7 +229,7 @@ public abstract class AbstractGraduations implements Graduations {
         } else {
             upperBoundBracket = LEFT_BRACKET;
         }
-        return "Graduation " + lowerBoundBracket
+        return getClass().getSimpleName() + lowerBoundBracket
                + getFormat().format(lowerBound) + ", "
                + getFormat().format(upperBound) + upperBoundBracket;
     }

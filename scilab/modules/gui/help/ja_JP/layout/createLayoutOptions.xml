@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="createLayoutOptions">
+    <refnamediv>
+        <refname>createLayoutOptions</refname>
+        <refpurpose>
+            <literal>frame</literal> uicontrolまたはfigureの配置オプションを作成
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            layout_options = createLayoutOptions(constType, varargin)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>constType</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>
+                        作成する配置オプションの型.
+                        利用可能なオプションの型の一覧を以下に示します,
+                        個々のプロパティについては個々のヘルプページを
+                        参照ください:		      
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>"none" または "nolayout":
+                                配置オプションはuicontrolに追加されません.
+                                利用可能なプロパティはこの型にはありません.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "grid": 
+                                <link linkend="grid_layout_options_properties">グリッドオプション</link>型.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "border": <link linkend="border_layout_options_properties">境界オプション</link>の型.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "gridbag": <link linkend="gridbag_layout_options_properties">gridbagオプション</link>の型.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>varargin</term>
+                <listitem>
+                    <para>
+                        全<literal>constType</literal>専用プロパティ.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>layout_options</term>
+                <listitem>
+                    <para>作成されたlayout_options.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は,
+            <literal>frame</literal> uicontrol または figureの
+            <literal>layout_options</literal>属性を設定する際に使用される
+            配置オプション構造体を作成します. 
+            詳細については,
+            <link linkend="uicontrol_properties">uicontrolプロパティ</link>
+            を参照ください.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="layout">layout</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数<function>createBorder</function>が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

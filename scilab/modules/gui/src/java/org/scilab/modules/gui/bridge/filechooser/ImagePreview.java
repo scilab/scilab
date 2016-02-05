@@ -94,9 +94,13 @@ public class ImagePreview extends JComponent implements PropertyChangeListener {
             file = null;
             update = true;
         } else if (JFileChooser.SELECTED_FILE_CHANGED_PROPERTY.equals(prop)) {
-            file = (File) e.getNewValue();
-            update = true;
+            if (e.getNewValue() != null) {
+                file = (File) e.getNewValue();
+                update = true;
+            }
         } else if (JFileChooser.FILE_FILTER_CHANGED_PROPERTY.equals(prop)) {
+            updateFileName(file);
+
             // Crappy workaround to clear the selection when the filter has changed
             fc.setMultiSelectionEnabled(true);
             fc.setMultiSelectionEnabled(false);
@@ -108,6 +112,24 @@ public class ImagePreview extends JComponent implements PropertyChangeListener {
             if (isShowing()) {
                 loadImage();
                 repaint();
+            }
+        }
+    }
+
+    private void updateFileName(File file) {
+        if (file != null) {
+            String fileName = file.getName();
+            int i = fileName.lastIndexOf('.');
+            if (i != -1) {
+                fileName = fileName.substring(0, i);
+            }
+
+            FileMask ft = (FileMask) fc.getFileFilter();
+            String ext = ft.getExtensionFromFilter();
+
+            if (ext != null && !ext.equals("*")) {
+                fileName += "." + ext;
+                fc.setSelectedFile(new File(fileName));
             }
         }
     }

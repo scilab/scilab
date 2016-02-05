@@ -4,11 +4,14 @@
  * Copyright (C) INRIA -
  * Copyright (C) DIGITEO - 2012 - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="call" xml:lang="en">
@@ -80,7 +83,7 @@
             The short one will give faster code and an easier calling syntax but one
             has to write a small (C or Fortran) interface in order to make the short
             form possible. The long one make it possible to call a Fortran routine (or
-            a C one) whitout modification of the code but the syntax is more complex
+            a C one) without modification of the code but the syntax is more complex
             and the interpreted code slower.
         </para>
         <para>The meaning of each parameter is described now:</para>
@@ -122,8 +125,8 @@
                 <term>"out"</term>
                 <listitem>
                     <para>is a keyword used to separate input variables from output
-                        variables. when this key word is present it is assumes that the long
-                        form will be used and when it is not prsent, the short form is
+                        variables. when this key word is present it is assumed that the long
+                        form will be used and when it is not present, the short form is
                         used.
                     </para>
                 </listitem>
@@ -133,7 +136,7 @@
                 <listitem>
                     <para>
                         are the size (<literal>#</literal> of rows and columns. For
-                        'c' arguments,<literal>m1*n1</literal> is the number of charaters )
+                        'c' arguments,<literal>m1*n1</literal> is the number of characters )
                         of output variables and
                     </para>
                 </listitem>
@@ -224,7 +227,7 @@
             //using the new primitive
             a=[1,2,3;4,5,6];b= %pi;
             [m,n]=size(a);
-            c=call("foof",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d"); 
+            c=call("foof",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
         </programlisting>
         <refsection>
             <title>Limitations to Shared Library Support</title>
@@ -263,13 +266,7 @@
                 <link linkend="c_link">c_link</link>
             </member>
             <member>
-                <link linkend="intersci">intersci</link>
-            </member>
-            <member>
                 <link linkend="addinter">addinter</link>
-            </member>
-            <member>
-                <link linkend="api_scilab">api_scilab</link>
             </member>
         </simplelist>
     </refsection>

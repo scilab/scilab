@@ -5,11 +5,14 @@
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -29,6 +32,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "CurrentSubwin.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 // get_optionals not yet managed
@@ -37,7 +41,7 @@ static int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
                     double* pdblX, int ypos, int yRow, int yCol, double* pdblY, int *ntics);
 
 /*--------------------------------------------------------------------------*/
-int sci_drawaxis(char *fname, unsigned long fname_len)
+int sci_drawaxis(char *fname, void* pvApiCtx)
 {
     /** XXXXX : un point en suspens c'est le "S" ou une adresse est
      *  stockees ds un unsigned long : est ce sufisant ?
@@ -61,12 +65,13 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
     int iSubwinUID = 0;
     int minrhs = -1, maxrhs = 0, minlhs = 0, maxlhs = 1, nopt = 0;
     char dir = 'l', *format = NULL, tics = 'v', **val = NULL;
-    int fontsize = 0, sub_int = 2, seg_flag = 1, textcolor = -1, ticscolor = -1;
+    int fontsize = -1, sub_int = 2, seg_flag = 1, textcolor = -1, ticscolor = -1;
     double *x = NULL, *y = NULL;
     int nx = 0, ny = 0, ntics;
     int nb_tics_labels = -1;
+    int iRhs = nbInputArgument(pvApiCtx);
 
-    nopt = NumOpt();
+    nopt = NumOpt(pvApiCtx);
 
     CheckInputArgument(pvApiCtx, minrhs, maxrhs + nopt);
     CheckOutputArgument(pvApiCtx, minlhs, maxlhs);
@@ -297,7 +302,8 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
 
     Objdrawaxis(dir, tics, x, &nx, y, &ny, val, sub_int, format, fontsize, textcolor, ticscolor, 'n', seg_flag, nb_tics_labels);
 
-    AssignOutputVariable(pvApiCtx, 1) = 0;
+    createScalarHandle(pvApiCtx, iRhs + 1, getHandle(getCurrentObject()));
+    AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
     ReturnArguments(pvApiCtx);
     return 0;
 }

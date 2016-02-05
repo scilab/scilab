@@ -23,7 +23,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 assert_checkerror("nansum(1, ""p"")", refMsg);
 
 assert_checkfalse(execstr("nansum(1, %s)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string or scalar expected.\n"), "nansum", 2);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string or scalar expected.\n"), "nansum", 2);
 assert_checkerror("nansum(1, %s)", refMsg);
 
 assert_checkequal(nansum([]), 0);

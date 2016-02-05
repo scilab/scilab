@@ -1,6 +1,7 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -54,4 +55,3 @@ check_history(expected_history);
 resethistory()
 ierr = execstr("removelinehistory(10)", "errcatch");
 assert_checkequal(ierr, 999);
-

@@ -2,11 +2,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
 //
 
@@ -15,17 +18,16 @@ function block=BARXY_sim(block,flag)
     if flag == 4 | flag == 6
         // Initialisation || Re-Init
         // if already exists (stopped) then reuse
-        f = findobj("Tag", block.label);
+        f = findobj("Tag", block.uid);
         if f == [] then
-            f = figure("Tag", block.label, "Figure_name", "BARXY");
+            f = figure("Tag", block.uid, "Figure_name", "BARXY");
         else
             scf(f);
+            clf();
         end
-        // Create an empty figure without Menu's nor toolbar
-        clf();
+
         f.background = -2;
         a=gca();
-        drawlater();
         a.data_bounds = block.rpar';
         a.isoview = "on";
         u1=block.inptr(1);
@@ -41,12 +43,11 @@ function block=BARXY_sim(block,flag)
         u1=block.inptr(1);
         u2=block.inptr(2);
 
-        f = findobj("Tag", block.label);
-        a = f.children;
+        f = findobj("Tag", block.uid);
 
-        drawlater()
+        a = f.children;
         a.children(1).data = [u1, u2]
-        drawnow();
+
     end
 
 endfunction

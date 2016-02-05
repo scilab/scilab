@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
+// <-- CLI SHELL MODE -->
 xmlFile=xmlRead(SCI+"/modules/xml/tests/unit_tests/w3cExample.xml");
 titles=xmlXPath(xmlFile, "/bookstore/book/title");
 assert_checkequal(titles.size,5);
@@ -19,13 +20,13 @@ assert_checkequal(attribs.lang,"en");
 // Get all the books where the price is more than 35 euros
 moreThan35eList=xmlXPath(xmlFile,"/bookstore/book[price>35]/title");
 assert_checkequal(moreThan35eList.size,2);
-assert_checkequal(size(moreThan35eList),[1,2]); 
+assert_checkequal(size(moreThan35eList),[1,2]);
 assert_checkequal(moreThan35eList(1).content,"XQuery Kick Start");
 assert_checkequal(moreThan35eList(2).content,"Learning XML");
-// Get all the free books 
+// Get all the free books
 freeBooks=xmlXPath(xmlFile,"/bookstore/book[price=0]/title");
 assert_checkequal(freeBooks.size,1);
-assert_checkequal(size(freeBooks),[1,1]); 
+assert_checkequal(size(freeBooks),[1,1]);
 assert_checkequal(freeBooks(1).content,"Scilab rox");
 xmlDelete(xmlFile);
 xmlFile=xmlRead(SCI+"/modules/xml/tests/unit_tests/sep_69_example.xml");
@@ -40,17 +41,6 @@ xmlDelete(xmlFile);
 // Delete the file a second time
 msgerr = msprintf(gettext("%s: XML document does not exist.\n"), "xmlDelete");
 assert_checkerror("xmlDelete(xmlFile)", msgerr);
-xmlClasspath=xmlRead(SCI+"/etc/classpath.xml");
-jarPath=xmlXPath(xmlClasspath, "//classpaths/path[@load=''onUse'']/load");
-assert_checktrue(length(jarPath(1).attributes.on)>0); // Should be Console
-// if the order of classpath.xml does not change
-assert_checkequal(grep(jarPath(1).parent.attributes.value,".jar"),1);
-assert_checkequal(jarPath(1).parent.attributes.load,"onUse");
-jarPath=xmlXPath(xmlClasspath, "//classpaths/path[@load=''onUse'']");
-assert_checktrue(length(jarPath(1).attributes.value)>0);
-assert_checkequal(jarPath(1).attributes.load,"onUse");
-assert_checkequal(jarPath(1).parent.name,"classpaths"); // it is the root dir
-xmlDelete(xmlClasspath);
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
 xmlFile2=xmlRead(SCI+"/etc/classpath.xml");
 content=xmlDump(xmlFile);

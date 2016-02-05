@@ -60,7 +60,7 @@ function [x,y,typ]=DLSS(job,arg1,arg2)
             okD=%t
             if size(D,"*")<>size(C,1)*size(B,2) then
                 if size(D,"*")==1 then
-                    D = ones(C*B) ;
+                    D = D*ones(C*B) ;
                 elseif  size(D,"*")==0 then
                     D = zeros(C*B) ;
                 else
@@ -68,7 +68,7 @@ function [x,y,typ]=DLSS(job,arg1,arg2)
                 end
             end
             if ms<>ns|~okD then
-                message("A matrix is not square or D has wrong dimension")
+                message(_("Matrix A is not square or D has wrong dimension"))
             else
                 [model,graphics,ok]=check_io(model,graphics,in,out,1,[])
                 if ok then

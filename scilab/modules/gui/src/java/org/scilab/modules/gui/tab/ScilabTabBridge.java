@@ -3,33 +3,26 @@
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2009 - DIGITEO - Sylvestre Koumar
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.gui.tab;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
-import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
-import org.scilab.modules.gui.label.Label;
-import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.radiobutton.RadioButton;
-import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
-import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -53,7 +46,7 @@ public class ScilabTabBridge {
      * @return the created tab
      */
     public static SimpleTab createTab(String name) {
-        return new SwingScilabTab(name);
+        return new SwingScilabDockablePanel(name);
     }
 
     /**
@@ -62,7 +55,7 @@ public class ScilabTabBridge {
      * @return the created tab
      */
     public static SimpleTab createTab(String name, String uuid) {
-        return new SwingScilabTab(name, uuid);
+        return new SwingScilabDockablePanel(name, uuid);
     }
 
     /**
@@ -72,7 +65,7 @@ public class ScilabTabBridge {
      * @return the created tab
      */
     public static SimpleTab createTab(String name, int figureId) {
-        return new SwingScilabTab(name, figureId);
+        return new SwingScilabDockablePanel(name, figureId);
     }
 
     /**
@@ -161,25 +154,6 @@ public class ScilabTabBridge {
      * @param member the member to add
      * @return index of member
      */
-    public static int addMember(Tab tab, Frame member) {
-        return tab.getAsSimpleTab().addMember(member);
-    }
-
-    /**
-     * Remove a Frame member from a tab
-     * @param tab the tab which we want to add the Frame to
-     * @param member the Frame to add
-     */
-    public static void removeMember(Tab tab, Frame member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab where we want to add the member
-     * @param member the member to add
-     * @return index of member
-     */
     public static int addMember(Tab tab, Console member) {
         return tab.getAsSimpleTab().addMember(member);
     }
@@ -204,181 +178,10 @@ public class ScilabTabBridge {
         return (tab.getAsSimpleTab().addMember(member));
     }
 
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the pushbutton to
-     * @param member the pushbutton to add
-     * @return the position of the pushbutton in the member list.
-     */
-    public static int addMember(Tab tab, PushButton member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a PushButton member from a tab
-     * @param tab the tab which we want to add the PushButton to
-     * @param member the PushButton to add
-     */
-    public static void removeMember(Tab tab, PushButton member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the EditBox to
-     * @param member the EditBox to add
-     * @return the position of the EditBox in the member list.
-     */
-    public static int addMember(Tab tab, EditBox member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove an EditBox member from a tab
-     * @param tab the tab which we want to remove the EditBox from
-     * @param member the EditBox to add
-     */
-    public static void removeMember(Tab tab, EditBox member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the Label to
-     * @param member the Label to add
-     * @return the position of the Label in the member list.
-     */
-    public static int addMember(Tab tab, Label member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a Label member from a tab
-     * @param tab the tab which we want to remove the Label from
-     * @param member the Label to add
-     */
-    public static void removeMember(Tab tab, Label member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the CheckBox to
-     * @param member the CheckBox to add
-     * @return the position of the CheckBox in the member list.
-     */
-    public static int addMember(Tab tab, CheckBox member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a CheckBox member from a tab
-     * @param tab the tab which we want to remove the CheckBox from
-     * @param member the CheckBox to add
-     */
-    public static void removeMember(Tab tab, CheckBox member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the RadioButton to
-     * @param member the RadioButton to add
-     * @return the position of the RadioButton in the member list.
-     */
-    public static int addMember(Tab tab, RadioButton member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a RadioButton member from a tab
-     * @param tab the tab which we want to remove the RadioButton from
-     * @param member the RadioButton to add
-     */
-    public static void removeMember(Tab tab, RadioButton member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the UiTable to
-     * @param member the UiTable to add
-     * @return the position of the UiTable in the member list.
-     */
-    public static int addMember(Tab tab, UiTable member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a UiTable member from a tab
-     * @param tab the tab which we want to remove the UiTable from
-     * @param member the UiTable to add
-     */
-    public static void removeMember(Tab tab, UiTable member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
     public static int addMember(Tab tab, UiDisplayTree member) {
         return (tab.getAsSimpleTab().addMember(member));
     }
     public static void removeMember(Tab tab, UiDisplayTree member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the Slider to
-     * @param member the Slider to add
-     * @return the position of the Slider in the member list.
-     */
-    public static int addMember(Tab tab, Slider member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a Slider member from a tab
-     * @param tab the tab which we want to remove the Slider from
-     * @param member the Slider to add
-     */
-    public static void removeMember(Tab tab, Slider member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the ListBox to
-     * @param member the ListBox to add
-     * @return the position of the ListBox in the member list.
-     */
-    public static int addMember(Tab tab, ListBox member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a ListBox member from a tab
-     * @param tab the tab which we want to remove the ListBox from
-     * @param member the ListBox to add
-     */
-    public static void removeMember(Tab tab, ListBox member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the PopupMenu to
-     * @param member the PopupMenu to add
-     * @return the position of the PopupMenu in the member list.
-     */
-    public static int addMember(Tab tab, PopupMenu member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a PopupMenu member from a tab
-     * @param tab the tab which we want to remove the PopupMenu from
-     * @param member the PopupMenu to add
-     */
-    public static void removeMember(Tab tab, PopupMenu member) {
         tab.getAsSimpleTab().removeMember(member);
     }
 

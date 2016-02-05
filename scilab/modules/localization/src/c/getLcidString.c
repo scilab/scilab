@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -15,12 +18,12 @@
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "LocaleNameToLCID_Windows.h"
-#include "strdup_windows.h"
 #endif
+#include "os_string.h"
 #include "getLcidString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
-#include "stack-def.h"
+#include "machine.h" /* bsiz */
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_EN_LCID "0x0409"
 /*--------------------------------------------------------------------------*/
@@ -35,12 +38,12 @@ char *getLcidString(const char *pStrLocale)
 
     if (pStrLocale == NULL)
     {
-        return strdup(DEFAULT_EN_LCID);
+        return os_strdup(DEFAULT_EN_LCID);
     }
 #ifdef _MSC_VER
     if ((strcmp(pStrLocale, "") == 0) || (strcmp(pStrLocale, "C") == 0))
     {
-        return strdup(DEFAULT_EN_LCID);
+        return os_strdup(DEFAULT_EN_LCID);
     }
     else
     {
@@ -49,7 +52,7 @@ char *getLcidString(const char *pStrLocale)
 
         if (lcid == 0)
         {
-            pStrLCID = strdup(DEFAULT_EN_LCID);
+            pStrLCID = os_strdup(DEFAULT_EN_LCID);
         }
         else
         {
@@ -62,7 +65,7 @@ char *getLcidString(const char *pStrLocale)
     }
 #else
     /* this routines not used on others platforms */
-    pStrLCID = strdup(DEFAULT_EN_LCID);
+    pStrLCID = os_strdup(DEFAULT_EN_LCID);
 #endif
     return pStrLCID;
 }

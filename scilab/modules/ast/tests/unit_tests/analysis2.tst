@@ -1,0 +1,38 @@
+// ============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
+//
+//  This file is distributed under the same license as the Scilab package.
+// ============================================================================
+// <-- CLI SHELL MODE -->
+//
+
+a = 1:5;
+b = 1:10;
+out = testAnalysis("toeplitz", "a", "b");
+assert_checkequal(out.type, "double");
+assert_checkequal(out.rows, 5);
+assert_checkequal(out.cols, 10);
+
+out = testAnalysis("toeplitz", "a");
+assert_checkequal(out.type, "double");
+assert_checkequal(out.rows, 5);
+assert_checkequal(out.cols, 5);
+
+a = ones(12, 11);
+out = testAnalysis("isnan", "a");
+assert_checkequal(out.type, "boolean");
+assert_checkequal(out.rows, 12);
+assert_checkequal(out.cols, 11);
+
+a = rand(13, 141);
+out = testAnalysis("sinh", "a");
+assert_checkequal(out.type, "double");
+assert_checkequal(out.rows, 13);
+assert_checkequal(out.cols, 141);
+
+a = rand(15, 29);
+out = testAnalysis("factorial", "a");
+assert_checkequal(out.type, "double");
+assert_checkequal(out.rows, 15);
+assert_checkequal(out.cols, 29);

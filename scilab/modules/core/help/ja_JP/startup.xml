@@ -5,36 +5,51 @@
         <refpurpose>スタートアップファイル</refpurpose>
     </refnamediv>
     <refsection>
-        <title>説明</title>
-        <para>
-            スタートアップファイル <literal>SCIHOME/.scilab</literal> および
-            <literal>SCIHOME/scilab.ini</literal> は,
-            (もし存在する場合,) Scilabの起動時に自動的に実行されます.
-            Scilab directory (SCI) にあるファイル<literal>scilab.star</literal>
-            も同様です.
-        </para>
+      <title>説明</title>
+      <para>
+        スタートアップファイル <link linkend="SCIHOME">SCIHOME</link>/.scilab および
+        <link linkend="SCIHOME">SCIHOME</link>/scilab.ini は,
+        (もし存在する場合,) 
+	ファイル <link linkend="SCI">SCI</link>/etc/scilab.start と同様に,
+	Scilabの起動時に自動的に実行されます.
+      </para>
     </refsection>
     <refsection>
-        <title>注意</title>
-        <para>
-            スタートアップファイルの最終行は, 有効とするために
-            改行で終わる必要があります.
-        </para>
-        <para>SCIHOME の定義 : Windowsの場合 : C:/Documents および
-            Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt; 
-        </para>
-        <para>Vistaの場合 :
-            C:/&lt;User&gt;/AppData/Roaming/Scilab/&lt;Scilab-Version&gt; 
-        </para>
-        <para>Linux/Unixの場合 :
-            /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
-        </para>
+      <title>注意</title>
+      <para>
+        スタートアップファイルの最終行は, 有効とするために
+        改行で終わる必要があります.
+      </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+ls(SCIHOME)
+if ls(SCIHOME+"/scilab.ini") == [] & ls(SCIHOME+"/.scilab") == []
+   disp("No startup file defined");
+end
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="scilab">scilab</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="SCIHOME">SCIHOME</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="SCI">SCI</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="TMPDIR">TMPDIR</link>
             </member>
         </simplelist>
     </refsection>

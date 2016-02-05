@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -231,7 +234,7 @@ void Triangulator::removeDuplicateVertices(void)
 
     for (size_t i = 0; i < points.size(); i++)
     {
-        int ic = ((int)i+1) % (int)points.size();
+        int ic = ((int)i + 1) % (int)points.size();
         int icm1 = (int)i;
 
         Vector3d vi = points[icm1];
@@ -599,6 +602,9 @@ Triangulator::Triangulator(void)
     numEarTests = 0;
     numColinearVertices = 0;
 
+    xmin = ymin = zmin = std::numeric_limits<double>::max();
+    xmax = ymax = zmax = std::numeric_limits<double>::min();
+
     inputPoints.clear();
     points.clear();
     vertexIndices.clear();
@@ -612,6 +618,38 @@ Triangulator::Triangulator(void)
 
 void Triangulator::initialize(void)
 {
+    const double xscale = xmax - xmin;
+    const double yscale = ymax - ymin;
+    const double zscale = zmax - zmin;
+    // we scale-translate the point in the cube [0,1]^3 to avoid error with floating point operations
+    for (std::vector<Vector3d>::iterator i = inputPoints.begin(), e = inputPoints.end(); i != e; ++i)
+    {
+        if (xscale)
+        {
+            i->x = (i->x - xmin) / xscale;
+        }
+        else
+        {
+            i->x = 1;
+        }
+        if (yscale)
+        {
+            i->y = (i->y - ymin) / yscale;
+        }
+        else
+        {
+            i->y = 1;
+        }
+        if (zscale)
+        {
+            i->z = (i->z - zmin) / zscale;
+        }
+        else
+        {
+            i->z = 1;
+        }
+    }
+
     double area = 0.;
 
     numPoints = (int)inputPoints.size();
@@ -650,11 +688,38 @@ void Triangulator::initialize(void)
 
 void Triangulator::addPoint(double x, double y, double z)
 {
-    Vector3d point;
+    Vector3d point(x, y, z);
 
-    point.x = x;
+    if (x < xmin)
+    {
+        xmin = x;
+    }
+    if (x > xmax)
+    {
+        xmax = x;
+    }
+
+    if (y < ymin)
+    {
+        ymin = y;
+    }
+    if (y > ymax)
+    {
+        ymax = y;
+    }
+
+    if (z < zmin)
+    {
+        zmin = z;
+    }
+    if (z > zmax)
+    {
+        zmax = z;
+    }
+
+    /*point.x = x;
     point.y = y;
-    point.z = z;
+    point.z = z;*/
 
     inputPoints.push_back(point);
 }

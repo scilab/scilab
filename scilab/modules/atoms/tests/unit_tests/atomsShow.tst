@@ -20,14 +20,14 @@ atomsSetConfig("Verbose" ,"False");
 
 // Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
 // =============================================================================
-atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
+atomsRepositorySetOfl("http://scene10.6.0.test.atoms.scilab.org");
 
 // Install the toolbox 5
 // =============================================================================
 
-atomsInstall("toolbox_3");
-atomsShow("toolbox_3");
-atomsRemove("toolbox_3");
+atomsInstall("toolbox_3V6");
+atomsShow("toolbox_3V6");
+atomsRemove("toolbox_3V6");
 
 // Restore original values
 // =============================================================================

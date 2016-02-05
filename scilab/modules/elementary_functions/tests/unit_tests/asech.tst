@@ -225,26 +225,26 @@ refi=[1, 0.
 ];
 
 
-     x=ref(:,1);
-     e=max(abs((ref(:,2)-asech(x))./ref(:,2)));
-     if e>20*eps then pause,end
-     x=-ref(:,1);
-     e=max(abs((ref(:,2)+imult(pi)-asech(x))./(ref(:,2)+imult(pi))));
-     if e>10*eps then pause,end
-     
-     
-     x=refi(:,1);
-     e=max(abs((imult(refi(:,2))-asech(x))./refi(:,2)));
-     if e>10*eps then pause,end
-     x=-refi(:,1);
-     e=max(abs((imult(pi-refi(:,2))-asech(x))./(pi-refi(:,2))));
-     if e>10*eps then pause,end
+ x=ref(:,1);
+ e=max(abs((ref(:,2)-asech(x))./ref(:,2)));
+ assert_checkfalse(e>20*eps);
+ x=-ref(:,1);
+ e=max(abs((ref(:,2)+imult(pi)-asech(x))./(ref(:,2)+imult(pi))));
+ assert_checkfalse(e>10*eps);
  
-    
-     if asech(0)<>Inf then pause,end
-     if imag(asech(Inf))<>pi/2 then pause,end
+ 
+ x=refi(:,1);
+ e=max(abs((imult(refi(:,2))-asech(x))./refi(:,2)));
+ assert_checkfalse(e>10*eps);
+ x=-refi(:,1);
+ e=max(abs((imult(pi-refi(:,2))-asech(x))./(pi-refi(:,2))));
+ assert_checkfalse(e>10*eps);
 
-     if ~isnan(asech(NaN)) then pause,end
 
-     if asech([])<>[] then pause,end
+ assert_checkequal(asech(0), Inf);
+ assert_checkalmostequal(imag(asech(Inf)), pi/2);
+
+ assert_checktrue(isnan(asech(NaN)));
+
+ assert_checkequal(asech([]), []);
 

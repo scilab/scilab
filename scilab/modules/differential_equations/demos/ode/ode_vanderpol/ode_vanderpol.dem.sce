@@ -49,7 +49,7 @@ function demo_ode_vanderpol()
     a=gca();a.margins(3)=0.2
     title([_("Van der Pol vector field")
     "dy1/dt=y2"
-    "dy2/dt=5*(1-y1^2*y2-y1"],"fontsize",3)
+    "dy2/dt=5*(1-y1^2)*y2-y1"],"fontsize",3)
 
     t0=0; dt=0.05; tmax=15;
     t=t0:dt:tmax;

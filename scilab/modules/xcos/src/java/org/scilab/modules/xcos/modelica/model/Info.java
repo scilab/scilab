@@ -3,32 +3,34 @@
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  * Copyright (C) 2011-2013 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.modelica.model;
 
 import java.math.BigInteger;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
  * Specify the size of all the parameters, state, inputs or outputs.
  *
- * <p>
- * Java class for Info complex type.
+ * <p>Java class for Info complex type.
  *
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="Info">
@@ -55,10 +57,19 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Info", propOrder = { "numberOfIntegerParameters", "numberOfRealParameters", "numberOfStringParameters", "numberOfDiscreteVariables",
-                                      "numberOfContinuousVariables", "numberOfContinuousUnknowns", "numberOfContinuousStates", "numberOfInputs", "numberOfOutputs", "numberOfModes",
-                                      "numberOfZeroCrossings"
-                                    })
+@XmlType(name = "Info", propOrder = {
+    "numberOfIntegerParameters",
+    "numberOfRealParameters",
+    "numberOfStringParameters",
+    "numberOfDiscreteVariables",
+    "numberOfContinuousVariables",
+    "numberOfContinuousUnknowns",
+    "numberOfContinuousStates",
+    "numberOfInputs",
+    "numberOfOutputs",
+    "numberOfModes",
+    "numberOfZeroCrossings"
+})
 public class Info {
 
     @XmlElement(name = "number_of_integer_parameters")
@@ -98,7 +109,9 @@ public class Info {
     /**
      * Gets the value of the numberOfIntegerParameters property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getNumberOfIntegerParameters() {
@@ -109,7 +122,8 @@ public class Info {
      * Sets the value of the numberOfIntegerParameters property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setNumberOfIntegerParameters(BigInteger value) {
@@ -119,7 +133,9 @@ public class Info {
     /**
      * Gets the value of the numberOfRealParameters property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getNumberOfRealParameters() {
@@ -130,7 +146,8 @@ public class Info {
      * Sets the value of the numberOfRealParameters property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setNumberOfRealParameters(BigInteger value) {
@@ -140,7 +157,9 @@ public class Info {
     /**
      * Gets the value of the numberOfStringParameters property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getNumberOfStringParameters() {
@@ -151,7 +170,8 @@ public class Info {
      * Sets the value of the numberOfStringParameters property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setNumberOfStringParameters(BigInteger value) {
@@ -161,7 +181,9 @@ public class Info {
     /**
      * Gets the value of the numberOfDiscreteVariables property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getNumberOfDiscreteVariables() {
@@ -172,7 +194,8 @@ public class Info {
      * Sets the value of the numberOfDiscreteVariables property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setNumberOfDiscreteVariables(BigInteger value) {
@@ -182,7 +205,9 @@ public class Info {
     /**
      * Gets the value of the numberOfContinuousVariables property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getNumberOfContinuousVariables() {
@@ -193,7 +218,8 @@ public class Info {
      * Sets the value of the numberOfContinuousVariables property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setNumberOfContinuousVariables(BigInteger value) {
@@ -203,7 +229,9 @@ public class Info {
     /**
      * Gets the value of the numberOfContinuousUnknowns property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getNumberOfContinuousUnknowns() {
@@ -214,7 +242,8 @@ public class Info {
      * Sets the value of the numberOfContinuousUnknowns property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setNumberOfContinuousUnknowns(BigInteger value) {
@@ -224,7 +253,9 @@ public class Info {
     /**
      * Gets the value of the numberOfContinuousStates property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getNumberOfContinuousStates() {
@@ -235,7 +266,8 @@ public class Info {
      * Sets the value of the numberOfContinuousStates property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setNumberOfContinuousStates(BigInteger value) {
@@ -245,7 +277,9 @@ public class Info {
     /**
      * Gets the value of the numberOfInputs property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getNumberOfInputs() {
@@ -256,7 +290,8 @@ public class Info {
      * Sets the value of the numberOfInputs property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setNumberOfInputs(BigInteger value) {
@@ -266,7 +301,9 @@ public class Info {
     /**
      * Gets the value of the numberOfOutputs property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getNumberOfOutputs() {
@@ -277,7 +314,8 @@ public class Info {
      * Sets the value of the numberOfOutputs property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setNumberOfOutputs(BigInteger value) {
@@ -287,7 +325,9 @@ public class Info {
     /**
      * Gets the value of the numberOfModes property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getNumberOfModes() {
@@ -298,7 +338,8 @@ public class Info {
      * Sets the value of the numberOfModes property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setNumberOfModes(BigInteger value) {
@@ -308,7 +349,9 @@ public class Info {
     /**
      * Gets the value of the numberOfZeroCrossings property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getNumberOfZeroCrossings() {
@@ -319,7 +362,8 @@ public class Info {
      * Sets the value of the numberOfZeroCrossings property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setNumberOfZeroCrossings(BigInteger value) {

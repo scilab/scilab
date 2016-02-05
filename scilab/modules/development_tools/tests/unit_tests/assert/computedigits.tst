@@ -1,28 +1,31 @@
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 
 function flag = MY_assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
+    if computed==expected then
+        flag = 1;
+    else
+        flag = 0;
+    end
+    if flag <> 1 then pause,end
 endfunction
 
 format("v",10);
 
 //
-dmax = -log10(2^(-53));
+dmax = -log(2^(-53))/log(10);
 //
 computed = assert_computedigits ( 1 , 1 );
 MY_assert_equal ( computed , dmax );
@@ -82,7 +85,7 @@ ieee(back);
 a = [
 3.982729777831130693D-59
 2.584939414228211484D-26
-4.391531370352049090D+43 
+4.391531370352049090D+43
 1.725436586898508346D+68
 ];
 b = [
@@ -93,18 +96,18 @@ b = [
 ];
 c = assert_computedigits ( a , b , 2 );
 e = [
-    53.        
-    53.        
-    51.977632  
-    51.678072  
+53.
+53.
+51.977632
+51.678072
 ];
 assert_checkalmostequal ( c , e , 1.e-7 );
 //
-// Check that the vectorization was correct, i.e. no specific  
+// Check that the vectorization was correct, i.e. no specific
 // case in the processing of the data is forgotten.
 //
 function pI = permInverse(p)
-    // Given the permutation p, compute the 
+    // Given the permutation p, compute the
     // inverse permutation pI.
     N = size(p,"*")
     pI(p) = (1:N)'

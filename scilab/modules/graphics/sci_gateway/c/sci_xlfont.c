@@ -5,11 +5,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,6 +21,8 @@
 /* desc : interface for xlfont routine                                    */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+#include "gw_graphics.h"
 #include "api_scilab.h"
 #include "RendererFontManager.h"
 #include "freeArrayOfString.h"
@@ -25,11 +30,11 @@
 #include "Scierror.h"
 #include "FileExist.h"
 /*--------------------------------------------------------------------------*/
-static int xlfont_no_rhs(char * fname);
-static int xlfont_one_rhs(char * fname);
-static int xlfont_n_rhs(char * fname);
+static int xlfont_no_rhs(char * fname, void* pvApiCtx);
+static int xlfont_one_rhs(char * fname, void* pvApiCtx);
+static int xlfont_n_rhs(char * fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
-int sci_xlfont(char * fname, unsigned long fname_len)
+int sci_xlfont(char * fname, void *pvApiCtx)
 {
     CheckInputArgument(pvApiCtx, 0, 4);
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -37,19 +42,19 @@ int sci_xlfont(char * fname, unsigned long fname_len)
     switch (nbInputArgument(pvApiCtx))
     {
         case 0:
-            return xlfont_no_rhs(fname);
+            return xlfont_no_rhs(fname, pvApiCtx);
             break;
         case 1:
-            return xlfont_one_rhs(fname);
+            return xlfont_one_rhs(fname, pvApiCtx);
             break;
         default:
-            return xlfont_n_rhs(fname);
+            return xlfont_n_rhs(fname, pvApiCtx);
             break;
     }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int xlfont_no_rhs(char * fname)
+static int xlfont_no_rhs(char * fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int m1 = 0, n1 = 0;
@@ -73,7 +78,7 @@ static int xlfont_no_rhs(char * fname)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int xlfont_one_rhs(char * fname)
+static int xlfont_one_rhs(char * fname, void* pvApiCtx)
 {
     SciErr sciErr;
     if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)))
@@ -93,7 +98,7 @@ static int xlfont_one_rhs(char * fname)
         // Retrieve a matrix of double at position 1.
         if (getAllocatedSingleString(pvApiCtx, piAddrl1, &strl1))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
 
@@ -182,14 +187,14 @@ static int xlfont_one_rhs(char * fname)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return 0;
     }
 
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int xlfont_n_rhs(char * fname)
+static int xlfont_n_rhs(char * fname, void* pvApiCtx)
 {
     SciErr sciErr;
     BOOL isBold = FALSE;
@@ -218,7 +223,7 @@ static int xlfont_n_rhs(char * fname)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: Boolean matrix expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), fname, 3);
             return 1;
         }
 
@@ -247,7 +252,7 @@ static int xlfont_n_rhs(char * fname)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: Boolean matrix expected.\n"), fname, 4);
+            Scierror(202, _("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), fname, 4);
             return 1;
         }
 
@@ -275,7 +280,7 @@ static int xlfont_n_rhs(char * fname)
         // Retrieve a matrix of double at position 1.
         if (getAllocatedSingleString(pvApiCtx, piAddrl1, &strl1))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
 
@@ -291,7 +296,7 @@ static int xlfont_n_rhs(char * fname)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
             return 1;
         }
 
@@ -359,7 +364,7 @@ static int xlfont_n_rhs(char * fname)
     {
         if ((!checkInputArgumentType(pvApiCtx, 1, sci_strings)))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
 

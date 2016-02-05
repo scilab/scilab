@@ -2,11 +2,14 @@
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
-; This file must be used under the terms of the CeCILL.
-; This source file is licensed as described in the file COPYING, which
-; you should have received as part of this distribution.  The terms
-; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+; Copyright (C) 2012 - 2016 - Scilab Enterprises
+;
+; This file is hereby licensed under the terms of the GNU GPL v2.0,
+; pursuant to article 5.3.4 of the CeCILL v.2.1.
+; This file was originally licensed under the terms of the CeCILL v2.1,
+; and continues to be available under such terms.
+; For more information, see the COPYING file which you should have received
+; along with this program.
 ;
 ;-------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -25,6 +28,6 @@ Name: "it_IT"; MessagesFile: "compiler:Languages\Italian.isl"; LicenseFile: {#Bi
 Name: "ca_ES"; MessagesFile: "compiler:Languages\Catalan.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
 Name: "de_DE"; MessagesFile: "compiler:Languages\German.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
 Name: "pt_BR"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
-Name: "fr_FR"; MessagesFile: "compiler:Languages\French.isl"; LicenseFile: {#BinariesSourcePath}\COPYING-FR
+Name: "fr_FR"; MessagesFile: "compiler:Languages\French.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
 Name: "cs_CZ"; MessagesFile: "compiler:Languages\Czech.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
 ;-------------------------------------------------------------------------------

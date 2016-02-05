@@ -2,20 +2,22 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <jni.h>
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "sci_types.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 
 #ifdef __cplusplus
@@ -55,13 +57,13 @@ extern "C" {
             switch (listType)
             {
                 case 'l' :
-                    sciErr = createListInNamedList(pvApiCtx, varName, parentList, pos, listLen - 1, &currentList);
+                    sciErr = createListInNamedList(NULL, varName, parentList, pos, listLen - 1, &currentList);
                     break;
                 case 't' :
-                    sciErr = createTListInNamedList(pvApiCtx, varName, parentList, pos, listLen - 1, &currentList);
+                    sciErr = createTListInNamedList(NULL, varName, parentList, pos, listLen - 1, &currentList);
                     break;
                 case 'm' :
-                    sciErr = createMListInNamedList(pvApiCtx, varName, parentList, pos, listLen - 1, &currentList);
+                    sciErr = createMListInNamedList(NULL, varName, parentList, pos, listLen - 1, &currentList);
                     break;
             }
         }
@@ -71,13 +73,13 @@ extern "C" {
             switch (listType)
             {
                 case 'l' :
-                    sciErr = createNamedList(pvApiCtx, varName, listLen - 1, &currentList);
+                    sciErr = createNamedList(NULL, varName, listLen - 1, &currentList);
                     break;
                 case 't' :
-                    sciErr = createNamedTList(pvApiCtx, varName, listLen - 1, &currentList);
+                    sciErr = createNamedTList(NULL, varName, listLen - 1, &currentList);
                     break;
                 case 'm' :
-                    sciErr = createNamedMList(pvApiCtx, varName, listLen - 1, &currentList);
+                    sciErr = createNamedMList(NULL, varName, listLen - 1, &currentList);
                     break;
             }
         }
@@ -110,7 +112,7 @@ extern "C" {
                     if (!data)
                     {
                         // empty matrix
-                        sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, 0, 0, 0);
+                        sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
                         (*jenv)->DeleteLocalRef(jenv, infos);
                         break;
                     }
@@ -143,7 +145,7 @@ extern "C" {
                         }
                         (*jenv)->DeleteLocalRef(jenv, data);
 
-                        sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, nbRow, nbCol, real);
+                        sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, nbRow, nbCol, real);
                         FREE(real);
                     }
                     else
@@ -182,7 +184,7 @@ extern "C" {
                         (*jenv)->DeleteLocalRef(jenv, data);
                         (*jenv)->DeleteLocalRef(jenv, imagData);
 
-                        sciErr = createComplexMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, nbRow, nbCol, real, imag);
+                        sciErr = createComplexMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, nbRow, nbCol, real, imag);
                         FREE(real);
                         FREE(imag);
                     }
@@ -205,7 +207,7 @@ extern "C" {
 
                     if (!data || nbRow == 0)
                     {
-                        sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, 0, 0, 0);
+                        sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
                         if (!data)
                         {
                             (*jenv)->DeleteLocalRef(jenv, data);
@@ -249,7 +251,7 @@ extern "C" {
                         }
                         (*jenv)->DeleteLocalRef(jenv, data);
 
-                        sciErr = createMatrixOfPolyInNamedList(pvApiCtx, varName, currentList, i + 1, polyVarName, nbRow, nbCol, nbCoef, (const double * const*)real);
+                        sciErr = createMatrixOfPolyInNamedList(NULL, varName, currentList, i + 1, polyVarName, nbRow, nbCol, nbCoef, (const double * const*)real);
                         for (j = 0; j < nbRow * nbCol; j++)
                         {
                             FREE(real[j]);
@@ -300,7 +302,7 @@ extern "C" {
                         (*jenv)->DeleteLocalRef(jenv, data);
                         (*jenv)->DeleteLocalRef(jenv, imagData);
 
-                        sciErr = createComplexMatrixOfPolyInNamedList(pvApiCtx, varName, currentList, i + 1, polyVarName, nbRow, nbCol, nbCoef, (const double * const*)real, (const double * const*)imag);
+                        sciErr = createComplexMatrixOfPolyInNamedList(NULL, varName, currentList, i + 1, polyVarName, nbRow, nbCol, nbCoef, (const double * const*)real, (const double * const*)imag);
                         for (j = 0; j < nbRow * nbCol; j++)
                         {
                             FREE(real[j]);
@@ -326,7 +328,7 @@ extern "C" {
 
                     if (!data || nbRow == 0)
                     {
-                        sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, 0, 0, 0);
+                        sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
                         if (!data)
                         {
                             (*jenv)->DeleteLocalRef(jenv, data);
@@ -358,7 +360,7 @@ extern "C" {
                     }
                     (*jenv)->DeleteLocalRef(jenv, data);
 
-                    sciErr = createMatrixOfBooleanInNamedList(pvApiCtx, varName, currentList, i + 1, nbRow, nbCol, (const int *)b);
+                    sciErr = createMatrixOfBooleanInNamedList(NULL, varName, currentList, i + 1, nbRow, nbCol, (const int *)b);
                     FREE(b);
                     break;
                 }
@@ -400,12 +402,12 @@ extern "C" {
 
                     if (isReal)
                     {
-                        sciErr = createSparseMatrixInNamedList(pvApiCtx, varName, currentList, i + 1, dims[0], dims[1], nbNonNull, nbItemRow, colPos, data);
+                        sciErr = createSparseMatrixInNamedList(NULL, varName, currentList, i + 1, dims[0], dims[1], nbNonNull, nbItemRow, colPos, data);
                         (*jenv)->ReleasePrimitiveArrayCritical(jenv, jdata, data, JNI_ABORT);
                     }
                     else
                     {
-                        sciErr = createComplexSparseMatrixInNamedList(pvApiCtx, varName, currentList, i + 1, dims[0], dims[1], nbNonNull, nbItemRow, colPos, data, imagData);
+                        sciErr = createComplexSparseMatrixInNamedList(NULL, varName, currentList, i + 1, dims[0], dims[1], nbNonNull, nbItemRow, colPos, data, imagData);
                         (*jenv)->ReleasePrimitiveArrayCritical(jenv, jimagData, imagData, JNI_ABORT);
                         (*jenv)->ReleasePrimitiveArrayCritical(jenv, jdata, data, JNI_ABORT);
                     }
@@ -445,7 +447,7 @@ extern "C" {
                     isCopy1 = JNI_FALSE;
                     colPos = (int*)(*jenv)->GetPrimitiveArrayCritical(jenv, jcolPos, &isCopy1);
 
-                    sciErr = createBooleanSparseMatrixInNamedList(pvApiCtx, varName, currentList, i + 1, dims[0], dims[1], nbNonNull, nbItemRow, colPos);
+                    sciErr = createBooleanSparseMatrixInNamedList(NULL, varName, currentList, i + 1, dims[0], dims[1], nbNonNull, nbItemRow, colPos);
 
                     (*jenv)->ReleasePrimitiveArrayCritical(jenv, jcolPos, colPos, JNI_ABORT);
                     (*jenv)->ReleasePrimitiveArrayCritical(jenv, jnbItemRow, nbItemRow, JNI_ABORT);
@@ -480,7 +482,7 @@ extern "C" {
 
                             if (!jdata || nbRow == 0)
                             {
-                                sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, 0, 0, 0);
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
                                 if (!jdata)
                                 {
                                     (*jenv)->DeleteLocalRef(jenv, jdata);
@@ -512,7 +514,7 @@ extern "C" {
                             }
                             (*jenv)->DeleteLocalRef(jenv, jdata);
 
-                            sciErr = createMatrixOfInteger8InNamedList(pvApiCtx, varName, currentList, i + 1, nbRow, nbCol, data);
+                            sciErr = createMatrixOfInteger8InNamedList(NULL, varName, currentList, i + 1, nbRow, nbCol, data);
                             FREE(data);
                             break;
                         }
@@ -526,7 +528,7 @@ extern "C" {
 
                             if (!jdata || nbRow == 0)
                             {
-                                sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, 0, 0, 0);
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
                                 if (!jdata)
                                 {
                                     (*jenv)->DeleteLocalRef(jenv, jdata);
@@ -558,7 +560,7 @@ extern "C" {
                             }
                             (*jenv)->DeleteLocalRef(jenv, jdata);
 
-                            sciErr = createMatrixOfUnsignedInteger8InNamedList(pvApiCtx, varName, currentList, i + 1, nbRow, nbCol, data);
+                            sciErr = createMatrixOfUnsignedInteger8InNamedList(NULL, varName, currentList, i + 1, nbRow, nbCol, data);
                             FREE(data);
 
                             break;
@@ -573,7 +575,7 @@ extern "C" {
 
                             if (!jdata || nbRow == 0)
                             {
-                                sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, 0, 0, 0);
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
                                 if (!jdata)
                                 {
                                     (*jenv)->DeleteLocalRef(jenv, jdata);
@@ -605,7 +607,7 @@ extern "C" {
                             }
                             (*jenv)->DeleteLocalRef(jenv, jdata);
 
-                            sciErr = createMatrixOfInteger16InNamedList(pvApiCtx, varName, currentList, i + 1, nbRow, nbCol, data);
+                            sciErr = createMatrixOfInteger16InNamedList(NULL, varName, currentList, i + 1, nbRow, nbCol, data);
                             FREE(data);
 
                             break;
@@ -620,7 +622,7 @@ extern "C" {
 
                             if (!jdata || nbRow == 0)
                             {
-                                sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, 0, 0, 0);
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
                                 if (!jdata)
                                 {
                                     (*jenv)->DeleteLocalRef(jenv, jdata);
@@ -652,7 +654,7 @@ extern "C" {
                             }
                             (*jenv)->DeleteLocalRef(jenv, jdata);
 
-                            sciErr = createMatrixOfUnsignedInteger16InNamedList(pvApiCtx, varName, currentList, i + 1, nbRow, nbCol, data);
+                            sciErr = createMatrixOfUnsignedInteger16InNamedList(NULL, varName, currentList, i + 1, nbRow, nbCol, data);
                             FREE(data);
 
                             break;
@@ -667,7 +669,7 @@ extern "C" {
 
                             if (!jdata || nbRow == 0)
                             {
-                                sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, 0, 0, 0);
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
                                 if (!jdata)
                                 {
                                     (*jenv)->DeleteLocalRef(jenv, jdata);
@@ -699,7 +701,7 @@ extern "C" {
                             }
                             (*jenv)->DeleteLocalRef(jenv, jdata);
 
-                            sciErr = createMatrixOfInteger32InNamedList(pvApiCtx, varName, currentList, i + 1, nbRow, nbCol, data);
+                            sciErr = createMatrixOfInteger32InNamedList(NULL, varName, currentList, i + 1, nbRow, nbCol, data);
                             FREE(data);
 
                             break;
@@ -714,7 +716,7 @@ extern "C" {
 
                             if (!jdata || nbRow == 0)
                             {
-                                sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, 0, 0, 0);
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
                                 if (!jdata)
                                 {
                                     (*jenv)->DeleteLocalRef(jenv, jdata);
@@ -746,7 +748,7 @@ extern "C" {
                             }
                             (*jenv)->DeleteLocalRef(jenv, jdata);
 
-                            sciErr = createMatrixOfUnsignedInteger32InNamedList(pvApiCtx, varName, currentList, i + 1, nbRow, nbCol, data);
+                            sciErr = createMatrixOfUnsignedInteger32InNamedList(NULL, varName, currentList, i + 1, nbRow, nbCol, data);
                             FREE(data);
 
                             break;
@@ -758,11 +760,11 @@ extern "C" {
                             int nbRow = (*jenv)->GetArrayLength(jenv, jdata);
                             int nbCol = 0;
                             int j = 0, k;
-                            long * data = 0;
+                            long long* data = 0;
 
                             if (!jdata || nbRow == 0)
                             {
-                                sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, 0, 0, 0);
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
                                 if (!jdata)
                                 {
                                     (*jenv)->DeleteLocalRef(jenv, jdata);
@@ -773,14 +775,16 @@ extern "C" {
                             // Get the matrix rows
                             for (; j < nbRow; j++)
                             {
+                                jboolean isCopy1 = JNI_FALSE;
+                                jlong* element = NULL;
                                 jlongArray oneDim = (jlongArray)(*jenv)->GetObjectArrayElement(jenv, jdata, j);
                                 if (nbCol == 0)
                                 {
                                     nbCol = (*jenv)->GetArrayLength(jenv, oneDim);
-                                    data = (long*)MALLOC(sizeof(long) * nbRow * nbCol);
+                                    data = (long long*)MALLOC(sizeof(long long) * nbRow * nbCol);
                                 }
-                                jboolean isCopy1 = JNI_FALSE;
-                                jlong* element = (jlong*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy1);
+                                isCopy1 = JNI_FALSE;
+                                element = (jlong*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy1);
 
                                 // Get the matrix element
                                 for (k = 0; k < nbCol; k++)
@@ -792,7 +796,7 @@ extern "C" {
                             }
                             (*jenv)->DeleteLocalRef(jenv, jdata);
 
-                            sciErr = createMatrixOfInteger64InNamedList(pvApiCtx, varName, currentList, i + 1, nbRow, nbCol, data);
+                            sciErr = createMatrixOfInteger64InNamedList(NULL, varName, currentList, i + 1, nbRow, nbCol, data);
                             FREE(data);
 
                             break;
@@ -803,11 +807,11 @@ extern "C" {
                             int nbRow = (*jenv)->GetArrayLength(jenv, jdata);
                             int nbCol = 0;
                             int j = 0, k;
-                            unsigned long * data = 0;
+                            unsigned long long* data = 0;
 
                             if (!jdata || nbRow == 0)
                             {
-                                sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, 0, 0, 0);
+                                sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
                                 if (!jdata)
                                 {
                                     (*jenv)->DeleteLocalRef(jenv, jdata);
@@ -818,14 +822,16 @@ extern "C" {
                             // Get the matrix rows
                             for (; j < nbRow; j++)
                             {
+                                jboolean isCopy1 = JNI_FALSE;
+                                jlong* element = NULL;
                                 jlongArray oneDim = (jlongArray)(*jenv)->GetObjectArrayElement(jenv, jdata, j);
                                 if (nbCol == 0)
                                 {
                                     nbCol = (*jenv)->GetArrayLength(jenv, oneDim);
-                                    data = (unsigned long*)MALLOC(sizeof(unsigned long) * nbRow * nbCol);
+                                    data = (unsigned long long*)MALLOC(sizeof(unsigned long long) * nbRow * nbCol);
                                 }
-                                jboolean isCopy1 = JNI_FALSE;
-                                jlong* element = (jlong*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy1);
+                                isCopy1 = JNI_FALSE;
+                                element = (jlong*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy1);
 
                                 // Get the matrix element
                                 for (k = 0; k < nbCol; k++)
@@ -837,7 +843,7 @@ extern "C" {
                             }
                             (*jenv)->DeleteLocalRef(jenv, jdata);
 
-                            sciErr = createMatrixOfUnsignedInteger64InNamedList(pvApiCtx, varName, currentList, i + 1, nbRow, nbCol, data);
+                            sciErr = createMatrixOfUnsignedInteger64InNamedList(NULL, varName, currentList, i + 1, nbRow, nbCol, data);
                             FREE(data);
                             break;
                         }
@@ -856,7 +862,7 @@ extern "C" {
 
                     if (!data || nbRow == 0)
                     {
-                        sciErr = createMatrixOfDoubleInNamedList(pvApiCtx, varName, currentList, i + 1, 0, 0, 0);
+                        sciErr = createMatrixOfDoubleInNamedList(NULL, varName, currentList, i + 1, 0, 0, 0);
                         if (!data)
                         {
                             (*jenv)->DeleteLocalRef(jenv, data);
@@ -892,7 +898,7 @@ extern "C" {
                     }
                     (*jenv)->DeleteLocalRef(jenv, data);
 
-                    sciErr = createMatrixOfStringInNamedList(pvApiCtx, varName, currentList, i + 1, nbRow, nbCol, (const char * const*)strings);
+                    sciErr = createMatrixOfStringInNamedList(NULL, varName, currentList, i + 1, nbRow, nbCol, (const char * const*)strings);
                     for (j = 0; j < nbRow * nbCol; j++)
                     {
                         FREE(strings[j]);

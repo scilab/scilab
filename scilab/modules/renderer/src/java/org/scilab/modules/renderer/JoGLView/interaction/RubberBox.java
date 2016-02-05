@@ -3,11 +3,14 @@
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction;
@@ -122,6 +125,7 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
      */
     protected RubberBox(DrawerVisitor drawerVisitor) {
         super(drawerVisitor);
+        axes = drawerVisitor.getAxes();
         status = Status.WAIT_POINT_A;
     }
 
@@ -519,5 +523,20 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
 
     @Override
     public void keyReleased(KeyEvent e) {
+    }
+
+    public double[] getResults() {
+        double[][] factors = axes.getScaleTranslateFactors();
+        double result[] = {
+            mouseButton - 1,
+            (Math.min(firstPoint.getX(), secondPoint.getX()) - factors[1][0]) / factors[0][0],
+            (Math.max(firstPoint.getY(), secondPoint.getY()) - factors[1][1]) / factors[0][1],
+            (Math.max(firstPoint.getZ(), secondPoint.getZ()) - factors[1][2]) / factors[0][2],
+            (Math.abs(firstPoint.getX() - secondPoint.getX())) / factors[0][0],
+            (Math.abs(firstPoint.getY() - secondPoint.getY())) / factors[0][1],
+            (Math.abs(firstPoint.getZ() - secondPoint.getZ())) / factors[0][2]
+        };
+
+        return result;
     }
 }

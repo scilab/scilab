@@ -2,27 +2,24 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Pedro SOUZA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.graphic_objects.lighting;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AMBIENTCOLOR__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIFFUSECOLOR__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DIRECTION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LIGHT_TYPE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LIGHT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SPECULARCOLOR__;
-
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.utils.LightType;
+import org.scilab.modules.graphic_objects.legend.Legend.LegendLocation;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Light class
@@ -32,11 +29,26 @@ public class Light extends GraphicObject {
 
     public enum LightProperty {POSITION, DIRECTION, TYPE};
 
+    public enum LightType {DIRECTIONAL, POINT;
+
+    public static LightType intToEnum(Integer intValue) {
+        switch (intValue) {
+            case 0:
+                return DIRECTIONAL;
+            case 1:
+                return POINT;
+            default:
+                return null;
+        }
+    }
+                          };
+
+
     /** light position */
-    double[] position;
+    Double[] position;
 
     /** light direction */
-    double[] direction;
+    Double[] direction;
 
     /** light type */
     LightType type;
@@ -48,12 +60,12 @@ public class Light extends GraphicObject {
         super();
         lightColor = new ColorTriplet();
 
-        position = new double[] {0.0, 0.0, 1.0};
-        direction = new double[] {0.0, 0.0, 1.0};
+        position = new Double[] {0.0, 0.0, 1.0};
+        direction = new Double[] {0.0, 0.0, 1.0};
         type = LightType.POINT;
 
-        double[] dark_gray = new double[] {0.1, 0.1, 0.1};
-        double[] white = new double[] {1.0, 1.0, 1.0};
+        Double[] dark_gray = new Double[] {0.1, 0.1, 0.1};
+        Double[] white = new Double[] {1.0, 1.0, 1.0};
         setAmbientColor(dark_gray);
         setDiffuseColor(white);
         setSpecularColor(white);
@@ -62,8 +74,8 @@ public class Light extends GraphicObject {
     /** copy contructor */
     public Light(Light other) {
         super();
-        position = new double[3];
-        direction = new double[3];
+        position = new Double[3];
+        direction = new Double[3];
         type = other.type;
         lightColor = new ColorTriplet(other.lightColor);
         setPosition(other.position);
@@ -81,7 +93,7 @@ public class Light extends GraphicObject {
     }
 
     /** Sets the light's position */
-    public UpdateStatus setPosition(double[] pos) {
+    public UpdateStatus setPosition(Double[] pos) {
         if (pos.length != 3) {
             return UpdateStatus.Fail;
         }
@@ -102,7 +114,7 @@ public class Light extends GraphicObject {
     }
 
     /** Sets the light's direction */
-    public UpdateStatus setDirection(double[] dir) {
+    public UpdateStatus setDirection(Double[] dir) {
         if (dir.length != 3) {
             return UpdateStatus.Fail;
         }
@@ -114,6 +126,23 @@ public class Light extends GraphicObject {
             return UpdateStatus.Success;
         }
         return UpdateStatus.NoChange;
+    }
+
+    /** Sets the light's type from an integer */
+    public UpdateStatus setLightTypeAsInteger(Integer i) {
+        if (i >= 0 && i < LightType.values().length) {
+            if (this.type != LightType.values()[i]) {
+                this.type = LightType.values()[i];
+                return UpdateStatus.Success;
+            }
+            return UpdateStatus.NoChange;
+        }
+        return UpdateStatus.Fail;
+    }
+
+    /** Get the light's type as integer */
+    public Integer getLightTypeAsInteger() {
+        return type.ordinal();
     }
 
     /** Sets the light's type */
@@ -173,7 +202,7 @@ public class Light extends GraphicObject {
             LightProperty lp = (LightProperty)property;
             switch (lp) {
                 case TYPE:
-                    return LightType.enumToInt(getLightType());
+                    return getLightTypeAsInteger();
                 case POSITION:
                     return getPosition();
                 case DIRECTION:
@@ -191,6 +220,28 @@ public class Light extends GraphicObject {
      * @return true if the property has been set, false otherwise
      */
     public UpdateStatus setProperty(Object property, Object value) {
+        if (property instanceof ColorTriplet.ColorTripletProperty) {
+            ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
+            switch (cp) {
+                case AMBIENTCOLOR:
+                    return setAmbientColor((Double[])value);
+                case DIFFUSECOLOR:
+                    return setDiffuseColor((Double[])value);
+                case SPECULARCOLOR:
+                    return setSpecularColor((Double[])value);
+            }
+        } else if (property instanceof LightProperty) {
+            LightProperty lp = (LightProperty)property;
+            switch (lp) {
+                case TYPE:
+                    return setLightTypeAsInteger((Integer)value);
+                case POSITION:
+                    return setPosition((Double[])value);
+                case DIRECTION:
+                    return setDirection((Double[])value);
+            }
+        }
+
         return super.setProperty(property, value);
     }
 
@@ -200,7 +251,7 @@ public class Light extends GraphicObject {
     }
 
     /** Sets the ambient color */
-    public UpdateStatus setAmbientColor(double[] color) {
+    public UpdateStatus setAmbientColor(Double[] color) {
         return lightColor.setAmbientColor(color);
     }
 
@@ -210,7 +261,7 @@ public class Light extends GraphicObject {
     }
 
     /** Sets the diffuse color of the light*/
-    public UpdateStatus setDiffuseColor(double[] color) {
+    public UpdateStatus setDiffuseColor(Double[] color) {
         return lightColor.setDiffuseColor(color);
     }
 
@@ -220,7 +271,7 @@ public class Light extends GraphicObject {
     }
 
     /** Sets the specular color of the light*/
-    public UpdateStatus setSpecularColor(double[] color) {
+    public UpdateStatus setSpecularColor(Double[] color) {
         return lightColor.setSpecularColor(color);
     }
 

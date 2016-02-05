@@ -1,17 +1,23 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos;
 
+import com.mxgraph.util.mxEvent;
+import com.mxgraph.util.mxEventObject;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.ref.WeakReference;
@@ -22,6 +28,7 @@ import java.util.ListIterator;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 
 import org.scilab.modules.graph.actions.CopyAction;
@@ -37,7 +44,8 @@ import org.scilab.modules.graph.actions.ZoomOutAction;
 import org.scilab.modules.graph.event.ArrowKeyListener;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menu.Menu;
@@ -46,7 +54,6 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
@@ -60,6 +67,7 @@ import org.scilab.modules.xcos.actions.CloseAction;
 import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
+import org.scilab.modules.xcos.actions.EditFormatAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.ExportAllAction;
 import org.scilab.modules.xcos.actions.ExternalAction;
@@ -80,6 +88,7 @@ import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
+import org.scilab.modules.xcos.actions.ViewDiagramTreeShowAction;
 import org.scilab.modules.xcos.actions.ViewGridAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
@@ -120,7 +129,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 // CSOFF: ClassFanOutComplexity
 // CSOFF: ClassDataAbstractionCoupling
 @SuppressWarnings(value = { "serial" })
-public class XcosTab extends SwingScilabTab implements SimpleTab {
+public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
     public static final String DEFAULT_WIN_UUID = "xcos-default-window";
     public static final String DEFAULT_TAB_UUID = "xcos-default-tab";
 
@@ -141,21 +150,21 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
 
     private JCheckBoxMenuItem viewport;
 
-    private PushButton openAction;
-    private PushButton saveAction;
-    private PushButton saveAsAction;
-    private PushButton printAction;
-    private PushButton newDiagramAction;
-    private PushButton deleteAction;
-    private PushButton undoAction;
-    private PushButton redoAction;
-    private PushButton fitDiagramToViewAction;
-    private PushButton startAction;
-    private PushButton stopAction;
-    private PushButton zoomInAction;
-    private PushButton zoomOutAction;
-    private PushButton xcosDemonstrationAction;
-    private PushButton xcosDocumentationAction;
+    private JButton openAction;
+    private JButton saveAction;
+    private JButton saveAsAction;
+    private JButton printAction;
+    private JButton newDiagramAction;
+    private JButton deleteAction;
+    private JButton undoAction;
+    private JButton redoAction;
+    private JButton fitDiagramToViewAction;
+    private JButton startAction;
+    private JButton stopAction;
+    private JButton zoomInAction;
+    private JButton zoomOutAction;
+    private JButton xcosDemonstrationAction;
+    private JButton xcosDocumentationAction;
 
     private static class ClosingOperation implements org.scilab.modules.gui.utils.ClosingOperationsManager.ClosingOperation {
         private final WeakReference<XcosDiagram> graph;
@@ -186,7 +195,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         }
 
         @Override
-        public String askForClosing(final List<SwingScilabTab> list) {
+        public String askForClosing(final List<SwingScilabDockablePanel> list) {
             final XcosDiagram diag = graph.get();
             if (diag == null) {
                 return null;
@@ -196,7 +205,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         }
 
         @Override
-        public void updateDependencies(List<SwingScilabTab> list, ListIterator<SwingScilabTab> it) {
+        public void updateDependencies(List<SwingScilabDockablePanel> list, ListIterator<SwingScilabDockablePanel> it) {
             final PaletteManagerView palette = PaletteManagerView.get();
 
             /*
@@ -263,6 +272,10 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         initComponents(graph);
 
         graph.getAsComponent().addKeyListener(new ArrowKeyListener());
+        graph.getModel().addListener(mxEvent.CHANGE, (Object sender, mxEventObject evt) -> {
+            graph.setModified(true);
+            graph.updateTabTitle();
+        });
     }
 
     /*
@@ -309,12 +322,12 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
             uuid = UUID.randomUUID().toString();
         }
 
+        // FIXME: fix a crash on DnD and Tab restore
+
         final XcosTab tab = new XcosTab(graph, uuid);
         ScilabTabFactory.getInstance().addToCache(tab);
 
-        Xcos.getInstance().addDiagram(graph.getSavedFile(), graph);
         graph.setOpened(true);
-
         if (visible) {
             tab.createDefaultWindow().setVisible(true);
 
@@ -322,9 +335,9 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
             BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
         }
 
-        ClosingOperationsManager.addDependencyWithRoot((SwingScilabTab) tab);
-        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab, new ClosingOperation(graph));
-        WindowsConfigurationManager.registerEndedRestoration((SwingScilabTab) tab, new EndedRestoration(graph));
+        ClosingOperationsManager.addDependencyWithRoot((SwingScilabDockablePanel) tab);
+        ClosingOperationsManager.registerClosingOperation((SwingScilabDockablePanel) tab, new ClosingOperation(graph));
+        WindowsConfigurationManager.registerEndedRestoration((SwingScilabDockablePanel) tab, new EndedRestoration(graph));
     }
 
     /*
@@ -426,6 +439,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         view.add(NormalViewAction.createMenu(diagram));
         view.addSeparator();
         view.add(ViewPaletteBrowserAction.createCheckBoxMenu(diagram));
+        view.add(ViewDiagramTreeShowAction.createMenu(diagram));
         view.add(ViewDiagramBrowserAction.createMenu(diagram));
         final CheckBoxMenuItem menuItem = ViewViewportAction.createCheckBoxMenu(diagram);
         viewport = (JCheckBoxMenuItem) menuItem.getAsSimpleCheckBoxMenuItem();
@@ -473,6 +487,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         format.add(alignMenu);
         format.addSeparator();
 
+        format.add(EditFormatAction.createMenu(diagram));
         format.add(BorderColorAction.createMenu(diagram));
         format.add(FilledColorAction.createMenu(diagram));
         format.addSeparator();
@@ -591,68 +606,69 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
      */
     private ToolBar createToolBar(final XcosDiagram diagram) {
         final ToolBar toolBar = ScilabToolBar.createToolBar();
+        SwingScilabToolBar stb = (SwingScilabToolBar) toolBar.getAsSimpleToolBar();
 
         newDiagramAction = NewDiagramAction.createButton(diagram);
-        toolBar.add(newDiagramAction);
+        stb.add(newDiagramAction);
 
         openAction = OpenAction.createButton(diagram);
-        toolBar.add(openAction);
+        stb.add(openAction);
 
-        toolBar.add(OpenInSciAction.createButton(diagram));
+        stb.add(OpenInSciAction.createButton(diagram));
 
-        toolBar.addSeparator();
+        stb.addSeparator();
 
         saveAction = SaveAction.createButton(diagram);
-        toolBar.add(saveAction);
+        stb.add(saveAction);
         saveAsAction = SaveAsAction.createButton(diagram);
-        toolBar.add(saveAsAction);
+        stb.add(saveAsAction);
 
-        toolBar.addSeparator();
+        stb.addSeparator();
 
         printAction = PrintAction.createButton(diagram);
-        toolBar.add(printAction);
+        stb.add(printAction);
 
-        toolBar.addSeparator();
+        stb.addSeparator();
 
         deleteAction = DeleteAction.createButton(diagram);
-        toolBar.add(deleteAction);
+        stb.add(deleteAction);
 
-        toolBar.addSeparator();
+        stb.addSeparator();
 
         // UNDO / REDO
         undoAction = UndoAction.undoButton(diagram);
         redoAction = RedoAction.redoButton(diagram);
-        toolBar.add(undoAction);
-        toolBar.add(redoAction);
+        stb.add(undoAction);
+        stb.add(redoAction);
 
-        toolBar.addSeparator();
+        stb.addSeparator();
 
         fitDiagramToViewAction = FitDiagramToViewAction.createButton(diagram);
-        toolBar.add(fitDiagramToViewAction);
+        stb.add(fitDiagramToViewAction);
 
-        toolBar.addSeparator();
+        stb.addSeparator();
 
         // START / STOP
         startAction = StartAction.createButton(diagram);
         stopAction = StopAction.createButton(diagram);
 
-        toolBar.add(startAction);
-        toolBar.add(stopAction);
+        stb.add(startAction);
+        stb.add(stopAction);
 
-        toolBar.addSeparator();
+        stb.addSeparator();
 
         // ZOOMIN / ZOOMOUT
         zoomInAction = ZoomInAction.zoominButton(diagram);
-        toolBar.add(zoomInAction);
+        stb.add(zoomInAction);
         zoomOutAction = ZoomOutAction.zoomoutButton(diagram);
-        toolBar.add(zoomOutAction);
+        stb.add(zoomOutAction);
 
-        toolBar.addSeparator();
+        stb.addSeparator();
 
         xcosDemonstrationAction = XcosDemonstrationsAction.createButton(diagram);
-        toolBar.add(xcosDemonstrationAction);
+        stb.add(xcosDemonstrationAction);
         xcosDocumentationAction = XcosDocumentationAction.createButton(diagram);
-        toolBar.add(xcosDocumentationAction);
+        stb.add(xcosDocumentationAction);
 
         return toolBar;
     }
@@ -684,7 +700,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         if (configuration != null) {
             win = configuration;
         } else {
-            win = new SwingScilabWindow();
+            win = SwingScilabWindow.createWindow(true);
         }
 
         win.addTab(this);

@@ -246,7 +246,7 @@
                             lkn(i,j)
                         </literal>
                     </para>
-                    <para> 
+                    <para>
                         When path points on more than one list component the
                         instruction must have as many left hand side arguments as selected
                         components. But if the extraction syntax is used within a function
@@ -354,7 +354,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // MATRIX CASE
 a=[1 2 3;4 5 6]
 a(1,2)
@@ -400,7 +400,7 @@ dts(2)('b')(1,2)
                 <link linkend="horner">horner</link>
             </member>
             <member>
-                <link linkend="parents">parents</link>
+                <link linkend="parentheses">parentheses</link>
             </member>
             <member>
                 <link linkend="insertion">insertion</link>

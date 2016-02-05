@@ -3,11 +3,14 @@
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2013 - Scilab Enterprises - Sylvestre Ledru
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -409,6 +412,18 @@ int ScilabJavaEnvironmentWrapper::wrapBool(int * x, int xSize, int xSizeCol, con
     return wrap<int, bool>(vm, x, xSize, xSizeCol);
 }
 
+int ScilabJavaEnvironmentWrapper::wrapList(int len, const int * const ids) const
+{
+    JavaVM * vm = getScilabJavaVM();
+    return ScilabJavaObject::wrapList(vm, ids, len);
+}
+
+int ScilabJavaEnvironmentWrapper::wrapPoly(int len, const double * const coefs) const
+{
+    JavaVM * vm = getScilabJavaVM();
+    return ScilabJavaObject::wrapPoly(vm, coefs, len);
+}
+
 int ScilabJavaEnvironmentWrapper::wrapFloat(double * x, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
@@ -550,19 +565,19 @@ void ScilabJavaEnvironmentWrapper::unwrapmatuint(int id, const ScilabUIntStackAl
 void ScilabJavaEnvironmentWrapper::unwraplong(int id, const ScilabLongStackAllocator & allocator) const
 {
     JavaVM * vm = getScilabJavaVM();
-    unwrapSingle<jlong, int, long long>(vm, id, allocator, true);
+    unwrapSingle<jlong, long long, long long>(vm, id, allocator, true);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowlong(int id, const ScilabLongStackAllocator & allocator) const
 {
     JavaVM * vm = getScilabJavaVM();
-    unwrapRow<jlong, int, long long>(vm, id, allocator, true);
+    unwrapRow<jlong, long long>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatlong(int id, const ScilabLongStackAllocator & allocator) const
 {
     JavaVM * vm = getScilabJavaVM();
-    unwrapMat<jlong, int, long long>(vm, id, allocator);
+    unwrapMat<jlong, long long>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapulong(int id, const ScilabULongStackAllocator & allocator) const
@@ -633,19 +648,30 @@ void ScilabJavaEnvironmentWrapper::unwraprowstring(int id, const ScilabStringSta
     jboolean isCopy = JNI_FALSE;
     char ** addr = new char*[lenRow];
     jstring * resString = new jstring[lenRow];
+    char empty = '\0';
 
     for (jsize i = 0; i < lenRow; i++)
     {
         resString[i] = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(res, i));
-        addr[i] = const_cast<char *>(curEnv->GetStringUTFChars(resString[i], &isCopy));
+        if (resString[i])
+        {
+            addr[i] = const_cast<char *>(curEnv->GetStringUTFChars(resString[i], &isCopy));
+        }
+        else
+        {
+            addr[i] = &empty;
+        }
     }
 
     allocator.allocate(1, lenRow, addr);
 
     for (jsize i = 0; i < lenRow; i++)
     {
-        curEnv->ReleaseStringUTFChars(resString[i], addr[i]);
-        curEnv->DeleteLocalRef(resString[i]);
+        if (resString[i])
+        {
+            curEnv->ReleaseStringUTFChars(resString[i], addr[i]);
+            curEnv->DeleteLocalRef(resString[i]);
+        }
     }
     delete[] addr;
     delete[] resString;
@@ -675,6 +701,7 @@ void ScilabJavaEnvironmentWrapper::unwrapmatstring(int id, const ScilabStringSta
     jint lenCol = curEnv->GetArrayLength(oneDim);
     char ** addr = new char*[lenRow * lenCol];
     jstring * resString = new jstring[lenRow * lenCol];
+    char empty = '\0';
 
     for (int i = 0; i < lenRow; i++)
     {
@@ -683,16 +710,32 @@ void ScilabJavaEnvironmentWrapper::unwrapmatstring(int id, const ScilabStringSta
         {
             for (int j = 0; j < lenCol; j++)
             {
-                resString[j * lenRow + i] = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(oneDim, j));
-                addr[j * lenRow + i] = const_cast<char *>(curEnv->GetStringUTFChars(resString[j * lenRow + i], &isCopy));
+                const unsigned int pos = j * lenRow + i;
+                resString[pos] = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(oneDim, j));
+                if (resString[pos])
+                {
+                    addr[pos] = const_cast<char *>(curEnv->GetStringUTFChars(resString[pos], &isCopy));
+                }
+                else
+                {
+                    addr[pos] = &empty;
+                }
             }
         }
         else
         {
             for (int j = 0; j < lenCol; j++)
             {
-                resString[i * lenCol + j] = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(oneDim, j));
-                addr[i * lenCol + j] = const_cast<char *>(curEnv->GetStringUTFChars(resString[i * lenCol + j], &isCopy));
+                const unsigned int pos = i * lenCol + j;
+                resString[pos] = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(oneDim, j));
+                if (resString[pos])
+                {
+                    addr[pos] = const_cast<char *>(curEnv->GetStringUTFChars(resString[pos], &isCopy));
+                }
+                else
+                {
+                    addr[pos] = &empty;
+                }
             }
         }
         curEnv->DeleteLocalRef(oneDim);
@@ -709,8 +752,11 @@ void ScilabJavaEnvironmentWrapper::unwrapmatstring(int id, const ScilabStringSta
 
     for (int i = 0; i < lenRow * lenCol; i++)
     {
-        curEnv->ReleaseStringUTFChars(resString[i], addr[i]);
-        curEnv->DeleteLocalRef(resString[i]);
+        if (resString[i])
+        {
+            curEnv->ReleaseStringUTFChars(resString[i], addr[i]);
+            curEnv->DeleteLocalRef(resString[i]);
+        }
     }
     delete[] addr;
     delete[] resString;

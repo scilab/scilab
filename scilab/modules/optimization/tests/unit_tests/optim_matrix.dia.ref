@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 //
 // optim_matrix.tst --
 //   Test the optim command when the optimized unknown is a matrix.

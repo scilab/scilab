@@ -76,16 +76,20 @@
     </refsection>
     <refsection id="Description_scicos_simulate">
         <title>Description</title>
-        This function is used to simulate xcos diagrams in batch
-        mode. It requires the <link linkend="scicos_diagram">scs_m
-            structure
-        </link>
-        which can be obtained by loading in Scilab the
-        <literal>.zcos</literal> file (see <link linkend="importXcosDiagram">
-            importXcosDiagram
-        </link>
-        ).
-        
+        <para>
+            This function is used to simulate xcos diagrams in batch
+            mode. It requires the <link linkend="scicos_diagram">scs_m
+                structure
+            </link>
+            which can be obtained by loading in Scilab the
+            <literal>.zcos</literal> file (see <link linkend="importXcosDiagram">
+                importXcosDiagram
+            </link>
+            ).
+        </para>
+        <para>
+            Note that before being able to simulate you should first load the block library using <literal>loadXcosLibs()</literal>.
+        </para>
         <para>
             The <literal>ContextValues</literal> may be used to change
             the main parameters value set in the main diagram
@@ -127,7 +131,10 @@
                 </imageobject>
             </mediaobject>
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
+// load the blocks library and the simulation engine
+loadXcosLibs(); loadScicos();
+
 importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.zcos")
 
 typeof(scs_m) //The diagram data structure
@@ -159,7 +166,10 @@ counter
                 <link linkend="scicos_diagram">scs_m structure</link>
             </member>
             <member>
-                <link linkend="importXcosDiagram"> importXcosDiagram</link>
+                <link linkend="importXcosDiagram">importXcosDiagram</link>
+            </member>
+            <member>
+                <link linkend="loadXcosLibs">loadXcosLibs</link>
             </member>
             <member>
                 <link linkend="scicosim">scicosim: xcos batch simulation function</link>

@@ -1,0 +1,28 @@
+LIBRARY    linpack_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; linpack_f
+; --------------------------------------- 
+dgbfa_
+dgeco_
+dgedi_
+dgefa_
+dgesl_
+dpofa_
+dqrdc_
+dqrsl_
+dqrsm_
+hhdml_
+icopy_
+pade_
+spofa_
+dpori_
+dposl_
+wcopy_
+wgeco_
+wgefa_
+wgesl_
+wpade_
+

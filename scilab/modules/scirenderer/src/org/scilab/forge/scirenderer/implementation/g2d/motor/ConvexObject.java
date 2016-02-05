@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte Denizet
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
@@ -78,7 +81,7 @@ public abstract class ConvexObject extends AbstractDrawable3DObject implements C
      */
     public boolean areCoplanar(ConvexObject o) {
         if (!(this instanceof Segment)) {
-            double sc = vertices[0].scalar(v0v1);
+            double sc = vertices[0].scalar(getNormal());
             if (o instanceof Segment) {
                 return isEqual(sc, o.vertices[0].scalar(v0v1)) && isEqual(sc, o.vertices[1].scalar(v0v1));
             }
@@ -93,6 +96,8 @@ public abstract class ConvexObject extends AbstractDrawable3DObject implements C
             return true;
         }
 
+        getNormal();
+        o.getNormal();
         Vector3d v = Vector3d.product(v0, o.v0);
         return isNull(v.scalar(vertices[0].minus(o.vertices[0])));
     }
@@ -106,10 +111,8 @@ public abstract class ConvexObject extends AbstractDrawable3DObject implements C
         BoundingBox bbox = getBBox();
         BoundingBox obbox = o.getBBox();
         // Quick test in using bounding boxes
-        if (!bbox.isIntersecting(obbox)) {
-            if (bbox.xCompare(obbox) != 0 || bbox.yCompare(obbox) != 0) {
-                return 0;
-            }
+        if (bbox.isNonZOverlapping(obbox)) {
+            return 0;
         }
 
         // Check if the two objects intersect in projection plane or not

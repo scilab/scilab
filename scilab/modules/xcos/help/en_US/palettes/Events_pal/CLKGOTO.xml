@@ -122,7 +122,7 @@
                 <para>
                     <emphasis role="bold">Tag Visibility (1=Local 2=Scoped 3=Global)</emphasis>
                 </para>
-                <para> This parameter idetifies the visibility of the block. It can be local(1), scoped(2) or global(3).</para>
+                <para> This parameter identifies the visibility of the block. It can be local(1), scoped(2) or global(3).</para>
                 <para> Properties : Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>

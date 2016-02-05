@@ -3,11 +3,14 @@
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.axes.ruler;
@@ -42,9 +45,16 @@ class RulerDrawerManager {
                 GraphicObjectProperties.__GO_X_AXIS_AUTO_TICKS__,
                 GraphicObjectProperties.__GO_Y_AXIS_AUTO_TICKS__,
                 GraphicObjectProperties.__GO_Z_AXIS_AUTO_TICKS__,
+                GraphicObjectProperties.__GO_X_AXIS_FORMAT__,
+                GraphicObjectProperties.__GO_Y_AXIS_FORMAT__,
+                GraphicObjectProperties.__GO_Z_AXIS_FORMAT__,
+                GraphicObjectProperties.__GO_X_AXIS_ST_FACTORS__,
+                GraphicObjectProperties.__GO_Y_AXIS_ST_FACTORS__,
+                GraphicObjectProperties.__GO_Z_AXIS_ST_FACTORS__,
                 GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__,
                 GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__,
-                GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__
+                GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__,
+                GraphicObjectProperties.__GO_DATA_BOUNDS__
             ));
 
     /**

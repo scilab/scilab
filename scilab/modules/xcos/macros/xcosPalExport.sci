@@ -2,11 +2,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
 //
 
@@ -42,9 +45,9 @@ function [status, msg] = xcosPalExport(pal, path)
     //   bigSomPath = TMPDIR + "/sum.sod";
     //
     //   scs_m = SUM_f("define");
-    //   export_to_hdf5(sumPath, "scs_m");
+    //   save(sumPath, "scs_m");
     //   scs_m = BIGSOM("define");
-    //   export_to_hdf5(bigSomPath, "scs_m");
+    //   save(bigSomPath, "scs_m");
     //
     //   pal = xcosPalAddBlock(pal, sumPath);
     //   pal = xcosPalAddBlock(pal, bigSomPath);
@@ -92,8 +95,9 @@ function [status, msg] = xcosPalExport(pal, path)
     pal = pal;
 
     // export the data to the temp file
-    status = export_to_hdf5(path, "pal");
-    if ~status then
+    try
+        save(path, "pal");
+    catch
         msg = msprintf(gettext("%s: Unable to export the palette to hdf5.\n"), "xcosPalExport");
         if  lhs == 1 then
             error(msg);

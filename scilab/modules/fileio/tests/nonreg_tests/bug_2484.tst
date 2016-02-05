@@ -15,9 +15,7 @@
 // <-- Short Description -->
 //
 
-warning("off");
-
 a    = list();
 a(2) = 10;
-save(TMPDIR+"/test.sav",a);
+save(TMPDIR+"/test.sav","a");
 if execstr("listvarinfile(TMPDIR+""/test.sav"");", "errcatch")<>0 then pause; end

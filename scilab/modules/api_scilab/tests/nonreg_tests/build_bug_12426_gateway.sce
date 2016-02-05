@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 gatewayName = "bug_12426_gateway";
 lib1 = "api_scilab";
@@ -31,26 +34,24 @@ if getos() == "Windows" then
 
 elseif isdir(lib1include)
     // Unix source version
-    libs   = SCI + "/modules/" + lib1 + "/.libs/lib" + lib1;
-    cflags = "-I " lib1include;
+    libs   = SCI + "/modules/" + lib1 + "/.libs/libsci" + lib1;
+    cflags = "-I " + lib1include;
 else
     // Unix binary version
     SCI_LIB     = strsubst(SCI,"/share\/scilab$/", "lib/scilab", "r");
     SCI_INCLUDE = strsubst(SCI,"/share\/scilab$/", "include/scilab", "r");
-    libs        = SCI_LIB + "/lib" + lib1 + ..
-    SCI_LIB + "/lib" + lib1;
+    libs        = SCI_LIB + "/libscilab-cli";
     cflags      = "-I " + SCI_INCLUDE;
 end
 
 // name known in scilab, C function called
 table = [func1, "sci_" + func1];
 
-libname = ilib_build(ilib_name, table, files, libs, [], "", cflags);
+ilib_build(ilib_name, table, files, libs, [], "", cflags);
 
 cd(previous_dir);
 
 clear ilib_build;
-clear libname;
 clear table;
 clear libs;
 clear files;

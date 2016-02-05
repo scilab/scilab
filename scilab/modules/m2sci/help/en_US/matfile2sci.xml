@@ -3,11 +3,14 @@
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) ???? - INRIA - Serge STEER 
     * 
-    * This file must be used under the terms of the CeCILL.
-    * This source file is licensed as described in the file COPYING, which
-    * you should have received as part of this distribution.  The terms
-    * are also available at    
-    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="matfile2sci">
@@ -19,7 +22,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>matfile2sci(mat_file_path,sci_file_path)</synopsis>
+        <synopsis>matfile2sci(mat_file_path,sci_file_path[, overwrite])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -36,6 +39,14 @@
                     <para>character string containing the path of the Scilab output file</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>overwrite</term>
+                <listitem>
+                    <para>
+                        a boolean: wipes the <literal>sci_file_path</literal> file if set to true. False by default.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -44,6 +55,9 @@
             Converts a Matlab 5 MAT-file into a SOD file compatible
             with the function <literal>load</literal> (See <link linkend="save">save</link> for more information). The Matlab data types are
             converted into the Scilab equivalents.
+        </para>
+        <para>
+            The function exits without creating an output file if no variable was found in the input file.
         </para>
     </refsection>
     <refsection role="see also">
@@ -75,6 +89,10 @@
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>Scilab output file in a SOD (Scilab Open Data) file.</revremark>
+            </revision>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Output file can be overwritten or appended.</revremark>
             </revision>
         </revhistory>
     </refsection>

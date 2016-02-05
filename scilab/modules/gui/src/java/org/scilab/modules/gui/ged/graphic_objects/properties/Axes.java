@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Marcos CARDINOT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.properties;
@@ -1102,24 +1105,67 @@ public class Axes extends ContentLayout {
      * @param UID objectID.
      */
     public void tightLimits(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
-        JLabel lTightLimits = new JLabel();
-        final JComboBox cTightLimits = new JComboBox();
+        boolean enable = false;
 
-        addLabelComboBox(panel, lTightLimits, MessagesGED.tight_limits,
-                         cTightLimits, new String[] {MessagesGED.off , MessagesGED.on},
+        /* X axes */
+        JLabel lXTightLimits = new JLabel();
+        final JComboBox cXTightLimits = new JComboBox();
+
+        addLabelComboBox(panel, lXTightLimits, MessagesGED.x_tight_limits,
+                         cXTightLimits, new String[] {MessagesGED.off , MessagesGED.on},
                          LEFTMARGIN, COLUMN, ROW++);
-        cTightLimits.addActionListener(new ActionListener() {
+        cXTightLimits.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                    UID, GraphicObjectProperties.__GO_TIGHT_LIMITS__,
-                    cTightLimits.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_X_TIGHT_LIMITS__,
+                    cXTightLimits.getSelectedIndex() == 0 ? false : true);
             }
         });
         //Get the current status of the property: Tight Limits
-        boolean enable = (Boolean) GraphicController.getController()
-                         .getProperty(UID, GraphicObjectProperties.__GO_TIGHT_LIMITS__);
-        cTightLimits.setSelectedIndex(enable ? 1 : 0);
+        enable = (Boolean) GraphicController.getController()
+                 .getProperty(UID, GraphicObjectProperties.__GO_X_TIGHT_LIMITS__);
+        cXTightLimits.setSelectedIndex(enable ? 1 : 0);
+
+        /* Y axes */
+        JLabel lYTightLimits = new JLabel();
+        final JComboBox cYTightLimits = new JComboBox();
+
+        addLabelComboBox(panel, lYTightLimits, MessagesGED.y_tight_limits,
+                         cYTightLimits, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
+        cYTightLimits.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                GraphicController.getController().setProperty(
+                    UID, GraphicObjectProperties.__GO_Y_TIGHT_LIMITS__,
+                    cYTightLimits.getSelectedIndex() == 0 ? false : true);
+            }
+        });
+        //Get the current status of the property: Tight Limits
+        enable = (Boolean) GraphicController.getController()
+                 .getProperty(UID, GraphicObjectProperties.__GO_Y_TIGHT_LIMITS__);
+        cYTightLimits.setSelectedIndex(enable ? 1 : 0);
+
+        /* Z axes */
+        JLabel lZTightLimits = new JLabel();
+        final JComboBox cZTightLimits = new JComboBox();
+
+        addLabelComboBox(panel, lZTightLimits, MessagesGED.z_tight_limits,
+                         cZTightLimits, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
+        cZTightLimits.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                GraphicController.getController().setProperty(
+                    UID, GraphicObjectProperties.__GO_Z_TIGHT_LIMITS__,
+                    cZTightLimits.getSelectedIndex() == 0 ? false : true);
+            }
+        });
+        //Get the current status of the property: Tight Limits
+        enable = (Boolean) GraphicController.getController()
+                 .getProperty(UID, GraphicObjectProperties.__GO_Z_TIGHT_LIMITS__);
+        cZTightLimits.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**

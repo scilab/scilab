@@ -1,0 +1,52 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009-2010 - DIGITEO
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+ilib_verbose(0);
+mkdir(pathconvert(TMPDIR+"/newtype"));
+cd(pathconvert(TMPDIR+"/newtype"));
+copyfile(SCI+"/modules/ast/tests/unit_tests/sci_newtype.cpp",pathconvert(TMPDIR+"/newtype/sci_newtype.cpp",%F));
+copyfile(SCI+"/modules/ast/tests/unit_tests/newtype.hxx",pathconvert(TMPDIR+"/newtype/newtype.hxx",%F));
+cflags = "-I"+SCI+"/modules/localization/includes";
+cflags = cflags + " -I"+TMPDIR+"/newtype";
+ilib_build("gw_newtype",["newtype","sci_newtype", "cppsci"],"sci_newtype.cpp",[],"","",cflags);
+exec("loader.sce");
+// toString call
+a = newtype();
+// check value
+assert_checkequal(string(a), "This is my type.");
+// check scilab display
+a
+a  = 
+This is my type.
+disp(a)
+This is my type.
+l=list(2, a, "test")
+ l  = 
+       l(1)
+    2.
+       l(2)
+This is my type.
+       l(3)
+ test
+// overload call
+b = newtype(%f);
+function %nt_p(h)
+    disp("%nt_p: This is my type.");
+end
+b
+b  = 
+ %nt_p: This is my type.
+disp(b)
+ %nt_p: This is my type.
+l=list(2, b, "test")
+ l  = 
+       l(1)
+    2.
+       l(2)
+ %nt_p: This is my type.
+       l(3)
+ test

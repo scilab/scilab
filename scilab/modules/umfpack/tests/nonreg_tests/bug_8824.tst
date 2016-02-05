@@ -15,7 +15,6 @@
 // <-- Short Description -->
 // taucs_chfact returns a segfault (not the case in mode nwni)
 
-stacksize("max");
 N=512;
 h = 1/(N+1);
 x = h:h:1-h;

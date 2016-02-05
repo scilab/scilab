@@ -4,11 +4,14 @@
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -27,7 +30,7 @@ import org.flexdock.docking.defaults.DefaultDockingPort;
 import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.event.DockingListener;
 import org.flexdock.docking.floating.frames.FloatingDockingPort;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 
 /**
@@ -65,7 +68,7 @@ public class SciDockingListener implements DockingListener {
         String newId = null;
 
         DockingListener[] newListeners = e.getNewDockingPort().getDockingListeners();
-        SwingScilabTab dockedTab = (SwingScilabTab) e.getDockable();
+        SwingScilabDockablePanel dockedTab = (SwingScilabDockablePanel) e.getDockable();
         if (newListeners.length == 2) {
             /* This docking port has been created when the parent window were created */
             /* So this docking port has a sciDockingListener */
@@ -81,7 +84,7 @@ public class SciDockingListener implements DockingListener {
                 while (e.getDockable() == dock) {
                     dock = it.next();
                 }
-                newId = ((SwingScilabTab) dock).getParentWindowId();
+                newId = ((SwingScilabDockablePanel) dock).getParentWindowId();
             } else { /** Create a new Window to display the tab inside it */
 
                 DefaultDockingPort dockingPort = ((DefaultDockingPort) e.getOldDockingPort());
@@ -102,7 +105,7 @@ public class SciDockingListener implements DockingListener {
                     newY += ((DefaultDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getY();
                 }
 
-                SwingScilabWindow newWindow = new SwingScilabWindow();
+                SwingScilabWindow newWindow = SwingScilabWindow.createWindow(true);
                 newWindow.setPosition(new Position(newX, newY));
                 newWindow.setDims(SwingScilabWindow.allScilabWindows.get(associatedScilabWindowId).getDims());
                 DockingManager.dock(dockedTab, newWindow.getDockingPort());

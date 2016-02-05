@@ -12,7 +12,7 @@ mkdir(pathconvert(TMPDIR+"/common_list_api"));
 cd(pathconvert(TMPDIR+"/common_list_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/common_list_api.c",pathconvert(TMPDIR+"/common_list_api/common_list_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("common_list",["common_list","common_list"],"common_list_api.c",[],"","",cflags);
+ilib_build("gw_common_list",["common_list","common_list"],"common_list_api.c",[],"","",cflags);
 exec("loader.sce");
 
              

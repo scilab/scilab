@@ -55,6 +55,11 @@ function [x,y,typ]=TIME_DELAY(job,arg1,arg2)
                 graphics.exprs=exprs;
                 model.rpar=[T;init];
                 model.ipar=N
+
+                model.dep_ut=[%f %t];
+                // dp_t = %t
+                // updated for Scilab 5.5.1
+                // see http://bugzilla.scilab.org/show_bug.cgi?id=13436
                 x.graphics=graphics;
                 x.model=model
                 break
@@ -72,7 +77,7 @@ function [x,y,typ]=TIME_DELAY(job,arg1,arg2)
         model.rpar=[T,init];
         model.ipar=N
         model.blocktype="x"
-        model.dep_ut=[%f %f]
+        model.dep_ut=[%f %t]
 
         exprs=[string(T);string(init);string(N)];
         gr_i=[]

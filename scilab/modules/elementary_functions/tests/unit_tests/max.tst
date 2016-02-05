@@ -72,8 +72,8 @@ assert_checkequal(Akl, Ak);
 // test max(A,'c') and max(A,'r')
 // max(A,'r') returns a row vector which contains max for each column
 
-[Am, Akm] = max(A1, 'r');
-nc = size(A1, 'c');
+[Am, Akm] = max(A1, "r");
+nc = size(A1, "c");
 Am1 = [];
 Ak1 = [];
 for i = 1:nc
@@ -86,8 +86,8 @@ assert_checkequal(Akm, Ak1);
 
 // max(A,'c');
 
-[Am, Akm] = max(A1, 'c');
-nc = size(A1, 'r');
+[Am, Akm] = max(A1, "c");
+nc = size(A1, "r");
 Am1 = [];
 Ak1 = [];
 for i = 1:nc
@@ -320,8 +320,8 @@ assert_checkequal(Al, sparse(Am));
 // test max(A,'c') and max(A,'r')
 // max(A,'r') returns a row vector which contains max for each column
 
-[Am] = max(A1, 'r');
-nc = size(A1, 'c');
+[Am] = max(A1, "r");
+nc = size(A1, "c");
 Am1 = [];
 for i = 1:nc
     [am] = max(A1(:,i));
@@ -331,8 +331,8 @@ assert_checkequal(Am, sparse(Am1));
 
 // max(A,'c');
 
-[Am] = max(A1, 'c');
-nc = size(A1, 'r');
+[Am] = max(A1, "c");
+nc = size(A1, "r");
 Am1 = [];
 for i = 1:nc
     [am] = max(A1(i,:));
@@ -365,8 +365,8 @@ assert_checkequal(Al, sparse(Am));
 // test min(A,'c') and min(A,'r')
 // min(A,'r') returns a row vector which contains min for each column
 
-[Am] = min(A1, 'r');
-nc = size(A1, 'c');
+[Am] = min(A1, "r");
+nc = size(A1, "c");
 Am1 = [];
 for i = 1:nc
     [am] = min(A1(:,i));
@@ -376,8 +376,8 @@ assert_checkequal(Am, sparse(Am1));
 
 // min(A,'c');
 
-[Am] = min(A1, 'c');
-nc = size(A1, 'r');
+[Am] = min(A1, "c");
+nc = size(A1, "r");
 Am1 = [];
 for i = 1:nc
     [am] = min(A1(i,:));

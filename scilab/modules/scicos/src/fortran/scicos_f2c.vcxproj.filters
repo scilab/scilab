@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="coselm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ftree2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,46 +30,10 @@
     <ClCompile Include="ftree4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="list2vars.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scierr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="scifunc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scitod.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scitoi.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scitovv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sctree.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="skipvars.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vvtosci.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ctree.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_curblock.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_debug_count.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_getblocklabel.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_scicos_debug.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tree2.c">
@@ -84,17 +45,8 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tree4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_var2vec.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_vec2var.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="coselm.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="ftree2.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -104,46 +56,10 @@
     <f2c_rule Include="ftree4.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="list2vars.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="scierr.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="scifunc.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="scitod.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="scitoi.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="scitovv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="sctree.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="skipvars.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="vvtosci.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ctree.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_curblock.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_debug_count.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_getblocklabel.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_scicos_debug.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tree2.f">
@@ -155,17 +71,8 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tree4.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_var2vec.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_vec2var.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Imports</Filter>
-    </None>
     <None Include="Output_stream_Import.def">
       <Filter>Imports</Filter>
     </None>
@@ -178,9 +85,6 @@
       <Filter>Imports</Filter>
     </None>
     <None Include="elementary_functions_f_Import.def">
-      <Filter>Imports</Filter>
-    </None>
-    <None Include="Core_f_Import.def">
       <Filter>Imports</Filter>
     </None>
   </ItemGroup>

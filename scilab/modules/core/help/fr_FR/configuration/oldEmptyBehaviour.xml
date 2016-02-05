@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="oldEmptyBehaviour">
+    <refnamediv>
+        <refname>oldEmptyBehaviour</refname>
+        <refpurpose>Contrôle le comportement de l'opération+ et de l'opération- sur la matrice vide</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>oldEmptyBehaviour(behaviour)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>behaviour</term>
+                <listitem>
+                    <para>
+                        une chaîne de caractères parmi <literal>"on"</literal>, <literal>"off"</literal> ou <literal>"query"</literal>. Comportement de l'opération+ et de l'opération-
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Contrôle le comportement de l'addition ou de la soustraction avec la matrice vide. Sur les versions antérieures à scilab-6.0.0, ajouter ou soustraire la matrice vide à une autre matrice <literal>val</literal> retournait <literal>val</literal>.
+        </para>
+        <para>
+            Si <literal>behaviour == "off"</literal>, ajouter ou soustraire la matrice vide retourne la matrice vide. C'est le comportement par défaut après la version 6.0.0.
+        </para>
+        <para>
+            Si <literal>behaviour == "on"</literal>, active le comportement antérieur à la version scilab-6.0.0.
+        </para>
+        <para>
+            Si <literal>behaviour == "query"</literal>, renvoie la valeur courante pour l'option <literal>oldEmptyBehaviour</literal> (<literal>"on"</literal> or <literal>"off"</literal>)
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+// Recuperer le comportement actuel
+behaviour = oldEmptyBehaviour("query");
+
+// Ces lignes renvoie la matrice vide
+oldEmptyBehaviour("off");
+1 + []
+"Test string" + []
+[] - int8(1)
+[] - %s
+
+// Ces lignes renverront l'opérande non vide
+oldEmptyBehaviour("on");
+1 + [] // renvoie 1
+"Test string" + [] // renvoie "Test string"
+[] - int8(1) // renvoie -int8(1)
+[] - %s // renvoie -%s
+
+// Re positionne le comportement
+oldEmptyBehaviour(behaviour)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="warning">warning</link> pour le comportement des avertissements à l'utilisation de l'opération+ et de l'opération-.
+            </member>
+            <member>
+                <link linkend="plus">plus</link> pour le comportement de l'opération +.
+            </member>
+            <member>
+                <link linkend="minus">minus</link> pour le comporetment de l'opération -.
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

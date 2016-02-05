@@ -4,11 +4,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU (nicer default plot3d)
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,18 +21,18 @@
 /*------------------------------------------------------------------------*/
 
 #include <stdio.h>
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "BuildObjects.h"
 #include "GetCommandArg.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sciCall.h"
 #include "localization.h"
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_plot3d(char * fname, unsigned long fname_len)
+int sci_plot3d(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
     static double  ebox_def [6] = { 0, 1, 0, 1, 0, 1};
@@ -74,7 +77,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
     */
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
 
@@ -92,7 +95,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (nbInputArgument(pvApiCtx) != 1 && FirstOpt() < 4)
+    if (nbInputArgument(pvApiCtx) != 1 && FirstOpt(pvApiCtx) < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 4);
         return -1;
@@ -110,7 +113,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -126,6 +129,12 @@ int sci_plot3d(char * fname, unsigned long fname_len)
             return 0;
         }
 
+        if (m1 == 1 || n1 == 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
+            return 1;
+        }
+
         l3 = l1;
         m3 = m1;
         n3 = n1;
@@ -134,9 +143,15 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         m2 = 1;
         n2 = n3;
         l1 = (double *)MALLOC(sizeof(double) * n1);
-        for (i = 0; i < n1; l1[i] = (++i));
+        for (i = 0; i < n1; ++i)
+        {
+            l1[i] = i + 1;
+        }
         l2 = (double *)MALLOC(sizeof(double) * n2);
-        for (i = 0; i < n2; l2[i] = (++i));
+        for (i = 0; i < n2; ++i)
+        {
+            l2[i] = i + 1;
+        }
 
         mustFree = 1;
     }
@@ -155,7 +170,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
         if (sciErr.iErr)
         {
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
             printError(&sciErr, 0);
             return 1;
         }
@@ -190,7 +205,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
                 sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m3, &n3, &l3);
                 if (sciErr.iErr)
                 {
-                    Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                    Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
                     printError(&sciErr, 0);
                     return 1;
                 }
@@ -203,7 +218,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
                 sciErr = getListItemNumber(pvApiCtx, piAddr3, &m3l);
                 if (sciErr.iErr)
                 {
-                    Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                    Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
                     printError(&sciErr, 0);
                     return 1;
                 }
@@ -225,7 +240,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
                 sciErr = getMatrixOfDouble(pvApiCtx, piAddr31, &m3, &n3, &l3); /* z */
                 if (sciErr.iErr)
                 {
-                    Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                    Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
                     printError(&sciErr, 0);
                     return 1;
                 }
@@ -240,7 +255,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
                 sciErr = getMatrixOfDouble(pvApiCtx, piAddr32, &m3n, &n3n, &l3n); /* z */
                 if (sciErr.iErr)
                 {
-                    Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                    Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
                     printError(&sciErr, 0);
                     return 1;
                 }
@@ -268,14 +283,6 @@ int sci_plot3d(char * fname, unsigned long fname_len)
                 return 0;
         }
     }
-
-    iflag_def[1] = 8;
-
-    GetOptionalDoubleArg(pvApiCtx, fname, 4, "theta", &theta, 1, opts);
-    GetOptionalDoubleArg(pvApiCtx, fname, 5, "alpha", &alpha, 1, opts);
-    GetLabels(pvApiCtx, fname, 6, opts, &legend);
-    GetOptionalIntArg(pvApiCtx, fname, 7, "flag", &iflag, 3, opts);
-    GetOptionalDoubleArg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts);
 
     if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1)
     {
@@ -312,6 +319,15 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         ReturnArguments(pvApiCtx);
         return 0;
     }
+
+    iflag_def[1] = 8;
+
+    GetOptionalDoubleArg(pvApiCtx, fname, 4, "theta", &theta, 1, opts);
+    GetOptionalDoubleArg(pvApiCtx, fname, 5, "alpha", &alpha, 1, opts);
+    GetLabels(pvApiCtx, fname, 6, opts, &legend);
+    GetOptionalIntArg(pvApiCtx, fname, 7, "flag", &iflag, 3, opts);
+    GetOptionalDoubleArg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts);
+
 
     getOrCreateDefaultSubwin();
 

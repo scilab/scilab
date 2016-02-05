@@ -14,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=5638
 //
 // <-- Short Description -->
-// This test validate that the freq_div block can be simulated
+// This test validates that the freq_div block can be simulated
 
 // xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5638.zcos");
 // Simulate

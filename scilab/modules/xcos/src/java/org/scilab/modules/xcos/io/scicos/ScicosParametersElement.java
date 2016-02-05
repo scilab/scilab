@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,6 +27,10 @@ import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.VectorOfDouble;
+import org.scilab.modules.xcos.VectorOfString;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
@@ -50,8 +58,12 @@ public final class ScicosParametersElement extends AbstractElement<ScicosParamet
 
     /**
      * Default constructor
+     *
+     * @param controller
+     *            the shared controller
      */
-    public ScicosParametersElement() {
+    public ScicosParametersElement(final JavaController controller) {
+        super(controller);
     }
 
     /**
@@ -64,8 +76,7 @@ public final class ScicosParametersElement extends AbstractElement<ScicosParamet
      * @return the modified into parameters
      * @throws ScicosFormatException
      *             on decode error
-     * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType,
-     *      java.lang.Object)
+     * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType, java.lang.Object)
      */
     @Override
     public ScicosParameters decode(ScilabType element, ScicosParameters into) throws ScicosFormatException {
@@ -78,15 +89,21 @@ public final class ScicosParametersElement extends AbstractElement<ScicosParamet
         local = beforeDecode(element, local);
 
         /*
-         * fill data
+         * fill data, if accessible
          */
+        if (local.getKind() == Kind.DIAGRAM) {
+            fillWithThirdFields(local);
 
-        fillWithThirdFields(local);
+            try {
 
-        try {
-            local.setFinalIntegrationTime(((ScilabDouble) data.get(TF_INDEX)).getRealPart()[0][0]);
-        } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
+                double val = ((ScilabDouble) data.get(TF_INDEX)).getRealPart()[0][0];
+
+                VectorOfDouble v = local.getProperties(controller);
+                v.set(ScicosParameters.FINAL_INTEGRATION_TIME, val);
+                local.setProperties(controller, v);
+            } catch (PropertyVetoException e) {
+                Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
+            }
         }
 
         fillContext(local);
@@ -99,9 +116,7 @@ public final class ScicosParametersElement extends AbstractElement<ScicosParamet
     /**
      * Validate the current data.
      *
-     * This method doesn't pass the metrics because it perform many test.
-     * Therefore all these tests are trivial and the conditioned action only
-     * throw an exception.
+     * This method doesn't pass the metrics because it perform many test. Therefore all these tests are trivial and the conditioned action only throw an exception.
      *
      * @throws ScicosFormatException
      *             when there is a validation error.
@@ -221,62 +236,37 @@ public final class ScicosParametersElement extends AbstractElement<ScicosParamet
         // global index used to get the data
         int[] indexes = { 0, 0 };
 
-        try {
-            into.setIntegratorAbsoluteTolerance(realPart[indexes[0]][indexes[1]]);
-        } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
-        }
+        VectorOfDouble v = into.getProperties(controller);
 
+        v.set(ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE, realPart[indexes[0]][indexes[1]]);
         incrementIndexes(indexes, isColumnDominant);
 
-        try {
-            into.setIntegratorRelativeTolerance(realPart[indexes[0]][indexes[1]]);
-        } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
-        }
-
+        v.set(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE, realPart[indexes[0]][indexes[1]]);
         incrementIndexes(indexes, isColumnDominant);
 
-        try {
-            into.setToleranceOnTime(realPart[indexes[0]][indexes[1]]);
-        } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
-        }
-
+        v.set(ScicosParameters.TOLERANCE_ON_TIME, realPart[indexes[0]][indexes[1]]);
         incrementIndexes(indexes, isColumnDominant);
 
-        try {
-            into.setMaxIntegrationTimeInterval(realPart[indexes[0]][indexes[1]]);
-        } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
-        }
-
+        v.set(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL, realPart[indexes[0]][indexes[1]]);
         incrementIndexes(indexes, isColumnDominant);
 
-        try {
-            into.setRealTimeScaling(realPart[indexes[0]][indexes[1]]);
-        } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
-        }
-
+        v.set(ScicosParameters.REAL_TIME_SCALING, realPart[indexes[0]][indexes[1]]);
         incrementIndexes(indexes, isColumnDominant);
 
-        try {
-            into.setSolver(realPart[indexes[0]][indexes[1]]);
-        } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
-        }
-
+        v.set(ScicosParameters.SOLVER, realPart[indexes[0]][indexes[1]]);
         incrementIndexes(indexes, isColumnDominant);
 
         // Some times the maximum step size may not exist. Catch it.
         try {
-            into.setMaximumStepSize(realPart[indexes[0]][indexes[1]]);
-        } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
+            v.set(ScicosParameters.MAXIMUM_STEP_SIZE, realPart[indexes[0]][indexes[1]]);
         } catch (ArrayIndexOutOfBoundsException e) {
             // do nothing as the maximum step size will keep its default value.
-            return;
+        }
+
+        try {
+            into.setProperties(controller, v);
+        } catch (PropertyVetoException e) {
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
     }
 
@@ -293,11 +283,7 @@ public final class ScicosParametersElement extends AbstractElement<ScicosParamet
          * On an empty context the type is ScilabDouble.
          */
         if (contextType instanceof ScilabDouble) {
-            try {
-                into.setContext(new String[] { "" });
-            } catch (PropertyVetoException e) {
-                Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
-            }
+            // preserve the default value
             return;
         }
 
@@ -308,16 +294,16 @@ public final class ScicosParametersElement extends AbstractElement<ScicosParamet
         final String[][] str = ((ScilabString) contextType).getData();
         final int length = contextType.getHeight() + contextType.getWidth() - 1;
 
-        String[] context = new String[length];
+        VectorOfString context = new VectorOfString(length);
 
         int[] indexes = { 0, 0 };
         for (int i = 0; i < length; i++) {
-            context[i] = str[indexes[0]][indexes[1]];
+            context.set(i, str[indexes[0]][indexes[1]]);
             incrementIndexes(indexes, isColumnDominant);
         }
 
         try {
-            into.setContext(context);
+            into.setContext(controller, context);
         } catch (PropertyVetoException e) {
             Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
@@ -337,68 +323,5 @@ public final class ScicosParametersElement extends AbstractElement<ScicosParamet
 
         final String type = ((ScilabString) data.get(0)).getData()[0][0];
         return type.equals(DATA_FIELD_NAMES.get(0));
-    }
-
-    /**
-     * Encode the instance into the element
-     *
-     * @param from
-     *            the source instance
-     * @param element
-     *            the previously allocated element.
-     * @return the element parameter
-     * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object,
-     *      org.scilab.modules.types.ScilabType)
-     */
-    @Override
-    public ScilabType encode(ScicosParameters from, ScilabType element) {
-        if (element == null) {
-            throw new IllegalArgumentException();
-        }
-
-        data = (ScilabTList) element;
-        data = (ScilabTList) beforeEncode(from, element);
-
-        /*
-         * fill the tol field
-         */
-        int field = 0;
-        final double[][] tolField = new double[TOL_SIZE][1];
-
-        tolField[field++][0] = from.getIntegratorAbsoluteTolerance();
-        tolField[field++][0] = from.getIntegratorRelativeTolerance();
-        tolField[field++][0] = from.getToleranceOnTime();
-        tolField[field++][0] = from.getMaxIntegrationTimeInterval();
-        tolField[field++][0] = from.getRealTimeScaling();
-        tolField[field++][0] = from.getSolver();
-        tolField[field++][0] = from.getMaximumStepSize();
-
-        assert field == TOL_SIZE;
-
-        final ScilabDouble scilabTolField = new ScilabDouble(tolField);
-        data.set(TOL_INDEX, scilabTolField);
-
-        /*
-         * fill the tf field
-         */
-        data.set(TF_INDEX, new ScilabDouble(from.getFinalIntegrationTime()));
-
-        /*
-         * fill the context
-         */
-        final String[] realCtx = from.getContext();
-        if (realCtx != null && (realCtx.length > 1 || (realCtx.length == 1 && (realCtx[0] != null || realCtx[0].isEmpty())))) {
-            final String[][] ctx = new String[realCtx.length][];
-            for (int i = 0; i < ctx.length; i++) {
-                ctx[i] = new String[] { realCtx[i] };
-            }
-            data.set(CONTEXT_INDEX, new ScilabString(ctx));
-        } else {
-            data.set(CONTEXT_INDEX, new ScilabDouble());
-        }
-
-        data = (ScilabTList) afterEncode(from, data);
-
-        return data;
     }
 }

@@ -3,26 +3,30 @@
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.gui.editor;
 
-import org.scilab.modules.graphic_objects.ScilabNativeView;
-import org.scilab.modules.graphic_objects.axes.Axes;
+import java.lang.Math;
+
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.utils.BoxType;
-import org.scilab.modules.graphic_objects.utils.ClipStateType;
-import org.scilab.modules.graphic_objects.utils.LineType;
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
+import org.scilab.modules.graphic_objects.ScilabNativeView;
 
-
-
+import org.scilab.modules.gui.editor.ObjectSearcher;
+import org.scilab.modules.gui.editor.PolylineHandler;
 
 /**
 * Implements all axes manipulation functions for the editor.
@@ -59,7 +63,9 @@ public class AxesHandler {
         if (axes == null) {
             return lastAxes;
         }
-        Integer[] figureSize = (Integer[])GraphicController.getController().getProperty(figure, GraphicObjectProperties.__GO_AXES_SIZE__);
+
+        AxesContainer container = (AxesContainer) GraphicController.getController().getObjectFromId(figure);
+        Integer[] figureSize = container.getAxesSize();
 
         for (Integer i = 0; i < axes.length; i++) {
             Double[] axesBound = (Double[])GraphicController.getController().getProperty(axes[i], GraphicObjectProperties.__GO_AXES_BOUNDS__);
@@ -92,7 +98,9 @@ public class AxesHandler {
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_VISIBLE__, true);
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_VISIBLE__, true);
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_CLIP_STATE__, 1);
-        GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_TIGHT_LIMITS__, true);
+        GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_X_TIGHT_LIMITS__, true);
+        GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_Y_TIGHT_LIMITS__, true);
+        GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_Z_TIGHT_LIMITS__, true);
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_BOX_TYPE__, 1);
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_FILLED__, true);
     }
@@ -137,8 +145,12 @@ public class AxesHandler {
 
         GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_DATA_BOUNDS__, newBounds);
 
-        Boolean tight_lim = (Boolean)GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_TIGHT_LIMITS__);
-        GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_TIGHT_LIMITS__, tight_lim);
+        Boolean x_tight_lim = (Boolean)GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_X_TIGHT_LIMITS__);
+        GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_X_TIGHT_LIMITS__, x_tight_lim);
+        Boolean y_tight_lim = (Boolean)GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_Y_TIGHT_LIMITS__);
+        GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_Y_TIGHT_LIMITS__, y_tight_lim);
+        Boolean z_tight_lim = (Boolean)GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_Z_TIGHT_LIMITS__);
+        GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_Z_TIGHT_LIMITS__, z_tight_lim);
     }
 
     /**
@@ -257,11 +269,11 @@ public class AxesHandler {
         Axes clone = (Axes)GraphicController.getController().getObjectFromId(cloneUID);
         Axes axesFrom = (Axes)GraphicController.getController().getObjectFromId(axesFromUID);
 
-        //Cloning the Axes does not clone the labels/title, so we need do it manualy
+        //Cloning the Axes does not clone the labels/title, so we need do it manually
 
-        Integer xLabelUID = GraphicController.getController().cloneObject(axesFrom.getXLabel());
-        Integer yLabelUID = GraphicController.getController().cloneObject(axesFrom.getYLabel());
-        Integer zLabelUID = GraphicController.getController().cloneObject(axesFrom.getZLabel());
+        Integer xLabelUID = GraphicController.getController().cloneObject(axesFrom.getXAxisLabel());
+        Integer yLabelUID = GraphicController.getController().cloneObject(axesFrom.getYAxisLabel());
+        Integer zLabelUID = GraphicController.getController().cloneObject(axesFrom.getZAxisLabel());
         Integer titleUID = GraphicController.getController().cloneObject(axesFrom.getTitle());
 
         GraphicController.getController().setGraphicObjectRelationship(cloneUID, xLabelUID);
@@ -277,16 +289,16 @@ public class AxesHandler {
         GraphicController.getController().setProperty(titleUID, GraphicObjectProperties.__GO_AUTO_POSITION__, true);
 
         Double[] margins = axesFrom.getMargins();
-        Integer boxType = BoxType.enumToInt(axesFrom.getBox());
+        Integer boxType = axesFrom.getBoxType();
         boolean markMode = axesFrom.getMarkMode();
-        Integer clipState = ClipStateType.enumToInt(axesFrom.getClipState());
+        Integer clipState = axesFrom.getClipState();
         Integer markSize = axesFrom.getMarkSize();
         Integer markStyle = axesFrom.getMarkStyle();
         Integer markForeground = axesFrom.getMarkForeground();
         Integer markBackground = axesFrom.getMarkBackground();
         boolean lineMode = axesFrom.getLineMode();
-        Integer lineStyle = LineType.enumToInt(axesFrom.getLineStyle());
-        Double lineThickness = axesFrom.getThickness();
+        Integer lineStyle = axesFrom.getLineStyle();
+        Double lineThickness = axesFrom.getLineThickness();
         Integer lineColor = axesFrom.getLineColor();
         Double[] rotationAngles = axesFrom.getRotationAngles();
         boolean XAxisVisible = axesFrom.getXAxisVisible();
@@ -301,27 +313,28 @@ public class AxesHandler {
         Integer fontStyle = axesFrom.getFontStyle();
         Double fontSize = axesFrom.getFontSize();
         Integer fontColor = axesFrom.getFontColor();
-        boolean fontFractional = axesFrom.getFractionalFont();
+        boolean fontFractional = axesFrom.getFontFractional();
         Integer hiddenColor = axesFrom.getHiddenColor();
-        boolean tightLimits = axesFrom.getTightLimits();
+        boolean XTightLimits = axesFrom.getXTightLimits();
+        boolean YTightLimits = axesFrom.getYTightLimits();
+        boolean ZTightLimits = axesFrom.getZTightLimits();
 
-        clone.setXLabel(xLabelUID);
-        clone.setYLabel(yLabelUID);
-        clone.setZLabel(zLabelUID);
+        clone.setXAxisLabel(xLabelUID);
+        clone.setYAxisLabel(yLabelUID);
+        clone.setZAxisLabel(zLabelUID);
         clone.setTitle(titleUID);
 
         clone.setMargins(margins);
-
-        clone.setBox(BoxType.intToEnum(boxType));
-        clone.setClipState(ClipStateType.intToEnum(clipState));
+        clone.setBoxType(boxType);
+        clone.setClipState(clipState);
         clone.setMarkMode(markMode);
         clone.setMarkStyle(markStyle);
         clone.setMarkSize(markSize);
         clone.setMarkBackground(markBackground);
         clone.setMarkForeground(markForeground);
         clone.setLineMode(lineMode);
-        clone.setLineStyle(LineType.intToEnum(lineStyle));
-        clone.setThickness(lineThickness);
+        clone.setLineStyle(lineStyle);
+        clone.setLineThickness(lineThickness);
         clone.setLineColor(lineColor);
 
 
@@ -338,9 +351,11 @@ public class AxesHandler {
         clone.setFontStyle(fontStyle);
         clone.setFontSize(fontSize);
         clone.setFontColor(fontColor);
-        clone.setFractionalFont(fontFractional);
+        clone.setFontFractional(fontFractional);
         clone.setHiddenColor(hiddenColor);
-        clone.setTightLimits(tightLimits);
+        clone.setXTightLimits(XTightLimits);
+        clone.setYTightLimits(YTightLimits);
+        clone.setZTightLimits(ZTightLimits);
 
         return cloneUID;
     }
@@ -363,14 +378,14 @@ public class AxesHandler {
         Integer[] children = axesTo.getChildren();
         Integer parentUID = axesTo.getParent();
         String[] titleText = (String[])GraphicController.getController().getProperty(axesTo.getTitle(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
-        String[] xLabelText = (String[])GraphicController.getController().getProperty(axesTo.getXLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
-        String[] yLabelText = (String[])GraphicController.getController().getProperty(axesTo.getYLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
-        String[] zLabelText = (String[])GraphicController.getController().getProperty(axesTo.getZLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
+        String[] xLabelText = (String[])GraphicController.getController().getProperty(axesTo.getXAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
+        String[] yLabelText = (String[])GraphicController.getController().getProperty(axesTo.getYAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
+        String[] zLabelText = (String[])GraphicController.getController().getProperty(axesTo.getZAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
 
         GraphicController.getController().setProperty(newAxes.getTitle(), GraphicObjectProperties.__GO_TEXT_STRINGS__, titleText);
-        GraphicController.getController().setProperty(newAxes.getXLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__, xLabelText);
-        GraphicController.getController().setProperty(newAxes.getYLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__, yLabelText);
-        GraphicController.getController().setProperty(newAxes.getZLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__, zLabelText);
+        GraphicController.getController().setProperty(newAxes.getXAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__, xLabelText);
+        GraphicController.getController().setProperty(newAxes.getYAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__, yLabelText);
+        GraphicController.getController().setProperty(newAxes.getZAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__, zLabelText);
 
         if (bounds) {
             Double[] dataBounds = axesTo.getDataBounds();

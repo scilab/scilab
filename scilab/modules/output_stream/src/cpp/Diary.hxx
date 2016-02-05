@@ -3,11 +3,14 @@
 * ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) DIGITEO - 2009 - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -16,6 +19,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string>
 #include "DiaryModesEnum.hxx"
+
 /*--------------------------------------------------------------------------*/
 class Diary
 {
@@ -42,13 +46,13 @@ private:
     /*
     * used on Windows to replace carriage return
     */
-    std::wstring replace(std::wstring text, std::wstring s, std::wstring replacement);
+    std::wstring replace(const std::wstring& text, const std::wstring& s, const std::wstring& replacement);
 
 public:
     /*
     * constructor
     */
-    Diary(std::wstring _wfilename, int _mode, int ID, bool autorename);
+    Diary(const std::wstring& _wfilename, int _mode, int ID, bool autorename);
 
     /*
     * destructor
@@ -69,17 +73,17 @@ public:
     /*
     * get ID of this diary
     */
-    int getID(void);
+    int getID(void) const;
 
     /*
     * write a string in this diary
     */
-    void write(std::wstring _wstr, bool bInput);
+    void write(const std::wstring& _wstr, bool bInput);
 
     /*
     * write a line in this diary
     */
-    void writeln(std::wstring _wstr, bool bInput);
+    void writeln(const std::wstring& _wstr, bool bInput);
 
     /*
     * get & set Resume mode
@@ -102,5 +106,5 @@ public:
 
 #endif /* __DIARY_HXX__ */
 /*--------------------------------------------------------------------------*/
-bool compareDiary(Diary first, Diary second);
+bool compareDiary(const Diary& first, const Diary& second);
 /*--------------------------------------------------------------------------*/

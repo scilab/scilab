@@ -2,12 +2,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="varn">
     <refnamediv>
         <refname>varn</refname>
-        <refpurpose>多項式の記号変数</refpurpose>
+        <refpurpose>多項式または有理分数のシンボリック変数</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
         <synopsis>[symb]=varn(p)
-            [pm]=varn(x,var)
+            [pm]=varn(p,varname)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -16,7 +16,7 @@
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>多項式 (または多項式行列)</para>
+                    <para>多項式のか合理的な画分の行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -26,13 +26,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>多項式または多項式行列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>var</term>
+                <term>varname</term>
                 <listitem>
                     <para>記号変数 (文字列)</para>
                 </listitem>
@@ -40,7 +34,7 @@
             <varlistentry>
                 <term>pm</term>
                 <listitem>
-                    <para>多項式 (または多項式行列)</para>
+                    <para>多項式のか合理的な画分の行列</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -53,7 +47,7 @@
             (すなわち,<literal>varn(poly(0,'x'))</literal> は <literal>'x'</literal> です).
         </para>
         <para>
-            <literal>varn(x,'s')</literal> は,<literal>x</literal>と
+            <literal>varn(p,'s')</literal> は,<literal>p</literal>と
             同じ係数を有し,<literal>'s'</literal>を記号変数とする
             多項式行列を返します(変数名の変更).
         </para>
@@ -61,20 +55,38 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-s=poly(0,'s');p=[s^2+1,s];
+s = poly(0,'s'); p = [s^2+1,s];
 varn(p)
 varn(p,'x')
+
+f = %z / (%z-1); f = [f f^2]
+varn(f)
+varn(f,"x")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="horner">horner</link>
-            </member>
-            <member>
                 <link linkend="poly">poly</link>
             </member>
+            <member>
+                <link linkend="rlist">rlist</link>
+            </member>
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.1</revnumber>
+                <revdescription>
+                    <para>Extension to rationals</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -60,10 +60,10 @@ m1=(epsilon*epsilon)/(A*A-1);n=5;omegac=6;
 m=find_freq(epsilon,A,n);omegar = omegac/sqrt(m)
 %k(1-m1)*%k(m)/(%k(m1)*%k(1-m))-n   //Check...
 [alpha,Beta]=alpha_beta(n,m,m1)
-alpha*%asn(1,m)-n*%k(m1)      //Check
+alpha*delip(1,sqrt(m))-n*%k(m1)      //Check
 samples=0:0.01:20;
 //Now we map the positive real axis into the contour...
-z=alpha*%asn(samples/omegac,m)+Beta*ones(samples);
+z=alpha*delip(samples/omegac,sqrt(m))+Beta*ones(samples);
 plot(samples,ell1mag(epsilon,m1,z))
  ]]></programlisting>
         <scilab:image><![CDATA[
@@ -75,10 +75,10 @@ m1=(epsilon*epsilon)/(A*A-1);n=5;omegac=6;
 m=find_freq(epsilon,A,n);omegar = omegac/sqrt(m)
 %k(1-m1)*%k(m)/(%k(m1)*%k(1-m))-n   //Check...
 [alpha,Beta]=alpha_beta(n,m,m1)
-alpha*%asn(1,m)-n*%k(m1)      //Check
+alpha*delip(1,sqrt(m))-n*%k(m1)      //Check
 samples=0:0.01:20;
 //Now we map the positive real axis into the contour...
-z=alpha*%asn(samples/omegac,m)+Beta*ones(samples);
+z=alpha*delip(samples/omegac,sqrt(m))+Beta*ones(samples);
 plot(samples,ell1mag(epsilon,m1,z))
 ]]>     </scilab:image>
     </refsection>

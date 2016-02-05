@@ -1,11 +1,14 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) Bruno Pincon
 c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c
+c This file is hereby licensed under the terms of the GNU GPL v2.0,
+c pursuant to article 5.3.4 of the CeCILL v.2.1.
+c This file was originally licensed under the terms of the CeCILL v2.1,
+c and continues to be available under such terms.
+c For more information, see the COPYING file which you should have received
+c along with this program.
 
       subroutine wacos(zr, zi, ar, ai)
 *
@@ -44,6 +47,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *     EXTERNAL FUNCTIONS
       double precision dlamch, logp1
       external         dlamch, logp1
+      integer          isanan
+      external         isanan
 
 *     CONSTANTS
       double precision LN2, PI, HALFPI, Across, Bcross
@@ -77,7 +82,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       y = abs(zi)
       szr = sign(1.d0,zr)
       szi = sign(1.d0,zi)
-
+            
 
       if (LINF .le. min(x,y) .and. max(x,y) .le. LSUP ) then
 *        we are in the safe region
@@ -124,8 +129,13 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
                endif
             endif
          elseif (y .lt. LINF) then
-            ar = sqrt(y)
-            ai = ar
+             if (isanan(x).eq.1) then
+                 ar = x
+                 ai = y
+             else
+                 ar = sqrt(y)
+                 ai = ar
+             endif
          elseif (EPSM*y - 1.d0 .ge. x) then
             ar = HALFPI
             ai = LN2 + log(y)
@@ -133,7 +143,11 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
             ar = atan(y/x)
             ai = LN2 + log(y) + 0.5d0*logp1((x/y)**2)
          else
-            ar = HALFPI
+             if (isanan(x).eq.1) then
+                 ar = x
+             else
+                 ar = HALFPI
+             endif
             A = sqrt(1.d0 + y**2)
             ai = 0.5d0*logp1(2.d0*y*(y+A))
          endif

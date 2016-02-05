@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.mark;
@@ -38,7 +41,7 @@ public class MarkSpriteFactory {
      * @param colorMap the scilab color map.
      * @return a mark sprite corresponding to the given scilab mark.
      */
-    public static Texture getMarkSprite(TextureManager spriteManager, Mark mark, ColorMap colorMap, Appearance appearance) {
+    public static Texture getMarkSprite(TextureManager spriteManager, Mark mark, Integer selectedColor, ColorMap colorMap, Appearance appearance) {
         int finalSize;
 
         /**
@@ -58,7 +61,7 @@ public class MarkSpriteFactory {
         }
 
         Texture sprite = spriteManager.createTexture();
-        sprite.setDrawer(getSpriteDrawer(mark, finalSize, colorMap, appearance));
+        sprite.setDrawer(getSpriteDrawer(mark, selectedColor, finalSize, colorMap, appearance));
 
         return sprite;
     }
@@ -70,10 +73,25 @@ public class MarkSpriteFactory {
      * @param colorMap the scilab colormap to use.
      * @return the sprite drawer corresponding to the given mark.
      */
-    private static TextureDrawer getSpriteDrawer(Mark mark, int finalSize, ColorMap colorMap, Appearance usedAppearance) {
+    private static TextureDrawer getSpriteDrawer(Mark mark, Integer selectedColor, int finalSize, ColorMap colorMap, Appearance usedAppearance) {
         final Appearance appearance = new Appearance();
-        Color backgroundColor = ColorFactory.createColor(colorMap, mark.getBackground());
-        Color foregroundColor = ColorFactory.createColor(colorMap, mark.getForeground());
+        Integer markColor = selectedColor == null ? mark.getForeground() : selectedColor;
+        Color backgroundColor;
+        Color foregroundColor;
+
+        if (colorMap != null) {
+            backgroundColor = ColorFactory.createColor(colorMap, mark.getBackground());
+            foregroundColor = ColorFactory.createColor(colorMap, markColor);
+        } else if (mark.getBackground() == -3 && mark.getForeground() == -3) {
+            backgroundColor = new Color(0f, 0f, 0f, 1f);
+            foregroundColor = new Color(0f, 0f, 0f, 1f);
+        } else if (mark.getBackground() == -3) {
+            backgroundColor = new Color(0f, 0f, 0f, 1f);
+            foregroundColor = new Color(1f, 1f, 1f, 1f);
+        } else {
+            backgroundColor = new Color(1f, 1f, 1f, 1f);
+            foregroundColor = new Color(0f, 0f, 0f, 1f);
+        }
 
         if (mark.getBackground() != 0) {
             appearance.setFillColor(backgroundColor);
@@ -85,10 +103,20 @@ public class MarkSpriteFactory {
             appearance.setLineWidth(usedAppearance.getLineWidth());
         }
 
+        if (finalSize == 0) {
+            // when finalSize is 0 then a dot is drawn so we draw a dot with a PlusSpriteDrawer
+            // which is well exported with size equal to 1 (see bug 13551)
+            finalSize = 1;
+        }
+
         if (finalSize != 1) {
             switch (mark.getStyle()) {
                 case  0:
-                    return new DotSpriteDrawer(foregroundColor, finalSize);
+                    if (colorMap == null) {
+                        return new DotSpriteDrawer(backgroundColor, finalSize);
+                    } else {
+                        return new DotSpriteDrawer(foregroundColor, finalSize);
+                    }
                 case  1:
                     return new PlusSpriteDrawer(appearance, finalSize);
                 case  2:
@@ -96,7 +124,11 @@ public class MarkSpriteFactory {
                 case  3:
                     return new StarSpriteDrawer(appearance, finalSize);
                 case  4:
-                    return new FilledDiamondSpriteDrawer(foregroundColor, finalSize);
+                    if (colorMap == null) {
+                        return new FilledDiamondSpriteDrawer(backgroundColor, finalSize);
+                    } else {
+                        return new FilledDiamondSpriteDrawer(foregroundColor, finalSize);
+                    }
                 case  5:
                     return new DiamondSpriteDrawer(appearance, finalSize);
                 case  6:

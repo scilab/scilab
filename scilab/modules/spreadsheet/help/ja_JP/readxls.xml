@@ -4,11 +4,14 @@
  * Copyright (C) 2005      - INRIA - Pierrick MODE
  * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="readxls">
@@ -21,7 +24,7 @@
         <synopsis>sheets = readxls(file_path)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>file_path</term>
@@ -43,9 +46,9 @@
     </refsection>
     <refsection>
         <title>説明</title>
-        <para>Excelファイルのパスを指定すると,この関数は
-            <literal>sheets</literal>という名前のフィールドを有する
-            <literal>xls</literal>
+        <para>
+            Excelファイルのパスを指定すると,この関数は
+            <literal>sheets</literal>という名前のフィールドを有する<literal>xls</literal>
             型の <literal>mlist</literal>データ構造体を返します.
             この<literal>sheets</literal> フィールドはそれ自体 sheetデータ構造体の
             リストです.
@@ -57,7 +60,9 @@
             <literal>Value</literal>はセルの値を有する数値の行列です.
         </para>
         <para>
-            <warning> BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.</warning>
+            <warning>
+                BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.
+            </warning>
         </para>
     </refsection>
     <refsection>
@@ -72,7 +77,6 @@ s1.value //最初のシートのvalueフィールドを取得
 s1.text  //最初のシートのtextフィールドを取得
 s1(2,:)  //シートの2番目の行を取得
 typeof(s1(2,:))
-
 disp(s1)
  ]]></programlisting>
     </refsection>

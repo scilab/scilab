@@ -2,11 +2,14 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 // <-- CLI SHELL MODE -->
 function y = rosenbrock ( x )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
@@ -107,8 +110,8 @@ opt = optimset ( "Display" , "iter" );
     10           21        4.1355598         contract inside     
     11           23        4.0127268         expand              
     12           25        3.9373812         expand              
-    13           27         3.602606         expand              
-    14           28         3.602606         reflect             
+    13           27        3.6026060         expand              
+    14           28        3.6026060         reflect             
     15           30        3.4662211         reflect             
     16           32        3.2160547         expand              
     17           34        3.1649126         reflect             
@@ -180,7 +183,6 @@ opt = optimset ( "Display" , "iter" );
     83          155        1.123D-09         contract inside     
     84          157        1.108D-09         contract outside    
     85          159        8.178D-10         contract inside     
-
 Optimization terminated:
  the current x satisfies the termination criteria using OPTIONS.TolX of 0.0001
  and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 0.0001
@@ -249,7 +251,6 @@ opt = optimset ( "Display" , "iter" , "MaxIter" , 10 );
      8           17        4.2112906         contract inside     
      9           19        4.1355598         expand              
     10           21        4.1355598         contract inside     
-
 fminsearch: Exiting: Maximum number of iterations has been exceeded
          - increase MaxIter option.
          Current function value: 4.1355598

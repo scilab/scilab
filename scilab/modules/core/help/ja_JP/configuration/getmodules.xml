@@ -9,7 +9,7 @@
         <synopsis>res=getmodules()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>res</term>
@@ -22,6 +22,14 @@
     <refsection>
         <title>説明</title>
         <para>Scilabにインストールされているモジュールの一覧を返します.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+modules=getmodules();
+find(modules=="core");
+with_module("core");
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

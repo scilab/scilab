@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include "machine.h" /* C2F */
 #include "../../../linear_algebra/includes/issymmetric.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"

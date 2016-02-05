@@ -3,11 +3,14 @@
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.util;
@@ -59,6 +62,9 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
     private final int width;
     private final int height;
 
+    private boolean latexSet = false;
+    private boolean mathmlSet = false;
+
     /**
      * Default constructor.
      * @param colorMap the color map to use.
@@ -81,6 +87,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor());
         Font font = computeFont(textObject);
 
+        loadDeps(stringArray);
         fillEntityMatrix(stringArray, fractionalFont, textColor, font);
 
         this.width  = sum(columnWidth) + HMARGIN * (columnNumber + 1) + 2 * thickness + SPACEWIDTH * (columnNumber - 1);
@@ -112,10 +119,34 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         Font font = computeFont(textObject, scaleFactor);
 
         /* Fill the entity matrix */
+        loadDeps(stringArray);
         fillEntityMatrix(stringArray, fractionalFont, textColor, font);
 
         this.width  = (int)((double)sum(columnWidth) + scaleFactor * (double)(HMARGIN * (columnNumber + 1)) + 2 * thickness + scaleFactor * (double)(SPACEWIDTH * (columnNumber - 1)));
         this.height = (int)((double)sum(lineHeight)  + scaleFactor * (double)(VMARGIN * (lineNumber + 1)) + 2 * thickness);
+    }
+
+    /**
+     * Load JLaTeXMath or JEuclid if mandatory
+     * @param stringArray the text to check
+     */
+    protected void loadDeps(String[][] stringArray) {
+        loop: {
+            for (String[] textLine : stringArray) {
+                for (String text : textLine) {
+                    if (text != null) {
+                        if (!latexSet && isLatex(text)) {
+                            latexSet = true;
+                            LoadClassPath.loadOnUse("graphics_latex_textrendering");
+                        } else if (!mathmlSet && isMathML(text)) {
+                            LoadClassPath.loadOnUse("graphics_mathml_textrendering");
+                        } else if (latexSet && mathmlSet) {
+                            break loop;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -135,7 +166,6 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
                     Icon icon = null;
                     float ascent = 0;
                     if (isLatex(text)) {
-                        LoadClassPath.loadOnUse("graphics_latex_textrendering");
                         try {
                             TeXFormula formula = new TeXFormula(text.substring(1, text.length() - 1));
                             formula.setColor(textColor);
@@ -143,7 +173,6 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
                             ascent = ((TeXIcon) icon).getIconHeight() - ((TeXIcon) icon).getIconDepth();
                         } catch (Exception e) { }
                     } else if (isMathML(text)) {
-                        LoadClassPath.loadOnUse("graphics_mathml_textrendering");
                         try {
                             icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, font.getSize(), textColor);
                             ScilabSpecialTextUtilities.SpecialIcon si = (ScilabSpecialTextUtilities.SpecialIcon) icon;
@@ -162,7 +191,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
                         textEntity.setFont(font);
                         entities[column][line] = textEntity;
                         dimension = textEntity.getSize();
-                        ascent = textEntity.getLayout().getAscent();
+                        ascent = textEntity.isValid() ? textEntity.getLayout().getAscent() : 0;
                     }
 
                     lineAscent[line] = Math.max(lineAscent[line], ascent);
@@ -217,15 +246,15 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
                 if (entity != null) {
                     if (entity instanceof TextEntity) {
                         TextEntity textEntity = (TextEntity) entity;
-                        TextLayout layout = textEntity.getLayout();
+                        float ascent = textEntity.isValid() ? textEntity.getLayout().getAscent() : 0.f;
                         double deltaX = alignmentFactor * (columnWidth[column] - textEntity.getSize().getWidth());
-                        drawingTools.draw(textEntity, (int) (x + deltaX), Math.round(y - layout.getAscent() + lineAscent[line]));
+                        drawingTools.draw(textEntity, (int) (x + deltaX), Math.round(y - ascent + lineAscent[line]));
                         y += lineHeight[line] + currentVMargin;
                         line++;
                     } else if (entity instanceof Icon) {
                         Icon icon = (Icon) entity;
                         double deltaX = alignmentFactor * (columnWidth[column] - icon.getIconWidth());
-                        if (icon instanceof TeXIcon) {
+                        if (latexSet && (icon instanceof TeXIcon)) {
                             TeXIcon tex = (TeXIcon) icon;
                             float ascent = tex.getIconHeight() - tex.getIconDepth();
                             drawingTools.draw(icon, (int) (x + deltaX), Math.round(y - ascent + lineAscent[line]));

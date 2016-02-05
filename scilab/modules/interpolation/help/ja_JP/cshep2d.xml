@@ -9,7 +9,7 @@
         <synopsis>tl_coef = cshep2d(xyz)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>xyz</term>
@@ -63,14 +63,13 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // ランダムに選択された補間点について cos(x)cos(y)を補間します
 n = 150; // nb 個の補間点
 xy = grand(n,2,"unf",0,2*%pi);
 z = cos(xy(:,1)).*cos(xy(:,2));
 xyz = [xy z];
 tl_coef = cshep2d(xyz);
-
 // グリッドにおける評価
 m = 30;
 xx = linspace(0,2*%pi,m);
@@ -79,7 +78,7 @@ Z = eval_cshep2d(X,Y, tl_coef);
 clf()
 plot3d(xx,xx,Z,flag=[2 6 4])
 param3d1(xy(:,1),xy(:,2),list(z,-9), flag=[0 0])
-xtitle("Cubic Shepard Interpolation of cos(x)cos(y) with randomly choosen interpolation points")
+xtitle("Cubic Shepard Interpolation of cos(x)cos(y) with randomly chosen interpolation points")
 legends("interpolation points",-9,1)
 show_window()
  ]]></programlisting>
@@ -94,5 +93,16 @@ show_window()
                 <link linkend="eval_cshep2d">eval_cshep2d</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    以前は,入力引数の虚部は暗黙的に無視されていました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

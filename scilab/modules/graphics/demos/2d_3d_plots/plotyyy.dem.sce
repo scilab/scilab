@@ -24,7 +24,7 @@ function demo_plotyyy()
     y1=sin(x/2);
     plot2d(x,y1)
     xtitle([gettext("Plot with 3 different Y scales at shared X");" "],..
-    gettext("Common X axis"),gettext("Scale n°1"));
+    gettext("Common X axis"),gettext("Scale #1"));
 
     // Axis y2
     c=color("blue");
@@ -46,7 +46,7 @@ function demo_plotyyy()
     plot2d(x,y2,style=c);
     ylabel("Scale n°3","color",[1 0 0])
     na.filled="off";                        // Transparent background, letting the first plot appearing
-    na.axes_visible(1)="off";               // MAsking the x axis (useless overlay)
+    na.axes_visible(1)="off";               // Masking the x axis (useless overlay)
     na.y_location="right";                  // Y axis on the right side
     na.children(1).children(1).thickness=2; // Curve thickness
 

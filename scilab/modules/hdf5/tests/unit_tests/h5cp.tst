@@ -11,9 +11,9 @@ msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expec
 assert_checkerror("h5cp()",msgerr,77);
 msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "h5cp", 2, 4);
 assert_checkerror("h5cp(42)",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5cp", 1);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5cp", 1);
 assert_checkerror("h5cp(12.0,14.0)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5cp", 2);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5cp", 2);
 assert_checkerror("h5cp(""12.0"",14.0)",msgerr,999);
 msgerr = msprintf(gettext("%s: %s\n"), "h5cp", msprintf(gettext("Invalid hdf5 file: %s."), "12.0"));
 assert_checkerror("h5cp(""12.0"",""14.0"")",msgerr,999);

@@ -3,20 +3,22 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 /*--------------------------------------------------------------------------*/
 #include "gw_time.h"
-#include "stack-c.h"
-#include "MALLOC.h"
+#include "api_scilab.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
-#include "IsAScalar.h"
 #include "transposeMatrix.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
@@ -30,48 +32,58 @@ static long ymd_to_scalar (unsigned year, unsigned month, unsigned day);
 /*--------------------------------------------------------------------------*/
 int days[12]    = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 /*--------------------------------------------------------------------------*/
-int sci_calendar(char *fname, unsigned long fname_len)
+int sci_calendar(char *fname, void* pvApiCtx)
 {
-    static int l1, n1, m1;
+    SciErr sciErr;
+    int n1 = 0, m1 = 0;
+    int * p1_in_address = NULL;
+    double dblReal = 0;
 
     int month = 0;
     int year = 0;
     int day, day_1, numdays, i;
     int a = 0;
 
-    int *CALMONTH = NULL;
-    int *tmpMatrix = NULL;
+    double *CALMONTH  = NULL;
+    double *tmpMatrix = NULL;
 
-    Rhs = Max(0, Rhs);
+    //Rhs = Max(0, Rhs);
+
     CheckRhs(2, 2);
     CheckLhs(1, 1);
 
-    if ( IsAScalar(Rhs - 1) && IsAScalar(Rhs) )
-    {
-        GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
-        year = *istk(l1);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
 
-        GetRhsVar(2, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
-        month = *istk(l1);
-
-        if ( (year < 1800) || (year > 3000) )
-        {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"), fname, 2, 1800, 3000);
-            return 0;
-        }
-
-        if ( (month < 1) || (month > 12) )
-        {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"), fname, 1, 1, 12);
-            return 0;
-        }
-    }
-    else
+    if (getScalarDouble(pvApiCtx, p1_in_address, &dblReal))
     {
         Scierror(999, _("%s: Wrong type for input arguments: Scalar values expected.\n"), fname);
         return 0;
     }
-    CALMONTH = (int *)MALLOC( (NBRDAY * NBRWEEK) * sizeof(int) );
+
+    year = (int)dblReal;
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &p1_in_address);
+    if (getScalarDouble(pvApiCtx, p1_in_address, &dblReal))
+    {
+        Scierror(999, _("%s: Wrong type for input arguments: Scalar values expected.\n"), fname);
+        return 0;
+    }
+
+    month = (int)dblReal;
+
+    if ( (year < 1800) || (year > 3000) )
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"), fname, 2, 1800, 3000);
+        return 0;
+    }
+
+    if ( (month < 1) || (month > 12) )
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"), fname, 1, 1, 12);
+        return 0;
+    }
+
+    CALMONTH = (double *)MALLOC( (NBRDAY * NBRWEEK) * sizeof(double) );
     for (i = 0; i < NBRDAY * NBRWEEK; i++)
     {
         CALMONTH[i] = 0;
@@ -98,19 +110,22 @@ int sci_calendar(char *fname, unsigned long fname_len)
         CALMONTH[a] = day;
         a++;
     }
+
     m1 = NBRWEEK;
     n1 = NBRDAY;
     tmpMatrix = CALMONTH;
 
-    CALMONTH = transposeMatrixInt(NBRDAY, NBRWEEK, CALMONTH);
+    CALMONTH = transposeMatrixDouble(NBRDAY, NBRWEEK, CALMONTH);
     if (tmpMatrix)
     {
         FREE(tmpMatrix);
         tmpMatrix = NULL;
     }
+    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m1, n1, CALMONTH);
 
-    CreateVarFromPtr(Rhs + 1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 , &CALMONTH);
+
     LhsVar(1) = Rhs + 1;
+    PutLhsVar();
 
     if (CALMONTH)
     {

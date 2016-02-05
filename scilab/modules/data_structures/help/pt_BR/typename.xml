@@ -7,7 +7,6 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>[types [ [,names]]=typename()
-            typename(name,type)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -17,7 +16,7 @@
                 <term>types</term>
                 <listitem>
                     <para>vetor coluna de inteiros: os códigos dos tipos de cada tipo de
-                        dado definido. 
+                        dado definido.
                     </para>
                 </listitem>
             </varlistentry>
@@ -25,20 +24,8 @@
                 <term>names</term>
                 <listitem>
                     <para>vetor coluna de strings: os nomes associados aos códigos de
-                        tipos. 
+                        tipos.
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>type</term>
-                <listitem>
-                    <para>inteiro: o código de tipo do novo tipo de dado. </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>name</term>
-                <listitem>
-                    <para>string: o nome associado ao código de tipo </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -54,19 +41,9 @@
             <literal>overloading</literal>).
         </para>
         <para>
-            Chamado sem argumento do lado direito, <literal>typename</literal>
+            <literal>typename</literal>
             retorna informações sobre tipos de dados definidos.
         </para>
-        <para>
-            Chamado com argumento do lado direito, <literal>typename</literal>
-            associa um nome a um código de tipo de dado.
-        </para>
-        <para>
-            <literal>typename('',type)</literal> suprime o tipo de dado
-            fornecido pelo seu código <literal>type</literal> de tabelas de tipos de
-            dados conhecidos.
-        </para>
-        <para>Number max. of defined types is 50.</para>
     </refsection>
     <refsection>
         <title> Ver Também </title>

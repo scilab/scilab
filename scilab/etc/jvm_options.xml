@@ -25,6 +25,7 @@ $SCILAB : scilab path (SCI in Scilab)
     <option value="-Xmx256m"/>
     <!-- Avoid jvm to handle sigint (& other signals)  -->
     <option value="-Xrs"/>
+    <!--option value="-Djogl.debug=all"/-->
     
     <!-- Set Java space for direct buffer allocation -->
     <!--

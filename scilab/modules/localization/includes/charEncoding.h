@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
 * Copyright (C) 2009 - DIGITEO - Antoine ELIAS , Allan CORNET
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 #ifndef __CHARENCODING_H__
@@ -15,7 +18,6 @@
 #include <wchar.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include "MALLOC.h"
 #include "BOOL.h"
 
 #ifdef __cplusplus
@@ -53,7 +55,7 @@ extern "C" {
     * @param[in] UTF string
     * @return wide char string converted
     */
-    wchar_t *to_wide_string(const char *_UTFStr);
+    wchar_t* to_wide_string(const char *_UTFStr);
 
     /**
     * convert a wide char string to UTF-8
@@ -67,19 +69,13 @@ extern "C" {
     int wcstat(char* filename, struct _stat *st);
 #endif
 
-#ifdef _MSC_VER
-#define wcsicmp _wcsicmp
-#else
-    int wcsicmp_others(const wchar_t* s1, const wchar_t* s2);
-#define wcsicmp wcsicmp_others
-#endif
-
     /**
     * checks input text is a valid UTF-8 format
     * @param[in] string to check
     * @return TRUE or FALSE
     */
     BOOL IsValidUTF8(const char* pStText);
+
 
 #ifdef __cplusplus
 }

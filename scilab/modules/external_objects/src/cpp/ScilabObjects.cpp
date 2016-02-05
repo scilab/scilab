@@ -2,20 +2,30 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
-#include "ScilabObjects.hxx"
 #include <cstring>
-
 #include <cstdio>
+#include <vector>
 
+#include "internal.hxx"
+#include "EOType.hxx"
+#include "mlist.hxx"
+#include "ScilabObjects.hxx"
+#include "context.hxx"
+#include "function.hxx"
+#include "gatewaystruct.hxx"
 extern "C" {
+#include "api_scilab.h"
     extern int C2F(varfunptr)(int *, int *, int *);
 }
 
@@ -25,7 +35,10 @@ bool ScilabObjects::isInit = false;
 const char * ScilabObjects::_EOBJ[] = {"_EObj", "_EnvId", "_id"};
 const char * ScilabObjects::_ECLASS[] = {"_EClass", "_EnvId", "_id"};
 const char * ScilabObjects::_EVOID[] = {"_EVoid", "_EnvId", "_id"};
-const char * ScilabObjects::_INVOKE_ = "!!_invoke_";
+const wchar_t * ScilabObjects::_INVOKE_ = L"!!_invoke_";
+const wchar_t pwstEClass[] = {L"_EClass"};
+const wchar_t pwstEObj[] = {L"_EObj"};
+const wchar_t pwstEVoid[] = {L"_EVoid"};
 
 void ScilabObjects::initialization(ScilabAbstractEnvironment & env, void * pvApiCtx)
 {
@@ -146,38 +159,12 @@ void ScilabObjects::createEnvironmentObjectAtPos(int type, int pos, int id, cons
     }
 }
 
-void ScilabObjects::copyInvocationMacroToStack(int pos, ScilabAbstractEnvironment & env, void * pvApiCtx)
+void ScilabObjects::copyInvocationMacroToStack(int pos, const int envId, bool isNew, void * pvApiCtx)
 {
-    static bool init = false;
-    static int id[nsiz];
-    static int interf = 0;
-    static int funnumber = 0;
-
-    if (!init)
-    {
-        init = true;
-        C2F(str2name)(const_cast<char *>(_INVOKE_), id, strlen(_INVOKE_));
-        int fins = Fin;
-        int funs = C2F(com).fun;
-        Fin = -1;
-        C2F(funs)(id);
-        funnumber = Fin;
-        interf = C2F(com).fun;
-        C2F(com).fun = funs;
-        Fin = fins;
-    }
-
-    int tops = Top;
-    // Remove 1 since varfunptr will increment Top
-    Top = Top - Rhs + pos - 1;
-
-    // Create a function pointer variable
-    C2F(varfunptr)(id, &interf, &funnumber);
-    C2F(intersci).ntypes[pos - 1] = '$';
-
-    Top = tops;
-
-    OptionsHelper::setCopyOccurred(true);
+    EOType* invoke = new EOType(envId, isNew);
+    types::GatewayStruct* str = (types::GatewayStruct*)pvApiCtx;
+    //assign function as return value
+    str->m_pOut[pos - str->m_iIn - 1 /*0*/] = invoke;
 }
 
 void ScilabObjects::removeTemporaryVars(const int envId, int * tmpvar)
@@ -489,6 +476,61 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
 
             return returnId;
         }
+        case sci_poly :
+        {
+            /* '$+1' should be handled to ease insertion/extraction */
+            int nameLen = 5;
+            char name[5];
+
+            err = getPolyVariableName(pvApiCtx, addr, name, &nameLen);
+            if (err.iErr)
+            {
+                removeTemporaryVars(envId, tmpvars);
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+            }
+
+            if (name[0] == '$' && nameLen == 1)
+            {
+                err = getMatrixOfPoly(pvApiCtx, addr, &row, &col, NULL, NULL);
+                if (err.iErr)
+                {
+                    removeTemporaryVars(envId, tmpvars);
+                    throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+                }
+
+                if (row * col != 1)
+                {
+                    removeTemporaryVars(envId, tmpvars);
+                    throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+                }
+
+                int coefs;
+                err = getMatrixOfPoly(pvApiCtx, addr, &row, &col, &coefs, NULL);
+                if (err.iErr)
+                {
+                    removeTemporaryVars(envId, tmpvars);
+                    throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+                }
+
+                // should be std::dynarray
+                std::vector<double> mat = std::vector<double>(row * col * coefs);
+                double* pMat = mat.data();
+                err = getMatrixOfPoly(pvApiCtx, addr, &row, &col, &coefs, &pMat);
+                if (err.iErr)
+                {
+                    removeTemporaryVars(envId, tmpvars);
+                    throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+                }
+
+                returnId = wrapper.wrapPoly(row * col * coefs, mat.data());
+            }
+            else
+            {
+                removeTemporaryVars(envId, tmpvars);
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+            }
+            return returnId;
+        }
         case sci_ints :
         {
             int prec = 0;
@@ -595,6 +637,10 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
                     return returnId;
 #endif
             }
+
+            // invalid int code : should never be called
+            removeTemporaryVars(envId, tmpvars);
+            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
         }
         case sci_strings :
         {
@@ -623,6 +669,46 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
             }
 
             returnId = wrapBool(row, col, matB, wrapper, isRef);
+            tmpvars[++tmpvars[0]] = returnId;
+
+            return returnId;
+        }
+        case sci_list :
+        {
+            int length;
+
+            err = getListItemNumber(pvApiCtx, addr, &length);
+            if (err.iErr)
+            {
+                removeTemporaryVars(envId, tmpvars);
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+            }
+
+            // empty list
+            if (length <= 0)
+            {
+                return 0;
+            }
+
+            // should be std::dynarray
+            std::vector<int> childrenIds = std::vector<int>(length + 1);
+
+            // loop all over the items
+            for (int i = 0; i < length; i++)
+            {
+                int* pvItem;
+
+                err = getListItemAddress(pvApiCtx, addr, i + 1, &pvItem);
+                if (err.iErr)
+                {
+                    removeTemporaryVars(envId, childrenIds.data());
+                    throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+                }
+
+                getArgumentId(pvItem, childrenIds.data(), false, false, envId, pvApiCtx);
+            }
+
+            returnId = wrapper.wrapList(length, childrenIds.data());
             tmpvars[++tmpvars[0]] = returnId;
 
             return returnId;
@@ -682,45 +768,49 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
             throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Unable to wrap. Unmanaged datatype (%d) ?"), typ);
         }
     }
+
+    return -1;
 }
 
 int ScilabObjects::getMListType(int * mlist, void * pvApiCtx)
 {
-    char * mlist_type[3];
-    char * mtype = 0;
-    int lengths[3];
-    int rows, cols;
-    int type;
+    types::InternalType* pVar = (types::InternalType*) mlist;
 
-    // OK it's crappy... but it works and it is performant...
+    //if (mlist[0] == 0)
+    //{
+    //    return EXTERNAL_VOID;
+    //}
 
-    if (mlist[0] == 0)
-    {
-        return EXTERNAL_VOID;
-    }
-
-    if (mlist[0] != sci_mlist || mlist[1] != 3)
+    if (!pVar->isMList())
     {
         return EXTERNAL_INVALID;
     }
 
-    if (mlist[6] != sci_strings || mlist[7] != 1 || mlist[8] != 3)
+    types::MList* pMlist = pVar->getAs<types::MList>();
+    if (pMlist->getSize() != 3)
+    {
+        return EXTERNAL_INVALID;
+    }
+
+    types::String* pStrFieldNames = pMlist->getFieldNames();
+    if (pStrFieldNames->getSize() != 3)
     {
         // first field is not a matrix 1x3 of strings
         return EXTERNAL_INVALID;
     }
 
-    if (mlist[11] - 1 == strlen("_EClass") && mlist[14] == 36 && mlist[15] == -14 && mlist[16] == -12 && mlist[17] == 21 && mlist[18] == 10 && mlist[19] == 28 && mlist[20] == 28)
+    wchar_t* pwstMlistType = pStrFieldNames->get(0);
+    if (wcslen(pwstMlistType) == strlen("_EClass") && wcscmp(pwstMlistType, L"_EClass") == 0)
     {
         return EXTERNAL_CLASS;
     }
 
-    if (mlist[11] - 1 == strlen("_EObj") && mlist[14] == 36 && mlist[15] == -14 && mlist[16] == -24 && mlist[17] == 11 && mlist[18] == 19)
+    if (wcslen(pwstMlistType) == strlen("_EObj") && wcscmp(pwstMlistType, L"_EObj") == 0)
     {
         return EXTERNAL_OBJECT;
     }
 
-    if (mlist[11] - 1 == strlen("_EVoid") && mlist[14] == 36 && mlist[15] == -14 && mlist[16] == -31 && mlist[17] == 24 && mlist[18] == 18 && mlist[19] == 13)
+    if (wcslen(pwstMlistType) == strlen("_EVoid") && wcscmp(pwstMlistType, L"_EVoid") == 0)
     {
         return EXTERNAL_VOID;
     }

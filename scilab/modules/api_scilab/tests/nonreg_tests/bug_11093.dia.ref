@@ -22,6 +22,7 @@ if haveacompiler() then
     DEST = TMPDIR + "/" + BUGNAME + "/" + BUGNAME + ".c";
     copyfile(SCI + "/modules/api_scilab/tests/nonreg_tests/" + BUGNAME + ".c", DEST);
     assert_checkequal(isfile(DEST), %T);
+    
     gw_functions = [BUGNAME, "sci_" + BUGNAME];
     ilib_build("lib" + BUGNAME, gw_functions, BUGNAME + ".c", []);
     exec loader.sce;

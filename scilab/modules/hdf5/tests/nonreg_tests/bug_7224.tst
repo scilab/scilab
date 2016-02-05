@@ -16,9 +16,7 @@
 // HDF5 functions don't unlock file wih empty matrix.
 //
 
-importScicosDiagram("SCI/modules/hdf5/tests/nonreg_tests/bug_7224.cos");
-
 emp=[];         // or list([]), scicos_diagram(), etc.
-export_to_hdf5(TMPDIR + "/emp.sod","emp");
-import_from_hdf5(TMPDIR + "/emp.sod");
-if execstr("export_to_hdf5(TMPDIR + ""/emp.sod"",""emp"");","errcatch") then pause, end
+save(TMPDIR + "/emp.sod","emp");
+load(TMPDIR + "/emp.sod");
+if execstr("save(TMPDIR + ""/emp.sod"",""emp"");","errcatch") then pause, end

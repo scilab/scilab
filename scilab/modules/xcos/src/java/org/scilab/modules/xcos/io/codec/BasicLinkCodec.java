@@ -1,24 +1,31 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.io.codec;
 
+import static org.scilab.modules.xcos.io.codec.XcosCodec.LOG;
+
 import java.util.Map;
 
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
-import org.scilab.modules.xcos.link.explicit.ExplicitLink;
-import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.link.CommandControlLink;
+import org.scilab.modules.xcos.link.ExplicitLink;
+import org.scilab.modules.xcos.link.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Node;
 
@@ -28,14 +35,13 @@ import com.mxgraph.io.mxCodecRegistry;
 public class BasicLinkCodec extends XcosObjectCodec {
 
     public static void register() {
-        BasicLinkCodec explicitlinkCodec = new BasicLinkCodec(
-            new ExplicitLink(), null, REFS, null);
+        JavaController controller = new JavaController();
+
+        BasicLinkCodec explicitlinkCodec = new BasicLinkCodec(new ExplicitLink(controller, controller.createObject(Kind.LINK), Kind.LINK, null, null, null, null), null, REFS, null);
         mxCodecRegistry.register(explicitlinkCodec);
-        BasicLinkCodec implicitlinkCodec = new BasicLinkCodec(
-            new ImplicitLink(), null, REFS, null);
+        BasicLinkCodec implicitlinkCodec = new BasicLinkCodec(new ImplicitLink(controller, controller.createObject(Kind.LINK), Kind.LINK, null, null, null, null), null, REFS, null);
         mxCodecRegistry.register(implicitlinkCodec);
-        BasicLinkCodec commandControllinkCodec = new BasicLinkCodec(
-            new CommandControlLink(), null, REFS, null);
+        BasicLinkCodec commandControllinkCodec = new BasicLinkCodec(new CommandControlLink(controller, controller.createObject(Kind.LINK), Kind.LINK, null, null, null, null), null, REFS, null);
         mxCodecRegistry.register(commandControllinkCodec);
     }
 
@@ -54,20 +60,24 @@ public class BasicLinkCodec extends XcosObjectCodec {
 
         if (!(l.getSource() instanceof BasicPort)) {
             trace(enc, node, "Invalid source");
+            LOG.warning("The saved file might be incomplete, '" + l + "' is not connected");
         } else {
             final BasicPort p = (BasicPort) l.getSource();
 
             if (!(p.getParent() instanceof BasicBlock)) {
                 trace(enc, node, "Invalid source parent");
+                LOG.warning("The saved file might be incomplete, '" + l + "' is wrongly connected");
             }
         }
         if (!(l.getTarget() instanceof BasicPort)) {
             trace(enc, node, "Invalid target");
+            LOG.warning("The saved file might be incomplete, '" + l + "' is not connected");
         } else {
             final BasicPort p = (BasicPort) l.getTarget();
 
             if (!(p.getParent() instanceof BasicBlock)) {
                 trace(enc, node, "Invalid target parent");
+                LOG.warning("The saved file might be incomplete, '" + l + "' is wrongly connected");
             }
         }
 

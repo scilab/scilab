@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - 2012 - INRIA - Allan CORNET
  * Copyright (C) 2011 - INRIA - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  * This code is also published under the GPL v3 license.
  *
@@ -20,16 +23,14 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "csvRead.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 #include "stringToComplex.h"
 #include "csvDefault.h"
 #include "complex_array.h"
 #include "gw_csv_helpers.h"
 #include "getRange.h"
+#include "os_string.h"
 
 static void freeVar(char** filename, char** separator, char** decimal, char** conversion, int** iRange, char*** toreplace, int sizeReplace, char** regexp);
 /* ==================================================================== */
@@ -38,10 +39,11 @@ static void freeVar(char** filename, char** separator, char** decimal, char** co
 /* ==================================================================== */
 /* csvRead(filename, separator, decimal, conversion, substitute, range)*/
 /* ==================================================================== */
-int sci_csvRead(char *fname, unsigned long fname_len)
+int sci_csvRead(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iErr = 0;
+    int iErrEmpty = 0;
 
     char *filename = NULL;
     char *separator = NULL;
@@ -49,11 +51,13 @@ int sci_csvRead(char *fname, unsigned long fname_len)
     char *conversion = NULL;
     int *iRange = NULL;
     int haveRange = 0;
+    int header = 0;
 
     char **toreplace = NULL;
     int nbElementsToReplace = 0;
 
     char *regexp = NULL;
+    int haveRegexp = 0;
 
     csvResult *result = NULL;
 
@@ -61,8 +65,18 @@ int sci_csvRead(char *fname, unsigned long fname_len)
 
     sciErr.iErr = 0;
 
-    CheckRhs(1, 7);
+    CheckRhs(1, 8);
     CheckLhs(1, 2);
+
+    if (Rhs == 8)
+    {
+        header = (int) csv_getArgumentAsScalarDouble(pvApiCtx, 8, fname, &iErr);
+        if (iErr)
+        {
+            freeVar(&filename, &separator, &decimal, &conversion, &iRange, &toreplace, 0, &regexp);
+            return 0;
+        }
+    }
 
     if (Rhs == 7)
     {
@@ -112,6 +126,10 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                 FREE(regexp);
                 regexp = NULL;
             }
+            else
+            {
+                haveRegexp = 1;
+            }
         }
 
         if (iErr)
@@ -122,7 +140,7 @@ int sci_csvRead(char *fname, unsigned long fname_len)
     }
     else
     {
-        regexp = strdup(getCsvDefaultCommentsRegExp());
+        regexp = os_strdup(getCsvDefaultCommentsRegExp());
         if (regexp)
         {
             if (strcmp(regexp, "") == 0)
@@ -193,7 +211,7 @@ int sci_csvRead(char *fname, unsigned long fname_len)
         }
         else
         {
-            conversion = strdup(getCsvDefaultConversion());
+            conversion = os_strdup(getCsvDefaultConversion());
         }
     }
 
@@ -209,7 +227,7 @@ int sci_csvRead(char *fname, unsigned long fname_len)
     }
     else
     {
-        decimal = strdup(getCsvDefaultDecimal());
+        decimal = os_strdup(getCsvDefaultDecimal());
     }
 
     if (Rhs >= 2)
@@ -224,7 +242,7 @@ int sci_csvRead(char *fname, unsigned long fname_len)
     }
     else
     {
-        separator = strdup(getCsvDefaultSeparator());
+        separator = os_strdup(getCsvDefaultSeparator());
     }
 
     if (strcmp(separator, "\\t") == 0)
@@ -243,7 +261,7 @@ int sci_csvRead(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    result = csvRead(filename, separator, decimal, (const char**)toreplace, nbElementsToReplace * 2, regexp);
+    result = csvRead(filename, separator, decimal, (const char**)toreplace, nbElementsToReplace * 2, regexp, header);
     freeVar(NULL, &separator, &decimal, NULL, NULL, &toreplace, nbElementsToReplace, &regexp);
 
     if (result)
@@ -405,7 +423,26 @@ int sci_csvRead(char *fname, unsigned long fname_len)
 
                     if (Lhs == 2)
                     {
-                        sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
+                        if (haveRegexp == 0)
+                        {
+                            char **emptyStringMatrix = NULL;
+                            emptyStringMatrix = (char**)MALLOC(sizeof(char*));
+                            emptyStringMatrix[0] = "";
+                            sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, 1, 1, emptyStringMatrix);
+                            FREE(emptyStringMatrix);
+                        }
+                        else
+                        {
+                            if (result->nbComments > 0)
+                            {
+                                sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
+                            }
+                            else
+                            {
+                                iErrEmpty = createEmptyMatrix(pvApiCtx, Rhs + 2);
+                                sciErr.iErr = iErrEmpty;
+                            }
+                        }
                         if (sciErr.iErr)
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), fname);

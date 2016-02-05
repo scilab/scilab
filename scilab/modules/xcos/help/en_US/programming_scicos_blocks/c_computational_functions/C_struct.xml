@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="C_struct">
@@ -103,7 +103,7 @@
             That structure of type <literal>scicos_block</literal> is defined in the file <literal>scicos_block4.h</literal> included into the standard Scilab distribution, and users must include that header in each computational functions.
         </para>
         <para>
-            This access is a direct approach and most of users should prefer the <link linkend="C_macros">C macros</link> approach for facilities purpose. 
+            This access is a direct approach and most of users should prefer the <link linkend="C_macros">C macros</link> approach for facilities purpose.
         </para>
     </refsection>
     <refsection id="Inputsoutputs_C_struct">
@@ -115,7 +115,7 @@
                 </para>
                 <para>
                     One can't override the index <literal>(3*block->nin)-1</literal> when reading sizes of input ports in the array <literal>insz</literal> and the index <literal>block->nin-1</literal> when reading data in the array <literal>inptr</literal> with a C computational function.
-                    The number of regular input ports can also be got by the use of the C macros <literal>GetNin(block)</literal>. 
+                    The number of regular input ports can also be got by the use of the C macros <literal>GetNin(block)</literal>.
                 </para>
             </listitem>
             <listitem>
@@ -163,7 +163,7 @@ boxht=Dim1start.ht * 0.5;
                     </textobject>
                 </mediaobject>
                 <para>
-                    Do the difference here in the type numbers defined at the <emphasis role="bold">Scilab level</emphasis> (2,1,3) and the type numbers defined at the <emphasis role="bold">C level</emphasis> (84,11,10). The following table gives the correspondance for all Scicos type:
+                    Do the difference here in the type numbers defined at the <emphasis role="bold">Scilab level</emphasis> (2,1,3) and the type numbers defined at the <emphasis role="bold">C level</emphasis> (84,11,10). The following table gives the correspondence for all Scicos type:
                 </para>
                 <informaltable border="1" cellpadding="3">
                     <tr>
@@ -283,7 +283,7 @@ line at Inptr2ptr.e; arc cw; line; line; arc; arrow;
                     </textobject>
                 </mediaobject>
                 <para>
-                    For i.e., to directly access to the data, the user can use theses instructions :   
+                    For i.e., to directly access to the data, the user can use theses instructions :
                 </para>
                 <programlisting role="c"><![CDATA[
 #include "scicos_block4.h"
@@ -300,20 +300,20 @@ int i;
 void mycomputfunc(scicos_block *block,int flag)
 {
     ...
-    
+
     /*get the ptrs of the first int32 regular input port*/
     ptr_i = (SCSINT32_COP *) block->inptr[0];
     /*get the ptrs of the second complex regular input port*/
     ptr_dc = (SCSCOMPLEX_COP *) block->inptr[1];
     /*get the ptrs of the third real regular input port*/
     ptr_d = (SCSREAL_COP *) block->inptr[2];
-    
+
     ...
-    
+
     /*get the dimension of the first int32 regular input port*/
     n1=block->insz[0];
     m1=block->insz[3];
-    
+
     /*compute the cumsum of the input int32 matrix*/
     for(i=0;i<n1*m1;i++) {
         cumsum_i += ptr_i[i];
@@ -324,7 +324,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     One can also use the set of C macros : <literal>GetInPortPtrs(blk,x)</literal>, <literal>GetRealInPortPtrs(block,x)</literal>, <literal>GetImagInPortPtrs(block,x)</literal>, <literal>Getint8InPortPtrs(block,x)</literal>, <literal>Getint16InPortPtrs(block,x)</literal>, <literal>Getint32InPortPtrs(block,x)</literal>, <literal>Getuint8InPortPtrs(block,x)</literal>, <literal>Getuint16InPortPtrs(block,x)</literal>, <literal>Getuint32InPortPtrs(block,x)</literal> to have the appropriate pointer of the data to handle and <literal>GetNin(block)</literal>, <literal>GetInPortRows(block,x)</literal>, <literal>GetInPortCols(block,x)</literal>, <literal>GetInPortSize(block,x,y)</literal>, <literal>GetInType(block,x)</literal>, <literal>GetSizeOfIn(block,x)</literal> to handle number, dimensions and type of regular input ports.
                     (<emphasis role="bold">x is numbered from 1 to nin and y numbered  from 1 to 2</emphasis>).
                 </para>
-                <para> 
+                <para>
                     For the previous example that gives :
                 </para>
                 <programlisting role="c"><![CDATA[
@@ -342,20 +342,20 @@ int i;
 void mycomputfunc(scicos_block *block,int flag)
 {
     ...
-    
+
     /*get the ptrs of the first int32 regular input port*/
     ptr_i = Getint32InPortPtrs(block,1);
     /*get the ptrs of the second complex regular input port*/
     ptr_dc = GetRealInPortPtrs(block,2);
     /*get the ptrs of the third real regular input port*/
     ptr_d = GetRealInPortPtrs(block,3);
-    
+
     ...
-    
+
     /*get the dimension of the first int32 regular input port*/
     n1=GetInPortRows(block,1);
     m1=GetInPortCols(block,1);
-    
+
     ...
 }]]></programlisting>
                 <para>
@@ -370,7 +370,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     One can't override the index <literal>(3*block->nout)-1</literal> when reading sizes of output ports in the array <literal>outsz</literal> and the index <literal>block->nout-1</literal> when reading data in the array <literal>outptr</literal>with a C computational function.
                 </para>
                 <para>
-                    The number of regular output ports can also be got by the use of the C macros <literal>GetNout(block)</literal> . 
+                    The number of regular output ports can also be got by the use of the C macros <literal>GetNout(block)</literal> .
                 </para>
             </listitem>
             <listitem>
@@ -387,7 +387,7 @@ void mycomputfunc(scicos_block *block,int flag)
                 <programlisting role="code"><![CDATA[
 model = scicos_model();
 model.out = [3;1;4];
-model.out2 = [2;1;1]; 
+model.out2 = [2;1;1];
 model.outtyp = [2;1;3];
                      ]]></programlisting>
                 <para>
@@ -507,7 +507,7 @@ void mycomputfunc(scicos_block *block,int flag)
     }
 }
                     ]]></programlisting>
-                <para>One can also use the set of C macros : 
+                <para>One can also use the set of C macros :
                     <literal>GetOutPortPtrs(block,x)</literal>, <literal>GetRealOutPortPtrs(block,x)</literal>, <literal>GetImagOutPortPtrs(block,x)</literal>, <literal>Getint8OutPortPtrs(block,x)</literal>, <literal>Getint16OutPortPtrs(block,x)</literal>, <literal>Getint32OutPortPtrs(block,x)</literal>, <literal>Getuint8OutPortPtrs(block,x)</literal>, <literal>Getuint16OutPortPtrs(block,x)</literal>, <literal>Getuint32OutPortPtrs(block,x)</literal> to have the appropriate pointer of the data to handle and <literal>GetNout(block)</literal>, <literal>GetOutPortRows(block,x)</literal>, <literal>GetOutPortCols(block,x)</literal>, <literal>GetOutPortSize(block,x,y)</literal>, <literal>GetOutType(block,x)</literal>, <literal>GetSizeOfOut(block,x)</literal>to handle number, dimensions and type of regular output ports. (<emphasis role="bold">x is numbered from 1 to nout and y is numbered  from 1 to 2</emphasis>).
                 </para>
                 <para>
@@ -526,7 +526,7 @@ int i;
 void mycomputfunc(scicos_block *block,int flag)
 {
     ...
-    
+
     /*get the ptrs of the first int32 regular output port*/
     ptr_i = GetOutPortPtrs(block,1);
     /*get the ptrs of the second complex regular output port*/
@@ -534,12 +534,12 @@ void mycomputfunc(scicos_block *block,int flag)
     /*get the ptrs of the third real regular output port*/
     ptr_d = GetRealOutPortPtrs(block,3);
     ...
-    
+
     /*get the dimension of the first int32 regular output port*/
     n1=GetOutPortRows(block,1);
     m1=GetOutPortCols(block,1);
     ...
-    
+
 }
 ]]></programlisting>
                 <para>
@@ -570,7 +570,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     One can't override the index <literal>block->nevout-1</literal> when setting value of events in the output event register <literal>evout</literal>.
                 </para>
                 <para>
-                    The number of event output ports can also be got by the use of the C macro <literal>GetNevOut(block)</literal>. 
+                    The number of event output ports can also be got by the use of the C macro <literal>GetNevOut(block)</literal>.
                 </para>
             </listitem>
             <listitem>
@@ -605,12 +605,12 @@ void mycomputfunc(scicos_block *block,int flag)
 }
 
 ]]></programlisting>
-                <para> 
-                    Note that every events generated from output event register will be asynchronous with event coming from event input port (even if you set 
-                    <literal>block->evout[x]=0</literal>). 
+                <para>
+                    Note that every events generated from output event register will be asynchronous with event coming from event input port (even if you set
+                    <literal>block->evout[x]=0</literal>).
                 </para>
                 <para>
-                    The event output register must be only written for 
+                    The event output register must be only written for
                     <literal>flag=3</literal>.
                 </para>
             </listitem>
@@ -633,7 +633,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     One can't override the index <literal>(block->nrpar)-1</literal> when reading value of real parameters in the register <literal>rpar</literal>.
                 </para>
                 <para>
-                    The total number of real parameters can also be got by the use of the C macro <literal>rpar</literal>. 
+                    The total number of real parameters can also be got by the use of the C macro <literal>rpar</literal>.
                 </para>
             </listitem>
             <listitem>
@@ -672,7 +672,7 @@ void mycomputfunc(scicos_block *block,int flag)
     /*get the third value of the real param register*/
     PI_4 = block->rpar[2];
 ...
-} 
+}
                     ]]></programlisting>
                 <para>
                     
@@ -688,7 +688,7 @@ A = [1.3 ; 4.5 ; 7.9 ; 9.8];
 B = [0.1 ; 0.98];
 model = scicos_model();
 
-model.rpar   = [A;B] 
+model.rpar   = [A;B]
                     ]]></programlisting>
                 <para>
                     in the corresponding C computational function of that block, we'll use :
@@ -729,7 +729,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     One can't override the index <literal>(block->nipar)-1</literal> when reading value of integer parameters in the register <literal>ipar</literal>.
                 </para>
                 <para>
-                    The total number of integer parameters can also be got by the use of the C macro <literal>GetNipar(block)</literal>. 
+                    The total number of integer parameters can also be got by the use of the C macro <literal>GetNipar(block)</literal>.
                 </para>
             </listitem>
             <listitem>
@@ -744,7 +744,7 @@ void mycomputfunc(scicos_block *block,int flag)
                 </para>
                 <programlisting role="scilab"><![CDATA[
 model = scicos_model();
-model.ipar = [(1:3)';5] 
+model.ipar = [(1:3)';5]
                     ]]></programlisting>
                 <para>
                     you can retrieve the previous data in the C computational function with :
@@ -798,7 +798,7 @@ model.ipar = [A_sz;B_sz]
 model.rpar = [A;B]
 ]]></programlisting>
                 <para>
-                    the array of real parameters (parametrized by <literal>ipar</literal>) can be retrieved in the correspondig C computational function with :
+                    the array of real parameters (parametrized by <literal>ipar</literal>) can be retrieved in the corresponding C computational function with :
                 </para>
                 <programlisting role="c"><![CDATA[
 #include "scicos_block4.h"
@@ -810,7 +810,7 @@ double *rpar;
 double *A;
 double *B;
 double cumsum;
-int i; 
+int i;
 ...
 
 void mycomputfunc(scicos_block *block,int flag)
@@ -873,15 +873,15 @@ void mycomputfunc(scicos_block *block,int flag)
 ...
     /*get the number of object parameter*/
     nopar=block>nopar;
-    
+
     ...
-    
+
     /*get number of row of the last object parameter*/
     n=block>oparsz[nopar-1];
     /*get number of column of the last object parameter*/
     m=block>oparsz[2*nopar-1];
 ...
-} 
+}
 ]]></programlisting>
                 <para>
                     The dimensions of object parameters can be get with the following C macros <literal>GetOparSize(block,x,1)</literal> to get the first dimension of <literal>opar</literal> and <literal>GetOparSize(block,x,2)</literal>to get the second dimension with <literal>x</literal> an integer that gives the index of the object parameter, <emphasis role="bold">numbered from 1 to nopar</emphasis>.
@@ -966,7 +966,7 @@ model.opar=list( ..
     int8([ascii("me") 0]) ..
 );]]></programlisting>
                 <para>
-                    Then we have three object parameters, one is an 32-bit integer matrix with two rows and two columns, the second is a vector of complex numbers that can be understand as a matrix of size [1,3] and the third is a string encoded as a standard C one (ASCII ended with a '\0').
+                    Then we have three object parameters, one is an 32-bit integer matrix with two rows and two columns, the second is a vector of complex numbers that can be understood as a matrix of size [1,3] and the third is a string encoded as a standard C one (ASCII ended with a '\0').
                 </para>
                 <para>
                     At the C computational function level, the instructions <literal>block->oparsz[0]</literal>, <literal>block->oparsz[1]</literal>, <literal>block->oparsz[2]</literal>, <literal>block->oparsz[3]</literal>, <literal>block->oparsz[4]</literal>, <literal>block->oparsz[5]</literal> will respectively return the values <literal>2, 1, 1, 2, 3, 3</literal> and the instructions <literal>block->opartyp[0]</literal>, <literal>block->opartyp[1]</literal>, <literal>block->opartyp[2]</literal> the values <literal>11, 84, 81</literal>.
@@ -1047,7 +1047,7 @@ void mycomputfunc(scicos_block *block,int flag)
     cumsum_d = ptr_d[0]+ptr_d[1]+ptr_d[2];
     fprintf(stderr, str);
 ...
-} 
+}
 ]]></programlisting>
                 <para>
                     One can also use the set of C macros : <literal>GetRealOparPtrs(block,x)</literal>, <literal>GetImagOparPtrs(block,x)</literal>, <literal>Getint8OparPtrs(block,x)</literal>, <literal>Getint16OparPtrs(block,x)</literal>, <literal>Getint32OparPtrs(block,x)</literal>, <literal>Getuint8OparPtrs(block,x)</literal>, <literal>Getuint16OparPtrs(block,x)</literal>, <literal>Getuint32OparPtrs(block,x)</literal> to have the appropriate pointer of the data to handle (<emphasis role="bold">x is numbered from 1 to nopar</emphasis>).
@@ -1076,10 +1076,10 @@ void mycomputfunc(scicos_block *block,int flag)
     /*get the string*/
     str = Getint8OparPtrs(block,3);
 ...
-} 
+}
 ]]></programlisting>
                 <para>
-                    Note that object parameters register is only accessible for reading. 
+                    Note that object parameters register is only accessible for reading.
                 </para>
             </listitem>
         </itemizedlist>
@@ -1095,10 +1095,10 @@ void mycomputfunc(scicos_block *block,int flag)
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">block->nx :</emphasis> Integer that gives the length of the continus state register.
+                    <emphasis role="bold">block->nx :</emphasis> Integer that gives the length of the continuous state register.
                 </para>
                 <para>
-                    One can't override the index <literal>block->nx-1</literal> when reading or writing data in the array , or with a C computational function. 
+                    One can't override the index <literal>block->nx-1</literal> when reading or writing data in the array , or with a C computational function.
                 </para>
             </listitem>
             <listitem>
@@ -1120,7 +1120,7 @@ void mycomputfunc(scicos_block *block,int flag)
 ...
     x_1=block->x[0];
 ...
-} 
+}
 ]]></programlisting>
                 <para>
                     Note that on <literal>flag=4</literal>, user can write some initial conditions in that register.
@@ -1134,7 +1134,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     <emphasis role="bold">block->xd :</emphasis> Array of double of size [nx,1] corresponding to the derivative of the continuous state register.
                 </para>
                 <para>
-                    When systems are explicitly given in terms of Ordinary Differential Equations (ODE), it can be explicitly expressed or implicitly used in the residual vector <literal>res</literal> when systems are expressed in terms of Differantial Algebraic Equations (DAE).
+                    When systems are explicitly given in terms of Ordinary Differential Equations (ODE), it can be explicitly expressed or implicitly used in the residual vector <literal>res</literal> when systems are expressed in terms of Differential Algebraic Equations (DAE).
                 </para>
                 <para>
                     Both systems must be programmed with <literal>flag=0</literal>.
@@ -1171,7 +1171,7 @@ void mycomputfunc(scicos_block *block,int flag)
         xd[2] = x[0]*x[1]-c*x[2];
     }
 ...
-} 
+}
 ]]></programlisting>
             </listitem>
             <listitem>
@@ -1186,7 +1186,7 @@ void mycomputfunc(scicos_block *block,int flag)
                 </latex>
                 <para>  For i.e the Lorenz attractor written as a DAE system with three state variables, will be defined :
                 </para>
-                <programlisting role="c"><![CDATA[ 
+                <programlisting role="c"><![CDATA[
 #include "scicos_block4.h"
 
 ...
@@ -1202,7 +1202,7 @@ void mycomputfunc(scicos_block *block,int flag)
     double *x = block->x;
     double *xd = block->xd;
     double *res = block->res;
-    
+
     if (flag == 0) {
         res[0] = - xd[0] + (a*(x[1]-x[0]));
         res[1] = - xd[1] + (x[0]*(b-x[2])-x[1]);
@@ -1220,7 +1220,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     One can't override the index <literal>block->nz-1</literal> when reading data in the array <literal>z</literal> with a C computational function.
                 </para>
                 <para>
-                    This value is also accessible via the C macros <literal>GetNdstate(block)</literal>. 
+                    This value is also accessible via the C macros <literal>GetNdstate(block)</literal>.
                 </para>
             </listitem>
             <listitem>
@@ -1258,7 +1258,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     One can't override the index <literal>block->noz-1</literal> when accessing data in the arrays <literal>ozsz</literal>, <literal>oztyp</literal> and <literal>ozptr</literal> in a C computational function.
                 </para>
                 <para>
-                    This value is also accessible via the C macro <literal>GetNoz(block)</literal>. 
+                    This value is also accessible via the C macro <literal>GetNoz(block)</literal>.
                 </para>
             </listitem>
             <listitem>
@@ -1285,7 +1285,7 @@ void mycomputfunc(scicos_block *block,int flag)
     /*get number of column of the last object state*/
     m=block>ozsz[2*noz-1];
 ...
-} 
+}
 ]]></programlisting>
                 <para>
                     The dimensions of object discrete states can be get with the following C macro : <literal>GetOzSize(block,x,1)</literal> for the first dimension and <literal>GetOzSize(block,x,2)</literal> for the second dimension with <literal>x</literal> an integer that gives the index of the discrete object state, <emphasis role="bold">numbered from 1 to noz</emphasis>.
@@ -1364,7 +1364,7 @@ model = scicos_model();
 model.odstate=list(int32([1,2;3,4]),[1+%i %i 0.5]);
 ]]></programlisting>
                 <para>
-                    Then we have two discrete object states, one is an 32-bit integer matrix with two rows and two columns and the second is a vector of complex numbers that can be understand as a matrix of size [1,3].
+                    Then we have two discrete object states, one is an 32-bit integer matrix with two rows and two columns and the second is a vector of complex numbers that can be understood as a matrix of size [1,3].
                 </para>
                 <para>
                     At the C computational function level, the instructions <literal>block->ozsz[0]</literal>, <literal>block->ozsz[1]</literal>, <literal>block->ozsz[2]</literal> and <literal>block->ozsz[3]</literal> will respectively return the values <literal>2,1,2,3</literal> and the instructions <literal>block->oztyp[0]</literal>, <literal>block->oztyp[1]</literal> the values <literal>11</literal> and <literal>84</literal>.
@@ -1445,7 +1445,7 @@ void mycomputfunc(scicos_block *block,int flag)
                 </para>
                 <programlisting role="c"><![CDATA[
  #include "scicos_block4.h"
- 
+
 ...
 SCSINT32_COP *ptr_i;
 SCSREAL_COP *ptr_dr;
@@ -1461,7 +1461,7 @@ void mycomputfunc(scicos_block *block,int flag)
     ptr_dr = GetRealOzPtrs(block,2);
     ptr_di = GetImagOzPtrs(block,2);
 ...
-} 
+}
 ]]></programlisting>
                 <para>
                     Finally note that the discrete objects state should be only written for <literal>flag=4</literal> and <literal>flag=2</literal>.
@@ -1494,23 +1494,23 @@ void mycomputfunc(scicos_block *block,int flag)
                 return;
             }
             break;
-            
+
         case 5: /*finish*/
             scicos_free(*work);
             break;
-            
+
         /*other flag treatment*/
         ...
     }
 
 ...
-} 
+}
 ]]></programlisting>
                 <para>
                     Note that if a block use a <literal>work</literal> pointer, it will be called with <literal>flag=2></literal> even if the block do not use discrete states.
                 </para>
                 <para>
-                    The pointer of that array can also be retrieve via the C macro <literal>GetWorkPtrs(block)</literal>. 
+                    The pointer of that array can also be retrieve via the C macro <literal>GetWorkPtrs(block)</literal>.
                 </para>
             </listitem>
         </itemizedlist>
@@ -1532,7 +1532,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     One can't override the index <literal>(block->ng)-1</literal> when reading/writing data in the array <literal>g</literal> with a C computational function.
                 </para>
                 <para>
-                    The number of zero crossing surface can also be got by the use of the C macro <literal>GetNg(block)</literal>. 
+                    The number of zero crossing surface can also be got by the use of the C macro <literal>GetNg(block)</literal>.
                 </para>
             </listitem>
             <listitem>
@@ -1544,7 +1544,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     Note that it is accessible for writing for <literal>flag=9</literal>.
                 </para>
                 <para>
-                    The pointer of that array can also be retrieve via the C macro <literal>GetGPtrs(block)</literal>. 
+                    The pointer of that array can also be retrieve via the C macro <literal>GetGPtrs(block)</literal>.
                 </para>
             </listitem>
             <listitem>
@@ -1567,7 +1567,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     It is typically accessible for writing for <literal>flag=9</literal>.
                 </para>
                 <para>
-                    The pointer of that array can also be retrieve via the C macro <literal>GetModePtrs(block)</literal>. 
+                    The pointer of that array can also be retrieve via the C macro <literal>GetModePtrs(block)</literal>.
                 </para>
             </listitem>
         </itemizedlist>
@@ -1580,7 +1580,7 @@ void mycomputfunc(scicos_block *block,int flag)
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">block->type :</emphasis> Integer that gives the type of the computational function. For C blocks, this number is equal to <literal>4</literal>. 
+                    <emphasis role="bold">block->type :</emphasis> Integer that gives the type of the computational function. For C blocks, this number is equal to <literal>4</literal>.
                 </para>
             </listitem>
             <listitem>

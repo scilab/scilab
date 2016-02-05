@@ -14,193 +14,45 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: \n"
 
-msgid "X,Y,A and B"
-msgstr "X,Y,A 及 B"
-
-msgid "A,B,P and Q"
-msgstr "A,B,P 及 Q"
-
-msgid "B,P,Q,X and Y"
-msgstr "B,P,Q,X 及 Y"
-
-msgid "P,Q,X,Y and A"
-msgstr "P,Q,X,Y 及 A"
+#, c-format
+msgid "%s: Answer appears to be lower than lowest search bound %g\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' 或 '%s' .\n"
+msgid "%s: Answer appears to be higher than greatest search bound %s\n"
+msgstr ""
 
-msgid "S,Xn,Pr and Ompr"
-msgstr "S,Xn,Pr 及 Ompr"
+#, c-format
+msgid "%s: Answer appears to be higher than greatest search bound %f\n"
+msgstr ""
 
-msgid "Xn,Pr,Ompr,P and Q"
-msgstr "Xn,Pr,Ompr,P 及 Q"
+#, c-format
+msgid "%s: Std must not be zero\n"
+msgstr ""
 
-msgid "Pr,OMPr,P,Q and S"
-msgstr "Pr,OMPr,P,Q 及 S"
+#, c-format
+msgid "%s: cumgam returned an error\n"
+msgstr ""
 
-msgid "P,Q,S  and Xn"
-msgstr "P,Q,S 及 Xn"
+#, c-format
+msgid "%s: gamma or inverse gamma routine failed\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d out of range. Bound exceeded: %f.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d': Same sizes expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Warning: using non integer values for argument #%d may lead to incorrect "
 "results.\n"
-msgstr ""
-
-msgid "X and Df"
-msgstr "X 及 Df"
-
-msgid "Df, P and Q"
-msgstr "Df, P 及 Q"
-
-msgid "P,Q and X"
-msgstr "P,Q 及 X"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s' .\n"
-
-msgid "cdfchi: Error in cumgam\n"
-msgstr "cdfchi: cumgam 中之錯誤\n"
-
-msgid "X,Df and Pnonc"
-msgstr "X,Df 及 Pnonc"
-
-msgid "Df,Pnonc,P and Q"
-msgstr "Df,Pnonc,P 及 Q"
-
-msgid "Pnonc,P,Q and X"
-msgstr "Pnonc,P,Q 及 X"
-
-msgid "P,Q,X and Df"
-msgstr "P,Q,X 及 Df"
-
-msgid "F,Dfn and Dfd"
-msgstr "F,Dfn 及 Dfd"
-
-msgid "Dfn,Dfd,P and Q"
-msgstr "Dfn,Dfd,P 及 Q"
-
-msgid "Dfd,P,Q and F"
-msgstr "Dfd,P,Q 及 F"
-
-msgid "P,Q,F and Dfn"
-msgstr "P,Q,F 及 Dfn"
-
-msgid "F,Dfn,Dfd and Pnonc"
-msgstr "F,Dfn,Dfd 及 Pnonc"
-
-msgid "Dfn,Dfd,Pnonc,P and Q"
-msgstr "Dfn,Dfd,Pnonc,P 及 Q"
-
-msgid "Dfd,Pnonc,P,Q and F"
-msgstr "Dfd,Pnonc,P,Q 及 F"
-
-msgid "Pnonc,P,Q,F and Dfn"
-msgstr "Pnonc,P,Q,F 及 Dfn"
-
-msgid "P,Q,F,Dfn and Dfd"
-msgstr "P,Q,F,Dfn 及 Dfd"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , '%s'  或 '%s' .\n"
-
-msgid "X,Shape and Rate"
-msgstr ""
-
-msgid "Shape,Rate,P and Q"
-msgstr ""
-
-msgid "Rate,P,Q and X"
-msgstr ""
-
-msgid "P,Q,X and Shape"
-msgstr "P,Q,X 及 Shape"
-
-msgid "S,XN,PR and OMPR"
-msgstr "S,XN,PR 及 OMPR"
-
-msgid "XN,PR,OMPR,P and Q"
-msgstr "XN,PR,OMPR,P 及 Q"
-
-msgid "PR,OMPR,P,Q and S"
-msgstr "PR,OMPR,P,Q 及 S"
-
-msgid "P,Q,S and Xn"
-msgstr "P,Q,S 及 Xn"
-
-msgid "X,Mean and Std"
-msgstr "X,Mean 及 Std"
-
-msgid "Mean,Std,P and Q"
-msgstr "Mean,Std,P 及 Q"
-
-msgid "Std,P,Q and X"
-msgstr "Std,P,Q 及 X"
-
-msgid "P,Q,X and Mean"
-msgstr "P,Q,X 及 Mean"
-
-msgid " Std must not be zero\n"
-msgstr " Std 不可為 0\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A matrix of integer values "
-"expected.\n"
-msgstr ""
-
-msgid "S and Xlam"
-msgstr "S 及 Xlam"
-
-msgid "Xlam,P and Q"
-msgstr "Xlam,P 及 Q"
-
-msgid "P,Q and S"
-msgstr "P,Q 及 S"
-
-msgid "T and Df"
-msgstr "T 及 Df"
-
-msgid "P,Q and T"
-msgstr "P,Q 及 T"
-
-#, c-format
-msgid ""
-"%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
-msgstr "%s: 選項 '%s'  之輸入參數數目錯誤:  應為 %d.\n"
-
-#, c-format
-msgid "%s and %s must have same size.\n"
-msgstr "%s 及 %s 長度須相同.\n"
-
-#, c-format
-msgid "Answer appears to be lower than lowest search bound %g\n"
-msgstr ""
-
-#, c-format
-msgid "Answer appears to be lower than lowest search bound %f\n"
-msgstr "答案似乎小於最小搜索界限 %f\n"
-
-#, c-format
-msgid "Answer appears to be higher than greatest search bound %s\n"
-msgstr ""
-
-#, c-format
-msgid "Answer appears to be higher than greatest search bound %f\n"
-msgstr "答案似乎大於最大搜索界限 %f\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -342,17 +194,9 @@ msgid "%s: Wrong number of input argument: %d to %d expected.\n"
 msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s','%s', %d or %d.\n"
-msgstr "%s: 第 %d 輸入參數數值錯誤: 應為 '%s', '%s','%s', %d 或%d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為向量或矩陣.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
@@ -370,10 +214,6 @@ msgid ""
 msgstr "%s: 第 %d 及第 %d 輸入參數長度錯誤: 應為相同維度.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s', %d or %d.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
 
@@ -388,6 +228,24 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: 輸入參數數目錯誤: 應為 %d 個.\n"
 
 #, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, boolean, polynomial "
+"matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
 "expected.\n"
@@ -396,6 +254,16 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , %d  �
 #, c-format
 msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
 msgstr "%s: 第 %d 輸入參數型態錯誤: 應為數值.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No NaNs detected, please use %s() instead.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
@@ -410,22 +278,12 @@ msgid "%s: Wrong type for input argument #%d: Boolean expected."
 msgstr "%s: 第 %d 輸入參數型態錯誤: 應為一布林數."
 
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
-"expected.\n"
+msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Numerical expected.\n"
-msgstr "%s: 輸入參數型態錯誤: 應為數字.\n"
-
-#, c-format
-msgid "%s: Wrong size for both input arguments: same size expected.\n"
-msgstr "%s: 兩輸入參數之長度錯誤: 長度應相同.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應 > %d.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
@@ -445,9 +303,9 @@ msgstr "%s: 第 %d 輸入參數長度錯誤: 應與第二參數之列數相同.\
 
 #, c-format
 msgid ""
-"%s: Wrong value of input argument #%d: Less or equal than length of last "
-"input argument expected.\n"
-msgstr "%s: 第 %d 輸入參數數值錯誤: 應小於或等於最後參數之長度.\n"
+"%s: Wrong value of input argument #%d: Lower than or equal to size of input "
+"argument #%d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
@@ -465,7 +323,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s','%s', '%s' or a positive "
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or a positive "
 "integer expected.\n"
 msgstr ""
 
@@ -474,12 +332,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr "%s: 第 %d 輸入參數數值錯誤: 應為 '%s', '%s', %d 或 %d.\n"
 
 #, c-format

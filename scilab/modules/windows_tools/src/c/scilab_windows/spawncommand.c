@@ -3,26 +3,29 @@
 * Copyright (C) INRIA - Allan CORNET
 * Copyright (C) DIGITEO - 2010 - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "PATH_MAX.h"
-#include "MALLOC.h"
-#include "tmpdir.h"
+#include "sci_malloc.h"
 #include "FileExist.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
+#include "sci_tmpdir.h"
 #include "spawncommand.h"
-#include "strdup_windows.h"
+#include "os_string.h"
 #include "charEncoding.h"
 #include "getshortpathname.h"
-#include "strdup_windows.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 #define LF_STR "\n"
@@ -101,7 +104,7 @@ int spawncommand(wchar_t *command, BOOL DetachProcess)
     {
         int lenCmdLine = (int)(wcslen(shellCmd) + wcslen(command) + wcslen(CMDLINE_FORMAT_DETACHED));
         CmdLine = (wchar_t*) MALLOC((lenCmdLine + 1) * sizeof(wchar_t));
-        swprintf(CmdLine, lenCmdLine, CMDLINE_FORMAT_DETACHED, shellCmd, command);
+        os_swprintf(CmdLine, lenCmdLine, CMDLINE_FORMAT_DETACHED, shellCmd, command);
 
         dwCreationFlags = DETACHED_PROCESS;
     }
@@ -113,7 +116,7 @@ int spawncommand(wchar_t *command, BOOL DetachProcess)
 
         wchar_t *TMPDirLong = getTMPDIRW();
 
-        swprintf(FileTMPDir, PATH_MAX + 16, OUTPUT_CHECK_FILENAME_FORMAT, TMPDirLong);
+        os_swprintf(FileTMPDir, PATH_MAX + 16, OUTPUT_CHECK_FILENAME_FORMAT, TMPDirLong);
         FREE(TMPDirLong);
 
         if (FileExistW(FileTMPDir))
@@ -124,7 +127,7 @@ int spawncommand(wchar_t *command, BOOL DetachProcess)
         lenCmdLine = (int)(wcslen(shellCmd) + wcslen(command) + wcslen(CMDLINE_FORMAT_NOTDETACHED) +
                            wcslen(FileTMPDir));
         CmdLine = (wchar_t*)MALLOC((lenCmdLine + 1) * sizeof(wchar_t));
-        swprintf(CmdLine, lenCmdLine, CMDLINE_FORMAT_NOTDETACHED, shellCmd, command, FileTMPDir);
+        os_swprintf(CmdLine, lenCmdLine, CMDLINE_FORMAT_NOTDETACHED, shellCmd, command, FileTMPDir);
 
         dwCreationFlags = 0;
     }
@@ -226,7 +229,7 @@ int GetNumberOfLines(char *lines)
     int NumberOfLines = 0;
     if (lines)
     {
-        char *buffer = strdup(lines);
+        char *buffer = os_strdup(lines);
         if (buffer)
         {
             int i = 0;
@@ -258,13 +261,14 @@ char **CreateOuput(pipeinfo *pipe, BOOL DetachProcess)
     {
         if (pipe->OutputBuffer)
         {
-            char *buffer = strdup((const char *)(pipe->OutputBuffer));
+            char *buffer = os_strdup(pipe->OutputBuffer);
             if (buffer)
             {
                 pipe->NumberOfLines = GetNumberOfLines(buffer);
                 if (pipe->NumberOfLines)
                 {
                     OuputStrings = (char**)MALLOC((pipe->NumberOfLines) * sizeof(char*));
+                    memset(OuputStrings, 0x00, sizeof(char*) * pipe->NumberOfLines);
                     if (OuputStrings)
                     {
                         char *line = strtok(buffer, LF_STR);
@@ -356,7 +360,7 @@ char *convertLine(char *_string, BOOL DetachProcess)
     char *convertedString = NULL;
     if (_string)
     {
-        convertedString = strdup(_string);
+        convertedString = os_strdup(_string);
 
         if (getScilabMode() == SCILAB_STD)
         {
@@ -426,7 +430,7 @@ int CallWindowsShell(char *command)
 
     GetEnvironmentVariableW(L"ComSpec", shellCmd, PATH_MAX);
     TMPDir = getTMPDIRW();
-    swprintf(FileTMPDir, PATH_MAX, L"%s\\DOS.OK", TMPDir);
+    os_swprintf(FileTMPDir, PATH_MAX, L"%ls\\DOS.OK", TMPDir);
     if (TMPDir)
     {
         FREE(TMPDir);
@@ -434,15 +438,98 @@ int CallWindowsShell(char *command)
     }
 
     wcommand = to_wide_string(command);
-    iCmdSize = (wcslen(shellCmd) + wcslen(wcommand) + wcslen(FileTMPDir) + wcslen(L"%s /a /c \"%s\" && echo DOS>%s") + 1);
+    iCmdSize = (wcslen(shellCmd) + wcslen(wcommand) + wcslen(FileTMPDir) + wcslen(L"%ls /a /c \"%ls\" && echo DOS>%ls") + 1);
     CmdLine = (wchar_t*)MALLOC(iCmdSize * sizeof(wchar_t));
-    swprintf(CmdLine, iCmdSize, L"%s /a /c \"%s\" && echo DOS>%s", shellCmd, wcommand, FileTMPDir);
+    os_swprintf(CmdLine, iCmdSize, L"%ls /a /c \"%ls\" && echo DOS>%ls", shellCmd, wcommand, FileTMPDir);
 
     if (CreateProcessW(NULL, CmdLine, NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
     {
         WaitForSingleObject(piProcInfo.hProcess, INFINITE);
 
         if ( GetExitCodeProcess(piProcInfo.hProcess, &ExitCode) == STILL_ACTIVE )
+        {
+            TerminateProcess(piProcInfo.hProcess, 0);
+        }
+
+        CloseHandle(piProcInfo.hProcess);
+
+        if (CmdLine)
+        {
+            FREE(CmdLine);
+            CmdLine = NULL;
+        }
+
+        if (FileExistW(FileTMPDir))
+        {
+            DeleteFileW(FileTMPDir);
+        }
+
+        returnedExitCode = (int)ExitCode;
+    }
+    else
+    {
+        CloseHandle(piProcInfo.hProcess);
+        if (CmdLine)
+        {
+            FREE(CmdLine);
+            CmdLine = NULL;
+        }
+    }
+    return returnedExitCode;
+}
+/*--------------------------------------------------------------------------*/
+int CallWindowsShellW(wchar_t* _pstCommand)
+{
+    int returnedExitCode = -1;
+
+    wchar_t shellCmd[PATH_MAX];
+    wchar_t *CmdLine = NULL;
+    size_t iCmdSize = 0;
+
+    PROCESS_INFORMATION piProcInfo;
+    STARTUPINFOW siStartInfo;
+    SECURITY_ATTRIBUTES saAttr;
+
+    DWORD ExitCode = 0;
+
+    wchar_t *TMPDir = NULL;
+    wchar_t FileTMPDir[PATH_MAX];
+
+    if (wcscmp(_pstCommand, L"") == 0)
+    {
+        // do nothing
+        return 1;
+    }
+
+    ZeroMemory(&piProcInfo, sizeof(PROCESS_INFORMATION));
+
+    ZeroMemory(&siStartInfo, sizeof(STARTUPINFO));
+    siStartInfo.cb              = sizeof(STARTUPINFO);
+    siStartInfo.dwFlags         = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
+    siStartInfo.wShowWindow     = SW_HIDE;
+    siStartInfo.hStdInput       = NULL;
+
+    siStartInfo.hStdOutput      = GetStdHandle(STD_OUTPUT_HANDLE);
+    siStartInfo.hStdError       = GetStdHandle(STD_ERROR_HANDLE);
+
+    GetEnvironmentVariableW(L"ComSpec", shellCmd, PATH_MAX);
+    TMPDir = getTMPDIRW();
+    os_swprintf(FileTMPDir, PATH_MAX, L"%ls\\DOS.OK", TMPDir);
+    if (TMPDir)
+    {
+        FREE(TMPDir);
+        TMPDir = NULL;
+    }
+
+    iCmdSize    = (wcslen(shellCmd) + wcslen(_pstCommand) + wcslen(FileTMPDir) + wcslen(L"%ls /a /c \"%ls\" && echo DOS>%ls") + 1);
+    CmdLine     = (wchar_t*)MALLOC(iCmdSize * sizeof(wchar_t));
+    os_swprintf(CmdLine, iCmdSize, L"%ls /a /c \"%ls\" && echo DOS>%ls", shellCmd, _pstCommand, FileTMPDir);
+
+    if (CreateProcessW(NULL, CmdLine, NULL, NULL, FALSE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
+    {
+        WaitForSingleObject(piProcInfo.hProcess, INFINITE);
+
+        if (GetExitCodeProcess(piProcInfo.hProcess, &ExitCode) == STILL_ACTIVE)
         {
             TerminateProcess(piProcInfo.hProcess, 0);
         }

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.events.callback;
@@ -27,6 +30,8 @@ public abstract class ScilabCallBack extends CommonCallBack {
 
     private static final long serialVersionUID = -4923246233703990342L;
 
+    private boolean isInterruptible = true;
+
     /**
      * Constructor
      * @param command : the command to execute.
@@ -35,6 +40,10 @@ public abstract class ScilabCallBack extends CommonCallBack {
         super(command, CallBack.UNTYPED);
     }
 
+    private ScilabCallBack(String command, boolean isInterruptible) {
+        super(command, CallBack.UNTYPED);
+        this.isInterruptible = isInterruptible;
+    }
     /**
      * Callback Factory to easily create a callback
      * just like in scilab.
@@ -42,19 +51,37 @@ public abstract class ScilabCallBack extends CommonCallBack {
      * @return a usable Scilab callback
      */
     public static ScilabCallBack create(String command) {
-        return (new ScilabCallBack(command) {
+        return create(command, true);
+    }
+
+    /**
+     * Callback Factory to easily create a callback
+     * just like in scilab.
+     * @param command : the command to execute.
+     * @return a usable Scilab callback
+     */
+    public static ScilabCallBack create(String command, boolean isInterruptible) {
+        return (new ScilabCallBack(command, isInterruptible) {
 
             private static final long serialVersionUID = -7286803341046313407L;
 
             public void callBack() {
                 Thread launchMe = new Thread() {
                     public void run() {
-                        InterpreterManagement.putCommandInScilabQueue(getCommand());
+                        if (isInterruptible()) {
+                            InterpreterManagement.putCommandInScilabQueue(getCommand());
+                        } else {
+                            InterpreterManagement.requestScilabExec(getCommand());
+                        }
                     }
                 };
                 launchMe.start();
             }
         });
+    }
+
+    boolean isInterruptible() {
+        return isInterruptible;
     }
 
     /**

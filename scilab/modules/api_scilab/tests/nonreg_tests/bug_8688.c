@@ -8,10 +8,11 @@
 #include <stdlib.h>
 #include <api_scilab.h>
 #include <Scierror.h>
-#include <MALLOC.h>
+#include <sci_malloc.h>
 #include <localization.h>
+#include <os_string.h>
 
-int sci_bug_8688(char *fname)
+int sci_bug_8688(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int N = 20000000;
@@ -25,7 +26,7 @@ int sci_bug_8688(char *fname)
 
     for (i = 0; i < N; i++)
     {
-        ptrStrs[i] = strdup("TEST BUG 8688.");
+        ptrStrs[i] = os_strdup("TEST BUG 8688.");
     }
 
     sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, 1, N, ptrStrs);
@@ -34,6 +35,13 @@ int sci_bug_8688(char *fname)
         printError(&sciErr, 0);
         return 0;
     }
+
+    for (i = 0; i < N; i++)
+    {
+        free(ptrStrs[i]);
+    }
+
+    FREE(ptrStrs);
     LhsVar(1) = 1;
     return 0;
 }

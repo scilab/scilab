@@ -19,15 +19,25 @@
             それ以外の場合,全ての誤差がクリアされます (デフォルトの場合)
         </para>
     </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example">a = 1;
+            b = undefinedvariable + a;
+            lasterror()
+            b = undefinedvariable + a;
+            errclear()
+            lasterror()
+            b = undefinedvariable + a;
+            errclear(5)  // error 4 always as last error
+            lasterror()
+            b = undefinedvariable + a;
+            errclear(4)
+            lasterror()
+        </programlisting>
+    </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="errcatch">errcatch</link>
-            </member>
-            <member>
-                <link linkend="iserror">iserror</link>
-            </member>
             <member>
                 <link linkend="lasterror">lasterror</link>
             </member>

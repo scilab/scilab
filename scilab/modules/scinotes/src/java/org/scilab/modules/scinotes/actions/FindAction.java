@@ -4,11 +4,14 @@
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -61,16 +64,14 @@ import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.text.Highlighter;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.SearchManager;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
-
 
 /**
  * FindAction
@@ -158,6 +159,8 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
     private boolean comboReplaceCanceled;
     private boolean comboFindCanceled;
 
+    private Document previousDocument;
+
     /**
      * Constructor
      * @param name the name of the action
@@ -244,7 +247,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
      * @param editor SciNotes
      * @return PushButton
      */
-    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+    public static JButton createButton(String tooltip, String icon, SciNotes editor) {
         return createButton(tooltip, icon, new FindAction(tooltip, editor));
     }
 
@@ -293,7 +296,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
             }
         });
 
-        frame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
+        frame.setIconImage(new ImageIcon(FindIconHelper.findIcon("scilab")).getImage());
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setTitle(SciNotesMessages.FIND_REPLACE);
         frame.setResizable(false);
@@ -1067,8 +1070,11 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
         wordToFind = (String) comboFind.getEditor().getItem();
 
         String strregexp = SearchManager.generatePattern(wordToFind, caseSensitive, wholeWord, useRegexp).toString();
-        if (!previousRegexp.equals(strregexp)) {
+        if (doc != previousDocument || !previousRegexp.equals(strregexp)) {
             previousRegexp = strregexp;
+            if (doc != previousDocument) {
+                previousDocument = doc;
+            }
             if (onlySelectedLines) {
                 foundOffsets = SearchManager.findWord(doc, wordToFind, startSelectedLines, endSelectedLines, caseSensitive, wholeWord, useRegexp);
             } else {

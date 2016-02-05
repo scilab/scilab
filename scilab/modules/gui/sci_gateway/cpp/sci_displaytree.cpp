@@ -1,216 +1,211 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
  * Copyright (C) 2008 - DIGITEO - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 
-#include <vector>
-#include <sstream>
-#include <iostream>
+#include <cstring>
 #include <string>
+#include <vector>
+
+#include "gui_gw.hxx"
 
 #include "displaytree.hxx"
 #include "ScilabDisplayTree.hxx"
 #include "GiwsException.hxx"
 
+#include "internal.hxx"
+#include "function.hxx"
+#include "string.hxx"
+#include "list.hxx"
+#include "struct.hxx"
+
 extern "C"
 {
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
-
-#include "api_scilab.h"
-#include "gw_gui.h"
-#include "stdlib.h"
-#include "sciprint.h"
-#include "localization.h"
-#include "Scierror.h"
-#include "MALLOC.h"
 #include "getScilabJavaVM.h"
+#include "sci_malloc.h"
+#include "charEncoding.h" /* wide_string_to_UTF8 */
+
+#include "Scierror.h"
+#include "localization.h"
+#include "os_string.h"
 }
 
-/*--------------------------------------------------------------------------*/
-int sci_displaytree(char *fname, unsigned long fname_len)
+static const std::string funname = "uiDisplayTree";
+
+types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCount, types::typed_list& /*out*/)
 {
-    SciErr sciErr;
-
-    int* piAddrTree         = NULL;
-    int* piAddrTreeStr      = NULL;
-    int* piAddrTreeMList    = NULL;
-    int* piAddrLabel        = NULL;
-    int* piAddrIcon         = NULL;
-    int* piAddrCallback     = NULL;
-
-    int iItemCount = 0;
-
-    char* strItem1      = NULL;
-    char* strLabel      = NULL;
-    char* strIcon       = NULL;
-    char* strCallback   = NULL;
-
-    vector<std::string> StructList;
-    std::string szCurLevel = "";
-
-    CheckInputArgument(pvApiCtx, 1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
-
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrTree);
-    if (sciErr.iErr)
+    if (in.size() != 1)
     {
-        printError(&sciErr, 0);
-        return 1;
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), funname.data(), 1);
+        return types::Function::Error;
     }
 
-    sciErr = getListItemNumber(pvApiCtx, piAddrTree, &iItemCount);
-    if (sciErr.iErr)
+    if (_iRetCount > 1)
     {
-        printError(&sciErr, 0);
-        return 1;
+        Scierror(78, _("%s:  Wrong number of output argument(s): %d to %d expected."), "helpbrowser", 0, 1);
+        return types::Function::Error;
     }
 
+    if (in[0]->isList() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d : A list expected.\n"), funname.data(), 1);
+        return types::Function::Error;
+    }
+
+    types::List* pIn = in[0]->getAs<types::List>();
+    int iItemCount = pIn->getSize();
     if (iItemCount < 2)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: At least 2 elements expected.\n"), fname, 1);
-        return 1;
+        Scierror(999, _("%s: Wrong size for input argument #%d : At least %d elements expected.\n"), funname.data(), 1, 2);
+        return types::Function::Error;
     }
 
-    // get first element as a string
-    sciErr = getListItemAddress(pvApiCtx, piAddrTree, 1, &piAddrTreeStr);
-    if (sciErr.iErr)
+    // Get first element as a string
+    if (pIn->get(0)->isString() == false)
     {
-        printError(&sciErr, 0);
-        return 1;
+        Scierror(999, _("%s: Wrong type for element #%d of input argument #%d : string expected.\n"), funname.data(), 1, 1);
+        return types::Function::Error;
     }
 
-    if (getAllocatedSingleString(pvApiCtx, piAddrTreeStr, &strItem1))
+    types::String* strItem1 = pIn->get(0)->getAs<types::String>();
+    if (strItem1->getSize() < 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: First element must be a string.\n"), fname, 1);
-        return 1;
+        Scierror(999, _("%s: Wrong size for element #%d of input argument #%d : At least %d element expected.\n"), funname.data(), 1, 1, 1);
+        return types::Function::Error;
     }
 
-    /*check tree structure */
-    if (strcmp(strItem1, TREE_REF_NAME))
+    // Check tree structure
+    if (wcscmp(strItem1->get(0), TREE_REF_NAME) != 0)
     {
-        freeAllocatedSingleString(strItem1);
-        Scierror(999, _("%s: Wrong type for input argument #%d: A Tree expected.\n"), fname, 1);
-        return 1;
+        Scierror(999, _("%s: Wrong type for input argument #%d: A Tree expected.\n"), funname.data(), 1);
+        return types::Function::Error;
     }
 
-    freeAllocatedSingleString(strItem1);
-
-    // get the second element as a mlist
-    sciErr = getListItemAddress(pvApiCtx, piAddrTree, 2, &piAddrTreeMList);
-    if (sciErr.iErr)
+    // Get the second element as a struct
+    if (pIn->get(1)->isStruct() == false)
     {
-        printError(&sciErr, 0);
-        return 1;
+        Scierror(999, _("%s: Wrong type for element #%d of input argument #%d : A struct expected.\n"), funname.data(), 2, 1);
+        return types::Function::Error;
     }
 
-    if (isMListType(pvApiCtx, piAddrTreeMList) == false)
+    types::Struct* node = pIn->get(1)->getAs<types::Struct>();
+    types::String* fields = node->get(0)->getFieldNames();
+    if (fields->getSize() < 3)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Second element must be a mlist.\n"), fname, 1);
-        printError(&sciErr, 0);
-        return 1;
+        Scierror(999, _("%s: Wrong size for element #%d of input argument #%d : At least %d element expected.\n"), funname.data(), 2, 1, 3);
+        return types::Function::Error;
     }
 
-    //Add node level
+    if (fields->get(0) != Label || fields->get(1) != Icon || fields->get(2) != Callback)
+    {
+        Scierror(999, _("%s: Wrong fields for element #%d of input argument #%d : \"%s\" and \"%s\" expected.\n"), funname.data(), 2, 1, "label", "icon", "callback");
+        return types::Function::Error;
+    }
+
+    std::string szCurLevel = "";
+    std::vector<std::string> StructList;
+
+    // Add node level
     szCurLevel += "1";
     StructList.push_back(szCurLevel);
 
-    //get label name
-    sciErr = getListItemAddress(pvApiCtx, piAddrTreeMList, 3, &piAddrLabel);
-    if (sciErr.iErr)
+    types::InternalType* temp = nullptr;
+
+    // Get label name
+    temp = node->get(0)->get(Label);
+    if (temp->isString() == false)
     {
-        printError(&sciErr, 0);
-        return 1;
+        Scierror(999, _("%s: Wrong type for element #%d of element #%d of input argument #%d : string expected.\n"), funname.data(), 1, 2, 1);
+        return types::Function::Error;
     }
 
-    if (getAllocatedSingleString(pvApiCtx, piAddrLabel, &strLabel))
+    types::String* strLabel = temp->getAs<types::String>();
+    if (strLabel->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for element %d of input argument #%d: A string expected.\n"), fname, 3, 1);
-        return 1;
+        Scierror(999, _("%s: Wrong size for element #%d of element #%d of input argument #%d : A single string expected.\n"), funname.data(), 1, 2, 1);
+        return types::Function::Error;
     }
 
-    StructList.push_back(strLabel);
-    freeAllocatedSingleString(strLabel);
+    char* cstr = wide_string_to_UTF8(strLabel->get(0));
+    StructList.push_back(std::string(cstr));
+    FREE(cstr);
 
-    //get Icon name
-    sciErr = getListItemAddress(pvApiCtx, piAddrTreeMList, 4, &piAddrIcon);
-    if (sciErr.iErr)
+    // Get icon name
+    temp = node->get(0)->get(Icon);
+    if (temp->isString() == false)
     {
-        printError(&sciErr, 0);
-        return 1;
+        Scierror(999, _("%s: Wrong type for element #%d of element #%d of input argument #%d : string expected.\n"), funname.data(), 2, 2, 1);
+        return types::Function::Error;
     }
 
-    if (getAllocatedSingleString(pvApiCtx, piAddrIcon, &strIcon))
+    types::String* strIcon = temp->getAs<types::String>();
+    if (strIcon->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for element %d of input argument #%d: A string expected.\n"), fname, 4, 1);
-        return 1;
+        Scierror(999, _("%s: Wrong size for element #%d of element #%d of input argument #%d : A single string expected.\n"), funname.data(), 2, 2, 1);
+        return types::Function::Error;
     }
 
-    StructList.push_back(strIcon);
-    freeAllocatedSingleString(strIcon);
+    cstr = wide_string_to_UTF8(strIcon->get(0));
+    StructList.push_back(std::string(cstr));
+    FREE(cstr);
 
-    //get callback name
-    sciErr = getListItemAddress(pvApiCtx, piAddrTreeMList, 5, &piAddrCallback);
-    if (sciErr.iErr)
+    // Get callback name
+    temp = node->get(0)->get(Callback);
+    if (temp->isString() == false)
     {
-        printError(&sciErr, 0);
-        return 1;
+        Scierror(999, _("%s: Wrong type for element #%d of element #%d of input argument #%d : string expected.\n"), funname.data(), 3, 2, 1);
+        return types::Function::Error;
     }
 
-    if (getAllocatedSingleString(pvApiCtx, piAddrCallback, &strCallback))
+    types::String* strCallback = temp->getAs<types::String>();
+    if (strCallback->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for element %d of input argument #%d: A string expected.\n"), fname, 5, 1);
-        return 1;
+        Scierror(999, _("%s: Wrong size for element #%d of element #%d of input argument #%d : A single string expected.\n"), funname.data(), 3, 2, 1);
+        return types::Function::Error;
     }
 
-    StructList.push_back(strCallback);
-    freeAllocatedSingleString(strCallback);
+    cstr = wide_string_to_UTF8(strCallback->get(0));
+    StructList.push_back(std::string(cstr));
+    FREE(cstr);
 
-    if (bParseListItem(pvApiCtx, piAddrTree, iItemCount, &StructList, szCurLevel))
+    if (parseListItem(pIn, iItemCount, StructList, szCurLevel) == false)
     {
-        Scierror(999, _("%s: Error in the tree parsing.\n"), fname, 1);
-        return 1;
+        Scierror(999, _("%s: Error in the tree parsing.\n"), funname.data());
+        return types::Function::Error;
     }
-    // Conversion Vector<string> to char **
-    char **tab = NULL;
-    size_t i = 0;
 
-    size_t struct_size = StructList.size();
-    tab = new char *[struct_size];
+    // Convert vector<string> to char **
+    int struct_size = static_cast<int>(StructList.size());
+    const char** tab = new const char *[struct_size];
 
-    for (i = 0; i < struct_size; ++i)
+    for (int i = 0; i < struct_size; ++i)
     {
-        tab[i] = strdup(StructList.at(i).c_str());
+        tab[i] = StructList.at(i).c_str();
     }
 
     try
     {
-        //Java
-        org_scilab_modules_gui_tree::ScilabDisplayTree::scilabDisplayTree(getScilabJavaVM(), tab, (int)struct_size);
+        // Java
+        org_scilab_modules_gui_tree::ScilabDisplayTree::scilabDisplayTree(getScilabJavaVM(), tab, struct_size);
     }
     catch (const GiwsException::JniException & e)
     {
-        Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
-        return FALSE;
+        Scierror(999, _("%s: A Java exception has arisen:\n%s"), funname.data(), e.whatStr().c_str());
+        return types::Function::Error;
     }
 
-    //Free
-    for (i = 0; i < struct_size; ++i)
-    {
-        FREE(tab[i]);
-    }
-
-    delete[]tab;
-    tab = NULL;
-
-    return 0;
+    delete[] tab;
+    return types::Function::OK;
 }

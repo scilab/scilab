@@ -26,7 +26,6 @@ c
 c     The original version has been modified to replace statically
 c     allocated arrays dysav, ytemp and ysav by rwork arguments parts
 c     array + blas use. Serge Steer INRIA- feb 2012
-      include 'stack.h'
       integer n,i
       double precision fcor,one,safety,errcon
       parameter (fcor=.0666666667,one=1.0,safety=0.9,errcon=6.e-4)

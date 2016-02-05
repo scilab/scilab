@@ -14,20 +14,17 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{760d925c-bd4c-44a8-ad31-634e1b27aa4e}</UniqueIdentifier>
+      <UniqueIdentifier>{7b7e431f-4a0d-4c94-aad7-0f34cc21a59b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{7c1989ba-dca2-4d24-9c25-35eee220f18b}</UniqueIdentifier>
+      <UniqueIdentifier>{4fd6b016-3e24-4fef-a433-76f152e65fd3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{64fd0c21-ceb7-497b-8a4f-1b5b2b55a65b}</UniqueIdentifier>
+      <UniqueIdentifier>{da0e22b4-58a3-44ce-bb61-b7cf6b5e1a61}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\c\DllmainArnoldi.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_arnoldi.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_dnaupd.c">
@@ -87,5 +84,9 @@
     <None Include="locales\arnoldi.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="locales\arnoldi.pot" />
+    <None Include="locales\arnoldi.pot" />
+    <None Include="locales\arnoldi.pot" />
+    <None Include="locales\arnoldi.pot" />
   </ItemGroup>
 </Project>

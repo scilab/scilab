@@ -2,11 +2,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012-2012 - Scilab Enterprises - Bruno JOFRET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
 //
 function []=xsetech(wrect, frect, logflag, arect)
@@ -53,8 +56,9 @@ function []=xsetech(wrect, frect, logflag, arect)
     end
 
     // Check if an existing axes matches wrect
-    curFig = gcf();
-    allAxes = curFig.children;
+    a = gca()
+    curParent = a.parent;
+    allAxes = curParent.children;
     found = %F;
     for kAxes = 1:size(allAxes, "*")
         if allAxes(kAxes).type == "Axes" & and(allAxes(kAxes).axes_bounds(:)==wrect(:)) then
@@ -65,7 +69,7 @@ function []=xsetech(wrect, frect, logflag, arect)
     end
 
     if ~found then
-        a = newaxes();
+        a = newaxes(curParent);
         if ~isempty(wrect) then
             a.axes_bounds = wrect;
         end

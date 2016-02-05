@@ -238,9 +238,6 @@
         <title>Example</title>
         <para>
             This diagram shows the Counter block output versus time.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/counter_en_US.zcos">
-                Open this example in Xcos
-            </link>
         </para>
         <para/>
         <para>

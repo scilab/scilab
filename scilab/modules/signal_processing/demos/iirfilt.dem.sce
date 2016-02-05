@@ -18,7 +18,7 @@ function demo_irrfilter()
     if is_handle_valid(my_handle) then
         clf(my_handle, "reset");
         plot2d(fr', hzm');
-        xtitle(_("Discrete IIR filter : low pass  fr < 0.2"), " ", " ");
+        xtitle(_("Discrete IIR filter: low pass  fr < 0.2"), " ", " ");
         halt(_("Press Return to continue ... \n"));
     end
 
@@ -29,7 +29,7 @@ function demo_irrfilter()
         clf(my_handle, "reset");
         demo_viewCode("iirfilt.dem.sce");
         plot2d(fr',hzm');
-        xtitle(_("Discrete IIR filter band pass 0.15 < fr < 0.25"), " ", " ");
+        xtitle(_("Discrete IIR filter: band pass 0.15 < fr < 0.25"), " ", " ");
     end
 
 endfunction

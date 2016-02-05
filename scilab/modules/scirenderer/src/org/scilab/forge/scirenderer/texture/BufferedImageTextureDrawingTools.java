@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2012 - DIGITEO - Pierre Lando
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.forge.scirenderer.texture;
@@ -83,10 +86,11 @@ public class BufferedImageTextureDrawingTools implements TextureDrawingTools {
     public void drawPlus(int size, Appearance appearance) {
         int r = size / 2;
         int[] coords1 = new int[] { -r, 0, r, 0};
-        int[] coords2 = new int[] {0, -r, 0, r};
-
         drawPolyline(coords1, appearance);
-        drawPolyline(coords2, appearance);
+        if (r != 0) {
+            int[] coords2 = new int[] {0, -r, 0, r};
+            drawPolyline(coords2, appearance);
+        }
     }
 
     @Override
@@ -173,7 +177,7 @@ public class BufferedImageTextureDrawingTools implements TextureDrawingTools {
             g2d.setColor(textEntity.getTextColor());
             TextLayout textLayout = new TextLayout(textEntity.getText(), textEntity.getFont(), g2d.getFontRenderContext());
             Rectangle2D bounds = textLayout.getBounds();
-            textLayout.draw(g2d, (float) (x + 1 - bounds.getX()), (float) (y + textLayout.getAscent()));
+            textLayout.draw(g2d, (float) (x + 1 - bounds.getX()), y + textLayout.getAscent());
         }
     }
 

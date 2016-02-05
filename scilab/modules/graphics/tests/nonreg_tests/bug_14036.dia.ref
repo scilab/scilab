@@ -1,0 +1,31 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2015 - Scilab Enterprises - Cedric Delamarre
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// <-- Non-regression test for bug 14036 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/14036
+//
+// <-- Short Description -->
+// userdata and tag are hidden light properties
+l = light();
+l.userdata = "Source 1";
+l.tag = "LS1";
+l
+l  = 
+Handle of type "Light" with properties:
+=======================================
+parent: Axes
+visible = "on"
+light_type = "point"
+position = [0,0,1]
+direction = [0,0,1]
+ambient_color = [0.1,0.1,0.1]
+diffuse_color = [1,1,1]
+specular_color= [1,1,1]
+user_data = "Source 1"
+tag = "LS1"

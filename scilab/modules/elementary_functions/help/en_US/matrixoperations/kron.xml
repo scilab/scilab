@@ -2,12 +2,16 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2014 - Samuel Gougeon : extension to hypermatrices
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="kron" xml:lang="en">
@@ -22,10 +26,27 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>a matrix or hypermatrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>a matrix or hypermatrix.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
         <para>
             <literal>kron(A,B)</literal> or <literal>A.*.B</literal> returns the
-            Kronecker tensor product of two matrices <literal>A</literal> and
+            Kronecker tensor product of two matrices or hypermatrices<literal>A</literal> and
             <literal>B</literal>. The resulting matrix has the following block
             form:
         </para>
@@ -38,24 +59,61 @@
         </informalequation>
         <para>
             If <literal>A</literal> is a <literal>m x n</literal> matrix and
-            <literal>B</literal> a <literal>p x q</literal> matrix then
-            <literal>A.*.B</literal> is a <literal>(m*p) x (n*q)</literal>
-            matrix.
+            <literal>B</literal> a <literal>p x q x r</literal> hypermatrix then
+            <literal>A.*.B</literal> is a <literal>(m*p) x (n*q) x (1*r)</literal>
+            hypermatrix.
         </para>
         <para>
             <literal>A</literal> and <literal>B</literal> can be sparse
-            matrices.
+            matrices, although the Kronecker product is not defined between a sparse matrix and
+            a hypermatrix.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-A=[1,2;3,4];
+        <programlisting role="example"><![CDATA[
+A = [1,2;3,4];
 kron(A,A)
 A.*.A
 sparse(A).*.sparse(A)
-A(1,1)=%i;
+A(1,1) = %i;
 kron(A,A)
+
+// With hypermatrices
+// ------------------
+b = hypermat([4 3 2], 1:24);
+
+// row .*. hypermat
+a = 1:2, b
+a.*.b
+
+// hypermat .*. row
+b,a
+b .*. a
+
+// column .*. hypermat
+a = [1;2], b
+a.*.b
+
+// matrix .*. hypermat
+a = [-1 -2; 2 1], b
+a.*.b
+
+// hypermat .*. hypermat
+a = hypermat([1 2 2],[-1,-2, 1 2]), b
+a.*.b
  ]]></programlisting>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.1</revnumber>
+                <revdescription>
+                    <para>Extension to hypermatrices</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+    
 </refentry>

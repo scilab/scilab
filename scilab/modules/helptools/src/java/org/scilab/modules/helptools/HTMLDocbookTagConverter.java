@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -604,76 +607,34 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         return buffer.toString();
     }
 
+    private boolean isLinkedImage() {
+        Stack<DocbookElement> stack = getStack();
+        return stack.size() >= 3 && stack.get(stack.size() - 3).getName().equals("link");
+    }
+
     @Override
     public String generateImageCode(String code, String fileName, Map<String, String> attrs) {
-        final String imageTag = "<img src=\'" + fileName + "\'/>";
+        String alignAttr = attrs.get("align");
+        boolean addDiv = getGenerationType() != Backend.JAVAHELP || !isLinkedImage();
+        final StringBuilder buffer = new StringBuilder(128);
+        if (addDiv && alignAttr != null) {
+            buffer.append("<div style=\'text-align:").append(alignAttr).append("\'>");
+        }
+        buffer.append("<img src=\'").append(fileName).append("\'/>");
+        if (addDiv && alignAttr != null) {
+            buffer.append("</div>");
+        }
+
         if (getGenerationType() == Backend.WEB) {
             /* Prepare the code for the html inclusion */
             code = convertCode(code);
             /* Provide a tooltip */
-            return "<div rel='tooltip' title='" + code + "'>" + imageTag + "</div>";
+            return "<div rel='tooltip' title='" + code + "'>" + buffer.toString() + "</div>";
         } else {
             /* No tooltip in the javahelp browser ...
              * too limited html capabilities */
-            return imageTag;
+            return buffer.toString();
         }
-    }
-
-    private static final String convertCode(String code) {
-        if (code == null || code.length() == 0) {
-            return "";
-        }
-
-        StringBuffer buffer = new StringBuffer(2 * code.length());
-        int start = 0;
-        int end = code.length() - 1;
-        char c = code.charAt(0);
-
-        // first we trim
-        while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
-            if (start < end) {
-                c = code.charAt(++start);
-            } else {
-                break;
-            }
-        }
-        c = code.charAt(end);
-        while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
-            if (end > 0) {
-                c = code.charAt(--end);
-            } else {
-                break;
-            }
-        }
-
-        // replace chars by their html entities equivalent
-        for (int j = start; j <= end; j++) {
-            c = code.charAt(j);
-            switch (c) {
-                case '&':
-                    buffer.append("&amp;");
-                    break;
-                case '<':
-                    buffer.append("&lt;");
-                    break;
-                case '>':
-                    buffer.append("&gt;");
-                    break;
-                case '\n':
-                    buffer.append("<br />");
-                    break;
-                case '\'':
-                    buffer.append("&#039;");
-                    break;
-                case '\"':
-                    buffer.append("&quot;");
-                    break;
-                default:
-                    buffer.append(c);
-            }
-        }
-
-        return buffer.toString();
     }
 
     @Override
@@ -697,23 +658,28 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             div = "span";
         }
 
-        return "<" + div + align + "><img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'/></" + div + ">";
+        if (getGenerationType() == Backend.JAVAHELP && isLinkedImage()) {
+            // Java HTML renderer is not good... so when  the image is linked, we remove the div
+            return "<img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'/>>";
+        } else {
+            return "<" + div + align + "><img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'/></" + div + ">";
+        }
     }
 
     @Override
     public String generateImageCode(String fileName, Map<String, String> attrs) {
         String alignAttr = attrs.get("align");
-
-        final StringBuilder str = new StringBuilder(128);
-        if (alignAttr != null) {
-            str.append("<div style=\'text-align:").append(alignAttr).append("\'>");
+        boolean addDiv = getGenerationType() != Backend.JAVAHELP || !isLinkedImage();
+        final StringBuilder buffer = new StringBuilder(128);
+        if (addDiv && alignAttr != null) {
+            buffer.append("<div style=\'text-align:").append(alignAttr).append("\'>");
         }
-        str.append("<img src=\'").append(fileName).append("\'/>");
-        if (alignAttr != null) {
-            str.append("</div>");
+        buffer.append("<img src=\'").append(fileName).append("\'/>");
+        if (addDiv && alignAttr != null) {
+            buffer.append("</div>");
         }
 
-        return str.toString();
+        return buffer.toString();
     }
 
     public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
@@ -885,6 +851,23 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     }
 
     /**
+     * Handle a literallayout
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleLiterallayout(final Map<String, String> attributes, final String contents) throws SAXException {
+
+        //replace \n by <br>
+        String s = contents.replace("\n", "<BR>");
+        //replace spaces by &nbsp;
+        s = s.replace(" ", "&nbsp;");
+
+        return encloseContents("code", "literallayout", s);
+    }
+
+    /**
      * Handle a varname
      * @param attributes the tag attributes
      * @param contents the tag contents
@@ -1052,6 +1035,22 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refsection", contents);
         } else {
             return encloseContents("div", "refsection", contents);
+        }
+    }
+
+    /**
+     * Handle an anchor
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleAnchor(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\">" + contents + "</a>";
+        } else {
+            return contents;
         }
     }
 
@@ -1967,5 +1966,62 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         } else {
             return code;
         }
+    }
+
+    private static final String convertCode(String code) {
+        if (code == null || code.length() == 0) {
+            return "";
+        }
+
+        StringBuffer buffer = new StringBuffer(2 * code.length());
+        int start = 0;
+        int end = code.length() - 1;
+        char c = code.charAt(0);
+
+        // first we trim
+        while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
+            if (start < end) {
+                c = code.charAt(++start);
+            } else {
+                break;
+            }
+        }
+        c = code.charAt(end);
+        while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
+            if (end > 0) {
+                c = code.charAt(--end);
+            } else {
+                break;
+            }
+        }
+
+        // replace chars by their html entities equivalent
+        for (int j = start; j <= end; j++) {
+            c = code.charAt(j);
+            switch (c) {
+                case '&':
+                    buffer.append("&amp;");
+                    break;
+                case '<':
+                    buffer.append("&lt;");
+                    break;
+                case '>':
+                    buffer.append("&gt;");
+                    break;
+                case '\n':
+                    buffer.append("<br />");
+                    break;
+                case '\'':
+                    buffer.append("&#039;");
+                    break;
+                case '\"':
+                    buffer.append("&quot;");
+                    break;
+                default:
+                    buffer.append(c);
+            }
+        }
+
+        return buffer.toString();
     }
 }

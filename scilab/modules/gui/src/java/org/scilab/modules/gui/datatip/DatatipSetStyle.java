@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Gustavo Barbosa Libotte <gustavolibotte@gmail.com>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -34,31 +37,17 @@ public class DatatipSetStyle {
     * @param labeled Boolean to show/hide datatip label.
     */
     public static void datatipSetStyle(int polylineUID, int t, boolean boxed, boolean labeled) {
-
-        Integer[] childrenUID = (Integer[])GraphicController.getController().getProperty(polylineUID, GraphicObjectProperties.__GO_CHILDREN__);
-
-        for (int i = 0 ; i < childrenUID.length ; i++) {
-
-            Integer childrenType = (Integer)GraphicController.getController().getProperty(childrenUID[i], __GO_TYPE__);
-            if (childrenType.equals(__GO_DATATIP__)) {
-
-                if (t == 1) {
-
-                    GraphicController.getController().setProperty(childrenUID[i], GraphicObjectProperties.__GO_MARK_STYLE__, 11);
-
-                } else {
-
-                    GraphicController.getController().setProperty(childrenUID[i], GraphicObjectProperties.__GO_MARK_STYLE__, 7);
-
-                }
-
-                GraphicController.getController().setProperty(childrenUID[i], GraphicObjectProperties.__GO_DATATIP_BOX_MODE__, boxed);
-                GraphicController.getController().setProperty(childrenUID[i], GraphicObjectProperties.__GO_DATATIP_LABEL_MODE__, labeled);
-
+        Integer[] datatipsUID = (Integer[])GraphicController.getController().getProperty(polylineUID, GraphicObjectProperties.__GO_DATATIPS__);
+        Integer style = t == 1 ? 11 : 7;
+        GraphicController.getController().setProperty(polylineUID, GraphicObjectProperties.__GO_DATATIP_MARK__, style);
+        for (int i = 0 ; i < datatipsUID.length ; i++) {
+            Integer datatipsType = (Integer) GraphicController.getController().getProperty(datatipsUID[i], __GO_TYPE__);
+            if (datatipsType.equals(__GO_DATATIP__)) {
+                GraphicController.getController().setProperty(datatipsUID[i], GraphicObjectProperties.__GO_MARK_STYLE__, style);
+                GraphicController.getController().setProperty(datatipsUID[i], GraphicObjectProperties.__GO_DATATIP_BOX_MODE__, boxed);
+                GraphicController.getController().setProperty(datatipsUID[i], GraphicObjectProperties.__GO_DATATIP_LABEL_MODE__, labeled);
             }
-
         }
-
     }
 
     /**
@@ -92,7 +81,5 @@ public class DatatipSetStyle {
         } else {
             return 0;
         }
-
     }
-
 }

@@ -2,35 +2,29 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #include "setvar.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter, char *VarName, int ptrValues, int m, int n)
+BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter, char *VarName, double* MatrixDouble, int m, int n)
 {
     BOOL bOK = TRUE;
     int i = 0, j = 0;
 
-    double *MatrixDouble = (double*)MALLOC((m * n) * sizeof(double));
-
     /* Efface valeur precedente */
     Tcl_UnsetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY);
-
-    for (i = 0; i < m * n; i++)
-    {
-        MatrixDouble[i] = *stk(ptrValues++);
-    }
-
-
     for (i = 1; i < m + 1; i++)
     {
         char VarValueWithIndice[2048];
@@ -62,11 +56,7 @@ BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter, char *VarName, int ptrValues, int 
             }
         }
     }
-    if (MatrixDouble)
-    {
-        FREE(MatrixDouble);
-        MatrixDouble = NULL;
-    }
+
     return bOK;
 }
 /*--------------------------------------------------------------------------*/

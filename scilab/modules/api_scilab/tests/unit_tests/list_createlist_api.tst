@@ -11,12 +11,12 @@ mkdir(pathconvert(TMPDIR+"/list_createlist_api"));
 cd(pathconvert(TMPDIR+"/list_createlist_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/list_createlist_api.c",pathconvert(TMPDIR+"/list_createlist_api/list_createlist_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("list_createlist",["list_createlist","list_createlist"],"list_createlist_api.c",[],"","",cflags);
+ilib_build("gw_list_createlist",["list_createlist","list_createlist"],"list_createlist_api.c",[],"","",cflags);
 exec("loader.sce");
 
 size_ref    = 8;
 type_ref    = ["constant","string","int16","polynomial", "sparse", "boolean", "boolean sparse", "list"];
-dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],3);
+dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],2);
 l = list_createlist();
 if size(l) <> size_ref then pause;end
 for i = 1 : size_ref

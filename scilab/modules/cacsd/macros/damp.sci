@@ -65,7 +65,7 @@ function [wn,z,p] = damp(R,dt1)
     if dt==[] then
         //R does not furnish time domain
         if dt1==[] then
-            //no user time domain specified, continuuous time assumed
+            //no user time domain specified, continuous time assumed
             dt=0
         else
             //user time domain specified

@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="findBDK">
@@ -266,19 +269,15 @@ SYS=syslin(0.1,A,B,C);
 nsmp=100;
 U=prbs_a(nsmp,nsmp/5);
 Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
-
 // Rを計算
 S=15;L=1;
 [R,N,SVAL] = findR(S,Y',U');
-
 N=3;
 METH=3;TOL=-1;
 [A,C] = findAC(S,N,L,R,METH,TOL);
 [B,D,K] = findBDK(S,N,L,R,A,C);
 SYS1=syslin(1,A,B,C,D);
-
 SYS1.X0 = inistate(SYS1,Y',U');
-
 Y1=flts(U,SYS1);
 clf();plot2d((1:nsmp)',[Y',Y1'])
 ]]></programlisting>

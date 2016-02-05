@@ -79,7 +79,7 @@ function demo_pid()
 
     disp(spec(Winv(2)),'closed loop eigenvalues');//Check internal stability
     if max(real(spec(Winv(2)))) > 0 then
-      messagebox('You loose: closed-loop is UNSTABLE!!!',"modal");
+      messagebox('You lose: closed-loop is UNSTABLE!!!',"modal");
     else
       messagebox('Congratulations: closed-loop is STABLE !!!',"modal");
       break;

@@ -2,11 +2,14 @@ dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 dnl Copyright (C) INRIA - 2008 - Sylvestre Ledru
 dnl 
-dnl This file must be used under the terms of the CeCILL.
-dnl This source file is licensed as described in the file COPYING, which
-dnl you should have received as part of this distribution.  The terms
-dnl are also available at    
-dnl http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+dnl Copyright (C) 2012 - 2016 - Scilab Enterprises
+dnl
+dnl This file is hereby licensed under the terms of the GNU GPL v2.0,
+dnl pursuant to article 5.3.4 of the CeCILL v.2.1.
+dnl This file was originally licensed under the terms of the CeCILL v2.1,
+dnl and continues to be available under such terms.
+dnl For more information, see the COPYING file which you should have received
+dnl along with this program.
 dnl
 dnl AC_FFTW
 dnl ------------------------------------------------------
@@ -35,28 +38,36 @@ if test "x$with_fftw_include" != "xyes"; then
 	)
 	CFLAGS="$save_CFLAGS"
 else
-	AC_CHECK_HEADER([fftw3.h],
-		[FFTW3_CFLAGS=""],
-		[AC_MSG_ERROR([Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : libfftw3-dev)])])
+    if $WITH_DEVTOOLS; then # Scilab thirdparties
+        FFTW3_CFLAGS="-I$DEVTOOLS_INCDIR"
+    else
+        AC_CHECK_HEADER([fftw3.h],
+        [FFTW3_CFLAGS=""],
+        [AC_MSG_ERROR([Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : libfftw3-dev)])])
+    fi
 fi
 
 
 # --with-fftw-library set then check in this dir
 if test "x$with_fftw_library" != "xyes"; then
-	save_LIBS="$LIBS"
-	LIBS="-L$with_fftw_library -lfftw3"
-	AC_CHECK_LIB([fftw3], [fftw_plan_dft_r2c],
-			[FFTW3_LIB="-L$with_fftw_library -lfftw3"],
-            [AC_MSG_ERROR([libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c) in $with_fftw_library. Check if libfftw3 is installed and if the version is correct])]
-			)
-	LIBS="$save_LIBS"
+    save_LIBS="$LIBS"
+    LIBS="-L$with_fftw_library -lfftw3"
+    AC_CHECK_LIB([fftw3], [fftw_plan_dft_r2c],
+        [FFTW3_LIB="-L$with_fftw_library -lfftw3"],
+        [AC_MSG_ERROR([libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c) in $with_fftw_library. Check if libfftw3 is installed and if the version is correct])]
+        )
+    LIBS="$save_LIBS"
 else
-	save_LIBS="$LIBS"
-	AC_CHECK_LIB([fftw3], [fftw_plan_dft_r2c],
-			[FFTW3_LIB="-lfftw3"],
+    save_LIBS="$LIBS"
+    if $WITH_DEVTOOLS; then # Scilab thirdparties
+        FFTW3_LIB="-L$DEVTOOLS_LIBDIR -lfftw3"
+    else
+        AC_CHECK_LIB([fftw3], [fftw_plan_dft_r2c],
+            [FFTW3_LIB="-lfftw3"],
             [AC_MSG_ERROR([libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c). Check if libfftw3 is installed and if the version is correct])]
-			)
-	LIBS="$save_LIBS"
+            )
+    fi
+    LIBS="$save_LIBS"
 fi
 AC_SUBST(FFTW3_LIB)
 AC_DEFINE([WITH_FFTW], [], [With the FFTW library])

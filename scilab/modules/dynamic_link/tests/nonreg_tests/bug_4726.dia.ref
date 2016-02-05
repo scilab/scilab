@@ -26,7 +26,6 @@
   mputl(f1back,'sci_luinc.c.back');
   ilib_for_link('ext1c','sci_luinc.c',[],"c");
   if fileinfo("loader.sce") == [], then bugmes();quit;end
-	
   rmdir(TEST_DIR,'s');
   chdir(currentpath);
 // =============================================================================

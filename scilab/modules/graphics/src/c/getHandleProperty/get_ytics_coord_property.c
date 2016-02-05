@@ -5,11 +5,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -29,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_ytics_coord_property(void* _pvCtx, int iObjUID)
+void* get_ytics_coord_property(void* _pvCtx, int iObjUID)
 {
     int iYNumberTicks = 0;
     int* piYNumberTicks = &iYNumberTicks;
@@ -40,16 +43,16 @@ int get_ytics_coord_property(void* _pvCtx, int iObjUID)
     if (yTicksCoords == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "ytics_coord");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(iObjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void**)&piYNumberTicks);
     if (piYNumberTicks == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "ytics_coord");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnRowVector(_pvCtx, yTicksCoords, iYNumberTicks);
+    return sciReturnRowVector(yTicksCoords, iYNumberTicks);
 }
 /*------------------------------------------------------------------------*/

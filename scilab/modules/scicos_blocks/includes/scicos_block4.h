@@ -46,7 +46,7 @@ typedef struct
     int nevprt;
     voidg funpt;
     int type;
-    int scsptr;
+    void* scsptr;
     int nz;
     double *z;
     int noz;
@@ -99,9 +99,9 @@ typedef enum
     Initialization = 4,
     Ending = 5,
     ReInitialization = 6,
-    ContinousPropertiesUpdate = 7,
+    ContinuousPropertiesUpdate = 7,
     ZeroCrossing = 9,
-    Residute = 10
+    Jacobian = 10
 } scicos_flag;
 
 /* utility function for block declaration */

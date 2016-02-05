@@ -30,6 +30,7 @@ Visible = "on"
 Callback = 
 Callback_Type = 0
 Checked =  "off"
+Icon =  ""
 Userdata = []
 Tag = 
 delete(gcf());

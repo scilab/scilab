@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -101,10 +104,13 @@ public class ScilabImageConverter implements ExternalImageConverter {
         return null;
     }
 
+
     private final String convertToPNG(String currentFile, String code, Map<String, String> attributes, File imageFile, String imageName) {
+
         buffer.append("function _generate_image_from_doc\n");
+
         buffer.append("__olddrv__=driver();\n");
-        buffer.append("disp(\"Generate image " + imageName + " from Scilab code from file " + new File(currentFile).getName() + "\");");
+        buffer.append("mprintf(\"Generate image " + imageName + " from Scilab code from file " + new File(currentFile).getName() + "\\n\");");
         buffer.append("driver(\"png\");\n");
         buffer.append("xinit(\"").append(imageFile.getAbsolutePath()).append("\");\n");
         buffer.append("clf();\n");
@@ -112,6 +118,7 @@ public class ScilabImageConverter implements ExternalImageConverter {
         buffer.append("___f___=gcf();___f___.anti_aliasing=\"2x\";clear(\"___f___\");\n");
         buffer.append("xend();\n");
         buffer.append("driver(__olddrv__);\n");
+
         buffer.append("endfunction\n");
         buffer.append("_generate_image_from_doc();\n");
         buffer.append("clear _generate_image_from_doc;\n");

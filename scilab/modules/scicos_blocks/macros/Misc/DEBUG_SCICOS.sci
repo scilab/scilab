@@ -1,22 +1,16 @@
-//  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014-2014 - Scilab Enterprises - Bruno JOFRET
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
-//
-// See the file ../license.txt
 //
 
 function [x,y,typ]=DEBUG_SCICOS(job,arg1,arg2)
@@ -24,50 +18,10 @@ function [x,y,typ]=DEBUG_SCICOS(job,arg1,arg2)
     y=[];
     typ=[];
     select job
-    case "set" then
-        x=arg1;
-        graphics=arg1.graphics;
-        exprs=graphics.exprs
-        textmp=exprs(2)
-        ok=%t
-        while 1==1
-            [txt]=dialog(["Enter scilab instructions for debugging.";
-            " Inputs are block and flag, output is block"],..
-            textmp);
-
-            if txt<>[] then
-                tt=["block=debug_scicos(block,flag)"]
-
-                if execstr("deff(tt,txt)","errcatch")==0 then
-                    warnMode = warning("query");
-                    warning("off");
-                    save(TMPDIR+"/debug_scicos", debug_scicos)
-                    warning(warnMode);
-                    exprs(2)=txt
-                    if (scicos_debug()<>2 & scicos_debug()<>3) then
-                        scicos_debug(2)
-                    end
-                    break
-                else
-                    message(["Error in the instructions";lasterror()])
-                end
-            else
-                ok=%f;
-                break;
-            end
-        end
-        if ok then
-            graphics.exprs=exprs;
-            x.graphics=graphics;
-        end
-
-    case "define" then
-        model=scicos_model()
-        model.sim=list("%debug_scicos",99)
-        model.blocktype="d"
-
-        exprs=list("","xcos_debug_gui(flag,block);")
-        gr_i=[]
-        x=standard_define([8 2],model,exprs,gr_i)
+        case "set" then
+            arg1.gui = "DEBUG"
+            [x,y,typ] = DEBUG("set", arg1);
+        case "define" then
+            x = DEBUG("define")
     end
 endfunction

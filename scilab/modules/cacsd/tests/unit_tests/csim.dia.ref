@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA - Serge Steer
@@ -100,12 +101,9 @@ assert_checkalmostequal(y, yrefstep);
 //with parameter
 function y=step(t,t0),if t<t0 then y=0,else y=1,end,endfunction
 Warning : redefining function: step                    . Use funcprot(0) to avoid this message
-
 y=csim(list(step,0),t,sl);
 Warning : redefining function: uu                      . Use funcprot(0) to avoid this message
-
 assert_checkalmostequal(y, yrefstep);
 y=csim(list(step,0),t,ss2tf(sl));
 Warning : redefining function: uu                      . Use funcprot(0) to avoid this message
-
 assert_checkalmostequal(y, yrefstep);

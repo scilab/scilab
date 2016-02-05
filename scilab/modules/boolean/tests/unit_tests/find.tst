@@ -1,34 +1,20 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) - 2009 - DIGITEO - Sylvestre LEDRU
+// Copyright (C) - 2015 - Scilab Enterprises - Calixte DENIZET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- CLI SHELL MODE -->
+//
 
-beers=["Desperados", "Leffe", "Kronenbourg", "Heineken"];
-if find(beers=="Leffe") <> 2 then pause, end
-if find(beers=="1664") <> [] then pause, end
-if find(beers=="Foster") <> [] then pause, end
-beers=[beers, "Foster"];
-if find(beers=="Foster") <> 5 then pause, end
+a = zeros(1,2000);
+a(1:2:2000)=1:1000;
 
-A=[0.3873779    0.9222899    0.9488184    0.3435337    0.3760119];
-if find(A<0.4) <> [1 4 5] then pause, end
-if find(A>0.4) <> [2 3] then pause, end
+assert_checktrue(and(find(a==0)==(2:2:2000)));
 
-A=hypermat([2,3,2],1:12);
-[i,j,k]=find(A>5);
-if A(i(1),j(1),k(1)) <> 6 then pause, end
-
-[i,j,k]=find(A<=5);
-if A(i(1),j(1),k(1)) <> 1 then pause, end
-
-[i,j,k]=find(A>=5);
-if A(i(1),j(1),k(1)) <> 5 then pause, end
-
-
-[i,j,k]=find(A==12);
-if A(i(1),j(1),k(1)) <> 12 then pause, end
-
+//with 2nd arg
+a = 1:10;
+assert_checkequal(find(a > 5, 2), [6 7]);
+assert_checkequal(find(a > 5, 10), [6 7 8 9 10]);
+assert_checkequal(find(a > 5), [6 7 8 9 10]);

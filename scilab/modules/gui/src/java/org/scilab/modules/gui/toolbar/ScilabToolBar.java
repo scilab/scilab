@@ -3,22 +3,23 @@
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.gui.toolbar;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.uielement.ScilabUIElement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.UIElementMapper;
 
 /**
  * Class for Scilab ToolBars in GUIs
@@ -34,9 +35,6 @@ public class ScilabToolBar extends ScilabUIElement implements ToolBar {
      */
     protected ScilabToolBar() {
         component = ScilabBridge.createToolBar();
-        component.setElementId(UIElementMapper.add(this));
-
-        //setMenuBarId(UIElementMapper.getDefaultId());
     }
 
     /**
@@ -55,13 +53,6 @@ public class ScilabToolBar extends ScilabUIElement implements ToolBar {
         return component;
     }
 
-    /**
-     * Add a PushButton to the ToolBar.
-     * @param pushButton the PushButton to add .
-     */
-    public void add(PushButton pushButton) {
-        ScilabBridge.add(this, pushButton);
-    }
 
     /**
      * Add a separator in the toolbar

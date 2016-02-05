@@ -61,16 +61,12 @@ node1 = uiCreateNode('Node 1', 'iconNode1', 'callbackNode1')
 node2 = uiCreateNode('Node 2', 'iconNode2', 'callbackNode2')
 node3 = uiCreateNode('Node 3', 'iconNode3', 'callbackNode3')
 root = uiCreateNode('Root', 'iconRoot', 'callbackRoot')
-
 treeNode1 = uiCreateTree(node1, leaf11, leaf12)
 treeNode3 = uiCreateTree(node3, leaf31, leaf32)
 treeRoot = uiCreateTree(root, treeNode1, node2, treeNode3)
-
-
 // 'node1'の親ノードを探す
 parentNode = uiGetParentNode(treeRoot, node1)
 // 'parentNode = root'を返す
-
 // 'leaf31'の親ノードを探す
 parentNode = uiGetParentNode(treeRoot, leaf31)
 // 'parentNode = node3'を返す

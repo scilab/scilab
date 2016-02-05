@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="htmlWrite" xml:lang="ja">
+    <refnamediv>
+        <refname>htmlWrite</refname>
+        <refpurpose>HTML文書をファイルに書き込む</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            htmlWrite(doc [, filename] [, indent])
+            htmlWrite(doc [, indent])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>doc</term>
+                <listitem>
+                    <para>XMLDoc型のmlist</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>filename, 文字列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>indent</term>
+                <listitem>
+                    <para>indent, インデント</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>HTML文書をファイル名または文書URLを指定したファイルに
+            書き込みます.
+            indentがtrueの場合,文書はインデントされます.
+            デフォルトでindentはtrueです.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    doc = htmlRead("http://www.scilab.org");
+    htmlWrite(doc, TMPDIR+"/scilab.html", %f);
+    // ここで前のファイルを開き, 修正後に保存
+    doc1 = htmlRead(TMPDIR+"/scilab.html");
+    xp = xmlXPath(doc1, "//title");
+    e = xp(1);
+    e.content = "Hello Scilab World";
+    htmlWrite(doc1);
+    // 修正が行われたことを確認
+    doc2 = htmlRead(TMPDIR+"/scilab.html");
+    xp = xmlXPath(doc2, "//title");
+    xp(1).content
+    xmlDelete("all");
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xmlDump">xmlDump</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HTML機能追加.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

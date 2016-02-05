@@ -4,12 +4,16 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2014-2015 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -32,12 +36,11 @@
 #include "Fec.h"
 #include "GrayPlot.h"
 #include "localization.h"
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "Scierror.h"
 #include "sciCall.h"
 #include "Plot2d.h"
 #include "HandleManagement.h"
-#include "stack-def.h" /* bsiz */
 
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
@@ -48,6 +51,13 @@
 #include "CurrentObject.h"
 #include "Format.h"
 #include "deleteGraphicObject.h"
+
+/** Check if auto_scale is on/off */
+static int mustUpdate(int iSubwinUID);
+
+/** Update data bounds according to the given data bound passed in rect */
+static void updateXYDataBounds(int iSubwinUID, double rect[6]);
+static void updateXYZDataBounds(int iSubwinUID, double rect[6]);
 
 /*------------------------------------------------
  * Objrect :
@@ -73,6 +83,18 @@ void Objrect (double* x         ,
 
     /* check if the auto_clear property is on and then erase everything */
     checkRedrawing();
+
+    if (mustUpdate(iSubwinUID))
+    {
+        double rect[6];
+        rect[0] = *x;
+        rect[1] = *x + *width;
+        rect[2] = *y - *height;
+        rect[3] = *y;
+
+        updateXYDataBounds(iSubwinUID, rect);
+    }
+
     /*newObjUID = ConstructRectangle(iSubwinUID , *x, *y, *height, *width,
       foreground, background, isfilled, isline);*/
 
@@ -114,10 +136,89 @@ void Objarc(double* angle1    ,
 
     iSubwinUID = getCurrentSubWin();
     checkRedrawing();
+
+    if (mustUpdate(iSubwinUID))
+    {
+        double rect[6];
+        const double two_pi = 2 * M_PI;
+        if (abs(*angle2) >= two_pi)
+        {
+            rect[0] = *x;
+            rect[1] = *x + *width;
+            rect[2] = *y - *height;
+            rect[3] = *y;
+        }
+        else
+        {
+            double a = *angle1;
+            double s = *angle2;
+            double a1, b1;
+            double b;
+
+            a -= (floor(a / two_pi)) * two_pi;
+            b = a + s;
+
+            if (s >= 0)
+            {
+                b = a + s;
+            }
+            else
+            {
+                b = a;
+                a += s;
+            }
+
+            b1 = b / M_PI;
+            a1 = a / M_PI;
+
+            // is there a 2k\pi in [a,b] ?
+            if (ceil(a1 / 2) <= floor(b1 / 2))
+            {
+                rect[1] = *x + *width;
+            }
+            else
+            {
+                rect[1] = *x + 0.5 * *width * (1 + Max(cos(a), cos(b)));
+            }
+
+            // is there a (2k+1)\pi in [a,b] ?
+            if (ceil((a1 - 1) / 2) <= floor((b1 - 1) / 2))
+            {
+                rect[0] = *x;
+            }
+            else
+            {
+                rect[0] = *x + 0.5 * *width * (1 + Min(cos(a), cos(b)));
+            }
+
+            // is there a (2k+1/2)\pi in [a,b] ?
+            if (ceil((a1 - 0.5) / 2) <= floor((b1 - 0.5) / 2))
+            {
+                rect[3] = *y;
+            }
+            else
+            {
+                rect[3] = *y + 0.5 * *height * (-1 + Max(sin(a), sin(b)));
+            }
+
+            // is there a (2k+3/2)\pi in [a,b] ?
+            if (ceil((a1 - 1.5) / 2) <= floor((b1 - 1.5) / 2))
+            {
+                rect[2] = *y - *height;
+            }
+            else
+            {
+                rect[2] = *y + 0.5 * *height * (-1 + Min(sin(a), sin(b)));
+            }
+        }
+
+        updateXYDataBounds(iSubwinUID, rect);
+    }
+
     iObjUID = createArc(iSubwinUID, *x, *y,
                         *height, *width, *angle1, *angle2, foreground, background, isfilled, isline);
-    setCurrentObject(iObjUID);
 
+    setCurrentObject(iObjUID);
     *hdl = getHandle(iObjUID);
 }
 
@@ -138,6 +239,15 @@ void Objpoly (double  * x     ,
     iSubwinUID = getCurrentSubWin();
 
     checkRedrawing();
+
+    if (n && mustUpdate(iSubwinUID))
+    {
+        double rect[6];
+        MiniMaxi(x, n, rect, rect + 1);
+        MiniMaxi(y, n, rect + 2, rect + 3);
+
+        updateXYDataBounds(iSubwinUID, rect);
+    }
 
     if (mark <= 0)
     {
@@ -185,6 +295,15 @@ void Objfpoly (double  * x    ,
     iSubwinUID = getOrCreateDefaultSubwin();
 
     checkRedrawing();
+
+    if (n && mustUpdate(iSubwinUID))
+    {
+        double rect[6];
+        MiniMaxi(x, n, rect, rect + 1);
+        MiniMaxi(y, n, rect + 2, rect + 3);
+
+        updateXYDataBounds(iSubwinUID, rect);
+    }
 
     if (shading == 2)
     {
@@ -249,6 +368,23 @@ void Objsegs (int * style,
 
     checkRedrawing();
     iSubwinUID = getCurrentSubWin();
+
+    if (n1 && mustUpdate(iSubwinUID))
+    {
+        double rect[6];
+        MiniMaxi(x, n1, rect, rect + 1);
+        MiniMaxi(y, n1, rect + 2, rect + 3);
+
+        if (z)
+        {
+            MiniMaxi(z, n1, rect + 4, rect + 5);
+            updateXYZDataBounds(iSubwinUID, rect);
+        }
+        else
+        {
+            updateXYDataBounds(iSubwinUID, rect);
+        }
+    }
 
     iObjUID = createSegs(iSubwinUID, x, n1, y, n1, z, (z == NULL ? 0 : n1), style, flag == 0 ? 1 : n1, arsize);
 
@@ -349,9 +485,10 @@ void Objgrayplot (double    x[]      ,
                   char      strflag[],
                   double    brect[]  ,
                   int   aaint[]  ,
-                  BOOL      flagNax)
+                  BOOL      flagNax,
+                  char logflag[])
 {
-    C2F(xgray)(x, y, z, n1, n2, strflag, brect, aaint, flagNax, bsiz);
+    C2F(xgray)(x, y, z, n1, n2, strflag, brect, aaint, flagNax, logflag, bsiz);
 }
 
 /*------------------------------------------------
@@ -453,7 +590,7 @@ void Objplot3d (char    * fname ,
 
     iSubwinUID = getCurrentSubWin();
     checkRedrawing();
-    initSubWinTo3d(iSubwinUID, legend, iflag, *alpha, *theta, ebox, x, *m1 * *n1, y, *m2 * *n2, z, *m3 * *n3);
+    initSubWinTo3d(iSubwinUID, legend, iflag, *alpha, *theta, ebox, x, *m1 **n1, y, *m2 **n2, z, *m3 **n3);
 
     /* =================================================
      * Analyze arguments to find entity type
@@ -691,12 +828,45 @@ void Objdrawaxis (char     dir    ,
 {
     int iObjUID = 0;
     int iSubwinUID = 0;
+    int ticksDirection = 0;
+    int ticksStyle = 0;
 
     iSubwinUID = getCurrentSubWin();
 
     checkRedrawing();
 
-    iObjUID = createAxis(iSubwinUID, (int)dir, (int)tics, x, *nx, y, *ny, subint, format, font, textcol, ticscol, seg);
+    switch (dir)
+    {
+        default :
+        case 'u' :
+            ticksDirection = 0;
+            break;
+        case 'd' :
+            ticksDirection = 1;
+            break;
+        case 'l' :
+            ticksDirection = 2;
+            break;
+        case 'r' :
+            ticksDirection = 3;
+            break;
+    }
+
+    switch (tics)
+    {
+        default:
+        case 'v':
+            ticksStyle = 0;
+            break;
+        case 'r':
+            ticksStyle = 1;
+            break;
+        case 'i':
+            ticksStyle = 2;
+            break;
+    }
+
+    iObjUID = createAxis(iSubwinUID, ticksDirection, ticksStyle, x, *nx, y, *ny, subint, format, font, textcol, ticscol, seg);
 
     if (iObjUID == NULL)
     {
@@ -720,9 +890,9 @@ void Objdrawaxis (char     dir    ,
         matData = getStrMatData(tics_labels);
 
         /*
-        * The labels vector size must be computed using the matrix's dimensions.
-        * To be modified when the labels computation is moved to the Model.
-        */
+         * The labels vector size must be computed using the matrix's dimensions.
+         * To be modified when the labels computation is moved to the Model.
+         */
         setGraphicObjectProperty(iObjUID, __GO_TICKS_LABELS__, matData, jni_string_vector, tics_labels->nbCol * tics_labels->nbRow);
 
         deleteMatrix(tics_labels);
@@ -731,10 +901,10 @@ void Objdrawaxis (char     dir    ,
     {
         int i = 0;
         /*
-        * Labels are set using the str argument; the previous code tested whether each element of the
-        * str array was null and set the corresponding Axis' element to NULL, though there was no
-        * apparent reason to do so. This is still checked, but now aborts building the Axis.
-        */
+         * Labels are set using the str argument; the previous code tested whether each element of the
+         * str array was null and set the corresponding Axis' element to NULL, though there was no
+         * apparent reason to do so. This is still checked, but now aborts building the Axis.
+         */
 
         if (nb_tics_labels == -1)
         {
@@ -785,6 +955,7 @@ void Objfec (double    x[]        ,
              double  * fun        ,
              int * n          ,
              int * m          ,
+             int * p          ,
              char      strflag[]  ,
              char      legend[]   ,
              double    brect[]    ,
@@ -795,7 +966,64 @@ void Objfec (double    x[]        ,
              BOOL      WithMesh   ,
              BOOL      flagNax)
 {
-    C2F(fec)(x, y, noeud, fun, n, m, strflag, legend, brect, aaint,
+    C2F(fec)(x, y, noeud, fun, n, m, p, strflag, legend, brect, aaint,
              Zminmax, Colminmax, ColOut, WithMesh, flagNax, 4L, bsiz);
+}
+/*------------------------------------------------------------------------*/
+static int mustUpdate(int iSubwinUID)
+{
+    int iTmp = 0;
+    int * piTmp = &iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piTmp);
+    return iTmp;
+}
+/*------------------------------------------------------------------------*/
+static void updateXYDataBounds(int iSubwinUID, double rect[6])
+{
+    int firstPlot = 0;
+    int * piFirstPlot = &firstPlot;
+
+    getGraphicObjectProperty(iSubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
+    if (firstPlot)
+    {
+        rect[4] = 0;
+        rect[5] = 0;
+    }
+    else
+    {
+        double * dataBounds = NULL;
+        getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+
+        rect[0] = Min(rect[0], dataBounds[0]);
+        rect[1] = Max(rect[1], dataBounds[1]);
+        rect[2] = Min(rect[2], dataBounds[2]);
+        rect[3] = Max(rect[3], dataBounds[3]);
+        rect[4] = dataBounds[4];
+        rect[5] = dataBounds[5];
+    }
+
+    setGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);
+}
+/*------------------------------------------------------------------------*/
+static void updateXYZDataBounds(int iSubwinUID, double rect[6])
+{
+    int firstPlot = 0;
+    int * piFirstPlot = &firstPlot;
+
+    getGraphicObjectProperty(iSubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
+    if (!firstPlot)
+    {
+        double * dataBounds = NULL;
+        getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+
+        rect[0] = Min(rect[0], dataBounds[0]);
+        rect[1] = Max(rect[1], dataBounds[1]);
+        rect[2] = Min(rect[2], dataBounds[2]);
+        rect[3] = Max(rect[3], dataBounds[3]);
+        rect[4] = Min(rect[4], dataBounds[4]);
+        rect[5] = Max(rect[5], dataBounds[5]);
+    }
+
+    setGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);
 }
 /*------------------------------------------------------------------------*/

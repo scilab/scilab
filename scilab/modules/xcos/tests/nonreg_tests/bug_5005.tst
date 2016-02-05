@@ -17,8 +17,5 @@
 // xcos does not expand path name
 
 
-//xcos('SCI/modules/scicos/demos/bounce.cosf');
-// please check that file is opened
-
-
-
+//xcos("SCI/modules/xcos/demos/bounce.zcos");
+// please check that file opens

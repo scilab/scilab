@@ -12,7 +12,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_zneupd \
     sci_gateway/c/sci_dseupd.c \
     sci_gateway/c/sci_zneupd.c \
-    sci_gateway/c/gw_arnoldi.c \
     sci_gateway/c/sci_dnaupd.c \
     sci_gateway/c/sci_dneupd.c \
     sci_gateway/c/sci_dsaupd.c \
@@ -21,15 +20,25 @@ GATEWAY_C_SOURCES = \
 
 libsciarnoldi_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/elementary_functions/includes/ \
     $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libsciarnoldi.la
 
-libsciarnoldi_la_LDFLAGS = $(LAPACK_LIBS) $(ARPACK_LIBS) $(AM_LDFLAGS)
+libsciarnoldi_la_LDFLAGS = $(AM_LDFLAGS)
+libsciarnoldi_la_LIBADD = $(BLAS_LIBS) $(LAPACK_LIBS) $(ARPACK_LIBS)
 
 libsciarnoldi_la_SOURCES = $(ARNOLDI_C_SOURCES) $(GATEWAY_C_SOURCES)
 

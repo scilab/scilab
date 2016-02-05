@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -24,7 +27,7 @@
 
 extern "C"
 {
-#include "scilabmode.h"
+#include "sci_mode.h"
 }
 
 #ifndef  _MSC_VER
@@ -273,11 +276,11 @@ template< typename ParallelWrapper> struct scheduler
         : w(wrapper)
     {
     }
-    void operator()()
+    void operator()(void* pvApiCtx)
     {
         for (std::size_t i(0); i != w.n; ++i)
         {
-            w.callF(i);
+            w.callF(pvApiCtx, i);
         }
     }
     ParallelWrapper& w;
@@ -295,11 +298,11 @@ struct parallel_wrapper
     the nb of wokers (threads or processes) can also be specified (default is implementation defined usually nb of cores).
     TODO : enable specification of near / far / all (must, must not, can share L2 cache), at least for threads.
     so first arge might not stay boolean (we can add an overload)*/
-    F operator()( bool with_threads = false, std::size_t nb_workers = 0, bool dynamic_scheduling = true, int chunk_size = 1)
+    F operator()(void* pvApiCtx, bool with_threads = false, std::size_t nb_workers = 0, bool dynamic_scheduling = true, int chunk_size = 1)
     {
         return with_threads
-               ? applyWithThreads(nb_workers, dynamic_scheduling, chunk_size)
-               : applyWithProcesses(nb_workers, dynamic_scheduling, chunk_size);
+               ? applyWithThreads(pvApiCtx, nb_workers, dynamic_scheduling, chunk_size)
+               : applyWithProcesses(pvApiCtx, nb_workers, dynamic_scheduling, chunk_size);
     }
 private:
     friend struct scheduler<parallel_wrapper>;
@@ -309,7 +312,7 @@ private:
     * @param dynamic_scheduling if scheduling is dynamic or static
     * @param chunk_size chunk size.
     */
-    F applyWithThreads(std::size_t nb_threads, bool dynamic_scheduling, int chunk_size)
+    F applyWithThreads(void* pvApiCtx, std::size_t nb_threads, bool dynamic_scheduling, int chunk_size)
     {
         signed int i;
         nb_threads = min(nb_threads, n);
@@ -324,7 +327,7 @@ private:
 #endif
             for (i = 0; i < (signed int)n; ++i)
             {
-                callF(i);
+                callF(pvApiCtx, i);
             }
         }
         else
@@ -334,7 +337,7 @@ private:
 #endif
             for (i = 0; i < (signed int)n; ++i)
             {
-                callF(i);
+                callF(pvApiCtx, i);
             }
 
         }
@@ -346,17 +349,17 @@ private:
     * @param dynamic_scheduling if scheduling is dynamic or static
     * @param chunk_size chunk size.
     */
-    F applyWithProcesses(std::size_t nb_process, bool dynamic_scheduling, std::size_t chunk_size)
+    F applyWithProcesses(void* pvApiCtx, std::size_t nb_process, bool dynamic_scheduling, std::size_t chunk_size)
     {
         nb_process = min( (nb_process ? nb_process : omp_get_num_procs()), n);
         scheduler<parallel_wrapper> s(*this, nb_process, dynamic_scheduling, chunk_size );
-        s();
+        s(pvApiCtx);
         return f;
     }
     /* Perform i^th call to f, ajusting arguments and results ptrs from args[] and res[]
     * @param i args and reults index.
     */
-    void callF(std::size_t const i)
+    void callF(void* pvApiCtx, std::size_t const i)
     {
 
         std::vector<char const *> local_args(rhs);

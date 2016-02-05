@@ -16,13 +16,13 @@
 // <-- Short Description -->
 // cmd-e executed the wrong editor file
 
-edit tic
-edit toc
+edit acosd
+edit isrow
 edit calendar
 
-// select toc & cmd-e  toc.sci must be executed
+// select isrow & cmd-e  isrow.sci must be executed
 // select calendar & cmd-e  calendar.sci must be executed
-// select tic & cmd-e  tic.sci must be executed
+// select acosd & cmd-e  acosd.sci must be executed
 
 
 

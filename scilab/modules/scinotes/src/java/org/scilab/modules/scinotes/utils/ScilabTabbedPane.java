@@ -2,11 +2,14 @@
  * Scilab (http://www.scilab.org/) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -60,13 +63,15 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 
+import org.scilab.modules.scinotes.EditorComponent;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.actions.CloseAction;
 import org.scilab.modules.scinotes.actions.CloseAllButThisAction;
+import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
 import org.scilab.modules.scinotes.actions.SaveAction;
 
 /**
@@ -361,11 +366,13 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         if (inputEvent instanceof MouseEvent) {
             MouseEvent mouseEvent = (MouseEvent) inputEvent;
             int index = indexAtLocation(mouseEvent.getX(), mouseEvent.getY());
-            currentWhenDragged = this;
+            if (index == -1 || (getComponentAt(index) instanceof EditorComponent)) {
+                currentWhenDragged = this;
 
-            if (index != -1) {
-                draggedIndex = index;
-                dge.startDrag(DragSource.DefaultMoveDrop, this, this);
+                if (index != -1) {
+                    draggedIndex = index;
+                    dge.startDrag(DragSource.DefaultMoveDrop, this, this);
+                }
             }
         }
     }
@@ -454,14 +461,23 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         }
 
         public void closeTab() {
-            String name = editor.getTextPane(editor.getTabPane().indexOfTabComponent(this)).getName();
-            editor.closeTabAt(editor.getTabPane().indexOfTabComponent(this));
-            if (getTabCount() == 0) {
-                if (name != null) {
-                    editor.addEmptyTab();
-                } else {
-                    SciNotes.closeEditor(editor);
+            ScilabEditorPane sep = editor.getTextPane(editor.getTabPane().indexOfTabComponent(this));
+            if (sep != null) {
+                String name = sep.getName();
+                editor.closeTabAt(editor.getTabPane().indexOfTabComponent(this));
+                if (getTabCount() == 0) {
+                    if (name != null) {
+                        editor.addEmptyTab();
+                    } else {
+                        SciNotes.closeEditor(editor);
+                    }
                 }
+            } else if (editor.getTabPane().getTabComponentAt(editor.getTabPane().indexOfTabComponent(this)) != null) {
+                editor.getTabPane().remove(editor.getTabPane().indexOfTabComponent(this));
+                if (editor.getTabPane().getTabCount() == 0) {
+                    editor.addEmptyTab();
+                }
+                RestoreOpenedFilesAction.restoreEnabledComponents(editor);
             }
         }
 

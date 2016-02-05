@@ -9,19 +9,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-10-01 10:10+0000\n"
+"PO-Revision-Date: 2015-10-09 06:47+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: uk\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -44,10 +43,10 @@ msgstr ""
 "рядків mx1, mx2 або mx3.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати одинарне "
-"значення типу «string».\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
 
 #, c-format
 msgid ""
@@ -106,14 +105,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути не більше %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути не більше %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
-"рядок.\n"
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'all' or 'main' expected.\n"
@@ -292,8 +289,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
-msgstr ""
-"%s: під час копіювання файла «%s» до каталогу «%s» сталася помилка.\n"
+msgstr "%s: під час копіювання файла «%s» до каталогу «%s» сталася помилка.\n"
 
 #, c-format
 msgid "%s: Error while creating the directory '%s'.\n"
@@ -307,17 +303,6 @@ msgstr "%s: у «%s» вже існує файл з такою назвою.\n"
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
@@ -569,21 +554,6 @@ msgstr ""
 "Немає доступу до жодного з модулів ATOMS: список модулів вашого сховища "
 "порожній."
 
-msgid "ATOMS"
-msgstr "ATOMS"
-
-msgid "&File"
-msgstr "&Файл"
-
-msgid "&Tools"
-msgstr "&Інструменти"
-
-msgid "&Edit"
-msgstr "З&міни"
-
-msgid "&?"
-msgstr "&Довідка"
-
 msgid "File"
 msgstr "Файл"
 
@@ -602,8 +572,8 @@ msgstr "Довідка"
 msgid "Atoms Help..."
 msgstr "Довідка з Atoms…"
 
-msgid "List of installed modules"
-msgstr "Список встановлених модулів"
+msgid "Back"
+msgstr "Назад"
 
 msgid "Remove"
 msgstr "Вилучити"
@@ -611,8 +581,11 @@ msgstr "Вилучити"
 msgid "Install"
 msgstr "Встановити"
 
-msgid "Update"
-msgstr "Оновити"
+msgid "Autoload"
+msgstr "Автозавантаження"
+
+msgid "List of installed modules"
+msgstr "Список встановлених модулів"
 
 msgid "Installing"
 msgstr "Встановлення"
@@ -620,10 +593,20 @@ msgstr "Встановлення"
 msgid "Installation failed!"
 msgstr "Невдала спроба встановлення!"
 
-msgid ""
-"Installation done! Please restart Scilab to take changes into account."
+msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "Встановлення завершено! Будь ласка, перезапустіть Scilab, щоб зміни набули "
+"чинності."
+
+msgid "Updating"
+msgstr "Оновлення"
+
+msgid "Update failed!"
+msgstr "Помилка оновлення!"
+
+msgid "Update done! Please restart Scilab to take changes into account."
+msgstr ""
+"Оновлення завершено! Будь ласка, перезапустіть Scilab, щоб зміни набули "
 "чинності."
 
 msgid "Removing"
@@ -637,16 +620,16 @@ msgstr ""
 "Вилучення завершено. Будь ласка, перезапустіть Scilab, щоб зміни набули "
 "чинності. "
 
-msgid "Updating"
-msgstr "Оновлення"
+msgid "The module will be automatically loaded at next startup."
+msgstr "Модуль буде автоматично завантажено під час наступного запуску."
 
-msgid "Update failed!"
-msgstr "Помилка оновлення!"
-
-msgid "Update done! Please restart Scilab to take changes into account."
+msgid ""
+"Autoload at startup is canceled. The Toolboxes menu or atomsLoad() can be "
+"used to load the module when needed."
 msgstr ""
-"Оновлення завершено! Будь ласка, перезапустіть Scilab, щоб зміни набули "
-"чинності."
+"Автоматичне завантаження під час запуску вимкнено. Для завантаження модуля "
+"за потреби можна скористатися меню наборів інструментів або командою "
+"atomsLoad()."
 
 msgid "Download size"
 msgstr "Розмір звантаження"
@@ -656,6 +639,9 @@ msgstr "Див. також"
 
 msgid "Release date"
 msgstr "Дата випуску"
+
+msgid "Update"
+msgstr "Оновити"
 
 #, c-format
 msgid "A new version ('%s') of '%s' is available"
@@ -696,8 +682,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути "
-"«filter:all»,«filter:main» або коректна назва основної категорії.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути «filter:"
+"all»,«filter:main» або коректна назва основної категорії.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -758,8 +744,16 @@ msgstr "%s: не знайдено gzip.\n"
 
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
-msgstr ""
-"%s: спроба видобування файла DESCRIPTION («%s») завершилася невдало.\n"
+msgstr "%s: спроба видобування файла DESCRIPTION («%s») завершилася невдало.\n"
+
+msgid "Done"
+msgstr "Виконано"
+
+msgid "Scanning repository"
+msgstr "Скануємо сховище"
+
+msgid "Skipped"
+msgstr "Пропущено"
 
 #, c-format
 msgid "%s: save ('%s') has failed.\n"
@@ -932,16 +926,15 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - Отримана MD5SUM: «%s»\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «error» "
 "або «warning».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with .tar."
+"gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід було вказати один рядок, "
 "що завершується на .tar.gz, .tgz або .zip.\n"
@@ -983,6 +976,75 @@ msgstr "Всі модулі"
 msgid "Main categories"
 msgstr "Основні категорії"
 
+msgid "Aerospace"
+msgstr "Аерокосмічна галузь"
+
+msgid "Contributed Scilab Binaries"
+msgstr "Надіслані виконувані файли Scilab"
+
+msgid "Data Analysis And Statistics"
+msgstr "Аналіз даних і статистика"
+
+msgid "Data Handling"
+msgstr "Обробка даних"
+
+msgid "Editor Styles"
+msgstr "Стилі редактора"
+
+msgid "Education"
+msgstr "Освіта"
+
+msgid "GUI"
+msgstr "Графічний інтерфейс"
+
+msgid "Graphics"
+msgstr "Графіка"
+
+msgid "Graphs"
+msgstr "Графи"
+
+msgid "Image Processing"
+msgstr "Обробка зображень"
+
+msgid "Instruments Control"
+msgstr "Інструментальний контроль"
+
+msgid "Linear algebra"
+msgstr "Лінійна алгебра"
+
+msgid "Modeling and Control Tools"
+msgstr "Інструменти моделювання та керування"
+
+msgid "Number theory"
+msgstr "Теорія чисел"
+
+msgid "Numerical Maths"
+msgstr "Обчислювальна математика"
+
+msgid "Optimization"
+msgstr "Оптимізація"
+
+msgid "Physics"
+msgstr "Фізика"
+
+msgid "Real-Time"
+msgstr "Обробка у режимі реального часу"
+
+msgid "Scilab development"
+msgstr "Розробка Scilab"
+
+msgid "Signal Processing"
+msgstr "Обробка сигналів"
+
+msgid "Technical"
+msgstr "Технічні галузі"
+
+msgid "Tests"
+msgstr "Тестування"
+
+msgid "Xcos"
+msgstr "Xcos"
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
@@ -1002,16 +1064,15 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: не вдалося побудувати ієрархію залежностей.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати літеру "
 "«A» або «I».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid "
-"version/dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid version/"
+"dependency.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: вказано некоректну версію або "
 "залежність.\n"
@@ -1058,6 +1119,9 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: «%s» не є коректною адресою "
 "URL.\n"
 
+msgid "Loaded<br>at startup"
+msgstr "Завантажено<br>під час запуску"
+
 #, c-format
 msgid "%s: the package '%s' does not exist.\n"
 msgstr "%s: пакунка «%s» не існує.\n"
@@ -1071,8 +1135,7 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) не встановлено.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: некоректне значення версії.\n"
 

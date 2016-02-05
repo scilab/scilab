@@ -3,19 +3,22 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "stringsCompare.h"
-#include "MALLOC.h"
-#include "stricmp.h"
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int sign(int x)
 {
@@ -30,7 +33,7 @@ static int sign(int x)
     return 0;
 }
 
-int * stringsCompare(char **Input_String_One, int dim_One, char **Input_String_Two, int dim_Two, BOOL dostricmp)
+int * stringsCompare(wchar_t **Input_String_One, int dim_One, wchar_t **Input_String_Two, int dim_Two, BOOL dostricmp)
 {
     int *returnedValues = NULL;
     int j = 0;
@@ -52,11 +55,11 @@ int * stringsCompare(char **Input_String_One, int dim_One, char **Input_String_T
 
             if (dostricmp)
             {
-                returnedValues[i] = sign(stricmp(Input_String_One[i], Input_String_Two[j]));
+                returnedValues[i] = sign(wcsicmp(Input_String_One[i], Input_String_Two[j]));
             }
             else
             {
-                returnedValues[i] = sign(strcmp(Input_String_One[i], Input_String_Two[j]));
+                returnedValues[i] = sign(wcscmp(Input_String_One[i], Input_String_Two[j]));
             }
         }
     }

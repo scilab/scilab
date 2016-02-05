@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="loadGui" xml:lang="ja">
+    <refnamediv>
+        <refname>loadGui</refname>
+        <refpurpose>
+            保存されたファイルからグラフィックユーザインターフェイスを読み込む
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>loadGui(filename)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>ファイルのパスを有する文字列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>loadGui</literal> 関数は,
+            <literal>
+                <link linkend="saveGui">saveGui</link>
+            </literal>
+            関数
+            により事前にファイルに保存された
+            グラフィックユーザインターフェイス
+            をScilabセッションに読み込む際に使用できます.
+        </para>
+        <para>
+            <literal>loadGui(filename)</literal> は,
+            パス<literal>filename</literal>で
+            指定されたファイルに保存されたインターフェイスを読み込みます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// 最初の例
+f = figure("background", -2);
+h = uicontrol(f, "style", "text", ...
+              "string", "This is a figure", ...
+              "position", [210 180 300 100], ...
+              "fontsize", 24, ...
+              "backgroundcolor", [1 1 1]);
+saveGui(f, fullfile(TMPDIR, "foo"))
+close(f)
+loadGui(fullfile(TMPDIR, "foo"));
+// 2番目の例
+f = figure("default_axes", "off", ...
+           "dockable", "off", ...
+           "figure_name", "Sélection", ...
+           "axes_size", [200 200], ...
+           "infobar_visible", "off", ...
+           "menubar_visible", "off", ...
+           "toolbar", "none", ...
+           "toolbar_visible", "off", ...
+           "layout", "gridbag");
+h1 = uicontrol(f, "style", "text", ...
+                "string", "Following List :", ...
+                "fontsize", 15, ...
+                "constraints", createConstraints("gridbag", [1 1 2 1], [1 0], "both"));
+h2 = uicontrol(f, "style", "popupmenu", ...
+                "string", ["item1"; "item2"; "item3"], ...
+                "value", 1, ...
+                "fontsize", 15, ...
+                "constraints", createConstraints("gridbag", [1 2 2 1], [1 0], "both"), ...
+                "tag", "selection");
+h3 = uicontrol(f, "style", "pushbutton", ...
+                "string", "OK", ...
+                "callback", "obj = findobj(""tag"", ""selection""); mprintf(""La valeur sélectionnée est : %s.\n"", obj.string(obj.value)); close(gcf())", ...
+                "fontsize", 15, ...
+                "constraints", createConstraints("gridbag", [1 3 1 1], [1 0], "both", "left"));
+h4 = uicontrol(f, "style", "pushbutton", ...
+                "string", "CANCEL", ...
+                "callback", "close(gcf())", ...
+                "fontsize", 15, ...
+                "constraints", createConstraints("gridbag", [2 3 1 1], [1 0], "both", "right"));
+saveGui(f, "TMPDIR/foo2.xml");
+close(f)
+loadGui("TMPDIR/foo2.xml")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="saveGui">saveGui</link>
+            </member>
+            <member>
+                <link linkend="load">load</link>
+            </member>
+            <member>
+                <link linkend="save">save</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数 <function>loadGui</function> が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

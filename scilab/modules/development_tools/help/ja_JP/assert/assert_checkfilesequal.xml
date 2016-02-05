@@ -4,11 +4,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkfilesequal" xml:lang="ja">
@@ -22,7 +25,6 @@
             flag = assert_checkfilesequal ( filecomp , fileref )
             flag = assert_checkfilesequal ( filecomp , fileref , compfun )
             [flag,errmsg] = assert_checkfilesequal ( ... )
-            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -139,17 +141,14 @@ txt2 = [
 fd = mopen(filecomp2,"w");
 mputl(txt2,fd);
 mclose(fd);
-
 // パスするテスト
 flag = assert_checkfilesequal ( filecomp1 , fileref1 )
 [flag,errmsg] = assert_checkfilesequal ( filecomp1 , fileref1 )
-
 // 失敗: filecomp2 <> fileref1
 // エラーが発生
 flag = assert_checkfilesequal ( filecomp2 , fileref1 )
 // エラーは発生しない
 [flag,errmsg] = assert_checkfilesequal ( filecomp2 , fileref1 )
-
 // テスト用のデータを準備
 // fileref2 == filecomp3, コメント行を無視した場合
 // fileref2 <> filecomp4, コメント行を無視した場合
@@ -189,7 +188,6 @@ txt = [
 fd = mopen(filecomp4,"w");
 mputl(txt,fd);
 mclose(fd);
-
 // コメント行を無視する比較用関数でテスト
 function otxt = myfilter ( itxt )
 nr = size(itxt,"r")
@@ -214,7 +212,6 @@ endfunction
 [flag,errmsg] = assert_checkfilesequal ( filecomp3 , fileref2 , mycompfun )
 // 失敗するテスト
 [flag,errmsg] = assert_checkfilesequal ( filecomp4 , fileref2 , mycompfun )
-
    ]]></programlisting>
     </refsection>
     <refsection>

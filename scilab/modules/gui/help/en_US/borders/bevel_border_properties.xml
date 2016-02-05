@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="bevel_border_properties">
+    <refnamediv>
+        <refname>Bevel border properties</refname>
+    </refnamediv>
+    <refnamediv xml:id="softbevel_border_properties">
+        <refname>Soft bevel border properties</refname>
+        <refpurpose>Description of the soft-bevel and bevel borders properties.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            bevelBorder = createBorder("bevel", type)
+            bevelBorder = createBorder("bevel", type, hlouter, shadowouter)
+            bevelBorder = createBorder("bevel", type, hlouter, hlinner, shadowouter, shadowinner)
+
+            bevelBorder = createBorder("softbevel", type)
+            bevelBorder = createBorder("softbevel", type, hlouter, shadowouter)
+            bevelBorder = createBorder("softbevel", type, hlouter, hlinner, shadowouter, shadowinner)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>"lowered" | "raised"</para>
+                    <para>The type of the border.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hlouter</term>
+                <listitem>
+                    <para>String</para>
+                    <para>The name of the color used for the outer edge highlight.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hlinner</term>
+                <listitem>
+                    <para>String</para>
+                    <para>The name of the color used for the inner edge highlight.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>shadowouter</term>
+                <listitem>
+                    <para>String</para>
+                    <para>The name of the color used for the outer shadow area.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>shadowinner</term>
+                <listitem>
+                    <para>String</para>
+                    <para>The name of the color used for the inner shadow area.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bevelBorder</term>
+                <listitem>
+                    <para>The created border.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function creates a bevel border for <literal>frame</literal> uicontrols. See <link linkend="uicontrol_properties">uicontrol properties</link> for more details.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="createBorder">createBorder</link>
+            </member>
+            <member>
+                <link linkend="createBorderFont">createBorderFont</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function <function>createBorder</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

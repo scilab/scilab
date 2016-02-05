@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -41,12 +44,16 @@ import org.scilab.modules.graphic_objects.uibar.waitbar.Waitbar;
 import org.scilab.modules.graphic_objects.uicontextmenu.Uicontextmenu;
 import org.scilab.modules.graphic_objects.uicontrol.checkbox.CheckBox;
 import org.scilab.modules.graphic_objects.uicontrol.edit.Edit;
+import org.scilab.modules.graphic_objects.uicontrol.edit.Spinner;
 import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
+import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorder;
+import org.scilab.modules.graphic_objects.uicontrol.layer.Layer;
 import org.scilab.modules.graphic_objects.uicontrol.listbox.ListBox;
 import org.scilab.modules.graphic_objects.uicontrol.popupmenu.PopupMenu;
 import org.scilab.modules.graphic_objects.uicontrol.pushbutton.PushButton;
 import org.scilab.modules.graphic_objects.uicontrol.radiobutton.RadioButton;
 import org.scilab.modules.graphic_objects.uicontrol.slider.Slider;
+import org.scilab.modules.graphic_objects.uicontrol.tab.Tab;
 import org.scilab.modules.graphic_objects.uicontrol.table.Table;
 import org.scilab.modules.graphic_objects.uicontrol.uiimage.UiImage;
 import org.scilab.modules.graphic_objects.uicontrol.uitext.UiText;
@@ -255,6 +262,9 @@ public final class GraphicModel {
             case EDIT:
                 createdObject = new Edit();
                 break;
+            case SPINNER:
+                createdObject = new Spinner();
+                break;
             case FRAME:
                 createdObject = new Frame();
                 break;
@@ -313,11 +323,21 @@ public final class GraphicModel {
             case LIGHT:
                 createdObject = new Light();
                 break;
-            case UNKNOWNOBJECT:
-                createdObject = null;
-                break;
             case DATATIP:
                 createdObject = new Datatip();
+                break;
+            case TAB:
+                createdObject = new Tab();
+                break;
+            case LAYER:
+                createdObject = new Layer();
+                break;
+            case BORDER:
+                createdObject = new FrameBorder();
+                break;
+            case FRAME_SCROLLABLE:
+                createdObject = new Frame();
+                ((Frame)createdObject).setScrollable(true);
                 break;
             default:
                 createdObject = null;

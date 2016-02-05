@@ -2,33 +2,26 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
 import javax.swing.Action;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
-import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
-import org.scilab.modules.xcos.utils.XcosConstants;
-import org.scilab.modules.xcos.utils.XcosEvent;
-
-import com.mxgraph.util.mxEventObject;
 
 /**
  * External action
@@ -77,65 +70,67 @@ public final class ExternalAction extends DefaultAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        final XcosDiagram graph = (XcosDiagram) getGraph(e);
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        if (handler == null) {
-            return;
-        }
 
-        final BasicBlock block;
-        final ActionListener callback;
-        try {
-            /*
-             * Export the whole diagram, to update all the sub-diagrams on demand.
-             */
-            handler.writeDiagram(graph.getRootDiagram());
-
-            /*
-             * Then export the selected block
-             */
-            Object cell = graph.getSelectionCell();
-            if (cell instanceof BasicBlock) {
-                block = (BasicBlock) cell;
-                handler.writeBlock(block);
-            } else {
-                block = null;
-            }
-
-            /*
-             * Import the updated block
-             */
-            if (block != null) {
-                callback = new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        try {
-
-                            final BasicBlock modifiedBlock = handler.readBlock();
-                            block.updateBlockSettings(modifiedBlock);
-
-                            graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, block));
-                        } catch (ScicosFormatException e1) {
-                            LOG.severe(e1.getMessage());
-                        } finally {
-                            handler.release();
-                        }
-                    }
-                };
-            } else {
-                callback = new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        handler.release();
-                    }
-                };
-            }
-
-            ScilabInterpreterManagement.asynchronousScilabExec(callback, localCommand);
-        } catch (InterpreterException e2) {
-            LOG.warning(e2.toString());
-
-            handler.release();
-        }
+        // FIXME: implement the external action
+        //        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+        //        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        //        if (handler == null) {
+        //            return;
+        //        }
+        //
+        //        final BasicBlock block;
+        //        final ActionListener callback;
+        //        try {
+        //            /*
+        //             * Export the whole diagram, to update all the sub-diagrams on demand.
+        //             */
+        //            handler.writeDiagram(graph.getRootDiagram());
+        //
+        //            /*
+        //             * Then export the selected block
+        //             */
+        //            Object cell = graph.getSelectionCell();
+        //            if (cell instanceof BasicBlock) {
+        //                block = (BasicBlock) cell;
+        //                handler.writeBlock(block);
+        //            } else {
+        //                block = null;
+        //            }
+        //
+        //            /*
+        //             * Import the updated block
+        //             */
+        //            if (block != null) {
+        //                callback = new ActionListener() {
+        //                    @Override
+        //                    public void actionPerformed(ActionEvent e) {
+        //                        try {
+        //
+        //                            final BasicBlock modifiedBlock = handler.readBlock();
+        //                            block.updateBlockSettings(modifiedBlock);
+        //
+        //                            graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, block));
+        //                        } catch (ScicosFormatException e1) {
+        //                            LOG.severe(e1.getMessage());
+        //                        } finally {
+        //                            handler.release();
+        //                        }
+        //                    }
+        //                };
+        //            } else {
+        //                callback = new ActionListener() {
+        //                    @Override
+        //                    public void actionPerformed(ActionEvent e) {
+        //                        handler.release();
+        //                    }
+        //                };
+        //            }
+        //
+        //            ScilabInterpreterManagement.asynchronousScilabExec(callback, localCommand);
+        //        } catch (InterpreterException e2) {
+        //            LOG.warning(e2.toString());
+        //
+        //            handler.release();
+        //        }
     }
 }

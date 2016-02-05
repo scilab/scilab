@@ -4,6 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
+
+// <-- CLI SHELL MODE -->
+
 doc = xmlReadStr("<root><a>Hello</a><b>Scilab</b><a>World</a></root>");
 
 assert_checkequal(doc.root.children(1).name,"a");
@@ -40,32 +43,39 @@ assert_checktrue(and(xmlDump(doc)==xmlDump(doc3)));
 xmlRemove(doc.root.children(1));
 doc4 = xmlReadStr("<root></root>");
 assert_checktrue(and(xmlDump(doc)==xmlDump(doc4)));
-doc = xmlReadStr("<root><a>Hello</a><b>Scilab</b><a>World</a></root>");
 
 //Remove all the root children
-doc = xmlReadStr("<root><a>Hello</a><b>Scilab</b><a>World</a></root>");
-xmlRemove(doc.root.children);
-doc4 = xmlReadStr("<root></root>");
-assert_checktrue(and(xmlDump(doc)==xmlDump(doc4)));
+doc5 = xmlReadStr("<root><a>Hello</a><b>Scilab</b><a>World</a></root>");
+xmlRemove(doc5.root.children);
+doc6 = xmlReadStr("<root></root>");
+assert_checktrue(and(xmlDump(doc5)==xmlDump(doc6)));
 
 xmlDelete(doc);
 xmlDelete(doc2);
 xmlDelete(doc3);
 xmlDelete(doc4);
+xmlDelete(doc5);
+xmlDelete(doc6);
 
 doc = xmlReadStr("<root><a>Hello</a><mynode><b>Scilab</b></mynode><a>World</a></root>");
 xmlRemove(doc.root.children(1));
 doc2 = xmlReadStr("<root><mynode><b>Scilab</b></mynode><a>World</a></root>");
 assert_checktrue(and(xmlDump(doc)==xmlDump(doc2)));
 xmlRemove(doc.root.children(1).children(1));
-doc2 = xmlReadStr("<root><mynode></mynode><a>World</a></root>");
-assert_checktrue(and(xmlDump(doc)==xmlDump(doc2)));
+doc3 = xmlReadStr("<root><mynode></mynode><a>World</a></root>");
+assert_checktrue(and(xmlDump(doc)==xmlDump(doc3)));
+
+xmlDelete(doc);
+xmlDelete(doc2);
+xmlDelete(doc3);
 
 doc = xmlReadStr("<root><a>Hello</a><mynode><b>Scilab</b></mynode><a>World</a></root>");
 xmlRemove(doc.root.children(1).children(1));
 doc2 = xmlReadStr("<root><a></a><mynode><b>Scilab</b></mynode><a>World</a></root>");
 assert_checktrue(and(xmlDump(doc)==xmlDump(doc2)));
 
+xmlDelete(doc);
+xmlDelete(doc2);
 
 doc = xmlReadStr("<root><a>Hello</a><mynode><b>Scilab</b></mynode><a>World</a></root>");
 xmlRemove(doc.root.children(2).children(1));

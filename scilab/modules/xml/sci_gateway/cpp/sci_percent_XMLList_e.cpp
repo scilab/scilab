@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,6 +18,7 @@
 
 extern "C"
 {
+#include <string.h>
 #include <stdio.h>
 #include "gw_xml.h"
 #include "Scierror.h"
@@ -25,7 +29,7 @@ extern "C"
 
 using namespace org_modules_xml;
 
-int sci_percent_XMLList_e(char *fname, unsigned long fname_len)
+int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
 {
     XMLList *list = 0;
     const XMLObject *elem;
@@ -73,7 +77,7 @@ int sci_percent_XMLList_e(char *fname, unsigned long fname_len)
     {
         if (row != 1 || col != 1)
         {
-            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A string or a double expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: string or double expected.\n"), fname, 1);
             return 0;
         }
 
@@ -112,7 +116,7 @@ int sci_percent_XMLList_e(char *fname, unsigned long fname_len)
         {
             pstStrings = list->getContentFromList();
 
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char *const *>(pstStrings));
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char * const *>(pstStrings));
 
             // contents are created with xmlGetNodeContent which requires that the user free the himself the memory
             for (int i = 0; i < list->getSize(); i++)
@@ -134,7 +138,7 @@ int sci_percent_XMLList_e(char *fname, unsigned long fname_len)
         {
             pstStrings = list->getNameFromList();
 
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char *const *>(pstStrings));
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char * const *>(pstStrings));
 
             delete[]pstStrings;
             if (err.iErr)
