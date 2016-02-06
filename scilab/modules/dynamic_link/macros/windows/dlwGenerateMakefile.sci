@@ -186,10 +186,11 @@ function ilib_gen_Make_win32(name, ..
 
     //update DEBUG_SCILAB_DYNAMIC_LINK to map with Scilab compilation mode
     val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
-    if val <> "YES" & val <> "NO" & isDebug()then
+    if val <> "YES" & val <> "NO" & isDebug() then
         setenv("DEBUG_SCILAB_DYNAMIC_LINK","YES");
         CFLAGS = CFLAGS + " -D_DEBUG";
     else
+        setenv("DEBUG_SCILAB_DYNAMIC_LINK","");
         CFLAGS = CFLAGS + " -DNDEBUG";
     end
 
@@ -199,7 +200,7 @@ function ilib_gen_Make_win32(name, ..
     FILES_SRC = strcat(FILES_SRC_MATRIX," ");
 
     OBJ_DEST_PATH = "";
-    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","YES") == "YES") then
+    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","") == "YES") then
         OBJ_DEST_PATH = "Debug/";
     else
         OBJ_DEST_PATH = "Release/";
