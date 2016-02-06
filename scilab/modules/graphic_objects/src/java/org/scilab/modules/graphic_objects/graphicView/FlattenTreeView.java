@@ -74,7 +74,4 @@ public class FlattenTreeView extends TreeView {
     public void updateObject(Integer id, int property) {
 
     }
-
-    public void updateObject(Integer id, String property) {
-    }
 }

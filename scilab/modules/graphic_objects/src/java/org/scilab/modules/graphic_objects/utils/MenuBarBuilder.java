@@ -15,6 +15,15 @@
 
 package org.scilab.modules.graphic_objects.utils;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HIDDEN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ACCELERATOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MNEMONIC__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 
 import java.io.File;
@@ -32,11 +41,9 @@ import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
-import org.scilab.modules.graphic_objects.uimenu.Uimenu;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.localization.Messages;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -77,7 +84,7 @@ public final class MenuBarBuilder {
      * @throws IOException can be thrown when an error occurs while accessing the file
      * @throws ParserConfigurationException can be thrown when an error occurs while parsing the file
      */
-    public static Object buildMenuBar(Class<?>[] resultClass, String fileToLoad) throws SAXException, IOException, ParserConfigurationException {
+    public static Object buildMenuBar(Class[] resultClass, String fileToLoad) throws SAXException, IOException, ParserConfigurationException {
 
         InvocationHandler invocationHandler = new MenuBarConfigurationHandler(fileToLoad);
 
@@ -100,7 +107,7 @@ public final class MenuBarBuilder {
         boolean isheadless = false;
 
         try {
-            Class<?> clazz = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.gui.SwingView");
+            Class clazz = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.gui.SwingView");
             Method meth = clazz.getMethod("isHeadless");
             isheadless = (Boolean) meth.invoke(null);
         } catch (Exception e) {
@@ -210,15 +217,12 @@ public final class MenuBarBuilder {
          * @param parentId the tab ID to which the menus will be added to
          * @see org.scilab.modules.MenuBarConfiguration.utils.MenuBarConfiguration#addMenus(org.scilab.modules.gui.menubar.MenuBar)
          */
-        @SuppressWarnings("unused")
         public void addMenus(Integer parentId) {
-            GraphicController controller = GraphicController.getController();
-            GraphicObject parent = controller.getObjectFromId(parentId);
+
             // delete old menus
-            for (Integer childId : (Integer []) parent.getChildren()) {
-                GraphicObject child = controller.getObjectFromId(childId);
-                if (child.getType() == __GO_UIMENU__) {
-                    controller.removeRelationShipAndDelete(childId);
+            for (Integer childId : (Integer []) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_CHILDREN__)) {
+                if (GraphicController.getController().getProperty(childId, GraphicObjectProperties.__GO_TYPE__).equals(__GO_UIMENU__)) {
+                    GraphicController.getController().removeRelationShipAndDelete(childId);
                 }
             }
 
@@ -227,38 +231,36 @@ public final class MenuBarBuilder {
             for (int i = 0; i < menus.getLength(); i++) {
                 // Create the menu
                 Integer menuId = null;
-                Node node = menus.item(i);
-                NamedNodeMap map = node.getAttributes();
                 if (isParentValid) {
-                    menuId = controller.askObject(Type.UIMENU);
+                    menuId = GraphicController.getController().askObject(Type.UIMENU);
                 } else {
-                    menuId = controller.askObject(Type.UIMENUMODEL);
+                    menuId = GraphicController.getController().askObject(Type.UIMENUMODEL);
                 }
 
-                Uimenu menu = (Uimenu)controller.getObjectFromId(menuId);
                 // The menu is not visible in Scilab view by default
-                menu.setHidden(true);
+                GraphicController.getController().setProperty(menuId, __GO_HIDDEN__, true);
 
                 // Set the label
-                String menuLabel = Messages.gettext(map.getNamedItem(LABEL).getNodeValue());
-                menu.setLabel(menuLabel);
+                String menuLabel = Messages.gettext(menus.item(i).getAttributes().getNamedItem(LABEL).getNodeValue());
+                GraphicController.getController().setProperty(menuId, __GO_UI_LABEL__, menuLabel);
 
                 // Set the mnemonic if given
-                if (map.getNamedItem(MNEMONIC) != null) {
-                    menu.setMnemonic(map.getNamedItem(MNEMONIC).getNodeValue());
+                if (menus.item(i).getAttributes().getNamedItem(MNEMONIC) != null) {
+                    String mnemonicString = menus.item(i).getAttributes().getNamedItem(MNEMONIC).getNodeValue();
+                    GraphicController.getController().setProperty(menuId, __GO_UI_MNEMONIC__, mnemonicString);
                 }
 
                 // Set the icon if given
-                if (map.getNamedItem(ICON) != null) {
-                    menu.setIcon(node.getNodeValue());
+                if (menus.item(i).getAttributes().getNamedItem(ICON) != null) {
+                    String iconName = menus.item(i).getNodeValue();
+                    GraphicController.getController().setProperty(menuId, __GO_UI_ICON__, iconName);
                 }
 
                 // Set the enable status if given
-                if (map.getNamedItem(ENABLED) != null) {
-                    menu.setEnable(map.getNamedItem(ENABLED).getNodeValue().equals(TRUE));
+                if (menus.item(i).getAttributes().getNamedItem(ENABLED) != null) {
+                    boolean enabled = menus.item(i).getAttributes().getNamedItem(ENABLED).getNodeValue().equals(TRUE);
+                    GraphicController.getController().setProperty(menuId, __GO_UI_ENABLE__, enabled);
                 }
-
-                controller.objectCreated(menuId);
                 // Set the menu parent
                 GraphicController.getController().setGraphicObjectRelationship(parentId, menuId);
                 addSubMenus(menuId, i);
@@ -271,7 +273,6 @@ public final class MenuBarBuilder {
          * @param index the index of the parent in menu list
          */
         public void addSubMenus(Integer parentMenuId, int index) {
-            GraphicController controller = GraphicController.getController();
             Node submenu = dom.getElementsByTagName(MENU).item(index).getFirstChild();
 
             boolean separator = false;
@@ -285,36 +286,46 @@ public final class MenuBarBuilder {
                     // Create the menu
                     Integer menuId = null;
                     if (isParentValid) {
-                        menuId = controller.askObject(Type.UIMENU);
+                        menuId = GraphicController.getController().askObject(Type.UIMENU);
                     } else {
-                        menuId = controller.askObject(Type.UIMENUMODEL);
+                        menuId = GraphicController.getController().askObject(Type.UIMENUMODEL);
                     }
 
-                    Uimenu menu = (Uimenu)controller.getObjectFromId(menuId);
                     // The menu is not visible in Scilab view by default
-                    menu.setHidden(true);
-                    menu.setSeparator(separator);
+                    GraphicController.getController().setProperty(menuId, __GO_HIDDEN__, true);
+
+                    // Set the menu parent
+                    GraphicController.getController().setGraphicObjectRelationship(parentMenuId, menuId);
 
                     // First we have to read its attributes
                     NamedNodeMap attributes = submenu.getAttributes();
 
                     for (int i = 0; i < attributes.getLength(); i++) {
-                        Node item = attributes.item(i);
-                        if (item.getNodeName() == LABEL) {
-                            menu.setLabel(Messages.gettext(item.getNodeValue()));
-                        } else if (item.getNodeName() == MNEMONIC) {
-                            menu.setMnemonic(item.getNodeValue());
-                        } else if (item.getNodeName() == ENABLED) {
-                            menu.setEnable(item.getNodeValue().equals(TRUE));
-                        } else if (item.getNodeName() == ICON) {
-                            menu.setIcon(item.getNodeValue());
-                        } else if (item.getNodeName() == ACCELERATOR) {
-                            menu.setAccelerator(item.getNodeValue());
-                        } else if (item.getNodeName() == MACOSX) {
-                            macosx = item.getNodeValue().equals(TRUE);
+                        if (attributes.item(i).getNodeName() == LABEL) {
+                            // Set the label
+                            String menuLabel = Messages.gettext(attributes.item(i).getNodeValue());
+                            GraphicController.getController().setProperty(menuId, __GO_UI_LABEL__, menuLabel);
+                        } else if (attributes.item(i).getNodeName() == MNEMONIC) {
+                            // Set the mnemonic
+                            String mnemonicString = attributes.item(i).getNodeValue();
+                            GraphicController.getController().setProperty(menuId, __GO_UI_MNEMONIC__, mnemonicString);
+                        } else if (attributes.item(i).getNodeName() == ENABLED) {
+                            // Set the enable status
+                            boolean enabled = attributes.item(i).getNodeValue().equals(TRUE);
+                            GraphicController.getController().setProperty(menuId, __GO_UI_ENABLE__, enabled);
+                        } else if (attributes.item(i).getNodeName() == ICON) {
+                            // Set the icon
+                            String iconName = attributes.item(i).getNodeValue();
+                            GraphicController.getController().setProperty(menuId, __GO_UI_ICON__, iconName);
+                        } else if (attributes.item(i).getNodeName() == ACCELERATOR) {
+                            // Set the accelerator
+                            String acceleratorString = attributes.item(i).getNodeValue();
+                            GraphicController.getController().setProperty(menuId, __GO_UI_ACCELERATOR__, acceleratorString);
+                        } else if (attributes.item(i).getNodeName() == MACOSX) {
+                            macosx = attributes.item(i).getNodeValue().equals(TRUE);
                             if (!macosx && OS.get() == OS.MAC) {
-                                GraphicModel.getModel().deleteObject(menuId);
-                                return;
+                                GraphicController.getController().removeRelationShipAndDelete(menuId);
+                                separator = false;
                             }
                         }
                     }
@@ -327,17 +338,15 @@ public final class MenuBarBuilder {
                             String command = null;
                             int commandType = CallBack.UNTYPED;
                             for (int j = 0; j < cbAttributes.getLength(); j++) {
-                                Node item = cbAttributes.item(j);
-                                if (item.getNodeName() == INSTRUCTION) {
-                                    command = item.getNodeValue();
-                                } else if (item.getNodeName() == TYPE) {
-                                    commandType = Integer.parseInt(item.getNodeValue());
+                                if (cbAttributes.item(j).getNodeName() == INSTRUCTION) {
+                                    command = cbAttributes.item(j).getNodeValue();
+                                } else if (cbAttributes.item(j).getNodeName() == TYPE) {
+                                    commandType = Integer.parseInt(cbAttributes.item(j).getNodeValue());
                                 }
                             }
-
                             if (command != null && commandType != CallBack.UNTYPED) {
-                                menu.setCallback(command);
-                                menu.setCallbacktype(commandType);
+                                GraphicController.getController().setProperty(menuId, __GO_CALLBACK__, command);
+                                GraphicController.getController().setProperty(menuId, __GO_CALLBACKTYPE__, commandType);
                             }
                         } else if (callback.getNodeName() == SUBMENU) {
                             addSubMenuItem(menuId, callback);
@@ -345,10 +354,11 @@ public final class MenuBarBuilder {
                         // Read next child
                         callback = callback.getNextSibling();
                     }
-
-                    controller.objectCreated(menuId);
-                    // Set the menu parent
-                    controller.setGraphicObjectRelationship(parentMenuId, menuId);
+                    // Manage separators
+                    if (separator) {
+                        GraphicController.getController().setProperty(menuId, __GO_UI_SEPARATOR__, true);
+                        separator = false;
+                    }
                 }
                 // Read next child
                 submenu = submenu.getNextSibling();
@@ -361,7 +371,6 @@ public final class MenuBarBuilder {
          * @param node to get attributes of the menu
          */
         public void addSubMenuItem(Integer parentMenuItemId, Node node) {
-            GraphicController controller = GraphicController.getController();
 
             NamedNodeMap attributes = node.getAttributes();
 
@@ -373,20 +382,28 @@ public final class MenuBarBuilder {
                 subMenuItemId = GraphicController.getController().askObject(Type.UIMENUMODEL);
             }
 
-            Uimenu menu = (Uimenu)controller.getObjectFromId(subMenuItemId);
             // The menu is not visible in Scilab view by default
-            menu.setHidden(true);
+            GraphicController.getController().setProperty(subMenuItemId, __GO_HIDDEN__, true);
+
+            // Set the menu parent
+            GraphicController.getController().setGraphicObjectRelationship(parentMenuItemId, subMenuItemId);
 
             for (int i = 0; i < attributes.getLength(); i++) {
-                Node item = attributes.item(i);
-                if (item.getNodeName() == LABEL) {
-                    menu.setLabel(Messages.gettext(item.getNodeValue()));
-                } else if (item.getNodeName() == MNEMONIC) {
-                    menu.setMnemonic(item.getNodeValue());
-                } else if (item.getNodeName() == ICON) {
-                    menu.setIcon(item.getNodeValue());
-                } else if (item.getNodeName() == ENABLED) {
-                    menu.setEnable(item.getNodeValue().equals(TRUE));
+                if (attributes.item(i).getNodeName() == LABEL) {
+                    // Set the label
+                    String menuLabel = Messages.gettext(attributes.item(i).getNodeValue());
+                    GraphicController.getController().setProperty(subMenuItemId, __GO_UI_LABEL__, menuLabel);
+                } else if (attributes.item(i).getNodeName() == MNEMONIC) {
+                    // Set the mnemonic
+                    String mnemonicString = attributes.item(i).getNodeValue();
+                    GraphicController.getController().setProperty(subMenuItemId, __GO_UI_MNEMONIC__, mnemonicString);
+                } else if (attributes.item(i).getNodeName() == ICON) {
+                    String iconName = attributes.item(i).getNodeValue();
+                    GraphicController.getController().setProperty(subMenuItemId, __GO_UI_ICON__, iconName);
+                } else if (attributes.item(i).getNodeName() == ENABLED) {
+                    // Set the enable status
+                    boolean enabled = attributes.item(i).getNodeValue().equals(TRUE);
+                    GraphicController.getController().setProperty(subMenuItemId, __GO_UI_ENABLE__, enabled);
                 }
             }
 
@@ -398,16 +415,15 @@ public final class MenuBarBuilder {
                     String command = null;
                     int commandType = CallBack.UNTYPED;
                     for (int j = 0; j < cbAttributes.getLength(); j++) {
-                        Node item = cbAttributes.item(j);
-                        if (item.getNodeName() == INSTRUCTION) {
-                            command = item.getNodeValue();
-                        } else if (item.getNodeName() == TYPE) {
-                            commandType = Integer.parseInt(item.getNodeValue());
+                        if (cbAttributes.item(j).getNodeName() == INSTRUCTION) {
+                            command = cbAttributes.item(j).getNodeValue();
+                        } else if (cbAttributes.item(j).getNodeName() == TYPE) {
+                            commandType = Integer.parseInt(cbAttributes.item(j).getNodeValue());
                         }
                     }
                     if (command != null && commandType != CallBack.UNTYPED) {
-                        menu.setCallback(command);
-                        menu.setCallbacktype(commandType);
+                        GraphicController.getController().setProperty(subMenuItemId, __GO_CALLBACK__, command);
+                        GraphicController.getController().setProperty(subMenuItemId, __GO_CALLBACKTYPE__, commandType);
                     }
                 } else if (callback.getNodeName() == SUBMENU) {
                     addSubMenuItem(subMenuItemId, callback);
@@ -415,10 +431,6 @@ public final class MenuBarBuilder {
                 // Read next child
                 callback = callback.getNextSibling();
             }
-
-            controller.objectCreated(subMenuItemId);
-            // Set the menu parent
-            GraphicController.getController().setGraphicObjectRelationship(parentMenuItemId, subMenuItemId);
         }
     }
 }

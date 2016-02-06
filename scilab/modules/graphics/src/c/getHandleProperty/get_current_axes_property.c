@@ -34,7 +34,6 @@
 #include "HandleManagement.h"
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
-#include "createGraphicObject.h"
 
 /*------------------------------------------------------------------------*/
 void* get_current_axes_property(void* _pvCtx, int iObjUID)

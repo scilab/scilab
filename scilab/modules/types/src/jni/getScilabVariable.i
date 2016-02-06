@@ -65,8 +65,6 @@ class%}
         e.printStackTrace(System.err);
     }
   }
-
-  public final static native int putVarOnStack(int stackPos, Object var, int type, boolean swap);
 %}
 
 /* JavaDoc for  class */

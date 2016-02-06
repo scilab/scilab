@@ -14,11 +14,6 @@
 
 package org.scilab.modules.renderer.JoGLView;
 
-import java.awt.Dimension;
-import java.nio.ByteBuffer;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
@@ -27,7 +22,11 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.renderer.JoGLView.util.BufferAllocation;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
-import org.scilab.modules.types.ScilabType;
+
+import java.awt.Dimension;
+import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Pierre Lando
@@ -200,12 +199,6 @@ public class ScilabTextureManager {
 
         @Override
         public void createObject(Integer id) {
-        }
-
-        @Override
-        public void updateObject(Integer id, String propName) {
-            // TODO Auto-generated method stub
-
         }
     }
 }

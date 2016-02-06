@@ -15,13 +15,12 @@
 
 package org.scilab.modules.graphic_objects.rectangle;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HEIGHT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UPPER_LEFT_POINT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WIDTH__;
-
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Class Rectangle
@@ -118,7 +117,7 @@ public class Rectangle extends ClippableContouredObject {
     /**
      * @param height the height to set
      */
-    public UpdateStatus setHeight(double height) {
+    public UpdateStatus setHeight(Double height) {
         this.height = height;
         return UpdateStatus.Success;
     }
@@ -156,7 +155,7 @@ public class Rectangle extends ClippableContouredObject {
     /**
      * @param width the width to set
      */
-    public UpdateStatus setWidth(double width) {
+    public UpdateStatus setWidth(Double width) {
         this.width = width;
         return UpdateStatus.Success;
     }

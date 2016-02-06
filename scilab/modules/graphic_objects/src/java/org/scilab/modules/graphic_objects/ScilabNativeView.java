@@ -41,8 +41,4 @@ public class ScilabNativeView {
     return ScilabNativeViewJNI.ScilabNativeView__getFigureFromIndex(figNum);
   }
 
-    public static int ScilabNativeView__getObjectFromHandle(long handle) {
-        return ScilabNativeViewJNI.ScilabNativeView__getObjectFromHandle(handle);
-    }
-
 }

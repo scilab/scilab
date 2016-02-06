@@ -83,7 +83,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         this.columnWidth = new int[columnNumber];
         this.entities = new Object[columnNumber][lineNumber];
 
-        boolean fractionalFont = textObject.getFractionalFont();
+        boolean fractionalFont = textObject.getFontFractional();
         Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor());
         Font font = computeFont(textObject);
 
@@ -114,7 +114,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         this.columnWidth = new int[columnNumber];
         this.entities = new Object[columnNumber][lineNumber];
 
-        boolean fractionalFont = textObject.getFractionalFont();
+        boolean fractionalFont = textObject.getFontFractional();
         Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor());
         Font font = computeFont(textObject, scaleFactor);
 
@@ -340,7 +340,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
      * @return the matrix of text string from the given {@see Text} object.
      */
     protected String[][] computeTextData(final TextObject text) {
-        String[] textString = text.getTextArray();
+        String[] textString = text.getTextStrings();
         Integer[] dimensions = text.getTextArrayDimensions();
         String[][] texts = new String[dimensions[0]][dimensions[1]];
         int i = 0;
@@ -380,7 +380,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
      * @return the alignment factor corresponding to the given scilab text.
      */
     protected float computeAlignmentFactor(Text text) {
-        switch (text.getAlignment()) {
+        switch (text.getAlignmentAsEnum()) {
             case LEFT:
                 return 0f;
             case CENTER:

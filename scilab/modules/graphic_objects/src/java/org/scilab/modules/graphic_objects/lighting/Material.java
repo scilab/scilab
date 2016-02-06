@@ -15,6 +15,7 @@
 
 package org.scilab.modules.graphic_objects.lighting;
 
+import org.scilab.modules.graphic_objects.lighting.ColorTriplet;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
@@ -46,7 +47,7 @@ public class Material extends ColorTriplet {
      * Sets color-material mode, if true
      * the surface color is used as diffuse color.
      */
-    public UpdateStatus setColorMaterialMode(boolean status) {
+    public UpdateStatus setColorMaterialMode(Boolean status) {
         if (useColorMaterial != status) {
             useColorMaterial = status;
             return UpdateStatus.Success;
@@ -60,7 +61,7 @@ public class Material extends ColorTriplet {
     }
 
     /** Sets shininess level*/
-    public UpdateStatus setShininess(double s) {
+    public UpdateStatus setShininess(Double s) {
         if (shininess != s) {
             shininess = s;
             return UpdateStatus.Success;

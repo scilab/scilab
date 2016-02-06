@@ -14,8 +14,6 @@
 
 package org.scilab.modules.renderer.JoGLView.mark;
 
-import java.awt.Dimension;
-
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.appearance.Color;
 import org.scilab.forge.scirenderer.texture.Texture;
@@ -24,8 +22,9 @@ import org.scilab.forge.scirenderer.texture.TextureDrawingTools;
 import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
-import org.scilab.modules.graphic_objects.utils.MarkSizeUnitType;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
+
+import java.awt.Dimension;
 
 /**
  * @author Pierre Lando
@@ -47,7 +46,7 @@ public class MarkSpriteFactory {
         /**
          * Compute the sprite pixel size.
          */
-        if (mark.getMarkSizeUnit() == MarkSizeUnitType.TABULATED) {
+        if (mark.getMarkSizeUnit() == Mark.MarkSizeUnitType.TABULATED) {
             // Special case for compatibility with older versions
             // dot mark with tabulated size of 0 is a single pixel
             // drawn in pixel size instead of tabulated size

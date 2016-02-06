@@ -37,8 +37,6 @@
 #include "CurrentFigure.h"
 #include "api_scilab.h"
 #include "HandleManagement.h"
-#include "createGraphicObject.h"
-
 /*--------------------------------------------------------------------------*/
 int sci_uimenu(char *fname, void *pvApiCtx)
 {

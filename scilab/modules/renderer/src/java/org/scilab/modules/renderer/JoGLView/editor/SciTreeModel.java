@@ -14,18 +14,16 @@
 
 package org.scilab.modules.renderer.JoGLView.editor;
 
-import java.util.Vector;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicView.GraphicView;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 import javax.swing.event.EventListenerList;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
-
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.graphicView.GraphicView;
-import org.scilab.modules.types.ScilabType;
+import java.util.Vector;
 
 /**
  * @author Pierre Lando
@@ -157,11 +155,5 @@ public class SciTreeModel implements TreeModel, GraphicView {
             return (Integer) parent;
         }
         return null;
-    }
-
-    @Override
-    public void updateObject(Integer id, String propName) {
-        // TODO Auto-generated method stub
-
     }
 }

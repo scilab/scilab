@@ -25,6 +25,9 @@ import org.scilab.modules.localization.Messages;
  */
 public class FileExporter {
 
+    /** Export waiting message */
+    private static final String exportingMessage = "Exporting figure, please wait...";
+
     /**
      * Default constructor
      */

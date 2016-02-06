@@ -214,7 +214,7 @@ public class ScilabTree implements Tree {
 
     }
 
-    public void setWidgetRelief(String reliefType) {
+    public void setRelief(String reliefType) {
         // TODO Auto-generated method stub
 
     }

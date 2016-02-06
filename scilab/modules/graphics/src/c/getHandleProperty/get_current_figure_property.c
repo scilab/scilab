@@ -35,7 +35,6 @@
 #include "BuildObjects.h"
 #include "CurrentFigure.h"
 #include "HandleManagement.h"
-#include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
 void* get_current_figure_property(void* _pvCtx, int iObjUID)

@@ -17,7 +17,6 @@
 package org.scilab.modules.graphic_objects.axes;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
-import org.scilab.modules.graphic_objects.utils.BoxType;
 
 /**
  * Box class
@@ -26,6 +25,30 @@ import org.scilab.modules.graphic_objects.utils.BoxType;
 public class Box {
     /** Box properties names */
     public enum BoxProperty { BOX, HIDDENAXISCOLOR, XTIGHTLIMITS, YTIGHTLIMITS, ZTIGHTLIMITS, DATABOUNDS, REALDATABOUNDS, ZOOMENABLED, ZOOMBOX, AUTOSCALE, FIRSTPLOT };
+
+    /** Box type */
+    public static enum BoxType { OFF, ON, HIDDEN_AXES, BACK_HALF;
+
+                                 /**
+                                  * Converts an integer to the corresponding enum
+                                  * @param intValue the integer value
+                                  * @return the box type enum
+                                  */
+    public static BoxType intToEnum(Integer intValue) {
+        switch (intValue) {
+            case 0:
+                return BoxType.OFF;
+            case 1:
+                return BoxType.ON;
+            case 2:
+                return BoxType.HIDDEN_AXES;
+            case 3:
+                return BoxType.BACK_HALF;
+            default:
+                return null;
+        }
+    }
+                               }
 
     /** Box type */
     private BoxType box;
@@ -284,14 +307,14 @@ public class Box {
     /**
      * @return the zoomEnabled
      */
-    public Boolean getZoomEnable() {
+    public Boolean getZoomEnabled() {
         return zoomEnabled;
     }
 
     /**
      * @param zoomEnabled the zoomEnabled to set
      */
-    public UpdateStatus setZoomEnable(Boolean zoomEnabled) {
+    public UpdateStatus setZoomEnabled(Boolean zoomEnabled) {
         if (this.zoomEnabled != zoomEnabled) {
             this.zoomEnabled = zoomEnabled;
             return UpdateStatus.Success;

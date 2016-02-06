@@ -27,23 +27,23 @@ public class ColorTriplet {
     /** color triplet properties */
     public enum ColorTripletProperty {AMBIENTCOLOR, DIFFUSECOLOR, SPECULARCOLOR};
     /** ambient color */
-    protected double[] ambient;
+    protected Double[] ambient;
     /** diffuse color */
-    protected double[] diffuse;
+    protected Double[] diffuse;
     /** specular color */
-    protected double[] specular;
+    protected Double[] specular;
 
     public ColorTriplet() {
-        ambient = new double[] {0.0, 0.0, 0.0};
-        diffuse = new double[] {0.0, 0.0, 0.0};
-        specular = new double[] {0.0, 0.0, 0.0};
+        ambient = new Double[] {0.0, 0.0, 0.0};
+        diffuse = new Double[] {0.0, 0.0, 0.0};
+        specular = new Double[] {0.0, 0.0, 0.0};
     }
 
     /** copy constructor */
     public ColorTriplet(ColorTriplet other) {
-        ambient = new double[3];
-        diffuse = new double[3];
-        specular = new double[3];
+        ambient = new Double[3];
+        diffuse = new Double[3];
+        specular = new Double[3];
         setAmbientColor(other.ambient);
         setDiffuseColor(other.diffuse);
         setSpecularColor(other.specular);
@@ -57,7 +57,7 @@ public class ColorTriplet {
     }
 
     /** Sets the ambient color */
-    public UpdateStatus setAmbientColor(double[] color) {
+    public UpdateStatus setAmbientColor(Double[] color) {
         if (color.length != 3 || !isColorValid(color)) {
             return UpdateStatus.Fail;
         }
@@ -78,7 +78,7 @@ public class ColorTriplet {
     }
 
     /** Sets the diffuse color */
-    public UpdateStatus setDiffuseColor(double[] color) {
+    public UpdateStatus setDiffuseColor(Double[] color) {
         if (color.length != 3 || !isColorValid(color)) {
             return UpdateStatus.Fail;
         }
@@ -99,7 +99,7 @@ public class ColorTriplet {
     }
 
     /** Sets the specular color */
-    public UpdateStatus setSpecularColor(double[] color) {
+    public UpdateStatus setSpecularColor(Double[] color) {
         if (color.length != 3 || !isColorValid(color)) {
             return UpdateStatus.Fail;
         }
@@ -113,8 +113,8 @@ public class ColorTriplet {
         return UpdateStatus.NoChange;
     }
 
-    private boolean isColorValid(double[] color) {
-        for (double d : color) {
+    private boolean isColorValid(Double[] color) {
+        for (Double d : color) {
             if (d < 0.0 || d > 1.0) {
                 return false;
             }

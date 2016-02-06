@@ -239,7 +239,7 @@ public class ScilabTextBoxBridge {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public static void setRelief(TextBox textBox, String reliefType) {
-        textBox.getAsSimpleTextBox().setWidgetRelief(reliefType);
+        textBox.getAsSimpleTextBox().setRelief(reliefType);
     }
 
     /**

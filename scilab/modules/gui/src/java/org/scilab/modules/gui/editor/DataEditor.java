@@ -17,23 +17,21 @@
 
 package org.scilab.modules.gui.editor;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-
-import org.scilab.forge.scirenderer.tranformations.Vector3d;
-import org.scilab.modules.graphic_objects.PolylineData;
-import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.localization.Messages;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.renderer.CallRenderer;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
+import org.scilab.modules.graphic_objects.PolylineData;
+import org.scilab.modules.localization.Messages;
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 /**
  * Polyline data editor.
@@ -67,6 +65,7 @@ public class DataEditor {
         Boolean lineEnabled;
         Boolean filed;
         Boolean closed;
+        Boolean interp;
 
         Integer markFgColor;
         Integer markBgColor;
@@ -85,6 +84,7 @@ public class DataEditor {
             lineStyle = (Integer)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_POLYLINE_STYLE__);
             filed = (Boolean)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_FILL_MODE__);
             closed = (Boolean)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_CLOSED__);
+            interp = (Boolean)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR_SET__);
 
             markFgColor = (Integer)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
             markBgColor = (Integer)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_MARK_BACKGROUND__);
@@ -104,6 +104,7 @@ public class DataEditor {
                 GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_POLYLINE_STYLE__, lineStyle);
                 GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_FILL_MODE__, filed);
                 GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_CLOSED__, closed);
+                GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR_SET__, interp);
 
                 GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__, markFgColor);
                 GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_MARK_BACKGROUND__, markBgColor);
@@ -123,6 +124,7 @@ public class DataEditor {
             lineEnabled = true;
             filed = false;
             closed = false;
+            interp = false;
 
             markFgColor = -3;
             markBgColor = -2;
@@ -239,7 +241,7 @@ public class DataEditor {
 
                 //Current point
                 Vector3d planePoint = new Vector3d(datax[picked.point], datay[picked.point], dataz[picked.point]);
-                //Vector3d planeNorm = new Vector3d(0.0, 0.0, 1.0);
+                Vector3d planeNorm = new Vector3d(0.0, 0.0, 1.0);
                 //2d coords for current click
                 double[] pos = {newClick[0].doubleValue(), newClick[1].doubleValue(), 1.0};
                 double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);

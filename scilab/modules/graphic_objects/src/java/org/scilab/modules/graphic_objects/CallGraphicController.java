@@ -15,28 +15,21 @@
 
 package org.scilab.modules.graphic_objects;
 
-import java.lang.reflect.Method;
-
 import org.scilab.modules.graphic_objects.console.Console;
-import org.scilab.modules.graphic_objects.converters.ObjectToScilabConverters;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectAccessTools;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectException;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectMethodFinder;
 import org.scilab.modules.graphic_objects.graphicView.ScilabView;
 import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
 
 /**
- * This is a static class to access all controller capabilities from C/C++ code
- * through JNI See SCI/modules/graphic_objects/src/jni/graphic_objects.giws.xml
- * for other details.
+ * This is a static class to access all controller capabilities
+ * from C/C++ code through JNI
+ * See SCI/modules/graphic_objects/src/jni/graphic_objects.giws.xml for other details.
  **/
 public final class CallGraphicController {
 
     public static void setGraphicObjectRelationship(int parentId, int childId) {
-        GraphicController.getController().setGraphicObjectRelationship(
-            parentId, childId);
+        GraphicController.getController().setGraphicObjectRelationship(parentId, childId);
     }
 
     public static void removeRelationShipAndDelete(int parentId) {
@@ -48,44 +41,34 @@ public final class CallGraphicController {
     }
 
     public static int askGraphicObject(int typeName) {
-        GraphicController controller = GraphicController.getController();
-        int obj = controller.askObject(GraphicObject.getTypeFromName(typeName));
-        controller.objectCreated(obj);
-        return obj;
+        return GraphicController.getController().askObject(GraphicObject.getTypeFromName(typeName));
     }
 
     public static void deleteGraphicObject(int id) {
         GraphicController.getController().deleteObject(id);
     }
 
-    private static boolean setGraphicObjectProperty(int id, int propertyName,
-            Object value) {
-        return GraphicController.getController().setProperty(id, propertyName,
-                value);
+    private static boolean setGraphicObjectProperty(int id, int propertyName, Object value) {
+        return GraphicController.getController().setProperty(id, propertyName, value);
     }
 
     private static Object getGraphicObjectProperty(int id, int propertyName) {
         return GraphicController.getController().getProperty(id, propertyName);
     }
 
-    public static boolean setGraphicObjectProperty(int id, int propertyName,
-            String value) {
+    public static boolean setGraphicObjectProperty(int id, int propertyName, String value) {
         return setGraphicObjectProperty(id, propertyName, (Object) value);
     }
 
-    public static boolean setGraphicObjectProperty(int id, int propertyName,
-            String[] value) {
+    public static boolean setGraphicObjectProperty(int id, int propertyName, String[] value) {
         return setGraphicObjectProperty(id, propertyName, (Object) value);
     }
 
-    public static boolean setGraphicObjectProperty(int id, int propertyName,
-            double value) {
-        return setGraphicObjectProperty(id, propertyName, (Object) new Double(
-                                            value));
+    public static boolean setGraphicObjectProperty(int id, int propertyName, double value) {
+        return setGraphicObjectProperty(id, propertyName, (Object) new Double(value));
     }
 
-    public static boolean setGraphicObjectProperty(int id, int propertyName,
-            double[] value) {
+    public static boolean setGraphicObjectProperty(int id, int propertyName, double[] value) {
         Double[] array = new Double[value.length];
 
         for (int i = 0; i < value.length; i++) {
@@ -95,14 +78,12 @@ public final class CallGraphicController {
         return setGraphicObjectProperty(id, propertyName, (Object) array);
     }
 
-    public static boolean setGraphicObjectProperty(int id, int propertyName,
-            int value) {
-        return setGraphicObjectProperty(id, propertyName, (Object) new Integer(
-                                            value));
+
+    public static boolean setGraphicObjectProperty(int id, int propertyName, int value) {
+        return setGraphicObjectProperty(id, propertyName, (Object) new Integer(value));
     }
 
-    public static boolean setGraphicObjectProperty(int id, int propertyName,
-            int[] value) {
+    public static boolean setGraphicObjectProperty(int id, int propertyName, int[] value) {
         Integer[] array = new Integer[value.length];
 
         for (int i = 0; i < value.length; i++) {
@@ -112,14 +93,11 @@ public final class CallGraphicController {
         return setGraphicObjectProperty(id, propertyName, (Object) array);
     }
 
-    public static boolean setGraphicObjectProperty(int id, int propertyName,
-            boolean value) {
-        return setGraphicObjectProperty(id, propertyName, (Object) new Boolean(
-                                            value));
+    public static boolean setGraphicObjectProperty(int id, int propertyName, boolean value) {
+        return setGraphicObjectProperty(id, propertyName, (Object) new Boolean(value));
     }
 
-    public static boolean setGraphicObjectProperty(int id, int propertyName,
-            boolean[] value) {
+    public static boolean setGraphicObjectProperty(int id, int propertyName, boolean[] value) {
         Boolean[] array = new Boolean[value.length];
 
         for (int i = 0; i < value.length; i++) {
@@ -129,18 +107,15 @@ public final class CallGraphicController {
         return setGraphicObjectProperty(id, propertyName, (Object) array);
     }
 
-    public static String getGraphicObjectPropertyAsString(int id,
-            int propertyName) {
+    public static String getGraphicObjectPropertyAsString(int id, int propertyName) {
         return (String) getGraphicObjectProperty(id, propertyName);
     }
 
-    public static String[] getGraphicObjectPropertyAsStringVector(int id,
-            int propertyName) {
+    public static String[] getGraphicObjectPropertyAsStringVector(int id, int propertyName) {
         return (String[]) getGraphicObjectProperty(id, propertyName);
     }
 
-    public static double[] getGraphicObjectPropertyAsDoubleVector(int id,
-            int propertyName) {
+    public static double[] getGraphicObjectPropertyAsDoubleVector(int id, int propertyName) {
         Object ret = getGraphicObjectProperty(id, propertyName);
         double[] result = null;
 
@@ -156,14 +131,13 @@ public final class CallGraphicController {
                 result[i] = tmp[i];
             }
         } else if (ret instanceof Double) {
-            result = new double[] { (Double) ret };
+            result = new double[] { (Double) ret};
         }
 
         return result;
     }
 
-    public static int[] getGraphicObjectPropertyAsIntegerVector(int id,
-            int propertyName) {
+    public static int[] getGraphicObjectPropertyAsIntegerVector(int id, int propertyName) {
         Object ret = getGraphicObjectProperty(id, propertyName);
         int[] result = null;
 
@@ -179,14 +153,13 @@ public final class CallGraphicController {
                 result[i] = tmp[i] == null ? 0 : tmp[i];
             }
         } else if (ret instanceof Integer) {
-            result = new int[] { (Integer) ret };
+            result = new int[] { (Integer) ret};
         }
 
         return result;
     }
 
-    public static int[] getGraphicObjectPropertyAsBooleanVector(int id,
-            int propertyName) {
+    public static int[] getGraphicObjectPropertyAsBooleanVector(int id, int propertyName) {
         Object ret = getGraphicObjectProperty(id, propertyName);
         int[] result = null;
 
@@ -195,14 +168,13 @@ public final class CallGraphicController {
         }
 
         if (ret instanceof Boolean[]) {
-            Boolean[] tmp = (Boolean[]) getGraphicObjectProperty(id,
-                            propertyName);
+            Boolean[] tmp = (Boolean[]) getGraphicObjectProperty(id, propertyName);
             result = new int[tmp.length];
             for (int i = 0; i < result.length; i++) {
                 result[i] = tmp[i] ? 1 : 0;
             }
         } else if (ret instanceof Boolean) {
-            result = new int[] { ((Boolean) ret) ? 1 : 0 };
+            result = new int[] { ((Boolean) ret) ? 1 : 0};
         }
 
         return result;
@@ -213,8 +185,7 @@ public final class CallGraphicController {
     }
 
     public static void unregisterScilabView() {
-        GraphicController.getController()
-        .unregister(ScilabView.getScilabView());
+        GraphicController.getController().unregister(ScilabView.getScilabView());
     }
 
     public static int getConsoleIdentifier() {
@@ -223,52 +194,5 @@ public final class CallGraphicController {
 
     public static void buildFigureMenuBar(int figureId) {
         MenuBarBuilder.buildFigureMenuBar(figureId);
-    }
-
-    public static int getPropertyHandler() {
-        return GraphicController.getPropertyHandler();
-    }
-
-    public static boolean runSetProperty(int id) {
-        return GraphicController.getController().runSetProperty(id);
-    }
-
-    public static void cleanSetProperty() {
-        GraphicController.getController().cleanSetProperty();
-    }
-
-    public static String[] getPropertyLastError() {
-        String[] errors = new String[2];
-        errors[0] = GraphicController.getLastProp();
-        errors[1] = GraphicController.getLastError();
-        return errors;
-    }
-
-    public static int getProperty(int id, String propName, int stackPos) {
-        try {
-            GraphicObject modelObj = GraphicController.getController().getObjectFromId(id);
-            if (modelObj == null) {
-                return 3;
-            }
-
-            Class <? extends GraphicObject > clazzModel = modelObj.getClass();
-            String methodNameModel = GraphicObjectAccessTools.getGetterName(propName);
-            Method methodModel = GraphicObjectMethodFinder.findGetter(methodNameModel, clazzModel);
-            if (methodModel == null) {
-                methodNameModel = GraphicObjectAccessTools.getIsGetterName(propName);
-                methodModel = GraphicObjectMethodFinder.findGetter(methodNameModel, clazzModel);
-                if (methodModel == null) {
-                    return 2;
-                }
-            }
-
-            Object value = GraphicObjectAccessTools.invokeGetter(methodModel, modelObj);
-            ObjectToScilabConverters.putOnScilabStack(value, stackPos);
-        } catch (GraphicObjectException e) {
-            e.printStackTrace();
-            return 1;
-        }
-
-        return 0;
     }
 }

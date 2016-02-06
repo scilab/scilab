@@ -14,12 +14,10 @@
  */
 package org.scilab.modules.gui.editor.action;
 
+import org.scilab.modules.gui.editor.action.BaseAction;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.legend.Legend;
-import org.scilab.modules.graphic_objects.utils.LegendLocation;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.gui.editor.LegendHandler;
 
 /**
@@ -50,6 +48,7 @@ public class ActionLegend extends BaseAction {
     * @param pos The legend position
     */
     public ActionLegend(Integer parent, Integer[] links, String[] text, Double[] pos) {
+
         super(null, parent);
         if ( links != null ) {
             oldLinks = new Integer[links.length];
@@ -59,13 +58,10 @@ public class ActionLegend extends BaseAction {
                 oldText[i] = text[i];
             }
         }
-
-        GraphicController controller = GraphicController.getController();
-
         objectUID = LegendHandler.searchLegend(parent);
         if (objectUID != null) {
-            newLinks = (Integer[])controller.getProperty(objectUID, GraphicObjectProperties.__GO_LINKS__);
-            newText = (String[])controller.getProperty(objectUID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+            newLinks = (Integer[])GraphicController.getController().getProperty(objectUID, GraphicObjectProperties.__GO_LINKS__);
+            newText = (String[])GraphicController.getController().getProperty(objectUID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
         }
         if (pos != null) {
             position = new Double[2];
@@ -80,35 +76,31 @@ public class ActionLegend extends BaseAction {
     * Undo, set the legend links to the old ones, if the old ones are null then remove the legend
     */
     public void undo() {
-        GraphicController controller = GraphicController.getController();
+
         objectUID = LegendHandler.searchLegend(parentUID);
-
-        //        if (position == null) {
-        //            position = (Double[])controller.getProperty(objectUID, GraphicObjectProperties.__GO_POSITION__);
-        //        }
-
+        if (position == null) {
+            position = (Double[])GraphicController.getController().getProperty(objectUID, GraphicObjectProperties.__GO_POSITION__);
+        }
         if (objectUID == null) {
-            objectUID = controller.askObject(Type.LEGEND);
-            Legend legend = (Legend) controller.getObjectFromId(objectUID);
+            objectUID = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LEGEND__));
             Integer[] dimension = {oldLinks.length, 1};
-            legend.setTextArrayDimensions(dimension);
-            legend.setLineMode(true);
-            legend.setTextWithoutResize(newText);
-            legend.setLinks(newLinks);
-            legend.setLegendLocation(LegendLocation.BY_COORDINATES);
-            legend.setPosition(position);
-            controller.objectCreated(objectUID);
+            GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, dimension);
+            GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LINE_MODE__, true);
+            GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_TEXT_STRINGS__, oldText);
+            GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LINKS__, oldLinks);
+            GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 10);
+            GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_POSITION__, position);
             setRelation(objectUID, parentUID);
         } else {
             if (oldLinks == null) {
-                controller.removeRelationShipAndDelete(objectUID);
+                GraphicController.getController().removeRelationShipAndDelete(objectUID);
             } else {
                 Integer[] dimension = {oldLinks.length, 1};
-                controller.setProperty(objectUID, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, dimension);
-                controller.setProperty(objectUID, GraphicObjectProperties.__GO_TEXT_STRINGS__, oldText);
-                controller.setProperty(objectUID, GraphicObjectProperties.__GO_LINKS__, oldLinks);
-                controller.setProperty(objectUID, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 10);
-                controller.setProperty(objectUID, GraphicObjectProperties.__GO_POSITION__, position);
+                GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, dimension);
+                GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_TEXT_STRINGS__, oldText);
+                GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LINKS__, oldLinks);
+                GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 10);
+                GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_POSITION__, position);
             }
         }
     }
@@ -117,36 +109,31 @@ public class ActionLegend extends BaseAction {
     * Redo, set the legend links to the new ones, if the new ones are null then remove the legend
     */
     public void redo() {
-        GraphicController controller = GraphicController.getController();
+
         objectUID = LegendHandler.searchLegend(parentUID);
-
-        //		if (position == null) {
-        //			position = (Double[]) controller.getProperty(objectUID, GraphicObjectProperties.__GO_POSITION__);
-        //		}
-
+        if (position == null) {
+            position = (Double[])GraphicController.getController().getProperty(objectUID, GraphicObjectProperties.__GO_POSITION__);
+        }
         if (objectUID == null) {
-            objectUID = controller.askObject(Type.LEGEND);
-            Legend legend = (Legend) controller.getObjectFromId(objectUID);
-
+            objectUID = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_LEGEND__));
             Integer[] dimension = {newLinks.length, 1};
-            legend.setTextArrayDimensions(dimension);
-            legend.setLineMode(true);
-            legend.setTextWithoutResize(newText);
-            legend.setLinks(newLinks);
-            legend.setLegendLocation(LegendLocation.BY_COORDINATES);
-            legend.setPosition(position);
-            controller.objectCreated(objectUID);
+            GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, dimension);
+            GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LINE_MODE__, true);
+            GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_TEXT_STRINGS__, newText);
+            GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LINKS__, newLinks);
+            GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 10);
+            GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_POSITION__, position);
             setRelation(objectUID, parentUID);
         } else {
             if (newLinks == null) {
-                controller.removeRelationShipAndDelete(objectUID);
+                GraphicController.getController().removeRelationShipAndDelete(objectUID);
             } else {
                 Integer[] dimension = {newLinks.length, 1};
-                controller.setProperty(objectUID, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, dimension);
-                controller.setProperty(objectUID, GraphicObjectProperties.__GO_TEXT_STRINGS__, newText);
-                controller.setProperty(objectUID, GraphicObjectProperties.__GO_LINKS__, newLinks);
-                controller.setProperty(objectUID, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 10);
-                controller.setProperty(objectUID, GraphicObjectProperties.__GO_POSITION__, position);
+                GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__, dimension);
+                GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_TEXT_STRINGS__, newText);
+                GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LINKS__, newLinks);
+                GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_LEGEND_LOCATION__, 10);
+                GraphicController.getController().setProperty(objectUID, GraphicObjectProperties.__GO_POSITION__, position);
             }
         }
     }

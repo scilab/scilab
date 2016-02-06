@@ -286,20 +286,6 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
         nb_tics_labels = opts[8].iRows * opts[8].iCols;
     }
 
-    // adjust argument to model
-    // up -> top
-    // down -> bottom
-
-    if (dir == 'u')
-    {
-        dir = 't';
-    }
-
-    if (dir == 'd')
-    {
-        dir = 'b';
-    }
-
     Objdrawaxis(dir, tics, x, &nx, y, &ny, val, sub_int, format, fontsize, textcolor, ticscolor, 'n', seg_flag, nb_tics_labels);
 
     createScalarHandle(pvApiCtx, iRhs + 1, getHandle(getCurrentObject()));

@@ -31,22 +31,6 @@ extern "C"
 #include "GetScilabVariable.h"
 }
 
-#ifndef GIWSEXPORT
-# if defined(_MSC_VER) || defined(__WIN32__) || defined(__CYGWIN__)
-#   if defined(STATIC_LINKED)
-#     define GIWSEXPORT
-#   else
-#     define GIWSEXPORT __declspec(dllexport)
-#   endif
-# else
-#   if __GNUC__ >= 4
-#     define GIWSEXPORT __attribute__ ((visibility ("default")))
-#   else
-#     define GIWSEXPORT
-#   endif
-# endif
-#endif
-
 using namespace org_scilab_modules_types;
 
 namespace org_modules_types
@@ -82,7 +66,7 @@ class ScilabToJava
      * @return the double dimension matrix
      */
     template<typename T>
-    static T ** getMatrix(const int row, const int col, T * data, const bool swaped);
+    static T ** getMatrix(int row, int col, T * data, bool swaped);
 
     /**
      * Get a double dimension matrix from a one dimension one
@@ -98,7 +82,7 @@ class ScilabToJava
      * @return the double dimension matrix
      */
     template<typename T, typename U>
-    static T ** getConvertedMatrix(const int row, const int col, U * data, const bool swaped);
+    static T ** getConvertedMatrix(int row, int col, U * data, bool swaped);
 
     /**
      * Convert a single row matrix into a double dimension one
@@ -108,7 +92,7 @@ class ScilabToJava
      * @return the double dimension matrix
      */
     template<typename T>
-    static T ** convertMatrix(const int row, const int col, T * data);
+    static T ** convertMatrix(int row, int col, T * data);
 
     /**
      * Delete a matrix previously created with getMatrix or getConvertedMatrix
@@ -119,23 +103,21 @@ class ScilabToJava
      * @param swaped true if the matrix is stored row by row
      */
     template<typename T>
-    static void deleteMatrix(T ** data, const bool swaped);
-
-public :
+    static void deleteMatrix(T ** data, bool swaped);
 
     /**
      * Send the list items
      *
      * @param name the variable name
-     * @param nbItems the number of items
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param addr the address of the variable in the Scilab stack
-     * @param swaped true if the matrix is stored row by row
+    * @param nbItems the number of items
+           * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
+           * @param addr the address of the variable in the Scilab stack
+           * @param swaped true if the matrix is stored row by row
      * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     * @param pvApiCtx a pointer to the context
-     */
-    GIWSEXPORT static bool sendItems(const std::string & name, const int nbItems, std::vector<int> & indexes, int * addr, const bool swaped, const bool byref, const int handlerId, void * pvApiCtx);
+           * @param handlerId the handler id
+           * @param pvApiCtx a pointer to the context
+           */
+    static bool sendItems(const std::string & name, const int nbItems, std::vector<int> & indexes, int * addr, bool swaped, bool byref, int handlerId, void * pvApiCtx);
 
     /**
      * Send a variable in the Java environment
@@ -144,11 +126,11 @@ public :
      * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
      * @param addr the address of the variable in the Scilab stack
      * @param swaped true if the matrix is stored row by row
-     * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     * @param pvApiCtx a pointer to the context
-     */
-    GIWSEXPORT static bool sendVariable(const std::string & name, std::vector<int> & indexes, int * addr, const bool swaped, const bool byref, const int handlerId, void * pvApiCtx);
+    * @param byref true if the variable is passed by reference
+           * @param handlerId the handler id
+           * @param pvApiCtx a pointer to the context
+           */
+    static bool sendVariable(const std::string & name, std::vector<int> & indexes, int * addr, bool swaped, bool byref, int handlerId, void * pvApiCtx);
 
     /**
      * Send a list or a tlist or mlist in the Java environment
@@ -156,10 +138,10 @@ public :
      * @param name the variable name
      * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
      * @param type a char with the value 'l' or 'm' or 't'
-     * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     */
-    GIWSEXPORT static void sendVariable(const std::string & name, const int nbItems, std::vector<int> & indexes, const char type, const bool byref, const int handlerId);
+    * @param byref true if the variable is passed by reference
+           * @param handlerId the handler id
+           */
+    static void sendVariable(const std::string & name, const int nbItems, std::vector<int> & indexes, char type, bool byref, int handlerId);
 
     /**
      * Close a list or a tlist or mlist in the Java environment
@@ -167,7 +149,7 @@ public :
      * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
      * @param handlerId the handler id
      */
-    GIWSEXPORT static void closeList(std::vector<int> & indexes, const int handlerId);
+    static void closeList(std::vector<int> & indexes, int handlerId);
 
     /**
      * Send double sparse matrix
@@ -181,11 +163,11 @@ public :
      * @param row the row number
      * @param col the col number
      * @param data the data
-     * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     */
+    * @param byref true if the variable is passed by reference
+           * @param handlerId the handler id
+           */
     template<typename T>
-    GIWSEXPORT static void sendVariable(const std::string & name, std::vector<int> & indexes, const int nbItem, int * nbItemRow, int * colPos, const int row, const int col, T * data, const bool byref, const int handlerId);
+    static void sendVariable(const std::string & name, std::vector<int> & indexes, int nbItem, int * nbItemRow, int * colPos, int row, int col, T * data, bool byref, int handlerId);
 
     /**
      * Send double, int* and uint64 matrices
@@ -197,11 +179,11 @@ public :
      * @param col the col number
      * @param data the data
      * @param swaped true if the matrix is stored row by row
-     * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     */
+    * @param byref true if the variable is passed by reference
+           * @param handlerId the handler id
+           */
     template<typename T>
-    GIWSEXPORT static void sendVariable(const std::string & name, std::vector<int> & indexes, const int row, const int col, T * data, const bool swaped, const bool byref, const int handlerId);
+    static void sendVariable(const std::string & name, std::vector<int> & indexes, int row, int col, T * data, bool swaped, bool byref, int handlerId);
 
     /**
      * Send String matrices
@@ -212,10 +194,10 @@ public :
      * @param col the col number
      * @param data the data
      * @param swaped true if the matrix is stored row by row
-     * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     */
-    GIWSEXPORT static void sendStringVariable(const std::string & name, std::vector<int> & indexes, const int row, const int col, char ** data, const bool swaped, const bool byref, const int handlerId);
+    * @param byref true if the variable is passed by reference
+           * @param handlerId the handler id
+           */
+    static void sendStringVariable(const std::string & name, std::vector<int> & indexes, int row, int col, char ** data, bool swaped, bool byref, int handlerId);
 
     /**
      * Send boolean sparse matrix
@@ -227,10 +209,10 @@ public :
      * @param colPos the column position of the true elements
      * @param row the row number
      * @param col the col number
-     * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     */
-    GIWSEXPORT static void sendBooleanSparseVariable(const std::string & name, std::vector<int> & indexes, const int nbItem, int * nbItemRow, int * colPos, const int row, const int col, const bool byref, const int handlerId);
+    * @param byref true if the variable is passed by reference
+           * @param handlerId the handler id
+           */
+    static void sendBooleanSparseVariable(const std::string & name, std::vector<int> & indexes, int nbItem, int * nbItemRow, int * colPos, int row, int col, bool byref, int handlerId);
 
     /**
      * Send uint* matrices (datas are converted to have the good Java type)
@@ -246,7 +228,7 @@ public :
      * @param handlerId the handler id
      */
     template<typename T, typename U>
-    GIWSEXPORT static void sendUnsignedVariableWithCast(const std::string & name, std::vector<int> & indexes, const int row, const int col, U * data, const bool swaped, const int handlerId);
+    static void sendUnsignedVariableWithCast(const std::string & name, std::vector<int> & indexes, int row, int col, U * data, bool swaped, int handlerId);
 
     /**
      * Send uint* matrices
@@ -258,11 +240,11 @@ public :
      * @param col the col number
      * @param data the data
      * @param swaped true if the matrix is stored row by row
-     * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     */
+    * @param byref true if the variable is passed by reference
+           * @param handlerId the handler id
+           */
     template<typename T>
-    GIWSEXPORT static void sendUnsignedVariable(const std::string & name, std::vector<int> & indexes, const int row, const int col, T * data, const bool swaped, const bool byref, const int handlerId);
+    static void sendUnsignedVariable(const std::string & name, std::vector<int> & indexes, int row, int col, T * data, bool swaped, bool byref, int handlerId);
 
     /**
      * Send boolean matrix (data are converted from int to bool)
@@ -273,10 +255,10 @@ public :
      * @param col the col number
      * @param data the data
      * @param swaped true if the matrix is stored row by row
-     * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     */
-    GIWSEXPORT static void sendConvertedBooleanVariable(const std::string & name, std::vector<int> & indexes, const int row, const int col, int * data, const bool swaped, const bool byref, const int handlerId);
+    * @param byref true if the variable is passed by reference
+           * @param handlerId the handler id
+           */
+    static void sendConvertedBooleanVariable(const std::string & name, std::vector<int> & indexes, int row, int col, int * data, bool swaped, bool byref, int handlerId);
 
     /**
      * Send complex sparse matrix
@@ -291,11 +273,11 @@ public :
      * @param col the col number
      * @param real the real data
      * @param img the imaginary data
-     * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     */
+    * @param byref true if the variable is passed by reference
+           * @param handlerId the handler id
+           */
     template<typename T>
-    GIWSEXPORT static void sendVariable(const std::string & name, std::vector<int> & indexes, const int nbItem, int * nbItemRow, int * colPos, const int row, const int col, T * real, T * img, const bool byref, const int handlerId);
+    static void sendVariable(const std::string & name, std::vector<int> & indexes, int nbItem, int * nbItemRow, int * colPos, int row, int col, T * real, T * img, bool byref, int handlerId);
 
     /**
      * Send complex matrices
@@ -308,11 +290,11 @@ public :
      * @param real the real data
      * @param img the imaginary data
      * @param swaped true if the matrix is stored row by row
-     * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     */
+    * @param byref true if the variable is passed by reference
+           * @param handlerId the handler id
+           */
     template<typename T>
-    GIWSEXPORT static void sendVariable(const std::string & name, std::vector<int> & indexes, const int row, const int col, T * real, T * img, const bool swaped, const bool byref, const int handlerId);
+    static void sendVariable(const std::string & name, std::vector<int> & indexes, int row, int col, T * real, T * img, bool swaped, bool byref, int handlerId);
 
     /**
      * Send double polynomial matrices
@@ -325,11 +307,11 @@ public :
      * @param nbcoeff the number of coefficient of each polynomial
      * @param data the data
      * @param swaped true if the matrix is stored row by row
-     * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     */
+    * @param byref true if the variable is passed by reference
+           * @param handlerId the handler id
+           */
     template<typename T>
-    GIWSEXPORT static void sendVariable(const std::string & name, std::vector<int> & indexes, const char * varName, const int row, const int col, int * nbcoeff, T ** data, const bool swaped, const bool byref, const int handlerId);
+    static void sendVariable(const std::string & name, std::vector<int> & indexes, const char * varName, int row, int col, int * nbcoeff, T ** data, bool swaped, bool byref, int handlerId);
 
     /**
      * Send complex polynomial matrices
@@ -343,30 +325,18 @@ public :
      * @param real the real data
      * @param img the imaginary data
      * @param swaped true if the matrix is stored row by row
-     * @param byref true if the variable is passed by reference
-     * @param handlerId the handler id
-     */
+    * @param byref true if the variable is passed by reference
+           * @param handlerId the handler id
+           */
     template<typename T>
-    GIWSEXPORT static void sendVariable(const std::string & name, std::vector<int> & indexes, const char * varName, const int row, const int col, int * nbcoeff, T ** real, T ** img, const bool swaped, const bool byref, const int handlerId);
+    static void sendVariable(const std::string & name, std::vector<int> & indexes, const char * varName, int row, int col, int * nbcoeff, T ** real, T ** img, bool swaped, bool byref, int handlerId);
 
-    /**
-     * Send handle matrices
-     *
-     * @param T the type of the data
-     * @param name the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
-     * @param row the row number
-     * @param col the col number
-     * @param data the data
-     * @param swaped true if the matrix is stored row by row
-     * @param handlerId the handler id
-     */
-    GIWSEXPORT static void sendHandleVariable(const std::string & name, std::vector<int> & indexes, const int row, const int col, long long * data, const bool swaped, const bool byref, const int handlerId);
+public :
 
     /**
      * Send all the listened variables
      */
-    GIWSEXPORT static void sendAllListenedVariables();
+    static void sendAllListenedVariables();
 
     /**
      * Send a Scilab variable to the Java environment
@@ -376,7 +346,7 @@ public :
      * @param handlerId the handler id
      * @return true if all was ok
      */
-    GIWSEXPORT static bool sendVariable(const std::string & name, const bool swaped, const int handlerId);
+    static bool sendVariable(const std::string & name, bool swaped, int handlerId);
 
     /**
      * Send a Scilab variable to the Java environment as a reference when it is possible
@@ -385,7 +355,7 @@ public :
      * @param handlerId the handler id
      * @return true if all was ok
      */
-    GIWSEXPORT static bool sendVariableAsReference(const std::string & name, const int handlerId);
+    static bool sendVariableAsReference(const std::string & name, int handlerId);
 
     /**
      * Send a Scilab variable to the Java environment
@@ -397,7 +367,7 @@ public :
      * @param pvApiCtx a pointer to the context
      * @return true if all was ok
      */
-    GIWSEXPORT static bool sendVariable(const std::string & name, int * addr, const bool swaped, const int handlerId, void * pvApiCtx);
+    static bool sendVariable(const std::string & name, int * addr, bool swaped, int handlerId, void * pvApiCtx);
 };
 }
 

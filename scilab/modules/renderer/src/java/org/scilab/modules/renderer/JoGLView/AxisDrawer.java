@@ -14,12 +14,6 @@
 
 package org.scilab.modules.renderer.JoGLView;
 
-import java.text.DecimalFormat;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.ruler.DefaultRulerModel;
 import org.scilab.forge.scirenderer.ruler.RulerDrawer;
@@ -32,11 +26,15 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
-import org.scilab.modules.graphic_objects.utils.TicksDirection;
-import org.scilab.modules.graphic_objects.utils.TicksStyle;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.FormattedTextSpriteDrawer;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
+
+import java.text.DecimalFormat;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Pierre Lando
@@ -74,17 +72,17 @@ public class AxisDrawer {
         double[] yMinAndMax;
         double[][] factors = axes.getScaleTranslateFactors();
 
-        if (axis.getXTicsCoord().length == 1) {
-            xTicksValues = axis.getXTicsCoord();
-            yTicksValues = decodeValue(axis.getYTicsCoord(), TicksStyle.enumToInt(axis.getTicsStyle()));
+        if (axis.getXTicksCoords().length == 1) {
+            xTicksValues = axis.getXTicksCoords();
+            yTicksValues = decodeValue(axis.getYTicksCoords(), axis.getTicksStyle());
             xMinAndMax = getMinAndMax(xTicksValues);
             yMinAndMax = getMinAndMax(yTicksValues);
             min = yMinAndMax[0];
             max = yMinAndMax[1];
             rulerModel.setUserGraduation(new AxisGraduation(axis, yTicksValues, yMinAndMax));
         } else {
-            xTicksValues = decodeValue(axis.getXTicsCoord(), TicksStyle.enumToInt(axis.getTicsStyle()));
-            yTicksValues = axis.getYTicsCoord();
+            xTicksValues = decodeValue(axis.getXTicksCoords(), axis.getTicksStyle());
+            yTicksValues = axis.getYTicksCoords();
             xMinAndMax = getMinAndMax(xTicksValues);
             yMinAndMax = getMinAndMax(yTicksValues);
             min = xMinAndMax[0];
@@ -104,11 +102,11 @@ public class AxisDrawer {
         rulerModel.setAutoTicks(false);
         rulerModel.setFirstValue(0);
         rulerModel.setSecondValue(1);
-        rulerModel.setLineVisible(axis.getTicsSegment());
-        rulerModel.setColor(ColorFactory.createColor(drawerVisitor.getColorMap(), axis.getTicsColor()));
+        rulerModel.setLineVisible(axis.getTicksSegment());
+        rulerModel.setColor(ColorFactory.createColor(drawerVisitor.getColorMap(), axis.getTicksColor()));
 
         rulerModel.setPoints(start, end);
-        rulerModel.setTicksDirection(computeTicksDirection(axis.getTicsDirection()));
+        rulerModel.setTicksDirection(computeTicksDirection(axis.getTicksDirectionAsEnum()));
 
         DrawingTools drawingTools = drawerVisitor.getDrawingTools();
 
@@ -175,7 +173,7 @@ public class AxisDrawer {
      * @param direction the ticks direction as an {@see Axis.TicksDirection}
      * @return the ticks direction in scene coordinate.
      */
-    private Vector3d computeTicksDirection(TicksDirection direction) {
+    private Vector3d computeTicksDirection(Axis.TicksDirection direction) {
         switch (direction) {
             case TOP:
                 return new Vector3d(0, +1, 0);
@@ -198,7 +196,7 @@ public class AxisDrawer {
             super(0., 1.);
             this.axis = axis;
             allValues = computeValue(ticksCoordinate, minAndMax);
-            subTicksValue = computeSubValue(allValues, axis.getSubtics());
+            subTicksValue = computeSubValue(allValues, axis.getSubticks());
         }
 
 
@@ -321,7 +319,7 @@ public class AxisDrawer {
 
         @Override
         public int getSubDensity() {
-            return axis.getSubtics();
+            return axis.getSubticks();
         }
     }
 
@@ -364,7 +362,7 @@ public class AxisDrawer {
         private String getLabel(double value) {
             // 0 <= value <= 1
             // Should find right index through given labels.
-            String[] ticksLabel = axis.getTicsLabels();
+            String[] ticksLabel = axis.getTicksLabels();
             int index = (int) Math.round(value * (ticksLabel.length - 1));
             if ((index < 0) || (index > ticksLabel.length) || ticksLabel.length == 0) {
                 return null;

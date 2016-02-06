@@ -31,7 +31,6 @@
 #include "createGraphicObject.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
-#include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xname(char *fname, void *pvApiCtx)

@@ -14,7 +14,7 @@
 
 package org.scilab.modules.renderer.JoGLView.label;
 
-import org.scilab.modules.graphic_objects.utils.ViewType;
+import org.scilab.modules.graphic_objects.axes.Camera;
 
 /**
  * YAxisLabelPositioner class.
@@ -41,7 +41,7 @@ public class YAxisLabelPositioner extends AxisLabelPositioner {
      * @return the rotation angle.
      */
     protected double getAutoRotationAngle() {
-        if (parentAxes != null && parentAxes.getView() == ViewType.VIEW_3D) {
+        if (parentAxes != null && parentAxes.getViewAsEnum() == Camera.ViewType.VIEW_3D) {
             return 0.0;
         } else {
             return 270.0;

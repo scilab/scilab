@@ -15,19 +15,13 @@
 
 package org.scilab.modules.graphic_objects.vectfield;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE_X__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BASE_Y__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BOUNDING_BOX__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHAMP_DIMENSIONS__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLORED__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MAX_LENGTH__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MAX_USABLE_LENGTH__;
-
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.utils.ClipStateType;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 import org.scilab.modules.graphic_objects.utils.Utils;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Champ class
@@ -52,7 +46,6 @@ public class Champ extends VectField {
         dimensions = new int[2];
         dimensions[0] = 0;
         dimensions[1] = 0;
-        setClipState(ClipStateType.CLIPGRF);
     }
 
     @Override
@@ -233,7 +226,7 @@ public class Champ extends VectField {
     /**
      * @param colored the colored to set
      */
-    public UpdateStatus setColored(boolean colored) {
+    public UpdateStatus setColored(Boolean colored) {
         this.colored = colored;
         return UpdateStatus.Success;
     }

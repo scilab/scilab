@@ -61,8 +61,8 @@ public class Uimenu extends GraphicObject {
      */
     public Uimenu() {
         super();
-        setCallbackstring("");
-        setCallbacktype(0);
+        setCallbackString("");
+        setCallbackType(0);
     }
 
     /**

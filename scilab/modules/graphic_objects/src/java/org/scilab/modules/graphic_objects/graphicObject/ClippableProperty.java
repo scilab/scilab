@@ -17,7 +17,6 @@
 package org.scilab.modules.graphic_objects.graphicObject;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
-import org.scilab.modules.graphic_objects.utils.ClipStateType;
 
 /**
  * ClippableProperty class
@@ -26,6 +25,29 @@ import org.scilab.modules.graphic_objects.utils.ClipStateType;
 public class ClippableProperty {
     /** ClippableProperty properties */
     public enum ClippablePropertyType { CLIPSTATE, CLIPBOX, CLIPBOXSET };
+
+    /** Indicates how clipping is performed */
+    public static enum ClipStateType { OFF, CLIPGRF, ON;
+
+                                       /**
+                                        * Converts an integer to the corresponding enum
+                                        * @param intValue the integer value
+                                        * @return the clip state type enum
+                                        */
+    public static ClipStateType intToEnum(Integer intValue) {
+        switch (intValue) {
+            case 0:
+                return ClipStateType.OFF;
+            case 1:
+                return ClipStateType.CLIPGRF;
+            case 2:
+                return ClipStateType.ON;
+            default:
+                return null;
+        }
+    }
+
+                                     }
 
     /** Clipping state */
     private ClipStateType clipState;

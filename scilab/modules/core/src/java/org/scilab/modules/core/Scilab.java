@@ -189,7 +189,6 @@ public class Scilab {
             ConfigManager.createUserCopy();
 
             Integer consoleId = GraphicController.getController().askObject(Type.JAVACONSOLE);
-            GraphicController.getController().objectCreated(consoleId);
             MenuBarBuilder.buildConsoleMenuBar(consoleId);
 
             SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());

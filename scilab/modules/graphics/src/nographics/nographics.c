@@ -125,15 +125,15 @@ char **getStringMatrixFromStack(size_t stackPointer)
 }
 
 /*--------------------------------------------------------------------------*/
-int createText(int pparentsubwinUID,
-               char **text,
-               int nbRow,
-               int nbCol,
-               double x,
-               double y,
-               BOOL autoSize,
-               double userSize[2],
-               int centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
+int allocateText(int pparentsubwinUID,
+                 char **text,
+                 int nbRow,
+                 int nbCol,
+                 double x,
+                 double y,
+                 BOOL autoSize,
+                 double userSize[2],
+                 int centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
 {
     return NULL;
 }

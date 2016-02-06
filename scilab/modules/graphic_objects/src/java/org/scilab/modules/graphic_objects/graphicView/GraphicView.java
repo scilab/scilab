@@ -28,14 +28,6 @@ public interface GraphicView extends EventListener {
 
     /**
      * Notify an object with ID : id
-     * has been updated.
-     * @param id
-     * @param value TODO
-     */
-    void updateObject(Integer id, String property);
-
-    /**
-     * Notify an object with ID : id
      * has been created.
      * @param id
      */

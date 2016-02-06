@@ -269,7 +269,7 @@ public class DragZoomRotateInteraction extends FigureInteraction {
             int dy = e.getY() - previousEvent.getY();
 
             if (currentAxes != null) {
-                if (currentAxes.getZoomEnable()) {
+                if (currentAxes.getZoomEnabled()) {
                     Double[] bounds = currentAxes.getDisplayedBounds();
 
                     Integer[] winSize = (Integer[]) GraphicController.getController().getProperty(currentAxes.getParent(), GraphicObjectProperties.__GO_AXES_SIZE__);

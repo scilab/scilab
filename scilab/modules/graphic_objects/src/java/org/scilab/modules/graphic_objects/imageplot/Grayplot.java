@@ -15,12 +15,13 @@
 
 package org.scilab.modules.graphic_objects.imageplot;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATA_MAPPING__;
-
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.utils.DataMapping;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+
 /**
  * Grayplot class
  * @author Manuel JULIACHS
@@ -29,6 +30,26 @@ public class Grayplot extends Imageplot {
     /* TBD: properties relative to the data model */
     /** Grayplot properties names */
     private enum GrayplotProperty { DATAMAPPING };
+
+    /** Data mapping */
+    private enum DataMapping { SCALED, DIRECT;
+
+                               /**
+                                * Converts an integer to the corresponding enum
+                                * @param intValue the integer value
+                                * @return the data mapping enum
+                                */
+    public static DataMapping intToEnum(Integer intValue) {
+        switch (intValue) {
+            case 0:
+                return DataMapping.SCALED;
+            case 1:
+                return DataMapping.DIRECT;
+            default:
+                return null;
+        }
+    }
+                             }
 
     /** Specifies how colors are mapped to values */
     private DataMapping dataMapping;
@@ -78,7 +99,7 @@ public class Grayplot extends Imageplot {
      */
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == GrayplotProperty.DATAMAPPING) {
-            setDataMapping(DataMapping.intToEnum((Integer) value));
+            setDataMapping((Integer) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -89,14 +110,29 @@ public class Grayplot extends Imageplot {
     /**
      * @return the dataMapping
      */
-    public DataMapping getDataMapping() {
+    public Integer getDataMapping() {
+        return getDataMappingAsEnum().ordinal();
+    }
+
+    /**
+     * @return the dataMapping
+     */
+    public DataMapping getDataMappingAsEnum() {
         return dataMapping;
     }
 
     /**
      * @param dataMapping the dataMapping to set
      */
-    public UpdateStatus setDataMapping(DataMapping dataMapping) {
+    public UpdateStatus setDataMapping(Integer dataMapping) {
+        setDataMappingAsEnum(DataMapping.intToEnum(dataMapping));
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @param dataMapping the dataMapping to set
+     */
+    public UpdateStatus setDataMappingAsEnum(DataMapping dataMapping) {
         this.dataMapping = dataMapping;
         return UpdateStatus.Success;
     }
