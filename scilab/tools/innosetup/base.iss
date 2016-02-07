@@ -34,14 +34,11 @@ Source: etc\modules.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 Source: etc\logging.properties; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 ;
 ; root directory
-Source: RELEASE_NOTES*.*; DestDir: {app}; Components: {#COMPN_SCILAB}
-;
-Source: CHANGES*.*; DestDir: {app}; Components: {#COMPN_SCILAB}
+Source: CHANGES; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: COPYING; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: COPYING-BSD; DestDir: {app}; Components: {#COMPN_SCILAB}
+; (don't include README, as it's only about Unix)
 ;
-Source: Readme_Visual.txt; DestDir: {app}; Components: {#COMPN_SCILAB}
-Source: README_Windows.txt; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: ACKNOWLEDGEMENTS; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: Version.incl; DestDir: {app}; Components: {#COMPN_SCILAB}
 ;

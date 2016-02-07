@@ -35,7 +35,6 @@ AppVerName={#ScilabName}
 DefaultDirName={code:DefDirRoot}\{#ScilabBaseDirectory}
 DefaultGroupName={#ScilabName}
 SetupIconFile=tools\innosetup\scilab.ico
-;InfoAfterfile=README_Windows.txt
 LicenseFile=COPYING
 ChangesAssociations=yes
 WindowVisible=false

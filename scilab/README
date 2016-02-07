@@ -2,8 +2,6 @@
                                    ******
 
  ******************************************************************************
- INSTALLATION GUIDE
- ******************************************************************************
 
  0 - COPYRIGHT NOTICE
  ********************
@@ -21,9 +19,6 @@
  I - TO INSTALL SCILAB
  *********************
 
-
-  IF YOU HAVE A BINARY VERSION
-  ----------------------------
   Unpack Scilab and call the execution script:
   # ./bin/scilab
 
@@ -36,14 +31,8 @@
   For futher information: http://wiki.scilab.org/howto/install/linux
 
 
-  IF YOU HAVE A SOURCE VERSION
-  ----------------------------
-  Please see on our wiki:
-  http://wiki.scilab.org/Compiling_Scilab_5.x_under_GNU-Linux_Unix
-
-
-
  ******************************************************************************
+
  II - OTHER RESOURCES
  *******************************
 
