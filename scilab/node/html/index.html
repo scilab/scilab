@@ -80,19 +80,22 @@
         <div id='infobar'></div>
         </br>
             <textarea id='command'>
-f = createWindow();
-uicontrol("position", [50 50 100 40], "string", "+ 1", "callback", "v = eval(get(''num'', ''string''));set(''num'', ''string'', string(v + 1));");
-uicontrol("position", [170 50 100 40], "string", "0", "tag", "num");
-uicontrol("position", [290 50 100 40], "string", "- 1", "callback", "v = eval(get(''num'', ''string''));set(''num'', ''string'', string(v - 1));");
+if 0 then
+    f = createWindow();
+    uicontrol("position", [50 50 100 40], "string", "+ 1", "callback", "v = eval(get(''num'', ''string''));set(''num'', ''string'', string(v + 1));");
+    uicontrol("position", [170 50 100 40], "string", "0", "tag", "num");
+    uicontrol("position", [290 50 100 40], "string", "- 1", "callback", "v = eval(get(''num'', ''string''));set(''num'', ''string'', string(v - 1));");
+end
 
-//f = createWindow();
-//f.position(3:4) = [500, 500];
-//for i=1:100
-//    x = floor((i-1) / 10);
-//    y = modulo((i-1), 10);
-   
-//    uicontrol("position", [50*x, 50*y,50,50],"string", string(x) + string(y), "callback", "set(gcbo, ''string'', ''clicked'')");
-//end
+if 1 then
+    f = createWindow();
+    f.position(3:4) = [500, 500];
+    for i=1:100
+        x = floor((i-1) / 10);
+        y = modulo((i-1), 10);
+        uicontrol("position", [50*x, 50*y,50,50],"string", string(x) + string(y), "callback", "set(gcbo, ''string'', ''clicked'')");
+    end
+end
             </textarea>
             </br>
             <button id="cmdbtn" onClick="execute()">Execute</button>
