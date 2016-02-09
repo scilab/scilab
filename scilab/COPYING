@@ -1,9 +1,13 @@
 
-Scilab is a free software, and since version 6.0 is released under the terms
-of the GNU General Public License (GPL) v2.0, which you can find below.
+Scilab is a free software, and starting with version 6.0.0 beta 1, is 
+released under the terms of the GNU General Public License (GPL) v2.0,
+which you can find below.
 
-Prior to version 6.0, Scilab was licensed under the terms of the CeCILL v2.1,
+Prior to this version, Scilab was licensed under the terms of the CeCILL v2.1,
 and continues to be available under such terms, which you also can find below.
+
+Pursuant to article 3.5.4 of the CeCILL v2.1, Scilab's entire code is 
+now distributed under the terms of the GNU GPL 2.0.
 
 Some files in Scilab are licensed under a BSD License, which you can find
 in the COPYING-BSD file.

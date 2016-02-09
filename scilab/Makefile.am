@@ -30,7 +30,7 @@ AM_CXXFLAGS = $(SCI_CXXFLAGS)
 AM_FFLAGS   = $(SCI_FFLAGS)
 AM_LDFLAGS  = $(SCI_LDFLAGS)
 
-changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X CHANGES_5.5.X CHANGES_6.0.X
+changelogs = CHANGES
 
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
@@ -184,26 +184,11 @@ $(top_builddir)/etc/logging.properties \
 $(top_builddir)/etc/librarypath.xml
 
 infofilesdir=$(pkgdatadir)/
-infofiles_DATA = $(top_srcdir)/CHANGES_2.X \
-$(top_srcdir)/CHANGES_3.X \
-$(top_srcdir)/CHANGES_4.X \
-$(top_srcdir)/CHANGES_5.0.X \
-$(top_srcdir)/CHANGES_5.1.X \
-$(top_srcdir)/CHANGES_5.2.X \
-$(top_srcdir)/CHANGES_5.3.X \
-$(top_srcdir)/CHANGES_5.4.X \
-$(top_srcdir)/CHANGES_5.5.X \
-$(top_srcdir)/CHANGES_6.0.X \
+infofiles_DATA = $(top_srcdir)/CHANGES \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-BSD \
-$(top_srcdir)/README_Unix \
-$(top_srcdir)/RELEASE_NOTES_5.0.X \
-$(top_srcdir)/RELEASE_NOTES_5.1.X \
-$(top_srcdir)/RELEASE_NOTES_5.2.X \
-$(top_srcdir)/RELEASE_NOTES_5.3.X \
-$(top_srcdir)/Readme_Visual.txt \
-$(top_srcdir)/README_Windows.txt \
+$(top_srcdir)/README \
 $(top_builddir)/Version.incl
 
 valgrinddir=$(pkgdatadir)/tools/profiling

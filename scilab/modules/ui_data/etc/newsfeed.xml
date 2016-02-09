@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <newsfeed>
    <!-- RSS Feed URL -->
-   <url>http://scilab.io/category/newsfeed/feed</url>
+   <url>http://news.scilab.io/feed</url>
    <!-- automatic news change interval time (in ms), set to -1 to disable -->
    <newsChangeTimeInterval>-1</newsChangeTimeInterval>
    <!-- periodic feed update interval time (in ms), set to -1 to disable -->

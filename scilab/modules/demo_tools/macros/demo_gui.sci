@@ -66,7 +66,7 @@ function demo_gui()
     b = get("frame_1", "border");
     b.title = _("Demonstrations");
     set("frame_1", "border", b);
-    set("listbox_1", "string", "<html>"+demolist(:, 1)+" &#x25B8; </html>");
+    set("listbox_1", "string", "<html>"+demolist(:, 1)+" &#x2023; </html>");
     set("listbox_1", "userdata", demolist);
 
     demo_fig.closerequestfcn = callback_close_str;

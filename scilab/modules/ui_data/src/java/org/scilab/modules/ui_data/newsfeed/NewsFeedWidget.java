@@ -32,6 +32,7 @@ import javax.swing.UIManager;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -55,6 +56,7 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
     private static final String NEWS_DATE_HTML_ID = "news_date";
     private static final String NEWS_CONTENT_HTML_ID = "news_content";
     private static final String NEWS_LINK_HTML_ID = "news_link";
+    private static final String NEWS_MEDIA_CONTENT_HTML_ID = "news_media_content";
     private static final String NEWS_DESCRIPTION_HTML_ID = "news_description";
 
     private final NewsFeedController newsFeedController;
@@ -101,8 +103,6 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
         }), BorderLayout.EAST);
 
         scrollPane = new JScrollPane(editorPane);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         setLayout(new BorderLayout());
         add(headerPane, BorderLayout.NORTH);
@@ -146,6 +146,12 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
             newsHtmlBuilder.append(getDivHtml(news.getDescription(), NEWS_DESCRIPTION_HTML_ID));
         }
 
+        // Add media content (image) if exist
+        NewsMediaContent mediaContent = news.getMediaContent();
+        if (mediaContent != null) {
+            newsHtmlBuilder.append(getDivHtml(getImageHtml(mediaContent.getURL(), mediaContent.getWidth(), mediaContent.getHeight()), NEWS_MEDIA_CONTENT_HTML_ID));
+        }
+
         // Add news link if exist
         if (news.getLink() != null) {
             newsHtmlBuilder.append(getDivHtml(getLinkHtml(news.getLink(), news.getLink()), NEWS_LINK_HTML_ID));
@@ -161,6 +167,11 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
                 }
             }
         }, getHTML(newsHtmlBuilder));
+    }
+
+    private String getImageHtml(String url, String width, String height) {
+        // Cannot setup border with CSS, limitation of CSS support of HTMLEditorKit
+        return String.format("<img src='%s' border='0' width='%s', height='%s'/>", url, width, height);
     }
 
     private String getLinkHtml(String url, String description) {
@@ -200,17 +211,15 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
         try	{
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    scrollPane.getHorizontalScrollBar().setValue(0);
-                    scrollPane.getVerticalScrollBar().setValue(0);
-
                     headerButton.setAction(titleAction);
                     headerButton.setToolTipText(titleAction.getValue(Action.NAME).toString());
 
                     editorPane.setText(htmlContent);
+                    // reset position to the upper left
+                    editorPane.setCaretPosition(0);
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -223,7 +232,6 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
             try {
                 return settingsFile.toURI().toURL();
             } catch (MalformedURLException e) {
-                e.printStackTrace();
                 return null;
             }
         } else {

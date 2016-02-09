@@ -74,8 +74,9 @@ function script_path = demo_gui_update()
 
         //Prints an arrow if its a submenu
         a = grep(listbox.userdata(:,2),"dem.gateway.sce")
-        listbox.string(a) = "<html>"+listbox.string(a)+" &#x25B8; </html>";
-
+        if listbox.string(a) <> [] then
+            listbox.string(a) = "<html>"+listbox.string(a)+" &#x2023; </html>";
+        end
         ud = demo_fig.userdata;
         ud.subdemolist = previous_demolist;
         demo_fig.userdata = ud;

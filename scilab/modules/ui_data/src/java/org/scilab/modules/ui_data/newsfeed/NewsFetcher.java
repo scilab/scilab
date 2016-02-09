@@ -75,23 +75,38 @@ public class NewsFetcher {
             Date date = formatter.parse(dateStr);
             String description = getItemValue(item, "description");
             String content = getItemValue(item, "content:encoded");
+            // media content
+            NewsMediaContent mediaContent = null;
+            Node mediaContentNode = getItemNode(item, "media:content");
+            if (mediaContentNode != null) {
+                String url = mediaContentNode.getAttributes().getNamedItem("url").getNodeValue();
+                String width = mediaContentNode.getAttributes().getNamedItem("width").getNodeValue();
+                String height = mediaContentNode.getAttributes().getNamedItem("height").getNodeValue();
+                mediaContent = new NewsMediaContent(url, width, height);
+            }
             String link = getItemValue(item, "link");
-            newsList.add(new News(title, date, description, content, link));
+            newsList.add(new News(title, date, description, content, mediaContent, link));
         }
         return newsList;
     }
 
-    private String getItemValue(Element item, String nodeName) {
+    private Node getItemNode(Element item, String nodeName) {
         NodeList nodeList = item.getElementsByTagName(nodeName);
         if (nodeList.getLength() > 0) {
-            Node node = nodeList.item(0);
-            if (node.hasChildNodes()) {
-                return node.getFirstChild().getNodeValue();
-            } else {
-                return null;
-            }
+            return nodeList.item(0);
         } else {
             return null;
         }
     }
+
+    private String getItemValue(Element item, String nodeName) {
+        Node node = getItemNode(item, nodeName);
+        if (node != null) {
+            if (node.hasChildNodes()) {
+                return node.getFirstChild().getNodeValue();
+            }
+        }
+        return null;
+    }
+
 }

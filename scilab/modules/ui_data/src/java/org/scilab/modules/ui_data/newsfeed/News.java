@@ -26,13 +26,15 @@ public class News {
     private Date date;
     private String description;
     private String content;
+    private NewsMediaContent mediaContent;
     private String link;
 
-    public News(String title, Date date, String description, String content, String link) {
+    public News(String title, Date date, String description, String content, NewsMediaContent mediaContent, String link) {
         this.title = title;
         this.date = date;
         this.description = description;
         this.content = content;
+        this.mediaContent = mediaContent;
         this.link = link;
     }
 
@@ -50,6 +52,10 @@ public class News {
 
     String getContent() {
         return content;
+    }
+
+    NewsMediaContent getMediaContent() {
+        return mediaContent;
     }
 
     String getLink() {
