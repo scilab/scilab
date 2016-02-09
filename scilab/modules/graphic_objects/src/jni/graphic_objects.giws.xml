@@ -94,6 +94,10 @@
         </method>
         <method name="unregisterScilabView" returnType="void" modifier="static">
         </method>
+        <method name="registerScilabWebView" returnType="void" modifier="static">
+        </method>
+        <method name="unregisterScilabWebView" returnType="void" modifier="static">
+        </method>
         <method name="getConsoleIdentifier" returnType="int" modifier="static">
         </method>
         <method name="buildFigureMenuBar" returnType="void" modifier="static">

@@ -38,6 +38,7 @@
 #include "execvisitor.hxx"
 #include "debugmanager.hxx"
 #include "consoledebugger.hxx"
+#include "webcommand.hxx"
 
 extern "C"
 {
@@ -359,6 +360,11 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     InitializePreferences(iScript);
 
+    if (ConfigVariable::getCommandAddress() != "")
+    {
+        //we have to connect scilab command client to server
+        WebCommand::create(ConfigVariable::getCommandAddress());
+    }
 
     //register console debugger as debugger
     debugger::DebuggerMagager::getInstance()->addDebugger(new debugger::ConsoleDebugger());

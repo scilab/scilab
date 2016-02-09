@@ -1701,3 +1701,28 @@ void ConfigVariable::resetRecursionLevel()
 {
     recursionLevel = 0;
 }
+
+//websocket information
+std::string ConfigVariable::commandaddr;
+std::string ConfigVariable::graphicaddr;
+
+void ConfigVariable::setCommandAddress(const std::string& addr)
+{
+    commandaddr = addr;
+}
+
+std::string& ConfigVariable::getCommandAddress()
+{
+    return commandaddr;
+}
+
+void ConfigVariable::setGraphicAddress(const std::string& addr)
+{
+    graphicaddr = addr;
+}
+
+std::string& ConfigVariable::getGraphicAddress()
+{
+    return graphicaddr;
+}
+

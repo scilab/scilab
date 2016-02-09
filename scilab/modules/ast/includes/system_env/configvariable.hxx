@@ -537,6 +537,17 @@ public :
     static void resetRecursionLevel();
     static bool increaseRecursion();
     static void decreaseRecursion();
+
+    //websocket information
+private:
+    static std::string commandaddr;
+    static std::string graphicaddr;
+public:
+    static void setCommandAddress(const std::string&);
+    static std::string& getCommandAddress();
+    static void setGraphicAddress(const std::string&);
+    static std::string& getGraphicAddress();
+
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

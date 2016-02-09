@@ -167,6 +167,15 @@
     <ClCompile Include="..\cpp\DllmainGraphic_objects.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\ScilabWebView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\ScilabNativeWebView_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\webutils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\CallGraphicController.hxx">
@@ -296,6 +305,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\CallXmlLoader.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\ScilabWebView.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\webutils.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,3 +5,5 @@ EXPORTS
 ;
 MyHeapAlloc
 MyHeapFree
+StoreCommand
+StorePrioritaryCommand

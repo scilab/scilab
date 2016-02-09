@@ -19,6 +19,7 @@ import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicView.ScilabView;
+import org.scilab.modules.graphic_objects.graphicView.ScilabWebView;
 import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
 
 /**
@@ -186,6 +187,14 @@ public final class CallGraphicController {
 
     public static void unregisterScilabView() {
         GraphicController.getController().unregister(ScilabView.getScilabView());
+    }
+
+    public static void registerScilabWebView() {
+        GraphicController.getController().register(ScilabWebView.getScilabWebView());
+    }
+
+    public static void unregisterScilabWebView() {
+        GraphicController.getController().unregister(ScilabWebView.getScilabWebView());
     }
 
     public static int getConsoleIdentifier() {

@@ -14,6 +14,7 @@
  */
 
 #include "ScilabView.hxx"
+#include "ScilabWebView.hxx"
 
 extern "C"
 {
@@ -59,6 +60,15 @@ void registerToController()
 void unregisterToController()
 {
     ScilabView::unregisterToController();
+}
+
+void registerWebToController()
+{
+    ScilabWebView::getInstance()->registerToController();
+}
+void unregisterWebToController()
+{
+    ScilabWebView::getInstance()->unregisterToController();
 }
 
 int search_path(char* _pstPath)

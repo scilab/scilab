@@ -49,6 +49,7 @@ void loadGraphicModule(void)
 
     /* Register Scilab as a dedicated View */
     registerToController();
+    registerWebToController();
 
     isGraphicModuleLoaded = TRUE;
 }
@@ -65,6 +66,7 @@ void closeGraphicModule(void)
 
     /* Unegister Scilab as a dedicated View */
     unregisterToController();
+    unregisterWebToController();
 
     isGraphicModuleLoaded = FALSE;
 

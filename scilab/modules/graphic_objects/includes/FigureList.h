@@ -44,11 +44,13 @@ GRAPHIC_OBJECTS_IMPEXP BOOL sciIsExistingFigure(int figNum);
  * Register Scilab View to Graphic Controller
  */
 GRAPHIC_OBJECTS_IMPEXP void registerToController(void);
+GRAPHIC_OBJECTS_IMPEXP void registerWebToController(void);
 
 /**
  * Unregister Scilab View to Graphic Controller
  */
 GRAPHIC_OBJECTS_IMPEXP void unregisterToController(void);
+GRAPHIC_OBJECTS_IMPEXP void unregisterWebToController(void);
 
 /**
  * to know if there are some opened graphic windows

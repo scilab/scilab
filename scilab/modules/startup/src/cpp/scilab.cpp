@@ -242,6 +242,22 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
         {
             _pSEI->iKeepConsole = 1;
         }
+        else if (!strcmp("-commandaddr", argv[i]))
+        {
+            i++;
+            if (argc >= i)
+            {
+                ConfigVariable::setCommandAddress(argv[i]);
+            }
+        }
+        else if (!strcmp("-graphicaddr", argv[i]))
+        {
+            i++;
+            if (argc >= i)
+            {
+                ConfigVariable::setGraphicAddress(argv[i]);
+            }
+        }
     }
 
     ConfigVariable::setCommandLineArgs(argc, argv);
