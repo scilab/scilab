@@ -14,13 +14,13 @@
   <body>
 
     <div class="manualnavbar" align="left">
-      <a href="http://www.scilab.org/" class="ulink">Portail Scilab</a> | 
-      <a href="http://help.scilab.org/" class="ulink">Aide en ligne</a> | 
-      <a href="http://wiki.scilab.org/" class="ulink">Wiki</a> | 
-      <a href="http://bugzilla.scilab.org/" class="ulink">Suivi de bugs</a> | 
-      <a href="http://forge.scilab.org/" class="ulink">Forge</a> | 
-      <a href="http://lists.scilab.org/" class="ulink">Archives des listes de diffusion</a> | 
-      <a href="http://atoms.scilab.org/" class="ulink">ATOMS</a> | 
+      <a href="http://www.scilab.org/" class="ulink">Portail Scilab</a> |
+      <a href="http://help.scilab.org/" class="ulink">Aide en ligne</a> |
+      <a href="http://wiki.scilab.org/" class="ulink">Wiki</a> |
+      <a href="http://bugzilla.scilab.org/" class="ulink">Suivi de bugs</a> |
+      <a href="http://forge.scilab.org/" class="ulink">Forge</a> |
+      <a href="http://lists.scilab.org/" class="ulink">Archives des listes de diffusion</a> |
+      <a href="http://atoms.scilab.org/" class="ulink">ATOMS</a> |
       <a href="http://fileexchange.scilab.org/" class="ulink">File Exchange</a>
       <hr/>
     </div>
@@ -73,7 +73,7 @@
           <li>La grammaire est plus stricte, mais plus cohérente,</li>
           <li>La gestion des erreurs a été améliorée (mais peut encore
           être limitée dans l'alpha : merci d’avance de nous signaler
-          les problèmes que vous pourriez rencontrer),</li>
+          les problèmes que vous pourriez rencontrer).</li>
           <li>Le langage est légèrement plus compatible avec le
           langage Matlab (par exemple dans le cas d’instructions de
           contrôle telles que les déclarations switch/case).</li>
@@ -90,12 +90,26 @@
           <li>Les chaînes de caractères littérales ne peuvent pas
           mélanger des délimiteurs simple quote et double quote: elles
           doivent commencer et finir avec soit des simple quotes, soit
-          des double quotes,</li>
+          des double quotes.</li>
           <li>L’utilisation des virgules (pour avoir plusieurs
           instructions sur une même ligne) a été clarifiée : elles ne
           peuvent pas être utilisées après des instructions de
-          contrôle comme <a href="try.html">try</a>,</li>
-          <li>Trois points ou plus ne sont plus supportés.</li>
+          contrôle comme <a href="try.html">try</a>.</li>
+
+          <li>Les opérations plus et moins avec la matrice vide ont maintenant
+            pour résultat la matrice vide. Afin de simplifier la transition
+            de votre base de code pendant la beta, un avertissement
+            spécifique est généré quand une telle opération est détectée.
+          </li>
+          <li>Pour déterminer avec exactitude les lignes de codes générant
+            un avertissement, une nouvelle option
+            <a href="warning.html">warning("stop")</a> a,été ajoutée.</li>
+          <li>
+          Un flag de rétrocompatibilité pour le comportement de la matrice vide
+            est aussi disponible durant la beta. Il sera enlevé
+            dans une future version de scilab. Voir
+            <a href="oldEmptyBehaviour.html">oldEmptyBehaviour</a>.
+          </li>
         </ul>
         </p>
       <p class="para">
@@ -124,7 +138,7 @@
       </p>
       <p class="para">
         <i>Nouveau dans Scilab 6.0.0 beta 1.</i> Xcos utilise maintenant
-        le nouvel coeur Scilab, et est cod&eacute; en code natif (au lieu
+        le nouveau coeur Scilab, et est cod&eacute; en code natif (au lieu
         de java), ce qui fournit de biens meilleures performances, et
         permet de manipuler des sch&eacute;mas bien plus grands. Xcos
         peut charger et simuler des mod&egrave;les cr&eacute;&eacute;s
@@ -147,7 +161,7 @@
           encore présente, mais pas fonctionnelle, et qui sera retirée
           dans la version finale). Cet outil produit un rapport HTML
           sur le mesure du temps passé dans chaque ligne de script
-          (profile). Il n’est pas documentée, mais voici un exemple
+          (profilage). Il n’est pas documenté, mais voici un exemple
           d'usage :
 <pre>
      covStart(isempty) // commence le profilage de la macro "isempty"
@@ -155,7 +169,7 @@
                        // covStart("elementary_functions")
      for i=1:1e5; isempty(i); end  // exeacute du code, qui sera profil&eacute;
      covWrite("html", "TMPDIR/coverage") // sauve le rapport de profilage/couverture
-                                         // dans "TMPDIR/coverage/report.html" 
+                                         // dans "TMPDIR/coverage/report.html"
      covStop();        // arr&ecirc; le profilage
 </pre>
 </li>
@@ -193,7 +207,7 @@
         continue d'&ecirctre disponible selon ces termes, que vous
         pouvez trouver dans le m&ecirc;me fichier COPYING. Ce
         changement a &eacute;t&eacute; fait conformément &agrave;
-        l'article 3.5.4 de la CeCILL v2.1. 
+        l'article 3.5.4 de la CeCILL v2.1.
 
       </p>
       <p class="para">
@@ -210,12 +224,12 @@
       <p class="para">
         Xcos est finalement fonctionnel dans cette beta
         1. N&eacute;anmoins, il y a quelques limitations connues dans la mise
-        &agrave; niveaux de sch&eacute;mas cr&eacute;&eacute;s avec
+        &agrave; niveau de sch&eacute;mas cr&eacute;&eacute;s avec
         des versions ant&eacute;rieures. En particulier, certains liens
         ne sont pas import&eacute;s correctement. Si des liens
         disparaissent lors de l'ouverture d'un sch&eacute;ma, il faut
         les recr&eacute;er &agrave; la main. La simulation
-        fonctionnera alors correctement. 
+        fonctionnera alors correctement.
       </p>
       <p class="para">
         N'h&eacute;sitez pas &agrave; reporter tout probl&egrave;me, bug ou

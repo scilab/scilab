@@ -14,13 +14,13 @@
   <body>
 
     <div class="manualnavbar" align="left">
-      <a href="http://www.scilab.org/" class="ulink">Scilab Homepage</a> | 
-      <a href="http://help.scilab.org/" class="ulink">Online Help</a> | 
-      <a href="http://wiki.scilab.org/" class="ulink">Wiki</a> | 
-      <a href="http://bugzilla.scilab.org/" class="ulink">Bug Tracker</a> | 
-      <a href="http://forge.scilab.org/" class="ulink">Forge</a> | 
-      <a href="http://lists.scilab.org/" class="ulink">Mailing Lists Archives</a> | 
-      <a href="http://atoms.scilab.org/" class="ulink">ATOMS</a> | 
+      <a href="http://www.scilab.org/" class="ulink">Scilab Homepage</a> |
+      <a href="http://help.scilab.org/" class="ulink">Online Help</a> |
+      <a href="http://wiki.scilab.org/" class="ulink">Wiki</a> |
+      <a href="http://bugzilla.scilab.org/" class="ulink">Bug Tracker</a> |
+      <a href="http://forge.scilab.org/" class="ulink">Forge</a> |
+      <a href="http://lists.scilab.org/" class="ulink">Mailing Lists Archives</a> |
+      <a href="http://atoms.scilab.org/" class="ulink">ATOMS</a> |
       <a href="http://fileexchange.scilab.org/" class="ulink">File Exchange</a>
       <hr/>
     </div>
@@ -85,14 +85,23 @@
         <ul>
           <li>Literal strings cannot mix single-quote and double-quote
           delimiters: they have to start and finish with either both
-          single-quotes, or both double-quotes,</li>
+          single-quotes, or both double-quotes.</li>
 
           <li>Usage of commas (to put multiple instructions on the
           same line) has been clarified: it can not be used following
           control instructions such
-          as <a href="try.html">try</a>,</li>
+          as <a href="try.html">try</a>.</li>
 
-          <li>Three dots or more are not supported anymore.</li>
+          <li>The operation plus and minus with the empty matrix will now
+          yield an empty matrix. To simplify the transition of your code base
+          during beta, a specific warning is issued when such operation is detected. </li>
+          <li>To determine the exact line of code generating a warning,
+            an option <a href="warning.html">warning("stop")</a> has been added.</li>
+          <li>
+          A retrocompatibility flag for empty behaviour operations is also
+            available during beta. It will be deprecated in a future scilab release.
+            See <a href="oldEmptyBehaviour.html">oldEmptyBehaviour</a>.
+          </li>
         </ul>
         </p>
       <p class="para">
@@ -104,10 +113,10 @@
           <li>A much better memory management. Memory usage is now
           only limited by the machine's memory. This was a
           much-needed, and much-requested feature. There is no need
-          anymore for <i>stacksize</i>,</li>
+          anymore for <i>stacksize</i>.</li>
 
           <li>Support for bigger data sizes, in particular with better
-          support for HDF5 files,</li>
+          support for HDF5 files.</li>
 
           <li>Some new and improved data types: 64-bit integers;
           ability to define user types in C++ modules. Also, matrices
@@ -133,7 +142,7 @@
 
       </p>
       <h2 class="title">Utilities for code productivity</h2>
-      <p class="para">This release includes also several features to make easier
+      <p class="para">This release includes also several features
         to write better and more efficient Scilab scripts:
         <ul>
           <li>A full-featured debugger is now included. It can run
@@ -147,16 +156,15 @@
           otherwise) to the development of a GUI-based debug.</li>
 
           <li>A new profiler and coverage tool has been added. It
-          replaces the &quot;profile&quot; function (which is still
-          there but not working, and will be removed in the final
-          release).   It produces HTML report for the time spent
+          replaces the removed &quot;profile&quot; function.
+          It produces HTML report for the time spent
           (profile) on each line. It is not documented; the names of
           the functions are not finalized yet, feedback is welcome on
           the usability. Also, it is known not to work on Xcos, and
           probably does not work well on complex code.  Example of
           use:
 <pre>
-     covStart(isempty) // starts profiling the "isempty" macro; 
+     covStart(isempty) // starts profiling the "isempty" macro;
                        // profiling a whole library can be done
                        // with: covStart("elementary_functions")
      for i=1:1e5; isempty(i); end  // execute some code - this will be profiled
@@ -196,7 +204,7 @@
         the terms of the CeCILL v2.1, and continues to be available
         under such terms, which you can find in the same COPYING
         file. This change has been made pursuant to article 3.5.4 of
-        the CeCILL v2.1. 
+        the CeCILL v2.1.
 
       </p>
       <p class="para">
