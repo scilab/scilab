@@ -15,99 +15,99 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-01-25 15:00+0100\n"
+"Revision-Date: 2016-02-10 12:14+0100\n"
 
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 86
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 112
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 138
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 164
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 190
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 230
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 271
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 308
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 99
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 124
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 153
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 200
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 226
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 89
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 115
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 141
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 167
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 193
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 233
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 274
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 311
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 102
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 127
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 156
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 203
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 229
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 94
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 107
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 97
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 110
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 120
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 172
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 213
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 253
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 132
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 208
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 123
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 175
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 216
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 256
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 135
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 211
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 145
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 148
 #, c-format
 msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 201
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 241
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 328
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 336
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 344
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 354
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 362
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 250
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 258
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 266
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 274
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 282
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 204
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 244
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 331
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 339
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 347
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 357
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 365
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 253
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 261
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 269
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 277
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 285
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 398
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 401
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 402
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 405
 #, c-format
 msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 406
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 409
 #, c-format
 msgid "%s: Length of working array is too short.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 410
+# File: modules/optimization/sci_gateway/c/sci_qld.c, line: 413
 #, c-format
 msgid "%s: The constraints are inconsistent.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 183
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 186
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %d column(s) expected for matrix %s.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 240
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 243
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an integer in the range 0 "
@@ -115,27 +115,27 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 291
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 316
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 325
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 294
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 319
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 328
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 362
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 365
 #, c-format
 msgid "%s: The minimization problem has no solution.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 366
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 369
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 379
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 382
 #, c-format
 msgid ""
 "\n"
@@ -145,7 +145,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 386
+# File: modules/optimization/sci_gateway/c/sci_qp_solve.c, line: 389
 #, c-format
 msgid ""
 "\n"
@@ -155,57 +155,57 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 51
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 63
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 262
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 108
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 64
-# File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 52
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 54
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 66
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 265
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 111
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 67
+# File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 55
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 57
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 69
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 114
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 988
-# File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 58
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 60
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 72
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 117
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 991
+# File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 61
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 98
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 122
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 167
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 192
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 110
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 134
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 206
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 232
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 247
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 273
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 101
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 125
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 170
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 195
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 113
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 137
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 209
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 235
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 250
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 276
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 110
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 180
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 122
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 220
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 260
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 113
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 183
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 125
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 223
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 263
 #, c-format
 msgid "%s: Argument #%d: Subroutine not found in list: %s\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 140
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 212
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 152
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 254
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 293
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 143
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 215
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 155
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 257
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 296
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: The first argument in the list must "
@@ -213,81 +213,81 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 146
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 158
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 299
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 149
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 161
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 302
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix or a function expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 221
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 241
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 456
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 673
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 693
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 224
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 244
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 459
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 676
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 696
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 229
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 249
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 232
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 252
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar or a function expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 287
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 369
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 290
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 372
 #, c-format
 msgid "%s: exception caught in '%s' subroutine.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 165
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 173
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 168
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 176
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real Scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 181
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 184
 #, c-format
 msgid "%s: Wrong value for input argument #%d: At most %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 274
-# File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 171
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 277
+# File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 174
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A vector of size %d x %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 287
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 290
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 293
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 326
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 296
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 329
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 307
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 310
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 317
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 320
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A strictly positive vector "
@@ -295,29 +295,29 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 429
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 432
 #, c-format
 msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 429
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 432
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 435
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 438
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 441
 msgid "Warning"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 432
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 435
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 438
 #, c-format
 msgid ""
 "%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 438
+# File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 441
 #, c-format
 msgid ""
 "%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
@@ -325,135 +325,135 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 127
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 135
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 130
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 138
 #, c-format
 msgid "%s: Wrong type for input argument #%s: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 146
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 164
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 182
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 200
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 218
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 149
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 167
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 185
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 203
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 221
 #, c-format
 msgid "%s: Wrong type for input argument #%s: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 153
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 171
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 189
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 207
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 156
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 174
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 192
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 210
 #, c-format
 msgid "%s: Wrong size for input argument #%s: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 311
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 314
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String \"b\" expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 317
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 320
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 336
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 355
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 391
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 339
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 358
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 394
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 397
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 400
 #, c-format
 msgid "%s: Bounds and initial guess are incompatible.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 403
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 406
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%s: Incorrect stopping parameters.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 418
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 421
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar string expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 486
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 501
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 489
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 504
 #, c-format
 msgid "Can not allocate %.2f MB memory.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 511
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 1046
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 514
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 1049
 #, c-format
 msgid "%s: NO hot restart available in this method.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 519
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 522
 #, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 603
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 606
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Incorrect stopping parameters.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 612
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 615
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 623
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 626
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 632
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 635
 #, c-format
 msgid "%s: \"in\" not allowed with simulator defined by a function.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 641
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 659
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 734
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 34
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 644
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 662
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 737
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 37
 #, c-format
 msgid "%s: Stop requested by simulator (ind=0).\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 646
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 664
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 739
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 40
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 649
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 667
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 742
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 43
 #, c-format
 msgid "%s: Problem with initial constants in simul.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 712
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 715
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: \"ar\", \"in\", \"ti\" or \"td\" not "
@@ -461,99 +461,99 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 980
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 983
 #, c-format
 msgid "%s: This method is NOT implemented.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 70
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 73
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 78
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 81
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 86
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 89
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar string expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 107
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 133
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 110
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 136
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A real vector of size %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 154
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 157
 #, c-format
 msgid "%s: Error while reading line %d.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 159
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 162
 #, c-format
 msgid "%s: Unknown row type %s at line %d.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 367
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 370
 #, c-format
 msgid "%s: %d logical unit already used.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 370
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 373
 #, c-format
 msgid "%s: Too many files opened!\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 373
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 376
 #, c-format
 msgid "%s: Unknown file format.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 376
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 379
 #, c-format
 msgid "%s: File \"%s\" already exists or directory write access denied.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 379
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 382
 #, c-format
 msgid "%s: File \"%s\" does not exist or read access denied.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 382
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 385
 #, c-format
 msgid "%s: Can not open File \"%s\"\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 150
+# File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 153
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Input argument %d size expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 216
+# File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 219
 msgid "semi def fails.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 221
+# File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 224
 #, c-format
 msgid "%s: Input argument %d of %s function has an illegal value.\n"
 msgstr ""
@@ -656,273 +656,909 @@ msgid "Error in dspev, info = %d.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 46
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 49
 #, c-format
 msgid "%s: Too small memory.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 52
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 55
 #, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 59
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 62
 #, c-format
 msgid "%s: Norm of projected gradient lower than %lg.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 62
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 65
 #, c-format
 msgid "%s: at last iteration f decreases by less than %lg.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 65
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 68
 #, c-format
 msgid "%s: Optimization stops because too small variations for x.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 68
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 71
 #, c-format
 msgid "%s: Optim stops: maximum number of calls to f is reached.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 71
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 74
 #, c-format
 msgid "%s: Optim stops: maximum number of iterations is reached.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 74
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 77
 #, c-format
 msgid "%s: Optim stops: too small variations in gradient direction.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 77
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 80
 #, c-format
 msgid "%s: Stop during calculation of descent direction.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 80
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 83
 #, c-format
 msgid "%s: Stop during calculation of estimated hessian.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 83
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 86
 #, c-format
 msgid "%s: End of optimization.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 86
+# File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 89
 #, c-format
 msgid "%s: End of optimization (linear search fails).\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 115
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 144
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 171
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 202
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 229
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 118
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 147
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 174
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 205
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 232
 #, c-format
 msgid "Undefined function '%ls'.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 126
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 155
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 184
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 213
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 242
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 129
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 158
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 187
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 216
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 245
 #, c-format
 msgid "User function '%s' have not been setted.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 433
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 442
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 485
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 494
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 575
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 664
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 764
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 861
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 436
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 445
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 488
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 497
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 578
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 667
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 767
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 864
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 459
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 468
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 462
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 471
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 584
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 673
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 587
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 676
 #, c-format
 msgid ""
 "%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 773
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 870
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 776
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 873
 #, c-format
 msgid "%s: Wrong size for output argument #%d: A vector of %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/scioptimfunctions.cpp, line: 28
-# File: modules/optimization/src/cpp/scioptimfunctions.cpp, line: 42
-# File: modules/optimization/src/cpp/scioptimfunctions.cpp, line: 55
-# File: modules/optimization/src/cpp/scioptimfunctions.cpp, line: 76
-# File: modules/optimization/src/cpp/scioptimfunctions.cpp, line: 89
+# File: modules/optimization/src/cpp/scioptimfunctions.cpp, line: 31
+# File: modules/optimization/src/cpp/scioptimfunctions.cpp, line: 45
+# File: modules/optimization/src/cpp/scioptimfunctions.cpp, line: 58
+# File: modules/optimization/src/cpp/scioptimfunctions.cpp, line: 79
+# File: modules/optimization/src/cpp/scioptimfunctions.cpp, line: 92
 msgid "An error occurred while getting OptimizationFunctions object.\n"
 msgstr ""
 
-# File: modules/optimization/macros/bvodeS.sci, line: 25
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 8
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 12
+msgid "Non linear data fitting"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/demo_datafit.sci, line: 39
+# File: modules/optimization/demos/datafit/demo_datafit.sci, line: 47
+msgid "Experimental data"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/demo_datafit.sci, line: 47
+msgid "Fitting function"
+msgstr ""
+
+#
+# File: modules/optimization/demos/icse/icse.dem.gateway.sce, line: 9
+msgid "LQV"
+msgstr ""
+
+#
+# File: modules/optimization/demos/icse/icse.dem.gateway.sce, line: 10
+msgid "Spaceship landing trajectory"
+msgstr ""
+
+#
+# File: modules/optimization/demos/icse/icse.dem.gateway.sce, line: 11
+msgid "Computation of optimal parameters"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/fminsearch_display.sce, line: 17
+# File: modules/optimization/demos/neldermead/fminsearch_optimplotfunccount.sce, line: 17
+# File: modules/optimization/demos/neldermead/fminsearch_optimplotfval.sce, line: 18
+# File: modules/optimization/demos/neldermead/fminsearch_optimplotx.sce, line: 18
+# File: modules/optimization/demos/neldermead/fminsearch_outputfunction.sce, line: 17
+# File: modules/optimization/demos/neldermead/fminsearch_rosenbrock.sce, line: 16
+# File: modules/optimization/demos/neldermead/fminsearch_tolx.sce, line: 18
+# File: modules/optimization/demos/optim/optim_output.sce, line: 17
+# File: modules/optimization/demos/optim/optim_plot.sce, line: 16
+# File: modules/optimization/demos/optim/optim_rosenbrock.sce, line: 17
+# File: modules/optimization/demos/optim/optim_withderivative.sce, line: 17
+msgid "Running optimization ...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/fminsearch_display.sce, line: 35
+# File: modules/optimization/demos/neldermead/fminsearch_outputfunction.sce, line: 55
+# File: modules/optimization/demos/neldermead/fminsearch_rosenbrock.sce, line: 45
+# File: modules/optimization/demos/neldermead/fminsearch_tolx.sce, line: 48
+# File: modules/optimization/demos/neldermead/neldermead_boxpost.sce, line: 151
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemA.sce, line: 206
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemB.sce, line: 161
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 99
+# File: modules/optimization/demos/neldermead/neldermead_outputcmd.sce, line: 77
+# File: modules/optimization/demos/neldermead/neldermead_rosenbrock.sce, line: 46
+# File: modules/optimization/demos/optim/optim_output.sce, line: 45
+# File: modules/optimization/demos/optim/optim_rosenbrock.sce, line: 37
+# File: modules/optimization/demos/optim/optim_withderivative.sce, line: 42
+msgid "No"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/fminsearch_display.sce, line: 35
+# File: modules/optimization/demos/neldermead/fminsearch_outputfunction.sce, line: 55
+# File: modules/optimization/demos/neldermead/fminsearch_rosenbrock.sce, line: 45
+# File: modules/optimization/demos/neldermead/fminsearch_tolx.sce, line: 48
+# File: modules/optimization/demos/neldermead/neldermead_boxpost.sce, line: 151
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemA.sce, line: 206
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemB.sce, line: 161
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 99
+# File: modules/optimization/demos/neldermead/neldermead_outputcmd.sce, line: 77
+# File: modules/optimization/demos/neldermead/neldermead_rosenbrock.sce, line: 46
+# File: modules/optimization/demos/optim/optim_output.sce, line: 45
+# File: modules/optimization/demos/optim/optim_rosenbrock.sce, line: 37
+# File: modules/optimization/demos/optim/optim_withderivative.sce, line: 42
+msgid "View Code?"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/fminsearch_display.sce, line: 35
+# File: modules/optimization/demos/neldermead/fminsearch_outputfunction.sce, line: 55
+# File: modules/optimization/demos/neldermead/fminsearch_rosenbrock.sce, line: 45
+# File: modules/optimization/demos/neldermead/fminsearch_tolx.sce, line: 48
+# File: modules/optimization/demos/neldermead/neldermead_boxpost.sce, line: 151
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemA.sce, line: 206
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemB.sce, line: 161
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 99
+# File: modules/optimization/demos/neldermead/neldermead_outputcmd.sce, line: 77
+# File: modules/optimization/demos/neldermead/neldermead_rosenbrock.sce, line: 46
+# File: modules/optimization/demos/optim/optim_output.sce, line: 45
+# File: modules/optimization/demos/optim/optim_rosenbrock.sce, line: 37
+# File: modules/optimization/demos/optim/optim_withderivative.sce, line: 42
+msgid "Yes"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 8
+msgid "fminsearch - Rosenbrock"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 9
+msgid "fminsearch - tolx"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 10
+msgid "fminsearch - Output Function"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 11
+msgid "fminsearch - Option Display"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 12
+msgid "fminsearch - Plot Func Count"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 13
+msgid "fminsearch - Plot F"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 14
+msgid "fminsearch - Plot X"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 15
+msgid "neldermead - Rosenbrock Variable"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 16
+msgid "neldermead - Output Command"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 17
+msgid "neldermead - Dimensionality"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 18
+msgid "nmplot - Han #1"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 19
+msgid "nmplot - Han #2"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 20
+msgid "nmplot - McKinnon #1"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 21
+msgid "nmplot - McKinnon #2"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 22
+msgid "nmplot - Quadratic Fixed #1"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 23
+msgid "nmplot - Quadratic Variable#1"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 24
+msgid "nmplot - Quadratic Fixed #2"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 25
+msgid "nmplot - Quadratic Variable#2"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 26
+msgid "nmplot - Rosenbrock Fixed"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 27
+msgid "nmplot - Rosenbrock Variable"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 28
+msgid "neldermead - Box A"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 29
+msgid "neldermead - Box B"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 30
+msgid "neldermead - Box Bounds"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 31
+msgid "neldermead - Box Post"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead.dem.gateway.sce, line: 32
+msgid "neldermead - Polygon"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxbounds.sce, line: 26
+msgid ""
+"Illustrates Box' algorithm on a simply bounds-constrained optimization "
+"problem.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxbounds.sce, line: 70
+# File: modules/optimization/demos/neldermead/neldermead_boxpost.sce, line: 128
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemB.sce, line: 139
+# File: modules/optimization/demos/neldermead/neldermead_rosenbrock.sce, line: 32
+# File: modules/optimization/demos/neldermead/nmplot_han2.sce, line: 74
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 142
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 143
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.fixed.sce, line: 52
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.fixed2.sce, line: 53
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.variable.sce, line: 50
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.variable2.sce, line: 50
+# File: modules/optimization/demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 51
+msgid "Searching (please wait) ...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxbounds.sce, line: 72
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemA.sce, line: 185
+msgid "...Done\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxbounds.sce, line: 91
+msgid "Plot contour (please wait)...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxbounds.sce, line: 111
+# File: modules/optimization/demos/neldermead/neldermead_boxpost.sce, line: 146
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemA.sce, line: 201
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemB.sce, line: 156
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 93
+# File: modules/optimization/demos/neldermead/neldermead_outputcmd.sce, line: 72
+# File: modules/optimization/demos/neldermead/neldermead_rosenbrock.sce, line: 41
+# File: modules/optimization/demos/neldermead/nmplot_han1.sce, line: 106
+# File: modules/optimization/demos/neldermead/nmplot_han2.sce, line: 105
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 188
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 186
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.variable.sce, line: 79
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.variable2.sce, line: 79
+# File: modules/optimization/demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 78
+msgid "End of demo.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxpost.sce, line: 28
+msgid "Illustrates Box' algorithm on Rosenbrock's Post Office Problem.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxpost.sce, line: 29
+msgid "Defining Rosenbrock Post Office function...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemA.sce, line: 27
+msgid "Illustrates Box' algorithm on Box problem A.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemA.sce, line: 30
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemB.sce, line: 30
+msgid "A new method of constrained optimization \n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemA.sce, line: 31
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemB.sce, line: 31
+msgid "and a comparison with other methods.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemA.sce, line: 33
+msgid "Problem A\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemA.sce, line: 183
+# File: modules/optimization/demos/neldermead/nmplot_han1.sce, line: 74
+msgid "Searching (please wait)...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemA.sce, line: 195
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemB.sce, line: 150
+#, c-format
+msgid "Relative error on x = %e\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemB.sce, line: 27
+msgid "Illustrates Box' algorithm on Box problem B.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemB.sce, line: 33
+msgid "Problem B\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemB.sce, line: 152
+#, c-format
+msgid "f expected = %f\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_boxproblemB.sce, line: 154
+#, c-format
+msgid "Relative error on f = %e\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 19
+msgid "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 20
+msgid ""
+"Han and Neumann. Effect of dimensionality on the nelder-mead simplex method. "
+"Optimization Methods and Software, 2006.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 63
+#, c-format
+msgid "Maximum dimension:%d\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 64
+msgid "Column #1: number of dimensions\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 65
+msgid "Column #2: number of function evaluations\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 66
+msgid "Column #3: number of iterations\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 67
+msgid "Column #4: convergence rate (lower is better)\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 79
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 88
+msgid "Number of parameters"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 80
+msgid "Rate of convergence"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_dimension.sce, line: 89
+msgid "Number of function evaluations"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_outputcmd.sce, line: 44
+msgid "Initialization\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_outputcmd.sce, line: 47
+msgid "End of Optimization\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/neldermead_rosenbrock.sce, line: 17
+msgid "Defining Rosenbrock function ...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_han1.sce, line: 21
+msgid "Illustrates the 1st counter example given by Han et al.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_han1.sce, line: 33
+msgid "Defining Han function...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_han1.sce, line: 43
+msgid "Defining initial simplex coordinates...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_han1.sce, line: 51
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.variable.sce, line: 30
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.variable2.sce, line: 31
+msgid "Creating nmplot object...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_han1.sce, line: 53
+msgid "Configuring nmplot object...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_han1.sce, line: 67
+msgid "Setup output files...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_han1.sce, line: 85
+msgid "Plotting contour (please wait)...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_han2.sce, line: 21
+msgid "Illustrates the 2nd counter example given by Han et al.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_han2.sce, line: 53
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.fixed.sce, line: 31
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.fixed2.sce, line: 32
+# File: modules/optimization/demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 31
+msgid "Creating nmplot object ...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_han2.sce, line: 85
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.fixed.sce, line: 63
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.fixed2.sce, line: 62
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.variable.sce, line: 59
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.variable2.sce, line: 59
+# File: modules/optimization/demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 60
+msgid "Plotting contour (please wait) ...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 20
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 19
+msgid "Defining McKinnon function...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 88
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 88
+msgid "Error: function expects a two dimensional input\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 116
+#, c-format
+msgid "x0 = %s\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 117
+msgid "Creating object ...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 152
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 150
+msgid "Plot contour (please wait) ...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 171
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 169
+msgid "Function Value Average"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 172
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 176
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 180
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 170
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 174
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 178
+msgid "Iterations"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 175
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 173
+msgid "Minimum Function Value"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon.sce, line: 179
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 177
+msgid "Maximum Oriented length"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 115
+#, c-format
+msgid "x0=%s\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_mckinnon2.sce, line: 116
+msgid "Creating object...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.fixed.sce, line: 21
+msgid ""
+"Illustrates that the fixed-shape Spendley et al. algorithm performs well on "
+"a quadratic test case.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.fixed.sce, line: 22
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.variable.sce, line: 22
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.variable2.sce, line: 22
+msgid "Defining quadratic function ...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.fixed2.sce, line: 21
+msgid ""
+"Illustrates that the fixed-shape Spendley et al. algorithm performs badly on "
+"a badly quadratic test case.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.fixed2.sce, line: 22
+msgid "Defining quadratic function...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.variable.sce, line: 21
+msgid ""
+"Illustrates that the variable-shape Nelder-Mead algorithm performs well on a "
+"quadratic test case.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_quadratic.variable2.sce, line: 21
+msgid ""
+"Illustrates that the Nelder-Mead algorithm performs correctly on a badly "
+"quadratic test case.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 21
+msgid ""
+"Illustrates that the fixed-shape Spendley et al. algorithm does NOT perform "
+"well on Rosenbrock test case.\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 22
+msgid "Defining Rosenbrock function...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/optim/optim.dem.gateway.sce, line: 7
+msgid "Rosenbrock"
+msgstr ""
+
+#
+# File: modules/optimization/demos/optim/optim.dem.gateway.sce, line: 8
+msgid "Output"
+msgstr ""
+
+#
+# File: modules/optimization/demos/optim/optim.dem.gateway.sce, line: 9
+msgid "Plot"
+msgstr ""
+
+#
+# File: modules/optimization/demos/optim/optim.dem.gateway.sce, line: 10
+msgid "Derivative"
+msgstr ""
+
+#
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 10
+msgid "Optimization and Simulation"
+msgstr ""
+
+#
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 13
+msgid "Optimisation"
+msgstr ""
+
+#
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 14
+msgid "fminsearch"
+msgstr ""
+
+#
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 18
+msgid "Genetic algorithms"
+msgstr ""
+
+#
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 23
+msgid "Simulated Annealing"
+msgstr ""
+
+#
+# File: modules/optimization/macros/bvodeS.sci, line: 28
 #, c-format
 msgid "%s: More than 20 equations are not allowed"
 msgstr ""
 
 #
-# File: modules/optimization/macros/bvodeS.sci, line: 30
+# File: modules/optimization/macros/bvodeS.sci, line: 33
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/bvodeS.sci, line: 34
+# File: modules/optimization/macros/bvodeS.sci, line: 37
 #, c-format
 msgid "%s: The elements of the argument #%d must be in [%d %d].\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/bvodeS.sci, line: 42
-# File: modules/optimization/macros/bvodeS.sci, line: 51
-# File: modules/optimization/macros/bvodeS.sci, line: 59
+# File: modules/optimization/macros/bvodeS.sci, line: 45
+# File: modules/optimization/macros/bvodeS.sci, line: 54
+# File: modules/optimization/macros/bvodeS.sci, line: 62
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/datafit.sci, line: 71
+# File: modules/optimization/macros/datafit.sci, line: 74
 #, c-format
 msgid "%s: Jacobian cannot be a list, parameters must be set in G."
 msgstr ""
 
 #
-# File: modules/optimization/macros/datafit.sci, line: 79
+# File: modules/optimization/macros/datafit.sci, line: 82
 #, c-format
 msgid "%s: Wrong measurement matrix."
 msgstr ""
 
 #
-# File: modules/optimization/macros/datafit.sci, line: 90
+# File: modules/optimization/macros/datafit.sci, line: 93
 #, c-format
 msgid "%s: Initial guess must be a column vector."
 msgstr ""
 
 #
-# File: modules/optimization/macros/datafit.sci, line: 92
+# File: modules/optimization/macros/datafit.sci, line: 95
 #, c-format
 msgid "%s: Weighting matrix must be square."
 msgstr ""
 
 #
-# File: modules/optimization/macros/datafit.sci, line: 107
+# File: modules/optimization/macros/datafit.sci, line: 110
 #, c-format
 msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 54
-# File: modules/optimization/macros/lmisolver.sci, line: 15
-# File: modules/optimization/macros/numderivative.sci, line: 18
-# File: modules/optimization/macros/optimsimplex/optimsimplex_compsomefv.sci, line: 40
-# File: modules/optimization/macros/optimsimplex/optimsimplex_computefv.sci, line: 39
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 308
+# File: modules/optimization/macros/karmarkar.sci, line: 57
+# File: modules/optimization/macros/lmisolver.sci, line: 18
+# File: modules/optimization/macros/numderivative.sci, line: 21
+# File: modules/optimization/macros/optimsimplex/optimsimplex_compsomefv.sci, line: 43
+# File: modules/optimization/macros/optimsimplex/optimsimplex_computefv.sci, line: 42
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 311
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 76
 # File: modules/optimization/macros/karmarkar.sci, line: 79
 # File: modules/optimization/macros/karmarkar.sci, line: 82
 # File: modules/optimization/macros/karmarkar.sci, line: 85
 # File: modules/optimization/macros/karmarkar.sci, line: 88
 # File: modules/optimization/macros/karmarkar.sci, line: 91
 # File: modules/optimization/macros/karmarkar.sci, line: 94
-# File: modules/optimization/macros/karmarkar.sci, line: 107
+# File: modules/optimization/macros/karmarkar.sci, line: 97
 # File: modules/optimization/macros/karmarkar.sci, line: 110
 # File: modules/optimization/macros/karmarkar.sci, line: 113
 # File: modules/optimization/macros/karmarkar.sci, line: 116
+# File: modules/optimization/macros/karmarkar.sci, line: 119
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 98
-# File: modules/optimization/macros/karmarkar.sci, line: 102
+# File: modules/optimization/macros/karmarkar.sci, line: 101
+# File: modules/optimization/macros/karmarkar.sci, line: 105
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 134
+# File: modules/optimization/macros/karmarkar.sci, line: 137
 #, c-format
 msgid "%s: Either one of Aeq, A, lb or ub must be non-empty."
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 138
-# File: modules/optimization/macros/karmarkar.sci, line: 142
-# File: modules/optimization/macros/karmarkar.sci, line: 146
-# File: modules/optimization/macros/karmarkar.sci, line: 150
-# File: modules/optimization/macros/karmarkar.sci, line: 154
+# File: modules/optimization/macros/karmarkar.sci, line: 141
+# File: modules/optimization/macros/karmarkar.sci, line: 145
+# File: modules/optimization/macros/karmarkar.sci, line: 149
+# File: modules/optimization/macros/karmarkar.sci, line: 153
 # File: modules/optimization/macros/karmarkar.sci, line: 157
 # File: modules/optimization/macros/karmarkar.sci, line: 160
-# File: modules/optimization/macros/karmarkar.sci, line: 165
-# File: modules/optimization/macros/karmarkar.sci, line: 170
-# File: modules/optimization/macros/karmarkar.sci, line: 174
-# File: modules/optimization/macros/karmarkar.sci, line: 179
-# File: modules/optimization/macros/karmarkar.sci, line: 184
+# File: modules/optimization/macros/karmarkar.sci, line: 163
+# File: modules/optimization/macros/karmarkar.sci, line: 168
+# File: modules/optimization/macros/karmarkar.sci, line: 173
+# File: modules/optimization/macros/karmarkar.sci, line: 177
+# File: modules/optimization/macros/karmarkar.sci, line: 182
+# File: modules/optimization/macros/karmarkar.sci, line: 187
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 191
+# File: modules/optimization/macros/karmarkar.sci, line: 194
 #, c-format
 msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 194
+# File: modules/optimization/macros/karmarkar.sci, line: 197
 #, c-format
 msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 197
+# File: modules/optimization/macros/karmarkar.sci, line: 200
 #, c-format
 msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 200
+# File: modules/optimization/macros/karmarkar.sci, line: 203
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. maxiter must be a floating point "
@@ -930,13 +1566,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 205
+# File: modules/optimization/macros/karmarkar.sci, line: 208
 #, c-format
 msgid "%s: Wrong value for input argument #%d. x0 is not positive."
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 211
+# File: modules/optimization/macros/karmarkar.sci, line: 214
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
@@ -944,25 +1580,25 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 216
+# File: modules/optimization/macros/karmarkar.sci, line: 219
 #, c-format
 msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 221
+# File: modules/optimization/macros/karmarkar.sci, line: 224
 #, c-format
 msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 238
+# File: modules/optimization/macros/karmarkar.sci, line: 241
 #, c-format
 msgid "%s: The algorithm did not converge (exitflag= %d).\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 384
+# File: modules/optimization/macros/karmarkar.sci, line: 387
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
@@ -970,7 +1606,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/karmarkar.sci, line: 518
+# File: modules/optimization/macros/karmarkar.sci, line: 521
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
@@ -978,446 +1614,446 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/leastsq.sci, line: 44
+# File: modules/optimization/macros/leastsq.sci, line: 47
 #, c-format
 msgid "%s: Jacobian cannot be a list, parameters must be set in fun."
 msgstr ""
 
 #
-# File: modules/optimization/macros/leastsq.sci, line: 56
+# File: modules/optimization/macros/leastsq.sci, line: 59
 #, c-format
 msgid "%s: With hard coded function, user must give output size of fun."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 42
+# File: modules/optimization/macros/lmisolver.sci, line: 45
 #, c-format
 msgid "%s: initial guess is feasible."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 87
+# File: modules/optimization/macros/lmisolver.sci, line: 90
 #, c-format
 msgid "%s: Construction of canonical representation."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 132
+# File: modules/optimization/macros/lmisolver.sci, line: 135
 #, c-format
 msgid "%s: Basis Construction."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 160
+# File: modules/optimization/macros/lmisolver.sci, line: 163
 #, c-format
 msgid "%s: Objective constant."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 165
-# File: modules/optimization/macros/lmisolver.sci, line: 190
+# File: modules/optimization/macros/lmisolver.sci, line: 168
+# File: modules/optimization/macros/lmisolver.sci, line: 193
 #, c-format
 msgid "%s: solution unbounded."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 172
+# File: modules/optimization/macros/lmisolver.sci, line: 175
 #, c-format
 msgid ""
 "%s: Ill-posed problem. Number of unknowns (%s) > number of constraints (%s)"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 183
+# File: modules/optimization/macros/lmisolver.sci, line: 186
 #, c-format
 msgid "%s: rank deficient problem"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 206
+# File: modules/optimization/macros/lmisolver.sci, line: 209
 #, c-format
 msgid "%s: not feasible or badly defined problem."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 228
+# File: modules/optimization/macros/lmisolver.sci, line: 231
 #, c-format
 msgid "%s:     FEASIBILITY PHASE."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 236
+# File: modules/optimization/macros/lmisolver.sci, line: 239
 #, c-format
 msgid "%s: Mbound too small."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 281
+# File: modules/optimization/macros/lmisolver.sci, line: 284
 #, c-format
 msgid "%s: Max. iters. exceeded."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 283
+# File: modules/optimization/macros/lmisolver.sci, line: 286
 #, c-format
 msgid "%s: Absolute accuracy reached."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 285
+# File: modules/optimization/macros/lmisolver.sci, line: 288
 #, c-format
 msgid "%s: Relative accuracy reached."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 287
+# File: modules/optimization/macros/lmisolver.sci, line: 290
 #, c-format
 msgid "%s: Target value reached."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 289
+# File: modules/optimization/macros/lmisolver.sci, line: 292
 #, c-format
 msgid "%s: Target value not achievable."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 291
+# File: modules/optimization/macros/lmisolver.sci, line: 294
 #, c-format
 msgid "%s: No feasible solution found."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 296
+# File: modules/optimization/macros/lmisolver.sci, line: 299
 #, c-format
 msgid "%s: max number of iterations exceeded."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 299
+# File: modules/optimization/macros/lmisolver.sci, line: 302
 #, c-format
 msgid "%s: No feasible solution exists."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 303
+# File: modules/optimization/macros/lmisolver.sci, line: 306
 #, c-format
 msgid "%s: feasible solution found."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 307
+# File: modules/optimization/macros/lmisolver.sci, line: 310
 #, c-format
 msgid "%s: Initial guess feasible."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 314
+# File: modules/optimization/macros/lmisolver.sci, line: 317
 #, c-format
 msgid "%s:       OPTIMIZATION PHASE."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 334
+# File: modules/optimization/macros/lmisolver.sci, line: 337
 #, c-format
 msgid "%s: M must be strictly greater than trace of F(x0)."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 348
+# File: modules/optimization/macros/lmisolver.sci, line: 351
 #, c-format
 msgid "%s: max number of iterations exceeded, solution may not be optimal"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 351
+# File: modules/optimization/macros/lmisolver.sci, line: 354
 #, c-format
 msgid "%s: may be unbounded below"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmisolver.sci, line: 354
+# File: modules/optimization/macros/lmisolver.sci, line: 357
 #, c-format
 msgid "%s: optimal solution found"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 15
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 186
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 58
+# File: modules/optimization/macros/lmitool.sci, line: 18
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 189
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 61
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 19
+# File: modules/optimization/macros/lmitool.sci, line: 22
 msgid "Welcome to LMITOOL"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 20
+# File: modules/optimization/macros/lmitool.sci, line: 23
 msgid "LMITOOL is a Scilab package for LMI optimization"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 23
+# File: modules/optimization/macros/lmitool.sci, line: 26
 msgid "It can solve the following problem"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 25
+# File: modules/optimization/macros/lmitool.sci, line: 28
 msgid "   minimize  f(X1,...,XM)  "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 26
+# File: modules/optimization/macros/lmitool.sci, line: 29
 msgid "subject to the LME constraints: "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 27
+# File: modules/optimization/macros/lmitool.sci, line: 30
 msgid "   Gi(X1,...,XM)=0,  i=1,2,...,p,"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 28
+# File: modules/optimization/macros/lmitool.sci, line: 31
 msgid "and the LMI constraints:  "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 29
+# File: modules/optimization/macros/lmitool.sci, line: 32
 msgid "   Hj(X1,...,XM)>=0,  j=1,2,...,q."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 31
+# File: modules/optimization/macros/lmitool.sci, line: 34
 msgid "where"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 32
+# File: modules/optimization/macros/lmitool.sci, line: 35
 msgid ""
 "X1,...,XM are unknown real matrices, referred to as the unknown matrices,"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 33
+# File: modules/optimization/macros/lmitool.sci, line: 36
 msgid ""
 "f is the objective function, a linear scalar function of the entries of the "
 "X's,"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 34
+# File: modules/optimization/macros/lmitool.sci, line: 37
 msgid "Gi's are affine matrix functions of the entries of the X's,"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 35
+# File: modules/optimization/macros/lmitool.sci, line: 38
 msgid "Hj's are affine symmetric matrix functions of the entries of the X's."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 37
+# File: modules/optimization/macros/lmitool.sci, line: 40
 msgid ""
 "These functions are parameterized by the entries of known data matrices "
 "D1,...,DN."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 39
+# File: modules/optimization/macros/lmitool.sci, line: 42
 msgid "For a detailed description and examples consult: "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 40
+# File: modules/optimization/macros/lmitool.sci, line: 43
 msgid ""
 "          'LMITOOL: a Package for LMI Optimization in Scilab, User's Guide' "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 42
+# File: modules/optimization/macros/lmitool.sci, line: 45
 msgid ""
 "LMITOOL uses Semidefinite Programming package SP developed by L. "
 "Vandenberghe and S. Boyd."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 59
+# File: modules/optimization/macros/lmitool.sci, line: 62
 msgid "LMI problem name: "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 59
+# File: modules/optimization/macros/lmitool.sci, line: 62
 msgid "Names of unknown matrices: "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 60
+# File: modules/optimization/macros/lmitool.sci, line: 63
 msgid "Names of data matrices: "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 61
+# File: modules/optimization/macros/lmitool.sci, line: 64
 msgid "Problem definition"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 62
+# File: modules/optimization/macros/lmitool.sci, line: 65
 msgid "LMITOOL will generate a skeleton of the functions needed"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 63
+# File: modules/optimization/macros/lmitool.sci, line: 66
 msgid " (see User's Guide for details). For that, you need to specify:"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 64
+# File: modules/optimization/macros/lmitool.sci, line: 67
 msgid "1- Name of your problem which will be given to the solver function,"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 65
+# File: modules/optimization/macros/lmitool.sci, line: 68
 msgid "2- Names of unknown matrices or list of unknown matrices,"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 66
+# File: modules/optimization/macros/lmitool.sci, line: 69
 msgid "3- Names of data matrices or list of data matrices."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 70
+# File: modules/optimization/macros/lmitool.sci, line: 73
 msgid "Try again"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 126
+# File: modules/optimization/macros/lmitool.sci, line: 129
 msgid "File not generated by lmitool or badly modified."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 152
+# File: modules/optimization/macros/lmitool.sci, line: 155
 msgid "Function definitions: "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 153
+# File: modules/optimization/macros/lmitool.sci, line: 156
 msgid "Here is a skeleton of the functions you should edit."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 154
+# File: modules/optimization/macros/lmitool.sci, line: 157
 msgid "You can edit in this window or click on 'ok'."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 155
+# File: modules/optimization/macros/lmitool.sci, line: 158
 msgid "Save and edit the skeleton later through your favorite editor."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 162
+# File: modules/optimization/macros/lmitool.sci, line: 165
 msgid "Name of the file where to save the solver function"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 163
+# File: modules/optimization/macros/lmitool.sci, line: 166
 msgid "and the evaluation function"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 164
+# File: modules/optimization/macros/lmitool.sci, line: 167
 msgid "(Will overwrite if a file with the same name already exists)."
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 167
+# File: modules/optimization/macros/lmitool.sci, line: 170
 msgid "functions saved in "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 189
+# File: modules/optimization/macros/lmitool.sci, line: 192
 msgid "    To solve your problem, you need to "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 190
+# File: modules/optimization/macros/lmitool.sci, line: 193
 msgid "1- edit file "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 191
+# File: modules/optimization/macros/lmitool.sci, line: 194
 msgid "2- load (and compile) your functions:"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 193
+# File: modules/optimization/macros/lmitool.sci, line: 196
 msgid " and call "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 193
+# File: modules/optimization/macros/lmitool.sci, line: 196
 msgid " function:"
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 193
+# File: modules/optimization/macros/lmitool.sci, line: 196
 msgid "3- Define "
 msgstr ""
 
 #
-# File: modules/optimization/macros/lmitool.sci, line: 195
+# File: modules/optimization/macros/lmitool.sci, line: 198
 msgid "To check the result, use [LME,LMI,OBJ]="
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 67
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 70
 #, c-format
 msgid "%s: Unknown step %s"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 116
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 119
 #, c-format
 msgid ""
 "%s: The value of the 'OutputFcn' option is neither a function nor a list."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 132
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 135
 #, c-format
 msgid ""
 "%s: The value of the 'PlotFcns' option is neither a function nor a list."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 155
-# File: modules/optimization/macros/optimbase/optimbase_outputcmd.sci, line: 57
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 158
+# File: modules/optimization/macros/optimbase/optimbase_outputcmd.sci, line: 60
 #, c-format
 msgid "Calling sequence %s is obsolete."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 156
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 264
-# File: modules/optimization/macros/optimbase/optimbase_outputcmd.sci, line: 58
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 159
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 267
+# File: modules/optimization/macros/optimbase/optimbase_outputcmd.sci, line: 61
 #, c-format
 msgid "Please use %s instead."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 157
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 265
-# File: modules/optimization/macros/optimbase/optimbase_outputcmd.sci, line: 59
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 160
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 268
+# File: modules/optimization/macros/optimbase/optimbase_outputcmd.sci, line: 62
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 165
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 170
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 168
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 173
 #, c-format
 msgid ""
 "%s: Expected function or list for variable %s at input #%d, but got %s "
@@ -1425,58 +2061,58 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 171
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 176
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 174
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 179
 #, c-format
 msgid ""
 "%s: Expected function for variable %s(1) at input #%d, but got %s instead."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 179
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 236
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 135
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 255
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 182
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 239
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 138
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 258
 #, c-format
 msgid ""
 "%s: Expected real variable for variable %s at input #%d, but got %s instead."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 219
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 222
 #, c-format
 msgid "%s: Unexpected maximum number of iterations %s."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 229
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 232
 #, c-format
 msgid "%s: Unexpected maximum number of function evaluations %s."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 310
+# File: modules/optimization/macros/neldermead/fminsearch.sci, line: 313
 #, c-format
 msgid "%s: Unknown status %s"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 19
-# File: modules/optimization/macros/optimbase/optimbase_cget.sci, line: 20
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 19
-# File: modules/optimization/macros/optimbase/optimbase_destroy.sci, line: 18
-# File: modules/optimization/macros/optimbase/optimbase_get.sci, line: 22
-# File: modules/optimization/macros/optimbase/optimbase_log.sci, line: 19
-# File: modules/optimization/macros/optimbase/optimbase_new.sci, line: 18
-# File: modules/optimization/macros/optimbase/optimbase_set.sci, line: 20
-# File: modules/optimization/macros/pack.sci, line: 16
-# File: modules/optimization/macros/unpack.sci, line: 16
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 22
+# File: modules/optimization/macros/optimbase/optimbase_cget.sci, line: 23
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 22
+# File: modules/optimization/macros/optimbase/optimbase_destroy.sci, line: 21
+# File: modules/optimization/macros/optimbase/optimbase_get.sci, line: 25
+# File: modules/optimization/macros/optimbase/optimbase_log.sci, line: 22
+# File: modules/optimization/macros/optimbase/optimbase_new.sci, line: 21
+# File: modules/optimization/macros/optimbase/optimbase_set.sci, line: 23
+# File: modules/optimization/macros/pack.sci, line: 19
+# File: modules/optimization/macros/unpack.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 111
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 114
 #, c-format
 msgid ""
 "%s: The restartstep vector is expected to have %d x %d shape, but current "
@@ -1484,9 +2120,9 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 243
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 142
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 262
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 246
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 145
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 265
 #, c-format
 msgid ""
 "%s: Expected string variable for variable %s at input #%d, but got %s "
@@ -1494,30 +2130,30 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 250
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 149
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 269
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 253
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 152
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 272
 #, c-format
 msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 257
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 156
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 276
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 260
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 159
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 279
 #, c-format
 msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 263
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 266
 #, c-format
 msgid "Option %s is obsolete."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 273
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 186
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 276
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 189
 #, c-format
 msgid ""
 "%s: Expected that all entries of input argument %s at input #%d are in the "
@@ -1525,8 +2161,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 282
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 195
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 285
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 198
 #, c-format
 msgid ""
 "%s: Expected that all entries of input argument %s at input #%d are greater "
@@ -1534,8 +2170,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 291
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 204
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 294
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 207
 #, c-format
 msgid ""
 "%s: Expected floating point integer for input argument %s at input #%d, but "
@@ -1543,29 +2179,29 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 299
-# File: modules/optimization/macros/numderivative.sci, line: 90
-# File: modules/optimization/macros/numderivative.sci, line: 104
-# File: modules/optimization/macros/numderivative.sci, line: 120
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 212
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 339
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 346
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 351
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 378
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 382
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 408
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 412
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 416
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 449
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 453
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 457
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 302
+# File: modules/optimization/macros/numderivative.sci, line: 93
+# File: modules/optimization/macros/numderivative.sci, line: 107
+# File: modules/optimization/macros/numderivative.sci, line: 123
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 215
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 342
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 349
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 354
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 381
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 385
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 411
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 415
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 419
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 452
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 456
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 460
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 308
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 221
+# File: modules/optimization/macros/neldermead/neldermead_configure.sci, line: 311
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 224
 #, c-format
 msgid ""
 "%s: Expected value [%s] for input argument %s at input #%d, but got %s "
@@ -1573,23 +2209,23 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_get.sci, line: 22
-# File: modules/optimization/macros/optimbase/optimbase_histget.sci, line: 22
-# File: modules/optimization/macros/optimbase/optimbase_histset.sci, line: 23
-# File: modules/optimization/macros/optimbase/optimbase_set.sci, line: 32
-# File: modules/optimization/macros/optimbase/optimbase_set.sci, line: 39
+# File: modules/optimization/macros/neldermead/neldermead_get.sci, line: 25
+# File: modules/optimization/macros/optimbase/optimbase_histget.sci, line: 25
+# File: modules/optimization/macros/optimbase/optimbase_histset.sci, line: 26
+# File: modules/optimization/macros/optimbase/optimbase_set.sci, line: 35
+# File: modules/optimization/macros/optimbase/optimbase_set.sci, line: 42
 #, c-format
 msgid "%s: History disabled ; turn on -storehistory option."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 51
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 54
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s, %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 58
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 61
 #, c-format
 msgid ""
 "%s: The -withderivatives option is true but all algorithms in neldermead are "
@@ -1597,76 +2233,76 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 107
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 110
 #, c-format
 msgid "%s: Unknown -method %s"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 208
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 211
 #, c-format
 msgid "%s: Problem has constraints, but variable algorithm ignores them."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 218
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 221
 #, c-format
 msgid "%s: The number of variable is zero."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 450
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 453
 #, c-format
 msgid "%s: Problem has constraints, but fixed algorithm ignores them."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 851
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 854
 #, c-format
 msgid "%s: Unknown restart detection %s"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 979
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 982
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 985
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 988
 #, c-format
 msgid "%s: Unknown value %s for -simplex0method option"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 995
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 998
 #, c-format
 msgid "%s: Initial guess [%s] is not feasible."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 1004
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 1007
 #, c-format
 msgid "%s: Unknown value %s for -scalingsimplex0 option"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 1059
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 1096
-# File: modules/optimization/macros/neldermead/neldermead_updatesimp.sci, line: 108
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 1062
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 1099
+# File: modules/optimization/macros/neldermead/neldermead_updatesimp.sci, line: 111
 #, c-format
 msgid ""
 "%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 1242
+# File: modules/optimization/macros/neldermead/neldermead_search.sci, line: 1245
 #, c-format
 msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_updatesimp.sci, line: 30
+# File: modules/optimization/macros/neldermead/neldermead_updatesimp.sci, line: 33
 #, c-format
 msgid ""
 "%s: The initial simplex method %s is not compatible with the restart simplex "
@@ -1674,33 +2310,33 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_updatesimp.sci, line: 42
+# File: modules/optimization/macros/neldermead/neldermead_updatesimp.sci, line: 45
 #, c-format
 msgid "%s: Randomized bounds restart simplex is not available without bounds."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/neldermead_updatesimp.sci, line: 47
-# File: modules/optimization/macros/neldermead/neldermead_updatesimp.sci, line: 80
+# File: modules/optimization/macros/neldermead/neldermead_updatesimp.sci, line: 50
+# File: modules/optimization/macros/neldermead/neldermead_updatesimp.sci, line: 83
 #, c-format
 msgid "%s: Unknown restart simplex method %s"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/nmplot_configure.sci, line: 26
-# File: modules/optimization/macros/optimbase/optimbase_cget.sci, line: 67
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 128
-# File: modules/optimization/macros/optimbase/optimbase_get.sci, line: 55
-# File: modules/optimization/macros/optimbase/optimbase_histget.sci, line: 35
-# File: modules/optimization/macros/optimbase/optimbase_histset.sci, line: 36
-# File: modules/optimization/macros/optimbase/optimbase_set.sci, line: 49
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 498
+# File: modules/optimization/macros/neldermead/nmplot_configure.sci, line: 29
+# File: modules/optimization/macros/optimbase/optimbase_cget.sci, line: 70
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 131
+# File: modules/optimization/macros/optimbase/optimbase_get.sci, line: 58
+# File: modules/optimization/macros/optimbase/optimbase_histget.sci, line: 38
+# File: modules/optimization/macros/optimbase/optimbase_histset.sci, line: 39
+# File: modules/optimization/macros/optimbase/optimbase_set.sci, line: 52
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 501
 #, c-format
 msgid "%s: Unknown key %s"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/nmplot_contour.sci, line: 24
+# File: modules/optimization/macros/neldermead/nmplot_contour.sci, line: 27
 #, c-format
 msgid ""
 "%s: Unexpected number of variables %d. Cannot draw contour plot for "
@@ -1708,19 +2344,19 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/optimget.sci, line: 25
+# File: modules/optimization/macros/neldermead/optimget.sci, line: 28
 #, c-format
 msgid "%s: Wrong number of arguments : %d expected while %d given"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/optimget.sci, line: 48
+# File: modules/optimization/macros/neldermead/optimget.sci, line: 51
 #, c-format
 msgid "%s: Ambiguous property name %s matches several fields : %s"
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/optimset.sci, line: 48
+# File: modules/optimization/macros/neldermead/optimset.sci, line: 51
 #, c-format
 msgid ""
 "%s: Odd number of arguments : the first argument is expected to be a struct, "
@@ -1728,19 +2364,19 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/optimset.sci, line: 102
+# File: modules/optimization/macros/neldermead/optimset.sci, line: 105
 #, c-format
 msgid "%s: Unrecognized value '%s' for 'Display' option."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/optimset.sci, line: 120
+# File: modules/optimization/macros/neldermead/optimset.sci, line: 123
 #, c-format
 msgid "%s: Unrecognized parameter name '%s'."
 msgstr ""
 
 #
-# File: modules/optimization/macros/neldermead/optimset.sci, line: 157
+# File: modules/optimization/macros/neldermead/optimset.sci, line: 160
 #, c-format
 msgid ""
 "%s: No default options available: the function '%s' does not exist on the "
@@ -1748,19 +2384,19 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 21
+# File: modules/optimization/macros/numderivative.sci, line: 24
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 28
+# File: modules/optimization/macros/numderivative.sci, line: 31
 #, c-format
 msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 34
+# File: modules/optimization/macros/numderivative.sci, line: 37
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Function expected in first element of "
@@ -1768,7 +2404,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 37
+# File: modules/optimization/macros/numderivative.sci, line: 40
 #, c-format
 msgid ""
 "%s: Wrong number of elements in input argument #%d: At least %d elements "
@@ -1776,138 +2412,138 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 45
-# File: modules/optimization/macros/numderivative.sci, line: 62
-# File: modules/optimization/macros/numderivative.sci, line: 87
-# File: modules/optimization/macros/numderivative.sci, line: 117
+# File: modules/optimization/macros/numderivative.sci, line: 48
+# File: modules/optimization/macros/numderivative.sci, line: 65
+# File: modules/optimization/macros/numderivative.sci, line: 90
+# File: modules/optimization/macros/numderivative.sci, line: 120
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 49
-# File: modules/optimization/macros/numderivative.sci, line: 68
+# File: modules/optimization/macros/numderivative.sci, line: 52
+# File: modules/optimization/macros/numderivative.sci, line: 71
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 74
+# File: modules/optimization/macros/numderivative.sci, line: 77
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 78
+# File: modules/optimization/macros/numderivative.sci, line: 81
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 93
-# File: modules/optimization/macros/numderivative.sci, line: 107
+# File: modules/optimization/macros/numderivative.sci, line: 96
+# File: modules/optimization/macros/numderivative.sci, line: 110
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 101
+# File: modules/optimization/macros/numderivative.sci, line: 104
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 123
+# File: modules/optimization/macros/numderivative.sci, line: 126
 #, c-format
 msgid "%s: Q must be orthogonal.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 198
-# File: modules/optimization/macros/numderivative.sci, line: 211
-# File: modules/optimization/macros/numderivative.sci, line: 215
+# File: modules/optimization/macros/numderivative.sci, line: 201
+# File: modules/optimization/macros/numderivative.sci, line: 214
+# File: modules/optimization/macros/numderivative.sci, line: 218
 #, c-format
 msgid "%s: Unknown value %s for option %s.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/numderivative.sci, line: 345
+# File: modules/optimization/macros/numderivative.sci, line: 348
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_checkbounds.sci, line: 22
+# File: modules/optimization/macros/optimbase/optimbase_checkbounds.sci, line: 25
 #, c-format
 msgid ""
 "%s: The number of variables %d does not match the number of max bounds: %d.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_checkbounds.sci, line: 27
+# File: modules/optimization/macros/optimbase/optimbase_checkbounds.sci, line: 30
 #, c-format
 msgid ""
 "%s: The number of variables %d does not match the number of min bounds: %d.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_checkbounds.sci, line: 35
+# File: modules/optimization/macros/optimbase/optimbase_checkbounds.sci, line: 38
 #, c-format
 msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_checkcostfun.sci, line: 19
+# File: modules/optimization/macros/optimbase/optimbase_checkcostfun.sci, line: 22
 #, c-format
 msgid "%s: Cannot check cost function when x0 is empty"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_checkcostfun.sci, line: 116
+# File: modules/optimization/macros/optimbase/optimbase_checkcostfun.sci, line: 119
 #, c-format
 msgid "%s: Cannot evaluate cost function with %s: %s"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_checkcostfun.sci, line: 133
+# File: modules/optimization/macros/optimbase/optimbase_checkcostfun.sci, line: 136
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_checkcostfun.sci, line: 138
+# File: modules/optimization/macros/optimbase/optimbase_checkcostfun.sci, line: 141
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_checkx0.sci, line: 19
+# File: modules/optimization/macros/optimbase/optimbase_checkx0.sci, line: 22
 #, c-format
 msgid "%s: Initial guess is not feasible."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 51
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 54
 #, c-format
 msgid "%s: Wrong size for x0 argument: A vector expected."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 163
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 283
+# File: modules/optimization/macros/optimbase/optimbase_configure.sci, line: 166
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 286
 #, c-format
 msgid "%s: Unknown value %s for %s option"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 85
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 88
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 are expected."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 89
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 92
 #, c-format
 msgid ""
 "%s: Unexpected number of output arguments : %d provided while 3 to 5 are "
@@ -1915,97 +2551,97 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 93
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 96
 #, c-format
 msgid "%s: Empty function (use -function option)."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 127
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 131
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 135
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 148
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 152
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 156
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 160
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 164
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 181
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 185
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 197
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 201
-# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 205
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 130
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 134
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 138
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 151
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 155
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 159
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 163
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 167
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 184
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 188
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 200
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 204
+# File: modules/optimization/macros/optimbase/optimbase_function.sci, line: 208
 #, c-format
 msgid ""
 "%s: Wrong type for user function output argument #%d: A real matrix expected."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_get.sci, line: 36
-# File: modules/optimization/macros/optimbase/optimbase_get.sci, line: 43
+# File: modules/optimization/macros/optimbase/optimbase_get.sci, line: 39
+# File: modules/optimization/macros/optimbase/optimbase_get.sci, line: 46
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_histget.sci, line: 26
+# File: modules/optimization/macros/optimbase/optimbase_histget.sci, line: 29
 #, c-format
 msgid "%s: Negative iteration index %d is not allowed."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_histset.sci, line: 27
+# File: modules/optimization/macros/optimbase/optimbase_histset.sci, line: 30
 #, c-format
 msgid "%s: Negative iteration index are not allowed."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_logshutdown.sci, line: 19
+# File: modules/optimization/macros/optimbase/optimbase_logshutdown.sci, line: 22
 #, c-format
 msgid "%s: Logging not started."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_logstartup.sci, line: 20
+# File: modules/optimization/macros/optimbase/optimbase_logstartup.sci, line: 23
 #, c-format
 msgid "%s: Logging already started."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_logstartup.sci, line: 25
+# File: modules/optimization/macros/optimbase/optimbase_logstartup.sci, line: 28
 #, c-format
 msgid "%s: Log file handle non zero while starting up the logging."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimbase/optimbase_outstruct.sci, line: 20
+# File: modules/optimization/macros/optimbase/optimbase_outstruct.sci, line: 23
 #, c-format
 msgid "%s: No output command is defined."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_check.sci, line: 21
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getall.sci, line: 23
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getallfv.sci, line: 22
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getallx.sci, line: 21
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getfv.sci, line: 19
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getn.sci, line: 19
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getnbve.sci, line: 19
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getve.sci, line: 20
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getx.sci, line: 20
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setall.sci, line: 24
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setallfv.sci, line: 21
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setallx.sci, line: 21
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setfv.sci, line: 21
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setn.sci, line: 19
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setnbve.sci, line: 19
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setve.sci, line: 21
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setx.sci, line: 20
+# File: modules/optimization/macros/optimsimplex/optimsimplex_check.sci, line: 24
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getall.sci, line: 26
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getallfv.sci, line: 25
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getallx.sci, line: 24
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getfv.sci, line: 22
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getn.sci, line: 22
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getnbve.sci, line: 22
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getve.sci, line: 23
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getx.sci, line: 23
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setall.sci, line: 27
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setallfv.sci, line: 24
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setallx.sci, line: 24
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setfv.sci, line: 24
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setn.sci, line: 22
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setnbve.sci, line: 22
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setve.sci, line: 24
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setx.sci, line: 23
 #, c-format
 msgid "%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_check.sci, line: 26
+# File: modules/optimization/macros/optimsimplex/optimsimplex_check.sci, line: 29
 #, c-format
 msgid ""
 "%s: Number of rows of x is %d, which is different from number of vertices = "
@@ -2013,14 +2649,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_check.sci, line: 29
+# File: modules/optimization/macros/optimsimplex/optimsimplex_check.sci, line: 32
 #, c-format
 msgid ""
 "%s: Number of columns of x is %d, which is different from dimension = %d."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_check.sci, line: 34
+# File: modules/optimization/macros/optimsimplex/optimsimplex_check.sci, line: 37
 #, c-format
 msgid ""
 "%s: Number of rows of fv is %d, which is different from number of vertices = "
@@ -2028,39 +2664,39 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_check.sci, line: 37
+# File: modules/optimization/macros/optimsimplex/optimsimplex_check.sci, line: 40
 #, c-format
 msgid "%s: Number of columns of fv is %d, which is different from 1."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getfv.sci, line: 22
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getve.sci, line: 23
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getx.sci, line: 23
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setfv.sci, line: 24
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setn.sci, line: 22
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setnbve.sci, line: 22
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setve.sci, line: 24
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setx.sci, line: 23
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getfv.sci, line: 25
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getve.sci, line: 26
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getx.sci, line: 26
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setfv.sci, line: 27
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setn.sci, line: 25
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setnbve.sci, line: 25
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setve.sci, line: 27
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setx.sci, line: 26
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getfv.sci, line: 28
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getve.sci, line: 26
-# File: modules/optimization/macros/optimsimplex/optimsimplex_getx.sci, line: 29
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setfv.sci, line: 33
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setn.sci, line: 28
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setnbve.sci, line: 28
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setve.sci, line: 36
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setx.sci, line: 32
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getfv.sci, line: 31
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getve.sci, line: 29
+# File: modules/optimization/macros/optimsimplex/optimsimplex_getx.sci, line: 32
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setfv.sci, line: 36
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setn.sci, line: 31
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setnbve.sci, line: 31
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setve.sci, line: 39
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setx.sci, line: 35
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_gradientfv.sci, line: 21
+# File: modules/optimization/macros/optimsimplex/optimsimplex_gradientfv.sci, line: 24
 #, c-format
 msgid ""
 "%s: The gradient can be applied only with a simplex made of n+1 points, but "
@@ -2068,21 +2704,21 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_gradientfv.sci, line: 37
+# File: modules/optimization/macros/optimsimplex/optimsimplex_gradientfv.sci, line: 40
 #, c-format
 msgid "%s: Unknown method %s"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 81
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 84
 #, c-format
 msgid ""
 "%s: The numbers of columns of coords is %d but is expected to be at least %d"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 326
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 362
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 329
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 365
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 5 are "
@@ -2090,7 +2726,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 393
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 396
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 6 are "
@@ -2098,7 +2734,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 428
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 431
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 6 to 7 are "
@@ -2106,7 +2742,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 467
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 470
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 4 are "
@@ -2114,25 +2750,25 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 477
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 480
 #, c-format
 msgid "%s: Wrong type for argument #%d: %s expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 484
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 487
 #, c-format
 msgid "%s: The initial simplex has no vertices."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 488
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 491
 #, c-format
 msgid "%s: The initial simplex has no dimension."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 492
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 495
 #, c-format
 msgid ""
 "%s: The oriented simplex can be computed only with a simplex made of n+1 "
@@ -2140,7 +2776,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 506
+# File: modules/optimization/macros/optimsimplex/optimsimplex_new.sci, line: 509
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 1 to 3 are "
@@ -2148,7 +2784,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setall.sci, line: 32
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setall.sci, line: 35
 #, c-format
 msgid ""
 "%s: The number of vertices (i.e. the number of rows) is %d which is smaller "
@@ -2156,14 +2792,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setallfv.sci, line: 28
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setallfv.sci, line: 31
 #, c-format
 msgid ""
 "%s: The number of rows in the function value array is %d, while expected %d."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setallfv.sci, line: 32
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setallfv.sci, line: 35
 #, c-format
 msgid ""
 "%s: The number of columns in the function value array is %d, while expected "
@@ -2171,65 +2807,65 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setallx.sci, line: 28
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setallx.sci, line: 31
 #, c-format
 msgid "%s: The number of rows in x is %d, while expected %d."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_setallx.sci, line: 32
+# File: modules/optimization/macros/optimsimplex/optimsimplex_setallx.sci, line: 35
 #, c-format
 msgid "%s: The number of columns in x is %d, while expected %d."
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_size.sci, line: 60
+# File: modules/optimization/macros/optimsimplex/optimsimplex_size.sci, line: 63
 #, c-format
 msgid "%s: Unknown simplex size method %s"
 msgstr ""
 
 #
-# File: modules/optimization/macros/optimsimplex/optimsimplex_xbar.sci, line: 27
+# File: modules/optimization/macros/optimsimplex/optimsimplex_xbar.sci, line: 30
 #, c-format
 msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr ""
 
 #
-# File: modules/optimization/macros/pack.sci, line: 21
+# File: modules/optimization/macros/pack.sci, line: 24
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Real matrix or sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/pack.sci, line: 24
-# File: modules/optimization/macros/pack.sci, line: 29
+# File: modules/optimization/macros/pack.sci, line: 27
 # File: modules/optimization/macros/pack.sci, line: 32
-# File: modules/optimization/macros/unpack.sci, line: 21
-# File: modules/optimization/macros/unpack.sci, line: 24
-# File: modules/optimization/macros/unpack.sci, line: 29
-# File: modules/optimization/macros/unpack.sci, line: 32
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr ""
-
-#
 # File: modules/optimization/macros/pack.sci, line: 35
+# File: modules/optimization/macros/unpack.sci, line: 24
+# File: modules/optimization/macros/unpack.sci, line: 27
+# File: modules/optimization/macros/unpack.sci, line: 32
 # File: modules/optimization/macros/unpack.sci, line: 35
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
 # File: modules/optimization/macros/pack.sci, line: 38
 # File: modules/optimization/macros/unpack.sci, line: 38
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+
+#
+# File: modules/optimization/macros/pack.sci, line: 41
+# File: modules/optimization/macros/unpack.sci, line: 41
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/vec2list.sci, line: 17
+# File: modules/optimization/macros/vec2list.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""

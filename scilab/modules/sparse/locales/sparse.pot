@@ -15,311 +15,311 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-01-25 15:00+0100\n"
+"Revision-Date: 2016-02-10 12:14+0100\n"
 
-# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 31
-# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 48
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 34
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 29
+# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 34
+# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 51
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 37
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 32
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 36
-# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 42
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 41
-# File: modules/sparse/sci_gateway/cpp/sci_full.cpp, line: 38
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 42
-# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 67
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 38
-# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 42
-# File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 85
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 35
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 42
+# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 39
+# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 45
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 44
+# File: modules/sparse/sci_gateway/cpp/sci_full.cpp, line: 41
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 45
+# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 70
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 41
+# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 45
+# File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 88
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 38
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 45
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 44
+# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 47
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 53
-# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 65
+# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 56
+# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 68
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 70
+# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 73
 #, c-format
 msgid "%s: Wrong size for input arguments %d: A vector of size %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 76
+# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 79
 #, c-format
 msgid "%s: Incompatible input argument.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 36
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 35
-# File: modules/sparse/sci_gateway/cpp/sci_full.cpp, line: 32
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 36
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 51
-# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 55
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 32
-# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 36
-# File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 31
-# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 33
-# File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 69
-# File: modules/sparse/sci_gateway/cpp/sci_spget.cpp, line: 41
-# File: modules/sparse/sci_gateway/cpp/sci_spones.cpp, line: 28
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 36
+# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 39
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 38
+# File: modules/sparse/sci_gateway/cpp/sci_full.cpp, line: 35
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 39
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 54
+# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 58
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 35
+# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 39
+# File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 34
+# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 36
+# File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 72
+# File: modules/sparse/sci_gateway/cpp/sci_spget.cpp, line: 44
+# File: modules/sparse/sci_gateway/cpp/sci_spones.cpp, line: 31
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 39
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 50
-# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 61
-# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 72
-# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 83
-# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 94
-# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 105
-# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 116
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 49
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 60
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 71
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 82
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 93
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 104
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 115
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 126
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 137
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 147
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 158
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 169
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 180
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 190
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 201
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 50
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 61
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 72
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 83
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 93
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 104
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 115
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 126
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 137
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 148
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 159
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 170
-# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 180
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 46
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 57
-# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 50
-# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 61
-# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 72
-# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 83
-# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 94
-# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 105
-# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 116
-# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 127
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 50
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 61
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 72
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 83
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 94
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 105
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 116
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 127
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 138
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 149
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 160
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 171
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 182
+# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 53
+# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 64
+# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 75
+# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 86
+# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 97
+# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 108
+# File: modules/sparse/sci_gateway/cpp/sci_bfinit.cpp, line: 119
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 52
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 63
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 74
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 85
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 96
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 107
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 118
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 129
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 140
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 150
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 161
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 172
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 183
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 193
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 204
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 53
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 64
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 75
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 86
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 96
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 107
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 118
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 129
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 140
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 151
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 162
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 173
+# File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 183
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 49
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 60
+# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 53
+# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 64
+# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 75
+# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 86
+# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 97
+# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 108
+# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 119
+# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 130
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 53
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 64
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 75
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 86
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 97
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 108
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 119
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 130
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 141
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 152
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 163
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 174
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 185
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 218
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 98
-# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 175
-# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 219
+# File: modules/sparse/sci_gateway/cpp/sci_blkfc1i.cpp, line: 221
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 101
+# File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 178
+# File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 222
 #, c-format
 msgid "%s: insufficient working storage"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 33
-# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 62
+# File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 36
+# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 65
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d  expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 39
-# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 68
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 57
-# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 39
+# File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 42
+# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 71
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 60
+# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 42
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 45
-# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 74
+# File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 48
+# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 77
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d:  Handle to sparse lu factors expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 56
-# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 88
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 149
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 155
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 167
+# File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 59
+# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 91
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 152
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 158
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 170
 #, c-format
 msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 54
+# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 57
 #, c-format
 msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 73
+# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 76
 #, c-format
 msgid "%s: Wrong number of dimensions for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 104
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 83
+# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 107
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 86
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 118
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 121
 #, c-format
 msgid "%s not yet implemented for full input parameter.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 131
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 134
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Incompatible dimensions.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 61
+# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 64
 #, c-format
 msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 68
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 71
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 76
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 79
 msgid ""
 " The provided \"n\" does not correspond to the matrix defined by xadj and "
 "iadj\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 37
-# File: modules/sparse/sci_gateway/cpp/sci_spget.cpp, line: 121
+# File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 40
+# File: modules/sparse/sci_gateway/cpp/sci_spget.cpp, line: 124
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 42
-# File: modules/sparse/sci_gateway/cpp/sci_spget.cpp, line: 127
+# File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 45
+# File: modules/sparse/sci_gateway/cpp/sci_spget.cpp, line: 130
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 61
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 64
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 68
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 71
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A m-by-n matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 123
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 126
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 135
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 138
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 151
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 154
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 45
+# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 48
 #, c-format
 msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 53
+# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 56
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 59
+# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 62
 #, c-format
 msgid "%s: Wrong size for argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 70
+# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 73
 #, c-format
 msgid "%s: The provided data did not satisfy the prerequisites.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 73
+# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 76
 #, c-format
 msgid "%s: Iterative procedure did not converge.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 76
+# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 79
 #, c-format
 msgid ""
 "%s: The inputs are invalid, or the algorithm has been improperly called.\n"
@@ -327,28 +327,28 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 78
+# File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 81
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spones.cpp, line: 34
+# File: modules/sparse/sci_gateway/cpp/sci_spones.cpp, line: 37
 #, c-format
 msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 46
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 52
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 61
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 67
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 49
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 55
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 64
+# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 70
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/src/c/lu.c, line: 130
+# File: modules/sparse/src/c/lu.c, line: 133
 #, c-format
 msgid "%s: A zero was encountered on the diagonal the matrix.\n"
 msgstr ""
@@ -565,185 +565,185 @@ msgid ""
 "\n"
 msgstr ""
 
-# File: modules/sparse/macros/%bicg.sci, line: 52
-# File: modules/sparse/macros/%bicgstab.sci, line: 52
-# File: modules/sparse/macros/%cgs.sci, line: 52
-# File: modules/sparse/macros/%pcg.sci, line: 63
+# File: modules/sparse/macros/%bicg.sci, line: 55
+# File: modules/sparse/macros/%bicgstab.sci, line: 55
+# File: modules/sparse/macros/%cgs.sci, line: 55
+# File: modules/sparse/macros/%pcg.sci, line: 66
 #, c-format
 msgid "Norm of right-hand side : %s\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/%bicg.sci, line: 56
-# File: modules/sparse/macros/%bicgstab.sci, line: 56
-# File: modules/sparse/macros/%cgs.sci, line: 56
-# File: modules/sparse/macros/%pcg.sci, line: 67
+# File: modules/sparse/macros/%bicg.sci, line: 59
+# File: modules/sparse/macros/%bicgstab.sci, line: 59
+# File: modules/sparse/macros/%cgs.sci, line: 59
+# File: modules/sparse/macros/%pcg.sci, line: 70
 #, c-format
 msgid "Special processing where the right-hand side is zero.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/%bicg.sci, line: 76
-# File: modules/sparse/macros/%bicgstab.sci, line: 76
-# File: modules/sparse/macros/%cgs.sci, line: 76
-# File: modules/sparse/macros/%pcg.sci, line: 85
+# File: modules/sparse/macros/%bicg.sci, line: 79
+# File: modules/sparse/macros/%bicgstab.sci, line: 79
+# File: modules/sparse/macros/%cgs.sci, line: 79
+# File: modules/sparse/macros/%pcg.sci, line: 88
 #, c-format
 msgid "  Type of preconditionning #1 : %d\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/%bicg.sci, line: 77
-# File: modules/sparse/macros/%bicgstab.sci, line: 77
-# File: modules/sparse/macros/%cgs.sci, line: 77
-# File: modules/sparse/macros/%pcg.sci, line: 86
+# File: modules/sparse/macros/%bicg.sci, line: 80
+# File: modules/sparse/macros/%bicgstab.sci, line: 80
+# File: modules/sparse/macros/%cgs.sci, line: 80
+# File: modules/sparse/macros/%pcg.sci, line: 89
 #, c-format
 msgid "  Type of preconditionning #2 : %d\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/%bicg.sci, line: 85
-# File: modules/sparse/macros/%bicgstab.sci, line: 85
-# File: modules/sparse/macros/%bicgstab.sci, line: 142
-# File: modules/sparse/macros/%cgs.sci, line: 85
-# File: modules/sparse/macros/%pcg.sci, line: 94
+# File: modules/sparse/macros/%bicg.sci, line: 88
+# File: modules/sparse/macros/%bicgstab.sci, line: 88
+# File: modules/sparse/macros/%bicgstab.sci, line: 145
+# File: modules/sparse/macros/%cgs.sci, line: 88
+# File: modules/sparse/macros/%pcg.sci, line: 97
 #, c-format
 msgid "  New residual = %s < tol = %s => break\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/%bicg.sci, line: 91
-# File: modules/sparse/macros/%bicgstab.sci, line: 91
-# File: modules/sparse/macros/%cgs.sci, line: 91
-# File: modules/sparse/macros/%pcg.sci, line: 100
+# File: modules/sparse/macros/%bicg.sci, line: 94
+# File: modules/sparse/macros/%bicgstab.sci, line: 94
+# File: modules/sparse/macros/%cgs.sci, line: 94
+# File: modules/sparse/macros/%pcg.sci, line: 103
 #, c-format
 msgid "  Iteration #%s/%s residual : %s\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/%bicg.sci, line: 175
-# File: modules/sparse/macros/%bicgstab.sci, line: 188
-# File: modules/sparse/macros/%cgs.sci, line: 180
-# File: modules/sparse/macros/conjgrad.sci, line: 266
+# File: modules/sparse/macros/%bicg.sci, line: 178
+# File: modules/sparse/macros/%bicgstab.sci, line: 191
+# File: modules/sparse/macros/%cgs.sci, line: 183
+# File: modules/sparse/macros/conjgrad.sci, line: 269
 #, c-format
 msgid "Final residual = %s > tol =%s\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/%bicg.sci, line: 176
-# File: modules/sparse/macros/%bicgstab.sci, line: 189
-# File: modules/sparse/macros/%cgs.sci, line: 181
-# File: modules/sparse/macros/conjgrad.sci, line: 267
+# File: modules/sparse/macros/%bicg.sci, line: 179
+# File: modules/sparse/macros/%bicgstab.sci, line: 192
+# File: modules/sparse/macros/%cgs.sci, line: 184
+# File: modules/sparse/macros/conjgrad.sci, line: 270
 #, c-format
 msgid "Algorithm fails\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/%bicg.sci, line: 180
-# File: modules/sparse/macros/%bicgstab.sci, line: 193
-# File: modules/sparse/macros/%cgs.sci, line: 185
-# File: modules/sparse/macros/conjgrad.sci, line: 271
+# File: modules/sparse/macros/%bicg.sci, line: 183
+# File: modules/sparse/macros/%bicgstab.sci, line: 196
+# File: modules/sparse/macros/%cgs.sci, line: 188
+# File: modules/sparse/macros/conjgrad.sci, line: 274
 #, c-format
 msgid "%s: Convergence error.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/%bicg.sci, line: 185
-# File: modules/sparse/macros/%bicgstab.sci, line: 198
-# File: modules/sparse/macros/%cgs.sci, line: 190
-# File: modules/sparse/macros/conjgrad.sci, line: 276
+# File: modules/sparse/macros/%bicg.sci, line: 188
+# File: modules/sparse/macros/%bicgstab.sci, line: 201
+# File: modules/sparse/macros/%cgs.sci, line: 193
+# File: modules/sparse/macros/conjgrad.sci, line: 279
 #, c-format
 msgid "Algorithm pass\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/chfact.sci, line: 54
+# File: modules/sparse/macros/chfact.sci, line: 57
 msgid "  Possible matrix is not positive definite."
 msgstr ""
 
 #
-# File: modules/sparse/macros/chfact.sci, line: 59
+# File: modules/sparse/macros/chfact.sci, line: 62
 msgid "Non-positive diagonal encountered, matrix is not positive definite."
 msgstr ""
 
 #
-# File: modules/sparse/macros/chfact.sci, line: 61
+# File: modules/sparse/macros/chfact.sci, line: 64
 msgid "Insufficient working storage in blkfct, temp(*)."
 msgstr ""
 
 #
-# File: modules/sparse/macros/chfact.sci, line: 63
+# File: modules/sparse/macros/chfact.sci, line: 66
 msgid "Insufficient working storage in blkfct, iwork(*)."
 msgstr ""
 
 #
-# File: modules/sparse/macros/chfact.sci, line: 104
+# File: modules/sparse/macros/chfact.sci, line: 107
 msgid " SYMFCT requires PERM to be neqns x 1"
 msgstr ""
 
 #
-# File: modules/sparse/macros/chfact.sci, line: 106
+# File: modules/sparse/macros/chfact.sci, line: 109
 msgid " SYMFCT requires INVN to be neqns x 1"
 msgstr ""
 
 #
-# File: modules/sparse/macros/chfact.sci, line: 108
+# File: modules/sparse/macros/chfact.sci, line: 111
 msgid " SYMFCT requires CACHSZ  to be 1 x 1"
 msgstr ""
 
 #
-# File: modules/sparse/macros/chfact.sci, line: 114
+# File: modules/sparse/macros/chfact.sci, line: 117
 msgid " Insufficient working storage in sfinit"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 92
 # File: modules/sparse/macros/conjgrad.sci, line: 95
-# File: modules/sparse/macros/gmres.sci, line: 148
-# File: modules/sparse/macros/qmr.sci, line: 296
+# File: modules/sparse/macros/conjgrad.sci, line: 98
+# File: modules/sparse/macros/gmres.sci, line: 151
+# File: modules/sparse/macros/qmr.sci, line: 299
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 119
+# File: modules/sparse/macros/conjgrad.sci, line: 122
 #, c-format
 msgid "Arguments:\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 145
-# File: modules/sparse/macros/conjgrad.sci, line: 202
-# File: modules/sparse/macros/conjgrad.sci, line: 231
+# File: modules/sparse/macros/conjgrad.sci, line: 148
+# File: modules/sparse/macros/conjgrad.sci, line: 205
+# File: modules/sparse/macros/conjgrad.sci, line: 234
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 150
-# File: modules/sparse/macros/conjgrad.sci, line: 206
-# File: modules/sparse/macros/conjgrad.sci, line: 235
+# File: modules/sparse/macros/conjgrad.sci, line: 153
+# File: modules/sparse/macros/conjgrad.sci, line: 209
+# File: modules/sparse/macros/conjgrad.sci, line: 238
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 158
+# File: modules/sparse/macros/conjgrad.sci, line: 161
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 162
-# File: modules/sparse/macros/conjgrad.sci, line: 167
-# File: modules/sparse/macros/conjgrad.sci, line: 209
-# File: modules/sparse/macros/conjgrad.sci, line: 238
-# File: modules/sparse/macros/conjgrad.sci, line: 246
-# File: modules/sparse/macros/gmres.sci, line: 75
-# File: modules/sparse/macros/gmres.sci, line: 127
-# File: modules/sparse/macros/gmres.sci, line: 141
-# File: modules/sparse/macros/qmr.sci, line: 133
-# File: modules/sparse/macros/qmr.sci, line: 162
-# File: modules/sparse/macros/qmr.sci, line: 216
+# File: modules/sparse/macros/conjgrad.sci, line: 165
+# File: modules/sparse/macros/conjgrad.sci, line: 170
+# File: modules/sparse/macros/conjgrad.sci, line: 212
+# File: modules/sparse/macros/conjgrad.sci, line: 241
+# File: modules/sparse/macros/conjgrad.sci, line: 249
+# File: modules/sparse/macros/gmres.sci, line: 78
+# File: modules/sparse/macros/gmres.sci, line: 130
+# File: modules/sparse/macros/gmres.sci, line: 144
+# File: modules/sparse/macros/qmr.sci, line: 136
+# File: modules/sparse/macros/qmr.sci, line: 165
+# File: modules/sparse/macros/qmr.sci, line: 219
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
@@ -751,71 +751,71 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 172
+# File: modules/sparse/macros/conjgrad.sci, line: 175
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 174
+# File: modules/sparse/macros/conjgrad.sci, line: 177
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s, %s or %s expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 178
-# File: modules/sparse/macros/conjgrad.sci, line: 182
-# File: modules/sparse/macros/qmr.sci, line: 255
-# File: modules/sparse/macros/qmr.sci, line: 277
+# File: modules/sparse/macros/conjgrad.sci, line: 181
+# File: modules/sparse/macros/conjgrad.sci, line: 185
+# File: modules/sparse/macros/qmr.sci, line: 258
+# File: modules/sparse/macros/qmr.sci, line: 280
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 243
+# File: modules/sparse/macros/conjgrad.sci, line: 246
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/gmres.sci, line: 51
+# File: modules/sparse/macros/gmres.sci, line: 54
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/gmres.sci, line: 71
-# File: modules/sparse/macros/gmres.sci, line: 138
-# File: modules/sparse/macros/qmr.sci, line: 118
-# File: modules/sparse/macros/qmr.sci, line: 130
+# File: modules/sparse/macros/gmres.sci, line: 74
+# File: modules/sparse/macros/gmres.sci, line: 141
+# File: modules/sparse/macros/qmr.sci, line: 121
+# File: modules/sparse/macros/qmr.sci, line: 133
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/gmres.sci, line: 83
-# File: modules/sparse/macros/gmres.sci, line: 93
-# File: modules/sparse/macros/gmres.sci, line: 103
-# File: modules/sparse/macros/qmr.sci, line: 263
-# File: modules/sparse/macros/qmr.sci, line: 285
+# File: modules/sparse/macros/gmres.sci, line: 86
+# File: modules/sparse/macros/gmres.sci, line: 96
+# File: modules/sparse/macros/gmres.sci, line: 106
+# File: modules/sparse/macros/qmr.sci, line: 266
+# File: modules/sparse/macros/qmr.sci, line: 288
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/gmres.sci, line: 286
+# File: modules/sparse/macros/gmres.sci, line: 289
 #, c-format
 msgid "%s: Did not converge.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 61
+# File: modules/sparse/macros/qmr.sci, line: 64
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 73
+# File: modules/sparse/macros/qmr.sci, line: 76
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real or complex matrix or a sparse "
@@ -823,7 +823,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 91
+# File: modules/sparse/macros/qmr.sci, line: 94
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Transpose of the function %s "
@@ -831,7 +831,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 95
+# File: modules/sparse/macros/qmr.sci, line: 98
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A transpose of the function %s "
@@ -839,7 +839,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 105
+# File: modules/sparse/macros/qmr.sci, line: 108
 #, c-format
 msgid ""
 "%s : Calling qmr(A,Ap) is deprecated. Please see qmr documentation for more "
@@ -847,8 +847,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 115
-# File: modules/sparse/macros/qmr.sci, line: 127
+# File: modules/sparse/macros/qmr.sci, line: 118
+# File: modules/sparse/macros/qmr.sci, line: 130
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex, full or sparse "
@@ -856,8 +856,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 153
-# File: modules/sparse/macros/qmr.sci, line: 206
+# File: modules/sparse/macros/qmr.sci, line: 156
+# File: modules/sparse/macros/qmr.sci, line: 209
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex, full or sparse, "
@@ -865,7 +865,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 178
+# File: modules/sparse/macros/qmr.sci, line: 181
 #, c-format
 msgid ""
 "%s : Calling qmr(...,M1,M1p) is deprecated. Please see qmr documentation for "
@@ -873,8 +873,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 180
-# File: modules/sparse/macros/qmr.sci, line: 235
+# File: modules/sparse/macros/qmr.sci, line: 183
+# File: modules/sparse/macros/qmr.sci, line: 238
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A transpose of the function "
@@ -882,7 +882,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 183
+# File: modules/sparse/macros/qmr.sci, line: 186
 #, c-format
 msgid ""
 "%s: Wrong prototype of input argument #%d: If M1 is function, use the header "
@@ -890,7 +890,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 233
+# File: modules/sparse/macros/qmr.sci, line: 236
 #, c-format
 msgid ""
 "%s : Calling qmr(...,M2,M2p) is deprecated. Please see qmr documentation for "
@@ -898,7 +898,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 238
+# File: modules/sparse/macros/qmr.sci, line: 241
 #, c-format
 msgid ""
 "%s: Wrong prototype of input argument #%d: If M2 is function, use the header "
@@ -906,27 +906,27 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 259
-# File: modules/sparse/macros/qmr.sci, line: 281
+# File: modules/sparse/macros/qmr.sci, line: 262
+# File: modules/sparse/macros/qmr.sci, line: 284
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/sprand.sci, line: 17
-# File: modules/sparse/macros/spzeros.sci, line: 14
+# File: modules/sparse/macros/sprand.sci, line: 20
+# File: modules/sparse/macros/spzeros.sci, line: 17
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/sprand.sci, line: 25
+# File: modules/sparse/macros/sprand.sci, line: 28
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/sprand.sci, line: 29
+# File: modules/sparse/macros/sprand.sci, line: 32
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""

@@ -15,521 +15,557 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-01-25 15:00+0100\n"
+"Revision-Date: 2016-02-10 12:14+0100\n"
 
-# File: modules/ast/src/c/operations/matrix_power.c, line: 541
-# File: modules/ast/src/c/operations/matrix_power.c, line: 681
+# File: modules/ast/src/c/operations/matrix_power.c, line: 544
+# File: modules/ast/src/c/operations/matrix_power.c, line: 684
 msgid "Warning :\n"
 msgstr ""
 
 #
-# File: modules/ast/src/c/operations/matrix_power.c, line: 542
-# File: modules/ast/src/c/operations/matrix_power.c, line: 682
+# File: modules/ast/src/c/operations/matrix_power.c, line: 545
+# File: modules/ast/src/c/operations/matrix_power.c, line: 685
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
 msgstr ""
 
 #
-# File: modules/ast/src/c/operations/matrix_power.c, line: 543
-# File: modules/ast/src/c/operations/matrix_power.c, line: 683
+# File: modules/ast/src/c/operations/matrix_power.c, line: 546
+# File: modules/ast/src/c/operations/matrix_power.c, line: 686
 msgid "computing least squares solution. (see lsq).\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/consoledebugger.cpp, line: 33
+# File: modules/ast/src/cpp/ast/consoledebugger.cpp, line: 36
 #, c-format
 msgid "debugger stop on breakpoint(%d) in function %ls line %d\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/consoledebugger.cpp, line: 47
+# File: modules/ast/src/cpp/ast/consoledebugger.cpp, line: 50
 msgid "Execution aborted.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/consoledebugger.cpp, line: 54
+# File: modules/ast/src/cpp/ast/consoledebugger.cpp, line: 57
 #, c-format
 msgid "debugger stop on error in file %ls line %d\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/consoledebugger.cpp, line: 62
+# File: modules/ast/src/cpp/ast/consoledebugger.cpp, line: 65
 #, c-format
 msgid "debugger stop on error in function %ls line %d\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/consoledebugger.cpp, line: 68
+# File: modules/ast/src/cpp/ast/consoledebugger.cpp, line: 71
 msgid "Leave debugger.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 153
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 156
 #, c-format
 msgid "Undefined variable: %s\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 262
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 265
 msgid "inconsistent row/column dimensions\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 323
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 326
 msgid "/!\\ Unmanaged FieldExp.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 341
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 473
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 344
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 476
 msgid "Attempt to reference field of non-structure array.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 353
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 356
 msgid "Not yet implemented in Scilab.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 382
-# File: modules/ast/src/cpp/types/arrayof.cpp, line: 364
-# File: modules/ast/src/cpp/types/arrayof.cpp, line: 1661
-# File: modules/ast/src/cpp/types/implicitlist.cpp, line: 609
-# File: modules/ast/src/cpp/types/macro.cpp, line: 338
-# File: modules/ast/src/cpp/types/macro.cpp, line: 345
-# File: modules/ast/src/cpp/types/sparse.cpp, line: 1845
-# File: modules/ast/src/cpp/types/sparse.cpp, line: 3798
-# File: modules/ast/src/cpp/types/types_tools.cpp, line: 692
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 385
+# File: modules/ast/src/cpp/types/arrayof.cpp, line: 367
+# File: modules/ast/src/cpp/types/arrayof.cpp, line: 1664
+# File: modules/ast/src/cpp/types/implicitlist.cpp, line: 612
+# File: modules/ast/src/cpp/types/macro.cpp, line: 341
+# File: modules/ast/src/cpp/types/macro.cpp, line: 348
+# File: modules/ast/src/cpp/types/sparse.cpp, line: 1848
+# File: modules/ast/src/cpp/types/sparse.cpp, line: 3801
+# File: modules/ast/src/cpp/types/types_tools.cpp, line: 695
 msgid "Invalid index.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 668
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 706
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 771
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 838
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1426
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 815
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 671
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 709
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 774
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 841
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1429
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 818
 msgid "Redefining permanent variable.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 820
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 823
 msgid "for expression can only manage 1 or 2 dimensions variables\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 832
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 883
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 835
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 886
 msgid "for expression : Wrong type for loop iterator.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 903
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 906
 #, c-format
 msgid "%s: function is disabled in debug mode.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 925
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 928
 msgid "With input arguments, return / resume expects output arguments.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1336
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1339
 #, c-format
 msgid "%ls: Can not transpose multiple elements.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1435
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1438
 #, c-format
 msgid ""
 "It is not possible to redefine the %s primitive this way (see clearfun).\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1468
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1492
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1518
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1471
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1495
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1521
 #, c-format
 msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1960
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1963
 #, c-format
 msgid "Recursion limit reached (%d).\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 555
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 558
 msgid "Unknown expression"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 641
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 644
 msgid "Error in overload function: "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 889
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 892
 msgid "Wrong insertion : use extraction with {} only on a Cell."
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 903
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1259
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1352
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1378
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 906
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1262
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1355
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1381
 msgid "Invalid index."
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 952
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 955
 msgid "Unable to insert multiple item in a Struct."
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1028
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1031
 msgid "Unable to insert multiple item in a List."
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1128
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1131
 msgid "Wrong insertion."
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1395
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1403
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1562
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1398
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1406
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1565
 msgid "Wrong insertion in a Cell."
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1504
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1507
 #, c-format
 msgid "Wrong insertion: insertion in output of '%s' is not allowed.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1551
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1856
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1554
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1859
 msgid "Wrong insertion : Cannot insert without arguments."
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1571
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1574
 msgid "Unexpected redefinition of Scilab function."
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1581
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1668
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1584
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1671
 msgid "Submatrix incorrectly defined.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1824
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1964
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 2072
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1827
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1967
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 2075
 msgid "Invalid Index.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 2251
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 2254
 msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1079
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1107
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1167
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1590
-# File: modules/ast/src/cpp/operations/types_and.cpp, line: 549
-# File: modules/ast/src/cpp/operations/types_and.cpp, line: 638
-# File: modules/ast/src/cpp/operations/types_and.cpp, line: 707
-# File: modules/ast/src/cpp/operations/types_comparison_eq.cpp, line: 3705
-# File: modules/ast/src/cpp/operations/types_comparison_eq.cpp, line: 3715
-# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 58
-# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 75
-# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 92
-# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 109
-# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 130
-# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 271
-# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 288
-# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 305
-# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 322
-# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 342
-# File: modules/ast/src/cpp/operations/types_comparison_ne.cpp, line: 3711
-# File: modules/ast/src/cpp/operations/types_comparison_ne.cpp, line: 3721
-# File: modules/ast/src/cpp/operations/types_divide.cpp, line: 96
-# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 864
-# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 894
-# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 965
-# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 995
-# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 1264
-# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 1808
-# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 820
-# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 850
-# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 915
-# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 945
-# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 1205
-# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 1416
-# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 1601
-# File: modules/ast/src/cpp/operations/types_kronecker.cpp, line: 39
-# File: modules/ast/src/cpp/operations/types_ldivide.cpp, line: 73
-# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 62
-# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 79
-# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 96
-# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 113
-# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 130
-# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 147
-# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 164
-# File: modules/ast/src/cpp/operations/types_or.cpp, line: 577
-# File: modules/ast/src/cpp/operations/types_or.cpp, line: 670
-# File: modules/ast/src/cpp/operations/types_or.cpp, line: 761
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 42
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 61
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 97
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 113
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 132
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 620
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 842
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 870
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 924
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 952
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1690
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 2347
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 2508
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 2631
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1083
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1111
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1176
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1654
+# File: modules/ast/src/cpp/operations/types_and.cpp, line: 552
+# File: modules/ast/src/cpp/operations/types_and.cpp, line: 641
+# File: modules/ast/src/cpp/operations/types_and.cpp, line: 710
+# File: modules/ast/src/cpp/operations/types_comparison_eq.cpp, line: 3708
+# File: modules/ast/src/cpp/operations/types_comparison_eq.cpp, line: 3718
+# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 61
+# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 78
+# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 95
+# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 112
+# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 133
+# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 274
+# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 291
+# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 308
+# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 325
+# File: modules/ast/src/cpp/operations/types_comparison_lt_le_gt_ge.cpp, line: 345
+# File: modules/ast/src/cpp/operations/types_comparison_ne.cpp, line: 3714
+# File: modules/ast/src/cpp/operations/types_comparison_ne.cpp, line: 3724
+# File: modules/ast/src/cpp/operations/types_divide.cpp, line: 99
+# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 867
+# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 897
+# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 968
+# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 998
+# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 1267
+# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 1811
+# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 823
+# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 853
+# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 918
+# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 948
+# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 1208
+# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 1419
+# File: modules/ast/src/cpp/operations/types_dotmultiplication.cpp, line: 1604
+# File: modules/ast/src/cpp/operations/types_kronecker.cpp, line: 42
+# File: modules/ast/src/cpp/operations/types_ldivide.cpp, line: 76
+# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 65
+# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 82
+# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 99
+# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 116
+# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 133
+# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 150
+# File: modules/ast/src/cpp/operations/types_multiplication.cpp, line: 167
+# File: modules/ast/src/cpp/operations/types_or.cpp, line: 580
+# File: modules/ast/src/cpp/operations/types_or.cpp, line: 673
+# File: modules/ast/src/cpp/operations/types_or.cpp, line: 764
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 45
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 64
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 100
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 116
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 135
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 635
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 845
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 873
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 932
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 960
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1743
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 2400
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 2561
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 2684
 msgid "Inconsistent row/column dimensions.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1136
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1196
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1234
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1270
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1280
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1289
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1298
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1307
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1541
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1549
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1557
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1565
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1688
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1697
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1706
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1715
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1142
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1207
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1250
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1291
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1306
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1320
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1334
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1348
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1587
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1600
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1613
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1626
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1754
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1768
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1782
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1796
+msgid ""
+"operation +: Warning adding a matrix with the empty matrix old behaviour.\n"
+msgstr ""
+
+#
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1145
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1210
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1253
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1294
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1309
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1323
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1337
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1351
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1590
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1603
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1616
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1629
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1757
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1771
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1785
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1799
 msgid ""
 "operation +: Warning adding a matrix with the empty matrix will give an "
 "empty matrix result.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1730
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1814
 msgid "variables don't have the same formal variable"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1981
-# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 2197
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1939
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 2280
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 2065
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 2281
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1992
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 2333
 #, c-format
 msgid ""
 "Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_divide.cpp, line: 98
+# File: modules/ast/src/cpp/operations/types_divide.cpp, line: 101
 msgid "With NaN or Inf a division by scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_divide.cpp, line: 100
-# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 822
-# File: modules/ast/src/cpp/operations/types_kronecker.cpp, line: 112
-# File: modules/ast/src/cpp/operations/types_kronecker.cpp, line: 171
+# File: modules/ast/src/cpp/operations/types_divide.cpp, line: 103
+# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 825
+# File: modules/ast/src/cpp/operations/types_kronecker.cpp, line: 115
+# File: modules/ast/src/cpp/operations/types_kronecker.cpp, line: 174
 msgid "Division by zero...\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_divide.cpp, line: 104
+# File: modules/ast/src/cpp/operations/types_divide.cpp, line: 107
 msgid "Warning : Division by zero...\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_divide.cpp, line: 109
+# File: modules/ast/src/cpp/operations/types_divide.cpp, line: 112
 #, c-format
 msgid "Operator / : Error %d not yet managed.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 827
+# File: modules/ast/src/cpp/operations/types_dotdivide.cpp, line: 830
 msgid "Warning : division by zero...\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_kronecker.cpp, line: 116
+# File: modules/ast/src/cpp/operations/types_kronecker.cpp, line: 119
 msgid "Bad value in the left or right operand.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_kronecker.cpp, line: 120
+# File: modules/ast/src/cpp/operations/types_kronecker.cpp, line: 123
 msgid "Bad size for left or right operand.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_kronecker.cpp, line: 175
+# File: modules/ast/src/cpp/operations/types_kronecker.cpp, line: 178
 msgid "Bad value in the left operand.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_ldivide.cpp, line: 75
+# File: modules/ast/src/cpp/operations/types_ldivide.cpp, line: 78
 msgid "With NaN or Inf a left division by scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_ldivide.cpp, line: 77
+# File: modules/ast/src/cpp/operations/types_ldivide.cpp, line: 80
 msgid "Left division by zero...\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_ldivide.cpp, line: 79
+# File: modules/ast/src/cpp/operations/types_ldivide.cpp, line: 82
 msgid "Warning : Left division by zero...\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_ldivide.cpp, line: 82
+# File: modules/ast/src/cpp/operations/types_ldivide.cpp, line: 85
 #, c-format
 msgid "Operator \\ : Error %d not yet managed.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 63
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 134
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 491
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 570
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 625
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 66
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 137
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 506
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 585
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 640
 msgid "Invalid exponent.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 899
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 981
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1023
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1065
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1075
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1084
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1467
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1475
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1483
-# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1491
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 904
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 991
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1038
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1085
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1100
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1114
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1502
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1515
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1528
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1541
+msgid ""
+"operation -: Warning adding a matrix with the empty matrix old behaviour.\n"
+msgstr ""
+
+#
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 907
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 994
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1041
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1088
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1103
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1117
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1505
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1518
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1531
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1544
 msgid ""
 "operation -: Warning adding a matrix with the empty matrix will give an "
 "empty matrix result.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/parse/parser.cpp, line: 109
-# File: modules/ast/src/cpp/parse/parser.cpp, line: 201
+# File: modules/ast/src/cpp/parse/parser.cpp, line: 112
+# File: modules/ast/src/cpp/parse/parser.cpp, line: 217
 #, c-format
 msgid "%ls: Cannot open file %ls.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/parse/printerror.cpp, line: 68
+# File: modules/ast/src/cpp/parse/printerror.cpp, line: 71
 msgid "Error: "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/symbol/context.cpp, line: 514
+# File: modules/ast/src/cpp/symbol/context.cpp, line: 535
 msgid "Your variables are:"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/symbol/context.cpp, line: 529
-# File: modules/ast/src/cpp/symbol/context.cpp, line: 548
+# File: modules/ast/src/cpp/symbol/context.cpp, line: 550
+# File: modules/ast/src/cpp/symbol/context.cpp, line: 569
 #, c-format
 msgid " using %10d elements out of  %10d.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/symbol/context.cpp, line: 532
-# File: modules/ast/src/cpp/symbol/context.cpp, line: 551
+# File: modules/ast/src/cpp/symbol/context.cpp, line: 553
+# File: modules/ast/src/cpp/symbol/context.cpp, line: 572
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/symbol/context.cpp, line: 535
+# File: modules/ast/src/cpp/symbol/context.cpp, line: 556
 msgid "Your global variables are:"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/symbol/variables.cpp, line: 130
+# File: modules/ast/src/cpp/symbol/variables.cpp, line: 133
 #, c-format
 msgid ""
 "Warning : redefining function: %s. Use funcprot(0) to avoid this message"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1341
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1364
 msgid "in builtin "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1342
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1365
 #, c-format
 msgid "at line % 5d of function "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1343
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1366
 #, c-format
 msgid "at line % 5d of executed string "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1344
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1367
 #, c-format
 msgid "at line % 5d of executed file "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1400
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1423
 msgid "line"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/sci_tmpdir.cpp, line: 142
+# File: modules/ast/src/cpp/system_env/sci_tmpdir.cpp, line: 145
 msgid "Cannot find Windows temporary directory (1)."
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/sci_tmpdir.cpp, line: 142
-# File: modules/ast/src/cpp/system_env/sci_tmpdir.cpp, line: 164
+# File: modules/ast/src/cpp/system_env/sci_tmpdir.cpp, line: 145
+# File: modules/ast/src/cpp/system_env/sci_tmpdir.cpp, line: 167
 msgid "Error"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/sci_tmpdir.cpp, line: 163
+# File: modules/ast/src/cpp/system_env/sci_tmpdir.cpp, line: 166
 #, c-format
 msgid "Impossible to create : %s"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/sci_tmpdir.cpp, line: 213
+# File: modules/ast/src/cpp/system_env/sci_tmpdir.cpp, line: 216
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/function.cpp, line: 585
+# File: modules/ast/src/cpp/types/function.cpp, line: 588
 #, c-format
 msgid ""
 "%s: Library name must not be empty\n"
@@ -537,77 +573,77 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/function.cpp, line: 624
-# File: modules/ast/src/cpp/types/function.cpp, line: 628
+# File: modules/ast/src/cpp/types/function.cpp, line: 627
+# File: modules/ast/src/cpp/types/function.cpp, line: 631
 #, c-format
 msgid "An error has been detected while loading %s: %s\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/function.cpp, line: 638
+# File: modules/ast/src/cpp/types/function.cpp, line: 641
 #, c-format
 msgid "Impossible to load %s library\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/function.cpp, line: 686
+# File: modules/ast/src/cpp/types/function.cpp, line: 689
 #, c-format
 msgid "Impossible to load %s function in %s library: %s\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/library.cpp, line: 58
+# File: modules/ast/src/cpp/types/library.cpp, line: 61
 #, c-format
 msgid "Functions files location : %s.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/library.cpp, line: 93
-# File: modules/ast/src/cpp/types/struct.cpp, line: 147
+# File: modules/ast/src/cpp/types/library.cpp, line: 96
+# File: modules/ast/src/cpp/types/struct.cpp, line: 150
 #, c-format
 msgid "Unknown field : %ls.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/list.cpp, line: 231
+# File: modules/ast/src/cpp/types/list.cpp, line: 234
 msgid "Unable to insert multiple item in a list.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/list.cpp, line: 271
+# File: modules/ast/src/cpp/types/list.cpp, line: 274
 msgid "Index out of bounds.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/macro.cpp, line: 231
+# File: modules/ast/src/cpp/types/macro.cpp, line: 234
 msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/macro.cpp, line: 235
+# File: modules/ast/src/cpp/types/macro.cpp, line: 238
 msgid "Wrong number of input arguments."
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/macro.cpp, line: 364
+# File: modules/ast/src/cpp/types/macro.cpp, line: 367
 #, c-format
 msgid "List element number %d is Undefined.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/macro.cpp, line: 396
+# File: modules/ast/src/cpp/types/macro.cpp, line: 399
 #, c-format
 msgid "Undefined variable '%s' in function '%s'.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/macrofile.cpp, line: 91
+# File: modules/ast/src/cpp/types/macrofile.cpp, line: 94
 #, c-format
 msgid "Unable to open : %s.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/overload.cpp, line: 70
+# File: modules/ast/src/cpp/types/overload.cpp, line: 73
 #, c-format
 msgid ""
 "Warning : please rename your overloaded function\n"
@@ -615,85 +651,85 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/overload.cpp, line: 95
+# File: modules/ast/src/cpp/types/overload.cpp, line: 98
 #, c-format
 msgid "check or define function %s for overloading.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/overload.cpp, line: 96
+# File: modules/ast/src/cpp/types/overload.cpp, line: 99
 msgid "Undefined operation for the given operands.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/overload.cpp, line: 100
+# File: modules/ast/src/cpp/types/overload.cpp, line: 103
 #, c-format
 msgid "  check arguments or define function %s for overloading.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/overload.cpp, line: 101
+# File: modules/ast/src/cpp/types/overload.cpp, line: 104
 msgid "Function not defined for given argument type(s),\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/polynom.cpp, line: 1029
+# File: modules/ast/src/cpp/types/polynom.cpp, line: 1032
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/singlepoly.cpp, line: 106
+# File: modules/ast/src/cpp/types/singlepoly.cpp, line: 109
 #, c-format
 msgid "Can not allocate negative size (%d).\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/singlepoly.cpp, line: 117
-# File: modules/ast/src/cpp/types/string.cpp, line: 672
+# File: modules/ast/src/cpp/types/singlepoly.cpp, line: 120
+# File: modules/ast/src/cpp/types/string.cpp, line: 675
 #, c-format
 msgid "Can not allocate %.2f MB memory.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/singlestruct.cpp, line: 136
+# File: modules/ast/src/cpp/types/singlestruct.cpp, line: 139
 msgid "Unable to insert multiple item in a struct.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/singlestruct.cpp, line: 143
+# File: modules/ast/src/cpp/types/singlestruct.cpp, line: 146
 msgid "Assignment between unlike types is not allowed.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/string.cpp, line: 560
+# File: modules/ast/src/cpp/types/string.cpp, line: 563
 msgid "Can not allocate data.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/struct.cpp, line: 179
+# File: modules/ast/src/cpp/types/struct.cpp, line: 182
 #, c-format
 msgid "Field \"%ls\" does not exists\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/types_tools.cpp, line: 672
+# File: modules/ast/src/cpp/types/types_tools.cpp, line: 675
 #, c-format
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr ""
 
-# File: modules/ast/etc/ast.start, line: 11
+# File: modules/ast/etc/ast.start, line: 14
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
 msgstr ""
 
 #
-# File: modules/ast/macros/%p_p_s.sci, line: 15
+# File: modules/ast/macros/%p_p_s.sci, line: 18
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/ast/macros/%r_p_s.sci, line: 23
+# File: modules/ast/macros/%r_p_s.sci, line: 26
 msgid ""
 "  Warning: Syntax vector ^ scalar is obsolete it will be removed in "
 "scilab-6.\n"
@@ -701,20 +737,31 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/ast/macros/%s_pow.sci, line: 39
-# File: modules/ast/macros/%s_pow.sci, line: 62
+# File: modules/ast/macros/%s_pow.sci, line: 29
+# File: modules/ast/macros/%s_pow.sci, line: 32
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/ast/macros/%s_pow.sci, line: 66
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
 msgstr ""
 
 #
-# File: modules/ast/macros/%sp_p_s.sci, line: 14
+# File: modules/ast/macros/%s_pow.sci, line: 74
+msgid "Not implemented in scilab...\n"
+msgstr ""
+
+#
+# File: modules/ast/macros/%sp_p_s.sci, line: 17
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/ast/macros/%sp_p_s.sci, line: 17
+# File: modules/ast/macros/%sp_p_s.sci, line: 20
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
