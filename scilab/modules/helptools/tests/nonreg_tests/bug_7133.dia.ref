@@ -19,11 +19,8 @@ temp = editor;
 function editor(name)
 endfunction;
 Warning : redefining function: editor                  . Use funcprot(0) to avoid this message
-
 [helptxt, demotxt] = help_from_sci();
 editor = temp;
-Warning : redefining function: editor                  . Use funcprot(0) to avoid this message
-
 refDemotxt = [
 "mode(1)"
 "//"
