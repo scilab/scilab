@@ -406,7 +406,7 @@ expressions                     { SetTree($1); print_rules("program", "expressio
                                     print_rules("program", "expressionLineBreak");
                                     ast::exps_t* tmp = new ast::exps_t;
                                     #ifdef BUILD_DEBUG_AST
-                                        tmp->push_back(new ast::CommentExp(@$, new std::wstring(L"Empty body");
+                                        tmp->push_back(new ast::CommentExp(@$, new std::wstring(L"Empty body")));
                                     #endif
                                     SetTree(new ast::SeqExp(@$, *tmp));
                                     delete $1;

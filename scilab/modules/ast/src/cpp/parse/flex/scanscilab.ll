@@ -32,6 +32,8 @@ static std::stack<int> paren_levels;
 
 static int comment_level = 0;
 static int last_token = 0;
+static int linebreak_stored_token = 0;
+static bool linebreak_stored_space = FALSE;
 static int exit_status = PARSE_ERROR;
 static int str_opener_column = 0;
 static std::string current_file;
@@ -53,6 +55,10 @@ extern void yyerror(std::string);
 #define DEBUG(x) std::cout << "[DEBUG] " << x << std::endl;
 #else
 #define DEBUG(x) /* Nothing */
+#endif
+
+#ifdef DEV
+std::string token_to_string(int);
 #endif
 
 %}
@@ -685,7 +691,6 @@ assign			"="
 
 <INITIAL,MATRIX>{spaces}		{
         scan_step();
-        scan_throw(SPACES);
 }
 
 
@@ -787,15 +792,53 @@ assign			"="
 
   {plus}				|
   {spaces}{plus}{spaces}                {
+    // _+_ is always meaning a PLUS token
+    // + alone is a plus if and only if it does not
+    // fall into the {spaces}{plus} rule (in matrices space is coding)
+    // as Flex is greedy the {plus} rule is only applied
+    // if no {spaces}{plus} is found
+    // Examples:
+    // ========
+    // [1 + 2 3] must be understood as [(1+2), 3]
+    // [1 +2 3] must be understood as [1, 2, 3]
+    // [1 +...
+    // 2] must be understood as [(1+2)]
     return scan_throw(PLUS);
   }
 
   {minus}				|
   {spaces}{minus}{spaces}               {
+    // _-_ is always meaning a MINUS token
+    // - alone is a MINUS only if and only if it does not
+    // fall into the {spaces}{minus} rule (in matrices space is coding)
+    // as Flex is greedy the {minus} rule is only applied
+    // if no {spaces}{minus} is found
+    // Examples:
+    // ========
+    // [1 - 2 3] must be understood as [(1-2), 3]
+    // [1 -2 3] must be understood as [1, -2, 3]
+    // [1 -...
+    // 2] must be understood as [(1-2)]
     return scan_throw(MINUS);
   }
 
   {spaces}{plus}                        {
+    // This rule is made to take into account the coding spaces in matrices.
+    // It is important to distinguish between a space coding a matrix column separator
+    // and a simple non coding space around the PLUS operator
+    // Examples
+    // ========
+    // [a + b] == [(a + b)]
+    // but [a +b] == [a, b] and plus here is unary
+    // the space is non coding:
+    // * after any other binary operator __op__
+    //   Example : [a __op__ +b]
+    // * after brackets or parentheses delimiters
+    //   Example : [(1*2*a) +3]
+    // * at the beginning of a line
+    //   Example : [3 ...
+    //              _+2]
+
     // no need to unput the '+'
     if (last_token != LBRACK
        && last_token != EOL
@@ -832,6 +875,8 @@ assign			"="
   }
 
   {spaces}{minus}                       {
+    // See {spaces}{plus} rule for the rationale
+
     unput('-');
     yylloc.last_column--;
     if (last_token != LBRACK
@@ -872,33 +917,64 @@ assign			"="
     return scan_throw(FLEX_ERROR);
   }
 
-  {next}{spaces}*{newline}          {
-      yylloc.last_line += 1;
-      yylloc.last_column = 1;
-      scan_step();
-  }
+  /* {next} rules
+   * ============
+   * Scilab can perform a line continuation with the ..
+   * In matrices as space may be coding extra care must be taken when parsing {next}
+   * Some states must be preserved to parse next line and to revert to a proper state
+   * after the ... // comments or ... \/* comments *\/
+   */
 
-  {next}{spaces}*{startcomment}.*{newline}          {
-      yylloc.last_line += 1;
-      yylloc.last_column = 1;
-      scan_step();
-  }
+  {spaces}*{plus}{next} {
+             // This rule is made to take into account a +... without spaces after plus
+             // if one simply ignores the next a situation like this could arise
+             // Example
+             // =======
+             // A = [1 +...
+             // 2] 
+             //
+             // what is meant by the user [1 +2] ? or [1 + 2]
+             // simply ignoring the ... would yield the 1st situation [1, 2]
+             // We consider this is NOT proper and instead that the user meant a binary plus
+             // split is two lines
+             // The same rationale applies to minus.
 
-  {spaces}{next}{spaces}*{newline}          {
-      yylloc.last_line += 1;
-      yylloc.last_column = 1;
-      scan_step();
-      unput(' ');
-      yylloc.last_column--;
-  }
+             linebreak_stored_space = FALSE; // no spaces before ...
+             linebreak_stored_token = PLUS; // keep last token to restore
+             ParserSingleInstance::pushControlStatus(Parser::WithinDots);
+             yy_push_state(LINEBREAK);
+             return scan_throw(PLUS);
+         }
 
-  {spaces}{next}{spaces}*{startcomment}.*{newline}          {
-      yylloc.last_line += 1;
-      yylloc.last_column = 1;
-      scan_step();
-      unput(' ');
-      yylloc.last_column--;
-  }
+  {spaces}*{minus}{next} {
+             // see {spaces}*{minus}{next} for the rationale
+
+             linebreak_stored_space = FALSE; // no spaces before ...
+             linebreak_stored_token = MINUS; // keep last token to restore
+             ParserSingleInstance::pushControlStatus(Parser::WithinDots);
+             yy_push_state(LINEBREAK);
+             return scan_throw(MINUS);
+         }
+
+  {next} {
+             // Store the state of the previously scanned token for next rule
+             // Only considerations of coding spaces is important for the parser
+
+             linebreak_stored_space = FALSE; // no spaces before ...
+             linebreak_stored_token = last_token; // keep last token to restore state
+             ParserSingleInstance::pushControlStatus(Parser::WithinDots);
+             yy_push_state(LINEBREAK);
+         }
+
+  {spaces}{next} {
+             // Store the state of the previously scanned token for next rule
+             // Only considerations of coding spaces is important for the parser
+
+             linebreak_stored_space = TRUE; // no spaces before ...
+             linebreak_stored_token = last_token; // keep last token to restore state
+             ParserSingleInstance::pushControlStatus(Parser::WithinDots);
+             yy_push_state(LINEBREAK);
+         }
 
   <<EOF>>       {
       yy_pop_state();
@@ -912,12 +988,21 @@ assign			"="
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     scan_step();
+    last_token = linebreak_stored_token;
+    if (linebreak_stored_space)
+    {
+        // This is important to restore coding spaces as if ... was not present
+        unput(' ');
+        linebreak_stored_space = FALSE;
+    }
     yy_pop_state();
     ParserSingleInstance::popControlStatus();
   }
 
   {startblockcomment}			{
-    ++comment_level;
+    yylval.comment = new std::wstring();
+    comment_level = 1;
+    ParserSingleInstance::pushControlStatus(Parser::WithinBlockComment);
     yy_push_state(REGIONCOMMENT);
   }
 
@@ -935,9 +1020,18 @@ assign			"="
       yy_pop_state();
   }
   .					{
+    // The following case is not handled by the parser
+    // a line of code ... /* some multiline
+    // comments */ continued here;
+    // without the special case telling we are after comments
+    // will generate the error as follows:
+
+    // Any characters after ... yields to an error
     std::string str = "Unexpected token \'";
     str += yytext;
     str += "\' after line break with .. or ...";
+    yy_pop_state();
+    ParserSingleInstance::popControlStatus();
     BEGIN(INITIAL);
     yyerror(str);
     return scan_throw(FLEX_ERROR);
@@ -1330,7 +1424,7 @@ assign			"="
 int scan_throw(int token) {
   last_token = token;
 #ifdef DEV
-  std::cout << "--> [DEBUG] TOKEN : " << token << std::endl;
+  std::cout << "--> [DEBUG] TOKEN : " << token << " - " << token_to_string(token) << std::endl;
 #endif
   return token;
 }
@@ -1359,5 +1453,161 @@ void scan_exponent_convert(char *in)
 int isatty (int desc)
 {
   return 0;
+}
+#endif
+
+#ifdef DEV
+std::string token_to_string(int token)
+{
+    std::string str;
+    switch(token)
+    {
+        case AND :                   str = "AND";
+                                     break;
+        case ASSIGN :                str = "ASSIGN";
+                                     break;
+        case BOOLFALSE :             str = "BOOLFALSE";
+                                     break;
+        case BOOLTRUE :              str = "BOOLTRUE";
+                                     break;
+        case BREAK :                 str = "BREAK";
+                                     break;
+        case CASE :                  str = "CASE";
+                                     break;
+        case CATCH :                 str = "CATCH";
+                                     break;
+        case COLON :                 str = "COLON";
+                                     break;
+        case COMMA :                 str = "COMMA";
+                                     break;
+        case COMMENT :               str = "COMMENT";
+                                     break;
+        case CONTINUE :              str = "CONTINUE";
+                                     break;
+        case CONTROLLDIVIDE :        str = "CONTROLLDIVIDE";
+                                     break;
+        case CONTROLRDIVIDE :        str = "CONTROLRDIVIDE";
+                                     break;
+        case CONTROLTIMES :          str = "CONTROLTIMES";
+                                     break;
+        case DO :                    str = "DO";
+                                     break;
+        case DOLLAR :                str = "DOLLAR";
+                                     break;
+        case DOT :                   str = "DOT";
+                                     break;
+        case DOTLDIVIDE :            str = "DOTLDIVIDE";
+                                     break;
+        case DOTPOWER :              str = "DOTPOWER";
+                                     break;
+        case DOTQUOTE :              str = "DOTQUOTE";
+                                     break;
+        case DOTRDIVIDE :            str = "DOTRDIVIDE";
+                                     break;
+        case DOTS :                  str = "DOTS";
+                                     break;
+        case DOTTIMES :              str = "DOTTIMES";
+                                     break;
+        case ELSE :                  str = "ELSE";
+                                     break;
+        case ELSEIF :                str = "ELSEIF";
+                                     break;
+        case END :                   str = "END";
+                                     break;
+        case ENDFUNCTION :           str = "ENDFUNCTION";
+                                     break;
+        case EOL :                   str = "EOL";
+                                     break;
+        case EQ :                    str = "EQ";
+                                     break;
+        case FLEX_ERROR :            str = "FLEX_ERROR";
+                                     break;
+        case FOR :                   str = "FOR";
+                                     break;
+        case FUNCTION :              str = "FUNCTION";
+                                     break;
+        case GE :                    str = "GE";
+                                     break;
+        case GT :                    str = "GT";
+                                     break;
+        case ID :                    str = "ID";
+                                     break;
+        case IF :                    str = "IF";
+                                     break;
+        case KRONLDIVIDE :           str = "KRONLDIVIDE";
+                                     break;
+        case KRONRDIVIDE :           str = "KRONRDIVIDE";
+                                     break;
+        case KRONTIMES :             str = "KRONTIMES";
+                                     break;
+        case LBRACE :                str = "LBRACE";
+                                     break;
+        case LBRACK :                str = "LBRACK";
+                                     break;
+        case LDIVIDE :               str = "LDIVIDE";
+                                     break;
+        case LE :                    str = "LE";
+                                     break;
+        case LPAREN :                str = "LPAREN";
+                                     break;
+        case LT :                    str = "LT";
+                                     break;
+        case MINUS :                 str = "MINUS";
+                                     break;
+        case NE :                    str = "NE";
+                                     break;
+        case NOT :                   str = "NOT";
+                                     break;
+        case NUM :                   str = "NUM";
+                                     break;
+        case OR :                    str = "OR";
+                                     break;
+        case OROR :                  str = "OROR";
+                                     break;
+        case OTHERWISE :             str = "OTHERWISE";
+                                     break;
+        case PLUS :                  str = "PLUS";
+                                     break;
+        case POWER :                 str = "POWER";
+                                     break;
+        case QUOTE :                 str = "QUOTE";
+                                     break;
+        case RBRACE :                str = "RBRACE";
+                                     break;
+        case RBRACK :                str = "RBRACK";
+                                     break;
+        case RDIVIDE :               str = "RDIVIDE";
+                                     break;
+        case RETURN :                str = "RETURN";
+                                     break;
+        case RPAREN :                str = "RPAREN";
+                                     break;
+        case SELECT :                str = "SELECT";
+                                     break;
+        case SEMI :                  str = "SEMI";
+                                     break;
+        case SPACES :                str = "SPACES";
+                                     break;
+        case STR :                   str = "STR";
+                                     break;
+        case SWITCH :                str = "SWITCH";
+                                     break;
+        case THEN :                  str = "THEN";
+                                     break;
+        case TIMES :                 str = "TIMES";
+                                     break;
+        case TRY :                   str = "TRY";
+                                     break;
+        case VARFLOAT :              str = "VARFLOAT";
+                                     break;
+        case VARINT :                str = "VARINT";
+                                     break;
+        case WHILE :                 str = "WHILE";
+                                     break;
+        default :                    str = "UNKNOWN";
+                                     break;
+    }
+    return str;
+
 }
 #endif

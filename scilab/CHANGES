@@ -578,6 +578,8 @@ In 6.0.0 beta-1:
 
 * Bug #14348 fixed - Scilab did not open sce/sci file from Windows explorer.
 
+* Bug #14361 fixed - Parser did not manage linebreak + blockcomment "... /* a comment */"
+
 In 6.0.0 alpha-2 and earlier:
 
 * Bug #11511 fixed - error() did non accept string matrix (non regression test).
