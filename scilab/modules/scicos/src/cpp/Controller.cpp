@@ -186,6 +186,11 @@ unsigned Controller::referenceObject(const ScicosID uid) const
 
     auto o = m_instance.model.getObject(uid);
     unlock(&m_instance.onModelStructuralModification);
+    if (o == nullptr)
+    {
+        // defensive programming
+        return 0u;
+    }
 
     lock(&m_instance.onViewsStructuralModification);
     for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
@@ -211,6 +216,7 @@ void Controller::deleteObject(ScicosID uid)
     if (initial == nullptr)
     {
         // defensive programming
+        unlock(&m_instance.onModelStructuralModification);
         return;
     }
     const kind_t k = initial->kind();
