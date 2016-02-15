@@ -2,14 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
 *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
 *
 */
 
@@ -226,7 +226,11 @@ static void encode(types::List* input, std::vector<double> &ret)
     for (int i = 0; i < iElements; ++i)
     {
         // Recursively call var2vec on each element and extract the obtained results
-        var2vec(input->get(i), ret);
+        if (!var2vec(input->get(i), ret))
+        {
+            ret.back() = -1;
+            break;
+        }
     }
 
     // An empty list input will return [22; 0], a tlist [23; 0] and an mlist [24; 0]
@@ -328,6 +332,11 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
             {
                 case types::InternalType::ScilabMList :
                     encode(in->getAs<types::List>(), out);
+                    if (out.back() == -1)
+                    {
+                        Scierror(999, _("%s: Wrong value for input argument #%d: Could not read its content.\n"), var2vecName.c_str(), 1);
+                        return false;
+                    }
                     break;
                 default : // types::InternalType::ScilabStruct
                     //encode(in->getAs<types::Struct>(), out);
