@@ -125,19 +125,19 @@ int NgonPolylineData::setDataProperty(int property, void const* value, int numEl
             return setZCoordinatesShift((double const*) value, numElements);
         case X_COORDINATES_SHIFT_SET :
             setXCoordinatesShiftSet(*((int const*) value));
-			return 1;
+            return 1;
             break;
         case Y_COORDINATES_SHIFT_SET :
             setYCoordinatesShiftSet(*((int const*) value));
             return 1;
-			break;
+            break;
         case Z_COORDINATES_SHIFT_SET :
             setZCoordinatesShiftSet(*((int const*) value));
-			return 1;
+            return 1;
             break;
         case Z_COORDINATES_SET :
             setZCoordinatesSet(*((int const*) value));
-			return 1;
+            return 1;
             break;
         case DISPLAY_FUNCTION_DATA :
             return setDisplayFunctionData((int const*) value, numElements);

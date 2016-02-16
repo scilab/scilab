@@ -19,10 +19,10 @@
 
 namespace analysis
 {
-    TIType Checkers::check_isscalar(GVN & gvn, const TIType & in0)
+TIType Checkers::check_isscalar(GVN & gvn, const TIType & in0)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::BOOLEAN :
         {
             return TIType(gvn, TIType::BOOLEAN, 1, 1);
@@ -85,7 +85,7 @@ namespace analysis
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis

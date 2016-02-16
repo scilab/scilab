@@ -66,13 +66,13 @@ int sci_foo6(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt* opt, in
 
     for (i = 0; i < size1; ++i)
     {
-        //For each element of the matrix, multiply by 2 
+        //For each element of the matrix, multiply by 2
         out1[i] = in1[i] * 2;
     }
 
     for (i = 0; i < size2; ++i)
     {
-        //For each element of the matrix, invert the value 
+        //For each element of the matrix, invert the value
         out2[i] = in2[i] == TRUE ? FALSE : TRUE;
     }
 

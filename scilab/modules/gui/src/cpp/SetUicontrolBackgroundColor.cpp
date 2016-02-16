@@ -81,13 +81,13 @@ int SetUicontrolBackgroundColor(void* _pvCtx, int iObjUID, void* _pvData, int va
     getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **) &piType);
     switch (iType)
     {
-    case __GO_FIGURE__ :
-        iColorIndex = addColor(iObjUID, allColors);
-        status = setGraphicObjectProperty(iObjUID, __GO_BACKGROUND__, &iColorIndex, jni_int, 1);
-        break;
-    default :
-        status = setGraphicObjectProperty(iObjUID, __GO_UI_BACKGROUNDCOLOR__, allColors, jni_double_vector, 3);
-        break;
+        case __GO_FIGURE__ :
+            iColorIndex = addColor(iObjUID, allColors);
+            status = setGraphicObjectProperty(iObjUID, __GO_BACKGROUND__, &iColorIndex, jni_int, 1);
+            break;
+        default :
+            status = setGraphicObjectProperty(iObjUID, __GO_UI_BACKGROUNDCOLOR__, allColors, jni_double_vector, 3);
+            break;
     }
 
 

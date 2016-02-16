@@ -56,18 +56,18 @@ class CoverResult
             }
         };
 
-	struct Compare
-	{
-	    inline bool operator()(const Location & l, const Location & r) const
-		{
-		    return l < r;
-		}
-	};
+        struct Compare
+        {
+            inline bool operator()(const Location & l, const Location & r) const
+            {
+                return l < r;
+            }
+        };
 
     };
 
     friend class CoverModule;
-    
+
     std::wstring name;
     CoverMacroInfo info;
     uint64_t uncoveredInstrs;
@@ -211,14 +211,14 @@ public:
     }
 
     bool isCovered(const ast::Exp * e) const;
-    void toXML(const std::wstring & outputDir); 
+    void toXML(const std::wstring & outputDir);
     void toJSON(const std::wstring & outputDir);
     void toHTML(const std::wstring & outputDir);
     std::wstring getStringTime(const uint64_t time) const;
     void toBin(std::fstream & out) const;
     void merge(const CoverResult & cr);
     static CoverResult fromBin(std::fstream & in);
-    
+
     friend std::wostream & operator<<(std::wostream & out, const CoverResult & cr);
 
 private:

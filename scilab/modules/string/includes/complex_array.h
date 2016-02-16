@@ -29,10 +29,10 @@ typedef struct
 extern "C" {
 #endif
 
-    STRING_IMPEXP complexArray *createComplexArray(const double *realpart, const double *imagpart, int nbSize);
-    STRING_IMPEXP complexArray *createComplexArrayEmpty(int nbSize);
-    STRING_IMPEXP int cleanImagPartComplexArray(complexArray *pComplexArray);
-    STRING_IMPEXP void freeComplexArray(complexArray *pComplexArray);
+STRING_IMPEXP complexArray *createComplexArray(const double *realpart, const double *imagpart, int nbSize);
+STRING_IMPEXP complexArray *createComplexArrayEmpty(int nbSize);
+STRING_IMPEXP int cleanImagPartComplexArray(complexArray *pComplexArray);
+STRING_IMPEXP void freeComplexArray(complexArray *pComplexArray);
 
 #ifdef __cplusplus
 }

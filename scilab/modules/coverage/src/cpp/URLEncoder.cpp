@@ -17,5 +17,5 @@
 
 namespace coverage
 {
-    std::set<URLEncoder::__Pair> URLEncoder::pairs = URLEncoder::init();
+std::set<URLEncoder::__Pair> URLEncoder::pairs = URLEncoder::init();
 }

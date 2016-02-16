@@ -233,13 +233,13 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 int C2F(champ)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
     champg("champ", 0, x, y, fx, fy, n1, n2, strflag, brect, arfact, lstr);
-    return(0);
+    return (0);
 }
 
 int C2F(champ1)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
     champg("champ1", 1, x, y, fx, fy, n1, n2, strflag, brect, arfact, lstr);
-    return(0);
+    return (0);
 }
 /*----------------------------------------------------------------------------------*/
 

@@ -19,10 +19,10 @@
 
 namespace analysis
 {
-    TIType Checkers::check_isreal(GVN & gvn, const TIType & in0)
+TIType Checkers::check_isreal(GVN & gvn, const TIType & in0)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::COMPLEX :
         {
             return TIType(gvn, TIType::BOOLEAN, 1, 1);
@@ -33,13 +33,13 @@ namespace analysis
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
-    TIType Checkers::check_isreal(GVN & gvn, const TIType & in0, const TIType & in1)
+TIType Checkers::check_isreal(GVN & gvn, const TIType & in0, const TIType & in1)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::COMPLEX :
         {
             if (in1.type == TIType::DOUBLE)
@@ -72,7 +72,7 @@ namespace analysis
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis

@@ -49,7 +49,7 @@ public:
     ** \param body EXP LIST intruction
     */
     SeqExp (const Location& location,
-        exps_t& body)
+            exps_t& body)
         : Exp(location), execfrom(SCRIPT)
     {
         for (auto it : body)

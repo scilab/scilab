@@ -242,7 +242,7 @@ int API_PROTO(isComplex)(scilabEnv env, scilabVar var)
     {
         return 0;
     }
-    
+
     if (it->isGenericType())
     {
         types::GenericType* gt = static_cast<types::GenericType*>(it);
@@ -575,6 +575,6 @@ scilabStatus API_PROTO(call)(scilabEnv env, const wchar_t* name, int nin, scilab
     {
         out[i] = (scilabVar)outCall[i];
     }
-    
+
     return STATUS_OK;
 }

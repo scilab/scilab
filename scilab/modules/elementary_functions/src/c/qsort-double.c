@@ -40,7 +40,7 @@ static int swapcodedouble(char *  parmi, char * parmj, int  n, int inc)
         pj += inc1;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 static int compareCdouble(char *i, char *j, char *indi, char *indj, int iflag)
@@ -230,7 +230,7 @@ static int LexiRowswapcodedouble(char *parmi, char * parmj, int n)
         pj++;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 void LexiRowdouble(double *a, int *ind, int flag, int n, int p, char dir)
@@ -310,7 +310,7 @@ static int LexiColswapcodedouble(char *parmi, char* parmj, int n)
         pj += lexirowsdouble ;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 void LexiColdouble(double *a, int *ind, int flag, int n, int p, char dir)

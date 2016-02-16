@@ -59,7 +59,8 @@ std::wstring getUniqueFilename(const std::wstring& _wfilename)
         {
             id++;
             newfilename = prefixFilename + L"_" + std::to_wstring(id) + wcext;
-        } while (FileExistW(newfilename.data()) && getFileSize(newfilename) != 0);
+        }
+        while (FileExistW(newfilename.data()) && getFileSize(newfilename) != 0);
     }
     else
     {
@@ -81,7 +82,7 @@ static int getFileSize(const std::wstring& _wfilename)
     std::ifstream file(_filename);
 #endif
     file.seekg(std::ios::end);
-    if(file.is_open())
+    if (file.is_open())
     {
         int size = (int)file.tellg();
         file.close();

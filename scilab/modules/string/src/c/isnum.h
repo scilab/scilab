@@ -23,13 +23,13 @@
 extern "C" {
 #endif
 
-    STRING_IMPEXP BOOL isNum(const char *pStr);
+STRING_IMPEXP BOOL isNum(const char *pStr);
 
-    STRING_IMPEXP BOOL *isNumMatrix(const char **pStrs, int nbRows, int nbCols);
+STRING_IMPEXP BOOL *isNumMatrix(const char **pStrs, int nbRows, int nbCols);
 
-    STRING_IMPEXP BOOL isNumW(const wchar_t *pStr);
+STRING_IMPEXP BOOL isNumW(const wchar_t *pStr);
 
-    STRING_IMPEXP BOOL *isNumMatrixW(const wchar_t **pStrs, int nbRows, int nbCols);
+STRING_IMPEXP BOOL *isNumMatrixW(const wchar_t **pStrs, int nbRows, int nbCols);
 
 #ifdef __cplusplus
 }

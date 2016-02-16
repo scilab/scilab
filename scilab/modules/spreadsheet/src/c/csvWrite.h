@@ -20,39 +20,40 @@
 extern "C" {
 #endif
 
-    typedef enum {
-        CSV_WRITE_NO_ERROR = 0,
-        CSV_WRITE_FOPEN_ERROR = 1,
-        CSV_WRITE_ERROR = 2,
-        CSV_WRITE_SEPARATOR_DECIMAL_EQUAL = 3
-    }
-                                        csvWriteError;
+typedef enum
+{
+    CSV_WRITE_NO_ERROR = 0,
+    CSV_WRITE_FOPEN_ERROR = 1,
+    CSV_WRITE_ERROR = 2,
+    CSV_WRITE_SEPARATOR_DECIMAL_EQUAL = 3
+}
+csvWriteError;
 
 
-    csvWriteError csvWrite_double(const char *filename,
-                                  const double *pdValues, int m, int n,
-                                  const char *separator,
-                                  const char *decimal,
-                                  const char *precisionFormat,
-                                  const char **headersLines,
-                                  int nbHeadersLines);
+csvWriteError csvWrite_double(const char *filename,
+                              const double *pdValues, int m, int n,
+                              const char *separator,
+                              const char *decimal,
+                              const char *precisionFormat,
+                              const char **headersLines,
+                              int nbHeadersLines);
 
-    csvWriteError csvWrite_complex(const char *filename,
-                                   const double *pdValuesReal,
-                                   const double *pdValuesImag,
-                                   int m, int n,
-                                   const char *separator,
-                                   const char *decimal,
-                                   const char *precisionFormat,
-                                   const char **headersLines,
-                                   int nbHeadersLines);
+csvWriteError csvWrite_complex(const char *filename,
+                               const double *pdValuesReal,
+                               const double *pdValuesImag,
+                               int m, int n,
+                               const char *separator,
+                               const char *decimal,
+                               const char *precisionFormat,
+                               const char **headersLines,
+                               int nbHeadersLines);
 
-    csvWriteError csvWrite_string(const char *filename,
-                                  const char **pStrValues, int m, int n,
-                                  const char *separator,
-                                  const char *decimal,
-                                  const char **headersLines,
-                                  int nbHeadersLines);
+csvWriteError csvWrite_string(const char *filename,
+                              const char **pStrValues, int m, int n,
+                              const char *separator,
+                              const char *decimal,
+                              const char **headersLines,
+                              int nbHeadersLines);
 
 #ifdef __cplusplus
 }

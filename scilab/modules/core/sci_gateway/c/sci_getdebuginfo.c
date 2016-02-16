@@ -46,7 +46,7 @@ int sci_getdebuginfo(char *fname, void* pvApiCtx)
     outputStaticList = getStaticDebugInfo(&m2);
 #endif
 
-    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m1, n1, (char const* const*) outputDynamicList);
+    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m1, n1, (char const * const*) outputDynamicList);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -57,7 +57,7 @@ int sci_getdebuginfo(char *fname, void* pvApiCtx)
 
     if (Lhs == 2)
     {
-        sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m2, n2, (char const* const*) outputStaticList);
+        sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m2, n2, (char const * const*) outputStaticList);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);

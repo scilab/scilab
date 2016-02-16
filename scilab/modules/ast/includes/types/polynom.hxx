@@ -64,7 +64,7 @@ public :
     {
         return isScalar() ? isComplex() ? IdScalarPolynomComplex
                : IdScalarPolynom
-       : isComplex() ? IdPolynomComplex
+               : isComplex() ? IdPolynomComplex
                : IdPolynom;
     }
 

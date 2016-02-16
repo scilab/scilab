@@ -22,48 +22,48 @@ extern "C" {
 
 #include "dynlib_api_scilab.h"
 
-    /**
-     * Construct a new tlist for return in the console.
-     * Only one tlist should be used at the same time.
-     * @param nbElement Number of element of element in the list not including the name.
-     * @param name      Array of string of size nbElement containing the names of the list
-     *                  and its properties. Its size is nbElement + 1.
-     * @return a pointer to the newly created list or NULL if an error occurred.
-     */
-    void* createReturnedList(int nbElements, char* elementName[]);
+/**
+ * Construct a new tlist for return in the console.
+ * Only one tlist should be used at the same time.
+ * @param nbElement Number of element of element in the list not including the name.
+ * @param name      Array of string of size nbElement containing the names of the list
+ *                  and its properties. Its size is nbElement + 1.
+ * @return a pointer to the newly created list or NULL if an error occurred.
+ */
+void* createReturnedList(int nbElements, char* elementName[]);
 
-    /**
-     * add a new row vector in the list.
-     * @param[in/out] void the returned tList
-     * @param[in]     vector       values to be inserted of size nbValues
-     * @return        0  if the call was successful
-     */
-    int addRowVectorToReturnedList(void* list, const double vector[], int nbValues);
+/**
+ * add a new row vector in the list.
+ * @param[in/out] void the returned tList
+ * @param[in]     vector       values to be inserted of size nbValues
+ * @return        0  if the call was successful
+ */
+int addRowVectorToReturnedList(void* list, const double vector[], int nbValues);
 
-    /**
-     * add a new column vector in the list.
-     * @param[in/out] void the returned tList
-     * @param[in]     vector       values to be inserted of size nbValues
-     * @return        0  if the call was successful
-     */
-    int addColVectorToReturnedList(void* list, const double vector[], int nbValues);
+/**
+ * add a new column vector in the list.
+ * @param[in/out] void the returned tList
+ * @param[in]     vector       values to be inserted of size nbValues
+ * @return        0  if the call was successful
+ */
+int addColVectorToReturnedList(void* list, const double vector[], int nbValues);
 
-    /**
-     * add a new column vector in the list.
-     * @param[in/out] void the returned tList
-     * @param[in]     matrix   values to be inserted of size nbRow x nbCol
-     * @return        0  if the call was successful
-     */
-    int addMatrixToReturnedList(void* list, const double matrix[], int nbRow, int nbCol);
+/**
+ * add a new column vector in the list.
+ * @param[in/out] void the returned tList
+ * @param[in]     matrix   values to be inserted of size nbRow x nbCol
+ * @return        0  if the call was successful
+ */
+int addMatrixToReturnedList(void* list, const double matrix[], int nbRow, int nbCol);
 
-    /**
-     * add a new string column vector in the list.
-     * @param[in/out] void the returned tList
-     * @param[in]     vector   values to be inserted of size nbValues
-     * @return        0  if the call was successful
-     */
-    int addStringColVectorToReturnedList(void* list, char* vector[], int nbValues);
-    int addStringToReturnedList(void* list, char * str);
+/**
+ * add a new string column vector in the list.
+ * @param[in/out] void the returned tList
+ * @param[in]     vector   values to be inserted of size nbValues
+ * @return        0  if the call was successful
+ */
+int addStringColVectorToReturnedList(void* list, char* vector[], int nbValues);
+int addStringToReturnedList(void* list, char * str);
 #ifdef __cplusplus
 }
 #endif

@@ -95,14 +95,14 @@ BOOL removedirW(wchar_t *pathW)
 static int DeleteDirectory(wchar_t *refcstrRootDirectory)
 {
 #define DEFAULT_PATTERN L"%ls/*.*"
-    BOOL bDeleteSubdirectories = TRUE;
-    BOOL bSubdirectory = FALSE;
-    HANDLE hFile;
-    WIN32_FIND_DATAW FileInformation;
-    DWORD dwError;
-    wchar_t	*strPattern		= NULL;
-    wchar_t	*strFilePath	= NULL;
-    int len = 0;
+BOOL bDeleteSubdirectories = TRUE;
+BOOL bSubdirectory = FALSE;
+HANDLE hFile;
+WIN32_FIND_DATAW FileInformation;
+DWORD dwError;
+wchar_t	*strPattern		= NULL;
+wchar_t	*strFilePath	= NULL;
+int len = 0;
 
     if (refcstrRootDirectory == NULL)
     {
@@ -135,12 +135,12 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
             if ( (wcscmp(FileInformation.cFileName, L".") != 0) && (wcscmp(FileInformation.cFileName, L"..") != 0) )
             {
 #define FORMAT_PATH_TO_REMOVE L"%ls\\%ls"
-                int len = (int) (wcslen(refcstrRootDirectory) + wcslen(FORMAT_PATH_TO_REMOVE) + wcslen((wchar_t*)(FileInformation.cFileName)) + 1);
-                strFilePath = (wchar_t*) MALLOC(sizeof(wchar_t) * len);
-                if (strFilePath)
-                {
-                    os_swprintf(strFilePath, len, FORMAT_PATH_TO_REMOVE, refcstrRootDirectory, FileInformation.cFileName);
-                }
+int len = (int) (wcslen(refcstrRootDirectory) + wcslen(FORMAT_PATH_TO_REMOVE) + wcslen((wchar_t*)(FileInformation.cFileName)) + 1);
+strFilePath = (wchar_t*) MALLOC(sizeof(wchar_t) * len);
+if (strFilePath)
+{
+os_swprintf(strFilePath, len, FORMAT_PATH_TO_REMOVE, refcstrRootDirectory, FileInformation.cFileName);
+}
 
                 if (FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
                 {
@@ -201,7 +201,7 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
                     }
                 }
             }
-  
+
             if (strFilePath)
             {
                 FREE(strFilePath);

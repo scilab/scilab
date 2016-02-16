@@ -854,8 +854,8 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
         LENWP = pDblX0->getRows() * pDblX0->getRows();
         rworksize += (maxord + 5) * pDblX0->getRows() + 3 * ng
-            + (maxl + 3 + std::min(1, maxl - kmp)) * pDblX0->getRows()
-            + (maxl + 3) * maxl + 1 + LENWP;
+                     + (maxl + 3 + std::min(1, maxl - kmp)) * pDblX0->getRows()
+                     + (maxl + 3) * maxl + 1 + LENWP;
     }
 
     if (info[15] == 1)

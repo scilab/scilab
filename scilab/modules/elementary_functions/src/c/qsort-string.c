@@ -40,7 +40,7 @@ static int swapcodestring( char ** parmi, char ** parmj, int n, int incr)
         pj += inc1;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 static int compareCstring(char *i, char *j, char *indi, char *indj, int iflag)
@@ -57,7 +57,7 @@ static int compareCstring(char *i, char *j, char *indi, char *indj, int iflag)
             r = -1;
         }
     }
-    return(r);
+    return (r);
 }
 /*--------------------------------------------------------------------------*/
 static int compareDstring(char *i, char *j, char *indi, char *indj, int iflag)
@@ -74,7 +74,7 @@ static int compareDstring(char *i, char *j, char *indi, char *indj, int iflag)
             r = -1;
         }
     }
-    return(r);
+    return (r);
 }
 /*--------------------------------------------------------------------------*/
 /******************************************************
@@ -168,7 +168,7 @@ static  int LexiRowcompareCstring(char * *i, char * *j)
         int k = strcmp(*i, *j);
         if ( k != 0)
         {
-            return(k);
+            return (k);
         }
         i += lexirowsstring;
         j += lexirowsstring;
@@ -184,7 +184,7 @@ static  int LexiRowcompareDstring(char * *i, char * *j)
         int k = strcmp(*i, *j);
         if ( k != 0)
         {
-            return(-k);
+            return (-k);
         }
         i += lexirowsstring;
         j += lexirowsstring;
@@ -210,7 +210,7 @@ static int LexiRowswapcodestring(char *parmi, char * parmj, int n)
         pj++;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 void LexiRowstring(char * *a, int *ind, int flag, int n, int p, char dir)
@@ -243,7 +243,7 @@ static  int LexiColcompareCstring(char * *i, char * *j)
         int k = strcmp(*i, *j);
         if ( k != 0)
         {
-            return(k);
+            return (k);
         }
         i++;
         j++;
@@ -259,7 +259,7 @@ static  int LexiColcompareDstring(char * *i, char * *j)
         int k = strcmp(*i, *j);
         if ( k != 0)
         {
-            return(-k);
+            return (-k);
         }
         i++;
         j++;
@@ -285,7 +285,7 @@ static int LexiColswapcodestring(char *parmi, char* parmj, int n)
         pj += lexirowsstring ;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 void LexiColstring(char * *a, int *ind, int flag, int n, int p, char dir)

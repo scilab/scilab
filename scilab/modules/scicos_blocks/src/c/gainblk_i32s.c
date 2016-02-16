@@ -44,7 +44,7 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i32s(scicos_block *block, int flag)
         opar = Getint32OparPtrs(block, 1);
 
         k = pow(2, 32) / 2;
-        if (mo*no == 1)
+        if (mo * no == 1)
         {
             for (i = 0; i < ny * mu; ++i)
             {

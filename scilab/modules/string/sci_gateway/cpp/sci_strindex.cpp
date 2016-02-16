@@ -46,12 +46,12 @@ int ComparaisonCallback( const void *in1 , const void *in2)
 {
     In* data1 = (In*)in1;
     In* data2 = (In*)in2;
-    
-    if(data1->data == data2->data)
+
+    if (data1->data == data2->data)
     {
         return data1->position > data2->position ? 1 : -1;
     }
-    
+
     return data1->data > data2->data ? 1 : -1;
 }
 /*------------------------------------------------------------------------*/

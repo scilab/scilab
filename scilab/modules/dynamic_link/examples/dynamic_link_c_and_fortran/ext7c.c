@@ -39,6 +39,6 @@ int ext7c(double *a, double *b)
     strl = strlen(str);
     /* Creating the Scilab variable d from str */
     WriteString("d", &strl, str);
-    return(0);
+    return (0);
 }
 

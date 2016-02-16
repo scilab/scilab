@@ -31,7 +31,7 @@ int checkOptimError(int iarret, int indopt, int imp, double dEpsg)
 
     switch (indopt)
     {
-            // error
+        // error
         case 0 :
         {
             Scierror(131, _("%s: Stop requested by simulator (ind=0).\n"), "optim");

@@ -53,19 +53,19 @@ types::Function::ReturnValue sci_covMerge(types::typed_list &in, int _iRetCount,
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar string expected.\n"), "covWrite" , 2);
         return types::Function::Error;
-    }    
+    }
 
     types::String * strs = in[0]->getAs<types::String>();
     const unsigned int size = strs->getSize();
     std::vector<std::wstring> paths;
     paths.reserve(size);
-    
+
     for (unsigned int i = 0; i < size; ++i)
     {
-	paths.emplace_back(strs->get(i));
+        paths.emplace_back(strs->get(i));
     }
 
     coverage::CoverModule::merge(paths, in[1]->getAs<types::String>()->get(0));
-    
+
     return types::Function::OK;
 }

@@ -27,7 +27,7 @@ class EXTERN_AST TreeVisitor : public DummyVisitor
 {
 public:
     TreeVisitor() : l(nullptr), eol(nullptr) {}
-    ~TreeVisitor() 
+    ~TreeVisitor()
     {
         eol->killMe();
         l->killMe();

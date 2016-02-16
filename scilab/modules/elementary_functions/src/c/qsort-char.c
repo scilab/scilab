@@ -38,7 +38,7 @@ static int swapcodechar(char * parmi, char * parmj, int n, int incr)
         pj += inc1;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 static int compareCchar(char *i, char *j, char *indi, char *indj, int iflag)
@@ -381,7 +381,7 @@ static int LexiRowswapcodechar(char *parmi, char * parmj, int n)
         pj++;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 void LexiRowchar(char *a, int *ind, int flag, int n, int p, char dir)
@@ -519,7 +519,7 @@ static int LexiColswapcodechar(char *parmi, char* parmj, int n)
         pj += lexirowschar ;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 void LexiColchar(char *a, int *ind, int flag, int n, int p, char dir)

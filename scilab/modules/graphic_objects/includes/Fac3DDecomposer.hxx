@@ -41,7 +41,8 @@ private :
      * The first enum value corresponds to either per-face or per-vertex input values
      * whereas the last two are only relevant to per-vertex input values.
      */
-    enum MinMaxComputation {
+    enum MinMaxComputation
+    {
         ALL_VALUES,   /** all input values are used */
         FACE_AVERAGE,   /** per-face averaged values */
         FIRST_VERTEX_VALUE   /** only each face's first value */

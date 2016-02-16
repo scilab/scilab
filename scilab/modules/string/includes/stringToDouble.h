@@ -68,24 +68,25 @@
 extern "C" {
 #endif
 
-    typedef enum {
-        STRINGTODOUBLE_NO_ERROR = 0,
-        STRINGTODOUBLE_MEMORY_ALLOCATION = 1,
-        STRINGTODOUBLE_NOT_A_NUMBER = 2,
-        STRINGTODOUBLE_ERROR = 3
-    }
-                           stringToDoubleError;
+typedef enum
+{
+    STRINGTODOUBLE_NO_ERROR = 0,
+    STRINGTODOUBLE_MEMORY_ALLOCATION = 1,
+    STRINGTODOUBLE_NOT_A_NUMBER = 2,
+    STRINGTODOUBLE_ERROR = 3
+}
+stringToDoubleError;
 
-    /**
-     * @TODO add comment
-     *
-     * @param pSTR
-     * @param bConvertByNAN
-     * @param ierr
-     * @return <ReturnValue>
-     */
-    STRING_IMPEXP double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr);
-    STRING_IMPEXP double stringToDoubleW(const wchar_t *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr);
+/**
+ * @TODO add comment
+ *
+ * @param pSTR
+ * @param bConvertByNAN
+ * @param ierr
+ * @return <ReturnValue>
+ */
+STRING_IMPEXP double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr);
+STRING_IMPEXP double stringToDoubleW(const wchar_t *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr);
 
 #ifdef __cplusplus
 }

@@ -219,7 +219,7 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
 
         case MEMORY_ALLOC_ERROR :
             Scierror(999, _("%s: No more memory.\n"), "grep");
-            //no break, to free reserved memory.
+        //no break, to free reserved memory.
         case GREP_ERROR :
         {
             if (grepresults.values)

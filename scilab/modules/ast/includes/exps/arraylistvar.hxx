@@ -83,7 +83,7 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    
+
     inline const exps_t& getVars() const
     {
         return _exps;

@@ -42,7 +42,7 @@ void* get_mark_background_property(void* _pvCtx, int iObjUID)
     int numMarkBackgrounds = 0;
     int * piNumMarkBackgrounds = &numMarkBackgrounds;
 
-	getGraphicObjectProperty(iObjUID, __GO_NUM_MARK_BACKGROUNDS__, jni_int, (void**)&piNumMarkBackgrounds);
+    getGraphicObjectProperty(iObjUID, __GO_NUM_MARK_BACKGROUNDS__, jni_int, (void**)&piNumMarkBackgrounds);
 
     if (numMarkBackgrounds == 0)
     {

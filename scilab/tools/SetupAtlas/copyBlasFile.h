@@ -19,12 +19,13 @@
 
 #include <wchar.h>
 
-typedef enum {
-	COPY_NO_RIGHT_TO_WRITE = 0,
-	COPY_OK = 1,
-	COPY_FILE_SRC_NOT_EXISTS = 2,
-	COPY_DESTINATION_NOT_EXISTS = 3,
-	COPY_FILE_FAILED = 4
+typedef enum
+{
+    COPY_NO_RIGHT_TO_WRITE = 0,
+    COPY_OK = 1,
+    COPY_FILE_SRC_NOT_EXISTS = 2,
+    COPY_DESTINATION_NOT_EXISTS = 3,
+    COPY_FILE_FAILED = 4
 } copy_blas_error;
 
 copy_blas_error copyBlasFile(wchar_t *blasDllName);

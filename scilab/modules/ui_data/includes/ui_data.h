@@ -20,10 +20,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-    /*------------------------------------------------------------------------*/
-    void putScilabVariable(const char * name, const char* const* lines, int rows, int cols);
-    char * getUnnamedVariable();
-    /*------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------*/
+void putScilabVariable(const char * name, const char* const* lines, int rows, int cols);
+char * getUnnamedVariable();
+/*------------------------------------------------------------------------*/
 #ifdef __cplusplus
 }
 #endif

@@ -29,7 +29,7 @@ extern "C"
 /*-----------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_rlist(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() == 1)
+    if (in.size() == 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): At most %d expected.\n"), "rlist", 2);
         return types::Function::Error;
@@ -46,13 +46,13 @@ types::Function::ReturnValue sci_rlist(types::typed_list &in, int _iRetCount, ty
     types::String* pStr = new types::String(1, 4, wcsFields);
     pTLOut->set(0, pStr);
 
-    for(int i = 0; i < in.size(); i++)
+    for (int i = 0; i < in.size(); i++)
     {
-        pTLOut->set(i+1, in[i]);
+        pTLOut->set(i + 1, in[i]);
     }
 
     // set dt
-    if(in.size() == 2)
+    if (in.size() == 2)
     {
         pTLOut->set(3, types::Double::Empty());
     }

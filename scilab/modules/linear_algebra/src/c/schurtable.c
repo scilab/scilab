@@ -90,7 +90,7 @@ static schself schselfonc ;
 
 int *C2F(schsel)(double *alpha, double *beta)
 {
-    return((*schselfonc)(alpha, beta));
+    return ((*schselfonc)(alpha, beta));
 }
 
 /** fixes the function associated to name **/
@@ -123,7 +123,7 @@ static zchself zchselfonc ;
 
 int *C2F(zchsel)(doublecmplx *alpha)
 {
-    return((*zchselfonc)(alpha));
+    return ((*zchselfonc)(alpha));
 }
 
 /** fixes the function associated to name **/
@@ -156,7 +156,7 @@ static gshself gshselfonc ;
 
 int *C2F(gshsel)(double *alphar, double *alphai, double *beta)
 {
-    return((*gshselfonc)(alphar, alphai, beta));
+    return ((*gshselfonc)(alphar, alphai, beta));
 }
 
 /** fixes the function associated to name **/
@@ -189,7 +189,7 @@ static gzhself gzhselfonc ;
 
 int *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta)
 {
-    return((*gzhselfonc)(alpha, beta));
+    return ((*gzhselfonc)(alpha, beta));
 }
 
 /** fixes the function associated to name **/
@@ -222,7 +222,7 @@ static fschurf fschurfonc ;
 
 int *C2F(fschur)(int *lsize, double *alpha, double *beta, double *s, double *p)
 {
-    return((*fschurfonc)(lsize, alpha, beta, s, p));
+    return ((*fschurfonc)(lsize, alpha, beta, s, p));
 }
 
 /** fixes the function associated to name **/

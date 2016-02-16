@@ -40,7 +40,7 @@ int set_auto_margins_property(void* _pvCtx, int iObjUID, void* _pvData, int valu
     {
         return SET_PROPERTY_ERROR;
     }
- 
+
     status = setGraphicObjectProperty(iObjUID, __GO_AUTO_MARGINS__, &b, jni_bool, 1);
 
     if (status == TRUE)

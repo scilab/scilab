@@ -97,7 +97,7 @@ scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int index, sci
         return STATUS_ERROR;
     }
 #endif
- 
+
     bool ret = l->set(index, (types::InternalType*)val) != nullptr;
     return ret ? STATUS_OK : STATUS_ERROR;
 }

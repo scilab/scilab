@@ -19,7 +19,7 @@
 extern "C" {
 #endif
 
-    char *utftolatin(char *utfString);
+char *utftolatin(char *utfString);
 
 #ifdef __cplusplus
 }

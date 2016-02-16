@@ -19,10 +19,10 @@
 
 namespace analysis
 {
-    TIType Checkers::check_or(GVN & gvn, const TIType & in0)
+TIType Checkers::check_or(GVN & gvn, const TIType & in0)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::BOOLEAN :
         {
             return TIType(gvn, TIType::BOOLEAN, 1, 1);
@@ -69,35 +69,35 @@ namespace analysis
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
-    TIType Checkers::check_or(GVN & gvn, const TIType & in0, const TIType & in1)
+TIType Checkers::check_or(GVN & gvn, const TIType & in0, const TIType & in1)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::BOOLEAN :
         {
             switch (in1.type)
             {
-            case TIType::DOUBLE :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            case TIType::STRING :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::STRING :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -105,24 +105,24 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::DOUBLE :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            case TIType::STRING :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::STRING :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -130,24 +130,24 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::DOUBLE :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            case TIType::STRING :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::STRING :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -155,24 +155,24 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::DOUBLE :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            case TIType::STRING :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::STRING :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -180,24 +180,24 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::DOUBLE :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            case TIType::STRING :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::STRING :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -205,24 +205,24 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::DOUBLE :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            case TIType::STRING :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::STRING :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -230,24 +230,24 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::DOUBLE :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            case TIType::STRING :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::STRING :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -255,24 +255,24 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::DOUBLE :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            case TIType::STRING :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::STRING :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -280,24 +280,24 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::DOUBLE :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            case TIType::STRING :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::STRING :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -305,24 +305,24 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::DOUBLE :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            case TIType::STRING :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::STRING :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -330,30 +330,30 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::DOUBLE :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            case TIType::STRING :
-            {
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::STRING :
                 {
-                    return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::BOOLEAN, 1, 1);
+                    }
+                    return TIType(gvn);
                 }
-                return TIType(gvn);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis

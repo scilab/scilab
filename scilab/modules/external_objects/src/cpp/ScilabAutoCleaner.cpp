@@ -62,21 +62,21 @@ void ScilabAutoCleaner::unregisterVariable(const int envId, const int varId)
 
 void ScilabAutoCleaner::unregisterVariable(const int envId, const int* varId, const int length)
 {
-//    const int level = C2F(recu).macr;
-//    const int ssize = stack.size() - 1;
-//
-//    if (level == ssize)
-//    {
-//        _MapIds & map = stack.top();
-//        _MapIds::iterator it = map.find(envId);
-//        if (it != map.end())
-//        {
-//            for (int i = 0; i < length; i++)
-//            {
-//                it->second.erase(varId[i]);
-//            }
-//        }
-//    }
+    //    const int level = C2F(recu).macr;
+    //    const int ssize = stack.size() - 1;
+    //
+    //    if (level == ssize)
+    //    {
+    //        _MapIds & map = stack.top();
+    //        _MapIds::iterator it = map.find(envId);
+    //        if (it != map.end())
+    //        {
+    //            for (int i = 0; i < length; i++)
+    //            {
+    //                it->second.erase(varId[i]);
+    //            }
+    //        }
+    //    }
 }
 
 void ScilabAutoCleaner::goDown(void* _pvCtx)

@@ -425,19 +425,19 @@ int sci_dneupd(char *fname, void *pvApiCtx)
     LDZ = LDV;
 
     /* Check some sizes */
-    if (mIPARAM*nIPARAM != 11)
+    if (mIPARAM * nIPARAM != 11)
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "IPARAM", 11);
         return 0;
     }
 
-    if (mIPNTR*nIPNTR != 14)
+    if (mIPNTR * nIPNTR != 14)
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "IPNTR", 14);
         return 0;
     }
 
-    if (mRESID*nRESID != *(int*)(pN))
+    if (mRESID * nRESID != *(int*)(pN))
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "RESID", *(int*)(pN));
         return 0;
@@ -449,19 +449,19 @@ int sci_dneupd(char *fname, void *pvApiCtx)
         return 0;
     }
 
-    if (mSELECT*nSELECT != *(int*)(pNCV))
+    if (mSELECT * nSELECT != *(int*)(pNCV))
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "SELECT", *(int*)(pNCV));
         return 0;
     }
 
-    if (mDr*nDr != (*(int*)(pNEV) + 1))
+    if (mDr * nDr != (*(int*)(pNEV) + 1))
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "Dr", *(int*)(pNEV) + 1);
         return 0;
     }
 
-    if (mDi*nDi != (*(int*)(pNEV) + 1))
+    if (mDi * nDi != (*(int*)(pNEV) + 1))
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "Di", *(int*)(pNEV) + 1);
         return 0;
@@ -473,7 +473,7 @@ int sci_dneupd(char *fname, void *pvApiCtx)
         return 0;
     }
 
-    if (mWORKev*nWORKev != 3 * *(int*)(pNCV))
+    if (mWORKev * nWORKev != 3 * *(int*)(pNCV))
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "WORKev", 3 * *(int*)(pNCV));
         return 0;

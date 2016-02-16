@@ -694,7 +694,7 @@ int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pno
 
     setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, Nnode);
     setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, Nnode);
-    
+
     /* Fec-specific property: triangle indices plus special values (triangle number and flag) */
     setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_FEC_ELEMENTS__, pnoeud, jni_double_vector, Ntr);
 

@@ -57,7 +57,7 @@ public:
         : Dec (location),
           _name (name),
           _stack(nullptr),
-	  macro(nullptr)
+          macro(nullptr)
     {
         args.setParent(this);
         returns.setParent(this);
@@ -74,7 +74,7 @@ public:
         //body will be deleted by types::Macro
         //so replace by NULL to avoir delete in ~Exp()
         //_exps[2] = NULL;
-	if (macro)
+        if (macro)
         {
             macro->DecreaseRef();
             macro->killMe();
@@ -186,7 +186,7 @@ public:
             macro->IncreaseRef();
         }
     }
-    
+
 protected:
     symbol::Symbol _name;
     symbol::Variable * _stack;

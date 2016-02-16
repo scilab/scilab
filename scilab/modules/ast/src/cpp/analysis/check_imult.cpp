@@ -19,10 +19,10 @@
 
 namespace analysis
 {
-    TIType Checkers::check_imult(GVN & gvn, const TIType & in0)
+TIType Checkers::check_imult(GVN & gvn, const TIType & in0)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::COMPLEX :
         {
             return in0;
@@ -33,7 +33,7 @@ namespace analysis
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis

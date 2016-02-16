@@ -305,7 +305,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
 
                 case L'n':
                     n_directive_count++;
-                    //pass to next statement
+                //pass to next statement
 
                 case L'i':
                 case L'd':

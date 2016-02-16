@@ -18,10 +18,10 @@
 namespace analysis
 {
 
-    std::wostream & operator<<(std::wostream & out, const OpValue & ov)
+std::wostream & operator<<(std::wostream & out, const OpValue & ov)
+{
+    switch (ov.kind)
     {
-        switch (ov.kind)
-        {
         case OpValue::UNARYMINUS:
             out << L"-" << ov.lnum;
             break;
@@ -49,9 +49,9 @@ namespace analysis
         default:
             out << ov.lnum << L"??" << ov.rnum;
             break;
-        }
-
-        return out;
     }
+
+    return out;
+}
 
 } // namespace analysis

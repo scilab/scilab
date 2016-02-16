@@ -44,6 +44,6 @@ types::Function::ReturnValue sci_covStop(types::typed_list &in, int _iRetCount, 
     }
 
     coverage::CoverModule::clearInstance();
-    
+
     return types::Function::OK;
 }

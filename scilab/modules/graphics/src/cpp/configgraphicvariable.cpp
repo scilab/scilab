@@ -45,7 +45,7 @@ std::map<std::wstring, int> ConfigGraphicVariable::m_mapProperties;
 
 void ConfigGraphicVariable::fillProperties()
 {
-    if(m_mapProperties.empty())
+    if (m_mapProperties.empty())
     {
         m_mapProperties[std::wstring(L"alufunction")]   = 1;
         m_mapProperties[std::wstring(L"auto clear")]    = 2;
@@ -80,7 +80,7 @@ void ConfigGraphicVariable::fillProperties()
         m_mapProperties[std::wstring(L"wpdim")]         = 31;
         m_mapProperties[std::wstring(L"wpos")]          = 32;
         m_mapProperties[std::wstring(L"wresize")]       = 33;
-//        m_mapProperties[std::wstring(L" ")]             = 34; /* added */
+        //        m_mapProperties[std::wstring(L" ")]             = 34; /* added */
     }
 }
 
@@ -89,7 +89,7 @@ int ConfigGraphicVariable::getPropertyValue(wchar_t* _wcsKey)
     fillProperties();
     std::map<std::wstring, int>::iterator it;
     it = m_mapProperties.find(_wcsKey);
-    if(it != m_mapProperties.end())
+    if (it != m_mapProperties.end())
     {
         return it->second;
     }
@@ -100,7 +100,7 @@ int ConfigGraphicVariable::getPropertyValue(wchar_t* _wcsKey)
 bool ConfigGraphicVariable::bPropertyFound(wchar_t* _wcsKey)
 {
     fillProperties();
-    if(m_mapProperties.find(_wcsKey) != m_mapProperties.end())
+    if (m_mapProperties.find(_wcsKey) != m_mapProperties.end())
     {
         return true;
     }
@@ -122,7 +122,7 @@ unsigned short* ConfigGraphicVariable::m_siColormap = NULL;
 
 void ConfigGraphicVariable::initColormap()
 {
-    if(m_siColormap == NULL)
+    if (m_siColormap == NULL)
     {
         m_siColormap = new unsigned short[3 * NUMCOLORS_SCI];
 

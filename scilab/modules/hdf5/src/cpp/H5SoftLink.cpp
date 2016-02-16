@@ -57,7 +57,7 @@ void H5SoftLink::getAccessibleAttribute(const std::string & _name, const int pos
 
     if (lower == "type")
     {
-	const std::string linkType = getLinkType();
+        const std::string linkType = getLinkType();
         const char * _type = linkType.c_str();
         err = createMatrixOfString(pvApiCtx, pos, 1, 1, &_type);
         if (err.iErr)
@@ -69,7 +69,7 @@ void H5SoftLink::getAccessibleAttribute(const std::string & _name, const int pos
     }
     else if (lower == "target")
     {
-	const std::string linkValue = getLinkValue();
+        const std::string linkValue = getLinkValue();
         const char * _target = linkValue.c_str();
         err = createMatrixOfString(pvApiCtx, pos, 1, 1, &_target);
         if (err.iErr)

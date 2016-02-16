@@ -48,6 +48,6 @@ int Status2Mode(char *status)
             bin = 1;
         }
     }
-    return(100 * md + 10 * plus + bin);
+    return (100 * md + 10 * plus + bin);
 }
 /*--------------------------------------------------------------------------*/

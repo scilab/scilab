@@ -19,10 +19,10 @@
 
 namespace analysis
 {
-    TIType Checkers::check_inttype(GVN & gvn, const TIType & in0)
+TIType Checkers::check_inttype(GVN & gvn, const TIType & in0)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::COMPLEX :
         {
             return TIType(gvn, TIType::DOUBLE, 1, 1);
@@ -65,7 +65,7 @@ namespace analysis
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis

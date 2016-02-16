@@ -19,24 +19,24 @@
 namespace coverage
 {
 
-    void CoverMacroInfo::toBin(std::fstream & out) const
-    {
-	CoverModule::write(out, macroModule);
-	CoverModule::write(out, macroFilePath);
-	CoverModule::write(out, instrsCount);
-	CoverModule::write(out, branchesCount);
-	CoverModule::write(out, pathsCount);
-	out.flush();
-    }
-    
-    CoverMacroInfo CoverMacroInfo::fromBin(std::fstream & in)
-    {
-	const std::wstring mod = CoverModule::readWstring(in);
-	const std::wstring fp = CoverModule::readWstring(in);
-	const std::size_t ic = CoverModule::readUint64_t(in);
-	const std::size_t bc = CoverModule::readUint64_t(in);
-	const std::size_t pc = CoverModule::readUint64_t(in);
-	
-	return CoverMacroInfo(mod, fp, ic, bc, pc);
-    }
+void CoverMacroInfo::toBin(std::fstream & out) const
+{
+    CoverModule::write(out, macroModule);
+    CoverModule::write(out, macroFilePath);
+    CoverModule::write(out, instrsCount);
+    CoverModule::write(out, branchesCount);
+    CoverModule::write(out, pathsCount);
+    out.flush();
+}
+
+CoverMacroInfo CoverMacroInfo::fromBin(std::fstream & in)
+{
+    const std::wstring mod = CoverModule::readWstring(in);
+    const std::wstring fp = CoverModule::readWstring(in);
+    const std::size_t ic = CoverModule::readUint64_t(in);
+    const std::size_t bc = CoverModule::readUint64_t(in);
+    const std::size_t pc = CoverModule::readUint64_t(in);
+
+    return CoverMacroInfo(mod, fp, ic, bc, pc);
+}
 }

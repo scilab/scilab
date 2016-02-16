@@ -83,7 +83,7 @@ XMLValidationDTD::~XMLValidationDTD()
             resetScope();
         }
     }
-    
+
     errorBuffer.clear();
 }
 

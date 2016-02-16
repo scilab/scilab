@@ -19,10 +19,10 @@
 
 namespace analysis
 {
-    TIType Checkers::check_int16(GVN & gvn, const TIType & in0)
+TIType Checkers::check_int16(GVN & gvn, const TIType & in0)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::EMPTY :
         {
             return in0;
@@ -65,7 +65,7 @@ namespace analysis
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis

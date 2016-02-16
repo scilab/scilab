@@ -25,26 +25,26 @@ extern "C" {
 
 #include "dynlib_renderer.h"
 
-    /**
-     * Convert user Coordinate to pixel coordinates using 2d view.
-     */
-    RENDERER_IMPEXP void sciGetJava2dViewPixelCoordinates(int iSubwinUID, const double userCoords[3], int pixCoords[2]);
+/**
+ * Convert user Coordinate to pixel coordinates using 2d view.
+ */
+RENDERER_IMPEXP void sciGetJava2dViewPixelCoordinates(int iSubwinUID, const double userCoords[3], int pixCoords[2]);
 
-    /**
-     * Project 3d coordinates on the Default 2d plane
-     */
-    RENDERER_IMPEXP void sciGetJava2dViewCoordinates(int iSubwinUID, const double userCoords3D[3], double userCoords2D[2]);
+/**
+ * Project 3d coordinates on the Default 2d plane
+ */
+RENDERER_IMPEXP void sciGetJava2dViewCoordinates(int iSubwinUID, const double userCoords3D[3], double userCoords2D[2]);
 
-    /**
-     * Convert pixel coordinates to 2D view ones.
-     */
-    RENDERER_IMPEXP void sciGetJava2dViewCoordFromPixel(int iSubwinUID, const int pixCoords[2], double userCoords2D[2]);
+/**
+ * Convert pixel coordinates to 2D view ones.
+ */
+RENDERER_IMPEXP void sciGetJava2dViewCoordFromPixel(int iSubwinUID, const int pixCoords[2], double userCoords2D[2]);
 
-    /**
-     * Get the viewing area in pixels of a subwin object
-     */
-    RENDERER_IMPEXP void sciGetJavaViewingArea(int iSubwinUID, int * xPos, int * yPos,
-            int * width, int * height);
+/**
+ * Get the viewing area in pixels of a subwin object
+ */
+RENDERER_IMPEXP void sciGetJavaViewingArea(int iSubwinUID, int * xPos, int * yPos,
+        int * width, int * height);
 
 #ifdef __cplusplus
 }

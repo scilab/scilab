@@ -27,7 +27,7 @@ typedef enum __SCILAB_STATUS__
 {
     STATUS_OK = 0,
     STATUS_ERROR = 1
-}scilabStatus;
+} scilabStatus;
 
 void scilab_setError(scilabEnv env, const wchar_t* msg);
 const wchar_t* scilab_lastError(scilabEnv env);

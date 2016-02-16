@@ -40,7 +40,7 @@ void* createReturnedList(int nbElements, char * elementName[])
 }
 /*------------------------------------------------------------------------*/
 int addRowVectorToReturnedList(void* list, const double vector[], int nbValues)
-{  
+{
     types::TList* pL = (types::TList*)list;
     pL->append((types::InternalType*)sciReturnMatrix((double*)vector, 1, nbValues));
     return 0;

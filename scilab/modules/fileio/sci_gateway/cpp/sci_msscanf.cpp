@@ -135,7 +135,7 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                 {
                     ps->set(j, data[i + ncol * j].s);
                 }
-                
+
                 IT.push_back(ps);
                 uiFormatUsed |= (1 << 1);
             }
@@ -154,7 +154,7 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                 {
                     p->set(j, data[i + ncol * j].d);
                 }
-                
+
                 IT.push_back(p);
                 uiFormatUsed |= (1 << 2);
             }

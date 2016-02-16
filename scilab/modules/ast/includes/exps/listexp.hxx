@@ -56,7 +56,7 @@ public:
         values[0] = std::numeric_limits<double>::quiet_NaN();
         values[1] = std::numeric_limits<double>::quiet_NaN();
         values[2] = std::numeric_limits<double>::quiet_NaN();
-	values[3] = std::numeric_limits<double>::quiet_NaN();
+        values[3] = std::numeric_limits<double>::quiet_NaN();
 
         is_values_int[0] = false;
         is_values_int[1] = false;

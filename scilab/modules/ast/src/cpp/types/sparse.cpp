@@ -2236,7 +2236,7 @@ template<typename S> struct GetReal: std::unary_function<typename S::InnerIterat
     }
 };
 template<> struct GetReal< Eigen::SparseMatrix<std::complex<double >, Eigen::RowMajor > >
-        : std::unary_function<Sparse::CplxSparse_t::InnerIterator, double>
+    : std::unary_function<Sparse::CplxSparse_t::InnerIterator, double>
 {
     double operator()( Sparse::CplxSparse_t::InnerIterator it) const
     {
