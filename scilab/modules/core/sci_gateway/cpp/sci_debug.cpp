@@ -51,6 +51,7 @@ enum EnumCommand
 };
 
 const char fname[] = "debug";
+const std::string HELP_DEBUG_COMMAND("help debug");
 
 void print_help();
 EnumCommand getCommand(const std::wstring& command);
@@ -297,7 +298,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
 
             if (ConfigVariable::getScilabMode() == SCILAB_NW || ConfigVariable::getScilabMode() == SCILAB_STD)
             {
-                StorePrioritaryCommand("help debug");
+                StorePrioritaryCommand(HELP_DEBUG_COMMAND.data());
                 return types::Function::OK;
             }
 

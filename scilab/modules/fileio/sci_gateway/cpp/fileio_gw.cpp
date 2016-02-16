@@ -19,8 +19,10 @@
 
 #define MODULE_NAME L"fileio"
 
+#ifdef _MSC_VER
 #pragma comment(lib,"../../../../bin/libxml2.lib")
 #pragma comment(lib,"../../../../bin/libcurl.lib")
+#endif
 
 extern "C"
 {

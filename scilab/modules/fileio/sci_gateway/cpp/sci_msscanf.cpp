@@ -159,6 +159,8 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                 uiFormatUsed |= (1 << 2);
             }
             break;
+            case NONE:
+                break;
         }
     }
 

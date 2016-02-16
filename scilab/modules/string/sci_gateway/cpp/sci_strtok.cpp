@@ -30,6 +30,7 @@ extern "C"
 }
 
 static wchar_t *pwstState = NULL;
+static /* const */ wchar_t EOS = 0;
 
 types::Function::ReturnValue sci_strtok(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -85,7 +86,8 @@ types::Function::ReturnValue sci_strtok(types::typed_list &in, int _iRetCount, t
     wchar_t* pwstToken = NULL;
     if (pwstString == NULL && pwstState == NULL)
     {
-        pwstToken = L"";
+        // set an empty string
+        pwstToken = &EOS;
     }
     else
     {

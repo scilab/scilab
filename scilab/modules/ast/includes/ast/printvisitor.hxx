@@ -127,10 +127,10 @@ public:
     `-------------*/
 protected:
     std::wostream   *ostr;
-    int             indent;
     bool            force_parenthesis;
     const bool      displayOriginal;
     const bool      headerOnly;
+    int             indent;
     bool            is_last_matrix_line;
     bool            is_last_column_comment;
 

@@ -811,7 +811,7 @@ namespace std
 template<>
 struct hash<analysis::TIType>
 {
-    inline size_t operator()(const analysis::TIType & t) const
+    inline size_t operator()(const analysis::TIType & /*t*/) const
     {
         return 0;//tools::hash_combine(t.type, t.rows, t.cols);
     }

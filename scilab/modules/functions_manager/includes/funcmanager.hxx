@@ -22,7 +22,9 @@
 #include <string>
 
 //disable warnings about exports STL items
+#ifdef _MSC_VER
 #pragma warning (disable : 4251)
+#endif
 
 #ifdef _MSC_VER
 #if FUNC_MAN_EXPORTS

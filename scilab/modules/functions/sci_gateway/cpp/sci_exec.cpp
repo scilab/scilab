@@ -71,7 +71,6 @@ void closeFile(std::ifstream* file, int fileId, const std::wstring& wstFile, ast
 types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int promptMode      = 0;//default value at startup, overthise 3 or verbose ";"
-    bool bPromptMode    = false;
     int iErr            = 0;
     bool bErrCatch      = false;
     ast::Exp* pExp      = NULL;
@@ -133,7 +132,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 }
 
                 promptMode = (int)in[2]->getAs<types::Double>()->getReal()[0];
-                bPromptMode = true;
             }
         }
         else if (in[1]->isDouble() && in[1]->getAs<types::Double>()->isScalar())
@@ -145,7 +143,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             }
             //mode
             promptMode = (int)in[1]->getAs<types::Double>()->getReal()[0];
-            bPromptMode = true;
         }
         else
         {
@@ -261,8 +258,8 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         // unable for macro with varargin or varargout
         auto inputs = pMacro->getInputs();
         auto outputs = pMacro->getOutputs();
-        if ((inputs->size() != 0 && inputs->back()->getSymbol().getName() == L"varargin") ||
-                outputs->size() != 0 && outputs->back()->getSymbol().getName() == L"varargout")
+        if ((inputs->size() != 0 && (inputs->back()->getSymbol().getName() == L"varargin")) ||
+                (outputs->size() != 0 && (outputs->back()->getSymbol().getName() == L"varargout")))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A macro without varargin and varargout expected.\n"), "exec", 1);
             return types::Function::Error;

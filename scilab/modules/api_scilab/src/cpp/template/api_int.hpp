@@ -40,9 +40,9 @@ int API_PROTO(getIntegerPrecision)(scilabEnv env, scilabVar var)
             return SCI_INT64;
         case types::InternalType::ScilabUInt64:
             return SCI_UINT64;
+        default:
+            return 0;
     }
-
-    return 0;
 }
 
 int API_PROTO(isInt8)(scilabEnv env, scilabVar var)
@@ -504,9 +504,9 @@ scilabStatus API_PROTO(getIntegerArray)(scilabEnv env, scilabVar var, void** val
             return scilab_getUnsignedInteger32Array(env, var, (unsigned int**)vals);
         case types::InternalType::ScilabUInt64:
             return scilab_getUnsignedInteger64Array(env, var, (unsigned long long**)vals);
+        default:
+            return STATUS_ERROR;
     }
-
-    return STATUS_ERROR;
 }
 
 scilabStatus API_PROTO(getInteger8Array)(scilabEnv env, scilabVar var, char** vals)
@@ -641,9 +641,10 @@ scilabStatus API_PROTO(setIntegerArray)(scilabEnv env, scilabVar var, const void
             return scilab_setUnsignedInteger32Array(env, var, (const unsigned int*)vals);
         case types::InternalType::ScilabUInt64:
             return scilab_setUnsignedInteger64Array(env, var, (const unsigned long long*)vals);
-    }
+        default:
+            return STATUS_ERROR;
 
-    return STATUS_ERROR;
+    }
 }
 
 scilabStatus API_PROTO(setInteger8Array)(scilabEnv env, scilabVar var, const char* vals)

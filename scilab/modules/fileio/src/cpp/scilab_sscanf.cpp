@@ -41,7 +41,6 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
     int dimsArray[2]            = {_iNiter, 1};
     BOOL bStar                  = FALSE;
     BOOL bUnsigned              = FALSE;
-    BOOL bNegatif               = FALSE;
     BOOL bIgnoredChars          = TRUE;
     int base                    = 0;
     wchar_t wcsLLH              = L' ';
@@ -576,7 +575,6 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                         wcsLLH          = L' ';
                         bIgnoredChars   = TRUE;
                         bUnsigned       = FALSE;
-                        bNegatif        = FALSE;
                         bStar           = FALSE;
                         base            = 0;
                         i++;

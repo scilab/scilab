@@ -43,8 +43,6 @@ class H5NamedObjectsList : public H5ListObject<T>
         int basetype;
     } OpData;
 
-    int prevPos;
-    hsize_t idx;
 
 public :
 
@@ -162,12 +160,12 @@ public :
         return (herr_t)0;
     }
 
-    const unsigned int getSize() const
+    unsigned int getSize() const
     {
         return getSize(false);
     }
 
-    const unsigned int getSize(const bool indexChecking) const
+    unsigned int getSize(const bool indexChecking) const
     {
         if (H5ListObject<T>::indexList && !indexChecking)
         {
@@ -243,6 +241,12 @@ protected :
     const int baseType;
     const int linkType;
     const std::string baseTypeName;
+
+private :
+
+    int prevPos;
+    hsize_t idx;
+
 
 private:
 

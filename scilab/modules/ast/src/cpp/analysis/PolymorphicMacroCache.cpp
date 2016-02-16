@@ -24,7 +24,7 @@ PolymorphicMacroCache::PolymorphicMacroCache() : id(1) { }
 
 PolymorphicMacroCache::~PolymorphicMacroCache() { }
 
-const bool PolymorphicMacroCache::getOutTypes(AnalysisVisitor & visitor, MacroDef * macrodef, std::vector<TIType> & in, std::vector<TIType> & out, uint64_t & functionId)
+bool PolymorphicMacroCache::getOutTypes(AnalysisVisitor & visitor, MacroDef * macrodef, std::vector<TIType> & in, std::vector<TIType> & out, uint64_t & functionId)
 {
     // TODO: handle varargin
     if (in.size() > macrodef->getRhs())

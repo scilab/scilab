@@ -17,7 +17,9 @@
 #include "localization_gw.hxx"
 #include "context.hxx"
 
+#ifdef _MSC_VER
 #pragma comment(lib,"../../../../bin/libintl.lib")
+#endif
 
 extern "C"
 {

@@ -419,6 +419,8 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
                 out.push_back(toInt<types::UInt64>(pDblOut));
                 break;
             }
+            default:
+                return types::Function::Error;
         }
 
         if (pDblOut)

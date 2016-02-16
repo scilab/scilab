@@ -51,7 +51,7 @@ struct CommandRec
 static std::list<CommandRec> commandQueue;
 static std::list<CommandRec> commandQueuePrioritary;
 /*--------------------------------------------------------------------------*/
-int StoreCommandWithFlags(char* command, int iPrioritary, int iInterruptible, command_origin_t iCmdOrigin)
+int StoreCommandWithFlags(const char* command, int iPrioritary, int iInterruptible, command_origin_t iCmdOrigin)
 {
     ThreadManagement::LockStoreCommand();
     if (iPrioritary)
@@ -73,7 +73,7 @@ int StoreCommandWithFlags(char* command, int iPrioritary, int iInterruptible, co
     return 0;
 }
 
-int StoreCommand(char *command)
+int StoreCommand(const char *command)
 {
     ThreadManagement::LockStoreCommand();
     commandQueue.emplace_back(os_strdup(command),
@@ -88,7 +88,7 @@ int StoreCommand(char *command)
     return 0;
 }
 
-int StoreConsoleCommand(char *command, int iWaitFor)
+int StoreConsoleCommand(const char *command, int iWaitFor)
 {
     ThreadManagement::LockStoreCommand();
     commandQueuePrioritary.emplace_back(os_strdup(command),
@@ -116,7 +116,7 @@ int StoreConsoleCommand(char *command, int iWaitFor)
     return 0;
 }
 
-int StorePrioritaryCommand(char *command)
+int StorePrioritaryCommand(const char *command)
 {
     ThreadManagement::LockStoreCommand();
     commandQueuePrioritary.emplace_back(os_strdup(command),

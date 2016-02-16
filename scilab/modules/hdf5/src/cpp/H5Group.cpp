@@ -92,7 +92,7 @@ H5TypesList & H5Group::getTypes()
     return *new H5TypesList(*this);
 }
 
-const unsigned int H5Group::getLinksSize() const
+unsigned int H5Group::getLinksSize() const
 {
     herr_t err;
     H5G_info_t info;

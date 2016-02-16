@@ -41,11 +41,11 @@ class SymbolicList
         Value(double val) : dval(val) { }
     };
 
+    bool symbolic;
+
     Value start;
     Value step;
     Value end;
-
-    bool symbolic;
 
 public:
 

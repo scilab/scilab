@@ -30,7 +30,6 @@ extern "C"
 types::Function::ReturnValue sci_basename(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iExpand     = 1;
-    int iConvert    = 1;
 
     if (in.size() < 1 || in.size() > 3)
     {
@@ -74,8 +73,6 @@ types::Function::ReturnValue sci_basename(types::typed_list &in, int _iRetCount,
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar boolean expected.\n"), "basename", 2);
             return types::Function::Error;
         }
-
-        iConvert = in[1]->getAs<types::Bool>()->get()[0];
     }
 
     if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())

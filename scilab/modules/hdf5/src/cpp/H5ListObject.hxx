@@ -51,7 +51,7 @@ public :
         throw H5Exception(__LINE__, __FILE__, _("Invalid operation"));
     }
 
-    virtual const unsigned int getSize() const = 0;
+    virtual unsigned int getSize() const = 0;
 
     virtual void getAccessibleAttribute(const double index, const int pos, void * pvApiCtx) const
     {

@@ -212,6 +212,8 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                 uiFormatUsed |= (1 << 2);
                 break;
             }
+            case NONE:
+                break;
         }
     }
 

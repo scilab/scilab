@@ -620,7 +620,6 @@ std::string H5Type::getNameFromType(hid_t type)
             break;
         case H5T_STRING:
             return "H5T_STRING";
-            break;
         case H5T_BITFIELD:
             if (H5Tequal(type, H5T_STD_B8BE) > 0)
             {
@@ -719,7 +718,6 @@ std::string H5Type::getNameFromType(hid_t type)
             {
                 return "H5T_STD_REF_OBJECT";
             }
-            break;
         case H5T_ENUM:
             return "H5T_ENUM";
         case H5T_VLEN:
@@ -729,6 +727,7 @@ std::string H5Type::getNameFromType(hid_t type)
         default:
             return _("Unknown datatype");
     }
+    return _("Unknown datatype");
 }
 
 void H5Type::printComplexNameFromType(std::ostringstream & os, const unsigned int indentLevel, const hid_t type)

@@ -41,8 +41,8 @@ private:
         breakpoints(),
         debuggers(), pExp(nullptr), interrupted(false), currentBreakPoint(-1), action(Continue), level(0) {}
 
-    Debuggers debuggers;
     Breakpoints breakpoints;
+    Debuggers debuggers;
 
     ast::Exp* pExp;
     bool interrupted;

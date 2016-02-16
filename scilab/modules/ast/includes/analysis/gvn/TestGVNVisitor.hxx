@@ -182,6 +182,24 @@ private:
                     setResult(gvn.getValue(int64_t(0)));
                 }
                 break;
+            case ast::OpExp::ldivide:
+            case ast::OpExp::dotldivide:
+            case ast::OpExp::krontimes:
+            case ast::OpExp::kronrdivide:
+            case ast::OpExp::kronldivide:
+            case ast::OpExp::controltimes:
+            case ast::OpExp::controlrdivide:
+            case ast::OpExp::controlldivide:
+            case ast::OpExp::lt:
+            case ast::OpExp::le:
+            case ast::OpExp::gt:
+            case ast::OpExp::ge:
+            case ast::OpExp::logicalAnd:
+            case ast::OpExp::logicalOr:
+            case ast::OpExp::logicalShortCutAnd:
+            case ast::OpExp::logicalShortCutOr:
+                std::cerr << "TestGVNVisitor: unsupported ast::OpExp" << std::endl;
+                break;
         }
     }
 

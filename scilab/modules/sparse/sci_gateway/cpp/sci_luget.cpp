@@ -35,7 +35,6 @@ types::Function::ReturnValue sci_luget(types::typed_list &in, int _iRetCount, ty
     double reltol   = 0.001;
     int nrank       = 0;
     int ierr        = 0;
-    int m1          = 0;
     int n1          = 0;
     int nl          = 0;
     int nu          = 0;
@@ -79,7 +78,6 @@ types::Function::ReturnValue sci_luget(types::typed_list &in, int _iRetCount, ty
     }
 
     types::Pointer *pPointerIn = in[0]->getAs<types::Pointer>();
-    m1 = pPointerIn->getRows();
     n1 = pPointerIn->getCols();
     cplx = pPointerIn->isComplex();
     pData = pPointerIn->get();

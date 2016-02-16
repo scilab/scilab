@@ -423,6 +423,8 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
                 out.push_back(toInt<types::UInt64>(pDblOut));
                 break;
             }
+            default:
+                return types::Function::Error;
         }
 
         if (pDblOut)

@@ -46,7 +46,7 @@ public:
     PolymorphicMacroCache();
     ~PolymorphicMacroCache();
 
-    const bool getOutTypes(AnalysisVisitor & visitor, MacroDef * macrodef, std::vector<TIType> & in, std::vector<TIType> & out, uint64_t & functionId);
+    bool getOutTypes(AnalysisVisitor & visitor, MacroDef * macrodef, std::vector<TIType> & in, std::vector<TIType> & out, uint64_t & functionId);
 
     friend std::wostream & operator<<(std::wostream & out, const PolymorphicMacroCache & pmc);
 
