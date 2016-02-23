@@ -145,7 +145,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (nbRow*nbCol != 3)
+            if (nbRow * nbCol != 3)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"), fname, 2, 3);
                 return FALSE;
@@ -215,7 +215,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex);
                 return FALSE;
@@ -246,7 +246,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex + 1);
                 return FALSE;
@@ -277,7 +277,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex + 2);
                 return FALSE;

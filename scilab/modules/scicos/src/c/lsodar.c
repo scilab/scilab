@@ -537,14 +537,14 @@ int LSodarSetErrHandlerFn (void * lsodar_mem, LSErrHandlerFn ehfun, void * eh_da
     if (lsodar_mem == NULL)
     {
         LSProcessError(NULL, CV_MEM_NULL, "LSODAR", "LSodarSetErrHandlerFn", MSGCV_NO_MEM);
-        return(CV_MEM_NULL);
+        return (CV_MEM_NULL);
     }
 
     ls_mem = (LSodarMem) lsodar_mem;
 
     ls_mem->ehfun = ehfun;
 
-    return(CV_SUCCESS);
+    return (CV_SUCCESS);
 }
 
 #define ehfun    ls_mem->ehfun

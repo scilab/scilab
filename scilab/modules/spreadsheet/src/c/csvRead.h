@@ -42,12 +42,12 @@ typedef struct
 extern "C" {
 #endif
 
-    csvResult* csvRead(const char *filename, const char *separator, const char *decimal,
-                       const char **toreplace, int sizetoreplace, const char *regexpcomments, int header);
+csvResult* csvRead(const char *filename, const char *separator, const char *decimal,
+                   const char **toreplace, int sizetoreplace, const char *regexpcomments, int header);
 
-    csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separator, const char *decimal);
+csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separator, const char *decimal);
 
-    void freeCsvResult(csvResult *result);
+void freeCsvResult(csvResult *result);
 
 #ifdef __cplusplus
 }

@@ -41,7 +41,7 @@ types::Function::ReturnValue sci_getmemory(types::typed_list &in, int _iRetCount
 
     out.push_back(new types::Double((double)getfreememory()));
 
-    if(_iRetCount == 2)
+    if (_iRetCount == 2)
     {
         out.push_back(new types::Double((double)getmemorysize()));
     }

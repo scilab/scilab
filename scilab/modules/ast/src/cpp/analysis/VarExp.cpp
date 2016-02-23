@@ -18,34 +18,34 @@
 namespace analysis
 {
 
-    const std::wstring VarExp::print(const std::map<uint64_t, std::wstring> & vars) const
+const std::wstring VarExp::print(const std::map<uint64_t, std::wstring> & vars) const
+{
+    std::wostringstream wos;
+    const auto i = vars.find(var);
+    if (i != vars.end())
     {
-        std::wostringstream wos;
-        const auto i = vars.find(var);
-        if (i != vars.end())
-        {
-            wos << i->second;
-        }
-        else
-        {
-            wos << L"$" << var;
-        }
-
-        if (exp > 1)
-        {
-            wos << L"^" << exp;
-        }
-        return wos.str();
+        wos << i->second;
+    }
+    else
+    {
+        wos << L"$" << var;
     }
 
-    std::wostream & operator<<(std::wostream & out, const VarExp & ve)
+    if (exp > 1)
     {
-        out << (char)('a' + ve.var);
-        if (ve.exp > 1)
-        {
-            out << L"^" << ve.exp;
-        }
-        return out;
+        wos << L"^" << exp;
     }
+    return wos.str();
+}
+
+std::wostream & operator<<(std::wostream & out, const VarExp & ve)
+{
+    out << (char)('a' + ve.var);
+    if (ve.exp > 1)
+    {
+        out << L"^" << ve.exp;
+    }
+    return out;
+}
 
 }// namespace analysis

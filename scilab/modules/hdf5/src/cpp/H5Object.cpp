@@ -26,12 +26,12 @@ namespace org_modules_hdf5
 
 H5Object* H5Object::root = NULL;
 
-H5Object::H5Object(H5Object & _parent, const std::string & _name) : parent(_parent), children(std::set<H5Object *>()), locked(false), scilabId(-1), name(_name)
+H5Object::H5Object(H5Object & _parent, const std::string & _name) : parent(_parent), children(std::set<H5Object * >()), locked(false), scilabId(-1), name(_name)
 {
     parent.registerChild(this);
 }
 
-H5Object::H5Object(H5Object & _parent) : parent(_parent), children(std::set<H5Object *>()), locked(false), scilabId(-1)
+H5Object::H5Object(H5Object & _parent) : parent(_parent), children(std::set<H5Object * >()), locked(false), scilabId(-1)
 {
     parent.registerChild(this);
 }

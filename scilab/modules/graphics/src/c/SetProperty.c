@@ -117,37 +117,37 @@ int sciSetLineStyle(int iObjUID, int linestyle)
 
 int sciSetMarkSize(int iObjUID, int *markSizes, int numMarkSizes)
 {
-	BOOL status;
-	int k;
+    BOOL status;
+    int k;
 
-	if ( markSizes == NULL || numMarkSizes < 1 )
-	{
-		Scierror(999, _("Wrong value for '%s' property: Number of mark sizes %d.\n"), "mark_size", numMarkSizes);
-		return -1;
-	}
+    if ( markSizes == NULL || numMarkSizes < 1 )
+    {
+        Scierror(999, _("Wrong value for '%s' property: Number of mark sizes %d.\n"), "mark_size", numMarkSizes);
+        return -1;
+    }
 
-	// check values >= 0
-	for ( k = 0; k < numMarkSizes; ++k )
-	{
-	    if ( markSizes[k] < 0 )
-		{
-			Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "mark_size", 0);
-			return -1;
-		}
-	}
+    // check values >= 0
+    for ( k = 0; k < numMarkSizes; ++k )
+    {
+        if ( markSizes[k] < 0 )
+        {
+            Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "mark_size", 0);
+            return -1;
+        }
+    }
 
-	if ( numMarkSizes == 1 )
-	{
-		status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZE__, &markSizes[0], jni_int, numMarkSizes);		
-	}
-	else
-	{
-		status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZES__, markSizes, jni_int_vector, numMarkSizes);		
-	}
+    if ( numMarkSizes == 1 )
+    {
+        status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZE__, &markSizes[0], jni_int, numMarkSizes);
+    }
+    else
+    {
+        status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZES__, markSizes, jni_int_vector, numMarkSizes);
+    }
 
     if (status == TRUE)
     {
-		return 0;
+        return 0;
     }
 
     printSetGetErrorMessage("mark_size");
@@ -653,10 +653,10 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
             printSetGetErrorMessage("data");
             return -1;
         }
-        /*
-         * Deactivated for now
-         * Same condition as the default one
-         */
+            /*
+             * Deactivated for now
+             * Same condition as the default one
+             */
 #if 0
         case SCI_UIMENU:
 #endif

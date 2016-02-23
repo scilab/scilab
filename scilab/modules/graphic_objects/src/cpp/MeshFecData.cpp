@@ -189,22 +189,22 @@ void MeshFecData::setFecElements(double const* data, int numElements)
 
     for (int i = 0; i < numElements; i++)
     {
-	for (unsigned j = 0; j < numberVerticesByElem; ++j)
-	{
-	    indices[numberVerticesByElem * i + j] =  scilabIndexToIndex((unsigned int) data[(j + 1) * numElements + i]);
-	}
+        for (unsigned j = 0; j < numberVerticesByElem; ++j)
+        {
+            indices[numberVerticesByElem * i + j] =  scilabIndexToIndex((unsigned int) data[(j + 1) * numElements + i]);
+        }
 
         /* Element number */
         fecValues[i] = data[i];
 
         /* Element vertices */
-	for (unsigned int j = 1; j <= numberVerticesByElem; ++j)
-	{
-	    fecValues[j * numElements + i] = data[j * numElements + i];
-	}
+        for (unsigned int j = 1; j <= numberVerticesByElem; ++j)
+        {
+            fecValues[j * numElements + i] = data[j * numElements + i];
+        }
 
         /* Flag */
-	fecValues[(numberVerticesByElem + 1) * numElements + i] = data[(numberVerticesByElem + 1) * numElements + i];
+        fecValues[(numberVerticesByElem + 1) * numElements + i] = data[(numberVerticesByElem + 1) * numElements + i];
     }
 }
 

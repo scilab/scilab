@@ -19,10 +19,10 @@
 
 namespace analysis
 {
-    TIType Checkers::check_iconvert(GVN & gvn, const TIType & in0, const TIType & in1)
+TIType Checkers::check_iconvert(GVN & gvn, const TIType & in0, const TIType & in1)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::DOUBLE :
         {
             if (in1.type == TIType::DOUBLE)
@@ -160,7 +160,7 @@ namespace analysis
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis

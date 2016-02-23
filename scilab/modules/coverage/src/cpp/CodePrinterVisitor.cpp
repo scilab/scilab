@@ -848,7 +848,7 @@ void CodePrinterVisitor::visit(const ast::MemfillExp & e)
     e.getOriginal()->accept(*this);
     printer.handleExpEnd(&e);
 }
-    
+
 void CodePrinterVisitor::visit(const ast::IntSelectExp & e)
 {
     printer.handleExpStart(&e);

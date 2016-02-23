@@ -22,7 +22,7 @@
 #define MINABSTOL 1e-8
 #define MAXITERS 100
 #define TOLC 1e-5        /* tolerance used for dual infeasibility */
-#define SIGTOL 1e-5      /* tolerance used for detecting zero steps 
+#define SIGTOL 1e-5      /* tolerance used for detecting zero steps
 * dF or dZ */
 #define MINRCOND 1e-8    /* minimum rcond to declare F_i dependent */
 

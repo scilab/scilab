@@ -26,7 +26,7 @@ class EXTERN_AST ExecVisitor : public RunVisitorT<ExecVisitor>
     {
         return new ExecVisitor();
     }
-        
+
     void visit(const SeqExp  &e)
     {
         visitprivate(e);

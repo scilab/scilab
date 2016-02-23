@@ -39,7 +39,7 @@ int set_mark_background_property(void* _pvCtx, int iObjUID, void* _pvData, int v
 {
     BOOL status = FALSE;
     int markBackground = 0;
-	int *tmp = NULL;
+    int *tmp = NULL;
     int colorSet = 0;
 
     if ( valueType != sci_matrix )
@@ -54,20 +54,20 @@ int set_mark_background_property(void* _pvCtx, int iObjUID, void* _pvData, int v
         return SET_PROPERTY_ERROR;
     }
 
-	if ( nbCol == 1 )
-	{
-		markBackground = (int)((double*)_pvData)[0];
-		status = setGraphicObjectProperty(iObjUID, __GO_MARK_BACKGROUND__, &markBackground, jni_int, 1);
-	}
-	else
-	{
-		tmp = MALLOC(nbCol * sizeof(int));
-		copyDoubleVectorToIntFromStack(_pvData, tmp, nbCol);
-		status = setGraphicObjectProperty(iObjUID, __GO_MARK_BACKGROUNDS__, tmp, jni_int_vector, nbCol);
-		FREE(tmp);
+    if ( nbCol == 1 )
+    {
+        markBackground = (int)((double*)_pvData)[0];
+        status = setGraphicObjectProperty(iObjUID, __GO_MARK_BACKGROUND__, &markBackground, jni_int, 1);
+    }
+    else
+    {
+        tmp = MALLOC(nbCol * sizeof(int));
+        copyDoubleVectorToIntFromStack(_pvData, tmp, nbCol);
+        status = setGraphicObjectProperty(iObjUID, __GO_MARK_BACKGROUNDS__, tmp, jni_int_vector, nbCol);
+        FREE(tmp);
         colorSet = 1;
         setGraphicObjectProperty(iObjUID, __GO_COLOR_SET__, &colorSet, jni_bool, 1);
-	}
+    }
 
     if (status == TRUE)
     {

@@ -19,10 +19,10 @@
 
 namespace analysis
 {
-    TIType Checkers::check_imag(GVN & gvn, const TIType & in0)
+TIType Checkers::check_imag(GVN & gvn, const TIType & in0)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::COMPLEX :
         {
             return TIType(gvn, TIType::DOUBLE, in0.rows, in0.cols);
@@ -33,7 +33,7 @@ namespace analysis
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis

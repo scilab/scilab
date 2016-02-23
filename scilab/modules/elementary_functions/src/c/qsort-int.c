@@ -362,7 +362,7 @@ static int LexiRowswapcodeint(char *parmi, char * parmj, int n)
         pj++;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 void LexiRowint(int *a, int *ind, int flag, int n, int p, char dir)
@@ -500,7 +500,7 @@ static int LexiColswapcodeint(char *parmi, char* parmj, int n)
         pj += lexirowsint ;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 void LexiColint(int *a, int *ind, int flag, int n, int p, char dir)

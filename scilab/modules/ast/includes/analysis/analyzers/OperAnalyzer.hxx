@@ -19,20 +19,20 @@
 namespace analysis
 {
 
-    class AnalysisVisitor;
-    class Exp;
-    class OpExp;
+class AnalysisVisitor;
+class Exp;
+class OpExp;
 
-    class OperAnalyzer
-    {
+class OperAnalyzer
+{
 
-    public:
+public:
 
-        OperAnalyzer() { }
+    OperAnalyzer() { }
 
-        bool analyze(AnalysisVisitor & visitor, ast::Exp & e);
-        ast::MemfillExp * analyzeMemfill(AnalysisVisitor & visitor, ast::OpExp & oe);
-    };
+    bool analyze(AnalysisVisitor & visitor, ast::Exp & e);
+    ast::MemfillExp * analyzeMemfill(AnalysisVisitor & visitor, ast::OpExp & oe);
+};
 
 } // namespace analysis
 

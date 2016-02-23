@@ -231,6 +231,6 @@ int swapcodeint(char * parmi, char * parmj, int n, int incr)
         pj += inc1;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/

@@ -183,13 +183,13 @@ int iSchurM(double* pData1, double* pData2, int iCols, int complexArgs, double* 
                 doublecomplex* pAlpha = NULL;
                 doublecomplex* pBeta = NULL;
                 info = ( (pCplxWork = iAllocZggesWorkspace(iCols, pLhsOpt1 ? 1 : 0, &worksize))
-                && (pRwork = (double*) MALLOC(8 * iCols * sizeof(double)))
-                && (pAlpha = (doublecomplex*)MALLOC( iCols * sizeof(doublecomplex)))
-                && (pBeta = (doublecomplex*)MALLOC( iCols * sizeof(doublecomplex))))
-                ? ( C2F(zgges)(jobL, jobR, sort, pSelectFun.zgges_select, &iCols, (doublecomplex*)pData1, &iCols, (doublecomplex*)pData2, &iCols
-                , pDim, pAlpha, pBeta, (doublecomplex*)pLhsOpt1, &iCols, (doublecomplex*)pLhsOpt2, &iCols
-                , pCplxWork, &worksize, pRwork, pBwork, &info), info)
-                : -1;
+                         && (pRwork = (double*) MALLOC(8 * iCols * sizeof(double)))
+                         && (pAlpha = (doublecomplex*)MALLOC( iCols * sizeof(doublecomplex)))
+                         && (pBeta = (doublecomplex*)MALLOC( iCols * sizeof(doublecomplex))))
+                       ? ( C2F(zgges)(jobL, jobR, sort, pSelectFun.zgges_select, &iCols, (doublecomplex*)pData1, &iCols, (doublecomplex*)pData2, &iCols
+                                      , pDim, pAlpha, pBeta, (doublecomplex*)pLhsOpt1, &iCols, (doublecomplex*)pLhsOpt2, &iCols
+                                      , pCplxWork, &worksize, pRwork, pBwork, &info), info)
+                       : -1;
                 FREE(pAlpha);
                 FREE(pBeta);
                 break;

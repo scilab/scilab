@@ -79,7 +79,7 @@ static void coloutPatch(int colout[2]);
  *  first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr)
 ---------------------------------------------------------------*/
 
-int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr, int *Nvertex, 
+int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr, int *Nvertex,
              char *strflag, char *legend, double *brect, int *aaint, double *zminmax,
              int *colminmax, int *colout, BOOL with_mesh, BOOL flagNax, int lstr1, int lstr2)
 {

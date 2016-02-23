@@ -64,7 +64,7 @@ types::Function::ReturnValue sci_helpbrowser(types::typed_list &in, int _iRetCou
             }
             // Matrix of String or [] allowed.
             if ( !( (in[0]->isString() == true)
-                || (in[0]->isDouble() == true && in[0]->getAs<types::Double>()->isEmpty() == true)))
+                    || (in[0]->isDouble() == true && in[0]->getAs<types::Double>()->isEmpty() == true)))
             {
                 Scierror(999, _("%s:  Wrong type for input argument #%d: string expected."), "helpbrowser", 1);
                 return types::Function::Error;

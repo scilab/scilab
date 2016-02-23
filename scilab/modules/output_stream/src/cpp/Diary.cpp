@@ -199,7 +199,7 @@ void Diary::writeln(const std::wstring& _wstr, bool bInput)
 }
 
 /*--------------------------------------------------------------------------*/
-int Diary::getID(void) const 
+int Diary::getID(void) const
 {
     return ID_foutstream;
 }

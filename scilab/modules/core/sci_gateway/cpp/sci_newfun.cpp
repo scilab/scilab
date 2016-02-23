@@ -175,7 +175,7 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
             pVar->put(pSV);
         }
     }
-    
+
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

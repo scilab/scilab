@@ -55,29 +55,29 @@ types::Function::ReturnValue sci_covStart(types::typed_list &in, int _iRetCount,
         const unsigned int rows = strs->getRows();
 
         if (strs->getSize() == 2)
-	{
-	    std::vector<std::pair<std::wstring, std::wstring>> paths_mods;
-	    paths_mods.reserve(rows);
-	    
-	    for (unsigned int i = 0; i < rows; ++i)
-	    {
-		paths_mods.emplace_back(strs->get(i, 0), strs->get(i, 1));
-	    }
+        {
+            std::vector<std::pair<std::wstring, std::wstring>> paths_mods;
+            paths_mods.reserve(rows);
 
-	    coverage::CoverModule::createInstance(paths_mods);
-	}
-	else
-	{
-	    std::vector<std::wstring> mods;
-	    mods.reserve(rows);
-	    
-	    for (unsigned int i = 0; i < rows; ++i)
-	    {
-		mods.emplace_back(strs->get(i, 0));
-	    }
+            for (unsigned int i = 0; i < rows; ++i)
+            {
+                paths_mods.emplace_back(strs->get(i, 0), strs->get(i, 1));
+            }
 
-	    coverage::CoverModule::createInstance(mods);
-	}
+            coverage::CoverModule::createInstance(paths_mods);
+        }
+        else
+        {
+            std::vector<std::wstring> mods;
+            mods.reserve(rows);
+
+            for (unsigned int i = 0; i < rows; ++i)
+            {
+                mods.emplace_back(strs->get(i, 0));
+            }
+
+            coverage::CoverModule::createInstance(mods);
+        }
     }
     else
     {

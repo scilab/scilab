@@ -364,7 +364,7 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    
+
     // create input args
     types::Double* pDblX = new types::Double(m_iXRows, m_iXCols);
     C2F(dcopy)(n, x, &one, pDblX->get(), &one);

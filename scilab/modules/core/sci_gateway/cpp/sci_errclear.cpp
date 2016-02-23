@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_errclear(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        if(iScilabError == ConfigVariable::getLastErrorNumber())
+        if (iScilabError == ConfigVariable::getLastErrorNumber())
         {
             ConfigVariable::clearLastError();
         }

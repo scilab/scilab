@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
-* 
+*
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -12,7 +12,7 @@
  * along with this program.
 *
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef __XMLENCODING_H__
 #define __XMLENCODING_H__
 
@@ -35,4 +35,4 @@ wchar_t *toWideString(char *_Str);
 char *toUTF(wchar_t *_wcStr);
 
 #endif /* __TOWIDESTRING_H__ */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

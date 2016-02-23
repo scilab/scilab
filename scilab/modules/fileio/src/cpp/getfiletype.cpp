@@ -16,7 +16,7 @@
 #include "filemanager.hxx"
 #include "file.hxx"
 
-extern "C"{
+extern "C" {
 #include "getfiletype.h"
 }
 /*--------------------------------------------------------------------------*/

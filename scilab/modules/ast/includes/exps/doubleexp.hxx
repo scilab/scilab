@@ -96,7 +96,7 @@ public:
     {
         return true;
     }
-    
+
     inline DoubleExp* neg()
     {
         _value = -_value;

@@ -19,22 +19,22 @@
 
 namespace analysis
 {
-    TIType Checkers::check_ls(GVN & gvn)
+TIType Checkers::check_ls(GVN & gvn)
+{
+    return TIType(gvn, TIType::STRING, -2, -2);
+}
+
+TIType Checkers::check_ls(GVN & gvn, const TIType & in0)
+{
+    if (in0.type == TIType::STRING)
     {
         return TIType(gvn, TIType::STRING, -2, -2);
     }
-
-    TIType Checkers::check_ls(GVN & gvn, const TIType & in0)
+    else
     {
-        if (in0.type == TIType::STRING)
-        {
-            return TIType(gvn, TIType::STRING, -2, -2);
-        }
-        else
-        {
-            return TIType(gvn);
-        }
         return TIType(gvn);
     }
+    return TIType(gvn);
+}
 
 } // namespace analysis

@@ -42,7 +42,7 @@ void* get_mark_size_property(void* _pvCtx, int iObjUID)
     int numMarkSizes = 0;
     int * piNumMarkSizes = &numMarkSizes;
 
-	getGraphicObjectProperty(iObjUID, __GO_NUM_MARK_SIZES__, jni_int, &piNumMarkSizes);
+    getGraphicObjectProperty(iObjUID, __GO_NUM_MARK_SIZES__, jni_int, &piNumMarkSizes);
 
     if (numMarkSizes == 0)
     {

@@ -23,9 +23,9 @@
 extern "C" {
 #endif
 
-/* 
+/*
  * These values are also used in:
- * modules/core/includes/sci_types.h 
+ * modules/core/includes/sci_types.h
  */
 
 #define SCI_INT8	1

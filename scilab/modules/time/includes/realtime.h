@@ -23,15 +23,15 @@ extern "C" {
 
 #include "machine.h"
 
-    /**
-    * @TODO add comment
-    */
-    int C2F(realtimeinit)(double *t, double *scale);
+/**
+* @TODO add comment
+*/
+int C2F(realtimeinit)(double *t, double *scale);
 
-    /**
-    * @TODO add comment
-    */
-    int C2F(realtime)(double *t);
+/**
+* @TODO add comment
+*/
+int C2F(realtime)(double *t);
 
 #ifdef __cplusplus
 }

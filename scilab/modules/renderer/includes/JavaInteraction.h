@@ -28,19 +28,19 @@ extern "C" {
 
 #include "dynlib_renderer.h"
 
-    /**
-     * Start interactive zoom on given figure
-     */
-    RENDERER_IMPEXP void startInteractiveZoom(int iObjUID);
+/**
+ * Start interactive zoom on given figure
+ */
+RENDERER_IMPEXP void startInteractiveZoom(int iObjUID);
 
-    /**
-     * Call rubber box on a figure
-     * @param pstObjUID figure UID on which to apply the rubber box
-     * @param initialRect if not null, specify the initial rectangle to use
-     * @return [usedButton x y z l L h]
-     */
-    RENDERER_IMPEXP double *javaClickRubberBox(int iObjUID, double *initialRect, int iRectSize);
-    RENDERER_IMPEXP double *javaDragRubberBox(int iObjUID);
+/**
+ * Call rubber box on a figure
+ * @param pstObjUID figure UID on which to apply the rubber box
+ * @param initialRect if not null, specify the initial rectangle to use
+ * @return [usedButton x y z l L h]
+ */
+RENDERER_IMPEXP double *javaClickRubberBox(int iObjUID, double *initialRect, int iRectSize);
+RENDERER_IMPEXP double *javaDragRubberBox(int iObjUID);
 
 #ifdef __cplusplus
 }

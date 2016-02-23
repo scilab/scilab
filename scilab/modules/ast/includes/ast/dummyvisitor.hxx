@@ -37,7 +37,7 @@ protected:
     {
         return new DummyVisitor();
     }
-    
+
     virtual void visit(const MatrixExp &e)
     {
         exps_t lines = e.getLines();

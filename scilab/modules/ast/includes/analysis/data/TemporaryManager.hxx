@@ -28,21 +28,21 @@
 namespace analysis
 {
 
-    class EXTERN_AST TemporaryManager
-    {
+class EXTERN_AST TemporaryManager
+{
 
-	int currentId;
-	std::map<TypeLocal, std::stack<int>> availableTmp;
-	std::unordered_map<int, TypeLocal> usedTmp;
+    int currentId;
+    std::map<TypeLocal, std::stack<int>> availableTmp;
+    std::unordered_map<int, TypeLocal> usedTmp;
 
-    public:
+public:
 
-	TemporaryManager() : currentId(0) { }
+    TemporaryManager() : currentId(0) { }
 
-	int getTmp(const TIType & type, const bool isAnInt = false);
-	void releaseTmp(const int id);
-	const std::map<TypeLocal, std::stack<int>> & getTemp() const;
-    };
+    int getTmp(const TIType & type, const bool isAnInt = false);
+    void releaseTmp(const int id);
+    const std::map<TypeLocal, std::stack<int>> & getTemp() const;
+};
 
 } // namespace analysis
 

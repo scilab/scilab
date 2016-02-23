@@ -55,7 +55,7 @@ void SwitchConsole(void)
 
     switch (GetConsoleState())
     {
-            /* La fenetre etait cachée , on la restaure */
+        /* La fenetre etait cachée , on la restaure */
         case 0:
         {
             ShowScilex();

@@ -274,7 +274,7 @@ public:
                     (*o)->IncreaseRef();
                 }
             }
-            
+
             for (types::optional_list::const_iterator o = opt.begin(); o != opt.end(); ++o)
             {
                 if (o->second)

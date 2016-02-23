@@ -134,22 +134,18 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
     private void displayNews(News news) {
         StringBuilder newsHtmlBuilder = new StringBuilder();
 
-        if (news.getContent() != null) {
-            // if given, use RSS item content
-            newsHtmlBuilder.append(getDivHtml(news.getContent(), NEWS_CONTENT_HTML_ID));
-        } else {
-            // otherwise get content : date, description
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy HH:mm");
-            String dateStr = simpleDateFormat.format(news.getDate());
-            String newsDateHtml = getSpanHtml(dateStr, NEWS_DATE_HTML_ID);
-            newsHtmlBuilder.append(getDivHtml(newsDateHtml));
-            newsHtmlBuilder.append(getDivHtml(news.getDescription(), NEWS_DESCRIPTION_HTML_ID));
-        }
-
         // Add media content (image) if exist
         NewsMediaContent mediaContent = news.getMediaContent();
         if (mediaContent != null) {
             newsHtmlBuilder.append(getDivHtml(getImageHtml(mediaContent.getURL(), mediaContent.getWidth(), mediaContent.getHeight()), NEWS_MEDIA_CONTENT_HTML_ID));
+        }
+
+        if (news.getContent() != null) {
+            // if given, use RSS item content
+            newsHtmlBuilder.append(getDivHtml(news.getContent(), NEWS_CONTENT_HTML_ID));
+        } else {
+            // otherwise get content from description
+            newsHtmlBuilder.append(getDivHtml(news.getDescription(), NEWS_DESCRIPTION_HTML_ID));
         }
 
         // Add news link if exist

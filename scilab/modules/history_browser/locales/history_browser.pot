@@ -15,83 +15,83 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-01-25 15:00+0100\n"
+"Revision-Date: 2016-02-10 12:14+0100\n"
 
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistory.java, line: 142
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistory.java, line: 145
 msgid "History loading in progress..."
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 22
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 25
 msgid "Command History"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 24
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 27
 msgid "File"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 25
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 28
 msgid "Close"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 27
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 30
 msgid "Edit"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 28
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 31
 msgid "Copy"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 29
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 32
 msgid "Cut"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 30
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 33
 msgid "Delete"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 31
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 34
 msgid "Clear history"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 33
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 36
 msgid "?"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 34
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 37
 msgid "Scilab Help"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 36
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 39
 msgid "Evaluate Selection"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 38
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 41
 msgid "Edit in SciNotes"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 40
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 43
 msgid "Error"
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 41
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 44
 msgid "Cannot delete current session beginning line."
 msgstr ""
 
 #
-# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 43
+# File: modules/history_browser/src/java/org/scilab/modules/history_browser/CommandHistoryMessages.java, line: 46
 msgid "History preferences"
 msgstr ""

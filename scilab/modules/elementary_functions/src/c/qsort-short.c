@@ -38,7 +38,7 @@ static int swapcodeshort(char * parmi, char * parmj, int n, int incr)
         pj += inc1;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 static int compareCshort(char *i, char *j, char *indi, char *indj, int iflag)
@@ -381,7 +381,7 @@ static int LexiRowswapcodeshort(char *parmi, char * parmj, int n)
         pj++;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 void LexiRowshort(short *a, int *ind, int flag, int n, int p, char dir)
@@ -519,7 +519,7 @@ static int LexiColswapcodeshort(char *parmi, char* parmj, int n)
         pj += lexirowsshort ;
     }
     while (--i > 0);
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 void LexiColshort(short *a, int *ind, int flag, int n, int p, char dir)

@@ -34,18 +34,18 @@ public:
 class XBlockHead : public Block
 {
     std::vector<Block *> testBlocks;
-    
+
 public:
 
     XBlockHead(const unsigned int id, Block * parent, ast::Exp * exp) : Block(id, parent, exp) { }
 
     virtual ~XBlockHead()
-	{
-	    std::for_each(testBlocks.begin(), testBlocks.end(), [](Block * b)
-			  {
-			      delete b;
-			  });
-	}
+    {
+        std::for_each(testBlocks.begin(), testBlocks.end(), [](Block * b)
+        {
+            delete b;
+        });
+    }
 
     Block * addBlock(const unsigned int id, BlockKind kind, ast::Exp * exp) override;
     void finalize() override;

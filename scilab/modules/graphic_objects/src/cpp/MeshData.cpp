@@ -117,8 +117,8 @@ int MeshData::setDataProperty(int property, void const* value, int numElements)
             setValues((double const*) value, numElements);
             break;
         case NUM_VERTICES_BY_ELEM :
-	    numberVerticesByElem = *((unsigned int const*) value);
-	    break;
+            numberVerticesByElem = *((unsigned int const*) value);
+            break;
         default :
             return Data3D::setDataProperty(property, value, numElements);
     }
@@ -146,8 +146,8 @@ void MeshData::getDataProperty(int property, void **_pvData)
             *_pvData = getValues();
             break;
         case NUM_VERTICES_BY_ELEM :
-	    ((int *) *_pvData)[0] = numberVerticesByElem;
-	    break;
+            ((int *) *_pvData)[0] = numberVerticesByElem;
+            break;
         default :
             Data3D::getDataProperty(property, _pvData);
     }

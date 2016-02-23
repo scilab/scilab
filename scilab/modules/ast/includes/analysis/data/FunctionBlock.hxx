@@ -64,10 +64,10 @@ public:
     FunctionBlock(const unsigned int id, Block * parent, ast::Exp * exp);
 
     virtual ~FunctionBlock()
-	{
-	    // we got a clone
-	    delete exp;
-	}
+    {
+        // we got a clone
+        delete exp;
+    }
 
     inline ConstraintManager & getConstraintManager()
     {
@@ -121,14 +121,14 @@ public:
     }
 
     inline void setFunctionId(const uint64_t id)
-	{
-	    functionId = id;
-	}
+    {
+        functionId = id;
+    }
 
     inline uint64_t getFunctionId() const
-	{
-	    return functionId;
-	}
+    {
+        return functionId;
+    }
 
     inline const MPolyConstraintSet & getVerifiedConstraints() const
     {

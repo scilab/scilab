@@ -48,7 +48,7 @@ SCICOS_BLOCKS_IMPEXP void tablex2d_c(scicos_block *block, int flag)
 
     switch (flag)
     {
-            /* init */
+        /* init */
         case 4  :
 
         case 1  :

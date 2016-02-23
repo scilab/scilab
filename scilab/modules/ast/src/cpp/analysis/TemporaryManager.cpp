@@ -18,54 +18,54 @@
 namespace analysis
 {
 
-    int TemporaryManager::getTmp(const TIType & type, const bool isAnInt)
+int TemporaryManager::getTmp(const TIType & type, const bool isAnInt)
+{
+    TypeLocal tl = TypeLocal::get(type, isAnInt);
+    if (availableTmp.empty())
     {
-        TypeLocal tl = TypeLocal::get(type, isAnInt);
-        if (availableTmp.empty())
+        usedTmp.emplace(currentId, tl);
+        return currentId++;
+    }
+    else
+    {
+        auto i = availableTmp.find(tl);
+        if (i == availableTmp.end())
         {
             usedTmp.emplace(currentId, tl);
             return currentId++;
         }
         else
         {
-            auto i = availableTmp.find(tl);
-            if (i == availableTmp.end())
+            const int id = i->second.top();
+            i->second.pop();
+            if (i->second.empty())
             {
-                usedTmp.emplace(currentId, tl);
-                return currentId++;
+                availableTmp.erase(i);
             }
-            else
-            {
-                const int id = i->second.top();
-                i->second.pop();
-                if (i->second.empty())
-                {
-                    availableTmp.erase(i);
-                }
-                usedTmp.emplace(id, tl);
+            usedTmp.emplace(id, tl);
 
-                return id;
-            }
+            return id;
         }
     }
+}
 
-    void TemporaryManager::releaseTmp(const int id)
+void TemporaryManager::releaseTmp(const int id)
+{
+    if (id >= 0)
     {
-        if (id >= 0)
+        const TypeLocal & tl = usedTmp.find(id)->second;
+        auto i = availableTmp.find(tl);
+        if (i == availableTmp.end())
         {
-            const TypeLocal & tl = usedTmp.find(id)->second;
-            auto i = availableTmp.find(tl);
-            if (i == availableTmp.end())
-            {
-                i = availableTmp.emplace(tl, std::stack<int>()).first;
-            }
-            i->second.push(id);
+            i = availableTmp.emplace(tl, std::stack<int>()).first;
         }
+        i->second.push(id);
     }
+}
 
-    const std::map<TypeLocal, std::stack<int>> & TemporaryManager::getTemp() const
-    {
-        return availableTmp;
-    }
+const std::map<TypeLocal, std::stack<int>> & TemporaryManager::getTemp() const
+{
+    return availableTmp;
+}
 
 } // namespace analysis

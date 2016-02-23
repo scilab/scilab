@@ -1353,8 +1353,8 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
         //call overload
         return 0;
     }
-    
-    if(_pSparse->getCols() != _pDouble->getRows())
+
+    if (_pSparse->getCols() != _pDouble->getRows())
     {
         return 1;
     }
@@ -1487,8 +1487,8 @@ int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType** 
         //call overload
         return 0;
     }
-    
-    if(_pSparse->getRows() != _pDouble->getRows() || _pSparse->getCols() != _pDouble->getCols())
+
+    if (_pSparse->getRows() != _pDouble->getRows() || _pSparse->getCols() != _pDouble->getCols())
     {
         return 1;
     }

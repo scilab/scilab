@@ -37,7 +37,7 @@ static int init_clock = 1;
 int C2F(timer)(double *etime)
 {
     *etime = scilab_timer();
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 double scilab_timer(void)

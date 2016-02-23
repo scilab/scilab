@@ -64,7 +64,7 @@ private :
 
     /** The colors array */
     int* colors;
-	int numColors;
+    int numColors;
 
 public :
     /**

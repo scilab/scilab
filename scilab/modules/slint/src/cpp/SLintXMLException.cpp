@@ -24,19 +24,19 @@ extern "C"
 namespace slint
 {
 
-    SLintXMLException::SLintXMLException(const std::string & path, const std::string & error)
-    {
-        msg = std::string("Error in XML file ") + path + ":\n" + error;
-    }
+SLintXMLException::SLintXMLException(const std::string & path, const std::string & error)
+{
+    msg = std::string("Error in XML file ") + path + ":\n" + error;
+}
 
 
 #ifdef _MSC_VER
-    const char * SLintXMLException::what() const
+const char * SLintXMLException::what() const
 #else
-        const char * SLintXMLException::what() const noexcept
+const char * SLintXMLException::what() const noexcept
 #endif
-    {
-        return msg.c_str();
-    }
+{
+    return msg.c_str();
+}
 
 } // namespace slint

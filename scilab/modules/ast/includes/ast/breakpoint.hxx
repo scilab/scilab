@@ -32,7 +32,7 @@ struct Breakpoint
 
     ~Breakpoint()
     {
-        if(_conditionExp)
+        if (_conditionExp)
         {
             delete _conditionExp;
         }

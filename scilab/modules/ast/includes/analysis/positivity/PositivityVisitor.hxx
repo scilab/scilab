@@ -89,9 +89,9 @@ private:
     }
 
     void visit(ast::DoubleExp & e)
-	{
-	    setResult(e.value_get() >= 0);
-	}
+    {
+        setResult(e.value_get() >= 0);
+    }
 
     void visit(ast::DoubleExp & e)
     {
@@ -330,16 +330,16 @@ private:
     }
 
     void visit(ast::OptimizedExp & e)
-	{
-	}
-    
+    {
+    }
+
     void visit(ast::MemfillExp & e)
-	{
-	}
-    
+    {
+    }
+
     void visit(ast::DAXPYExp & e)
-	{
-	}
+    {
+    }
 };
 
 } // namespace analysis

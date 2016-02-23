@@ -89,7 +89,7 @@ public:
     {
         functionId = id;
     }
-    
+
     inline uint64_t getFunctionId() const
     {
         return functionId;
@@ -172,7 +172,7 @@ public:
         {
             out << L", temp id:" << res.tempId;
         }
-	if (res.functionId)
+        if (res.functionId)
         {
             out << L", function id:" << res.functionId;
         }

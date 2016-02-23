@@ -51,7 +51,7 @@ scilabVar API_PROTO(createPolyMatrix)(scilabEnv env, const wchar_t* varname, int
         scilab_setInternalError(env, L"createPolyMatrix", _W("memory allocation error"));
         return nullptr;
     }
-    
+
     p->setComplex(complex != 0);
     return (scilabVar)p;
 }

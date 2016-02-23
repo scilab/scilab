@@ -19,7 +19,7 @@
 extern "C" {
 #endif
 
-    int checkCsvWriteFormat(const char *format);
+int checkCsvWriteFormat(const char *format);
 
 #ifdef __cplusplus
 }

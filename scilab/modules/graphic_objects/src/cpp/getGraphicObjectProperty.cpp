@@ -218,7 +218,7 @@ void releaseGraphicObjectProperty(int _iName, void * _pvData, enum _ReturnType_ 
             || _iName == __GO_DATA_MODEL_INDICES__
             || _iName == __GO_DATA_MODEL_VALUES__
             || _iName == __GO_DATA_MODEL_FEC_ELEMENTS__
-	    || _iName == __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__
+            || _iName == __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__
             || _iName == __GO_DATA_MODEL_NUM_X__
             || _iName == __GO_DATA_MODEL_NUM_Y__
             || _iName == __GO_DATA_MODEL_NUM_Z__

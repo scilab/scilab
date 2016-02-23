@@ -317,7 +317,7 @@ static int serialize_int(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBu
                 sciErr = getMatrixOfUnsignedInteger64(_pvCtx, _piAddr, &iRows, &iCols, (unsigned long long**)&pvData);
                 break;
                 }
-        */ default:
+    */ default:
             FREE(piOut);
             return 1;
     }

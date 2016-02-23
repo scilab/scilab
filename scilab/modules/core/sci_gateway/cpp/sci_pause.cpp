@@ -35,7 +35,7 @@ types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, ty
         sciprint(_("%s: function is disabled in debug mode.\n"), "pause");
         return types::Function::OK;
     }
-    
+
 
     if (in.size() != 0)
     {

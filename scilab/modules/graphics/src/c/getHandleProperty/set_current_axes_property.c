@@ -84,11 +84,13 @@ int set_current_axes_property(void* _pvCtx, int iObjUID, void* _pvData, int valu
     // Look for top level figure
     type = -1;
     iCurChildUID = iCurAxesUID;
-    do {
+    do
+    {
         iParentFigureUID = getParentObject(iCurChildUID);
         getGraphicObjectProperty(iParentFigureUID, __GO_TYPE__, jni_int, (void **)&piType);
         iCurChildUID = iParentFigureUID;
-    } while (iParentFigureUID != -1 && type != __GO_FIGURE__);
+    }
+    while (iParentFigureUID != -1 && type != __GO_FIGURE__);
 
     /* The current Axes' parent Figure's selected child property must be updated */
     setGraphicObjectProperty(iParentFigureUID, __GO_SELECTED_CHILD__, &iCurAxesUID, jni_int, 1);

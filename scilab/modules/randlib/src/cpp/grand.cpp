@@ -103,7 +103,7 @@ double C2F(ignuin)(double *a, double *b)
 
     if (d == 1)
     {
-        return(*a);
+        return (*a);
     }
 
     qd = RngMaxInt[current_gen] - RngMaxInt[current_gen] % d;
@@ -114,6 +114,6 @@ double C2F(ignuin)(double *a, double *b)
     }
     while (k >= qd);
 
-    return(*a + (double)(k % d));
+    return (*a + (double)(k % d));
 }
 

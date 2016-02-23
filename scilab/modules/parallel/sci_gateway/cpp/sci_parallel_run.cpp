@@ -99,7 +99,7 @@ typedef std::pair<int, int> dim_t;
 struct scilabDesc_t : std::pair<char const*, dim_t>
 {
     scilabDesc_t(char const* name = "constant", dim_t dim = dim_t(1, 1)) /* default variable is a scalar i.e. 1x1 matrix of typename "constant" */
-        : std::pair<char const*, dim_t>(name, dim)
+        : std::pair<char const *, dim_t>(name, dim)
     {
     }
     /* for debug purposes only
@@ -722,7 +722,7 @@ bool check_args(void)
                         int rows, cols;
                         err = getMatrixOfString(pvApiCtx, addr, &rows, &cols, 0, 0);
                         ok = (rows == 1) && (cols == 1);
-                    }/* no break */
+                        }/* no break */
                     case sci_c_function:
                     {
                         before_function = false;
@@ -869,7 +869,7 @@ struct ConcurrencyState
     {
         ScopedUpdater(ConcurrencyState& c, bool threads)
             : lock(c.lock), countPtr( threads
-                                      ? &c.threadConcurrencyLevel
+                                      ? & c.threadConcurrencyLevel
                                       : c.processConcurrencyLevelPtr)
         {
             __LockSignal(lock);

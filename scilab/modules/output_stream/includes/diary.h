@@ -24,19 +24,19 @@
 extern "C" {
 #endif
 
-    /*
-    * write a string (wide char) in diaries
-    * @param[in] string to write
-    * @param[in] string is a input
-    */
-    OUTPUT_STREAM_IMPEXP int diaryWrite(const wchar_t *wstr, BOOL bInput);
+/*
+* write a string (wide char) in diaries
+* @param[in] string to write
+* @param[in] string is a input
+*/
+OUTPUT_STREAM_IMPEXP int diaryWrite(const wchar_t *wstr, BOOL bInput);
 
-    /*
-    * same as diaryWrite but add carriage return
-    * @param[in] string to write
-    * @param[in] string is a input
-    */
-    OUTPUT_STREAM_IMPEXP int diaryWriteln(const wchar_t *wstr, BOOL bInput);
+/*
+* same as diaryWrite but add carriage return
+* @param[in] string to write
+* @param[in] string is a input
+*/
+OUTPUT_STREAM_IMPEXP int diaryWriteln(const wchar_t *wstr, BOOL bInput);
 
 #ifdef  __cplusplus
 }

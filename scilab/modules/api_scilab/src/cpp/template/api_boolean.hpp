@@ -55,7 +55,7 @@ scilabVar API_PROTO(createBooleanMatrix)(scilabEnv env, int dim, const int* dims
 scilabVar API_PROTO(createBooleanMatrix2d)(scilabEnv env, int row, int col)
 {
     int dims[2] = {row, col};
- 
+
 #ifdef __API_SCILAB_SAFE__
     for (int i = 0; i < 2; ++i)
     {

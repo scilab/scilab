@@ -36,9 +36,9 @@ public:
     CodePrinterVisitor(CodePrinter & _printer) : printer(_printer) { }
 
     CodePrinterVisitor * clone()
-	{
-	    return new CodePrinterVisitor(printer);
-	}
+    {
+        return new CodePrinterVisitor(printer);
+    }
 
     virtual void visit(const ast::MatrixExp & e);
     virtual void visit(const ast::MatrixLineExp & e);
@@ -80,7 +80,7 @@ public:
     virtual void visit(const ast::MemfillExp & e);
     virtual void visit(const ast::IntSelectExp & e);
     virtual void visit(const ast::StringSelectExp & e);
-    
+
 };
 
 } // namespace coverage

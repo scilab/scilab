@@ -48,7 +48,7 @@ int getOptionals(void* _pvCtx, char* pstFuncName, rhs_opts opts[])
         i++;
     }
 
-    
+
     for (const auto& o : opt)
     {
         int typeOfOpt = -1;

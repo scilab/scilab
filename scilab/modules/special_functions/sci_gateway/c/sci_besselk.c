@@ -76,7 +76,7 @@ int sci_besselk(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        if (m1*n1 != 1)
+        if (m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 3);
             return 1;
@@ -101,7 +101,7 @@ int sci_besselk(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    if (m1*n1 == 0)
+    if (m1 * n1 == 0)
     {
         /*besselk([],x) */
         AssignOutputVariable(pvApiCtx, 1) = 1;
@@ -125,7 +125,7 @@ int sci_besselk(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    if (m2*n2 == 0)
+    if (m2 * n2 == 0)
     {
         /*besselk(alpha,[]) */
         AssignOutputVariable(pvApiCtx, 1) = 2;
@@ -167,7 +167,7 @@ int sci_besselk(char *fname, void* pvApiCtx)
         memset(pdblXI, 0x00, iSize);
     }
 
-    if (m1*n1 == 1)
+    if (m1 * n1 == 1)
     {
         /*besselk(scalar,matrix) */
         double wr[2], wi[2];
@@ -187,7 +187,7 @@ int sci_besselk(char *fname, void* pvApiCtx)
             C2F(zbeskv) (pdblXR, pdblXI, &nx, pdbl1, &na, &kode, lr, li, wr, wi, &ierr);
         }
     }
-    else if (m2*n2 == 1)
+    else if (m2 * n2 == 1)
     {
         /* besselk(matrix,scalar) */
         nx = 1;

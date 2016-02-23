@@ -19,15 +19,15 @@
 
 namespace analysis
 {
-    TIType Checkers::check_rand(GVN & gvn)
-    {
-        return TIType(gvn, TIType::DOUBLE, 1, 1);
-    }
+TIType Checkers::check_rand(GVN & gvn)
+{
+    return TIType(gvn, TIType::DOUBLE, 1, 1);
+}
 
-    TIType Checkers::check_rand(GVN & gvn, const TIType & in0)
+TIType Checkers::check_rand(GVN & gvn, const TIType & in0)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::EMPTY :
         {
             return in0;
@@ -78,25 +78,19 @@ namespace analysis
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
-    TIType Checkers::check_rand(GVN & gvn, const TIType & in0, const TIType & in1)
+TIType Checkers::check_rand(GVN & gvn, const TIType & in0, const TIType & in1)
+{
+    if (in0.type == TIType::DOUBLE)
     {
-        if (in0.type == TIType::DOUBLE)
+        if (in1.type == TIType::DOUBLE)
         {
-            if (in1.type == TIType::DOUBLE)
+            if (in0.rows == 1 && in0.cols == 1 && in1.rows == 1 && in1.cols == 1)
             {
-                if (in0.rows == 1 && in0.cols == 1 && in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::DOUBLE, -2, -2);
-                }
+                return TIType(gvn, TIType::DOUBLE, -2, -2);
             }
-            else
-            {
-                return TIType(gvn);
-            }
-            return TIType(gvn);
         }
         else
         {
@@ -104,5 +98,11 @@ namespace analysis
         }
         return TIType(gvn);
     }
+    else
+    {
+        return TIType(gvn);
+    }
+    return TIType(gvn);
+}
 
 } // namespace analysis

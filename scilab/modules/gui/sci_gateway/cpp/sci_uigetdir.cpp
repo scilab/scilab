@@ -110,18 +110,18 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
     {
         switch (nbInputArgument(pvApiCtx))
         {
-                /* Initial path is given */
+            /* Initial path is given */
             case 1:
                 CallJuigetfileForDirectoryWithInitialdirectory(expandedpath);
                 FREE(expandedpath);
                 break;
-                /* Initial path and title are given */
+            /* Initial path and title are given */
             case 2:
                 CallJuigetfileForDirectoryWithInitialdirectoryAndTitle(expandedpath, title);
                 FREE(expandedpath);
                 freeAllocatedSingleString(title);
                 break;
-                /* Default call with default path and title */
+            /* Default call with default path and title */
             default:
                 CallJuigetfileForDirectoryWithoutInput();
                 break;

@@ -21,14 +21,14 @@ void LinesCountChecker::preCheckNode(const ast::Exp & e, SLintContext & context,
 {
     if (max > 0)
     {
-	if (context.isFirstLevelFn())
-	{
-	    const unsigned int count = context.countLines(e.getLocation().first_line, e.getLocation().last_line);
-	    if (count > (unsigned int)max)
-	    {
-		result.report(context, e.getLocation(), *this, _("Maximum lines number exceeded: %d > %d."), count, max);
-	    }
-	}
+        if (context.isFirstLevelFn())
+        {
+            const unsigned int count = context.countLines(e.getLocation().first_line, e.getLocation().last_line);
+            if (count > (unsigned int)max)
+            {
+                result.report(context, e.getLocation(), *this, _("Maximum lines number exceeded: %d > %d."), count, max);
+            }
+        }
     }
 }
 

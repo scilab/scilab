@@ -19,35 +19,29 @@
 
 namespace analysis
 {
-    TIType Checkers::check_gettext(GVN & gvn, const TIType & in0)
+TIType Checkers::check_gettext(GVN & gvn, const TIType & in0)
+{
+    if (in0.type == TIType::STRING)
     {
-        if (in0.type == TIType::STRING)
-        {
-            return in0;
-        }
-        else
-        {
-            return TIType(gvn);
-        }
+        return in0;
+    }
+    else
+    {
         return TIType(gvn);
     }
+    return TIType(gvn);
+}
 
-    TIType Checkers::check_gettext(GVN & gvn, const TIType & in0, const TIType & in1)
+TIType Checkers::check_gettext(GVN & gvn, const TIType & in0, const TIType & in1)
+{
+    if (in0.type == TIType::STRING)
     {
-        if (in0.type == TIType::STRING)
+        if (in1.type == TIType::STRING)
         {
-            if (in1.type == TIType::STRING)
+            if (in0.rows == 1 && in0.cols == 1)
             {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
+                return in1;
             }
-            else
-            {
-                return TIType(gvn);
-            }
-            return TIType(gvn);
         }
         else
         {
@@ -55,5 +49,11 @@ namespace analysis
         }
         return TIType(gvn);
     }
+    else
+    {
+        return TIType(gvn);
+    }
+    return TIType(gvn);
+}
 
 } // namespace analysis

@@ -32,7 +32,7 @@
 /*------------------------------------------------------------------------*/
 int set_mark_size_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-	int status = -1;
+    int status = -1;
     int *tmp = NULL;
 
     if ( valueType != sci_matrix )
@@ -47,10 +47,10 @@ int set_mark_size_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTy
         return SET_PROPERTY_ERROR;
     }
 
-	tmp = MALLOC(nbCol * sizeof(int));
+    tmp = MALLOC(nbCol * sizeof(int));
     copyDoubleVectorToIntFromStack(_pvData, tmp, nbCol);
-	status = sciSetMarkSize(iObjUID, tmp, nbCol);
-	FREE(tmp);
+    status = sciSetMarkSize(iObjUID, tmp, nbCol);
+    FREE(tmp);
 
     return status;
 }

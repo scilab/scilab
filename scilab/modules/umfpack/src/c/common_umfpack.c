@@ -223,15 +223,15 @@ char *UmfErrorMes(int num_error)
     switch (num_error)
     {
         case UMFPACK_WARNING_singular_matrix:
-            return(mes1);
+            return (mes1);
         case UMFPACK_ERROR_out_of_memory:
-            return(mes2);
+            return (mes2);
         case UMFPACK_ERROR_internal_error:
-            return(mes3);
+            return (mes3);
         case UMFPACK_ERROR_invalid_matrix:
-            return(mes4);
+            return (mes4);
         default:
-            return(mes5);
+            return (mes5);
     };
 }
 

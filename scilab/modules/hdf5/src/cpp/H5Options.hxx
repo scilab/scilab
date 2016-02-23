@@ -31,7 +31,8 @@ namespace org_modules_hdf5
 
 class H5Options
 {
-    enum RowOrder {
+    enum RowOrder
+    {
         C,
         FORTRAN
     };

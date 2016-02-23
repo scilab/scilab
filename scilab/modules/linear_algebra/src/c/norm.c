@@ -124,7 +124,7 @@ double normP (double *A, int iRows, int iCols, double p)
     //
     if (la_isinf(p) != 0 && p < 0) // p = -%inf is a special case, return min(abs(A)).
     {
-      
+
         minA = Abs(A[0]);
         for (i = 0; i < iRows; ++i)
         {
@@ -241,7 +241,7 @@ double normPC (doublecomplex *A, int iRows, int iCols, double p)
         ret = (a - b) / (a - b);
         return ret;
     }
-    
+
     if (la_isinf(p) != 0 && p < 0) // p = -%inf is a special case, return min(abs(A)).
     {
         minA = sqrt(A[0].r * A[0].r + A[0].i * A[0].i); // Retrieving A[0] modulus.

@@ -65,7 +65,7 @@ double getIndex(InternalType* val)
 {
     switch (val->getType())
     {
-            //scalar
+        //scalar
         case InternalType::ScilabDouble:
         {
             return getIndex(val->getAs<Double>());

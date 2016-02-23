@@ -19,9 +19,9 @@
 
 namespace analysis
 {
-    TIType Checkers::check_toc(GVN & gvn)
-    {
-        return TIType(gvn, TIType::DOUBLE, 1, 1);
-    }
+TIType Checkers::check_toc(GVN & gvn)
+{
+    return TIType(gvn, TIType::DOUBLE, 1, 1);
+}
 
 } // namespace analysis
