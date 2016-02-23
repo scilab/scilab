@@ -1,136 +1,318 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-    <meta charset='UTF-8' />
-    <title>Scilab via Socket.IO v0.3</title>
-    <script type='text/javascript' src='/socket.io/socket.io.js'></script>
-    <style type='text/css'>
-    
-    body {
-        background-color : rgb(192,192,192);
-        color : black;
-        text-align : center;
-    }
-    
-    .log {
-        background-color : white;
-        opacity : 1;
-        width : 500px;
-        height : 100px;
-        margin : auto;
-        text-align:left;
-        border : 2px rgb(0,0,0) solid;
-        overflow : auto;
-        font-family: 'Lucida Console', Monaco, monospace;
-        font-size:10pt;
-    }
-    .GO_FIGURE {
-        /*
-            must be relative or absolute 
-            to allow absolue positioning of children
-        */
-        position: relative;
-        background-color : white;
-        width : 600px;
-        height : 600px;
-        margin : auto;
-        border : 2px rgb(0,0,0) solid;
-        overflow : auto;
-        text-align: left;
-    }
+    <head>
+        <meta charset='UTF-8' />
+        <title>Scilab WebView</title>
+        <script type='text/javascript' src='/socket.io/socket.io.js'></script>
+        <style type='text/css'>
+body {
+    background-color : rgb(192,192,192);
+    color : black;
+    text-align : center;
+}
 
-    .GO_PUSHBUTTON {
-        position: absolute;
-        left: 20px;
-        top: 440px;
-        width : 40px;
-        height : 20px;
-        text-align:center;
-        overflow : hidden;
-        font-family: Tahoma;
-        font-size:11pt;
-    }
+.log {
+    background-color : white;
+    opacity : 1;
+    width : 500px;
+    height : 100px;
+    margin : auto;
+    text-align:left;
+    border : 2px rgb(0,0,0) solid;
+    overflow : auto;
+    font-family: 'Lucida Console', Monaco, monospace;
+    font-size:11px;
+}
 
-    #infobar {
-        background-color : rgb(192,192,192);
-        opacity : 1;
-        width : 500px;
-        height : 20px;
-        margin : auto;
-        border : 1px rgb(0,0,0) solid;
-        font-weight: bold;
-    }
-    
-    #command {
-        background-color : white;
-        opacity : 1;
-        width : 500px;
-        height : 100px;
-        margin : auto;
-        border : 2px rgb(0,0,0) solid;
-        overflow : auto;
-        font-family: 'Lucida Console', Monaco, monospace;
-        font-size:10pt;
-    }
+.GO_FIGURE {
+    /*
+        "position" must be relative or absolute 
+        to allow absolue positioning of children
+    */
+    position: relative;
+    background-color : rgb(192,192,192);
+    width : 610px;
+    height : 460px;
+    margin : auto;
+    border : 2px rgb(0,0,0) solid;
+    overflow : auto;
+    text-align: left;
+}
 
-    </style>
-</head>
+.GO_PUSHBUTTON {
+    position: absolute;
+    left: 20px;
+    bottom: 40px;
+    width : 40px;
+    height : 20px;
+    text-align:center;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size: 11px;
+    visibility:inherit;
+}
+
+.GO_FRAME {
+    position: absolute;
+    background-color : white;
+    left: 20px;
+    bottom: 40px;
+    width : 40px;
+    height : 20px;
+    text-align:center;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    border : 1px rgb(0,0,0) solid;
+    visibility:inherit;
+}
+
+.GO_TEXT {
+    position: absolute;
+    background-color : white;
+    left: 20px;
+    bottom: 40px;
+    width : 40px;
+    height : 20px;
+    line-height:20px;
+    text-align:left;
+    vertical-align: middle;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+}
+
+.GO_EDIT {
+    position: absolute;
+    background-color : white;
+    left: 20px;
+    bottom: 40px;
+    width : 40px;
+    height : 20px;
+    text-align:left;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+}
+
+.GO_CHECKBOX {
+    position: absolute;
+    background-color : white;
+    left: 20px;
+    bottom: 40px;
+    width : 40px;
+    height : 20px;
+    line-height:20px;
+    text-align:left;
+    vertical-align: middle;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+}
+
+.GO_CHECKBOX_LABEL {
+    background-color : inherit;
+    left: 20px;
+    bottom: 40px;
+    width : 40px;
+    height : 20px;
+    text-align:left;
+    overflow : hidden;
+    font-family: inherit;
+    font-size:inherit;
+    visibility:inherit;
+}
+
+.GO_CHECKBOX_CHECKBOX {
+    background-color : inherit;
+    left: 0px;
+    bottom: 0px;
+    overflow : hidden;
+    visibility:inherit;
+}
+
+.GO_RADIO {
+    position: absolute;
+    background-color : white;
+    left: 20px;
+    bottom: 40px;
+    width : 40px;
+    height : 20px;
+    line-height:20px;
+    text-align:left;
+    vertical-align: middle;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+}
+
+.GO_RADIO_LABEL {
+    background-color : inherit;
+    left: 20px;
+    bottom: 40px;
+    width : 40px;
+    height : 20px;
+    text-align:left;
+    overflow : hidden;
+    font-family: inherit;
+    font-size:inherit;
+    visibility:inherit;
+}
+
+.GO_RADIO_RADIO {
+    background-color : inherit;
+    left: 0px;
+    bottom: 0px;
+    overflow : hidden;
+    visibility:inherit;
+}
+
+.GO_SLIDER {
+    position: absolute;
+    background-color : white;
+    left: 20px;
+    bottom: 40px;
+    width : 40px;
+    height : 20px;
+    overflow : hidden;
+    visibility:inherit;
+}
+
+.GO_LISTBOX {
+    position: absolute;
+    background-color : white;
+    left: 20px;
+    bottom: 40px;
+    width : 40px;
+    height : 20px;
+    overflow : auto;
+    visibility:inherit;
+}
+
+.GO_COMBOBOX {
+    position: absolute;
+    background-color : white;
+    left: 20px;
+    bottom: 40px;
+    width : 40px;
+    height : 20px;
+    overflow : auto;
+    visibility:inherit;
+}
+
+.GO_SPINNER {
+    position: absolute;
+    background-color : white;
+    left: 20px;
+    bottom: 40px;
+    width : 40px;
+    height : 20px;
+    text-align:right;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+}
+
+.window {
+    /*
+        "position" must be relative or absolute 
+        to allow absolue positioning of children
+    */
+    position: relative;
+    background-color : rgb(192.192.192);
+    margin : auto;
+    /*
+    border : 2px rgb(0,0,0) solid;
+    */
+    overflow : auto;
+    text-align: left;
+}
+
+#infobar {
+    background-color : rgb(192,192,192);
+    opacity : 1;
+    width : 500px;
+    height : 20px;
+    margin : auto;
+    border : 1px rgb(0,0,0) solid;
+    font-weight: bold;
+}
+        </style>
+    </head>
     <body>
         <h1>Scilab WebView</h1>
         <div id='infobar'></div>
-        </br>
-            <textarea id='command'>
-if 0 then
-    f = createWindow();
-    uicontrol("position", [50 50 100 40], "string", "+ 1", "callback", "v = eval(get(''num'', ''string''));set(''num'', ''string'', string(v + 1));");
-    uicontrol("position", [170 50 100 40], "string", "0", "tag", "num");
-    uicontrol("position", [290 50 100 40], "string", "- 1", "callback", "v = eval(get(''num'', ''string''));set(''num'', ''string'', string(v - 1));");
-end
-
-if 1 then
-    f = createWindow();
-    f.position(3:4) = [500, 500];
-    for i=1:100
-        x = floor((i-1) / 10);
-        y = modulo((i-1), 10);
-        uicontrol("position", [50*x, 50*y,50,50],"string", string(x) + string(y), "callback", "set(gcbo, ''string'', ''clicked'')");
-    end
-end
-            </textarea>
-            </br>
-            <button id="cmdbtn" onClick="execute()">Execute</button>
         <h3>Logger:</h3>
         <div class='log' id='logger'></div>
+        <br>
+        <div class='window' id='scilab'></div>
+        
         <script type='text/javascript'>
             var command;
             // connect to server
             var socket = io();
 
-            resetLogger('');
+            resetLogger();
             setInfo('');
             
-            //callback
-            function execute() {
-                resetLogger();
-                data = document.getElementById('command').value;
-                socket.emit('command', data);
-                var objCmd = document.getElementById('cmdbtn');
-                objCmd.disabled  = true;
-                return false;
+            function onPushButton() {
+                var id = parseInt(this.id.substring(3)); //ignore "uid"
+                socket.emit("callback", {uid:id});
+           }
+            
+            function onCheckBox() {
+                var id = parseInt(this.id.substring(3)); //ignore "uid"
+                socket.emit("callback", {uid:id, value:this.checked});
             }
             
-            //callback click
-            function OnUIClick(elem) {
-                var id = elem.id;
-                id = parseInt(id.substring(3)); //ignore "uid"
-                socket.emit("callback", {uid:id});
+            function onRadioButton() {
+                var id = parseInt(this.id.substring(3)); //ignore "uid"
+                socket.emit("callback", {uid:id, value:this.checked});
             }
-             //tools
+
+            function onListBox() {
+                var id = parseInt(this.id.substring(3)); //ignore "uid"
+                var data = [];
+                for(var i = 0 ; i < this.options.length; ++i) {
+                    if(this.options[i].selected) {
+                        data.push(i);
+                    }
+                }
+                socket.emit("callback", {uid:id, value:data});
+            }
+            
+            function onComboBox() {
+            }
+            
+            function onTab() {
+            }
+            
+            function onSlider() {
+                var id = parseInt(this.id.substring(3)); //ignore "uid"
+                socket.emit("callback", {uid:id, value:parseFloat(this.value)});
+            }
+            
+            function onEditBox() {
+                var id = parseInt(this.id.substring(3)); //ignore "uid"
+                socket.emit("callback", {uid:id, value:this.value});
+           }
+            
+            function onSpinner() {
+                var id = parseInt(this.id.substring(3)); //ignore "uid"
+                socket.emit("callback", {uid:id, value:parseFloat(this.value)});
+            }
+            
+            //tools
             function setInfo(data) {
                 document.getElementById('infobar').innerHTML = data;
             }
             
-           function resetLogger(data) {
+           function resetLogger() {
                 var objDiv = document.getElementById('logger');
                 objDiv.innerHTML = '';
             }
@@ -142,17 +324,24 @@ end
             }
             
             //socket events management
-            socket.on('status', function (msg) {
-                setInfo(msg);
-            });
-
             socket.on('command_end', function () {
-                var objCmd = document.getElementById('cmdbtn');
-                objCmd.disabled  = false;
             });
 
             socket.on('disconnect', function () {
                 setInfo('Connection lost');
+            });
+            
+            socket.on('status', function (msg) {
+                if(msg.data == "ready") {
+                    setInfo("Scilab is ready");
+                    resetLogger();
+                    //reset "scilab" page
+                    var parent = document.getElementById('scilab');
+                    parent.innerHTML = "";
+                } else {
+                    setInfo("Scilab is busy");
+                }
+                setLogger('<font color="black">' +  msg.data + '</font>');
             });
             
             socket.on('graphic_create', function (msg) {
@@ -162,6 +351,7 @@ end
             
             socket.on('graphic_delete', function (msg) {
                 //setLogger('<font color="red">' + 'graphic_delete(' + msg.uid + ')' + '</font>');
+                eval(msg.data);
             });
             
             socket.on('graphic_update', function (msg) {

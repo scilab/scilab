@@ -88,12 +88,64 @@ void ScilabWebView::registerToController(void)
 
     s->on("callback", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp){
         l.lock.lock();
-        int uid = data->get_map()["uid"]->get_int();
+        int uid = (int)data->get_map()["uid"]->get_int();
+
+        switch (WebUtils::getStyle(uid))
+        {
+            case __GO_UI_PUSHBUTTON__:
+                //nothing to update, exec callback only
+                break;
+            case __GO_UI_CHECKBOX__:
+            case __GO_UI_RADIOBUTTON__:
+            {
+                //get checked status
+                bool status = data->get_map()["value"]->get_bool();
+                WebUtils::updateValue(uid, status);
+                break;
+            }
+            case __GO_UI_POPUPMENU__:
+            case __GO_UI_LISTBOX__:
+            {
+                std::vector<double> d;
+                std::vector<sio::message::ptr> v = data->get_map()["value"]->get_vector();
+                for (auto it : v)
+                {
+                    d.push_back(it->get_double() + 1); //1 indexed
+                }
+
+                WebUtils::updateValue(uid, d);
+                break;
+            }
+                break;
+            case __GO_UI_EDIT__:
+            {
+                std::string value = (std::string)data->get_map()["value"]->get_string();
+                WebUtils::updateValue(uid, value);
+                break;
+            }
+            case __GO_UI_SLIDER__:
+            case __GO_UI_SPINNER__:
+            {
+                double value = (double)data->get_map()["value"]->get_double();
+                WebUtils::updateValue(uid, value);
+                break;
+            }
+        }
+
+        l.cond.notify_all();
+        l.lock.unlock();
+
         //get calltype type and callback instruction from MVC
         int cbtype = WebUtils::getIntProperty(uid, __GO_CALLBACKTYPE__);
         std::string cb = WebUtils::getStringProperty(uid, __GO_CALLBACK__);
 
-        std::string str = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;";
+        if (cbtype == -1)
+        {
+            return;
+        }
+
+        std::string str;
+        str = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;";
         str += "gcbo = getcallbackobject(" + std::to_string(uid) + ");";
         str += cb;
         str += ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
@@ -106,14 +158,18 @@ void ScilabWebView::registerToController(void)
         {
             StoreCommand((char*)str.data());
         }
-        l.cond.notify_all();
-        l.lock.unlock();
     }));
+
+    WebUtils::fillSetter();
 }
 
 void ScilabWebView::unregisterToController(void)
 {
     org_scilab_modules_graphic_objects::CallGraphicController::unregisterScilabWebView(getScilabJavaVM());
+
+    client.sync_close();
+    client.clear_con_listeners();
+
 }
 
 
@@ -128,7 +184,6 @@ void ScilabWebView::createObject(int uid)
     {
         std::string str;
         WebUtils::createFigure(uid, str);
-        std::cout << "createFigure" << str << std::endl;
         s->emit("graphic_create", str);
         return;
     }
@@ -137,6 +192,7 @@ void ScilabWebView::createObject(int uid)
     {
         std::string str;
         WebUtils::createUIControl(uid, str);
+        WebUtils::updateDefaultProperties(uid, str);
         s->emit("graphic_create", str);
         return;
     }
@@ -144,22 +200,28 @@ void ScilabWebView::createObject(int uid)
 
 void ScilabWebView::deleteObject(int uid)
 {
-    //if (WebUtils::isManaged(uid) == false)
-    //{
-    //    return;
-    //}
+    if (WebUtils::isManaged(uid) == false)
+    {
+        return;
+    }
 
-    //sio::message::ptr obj = sio::object_message::create();
-    //auto& m = obj->get_map();
-
-    //m["uid"] = sio::int_message::create(uid);
-    //s->emit("graphic_delete", obj);
+    std::string str;
+    WebUtils::deleteObject(uid, str);
+    s->emit("graphic_delete", str);
 }
 
 void ScilabWebView::updateObject(int uid, int prop)
 {
     if (WebUtils::isManaged(uid) == false)
     {
+        return;
+    }
+
+    if (prop == __GO_VISIBLE__)
+    {
+        std::string str;
+        WebUtils::setVisible(uid, str);
+        s->emit("graphic_update", str);
         return;
     }
 
@@ -179,29 +241,12 @@ void ScilabWebView::updateObject(int uid, int prop)
 
     if (WebUtils::isUIcontrol(uid))
     {
-        switch (prop)
+        std::string str;
+        if (WebUtils::set(prop, uid, str))
         {
-            case __GO_PARENT__:
-            {
-                std::string str;
-                WebUtils::setParent(uid, str);
-                s->emit("graphic_update", str);
-                return;
-            }
-            case __GO_POSITION__:
-            {
-                std::string str;
-                WebUtils::setUIPosition(uid, str);
-                s->emit("graphic_update", str);
-                return;
-            }
-            case __GO_UI_STRING__:
-            {
-                std::string str;
-                WebUtils::setUIString(uid, str);
-                s->emit("graphic_update", str);
-                return;
-            }
+            s->emit("graphic_update", str);
         }
+
+        return;
     }
 }

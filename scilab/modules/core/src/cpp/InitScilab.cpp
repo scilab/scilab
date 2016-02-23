@@ -238,7 +238,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     if (_pSEI->iNoJvm == 0) // With JVM
     {
-        InitializeTclTk();
+        //InitializeTclTk();
         InitializeJVM();
         InitializeGUI();
 

@@ -18,23 +18,37 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
+
+typedef void(*setFunction)(int, std::string&, bool);
 
 class WebUtils
 {
     WebUtils() {}
     ~WebUtils() {}
 
-private:
+    typedef std::unordered_map<int, setFunction> SETTER;
+    static SETTER setter;
 
     static bool hasStyle(int uid, int style);
+    static bool isInputType(int uid);
 
-    static std::string getIdString(int uid);
-    static std::string getElementById(int uid);
+    static std::string getIdString(int uid, const std::string& suffix = "");
+    static std::string getElementById(int uid, const std::string& suffix = "");
     static std::string createElement(const std::string& type);
 
+    static std::string getColor(const std::vector<double>& c);
 public:
 
+    static void fillSetter();
+    static bool set(int prop, int uid, std::string& str);
+
+    static bool updateValue(int uid, bool value);
+    static bool updateValue(int uid, double value);
+    static bool updateValue(int uid, const std::string& value);
+    static bool updateValue(int uid, const std::vector<double>& values);
     static int getIntProperty(int uid, int prop);
+    static bool getBoolProperty(int uid, int prop);
     static double getDoubleProperty(int uid, int prop);
     static std::string getStringProperty(int uid, int prop);
 
@@ -42,20 +56,79 @@ public:
     static void getDoubleVectorProterty(int uid, int prop, std::vector<double>& vect);
     static void  getStringVectorProperty(int uid, int prop, std::vector<std::string>& vect);
 
+    static bool setStringProperty(int uid, int prop, const std::string& value);
+    static bool setStringVectorProperty(int uid, int prop, const std::vector<std::string>& values);
+
+    static bool setDoubleProperty(int uid, int prop, double value);
+    static bool setDoubleVectorProperty(int uid, int prop, const std::vector<double>& values);
+
 
     //commoms
     static int getType(int uid);
     static int getStyle(int uid);
     static int getParent(int uid);
-    static void setParent(int uid, std::string& str);
+    static int getFigureId(int uid);
+    static void setParent(int uid, std::string& str, bool append = false);
     static void getUIPosition(int uid, std::vector<double>& vect);
-    static void setUIPosition(int uid, std::string& str);
+    static void setUIPosition(int uid, std::string& str, bool append = false);
 
     static void getFigureSize(int uid, std::vector<int>& vect);
-    static void setFigureSize(int uid, std::string& str);
+    static void setFigureSize(int uid, std::string& str, bool append = false);
 
     static void getUIString(int uid, std::vector<std::string>& vect);
-    static void setUIString(int uid, std::string& str);
+    static void setUIString(int uid, std::string& str, bool append = false);
+
+    static bool getVisible(int uid);
+    static void setVisible(int uid, std::string& str, bool append = false);
+
+    static bool getUIEnable(int uid);
+    static void setUIEnable(int uid, std::string& str, bool append = false);
+
+    static bool getUIBackgroundColor(int uid, std::vector<double>& vect);
+    static void setUIBackgroundColor(int uid, std::string& str, bool append = false);
+
+    static bool getUIFontAngle(int uid, std::string& str);
+    static void setUIFontAngle(int uid, std::string& str, bool append = false);
+
+    static bool getUIFontName(int uid, std::string& str);
+    static void setUIFontName(int uid, std::string& str, bool append = false);
+
+    static bool getUIFontUnits(int uid, std::string& str);
+    static double getUIFontSize(int uid);
+    static void setUIFontSize(int uid, std::string& str, bool append = false);
+
+    static bool getUIFontWeight(int uid, std::string& str);
+    static void setUIFontWeight(int uid, std::string& str, bool append = false);
+
+    static bool getUIForegroundColor(int uid, std::vector<double>& vect);
+    static void setUIForegroundColor(int uid, std::string& str, bool append = false);
+
+    static bool getUIHorizontalAlignment(int uid, std::string& str);
+    static void setUIHorizontalAlignment(int uid, std::string& str, bool append = false);
+
+    static bool getUIRelief(int uid, std::string& str);
+    static void setUIRelief(int uid, std::string& str, bool append = false);
+
+    static bool getUIVerticalAlignment(int uid, std::string& str);
+    static void setUIVerticalAlignment(int uid, std::string& str, bool append = false);
+
+    static int getUILayout(int uid);
+    static void setUILayout(int uid, std::string& str, bool append = false);
+
+    static double getUIMin(int uid);
+    static void setUIMin(int uid, std::string& str, bool append = false);
+
+    static double getUIMax(int uid);
+    static void setUIMax(int uid, std::string& str, bool append = false);
+
+    static double getUIStep(int uid);
+    static void setUIStep(int uid, std::string& str, bool append = false);
+
+    static bool getUIValue(int uid, std::vector<double>& vect);
+    static void setUIValue(int uid, std::string& str, bool append = false);
+
+    static bool hasCallback(int uid);
+    static void setCallback(int uid, std::string& str, bool append = false);
 
     //is
     static bool isManaged(int uid);
@@ -65,10 +138,24 @@ public:
     
     //create
     static bool createFigure(int uid, std::string& str);
+
+    static bool createCommonIUControl(int uid, const std::string& htmlType, const std::string& cssClass, std::string& str);
     static bool createUIControl(int uid, std::string& str);
     static bool createPushButton(int uid, std::string& str);
+    static bool createFrame(int uid, std::string& str);
+    static bool createText(int uid, std::string& str);
+    static bool createEdit(int uid, std::string& str);
+    static bool createCheckbox(int uid, std::string& str);
+    static bool createRadio(int uid, std::string& str);
+    static bool createSlider(int uid, std::string& str);
+    static bool createListbox(int uid, std::string& str);
+    static bool createCombobox(int uid, std::string& str);
+    static bool createSpinner(int uid, std::string& str);
 
+    //update
+    static bool updateDefaultProperties(int uid, std::string& str);
     //delete
+    static bool deleteObject(int uid, std::string& str);
 
 
     //cupdate
