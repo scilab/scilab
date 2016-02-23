@@ -851,7 +851,7 @@ public final class Xcos {
      * @param file
      *            The filename (can be null)
      * @param diagramId
-     *            The Xcos DIAGRAM model ID (can be null)
+     *            The Xcos DIAGRAM model ID (can be 0)
      */
     @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
     public static void xcos(final String file, final long diagramId) {
