@@ -113,7 +113,8 @@ libscilocalization_la_include_HEADERS = includes/localization.h \
 includes/localization.hxx \
 includes/dynlib_localization.h \
 includes/setgetlanguage.h \
-includes/charEncoding.h
+includes/charEncoding.h \
+includes/UTF8.hxx
 
 if GUI
 USEANT=1

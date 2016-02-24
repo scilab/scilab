@@ -930,27 +930,28 @@ libscicore_la_xml_DATA = xml/modules.dtd xml/version.dtd
 #### core : include files ####
 libscicore_la_includedir = $(pkgincludedir)
 libscicore_la_include_HEADERS = \
+includes/backtrace_print.h \
 includes/BOOL.h \
 includes/core_math.h \
 includes/existfunction.h \
+includes/exit_status.hxx \
 includes/freeArrayOfString.h \
 includes/getcommandlineargs.h \
 includes/getmemory.h \
 includes/getos.h \
-includes/machine.h \
-includes/sci_malloc.h \
-includes/PATH_MAX.h \
-includes/scilabDefaults.h \
-includes/scisparse.h \
-includes/sci_types.h \
-includes/version.h \
 includes/getversion.h \
-includes/backtrace_print.h \
-includes/sci_mem_alloc.h \
 includes/hashtable.h \
 includes/hashtable_utility.h \
-includes/exit_status.hxx \
-includes/timer.hxx
+includes/machine.h \
+includes/PATH_MAX.h \
+includes/scilabDefaults.h \
+includes/sci_malloc.h \
+includes/sci_mem_alloc.h \
+includes/scisparse.h \
+includes/sci_types.h \
+includes/storeCommand.h \
+includes/timer.hxx \
+includes/version.h
 
 @GUI_TRUE@USEANT = 1
 

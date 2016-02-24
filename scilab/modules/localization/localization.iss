@@ -40,6 +40,7 @@ Source: modules\{#LOCALIZATION}\includes\localization.hxx; DestDir: {app}\module
 Source: modules\{#LOCALIZATION}\includes\dynlib_localization.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\includes\setgetlanguage.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\includes\charEncoding.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#LOCALIZATION}\includes\UTF8.hxx; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#LOCALIZATION}\macros\lib; DestDir: {app}\modules\{#LOCALIZATION}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#LOCALIZATION}\macros\*.sci; DestDir: {app}\modules\{#LOCALIZATION}\macros; Components: {#COMPN_SCILAB}

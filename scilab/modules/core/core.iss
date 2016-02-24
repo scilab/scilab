@@ -37,24 +37,28 @@ Source: modules\{#CORE}\sci_gateway\{#CORE}_gateway.xml; DestDir: {app}\modules\
 Source: modules\{#CORE}\etc\{#CORE}.quit; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\etc\{#CORE}.start; DestDir: {app}\modules\{#CORE}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#CORE}\includes\backtrace_print.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\BOOL.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\core_math.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\existfunction.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\exit_status.hxx; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\freeArrayOfString.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\getcommandlineargs.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\getos.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\getmemory.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\getos.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\getversion.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\hashtable.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\hashtable_utility.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\machine.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\sci_malloc.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\PATH_MAX.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\scisparse.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\scilabDefaults.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\sci_malloc.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\scisparse.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\sci_types.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\storeCommand.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\timer.hxx; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\version.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\win_mem_alloc.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\getversion.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\backtrace_print.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\exit_status.hxx; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\timer.hxx; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 
 ;
 Source: modules\{#CORE}\macros\buildmacros.sce; DestDir: {app}\modules\{#CORE}\macros; Components: {#COMPN_SCILAB}
