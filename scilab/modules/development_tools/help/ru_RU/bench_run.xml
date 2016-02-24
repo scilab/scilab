@@ -13,13 +13,13 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bench_run" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bench_run" xml:lang="ru">
     <refnamediv>
         <refname>bench_run</refname>
-        <refpurpose>ベンチマークテストを実行</refpurpose>
+        <refpurpose>Launches benchmark tests</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>呼び出し手順</title>
+        <title>Calling Sequence</title>
         <synopsis>
             [modutests_names, elapsed_time, nb_iterations] = bench_run()
             [modutests_names, elapsed_time, nb_iterations] = bench_run(module[, test_name[, options, [exportToFile]])
@@ -27,12 +27,12 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>引数</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>module</term>
                 <listitem>
-                    <para>文字列ベクトル. モジュール名またはツールボックスの絶対パスを指定します.</para>
+                    <para>a vector of string. Contains the names of a Scilab modules to benchmark.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -59,13 +59,17 @@
             <varlistentry>
                 <term>options</term>
                 <listitem>
-                    <para>文字列ベクトル</para>
+                    <para>a vector of string</para>
                     <itemizedlist>
                         <listitem>
-                            <para>"list" : モジュールで利用可能なベンチマークテストのリスト</para>
+                            <para>
+                                <literal>"list"</literal>: list of the benchmark tests (<literal>test_name</literal>) available in a module
+                            </para>
                         </listitem>
                         <listitem>
-                            <para>"help" : Scilabコンソールにいくつかの使用例を表示</para>
+                            <para>
+                                <literal>"help"</literal>: displays some examples of use in the Scilab console
+                            </para>
                         </listitem>
                         <listitem>
                             <para>
@@ -113,7 +117,7 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>説明</title>
+        <title>Description</title>
         <para>
             Performs benchmark tests, measures execution time and produces a report about benchmark tests.
         </para>
@@ -176,8 +180,9 @@ bench_run("string", [], 'nb_run=100', 'my_output_file.xml');
 // results in an output directory, TMPDIR/benchmarks is the default
 bench_run("string", [], 'nb_run=100', TMPDIR);
 ]]></programlisting>
-        <para>ベンチマークファイルの例. このファイルはファイル
-            SCI/modules/linear_algebra/tests/benchmarks/bench_chol.tstに対応します.
+        <para>An example of a benchmark file. This file corresponds to the
+            file
+            SCI/modules/linear_algebra/tests/benchmarks/bench_chol.tst.
         </para>
         <programlisting role="example"><![CDATA[
 // =============================================================================
@@ -202,17 +207,17 @@ a = a'*a;
 b = chol(a);
 // <-- BENCH END -->
 ]]></programlisting>
-        <para>テストの結果</para>
+        <para>The result of the test</para>
         <screen><![CDATA[
 -->bench_run('linear_algebra','bench_chol')
 
 For Loop (as reference) ...........................      33.20 ms [ 1000000 x]
 
 001/001 - [linear_algebra] bench_chol ......................     1233.93 ms [      10 x]
- ]]></screen>
+            ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>参照</title>
+        <title>See Also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="test_run">test_run</link>

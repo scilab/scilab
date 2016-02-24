@@ -298,9 +298,17 @@ Known issues
 Bug Fixes
 =========
 
-* Bug #14433 fixed - acoth (which call atanh) crash scilab
+In 6.0.0:
+
+* Bug #9456 fixed  - bench_run did not work on a path or in a toolbox
+
+* Bug #13869 fixed - bench_run with option nb_run=10 did not override the NB RUN tags
 
 * Bug #14035 fixed - ndgrid did not manage all homogeneous data type (booleans, integers, polynomials, rationals, strings, [])
+
+* Bug #14423 fixed - bench_run did not have a return value, export file was not configurable
+
+* Bug #14433 fixed - acoth (which call atanh) crash scilab
 
 In 6.0.0 beta-1:
 
