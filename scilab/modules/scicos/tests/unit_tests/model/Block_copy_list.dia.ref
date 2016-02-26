@@ -15,8 +15,8 @@ Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : SUCCESS
-Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : SUCCESS
 Xcos trace: propertyUpdated( 1 , BLOCK , EXPRS ) : SUCCESS
 Xcos debug: objectCreated( 2 , PORT )
 Xcos trace: propertyUpdated( 2 , PORT , SOURCE_BLOCK ) : SUCCESS
@@ -39,7 +39,7 @@ Xcos trace: propertyUpdated( 4 , PORT , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , PORT , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : SUCCESS
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
@@ -118,7 +118,7 @@ Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 clear Sum
 // Sum2's refCount must have been affected by "clear Sum"
 Sum2
-Sum2  = (2)
+ Sum2  = (2)
 GUI     : BIGSOM_f
 Graphics: 
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1

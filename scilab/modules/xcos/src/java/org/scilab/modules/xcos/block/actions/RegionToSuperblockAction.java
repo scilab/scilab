@@ -52,6 +52,7 @@ import java.util.List;
 import java.util.logging.Level;
 import static java.util.stream.Collectors.toList;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
@@ -62,6 +63,7 @@ import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
+import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**
  * Move the Selected cells to a new SuperBlock diagram
@@ -456,13 +458,15 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
             if (object instanceof BasicBlock) {
                 final BasicBlock b = (BasicBlock) object;
 
-                controller.getObjectProperty(b.getUID(), b.getKind(), ObjectProperties.ANGLE, mvcAngle);
+                String[] style = new String[1];
+                controller.getObjectProperty(b.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);
+                StyleMap styleMap = new StyleMap(style[0]);
 
-                angleCounter += mvcAngle.get(1);
+                final boolean mirrored = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
+                final boolean flipped = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
+                final double doubleRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0"));
 
-                int flags = (int) mvcAngle.get(0);
-                final boolean mirrored = (flags & 0x0002) != 0;
-                final boolean flipped = (flags & 0x0001) != 0;
+                angleCounter += doubleRotation;
                 if (flipped) {
                     flipCounter++;
                 }
@@ -476,18 +480,19 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
          * apply statistics to flip and rotate
          */
         final int halfSize = selection.length / 2;
-        mvcAngle.set(1, BlockPositioning.roundAngle(angleCounter / selection.length));
+        String[] style = new String[1];
+        controller.getObjectProperty(superBlock.getUID(), superBlock.getKind(), ObjectProperties.STYLE, style);
+        StyleMap styleMap = new StyleMap(style[0]);
 
-        int mirrorAndFlip = 0;
+        styleMap.put(XcosConstants.STYLE_ROTATION, Double.toString(BlockPositioning.roundAngle(angleCounter / selection.length)));
         if (flipCounter > halfSize) {
-            mirrorAndFlip ^= 0x0001;
+            styleMap.put(XcosConstants.STYLE_FLIP, Boolean.toString(true));
         }
         if (mirrorCounter > halfSize) {
-            mirrorAndFlip ^= 0x0002;
+            styleMap.put(XcosConstants.STYLE_MIRROR, Boolean.toString(true));
         }
-        mvcAngle.set(0, mirrorAndFlip);
 
-        controller.setObjectProperty(superBlock.getUID(), superBlock.getKind(), ObjectProperties.ANGLE, mvcAngle);
+        controller.setObjectProperty(superBlock.getUID(), superBlock.getKind(), ObjectProperties.STYLE, styleMap.toString());
 
         return superBlock;
     }

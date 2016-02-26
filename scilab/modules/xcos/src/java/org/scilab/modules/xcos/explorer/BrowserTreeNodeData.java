@@ -126,8 +126,8 @@ public class BrowserTreeNodeData {
     }
 
     private void htmlBlock(final StringBuilder str, final Controller controller) {
-        VectorOfDouble angle = new VectorOfDouble(2);
-        controller.getObjectProperty(uid, kind, ObjectProperties.ANGLE, angle);
+        String[] style = new String[1];
+        controller.getObjectProperty(uid, kind, ObjectProperties.STYLE, style);
         VectorOfString exprs = new VectorOfString();
         controller.getObjectProperty(uid, kind, ObjectProperties.EXPRS, exprs);
         VectorOfDouble geom = new VectorOfDouble(4);
@@ -148,12 +148,9 @@ public class BrowserTreeNodeData {
         tag(htmlTable, "caption", "Graphics");
         tag(htmlTable, "tr", tag("td", "orig").append(tag("td", escapeVector(',', geom.get(0), geom.get(1)))));
         tag(htmlTable, "tr", tag("td", "sz").append(tag("td", escapeVector(',', geom.get(2), geom.get(3)))));
-        tag(htmlTable, "tr", tag("td", "flip").append(tag("td", ((((int) angle.get(0)) & 0x0001) != 0) ? "%t" : "%f")));
-        tag(htmlTable, "tr", tag("td", "mirror").append(tag("td", ((((int) angle.get(0)) & 0x0002) != 0) ? "%t" : "%f")));
-        tag(htmlTable, "tr", tag("td", "theta").append(tag("td", CURRENT_FORMAT.format(angle.get(1)))));
         tag(htmlTable, "tr", tag("td", "exprs").append(tag("td", escapeVector(';', exprs))));
         tag(htmlTable, "tr", tag("td", "id").append(tag("td", title[0])));
-        tag(htmlTable, "tr", tag("td", "style").append(tag("td", CURRENT_FORMAT.format(angle.get(1)))));
+        tag(htmlTable, "tr", tag("td", "style").append(tag("td", style[0])));
 
         tag(str, "table", htmlTable);
 

@@ -17,6 +17,8 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <iomanip>
 
 #include "list.hxx"
 #include "tlist.hxx"
@@ -147,22 +149,57 @@ struct sz
     }
 };
 
+int has_flip(const std::string& style)
+{
+    const std::string key("flip=");
+    int flip = 1;
+
+    int valuePos = style.find(key);
+    if (valuePos > 0 && valuePos + key.size() < style.size())
+    {
+        // the key is found, handle it
+        const std::string falseValue("false");
+        if (!style.compare(valuePos + key.size(), falseValue.size(), falseValue))
+        {
+            flip = 0;
+        }
+    }
+
+    return flip;
+}
+
+double has_theta(const std::string& style)
+{
+    const std::string key("rotation=");
+    double doubleValue = 0;
+
+    int valuePos = style.find(key);
+    if (valuePos > 0 && valuePos + key.size() < style.size())
+    {
+        // interpret the rotation as a double value
+        const std::string value = style.substr(valuePos + key.size(), style.find(';', valuePos + key.size()));
+
+        std::stringstream in(value);
+        in >> doubleValue;
+    }
+
+    return doubleValue;
+}
+
 struct flip
 {
-
     static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        int* data;
+        int flip = 1;
+        int* data = &flip;
         types::Bool* o = new types::Bool(1, 1, &data);
+
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        std::vector<double> angle;
-        controller.getObjectProperty(adaptee, BLOCK, ANGLE, angle);
+        std::string style;
+        controller.getObjectProperty(adaptee, BLOCK, STYLE, style);
 
-        int mirrorAndFlip = angle[0];
-        mirrorAndFlip ^= 1 << 0;
-
-        data[0] = mirrorAndFlip;
+        data[0] = has_flip(style);
         return o;
     }
 
@@ -181,32 +218,50 @@ struct flip
             return false;
         }
 
+        const std::string key("flip=");
+        std::string value = current->get(0, 0) ? "true" : "false";
+
         ScicosID adaptee = adaptor.getAdaptee()->id();
-        std::vector<double> angle;
-        controller.getObjectProperty(adaptee, BLOCK, ANGLE, angle);
+        std::string style;
+        controller.getObjectProperty(adaptee, BLOCK, STYLE, style);
 
-        int mirrorAndFlip = static_cast<int>(angle[0]);
-        current->get(0) ? mirrorAndFlip &= ~(1 << 0) : mirrorAndFlip |= 1 << 0;
-        angle[0] = mirrorAndFlip;
+        int valuePos = style.find(key);
+        if (valuePos > 0 && valuePos + key.size() < style.size())
+        {
+            // the key is found, handle it
 
-        controller.setObjectProperty(adaptee, BLOCK, ANGLE, angle);
+            std::string leading = style.substr(0, valuePos);
+            int end = style.find(';', valuePos);
+            std::string trailing;
+            if (end > 0)
+            {
+                trailing = style.substr(end);
+            }
+
+            style = leading + value + trailing;
+        }
+        else
+        {
+            style = style + ";" + key + value;
+        }
+
+        controller.setObjectProperty(adaptee, BLOCK, STYLE, style);
         return true;
     }
 };
 
 struct theta
 {
-
     static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         double* data;
         types::Double* o = new types::Double(1, 1, &data);
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        std::vector<double> angle;
-        controller.getObjectProperty(adaptee, BLOCK, ANGLE, angle);
+        std::string style;
+        controller.getObjectProperty(adaptee, BLOCK, STYLE , style);
 
-        data[0] = angle[1];
+        data[0] = has_theta(style);
         return o;
     }
 
@@ -226,12 +281,35 @@ struct theta
         }
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
-        std::vector<double> angle;
-        controller.getObjectProperty(adaptee, BLOCK, ANGLE, angle);
+        std::string style;
+        controller.getObjectProperty(adaptee, BLOCK, STYLE, style);
 
-        angle[1] = current->get(0);
+        const std::string key("rotation=");
+        std::stringstream streamValue;
+        streamValue << std::setprecision(0) << current->get(0, 0);
 
-        controller.setObjectProperty(adaptee, BLOCK, ANGLE, angle);
+        const std::string value = streamValue.str();
+
+        int valuePos = style.find(key);
+        if (valuePos > 0 && valuePos + key.size() < style.size())
+        {
+            // the key is found, handle it
+            std::string leading(style.substr(0, valuePos));
+            int end = style.find(';', valuePos);
+            std::string trailing;
+            if (end > 0)
+            {
+                trailing = style.substr(end);
+            }
+
+            style = leading + value + trailing;
+        }
+        else
+        {
+            style = style + ";" + key + value;
+        }
+
+        controller.setObjectProperty(adaptee, BLOCK, STYLE, style);
         return true;
     }
 };

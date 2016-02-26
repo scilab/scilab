@@ -260,9 +260,6 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case SIM_DEP_UT:
             os << "SIM_DEP_UT";
             break;
-        case ANGLE:
-            os << "ANGLE";
-            break;
         case EXPRS:
             os << "EXPRS";
             break;

@@ -440,9 +440,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case GEOMETRY:
                 o->getGeometry(v);
                 return true;
-            case ANGLE:
-                o->getAngle(v);
-                return true;
             case EXPRS:
                 o->getExprs(v);
                 return true;

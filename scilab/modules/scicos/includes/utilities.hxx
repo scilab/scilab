@@ -67,7 +67,6 @@ enum object_properties_t
     SIM_SCHEDULE,       //!< model::Descriptor::schedulingProperties value (stored into model::Block::sim)
     SIM_BLOCKTYPE,      //!< model::Descriptor::blocktype value (stored into model::Block::sim)
     SIM_DEP_UT,         //!< model::Descriptor::dep_ut value (stored into model::Block::sim)
-    ANGLE,              //!< model::Block::flip and theta values
     EXPRS,              //!< model::Block::exprs value
     INPUTS,             //!< model::Block::in value
     OUTPUTS,            //!< model::Block::out value

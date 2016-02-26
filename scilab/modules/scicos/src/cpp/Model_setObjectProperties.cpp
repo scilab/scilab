@@ -401,8 +401,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case GEOMETRY:
                 return o->setGeometry(v);
-            case ANGLE:
-                return o->setAngle(v);
             case EXPRS:
                 return o->setExprs(v);
             case STATE:
