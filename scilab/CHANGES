@@ -355,6 +355,8 @@ In 6.0.0:
 
 * Bug #14416 fixed - The file extension filter in Scinotes "Save as" window did not re-used the active file's extension when applicable.
 
+* Bug #14418 fixed - saxon9he.jar made scilab throw an XPathFactoryConfigurationException.
+
 * Bug #14423 fixed - bench_run did not have a return value, export file was not configurable
 
 * Bug #14425 fixed - xpause() was a duplicate of sleep(). sleep() did not propose "s" time unit.

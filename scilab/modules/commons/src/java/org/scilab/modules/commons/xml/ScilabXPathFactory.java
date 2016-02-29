@@ -16,6 +16,7 @@
 package org.scilab.modules.commons.xml;
 
 import javax.xml.xpath.XPathFactory;
+import javax.xml.xpath.XPathFactoryConfigurationException;
 
 /**
  * Class to provide a way to be sure that the default PathFactory provided by Java framework will be used.
@@ -32,7 +33,6 @@ public class ScilabXPathFactory {
     public static String useDefaultTransformerFactoryImpl() {
         String factory = System.getProperty(XPATHFACTORYPROPERTY);
         System.setProperty(XPATHFACTORYPROPERTY, XPATHFACTORYIMPL);
-
         return factory;
     }
 
@@ -53,9 +53,14 @@ public class ScilabXPathFactory {
      */
     public static XPathFactory newInstance() {
         String factory = useDefaultTransformerFactoryImpl();
-        XPathFactory xpf = XPathFactory.newInstance();
+        XPathFactory xpf;
+        try {
+            xpf = XPathFactory.newInstance(XPathFactory.DEFAULT_OBJECT_MODEL_URI, XPATHFACTORYIMPL, ScilabXPathFactory.class.getClassLoader());
+        } catch (XPathFactoryConfigurationException e) {
+            e.printStackTrace();
+            return XPathFactory.newInstance();
+        }
         restoreTransformerFactoryImpl(factory);
-
         return xpf;
     }
 }
