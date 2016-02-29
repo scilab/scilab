@@ -316,6 +316,8 @@ In 6.0.0:
 
 * Bug #14433 fixed - acoth (which call atanh) crash scilab
 
+* Bug #14434 fixed - PlotSparse did not work anymore.
+
 In 6.0.0 beta-1:
 
 * Bug #6057 fixed  - trailing space after minus sign has been removed from the display of values

@@ -21,19 +21,17 @@ function [col, mark] = ana_style(style)
     tab_mark = ["." "+" "x" "*" "D" "d" "^" "v" "o"]
     num_mark = [ 0   1   2   3   4   5   6   7   9 ]
 
-    deff("[b] = is_digit(c)",[ "code = _str2code(c)";...
-    "b = 0 <= code & code <= 9" ])
     n = length(style)
     if n >= 1 then
         c = part(style,1) ; ic = 1
         ind = grep(tab_col, c)
         if ind == [] then
-            if is_digit(c) then
+            if isdigit(c) then
                 while %t
                     ic = ic+1
                     if ic <= n then
                         c = part(style,ic)
-                        if ~is_digit(c) then , break, end
+                        if ~isdigit(c) then , break, end
                     else
                         break
                     end
