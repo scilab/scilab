@@ -1279,7 +1279,8 @@ SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controll
   (void)jenv;
   (void)jcls;
   Swig::JavaString javaString(jenv, jarg1);
-  *arg1 = std::string(javaString.c_str());
+  std::string arg1_str(javaString.c_str());
+  arg1 = &arg1_str;
   result = (org_scilab_modules_scicos::View *)org_scilab_modules_scicos::Controller::look_for_view((std::string const &)*arg1);
   *(org_scilab_modules_scicos::View **)&jresult = result; 
   
@@ -1887,7 +1888,8 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controlle
   arg3 = (kind_t)jarg3; 
   arg4 = (object_properties_t)jarg4; 
   Swig::JavaString javaString(jenv, jarg5);
-  *arg5 = std::string(javaString.c_str());
+  std::string arg5_str(javaString.c_str());
+  arg5 = &arg5_str;
   result = (update_status_t)(arg1)->setObjectProperty(arg2,arg3,arg4,(std::string const &)*arg5);
   jresult = (jint)result; 
   
@@ -2892,7 +2894,8 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfS
   (void)jarg1_;
   arg1 = *(std::vector< std::string > **)&jarg1; 
   Swig::JavaString javaString(jenv, jarg2);
-  *arg2 = std::string(javaString.c_str());
+  std::string arg2_str(javaString.c_str());
+  arg2 = &arg2_str;
   (arg1)->push_back((std::vector< std::string >::value_type const &)*arg2);
   
 }
@@ -2909,7 +2912,8 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Vecto
   (void)jarg1_;
   arg1 = *(std::vector< std::string > **)&jarg1; 
   Swig::JavaString javaString(jenv, jarg2);
-  *arg2 = std::string(javaString.c_str());
+  std::string arg2_str(javaString.c_str());
+  arg2 = &arg2_str;
   result = (bool)std_vector_Sl_std_string_Sg__contains(arg1,(std::string const &)*arg2);
   jresult = (jboolean)result; 
   
@@ -2928,7 +2932,8 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfS
   (void)jarg1_;
   arg1 = *(std::vector< std::string > **)&jarg1; 
   Swig::JavaString javaString(jenv, jarg2);
-  *arg2 = std::string(javaString.c_str());
+  std::string arg2_str(javaString.c_str());
+  arg2 = &arg2_str;
   result = (int)std_vector_Sl_std_string_Sg__indexOf(arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   
@@ -2971,7 +2976,8 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfS
   arg1 = *(std::vector< std::string > **)&jarg1; 
   arg2 = (int)jarg2; 
   Swig::JavaString javaString(jenv, jarg3);
-  *arg3 = std::string(javaString.c_str());
+  std::string arg3_str(javaString.c_str());
+  arg3 = &arg3_str;
   try {
     std_vector_Sl_std_string_Sg__set(arg1,arg2,(std::string const &)*arg3);
   }
@@ -2995,7 +3001,8 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfS
   arg1 = *(std::vector< std::string > **)&jarg1; 
   arg2 = (int)jarg2; 
   Swig::JavaString javaString(jenv, jarg3);
-  *arg3 = std::string(javaString.c_str());
+  std::string arg3_str(javaString.c_str());
+  arg3 = &arg3_str;
   try {
     std_vector_Sl_std_string_Sg__add__SWIG_1(arg1,arg2,(std::string const &)*arg3);
   }
@@ -3019,7 +3026,8 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Vecto
   (void)jarg1_;
   arg1 = *(std::vector< std::string > **)&jarg1; 
   Swig::JavaString javaString(jenv, jarg2);
-  *arg2 = std::string(javaString.c_str());
+  std::string arg2_str(javaString.c_str());
+  arg2 = &arg2_str;
   result = (bool)std_vector_Sl_std_string_Sg__remove(arg1,(std::string const &)*arg2);
   jresult = (jboolean)result; 
   
@@ -3344,7 +3352,8 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_register_
   (void)jcls;
   (void)jarg2_;
   Swig::JavaString javaString(jenv, jarg1);
-  *arg1 = std::string(javaString.c_str());
+  std::string arg1_str(javaString.c_str());
+  arg1 = &arg1_str;
   arg2 = *(org_scilab_modules_scicos::View **)&jarg2; 
   register_view((std::string const &)*arg1,arg2);
   

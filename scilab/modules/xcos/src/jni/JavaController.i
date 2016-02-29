@@ -227,7 +227,8 @@ namespace std {
 
 %typemap(in,noblock=1) const std::string & {
   Swig::JavaString javaString(jenv, $input);
-  *$1 = std::string(javaString.c_str());
+  std::string $1_str(javaString.c_str());
+  $1 = &$1_str;
 }
 
 %typemap(argout,noblock=1) const std::string & { }
