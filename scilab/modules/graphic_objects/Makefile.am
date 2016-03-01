@@ -121,6 +121,7 @@ libscigraphic_objects_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
     -I$(top_srcdir)/usr/include/ \
     $(JAVA_JNI_INCLUDE) \
     $(AM_CPPFLAGS)

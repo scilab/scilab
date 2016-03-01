@@ -18,6 +18,7 @@
 
 #include <string>
 #include <vector>
+#include <list>
 #include <unordered_map>
 
 typedef void(*setFunction)(int, std::string&, bool);
@@ -155,7 +156,7 @@ public:
     static bool isFigure(int uid);
     static bool isUIcontrol(int uid);
     static bool isButton(int uid);
-    
+
     //create
     static bool createFigure(int uid, std::string& str);
 

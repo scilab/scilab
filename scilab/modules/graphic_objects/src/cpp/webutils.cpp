@@ -13,7 +13,9 @@
 *
 */
 
+#include <string.h>
 #include <iostream>
+#include <cmath>
 #include "webutils.hxx"
 
 extern "C"
