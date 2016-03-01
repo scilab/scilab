@@ -236,17 +236,32 @@ void ScilabWebView::updateObject(int uid, int prop)
                 s->emit("graphic_update", str);
                 return;
             }
+            case __GO_LAYOUT__:
+            {
+                std::string str;
+                WebUtils::setUILayout(uid, str);
+                s->emit("graphic_update", str);
+                return;
+            }
         }
     }
 
     if (WebUtils::isUIcontrol(uid))
     {
-        std::string str;
-        if (WebUtils::set(prop, uid, str))
+        std::cerr << uid << ":" << prop << std::endl;
+        if (WebUtils::hasValidParent(uid) || prop == __GO_PARENT__)
         {
-            s->emit("graphic_update", str);
+            std::string str;
+            if (WebUtils::set(prop, uid, str))
+            {
+                s->emit("graphic_update", str);
+            }
         }
-
+        else
+        {
+            //parent is not already set, put update in waiting queue
+            WebUtils::addInWaitingQueue(uid, prop);
+        }
         return;
     }
 }

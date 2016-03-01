@@ -21,9 +21,12 @@ extern "C"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "LayoutType.h"
+#include "BorderLayoutType.h"
 }
 
-std::unordered_map<int, setFunction> WebUtils::setter;
+WebUtils::SETTER WebUtils::setter;
+WebUtils::WAITING_PROP WebUtils::waitprop;
 
 int WebUtils::getIntProperty(int uid, int prop)
 {
@@ -154,6 +157,28 @@ std::string WebUtils::getColor(const std::vector<double>& c)
     return str;
 }
 
+std::string WebUtils::getSubPadding(int val)
+{
+    if (val)
+    {
+        return std::to_string(val) + "px ";
+    }
+
+    return "0 ";
+}
+
+std::string WebUtils::getPadding(int t, int r, int b, int l)
+{
+    std::string ret;
+
+    ret += getSubPadding(t);
+    ret += getSubPadding(r);
+    ret += getSubPadding(b);
+    ret += getSubPadding(l);
+
+    return ret;
+}
+
 bool WebUtils::isManaged(int uid)
 {
     int type = getType(uid);
@@ -178,6 +203,11 @@ int WebUtils::getStyle(int uid)
     return getIntProperty(uid, __GO_STYLE__);
 }
 
+bool WebUtils::hasValidParent(int uid)
+{
+    return getParent(uid) != 0;
+}
+
 int WebUtils::getParent(int uid)
 {
     return getIntProperty(uid, __GO_PARENT__);
@@ -194,6 +224,14 @@ void WebUtils::setParent(int uid, std::string& str, bool append)
 
     str += "var __parent__ = " + getElementById(parent);
     str += "__parent__.appendChild(__child__);";
+
+    if (getUILayout(parent) == LAYOUT_BORDER)
+    {
+        //force update of border position, especially for center
+        addInWaitingQueue(uid, __GO_UI_BORDER_POSITION__);
+    }
+
+    setWaitingProperties(uid, str, false);
 }
 
 void WebUtils::getFigureSize(int uid, std::vector<int>& vect)
@@ -544,6 +582,117 @@ int WebUtils::getUILayout(int uid)
 
 void WebUtils::setUILayout(int uid, std::string& str, bool append)
 {
+    if (isFigure(uid) || hasStyle(uid, __GO_UI_FRAME__))
+    {
+        //TODO clean previous layout before create new one
+
+        if (append == false)
+        {
+            str = "var __child__ = " + getElementById(uid) + ";";
+        }
+
+        int layout = getUILayout(uid);
+        switch (layout)
+        {
+            case LAYOUT_BORDER:
+            {
+                //create a table ( ascii art powa ! )
+                //+---------------------+
+                //|         TOP         |
+                //+---+-------------+---+
+                //| L |             | R |
+                //| E |             | I |
+                //| F |   CENTER    | G |
+                //| T |             | H |
+                //|   |             | T |
+                //+---+-------------+---+
+                //|       BOTTOM        |
+                //+---------------------+
+
+                //table
+                str += "var __table__ = " + createElement("TABLE");
+                str += "__table__.id = " + getIdString(uid, "_table") + ";";
+                str += "__table__.style.margin = '0';";
+                str += "__table__.style.padding = '0';";
+                str += "__table__.style.width = '100%';";
+                str += "__table__.style.height = '100%';";
+                str += "__table__.style.borderCollapse = 'collapse';";
+
+                //rows
+                str += "var __tr_top__ = " + createElement("TR");
+                str += "var __tr_middle__ = " + createElement("TR");
+                str += "var __tr_bottom__ = " + createElement("TR");
+
+                //cell in rows
+                str += "var __td_top__ = " + createElement("TD");
+                str += "__td_top__.colSpan = '3';";
+                str += "__td_top__.id = " + getIdString(uid, "_top") + ";";
+                str += "__td_top__.style.width = '100%';";
+
+                str += "var __td_left__ = " + createElement("TD");
+                str += "__td_left__.id = " + getIdString(uid, "_left") + ";";
+                str += "__td_left__.style.height = '100%';";
+
+                str += "var __td_center__ = " + createElement("TD");
+                str += "__td_center__.id = " + getIdString(uid, "_center") + ";";
+                str += "__td_center__.style.width = '100%';";
+                str += "__td_center__.style.height = '100%';";
+
+                str += "var __td_right__ = " + createElement("TD");
+                str += "__td_right__.id = " + getIdString(uid, "_right") + ";";
+                str += "__td_right__.style.height = '100%';";
+
+                str += "var __td_bottom__ = " + createElement("TD");
+                str += "__td_bottom__.colSpan = '3';";
+                str += "__td_bottom__.id = " + getIdString(uid, "_bottom") + ";";
+                str += "__td_bottom__.style.width = '100%';";
+
+                //hierarchy
+
+                //td in tr
+                str += "__tr_top__.appendChild(__td_top__);";
+                str += "__tr_middle__.appendChild(__td_left__);";
+                str += "__tr_middle__.appendChild(__td_center__);";
+                str += "__tr_middle__.appendChild(__td_right__);";
+                str += "__tr_bottom__.appendChild(__td_bottom__);";
+
+                //tr in table
+                str += "__table__.appendChild(__tr_top__);";
+                str += "__table__.appendChild(__tr_middle__);";
+                str += "__table__.appendChild(__tr_bottom__);";
+
+                //table in parent
+                str += "__child__.appendChild(__table__);";
+
+                break;
+            }
+            case LAYOUT_GRID:
+            {
+                break;
+            }
+            case LAYOUT_GRIDBAG:
+            {
+                //add empty table
+                str += "var __table__ = " + createElement("TABLE");
+                str += "__table__.id = " + getIdString(uid, "_table") + ";";
+                str += "__table__.style.margin = '0';";
+                str += "__table__.style.padding = '0';";
+                str += "__table__.style.width = '100%';";
+                str += "__table__.style.height = '100%';";
+                str += "__table__.style.borderCollapse = 'collapse';";
+  
+                //table in parent
+                str += "__child__.appendChild(__table__);";
+                break;
+            }
+            default:
+            case LAYOUT_NONE:
+            {
+                break;
+            }
+
+        }
+    }
 }
 
 double WebUtils::getUIMin(int uid)
@@ -634,6 +783,142 @@ void WebUtils::setUIValue(int uid, std::string& str, bool append)
 
         str += "__child__.value  = '" + std::to_string(values[0]) + "';";
     }
+}
+
+void WebUtils::getUIBorderPreferredSize(int uid, std::vector<int>& vect)
+{
+    vect.resize(2, 0);
+    getIntVectorProterty(uid, __GO_UI_BORDER_PREFERREDSIZE__, vect);
+}
+
+void WebUtils::getUIBorderPadding(int uid, std::vector<int>& vect)
+{
+    vect.resize(2, 0);
+    getIntVectorProterty(uid, __GO_BORDER_OPT_PADDING__, vect);
+}
+
+int WebUtils::getUIBorderPosition(int uid)
+{
+    return getIntProperty(uid, __GO_UI_BORDER_POSITION__);
+}
+
+void WebUtils::setUIBorder(int uid, std::string& str, bool append)
+{
+    int parent = getParent(uid);
+    std::string position;
+    std::string padding;
+    int border = getUIBorderPosition(uid);
+
+    std::vector<int> pad;
+    getUIBorderPadding(parent, pad);
+
+    std::vector<int> size;
+    getUIBorderPreferredSize(uid, size);
+
+
+
+    if (append == false)
+    {
+        str = "var __child__ = " + getElementById(uid);
+    }
+
+    switch (border)
+    {
+        default:
+        case BORDER_CENTER:
+            position = "_center";
+            str += "__child__.style.width = '100%';";
+            str += "__child__.style.height = '100%';";
+            padding = getPadding(0, 0, 0, 0);
+            break;
+        case BORDER_BOTTOM:
+            position = "_bottom";
+            str += "__child__.style.width = '100%';";
+
+            if (size[1] == -1)
+            {
+                str += "__child__.style.height = 'inherit';";
+            }
+            else
+            {
+                str += "__child__.style.height = '" + getSubPadding(size[1]) + "';";
+            }
+
+            padding = getPadding(pad[1], 0, 0, 0);
+            break;
+        case BORDER_TOP:
+            position = "_top";
+            str += "__child__.style.width = '100%';";
+
+            if (size[1] == -1)
+            {
+                str += "__child__.style.height = 'inherit';";
+            }
+            else
+            {
+                str += "__child__.style.height = '" + getSubPadding(size[1]) + "';";
+            }
+
+            padding = getPadding(0, 0, pad[1], 0);
+            break;
+        case BORDER_LEFT:
+            position = "_left";
+
+            if (size[0] == -1)
+            {
+                str += "__child__.style.width = 'inherit';";
+            }
+            else
+            {
+                str += "__child__.style.width = '" + getSubPadding(size[0]) + "';";
+            }
+
+            str += "__child__.style.height = '100%';";
+            padding = getPadding(0, pad[0], 0, 0);
+            break;
+        case BORDER_RIGHT:
+            position = "_right";
+
+            if (size[0] == -1)
+            {
+                str += "__child__.style.width = 'inherit';";
+            }
+            else
+            {
+                str += "__child__.style.width = '" + getSubPadding(size[0]) + "';";
+            }
+
+            str += "__child__.style.height = '100%';";
+            padding = getPadding(0, 0, 0, pad[0]);
+            break;
+    }
+
+
+    //move child in targeted cell
+    str += "__parent__ = " + getElementById(parent, position);
+    str += "__parent__.appendChild(__child__);";
+    str += "__parent__.style.padding = '" + padding + "';";
+
+    //to well perform positionning, we must clear some default properties
+    //position left, right, width, height, 
+
+    str += "__child__.style.position = 'inherit';";
+    str += "__child__.style.left = 'inherit';";
+    str += "__child__.style.bottom = 'inherit';";
+}
+
+void WebUtils::getUIGridBagGrid(int uid, std::vector<int>& vect)
+{
+    vect.resize(4, 0);
+    getIntVectorProterty(uid, __GO_UI_GRIDBAG_GRID__, vect);
+}
+
+
+void WebUtils::setUIGridBag(int uid, std::string& str, bool append)
+{
+    std::vector<int> grid;
+    getUIGridBagGrid(uid, grid);
+
 }
 
 bool WebUtils::hasCallback(int uid)
@@ -882,7 +1167,7 @@ bool WebUtils::createRadio(int uid, std::string& str)
     str += "__main__.className = 'GO_RADIO';";
     //add item temporary in main div waiting __GO_PARENT__ update
     str += "var __parent__ = document.getElementById('scilab');";
-    str += "__parent__.appendChild(__main__);";
+    str += "__parent__.appendChild(__main__)";;
 
     //the radio itself
     str += "var __temp__ = " + createElement("INPUT");
@@ -1041,12 +1326,12 @@ bool WebUtils::updateDefaultProperties(int uid, std::string& update)
     return true;
 }
 
-bool WebUtils::set(int prop, int uid, std::string& str)
+bool WebUtils::set(int prop, int uid, std::string& str, bool append)
 {
     SETTER::iterator it = setter.find(prop);
     if (it != setter.end())
     {
-        it->second(uid, str, false);
+        it->second(uid, str, append);
 
         return true;
     }
@@ -1076,6 +1361,10 @@ void WebUtils::fillSetter()
     setter[__GO_UI_MAX__] = WebUtils::setUIMax;
     setter[__GO_UI_SLIDERSTEP__] = WebUtils::setUIStep;
     setter[__GO_UI_VALUE__] = WebUtils::setUIValue;
+    //preferred size is the last property to be set for border constraints
+    setter[__GO_UI_BORDER_PREFERREDSIZE__] = WebUtils::setUIBorder;
+    //preferred size is the last property to be set for gridbag constraints
+    setter[__GO_UI_GRIDBAG_PREFERREDSIZE__] = WebUtils::setUIGridBag;
     //setter[__GO_CALLBACK__] = WebUtils::setCallback;
 }
 
@@ -1110,3 +1399,20 @@ bool WebUtils::updateValue(int uid, bool value)
     return false;
 }
 
+void WebUtils::addInWaitingQueue(int uid, int prop)
+{
+    waitprop[uid].push_back(prop);
+}
+
+void WebUtils::setWaitingProperties(int uid, std::string& str, bool append)
+{
+    WAITING_PROP::iterator it = waitprop.find(uid);
+    if (it != waitprop.end())
+    {
+        for (int prop : it->second)
+        {
+            set(prop, uid, str, append);
+        }
+        waitprop.erase(it);
+    }
+}

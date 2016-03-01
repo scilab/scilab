@@ -1,4 +1,4 @@
-if 1 then
+if 0 then
     f1 = createWindow();
     f1.position(3:4) = [250, 100];
 
@@ -109,4 +109,115 @@ if 0 then
     set("sliderB", "callback", "onchange");
     
     f.visible = %t;
+end
+
+//layout border
+if 1 then
+    
+    f = createWindow();
+    f.layout = "border";
+    f.layout_options = createLayoutOptions("border", [10, 10]);
+    //f.layout_options = createLayoutOptions("border");
+
+    c = createConstraints("border", "top", [50,20]);
+
+    t = %t;
+    l = %t;
+    m = %t;
+    r = %t;
+    b = %t;
+    
+    if t then
+        u_grid1 = uicontrol(f,...
+            "style", "frame",...
+            "backgroundcolor", [1 0 0], ...
+            "constraints", c);
+    end
+    
+    if l then
+        c.position = "left";
+        u_grid2 = uicontrol(f,...
+            "style", "frame",...
+            "backgroundcolor", [0 1 0], ...
+            "constraints", c);
+    end
+    
+    if m then
+        c.position = "center";
+        u_grid3 = uicontrol(f,...
+            "style", "frame",...
+            "backgroundcolor", [0 0 1], ...
+            "constraints", c);
+    end
+    
+    if r then
+        c.preferredsize = [100, 100];
+        c.position = "right";
+        u_grid4 = uicontrol(f,...
+            "style", "frame",...
+            "backgroundcolor", [1 1 0], ...
+            "constraints", c);
+    end
+    
+    if b then
+        c.position = "bottom";
+        u_grid5 = uicontrol(f,...
+            "style", "frame",...
+            "backgroundcolor", [1 0 1], ...
+            "constraints", c);
+    end
+end
+
+//gridbag
+if 0 then
+    f = createWindow();
+    f.position = [200 200 200 100];
+    f.layout = "gridbag";
+    
+    c = createConstraints("gridbag",[1, 1, 1, 1], [1, 1], "both", "center", [0, 0], [50, 50]);
+
+    redf_grid   = [1, 1, 1, 1];
+    greenf_grid = [1, 2, 1, 1];
+    bluef_grid  = [1, 3, 2, 1];
+    yelf_grid   = [2, 1, 1, 2];
+    magf_grid   = [3, 1, 1, 1];
+    cyanf_grid  = [3, 2, 1, 2];
+
+    c.grid = redf_grid;
+    u_grid1 = uicontrol(f , ...
+        "style"               , "frame" , ...
+        "backgroundcolor"     , [1 0 0] , ...
+        "constraints"         , c);
+
+    if 0 then
+        c.grid = greenf_grid;
+        u_grid2 = uicontrol(f , ...
+            "style"               , "frame", ...
+            "backgroundcolor"     , [0 1 0], ...
+            "constraints"         , c);
+
+        c.grid = bluef_grid;
+        u_grid3 = uicontrol(f , ...
+            "style"               , "frame", ...
+            "backgroundcolor"     , [0 0 1], ...
+            "constraints"         , c);
+
+        c.grid = yelf_grid;
+        u_grid4 = uicontrol(f , ...
+            "style"               , "frame", ...
+            "backgroundcolor"     , [1 1 0], ...
+            "constraints"         , c);
+
+        c.grid = magf_grid;
+        u_grid5 = uicontrol(f , ...
+            "style"               , "frame", ...
+            "backgroundcolor"     , [1 0 1], ...
+            "constraints"         , c);
+       
+        c.grid = cyanf_grid;
+        u_grid1 = uicontrol(f , ...
+            "style"               , "frame", ...
+            "backgroundcolor"     , [0 1 1], ...
+            "constraints"         , c);
+    end
 end

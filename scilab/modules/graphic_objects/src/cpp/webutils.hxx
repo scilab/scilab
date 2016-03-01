@@ -30,6 +30,9 @@ class WebUtils
     typedef std::unordered_map<int, setFunction> SETTER;
     static SETTER setter;
 
+    typedef std::unordered_map<int, std::list<int>> WAITING_PROP;
+    static WAITING_PROP waitprop;
+
     static bool hasStyle(int uid, int style);
     static bool isInputType(int uid);
 
@@ -38,10 +41,17 @@ class WebUtils
     static std::string createElement(const std::string& type);
 
     static std::string getColor(const std::vector<double>& c);
+
+    static std::string getSubPadding(int val);
+    static std::string getPadding(int t, int r, int b, int l);
 public:
 
+    static bool hasValidParent(int uid);
+    static void addInWaitingQueue(int uid, int prop);
+    static void setWaitingProperties(int uid, std::string& str, bool append);
+
     static void fillSetter();
-    static bool set(int prop, int uid, std::string& str);
+    static bool set(int prop, int uid, std::string& str, bool append = false);
 
     static bool updateValue(int uid, bool value);
     static bool updateValue(int uid, double value);
@@ -127,6 +137,16 @@ public:
     static bool getUIValue(int uid, std::vector<double>& vect);
     static void setUIValue(int uid, std::string& str, bool append = false);
 
+    //border layout
+    static int getUIBorderPosition(int uid);
+    static void getUIBorderPadding(int uid, std::vector<int>& vect);
+    static void getUIBorderPreferredSize(int uid, std::vector<int>& vect);
+    static void setUIBorder(int uid, std::string& str, bool append = false);
+
+    //gridbag layout
+    static void getUIGridBagGrid(int uid, std::vector<int>& vect);
+    static void setUIGridBag(int uid, std::string& str, bool append = false);
+
     static bool hasCallback(int uid);
     static void setCallback(int uid, std::string& str, bool append = false);
 
@@ -156,9 +176,6 @@ public:
     static bool updateDefaultProperties(int uid, std::string& str);
     //delete
     static bool deleteObject(int uid, std::string& str);
-
-
-    //cupdate
 };
 #endif /* !__WEB_UTILS_HXX__ */
 

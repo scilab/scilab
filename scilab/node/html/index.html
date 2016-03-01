@@ -34,17 +34,13 @@ body {
     width : 610px;
     height : 460px;
     margin : auto;
-    border : 2px rgb(0,0,0) solid;
+    //border : 2px rgb(0,0,0) solid;
     overflow : auto;
     text-align: left;
 }
 
 .GO_PUSHBUTTON {
     position: absolute;
-    left: 20px;
-    bottom: 40px;
-    width : 40px;
-    height : 20px;
     text-align:center;
     overflow : hidden;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
@@ -63,7 +59,7 @@ body {
     overflow : hidden;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
     font-size:11px;
-    border : 1px rgb(0,0,0) solid;
+    //border : 1px rgb(0,0,0) solid;
     visibility:inherit;
 }
 
@@ -246,6 +242,36 @@ body {
     </head>
     <body>
         <h1>Scilab WebView</h1>
+        <table width=200 height=100>
+            <tr>
+                <td bgcolor="red"></td>
+                <td bgcolor="yellow" colspan="2"></td>
+            </tr>
+            <tr>
+                <td bgcolor="lime"></td>
+                <td bgcolor="magenta"></td>
+                <td bgcolor="cyan" rowspan="2"></td>
+            </tr>
+            <tr>
+                <td bgcolor="blue" colspan="2"></td>
+            </tr>
+        </table>
+        <br>
+        <table width=200 height=100>
+            <tr>
+                <td bgcolor="red"></td>
+                <td bgcolor="yellow" rowspan="2"></td>
+                <td bgcolor="magenta"></td>
+            </tr>
+            <tr>
+                <td bgcolor="lime"></td>
+                <td bgcolor="cyan" rowspan="2"></td>
+            </tr>
+            <tr>
+                <td bgcolor="blue" colspan="2"></td>
+            </tr>
+        </table>
+        
         <div id='infobar'></div>
         <h3>Logger:</h3>
         <div class='log' id='logger'></div>
