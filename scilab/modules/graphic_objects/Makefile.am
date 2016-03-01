@@ -43,7 +43,8 @@ GRAPHIC_OBJECTS_C_SOURCES = \
     src/jni/ScilabNativeView_wrap.c \
     src/jni/PolylineData_wrap.c \
     src/jni/SurfaceData_wrap.c \
-    src/jni/ObjectData_wrap.c
+    src/jni/ObjectData_wrap.c \
+    src/jni/ScilabNativeWebView_wrap.c
 
 GRAPHIC_OBJECTS_CXX_SOURCES = \
     src/cpp/createGraphicObject.cpp \
@@ -85,7 +86,9 @@ GRAPHIC_OBJECTS_CXX_SOURCES = \
     src/cpp/pickSurface.cpp \
     src/cpp/Texture.cpp \
     src/cpp/NormalGenerator.cpp \
-    src/cpp/DllmainGraphic_objects.cpp
+    src/cpp/DllmainGraphic_objects.cpp \
+    src/cpp/ScilabWebView.cpp \
+    src/cpp/webutils.cpp
 
 GIWS_WRAPPERS = \
     src/jni/graphic_objects.giws.xml \
@@ -116,6 +119,9 @@ libscigraphic_objects_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/usr/include/ \
     $(JAVA_JNI_INCLUDE) \
     $(AM_CPPFLAGS)
 
@@ -164,7 +170,7 @@ if SWIG
 BUILT_SOURCES+=swig
 endif
 
-libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la $(X_LIBS) $(X_EXTRA_LIBS)
+libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la $(X_LIBS) $(X_EXTRA_LIBS) -L$(top_builddir)/lib/thirdparty/ -lsocketio_client
 
 
 #### graphic_objects : gateway declaration ####

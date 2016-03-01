@@ -55,7 +55,8 @@ CORE_CPP_SOURCES = \
     src/cpp/getmacrosname.cpp \
     src/cpp/getfunctionsname.cpp \
     src/cpp/InitScilab.cpp \
-    src/cpp/setformat.cpp
+    src/cpp/setformat.cpp \
+    src/cpp/webcommand.cpp
 
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
@@ -204,7 +205,7 @@ libscicore_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscicore_algo_la_CPPFLAGS = $(libscicore_la_CPPFLAGS)
 
 # Commented because it is easier to comment first the core module
-libscicore_la_LIBADD = libscicore-algo.la $(XML_LIBS)
+libscicore_la_LIBADD = libscicore-algo.la $(XML_LIBS) -L$(top_builddir)/lib/thirdparty/ -lsocketio_client
 
 #### Target ######
 modulename=core

@@ -203,7 +203,8 @@ am__objects_2 = src/jni/libscigraphic_objects_la-DataLoader_wrap.lo \
 	src/jni/libscigraphic_objects_la-ScilabNativeView_wrap.lo \
 	src/jni/libscigraphic_objects_la-PolylineData_wrap.lo \
 	src/jni/libscigraphic_objects_la-SurfaceData_wrap.lo \
-	src/jni/libscigraphic_objects_la-ObjectData_wrap.lo
+	src/jni/libscigraphic_objects_la-ObjectData_wrap.lo \
+	src/jni/libscigraphic_objects_la-ScilabNativeWebView_wrap.lo
 am__objects_3 =  \
 	src/jni/libscigraphic_objects_la-CallGraphicController.lo \
 	src/jni/libscigraphic_objects_la-Builder.lo \
@@ -248,7 +249,9 @@ am__objects_4 =  \
 	src/cpp/libscigraphic_objects_la-pickSurface.lo \
 	src/cpp/libscigraphic_objects_la-Texture.lo \
 	src/cpp/libscigraphic_objects_la-NormalGenerator.lo \
-	src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo
+	src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo \
+	src/cpp/libscigraphic_objects_la-ScilabWebView.lo \
+	src/cpp/libscigraphic_objects_la-webutils.lo
 am_libscigraphic_objects_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libscigraphic_objects_la_OBJECTS =  \
@@ -734,7 +737,8 @@ GRAPHIC_OBJECTS_C_SOURCES = \
     src/jni/ScilabNativeView_wrap.c \
     src/jni/PolylineData_wrap.c \
     src/jni/SurfaceData_wrap.c \
-    src/jni/ObjectData_wrap.c
+    src/jni/ObjectData_wrap.c \
+    src/jni/ScilabNativeWebView_wrap.c
 
 GRAPHIC_OBJECTS_CXX_SOURCES = \
     src/cpp/createGraphicObject.cpp \
@@ -776,7 +780,9 @@ GRAPHIC_OBJECTS_CXX_SOURCES = \
     src/cpp/pickSurface.cpp \
     src/cpp/Texture.cpp \
     src/cpp/NormalGenerator.cpp \
-    src/cpp/DllmainGraphic_objects.cpp
+    src/cpp/DllmainGraphic_objects.cpp \
+    src/cpp/ScilabWebView.cpp \
+    src/cpp/webutils.cpp
 
 GIWS_WRAPPERS = \
     src/jni/graphic_objects.giws.xml \
@@ -802,6 +808,9 @@ libscigraphic_objects_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/usr/include/ \
     $(JAVA_JNI_INCLUDE) \
     $(AM_CPPFLAGS)
 
@@ -839,7 +848,7 @@ SWIG_WRAPPERS = \
     src/jni/graphic_objects.i \
     src/jni/ObjectData.i
 
-libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la $(X_LIBS) $(X_EXTRA_LIBS)
+libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la $(X_LIBS) $(X_EXTRA_LIBS) -L$(top_builddir)/lib/thirdparty/ -lsocketio_client
 
 #### graphic_objects : gateway declaration ####
 libscigraphic_objects_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -943,6 +952,8 @@ src/jni/libscigraphic_objects_la-SurfaceData_wrap.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 src/jni/libscigraphic_objects_la-ObjectData_wrap.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscigraphic_objects_la-ScilabNativeWebView_wrap.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 src/jni/libscigraphic_objects_la-CallGraphicController.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 src/jni/libscigraphic_objects_la-Builder.lo: src/jni/$(am__dirstamp) \
@@ -1035,6 +1046,10 @@ src/cpp/libscigraphic_objects_la-NormalGenerator.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscigraphic_objects_la-ScilabWebView.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscigraphic_objects_la-webutils.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscigraphic_objects.la: $(libscigraphic_objects_la_OBJECTS) $(libscigraphic_objects_la_DEPENDENCIES) $(EXTRA_libscigraphic_objects_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libscigraphic_objects_la_LINK) $(am_libscigraphic_objects_la_rpath) $(libscigraphic_objects_la_OBJECTS) $(libscigraphic_objects_la_LIBADD) $(LIBS)
@@ -1081,6 +1096,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-Plot3DDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-PolylineDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-ScilabView.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-ScilabWebView.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-Texture.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-Triangulator.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-createGraphicObject.Plo@am__quote@
@@ -1091,6 +1107,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-getGraphicObjectProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-pickSurface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-setGraphicObjectProperty.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-webutils.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-Builder.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-CallGraphicController.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-CallXmlLoader.Plo@am__quote@
@@ -1098,6 +1115,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-ObjectData_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-PolylineData_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-ScilabNativeView_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-ScilabNativeWebView_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_objects_la-SurfaceData_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/nographic_objects/$(DEPDIR)/libscigraphic_objects_disable_la-nographic_objects.Plo@am__quote@
 
@@ -1166,6 +1184,13 @@ src/jni/libscigraphic_objects_la-ObjectData_wrap.lo: src/jni/ObjectData_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/ObjectData_wrap.c' object='src/jni/libscigraphic_objects_la-ObjectData_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/jni/libscigraphic_objects_la-ObjectData_wrap.lo `test -f 'src/jni/ObjectData_wrap.c' || echo '$(srcdir)/'`src/jni/ObjectData_wrap.c
+
+src/jni/libscigraphic_objects_la-ScilabNativeWebView_wrap.lo: src/jni/ScilabNativeWebView_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/jni/libscigraphic_objects_la-ScilabNativeWebView_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libscigraphic_objects_la-ScilabNativeWebView_wrap.Tpo -c -o src/jni/libscigraphic_objects_la-ScilabNativeWebView_wrap.lo `test -f 'src/jni/ScilabNativeWebView_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabNativeWebView_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscigraphic_objects_la-ScilabNativeWebView_wrap.Tpo src/jni/$(DEPDIR)/libscigraphic_objects_la-ScilabNativeWebView_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/ScilabNativeWebView_wrap.c' object='src/jni/libscigraphic_objects_la-ScilabNativeWebView_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/jni/libscigraphic_objects_la-ScilabNativeWebView_wrap.lo `test -f 'src/jni/ScilabNativeWebView_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabNativeWebView_wrap.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -1491,6 +1516,20 @@ src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo: src/cpp/DllmainGraph
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/DllmainGraphic_objects.cpp' object='src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo `test -f 'src/cpp/DllmainGraphic_objects.cpp' || echo '$(srcdir)/'`src/cpp/DllmainGraphic_objects.cpp
+
+src/cpp/libscigraphic_objects_la-ScilabWebView.lo: src/cpp/ScilabWebView.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigraphic_objects_la-ScilabWebView.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigraphic_objects_la-ScilabWebView.Tpo -c -o src/cpp/libscigraphic_objects_la-ScilabWebView.lo `test -f 'src/cpp/ScilabWebView.cpp' || echo '$(srcdir)/'`src/cpp/ScilabWebView.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscigraphic_objects_la-ScilabWebView.Tpo src/cpp/$(DEPDIR)/libscigraphic_objects_la-ScilabWebView.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ScilabWebView.cpp' object='src/cpp/libscigraphic_objects_la-ScilabWebView.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigraphic_objects_la-ScilabWebView.lo `test -f 'src/cpp/ScilabWebView.cpp' || echo '$(srcdir)/'`src/cpp/ScilabWebView.cpp
+
+src/cpp/libscigraphic_objects_la-webutils.lo: src/cpp/webutils.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigraphic_objects_la-webutils.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigraphic_objects_la-webutils.Tpo -c -o src/cpp/libscigraphic_objects_la-webutils.lo `test -f 'src/cpp/webutils.cpp' || echo '$(srcdir)/'`src/cpp/webutils.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscigraphic_objects_la-webutils.Tpo src/cpp/$(DEPDIR)/libscigraphic_objects_la-webutils.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/webutils.cpp' object='src/cpp/libscigraphic_objects_la-webutils.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigraphic_objects_la-webutils.lo `test -f 'src/cpp/webutils.cpp' || echo '$(srcdir)/'`src/cpp/webutils.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

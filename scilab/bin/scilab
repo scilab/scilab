@@ -618,7 +618,7 @@ detect_java_vm() {
     case $OS in
         *darwin* | *Darwin*) # MacOS X
             export _JAVA_OPTIONS="-Djava.awt.headless=false"
-    ;;        
+    ;;
     esac
 
 ####### END OF JAVA ENV DETECTION/SETTING ######
@@ -764,7 +764,7 @@ set_macox_specific_path()
 #
 # Version checks for Mac
 #
-dialog_try_or_exit() 
+dialog_try_or_exit()
 {
     osascript $BINPATH/checkmacosx.applescript "$1" || exit 128
 }
@@ -1109,7 +1109,7 @@ if test "$rest" = "yes"; then
             # Under Mac OS X, .app is adding the arg -psn_0_xxxx
             # (psn = ProcessSerialNumber). It is not used (but could be in the future)
                 ;;
-            -display|-f|-l|-e|-d|--parse-file)
+            -display|-f|-l|-e|-d|--parse-file|-commandaddr|-graphicaddr)
                 prevarg=1
                 ;;
             -args) # Accept extra arguments

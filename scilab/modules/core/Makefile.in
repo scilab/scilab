@@ -241,7 +241,8 @@ am__objects_2 = src/cpp/libscicore_algo_la-demangle.lo \
 	src/cpp/libscicore_algo_la-getmacrosname.lo \
 	src/cpp/libscicore_algo_la-getfunctionsname.lo \
 	src/cpp/libscicore_algo_la-InitScilab.lo \
-	src/cpp/libscicore_algo_la-setformat.lo
+	src/cpp/libscicore_algo_la-setformat.lo \
+	src/cpp/libscicore_algo_la-webcommand.lo
 am__objects_3 = src/fortran/clunit.lo src/fortran/folhp.lo \
 	src/fortran/xerbla.lo src/fortran/expsum.lo \
 	src/fortran/readinter.lo src/fortran/rewindinter.lo \
@@ -805,7 +806,8 @@ CORE_CPP_SOURCES = \
     src/cpp/getmacrosname.cpp \
     src/cpp/getfunctionsname.cpp \
     src/cpp/InitScilab.cpp \
-    src/cpp/setformat.cpp
+    src/cpp/setformat.cpp \
+    src/cpp/webcommand.cpp
 
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
@@ -906,7 +908,7 @@ libscicore_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscicore_algo_la_CPPFLAGS = $(libscicore_la_CPPFLAGS)
 
 # Commented because it is easier to comment first the core module
-libscicore_la_LIBADD = libscicore-algo.la $(XML_LIBS)
+libscicore_la_LIBADD = libscicore-algo.la $(XML_LIBS) -L$(top_builddir)/lib/thirdparty/ -lsocketio_client
 
 #### Target ######
 modulename = core
@@ -1209,6 +1211,8 @@ src/cpp/libscicore_algo_la-getfunctionsname.lo:  \
 src/cpp/libscicore_algo_la-InitScilab.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscicore_algo_la-setformat.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicore_algo_la-webcommand.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/fortran/$(am__dirstamp):
 	@$(MKDIR_P) src/fortran
@@ -1560,6 +1564,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-setformat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-storeCommand.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-tasks.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-webcommand.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-with_module.Plo@am__quote@
 
 .c.o:
@@ -1910,6 +1915,13 @@ src/cpp/libscicore_algo_la-setformat.lo: src/cpp/setformat.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/setformat.cpp' object='src/cpp/libscicore_algo_la-setformat.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicore_algo_la-setformat.lo `test -f 'src/cpp/setformat.cpp' || echo '$(srcdir)/'`src/cpp/setformat.cpp
+
+src/cpp/libscicore_algo_la-webcommand.lo: src/cpp/webcommand.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicore_algo_la-webcommand.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicore_algo_la-webcommand.Tpo -c -o src/cpp/libscicore_algo_la-webcommand.lo `test -f 'src/cpp/webcommand.cpp' || echo '$(srcdir)/'`src/cpp/webcommand.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicore_algo_la-webcommand.Tpo src/cpp/$(DEPDIR)/libscicore_algo_la-webcommand.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/webcommand.cpp' object='src/cpp/libscicore_algo_la-webcommand.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicore_algo_la-webcommand.lo `test -f 'src/cpp/webcommand.cpp' || echo '$(srcdir)/'`src/cpp/webcommand.cpp
 
 sci_gateway/cpp/libscicore_la-core_gw.lo: sci_gateway/cpp/core_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-core_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-core_gw.Tpo -c -o sci_gateway/cpp/libscicore_la-core_gw.lo `test -f 'sci_gateway/cpp/core_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/core_gw.cpp
