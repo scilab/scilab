@@ -1,4 +1,4 @@
-if 0 then
+if 1 then
     f1 = createWindow();
     f1.position(3:4) = [250, 100];
 
@@ -112,7 +112,7 @@ if 0 then
 end
 
 //layout border
-if 1 then
+if 0 then
     
     f = createWindow();
     f.layout = "border";

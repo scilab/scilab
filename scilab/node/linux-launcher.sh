@@ -1,4 +1,5 @@
 #!/bin/sh
 
-export SCI=$(pwd)/../
+export SCIPATH=$(pwd)/..
+export SCIFILES=/node
 nodejs scilab_server.js

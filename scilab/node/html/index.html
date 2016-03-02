@@ -242,7 +242,7 @@ body {
     </head>
     <body>
         <h1>Scilab WebView</h1>
-        <table width=200 height=100>
+        <!--table width=200 height=100>
             <tr>
                 <td bgcolor="red"></td>
                 <td bgcolor="yellow" colspan="2"></td>
@@ -270,7 +270,7 @@ body {
             <tr>
                 <td bgcolor="blue" colspan="2"></td>
             </tr>
-        </table>
+        </table!-->
         
         <div id='infobar'></div>
         <h3>Logger:</h3>
@@ -279,7 +279,6 @@ body {
         <div class='window' id='scilab'></div>
         
         <script type='text/javascript'>
-            var command;
             // connect to server
             var socket = io();
 
@@ -350,9 +349,6 @@ body {
             }
             
             //socket events management
-            socket.on('command_end', function () {
-            });
-
             socket.on('disconnect', function () {
                 setInfo('Connection lost');
             });
@@ -372,17 +368,17 @@ body {
             
             socket.on('graphic_create', function (msg) {
                 //setLogger('<font color="green">' +  msg.data + '</font>');
-                eval(msg.data);
+                eval(msg);
             });
             
             socket.on('graphic_delete', function (msg) {
                 //setLogger('<font color="red">' + 'graphic_delete(' + msg.uid + ')' + '</font>');
-                eval(msg.data);
+                eval(msg);
             });
             
             socket.on('graphic_update', function (msg) {
                 //setLogger('<font color="orange">' +  msg.data + '</font>');
-                eval(msg.data);
+                eval(msg);
             });
         </script>
     </body>

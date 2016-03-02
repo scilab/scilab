@@ -4,65 +4,68 @@ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+var client = require('socket.io-client');
+
 var fork = require('child_process').fork;
 
 server.listen(1337);
 
-app.get('/', function(req, res){
-    L("req : " + req.toString());
-
+app.get('/', function(req, res) {
     res.sendFile(__dirname + '/html/index.html');
-    //messaging with web client
 });
 
 
 io.on('connection', function (socket) {
-    L('connection');
-    
     //start process
     var child = fork('./scilab_process.js');
-    //messaging with scilab js
-    child.on('message', function(msg){
-        switch(msg.msgtype.toLowerCase()) {
-            case 'command_end':
-                socket.emit(msg.msgtype);
-                break;
-            case 'graphic_create':
-            case 'graphic_delete':
-            case 'graphic_update':
-                //forward message
-                socket.emit(msg.msgtype, msg);
-                break;
-            case 'status':
-                if(msg.data == 'ready') {
-                    //send ready message to client
-                    socket.emit(msg.msgtype, msg);
-                    //send execution of initial script to scilab
-                    child.send({msgtype:'command', data:"exec('SCI/node/loader.sce', -1);"});
-                }
-            break;
-            default:
-                L('not manage : ' + msg.msgtype);
-                break;
-        }
-    });
+    //in future version, it must be a docker so we can't use 'internal' pipe
+    //so we need to connect a socket, another ...
+    var prcAddr = 'http://127.0.0.1:10002';
+    var prcSocket = require('socket.io-client')(prcAddr);
+    prcSocket.on('connect', function() {
+        L('Dispatcher connected');
 
-    child.send({msgtype:'initialization', id:child.pid});
-
-    //receive command from client
-    socket.on('command', function (data) {
-        child.send({msgtype:'command', data:data});
+        prcSocket.on('command_end', function() {
+            socket.emit('command_end');
+        });
+        
+        prcSocket.on('graphic_create', function(msg) {
+            socket.emit('graphic_create', msg);
+        });
+        
+        prcSocket.on('graphic_delete', function(msg) {
+            socket.emit('graphic_delete', msg);
+        });
+        
+        prcSocket.on('graphic_update', function(msg) {
+            socket.emit('graphic_update', msg);
+        });
+        
+        prcSocket.on('status', function(msg) {
+            if(msg.data == 'ready') {
+                //send ready message to client
+                socket.emit('status', msg);
+                //send execution of initial script to scilab
+                prcSocket.emit('command', {data:"exec(getenv('SCIFILES') + '/loader.sce', -1);"});
+            }
+        });
     });
     
-    socket.on('callback', function (data) {
-        child.send({msgtype:'callback', data:data});
+    //receive command from client
+    socket.on('command', function (msg) {
+        prcSocket.emit('command', msg);
+    });
+    
+    socket.on('callback', function (msg) {
+        prcSocket.emit('callback', msg);
     });
     
     socket.on('disconnect', function () {
-        L("disconnect");
-        child.send({msgtype:'quit'});
+        L('disconnect');
+        prcSocket.emit('quit');
+        prcSocket.close();
     });
 
 });
 
-L('Server running at http://127.0.0.1:1337/');
+L('Server running on port '+server.address().port);

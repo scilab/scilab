@@ -1,5 +1,5 @@
 @echo off
 setlocal
-set SCI=%~dp0\..
-set PATH=%SCI%\bin;%PATH%
+set SCIPATH=%~dp0\..
+set SCIFILES=%SCIPATH%/node
 node scilab_server.js
