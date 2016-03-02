@@ -918,9 +918,57 @@ void WebUtils::getUIGridBagGrid(int uid, std::vector<int>& vect)
 
 void WebUtils::setUIGridBag(int uid, std::string& str, bool append)
 {
+    int parent = getParent(uid);
     std::vector<int> grid;
     getUIGridBagGrid(uid, grid);
 
+    if (append == false)
+    {
+        str = "var __child__ = " + getElementById(uid);
+    }
+
+    str += "__child__.style.width = '100%';";
+    str += "__child__.style.position = 'inherit';";
+    str += "__child__.style.left = 'inherit';";
+    str += "__child__.style.bottom = 'inherit';";
+    str += "__child__.style.height = '100%';";
+    //we have to create a td with grid information and add it to the good cell ( or create if not exist ! )
+
+    //build td child
+    std::string td;
+    td = "var __td__ = " + createElement("TD");
+
+    std::string name("_" + std::to_string(grid[0]) + "_" + std::to_string(grid[1]));
+    td += "__td__.id = " + getIdString(uid, name) + ";";
+
+    if (grid[2] != 1)
+    {
+        td += "__td__.colSpan = '" + std::to_string(grid[2]) + "';";
+    }
+
+    if (grid[3] != 1)
+    {
+        td += "__td__.rowSpan = '" + std::to_string(grid[3]) + "';";
+    }
+
+    //td += "__td__.style.width = '100%';";
+    td += "__td__.appendChild(__child__);";
+
+    //build or get tr
+    name = "_" + std::to_string(grid[1]);
+    std::string tr;
+    tr = "var __tr__ = " + getElementById(parent, name);
+    tr += "if(__tr__ == null){";
+    tr += "";
+    tr += "__tr__ = " + createElement("TR");
+    tr += "__tr__.id = " + getIdString(parent, name) + ";";
+    tr += "var __table__ = " + getElementById(parent, "_table");
+    tr += "__table__.appendChild(__tr__);";
+    tr += "}";
+    tr += "__tr__.appendChild(__td__);";
+
+    str += td;
+    str += tr;
 }
 
 bool WebUtils::hasCallback(int uid)

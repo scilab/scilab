@@ -8,12 +8,19 @@ var client = require('socket.io-client');
 
 var fork = require('child_process').fork;
 
+
 server.listen(1337);
 
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/html/index.html');
-});
+var script = '/loader';
 
+app.get("*", function(req, res) {
+    res.sendFile(__dirname + '/html/index.html');
+    if(req.url != "/") {
+        script = req.url;
+    } else {
+        script = '/loader';
+    }
+});
 
 io.on('connection', function (socket) {
     //start process
@@ -46,7 +53,7 @@ io.on('connection', function (socket) {
                 //send ready message to client
                 socket.emit('status', msg);
                 //send execution of initial script to scilab
-                prcSocket.emit('command', {data:"exec(getenv('SCIFILES') + '/loader.sce', -1);"});
+                prcSocket.emit('command', {data:"exec(getenv('SCIFILES') + '" + script + ".sce', -1);"});
             }
         });
     });
