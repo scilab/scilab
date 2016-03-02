@@ -5,7 +5,7 @@
         <refpurpose>checks variable existence</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ve = exists(name [,where])</synopsis>
     </refsynopsisdiv>
     <refsection>

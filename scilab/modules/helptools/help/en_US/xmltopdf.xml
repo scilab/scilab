@@ -19,7 +19,7 @@
         <refpurpose>converts xml Scilab help files to pdf format</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xmltopdf(dirs [,titles [,dir_language [default_language]]]]])</synopsis>
     </refsynopsisdiv>
     <refsection>

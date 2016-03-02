@@ -19,7 +19,7 @@
         <refpurpose>Get current entity handle.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>e = gce()</synopsis>
     </refsynopsisdiv>
     <refsection>

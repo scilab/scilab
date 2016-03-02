@@ -5,7 +5,7 @@
         <refpurpose>frequency response fit</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sys=frfit(w,fresp,order)
             [num,den]=frfit(w,fresp,order)
             sys=frfit(w,fresp,order,weight)

@@ -19,7 +19,7 @@
         <refpurpose>minimal factors</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[f]=polfact(p)</synopsis>
     </refsynopsisdiv>
     <refsection>

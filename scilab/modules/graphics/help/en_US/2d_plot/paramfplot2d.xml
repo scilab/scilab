@@ -19,7 +19,7 @@
         <refpurpose>animated plot of a 2D parametrized curve.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>paramfplot2d(f,x,theta)
             paramfplot2d(f,x,theta,flag)
             paramfplot2d(f,x,theta,flag,rect)

@@ -19,7 +19,7 @@
         <refpurpose>hankel approximant</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Q]=bstap(Sl)</synopsis>
     </refsynopsisdiv>
     <refsection>

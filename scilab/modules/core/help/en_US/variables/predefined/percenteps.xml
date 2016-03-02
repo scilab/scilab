@@ -19,7 +19,7 @@
         <refpurpose>epsilon (floating-point relative accuracy)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>%eps</synopsis>
     </refsynopsisdiv>
     <refsection>

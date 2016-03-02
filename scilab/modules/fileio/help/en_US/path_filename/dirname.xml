@@ -20,7 +20,7 @@
         <refpurpose>gets directory from filenames</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>dirs = dirname(files[, flag [,flagexpand]])</synopsis>
     </refsynopsisdiv>
     <refsection>

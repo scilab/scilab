@@ -23,7 +23,7 @@
         <refname>sprintf</refname>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>str=msprintf(format,a1,...,an);</synopsis>
     </refsynopsisdiv>
     <refsection>

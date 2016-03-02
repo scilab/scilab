@@ -19,7 +19,7 @@
         <refpurpose>Kalman gain and  B D system matrices of a discrete-time system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[B,D,K] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)
             [B,D,RCND] = findBDK(S,N,L,R,A,C,METH,JOB)
             [B,D,K,Q,Ry,S,RCND] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)

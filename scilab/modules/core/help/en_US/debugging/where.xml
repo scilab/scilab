@@ -5,7 +5,7 @@
         <refpurpose>get current instruction calling tree</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[linenum, callername] = where()</synopsis>
     </refsynopsisdiv>
     <refsection>

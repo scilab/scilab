@@ -280,7 +280,7 @@ function checkMeanVariance3arg ( m , n , name , A , B , C , mu , va , rtol )
 endfunction
 
 //
-// Calling sequences
+// Syntaxes
 //
 // Y=grand(m,n,'nor',Av,Sd)       : OK
 // Y=grand(m,n,'poi',mu)          : OK

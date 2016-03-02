@@ -5,7 +5,7 @@
         <refpurpose>Chebychev polynomial</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Tn]=chepol(n,var)</synopsis>
     </refsynopsisdiv>
     <refsection>

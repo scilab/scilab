@@ -19,7 +19,7 @@
         <refpurpose>display gain and phase margin  and associated crossover frequencies</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             show_margins(h)
             show_margins(h,'bode')

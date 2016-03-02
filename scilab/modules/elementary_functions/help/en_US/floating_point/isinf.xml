@@ -19,7 +19,7 @@
         <refpurpose>check for infinite entries</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>r=isinf(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

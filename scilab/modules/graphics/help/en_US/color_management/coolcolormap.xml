@@ -19,7 +19,7 @@
         <refpurpose>cyan to magenta colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>cmap=coolcolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

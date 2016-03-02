@@ -100,7 +100,7 @@
         <para>
             Such a function must be written in a file with extension .sci, must be loaded inside scilab by the
             common loading scilab function (, , , ,...) and must have
-            two right hand side arguments and one left hand side argument, as the following calling sequence :
+            two right hand side arguments and one left hand side argument, as the following syntax:
         </para>
         <para>
             

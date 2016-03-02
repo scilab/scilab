@@ -19,7 +19,7 @@
         <refpurpose>pencil to E,A conversion</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[E,A]=pen2ea(Fs)</synopsis>
     </refsynopsisdiv>
     <refsection>

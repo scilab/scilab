@@ -19,7 +19,7 @@
         <refpurpose>detects Microsoft C Compiler</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>msvc = findmsvccompiler()</synopsis>
     </refsynopsisdiv>
     <refsection>

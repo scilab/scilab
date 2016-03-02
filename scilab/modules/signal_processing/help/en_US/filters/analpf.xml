@@ -5,7 +5,7 @@
         <refpurpose>create analog low-pass filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)
             hs=analpf(n,fdesign,rp,omega)

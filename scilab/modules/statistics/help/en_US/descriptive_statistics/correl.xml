@@ -19,7 +19,7 @@
         <refpurpose>correlation of two variables</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>rho=correl(x, y [, fre])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>Create a dataset (if it does not exist) and write the data</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5write(obj, name, data [, targetType], [, start, count [, stride [, block]]])
             h5write(filename, name, data [, targetType], [, start, count [, stride [, block]]])

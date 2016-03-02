@@ -19,7 +19,7 @@
         <refpurpose>on-line help command</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>help(key)
             help
         </synopsis>

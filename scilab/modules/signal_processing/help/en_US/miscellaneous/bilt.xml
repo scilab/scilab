@@ -5,7 +5,7 @@
         <refpurpose>bilinear or biquadratic transform SISO system given by a zero/poles representation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[npl,nzr,ngn] = bilt(pl,zr,gn,num,den)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -30,7 +30,7 @@ purpose
 	compute the exponential of a matrix a by the pade's
 	approximants(subroutine pade).a block diagonalization
 	is performed prior call pade.
-calling sequence
+syntax
 	subroutine dexpm1(ia,n,a,ea,iea,w,iw,ierr)
 
 	integer ia,n,iw,ierr
@@ -661,7 +661,7 @@ purpose
 
      this subroutine balances a real matrix and isolates
      eigenvalues whenever possible.
-calling sequence
+syntax
 
      on input:
 
@@ -928,7 +928,7 @@ void vSwitchVal(double *_pdblVal, int _iPos1, int _iPos2)
     low through igh to upper hessenberg form by
     orthogonal similarity transformations.
 
- calling sequence
+ syntax
 
      subroutine orthes(nm,n,low,igh,a,ort)
 
@@ -1066,7 +1066,7 @@ purpose
     transformations used in the reduction of a real general
     matrix to upper hessenberg form by  orthes.
 
-calling sequence
+syntax
 
      subroutine ortran(nm,n,low,igh,a,ort,z)
 
@@ -2132,7 +2132,7 @@ void ddmmuls(double *_pdblA, int _iLeadDimA,
 	 tion zt that exchange the blocks along with their
 	 eigenvalues.
 
-	calling sequence
+	syntax
 
 		subroutine exch(nmax,n,a,z,l,ls1,ls2)
 		integer nmax,n,l,ls1,ls2
@@ -2399,7 +2399,7 @@ int dexchs(int _iMax, int _iLeadDim, double *_pdblIn, double *_pdblOut,
 		 (algorithm 539) in order to leave the arguments sa and sb
 		 unchanged
 
-	calling sequence
+	syntax
 
 		subroutine giv(sa,sb,sc,ss)
 		double precision sa,sb,sc,ss
@@ -2447,7 +2447,7 @@ purpose
     of largest absolute value appearing first.  the
     rotation is accumulated in v. the eigenvalues (real
     or complex) are returned in e1 and e2.
-calling sequence
+syntax
 
     subroutine split(a, v, n, l, e1, e2, na, nv)
 

@@ -19,7 +19,7 @@
         <refpurpose>utility for shared library management with link</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>libn=ilib_for_link(names,files,libs,flag [,makename [,loadername [,libname [,ldflags [,cflags [,fflags [,cc]]]]]]])</synopsis>
     </refsynopsisdiv>
     <refsection>

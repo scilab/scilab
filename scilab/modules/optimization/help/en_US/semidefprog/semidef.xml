@@ -20,7 +20,7 @@
         <refpurpose>Solve semidefinite problems.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             x=semidef(x0,Z0,F,blocksizes,c,options)
             [x,Z]=semidef(...)

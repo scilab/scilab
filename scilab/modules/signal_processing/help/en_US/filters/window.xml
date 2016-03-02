@@ -5,7 +5,7 @@
         <refpurpose>compute symmetric window of various type</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>win_l=window('re',n)
             win_l=window('tr',n)
             win_l=window('hn',n)

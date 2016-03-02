@@ -19,7 +19,7 @@
         <refpurpose>draw a regular polygon</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xrpoly(orig,n,r,[theta])</synopsis>
     </refsynopsisdiv>
     <refsection>

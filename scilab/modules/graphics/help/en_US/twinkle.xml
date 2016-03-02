@@ -19,7 +19,7 @@
         <refpurpose>is used to have a graphics entity twinkle</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>twinkle(h,[n])</synopsis>
     </refsynopsisdiv>
     <refsection>

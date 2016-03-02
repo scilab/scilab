@@ -19,7 +19,7 @@
         <refpurpose>list, tlist, mlist numbers of entries</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>n=lstsize(l)</synopsis>
     </refsynopsisdiv>
     <refsection>

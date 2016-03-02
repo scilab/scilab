@@ -19,7 +19,7 @@
         <refpurpose>Givens transformation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>U=givens(xy)
             U=givens(x,y)
             [U,c]=givens(xy)

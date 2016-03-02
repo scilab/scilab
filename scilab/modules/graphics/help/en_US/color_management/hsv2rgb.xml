@@ -19,7 +19,7 @@
         <refpurpose>Converts HSV colors to RGB</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[r,g,b] = hsv2rgb(h,s,v)
             rgb = hsv2rgb(h,s,v)
             [r,g,b] = hsv2rgb(hsv)

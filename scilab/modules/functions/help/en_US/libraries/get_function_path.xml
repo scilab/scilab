@@ -19,7 +19,7 @@
         <refpurpose>get source file path of a library function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>path=get_function_path(fun_name)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>Dialog for interactive multi-lines input.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>result=x_dialog(labels,valueini)</synopsis>
     </refsynopsisdiv>
     <refsection>

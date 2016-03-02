@@ -19,7 +19,7 @@
         <refpurpose>opens a dialog to show colors in the current colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>c=getcolor(title,[cini])
             c=getcolor()
         </synopsis>

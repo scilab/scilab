@@ -5,7 +5,7 @@
         <refpurpose>iir digital filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             hz=iir(n,ftype,fdesign,frq,delta)
             [p,z,g]=iir(n,ftype,fdesign,frq,delta)

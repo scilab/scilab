@@ -19,7 +19,7 @@
         <refpurpose>Generate help files (toolbox compilation process)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_build_help(title)
             tbx_build_help(title, help_path)

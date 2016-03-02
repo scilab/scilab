@@ -5,7 +5,7 @@
         <refpurpose>comparison, relational operators</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             a==b
             a~=b or a&lt;&gt;b

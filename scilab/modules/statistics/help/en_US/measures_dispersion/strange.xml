@@ -19,7 +19,7 @@
         <refpurpose>range</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[r]=strange(x)
             [r]=strange(x,'r') (or, equivalently, [r]=strange(x,1))
             [r]=strange(x,'c') (or, equivalently, [r]=strange(x,2))

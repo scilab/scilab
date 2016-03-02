@@ -19,7 +19,7 @@
         <refpurpose>lower triangular part of matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>tril(x [,k])</synopsis>
     </refsynopsisdiv>
     <refsection>

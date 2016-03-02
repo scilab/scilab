@@ -20,7 +20,7 @@
         <refpurpose>builds a full filename from parts</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>f = fullfile(varargin)</synopsis>
     </refsynopsisdiv>
     <refsection>

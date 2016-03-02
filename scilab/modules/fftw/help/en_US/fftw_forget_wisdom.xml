@@ -24,7 +24,7 @@
         <refpurpose>Reset fftw wisdom</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>fftw_forget_wisdom()</synopsis>
     </refsynopsisdiv>
     <refsection>

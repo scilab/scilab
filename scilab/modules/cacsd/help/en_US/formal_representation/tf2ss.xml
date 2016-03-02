@@ -19,7 +19,7 @@
         <refpurpose>transfer to state-space</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sl=tf2ss(h [,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

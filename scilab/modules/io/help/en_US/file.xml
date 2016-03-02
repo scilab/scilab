@@ -19,7 +19,7 @@
         <refpurpose>file management</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[unit [,err]]=file("open", file-name [,status] [,access [,recl]] [,format])
             file("close", unit)
             file("rewind", unit)

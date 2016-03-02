@@ -20,7 +20,7 @@
         <refpurpose>converts adjacency form into sparse matrix.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             A=adj2sp(xadj,iadj,v)
             A=adj2sp(xadj,iadj,v,mn)

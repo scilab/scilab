@@ -19,7 +19,7 @@
         <refpurpose>Create a XML DTD object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             dtd = xmlDTD(path)
         </synopsis>

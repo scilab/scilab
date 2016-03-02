@@ -19,7 +19,7 @@
         <refpurpose>eigenvalues of matrices and pencils</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>evals=spec(A)
             [R,diagevals]=spec(A)
             

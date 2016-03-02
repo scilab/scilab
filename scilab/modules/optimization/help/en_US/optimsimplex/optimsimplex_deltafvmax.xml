@@ -19,7 +19,7 @@
         <refpurpose>Computes the difference of function value between the highest and the lowest vertices.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             dfm = optimsimplex_deltafvmax(opt)
         </synopsis>

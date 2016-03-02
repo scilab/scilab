@@ -21,7 +21,7 @@
         <refpurpose>Differential algebraic equations solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis> y = dae(initial, t0, t, res)
             [y [,hd]] = dae(initial, t0, t [[,rtol], atol], res [,jac] [,hd])
             [y, rd] = dae("root", initial, t0, t, res, ng, surface)
@@ -96,7 +96,7 @@
                         <varlistentry>
                             <term>a Scilab function</term>
                             <listitem>
-                                <para>In this case, its calling sequence must be
+                                <para>In this case, the syntax must be
                                     <literal>[r,ires]=res(t,x,xdot)</literal> and
                                     <literal>res</literal> must return the residue
                                     <literal>r=g(t,x,xdot)</literal> and error flag
@@ -126,7 +126,7 @@
                                 <programlisting role="no-scilab-exec"><![CDATA[
 list(res,p1,p2,...)
  ]]></programlisting>
-                                <para>where the calling sequence of the function
+                                <para>where the syntax of the function
                                     <literal>res</literal> is now
                                 </para>
                                 <programlisting role="no-scilab-exec"><![CDATA[
@@ -165,7 +165,7 @@ r=res(t,y,ydot,p1,p2,...)
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            The C calling sequence must be
+                                            The C syntax must be
                                         </para>
                                         <para>
                                             <literal>C2F(&lt;r_name&gt;)(double *t, double *x, double
@@ -237,7 +237,7 @@ r=res(t,y,ydot,p1,p2,...)
                         <varlistentry>
                             <term>a Scilab function</term>
                             <listitem>
-                                <para>Its calling sequence must be
+                                <para>Its syntax must be
                                     <literal>r=jac(t,x,xdot,cj)</literal> and the
                                     <literal>jac</literal> function must return
                                     <literal>r=dg(t,x,xdot)/dy+cj*dg(t,x,xdot)/dxdot</literal>
@@ -254,7 +254,7 @@ r=res(t,y,ydot,p1,p2,...)
                                 <programlisting role="no-scilab-exec"><![CDATA[
 list(jac,p1,p2,...)
  ]]></programlisting>
-                                <para>where the calling sequence of the function
+                                <para>where the syntax of the function
                                     <literal>jac</literal> is now
                                 </para>
                                 <programlisting role="no-scilab-exec"><![CDATA[
@@ -294,7 +294,7 @@ r=jac(t,x,xdot,p1,p2,...)
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            The C calling sequence must be
+                                            The C syntax must be
                                         </para>
                                         <para>
                                             <literal>C2F(&lt;j_name&gt;)(double *t, double *x, double
@@ -325,7 +325,7 @@ r=jac(t,x,xdot,p1,p2,...)
                         <varlistentry>
                             <term>a Scilab function</term>
                             <listitem>
-                                <para>Its calling sequence must be
+                                <para>Its syntax must be
                                     <literal>r=surface(t,x)</literal>, this function must return a
                                     vector with <literal>ng</literal> elements.
                                 </para>
@@ -341,7 +341,7 @@ r=jac(t,x,xdot,p1,p2,...)
                                 <programlisting role="no-scilab-exec"><![CDATA[
 list(surface,p1,p2,...)
  ]]></programlisting>
-                                <para>where the calling sequence of the function
+                                <para>where the syntax of the function
                                     <literal>surface</literal> is now
                                 </para>
                                 <programlisting role="no-scilab-exec"><![CDATA[
@@ -376,7 +376,7 @@ r=surface(t,x,p1,p2,...)
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            The C calling sequence must be
+                                            The C syntax must be
                                         </para>
                                         <para>
                                             <literal>C2F(&lt;s_name&gt;)(double *t, double *x, double

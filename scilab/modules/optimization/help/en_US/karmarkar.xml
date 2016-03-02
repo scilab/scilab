@@ -20,7 +20,7 @@
         <refpurpose>Solves a linear optimization problem.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xopt=karmarkar(Aeq,beq,c)
             xopt=karmarkar(Aeq,beq,c,x0)
@@ -368,7 +368,7 @@ stop = outfun ( xopt , optimValues , state )
 ]]></programlisting>
         <para>
             where the input arguments <literal>a1, a2, ...</literal>
-            will be automatically be appended at the end of the calling sequence.
+            will be automatically be appended as parameters to the call.
         </para>
     </refsection>
     <refsection>

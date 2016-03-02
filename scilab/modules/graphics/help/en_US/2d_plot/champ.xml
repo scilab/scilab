@@ -19,7 +19,7 @@
         <refpurpose>2D vector field plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             champ(x, y, fx, fy, [arfact, rect, strf])
             champ(x, y, fx, fy, &lt;opt_args&gt;)

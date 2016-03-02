@@ -19,7 +19,7 @@
         <refpurpose>matrix inverse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>inv(X)</synopsis>
     </refsynopsisdiv>
     <refsection>

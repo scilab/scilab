@@ -5,7 +5,7 @@
         <refpurpose>(^,.^) power operation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t=A^b
             t=A**b
             t=A.^b

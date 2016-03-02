@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int isDoubleType(void* _pvCtx, int* _piAddress)</synopsis>
         <synopsis>int isNamedDoubleType(void* _pvCtx, const char* _pstName)</synopsis>
     </refsynopsisdiv>

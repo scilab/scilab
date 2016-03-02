@@ -5,7 +5,7 @@
         <refpurpose>Function to compare two Xcos Blocks.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[status, message] = xcosValidateCompareBlock(block1, block2)</synopsis>
     </refsynopsisdiv>
     <refsection id="Parameters_xcosValidateCompareBlock">

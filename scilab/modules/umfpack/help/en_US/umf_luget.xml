@@ -5,7 +5,7 @@
         <refpurpose>retrieve lu factors at the Scilab level</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[L,U,p,q,Rd] = umf_luget(LU_ptr)</synopsis>
     </refsynopsisdiv>
     <refsection>

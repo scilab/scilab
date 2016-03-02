@@ -20,7 +20,7 @@
         <refpurpose>gets short path name</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             shortpath = getshortgpathname(longpath)
             [shortpath, bOK] = getshortpathname(longpath)

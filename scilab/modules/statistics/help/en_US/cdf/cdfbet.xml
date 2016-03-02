@@ -19,7 +19,7 @@
         <refpurpose>cumulative distribution function Beta distribution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,Q]=cdfbet("PQ",X,Y,A,B)
             [X,Y]=cdfbet("XY",A,B,P,Q)
             [A]=cdfbet("A",B,P,Q,X,Y)

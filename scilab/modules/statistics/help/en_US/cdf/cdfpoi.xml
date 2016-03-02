@@ -19,7 +19,7 @@
         <refpurpose>cumulative distribution function poisson distribution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,Q]=cdfpoi("PQ",S,Xlam)
             [S]=cdfpoi("S",Xlam,P,Q)
             [Xlam]=cdfpoi("Xlam",P,Q,S);

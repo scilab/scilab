@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>an=remez(guess,mag,fgrid,weight)</synopsis>
     </refsynopsisdiv>
     <refsection>

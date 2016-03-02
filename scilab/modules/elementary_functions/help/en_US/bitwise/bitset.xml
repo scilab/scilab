@@ -20,7 +20,7 @@
         <refpurpose>set bit at specified position</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             y = bitset(x, pos)
             y = bitset(x, pos, v)

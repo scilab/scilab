@@ -20,7 +20,7 @@
         <refpurpose>bitwise complement</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             y = bitcmp(x)
             y = bitcmp(x, bitnum)

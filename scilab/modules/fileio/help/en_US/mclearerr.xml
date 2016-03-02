@@ -20,7 +20,7 @@
         <refpurpose>resets binary file access errors</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>flag = mclearerr([fd])</synopsis>
     </refsynopsisdiv>
     <refsection>

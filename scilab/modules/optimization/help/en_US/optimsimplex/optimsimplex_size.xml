@@ -19,7 +19,7 @@
         <refpurpose>Computes the size.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             ssize = optimsimplex_size(opt, [method])
         </synopsis>

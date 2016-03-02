@@ -19,7 +19,7 @@
         <refpurpose>determine whether input is sparse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = issparse(S)</synopsis>
     </refsynopsisdiv>
     <refsection>

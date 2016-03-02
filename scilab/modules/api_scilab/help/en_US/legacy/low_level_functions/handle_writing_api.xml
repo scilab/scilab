@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <para>Input argument profile:</para>
         <synopsis>SciErr createMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, const long long* _pllHandle)</synopsis>
     </refsynopsisdiv>
@@ -82,7 +82,7 @@
         <refsection>
             Write directly in Scilab memory.
         </refsection>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <para>Input argument profile:</para>
         <synopsis>SciErr allocMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, long long** _pllHandle)</synopsis>
     </refsynopsisdiv>

@@ -5,7 +5,7 @@
         <refpurpose>response of type 2 Chebyshev filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[h2]=cheb2mag(n,omegar,A,sample)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>square matrix exponential</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>expm(X)</synopsis>
     </refsynopsisdiv>
     <refsection>

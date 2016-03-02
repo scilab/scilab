@@ -19,7 +19,7 @@
         <refpurpose>armax identification</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[arc,resid]=armax1(r,s,q,y,u [,b0f])</synopsis>
     </refsynopsisdiv>
     <refsection>

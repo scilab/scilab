@@ -37,7 +37,7 @@ function [K1] = condestsp(A, arg2, arg3)
     //
     //     K1  : estimated 1-norm condition number of A
     //
-    //  POSSIBLE CALLING SEQUENCES
+    //  POSSIBLE SYNTAXES
     //     [K1, [x]] = condestsp(A, LUp, t)
     //     [K1, [x]] = condestsp(A, LUp)
     //     [K1, [x]] = condestsp(A, t)

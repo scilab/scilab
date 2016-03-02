@@ -19,7 +19,7 @@
         <refpurpose>Launches benchmark tests</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [modutests_names, elapsed_time, nb_iterations] = bench_run()
             [modutests_names, elapsed_time, nb_iterations] = bench_run(module[, test_name[, options, [exportToFile]])

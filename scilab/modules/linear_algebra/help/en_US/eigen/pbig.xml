@@ -19,7 +19,7 @@
         <refpurpose>eigen-projection</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Q,M]=pbig(A,thres,flag)</synopsis>
     </refsynopsisdiv>
     <refsection>

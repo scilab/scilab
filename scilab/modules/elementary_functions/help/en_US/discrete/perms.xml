@@ -19,7 +19,7 @@
         <refpurpose>all permutations of vector components</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=perms(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

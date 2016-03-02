@@ -19,7 +19,7 @@
         <refpurpose>Interactive rotation of an Axes handle.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>rotate_axes()
             rotate_axes(h)
         </synopsis>

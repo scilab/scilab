@@ -27,7 +27,7 @@
     
     <refsynopsisdiv>
         
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         
         <synopsis>res = strcspn(string_one, string_two)</synopsis>
         

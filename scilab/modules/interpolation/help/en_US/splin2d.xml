@@ -5,7 +5,7 @@
         <refpurpose>bicubic spline gridded 2d interpolation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>C = splin2d(x, y, z, [,spline_type])</synopsis>
     </refsynopsisdiv>
     <refsection>

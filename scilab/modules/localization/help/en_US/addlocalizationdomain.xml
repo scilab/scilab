@@ -19,7 +19,7 @@
         <refpurpose>add a new domain in localization mechanism.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>msg=addlocalizationdomain(domain, path)</synopsis>
     </refsynopsisdiv>
     <refsection>

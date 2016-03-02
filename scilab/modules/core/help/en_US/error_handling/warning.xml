@@ -5,7 +5,7 @@
         <refpurpose>warning messages</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>warning('string')
             warning(string_matrix)
             warning('off')

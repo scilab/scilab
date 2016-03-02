@@ -19,7 +19,7 @@
         <refpurpose>draw strings into a box</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xstringb(x,y,str,w,h,[option])</synopsis>
     </refsynopsisdiv>
     <refsection>

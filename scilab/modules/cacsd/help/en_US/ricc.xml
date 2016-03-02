@@ -19,7 +19,7 @@
         <refpurpose>Riccati equation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X,RCOND,FERR]=ricc(A,B,C,"cont""method")
             [X,RCOND,FERR]=ricc(F,G,H,"disc","method")
         </synopsis>

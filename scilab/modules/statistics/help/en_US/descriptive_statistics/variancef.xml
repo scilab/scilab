@@ -20,7 +20,7 @@
         <refpurpose>variance (and mean) of a vector or matrix of frequency-weighted real or complex numbers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [s [,mc]] = variancef(x, fre [,orien [,m]])
             

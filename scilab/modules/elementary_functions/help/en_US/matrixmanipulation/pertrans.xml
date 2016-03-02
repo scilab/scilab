@@ -20,7 +20,7 @@
         <refpurpose>Transposition with reference to the 2nd diagonal</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Y] = pertrans(X)</synopsis>
     </refsynopsisdiv>
     <refsection>

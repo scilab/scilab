@@ -19,7 +19,7 @@
         <refpurpose>Kronecker form of matrix pencil</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F)
             [Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(E,A)
         </synopsis>

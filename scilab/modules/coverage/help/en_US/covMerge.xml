@@ -5,7 +5,7 @@
         <refpurpose>Merges coverage results and exports to a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>covMerge(binaryFiles, binaryFile)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -16,7 +16,7 @@
 function pal = xcosPal(name, scs_m)
     // Instantiate a new Xcos palette on Scilab.
     //
-    // Calling Sequence
+    // Syntax
     //   pal = xcosPal();
     //   pal = xcosPal(name);
     //   pal = xcosPal(scs_m);

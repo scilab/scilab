@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>fplot2d(xr,f,[style,strf,leg,rect,nax])
             fplot2d(xr,f,&lt;opt_args&gt;)
         </synopsis>

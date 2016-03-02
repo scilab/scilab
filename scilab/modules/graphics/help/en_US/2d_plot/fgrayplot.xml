@@ -19,7 +19,7 @@
         <refpurpose>2D plot of a surface defined by a function using colors</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>fgrayplot(x,y,f,[strf,rect,nax])
             fgrayplot(x,y,f,&lt;opt_args&gt;)
         </synopsis>

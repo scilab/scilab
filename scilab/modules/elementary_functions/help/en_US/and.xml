@@ -19,7 +19,7 @@
         <refpurpose>logical AND of the elements of an array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>b=and(A)
             b=and(A,'*')
             b=and(A,'r')

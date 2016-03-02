@@ -20,7 +20,7 @@
         <refpurpose>shows files</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             files = ls [path]
             files = ls( [path] )

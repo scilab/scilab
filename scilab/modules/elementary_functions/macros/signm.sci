@@ -13,7 +13,7 @@
 
 function x = signm(a)
     //   signm - computes the matrix sign function.
-    //%CALLING SEQUENCE
+    //%SYNTAX
     //   x=signm(a)
     //%PARAMETERS
     //   a   : square hermitian matrix

@@ -19,7 +19,7 @@
         <refpurpose>discretization of linear system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[sld [,r]]=dscr(sl,dt [,m])</synopsis>
     </refsynopsisdiv>
     <refsection>

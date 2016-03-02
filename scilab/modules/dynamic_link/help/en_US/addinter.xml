@@ -20,7 +20,7 @@
         <refpurpose>new functions interface dynamic link at run time.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>addinter(files, spname, fcts)</synopsis>
     </refsynopsisdiv>
     <refsection>

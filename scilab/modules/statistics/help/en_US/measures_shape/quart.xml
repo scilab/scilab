@@ -20,7 +20,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s=quart(x)
             s=quart(x,'r') or m=quart(x,1)
             s=quart(x,'c') or m=quart(x,2)

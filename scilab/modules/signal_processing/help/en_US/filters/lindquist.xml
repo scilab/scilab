@@ -5,7 +5,7 @@
         <refpurpose>Lindquist's algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,R,T]=lindquist(n,H,F,G,R0)</synopsis>
     </refsynopsisdiv>
     <refsection>

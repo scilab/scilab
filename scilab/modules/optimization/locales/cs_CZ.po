@@ -867,7 +867,7 @@ msgid ""
 msgstr "%s: Hodnota možnosti 'PlotFcns' není ani funkce ani seznam."
 
 #, c-format
-msgid "Calling sequence %s is obsolete."
+msgid "Syntax %s is obsolete."
 msgstr "Volání sekvence %s je zastaralé."
 
 #, c-format

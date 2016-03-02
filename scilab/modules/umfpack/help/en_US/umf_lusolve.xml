@@ -5,7 +5,7 @@
         <refpurpose>solve a linear sparse system given the LU factors  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x] = umf_lusolve(LU_ptr, b [, st, A])</synopsis>
     </refsynopsisdiv>
     <refsection>

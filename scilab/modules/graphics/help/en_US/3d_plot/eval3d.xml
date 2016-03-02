@@ -19,7 +19,7 @@
         <refpurpose>values of a function on a grid</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[z]=eval3d(fun,x,[y])</synopsis>
     </refsynopsisdiv>
     <refsection>

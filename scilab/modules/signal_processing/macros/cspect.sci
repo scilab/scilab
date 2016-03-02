@@ -37,7 +37,7 @@ function [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
         "cspect",3,"''re'',''tr'',''hm'',''hn'',''kr'',''ch''"));
     end
 
-    //Analyze calling sequence and construct window
+    //Analyze syntax and construct window
     if rhs==4 then,
         //cspect(nlags,ntp,wtype,x)
         [w,cwp]=window(wtype,2*nlags-1);

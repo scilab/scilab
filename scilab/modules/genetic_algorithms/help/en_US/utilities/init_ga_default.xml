@@ -20,7 +20,7 @@
         <refpurpose>A function a initialize a population</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Pop_init = init_ga_default(popsize,param)</synopsis>
     </refsynopsisdiv>
     <refsection>

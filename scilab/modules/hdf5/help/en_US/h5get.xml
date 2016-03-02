@@ -19,7 +19,7 @@
         <refpurpose>Get a named object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             nobj = h5get(obj, location [, isAttr])
         </synopsis>

@@ -5,7 +5,7 @@
         <refpurpose>get previous or next floating-point number</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xnear = nearfloat(dir, x)</synopsis>
     </refsynopsisdiv>
     <refsection>

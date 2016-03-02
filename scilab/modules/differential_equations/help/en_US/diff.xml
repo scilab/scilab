@@ -19,7 +19,7 @@
         <refpurpose>Difference and discrete derivative</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             y=diff(x)
             y=diff(x [,n [,dim]])

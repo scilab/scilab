@@ -19,7 +19,7 @@
         <refpurpose>Gets the coordinates of the vertex at given index.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             x = optimsimplex_getx(opt, ive)
         </synopsis>

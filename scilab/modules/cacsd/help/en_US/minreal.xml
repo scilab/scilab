@@ -19,7 +19,7 @@
         <refpurpose>minimal balanced realization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>slb=minreal(sl [,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

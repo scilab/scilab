@@ -20,7 +20,7 @@
         <refpurpose>Graphical tool for solving linear matrix inequations.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             lmitool(filename)
             

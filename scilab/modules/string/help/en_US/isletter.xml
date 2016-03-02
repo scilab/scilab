@@ -26,7 +26,7 @@ xml:lang="en" xml:id="isletter">
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = isletter(str)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>writes .au sound file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>auwrite(y,aufile)
             auwrite(y,Fs,aufile)
             auwrite(y,Fs,bits,aufile)

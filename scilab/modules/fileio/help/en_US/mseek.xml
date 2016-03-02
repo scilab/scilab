@@ -20,7 +20,7 @@
         <refpurpose>sets current position in a binary file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mseek(n [,fd, flag])</synopsis>
     </refsynopsisdiv>
     <refsection>

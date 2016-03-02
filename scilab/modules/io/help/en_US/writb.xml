@@ -19,7 +19,7 @@
         <refpurpose>fortran file binary write</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>writb(file-name,a [,rec])</synopsis>
     </refsynopsisdiv>
     <refsection>

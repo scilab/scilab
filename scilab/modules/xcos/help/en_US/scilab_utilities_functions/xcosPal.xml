@@ -10,7 +10,7 @@
         <refpurpose>Instantiate a new Xcos palette on Scilab.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             pal = xcosPal();
             pal = xcosPal(name);

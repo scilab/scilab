@@ -20,7 +20,7 @@
         <refpurpose>reads a matrix from a text file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>M = fscanfMat(filename[, fmt]);
             [M, text] = fscanfMat(filename [, fmt]);
         </synopsis>

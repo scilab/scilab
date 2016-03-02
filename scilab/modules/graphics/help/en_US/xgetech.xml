@@ -19,7 +19,7 @@
         <refpurpose>get the current graphics scale</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[wrect, frect, logflag, arect] = xgetech()</synopsis>
     </refsynopsisdiv>
     <refsection>

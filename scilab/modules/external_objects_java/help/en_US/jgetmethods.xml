@@ -21,7 +21,7 @@
         <refpurpose>Get all the methods of a Java object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             methods = jgetmethods(object)
         </synopsis>

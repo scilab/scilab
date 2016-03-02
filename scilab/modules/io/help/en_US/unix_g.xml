@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>rep=unix_g(cmd)
             [rep,stat]=unix_g(cmd)
             [rep,stat,stderr]=unix_g(cmd)

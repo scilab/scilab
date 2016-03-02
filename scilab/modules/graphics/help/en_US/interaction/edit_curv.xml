@@ -19,7 +19,7 @@
         <refpurpose>interactive graphic curve editor</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x,y,ok,gc] = edit_curv(y)
             [x,y,ok,gc] = edit_curv(x,y)
             [x,y,ok,gc] = edit_curv(x,y,job)

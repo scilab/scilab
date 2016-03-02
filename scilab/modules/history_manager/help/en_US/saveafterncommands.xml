@@ -19,7 +19,7 @@
         <refpurpose>Save the history file after n statements are added to the file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>saveafterncommands(n)
             v = saveafterncommands()
         </synopsis>

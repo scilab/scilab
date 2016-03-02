@@ -19,7 +19,7 @@
         <refpurpose>Parrot's problem</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>K=parrot(D,r)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>Sets the coordinates at given index into the current simplex.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimsimplex_setx(opt, ive, x)
         </synopsis>

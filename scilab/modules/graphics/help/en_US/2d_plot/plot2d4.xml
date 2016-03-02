@@ -19,7 +19,7 @@
         <refpurpose>2D plot (arrows style)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>plot2d4([logflag,] x,y,[style,strf,leg,rect,nax])
             plot2d4(y)
             plot2d4(x,y &lt;,opt_args&gt;)

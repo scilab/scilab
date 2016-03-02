@@ -19,7 +19,7 @@
         <refpurpose>beta function (Euler integral of the first kind)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>z = beta(x,y)</synopsis>
     </refsynopsisdiv>
     <refsection>

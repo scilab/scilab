@@ -19,7 +19,7 @@
         <refpurpose>Delete an entry in the help list</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>del_help_chapter(title[,mode])</synopsis>
     </refsynopsisdiv>
     <refsection>

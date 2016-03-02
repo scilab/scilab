@@ -5,7 +5,7 @@
         <refpurpose>correlation, covariance</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[cov,Mean]=corr(x,[y],nlags)
             [cov,Mean]=corr('fft',xmacro,[ymacro],n,sect)
             
@@ -161,7 +161,7 @@ cov(m) =  >   (x(k) - xmean) (y(m+k) - ymean) * ---
 wk=corr('updt',xk,[yk],w,xu)
  ]]></programlisting>
                     <para>
-                        With this calling sequence the calculation is updated at each
+                        With this syntax the calculation is updated at each
                         call to <literal>corr</literal>.
                     </para>
                     <programlisting role=""><![CDATA[ 
@@ -174,7 +174,7 @@ nlags = power of 2.
                         2.  To get <literal>nlags</literal> coefficients a final fft must be
                         performed <literal>c=fft(w,1)/n</literal>; <literal>cov=c(1nlags)</literal>
                         (<literal>n</literal> is the size of <literal>x (y)</literal>).  Caution: this
-                        calling sequence assumes that <literal>xmean = ymean = 0</literal>.
+                        syntax assumes that <literal>xmean = ymean = 0</literal>.
                     </para>
                 </listitem>
             </varlistentry>

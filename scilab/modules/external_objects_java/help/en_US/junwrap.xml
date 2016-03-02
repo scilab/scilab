@@ -21,7 +21,7 @@
         <refpurpose>Convert a Java object into a Scilab native type</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [var_1, var_2, ...] = junwrap(obj_1 [, obj_2 [, ...]])
         </synopsis>

@@ -29,7 +29,7 @@
     </refnamediv>
     
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         
         <synopsis>filename = getURL(URL);
             [filename, [content]] = getURL(URL [, targetDir [, username [, password]]]]);

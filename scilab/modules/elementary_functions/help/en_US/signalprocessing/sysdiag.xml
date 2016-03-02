@@ -20,7 +20,7 @@
         <refpurpose>Create a block diagonal matrix from provided inputs or block diagonal system connection</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>r=sysdiag(a1,a2,...,an)</synopsis>
     </refsynopsisdiv>
     <refsection>

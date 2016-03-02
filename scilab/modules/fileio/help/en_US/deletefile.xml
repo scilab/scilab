@@ -20,7 +20,7 @@
         <refpurpose>deletes a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>f = deletefile(filename)</synopsis>
     </refsynopsisdiv>
     <refsection>

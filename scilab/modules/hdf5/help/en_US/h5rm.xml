@@ -19,7 +19,7 @@
         <refpurpose>Remove elements from an HDF5 file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5rm(obj [, names])
             h5rm(filename, names)

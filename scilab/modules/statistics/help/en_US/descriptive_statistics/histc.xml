@@ -19,7 +19,7 @@
         <refpurpose>computes an histogram</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [cf, ind] = histc(n, data [,normalization])
             [cf, ind] = histc(x, data [,normalization])

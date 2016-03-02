@@ -19,7 +19,7 @@
         <refpurpose>check if a variable is a square matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t=issquare(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

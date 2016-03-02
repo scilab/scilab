@@ -5,7 +5,7 @@
         <refpurpose>lowpass elliptic filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[zeros,poles,gain]=zpell(epsilon,A,omegac,omegar)</synopsis>
     </refsynopsisdiv>
     <refsection>

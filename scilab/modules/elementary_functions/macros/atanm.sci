@@ -12,7 +12,7 @@
 
 function x=atanm(a)
     //   atanm - computes the matrix arctangent
-    //%CALLING SEQUENCE
+    //%SYNTAX
     //   x=atanm(a)
     //%PARAMETERS
     //   a   : square  matrix

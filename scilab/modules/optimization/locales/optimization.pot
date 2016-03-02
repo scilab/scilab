@@ -2032,7 +2032,7 @@ msgstr ""
 # File: modules/optimization/macros/neldermead/fminsearch.sci, line: 158
 # File: modules/optimization/macros/optimbase/optimbase_outputcmd.sci, line: 60
 #, c-format
-msgid "Calling sequence %s is obsolete."
+msgid "Syntax %s is obsolete."
 msgstr ""
 
 #

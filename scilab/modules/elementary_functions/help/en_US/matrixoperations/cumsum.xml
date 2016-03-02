@@ -19,7 +19,7 @@
         <refpurpose>cumulative sum of array elements</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=cumsum(x)</synopsis>
         <synopsis>y=cumsum(x,orientation)</synopsis>
         <synopsis>y=cumsum(x,outtype)</synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>concatenate several arrays</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=cat(dims,A1,A2,...,An)</synopsis>
     </refsynopsisdiv>
     <refsection>

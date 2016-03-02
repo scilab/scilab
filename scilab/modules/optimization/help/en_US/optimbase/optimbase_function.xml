@@ -19,7 +19,7 @@
         <refpurpose>Calls cost function.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [opt, f, index] = optimbase_function(opt, x, index)
             [opt, f, c, index] = optimbase_function(opt, x, index)
@@ -167,14 +167,14 @@
             optimization algorithm.
         </para>
         <para>
-            Each calling sequence of the <literal>optimbase_function</literal> function corresponds 
-            to a specific calling sequence of the user-provided cost function.
+            Each syntax of the <literal>optimbase_function</literal> function corresponds 
+            to a specific syntax of the user-provided cost function.
         </para>
         <itemizedlist>
             <listitem>
                 <para>
                     If the <literal>-withderivatives</literal> is false and there is no non-linear
-                    constraint, the calling sequence is
+                    constraint, the syntax is
                 </para>
                 <programlisting role="no-scilab-exec">
                     <![CDATA[ 
@@ -191,7 +191,7 @@
             <listitem>
                 <para>
                     If the <literal>-withderivatives</literal> is false and there are non-linear constraints, 
-                    the calling sequence is
+                    the syntax is
                 </para>
                 <programlisting role="no-scilab-exec">
                     <![CDATA[ 
@@ -210,7 +210,7 @@
             <listitem>
                 <para>
                     If the <literal>-withderivatives</literal> is true and there is no non-linear constraint, 
-                    the calling sequence is
+                    the syntax is
                 </para>
                 <programlisting role="no-scilab-exec">
                     <![CDATA[ 
@@ -229,7 +229,7 @@
             <listitem>
                 <para>
                     If the <literal>-withderivatives</literal> is true and there are non-linear constraints, 
-                    the calling sequence is
+                    the syntax is
                 </para>
                 <programlisting role="no-scilab-exec">
                     <![CDATA[ 
@@ -247,7 +247,7 @@
             </listitem>
         </itemizedlist>
         <para>
-            Each calling sequence corresponds to a particular class of algorithms, including for example
+            Each syntax corresponds to a particular class of algorithms, including for example
         </para>
         <itemizedlist>
             <listitem>
@@ -292,8 +292,8 @@
                 ]]>
         </programlisting>
         <para>
-            where the input arguments <literal>a1, a2, ...</literal> are automatically appended at 
-            the end of the calling sequence.
+            where the input arguments <literal>a1, a2, ...</literal> are automatically appended
+            as parameters to the call.
         </para>
     </refsection>
     <refsection>

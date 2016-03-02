@@ -9,7 +9,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>AssignOutputVariable(pvApiCtx, RankPos) = RankVar;</synopsis>
     </refsynopsisdiv>
     <refsection>

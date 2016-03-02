@@ -514,19 +514,19 @@
             The overloading function for extraction syntax <literal>b= a(i1,
                 ..., in)
             </literal>
-            has the following calling sequence: <literal>b =
+            has the following syntax: <literal>b =
                 %&lt;type_of_a&gt;_e_(i1, ..., in, a)
             </literal>
         </para>
         <para>
             and the syntax <literal>[x1, .., xm] = a(i1, ..., in)</literal> has
-            the following calling sequence: <literal>[x1, .., xm] =
+            the following syntax: <literal>[x1, .., xm] =
                 %&lt;type_of_a&gt;_e_(i1, ..., in, a)
             </literal>
             .
         </para>
         <para>The overloading function associated to the insertion syntax
-            <literal>a(i1, ..., in) = b</literal> has the following calling sequence:
+            <literal>a(i1, ..., in) = b</literal> has the following syntax:
             <literal>a = %&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1, ..., in, b,
                 a)
             </literal>

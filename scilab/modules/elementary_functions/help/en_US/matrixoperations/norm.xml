@@ -19,7 +19,7 @@
         <refpurpose>matrix norm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y]=norm(x [,flag])</synopsis>
     </refsynopsisdiv>
     <refsection>

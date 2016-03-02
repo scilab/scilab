@@ -19,7 +19,7 @@
         <refpurpose>AB invariant subspace</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X,dims,F,U,k,Z]=abinv(Sys,alpha,beta,flag)</synopsis>
     </refsynopsisdiv>
     <refsection>

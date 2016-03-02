@@ -19,10 +19,10 @@
         <refpurpose>Remove one or several modules from the autoload system</refpurpose>
     </refnamediv>
     <!-- ===================================================================== -->
-    <!-- Calling Sequence -->
+    <!-- Syntax -->
     <!-- ===================================================================== -->
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             nbDel = atomsAutoloadDel(modules[,section])
         </synopsis>

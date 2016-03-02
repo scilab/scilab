@@ -19,7 +19,7 @@
         <refpurpose>Set default axes. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sda()
             a = gda(); set(a,"default_values",1)
         </synopsis>

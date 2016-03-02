@@ -19,7 +19,7 @@
         <refpurpose>Link an object to another one</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5ln(obj, linkname, destobj [, hard])
             h5ln(obj, linkname, destname [, hard])

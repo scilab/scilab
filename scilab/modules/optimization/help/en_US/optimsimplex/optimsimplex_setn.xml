@@ -19,7 +19,7 @@
         <refpurpose>Sets the dimension of the space.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimsimplex_setn(opt, n)
         </synopsis>

@@ -20,7 +20,7 @@
         <refpurpose>Wait for a mouse click or an event in a graphic window.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[ibutton,xcoord,yxcoord,iwin,cbmenu]=xclick([flag])</synopsis>
     </refsynopsisdiv>
     <refsection>

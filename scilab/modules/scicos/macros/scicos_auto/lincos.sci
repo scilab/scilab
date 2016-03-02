@@ -26,7 +26,7 @@ function sys = lincos(scs_m,x0,u0,param)
     // model from a general dynamical system described by a
     // scicos diagram
 
-    // CALLING SEQUENCE
+    // SYNTAX
     //
     // sys = lincos(scs_m [,x0,u0 [,param] ])
     //

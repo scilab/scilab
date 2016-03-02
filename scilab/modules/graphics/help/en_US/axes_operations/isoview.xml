@@ -19,7 +19,7 @@
         <refpurpose>set scales for isometric plot (do not change the size of the window)  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>isoview(xmin,xmax,ymin,ymax)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -30,7 +30,7 @@ endfunction
 opt = optimset ( "OutputFcn" , outfun4);
 opt = optimset ( opt , "MaxIter" , 10 );
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-AVERTISSEMENT : Calling sequence outputfun(x,optimValues , state ) is obsolete.
+AVERTISSEMENT : Syntax outputfun(x,optimValues , state ) is obsolete.
 AVERTISSEMENT : Utilisez plutôt stop=outputfun(x,optimValues , state ) s'il vous plait.
 AVERTISSEMENT : Cette fonctionnalité va être définitivement enlevée dans Scilab 5.4.1
 

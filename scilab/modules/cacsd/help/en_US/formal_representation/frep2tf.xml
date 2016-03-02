@@ -19,7 +19,7 @@
         <refpurpose>transfer function realization from frequency response</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[h [,err]]=frep2tf(frq,repf,dg [,dom,tols,weight])</synopsis>
     </refsynopsisdiv>
     <refsection>

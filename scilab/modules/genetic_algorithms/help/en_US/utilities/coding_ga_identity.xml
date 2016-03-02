@@ -23,7 +23,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>
-            Calling Sequence
+            Syntax
         </title>
         <synopsis>
             pop_out = coding_ga_identity(pop_in,direction,param)

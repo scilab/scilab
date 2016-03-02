@@ -19,7 +19,7 @@
         <refpurpose>The complementary error function.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = erfc(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -20,7 +20,7 @@
         <refpurpose>Suggests the number of required digits, given the condition number.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             d = assert_cond2reqdigits ( condition )
             d = assert_cond2reqdigits ( condition , offset )

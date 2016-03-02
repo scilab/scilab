@@ -21,7 +21,7 @@
         <refpurpose>Random numbers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             Y = grand(m, n, "bet", A, B)
             Y = grand(m, n, "bin", N, p)
@@ -109,7 +109,7 @@
             distributions.
         </para>
         <para>
-            The calling sequences:
+            The syntaxes:
         </para>
         <para>
             <programlisting role="no-scilab-exec"><![CDATA[
@@ -134,7 +134,7 @@
         <para>
             produce a <varname>m</varname>-by-<varname>n</varname> matrix with random entries.
             
-            All these calling sequences can be extended to create a random hypermatrix with more than
+            All these syntaxes can be extended to create a random hypermatrix with more than
             2 dimensions specified as integers listed before the type of statistical distribution:
         </para>
         <para>
@@ -155,7 +155,7 @@
             is a matrix or an hypermatrix only used as template.
         </para>
         <para>
-            The calling sequences:
+            The syntaxes:
         </para>
         <programlisting role="no-scilab-exec"><![CDATA[
             Y = grand(n, "mn", Mean, Cov)
@@ -170,7 +170,7 @@
             on the case (see below for details).
         </para>
         <para>
-            The calling sequences:
+            The syntaxes:
         </para>
         <programlisting role="no-scilab-exec"><![CDATA[
             S = grand("getgen")

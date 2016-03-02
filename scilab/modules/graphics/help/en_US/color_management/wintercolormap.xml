@@ -19,7 +19,7 @@
         <refpurpose>blue to green colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>cmap=wintercolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

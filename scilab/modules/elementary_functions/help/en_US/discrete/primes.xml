@@ -19,7 +19,7 @@
         <refpurpose>primes function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y]=primes(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

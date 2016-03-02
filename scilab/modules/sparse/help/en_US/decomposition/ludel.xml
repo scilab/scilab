@@ -19,7 +19,7 @@
         <refpurpose>utility function used with lufact</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ludel(hand)</synopsis>
     </refsynopsisdiv>
     <refsection>

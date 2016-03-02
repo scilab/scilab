@@ -19,7 +19,7 @@
         <refpurpose>cumulative distribution function Binomial distribution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,Q]=cdfbin("PQ",S,Xn,Pr,Ompr)
             [S]=cdfbin("S",Xn,Pr,Ompr,P,Q)
             [Xn]=cdfbin("Xn",Pr,Ompr,P,Q,S)

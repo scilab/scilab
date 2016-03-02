@@ -19,7 +19,7 @@
         <refpurpose>Set default color values to display different color schemes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>colordef(color_scheme)
             colordef(f,color_scheme)
             colordef('new',color_scheme)

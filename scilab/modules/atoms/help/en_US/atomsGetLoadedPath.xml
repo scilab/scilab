@@ -19,10 +19,10 @@
         <refpurpose>Returns the path of the installation directory of loaded external modules.</refpurpose>
     </refnamediv>
     <!-- ===================================================================== -->
-    <!-- Calling Sequence -->
+    <!-- Syntax -->
     <!-- ===================================================================== -->
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             path = atomsGetLoadedPath(module)
         </synopsis>

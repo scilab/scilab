@@ -19,7 +19,7 @@
         <refpurpose>diagonal including or extracting</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y]=diag(vm, [k])</synopsis>
     </refsynopsisdiv>
     <refsection>

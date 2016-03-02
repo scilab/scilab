@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x,y]=geom3d(x1,y1,z1)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>returns a string matrix with all Look and Feels.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>lnf=getinstalledlookandfeels()</synopsis>
     </refsynopsisdiv>
     <refsection>

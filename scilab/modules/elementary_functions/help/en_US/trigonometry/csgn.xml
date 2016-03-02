@@ -19,7 +19,7 @@
         <refpurpose>returns the sign of a vector of real of complex values </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s = csgn(z)</synopsis>
     </refsynopsisdiv>
     <refsection>

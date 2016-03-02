@@ -20,7 +20,7 @@
         <refpurpose>conversion to string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>string(x)
             [out, in, text] = string(x)
         </synopsis>

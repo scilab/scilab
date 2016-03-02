@@ -19,7 +19,7 @@
         <refpurpose>[ordered] Schur decomposition of matrix and pencils</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[U,T] = schur(A)
             [U,dim [,T] ]=schur(A,flag)
             [U,dim [,T] ]=schur(A,extern1)
@@ -174,7 +174,7 @@
                                         <listitem>
                                             <para>
                                                 If <literal>extern1</literal> is described by a Scilab function, it
-                                                should have the following calling sequence:
+                                                should have the following syntax:
                                                 <literal>s=extern1(Ev)</literal>, where <literal>Ev</literal> is an eigenvalue and
                                                 <literal>s</literal> a boolean.
                                             </para>
@@ -185,7 +185,7 @@
                                         <listitem>
                                             <para>
                                                 If <literal>extern1</literal> is described by a C or Fortran function it
-                                                should have the following calling sequence:
+                                                should have the following syntax:
                                                 <literal>int extern1(double *EvR, double *EvI)</literal>
                                                 where <literal>EvR</literal> and <literal>EvI</literal> are  eigenvalue real and complex parts.
                                                 a true or non zero returned value stands for selected eigenvalue.
@@ -257,7 +257,7 @@
                                         <listitem>
                                             <para>
                                                 If <literal>extern2</literal> is described by a Scilab function, it should
-                                                have the following calling sequence:
+                                                have the following syntax:
                                                 <literal>s=extern2(Alpha,Beta)</literal>, where <literal>Alpha</literal> and
                                                 <literal>Beta</literal> defines a generalized eigenvalue and
                                                 <literal>s</literal> a boolean.

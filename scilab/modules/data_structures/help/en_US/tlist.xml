@@ -19,7 +19,7 @@
         <refpurpose>Scilab object and typed list definition.  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>tlist(typ, a1, ..., an)</synopsis>
     </refsynopsisdiv>
     <refsection>

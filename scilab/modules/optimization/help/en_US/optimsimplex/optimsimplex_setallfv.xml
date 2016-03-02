@@ -19,7 +19,7 @@
         <refpurpose>Sets all the function values.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimsimplex_setallfv(opt, fv)
         </synopsis>

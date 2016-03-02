@@ -19,7 +19,7 @@
         <refpurpose>continuous SISO system limit feedback gain</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             K=kpure(sys [,tol])
             [K,R]=kpure(sys [,tol])

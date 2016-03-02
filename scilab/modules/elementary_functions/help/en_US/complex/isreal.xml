@@ -19,7 +19,7 @@
         <refpurpose>check if a variable has real or complex entries</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t=isreal(x)
             t=isreal(x,eps)
         </synopsis>

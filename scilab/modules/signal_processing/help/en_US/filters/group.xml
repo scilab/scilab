@@ -5,7 +5,7 @@
         <refpurpose>group delay for digital filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [tg [,fr]] = group(npts, H) (call with a siso transfert function)
             [tg [,fr]] = group(npts, C) (call with a vector of transfert functions, cascaded second order representation)

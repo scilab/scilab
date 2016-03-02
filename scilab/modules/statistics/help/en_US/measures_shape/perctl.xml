@@ -19,7 +19,7 @@
         <refpurpose>computation of percentils</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>p=perctl(x,y)</synopsis>
     </refsynopsisdiv>
     <refsection>

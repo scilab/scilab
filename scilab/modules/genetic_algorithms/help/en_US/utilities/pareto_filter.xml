@@ -19,7 +19,7 @@
         <refpurpose>A function which extracts non dominated solution from a set </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[F_out,X_out,Ind_out] = pareto_filter(F_in,X_in)</synopsis>
     </refsynopsisdiv>
     <refsection>

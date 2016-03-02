@@ -5,7 +5,7 @@
         <refpurpose>interactive Xwindow choices through toggle buttons</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>rep=x_choices(title,items)</synopsis>
     </refsynopsisdiv>
     <refsection>

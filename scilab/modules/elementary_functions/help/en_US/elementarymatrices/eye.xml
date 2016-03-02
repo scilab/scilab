@@ -19,7 +19,7 @@
         <refpurpose>identity matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>X = eye(m,n)
             X = eye(A)
             X = eye()

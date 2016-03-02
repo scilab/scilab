@@ -5,7 +5,7 @@
         <refpurpose>coding of  primitives ( wizard stuff )  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[numptr] = funptr(name)</synopsis>
     </refsynopsisdiv>
     <refsection>

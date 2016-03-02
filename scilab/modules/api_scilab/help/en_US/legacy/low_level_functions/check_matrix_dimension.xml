@@ -5,7 +5,7 @@
         <refpurpose>A C gateway functions which check dimensions of a variable.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int checkVarDimension(void* _pvCtx, int* _piAddress, int _iRows, int _iCols)</synopsis>
         <synopsis>int isRowVector(void* _pvCtx, int* _piAddress)</synopsis>
         <synopsis>int isColumnVector(void* _pvCtx, int* _piAddress)</synopsis>

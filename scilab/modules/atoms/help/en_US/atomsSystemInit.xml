@@ -19,10 +19,10 @@
         <refpurpose>Sets the rightful write access for the ATOMS system</refpurpose>
     </refnamediv>
     <!-- ===================================================================== -->
-    <!-- Calling Sequence -->
+    <!-- Syntax -->
     <!-- ===================================================================== -->
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             atomsSystemInit()
         </synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>matrix hyperbolic cosine</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = coshm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

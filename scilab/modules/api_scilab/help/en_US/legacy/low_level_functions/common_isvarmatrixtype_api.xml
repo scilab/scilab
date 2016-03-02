@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <para>Input argument profile:</para>
         <synopsis>int isVarMatrixType(void* _pvCtx, int* _piAddress)</synopsis>
         <para>Named variable profile:</para>

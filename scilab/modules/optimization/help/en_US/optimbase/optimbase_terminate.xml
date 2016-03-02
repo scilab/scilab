@@ -19,7 +19,7 @@
         <refpurpose>Checks if the algorithm is terminated.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [opt, terminate, status] = optimbase_terminate(opt, previousfopt, currentfopt, previousxopt, currentxopt)
         </synopsis>

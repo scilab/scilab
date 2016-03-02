@@ -19,7 +19,7 @@
         <refpurpose>Determines if scilab is launched from a ms terminal service session (Windows only)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>istssession()</synopsis>
     </refsynopsisdiv>
     <refsection>

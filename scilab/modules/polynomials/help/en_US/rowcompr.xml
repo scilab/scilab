@@ -19,7 +19,7 @@
         <refpurpose>row compression of polynomial matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X,rk,Ac]=rowcompr(A)</synopsis>
     </refsynopsisdiv>
     <refsection>

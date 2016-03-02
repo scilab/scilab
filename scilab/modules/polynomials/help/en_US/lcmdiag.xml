@@ -19,7 +19,7 @@
         <refpurpose>least common multiple diagonal factorization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[N,D]=lcmdiag(H)
             [N,D]=lcmdiag(H,flag)
         </synopsis>

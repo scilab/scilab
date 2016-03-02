@@ -5,7 +5,7 @@
         <refpurpose>error message</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>error(message)
             error(message, n)
             error(n)

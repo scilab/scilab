@@ -19,7 +19,7 @@
         <refpurpose>linear system definition</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[sl]=syslin(dom,A,B,C [,D [,x0] ])
             [sl]=syslin(dom,N,D)
             [sl]=syslin(dom,H)

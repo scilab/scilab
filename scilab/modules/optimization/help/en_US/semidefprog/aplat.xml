@@ -8,7 +8,7 @@
         <refpurpose>Flattens a list. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[lf,ind] = aplat(l,r)</synopsis>
     </refsynopsisdiv>
     <refsection>

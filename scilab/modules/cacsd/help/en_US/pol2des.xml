@@ -19,7 +19,7 @@
         <refpurpose>polynomial matrix to descriptor form</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[N,B,C]=pol2des(Ds)</synopsis>
     </refsynopsisdiv>
     <refsection>

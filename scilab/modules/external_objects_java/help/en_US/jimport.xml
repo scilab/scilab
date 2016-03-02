@@ -21,7 +21,7 @@
         <refpurpose>Import a Java class</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             jimport(className)
             cl = jimport(className, isAClassReturned)

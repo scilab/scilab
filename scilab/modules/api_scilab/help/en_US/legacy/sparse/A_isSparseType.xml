@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int isSparseType(void* _pvCtx, int* _piAddress)</synopsis>
         <synopsis>int isNamedSparseType(void* _pvCtx, const char* _pstName)</synopsis>
     </refsynopsisdiv>

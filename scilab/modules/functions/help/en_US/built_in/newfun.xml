@@ -5,7 +5,7 @@
         <refpurpose>add a name in the table of functions</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>newfun(function_name, function_ptr)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -12,7 +12,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [D, Z, RESID, IPARAM, IPNTR, WORKD, WORKL, RWORK, INFO] = zneupd(RVEC, HOWMANY, SELECT, D, Z, SIGMA, WORKev,
             BMAT, N, WHICH, NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, RWORK, INFO)

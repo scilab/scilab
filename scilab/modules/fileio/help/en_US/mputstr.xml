@@ -20,7 +20,7 @@
         <refpurpose>writes a character string in a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mputstr(str [, fd]);</synopsis>
     </refsynopsisdiv>
     <refsection>

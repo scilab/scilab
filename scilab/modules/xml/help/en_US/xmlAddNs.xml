@@ -19,7 +19,7 @@
         <refpurpose>Add a namespace to a XML Element</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xmlAddNs(elem, [, ns1 [, ns2, ...]])
         </synopsis>

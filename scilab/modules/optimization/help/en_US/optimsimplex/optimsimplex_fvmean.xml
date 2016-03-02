@@ -19,7 +19,7 @@
         <refpurpose>Computes the mean.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             m = optimsimplex_fvmean(opt)
         </synopsis>

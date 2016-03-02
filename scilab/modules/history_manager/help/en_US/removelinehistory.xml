@@ -19,7 +19,7 @@
         <refpurpose>remove the Nth line in history.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>removelinehistory(N)</synopsis>
     </refsynopsisdiv>
     <refsection>

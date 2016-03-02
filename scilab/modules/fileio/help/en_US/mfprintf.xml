@@ -20,7 +20,7 @@
         <refpurpose>converts, formats, and writes data to a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mfprintf(fd, format, a1, ..., an);</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>sepia tone colorization on black and white images</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>cmap=pinkcolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

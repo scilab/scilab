@@ -973,7 +973,7 @@ msgstr ""
 "%s: значення параметра «PlotFcns» не відповідає назві функції або списку."
 
 #, c-format
-msgid "Calling sequence %s is obsolete."
+msgid "Syntax %s is obsolete."
 msgstr "Виклик послідовності %s є застарілим."
 
 #, c-format

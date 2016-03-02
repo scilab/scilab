@@ -19,7 +19,7 @@
         <refpurpose>Write a variable in a Matlab binary MAT-file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>status = matfile_varwrite(fd, name, value, compressionflag)</synopsis>
     </refsynopsisdiv>
     <refsection>

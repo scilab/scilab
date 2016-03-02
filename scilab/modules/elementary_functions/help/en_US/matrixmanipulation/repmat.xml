@@ -19,7 +19,7 @@
         <refpurpose>Replicate and tile an array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>B = repmat(A,m,n,...)</synopsis>
         <synopsis>B = repmat(A,siz)</synopsis>
         <synopsis>B = repmat(A,m)</synopsis>

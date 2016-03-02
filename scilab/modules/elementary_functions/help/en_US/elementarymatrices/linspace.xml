@@ -19,7 +19,7 @@
         <refpurpose>linearly spaced vector</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[v]=linspace(x1,x2 [,n])</synopsis>
     </refsynopsisdiv>
     <refsection>

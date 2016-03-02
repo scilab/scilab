@@ -19,7 +19,7 @@
         <refpurpose>add vertical error bars on a 2D plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>errbar(x, y, em, ep)</synopsis>
     </refsynopsisdiv>
     <refsection>

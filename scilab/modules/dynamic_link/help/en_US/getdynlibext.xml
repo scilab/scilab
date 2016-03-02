@@ -19,7 +19,7 @@
         <refpurpose>get the extension of dynamic libraries on your operating system.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ret=getdynlibext()</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>covariance to hankel matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>hk =hank(m, n, cov)</synopsis>
     </refsynopsisdiv>
     <refsection>

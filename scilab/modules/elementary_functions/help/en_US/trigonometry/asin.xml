@@ -19,7 +19,7 @@
         <refpurpose>sine inverse (radians)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[t] = asin(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

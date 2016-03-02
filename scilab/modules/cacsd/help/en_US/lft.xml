@@ -19,7 +19,7 @@
         <refpurpose>linear fractional transformation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P1]=lft(P,K)
             [P1]=lft(P,r,K)
             [P1,r1]=lft(P,r,Ps,rs)

@@ -20,7 +20,7 @@
         <refpurpose>3D representation of a histogram</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>hist3d(mtx,[theta,alpha,leg,flag,ebox])
             hist3d(mtx,&lt;opt_args&gt;)
             hist3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])

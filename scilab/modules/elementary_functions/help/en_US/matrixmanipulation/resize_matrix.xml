@@ -20,7 +20,7 @@
         <refpurpose>trim or/and extend (and cast) a matrix or hypermatrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             resMat = resize_matrix(mat, nbRows, nbCols)
             

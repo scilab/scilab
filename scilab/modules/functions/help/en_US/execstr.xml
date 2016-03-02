@@ -19,7 +19,7 @@
         <refpurpose>execute Scilab code in strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>execstr(instr)
             ierr = execstr(instr,'errcatch' [,msg])
         </synopsis>

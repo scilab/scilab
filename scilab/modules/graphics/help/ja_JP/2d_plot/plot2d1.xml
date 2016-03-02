@@ -40,7 +40,7 @@
     
     <refsynopsisdiv>
         
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         
         <synopsis>plot2d1(str,x,y,[style,strf,leg,rect,nax])</synopsis>
         

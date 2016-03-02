@@ -19,7 +19,7 @@
         <refpurpose>frequency phase plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             phaseplot(sl)
             phaseplot(sl,fmin,fmax [,step] [,comments] )
@@ -74,7 +74,7 @@
                     <para>an n x m array: the magnitudes corresponding to
                         <literal>frq</literal>. This argument is not used, it only
                         appears to make <literal>phaseplot</literal> have the same
-                        calling sequence as <literal>gainplot</literal> and
+                        syntax as <literal>gainplot</literal> and
                         <literal>bode</literal>.
                     </para>
                 </listitem>

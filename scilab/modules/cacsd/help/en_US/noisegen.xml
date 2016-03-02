@@ -19,7 +19,7 @@
         <refpurpose>noise generation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>b = noisegen(pas, Tmax, sig)</synopsis>
     </refsynopsisdiv>
     <refsection>

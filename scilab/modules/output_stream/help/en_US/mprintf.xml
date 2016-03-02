@@ -25,7 +25,7 @@
         <refname>printf</refname>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mprintf(format,a1,...,an);</synopsis>
     </refsynopsisdiv>
     <refsection>

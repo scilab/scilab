@@ -8,7 +8,7 @@
         <refpurpose>Computes the frequencies for which the nyquist locus enters and leaves a given rectangle. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[fmin,fmax] = nyquistfrequencybounds(H,bounds)</synopsis>
     </refsynopsisdiv>
     <refsection>

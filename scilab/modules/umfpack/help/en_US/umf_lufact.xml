@@ -5,7 +5,7 @@
         <refpurpose>lu factorization of a sparse matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>LU_ptr = umf_lufact(A)</synopsis>
     </refsynopsisdiv>
     <refsection>

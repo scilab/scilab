@@ -5,7 +5,7 @@
         <refpurpose>Jacobi's complete elliptic integral</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[K]=%k(m)</synopsis>
     </refsynopsisdiv>
     <refsection>

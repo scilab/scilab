@@ -5,7 +5,7 @@
         <refpurpose>remove constant, linear or piecewise linear trend from a vector</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = detrend(x)
             y = detrend(x,flag)
             y = detrend(x,flag,bp)

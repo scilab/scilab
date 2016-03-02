@@ -19,10 +19,10 @@
         <refpurpose>Householder orthogonal reflexion matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
-            householder         // demo
-            u     = householder(v [,w])
+                     householder() // demo
+                 u = householder(v [,w])
             [u, H] = householder(v [,w])
         </synopsis>
     </refsynopsisdiv>

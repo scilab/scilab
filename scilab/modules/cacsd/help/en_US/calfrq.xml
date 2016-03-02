@@ -19,7 +19,7 @@
         <refpurpose>frequency response discretization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[frq,bnds,split]=calfrq(h,fmin,fmax)</synopsis>
     </refsynopsisdiv>
     <refsection>

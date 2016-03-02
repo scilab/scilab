@@ -19,7 +19,7 @@
         <refpurpose>discrete time response (transfer matrix)  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y]=rtitr(Num,Den,u [,up,yp])</synopsis>
     </refsynopsisdiv>
     <refsection>

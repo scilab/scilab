@@ -5,7 +5,7 @@
         <refpurpose>least-square filter design</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Hz = yulewalk(N,frq,mag)</synopsis>
     </refsynopsisdiv>
     <refsection>

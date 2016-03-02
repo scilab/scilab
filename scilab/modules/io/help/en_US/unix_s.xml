@@ -19,7 +19,7 @@
         <refpurpose>shell (sh) command execution, no output</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>unix_s(cmd)</synopsis>
     </refsynopsisdiv>
     <refsection>

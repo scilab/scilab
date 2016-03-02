@@ -19,7 +19,7 @@
         <refpurpose>base 2 logarithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=log2(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

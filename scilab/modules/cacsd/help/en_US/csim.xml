@@ -19,7 +19,7 @@
         <refpurpose>simulation (time response) of linear system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y [,x]]=csim(u,t,sl,[x0 [,tol]])</synopsis>
     </refsynopsisdiv>
     <refsection>

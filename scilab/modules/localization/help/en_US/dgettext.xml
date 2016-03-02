@@ -20,7 +20,7 @@
         <refpurpose>get text translated into the current locale and a specific domain</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>msg=dgettext(domain, myString)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             void freeAllocatedMatrixOfString(int _iRows, int _iCols, char** _pstData)
             void freeAllocatedMatrixOfWideString(int _iRows, int _iCols, wchar_t** _pwstData)

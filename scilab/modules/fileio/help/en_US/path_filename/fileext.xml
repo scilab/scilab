@@ -20,7 +20,7 @@
         <refpurpose>returns extension for a file path</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>extension = fileext(fullpath)</synopsis>
     </refsynopsisdiv>
     <refsection>

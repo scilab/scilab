@@ -19,7 +19,7 @@
         <refpurpose>sine inverse, results in degree</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = asind(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

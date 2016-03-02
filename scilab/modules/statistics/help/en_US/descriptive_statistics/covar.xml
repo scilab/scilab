@@ -19,7 +19,7 @@
         <refpurpose>covariance of two variables</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s=covar(x,y,fre)</synopsis>
     </refsynopsisdiv>
     <refsection>

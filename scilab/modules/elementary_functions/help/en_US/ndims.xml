@@ -19,7 +19,7 @@
         <refpurpose>number of dimensions of an array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             n = ndims(A)
         </synopsis>

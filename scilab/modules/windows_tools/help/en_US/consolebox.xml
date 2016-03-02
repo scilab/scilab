@@ -19,7 +19,7 @@
         <refpurpose>show or hide console box (Windows)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>state1=console(state2)
             state1=console()
         </synopsis>

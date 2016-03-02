@@ -23,7 +23,7 @@
         <refpurpose>Write comma-separated value file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             csvWrite(M, filename)
             csvWrite(M, filename, separator)

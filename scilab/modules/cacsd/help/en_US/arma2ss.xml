@@ -21,7 +21,7 @@ along with this program.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[S,Sn] = arma2ss(Ar)
             S = arma2ss(Ar)
         </synopsis>

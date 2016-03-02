@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[f,g,ind]=NDcost(x,ind,fun,varargin)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -42,7 +42,7 @@
             <varlistentry>
                 <term>fun</term>
                 <listitem>
-                    <para>Scilab function with calling sequence
+                    <para>Scilab function with syntax
                         <literal>F=fun(x,varargin)</literal> varargin may be use to pass
                         parameters <literal>p1,...pn</literal>
                     </para>

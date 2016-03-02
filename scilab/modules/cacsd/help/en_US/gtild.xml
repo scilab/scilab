@@ -19,7 +19,7 @@
         <refpurpose>tilde operation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Gt=gtild(G)
             Gt=gtild(G,flag)
         </synopsis>

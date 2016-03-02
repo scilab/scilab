@@ -19,7 +19,7 @@
         <refpurpose>Unload (call .quit file of) external modules previously loaded by ATOMS</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             result = atomsQuit();
         </synopsis>

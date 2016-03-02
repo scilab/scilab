@@ -94,7 +94,7 @@ end
     &lt;refpurpose&gt;Add short description here. &lt;/refpurpose&gt;
   &lt;/refnamediv&gt;
   &lt;refsynopsisdiv&gt;
-    &lt;title&gt;Calling Sequence&lt;/title&gt;
+    &lt;title&gt;Syntax&lt;/title&gt;
     &lt;synopsis&gt;y = foo(a,b,c)&lt;/synopsis&gt;
   &lt;/refsynopsisdiv&gt;
   &lt;refsection&gt;

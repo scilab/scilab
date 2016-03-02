@@ -19,7 +19,7 @@
         <refpurpose>load .au sound file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=auread(aufile)
             y=auread(aufile,ext)
             [y,Fs,bits]=auread(aufile)

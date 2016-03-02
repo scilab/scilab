@@ -28,7 +28,7 @@
 /*--------------------------------------------------------------------------*/
 /* fftw_flags function.
 *
-* Scilab Calling sequence :
+* Scilab Syntax :
 *   -->[a,b]=fftw_flags();
 * or
 *   -->[a,b]=fftw_flags(S);

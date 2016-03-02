@@ -20,7 +20,7 @@
         <refpurpose>gets the drive letters of all mounted filesystems on the computer</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>drives = getdrives()</synopsis>
     </refsynopsisdiv>
     <refsection>

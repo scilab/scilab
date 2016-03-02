@@ -19,7 +19,7 @@
         <refpurpose>stabilization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>F=stabil(A,B,alfa)
             K=stabil(Sys,alfa,beta)
         </synopsis>

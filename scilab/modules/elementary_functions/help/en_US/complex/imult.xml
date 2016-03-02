@@ -5,7 +5,7 @@
         <refpurpose>multiplication by i the imaginary unitary</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = imult(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

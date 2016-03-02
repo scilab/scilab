@@ -19,7 +19,7 @@
         <refpurpose>Computes the center.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             sicenter = optimsimplex_center(opt)
         </synopsis>

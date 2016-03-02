@@ -19,7 +19,7 @@
         <refpurpose>Real nth root of real numbers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=nthroot(x,n)</synopsis>
     </refsynopsisdiv>
     <refsection>

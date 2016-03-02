@@ -217,7 +217,7 @@ msgstr ""
 
 #
 # File: modules/helptools/macros/help_skeleton.sci, line: 94
-msgid "Calling Sequence"
+msgid "Syntax"
 msgstr ""
 
 #

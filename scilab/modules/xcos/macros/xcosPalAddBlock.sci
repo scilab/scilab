@@ -15,7 +15,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
 
     //  Add a block to a Scilab/Xcos palette instance. Some optional properties can be added to customize the palette icon and the style of the block.
     //
-    // Calling Sequence
+    // Syntax
     //  pal = xcosPalAddBlock(pal, block);
     //  pal = xcosPalAddBlock(pal, block, pal_block_img);
     //  pal = xcosPalAddBlock(pal, block, [], style);

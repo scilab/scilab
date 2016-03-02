@@ -19,7 +19,7 @@
         <refpurpose>A continuous variable mutation function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Mut_Indiv = mutation_ga_default(Indiv,param)</synopsis>
     </refsynopsisdiv>
     <refsection>

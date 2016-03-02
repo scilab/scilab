@@ -27,7 +27,7 @@
 
 /* Set fftw wisdom
 *
-* Scilab Calling sequence :
+* Scilab Syntax :
 *   -->set_fftw_wisdom(txt);
 *
 * Input : a scilab string matrix

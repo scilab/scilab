@@ -20,7 +20,7 @@
         <refpurpose>rows and columns used for display</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>lines(nl)
             lines(nl, nc)
             lines(ncl)

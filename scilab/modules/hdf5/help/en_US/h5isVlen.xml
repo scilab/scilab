@@ -19,7 +19,7 @@
         <refpurpose>Check if the HDF5 object is a variable length array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             b = h5isVlen(obj)
         </synopsis>

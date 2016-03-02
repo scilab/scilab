@@ -19,7 +19,7 @@
         <refpurpose>Preprocessor for estimating the matrices of a linear time-invariant dynamical system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[R,N [,SVAL,RCND]] = findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW)
             [R,N] = findR(S,Y)
         </synopsis>

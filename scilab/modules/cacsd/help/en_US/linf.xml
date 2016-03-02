@@ -19,7 +19,7 @@
         <refpurpose>infinity norm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>linf(g [,eps],[tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

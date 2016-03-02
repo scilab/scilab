@@ -19,7 +19,7 @@
         <refpurpose>draw a part of an ellipse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xarc(x,y,w,h,a1,a2)</synopsis>
     </refsynopsisdiv>
     <refsection>

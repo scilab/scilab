@@ -5,7 +5,7 @@
         <refpurpose>opens in scilab editor the source of the last recorded error</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>answ = edit_error(clearerror)</synopsis>
     </refsynopsisdiv>
     <refsection>

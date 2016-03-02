@@ -20,7 +20,7 @@
         <refpurpose>Parameter identification based on measured data</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[p,err]=datafit([imp,] G [,DG],Z [,W],[contr],p0,[algo],[df0,[mem]],
             [work],[stop],['in'])
         </synopsis>

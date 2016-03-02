@@ -4,7 +4,7 @@
         <refname>get optional argument (Scilab gateway)</refname>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int getOptionals(void* _pvCtx, char* fname, rhs_opts opts[])</synopsis>
     </refsynopsisdiv>
     <refsection>

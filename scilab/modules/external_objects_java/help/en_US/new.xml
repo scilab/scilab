@@ -21,7 +21,7 @@
         <refpurpose>Creates a new instance of a Java class</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             class.new([arg1, [, arg2, ...]])
         </synopsis>

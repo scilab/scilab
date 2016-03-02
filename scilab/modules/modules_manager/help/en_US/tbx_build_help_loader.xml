@@ -19,7 +19,7 @@
         <refpurpose>Generate an addchapter.sce script (toolbox compilation process)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_build_help_loader(title)
             tbx_build_help_loader(title, help_path)

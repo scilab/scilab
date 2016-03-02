@@ -5,7 +5,7 @@
         <refpurpose>Printing an uitree in the console (text mode)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>uiDumpTree(tree[,b])
         </synopsis>
     </refsynopsisdiv>

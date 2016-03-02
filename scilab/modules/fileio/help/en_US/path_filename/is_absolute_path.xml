@@ -20,7 +20,7 @@
         <refpurpose>checks if argument is an absolute path</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>r = is_absolute_path(path)</synopsis>
     </refsynopsisdiv>
     <refsection>

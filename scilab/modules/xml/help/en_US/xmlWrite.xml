@@ -19,7 +19,7 @@
         <refpurpose>Write a XML document in a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xmlWrite(doc [, filename] [, indent])
             xmlWrite(doc [, indent])

@@ -20,7 +20,7 @@
         <refpurpose>closes an opened file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             err = mclose([fd])
             mclose('all')

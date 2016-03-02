@@ -19,7 +19,7 @@
         <refpurpose> type integers used in integer data types</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[i] = inttype(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

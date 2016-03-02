@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>scilab &lt;Options&gt;
             scilab-adv-cli &lt;Options&gt;
             scilab-cli &lt;Options&gt;

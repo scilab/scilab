@@ -19,7 +19,7 @@
         <refpurpose>List the content of an HDF5 object (group or dataset)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             content = h5ls(obj [, name [, filter]])
             content = h5ls(filename, name [, filter])

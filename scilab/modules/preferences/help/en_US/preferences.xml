@@ -19,7 +19,7 @@
         <refpurpose>Open the Scilab Preferences window</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             preferences()
         </synopsis>

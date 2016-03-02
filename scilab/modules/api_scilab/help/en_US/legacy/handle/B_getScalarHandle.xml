@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int getScalarHandle(void* _pvCtx, int* _piAddress, long long* _pllHandle)</synopsis>
     </refsynopsisdiv>
     <refsection>

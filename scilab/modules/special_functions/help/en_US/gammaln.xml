@@ -19,7 +19,7 @@
         <refpurpose>The logarithm of gamma function.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = gammaln(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

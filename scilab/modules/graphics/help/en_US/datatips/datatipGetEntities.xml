@@ -17,7 +17,7 @@
         <refpurpose>Get all the entities compatible with datatips in the given axes.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             curve_handles=datatipGetEntities(ax)
             curve_handles=datatipGetEntities()

@@ -19,7 +19,7 @@
         <refpurpose>logical OR of the elements of an array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>or(A), or(A,'*')
             or(A,'r'), or(A,1)
             

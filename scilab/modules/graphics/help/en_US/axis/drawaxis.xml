@@ -19,7 +19,7 @@
         <refpurpose>draw an axis</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             drawaxis([options]); // options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics
             e = drawaxis([options]);

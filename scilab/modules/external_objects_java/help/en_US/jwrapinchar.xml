@@ -21,7 +21,7 @@
         <refpurpose>Wrap Scilab uint16 matrix into Java char multiarray.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [jw_1, jw_2, ...] = jwrapinchar(sc_1 [, sc_2 [, sc_3 [,... ]]])
         </synopsis>

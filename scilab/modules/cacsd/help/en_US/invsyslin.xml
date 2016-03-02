@@ -19,7 +19,7 @@
         <refpurpose>system inversion</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[sl2]=invsyslin(sl1)</synopsis>
     </refsynopsisdiv>
     <refsection>

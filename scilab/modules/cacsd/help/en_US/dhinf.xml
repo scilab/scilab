@@ -19,7 +19,7 @@
         <refpurpose>H_infinity design of discrete-time systems</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[AK,BK,CK,DK,(RCOND)] = dishin(A,B,C,D,ncon,nmeas,gamma)</synopsis>
     </refsynopsisdiv>
     <refsection>

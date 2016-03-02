@@ -19,7 +19,7 @@
         <refpurpose>Computes the difference of function values.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             df = optimsimplex_deltafv(opt)
         </synopsis>

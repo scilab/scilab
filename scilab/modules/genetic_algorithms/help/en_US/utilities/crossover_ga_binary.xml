@@ -21,7 +21,7 @@
         <refpurpose>A crossover function for binary code</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Crossed_Indiv1, Crossed_Indiv2, mix] = crossover_ga_binary(Indiv1, Indiv2, param)</synopsis>
     </refsynopsisdiv>
     <refsection>

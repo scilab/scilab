@@ -19,7 +19,7 @@
         <refpurpose>Youla's parametrization of continuous time linear dynamical systems</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>J = fstabst(P,r)</synopsis>
     </refsynopsisdiv>
     <refsection>

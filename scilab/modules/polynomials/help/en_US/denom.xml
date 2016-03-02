@@ -19,7 +19,7 @@
         <refpurpose>denominator</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>den=denom(r)</synopsis>
     </refsynopsisdiv>
     <refsection>

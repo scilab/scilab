@@ -19,7 +19,7 @@
         <refpurpose>Dump the content of an H5 object on the standard output stream</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5dataset(obj, name)  
             h5dataset(filename, name)  

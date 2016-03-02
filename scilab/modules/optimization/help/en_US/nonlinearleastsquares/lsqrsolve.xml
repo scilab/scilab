@@ -22,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x [,v [,info]]]=lsqrsolve(x0,fct,m [,stop [,diag]])
             [x [,v [,info]]]=lsqrsolve(x0,fct,m ,fjac [,stop [,diag]])
         </synopsis>
@@ -272,7 +272,7 @@
         </para>
         <itemizedlist>
             <listitem>
-                <para>a Scilab function whose calling sequence is
+                <para>a Scilab function whose syntax is
                     <literal>v=fct(x,m)</literal> given <literal>x</literal> and
                     <literal>m</literal>.
                 </para>
@@ -289,7 +289,7 @@
                     vector of size <literal>m</literal>.
                 </para>
                 <para>
-                    C calling sequence should be <literal>fct(int *m, int *n, double
+                    C syntax should be <literal>fct(int *m, int *n, double
                         x[],double v[],int *iflag)
                     </literal>
                 </para>
@@ -304,7 +304,7 @@
                 <term>a Scilab function</term>
                 <listitem>
                     <para>
-                        whose calling sequence is <literal>J=fjac(x,m)</literal> given
+                        whose syntax is <literal>J=fjac(x,m)</literal> given
                         <literal>x</literal> and <literal>m</literal>.
                     </para>
                 </listitem>
@@ -323,7 +323,7 @@
                         vector of size <literal>m*n</literal>.
                     </para>
                     <para>
-                        C calling sequence should be <literal>fjac(int *m, int *n,
+                        C syntax should be <literal>fjac(int *m, int *n,
                             double x[],double v[],int *iflag)
                         </literal>
                     </para>

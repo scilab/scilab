@@ -19,7 +19,7 @@
         <refpurpose>2D scatter plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             p = scatter(x,y,&lt;s&gt;,&lt;c&gt;,&lt;"fill"&gt;,&lt;marker&gt;,&lt;marker_property,value&gt;)
             p = scatter(&lt;axes_handle&gt;,...)

@@ -20,7 +20,7 @@
         <refpurpose>get the mouse events and current position</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[rep [,win]]=xgetmouse([sel])</synopsis>
     </refsynopsisdiv>
     <refsection>

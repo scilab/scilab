@@ -19,7 +19,7 @@
         <refpurpose>magenta to yellow colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>cmap=springcolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

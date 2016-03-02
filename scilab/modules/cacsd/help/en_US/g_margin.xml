@@ -19,7 +19,7 @@
         <refpurpose>gain margin and associated crossover frequency</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             gm=g_margin(h)
             [gm,fr]=g_margin(h)

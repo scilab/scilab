@@ -35,13 +35,13 @@
             In the following, we analyse the various ways to call the optimset
             function.
         </para>
-        <para>The following calling sequence</para>
+        <para>The following syntax</para>
         <programlisting role="example"><![CDATA[ 
 options = optimset ()
  ]]></programlisting>
         <para>creates a new data structure where the fields have been set to the empty matrix (i.e. []).
         </para>
-        <para>The following calling sequence</para>
+        <para>The following syntax</para>
         <programlisting role="example"><![CDATA[ 
 options = optimset ( funname )
  ]]></programlisting>
@@ -50,7 +50,7 @@ options = optimset ( funname )
 options = optimset ( "fminsearch" )
  ]]></programlisting>
         <para>returns a new data structure where the default parameters which correspond to the "fminsearch" function have been set.</para>
-        <para>The following calling sequence</para>
+        <para>The following syntax</para>
         <programlisting role="example"><![CDATA[ 
 options = optimset ( oldoptions , key , value )
  ]]></programlisting>

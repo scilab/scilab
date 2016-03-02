@@ -19,7 +19,7 @@
         <refpurpose>center and weight</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s=wcenter(x)
             s=wcenter(x,'r') or s=wcenter(x,1)
             s=wcenter(x,'c') or s=wcenter(x,2)

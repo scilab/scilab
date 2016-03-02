@@ -20,7 +20,7 @@
         <refpurpose>round up</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=ceil(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

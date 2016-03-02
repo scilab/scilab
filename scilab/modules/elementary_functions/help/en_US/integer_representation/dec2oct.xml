@@ -20,7 +20,7 @@
         <refpurpose>convert from decimal to octal</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>o=dec2oct(d)</synopsis>
     </refsynopsisdiv>
     <refsection>

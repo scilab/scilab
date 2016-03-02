@@ -19,7 +19,7 @@
         <refpurpose>compute level curves of a surface on a 2D plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[xc, yc] = contour2di(x, y, z, nz)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>transmission zeros and normal rank</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[tr]=trzeros(Sl)
             [nt,dt,rk]=trzeros(Sl)
         </synopsis>

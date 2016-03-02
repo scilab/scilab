@@ -19,7 +19,7 @@
         <refpurpose>green to yellow colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>cmap=summercolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

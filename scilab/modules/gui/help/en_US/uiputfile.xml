@@ -5,7 +5,7 @@
         <refpurpose>Open standard dialog box for selecting and saving file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[FileName[,PathName[,FilterIndex]]]=uiputfile([file_mask[,dir[,boxTitle]]])
             PathFileName=uiputfile([file_mask[,dir[,boxTitle]]])
         </synopsis>

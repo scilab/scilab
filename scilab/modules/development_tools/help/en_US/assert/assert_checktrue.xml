@@ -20,7 +20,7 @@
         <refpurpose>Check that condition is true.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             flag = assert_checktrue ( condition )
             flag = assert_checktrue ( condition )

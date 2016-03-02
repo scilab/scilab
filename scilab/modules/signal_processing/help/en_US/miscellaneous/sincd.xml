@@ -5,7 +5,7 @@
         <refpurpose>digital sinc function or Dirichlet kernel</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[s]=sincd(n,flag)</synopsis>
     </refsynopsisdiv>
     <refsection>

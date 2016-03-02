@@ -19,7 +19,7 @@
         <refpurpose>conversion from state-space to transfer function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[h]=ss2tf(sl)
             [Ds,NUM,chi]=ss2tf(sl)
             

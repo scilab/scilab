@@ -19,7 +19,7 @@
         <refpurpose>numerator</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>num=numer(R)</synopsis>
     </refsynopsisdiv>
     <refsection>

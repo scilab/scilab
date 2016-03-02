@@ -5,7 +5,7 @@
         <refpurpose>Exports runtime information to files</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>covWrite("html", dir)</synopsis>
         <synopsis>covWrite("binary", binaryFile)</synopsis>
         <synopsis>covWrite("html", binaryFile, dir)</synopsis>

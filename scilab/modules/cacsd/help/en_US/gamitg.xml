@@ -19,7 +19,7 @@
         <refpurpose>H-infinity gamma iterations for continuous time systems</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[gopt]=gamitg(G,r,prec [,options]);</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -20,7 +20,7 @@
         <refpurpose>Random numbers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             r = rand()
             r = rand(m1,m2,...)

@@ -19,7 +19,7 @@
         <refpurpose>row compression, range</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[W,rk]=rowcomp(A [,flag [,tol]])</synopsis>
     </refsynopsisdiv>
     <refsection>

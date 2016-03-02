@@ -19,7 +19,7 @@
         <refpurpose>Convert the result of a XPath query into a row of strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             strings = xmlAsText(xp)
         </synopsis>

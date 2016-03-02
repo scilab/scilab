@@ -19,7 +19,7 @@
         <refpurpose>discrete H-infinity norm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>hinfnorm=dhnorm(sl,[tol],[normax])</synopsis>
     </refsynopsisdiv>
     <refsection>

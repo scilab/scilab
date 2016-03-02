@@ -19,7 +19,7 @@
         <refpurpose>Leverrier's algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[num,den]=nlev(A,z [,rmax])</synopsis>
     </refsynopsisdiv>
     <refsection>

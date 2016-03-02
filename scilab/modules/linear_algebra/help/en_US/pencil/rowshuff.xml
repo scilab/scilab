@@ -19,7 +19,7 @@
         <refpurpose>shuffle algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Ws,Fs1]=rowshuff(Fs, [alfa])</synopsis>
     </refsynopsisdiv>
     <refsection>

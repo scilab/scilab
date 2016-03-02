@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>title(my_title)
             title(my_title,&lt;Property&gt;)
             title(&lt;axes_handle&gt;,&lt;my_title&gt;,&lt;Property&gt;)

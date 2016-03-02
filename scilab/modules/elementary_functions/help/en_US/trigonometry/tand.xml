@@ -19,7 +19,7 @@
         <refpurpose>tangent, argument in degree.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = tand(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

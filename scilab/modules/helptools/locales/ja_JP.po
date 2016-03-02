@@ -182,7 +182,7 @@ msgstr " * XMLファイルに関するコメントを追加してください"
 msgid "Add short description here."
 msgstr "短い説明をここに追加してください."
 
-msgid "Calling Sequence"
+msgid "Syntax"
 msgstr "呼び出し手順"
 
 msgid "Arguments"

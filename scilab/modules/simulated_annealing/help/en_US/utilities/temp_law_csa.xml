@@ -19,7 +19,7 @@
         <refpurpose>The classical temperature decrease law</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>T_out = temp_law_csa(T_in,step_mean,step_var,temp_stage,n,param)</synopsis>
     </refsynopsisdiv>
     <refsection>

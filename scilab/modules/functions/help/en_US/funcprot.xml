@@ -5,7 +5,7 @@
         <refpurpose>switch scilab functions protection mode</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>funcprot(prot)
             previousprot = funcprot(prot)
             prot = funcprot()

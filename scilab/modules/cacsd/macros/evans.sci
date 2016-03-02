@@ -15,7 +15,7 @@ function evans(n,d,kmax)
     smax=0.002;smin=smax/3;
     nptmax=2000 //nbre maxi de pt de discretisation en k
 
-    //Check calling sequence
+    //Check syntax
 
     [lhs,rhs]=argn(0)
 

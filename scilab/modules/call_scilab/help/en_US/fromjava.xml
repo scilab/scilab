@@ -5,7 +5,7 @@
         <refpurpose>Checks if current Scilab is called from javasci</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>r = fromjava()</synopsis>
     </refsynopsisdiv>
     <refsection>

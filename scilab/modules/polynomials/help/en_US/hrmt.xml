@@ -19,7 +19,7 @@
         <refpurpose>gcd of polynomials</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[pg,U]=hrmt(v)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>Checks the consistency of internal data</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             optimsimplex_check(opt)
         </synopsis>

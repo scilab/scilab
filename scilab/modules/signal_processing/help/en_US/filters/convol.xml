@@ -5,7 +5,7 @@
         <refpurpose>convolution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [y]=convol(h,x)
             [y,e1]=convol(h,x,e0)

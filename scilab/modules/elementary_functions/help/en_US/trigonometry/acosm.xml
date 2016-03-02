@@ -19,7 +19,7 @@
         <refpurpose>matrix wise cosine inverse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = acosm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

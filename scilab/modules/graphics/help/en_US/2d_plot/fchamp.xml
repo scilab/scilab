@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             fchamp(f, t, xr, yr, [arfact, rect, strf])
             fchamp(f, t, xr, yr, &lt;opt_args&gt;)

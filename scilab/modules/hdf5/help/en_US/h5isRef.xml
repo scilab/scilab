@@ -19,7 +19,7 @@
         <refpurpose>Check if the HDF5 object is a reference object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             b = h5isRef(obj)
         </synopsis>

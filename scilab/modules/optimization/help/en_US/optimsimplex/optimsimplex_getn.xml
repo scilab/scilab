@@ -19,7 +19,7 @@
         <refpurpose>Returns the dimension of the space.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             n = optimsimplex_getn(opt)
         </synopsis>

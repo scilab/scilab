@@ -5,7 +5,7 @@
         <refpurpose>Creation of node (for Scilab uitree) </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>myNode = uiCreateNode(label[, icon[, callback]])
         </synopsis>
     </refsynopsisdiv>

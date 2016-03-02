@@ -5,7 +5,7 @@
         <refpurpose>FIR approximation to a Hilbert transform filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xh=hilb(n [,wtype [,par]])</synopsis>
     </refsynopsisdiv>
     <refsection>

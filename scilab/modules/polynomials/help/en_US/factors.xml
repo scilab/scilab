@@ -19,7 +19,7 @@
         <refpurpose>numeric real factorization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[lnum,g]=factors(pol [,'flag'])
             [lnum,lden,g]=factors(rat [,'flag'])
             rat=factors(rat,'flag')

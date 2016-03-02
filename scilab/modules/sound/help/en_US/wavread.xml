@@ -19,7 +19,7 @@
         <refpurpose>load .wav sound file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=wavread(wavfile)
             y=wavread(wavfile,ext)
             [y,Fs,bits]=wavread(wavfile)

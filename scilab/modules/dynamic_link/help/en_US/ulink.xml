@@ -19,7 +19,7 @@
         <refpurpose>unlink/unload a dynamically linked shared object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ulink(x)
             ulink()
         </synopsis>

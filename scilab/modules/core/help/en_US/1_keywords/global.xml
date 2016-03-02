@@ -5,7 +5,7 @@
         <refpurpose>Define global variable</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>global('nam1',...,'namn')
             global nam1 ... namn
         </synopsis>

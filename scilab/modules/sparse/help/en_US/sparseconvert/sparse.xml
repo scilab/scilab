@@ -19,7 +19,7 @@
         <refpurpose>sparse matrix definition</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sp=sparse(X)
             sp=sparse(ij,v [,mn])
         </synopsis>

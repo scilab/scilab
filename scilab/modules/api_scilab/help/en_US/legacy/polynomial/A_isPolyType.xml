@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int isPolyType(void* _pvCtx, int* _piAddress)</synopsis>
         <synopsis>int isNamedPolyType(void* _pvCtx, const char* _pstName)</synopsis>
     </refsynopsisdiv>

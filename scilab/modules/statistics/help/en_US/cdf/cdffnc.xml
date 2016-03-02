@@ -19,7 +19,7 @@
         <refpurpose>cumulative distribution function non-central f-distribution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,Q]=cdffnc("PQ",F,Dfn,Dfd,Pnonc)
             [F]=cdffnc("F",Dfn,Dfd,Pnonc,P,Q);
             [Dfn]=cdffnc("Dfn",Dfd,Pnonc,P,Q,F);

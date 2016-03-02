@@ -19,7 +19,7 @@
         <refpurpose>element wise cosine inverse, result in degree.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = acosd(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

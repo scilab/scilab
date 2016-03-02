@@ -5,7 +5,7 @@
         <refpurpose>Creates a context menu</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h = uicontextmenu()
         </synopsis>

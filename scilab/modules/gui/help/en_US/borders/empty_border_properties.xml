@@ -5,7 +5,7 @@
         <refpurpose>Description of the empty borders properties.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             emptyBorder = createBorder("empty")
             emptyBorder = createBorder("empty", top, left, bottom, right)

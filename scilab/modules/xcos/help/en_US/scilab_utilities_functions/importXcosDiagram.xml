@@ -19,7 +19,7 @@
         <refpurpose>Import a Xcos diagram on Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[result]=importXcosDiagram(filename)</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_importXcosDiagram">

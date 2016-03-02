@@ -19,7 +19,7 @@
         <refpurpose>permute the dimensions of an array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=permute(x,dims)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>discrete time spectral factorization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>F=sfact(P)</synopsis>
     </refsynopsisdiv>
     <refsection>

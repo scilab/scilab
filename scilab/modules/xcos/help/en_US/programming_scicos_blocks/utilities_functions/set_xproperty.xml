@@ -27,7 +27,7 @@
         <refpurpose>Set the type of a continuous time state variable</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>set_xproperty(xprop)</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_set_xproperty">

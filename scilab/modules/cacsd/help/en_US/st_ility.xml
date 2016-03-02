@@ -19,7 +19,7 @@
         <refpurpose>stabilizability test</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[ns, [nc, [,U [,Slo] ]]]=st_ility(Sl [,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

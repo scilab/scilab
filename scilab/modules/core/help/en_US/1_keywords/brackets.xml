@@ -5,7 +5,7 @@
         <refpurpose>([,]) left and right brackets</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[a11,a12,...;a21,a22,...;...]
             [s1,s2,...]=func(...)
         </synopsis>

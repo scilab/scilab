@@ -19,7 +19,7 @@
         <refpurpose>Scilab description of an armax process</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[ar]=armac(a,b,d,ny,nu,sig)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>armax simulation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[z]=arsimul(a,b,d,sig,u,[up,yp,ep])
             [z]=arsimul(ar,u,[up,yp,ep])
         </synopsis>

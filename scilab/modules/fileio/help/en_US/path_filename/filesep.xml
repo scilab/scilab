@@ -20,7 +20,7 @@
         <refpurpose>returns directory separator for current platform</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s = filesep()</synopsis>
     </refsynopsisdiv>
     <refsection>

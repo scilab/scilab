@@ -17,7 +17,7 @@
         <refpurpose>Set the interpolation mode for datatip. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             datatipSetInterp(datatip_handle,interp_mode)
         </synopsis>

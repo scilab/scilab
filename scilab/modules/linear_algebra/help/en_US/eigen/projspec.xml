@@ -19,7 +19,7 @@
         <refpurpose>spectral operators</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[S,P,D,i]=projspec(A)</synopsis>
     </refsynopsisdiv>
     <refsection>

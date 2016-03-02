@@ -19,7 +19,7 @@
         <refpurpose>plots the complex plane iso-gain contours of y/(1+y) (obsolete) </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>m_circle()
             m_circle(gain)
         </synopsis>
