@@ -233,7 +233,7 @@ void WebUtils::setParent(int uid, std::string& str, bool append)
         addInWaitingQueue(uid, __GO_UI_BORDER_POSITION__);
     }
 
-    setWaitingProperties(uid, str, false);
+    setWaitingProperties(uid, str, true);
 }
 
 void WebUtils::getFigureSize(int uid, std::vector<int>& vect)
@@ -337,7 +337,7 @@ void WebUtils::setUIString(int uid, std::string& str, bool append)
         {
             str = "var __child__ = " + getElementById(uid);
         }
- 
+
         //remove previous values
         str += "while (__child__.length) {__child__.remove(0);}";
 
@@ -682,7 +682,7 @@ void WebUtils::setUILayout(int uid, std::string& str, bool append)
                 str += "__table__.style.width = '100%';";
                 str += "__table__.style.height = '100%';";
                 str += "__table__.style.borderCollapse = 'collapse';";
-  
+
                 //table in parent
                 str += "__child__.appendChild(__table__);";
                 break;
@@ -902,7 +902,7 @@ void WebUtils::setUIBorder(int uid, std::string& str, bool append)
     str += "__parent__.style.padding = '" + padding + "';";
 
     //to well perform positionning, we must clear some default properties
-    //position left, right, width, height, 
+    //position left, right, width, height,
 
     str += "__child__.style.position = 'inherit';";
     str += "__child__.style.left = 'inherit';";
@@ -1013,12 +1013,12 @@ void WebUtils::setCallback(int uid, std::string& str, bool append)
             event = "change";
             func = "onComboBox";
             break;
-/*
-        case __GO_UI_TAB__:
-            event = "click";
-            func = "onPushButton";
-            break;
-*/
+        /*
+                case __GO_UI_TAB__:
+                    event = "click";
+                    func = "onPushButton";
+                    break;
+        */
         case __GO_UI_SLIDER__:
             event = "input";
             func = "onSlider";
@@ -1044,11 +1044,11 @@ bool WebUtils::isInputType(int uid)
 {
     switch (getStyle(uid))
     {
-        case __GO_UI_EDIT__ : 
+        case __GO_UI_EDIT__ :
         case __GO_UI_SLIDER__:
         case __GO_UI_SPINNER__ :
             return true;
-        default : 
+        default :
             return false;
     }
 }
