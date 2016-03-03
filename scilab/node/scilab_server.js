@@ -1,6 +1,7 @@
 var L = console.log;
 
-var app = require('express')();
+var express = require('express');
+var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
@@ -12,6 +13,10 @@ var fork = require('child_process').fork;
 server.listen(1337);
 
 var script = '/loader';
+
+app.use('/favicon.ico', express.static('./favicon.ico'));
+app.get("/favicon.ico", function(req, res) {
+});
 
 app.get("*", function(req, res) {
     res.sendFile(__dirname + '/html/index.html');

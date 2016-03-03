@@ -256,7 +256,7 @@ body {
                 <td bgcolor="blue" colspan="2"></td>
             </tr>
         </table>
-        <br>
+        <br!-->
         <table width=200 height=100>
             <tr>
                 <td bgcolor="red"></td>
@@ -270,7 +270,7 @@ body {
             <tr>
                 <td bgcolor="blue" colspan="2"></td>
             </tr>
-        </table!-->
+        </table>
         
         <div id='infobar'></div>
         <h3>Logger:</h3>
@@ -380,6 +380,44 @@ body {
                 //setLogger('<font color="orange">' +  msg.data + '</font>');
                 eval(msg);
             });
+
+            //helper call by scilab to insert gridbad child in good order.
+            function gridbagHelperTD(parent, child, pos) {
+                console.log(parent);
+                console.log(child);
+                console.log(pos);
+                
+                console.log("cells: " + parent.cells.length);
+                for(var i = 0 ; i < parent.cells.length ; ++i){
+                    var __tr__ = parent.cells[i];
+                    var idxstr = __tr__.id.indexOf('_');
+                    var idx = parseInt(__tr__.id.substring(idxstr+1));
+                    if(idx > pos) {
+                        parent.insertBefore(child, __tr__);
+                        return;
+                    }
+                }
+                
+                //not found, insert @last pos
+                parent.insertBefore(child, null);
+               
+            }
+            
+            function gridbagHelperTR(parent, child, pos) {
+                for(var i = 0 ; i < parent.rows.length ; ++i){
+                    var __tr__ = parent.rows[i];
+                    var idxstr = __tr__.id.indexOf('_');
+                    var idx = parseInt(__tr__.id.substring(idxstr+1));
+                    if(idx > pos) {
+                        parent.insertBefore(child, __tr__);
+                        return;
+                    }
+                }
+                
+                //not found, insert @last pos
+                parent.insertBefore(child, null);
+            }
+            
         </script>
     </body>
 </html>

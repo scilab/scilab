@@ -939,7 +939,7 @@ void WebUtils::setUIGridBag(int uid, std::string& str, bool append)
     td = "var __td__ = " + createElement("TD");
 
     std::string name("_" + std::to_string(grid[0]) + "_" + std::to_string(grid[1]));
-    td += "__td__.id = " + getIdString(uid, name) + ";";
+    td += "__td__.id = " + getIdString(parent, name) + ";";
 
     if (grid[2] != 1)
     {
@@ -951,24 +951,30 @@ void WebUtils::setUIGridBag(int uid, std::string& str, bool append)
         td += "__td__.rowSpan = '" + std::to_string(grid[3]) + "';";
     }
 
-    //td += "__td__.style.width = '100%';";
     td += "__td__.appendChild(__child__);";
 
     //build or get tr
     name = "_" + std::to_string(grid[1]);
     std::string tr;
     tr = "var __tr__ = " + getElementById(parent, name);
+    tr += "var __table__ = " + getElementById(parent, "_table");
     tr += "if(__tr__ == null){";
-    tr += "";
     tr += "__tr__ = " + createElement("TR");
     tr += "__tr__.id = " + getIdString(parent, name) + ";";
-    tr += "var __table__ = " + getElementById(parent, "_table");
-    tr += "__table__.appendChild(__tr__);";
+    tr += "gridbagHelperTR(__table__, __tr__, " + std::to_string(grid[1]) + ");";
     tr += "}";
-    tr += "__tr__.appendChild(__td__);";
+    tr += "gridbagHelperTD(__tr__,__td__, " + std::to_string(grid[0]) + ");";
+
+    //to force refresh of table, move it to another component and restore it
+    std::string tricktoforcerefresh("\nvar __scilab__ = document.getElementById('scilab');\n");
+    tricktoforcerefresh += "__scilab__.appendChild(__table__);\n";
+    tricktoforcerefresh += "var __parent__ = " + getElementById(parent) + "\n";
+    tricktoforcerefresh += "__parent__.appendChild(__table__);";
+
 
     str += td;
     str += tr;
+    str += tricktoforcerefresh;
 }
 
 bool WebUtils::hasCallback(int uid)
@@ -1299,78 +1305,61 @@ bool WebUtils::updateDefaultProperties(int uid, std::string& update)
 
     //visible
     setVisible(uid, str);
-    update += str;
 
     //backgoundcolor
-    setUIBackgroundColor(uid, str);
-    update += str;
+    setUIBackgroundColor(uid, str, true);
 
     //enable
-    setUIEnable(uid, str);
-    update += str;
+    setUIEnable(uid, str, true);
 
     //fontangle
-    setUIFontAngle(uid, str);
-    update += str;
+    setUIFontAngle(uid, str, true);
 
     //fontname
-    setUIFontName(uid, str);
-    update += str;
+    setUIFontName(uid, str, true);
 
     //fontsize & fontunits
-    setUIFontSize(uid, str);
-    update += str;
+    setUIFontSize(uid, str, true);
 
     //fontweight
-    setUIFontWeight(uid, str);
-    update += str;
+    setUIFontWeight(uid, str, true);
 
     //foregroundcolor
-    setUIForegroundColor(uid, str);
-    update += str;
+    setUIForegroundColor(uid, str, true);
 
     //horizontalalignment
-    setUIHorizontalAlignment(uid, str);
-    update += str;
+    setUIHorizontalAlignment(uid, str, true);
 
     //relief ?
-    setUIRelief(uid, str);
-    update += str;
+    setUIRelief(uid, str, true);
 
     //string
-    setUIString(uid, str);
-    update += str;
+    setUIString(uid, str, true);
 
     //verticalalignment
-    setUIVerticalAlignment(uid, str);
-    update += str;
+    setUIVerticalAlignment(uid, str, true);
 
     //position
-    setUIPosition(uid, str);
-    update += str;
+    setUIPosition(uid, str, true);
 
     //layout ?
-    setUILayout(uid, str);
-    update += str;
+    setUILayout(uid, str, true);
 
     //min
-    setUIMin(uid, str);
-    update += str;
+    setUIMin(uid, str, true);
 
     //max
-    setUIMax(uid, str);
-    update += str;
+    setUIMax(uid, str, true);
 
     //step
-    setUIStep(uid, str);
-    update += str;
+    setUIStep(uid, str, true);
 
     //vaue
-    setUIValue(uid, str);
-    update += str;
+    setUIValue(uid, str, true);
 
     //set callback uses to update values from web view
-    setCallback(uid, str);
+    setCallback(uid, str, true);
+
     update += str;
 
     return true;
