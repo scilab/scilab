@@ -42,6 +42,20 @@ h3 {
     margin-bottom: 10px;
 }
 
+h4 {
+    color: #000063;
+    font-weight: bold;
+    font-size:120%;
+    margin-bottom: 5px;
+}
+
+h5 {
+    color: #000063;
+    font-weight: bold;
+    font-size:110%;
+    margin-bottom: 1px;
+}
+
 .programlisting {
     font-family: monospace;
     font-size: 100%;
