@@ -14,9 +14,6 @@ DYNAMIC_LINK_CPP_SOURCES = \
     src/cpp/dynamic_link.cpp \
     src/cpp/addinter.cpp
 
-#GATEWAY_C_SOURCES = \
-#    sci_gateway/c/sci_call.c
-
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/dynamic_link_gw.cpp \
     sci_gateway/cpp/sci_link.cpp \
@@ -24,7 +21,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_ulink.cpp \
     sci_gateway/cpp/sci_ilib_verbose.cpp \
     sci_gateway/cpp/sci_getdynlibext.cpp \
-    sci_gateway/cpp/sci_addinter.cpp
+    sci_gateway/cpp/sci_addinter.cpp \
+    sci_gateway/cpp/sci_call.cpp
 
 libscidynamic_link_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \

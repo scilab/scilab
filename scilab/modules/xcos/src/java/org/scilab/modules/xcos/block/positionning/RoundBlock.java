@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2010-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -50,7 +53,7 @@ public class RoundBlock extends BasicBlock {
          */
         if (child instanceof InputPort) {
             final InputPort port = (InputPort) child;
-            port.setOrientation(getPortOrientation(index));
+            port.setOrientation(getInputPortOrientation(index));
 
         }
 
@@ -64,28 +67,23 @@ public class RoundBlock extends BasicBlock {
      *            the port ordering
      * @return the selected orientation
      */
-    // CSOFF: MagicNumber
-    private Orientation getPortOrientation(int order) {
+    private Orientation getInputPortOrientation(int order) {
         final Orientation ret;
 
         switch (order) {
-            case 1:
+            case 0:
                 ret = Orientation.SOUTH;
                 break;
-
-            case 2:
+            case 1:
                 ret = Orientation.WEST;
                 break;
-
-            case 3:
+            case 2:
                 ret = Orientation.NORTH;
                 break;
-
             default:
                 ret = Orientation.WEST;
                 break;
         }
         return ret;
     }
-    // CSON: MagicNumber
 }

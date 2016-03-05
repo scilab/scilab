@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -127,6 +130,16 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     }
     types::InternalType* pIT = getResult();
 
+    // pIT can be NULL if one of call return nothing. foo()(1) with foo return nothing.
+    if(pIT == NULL)
+    {
+        clearResult();
+        std::wostringstream os;
+        os << _W("Cannot extract from nothing.") << std::endl;
+        CoverageInstance::stopChrono((void*)&e);
+        throw ast::InternalError(os.str(), 999, e.getLocation());
+    }
+
     types::typed_list out;
     types::typed_list in;
     types::optional_list opt;
@@ -218,7 +231,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         {
             pListArg = in[0]->getAs<types::List>();
             iLoopSize = pListArg->getSize();
-            cleanOpt(opt);
+            cleanOpt(opt, out);
         }
 
         setExpectedSize(iSaveExpectedSize);
@@ -302,7 +315,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 setExpectedSize(iSaveExpectedSize);
                 setResult(out);
                 cleanIn(in, out);
-                cleanOpt(opt);
+                cleanOpt(opt, out);
 
                 // In case a.b(), getResult contain pIT ("b").
                 // If out == pIT, do not delete it.
@@ -355,7 +368,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
         clearResult();
         cleanInOut(in, out);
-        cleanOpt(opt);
+        cleanOpt(opt, out);
         CoverageInstance::stopChrono((void*)&e);
 
         throw ia;
@@ -370,7 +383,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
         clearResult();
         cleanInOut(in, out);
-        cleanOpt(opt);
+        cleanOpt(opt, out);
         CoverageInstance::stopChrono((void*)&e);
 
         throw ie;

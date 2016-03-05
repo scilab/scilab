@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2009 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -243,7 +246,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         }
     }
 
-    os_swprintf(pwstSign, 32, L"%ls%ls%ls", pBlank, pSign, pBlank);
+    os_swprintf(pwstSign, 32, L"%ls%ls", pBlank, pSign);
 
     if (ISNAN(_dblVal))
     {
@@ -277,16 +280,17 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
 
         if (_pDF->bPrintPoint)
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%#d.%%0%ddD%%+.02d", pwstSign, _pDF->iPrec);
+            os_swprintf(pwstFormat, 32, L"%ls%%#d.%%0%dldD%%+.02d", pwstSign, _pDF->iPrec);
         }
         else
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%d%%0%ddD%%+.02d", pwstSign, _pDF->iPrec);
+            os_swprintf(pwstFormat, 32, L"%ls%%d%%0%dldD%%+.02d", pwstSign, _pDF->iPrec);
         }
 
-        if ((int)std::round(dblDec) != (int)dblDec)
+        if ((long long int)std::round(dblDec) != (long long int)dblDec)
         {
-            double d1 = (int)std::round(dblDec);
+            // casting to long long int to avoid overflow to negative values
+            double d1 = (long long int)std::round(dblDec);
             d1 = fmod(d1, std::pow(10., _pDF->iPrec));
             if (d1 < dblDec)
             {
@@ -297,7 +301,9 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
             dblDec = d1;
         }
 
-        os_swprintf(pwstOutput, 32, pwstFormat, (int)dblEnt, (int)dblDec, (int)dblTemp);
+        // long long int to be able to print up to format(25) otherwise you just write overflow
+        // and write a negative number, dblEnt is at most one digit
+        os_swprintf(pwstOutput, 32, pwstFormat, (int)dblEnt, (long long int)dblDec, (int)dblTemp);
     }
     else if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
     {
@@ -451,3 +457,4 @@ void addColumnString(std::wostringstream& ostr, int _iFrom, int _iTo)
         ostr << std::endl << L"         column " << _iFrom << L" to " << _iTo << std::endl << std::endl;
     }
 }
+

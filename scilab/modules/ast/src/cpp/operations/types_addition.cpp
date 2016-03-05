@@ -3,11 +3,14 @@
  *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,6 +19,7 @@
 #include "operations.hxx"
 #include "double.hxx"
 #include "int.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -891,17 +895,18 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
         {
             for (int i = 0 ; i < std::min(sp->getRows(), sp->getCols()) ; i++)
             {
-                pS->set(i, i, std::complex<double>(d->get(0), d->getImg(0)));
+                pS->set(i, i, std::complex<double>(d->get(0), d->getImg(0)), false);
             }
         }
         else
         {
             for (int i = 0 ; i < std::min(sp->getRows(), sp->getCols()) ; i++)
             {
-                pS->set(i, i, d->get(0));
+                pS->set(i, i, d->get(0), false);
             }
         }
 
+        pS->finalize();
         AddSparseToSparse(sp, pS, (Sparse**)pDRes);
         delete pS;
         return 0;
@@ -1132,6 +1137,11 @@ InternalType* add_M_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_M_E(T *_pL, U * /*_pR*/)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1192,6 +1202,11 @@ InternalType* add_MC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_MC_E(T *_pL, U * /*_pR*/)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1230,6 +1245,11 @@ InternalType* add_S_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_S_E(T *_pL, U * /*_pR*/)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1266,6 +1286,11 @@ InternalType* add_SC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_SC_E(T *_pL, U * /*_pR*/)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1276,6 +1301,11 @@ InternalType* add_SC_E(T *_pL, U * /*_pR*/)
 template<class T, class U, class O>
 InternalType* add_E_M(T *_pL, U *_pR)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1285,6 +1315,11 @@ InternalType* add_E_M(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_E_MC(T *_pL, U *_pR)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1294,6 +1329,11 @@ InternalType* add_E_MC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_E_S(T *_pL, U *_pR)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1303,6 +1343,11 @@ InternalType* add_E_S(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_E_SC(T *_pL, U *_pR)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1537,6 +1582,11 @@ template<class T, class U, class O> InternalType* add_IC_IC(T *_pL, U *_pR)
 
 template<class T, class U, class O> types::InternalType* add_I_E(T *_pL, U * /*_pR*/)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1545,6 +1595,11 @@ template<class T, class U, class O> types::InternalType* add_I_E(T *_pL, U * /*_
 
 template<class T, class U, class O> types::InternalType* add_IC_E(T *_pL, U * /*_pR*/)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1553,6 +1608,11 @@ template<class T, class U, class O> types::InternalType* add_IC_E(T *_pL, U * /*
 
 template<class T, class U, class O> types::InternalType* add_E_I(T * /*_pL*/, U *_pR)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1561,6 +1621,11 @@ template<class T, class U, class O> types::InternalType* add_E_I(T * /*_pL*/, U 
 
 template<class T, class U, class O> types::InternalType* add_E_IC(T * /*_pL*/, U *_pR)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1684,6 +1749,11 @@ InternalType* add_S_S<String, String, String>(String* _pL, String* _pR)
 template<>
 InternalType* add_M_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1693,6 +1763,11 @@ InternalType* add_M_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 template<>
 InternalType* add_S_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pL;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1702,6 +1777,11 @@ InternalType* add_S_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 template<>
 InternalType* add_E_M<Double, String, String>(Double* /*_pL*/, String* _pR)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();
@@ -1711,6 +1791,11 @@ InternalType* add_E_M<Double, String, String>(Double* /*_pL*/, String* _pR)
 template<>
 InternalType* add_E_S<Double, String, String>(Double* /*_pL*/, String* _pR)
 {
+    if (ConfigVariable::getOldEmptyBehaviour())
+    {
+        Sciwarning(_("operation +: Warning adding a matrix with the empty matrix old behaviour.\n"));
+        return _pR;
+    }
     Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     add();

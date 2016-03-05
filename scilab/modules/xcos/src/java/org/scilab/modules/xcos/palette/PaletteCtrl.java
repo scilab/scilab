@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -116,7 +117,12 @@ public final class PaletteCtrl {
                 continue;
             }
 
-            BasicBlock basicBlock = XcosCellFactory.createBlock(blockCtrl.getModel().getName());
+            BasicBlock basicBlock = null;
+            try {
+                basicBlock = XcosCellFactory.createBlock(blockCtrl.getModel().getName());
+            } catch (InterpreterException e) {
+            }
+
             if (basicBlock == null) {
                 if (LOG.isLoggable(Level.FINEST)) {
                     LOG.finest(String.format(XcosMessages.UNABLE_TO_LOAD_BLOCK,

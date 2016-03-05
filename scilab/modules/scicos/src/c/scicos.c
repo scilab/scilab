@@ -3610,7 +3610,7 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     {
         if (cosd != 3)
         {
-            sciprint(_("block %d is called "), C2F(curblk).kfun);
+            sciprint(_("block %d [%s] is called "), C2F(curblk).kfun, block->uid);
             sciprint(_("with flag %d "), *flag);
             sciprint(_("at time %f \n"), *t);
         }
@@ -3644,9 +3644,9 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     //sciprint("callf type=%d flag=%d\n",block->type,flagi);
     switch (block->type)
     {
-            /*******************/
-            /* function type 0 */
-            /*******************/
+        /*******************/
+        /* function type 0 */
+        /*******************/
         case 0 :
         {
             /* This is for compatibility */

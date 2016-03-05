@@ -3,11 +3,14 @@
  *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
  *  Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -2728,7 +2731,7 @@ InternalType* compequal_M_SP(T* _pL, U* _pR)
             std::complex<double> stComplex((double)_pL->get(0), (double)_pL->getImg(0));
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, stComplex);
+                pspConvert->set(i, stComplex, false);
             }
         }
         else
@@ -2736,7 +2739,7 @@ InternalType* compequal_M_SP(T* _pL, U* _pR)
             pspConvert = new Sparse(_pR->getRows(), _pR->getCols(), _pR->isComplex());
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, (double)_pL->get(0));
+                pspConvert->set(i, (double)_pL->get(0), false);
             }
         }
     }
@@ -2756,7 +2759,7 @@ InternalType* compequal_M_SP(T* _pL, U* _pR)
             for (int i = 0; i < iSizeOut; i++)
             {
                 std::complex<double> stComplex((double)_pL->get(i), (double)_pL->getImg(i));
-                pspConvert->set(i, stComplex);
+                pspConvert->set(i, stComplex, false);
             }
         }
         else
@@ -2764,11 +2767,12 @@ InternalType* compequal_M_SP(T* _pL, U* _pR)
             pspConvert = new Sparse(_pR->getRows(), _pR->getCols(), _pR->isComplex());
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, (double)_pL->get(i));
+                pspConvert->set(i, (double)_pL->get(i), false);
             }
         }
     }
 
+    pspConvert->finalize();
     pOut = _pR->newEqualTo(*pspConvert);
     delete pspConvert;
     return pOut;
@@ -2791,7 +2795,7 @@ InternalType* compequal_SP_M(T* _pL, U* _pR)
             std::complex<double> stComplex((double)_pR->get(0), (double)_pR->getImg(0));
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, stComplex);
+                pspConvert->set(i, stComplex, false);
             }
         }
         else
@@ -2799,7 +2803,7 @@ InternalType* compequal_SP_M(T* _pL, U* _pR)
             pspConvert = new Sparse(_pL->getRows(), _pL->getCols(), _pL->isComplex());
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, (double)_pR->get(0));
+                pspConvert->set(i, (double)_pR->get(0), false);
             }
         }
     }
@@ -2827,12 +2831,13 @@ InternalType* compequal_SP_M(T* _pL, U* _pR)
             pspConvert = new Sparse(_pL->getRows(), _pL->getCols(), _pL->isComplex());
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, (double)_pR->get(i));
+                pspConvert->set(i, (double)_pR->get(i), false);
 
             }
         }
     }
 
+    pspConvert->finalize();
     pOut = _pL->newEqualTo(*pspConvert);
     delete pspConvert;
     return pOut;
@@ -2857,7 +2862,7 @@ InternalType* compequal_M_M<Bool, SparseBool, SparseBool>(Bool* _pL, SparseBool*
         pspConvert = new SparseBool(_pR->getRows(), _pR->getCols());
         for (int i = 0; i < iSizeOut; i++)
         {
-            pspConvert->set(i, _pL->get(0) == 1);
+            pspConvert->set(i, _pL->get(0) == 1, false);
         }
 
     }
@@ -2874,10 +2879,11 @@ InternalType* compequal_M_M<Bool, SparseBool, SparseBool>(Bool* _pL, SparseBool*
         pspConvert = new SparseBool(_pR->getRows(), _pR->getCols());
         for (int i = 0; i < iSizeOut; i++)
         {
-            pspConvert->set(i, _pL->get(i) == 1);
+            pspConvert->set(i, _pL->get(i) == 1, false);
         }
     }
 
+    pspConvert->finalize();
     pOut = _pR->newEqualTo(*pspConvert);
     delete pspConvert;
     return pOut;
@@ -2898,7 +2904,7 @@ InternalType* compequal_M_M<SparseBool, Bool, SparseBool>(SparseBool* _pL, Bool*
         pspConvert = new SparseBool(_pL->getRows(), _pL->getCols());
         for (int i = 0; i < iSizeOut; i++)
         {
-            pspConvert->set(i, _pR->get(0) == 1);
+            pspConvert->set(i, _pR->get(0) == 1, false);
         }
 
     }
@@ -2915,10 +2921,11 @@ InternalType* compequal_M_M<SparseBool, Bool, SparseBool>(SparseBool* _pL, Bool*
         pspConvert = new SparseBool(_pL->getRows(), _pL->getCols());
         for (int i = 0; i < iSizeOut; i++)
         {
-            pspConvert->set(i, _pR->get(i) == 1);
+            pspConvert->set(i, _pR->get(i) == 1, false);
         }
     }
 
+    pspConvert->finalize();
     pOut = _pL->newEqualTo(*pspConvert);
     delete pspConvert;
     return pOut;

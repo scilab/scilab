@@ -9961,7 +9961,7 @@ case "$CXX" in
         fi
 
         if test "$enable_debug_CXX" = yes; then
-            DEBUG_CXXFLAGS="-pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3 -Wunsafe-loop-optimizations"
+            DEBUG_CXXFLAGS="-Wall -Wextra -O0 -g3"
             case "$host" in
                 *-linux-gnu )
                     # Only doing that under Linux
@@ -9996,7 +9996,7 @@ case "$CC" in
    fi
 
    if test "$enable_debug_C" = yes; then
-      DEBUG_CFLAGS="-pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3 -Wunsafe-loop-optimizations"
+      DEBUG_CFLAGS="-Wall -Wextra -O0 -g3"
       # used to be -O0
       case "$host" in
       *-linux-gnu )
@@ -33418,6 +33418,9 @@ if test "$enable_build_help" != no; then
 DOCBOOK_OK=no
 DOCBOOK_ROOT=""
 
+if test "x$ac_java_jvm_name" != "x" ; then
+    # if JDK is not enabled, skip the docbook detection
+
 
 # Check whether --with-docbook was given.
 if test "${with_docbook+set}" = set; then :
@@ -33455,7 +33458,7 @@ $as_echo_n "checking saxon9he... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 33458 "configure"
+// #line 33461 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -33672,7 +33675,7 @@ $as_echo_n "checking saxon... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 33675 "configure"
+// #line 33678 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -33890,7 +33893,7 @@ $as_echo_n "checking saxon... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 33893 "configure"
+// #line 33896 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -34094,6 +34097,8 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar saxon used
 		SAXON=$PACKAGE_JAR_FILE
 	fi
 
+
+fi # JDK
 
 
 else

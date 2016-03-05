@@ -2,16 +2,21 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
 #include <string>
 #include <numeric>
+#include <iostream>
+#include <fstream>
 #include "visitor_common.hxx"
 #include "exp.hxx"
 #include "fieldexp.hxx"
@@ -2331,3 +2336,147 @@ ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg)
     delete d;
     return newTree;
 }
+
+std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer)
+{
+    Location loc = _pExp->getLocation();
+
+    //get current line
+    //for multiple expression on same line
+    //_stPreviousBuffer will not be updated
+
+    //bypass previous lines
+    for (int i = *_piLine; i < loc.first_line - 1; i++)
+    {
+
+        (*_piLine)++;
+        if ((*_piLine) != (loc.first_line - 1))
+        {
+            //empty line
+            if (ConfigVariable::isPrintCompact() == false)
+            {
+                printLine("", "", true);
+            }
+        }
+        std::getline(_File, _stPreviousBuffer);
+    }
+
+    if (loc.first_line == loc.last_line)
+    {
+        //expression on 1-line
+        int iStart = loc.first_column - 1;
+        int iEnd = loc.last_column - 1;
+        int iLen = iEnd - iStart;
+
+        int iCopyLen = iEnd - *_piCol;
+        std::string strLastLine(_stPreviousBuffer.c_str() + *_piCol, iCopyLen);
+        int iExpLen = iLen;
+        int iLineLen = (int)_stPreviousBuffer.size();
+        bool bStart = iStart == 0 || *_piCol == 0;
+        bool bEnd = iStart + iExpLen == iLineLen;
+
+        //begin of line
+        if (bStart)
+        {
+            if (bEnd)
+            {
+                printLine(_stPrompt, strLastLine, true);
+                *_piCol = 0;
+            }
+            else
+            {
+                printLine(_stPrompt, strLastLine, false);
+                *_piCol = loc.last_column - 1;
+            }
+        }
+        else //middle of line
+        {
+            if (bEnd)
+            {
+                printLine("", strLastLine, true);
+                *_piCol = 0;
+            }
+            else
+            {
+                printLine("", strLastLine, false);
+                *_piCol = loc.last_column - 1;
+            }
+        }
+    }
+    else
+    {
+        //multiline
+        int iStart = loc.first_column - 1;
+        bool bStart = iStart == 0 || *_piCol == 0;
+
+        std::string strLastLine(_stPreviousBuffer.c_str() + *_piCol);
+
+        //begin of line
+        if (bStart)
+        {
+            printLine(_stPrompt, strLastLine, true);
+        }
+        else
+        {
+            printLine("", strLastLine, true);
+        }
+
+        bool isCompact = ConfigVariable::isPrintCompact();
+        ConfigVariable::setPrintCompact(true);
+
+        //full lines
+        for (int i = loc.first_line; i < (loc.last_line - 1); i++)
+        {
+            (*_piLine)++;
+            std::getline(_File, _stPreviousBuffer);
+            // dont print empty line of function body
+            if (_stPreviousBuffer.size() != 0)
+            {
+                printLine(_stPrompt, _stPreviousBuffer.c_str(), true);
+            }
+        }
+
+        //last line
+        std::getline(_File, _stPreviousBuffer);
+        (*_piLine)++;
+
+        int iSize = loc.last_column - 1;
+        std::string stLastLine(_stPreviousBuffer.c_str(), iSize);
+        int iLineLen = (int)_stPreviousBuffer.size();
+        if (iLineLen == iSize)
+        {
+            printLine(_stPrompt, stLastLine, true);
+            *_piCol = 0;
+        }
+        else
+        {
+            printLine(_stPrompt, stLastLine, false);
+            *_piCol = loc.last_column - 1;
+        }
+
+        ConfigVariable::setPrintCompact(isCompact);
+    }
+
+    return _stPreviousBuffer;
+}
+
+void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF)
+{
+    std::string st;
+    int size = _stPrompt.size();
+    if (size && ConfigVariable::isPrintCompact() == false)
+    {
+        st = "\n";
+    }
+
+    st += _stPrompt;
+
+    st += _stLine;
+    if (_bLF)
+    {
+        st += "\n";
+    }
+
+    scilabWrite(st.c_str());
+}
+/*--------------------------------------------------------------------------*/

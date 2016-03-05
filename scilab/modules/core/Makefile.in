@@ -17,21 +17,27 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 # Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 ##########
@@ -277,6 +283,7 @@ am__libscicore_la_SOURCES_DIST = sci_gateway/c/sci_getdebuginfo.c \
 	sci_gateway/cpp/sci_makecell.cpp \
 	sci_gateway/cpp/sci_typeof.cpp sci_gateway/cpp/sci_tlist.cpp \
 	sci_gateway/cpp/sci_mlist.cpp sci_gateway/cpp/sci_isfield.cpp \
+	sci_gateway/cpp/sci_oldEmptyBehaviour.cpp \
 	sci_gateway/cpp/sci_fieldnames.cpp \
 	sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp \
 	sci_gateway/cpp/sci_inspectorGetItem.cpp \
@@ -345,6 +352,7 @@ am__objects_6 = sci_gateway/cpp/libscicore_la-core_gw.lo \
 	sci_gateway/cpp/libscicore_la-sci_tlist.lo \
 	sci_gateway/cpp/libscicore_la-sci_mlist.lo \
 	sci_gateway/cpp/libscicore_la-sci_isfield.lo \
+	sci_gateway/cpp/libscicore_la-sci_oldEmptyBehaviour.lo \
 	sci_gateway/cpp/libscicore_la-sci_fieldnames.lo \
 	$(am__objects_5)
 am_libscicore_la_OBJECTS = $(am__objects_4) $(am__objects_6)
@@ -838,6 +846,7 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/core_gw.cpp \
 	sci_gateway/cpp/sci_makecell.cpp \
 	sci_gateway/cpp/sci_typeof.cpp sci_gateway/cpp/sci_tlist.cpp \
 	sci_gateway/cpp/sci_mlist.cpp sci_gateway/cpp/sci_isfield.cpp \
+	sci_gateway/cpp/sci_oldEmptyBehaviour.cpp \
 	sci_gateway/cpp/sci_fieldnames.cpp $(am__append_1)
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ -I$(top_srcdir)/modules/ast/includes/ast/ \
@@ -912,27 +921,28 @@ libscicore_la_xml_DATA = xml/modules.dtd xml/version.dtd
 #### core : include files ####
 libscicore_la_includedir = $(pkgincludedir)
 libscicore_la_include_HEADERS = \
+includes/backtrace_print.h \
 includes/BOOL.h \
 includes/core_math.h \
 includes/existfunction.h \
+includes/exit_status.hxx \
 includes/freeArrayOfString.h \
 includes/getcommandlineargs.h \
 includes/getmemory.h \
 includes/getos.h \
-includes/machine.h \
-includes/sci_malloc.h \
-includes/PATH_MAX.h \
-includes/scilabDefaults.h \
-includes/scisparse.h \
-includes/sci_types.h \
-includes/version.h \
 includes/getversion.h \
-includes/backtrace_print.h \
-includes/sci_mem_alloc.h \
 includes/hashtable.h \
 includes/hashtable_utility.h \
-includes/exit_status.hxx \
-includes/timer.hxx
+includes/machine.h \
+includes/PATH_MAX.h \
+includes/scilabDefaults.h \
+includes/sci_malloc.h \
+includes/sci_mem_alloc.h \
+includes/scisparse.h \
+includes/sci_types.h \
+includes/storeCommand.h \
+includes/timer.hxx \
+includes/version.h
 
 @GUI_TRUE@USEANT = 1
 
@@ -1391,6 +1401,9 @@ sci_gateway/cpp/libscicore_la-sci_mlist.lo:  \
 sci_gateway/cpp/libscicore_la-sci_isfield.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscicore_la-sci_oldEmptyBehaviour.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscicore_la-sci_fieldnames.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1483,6 +1496,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_mode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_newfun.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_null.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_oldEmptyBehaviour.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_pause.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_predef.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_quit.Plo@am__quote@
@@ -2253,6 +2267,13 @@ sci_gateway/cpp/libscicore_la-sci_isfield.lo: sci_gateway/cpp/sci_isfield.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_isfield.cpp' object='sci_gateway/cpp/libscicore_la-sci_isfield.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_isfield.lo `test -f 'sci_gateway/cpp/sci_isfield.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isfield.cpp
+
+sci_gateway/cpp/libscicore_la-sci_oldEmptyBehaviour.lo: sci_gateway/cpp/sci_oldEmptyBehaviour.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_oldEmptyBehaviour.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_oldEmptyBehaviour.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_oldEmptyBehaviour.lo `test -f 'sci_gateway/cpp/sci_oldEmptyBehaviour.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_oldEmptyBehaviour.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_oldEmptyBehaviour.Tpo sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_oldEmptyBehaviour.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_oldEmptyBehaviour.cpp' object='sci_gateway/cpp/libscicore_la-sci_oldEmptyBehaviour.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_oldEmptyBehaviour.lo `test -f 'sci_gateway/cpp/sci_oldEmptyBehaviour.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_oldEmptyBehaviour.cpp
 
 sci_gateway/cpp/libscicore_la-sci_fieldnames.lo: sci_gateway/cpp/sci_fieldnames.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_fieldnames.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_fieldnames.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_fieldnames.lo `test -f 'sci_gateway/cpp/sci_fieldnames.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fieldnames.cpp

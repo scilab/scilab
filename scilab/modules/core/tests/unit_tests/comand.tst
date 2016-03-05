@@ -14,7 +14,7 @@ clear //sdfdgd
 clear//sdfdgd
 a=1;
 clear a//sdfdgd
-deff('y=foo(a,b,c)','y=a+b+c','n')
+deff('y=foo(a,b,c)','y=a+b+c')
 foo aaa bbb   cc
 if ans<>'aaabbbcc' then pause,end
 foo aaa bbb   cc;

@@ -45,7 +45,7 @@ if or(atomsIsLoaded(A) <> [%T ; %T ; %T ; %T ; %T ; %F]) then bugmes();quit;end
 // =============================================================================
 atomsRemove("toolbox_2V6","user");
 	the package toolbox_2V6 (2.1-1) is currently loaded, It will be removed at next Scilab start
-	the package toolbox_1V6 (2.0-1) is currently loaded, It will be removed at next Scilab start
+	the package toolbox_1V6 (2.0-4) is currently loaded, It will be removed at next Scilab start
 // Restore original values
 // =============================================================================
 atomsRestoreConfig(%T);

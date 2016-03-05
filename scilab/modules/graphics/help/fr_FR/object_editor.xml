@@ -6,24 +6,6 @@
             l'éditeur graphique
         </refpurpose>
     </refnamediv>
-    <refnamediv xml:id="graphic">
-        <refname>graphic </refname>
-        <refpurpose>description des capacités de l'éditeur
-            graphique
-        </refpurpose>
-    </refnamediv>
-    <refnamediv xml:id="graphique">
-        <refname>graphique </refname>
-        <refpurpose>description des capacités de l'éditeur
-            graphique
-        </refpurpose>
-    </refnamediv>
-    <refnamediv xml:id="menus">
-        <refname>menus</refname>
-        <refpurpose>description des capacités de l'éditeur
-            graphique
-        </refpurpose>
-    </refnamediv>
     <refsection>
         <title>Description</title>
         <para>La module graphique de Scilab permet de nombreuses intéractions
@@ -330,6 +312,9 @@
             </member>
             <member>
                 <link linkend="plot">plot</link>
+            </member>
+            <member>
+                <link linkend="ged">ged</link>
             </member>
         </simplelist>
     </refsection>

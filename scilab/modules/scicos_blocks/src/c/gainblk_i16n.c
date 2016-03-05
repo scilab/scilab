@@ -43,7 +43,7 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i16n(scicos_block *block, int flag)
         y = Getint16OutPortPtrs(block, 1);
         opar = Getint16OparPtrs(block, 1);
         k = pow(2, 16);
-        if (mo*no == 1)
+        if (mo * no == 1)
         {
             for (i = 0; i < ny * mu; ++i)
             {

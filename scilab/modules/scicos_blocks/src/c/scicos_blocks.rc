@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "scicos_blocks module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "scicos_blocks module"
-            VALUE "LegalCopyright", "Copyright (C) 2015"
+            VALUE "LegalCopyright", "Copyright (C) 2016"
             VALUE "OriginalFilename", "scicos_blocks.dll"
             VALUE "ProductName", "scicos_blocks module"
             VALUE "ProductVersion", "6, 0, 0, 0"

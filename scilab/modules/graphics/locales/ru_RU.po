@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"PO-Revision-Date: 2015-12-16 12:23+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: ru\n"
 
 #, c-format
@@ -443,6 +443,7 @@ msgstr ""
 #, c-format
 msgid "%s: Handles do not have the same parent type neither the same type.\n"
 msgstr ""
+"%s: Дескрипторы не имеют ни одинакового типа предка, ни одинакового типа.\n"
 
 #, c-format
 msgid "%s: Object must be a Compound.\n"
@@ -586,15 +587,15 @@ msgstr "%s: Ошибка во входном параметре №%d: гран�
 
 #, c-format
 msgid "%s: Invalid vertex index.\n"
-msgstr ""
+msgstr "%s: Недопустимый индекс вершины.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
-msgstr ""
+msgstr "%s: Не удалось прочитать свойство '%s' корневого объекта.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
@@ -604,19 +605,19 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%ls: string expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%ls: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%ls: A matrix expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента  №%ls: ожидалась матрица.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор-строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
@@ -633,7 +634,7 @@ msgstr "Рисунок №%d"
 
 #, c-format
 msgid "%s: window dimensions have been set less than 2^16.\n"
-msgstr ""
+msgstr "%s: размеры окна были установлены меньше, чем 2^16.\n"
 
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Предок должен быть «Subwin»\n"
@@ -729,7 +730,7 @@ msgstr "Неверное значение свойства '%s': должно б
 
 #, c-format
 msgid "Wrong value for '%s' property: Number of mark sizes %d.\n"
-msgstr ""
+msgstr "Неверное значение свойства '%s': число размеров маркеров %d.\n"
 
 #, c-format
 msgid "The mark offset must be greater or equal than %d.\n"
@@ -904,6 +905,8 @@ msgid ""
 "The number of column of the color vector must match the number of points "
 "defining the line.\n"
 msgstr ""
+"Количество столбцов цветового вектора должно соответствовать с числом точек, "
+"определяющих линию.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A '%s' expected.\n"
@@ -1050,7 +1053,7 @@ msgstr "Неверный размер свойства «%s»: ожидался 
 
 #, c-format
 msgid "Wrong type for '%s' property: Matrix expected.\n"
-msgstr ""
+msgstr "Неверный тип свойства '%s': ожидалась матрица.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"

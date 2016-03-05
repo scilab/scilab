@@ -1,11 +1,6 @@
 function deff(varargin)
-    if size(varargin) < 2 | size(varargin) > 3 then
-        error(999, msprintf(_("%s: Wrong number of input arguments: %d or %d expected.\n"), "deff", 2, 3));
-    end
-
-    opt = [];
-    if size(varargin) == 3 then
-        opt = varargin(3);
+    if size(varargin) <> 2  then
+        error(999, msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "deff", 2));
     end
 
     //try to build execstr string

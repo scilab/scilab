@@ -9,497 +9,497 @@ lf = ascii(10);
 //===============================
 // unit tests grep
 //===============================
-txt=['find matches of a string in a vector of strings'
-     'search position of a character string in an other string'
-     'Compare Strings'];
+txt=["find matches of a string in a vector of strings"
+"search position of a character string in an other string"
+"Compare Strings"];
 //===============================
-if grep(txt,'vide')<>[] then bugmes();quit;end
-if grep([],'vide')<>[] then bugmes();quit;end
-if grep('','vide')<>[] then bugmes();quit;end
-e='';if execstr('grep(txt,e)','errcatch')==0 then bugmes();quit;end
+if grep(txt,"vide")<>[] then bugmes();quit;end
+if grep([],"vide")<>[] then bugmes();quit;end
+if grep("","vide")<>[] then bugmes();quit;end
+e="";if execstr("grep(txt,e)","errcatch")==0 then bugmes();quit;end
 //===============================
-if grep(txt,'strings')<>1 then bugmes();quit;end
-if or(grep(txt,['strings' 'Strings'])<>[1 3]) then bugmes();quit;end
+if grep(txt,"strings")<>1 then bugmes();quit;end
+if or(grep(txt,["strings" "Strings"])<>[1 3]) then bugmes();quit;end
 //===============================
-[r,w]=grep(txt,['strings' 'Strings']);
+[r,w]=grep(txt,["strings" "Strings"]);
 if or(w<>[1 2])|or(r<>[1 3]) then bugmes();quit;end
 //===============================
-e=['strings' '']; if execstr('[r,w]=grep(txt,e)','errcatch')==0 then bugmes();quit;end;
+e=["strings" ""]; if execstr("[r,w]=grep(txt,e)","errcatch")==0 then bugmes();quit;end;
 //===============================
-if grep([],' ') <> [] then bugmes();quit;end
+if grep([]," ") <> [] then bugmes();quit;end
 //===============================
-if grep('AB',['A','B']) <> 1 then bugmes();quit;end
+if grep("AB",["A","B"]) <> 1 then bugmes();quit;end
 //===============================
-if grep('AB',['A';'B']) <> 1 then bugmes();quit;end
+if grep("AB",["A";"B"]) <> 1 then bugmes();quit;end
 //===============================
-if grep(['AB','B'],['A';'B']) <> 1 then bugmes();quit;end
+if grep(["AB","B"],["A";"B"]) <> 1 then bugmes();quit;end
 //===============================
-if grep(['AB','B'],['A';'B';'C']) <> 1 then bugmes();quit;end
+if grep(["AB","B"],["A";"B";"C"]) <> 1 then bugmes();quit;end
 //===============================
-fd = mopen(SCI+'/modules/string/tests/unit_tests/text.txt','r');
+fd = mopen(SCI+"/modules/string/tests/unit_tests/text.txt","r");
 txt = mgetl( fd );
 mclose( fd );
 //===============================
-if grep(txt,'scilab') <> [] then bugmes();quit;end
+if grep(txt,"scilab") <> [] then bugmes();quit;end
 //===============================
 ref = [ 1., 3., 5., 32., 48., 83., 110., 114., 162., 175., 177., 272., 365., 390., 402., 404., 408.];
-if grep(txt,'Scilab') <> ref then bugmes();quit;end
+if grep(txt,"Scilab") <> ref then bugmes();quit;end
 //===============================
-if grep('abc'                                     ,'/abc/'                                 ,'r') <>  1   then bugmes();quit;end
-if grep('xbc'                                     ,'/abc/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('axc'                                     ,'/abc/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('abx'                                     ,'/abc/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('xabcy'                                   ,'/abc/'                                 ,'r') <>  1   then bugmes();quit;end
-if grep('ababc'                                   ,'/abc/'                                 ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/ab*c/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/ab*bc/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('abbc'                                    ,'/ab*bc/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('abbbbc'                                  ,'/ab*bc/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('abbbbc'                                  ,'/.{1}/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('abbbbc'                                  ,'/.{3,4}/'                              ,'r') <>  1   then bugmes();quit;end
-if grep('abbbbc'                                  ,'/ab{0,}bc/'                            ,'r') <>  1   then bugmes();quit;end
-if grep('abbc'                                    ,'/ab+bc/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/ab+bc/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('abq'                                     ,'/ab+bc/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('abq'                                     ,'/ab{1,}bc/'                            ,'r') <>  []  then bugmes();quit;end
-if grep('abbbbc'                                  ,'/ab+bc/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('abbbbc'                                  ,'/ab{1,}bc/'                            ,'r') <>  1   then bugmes();quit;end
-if grep('abbbbc'                                  ,'/ab{1,3}bc/'                           ,'r') <>  1   then bugmes();quit;end
-if grep('abbbbc'                                  ,'/ab{3,4}bc/'                           ,'r') <>  1   then bugmes();quit;end
-if grep('abbbbc'                                  ,'/ab{4,5}bc/'                           ,'r') <>  []  then bugmes();quit;end
-if grep('abbc'                                    ,'/ab?bc/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/ab?bc/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/ab{0,1}bc/'                           ,'r') <>  1   then bugmes();quit;end
-if grep('abbbbc'                                  ,'/ab?bc/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('abc'                                     ,'/ab?c/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/ab{0,1}c/'                            ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/^abc$/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('abcc'                                    ,'/^abc$/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('abcc'                                    ,'/^abc/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('aabc'                                    ,'/^abc$/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('aabc'                                    ,'/abc$/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('aabcd'                                   ,'/abc$/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('abc'                                     ,'/^/'                                   ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/$/'                                   ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/a.c/'                                 ,'r') <>  1   then bugmes();quit;end
-if grep('axc'                                     ,'/a.c/'                                 ,'r') <>  1   then bugmes();quit;end
-if grep('axyzc'                                   ,'/a.*c/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('axyzd'                                   ,'/a.*c/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('abc'                                     ,'/a[bc]d/'                              ,'r') <>  []  then bugmes();quit;end
-if grep('abd'                                     ,'/a[bc]d/'                              ,'r') <>  1   then bugmes();quit;end
-if grep('abd'                                     ,'/a[b-d]e/'                             ,'r') <>  []  then bugmes();quit;end
-if grep('ace'                                     ,'/a[b-d]e/'                             ,'r') <>  1   then bugmes();quit;end
-if grep('aac'                                     ,'/a[b-d]/'                              ,'r') <>  1   then bugmes();quit;end
-if grep('a-'                                      ,'/a[-b]/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('a-'                                      ,'/a[b-]/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('a]'                                      ,'/a]/'                                  ,'r') <>  1   then bugmes();quit;end
-if grep('a]b'                                     ,'/a[]]b/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('aed'                                     ,'/a[^bc]d/'                             ,'r') <>  1   then bugmes();quit;end
-if grep('abd'                                     ,'/a[^bc]d/'                             ,'r') <>  []  then bugmes();quit;end
-if grep('adc'                                     ,'/a[^-b]c/'                             ,'r') <>  1   then bugmes();quit;end
-if grep('a-c'                                     ,'/a[^-b]c/'                             ,'r') <>  []  then bugmes();quit;end
-if grep('a]c'                                     ,'/a[^]b]c/'                             ,'r') <>  []  then bugmes();quit;end
-if grep('adc'                                     ,'/a[^]b]c/'                             ,'r') <>  1   then bugmes();quit;end
-if grep('a-'                                      ,'/\ba\b/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('-a'                                      ,'/\ba\b/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('-a-'                                     ,'/\ba\b/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('xy'                                      ,'/\by\b/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('yz'                                      ,'/\by\b/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('xyz'                                     ,'/\by\b/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('a-'                                      ,'/\Ba\B/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('-a'                                      ,'/\Ba\B/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('-a-'                                     ,'/\Ba\B/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('xy'                                      ,'/\By\b/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('xy'                                      ,'/\By\b/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('yz'                                      ,'/\by\B/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('xyz'                                     ,'/\By\B/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('a'                                       ,'/\w/'                                  ,'r') <>  1   then bugmes();quit;end
-if grep('-'                                       ,'/\w/'                                  ,'r') <>  []  then bugmes();quit;end
-if grep('a'                                       ,'/\W/'                                  ,'r') <>  []  then bugmes();quit;end
-if grep('-'                                       ,'/\W/'                                  ,'r') <>  1   then bugmes();quit;end
-if grep('a b'                                     ,'/a\sb/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('a-b'                                     ,'/a\sb/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('a b'                                     ,'/a\Sb/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('a-b'                                     ,'/a\Sb/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('1'                                       ,'/\d/'                                  ,'r') <>  1   then bugmes();quit;end
-if grep('-'                                       ,'/\d/'                                  ,'r') <>  []  then bugmes();quit;end
-if grep('1'                                       ,'/\D/'                                  ,'r') <>  []  then bugmes();quit;end
-if grep('-'                                       ,'/\D/'                                  ,'r') <>  1   then bugmes();quit;end
-if grep('a'                                       ,'/[\w]/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('-'                                       ,'/[\w]/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('a'                                       ,'/[\W]/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('-'                                       ,'/[\W]/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('a b'                                     ,'/a[\s]b/'                              ,'r') <>  1   then bugmes();quit;end
-if grep('a-b'                                     ,'/a[\s]b/'                              ,'r') <>  []  then bugmes();quit;end
-if grep('a b'                                     ,'/a[\S]b/'                              ,'r') <>  []  then bugmes();quit;end
-if grep('a-b'                                     ,'/a[\S]b/'                              ,'r') <>  1   then bugmes();quit;end
-if grep('1'                                       ,'/[\d]/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('-'                                       ,'/[\d]/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('1'                                       ,'/[\D]/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('-'                                       ,'/[\D]/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/ab|cd/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('abcd'                                    ,'/ab|cd/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('b'                                       ,'/$b/'                                  ,'r') <>  []  then bugmes();quit;end
-if grep('ab'                                      ,'/a\(*b/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('a((b'                                    ,'/a\(*b/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('aabbabc'                                 ,'/a+b+c/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('aabbabc'                                 ,'/a{1,}b{1,}c/'                         ,'r') <>  1   then bugmes();quit;end
-if grep('abcabc'                                  ,'/a.+?c/'                               ,'r') <>  1   then bugmes();quit;end
-if grep('cde'                                     ,'/[^ab]*/'                              ,'r') <>  1   then bugmes();quit;end
-if grep(''                                        ,'/abc/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep(''                                        ,'/a*/'                                  ,'r') <>  []  then bugmes();quit;end
-if grep('e'                                       ,'/a|b|c|d|e/'                           ,'r') <>  1   then bugmes();quit;end
-if grep('abcdefg'                                 ,'/abcd*efg/'                            ,'r') <>  1   then bugmes();quit;end
-if grep('xabyabbbz'                               ,'/ab*/'                                 ,'r') <>  1   then bugmes();quit;end
-if grep('xayabbbz'                                ,'/ab*/'                                 ,'r') <>  1   then bugmes();quit;end
-if grep('hij'                                     ,'/[abhgefdc]ij/'                        ,'r') <>  1   then bugmes();quit;end
-if grep('abcde'                                   ,'/^(ab|cd)e/'                           ,'r') <>  []  then bugmes();quit;end
-if grep('adcdcde'                                 ,'/a[bcd]*dcdcde/'                       ,'r') <>  1   then bugmes();quit;end
-if grep('adcdcde'                                 ,'/a[bcd]+dcdcde/'                       ,'r') <>  []  then bugmes();quit;end
-if grep('alpha'                                   ,'/[a-zA-Z_][a-zA-Z0-9_]*/'              ,'r') <>  1   then bugmes();quit;end
-if grep('effg'                                    ,'/(bc+d$|ef*g.|h?i(j|k))/'              ,'r') <>  []  then bugmes();quit;end
-if grep('bcdd'                                    ,'/(bc+d$|ef*g.|h?i(j|k))/'              ,'r') <>  []  then bugmes();quit;end
-if grep('aa'                                      ,'/((((((((((a))))))))))\10/'            ,'r') <>  1   then bugmes();quit;end
-if grep('aa'                                      ,'/((((((((((a))))))))))\041/'           ,'r') <>  []  then bugmes();quit;end
-if grep('a!'                                      ,'/((((((((((a))))))))))\041/'           ,'r') <>  1   then bugmes();quit;end
-if grep('a'                                       ,'/(((((((((a)))))))))/'                 ,'r') <>  1   then bugmes();quit;end
-if grep('uh-uh'                                   ,'/multiple words of text/'              ,'r') <>  []  then bugmes();quit;end
-if grep('multiple words, yeah'                    ,'/multiple words/'                      ,'r') <>  1   then bugmes();quit;end
-if grep('ab'                                      ,'/[k]/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('ac'                                      ,'/a[-]?c/'                              ,'r') <>  1   then bugmes();quit;end
-if grep('a'                                       ,'/(a)|\1/'                              ,'r') <>  1   then bugmes();quit;end
-if grep('x'                                       ,'/(a)|\1/'                              ,'r') <>  []  then bugmes();quit;end
-if grep('aaxabxbaxbbx'                            ,'/((\3|b)\2(a)x)+/'                     ,'r') <>  []  then bugmes();quit;end
-if grep('ABC'                                     ,'/abc/i'                                ,'r') <>  1   then bugmes();quit;end
-if grep('XBC'                                     ,'/abc/i'                                ,'r') <>  []  then bugmes();quit;end
-if grep('AXC'                                     ,'/abc/i'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ABX'                                     ,'/abc/i'                                ,'r') <>  []  then bugmes();quit;end
-if grep('XABCY'                                   ,'/abc/i'                                ,'r') <>  1   then bugmes();quit;end
-if grep('ABABC'                                   ,'/abc/i'                                ,'r') <>  1   then bugmes();quit;end
-if grep('ABC'                                     ,'/ab*c/i'                               ,'r') <>  1   then bugmes();quit;end
-if grep('ABC'                                     ,'/ab*bc/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('ABBC'                                    ,'/ab*bc/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('ABBBBC'                                  ,'/ab*?bc/i'                             ,'r') <>  1   then bugmes();quit;end
-if grep('ABBBBC'                                  ,'/ab{0,}?bc/i'                          ,'r') <>  1   then bugmes();quit;end
-if grep('ABBC'                                    ,'/ab+?bc/i'                             ,'r') <>  1   then bugmes();quit;end
-if grep('ABC'                                     ,'/ab+bc/i'                              ,'r') <>  []  then bugmes();quit;end
-if grep('ABQ'                                     ,'/ab+bc/i'                              ,'r') <>  []  then bugmes();quit;end
-if grep('ABQ'                                     ,'/ab{1,}bc/i'                           ,'r') <>  []  then bugmes();quit;end
-if grep('ABBBBC'                                  ,'/ab+bc/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('ABBBBC'                                  ,'/ab{1,}?bc/i'                          ,'r') <>  1   then bugmes();quit;end
-if grep('ABBBBC'                                  ,'/ab{1,3}?bc/i'                         ,'r') <>  1   then bugmes();quit;end
-if grep('ABBBBC'                                  ,'/ab{3,4}?bc/i'                         ,'r') <>  1   then bugmes();quit;end
-if grep('ABBBBC'                                  ,'/ab{4,5}?bc/i'                         ,'r') <>  []  then bugmes();quit;end
-if grep('ABBC'                                    ,'/ab??bc/i'                             ,'r') <>  1   then bugmes();quit;end
-if grep('ABC'                                     ,'/ab??bc/i'                             ,'r') <>  1   then bugmes();quit;end
-if grep('ABC'                                     ,'/ab{0,1}?bc/i'                         ,'r') <>  1   then bugmes();quit;end
-if grep('ABBBBC'                                  ,'/ab??bc/i'                             ,'r') <>  []  then bugmes();quit;end
-if grep('ABC'                                     ,'/ab??c/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('ABC'                                     ,'/ab{0,1}?c/i'                          ,'r') <>  1   then bugmes();quit;end
-if grep('ABC'                                     ,'/^abc$/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('ABCC'                                    ,'/^abc$/i'                              ,'r') <>  []  then bugmes();quit;end
-if grep('ABCC'                                    ,'/^abc/i'                               ,'r') <>  1   then bugmes();quit;end
-if grep('AABC'                                    ,'/^abc$/i'                              ,'r') <>  []  then bugmes();quit;end
-if grep('AABC'                                    ,'/abc$/i'                               ,'r') <>  1   then bugmes();quit;end
-if grep('ABC'                                     ,'/^/i'                                  ,'r') <>  1   then bugmes();quit;end
-if grep('ABC'                                     ,'/$/i'                                  ,'r') <>  1   then bugmes();quit;end
-if grep('ABC'                                     ,'/a.c/i'                                ,'r') <>  1   then bugmes();quit;end
-if grep('AXC'                                     ,'/a.c/i'                                ,'r') <>  1   then bugmes();quit;end
-if grep('AXYZC'                                   ,'/a.*?c/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('AXYZD'                                   ,'/a.*c/i'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ABC'                                     ,'/a[bc]d/i'                             ,'r') <>  []  then bugmes();quit;end
-if grep('ABD'                                     ,'/a[bc]d/i'                             ,'r') <>  1   then bugmes();quit;end
-if grep('ABD'                                     ,'/a[b-d]e/i'                            ,'r') <>  []  then bugmes();quit;end
-if grep('ACE'                                     ,'/a[b-d]e/i'                            ,'r') <>  1   then bugmes();quit;end
-if grep('AAC'                                     ,'/a[b-d]/i'                             ,'r') <>  1   then bugmes();quit;end
-if grep('A-'                                      ,'/a[-b]/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('A-'                                      ,'/a[b-]/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('A]'                                      ,'/a]/i'                                 ,'r') <>  1   then bugmes();quit;end
-if grep('A]B'                                     ,'/a[]]b/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('AED'                                     ,'/a[^bc]d/i'                            ,'r') <>  1   then bugmes();quit;end
-if grep('ABD'                                     ,'/a[^bc]d/i'                            ,'r') <>  []  then bugmes();quit;end
-if grep('ADC'                                     ,'/a[^-b]c/i'                            ,'r') <>  1   then bugmes();quit;end
-if grep('A-C'                                     ,'/a[^-b]c/i'                            ,'r') <>  []  then bugmes();quit;end
-if grep('A]C'                                     ,'/a[^]b]c/i'                            ,'r') <>  []  then bugmes();quit;end
-if grep('ADC'                                     ,'/a[^]b]c/i'                            ,'r') <>  1   then bugmes();quit;end
-if grep('ABC'                                     ,'/ab|cd/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('ABCD'                                    ,'/ab|cd/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('B'                                       ,'/$b/i'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('AB'                                      ,'/a\(*b/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('A((B'                                    ,'/a\(*b/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('AABBABC'                                 ,'/a+b+c/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('AABBABC'                                 ,'/a{1,}b{1,}c/i'                        ,'r') <>  1   then bugmes();quit;end
-if grep('ABCABC'                                  ,'/a.+?c/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('ABCABC'                                  ,'/a.*?c/i'                              ,'r') <>  1   then bugmes();quit;end
-if grep('ABCABC'                                  ,'/a.{0,5}?c/i'                          ,'r') <>  1   then bugmes();quit;end
-if grep('CDE'                                     ,'/[^ab]*/i'                             ,'r') <>  1   then bugmes();quit;end
-if grep(''                                        ,'/abc/i'                                ,'r') <>  []  then bugmes();quit;end
-if grep(''                                        ,'/a*/i'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('E'                                       ,'/a|b|c|d|e/i'                          ,'r') <>  1   then bugmes();quit;end
-if grep('ABCDEFG'                                 ,'/abcd*efg/i'                           ,'r') <>  1   then bugmes();quit;end
-if grep('XABYABBBZ'                               ,'/ab*/i'                                ,'r') <>  1   then bugmes();quit;end
-if grep('XAYABBBZ'                                ,'/ab*/i'                                ,'r') <>  1   then bugmes();quit;end
-if grep('HIJ'                                     ,'/[abhgefdc]ij/i'                       ,'r') <>  1   then bugmes();quit;end
-if grep('ABCDE'                                   ,'/^(ab|cd)e/i'                          ,'r') <>  []  then bugmes();quit;end
-if grep('ADCDCDE'                                 ,'/a[bcd]*dcdcde/i'                      ,'r') <>  1   then bugmes();quit;end
-if grep('ADCDCDE'                                 ,'/a[bcd]+dcdcde/i'                      ,'r') <>  []  then bugmes();quit;end
-if grep('ALPHA'                                   ,'/[a-zA-Z_][a-zA-Z0-9_]*/i'             ,'r') <>  1   then bugmes();quit;end
-if grep('EFFG'                                    ,'/(bc+d$|ef*g.|h?i(j|k))/i'             ,'r') <>  []  then bugmes();quit;end
-if grep('BCDD'                                    ,'/(bc+d$|ef*g.|h?i(j|k))/i'             ,'r') <>  []  then bugmes();quit;end
-if grep('AA'                                      ,'/((((((((((a))))))))))\10/i'           ,'r') <>  1   then bugmes();quit;end
-if grep('AA'                                      ,'/((((((((((a))))))))))\041/i'          ,'r') <>  []  then bugmes();quit;end
-if grep('A!'                                      ,'/((((((((((a))))))))))\041/i'          ,'r') <>  1   then bugmes();quit;end
-if grep('A'                                       ,'/(((((((((a)))))))))/i'                ,'r') <>  1   then bugmes();quit;end
-if grep('UH-UH'                                   ,'/multiple words of text/i'             ,'r') <>  []  then bugmes();quit;end
-if grep('MULTIPLE WORDS, YEAH'                    ,'/multiple words/i'                     ,'r') <>  1   then bugmes();quit;end
-if grep('AB'                                      ,'/[k]/i'                                ,'r') <>  []  then bugmes();quit;end
-if grep('AC'                                      ,'/a[-]?c/i'                             ,'r') <>  1   then bugmes();quit;end
-if grep('abad'                                    ,'/a(?!b)./'                             ,'r') <>  1   then bugmes();quit;end
-if grep('abad'                                    ,'/a(?=d)./'                             ,'r') <>  1   then bugmes();quit;end
-if grep('abad'                                    ,'/a(?=c|d)./'                           ,'r') <>  1   then bugmes();quit;end
-if grep('<&OUT'                                   ,'/^[<>]&/'                              ,'r') <>  1   then bugmes();quit;end
-if grep('aaaaaaaaa'                               ,'/^(a\1?){4}$/'                         ,'r') <>  []  then bugmes();quit;end
-if grep('aaaaaaaaaaa'                             ,'/^(a\1?){4}$/'                         ,'r') <>  []  then bugmes();quit;end
-if grep('aaaaaaaaa'                               ,'/^(a(?(1)\1)){4}$/'                    ,'r') <>  []  then bugmes();quit;end
-if grep('aaaaaaaaaaa'                             ,'/^(a(?(1)\1)){4}$/'                    ,'r') <>  []  then bugmes();quit;end
-if grep('ab'                                      ,'/(?<=a)b/'                             ,'r') <>  1   then bugmes();quit;end
-if grep('cb'                                      ,'/(?<=a)b/'                             ,'r') <>  []  then bugmes();quit;end
-if grep('b'                                       ,'/(?<=a)b/'                             ,'r') <>  []  then bugmes();quit;end
-if grep('ab'                                      ,'/(?<!c)b/'                             ,'r') <>  1   then bugmes();quit;end
-if grep('cb'                                      ,'/(?<!c)b/'                             ,'r') <>  []  then bugmes();quit;end
-if grep('b'                                       ,'/(?<!c)b/'                             ,'r') <>  1   then bugmes();quit;end
-if grep('b'                                       ,'/(?<!c)b/'                             ,'r') <>  1   then bugmes();quit;end
-if grep('aba'                                     ,'/(?:..)*a/'                            ,'r') <>  1   then bugmes();quit;end
-if grep('aba'                                     ,'/(?:..)*?a/'                           ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/^(?:b|a(?=(.)))*\1/'                  ,'r') <>  1   then bugmes();quit;end
-if grep('ab'                                      ,'/(?:(?i)a)b/'                          ,'r') <>  1   then bugmes();quit;end
-if grep('Ab'                                      ,'/(?:(?i)a)b/'                          ,'r') <>  1   then bugmes();quit;end
-if grep('aB'                                      ,'/(?:(?i)a)b/'                          ,'r') <>  []  then bugmes();quit;end
-if grep('aB'                                      ,'/((?i)a)b/'                            ,'r') <>  []  then bugmes();quit;end
-if grep('ab'                                      ,'/(?i:a)b/'                             ,'r') <>  1   then bugmes();quit;end
-if grep('Ab'                                      ,'/(?i:a)b/'                             ,'r') <>  1   then bugmes();quit;end
-if grep('aB'                                      ,'/(?i:a)b/'                             ,'r') <>  []  then bugmes();quit;end
-if grep('aB'                                      ,'/((?i:a))b/'                           ,'r') <>  []  then bugmes();quit;end
-if grep('ab'                                      ,'/(?:(?-i)a)b/i'                        ,'r') <>  1   then bugmes();quit;end
-if grep('aB'                                      ,'/(?:(?-i)a)b/i'                        ,'r') <>  1   then bugmes();quit;end
-if grep('Ab'                                      ,'/(?:(?-i)a)b/i'                        ,'r') <>  []  then bugmes();quit;end
-if grep('Ab'                                      ,'/((?-i)a)b/i'                          ,'r') <>  []  then bugmes();quit;end
-if grep('aB'                                      ,'/(?:(?-i)a)b/i'                        ,'r') <>  1   then bugmes();quit;end
-if grep('AB'                                      ,'/(?:(?-i)a)b/i'                        ,'r') <>  []  then bugmes();quit;end
-if grep('AB'                                      ,'/((?-i)a)b/i'                          ,'r') <>  []  then bugmes();quit;end
-if grep('ab'                                      ,'/(?-i:a)b/i'                           ,'r') <>  1   then bugmes();quit;end
-if grep('aB'                                      ,'/(?-i:a)b/i'                           ,'r') <>  1   then bugmes();quit;end
-if grep('Ab'                                      ,'/(?-i:a)b/i'                           ,'r') <>  []  then bugmes();quit;end
-if grep('Ab'                                      ,'/((?-i:a))b/i'                         ,'r') <>  []  then bugmes();quit;end
-if grep('aB'                                      ,'/(?-i:a)b/i'                           ,'r') <>  1   then bugmes();quit;end
-if grep('AB'                                      ,'/(?-i:a)b/i'                           ,'r') <>  []  then bugmes();quit;end
-if grep('AB'                                      ,'/((?-i:a))b/i'                         ,'r') <>  []  then bugmes();quit;end
-if grep('a'+lf+'B'                                ,'/((?-i:a.))b/i'                        ,'r') <>  []  then bugmes();quit;end
-if grep('B'+lf+'B'                                ,'/((?s-i:a.))b/i'                       ,'r') <>  []  then bugmes();quit;end
-if grep('cabbbb'                                  ,'/(?:c|d)(?:)(?:a(?:)(?:b)(?:b(?:))(?:b(?:)(?:b)))/','r') <>  1   then bugmes();quit;end
-if grep('caaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb','/(?:c|d)(?:)(?:aaaaaaaa(?:)(?:bbbbbbbb)(?:bbbbbbbb(?:))(?:bbbbbbbb(?:)(?:bbbbbbbb)))/','r') <>  1   then bugmes();quit;end
-if grep('foobar1234baz'                           ,'/foo\w*\d{4}baz/'                      ,'r') <>  1   then bugmes();quit;end
-if grep('x~~'                                     ,'/x(~~)*(?:(?:F)?)?/'                   ,'r') <>  1   then bugmes();quit;end
-if grep('aaac'                                    ,'/^a(?#xxx){3}c/'                       ,'r') <>  1   then bugmes();quit;end
-if grep('aaac'                                    ,'/^a (?#xxx) (?#yyy) {3}c/x'            ,'r') <>  1   then bugmes();quit;end
-if grep('dbcb'                                    ,'/(?<![cd])b/'                          ,'r') <>  []  then bugmes();quit;end
-if grep('dbaacb'                                  ,'/(?<![cd])[ab]/'                       ,'r') <>  1   then bugmes();quit;end
-if grep('dbcb'                                    ,'/(?<!(c|d))b/'                         ,'r') <>  []  then bugmes();quit;end
-if grep('dbaacb'                                  ,'/(?<!(c|d))[ab]/'                      ,'r') <>  1   then bugmes();quit;end
-if grep('cdaccb'                                  ,'/(?<!cd)[ab]/'                         ,'r') <>  1   then bugmes();quit;end
-if grep('a--'                                     ,'/^(?:a?b?)*$/'                         ,'r') <>  []  then bugmes();quit;end
-if grep('a'+lf+'b'+lf                             ,'/(?m)^b/'                              ,'r') <>  1   then bugmes();quit;end
-if grep('a'+lf+'b'+lf+'c'+lf                      ,'/^b/'                                  ,'r') <>  []  then bugmes();quit;end
-if grep('a'+lf+'b'+lf+'c'+lf                      ,'/()^b/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('a'                                       ,'/(x)?(?(1)a|b)/'                       ,'r') <>  []  then bugmes();quit;end
-if grep('a'                                       ,'/(x)?(?(1)b|a)/'                       ,'r') <>  1   then bugmes();quit;end
-if grep('a'                                       ,'/()?(?(1)b|a)/'                        ,'r') <>  1   then bugmes();quit;end
-if grep('a'                                       ,'/()(?(1)b|a)/'                         ,'r') <>  []  then bugmes();quit;end
-if grep('a'                                       ,'/()?(?(1)a|b)/'                        ,'r') <>  1   then bugmes();quit;end
-if grep('blah)'                                   ,'/^(\()?blah(?(1)(\)))$/'               ,'r') <>  []  then bugmes();quit;end
-if grep('(blah'                                   ,'/^(\()?blah(?(1)(\)))$/'               ,'r') <>  []  then bugmes();quit;end
-if grep('blah)'                                   ,'/^(\(+)?blah(?(1)(\)))$/'              ,'r') <>  []  then bugmes();quit;end
-if grep('(blah'                                   ,'/^(\(+)?blah(?(1)(\)))$/'              ,'r') <>  []  then bugmes();quit;end
-if grep('a'                                       ,'/(?(?!a)a|b)/'                         ,'r') <>  []  then bugmes();quit;end
-if grep('a'                                       ,'/(?(?!a)b|a)/'                         ,'r') <>  1   then bugmes();quit;end
-if grep('a'                                       ,'/(?(?=a)b|a)/'                         ,'r') <>  []  then bugmes();quit;end
-if grep('a'                                       ,'/(?(?=a)a|b)/'                         ,'r') <>  1   then bugmes();quit;end
-if grep('aaab'                                    ,'/^(?=(a+?))\1ab/'                      ,'r') <>  []  then bugmes();quit;end
-if grep('aaab'                                    ,'/^(?=(a+?))\1ab/'                      ,'r') <>  []  then bugmes();quit;end
-if grep('abcd:'                                   ,'/([\w:]+::)?(\w+)$/'                   ,'r') <>  []  then bugmes();quit;end
-if grep('abcd:'                                   ,'/([\w:]+::)?(\w+)$/'                   ,'r') <>  []  then bugmes();quit;end
-if grep('aaab'                                    ,'/(>a+)ab/'                             ,'r') <>  []  then bugmes();quit;end
-if grep('aaab'                                    ,'/(?>a+)b/'                             ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/[a[:]b[:c]/'                          ,'r') <>  1   then bugmes();quit;end
-if grep('abc'                                     ,'/[a[:]b[:c]/'                          ,'r') <>  1   then bugmes();quit;end
-if grep('((abc(ade)ufh()()x'                      ,'/((?>[^()]+)|\([^()]*\))+/'            ,'r') <>  1   then bugmes();quit;end
-if grep('a'+lf+'b'+lf                             ,'/a\Z/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('a'+lf+'b'+lf                             ,'/a\z/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('a'+lf+'b'+lf                             ,'/a$/'                                  ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'a'+lf                             ,'/a\z/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('a'+lf+'b'+lf                             ,'/a\Z/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('a'+lf+'b'+lf                             ,'/a\z/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'a'+lf                             ,'/a\z/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('aa'+lf+'b'+lf                            ,'/aa\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('aa'+lf+'b'+lf                            ,'/aa\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('aa'+lf+'b'+lf                            ,'/aa$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'aa'+lf                            ,'/aa\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('aa'+lf+'b'+lf                            ,'/aa\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('aa'+lf+'b'+lf                            ,'/aa\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'aa'+lf                            ,'/aa\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/aa\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/aa\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/aa$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/aa\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/aa\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/aa$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/aa\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/aa\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/aa$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/aa\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/aa\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/aa$/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/aa\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/aa\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/aa$/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/aa\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/aa\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/aa$/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/aa\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/aa\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/aa$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/aa\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/aa\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/aa$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/aa\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/aa\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/aa$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/aa\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/aa\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/aa$/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/aa\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/aa\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/aa$/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/aa\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/aa\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/aa$/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ab'+lf+'b'+lf                            ,'/ab\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ab'+lf+'b'+lf                            ,'/ab\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ab'+lf+'b'+lf                            ,'/ab$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ab'+lf                            ,'/ab\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ab'+lf+'b'+lf                            ,'/ab\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ab'+lf+'b'+lf                            ,'/ab\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ab'+lf                            ,'/ab\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/ab\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/ab\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/ab$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/ab\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/ab\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/ab$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/ab\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/ab\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/ab$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/ab\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/ab\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/ab$/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/ab\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/ab\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/ab$/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/ab\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/ab\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/ab$/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/ab\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/ab\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/ab$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/ab\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/ab\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/ab$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/ab\Z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/ab\z/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/ab$/'                                 ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/ab\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/ab\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/ab$/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/ab\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/ab\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/ab$/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/ab\Z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/ab\z/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/ab$/m'                                ,'r') <>  []  then bugmes();quit;end
-if grep('abb'+lf+'b'+lf                           ,'/abb\Z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('abb'+lf+'b'+lf                           ,'/abb\z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('abb'+lf+'b'+lf                           ,'/abb$/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'abb'+lf                           ,'/abb\z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('abb'+lf+'b'+lf                           ,'/abb\Z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('abb'+lf+'b'+lf                           ,'/abb\z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'abb'+lf                           ,'/abb\z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/abb\Z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/abb\z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/abb$/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/abb\Z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/abb\z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/abb$/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/abb\Z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/abb\z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/abb$/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/abb\Z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/abb\z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('ac'+lf+'b'+lf                            ,'/abb$/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/abb\Z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/abb\z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'+lf                            ,'/abb$/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/abb\Z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/abb\z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ac'                               ,'/abb$/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/abb\Z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/abb\z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/abb$/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/abb\Z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/abb\z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/abb$/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/abb\Z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/abb\z/'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/abb$/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/abb\Z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/abb\z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('ca'+lf+'b'+lf                            ,'/abb$/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/abb\Z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/abb\z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'+lf                            ,'/abb$/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/abb\Z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/abb\z/m'                              ,'r') <>  []  then bugmes();quit;end
-if grep('b'+lf+'ca'                               ,'/abb$/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('x'                                       ,'/a*abc?xyz+pqr{3}ab{2,}xy{4,5}pq{0,6}AB{0,}zz/','r') <>  []  then bugmes();quit;end
-if grep('foo.bart'                                ,'/foo.bart/'                            ,'r') <>  1   then bugmes();quit;end
-if grep('abcd'+lf+'dxxx'                          ,'/^d[x][x][x]/m'                        ,'r') <>  1   then bugmes();quit;end
-if grep('xxxtt'                                   ,'/tt+$/'                                ,'r') <>  1   then bugmes();quit;end
-if grep('aaaXbX'                                  ,'/\GX.*X/'                              ,'r') <>  []  then bugmes();quit;end
-if grep('Changes'                                 ,'/\.c(pp|xx|c)?$/i'                     ,'r') <>  []  then bugmes();quit;end
-if grep('IO.c'                                    ,'/\.c(pp|xx|c)?$/i'                     ,'r') <>  1   then bugmes();quit;end
-if grep('C:/'                                     ,'/^([a-z]:)/'                           ,'r') <>  []  then bugmes();quit;end
-if grep(lf+'x aa'                                 ,'/^\S\s+aa$/m'                          ,'r') <>  1   then bugmes();quit;end
-if grep('ab'                                      ,'/(^|a)b/'                              ,'r') <>  1   then bugmes();quit;end
-if grep('abcab'                                   ,'/(\w)?(abc)\1b/'                       ,'r') <>  []  then bugmes();quit;end
-if grep('a,b,c'                                   ,'/^(?:.,){2}c/'                         ,'r') <>  1   then bugmes();quit;end
-if grep('a,b,c'                                   ,'/^(?:[^,]*,){2}c/'                     ,'r') <>  1   then bugmes();quit;end
-if grep(''                                        ,'/(?i)/'                                ,'r') <>  []  then bugmes();quit;end
-if grep('a'+lf+'xb'+lf                            ,'/(?!\A)x/m'                            ,'r') <>  1   then bugmes();quit;end
-if grep('123'+lf+'abcabcabcabc'+lf                ,'/^.{9}abc.*\n/m'                       ,'r') <>  1   then bugmes();quit;end
-if grep('a'                                       ,'/^(a)?(?(1)a|b)+$/'                    ,'r') <>  []  then bugmes();quit;end
-if grep('x1'                                      ,'/^(0+)?(?:x(1))?/'                     ,'r') <>  1   then bugmes();quit;end
-if grep('012cxx0190'                              ,'/^([0-9a-fA-F]+)(?:x([0-9a-fA-F]+)?)(?:x([0-9a-fA-F]+))?/','r') <>  1   then bugmes();quit;end
-if grep('aaaacccc'                                ,'/((?:aaaa|bbbb)cccc)?/'                ,'r') <>  1   then bugmes();quit;end
-if grep('bbbbcccc'                                ,'/((?:aaaa|bbbb)cccc)?/'                ,'r') <>  1   then bugmes();quit;end
-if grep('a'+lf+'b'+lf                             ,'/b\s^/m'                               ,'r') <>  []  then bugmes();quit;end
-if grep('a'                                       ,'/\ba/'                                 ,'r') <>  1   then bugmes();quit;end
-if grep('AbCd'                                    ,'/ab(?i)cd/'                            ,'r') <>  []  then bugmes();quit;end
-if grep('abCd'                                    ,'/ab(?i)cd/'                            ,'r') <>  1   then bugmes();quit;end
-if grep('Oo'                                      ,'/^(o)(?!.*\1)/i'                       ,'r') <>  []  then bugmes();quit;end
-if grep('2'                                       ,'/2(]*)?$\1/'                           ,'r') <>  1   then bugmes();quit;end
-if grep('......abef'                              ,'/.*a(?!(b|cd)*e).*f/'                  ,'r') <>  []  then bugmes();quit;end
-if grep('fools'                                   ,'/(foo|fool|x.|money|parted)$/'         ,'r') <>  []  then bugmes();quit;end
-if grep('fools'                                   ,'/(x.|foo|fool|x.|money|parted|y.)$/'   ,'r') <>  []  then bugmes();quit;end
-if grep('fools'                                   ,'/(foo|fool|money|parted)$/'            ,'r') <>  []  then bugmes();quit;end
+if grep("abc"                                     ,"/abc/"                                 ,"r") <>  1   then bugmes();quit;end
+if grep("xbc"                                     ,"/abc/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("axc"                                     ,"/abc/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("abx"                                     ,"/abc/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("xabcy"                                   ,"/abc/"                                 ,"r") <>  1   then bugmes();quit;end
+if grep("ababc"                                   ,"/abc/"                                 ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/ab*c/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/ab*bc/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("abbc"                                    ,"/ab*bc/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("abbbbc"                                  ,"/ab*bc/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("abbbbc"                                  ,"/.{1}/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("abbbbc"                                  ,"/.{3,4}/"                              ,"r") <>  1   then bugmes();quit;end
+if grep("abbbbc"                                  ,"/ab{0,}bc/"                            ,"r") <>  1   then bugmes();quit;end
+if grep("abbc"                                    ,"/ab+bc/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/ab+bc/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("abq"                                     ,"/ab+bc/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("abq"                                     ,"/ab{1,}bc/"                            ,"r") <>  []  then bugmes();quit;end
+if grep("abbbbc"                                  ,"/ab+bc/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("abbbbc"                                  ,"/ab{1,}bc/"                            ,"r") <>  1   then bugmes();quit;end
+if grep("abbbbc"                                  ,"/ab{1,3}bc/"                           ,"r") <>  1   then bugmes();quit;end
+if grep("abbbbc"                                  ,"/ab{3,4}bc/"                           ,"r") <>  1   then bugmes();quit;end
+if grep("abbbbc"                                  ,"/ab{4,5}bc/"                           ,"r") <>  []  then bugmes();quit;end
+if grep("abbc"                                    ,"/ab?bc/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/ab?bc/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/ab{0,1}bc/"                           ,"r") <>  1   then bugmes();quit;end
+if grep("abbbbc"                                  ,"/ab?bc/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("abc"                                     ,"/ab?c/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/ab{0,1}c/"                            ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/^abc$/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("abcc"                                    ,"/^abc$/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("abcc"                                    ,"/^abc/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("aabc"                                    ,"/^abc$/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("aabc"                                    ,"/abc$/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("aabcd"                                   ,"/abc$/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("abc"                                     ,"/^/"                                   ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/$/"                                   ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/a.c/"                                 ,"r") <>  1   then bugmes();quit;end
+if grep("axc"                                     ,"/a.c/"                                 ,"r") <>  1   then bugmes();quit;end
+if grep("axyzc"                                   ,"/a.*c/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("axyzd"                                   ,"/a.*c/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("abc"                                     ,"/a[bc]d/"                              ,"r") <>  []  then bugmes();quit;end
+if grep("abd"                                     ,"/a[bc]d/"                              ,"r") <>  1   then bugmes();quit;end
+if grep("abd"                                     ,"/a[b-d]e/"                             ,"r") <>  []  then bugmes();quit;end
+if grep("ace"                                     ,"/a[b-d]e/"                             ,"r") <>  1   then bugmes();quit;end
+if grep("aac"                                     ,"/a[b-d]/"                              ,"r") <>  1   then bugmes();quit;end
+if grep("a-"                                      ,"/a[-b]/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("a-"                                      ,"/a[b-]/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("a]"                                      ,"/a]/"                                  ,"r") <>  1   then bugmes();quit;end
+if grep("a]b"                                     ,"/a[]]b/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("aed"                                     ,"/a[^bc]d/"                             ,"r") <>  1   then bugmes();quit;end
+if grep("abd"                                     ,"/a[^bc]d/"                             ,"r") <>  []  then bugmes();quit;end
+if grep("adc"                                     ,"/a[^-b]c/"                             ,"r") <>  1   then bugmes();quit;end
+if grep("a-c"                                     ,"/a[^-b]c/"                             ,"r") <>  []  then bugmes();quit;end
+if grep("a]c"                                     ,"/a[^]b]c/"                             ,"r") <>  []  then bugmes();quit;end
+if grep("adc"                                     ,"/a[^]b]c/"                             ,"r") <>  1   then bugmes();quit;end
+if grep("a-"                                      ,"/\ba\b/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("-a"                                      ,"/\ba\b/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("-a-"                                     ,"/\ba\b/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("xy"                                      ,"/\by\b/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("yz"                                      ,"/\by\b/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("xyz"                                     ,"/\by\b/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("a-"                                      ,"/\Ba\B/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("-a"                                      ,"/\Ba\B/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("-a-"                                     ,"/\Ba\B/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("xy"                                      ,"/\By\b/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("xy"                                      ,"/\By\b/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("yz"                                      ,"/\by\B/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("xyz"                                     ,"/\By\B/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("a"                                       ,"/\w/"                                  ,"r") <>  1   then bugmes();quit;end
+if grep("-"                                       ,"/\w/"                                  ,"r") <>  []  then bugmes();quit;end
+if grep("a"                                       ,"/\W/"                                  ,"r") <>  []  then bugmes();quit;end
+if grep("-"                                       ,"/\W/"                                  ,"r") <>  1   then bugmes();quit;end
+if grep("a b"                                     ,"/a\sb/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("a-b"                                     ,"/a\sb/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("a b"                                     ,"/a\Sb/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("a-b"                                     ,"/a\Sb/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("1"                                       ,"/\d/"                                  ,"r") <>  1   then bugmes();quit;end
+if grep("-"                                       ,"/\d/"                                  ,"r") <>  []  then bugmes();quit;end
+if grep("1"                                       ,"/\D/"                                  ,"r") <>  []  then bugmes();quit;end
+if grep("-"                                       ,"/\D/"                                  ,"r") <>  1   then bugmes();quit;end
+if grep("a"                                       ,"/[\w]/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("-"                                       ,"/[\w]/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("a"                                       ,"/[\W]/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("-"                                       ,"/[\W]/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("a b"                                     ,"/a[\s]b/"                              ,"r") <>  1   then bugmes();quit;end
+if grep("a-b"                                     ,"/a[\s]b/"                              ,"r") <>  []  then bugmes();quit;end
+if grep("a b"                                     ,"/a[\S]b/"                              ,"r") <>  []  then bugmes();quit;end
+if grep("a-b"                                     ,"/a[\S]b/"                              ,"r") <>  1   then bugmes();quit;end
+if grep("1"                                       ,"/[\d]/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("-"                                       ,"/[\d]/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("1"                                       ,"/[\D]/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("-"                                       ,"/[\D]/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/ab|cd/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("abcd"                                    ,"/ab|cd/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("b"                                       ,"/$b/"                                  ,"r") <>  []  then bugmes();quit;end
+if grep("ab"                                      ,"/a\(*b/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("a((b"                                    ,"/a\(*b/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("aabbabc"                                 ,"/a+b+c/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("aabbabc"                                 ,"/a{1,}b{1,}c/"                         ,"r") <>  1   then bugmes();quit;end
+if grep("abcabc"                                  ,"/a.+?c/"                               ,"r") <>  1   then bugmes();quit;end
+if grep("cde"                                     ,"/[^ab]*/"                              ,"r") <>  1   then bugmes();quit;end
+if grep(""                                        ,"/abc/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep(""                                        ,"/a+/"                                  ,"r") <>  []  then bugmes();quit;end
+if grep("e"                                       ,"/a|b|c|d|e/"                           ,"r") <>  1   then bugmes();quit;end
+if grep("abcdefg"                                 ,"/abcd*efg/"                            ,"r") <>  1   then bugmes();quit;end
+if grep("xabyabbbz"                               ,"/ab*/"                                 ,"r") <>  1   then bugmes();quit;end
+if grep("xayabbbz"                                ,"/ab*/"                                 ,"r") <>  1   then bugmes();quit;end
+if grep("hij"                                     ,"/[abhgefdc]ij/"                        ,"r") <>  1   then bugmes();quit;end
+if grep("abcde"                                   ,"/^(ab|cd)e/"                           ,"r") <>  []  then bugmes();quit;end
+if grep("adcdcde"                                 ,"/a[bcd]*dcdcde/"                       ,"r") <>  1   then bugmes();quit;end
+if grep("adcdcde"                                 ,"/a[bcd]+dcdcde/"                       ,"r") <>  []  then bugmes();quit;end
+if grep("alpha"                                   ,"/[a-zA-Z_][a-zA-Z0-9_]*/"              ,"r") <>  1   then bugmes();quit;end
+if grep("effg"                                    ,"/(bc+d$|ef*g.|h?i(j|k))/"              ,"r") <>  []  then bugmes();quit;end
+if grep("bcdd"                                    ,"/(bc+d$|ef*g.|h?i(j|k))/"              ,"r") <>  []  then bugmes();quit;end
+if grep("aa"                                      ,"/((((((((((a))))))))))\10/"            ,"r") <>  1   then bugmes();quit;end
+if grep("aa"                                      ,"/((((((((((a))))))))))\041/"           ,"r") <>  []  then bugmes();quit;end
+if grep("a!"                                      ,"/((((((((((a))))))))))\041/"           ,"r") <>  1   then bugmes();quit;end
+if grep("a"                                       ,"/(((((((((a)))))))))/"                 ,"r") <>  1   then bugmes();quit;end
+if grep("uh-uh"                                   ,"/multiple words of text/"              ,"r") <>  []  then bugmes();quit;end
+if grep("multiple words, yeah"                    ,"/multiple words/"                      ,"r") <>  1   then bugmes();quit;end
+if grep("ab"                                      ,"/[k]/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("ac"                                      ,"/a[-]?c/"                              ,"r") <>  1   then bugmes();quit;end
+if grep("a"                                       ,"/(a)|\1/"                              ,"r") <>  1   then bugmes();quit;end
+if grep("x"                                       ,"/(a)|\1/"                              ,"r") <>  []  then bugmes();quit;end
+if grep("aaxabxbaxbbx"                            ,"/((\3|b)\2(a)x)+/"                     ,"r") <>  []  then bugmes();quit;end
+if grep("ABC"                                     ,"/abc/i"                                ,"r") <>  1   then bugmes();quit;end
+if grep("XBC"                                     ,"/abc/i"                                ,"r") <>  []  then bugmes();quit;end
+if grep("AXC"                                     ,"/abc/i"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ABX"                                     ,"/abc/i"                                ,"r") <>  []  then bugmes();quit;end
+if grep("XABCY"                                   ,"/abc/i"                                ,"r") <>  1   then bugmes();quit;end
+if grep("ABABC"                                   ,"/abc/i"                                ,"r") <>  1   then bugmes();quit;end
+if grep("ABC"                                     ,"/ab*c/i"                               ,"r") <>  1   then bugmes();quit;end
+if grep("ABC"                                     ,"/ab*bc/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("ABBC"                                    ,"/ab*bc/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("ABBBBC"                                  ,"/ab*?bc/i"                             ,"r") <>  1   then bugmes();quit;end
+if grep("ABBBBC"                                  ,"/ab{0,}?bc/i"                          ,"r") <>  1   then bugmes();quit;end
+if grep("ABBC"                                    ,"/ab+?bc/i"                             ,"r") <>  1   then bugmes();quit;end
+if grep("ABC"                                     ,"/ab+bc/i"                              ,"r") <>  []  then bugmes();quit;end
+if grep("ABQ"                                     ,"/ab+bc/i"                              ,"r") <>  []  then bugmes();quit;end
+if grep("ABQ"                                     ,"/ab{1,}bc/i"                           ,"r") <>  []  then bugmes();quit;end
+if grep("ABBBBC"                                  ,"/ab+bc/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("ABBBBC"                                  ,"/ab{1,}?bc/i"                          ,"r") <>  1   then bugmes();quit;end
+if grep("ABBBBC"                                  ,"/ab{1,3}?bc/i"                         ,"r") <>  1   then bugmes();quit;end
+if grep("ABBBBC"                                  ,"/ab{3,4}?bc/i"                         ,"r") <>  1   then bugmes();quit;end
+if grep("ABBBBC"                                  ,"/ab{4,5}?bc/i"                         ,"r") <>  []  then bugmes();quit;end
+if grep("ABBC"                                    ,"/ab??bc/i"                             ,"r") <>  1   then bugmes();quit;end
+if grep("ABC"                                     ,"/ab??bc/i"                             ,"r") <>  1   then bugmes();quit;end
+if grep("ABC"                                     ,"/ab{0,1}?bc/i"                         ,"r") <>  1   then bugmes();quit;end
+if grep("ABBBBC"                                  ,"/ab??bc/i"                             ,"r") <>  []  then bugmes();quit;end
+if grep("ABC"                                     ,"/ab??c/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("ABC"                                     ,"/ab{0,1}?c/i"                          ,"r") <>  1   then bugmes();quit;end
+if grep("ABC"                                     ,"/^abc$/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("ABCC"                                    ,"/^abc$/i"                              ,"r") <>  []  then bugmes();quit;end
+if grep("ABCC"                                    ,"/^abc/i"                               ,"r") <>  1   then bugmes();quit;end
+if grep("AABC"                                    ,"/^abc$/i"                              ,"r") <>  []  then bugmes();quit;end
+if grep("AABC"                                    ,"/abc$/i"                               ,"r") <>  1   then bugmes();quit;end
+if grep("ABC"                                     ,"/^/i"                                  ,"r") <>  1   then bugmes();quit;end
+if grep("ABC"                                     ,"/$/i"                                  ,"r") <>  1   then bugmes();quit;end
+if grep("ABC"                                     ,"/a.c/i"                                ,"r") <>  1   then bugmes();quit;end
+if grep("AXC"                                     ,"/a.c/i"                                ,"r") <>  1   then bugmes();quit;end
+if grep("AXYZC"                                   ,"/a.*?c/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("AXYZD"                                   ,"/a.*c/i"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ABC"                                     ,"/a[bc]d/i"                             ,"r") <>  []  then bugmes();quit;end
+if grep("ABD"                                     ,"/a[bc]d/i"                             ,"r") <>  1   then bugmes();quit;end
+if grep("ABD"                                     ,"/a[b-d]e/i"                            ,"r") <>  []  then bugmes();quit;end
+if grep("ACE"                                     ,"/a[b-d]e/i"                            ,"r") <>  1   then bugmes();quit;end
+if grep("AAC"                                     ,"/a[b-d]/i"                             ,"r") <>  1   then bugmes();quit;end
+if grep("A-"                                      ,"/a[-b]/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("A-"                                      ,"/a[b-]/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("A]"                                      ,"/a]/i"                                 ,"r") <>  1   then bugmes();quit;end
+if grep("A]B"                                     ,"/a[]]b/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("AED"                                     ,"/a[^bc]d/i"                            ,"r") <>  1   then bugmes();quit;end
+if grep("ABD"                                     ,"/a[^bc]d/i"                            ,"r") <>  []  then bugmes();quit;end
+if grep("ADC"                                     ,"/a[^-b]c/i"                            ,"r") <>  1   then bugmes();quit;end
+if grep("A-C"                                     ,"/a[^-b]c/i"                            ,"r") <>  []  then bugmes();quit;end
+if grep("A]C"                                     ,"/a[^]b]c/i"                            ,"r") <>  []  then bugmes();quit;end
+if grep("ADC"                                     ,"/a[^]b]c/i"                            ,"r") <>  1   then bugmes();quit;end
+if grep("ABC"                                     ,"/ab|cd/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("ABCD"                                    ,"/ab|cd/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("B"                                       ,"/$b/i"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("AB"                                      ,"/a\(*b/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("A((B"                                    ,"/a\(*b/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("AABBABC"                                 ,"/a+b+c/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("AABBABC"                                 ,"/a{1,}b{1,}c/i"                        ,"r") <>  1   then bugmes();quit;end
+if grep("ABCABC"                                  ,"/a.+?c/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("ABCABC"                                  ,"/a.*?c/i"                              ,"r") <>  1   then bugmes();quit;end
+if grep("ABCABC"                                  ,"/a.{0,5}?c/i"                          ,"r") <>  1   then bugmes();quit;end
+if grep("CDE"                                     ,"/[^ab]*/i"                             ,"r") <>  1   then bugmes();quit;end
+if grep(""                                        ,"/abc/i"                                ,"r") <>  []  then bugmes();quit;end
+if grep(""                                        ,"/a+/i"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("E"                                       ,"/a|b|c|d|e/i"                          ,"r") <>  1   then bugmes();quit;end
+if grep("ABCDEFG"                                 ,"/abcd*efg/i"                           ,"r") <>  1   then bugmes();quit;end
+if grep("XABYABBBZ"                               ,"/ab*/i"                                ,"r") <>  1   then bugmes();quit;end
+if grep("XAYABBBZ"                                ,"/ab*/i"                                ,"r") <>  1   then bugmes();quit;end
+if grep("HIJ"                                     ,"/[abhgefdc]ij/i"                       ,"r") <>  1   then bugmes();quit;end
+if grep("ABCDE"                                   ,"/^(ab|cd)e/i"                          ,"r") <>  []  then bugmes();quit;end
+if grep("ADCDCDE"                                 ,"/a[bcd]*dcdcde/i"                      ,"r") <>  1   then bugmes();quit;end
+if grep("ADCDCDE"                                 ,"/a[bcd]+dcdcde/i"                      ,"r") <>  []  then bugmes();quit;end
+if grep("ALPHA"                                   ,"/[a-zA-Z_][a-zA-Z0-9_]*/i"             ,"r") <>  1   then bugmes();quit;end
+if grep("EFFG"                                    ,"/(bc+d$|ef*g.|h?i(j|k))/i"             ,"r") <>  []  then bugmes();quit;end
+if grep("BCDD"                                    ,"/(bc+d$|ef*g.|h?i(j|k))/i"             ,"r") <>  []  then bugmes();quit;end
+if grep("AA"                                      ,"/((((((((((a))))))))))\10/i"           ,"r") <>  1   then bugmes();quit;end
+if grep("AA"                                      ,"/((((((((((a))))))))))\041/i"          ,"r") <>  []  then bugmes();quit;end
+if grep("A!"                                      ,"/((((((((((a))))))))))\041/i"          ,"r") <>  1   then bugmes();quit;end
+if grep("A"                                       ,"/(((((((((a)))))))))/i"                ,"r") <>  1   then bugmes();quit;end
+if grep("UH-UH"                                   ,"/multiple words of text/i"             ,"r") <>  []  then bugmes();quit;end
+if grep("MULTIPLE WORDS, YEAH"                    ,"/multiple words/i"                     ,"r") <>  1   then bugmes();quit;end
+if grep("AB"                                      ,"/[k]/i"                                ,"r") <>  []  then bugmes();quit;end
+if grep("AC"                                      ,"/a[-]?c/i"                             ,"r") <>  1   then bugmes();quit;end
+if grep("abad"                                    ,"/a(?!b)./"                             ,"r") <>  1   then bugmes();quit;end
+if grep("abad"                                    ,"/a(?=d)./"                             ,"r") <>  1   then bugmes();quit;end
+if grep("abad"                                    ,"/a(?=c|d)./"                           ,"r") <>  1   then bugmes();quit;end
+if grep("<&OUT"                                   ,"/^[<>]&/"                              ,"r") <>  1   then bugmes();quit;end
+if grep("aaaaaaaaa"                               ,"/^(a\1?){4}$/"                         ,"r") <>  []  then bugmes();quit;end
+if grep("aaaaaaaaaaa"                             ,"/^(a\1?){4}$/"                         ,"r") <>  []  then bugmes();quit;end
+if grep("aaaaaaaaa"                               ,"/^(a(?(1)\1)){4}$/"                    ,"r") <>  []  then bugmes();quit;end
+if grep("aaaaaaaaaaa"                             ,"/^(a(?(1)\1)){4}$/"                    ,"r") <>  []  then bugmes();quit;end
+if grep("ab"                                      ,"/(?<=a)b/"                             ,"r") <>  1   then bugmes();quit;end
+if grep("cb"                                      ,"/(?<=a)b/"                             ,"r") <>  []  then bugmes();quit;end
+if grep("b"                                       ,"/(?<=a)b/"                             ,"r") <>  []  then bugmes();quit;end
+if grep("ab"                                      ,"/(?<!c)b/"                             ,"r") <>  1   then bugmes();quit;end
+if grep("cb"                                      ,"/(?<!c)b/"                             ,"r") <>  []  then bugmes();quit;end
+if grep("b"                                       ,"/(?<!c)b/"                             ,"r") <>  1   then bugmes();quit;end
+if grep("b"                                       ,"/(?<!c)b/"                             ,"r") <>  1   then bugmes();quit;end
+if grep("aba"                                     ,"/(?:..)*a/"                            ,"r") <>  1   then bugmes();quit;end
+if grep("aba"                                     ,"/(?:..)*?a/"                           ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/^(?:b|a(?=(.)))*\1/"                  ,"r") <>  1   then bugmes();quit;end
+if grep("ab"                                      ,"/(?:(?i)a)b/"                          ,"r") <>  1   then bugmes();quit;end
+if grep("Ab"                                      ,"/(?:(?i)a)b/"                          ,"r") <>  1   then bugmes();quit;end
+if grep("aB"                                      ,"/(?:(?i)a)b/"                          ,"r") <>  []  then bugmes();quit;end
+if grep("aB"                                      ,"/((?i)a)b/"                            ,"r") <>  []  then bugmes();quit;end
+if grep("ab"                                      ,"/(?i:a)b/"                             ,"r") <>  1   then bugmes();quit;end
+if grep("Ab"                                      ,"/(?i:a)b/"                             ,"r") <>  1   then bugmes();quit;end
+if grep("aB"                                      ,"/(?i:a)b/"                             ,"r") <>  []  then bugmes();quit;end
+if grep("aB"                                      ,"/((?i:a))b/"                           ,"r") <>  []  then bugmes();quit;end
+if grep("ab"                                      ,"/(?:(?-i)a)b/i"                        ,"r") <>  1   then bugmes();quit;end
+if grep("aB"                                      ,"/(?:(?-i)a)b/i"                        ,"r") <>  1   then bugmes();quit;end
+if grep("Ab"                                      ,"/(?:(?-i)a)b/i"                        ,"r") <>  []  then bugmes();quit;end
+if grep("Ab"                                      ,"/((?-i)a)b/i"                          ,"r") <>  []  then bugmes();quit;end
+if grep("aB"                                      ,"/(?:(?-i)a)b/i"                        ,"r") <>  1   then bugmes();quit;end
+if grep("AB"                                      ,"/(?:(?-i)a)b/i"                        ,"r") <>  []  then bugmes();quit;end
+if grep("AB"                                      ,"/((?-i)a)b/i"                          ,"r") <>  []  then bugmes();quit;end
+if grep("ab"                                      ,"/(?-i:a)b/i"                           ,"r") <>  1   then bugmes();quit;end
+if grep("aB"                                      ,"/(?-i:a)b/i"                           ,"r") <>  1   then bugmes();quit;end
+if grep("Ab"                                      ,"/(?-i:a)b/i"                           ,"r") <>  []  then bugmes();quit;end
+if grep("Ab"                                      ,"/((?-i:a))b/i"                         ,"r") <>  []  then bugmes();quit;end
+if grep("aB"                                      ,"/(?-i:a)b/i"                           ,"r") <>  1   then bugmes();quit;end
+if grep("AB"                                      ,"/(?-i:a)b/i"                           ,"r") <>  []  then bugmes();quit;end
+if grep("AB"                                      ,"/((?-i:a))b/i"                         ,"r") <>  []  then bugmes();quit;end
+if grep("a"+lf+"B"                                ,"/((?-i:a.))b/i"                        ,"r") <>  []  then bugmes();quit;end
+if grep("B"+lf+"B"                                ,"/((?s-i:a.))b/i"                       ,"r") <>  []  then bugmes();quit;end
+if grep("cabbbb"                                  ,"/(?:c|d)(?:)(?:a(?:)(?:b)(?:b(?:))(?:b(?:)(?:b)))/","r") <>  1   then bugmes();quit;end
+if grep("caaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","/(?:c|d)(?:)(?:aaaaaaaa(?:)(?:bbbbbbbb)(?:bbbbbbbb(?:))(?:bbbbbbbb(?:)(?:bbbbbbbb)))/","r") <>  1   then bugmes();quit;end
+if grep("foobar1234baz"                           ,"/foo\w*\d{4}baz/"                      ,"r") <>  1   then bugmes();quit;end
+if grep("x~~"                                     ,"/x(~~)*(?:(?:F)?)?/"                   ,"r") <>  1   then bugmes();quit;end
+if grep("aaac"                                    ,"/^a(?#xxx){3}c/"                       ,"r") <>  1   then bugmes();quit;end
+if grep("aaac"                                    ,"/^a (?#xxx) (?#yyy) {3}c/x"            ,"r") <>  1   then bugmes();quit;end
+if grep("dbcb"                                    ,"/(?<![cd])b/"                          ,"r") <>  []  then bugmes();quit;end
+if grep("dbaacb"                                  ,"/(?<![cd])[ab]/"                       ,"r") <>  1   then bugmes();quit;end
+if grep("dbcb"                                    ,"/(?<!(c|d))b/"                         ,"r") <>  []  then bugmes();quit;end
+if grep("dbaacb"                                  ,"/(?<!(c|d))[ab]/"                      ,"r") <>  1   then bugmes();quit;end
+if grep("cdaccb"                                  ,"/(?<!cd)[ab]/"                         ,"r") <>  1   then bugmes();quit;end
+if grep("a--"                                     ,"/^(?:a?b?)*$/"                         ,"r") <>  []  then bugmes();quit;end
+if grep("a"+lf+"b"+lf                             ,"/(?m)^b/"                              ,"r") <>  1   then bugmes();quit;end
+if grep("a"+lf+"b"+lf+"c"+lf                      ,"/^b/"                                  ,"r") <>  []  then bugmes();quit;end
+if grep("a"+lf+"b"+lf+"c"+lf                      ,"/()^b/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("a"                                       ,"/(x)?(?(1)a|b)/"                       ,"r") <>  []  then bugmes();quit;end
+if grep("a"                                       ,"/(x)?(?(1)b|a)/"                       ,"r") <>  1   then bugmes();quit;end
+if grep("a"                                       ,"/()?(?(1)b|a)/"                        ,"r") <>  1   then bugmes();quit;end
+if grep("a"                                       ,"/()(?(1)b|a)/"                         ,"r") <>  []  then bugmes();quit;end
+if grep("a"                                       ,"/()?(?(1)a|b)/"                        ,"r") <>  1   then bugmes();quit;end
+if grep("blah)"                                   ,"/^(\()?blah(?(1)(\)))$/"               ,"r") <>  []  then bugmes();quit;end
+if grep("(blah"                                   ,"/^(\()?blah(?(1)(\)))$/"               ,"r") <>  []  then bugmes();quit;end
+if grep("blah)"                                   ,"/^(\(+)?blah(?(1)(\)))$/"              ,"r") <>  []  then bugmes();quit;end
+if grep("(blah"                                   ,"/^(\(+)?blah(?(1)(\)))$/"              ,"r") <>  []  then bugmes();quit;end
+if grep("a"                                       ,"/(?(?!a)a|b)/"                         ,"r") <>  []  then bugmes();quit;end
+if grep("a"                                       ,"/(?(?!a)b|a)/"                         ,"r") <>  1   then bugmes();quit;end
+if grep("a"                                       ,"/(?(?=a)b|a)/"                         ,"r") <>  []  then bugmes();quit;end
+if grep("a"                                       ,"/(?(?=a)a|b)/"                         ,"r") <>  1   then bugmes();quit;end
+if grep("aaab"                                    ,"/^(?=(a+?))\1ab/"                      ,"r") <>  []  then bugmes();quit;end
+if grep("aaab"                                    ,"/^(?=(a+?))\1ab/"                      ,"r") <>  []  then bugmes();quit;end
+if grep("abcd:"                                   ,"/([\w:]+::)?(\w+)$/"                   ,"r") <>  []  then bugmes();quit;end
+if grep("abcd:"                                   ,"/([\w:]+::)?(\w+)$/"                   ,"r") <>  []  then bugmes();quit;end
+if grep("aaab"                                    ,"/(>a+)ab/"                             ,"r") <>  []  then bugmes();quit;end
+if grep("aaab"                                    ,"/(?>a+)b/"                             ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/[a[:]b[:c]/"                          ,"r") <>  1   then bugmes();quit;end
+if grep("abc"                                     ,"/[a[:]b[:c]/"                          ,"r") <>  1   then bugmes();quit;end
+if grep("((abc(ade)ufh()()x"                      ,"/((?>[^()]+)|\([^()]*\))+/"            ,"r") <>  1   then bugmes();quit;end
+if grep("a"+lf+"b"+lf                             ,"/a\Z/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("a"+lf+"b"+lf                             ,"/a\z/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("a"+lf+"b"+lf                             ,"/a$/"                                  ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"a"+lf                             ,"/a\z/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("a"+lf+"b"+lf                             ,"/a\Z/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("a"+lf+"b"+lf                             ,"/a\z/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"a"+lf                             ,"/a\z/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("aa"+lf+"b"+lf                            ,"/aa\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("aa"+lf+"b"+lf                            ,"/aa\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("aa"+lf+"b"+lf                            ,"/aa$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"aa"+lf                            ,"/aa\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("aa"+lf+"b"+lf                            ,"/aa\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("aa"+lf+"b"+lf                            ,"/aa\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"aa"+lf                            ,"/aa\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/aa\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/aa\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/aa$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/aa\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/aa\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/aa$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/aa\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/aa\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/aa$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/aa\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/aa\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/aa$/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/aa\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/aa\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/aa$/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/aa\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/aa\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/aa$/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/aa\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/aa\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/aa$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/aa\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/aa\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/aa$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/aa\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/aa\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/aa$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/aa\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/aa\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/aa$/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/aa\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/aa\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/aa$/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/aa\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/aa\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/aa$/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ab"+lf+"b"+lf                            ,"/ab\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ab"+lf+"b"+lf                            ,"/ab\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ab"+lf+"b"+lf                            ,"/ab$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ab"+lf                            ,"/ab\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ab"+lf+"b"+lf                            ,"/ab\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ab"+lf+"b"+lf                            ,"/ab\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ab"+lf                            ,"/ab\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/ab\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/ab\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/ab$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/ab\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/ab\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/ab$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/ab\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/ab\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/ab$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/ab\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/ab\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/ab$/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/ab\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/ab\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/ab$/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/ab\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/ab\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/ab$/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/ab\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/ab\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/ab$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/ab\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/ab\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/ab$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/ab\Z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/ab\z/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/ab$/"                                 ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/ab\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/ab\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/ab$/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/ab\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/ab\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/ab$/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/ab\Z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/ab\z/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/ab$/m"                                ,"r") <>  []  then bugmes();quit;end
+if grep("abb"+lf+"b"+lf                           ,"/abb\Z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("abb"+lf+"b"+lf                           ,"/abb\z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("abb"+lf+"b"+lf                           ,"/abb$/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"abb"+lf                           ,"/abb\z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("abb"+lf+"b"+lf                           ,"/abb\Z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("abb"+lf+"b"+lf                           ,"/abb\z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"abb"+lf                           ,"/abb\z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/abb\Z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/abb\z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/abb$/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/abb\Z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/abb\z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/abb$/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/abb\Z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/abb\z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/abb$/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/abb\Z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/abb\z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("ac"+lf+"b"+lf                            ,"/abb$/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/abb\Z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/abb\z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"+lf                            ,"/abb$/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/abb\Z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/abb\z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ac"                               ,"/abb$/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/abb\Z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/abb\z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/abb$/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/abb\Z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/abb\z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/abb$/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/abb\Z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/abb\z/"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/abb$/"                                ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/abb\Z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/abb\z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("ca"+lf+"b"+lf                            ,"/abb$/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/abb\Z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/abb\z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"+lf                            ,"/abb$/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/abb\Z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/abb\z/m"                              ,"r") <>  []  then bugmes();quit;end
+if grep("b"+lf+"ca"                               ,"/abb$/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("x"                                       ,"/a*abc?xyz+pqr{3}ab{2,}xy{4,5}pq{0,6}AB{0,}zz/","r") <>  []  then bugmes();quit;end
+if grep("foo.bart"                                ,"/foo.bart/"                            ,"r") <>  1   then bugmes();quit;end
+if grep("abcd"+lf+"dxxx"                          ,"/^d[x][x][x]/m"                        ,"r") <>  1   then bugmes();quit;end
+if grep("xxxtt"                                   ,"/tt+$/"                                ,"r") <>  1   then bugmes();quit;end
+if grep("aaaXbX"                                  ,"/\GX.*X/"                              ,"r") <>  []  then bugmes();quit;end
+if grep("Changes"                                 ,"/\.c(pp|xx|c)?$/i"                     ,"r") <>  []  then bugmes();quit;end
+if grep("IO.c"                                    ,"/\.c(pp|xx|c)?$/i"                     ,"r") <>  1   then bugmes();quit;end
+if grep("C:/"                                     ,"/^([a-z]:)/"                           ,"r") <>  []  then bugmes();quit;end
+if grep(lf+"x aa"                                 ,"/^\S\s+aa$/m"                          ,"r") <>  1   then bugmes();quit;end
+if grep("ab"                                      ,"/(^|a)b/"                              ,"r") <>  1   then bugmes();quit;end
+if grep("abcab"                                   ,"/(\w)?(abc)\1b/"                       ,"r") <>  []  then bugmes();quit;end
+if grep("a,b,c"                                   ,"/^(?:.,){2}c/"                         ,"r") <>  1   then bugmes();quit;end
+if grep("a,b,c"                                   ,"/^(?:[^,]*,){2}c/"                     ,"r") <>  1   then bugmes();quit;end
+if grep(""                                        ,"/(?i)/"                                ,"r") <>  1  then bugmes();quit;end
+if grep("a"+lf+"xb"+lf                            ,"/(?!\A)x/m"                            ,"r") <>  1   then bugmes();quit;end
+if grep("123"+lf+"abcabcabcabc"+lf                ,"/^.{9}abc.*\n/m"                       ,"r") <>  1   then bugmes();quit;end
+if grep("a"                                       ,"/^(a)?(?(1)a|b)+$/"                    ,"r") <>  []  then bugmes();quit;end
+if grep("x1"                                      ,"/^(0+)?(?:x(1))?/"                     ,"r") <>  1   then bugmes();quit;end
+if grep("012cxx0190"                              ,"/^([0-9a-fA-F]+)(?:x([0-9a-fA-F]+)?)(?:x([0-9a-fA-F]+))?/","r") <>  1   then bugmes();quit;end
+if grep("aaaacccc"                                ,"/((?:aaaa|bbbb)cccc)?/"                ,"r") <>  1   then bugmes();quit;end
+if grep("bbbbcccc"                                ,"/((?:aaaa|bbbb)cccc)?/"                ,"r") <>  1   then bugmes();quit;end
+if grep("a"+lf+"b"+lf                             ,"/b\s^/m"                               ,"r") <>  []  then bugmes();quit;end
+if grep("a"                                       ,"/\ba/"                                 ,"r") <>  1   then bugmes();quit;end
+if grep("AbCd"                                    ,"/ab(?i)cd/"                            ,"r") <>  []  then bugmes();quit;end
+if grep("abCd"                                    ,"/ab(?i)cd/"                            ,"r") <>  1   then bugmes();quit;end
+if grep("Oo"                                      ,"/^(o)(?!.*\1)/i"                       ,"r") <>  []  then bugmes();quit;end
+if grep("2"                                       ,"/2(]*)?$\1/"                           ,"r") <>  1   then bugmes();quit;end
+if grep("......abef"                              ,"/.*a(?!(b|cd)*e).*f/"                  ,"r") <>  []  then bugmes();quit;end
+if grep("fools"                                   ,"/(foo|fool|x.|money|parted)$/"         ,"r") <>  []  then bugmes();quit;end
+if grep("fools"                                   ,"/(x.|foo|fool|x.|money|parted|y.)$/"   ,"r") <>  []  then bugmes();quit;end
+if grep("fools"                                   ,"/(foo|fool|money|parted)$/"            ,"r") <>  []  then bugmes();quit;end
 //========================================================================================
 // depend of PCRE library options
 //if grep('a\b'                                     ,'/a\\b/'                                ,'r') <>  1   then bugmes();quit;end
@@ -528,7 +528,7 @@ if grep('fools'                                   ,'/(foo|fool|money|parted)$/' 
 //if grep('cabd'                                    ,'/a(?{"\{"})b/'                         ,'r') <>  1   then bugmes();quit;end
 //if grep('A\B'                                     ,'/a\\b/i'                               ,'r') <>  1   then bugmes();quit;end
 //if grep('aaaaaaaaaaaaaaab'                        ,'/(a|aa|aaa|aaaa|aaaaa|aaaaaa)(??{$1&&"foo"})(b|c)/','r') <>  []  then bugmes();quit;end
-//======================================================================================== 
+//========================================================================================
 str = "世界您好";
 needle = "界";
 [r,w] = grep(str,needle);
@@ -559,112 +559,112 @@ needle = "ו";
 grep(str,needle);
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-//======================================================================================== 
+//========================================================================================
 // Chinese
-str = '世界您好';
-[r,w] = grep(str,'/^世界/','r');
+str = "世界您好";
+[r,w] = grep(str,"/^世界/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/世界$/','r');
+[r,w] = grep(str,"/世界$/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-[r,w] = grep(str,'/您好$/','r');
+[r,w] = grep(str,"/您好$/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/^您好/','r');
+[r,w] = grep(str,"/^您好/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-[r,w] = grep(str,'/界您/','r');
+[r,w] = grep(str,"/界您/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'界您');
+[r,w] = grep(str,"界您");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/界_您/','r');
+[r,w] = grep(str,"/界_您/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-//======================================================================================== 
+//========================================================================================
 // Russian
-str = 'привет мир';
-[r,w] = grep(str,'/^привет/','r');
+str = "привет мир";
+[r,w] = grep(str,"/^привет/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/привет$/','r');
+[r,w] = grep(str,"/привет$/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-[r,w] = grep(str,'/мир$/','r');
+[r,w] = grep(str,"/мир$/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/^мир/','r');
+[r,w] = grep(str,"/^мир/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-[r,w] = grep(str,'/вет\sм/','r');
+[r,w] = grep(str,"/вет\sм/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/вет_м/','r');
+[r,w] = grep(str,"/вет_м/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-//======================================================================================== 
+//========================================================================================
 // Cyrilic
-str = 'АБВГДЄЖЅЗИІКЛМНОПҀРСТѸФХѠЦЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ';
-[r,w] = grep(str,'/^АБВГДЄЖЅЗИІКЛМНОПҀР/','r');
+str = "АБВГДЄЖЅЗИІКЛМНОПҀРСТѸФХѠЦЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ";
+[r,w] = grep(str,"/^АБВГДЄЖЅЗИІКЛМНОПҀР/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/АБВГДЄЖЅЗИІКЛМНОПҀР$/','r');
+[r,w] = grep(str,"/АБВГДЄЖЅЗИІКЛМНОПҀР$/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-[r,w] = grep(str,'/ЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ$/','r');
+[r,w] = grep(str,"/ЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ$/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/^ЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ/','r');
+[r,w] = grep(str,"/^ЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-[r,w] = grep(str,'/ИІКЛМНОПҀРСТѸФХѠЦЧШЩЪ/','r');
+[r,w] = grep(str,"/ИІКЛМНОПҀРСТѸФХѠЦЧШЩЪ/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/ИІКЛМНОПҀ_РСТѸФХѠЦЧШЩЪ/','r');
+[r,w] = grep(str,"/ИІКЛМНОПҀ_РСТѸФХѠЦЧШЩЪ/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-//======================================================================================== 
+//========================================================================================
 // Japanese
-str = '丑丞串乃之乎也云亘亙些亦亥亨亮仔伊伎伍伽佃佑伶侃侑俄侠俣俐侶倭俺倶倦倖偲僅傭儲允兎兜其冥冴冶凄凌凜凛凧凪凰凱函刹劉劫勁勃';
-[r,w] = grep(str,'/^丑丞串乃之乎也云亘亙些亦/','r');
+str = "丑丞串乃之乎也云亘亙些亦亥亨亮仔伊伎伍伽佃佑伶侃侑俄侠俣俐侶倭俺倶倦倖偲僅傭儲允兎兜其冥冴冶凄凌凜凛凧凪凰凱函刹劉劫勁勃";
+[r,w] = grep(str,"/^丑丞串乃之乎也云亘亙些亦/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/丑丞串乃之乎也云亘亙些亦$/','r');
+[r,w] = grep(str,"/丑丞串乃之乎也云亘亙些亦$/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-[r,w] = grep(str,'/凰凱函刹劉劫勁勃$/','r');
+[r,w] = grep(str,"/凰凱函刹劉劫勁勃$/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/^凰凱函刹劉劫勁勃/','r');
+[r,w] = grep(str,"/^凰凱函刹劉劫勁勃/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-[r,w] = grep(str,'/亨亮仔伊伎伍伽佃佑伶侃/','r');
+[r,w] = grep(str,"/亨亮仔伊伎伍伽佃佑伶侃/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/亨亮仔伊_伎伍伽佃佑伶侃/','r');
+[r,w] = grep(str,"/亨亮仔伊_伎伍伽佃佑伶侃/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-//======================================================================================== 
+//========================================================================================
 // Thaï
-str = 'มกระดุกกระดิก';
-[r,w] = grep(str,'/^มกระดุกกร/','r');
+str = "มกระดุกกระดิก";
+[r,w] = grep(str,"/^มกระดุกกร/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/มกระดุกกร$/','r');
+[r,w] = grep(str,"/มกระดุกกร$/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-[r,w] = grep(str,'/กกระดิก$/','r');
+[r,w] = grep(str,"/กกระดิก$/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/^กกระดิก/','r');
+[r,w] = grep(str,"/^กกระดิก/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-[r,w] = grep(str,'/ดุกก/','r');
+[r,w] = grep(str,"/ดุกก/","r");
 if r <> 1 then bugmes();quit;end
 if w <> 1 then bugmes();quit;end
-[r,w] = grep(str,'/ดุก_ก/','r');
+[r,w] = grep(str,"/ดุก_ก/","r");
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-//======================================================================================== 
+//========================================================================================

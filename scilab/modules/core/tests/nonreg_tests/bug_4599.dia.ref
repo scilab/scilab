@@ -56,7 +56,7 @@ if n<>1 then bugmes();quit;end
 if M<>2 then bugmes();quit;end
 [foo1(),size(find(who('local')=='M'),'*')]
  ans  =
-    1.    1.
+   1.   1.
 //----------------------------------------
 function [n,M1]=foo2(),
   [n1,M1]=foo1(),

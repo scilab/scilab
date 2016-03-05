@@ -23,5 +23,5 @@ int ext2c(int *n, double *a, double *b, double *c)
     {
         c[k] = sin(a[k]) + cos(b[k]);
     }
-    return(0);
+    return (0);
 }

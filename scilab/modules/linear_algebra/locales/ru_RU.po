@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"PO-Revision-Date: 2015-12-12 19:24+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: ru\n"
 
 #, c-format
@@ -64,43 +64,45 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
-msgstr ""
+msgstr "%s: Аргументы %d и %d должны иметь одинаковые размерности.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Square matrix expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента %d: ожидалась квадратная матрица.\n"
 
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
-msgstr ""
+msgstr "%s: Не удалось выделить больше памяти.\n"
 
 #, c-format
 msgid "%s: LAPACK error n%d.\n"
-msgstr ""
+msgstr "%s: Ошибка LAPACK №%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
 msgstr ""
+"%s: Неверный тип аргумента %d: ожидалась вещественная или комплексная "
+"матрица.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента %d: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"
-msgstr ""
+msgstr "%s: Неверное значение аргумента %d: не должно быть NaN или Inf.\n"
 
 #, c-format
 msgid "%s: Allocation failed.\n"
-msgstr ""
+msgstr "%s: Распределение не удалось.\n"
 
 #, c-format
 msgid "%s: Non convergence in QR steps.\n"
@@ -108,34 +110,37 @@ msgstr "%s: Нет сходимости в шагах QR.\n"
 
 #, c-format
 msgid "%s: Matrix is not positive definite.\n"
-msgstr ""
+msgstr "%s: Матрица не является положительно определённой.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась квадратная матрица.\n"
 
 #, c-format
 msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
 msgstr ""
+"%s: Здесь не разрешено изменение размера аргумента a*eye(), (arg %d).\n"
 
 msgid "Warning :\n"
-msgstr ""
+msgstr "Предупреждение:\n"
 
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
-msgstr ""
+msgstr "матрица близка к сингулярной или плохо масштабирована. rcond = %1.4E\n"
 
 #, c-format
 msgid "%s: Problem is singular.\n"
-msgstr ""
+msgstr "%s: Задача вырождена.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
 msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
 
 #, c-format
 msgid "%s: %s and %s must have equal number of rows.\n"
-msgstr ""
+msgstr "%s: %s и %s должны иметь одинаковое количество строк.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
@@ -145,14 +150,16 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось вещественное число или "
+"строка.\n"
 
 #, c-format
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
-msgstr ""
+msgstr "%s: Аргумент %d и аргумент %d должны иметь одинаковые размеры.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -162,15 +169,16 @@ msgstr ""
 
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
-msgstr ""
+msgstr "%s: Подпрограмма не найдена: %s\n"
 
 #, c-format
 msgid "%s: Schur exit with state %d\n"
-msgstr ""
+msgstr "%s: Schur вышел с состоянием %d\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента %d: недопустимы NaN или Inf.\n"
 
 #, c-format
 msgid ""
@@ -183,6 +191,8 @@ msgid ""
 "%s: Convergence problem, %d off-diagonal elements of an intermediate "
 "tridiagonal form did not converge to zero.\n"
 msgstr ""
+"%s: Проблема сходимости, %d недиагональных элементов промежуточной "
+"трёхдиагональной формы не сходятся к нулю.\n"
 
 #, c-format
 msgid ""

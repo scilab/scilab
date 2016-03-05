@@ -16,6 +16,7 @@
 A       = sparse(rand(5,5));
 [h,rk]  = lufact(A);
 
-if execstr("save(TMPDIR+""/pointer.bin"",""h"")", "errcatch")<>0 then pause,end
+// No possibility to save a pointer
+if execstr("save(TMPDIR+""/pointer.bin"",""h"")", "errcatch")==0 then pause,end
 
 ludel(h);

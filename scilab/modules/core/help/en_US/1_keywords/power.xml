@@ -48,12 +48,18 @@
             </listitem>
             <listitem>
                 <para>
-                    If <literal>A</literal> is a scalar  and <literal>b</literal> is a matrix (or vector) <literal>A^b</literal> and <literal>A.^b</literal> are the matrices (or vectors) formed by  <literal> a^(b(i,j))</literal>.
+                    If <literal>A</literal> is a scalar and <literal>b</literal> is a square matrix <literal>A^b</literal> is the matrix <literal> expm(log(A) * b)</literal>.
+                </para>
+                <para>
+                    If <literal>A</literal> is a scalar and <literal>b</literal> is a vector <literal>A^b</literal> and <literal>A.^b</literal> are the vector formed by  <literal> a^(b(i,j))</literal>.
+                </para>
+                <para>
+                    If <literal>A</literal> is a scalar and <literal>b</literal> is a matrix <literal>A.^b</literal> is the matrix formed by  <literal> a^(b(i,j))</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    If <literal>A</literal> and <literal>b</literal>  are vectors (matrices) of the same size <literal>A.^b</literal> is the  <literal>A(i)^b(i)</literal> vector (<literal>A(i,j)^b(i,j)</literal> matrix).
+                    If <literal>A</literal> and <literal>b</literal> are vectors (matrices) of the same size <literal>A.^b</literal> is the  <literal>A(i)^b(i)</literal> vector (<literal>A(i,j)^b(i,j)</literal> matrix).
                 </para>
             </listitem>
         </itemizedlist>

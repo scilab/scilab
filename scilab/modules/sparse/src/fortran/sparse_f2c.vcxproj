@@ -260,17 +260,25 @@ cd ..
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <f2c_rule Include="blkfc1.f" />
+    <f2c_rule Include="blkfct.f" />
+    <f2c_rule Include="inpnv.f" />
     <f2c_rule Include="isort1.f" />
     <f2c_rule Include="ordmmd.f" />
     <f2c_rule Include="spreshape.f" />
     <f2c_rule Include="spt.f" />
+    <f2c_rule Include="symfct.f" />
     <f2c_rule Include="sz2ptr.f" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="blkfc1.c" />
+    <ClCompile Include="blkfct.c" />
+    <ClCompile Include="inpnv.c" />
     <ClCompile Include="isort1.c" />
     <ClCompile Include="ordmmd.c" />
     <ClCompile Include="spreshape.c" />
     <ClCompile Include="spt.c" />
+    <ClCompile Include="symfct.c" />
     <ClCompile Include="sz2ptr.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -7,13 +7,13 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>123.33
-
+            
             a.*b
             a .*. b
-
+            
             %pi * (%e + ..
             %i)
-
+            
             cd ..
             dir ..
         </synopsis>
@@ -86,9 +86,8 @@ endfunction
                         n'importe où dans la ligne logique, même à l'intérieur d'une
                         expression.
                         <note>La différence entre lignes logiques et lignes physiques
-                        a son importance lors de l'édition (scinotes, edit), lors de profilage (profile, 
-                        showprofile, plotprofile), et dans les messages d'erreurs (whereami),
-                        lorsque le numéro de ligne est fourni ou affiché.
+                            a son importance lors de l'édition (scinotes, edit) et dans les messages d'erreurs (whereami),
+                            lorsque le numéro de ligne est fourni ou affiché.
                         </note>
                     </para>
                 </listitem>
@@ -97,7 +96,7 @@ endfunction
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Point decimal
 1.345
 x = [1 2 3];
@@ -171,9 +170,6 @@ y = 12..
             </member>
             <member>
                 <link linkend="whereami">whereami</link>
-            </member>
-            <member>
-                <link linkend="showprofile">showprofile</link>
             </member>
             <member>
                 <link linkend="edit">edit</link>

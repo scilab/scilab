@@ -48,7 +48,7 @@ function [x,y,typ]=DOLLAR(job,arg1,arg2)
             model.sim=list("dollar4_m",4)
             model.odstate=list(a);
             model.dstate=[];
-            if type ((a)==1) then
+            if (type(a)==1) then
                 if isreal(a) then
                     it=1;
                     ot=1;

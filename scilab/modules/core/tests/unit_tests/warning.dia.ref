@@ -24,7 +24,7 @@ catch
 end
 WARNING: this is a warning
 str //display str
-str  = 
+ str  = 
 !*** Execution stopped after a warning. ***                !
 !                                                          !
 !Set warning("on") to continue execution after a warning.  !
@@ -39,7 +39,7 @@ catch
 end
 WARNING: this is a warning
 str //display str
-str  = 
+ str  = 
  
 assert_checktrue(str == "");
 //Testing waring off mode
@@ -52,6 +52,6 @@ catch
 end
 WARNING: this is a warning
 str //display str
-str  = 
+ str  = 
  
 assert_checktrue(str == "");

@@ -97,13 +97,11 @@ foo(%t)
 
 foo();disp([noeuds,triang])
 
-deff("t1=foo()","t1(2)= 1","n");foo()
+
 deff("t1=foo()","t1(2)= 1");foo()
 
-deff("t1=foo()","t1=list();t1(1)= 44;","n");foo()
 deff("t1=foo()","t1=list();t1(1)= 44;");foo()
 
-deff("[a,b,x]=foo()","[a(1),b(1,2),x]=(3,4,5);","n");[a,b,x]=foo()
 deff("[a,b,x]=foo()","[a(1),b(1,2),x]=(3,4,5);");[a,b,x]=foo()
 
 

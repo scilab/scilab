@@ -3,11 +3,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2008-2012 - Scilab Enterprises - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -580,6 +583,17 @@ assign			"="
   return scan_throw(VARFLOAT);
 }
 
+<INITIAL,MATRIX>[0-9]+[\.]/[\*^\\\/]		{
+
+  yylval.number = atof(yytext);
+#ifdef TOKENDEV
+  std::cout << "--> [DEBUG] NUMBER WITH DOT AS LAST CHARACTER : " << yytext << std::endl;
+#endif
+//  scan_step();
+  unput('.');
+  yylloc.last_column--;
+  return scan_throw(NUM);
+}
 
 <INITIAL,MATRIX>{number}		{
   yylval.number = atof(yytext);
@@ -670,8 +684,8 @@ assign			"="
 
 
 <INITIAL,MATRIX>{spaces}		{
-  scan_step();
-  scan_throw(SPACES);
+        scan_step();
+        scan_throw(SPACES);
 }
 
 
@@ -756,7 +770,6 @@ assign			"="
       scan_throw(EOL);
   }
 
-
   {rbrack}				{
     DEBUG("yy_pop_state()");
     yy_pop_state();
@@ -788,23 +801,63 @@ assign			"="
        && last_token != EOL
        && last_token != SEMI
        && last_token != COMMA
-	&& paren_levels.top() == 0)
+       && last_token != DOTTIMES
+       && last_token != DOTRDIVIDE
+       && last_token != DOTLDIVIDE
+       && last_token != DOTPOWER
+       && last_token != MINUS
+       && last_token != PLUS
+       && last_token != TIMES
+       && last_token != RDIVIDE
+       && last_token != LDIVIDE
+       && last_token != POWER
+       && last_token != KRONTIMES
+       && last_token != KRONRDIVIDE
+       && last_token != KRONLDIVIDE
+       && last_token != EQ
+       && last_token != NE
+       && last_token != LT
+       && last_token != GT
+       && last_token != LE
+       && last_token != GE
+      && paren_levels.top() == 0)
    {
        return scan_throw(COMMA);
    }
    else
    {
        unput('+');
+       yylloc.last_column--;
    }
   }
 
   {spaces}{minus}                       {
     unput('-');
+    yylloc.last_column--;
     if (last_token != LBRACK
        && last_token != EOL
        && last_token != SEMI
        && last_token != COMMA
-	&& paren_levels.top() == 0)
+       && last_token != DOTTIMES
+       && last_token != DOTRDIVIDE
+       && last_token != DOTLDIVIDE
+       && last_token != DOTPOWER
+       && last_token != MINUS
+       && last_token != PLUS
+       && last_token != TIMES
+       && last_token != RDIVIDE
+       && last_token != LDIVIDE
+       && last_token != POWER
+       && last_token != KRONTIMES
+       && last_token != KRONRDIVIDE
+       && last_token != KRONLDIVIDE
+       && last_token != EQ
+       && last_token != NE
+       && last_token != LT
+       && last_token != GT
+       && last_token != LE
+       && last_token != GE
+       && paren_levels.top() == 0)
    {
        return scan_throw(COMMA);
    }
@@ -820,18 +873,31 @@ assign			"="
   }
 
   {next}{spaces}*{newline}          {
-      /* Just do nothing */
       yylloc.last_line += 1;
       yylloc.last_column = 1;
       scan_step();
-      scan_throw(EOL);
   }
 
-  {next}{spaces}*{startcomment}          {
-      /* Just do nothing */
-      pstBuffer.clear();
-      yy_push_state(LINECOMMENT);
-      scan_throw(DOTS);
+  {next}{spaces}*{startcomment}.*{newline}          {
+      yylloc.last_line += 1;
+      yylloc.last_column = 1;
+      scan_step();
+  }
+
+  {spaces}{next}{spaces}*{newline}          {
+      yylloc.last_line += 1;
+      yylloc.last_column = 1;
+      scan_step();
+      unput(' ');
+      yylloc.last_column--;
+  }
+
+  {spaces}{next}{spaces}*{startcomment}.*{newline}          {
+      yylloc.last_line += 1;
+      yylloc.last_column = 1;
+      scan_step();
+      unput(' ');
+      yylloc.last_column--;
   }
 
   <<EOF>>       {
@@ -1053,7 +1119,7 @@ assign			"="
     pstBuffer.clear();
     BEGIN(INITIAL);
     yyerror("Unexpected end of file in a string.");
-    return scan_throw(FLEX_ERROR);    
+    return scan_throw(FLEX_ERROR);
   }
 
   {in_string}						|
@@ -1129,7 +1195,7 @@ assign			"="
     pstBuffer.clear();
     BEGIN(INITIAL);
     yyerror("Unexpected end of file in a string.");
-    return scan_throw(FLEX_ERROR);    
+    return scan_throw(FLEX_ERROR);
   }
 
   {in_string}         |

@@ -15,204 +15,290 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-12-17 09:34+0100\n"
+"Revision-Date: 2016-02-10 12:14+0100\n"
 
-# File: modules/parameters/src/c/parameters.c, line: 142
-# File: modules/parameters/src/c/parameters.c, line: 569
+# File: modules/parameters/src/c/parameters.c, line: 145
+# File: modules/parameters/src/c/parameters.c, line: 572
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 151
-# File: modules/parameters/src/c/parameters.c, line: 579
+# File: modules/parameters/src/c/parameters.c, line: 154
+# File: modules/parameters/src/c/parameters.c, line: 582
 #, c-format
 msgid "%s: parameter not found. Return default value %d.\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 176
 # File: modules/parameters/src/c/parameters.c, line: 179
-# File: modules/parameters/src/c/parameters.c, line: 204
-# File: modules/parameters/src/c/parameters.c, line: 208
-# File: modules/parameters/src/c/parameters.c, line: 619
+# File: modules/parameters/src/c/parameters.c, line: 182
+# File: modules/parameters/src/c/parameters.c, line: 207
+# File: modules/parameters/src/c/parameters.c, line: 211
 # File: modules/parameters/src/c/parameters.c, line: 622
-# File: modules/parameters/src/c/parameters.c, line: 647
-# File: modules/parameters/src/c/parameters.c, line: 651
+# File: modules/parameters/src/c/parameters.c, line: 625
+# File: modules/parameters/src/c/parameters.c, line: 650
+# File: modules/parameters/src/c/parameters.c, line: 654
 #, c-format
 msgid "%s: wrong min bound for parameter %s: min bound %d, value %d\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 190
 # File: modules/parameters/src/c/parameters.c, line: 193
-# File: modules/parameters/src/c/parameters.c, line: 218
+# File: modules/parameters/src/c/parameters.c, line: 196
 # File: modules/parameters/src/c/parameters.c, line: 221
-# File: modules/parameters/src/c/parameters.c, line: 633
+# File: modules/parameters/src/c/parameters.c, line: 224
 # File: modules/parameters/src/c/parameters.c, line: 636
-# File: modules/parameters/src/c/parameters.c, line: 661
+# File: modules/parameters/src/c/parameters.c, line: 639
 # File: modules/parameters/src/c/parameters.c, line: 664
+# File: modules/parameters/src/c/parameters.c, line: 667
 #, c-format
 msgid "%s: wrong max bound for parameter %s: max bound %d, value %d\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 239
-# File: modules/parameters/src/c/parameters.c, line: 254
-# File: modules/parameters/src/c/parameters.c, line: 682
-# File: modules/parameters/src/c/parameters.c, line: 697
+# File: modules/parameters/src/c/parameters.c, line: 242
+# File: modules/parameters/src/c/parameters.c, line: 257
+# File: modules/parameters/src/c/parameters.c, line: 685
+# File: modules/parameters/src/c/parameters.c, line: 700
 #, c-format
 msgid "%s: wrong value for parameter %s: value %d\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 240
-# File: modules/parameters/src/c/parameters.c, line: 388
-# File: modules/parameters/src/c/parameters.c, line: 505
-# File: modules/parameters/src/c/parameters.c, line: 683
-# File: modules/parameters/src/c/parameters.c, line: 886
+# File: modules/parameters/src/c/parameters.c, line: 243
+# File: modules/parameters/src/c/parameters.c, line: 391
+# File: modules/parameters/src/c/parameters.c, line: 508
+# File: modules/parameters/src/c/parameters.c, line: 686
+# File: modules/parameters/src/c/parameters.c, line: 889
 #, c-format
 msgid "%s: awaited parameters: "
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 290
-# File: modules/parameters/src/c/parameters.c, line: 748
+# File: modules/parameters/src/c/parameters.c, line: 293
+# File: modules/parameters/src/c/parameters.c, line: 751
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %f.\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 299
-# File: modules/parameters/src/c/parameters.c, line: 758
+# File: modules/parameters/src/c/parameters.c, line: 302
+# File: modules/parameters/src/c/parameters.c, line: 761
 #, c-format
 msgid "%s: parameter not found. Return default value %f.\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 324
 # File: modules/parameters/src/c/parameters.c, line: 327
-# File: modules/parameters/src/c/parameters.c, line: 352
-# File: modules/parameters/src/c/parameters.c, line: 356
-# File: modules/parameters/src/c/parameters.c, line: 803
-# File: modules/parameters/src/c/parameters.c, line: 811
-# File: modules/parameters/src/c/parameters.c, line: 841
-# File: modules/parameters/src/c/parameters.c, line: 850
+# File: modules/parameters/src/c/parameters.c, line: 330
+# File: modules/parameters/src/c/parameters.c, line: 355
+# File: modules/parameters/src/c/parameters.c, line: 359
+# File: modules/parameters/src/c/parameters.c, line: 806
+# File: modules/parameters/src/c/parameters.c, line: 814
+# File: modules/parameters/src/c/parameters.c, line: 844
+# File: modules/parameters/src/c/parameters.c, line: 853
 #, c-format
 msgid "%s: wrong min bound for parameter %s: min bound %f, value %f\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 338
 # File: modules/parameters/src/c/parameters.c, line: 341
-# File: modules/parameters/src/c/parameters.c, line: 366
+# File: modules/parameters/src/c/parameters.c, line: 344
 # File: modules/parameters/src/c/parameters.c, line: 369
-# File: modules/parameters/src/c/parameters.c, line: 822
-# File: modules/parameters/src/c/parameters.c, line: 830
-# File: modules/parameters/src/c/parameters.c, line: 860
-# File: modules/parameters/src/c/parameters.c, line: 868
+# File: modules/parameters/src/c/parameters.c, line: 372
+# File: modules/parameters/src/c/parameters.c, line: 825
+# File: modules/parameters/src/c/parameters.c, line: 833
+# File: modules/parameters/src/c/parameters.c, line: 863
+# File: modules/parameters/src/c/parameters.c, line: 871
 #, c-format
 msgid "%s: wrong max bound for parameter %s: max bound %f, value %f\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 387
-# File: modules/parameters/src/c/parameters.c, line: 402
-# File: modules/parameters/src/c/parameters.c, line: 885
-# File: modules/parameters/src/c/parameters.c, line: 902
+# File: modules/parameters/src/c/parameters.c, line: 390
+# File: modules/parameters/src/c/parameters.c, line: 405
+# File: modules/parameters/src/c/parameters.c, line: 888
+# File: modules/parameters/src/c/parameters.c, line: 905
 #, c-format
 msgid "%s: wrong value for parameter %s: value %f\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 451
+# File: modules/parameters/src/c/parameters.c, line: 454
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %s.\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 460
+# File: modules/parameters/src/c/parameters.c, line: 463
 #, c-format
 msgid "%s: parameter not found. Return default value %s.\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 504
-# File: modules/parameters/src/c/parameters.c, line: 525
+# File: modules/parameters/src/c/parameters.c, line: 507
+# File: modules/parameters/src/c/parameters.c, line: 528
 #, c-format
 msgid "%s: wrong value for parameter %s: value %s\n"
 msgstr ""
 
 #
-# File: modules/parameters/src/c/parameters.c, line: 605
 # File: modules/parameters/src/c/parameters.c, line: 608
-# File: modules/parameters/src/c/parameters.c, line: 784
-# File: modules/parameters/src/c/parameters.c, line: 792
+# File: modules/parameters/src/c/parameters.c, line: 611
+# File: modules/parameters/src/c/parameters.c, line: 787
+# File: modules/parameters/src/c/parameters.c, line: 795
 #, c-format
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
 msgstr ""
 
-# File: modules/parameters/macros/add_param.sci, line: 15
+# File: modules/parameters/demos/parameters.dem.gateway.sce, line: 9
+msgid "Parameters"
+msgstr ""
+
+#
+# File: modules/parameters/demos/parameters.dem.gateway.sce, line: 11
+msgid "plist handling"
+msgstr ""
+
+#
+# File: modules/parameters/demos/params_demo.sce, line: 13
+msgid ""
+"This demo shows examples of plist utilizations: creation, insertion, "
+"removal, ..."
+msgstr ""
+
+#
+# File: modules/parameters/demos/params_demo.sce, line: 15
 #, c-format
-msgid "Second output argument of %s is obsolete.\n"
+msgid ""
+"\n"
+"Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
+"1].\n"
+msgstr ""
+
+#
+# File: modules/parameters/demos/params_demo.sce, line: 23
+#, c-format
+msgid ""
+"\n"
+"Check fields: \n"
+msgstr ""
+
+#
+# File: modules/parameters/demos/params_demo.sce, line: 28
+#, c-format
+msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
+msgstr ""
+
+#
+# File: modules/parameters/demos/params_demo.sce, line: 34
+#, c-format
+msgid "Check values: \n"
+msgstr ""
+
+#
+# File: modules/parameters/demos/params_demo.sce, line: 39
+#, c-format
+msgid ""
+"\n"
+"Remove the parameter 'min' from %s.\n"
+msgstr ""
+
+#
+# File: modules/parameters/demos/params_demo.sce, line: 40
+#, c-format
+msgid ""
+"\n"
+"Before remove_param: \n"
+msgstr ""
+
+#
+# File: modules/parameters/demos/params_demo.sce, line: 46
+#, c-format
+msgid ""
+"\n"
+"After remove_param: \n"
+msgstr ""
+
+#
+# File: modules/parameters/demos/params_demo.sce, line: 49
+#, c-format
+msgid ""
+"\n"
+"Check removal: \n"
+msgstr ""
+
+#
+# File: modules/parameters/demos/params_demo.sce, line: 53
+#, c-format
+msgid ""
+"\n"
+"Check type: \n"
 msgstr ""
 
 #
 # File: modules/parameters/macros/add_param.sci, line: 16
 #, c-format
+msgid "Second output argument of %s is obsolete.\n"
+msgstr ""
+
+#
+# File: modules/parameters/macros/add_param.sci, line: 17
+#, c-format
 msgid "This argument will be permanently removed in Scilab %s"
 msgstr ""
 
 #
-# File: modules/parameters/macros/add_param.sci, line: 20
+# File: modules/parameters/macros/add_param.sci, line: 21
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/parameters/macros/add_param.sci, line: 30
+# File: modules/parameters/macros/add_param.sci, line: 31
 #, c-format
 msgid "%s: Wrong value for input argument #%d: key %s already defined.\n"
 msgstr ""
 
 #
-# File: modules/parameters/macros/add_param.sci, line: 33
-# File: modules/parameters/macros/get_param.sci, line: 51
-# File: modules/parameters/macros/is_param.sci, line: 27
-# File: modules/parameters/macros/is_param.sci, line: 33
-# File: modules/parameters/macros/list_param.sci, line: 21
-# File: modules/parameters/macros/remove_param.sci, line: 40
-# File: modules/parameters/macros/set_param.sci, line: 25
+# File: modules/parameters/macros/add_param.sci, line: 34
+# File: modules/parameters/macros/get_param.sci, line: 54
+# File: modules/parameters/macros/is_param.sci, line: 30
+# File: modules/parameters/macros/is_param.sci, line: 36
+# File: modules/parameters/macros/list_param.sci, line: 24
+# File: modules/parameters/macros/remove_param.sci, line: 43
+# File: modules/parameters/macros/set_param.sci, line: 28
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
 
 #
-# File: modules/parameters/macros/get_param.sci, line: 44
+# File: modules/parameters/macros/get_param.sci, line: 47
 #, c-format
 msgid "%s: parameter %s not defined"
 msgstr ""
 
 #
-# File: modules/parameters/macros/init_param.sci, line: 14
+# File: modules/parameters/macros/init_param.sci, line: 17
 #, c-format
 msgid "%s: Wrong number of input argument(s): An even number expected.\n"
 msgstr ""
 
 #
-# File: modules/parameters/macros/init_param.sci, line: 18
+# File: modules/parameters/macros/init_param.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: modules/parameters/macros/is_param.sci, line: 15
+# File: modules/parameters/macros/is_param.sci, line: 18
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/parameters/macros/set_param.sci, line: 19
+# File: modules/parameters/macros/set_param.sci, line: 22
 #, c-format
 msgid "%s: parameter doesn't exist"
 msgstr ""

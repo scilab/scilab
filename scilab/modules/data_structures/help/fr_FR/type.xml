@@ -107,15 +107,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>11</term>
-                <listitem>
-                    <para>fonction non-compilée (code Scilab). Fonction créée
-                        par <link linkend="deff">deff</link> avec l'argument
-                        'n'.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>13</term>
                 <listitem>
                     <para>
@@ -205,7 +196,7 @@
         </variablelist>
         <para>Note: pour certaines variables, à cause de la représentation
             interne, <emphasis role="italic">type(x)</emphasis> retournera
-            tlist (16) ou mlist (17). C'est le cas de <emphasis role="italic">rational</emphasis>, <emphasis role="italic">state-space</emphasis>, 
+            tlist (16) ou mlist (17). C'est le cas de <emphasis role="italic">rational</emphasis>, <emphasis role="italic">state-space</emphasis>,
 <emphasis role="italic">uitree</emphasis>, <emphasis role="italic">hypermat</emphasis> et <emphasis role="italic">struct</emphasis>. Merci de considérer l'utilisation
             de <link linkend="typeof">typeof</link> à la place.
         </para>
@@ -242,9 +233,6 @@ type(l)
 
 deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y']);
 type(mymacro)
-
-deff('[x]=myplus(y,z)','x=y+z','n');
-type(myplus)
 
 ]]></programlisting>
     </refsection>

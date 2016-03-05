@@ -6,3 +6,4 @@ linesmore
 scilabRead
 SetTemporaryPrompt
 ClearTemporaryPrompt
+GetCurrentPrompt

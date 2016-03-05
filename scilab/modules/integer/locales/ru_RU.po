@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-03-27 14:59+0000\n"
+"PO-Revision-Date: 2015-11-27 16:22+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: ru\n"
 
 #, c-format
@@ -31,65 +31,74 @@ msgstr "%s: Недостаточно памяти.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type of input arguments: integer, boolean or double expected.\n"
 msgstr ""
+"%s: Неверный тип входных аргументов: ожидался тип integer, boolean или "
+"double.\n"
 
 msgid "Never occur"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался %s, %s или %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : int or double expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d : ожидался тип int или double.\n"
 
 #, c-format
 msgid "%s: '%s' already defined by the '%s' argument."
-msgstr ""
+msgstr "%s: '%s' уже определён аругментом '%s'."
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента: ожидалось '%s', '%s', '%s', '%s' "
+"или '%s'.\n"
 
 msgid ""
 "Warning: Syntax vector ^ scalar is obsolete. It will be removed in Scilab "
 "6.0.\n"
 "  Use vector .^ scalar instead.\n"
 msgstr ""
+"Внимание: Синтаксис вектор ^ скаляр устарел. Он будет удалён в Scilab 6.0.\n"
+"  Вместо этого используйте вектор .^ скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: A single string expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер аргумента №%d: ожидалась одиночная строка.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for argument #%d: A single string of size %d to %d expected.\n"
 msgstr ""
+"%s: Неверный размер аргумента №%d: ожидалась одиночная строка размером от %d "
+"до %d.\n"
 
 #, c-format
 msgid "%s: Incorrect integer type: %s .\n"
-msgstr ""
+msgstr "%s: Некорректный целочисленный тип: %s .\n"

@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "sparse_f module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "sparse_f module"
-            VALUE "LegalCopyright", "Copyright (C) 2015"
+            VALUE "LegalCopyright", "Copyright (C) 2016"
             VALUE "OriginalFilename", "sparse_f.dll"
             VALUE "ProductName", "sparse_f module"
             VALUE "ProductVersion", "6, 0, 0, 0"

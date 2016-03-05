@@ -2,11 +2,14 @@
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 // Copyright (C) ???? - INRIA - Serge STEER
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
     // This function performs translation of a single M-file
@@ -197,7 +200,7 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
         func_proto=part(func_proto,1:keq)+strsubst(stripblanks(part(func_proto,keq+1:kpar-1))," ","_")+part(func_proto,kpar:length(func_proto))
 
         wold = who("get");
-        deff(func_proto,[firstline;txt(2:$)],"n")
+        deff(func_proto,[firstline;txt(2:$)])
         w = who("get");
         w(find(w == "deff")) = [];
         w(find(w == "wold")) = [];

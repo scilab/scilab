@@ -15,7 +15,6 @@ Source: contrib\{#TOOLBOX_SKELETON}\changelog.txt; DestDir: {app}\contrib\{#TOOL
 Source: contrib\{#TOOLBOX_SKELETON}\license.txt; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\readme.txt; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\DESCRIPTION; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}; Components: {#COMPN_TOOLBOX_SKELETON}
-Source: contrib\{#TOOLBOX_SKELETON}\DESCRIPTION-FUNCTIONS; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}; Components: {#COMPN_TOOLBOX_SKELETON}
 ;
 Source: contrib\{#TOOLBOX_SKELETON}\demos\*.*; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\demos; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\etc\toolbox_skeleton.quit; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\etc; Components: {#COMPN_TOOLBOX_SKELETON}
@@ -67,7 +66,6 @@ Source: contrib\{#TOOLBOX_SKELETON}\src\java\org\scilab\contrib\toolboxskeleton\
 ;--------------------------------------------------------------------------------------------------------------
 #define XCOS_TOOLBOX_SKELETON "xcos_toolbox_skeleton"
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\DESCRIPTION; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
-Source: contrib\{#XCOS_TOOLBOX_SKELETON}\DESCRIPTION-FUNCTIONS; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\license.txt; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\builder.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\changelog.txt; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}

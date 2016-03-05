@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="deff" xml:lang="pt">
@@ -17,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>deff('[s1, s2, ...] = newfunction(e1, e2,...)',text [,opt])</synopsis>
+        <synopsis>deff('[s1, s2, ...] = newfunction(e1, e2,...)',text)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -40,36 +43,6 @@
                     <para>matriz de strings.</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>opt</term>
-                <listitem>
-                    <para>string opcional:</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>'c'</term>
-                            <listitem>
-                                <para>a função é "compilada" para ser eficiente
-                                    (padrão);
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>'p'</term>
-                            <listitem>
-                                <para>a função é compilada e preparada para profiling (ver
-                                    <link linkend="profile">profile</link>);
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>'n'</term>
-                            <listitem>
-                                <para>a função não é "compilada".</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -81,20 +54,11 @@
             em um arquivo de texto e carregada através de <function>exec</function> ou
             <function>exec</function>.
         </para>
-        <para>Aspas em instruções (delimitando strings ou indicando transposição
-            de matrizes) devem ser dobradas para serem interpretadas corretamente (ver
-            quote). Isto pode tornar a escrita um tanto estranha. Uma alternativa em
-            tais casos é definir funções em arquivos, como de uso, para carregá-las no
-            Scilab através de <function>exec</function> (com a opção
-            <literal>'n'</literal>) e utilizar <function>sci2exp</function> para uma
-            impressão das instruções <function>deff</function> correspondentes.
-        </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 deff('[x]=myplus(y,z)','x=y+z')
-
 deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
  ]]></programlisting>
     </refsection>
@@ -106,9 +70,6 @@ deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
             </member>
             <member>
                 <link linkend="function">function</link>
-            </member>
-            <member>
-                <link linkend="profile">profile</link>
             </member>
             <member>
                 <link linkend="quote">quote</link>

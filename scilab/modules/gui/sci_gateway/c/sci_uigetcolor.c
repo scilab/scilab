@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT (java version)
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -142,7 +145,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (nbRow*nbCol != 3)
+            if (nbRow * nbCol != 3)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"), fname, 2, 3);
                 return FALSE;
@@ -212,7 +215,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex);
                 return FALSE;
@@ -243,7 +246,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex + 1);
                 return FALSE;
@@ -274,7 +277,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex + 2);
                 return FALSE;

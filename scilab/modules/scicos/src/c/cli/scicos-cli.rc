@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "scicos-cli module"
             VALUE "FileVersion", "5, 6, 0, 0"
             VALUE "InternalName", "scicos-cli module"
-            VALUE "LegalCopyright", "Copyright (C) 2015"
+            VALUE "LegalCopyright", "Copyright (C) 2016"
             VALUE "OriginalFilename", "scicos-cli.dll"
             VALUE "ProductName", "scicos-cli module"
             VALUE "ProductVersion", "5, 6, 0, 0"

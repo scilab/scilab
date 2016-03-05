@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -238,7 +241,7 @@ public final class XcosCellFactory {
      *            the interface function
      * @return A new instance of a block.
      */
-    public static BasicBlock createBlock(BlockInterFunction func) {
+    public static BasicBlock createBlock(BlockInterFunction func) throws InterpreterException {
         return createBlock(func, func.name());
     }
 
@@ -251,7 +254,7 @@ public final class XcosCellFactory {
      *            the interface function
      * @return A new instance of a block.
      */
-    public static BasicBlock createBlock(String interfaceFunction) {
+    public static BasicBlock createBlock(String interfaceFunction) throws InterpreterException {
         Optional<BlockInterFunction> func = EnumSet.allOf(BlockInterFunction.class).stream().filter(f -> f.name().equals(interfaceFunction)).findFirst();
 
         final BasicBlock block;
@@ -265,36 +268,31 @@ public final class XcosCellFactory {
         return block;
     }
 
-    private static BasicBlock createBlock(BlockInterFunction func, String interfaceFunction) {
+    private static BasicBlock createBlock(BlockInterFunction func, String interfaceFunction) throws InterpreterException {
         return createBlock(new JavaController(), func, interfaceFunction);
     }
 
-    private static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction) {
+    private static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction) throws InterpreterException {
         BasicBlock block;
-        try {
-            ScicosObjectOwner last;
+        ScicosObjectOwner last;
 
-            if (BlockInterFunction.BASIC_BLOCK.name().equals(interfaceFunction)) {
-                // deliver all the MVC speed for the casual case
-                last = new ScicosObjectOwner(controller.createObject(Kind.BLOCK), Kind.BLOCK);
-            } else {
-                // allocate an empty block that will be filled later
-                synchronousScilabExec("xcosCellCreated(" + interfaceFunction + "(\"define\")); ");
-                last = getLastCreated();
-            }
+        if (BlockInterFunction.BASIC_BLOCK.name().equals(interfaceFunction)) {
+            // deliver all the MVC speed for the casual case
+            last = new ScicosObjectOwner(controller.createObject(Kind.BLOCK), Kind.BLOCK);
+        } else {
+            // allocate an empty block that will be filled later
+            synchronousScilabExec("xcosCellCreated(" + interfaceFunction + "(\"define\")); ");
+            last = getLastCreated();
+        }
 
-            // defensive programming
-            if (last == null) {
-                System.err.println("XcosCellFactory#createBlock : unable to allocate " + interfaceFunction);
-                return null;
-            }
+        // defensive programming
+        if (last == null) {
+            throw new InterpreterException("XcosCellFactory#createBlock : unable to allocate " + interfaceFunction);
+        }
 
-            if (EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(last.getKind())) {
-                block = createBlock(controller, func, interfaceFunction, last.getUID(), last.getKind());
-            } else {
-                block = null;
-            }
-        } catch (InterpreterException e) {
+        if (EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(last.getKind())) {
+            block = createBlock(controller, func, interfaceFunction, last.getUID(), last.getKind());
+        } else {
             block = null;
         }
 

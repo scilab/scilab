@@ -46,7 +46,10 @@
             </listitem>
             <listitem>
                 <para>
-                    Si <literal>A</literal> est un scalaire et <literal>b</literal> est une matrice <literal>A^b</literal> et <literal>A.^b</literal> sont deux matrices de même taille que b dont les termes sont égaux à <literal> a^(b(i,j))</literal>.
+                    Si <literal>A</literal> est un scalaire et <literal>b</literal> est une matrice carrée <literal>A^b</literal> est la matrice <literal>expm(log(A)*b)</literal>.
+                </para>
+                <para>
+                    Si <literal>A</literal> est un scalaire et <literal>b</literal> est une matrice <literal>A.^b</literal> est une matrice de même taille que b dont les termes sont égaux à <literal> a^(b(i,j))</literal>.
                 </para>
             </listitem>
             <listitem>

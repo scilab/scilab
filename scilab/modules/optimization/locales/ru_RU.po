@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-04-15 16:36+0000\n"
+"PO-Revision-Date: 2015-12-16 12:35+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: ru\n"
 
 #, c-format
@@ -109,92 +109,106 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
-msgstr ""
+msgstr "%s: Подпрограмма не найдена: %s\n"
 
 #, c-format
 msgid "%s: Argument #%d: Subroutine not found in list: %s\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: подпрограмма не найдена в списке: %s\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: The first argument in the list must "
 "be a string or a function.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: первый аргумент в списке должен "
+"быть строкой или функцией.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix or a function expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица или функция.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar or a function expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался скаляр или функция.\n"
 
 #, c-format
 msgid "%s: exception caught in '%s' subroutine.\n"
-msgstr ""
+msgstr "%s: перехвачено исключение в подпрограмме '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real Scalar expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вещественный скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: At most %d expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось не больше %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A vector of size %d x %d expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался вектор размером %d x "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
+msgstr "%s: Неверное значение входного аргумента №%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного параметра №%d: ожидался вектор.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался вектор размером %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A strictly positive vector "
 "expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался строго положительный "
+"вектор.\n"
 
 #, c-format
 msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
-msgstr ""
+msgstr "%s: %s: Число вызовов %s достигло или превысило %s.\n"
 
 msgid "Warning"
-msgstr ""
+msgstr "Предупреждение"
 
 #, c-format
 msgid ""
 "%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
 msgstr ""
+"%s: %s: %s слишком мало. Дальнейшее уменьшение по критерию не возможно.\n"
 
 #, c-format
 msgid ""
 "%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
 "machine precision.\n"
 msgstr ""
+"%s: %s: %s слишком мало. %s ортогонально столбцам Якобиана к машинной "
+"точности.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: A scalar expected.\n"
@@ -219,6 +233,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица или полином.\n"
 
 #, c-format
 msgid "%s: Bounds and initial guess are incompatible.\n"
@@ -235,7 +250,7 @@ msgstr ""
 
 #, c-format
 msgid "Can not allocate %.2f MB memory.\n"
-msgstr ""
+msgstr "Нельзя распределить %.2f MB памяти.\n"
 
 #, c-format
 msgid "%s: NO hot restart available in this method.\n"
@@ -252,7 +267,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
@@ -282,11 +297,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar string expected.\n"
@@ -307,27 +322,27 @@ msgstr ""
 
 #, c-format
 msgid "%s: %d logical unit already used.\n"
-msgstr ""
+msgstr "%s: %d логическая единица уже использовалась.\n"
 
 #, c-format
 msgid "%s: Too many files opened!\n"
-msgstr ""
+msgstr "%s: Открыто слишком много файлов!\n"
 
 #, c-format
 msgid "%s: Unknown file format.\n"
-msgstr ""
+msgstr "%s: Неизвестный формат файла.\n"
 
 #, c-format
 msgid "%s: File \"%s\" already exists or directory write access denied.\n"
-msgstr ""
+msgstr "%s: Файл \"%s\" уже существует или нет прав на запись.\n"
 
 #, c-format
 msgid "%s: File \"%s\" does not exist or read access denied.\n"
-msgstr ""
+msgstr "%s: Файл \"%s\" не существует либо нет прав на чтение.\n"
 
 #, c-format
 msgid "%s: Can not open File \"%s\"\n"
-msgstr ""
+msgstr "%s: Нельзя открыть файл \"%s\"\n"
 
 #, c-format
 msgid ""
@@ -458,11 +473,11 @@ msgstr ""
 
 #, c-format
 msgid "Undefined function '%ls'.\n"
-msgstr ""
+msgstr "Неопределённая функция '%ls'.\n"
 
 #, c-format
 msgid "User function '%s' have not been setted.\n"
-msgstr ""
+msgstr "Пользовательская функция '%s' не установлена.\n"
 
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real scalar expected.\n"
@@ -471,11 +486,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
 msgstr ""
+"%s: Неверный тип выходного аргумента №%d: ожидалась вещественная матрица.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
+"%s: Неверный размер выходного аргумента №%d: ожидалась матрица размером %d x "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for output argument #%d: A vector of %d expected.\n"
@@ -745,13 +763,13 @@ msgid "   minimize  f(X1,...,XM)  "
 msgstr "   минимизировать  f(X1,...,XM)  "
 
 msgid "subject to the LME constraints: "
-msgstr ""
+msgstr "подчинять граничным условиям LME: "
 
 msgid "   Gi(X1,...,XM)=0,  i=1,2,...,p,"
 msgstr "   Gi(X1,...,XM)=0,  i=1,2,...,p,"
 
 msgid "and the LMI constraints:  "
-msgstr ""
+msgstr "и граничным условиям LMI:  "
 
 msgid "   Hj(X1,...,XM)>=0,  j=1,2,...,q."
 msgstr "   Hj(X1,...,XM)>=0,  j=1,2,...,q."

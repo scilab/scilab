@@ -137,13 +137,13 @@ for k=1:2
 end
 if z<>3 then bugmes();quit;end
 //
-z=0;
+z=0;for k=1:2
     function y=foo(),y=k,endfunction
     z=z+foo();
 end
 if z<>3 then bugmes();quit;end
 //
-z=0;
+z=0;for k=1:2, function y=foo(),y=k,endfunction
     z=z+foo();
 end
 if z<>3 then bugmes();quit;end

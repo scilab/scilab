@@ -2,16 +2,20 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
 #include <vector>
 #include <list>
+
 #include "context.hxx"
 #include "configvariable.hxx"
 #include "macrofile.hxx"
@@ -282,6 +286,25 @@ bool ConfigVariable::getWarningStop(void)
 ** \}
 */
 
+/*
+** Old Empty Behaviour
+** \{
+*/
+bool ConfigVariable::m_bOldEmptyBehaviour = false;
+
+void ConfigVariable::setOldEmptyBehaviour(bool _bOldEmptyBehaviour)
+{
+    m_bOldEmptyBehaviour = _bOldEmptyBehaviour;
+}
+
+bool ConfigVariable::getOldEmptyBehaviour(void)
+{
+    return m_bOldEmptyBehaviour;
+}
+/*
+** \}
+*/
+
 
 /*
 ** HOME
@@ -424,74 +447,8 @@ std::wstring& ConfigVariable::getLastErrorFunction()
 ** \}
 */
 
-/*
-** Prompt Mode
-** \{
-*/
-
-int ConfigVariable::m_iPromptMode = 0;
-int ConfigVariable::m_iSilentError = 0;
+/* verbose */
 bool ConfigVariable::m_bVerbose = true;
-
-void ConfigVariable::setPromptMode(int _iPromptMode)
-{
-    m_iPromptMode = _iPromptMode;
-    if (m_iPromptMode == 5)
-    {
-        m_iPromptMode = 1;
-    }
-
-    if (m_iPromptMode == 6)
-    {
-        m_iPromptMode = 7;
-    }
-}
-
-int ConfigVariable::getPromptMode(void)
-{
-    return m_iPromptMode;
-}
-
-bool ConfigVariable::isEmptyLineShow(void)
-{
-    if ( m_iPromptMode == 0    ||
-            m_iPromptMode == 2 ||
-            m_iPromptMode == 3 ||
-            m_iPromptMode == 7)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-bool ConfigVariable::isPromptShow(void)
-{
-    if ( m_iPromptMode == 0    ||
-            m_iPromptMode == 1 ||
-            m_iPromptMode == 2 ||
-            m_iPromptMode == 3 ||
-            m_iPromptMode == 7)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-void ConfigVariable::setSilentError(int _iSilentError)
-{
-    m_iSilentError = _iSilentError;
-}
-
-int ConfigVariable::getSilentError(void)
-{
-    return m_iSilentError;
-}
 
 void ConfigVariable::setVerbose(bool _bVerbose)
 {
@@ -502,6 +459,181 @@ bool ConfigVariable::getVerbose(void)
 {
     return m_bVerbose;
 }
+
+/* silent error */
+
+bool ConfigVariable::m_iSilentError = false;
+
+void ConfigVariable::setSilentError(bool _iSilentError)
+{
+    m_iSilentError = _iSilentError;
+}
+
+bool ConfigVariable::isSilentError(void)
+{
+    return m_iSilentError;
+}
+
+
+/* Prompt Mode */
+
+int ConfigVariable::m_iPromptMode = 0;
+bool ConfigVariable::m_printInput = true;
+bool ConfigVariable::m_printOutput = true;
+bool ConfigVariable::m_printInteractive = false;
+bool ConfigVariable::m_printCompact = false;
+
+/*
+mode        input   output      compact     interactive
+-----------------------------------------------
+-1              0       0           0           0
+0               0       1           1           0
+1               1       1           1           0
+2               0       1           0           0
+3               1       1           0           0
+4               1       1           1           1
+7               1       1           0           1
+*/
+
+void ConfigVariable::setPromptMode(int _iPromptMode)
+{
+    m_iPromptMode = _iPromptMode;
+    switch (_iPromptMode)
+    {
+        default:
+        case -1:
+            ConfigVariable::setPrintInput(false);
+            ConfigVariable::setPrintOutput(false);
+            ConfigVariable::setPrintCompact(true);
+            ConfigVariable::setPrintInteractive(false);
+            break;
+        case 0:
+            ConfigVariable::setPrintInput(false);
+            ConfigVariable::setPrintOutput(true);
+            ConfigVariable::setPrintCompact(true);
+            ConfigVariable::setPrintInteractive(false);
+            break;
+        case 5:
+        case 1:
+            ConfigVariable::setPrintInput(true);
+            ConfigVariable::setPrintOutput(true);
+            ConfigVariable::setPrintCompact(true);
+            ConfigVariable::setPrintInteractive(false);
+            break;
+        case 2:
+            ConfigVariable::setPrintInput(false);
+            ConfigVariable::setPrintOutput(true);
+            ConfigVariable::setPrintCompact(false);
+            ConfigVariable::setPrintInteractive(false);
+            break;
+        case 3:
+            ConfigVariable::setPrintInput(true);
+            ConfigVariable::setPrintOutput(true);
+            ConfigVariable::setPrintCompact(false);
+            ConfigVariable::setPrintInteractive(false);
+            break;
+        case 4:
+            ConfigVariable::setPrintInput(true);
+            ConfigVariable::setPrintOutput(true);
+            ConfigVariable::setPrintCompact(true);
+            ConfigVariable::setPrintInteractive(true);
+            break;
+        case 6:
+        case 7:
+            ConfigVariable::setPrintInput(true);
+            ConfigVariable::setPrintOutput(true);
+            ConfigVariable::setPrintCompact(false);
+            ConfigVariable::setPrintInteractive(true);
+            break;
+    }
+}
+
+int ConfigVariable::getPromptMode(void)
+{
+    //bool input = isPrintInput();
+    //bool output = isPrintOutput();
+    //bool compact = isPrintCompact();
+    //bool interactive = isPrintInteractive();
+
+    //return !interactive ?
+    //    (/*-1*/ !input && !output ? -1 :
+    //    /* 0*/ !input &&  output &&  compact ? 0 :
+    //    /* 1*/  input &&  output &&  compact ? 1 :
+    //    /* 2*/ !input &&  output && !compact ? 2 :
+    //    /* 3*/  input &&  output && !compact ? 3 : 2 /*default*/) :
+    //    (/* 4*/  compact ? 4 :
+    //    /* 7*/ 7);
+
+    return m_iPromptMode;
+}
+
+void ConfigVariable::setPrintInput(bool val)
+{
+    m_printInput = val;
+}
+
+bool ConfigVariable::isPrintInput(void)
+{
+    return m_printInput;
+}
+
+bool ConfigVariable::togglePrintInput(void)
+{
+    m_printInput = !m_printInput;
+    return m_printInput;
+}
+
+
+void ConfigVariable::setPrintOutput(bool val)
+{
+    m_printOutput = val;
+}
+
+bool ConfigVariable::isPrintOutput(void)
+{
+    return m_printOutput;
+}
+
+bool ConfigVariable::togglePrintOutput(void)
+{
+    m_printOutput = !m_printOutput;
+    return m_printOutput;
+}
+
+
+void ConfigVariable::setPrintInteractive(bool val)
+{
+    m_printInteractive = val;
+}
+
+bool ConfigVariable::isPrintInteractive(void)
+{
+    return m_printInteractive;
+}
+
+bool ConfigVariable::togglePrintInteractive(void)
+{
+    m_printInteractive = !m_printInteractive;
+    return m_printInteractive;
+}
+
+
+void ConfigVariable::setPrintCompact(bool val)
+{
+    m_printCompact = val;
+}
+
+bool ConfigVariable::isPrintCompact(void)
+{
+    return m_printCompact;
+}
+
+bool ConfigVariable::togglePrintCompact(void)
+{
+    m_printCompact = !m_printCompact;
+    return m_printCompact;
+}
+
 
 /*
 ** ThreadList
@@ -714,7 +846,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
     if (_iDynamicLibraryIndex < (int)m_DynLibList.size())
     {
         std::list<EntryPointStr*>::const_iterator it;
-        for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+        for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; )
         {
             //clear all entry points linked to removed dynamic library
             if ((*it)->iLibIndex == _iDynamicLibraryIndex)
@@ -728,6 +860,10 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
                     break;
                 }
                 it = m_EntryPointList.begin();
+            }
+            else
+            {
+                ++it;
             }
         }
         //remove dynamic library
@@ -1438,7 +1574,7 @@ int ConfigVariable::getExecutedFileID()
 ** string read from console by scilabRead
 ** \{
 */
-char* ConfigVariable::m_pcConsoleReadStr = NULL;
+std::atomic<char*> ConfigVariable::m_pcConsoleReadStr(nullptr);
 void ConfigVariable::setConsoleReadStr(char* _pcConsoleReadStr)
 {
     m_pcConsoleReadStr = _pcConsoleReadStr;
@@ -1447,8 +1583,7 @@ void ConfigVariable::setConsoleReadStr(char* _pcConsoleReadStr)
 char* ConfigVariable::getConsoleReadStr()
 {
     ThreadManagement::LockScilabRead();
-    char* tmp = m_pcConsoleReadStr;
-    m_pcConsoleReadStr = NULL;
+    char* tmp = m_pcConsoleReadStr.exchange(NULL);
     ThreadManagement::UnlockScilabRead();
     return tmp;
 }
@@ -1461,7 +1596,7 @@ char* ConfigVariable::getConsoleReadStr()
 ** is a scilab command or not.
 ** \{
 */
-int ConfigVariable::m_isScilabCommand = 1;
+std::atomic<int> ConfigVariable::m_isScilabCommand(1);
 void ConfigVariable::setScilabCommand(int _isciCmd)
 {
     m_isScilabCommand = _isciCmd;
@@ -1469,7 +1604,7 @@ void ConfigVariable::setScilabCommand(int _isciCmd)
 
 int ConfigVariable::isScilabCommand()
 {
-    return m_isScilabCommand;
+    return m_isScilabCommand.load();
 }
 /*
 ** \}

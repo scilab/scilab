@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -23,6 +26,7 @@
 #include <map>
 #include <string>
 #include <memory>
+#include <atomic>
 
 #include "visitor.hxx"
 
@@ -152,6 +156,14 @@ public :
     static void setWarningStop(bool _bWarningStop);
     static bool getWarningStop(void);
 
+    // WarningStop
+private :
+    static bool m_bOldEmptyBehaviour;
+
+public :
+    static void setOldEmptyBehaviour(bool _bOldEmptyBehaviour);
+    static bool getOldEmptyBehaviour(void);
+
     //HOME
 private :
     static std::wstring m_HOME;
@@ -202,12 +214,28 @@ public :
     //Last Error Function
 private :
     static std::wstring m_wstErrorFunction;
-
-public :
+public:
     static void setLastErrorFunction(const std::wstring& _wstFunction);
     static std::wstring& getLastErrorFunction();
 
-    //Prompt Mode and Silent error
+    //verbose ";" after instruction
+    //set before function call to know status of e.isVerbose in functions
+private:
+    static bool m_bVerbose;
+
+public :
+    static void setVerbose(bool _bVerbose);
+    static bool getVerbose(void);
+
+
+    //silent error ( try catch, errcatch, ... )
+private :
+    static bool m_iSilentError;
+public:
+    static void setSilentError(bool _iSilentError);
+    static bool isSilentError(void);
+
+    //Prompt Mode
 public :
     /*
     Prompt mode
@@ -220,30 +248,35 @@ public :
     step7 = 7
     */
 
-    /*
-       show = 0
-       silent = 1
-    */
 private :
     static int m_iPromptMode;
-    static int m_iSilentError;
-
-    //set before function call to know status of e.isVerbose in functions
-    static bool m_bVerbose;
+    static bool m_printInput;
+    static bool m_printOutput;
+    static bool m_printCompact;
+    static bool m_printInteractive;
 
 public :
     static void setPromptMode(int _iPromptMode);
     static int getPromptMode(void);
-    static bool isPromptShow(void);
-    static bool isEmptyLineShow(void);
 
-    static void setSilentError(int _iSilentError);
-    static int getSilentError(void);
-    static void setVerbose(bool _bVerbose);
-    static bool getVerbose(void);
+    static void setPrintInput(bool val);
+    static bool isPrintInput(void);
+    static bool togglePrintInput(void);
+
+    static void setPrintOutput(bool val);
+    static bool isPrintOutput(void);
+    static bool togglePrintOutput(void);
+
+    static void setPrintInteractive(bool val);
+    static bool isPrintInteractive(void);
+    static bool togglePrintInteractive(void);
+
+    static void setPrintCompact(bool val);
+    static bool isPrintCompact(void);
+    static bool togglePrintCompact(void);
+
 
     //Thread List
-
 private :
     static std::list<types::ThreadId*> m_threadList;
 public :
@@ -462,18 +495,17 @@ public:
 
     // string read from console by scilabRead
 private:
-    static char* m_pcConsoleReadStr;
+    static std::atomic<char*> m_pcConsoleReadStr;
 public:
     static void setConsoleReadStr(char* _pcConsoleReadStr);
     static char* getConsoleReadStr();
 
     // tell if the command return by scilabRead is a scilab command or not
 private:
-    static int m_isScilabCommand;
+    static std::atomic<int> m_isScilabCommand;
 public:
     static void setScilabCommand(int _isciCmd);
     static int isScilabCommand();
-
 
     //debugger information
     static bool m_bEnabledebug;

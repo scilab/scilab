@@ -38,4 +38,5 @@ public class JavaController extends Controller {
     JavaControllerJNI.unregister_view(View.getCPtr(view), view);
     remove_reference(view);
   }
+
 }

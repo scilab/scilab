@@ -8,13 +8,13 @@
         <title>Последовательность вызова</title>
         <synopsis>
             123.33
-
+            
             a.*b
             a .*. b
-
+            
             %pi * (%e + ..
             %i)
-
+            
             cd ..
             dir ..
         </synopsis>
@@ -35,16 +35,16 @@
                 <term>.&lt;оператор&gt;</term>
                 <listitem>
                     <para>
-                        используется в сочетании с другими символами операторов (<literal>*/ \ ^ '</literal>) 
-                        для формирования других операторов. Операторы поэлементного умножения, деления и 
+                        используется в сочетании с другими символами операторов (<literal>*/ \ ^ '</literal>)
+                        для формирования других операторов. Операторы поэлементного умножения, деления и
                         возведения в степень и транспонирования получаются с помощью
-                        <literal> .*, ./, .\, .^ </literal>; транспонирование без комплексного сопряжения 
-                        получается с помощью <literal>.'</literal> . Например,  <literal>C = A ./ B</literal> 
-                        является матрицей с элементами <literal>c(i,j) = a(i,j)/b(i,j)</literal>. Произведение 
+                        <literal> .*, ./, .\, .^ </literal>; транспонирование без комплексного сопряжения
+                        получается с помощью <literal>.'</literal> . Например,  <literal>C = A ./ B</literal>
+                        является матрицей с элементами <literal>c(i,j) = a(i,j)/b(i,j)</literal>. Произведение
                         Кронекера обозначается <literal>.*.</literal> . Заметьте, что когда точка стоит
-                        сразу после числа, то она всегда является частью числа, так что <literal>2.*x</literal> 
-                        вычисляется как <literal>2.0*x</literal>, а <literal>2 .*x</literal> вычисляется как 
-                        <literal>(2).*x</literal>. 
+                        сразу после числа, то она всегда является частью числа, так что <literal>2.*x</literal>
+                        вычисляется как <literal>2.0*x</literal>, а <literal>2 .*x</literal> вычисляется как
+                        <literal>(2).*x</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,7 +64,7 @@
                     <para>
                         Следующая функция <literal>foo</literal>:
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 function foo()
     plot2d()
     xtitle(["Общий заголовок"; "Он может быть многострочным и достаточно длинным"], ..
@@ -72,7 +72,7 @@ function foo()
 endfunction
  ]]></programlisting>
                     <para>эквивалентна:</para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 function foo()
     plot2d()
 
@@ -80,12 +80,12 @@ function foo()
 endfunction
  ]]></programlisting>
                     <para>
-                        Логическая строка, сформированная физической строкой №3 и физической строкой №4, 
-                        построена так, как если бы она была полностью написана на физической строке №4, а 
-                        физическая строка №3 была бы пустой. Так сделано для того, чтобы обозначения 
+                        Логическая строка, сформированная физической строкой №3 и физической строкой №4,
+                        построена так, как если бы она была полностью написана на физической строке №4, а
+                        физическая строка №3 была бы пустой. Так сделано для того, чтобы обозначения
                         конкатенации можно было помещать куда угодно внутри выражения.
                         <note>
-                            Разница между логическими и физическими строками важна, когда идёт редактирование (scinotes, edit) профилирование (<function>profile</function>, <function>showprofile</function>, <function>plotprofile</function>) и в сообщениях об ошибках (<function>whereami</function>), когда номер строки указывается или отображается.
+                            Разница между логическими и физическими строками важна, когда идёт редактирование (scinotes, edit) и в сообщениях об ошибках (<function>whereami</function>), когда номер строки указывается или отображается.
                         </note>
                     </para>
                 </listitem>
@@ -98,18 +98,18 @@ endfunction
                         или <literal>ls ..</literal> вместо <literal>cd("..")</literal> и т. д.
                     </para>
                 </listitem>
-                </varlistentry>
-            </variablelist>
+            </varlistentry>
+        </variablelist>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //десятичная запятая
 1.345
- 
+
 //используется как часть оператора
 x=[1 2 3];x.^2 .*x // требуется пробел между 2 и точкой
- 
+
 // При записи строк матрицы на разных строчках ".." можно использовать, но не обязательно
 N = [   ..
     63.    89.    3.   ..
@@ -174,9 +174,6 @@ y = 12..
             </member>
             <member>
                 <link linkend="whereami">whereami</link>
-            </member>
-            <member>
-                <link linkend="showprofile">showprofile</link>
             </member>
             <member>
                 <link linkend="edit">edit</link>

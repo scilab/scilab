@@ -26,5 +26,5 @@ int ext6c(char *aname, double *b, double *c)
     {
         c[k] = a[k] + b[k] * 2.;
     }
-    return(0);
+    return (0);
 }

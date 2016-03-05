@@ -78,7 +78,7 @@ unsigned long int clcg2(void)
     *   randlib.
     */
 
-    return( (unsigned int) z );
+    return ( (unsigned int) z );
 }
 
 int set_state_clcg2(double g1, double g2)
