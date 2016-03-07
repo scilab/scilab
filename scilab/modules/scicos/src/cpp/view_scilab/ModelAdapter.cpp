@@ -952,7 +952,7 @@ struct rpar
             controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, oldDiagramChildren);
 
             std::sort(oldDiagramChildren.begin(), oldDiagramChildren.end());
-            std::vector<ScicosID> clonedChildren;
+            std::vector<ScicosID> newChildren;
             std::vector<ScicosID> clonedLinks;
             for (const ScicosID & id : diagramChildren)
             {
@@ -962,14 +962,18 @@ struct rpar
                     auto o = controller.getObject(cloneID);
                     controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, adaptor.getAdaptee()->id());
 
-                    clonedChildren.push_back(cloneID);
+                    newChildren.push_back(cloneID);
                     if (o->kind() == LINK)
                     {
                         clonedLinks.push_back(cloneID);
                     }
                 }
+                else
+                {
+                    newChildren.push_back(id);
+                }
             }
-            controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, clonedChildren);
+            controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, newChildren);
 
             std::sort(diagramChildren.begin(), diagramChildren.end());
             for (const ScicosID & id : oldDiagramChildren)
