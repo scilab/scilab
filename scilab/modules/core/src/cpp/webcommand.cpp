@@ -23,15 +23,10 @@ extern "C"
 #ifdef _MSC_VER
 #ifdef _DEBUG
 #pragma comment(lib,"sioclientd.lib")
-#pragma comment(lib,"libboost_system-vc120-mt-gd-1_60.lib")
-#pragma comment(lib,"libboost_random-vc120-mt-gd-1_60.lib")
-#else //RELEASE
+#else
 #pragma comment(lib,"sioclient.lib")
-#pragma comment(lib,"libboost_system-vc120-mt-1_60.lib")
-#pragma comment(lib,"libboost_random-vc120-mt-1_60.lib")
 #endif
 #endif
-
 
 WebCommand* WebCommand::me = nullptr;
 

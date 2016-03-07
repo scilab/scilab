@@ -215,17 +215,17 @@ int WebUtils::getParent(int uid)
     return getIntProperty(uid, __GO_PARENT__);
 }
 
-void WebUtils::setParent(int uid, std::string& str, bool append)
+void WebUtils::setParent(int uid, std::ostringstream& ostr, bool append)
 {
     int parent = getParent(uid);
 
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " << getElementById(uid);
     }
 
-    str += "var __parent__ = " + getElementById(parent);
-    str += "__parent__.appendChild(__child__);";
+    ostr << "var __parent__ = " << getElementById(parent);
+    ostr << "__parent__.appendChild(__child__);";
 
     if (getUILayout(parent) == LAYOUT_BORDER)
     {
@@ -233,7 +233,7 @@ void WebUtils::setParent(int uid, std::string& str, bool append)
         addInWaitingQueue(uid, __GO_UI_BORDER_POSITION__);
     }
 
-    setWaitingProperties(uid, str, true);
+    setWaitingProperties(uid, ostr, true);
 }
 
 void WebUtils::getFigureSize(int uid, std::vector<int>& vect)
@@ -243,17 +243,17 @@ void WebUtils::getFigureSize(int uid, std::vector<int>& vect)
     getIntVectorProterty(fig, __GO_AXES_SIZE__, vect);
 }
 
-void WebUtils::setFigureSize(int uid, std::string& str, bool append)
+void WebUtils::setFigureSize(int uid, std::ostringstream& ostr, bool append)
 {
     std::vector<int> size;
     getFigureSize(uid, size);
 
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
-    str += "__child__.style.width = '" + std::to_string(size[0]) + "px';";
-    str += "__child__.style.height = '" + std::to_string(size[1]) + "px';";
+    ostr << "__child__.style.width = '" << size[0] << "px';";
+    ostr << "__child__.style.height = '" << size[1] << + "px';";
 }
 
 int WebUtils::getFigureId(int uid)
@@ -282,19 +282,20 @@ void WebUtils::getUIString(int uid, std::vector<std::string> & vect)
 }
 
 
-void WebUtils::setUIPosition(int uid, std::string& str, bool append)
+void WebUtils::setUIPosition(int uid, std::ostringstream& ostr, bool append)
 {
     std::vector<double> pos;
     getUIPosition(uid, pos);
 
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " << getElementById(uid);
     }
-    str += "__child__.style.left = '" + std::to_string((int)pos[0]) + "px';";
-    str += "__child__.style.bottom = '" + std::to_string((int)pos[1]) + "px';";
-    str += "__child__.style.width = '" + std::to_string((int)pos[2]) + "px';";
-    str += "__child__.style.height = '" + std::to_string((int)pos[3]) + "px';";
+
+    ostr << "__child__.style.left = '" << (int)pos[0] << "px';";
+    ostr << "__child__.style.bottom = '" << (int)pos[1] << "px';";
+    ostr << "__child__.style.width = '" << (int)pos[2] << "px';";
+    ostr << "__child__.style.height = '" << (int)pos[3] << "px';";
 
     //to ensure vertical alignement, adapt style.line-height
     if (hasStyle(uid, __GO_UI_TEXT__) || hasStyle(uid, __GO_UI_CHECKBOX__) || hasStyle(uid, __GO_UI_RADIOBUTTON__))
@@ -303,16 +304,16 @@ void WebUtils::setUIPosition(int uid, std::string& str, bool append)
         getUIVerticalAlignment(uid, v);
         if (v == "middle")
         {
-            str += "__child__.style.lineHeight = '" + std::to_string((int)pos[3]) + "px';";
+            ostr << "__child__.style.lineHeight = '" + std::to_string((int)pos[3]) + "px';";
         }
         else
         {
-            str += "__child__.style.lineHeight = 'initial';";
+            ostr << "__child__.style.lineHeight = 'initial';";
         }
     }
 }
 
-void WebUtils::setUIString(int uid, std::string& str, bool append)
+void WebUtils::setUIString(int uid, std::ostringstream& ostr, bool append)
 {
     std::vector<std::string> s;
     getUIString(uid, s);
@@ -325,50 +326,50 @@ void WebUtils::setUIString(int uid, std::string& str, bool append)
     {
         if (append == false)
         {
-            str == "";
+            ostr << "";
         }
 
-        str += "var __label__ = " + getElementById(uid, "_label");
-        str += "__label__.innerHTML = '" + s[0] + "';";
+        ostr << "var __label__ = " << getElementById(uid, "_label");
+        ostr << "__label__.innerHTML = '" << s[0] << "';";
     }
     else if (hasStyle(uid, __GO_UI_POPUPMENU__) || hasStyle(uid, __GO_UI_LISTBOX__))
     {
         if (append == false)
         {
-            str = "var __child__ = " + getElementById(uid);
+            ostr << "var __child__ = " + getElementById(uid);
         }
 
         //remove previous values
-        str += "while (__child__.length) {__child__.remove(0);}";
+        ostr << "while (__child__.length) {__child__.remove(0);}";
 
-        str += "var option;";
+        ostr << "var option;";
         int size = (int)s.size();
         for (int i = 0; i < size; ++i)
         {
-            str += "option = new Option('" + s[i] + "');";
-            str += "__child__.add(option);";
+            ostr << "option = new Option('" + s[i] + "');";
+            ostr << "__child__.add(option);";
         }
 
         if (hasStyle(uid, __GO_UI_LISTBOX__))
         {
             //switch to listbox instead of combobox
-            str += "__child__.size = 2;";
+            ostr << "__child__.size = 2;";
         }
     }
     else
     {
         if (append == false)
         {
-            str = "var __child__ = " + getElementById(uid);
+            ostr << "var __child__ = " + getElementById(uid);
         }
 
         if (isInputType(uid))
         {
-            str += "__child__.value = '" + s[0] + "';";
+            ostr << "__child__.value = '" + s[0] + "';";
         }
         else
         {
-            str += "__child__.innerHTML = '" + s[0] + "';";
+            ostr << "__child__.innerHTML = '" + s[0] + "';";
         }
     }
 }
@@ -378,16 +379,16 @@ bool WebUtils::getVisible(int uid)
     return getBoolProperty(uid, __GO_VISIBLE__);
 }
 
-void WebUtils::setVisible(int uid, std::string& str, bool append)
+void WebUtils::setVisible(int uid, std::ostringstream& ostr, bool append)
 {
     //reverse flag value
     std::string v = getVisible(uid) ? "inherit" : "hidden";
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
 
-    str += "__child__.style.visibility  = '" + v + "';";
+    ostr << "__child__.style.visibility  = '" + v + "';";
 }
 
 bool WebUtils::getUIEnable(int uid)
@@ -395,16 +396,16 @@ bool WebUtils::getUIEnable(int uid)
     return getBoolProperty(uid, __GO_UI_ENABLE__);
 }
 
-void WebUtils::setUIEnable(int uid, std::string& str, bool append)
+void WebUtils::setUIEnable(int uid, std::ostringstream& ostr, bool append)
 {
     //reverse flag value
     std::string v = getUIEnable(uid) ? "false" : "true";
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
 
-    str += "__child__.disabled  = " + v + ";";
+    ostr << "__child__.disabled  = " + v + ";";
 }
 
 bool WebUtils::getUIBackgroundColor(int uid, std::vector<double>& vect)
@@ -414,57 +415,57 @@ bool WebUtils::getUIBackgroundColor(int uid, std::vector<double>& vect)
     return true;
 }
 
-void WebUtils::setUIBackgroundColor(int uid, std::string& str, bool append)
+void WebUtils::setUIBackgroundColor(int uid, std::ostringstream& ostr, bool append)
 {
     std::vector<double> c;
     getUIBackgroundColor(uid, c);
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
 
-    str += "__child__.style.backgroundColor  = " + getColor(c) + ";";
+    ostr << "__child__.style.backgroundColor  = " + getColor(c) + ";";
 }
 
-bool WebUtils::getUIFontAngle(int uid, std::string& str)
+bool WebUtils::getUIFontAngle(int uid, std::string& val)
 {
-    str = getStringProperty(uid, __GO_UI_FONTANGLE__);
+    val = getStringProperty(uid, __GO_UI_FONTANGLE__);
     return true;
 }
 
-void WebUtils::setUIFontAngle(int uid, std::string& str, bool append)
+void WebUtils::setUIFontAngle(int uid, std::ostringstream& ostr, bool append)
 {
     std::string angle;
     getUIFontAngle(uid, angle);
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
 
-    str += "__child__.style.fontStyle  = '" + angle + "';";
+    ostr << "__child__.style.fontStyle  = '" + angle + "';";
 }
 
-bool WebUtils::getUIFontName(int uid, std::string& str)
+bool WebUtils::getUIFontName(int uid, std::string& val)
 {
-    str = getStringProperty(uid, __GO_UI_FONTNAME__);
+    val = getStringProperty(uid, __GO_UI_FONTNAME__);
     return true;
 }
 
-void WebUtils::setUIFontName(int uid, std::string& str, bool append)
+void WebUtils::setUIFontName(int uid, std::ostringstream& ostr, bool append)
 {
     std::string font;
     getUIFontName(uid, font);
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
 
-    str += "__child__.style.fontFamily  = '" + font + "','serif' ;";
+    ostr << "__child__.style.fontFamily  = '" + font + "','serif' ;";
 }
 
-bool WebUtils::getUIFontUnits(int uid, std::string& str)
+bool WebUtils::getUIFontUnits(int uid, std::string& val)
 {
-    str = getStringProperty(uid, __GO_UI_FONTUNITS__);
+    val =  getStringProperty(uid, __GO_UI_FONTUNITS__);
     return true;
 }
 
@@ -473,7 +474,7 @@ double WebUtils::getUIFontSize(int uid)
     return getDoubleProperty(uid, __GO_UI_FONTSIZE__);
 }
 
-void WebUtils::setUIFontSize(int uid, std::string& str, bool append)
+void WebUtils::setUIFontSize(int uid, std::ostringstream& ostr, bool append)
 {
     int size = (int)getUIFontSize(uid);
 
@@ -492,29 +493,29 @@ void WebUtils::setUIFontSize(int uid, std::string& str, bool append)
 
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
 
-    str += "__child__.style.fontSize  = '" + std::to_string(size) + units + "';";
+    ostr << "__child__.style.fontSize  = '" + std::to_string(size) + units + "';";
 }
 
-bool WebUtils::getUIFontWeight(int uid, std::string& str)
+bool WebUtils::getUIFontWeight(int uid, std::string& val)
 {
-    str = getStringProperty(uid, __GO_UI_FONTWEIGHT__);
+    val = getStringProperty(uid, __GO_UI_FONTWEIGHT__);
     return true;
 }
 
-void WebUtils::setUIFontWeight(int uid, std::string& str, bool append)
+void WebUtils::setUIFontWeight(int uid, std::ostringstream& ostr, bool append)
 {
     std::string weight;
     getUIFontWeight(uid, weight);
 
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
 
-    str += "__child__.style.fontWeight  = '" + weight + "';";
+    ostr << "__child__.style.fontWeight  = '" + weight + "';";
 }
 
 bool WebUtils::getUIForegroundColor(int uid, std::vector<double>& vect)
@@ -524,55 +525,55 @@ bool WebUtils::getUIForegroundColor(int uid, std::vector<double>& vect)
     return true;
 }
 
-void WebUtils::setUIForegroundColor(int uid, std::string& str, bool append)
+void WebUtils::setUIForegroundColor(int uid, std::ostringstream& ostr, bool append)
 {
     std::vector<double> c;
     getUIForegroundColor(uid, c);
 
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
 
-    str += "__child__.style.color  = " + getColor(c) + ";";
+    ostr << "__child__.style.color  = " + getColor(c) + ";";
 }
 
-bool WebUtils::getUIHorizontalAlignment(int uid, std::string& str)
+bool WebUtils::getUIHorizontalAlignment(int uid, std::string& val)
 {
-    str = getStringProperty(uid, __GO_UI_HORIZONTALALIGNMENT__);
+    val = getStringProperty(uid, __GO_UI_HORIZONTALALIGNMENT__);
     return true;
 }
 
-void WebUtils::setUIHorizontalAlignment(int uid, std::string& str, bool append)
+void WebUtils::setUIHorizontalAlignment(int uid, std::ostringstream& ostr, bool append)
 {
     std::string align;
     getUIHorizontalAlignment(uid, align);
 
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
 
-    str += "__child__.style.textAlign  = '" + align + "';";
+    ostr << "__child__.style.textAlign  = '" + align + "';";
 }
 
-bool WebUtils::getUIRelief(int uid, std::string& str)
+bool WebUtils::getUIRelief(int uid, std::string& val)
 {
-    str = getStringProperty(uid, __GO_UI_RELIEF__);
+    val = getStringProperty(uid, __GO_UI_RELIEF__);
     return true;
 }
 
-void WebUtils::setUIRelief(int uid, std::string& str, bool append)
+void WebUtils::setUIRelief(int uid, std::ostringstream& ostr, bool append)
 {
 }
 
-bool WebUtils::getUIVerticalAlignment(int uid, std::string& str)
+bool WebUtils::getUIVerticalAlignment(int uid, std::string& val)
 {
-    str = getStringProperty(uid, __GO_UI_VERTICALALIGNMENT__);
+    val = getStringProperty(uid, __GO_UI_VERTICALALIGNMENT__);
     return true;
 }
 
-void WebUtils::setUIVerticalAlignment(int uid, std::string& str, bool append)
+void WebUtils::setUIVerticalAlignment(int uid, std::ostringstream& ostr, bool append)
 {
 }
 
@@ -582,7 +583,7 @@ int WebUtils::getUILayout(int uid)
     return true;
 }
 
-void WebUtils::setUILayout(int uid, std::string& str, bool append)
+void WebUtils::setUILayout(int uid, std::ostringstream& ostr, bool append)
 {
     if (isFigure(uid) || hasStyle(uid, __GO_UI_FRAME__))
     {
@@ -590,7 +591,7 @@ void WebUtils::setUILayout(int uid, std::string& str, bool append)
 
         if (append == false)
         {
-            str = "var __child__ = " + getElementById(uid) + ";";
+            ostr << "var __child__ = " + getElementById(uid) + ";";
         }
 
         int layout = getUILayout(uid);
@@ -612,59 +613,59 @@ void WebUtils::setUILayout(int uid, std::string& str, bool append)
                 //+---------------------+
 
                 //table
-                str += "var __table__ = " + createElement("TABLE");
-                str += "__table__.id = " + getIdString(uid, "_table") + ";";
-                str += "__table__.style.margin = '0';";
-                str += "__table__.style.padding = '0';";
-                str += "__table__.style.width = '100%';";
-                str += "__table__.style.height = '100%';";
-                str += "__table__.style.borderCollapse = 'collapse';";
+                ostr << "var __table__ = " + createElement("TABLE");
+                ostr << "__table__.id = " + getIdString(uid, "_table") + ";";
+                ostr << "__table__.style.margin = '0';";
+                ostr << "__table__.style.padding = '0';";
+                ostr << "__table__.style.width = '100%';";
+                ostr << "__table__.style.height = '100%';";
+                ostr << "__table__.style.borderCollapse = 'collapse';";
 
                 //rows
-                str += "var __tr_top__ = " + createElement("TR");
-                str += "var __tr_middle__ = " + createElement("TR");
-                str += "var __tr_bottom__ = " + createElement("TR");
+                ostr << "var __tr_top__ = " + createElement("TR");
+                ostr << "var __tr_middle__ = " + createElement("TR");
+                ostr << "var __tr_bottom__ = " + createElement("TR");
 
                 //cell in rows
-                str += "var __td_top__ = " + createElement("TD");
-                str += "__td_top__.colSpan = '3';";
-                str += "__td_top__.id = " + getIdString(uid, "_top") + ";";
-                str += "__td_top__.style.width = '100%';";
+                ostr << "var __td_top__ = " + createElement("TD");
+                ostr << "__td_top__.colSpan = '3';";
+                ostr << "__td_top__.id = " + getIdString(uid, "_top") + ";";
+                ostr << "__td_top__.style.width = '100%';";
 
-                str += "var __td_left__ = " + createElement("TD");
-                str += "__td_left__.id = " + getIdString(uid, "_left") + ";";
-                str += "__td_left__.style.height = '100%';";
+                ostr << "var __td_left__ = " + createElement("TD");
+                ostr << "__td_left__.id = " + getIdString(uid, "_left") + ";";
+                ostr << "__td_left__.style.height = '100%';";
 
-                str += "var __td_center__ = " + createElement("TD");
-                str += "__td_center__.id = " + getIdString(uid, "_center") + ";";
-                str += "__td_center__.style.width = '100%';";
-                str += "__td_center__.style.height = '100%';";
+                ostr << "var __td_center__ = " + createElement("TD");
+                ostr << "__td_center__.id = " + getIdString(uid, "_center") + ";";
+                ostr << "__td_center__.style.width = '100%';";
+                ostr << "__td_center__.style.height = '100%';";
 
-                str += "var __td_right__ = " + createElement("TD");
-                str += "__td_right__.id = " + getIdString(uid, "_right") + ";";
-                str += "__td_right__.style.height = '100%';";
+                ostr << "var __td_right__ = " + createElement("TD");
+                ostr << "__td_right__.id = " + getIdString(uid, "_right") + ";";
+                ostr << "__td_right__.style.height = '100%';";
 
-                str += "var __td_bottom__ = " + createElement("TD");
-                str += "__td_bottom__.colSpan = '3';";
-                str += "__td_bottom__.id = " + getIdString(uid, "_bottom") + ";";
-                str += "__td_bottom__.style.width = '100%';";
+                ostr << "var __td_bottom__ = " + createElement("TD");
+                ostr << "__td_bottom__.colSpan = '3';";
+                ostr << "__td_bottom__.id = " + getIdString(uid, "_bottom") + ";";
+                ostr << "__td_bottom__.style.width = '100%';";
 
                 //hierarchy
 
                 //td in tr
-                str += "__tr_top__.appendChild(__td_top__);";
-                str += "__tr_middle__.appendChild(__td_left__);";
-                str += "__tr_middle__.appendChild(__td_center__);";
-                str += "__tr_middle__.appendChild(__td_right__);";
-                str += "__tr_bottom__.appendChild(__td_bottom__);";
+                ostr << "__tr_top__.appendChild(__td_top__);";
+                ostr << "__tr_middle__.appendChild(__td_left__);";
+                ostr << "__tr_middle__.appendChild(__td_center__);";
+                ostr << "__tr_middle__.appendChild(__td_right__);";
+                ostr << "__tr_bottom__.appendChild(__td_bottom__);";
 
                 //tr in table
-                str += "__table__.appendChild(__tr_top__);";
-                str += "__table__.appendChild(__tr_middle__);";
-                str += "__table__.appendChild(__tr_bottom__);";
+                ostr << "__table__.appendChild(__tr_top__);";
+                ostr << "__table__.appendChild(__tr_middle__);";
+                ostr << "__table__.appendChild(__tr_bottom__);";
 
                 //table in parent
-                str += "__child__.appendChild(__table__);";
+                ostr << "__child__.appendChild(__table__);";
 
                 break;
             }
@@ -675,16 +676,16 @@ void WebUtils::setUILayout(int uid, std::string& str, bool append)
             case LAYOUT_GRIDBAG:
             {
                 //add empty table
-                str += "var __table__ = " + createElement("TABLE");
-                str += "__table__.id = " + getIdString(uid, "_table") + ";";
-                str += "__table__.style.margin = '0';";
-                str += "__table__.style.padding = '0';";
-                str += "__table__.style.width = '100%';";
-                str += "__table__.style.height = '100%';";
-                str += "__table__.style.borderCollapse = 'collapse';";
+                ostr << "var __table__ = " + createElement("TABLE");
+                ostr << "__table__.id = " + getIdString(uid, "_table") + ";";
+                ostr << "__table__.style.margin = '0';";
+                ostr << "__table__.style.padding = '0';";
+                ostr << "__table__.style.width = '100%';";
+                ostr << "__table__.style.height = '100%';";
+                ostr << "__table__.style.borderCollapse = 'collapse';";
 
                 //table in parent
-                str += "__child__.appendChild(__table__);";
+                ostr << "__child__.appendChild(__table__);";
                 break;
             }
             default:
@@ -702,7 +703,7 @@ double WebUtils::getUIMin(int uid)
     return getDoubleProperty(uid, __GO_UI_MIN__);
 }
 
-void WebUtils::setUIMin(int uid, std::string& str, bool append)
+void WebUtils::setUIMin(int uid, std::ostringstream& ostr, bool append)
 {
     if (hasStyle(uid, __GO_UI_SPINNER__) || hasStyle(uid, __GO_UI_SLIDER__))
     {
@@ -710,10 +711,10 @@ void WebUtils::setUIMin(int uid, std::string& str, bool append)
 
         if (append == false)
         {
-            str = "var __child__ = " + getElementById(uid);
+            ostr << "var __child__ = " + getElementById(uid);
         }
 
-        str += "__child__.min  = '" + std::to_string(min) + "';";
+        ostr << "__child__.min  = '" + std::to_string(min) + "';";
     }
 }
 
@@ -722,7 +723,7 @@ double WebUtils::getUIMax(int uid)
     return getDoubleProperty(uid, __GO_UI_MAX__);
 }
 
-void WebUtils::setUIMax(int uid, std::string& str, bool append)
+void WebUtils::setUIMax(int uid, std::ostringstream& ostr, bool append)
 {
     if (hasStyle(uid, __GO_UI_SPINNER__) || hasStyle(uid, __GO_UI_SLIDER__))
     {
@@ -730,10 +731,10 @@ void WebUtils::setUIMax(int uid, std::string& str, bool append)
 
         if (append == false)
         {
-            str = "var __child__ = " + getElementById(uid);
+            ostr << "var __child__ = " + getElementById(uid);
         }
 
-        str += "__child__.max  = '" + std::to_string(max) + "';";
+        ostr << "__child__.max  = '" + std::to_string(max) + "';";
     }
 }
 
@@ -744,7 +745,7 @@ double WebUtils::getUIStep(int uid)
     return step[0];
 }
 
-void WebUtils::setUIStep(int uid, std::string& str, bool append)
+void WebUtils::setUIStep(int uid, std::ostringstream& ostr, bool append)
 {
     if (hasStyle(uid, __GO_UI_SPINNER__) || hasStyle(uid, __GO_UI_SLIDER__))
     {
@@ -752,10 +753,10 @@ void WebUtils::setUIStep(int uid, std::string& str, bool append)
 
         if (append == false)
         {
-            str = "var __child__ = " + getElementById(uid);
+            ostr << "var __child__ = " + getElementById(uid);
         }
 
-        str += "__child__.step  = '" + std::to_string(step) + "';";
+        ostr << "__child__.step  = '" + std::to_string(step) + "';";
     }
 }
 
@@ -767,7 +768,7 @@ bool WebUtils::getUIValue(int uid, std::vector<double>& vect)
     return true;
 }
 
-void WebUtils::setUIValue(int uid, std::string& str, bool append)
+void WebUtils::setUIValue(int uid, std::ostringstream& ostr, bool append)
 {
     if (hasStyle(uid, __GO_UI_SPINNER__) || hasStyle(uid, __GO_UI_SLIDER__))
     {
@@ -780,10 +781,10 @@ void WebUtils::setUIValue(int uid, std::string& str, bool append)
 
         if (append == false)
         {
-            str = "var __child__ = " + getElementById(uid);
+            ostr << "var __child__ = " + getElementById(uid);
         }
 
-        str += "__child__.value  = '" + std::to_string(values[0]) + "';";
+        ostr << "__child__.value  = '" + std::to_string(values[0]) + "';";
     }
 }
 
@@ -804,7 +805,7 @@ int WebUtils::getUIBorderPosition(int uid)
     return getIntProperty(uid, __GO_UI_BORDER_POSITION__);
 }
 
-void WebUtils::setUIBorder(int uid, std::string& str, bool append)
+void WebUtils::setUIBorder(int uid, std::ostringstream& ostr, bool append)
 {
     int parent = getParent(uid);
     std::string position;
@@ -821,7 +822,7 @@ void WebUtils::setUIBorder(int uid, std::string& str, bool append)
 
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
 
     switch (border)
@@ -829,36 +830,36 @@ void WebUtils::setUIBorder(int uid, std::string& str, bool append)
         default:
         case BORDER_CENTER:
             position = "_center";
-            str += "__child__.style.width = '100%';";
-            str += "__child__.style.height = '100%';";
+            ostr << "__child__.style.width = '100%';";
+            ostr << "__child__.style.height = '100%';";
             padding = getPadding(0, 0, 0, 0);
             break;
         case BORDER_BOTTOM:
             position = "_bottom";
-            str += "__child__.style.width = '100%';";
+            ostr << "__child__.style.width = '100%';";
 
             if (size[1] == -1)
             {
-                str += "__child__.style.height = 'inherit';";
+                ostr << "__child__.style.height = 'inherit';";
             }
             else
             {
-                str += "__child__.style.height = '" + getSubPadding(size[1]) + "';";
+                ostr << "__child__.style.height = '" + getSubPadding(size[1]) + "';";
             }
 
             padding = getPadding(pad[1], 0, 0, 0);
             break;
         case BORDER_TOP:
             position = "_top";
-            str += "__child__.style.width = '100%';";
+            ostr << "__child__.style.width = '100%';";
 
             if (size[1] == -1)
             {
-                str += "__child__.style.height = 'inherit';";
+                ostr << "__child__.style.height = 'inherit';";
             }
             else
             {
-                str += "__child__.style.height = '" + getSubPadding(size[1]) + "';";
+                ostr << "__child__.style.height = '" + getSubPadding(size[1]) + "';";
             }
 
             padding = getPadding(0, 0, pad[1], 0);
@@ -868,14 +869,14 @@ void WebUtils::setUIBorder(int uid, std::string& str, bool append)
 
             if (size[0] == -1)
             {
-                str += "__child__.style.width = 'inherit';";
+                ostr << "__child__.style.width = 'inherit';";
             }
             else
             {
-                str += "__child__.style.width = '" + getSubPadding(size[0]) + "';";
+                ostr << "__child__.style.width = '" + getSubPadding(size[0]) + "';";
             }
 
-            str += "__child__.style.height = '100%';";
+            ostr << "__child__.style.height = '100%';";
             padding = getPadding(0, pad[0], 0, 0);
             break;
         case BORDER_RIGHT:
@@ -883,30 +884,30 @@ void WebUtils::setUIBorder(int uid, std::string& str, bool append)
 
             if (size[0] == -1)
             {
-                str += "__child__.style.width = 'inherit';";
+                ostr << "__child__.style.width = 'inherit';";
             }
             else
             {
-                str += "__child__.style.width = '" + getSubPadding(size[0]) + "';";
+                ostr << "__child__.style.width = '" + getSubPadding(size[0]) + "';";
             }
 
-            str += "__child__.style.height = '100%';";
+            ostr << "__child__.style.height = '100%';";
             padding = getPadding(0, 0, 0, pad[0]);
             break;
     }
 
 
     //move child in targeted cell
-    str += "__parent__ = " + getElementById(parent, position);
-    str += "__parent__.appendChild(__child__);";
-    str += "__parent__.style.padding = '" + padding + "';";
+    ostr << "__parent__ = " + getElementById(parent, position);
+    ostr << "__parent__.appendChild(__child__);";
+    ostr << "__parent__.style.padding = '" + padding + "';";
 
     //to well perform positionning, we must clear some default properties
     //position left, right, width, height,
 
-    str += "__child__.style.position = 'inherit';";
-    str += "__child__.style.left = 'inherit';";
-    str += "__child__.style.bottom = 'inherit';";
+    ostr << "__child__.style.position = 'inherit';";
+    ostr << "__child__.style.left = 'inherit';";
+    ostr << "__child__.style.bottom = 'inherit';";
 }
 
 void WebUtils::getUIGridBagGrid(int uid, std::vector<int>& vect)
@@ -916,7 +917,7 @@ void WebUtils::getUIGridBagGrid(int uid, std::vector<int>& vect)
 }
 
 
-void WebUtils::setUIGridBag(int uid, std::string& str, bool append)
+void WebUtils::setUIGridBag(int uid, std::ostringstream& ostr, bool append)
 {
     int parent = getParent(uid);
     std::vector<int> grid;
@@ -924,14 +925,14 @@ void WebUtils::setUIGridBag(int uid, std::string& str, bool append)
 
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
 
-    str += "__child__.style.width = '100%';";
-    str += "__child__.style.position = 'inherit';";
-    str += "__child__.style.left = 'inherit';";
-    str += "__child__.style.bottom = 'inherit';";
-    str += "__child__.style.height = '100%';";
+    ostr << "__child__.style.width = '100%';";
+    ostr << "__child__.style.position = 'inherit';";
+    ostr << "__child__.style.left = 'inherit';";
+    ostr << "__child__.style.bottom = 'inherit';";
+    ostr << "__child__.style.height = '100%';";
     //we have to create a td with grid information and add it to the good cell ( or create if not exist ! )
 
     //build td child
@@ -966,15 +967,15 @@ void WebUtils::setUIGridBag(int uid, std::string& str, bool append)
     tr += "gridbagHelperTD(__tr__,__td__, " + std::to_string(grid[0]) + ");";
 
     //to force refresh of table, move it to another component and restore it
-    std::string tricktoforcerefresh("\nvar __scilab__ = document.getElementById('scilab');\n");
-    tricktoforcerefresh += "__scilab__.appendChild(__table__);\n";
-    tricktoforcerefresh += "var __parent__ = " + getElementById(parent) + "\n";
+    std::string tricktoforcerefresh("\nvar __scilab__ = document.getElementById('scilab');");
+    tricktoforcerefresh += "__scilab__.appendChild(__table__);";
+    tricktoforcerefresh += "var __parent__ = " + getElementById(parent);
     tricktoforcerefresh += "__parent__.appendChild(__table__);";
 
 
-    str += td;
-    str += tr;
-    str += tricktoforcerefresh;
+    ostr << td;
+    ostr << tr;
+    ostr << tricktoforcerefresh;
 }
 
 bool WebUtils::hasCallback(int uid)
@@ -982,11 +983,11 @@ bool WebUtils::hasCallback(int uid)
     return getStringProperty(uid, __GO_CALLBACK__) != "";
 }
 
-void WebUtils::setCallback(int uid, std::string& str, bool append)
+void WebUtils::setCallback(int uid, std::ostringstream& ostr, bool append)
 {
     if (append == false)
     {
-        str = "var __child__ = " + getElementById(uid);
+        ostr << "var __child__ = " + getElementById(uid);
     }
 
     std::string event;
@@ -1036,7 +1037,7 @@ void WebUtils::setCallback(int uid, std::string& str, bool append)
     }
 
     //add callback listener
-    str += "__child__.addEventListener('" + event + "', " + func + ");";
+    ostr << "__child__.addEventListener('" + event + "', " + func + ");";
 }
 
 //is
@@ -1080,297 +1081,293 @@ bool WebUtils::isButton(int uid)
 
 
 //create
-bool WebUtils::createFigure(int uid, std::string& str)
+bool WebUtils::createFigure(int uid, std::ostringstream& ostr)
 {
     //set figure uid to help children to find it
-    str = "var __parent__ = document.getElementById('scilab');";
-    str += "var __temp__ = " + createElement("DIV");
-    str += "__temp__.id = " + getIdString(uid) + ";";
-    str += "__temp__.className = 'GO_FIGURE';";
-    str += "__parent__.innerHTML += '<br>';";
-    str += "__parent__.appendChild(__temp__);";
-    str += "__parent__.innerHTML += '<br>';";
+    ostr << "var __parent__ = document.getElementById('scilab');";
+    ostr << "var __temp__ = " + createElement("DIV");
+    ostr << "__temp__.id = " + getIdString(uid) + ";";
+    ostr << "__temp__.className = 'GO_FIGURE';";
+    ostr << "__parent__.innerHTML += '<br>';";
+    ostr << "__parent__.appendChild(__temp__);";
+    ostr << "__parent__.innerHTML += '<br>';";
     return true;
 }
 
-bool WebUtils::createUIControl(int uid, std::string& str)
+bool WebUtils::createUIControl(int uid, std::ostringstream& ostr)
 {
     int style = getStyle(uid);
     switch (style)
     {
         case __GO_UI_FRAME__:
-            return createFrame(uid, str);
+            return createFrame(uid, ostr);
         case __GO_UI_PUSHBUTTON__:
-            return createPushButton(uid, str);
+            return createPushButton(uid, ostr);
         case __GO_UI_TEXT__:
-            return createText(uid, str);
+            return createText(uid, ostr);
         case __GO_UI_EDIT__:
-            return createEdit(uid, str);
+            return createEdit(uid, ostr);
         case __GO_UI_CHECKBOX__:
-            return createCheckbox(uid, str);
+            return createCheckbox(uid, ostr);
         case __GO_UI_RADIOBUTTON__:
-            return createRadio(uid, str);
+            return createRadio(uid, ostr);
         case __GO_UI_SLIDER__:
-            return createSlider(uid, str);
+            return createSlider(uid, ostr);
         case __GO_UI_LISTBOX__:
-            return createListbox(uid, str);
+            return createListbox(uid, ostr);
         case __GO_UI_POPUPMENU__:
-            return createCombobox(uid, str);
+            return createCombobox(uid, ostr);
         case __GO_UI_SPINNER__:
-            return createSpinner(uid, str);
+            return createSpinner(uid, ostr);
         default:
             return false;
     }
 }
 
-bool WebUtils::createCommonIUControl(int uid, const std::string& htmlType, const std::string& cssClass, std::string& str)
+bool WebUtils::createCommonIUControl(int uid, const std::string& htmlType, const std::string& cssClass, std::ostringstream& ostr)
 {
     //create a button, with no parent, wait update with _GO_PARENT to update it
-    str = "var __temp__ = " + createElement(htmlType);
-    str += "__temp__.id = " + getIdString(uid) + ";";
-    str += "__temp__.className = '" + cssClass + "';";
+    ostr << "var __temp__ = " + createElement(htmlType);
+    ostr << "__temp__.id = " + getIdString(uid) + ";";
+    ostr << "__temp__.className = '" + cssClass + "';";
 
     return true;
 }
 
-bool WebUtils::createPushButton(int uid, std::string& str)
+bool WebUtils::createPushButton(int uid, std::ostringstream& ostr)
 {
     //create a <button>
-    createCommonIUControl(uid, "BUTTON", "GO_PUSHBUTTON", str);
+    createCommonIUControl(uid, "BUTTON", "GO_PUSHBUTTON", ostr);
     //add item temporary in main scilabview div waiting __GO_PARENT__ update
-    str += "var __parent__ = document.getElementById('scilab');";
-    str += "__parent__.appendChild(__temp__);";
+    ostr << "var __parent__ = document.getElementById('scilab');";
+    ostr << "__parent__.appendChild(__temp__);";
 
     return true;
 }
 
-bool WebUtils::createFrame(int uid, std::string& str)
+bool WebUtils::createFrame(int uid, std::ostringstream& ostr)
 {
     //create a <div>
-    createCommonIUControl(uid, "DIV", "GO_FRAME", str);
+    createCommonIUControl(uid, "DIV", "GO_FRAME", ostr);
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "var __parent__ = document.getElementById('scilab');";
-    str += "__parent__.appendChild(__temp__);";
+    ostr << "var __parent__ = document.getElementById('scilab');";
+    ostr << "__parent__.appendChild(__temp__);";
 
     return true;
 }
 
-bool WebUtils::createText(int uid, std::string& str)
+bool WebUtils::createText(int uid, std::ostringstream& ostr)
 {
     //create a <div>
-    createCommonIUControl(uid, "LABEL", "GO_TEXT", str);
+    createCommonIUControl(uid, "LABEL", "GO_TEXT", ostr);
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "var __parent__ = document.getElementById('scilab');";
-    str += "__parent__.appendChild(__temp__);";
+    ostr << "var __parent__ = document.getElementById('scilab');";
+    ostr << "__parent__.appendChild(__temp__);";
 
     return true;
 }
 
-bool WebUtils::createEdit(int uid, std::string& str)
+bool WebUtils::createEdit(int uid, std::ostringstream& ostr)
 {
     //create a <input>
-    createCommonIUControl(uid, "INPUT", "GO_EDIT", str);
-    str += "__temp__.type = 'text';";
+    createCommonIUControl(uid, "INPUT", "GO_EDIT", ostr);
+    ostr << "__temp__.type = 'text';";
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "var __parent__ = document.getElementById('scilab');";
-    str += "__parent__.appendChild(__temp__);";
+    ostr << "var __parent__ = document.getElementById('scilab');";
+    ostr << "__parent__.appendChild(__temp__);";
 
     return true;
 }
 
-bool WebUtils::createCheckbox(int uid, std::string& str)
+bool WebUtils::createCheckbox(int uid, std::ostringstream& ostr)
 {
     //create a <input>
 
     //for checkbox we need to create 3 elements.
 
     //a div to enclose others
-    str = "var __main__ = " + createElement("DIV");
-    str += "__main__.id = " + getIdString(uid) + ";";
-    str += "__main__.className = 'GO_CHECKBOX';";
+    ostr << "var __main__ = " + createElement("DIV");
+    ostr << "__main__.id = " + getIdString(uid) + ";";
+    ostr << "__main__.className = 'GO_CHECKBOX';";
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "var __parent__ = document.getElementById('scilab');";
-    str += "__parent__.appendChild(__main__);";
+    ostr << "var __parent__ = document.getElementById('scilab');";
+    ostr << "__parent__.appendChild(__main__);";
 
     //the checkbox itself
-    str += "var __temp__ = " + createElement("INPUT");
-    str += "__temp__.className = 'GO_CHECKBOX_CHECKBOX';";
-    str += "__temp__.type = 'checkbox';";
-    str += "__temp__.id = " + getIdString(uid, "_checkbox") + ";";
+    ostr << "var __temp__ = " + createElement("INPUT");
+    ostr << "__temp__.className = 'GO_CHECKBOX_CHECKBOX';";
+    ostr << "__temp__.type = 'checkbox';";
+    ostr << "__temp__.id = " + getIdString(uid, "_checkbox") + ";";
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "__main__.appendChild(__temp__);";
+    ostr << "__main__.appendChild(__temp__);";
 
     //the label of the checkbox
-    str += "var __label__ = " + createElement("LABEL");
-    str += "__label__.id = " + getIdString(uid, "_label") + ";";
-    str += "__label__.className = 'GO_CHECKBOX_LABEL';";
-    str += "__label__.htmlFor = " + getIdString(uid, "_checkbox") + ";";
+    ostr << "var __label__ = " + createElement("LABEL");
+    ostr << "__label__.id = " + getIdString(uid, "_label") + ";";
+    ostr << "__label__.className = 'GO_CHECKBOX_LABEL';";
+    ostr << "__label__.htmlFor = " + getIdString(uid, "_checkbox") + ";";
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "__main__.appendChild(__label__);";
+    ostr << "__main__.appendChild(__label__);";
 
     return true;
 }
 
-bool WebUtils::createRadio(int uid, std::string& str)
+bool WebUtils::createRadio(int uid, std::ostringstream& ostr)
 {
     //create a <input>
 
     //for radio we need to create 3 elements.
 
     //a div to enclose others
-    str = "var __main__ = " + createElement("DIV");
-    str += "__main__.id = " + getIdString(uid) + ";";
-    str += "__main__.className = 'GO_RADIO';";
+    ostr << "var __main__ = " + createElement("DIV");
+    ostr << "__main__.id = " + getIdString(uid) + ";";
+    ostr << "__main__.className = 'GO_RADIO';";
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "var __parent__ = document.getElementById('scilab');";
-    str += "__parent__.appendChild(__main__)";;
+    ostr << "var __parent__ = document.getElementById('scilab');";
+    ostr << "__parent__.appendChild(__main__)";;
 
     //the radio itself
-    str += "var __temp__ = " + createElement("INPUT");
-    str += "__temp__.className = 'GO_RADIO_RADIO';";
-    str += "__temp__.type = 'radio';";
-    str += "__temp__.id = " + getIdString(uid, "_radio") + ";";
+    ostr << "var __temp__ = " + createElement("INPUT");
+    ostr << "__temp__.className = 'GO_RADIO_RADIO';";
+    ostr << "__temp__.type = 'radio';";
+    ostr << "__temp__.id = " + getIdString(uid, "_radio") + ";";
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "__main__.appendChild(__temp__);";
+    ostr << "__main__.appendChild(__temp__);";
 
     //the label of the checkbox
-    str += "var __label__ = " + createElement("LABEL");
-    str += "__label__.id = " + getIdString(uid, "_label") + ";";
-    str += "__label__.className = 'GO_RADIO_LABEL';";
-    str += "__label__.htmlFor = " + getIdString(uid, "_radio") + ";";
+    ostr << "var __label__ = " + createElement("LABEL");
+    ostr << "__label__.id = " + getIdString(uid, "_label") + ";";
+    ostr << "__label__.className = 'GO_RADIO_LABEL';";
+    ostr << "__label__.htmlFor = " + getIdString(uid, "_radio") + ";";
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "__main__.appendChild(__label__);";
+    ostr << "__main__.appendChild(__label__);";
 
     return true;
 }
 
-bool WebUtils::createSlider(int uid, std::string& str)
+bool WebUtils::createSlider(int uid, std::ostringstream& ostr)
 {
     //create a <input>
-    createCommonIUControl(uid, "INPUT", "GO_SLIDER", str);
-    str += "__temp__.type = 'range';";
+    createCommonIUControl(uid, "INPUT", "GO_SLIDER", ostr);
+    ostr << "__temp__.type = 'range';";
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "var __parent__ = document.getElementById('scilab');";
-    str += "__parent__.appendChild(__temp__);";
+    ostr << "var __parent__ = document.getElementById('scilab');";
+    ostr << "__parent__.appendChild(__temp__);";
 
     return true;
 }
 
-bool WebUtils::createListbox(int uid, std::string& str)
+bool WebUtils::createListbox(int uid, std::ostringstream& ostr)
 {
     //create a <input>
-    createCommonIUControl(uid, "SELECT", "GO_LISTBOX", str);
+    createCommonIUControl(uid, "SELECT", "GO_LISTBOX", ostr);
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "var __parent__ = document.getElementById('scilab');";
-    str += "__parent__.appendChild(__temp__);";
+    ostr << "var __parent__ = document.getElementById('scilab');";
+    ostr << "__parent__.appendChild(__temp__);";
 
     return true;
 }
 
-bool WebUtils::createCombobox(int uid, std::string& str)
+bool WebUtils::createCombobox(int uid, std::ostringstream& ostr)
 {
     //create a <input>
-    createCommonIUControl(uid, "SELECT", "GO_COMBOBOX", str);
-    str += "__temp__.size = 1;";
+    createCommonIUControl(uid, "SELECT", "GO_COMBOBOX", ostr);
+    ostr << "__temp__.size = 1;";
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "var __parent__ = document.getElementById('scilab');";
-    str += "__parent__.appendChild(__temp__);";
+    ostr << "var __parent__ = document.getElementById('scilab');";
+    ostr << "__parent__.appendChild(__temp__);";
 
     return true;
 }
 
-bool WebUtils::createSpinner(int uid, std::string& str)
+bool WebUtils::createSpinner(int uid, std::ostringstream& ostr)
 {
     //create a <input>
-    createCommonIUControl(uid, "INPUT", "GO_SPINNER", str);
-    str += "__temp__.type = 'number';";
+    createCommonIUControl(uid, "INPUT", "GO_SPINNER", ostr);
+    ostr << "__temp__.type = 'number';";
     //add item temporary in main div waiting __GO_PARENT__ update
-    str += "var __parent__ = document.getElementById('scilab');";
-    str += "__parent__.appendChild(__temp__);";
+    ostr << "var __parent__ = document.getElementById('scilab');";
+    ostr << "__parent__.appendChild(__temp__);";
 
     return true;
 }
 
-bool WebUtils::deleteObject(int uid, std::string& str)
+bool WebUtils::deleteObject(int uid, std::ostringstream& ostr)
 {
-    str = "var __child__ = " + getElementById(uid);
-    str += "__child__.parentNode.removeChild(__child__);";
+    ostr << "var __child__ = " + getElementById(uid);
+    ostr << "__child__.parentNode.removeChild(__child__);";
 
     return true;
 }
 
-bool WebUtils::updateDefaultProperties(int uid, std::string& update)
+bool WebUtils::updateDefaultProperties(int uid, std::ostringstream& ostr)
 {
-    std::string str;
-
     //visible
-    setVisible(uid, str);
+    setVisible(uid, ostr);
 
     //backgoundcolor
-    setUIBackgroundColor(uid, str, true);
+    setUIBackgroundColor(uid, ostr, true);
 
     //enable
-    setUIEnable(uid, str, true);
+    setUIEnable(uid, ostr, true);
 
     //fontangle
-    setUIFontAngle(uid, str, true);
+    setUIFontAngle(uid, ostr, true);
 
     //fontname
-    setUIFontName(uid, str, true);
+    setUIFontName(uid, ostr, true);
 
     //fontsize & fontunits
-    setUIFontSize(uid, str, true);
+    setUIFontSize(uid, ostr, true);
 
     //fontweight
-    setUIFontWeight(uid, str, true);
+    setUIFontWeight(uid, ostr, true);
 
     //foregroundcolor
-    setUIForegroundColor(uid, str, true);
+    setUIForegroundColor(uid, ostr, true);
 
     //horizontalalignment
-    setUIHorizontalAlignment(uid, str, true);
+    setUIHorizontalAlignment(uid, ostr, true);
 
     //relief ?
-    setUIRelief(uid, str, true);
+    setUIRelief(uid, ostr, true);
 
     //string
-    setUIString(uid, str, true);
+    setUIString(uid, ostr, true);
 
     //verticalalignment
-    setUIVerticalAlignment(uid, str, true);
+    setUIVerticalAlignment(uid, ostr, true);
 
     //position
-    setUIPosition(uid, str, true);
+    setUIPosition(uid, ostr, true);
 
     //layout ?
-    setUILayout(uid, str, true);
+    setUILayout(uid, ostr, true);
 
     //min
-    setUIMin(uid, str, true);
+    setUIMin(uid, ostr, true);
 
     //max
-    setUIMax(uid, str, true);
+    setUIMax(uid, ostr, true);
 
     //step
-    setUIStep(uid, str, true);
+    setUIStep(uid, ostr, true);
 
     //vaue
-    setUIValue(uid, str, true);
+    setUIValue(uid, ostr, true);
 
     //set callback uses to update values from web view
-    setCallback(uid, str, true);
-
-    update += str;
+    setCallback(uid, ostr, true);
 
     return true;
 }
 
-bool WebUtils::set(int prop, int uid, std::string& str, bool append)
+bool WebUtils::set(int prop, int uid, std::ostringstream& ostr, bool append)
 {
     SETTER::iterator it = setter.find(prop);
     if (it != setter.end())
     {
-        it->second(uid, str, append);
+        it->second(uid, ostr, append);
 
         return true;
     }
@@ -1443,14 +1440,14 @@ void WebUtils::addInWaitingQueue(int uid, int prop)
     waitprop[uid].push_back(prop);
 }
 
-void WebUtils::setWaitingProperties(int uid, std::string& str, bool append)
+void WebUtils::setWaitingProperties(int uid, std::ostringstream& ostr, bool append)
 {
     WAITING_PROP::iterator it = waitprop.find(uid);
     if (it != waitprop.end())
     {
         for (int prop : it->second)
         {
-            set(prop, uid, str, append);
+            set(prop, uid, ostr, append);
         }
         waitprop.erase(it);
     }

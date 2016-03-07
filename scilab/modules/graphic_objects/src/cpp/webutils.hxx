@@ -20,8 +20,9 @@
 #include <vector>
 #include <list>
 #include <unordered_map>
+#include <sstream>
 
-typedef void(*setFunction)(int, std::string&, bool);
+typedef void(*setFunction)(int, std::ostringstream&, bool);
 
 class WebUtils
 {
@@ -49,10 +50,10 @@ public:
 
     static bool hasValidParent(int uid);
     static void addInWaitingQueue(int uid, int prop);
-    static void setWaitingProperties(int uid, std::string& str, bool append);
+    static void setWaitingProperties(int uid, std::ostringstream& ostr, bool append);
 
     static void fillSetter();
-    static bool set(int prop, int uid, std::string& str, bool append = false);
+    static bool set(int prop, int uid, std::ostringstream& ostr, bool append = false);
 
     static bool updateValue(int uid, bool value);
     static bool updateValue(int uid, double value);
@@ -79,77 +80,77 @@ public:
     static int getStyle(int uid);
     static int getParent(int uid);
     static int getFigureId(int uid);
-    static void setParent(int uid, std::string& str, bool append = false);
+    static void setParent(int uid, std::ostringstream& ostr, bool append = false);
     static void getUIPosition(int uid, std::vector<double>& vect);
-    static void setUIPosition(int uid, std::string& str, bool append = false);
+    static void setUIPosition(int uid, std::ostringstream& ostr, bool append = false);
 
     static void getFigureSize(int uid, std::vector<int>& vect);
-    static void setFigureSize(int uid, std::string& str, bool append = false);
+    static void setFigureSize(int uid, std::ostringstream& ostr, bool append = false);
 
     static void getUIString(int uid, std::vector<std::string>& vect);
-    static void setUIString(int uid, std::string& str, bool append = false);
+    static void setUIString(int uid, std::ostringstream& ostr, bool append = false);
 
     static bool getVisible(int uid);
-    static void setVisible(int uid, std::string& str, bool append = false);
+    static void setVisible(int uid, std::ostringstream& ostr, bool append = false);
 
     static bool getUIEnable(int uid);
-    static void setUIEnable(int uid, std::string& str, bool append = false);
+    static void setUIEnable(int uid, std::ostringstream& ostr, bool append = false);
 
     static bool getUIBackgroundColor(int uid, std::vector<double>& vect);
-    static void setUIBackgroundColor(int uid, std::string& str, bool append = false);
+    static void setUIBackgroundColor(int uid, std::ostringstream& ostr, bool append = false);
 
-    static bool getUIFontAngle(int uid, std::string& str);
-    static void setUIFontAngle(int uid, std::string& str, bool append = false);
+    static bool getUIFontAngle(int uid, std::string& val);
+    static void setUIFontAngle(int uid, std::ostringstream& ostr, bool append = false);
 
-    static bool getUIFontName(int uid, std::string& str);
-    static void setUIFontName(int uid, std::string& str, bool append = false);
+    static bool getUIFontName(int uid, std::string& val);
+    static void setUIFontName(int uid, std::ostringstream& ostr, bool append = false);
 
-    static bool getUIFontUnits(int uid, std::string& str);
+    static bool getUIFontUnits(int uid, std::string& val);
     static double getUIFontSize(int uid);
-    static void setUIFontSize(int uid, std::string& str, bool append = false);
+    static void setUIFontSize(int uid, std::ostringstream& ostr, bool append = false);
 
-    static bool getUIFontWeight(int uid, std::string& str);
-    static void setUIFontWeight(int uid, std::string& str, bool append = false);
+    static bool getUIFontWeight(int uid, std::string& val);
+    static void setUIFontWeight(int uid, std::ostringstream& ostr, bool append = false);
 
     static bool getUIForegroundColor(int uid, std::vector<double>& vect);
-    static void setUIForegroundColor(int uid, std::string& str, bool append = false);
+    static void setUIForegroundColor(int uid, std::ostringstream& ostr, bool append = false);
 
-    static bool getUIHorizontalAlignment(int uid, std::string& str);
-    static void setUIHorizontalAlignment(int uid, std::string& str, bool append = false);
+    static bool getUIHorizontalAlignment(int uid, std::string& val);
+    static void setUIHorizontalAlignment(int uid, std::ostringstream& ostr, bool append = false);
 
-    static bool getUIRelief(int uid, std::string& str);
-    static void setUIRelief(int uid, std::string& str, bool append = false);
+    static bool getUIRelief(int uid, std::string& val);
+    static void setUIRelief(int uid, std::ostringstream& ostr, bool append = false);
 
-    static bool getUIVerticalAlignment(int uid, std::string& str);
-    static void setUIVerticalAlignment(int uid, std::string& str, bool append = false);
+    static bool getUIVerticalAlignment(int uid, std::string& val);
+    static void setUIVerticalAlignment(int uid, std::ostringstream& ostr, bool append = false);
 
     static int getUILayout(int uid);
-    static void setUILayout(int uid, std::string& str, bool append = false);
+    static void setUILayout(int uid, std::ostringstream& ostr, bool append = false);
 
     static double getUIMin(int uid);
-    static void setUIMin(int uid, std::string& str, bool append = false);
+    static void setUIMin(int uid, std::ostringstream& ostr, bool append = false);
 
     static double getUIMax(int uid);
-    static void setUIMax(int uid, std::string& str, bool append = false);
+    static void setUIMax(int uid, std::ostringstream& ostr, bool append = false);
 
     static double getUIStep(int uid);
-    static void setUIStep(int uid, std::string& str, bool append = false);
+    static void setUIStep(int uid, std::ostringstream& ostr, bool append = false);
 
     static bool getUIValue(int uid, std::vector<double>& vect);
-    static void setUIValue(int uid, std::string& str, bool append = false);
+    static void setUIValue(int uid, std::ostringstream& ostr, bool append = false);
 
     //border layout
     static int getUIBorderPosition(int uid);
     static void getUIBorderPadding(int uid, std::vector<int>& vect);
     static void getUIBorderPreferredSize(int uid, std::vector<int>& vect);
-    static void setUIBorder(int uid, std::string& str, bool append = false);
+    static void setUIBorder(int uid, std::ostringstream& ostr, bool append = false);
 
     //gridbag layout
     static void getUIGridBagGrid(int uid, std::vector<int>& vect);
-    static void setUIGridBag(int uid, std::string& str, bool append = false);
+    static void setUIGridBag(int uid, std::ostringstream& ostr, bool append = false);
 
     static bool hasCallback(int uid);
-    static void setCallback(int uid, std::string& str, bool append = false);
+    static void setCallback(int uid, std::ostringstream& ostr, bool append = false);
 
     //is
     static bool isManaged(int uid);
@@ -158,25 +159,25 @@ public:
     static bool isButton(int uid);
 
     //create
-    static bool createFigure(int uid, std::string& str);
+    static bool createFigure(int uid, std::ostringstream& ostr);
 
-    static bool createCommonIUControl(int uid, const std::string& htmlType, const std::string& cssClass, std::string& str);
-    static bool createUIControl(int uid, std::string& str);
-    static bool createPushButton(int uid, std::string& str);
-    static bool createFrame(int uid, std::string& str);
-    static bool createText(int uid, std::string& str);
-    static bool createEdit(int uid, std::string& str);
-    static bool createCheckbox(int uid, std::string& str);
-    static bool createRadio(int uid, std::string& str);
-    static bool createSlider(int uid, std::string& str);
-    static bool createListbox(int uid, std::string& str);
-    static bool createCombobox(int uid, std::string& str);
-    static bool createSpinner(int uid, std::string& str);
+    static bool createCommonIUControl(int uid, const std::string& htmlType, const std::string& cssClass, std::ostringstream& ostr);
+    static bool createUIControl(int uid, std::ostringstream& ostr);
+    static bool createPushButton(int uid, std::ostringstream& ostr);
+    static bool createFrame(int uid, std::ostringstream& ostr);
+    static bool createText(int uid, std::ostringstream& ostr);
+    static bool createEdit(int uid, std::ostringstream& ostr);
+    static bool createCheckbox(int uid, std::ostringstream& ostr);
+    static bool createRadio(int uid, std::ostringstream& ostr);
+    static bool createSlider(int uid, std::ostringstream& ostr);
+    static bool createListbox(int uid, std::ostringstream& ostr);
+    static bool createCombobox(int uid, std::ostringstream& ostr);
+    static bool createSpinner(int uid, std::ostringstream& ostr);
 
     //update
-    static bool updateDefaultProperties(int uid, std::string& str);
+    static bool updateDefaultProperties(int uid, std::ostringstream& ostr);
     //delete
-    static bool deleteObject(int uid, std::string& str);
+    static bool deleteObject(int uid, std::ostringstream& ostr);
 };
 #endif /* !__WEB_UTILS_HXX__ */
 

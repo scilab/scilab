@@ -257,18 +257,21 @@ body {
             </tr>
         </table>
         <br!-->
-        <table width=200 height=100>
+        
+        <!--  style="width:100%;height:100%" !-->
+        
+        <table width=200 height=100 style="padding: 0px;border-collapse: collapse;">
             <tr>
-                <td bgcolor="red"></td>
-                <td bgcolor="yellow" rowspan="2"></td>
-                <td bgcolor="magenta"></td>
+                <td><div style="width:100%;height:100%;background-color:red"></div></td>
+                <td rowspan="2"><div style="width:100%;height:100%;background-color:yellow"></div></td>
+                <td><div style="width:100%;height:100%;background-color:magenta"></div></td>
             </tr>
             <tr>
-                <td bgcolor="lime"></td>
-                <td bgcolor="cyan" rowspan="2"></td>
+                <td><div style="width:100%;height:100%;background-color:lime"></div></td>
+                <td rowspan="2"><div style="width:100%;height:100%;background-color:cyan"></div></td>
             </tr>
             <tr>
-                <td bgcolor="blue" colspan="2"></td>
+                <td colspan="2"><div style="width:100%;height:100%;background-color:blue"></div></td>
             </tr>
         </table>
         
@@ -383,11 +386,6 @@ body {
 
             //helper call by scilab to insert gridbad child in good order.
             function gridbagHelperTD(parent, child, pos) {
-                console.log(parent);
-                console.log(child);
-                console.log(pos);
-                
-                console.log("cells: " + parent.cells.length);
                 for(var i = 0 ; i < parent.cells.length ; ++i){
                     var __tr__ = parent.cells[i];
                     var idxstr = __tr__.id.indexOf('_');

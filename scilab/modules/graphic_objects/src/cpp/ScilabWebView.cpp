@@ -29,12 +29,8 @@ extern "C"
 #ifdef _MSC_VER
 #ifdef _DEBUG
 #pragma comment(lib,"sioclientd.lib")
-#pragma comment(lib,"libboost_system-vc120-mt-gd-1_60.lib")
-#pragma comment(lib,"libboost_random-vc120-mt-gd-1_60.lib")
-#else //RELEASE
+#else
 #pragma comment(lib,"sioclient.lib")
-#pragma comment(lib,"libboost_system-vc120-mt-1_60.lib")
-#pragma comment(lib,"libboost_random-vc120-mt-1_60.lib")
 #endif
 #endif
 
@@ -182,18 +178,18 @@ void ScilabWebView::createObject(int uid)
 
     if (WebUtils::isFigure(uid))
     {
-        std::string str;
-        WebUtils::createFigure(uid, str);
-        s->emit("graphic_create", str);
+        std::ostringstream ostr;
+        WebUtils::createFigure(uid, ostr);
+        s->emit("graphic_create", ostr.str());
         return;
     }
 
     if (WebUtils::isUIcontrol(uid))
     {
-        std::string str;
-        WebUtils::createUIControl(uid, str);
-        WebUtils::updateDefaultProperties(uid, str);
-        s->emit("graphic_create", str);
+        std::ostringstream ostr;
+        WebUtils::createUIControl(uid, ostr);
+        WebUtils::updateDefaultProperties(uid, ostr);
+        s->emit("graphic_create", ostr.str());
         return;
     }
 }
@@ -205,9 +201,9 @@ void ScilabWebView::deleteObject(int uid)
         return;
     }
 
-    std::string str;
-    WebUtils::deleteObject(uid, str);
-    s->emit("graphic_delete", str);
+    std::ostringstream ostr;
+    WebUtils::deleteObject(uid, ostr);
+    s->emit("graphic_delete", ostr.str());
 }
 
 void ScilabWebView::updateObject(int uid, int prop)
@@ -219,9 +215,9 @@ void ScilabWebView::updateObject(int uid, int prop)
 
     if (prop == __GO_VISIBLE__)
     {
-        std::string str;
-        WebUtils::setVisible(uid, str);
-        s->emit("graphic_update", str);
+        std::ostringstream ostr;
+        WebUtils::setVisible(uid, ostr);
+        s->emit("graphic_update", ostr.str());
         return;
     }
 
@@ -231,16 +227,16 @@ void ScilabWebView::updateObject(int uid, int prop)
         {
             case __GO_SIZE__:
             {
-                std::string str;
-                WebUtils::setFigureSize(uid, str);
-                s->emit("graphic_update", str);
+                std::ostringstream ostr;
+                WebUtils::setFigureSize(uid, ostr);
+                s->emit("graphic_update", ostr.str());
                 return;
             }
             case __GO_LAYOUT__:
             {
-                std::string str;
-                WebUtils::setUILayout(uid, str);
-                s->emit("graphic_update", str);
+                std::ostringstream ostr;
+                WebUtils::setUILayout(uid, ostr);
+                s->emit("graphic_update", ostr.str());
                 return;
             }
         }
@@ -248,13 +244,12 @@ void ScilabWebView::updateObject(int uid, int prop)
 
     if (WebUtils::isUIcontrol(uid))
     {
-        std::cerr << uid << ":" << prop << std::endl;
         if (WebUtils::hasValidParent(uid) || prop == __GO_PARENT__)
         {
-            std::string str;
-            if (WebUtils::set(prop, uid, str))
+            std::ostringstream ostr;
+            if (WebUtils::set(prop, uid, ostr))
             {
-                s->emit("graphic_update", str);
+                s->emit("graphic_update", ostr.str());
             }
         }
         else

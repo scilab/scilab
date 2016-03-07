@@ -42,7 +42,6 @@ public:
 
     void on_connected()
     {
-        std::cout << "graphic.on_connected" << std::endl;
         lock.lock();
         cond.notify_all();
         connect_finish = true;
@@ -51,12 +50,12 @@ public:
 
     void on_close(sio::client::close_reason const& reason)
     {
-        std::cout << "graphic.on_close" << std::endl;
+        std::cerr << "graphic.on_close" << std::endl;
     }
 
     void on_fail()
     {
-        std::cout << "graphic.on_fail" << std::endl;
+        std::cerr << "graphic.on_fail" << std::endl;
     }
 
     std::condition_variable_any cond;

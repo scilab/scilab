@@ -2,7 +2,7 @@ var spawn = require('child_process').spawn;
 
 var L = console.log;
 
-var debug = false;
+var debug = true;
 var command_ready = false;
 var graphic_ready = false;
 
@@ -81,30 +81,30 @@ dispatchio.on('connection', function (dspSocket) {
             dspSocket.emit('status', {data:'ready'});
         }
     });
+
+    //launch scilab with init command
+    var app;
+    if(process.platform == "win32") {
+        app = process.env.SCIPATH + "/bin/wscilex.exe";
+    } else {
+        app = process.env.SCIPATH + "/bin/scilab";
+    }
+
+    var addr = 'http://127.0.0.1';
+    var commandaddr = addr + ':' + cmdPort;
+    var graphicaddr = addr + ':' + grpPort;
+
+    var scilabApp = spawn(app, ['-nw', '-commandaddr', commandaddr, '-graphicaddr', graphicaddr]);
+
+    //to debug
+    if(debug) {
+    /*
+        scilabApp.stdout.on('data', function(data) {
+            L('scilab out :' + data.toString());
+        });
+    */                
+        scilabApp.stderr.on('data', function(data) {
+            L('scilab err :' + data.toString());
+        });
+    }
 });
-
-//launch scilab with init command
-var app;
-if(process.platform == "win32") {
-    app = process.env.SCIPATH + "/bin/wscilex.exe";
-} else {
-    app = process.env.SCIPATH + "/bin/scilab";
-}
-
-var addr = 'http://127.0.0.1';
-var commandaddr = addr + ':' + cmdPort;
-var graphicaddr = addr + ':' + grpPort;
-
-var scilabApp = spawn(app, ['-nw', '-commandaddr', commandaddr, '-graphicaddr', graphicaddr]);
-
-//to debug
-if(debug) {
-/*
-    scilabApp.stdout.on('data', function(data) {
-        L('scilab out :' + data.toString());
-    });
-*/                
-    scilabApp.stderr.on('data', function(data) {
-        L('scilab err :' + data.toString());
-    });
-}
