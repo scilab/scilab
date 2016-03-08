@@ -492,6 +492,22 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
         std::map<ScicosID, ScicosID>::iterator it = mapped.find(id);
         if (it != mapped.end())
         {
+            if (k == PORT)
+            {
+                // We get here if we are cloning a block connected to a link that comes before itself in the objects list,
+                // so which has already been cloned but could not be connected yet.
+                int port_kind;
+                getObjectProperty(clone, PORT, PORT_KIND, port_kind);
+                if (port_kind == PORT_IN || port_kind == PORT_EIN)
+                {
+                    setObjectProperty(it->second, LINK, DESTINATION_PORT, clone);
+                }
+                else
+                {
+                    // FIXME: fix case for implicit ports, in which case connect the first unconnected link end, it doesn't matter which one
+                    setObjectProperty(it->second, LINK, SOURCE_PORT, clone);
+                }
+            }
             cloned.push_back(it->second);
         }
         else
