@@ -79,7 +79,7 @@
                 <term>8</term>
                 <listitem>
                     <para>
-                        матрица <link linkend="int8">целочисленных</link> значений, хранимых в 1 (<literal>int8</literal>), 2 (<literal>int16</literal>) или 4 (<literal>int32</literal>) байтах.
+                        матрица <link linkend="int8">целочисленных</link> значений, хранимых в 1 (<literal>int8</literal>), 2 (<literal>int16</literal>) , 4 (<literal>int32</literal>) или 8 (<literal>int64</literal>) байтах.
                     </para>
                 </listitem>
             </varlistentry>

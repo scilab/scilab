@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="iconvert">
     <refnamediv>
         <refname>iconvert</refname>
-        <refpurpose> conversion to 1 or 4 byte integer representation</refpurpose>
+        <refpurpose> conversion to 1 to 8 byte integer representation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -40,7 +40,7 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>a matrix of integers coded on one, two or four bytes.</para>
+                    <para>a matrix of integers coded on 1, 2, 4 or 8 bytes.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -48,7 +48,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <function>iconvert</function> function converts and stores data to one, two or four bytes integers.
+            The <function>iconvert</function> function converts and stores data to 1, 2, 4 or 8 bytes integers.
         </para>
         <variablelist>
             <varlistentry>
@@ -105,11 +105,27 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>itype = 8</term>
+                <listitem>
+                    <para>
+                        return <literal>int64</literal> numbers in the range <literal>[-9223372036854775808,9223372036854775807]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>itype = 18</term>
+                <listitem>
+                    <para>
+                        return <literal>uint64</literal> numbers in the range <literal>[0, 18446744073709551616]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 b=int32([1 -120 127 312])
 y=iconvert(b,1)
 

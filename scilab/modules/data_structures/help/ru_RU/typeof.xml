@@ -182,10 +182,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"int8" или "uint8" или "int16" или "uint16" или "int32" или "uint32"</term>
+                <term>"int8" или "uint8" или "int16" или "uint16" или "int32" или "uint32 "или "int64" или "uint64"</term>
                 <listitem>
                     <para>
-                        если <varname>object</varname> - матрица [беззнаковых] целых чисел, хранимых в 8, 16 или 32 битах. (См. <link linkend="int8">int</link>)
+                        если <varname>object</varname> - матрица [беззнаковых] целых чисел, хранимых в 8, 16, 32 или 64 битах. (См. <link linkend="int8">int</link>)
                     </para>
                 </listitem>
             </varlistentry>

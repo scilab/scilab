@@ -160,7 +160,28 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>"library"</term>
+                <listitem>
+                    <para>
+                        if <varname>object</varname> is a function <link linkend="library">library</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"int8" or "uint8" or "int16" or "uint16" or "int32" or "uint32" or "int64" or "uint64"</term>
+                <listitem>
+                    <para>
+                        if <varname>object</varname> is a matrix of [unsigned] integers stored on 8, 16, 32 or 64 bits. (See <link linkend="int8">int</link>)
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
+        <para>
+            <note>
+                Note that if the <varname>object</varname> is a <link linkend="tlist">tlist</link> or <link linkend="mlist">mlist</link>, <function>typeof</function> will return the first string in the first list entry.
+            </note>
+        </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>

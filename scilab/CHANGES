@@ -314,6 +314,8 @@ In 6.0.0:
 
 * Bug #14359 fixed - Black Hole demo updated. Stop and Clear buttons did not have priority tag set. Callback_type property has been added and set to 10.
 
+* Bug #14389 fixed - Updated int8(), type(), typeof(), overloading(), iconvert() and inttype() help pages. Added int64() and uint64() descriptions.
+
 * Bug #14415 fixed - Corrected some spellings error in help pages
 
 * Bug #14416 fixed - The file extension filter in Scinotes "Save as" window did not re-used the active file's extension when applicable.
