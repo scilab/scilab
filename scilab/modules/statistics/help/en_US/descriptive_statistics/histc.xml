@@ -64,7 +64,7 @@
                 <listitem>
                     <para>
                         vector or matrix of same size as <varname>data</varname>,
-                        representing the repective belonging of each element of data <varname>data</varname>
+                        representing the respective belonging of each element of data <varname>data</varname>
                         to the classes defined by <varname>n</varname> or <varname>x</varname>
                     </para>
                 </listitem>

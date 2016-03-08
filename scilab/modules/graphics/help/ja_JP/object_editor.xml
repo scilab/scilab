@@ -6,7 +6,7 @@
 
  * Copyright (C) INRIA - Fabrice Leray
 
- * 
+ *
 
 
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -58,7 +58,7 @@
             
             drawn. Each graphics window and the
             
-            drawing it contains are represented by hierchical entities. The hierachy
+            drawing it contains are represented by hierarchical entities. The hierachy
             
             top level is the Figure. Each Figure defines at least one child of type
             

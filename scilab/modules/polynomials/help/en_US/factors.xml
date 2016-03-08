@@ -92,7 +92,7 @@
         </para>
         <para>
             If <literal>flag</literal> is <literal>'c'</literal> (resp. <literal>'d'</literal>), the roots of <literal>pol</literal>
-            are refected wrt the imaginary axis (resp. the unit circle), i.e.
+            are reflected wrt the imaginary axis (resp. the unit circle), i.e.
             the factors in <literal>lnum</literal> are stable polynomials.
         </para>
         <para>
@@ -107,7 +107,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n=poly([0.2,2,5],'z');
 d=poly([0.1,0.3,7],'z');
 R=syslin('d',n,d);

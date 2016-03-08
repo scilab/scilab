@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F. Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -84,14 +84,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>Obs=observer(Sys,J)</literal> returns the observer 
-            <literal>Obs=syslin(td,A+J*C,[B+J*D,-J],eye(A))</literal> obtained from <literal>Sys</literal> 
+            <literal>Obs=observer(Sys,J)</literal> returns the observer
+            <literal>Obs=syslin(td,A+J*C,[B+J*D,-J],eye(A))</literal> obtained from <literal>Sys</literal>
             by a <literal>J</literal> output injection. (td is the time domain of <literal>Sys</literal>).
-            More generally, <literal>observer</literal> returns in <literal>Obs</literal> an observer for 
-            the observable part of linear system 
+            More generally, <literal>observer</literal> returns in <literal>Obs</literal> an observer for
+            the observable part of linear system
             <literal>Sys</literal>: <literal>dotx=A x + Bu, y=Cx + Du</literal>  represented by a <literal>syslin</literal> list.
             <literal>Sys</literal> has <literal>nx</literal> state variables, <literal>nu</literal> inputs and <literal>ny</literal> outputs.
-            <literal>Obs</literal> is a linear system with matrices <literal>[Ao,Bo,Identity]</literal>, 
+            <literal>Obs</literal> is a linear system with matrices <literal>[Ao,Bo,Identity]</literal>,
             where <literal>Ao</literal> is <literal>no x no</literal>, <literal>Bo</literal> is <literal>no x (nu+ny)</literal>, <literal> Co</literal> is
             <literal>no x no</literal> and <literal>no=nx-m</literal>.
         </para>
@@ -112,32 +112,32 @@
         </para>
         <para>
             case <literal>flag='pp'</literal>:
-            z=H*x can be estimated with given error spectrum iff <literal>H*U(:,1:m)=0</literal> 
+            z=H*x can be estimated with given error spectrum iff <literal>H*U(:,1:m)=0</literal>
             all poles of the observer are assigned and set to <literal>alfa(1),alfa(2),...</literal>
         </para>
         <para>
-            If H satifies the constraint: <literal>H*U(:,1:m)=0</literal>  (ker(H) contains unobs-subsp.
-            of Sys) one has H*U=[0,H2] and the observer for 
+            If H satisfies the constraint: <literal>H*U(:,1:m)=0</literal>  (ker(H) contains unobs-subsp.
+            of Sys) one has H*U=[0,H2] and the observer for
             z=H*x is H2*Obs with H2=H*U(:,m+1:nx) i.e. Co, the C-matrix of the
             observer for H*x, is Co=H2.
         </para>
         <para>
-            In the particular case where the pair <literal>(A,C)</literal> of <literal>Sys</literal> is 
+            In the particular case where the pair <literal>(A,C)</literal> of <literal>Sys</literal> is
             observable, one has <literal>m=0</literal> and the linear system <literal>U*Obs</literal> (resp.
-            <literal>H*U*Obs</literal>) is an observer for <literal>x</literal> (resp. <literal>Hx</literal>). 
+            <literal>H*U*Obs</literal>) is an observer for <literal>x</literal> (resp. <literal>Hx</literal>).
             The error spectrum is <literal>alpha(1),alpha(2),...,alpha(nx)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 nx=5;nu=1;ny=1;un=3;us=2;Sys=ssrand(ny,nu,nx,list('dt',us,us,un));
-//nx=5 states, nu=1 input, ny=1 output, 
+//nx=5 states, nu=1 input, ny=1 output,
 //un=3 unobservable states, us=2 of them unstable.
 [Obs,U,m]=observer(Sys);  //Stable observer (default)
 W=U';H=W(m+1:nx,:);[A,B,C,D]=abcd(Sys);  //H*U=[0,eye(no,no)];
 Sys2=ss2tf(syslin('c',A,B,H))  //Transfer u-->z
-Idu=eye(nu,nu);Sys3=ss2tf(H*U(:,m+1:$)*Obs*[Idu;Sys])  
+Idu=eye(nu,nu);Sys3=ss2tf(H*U(:,m+1:$)*Obs*[Idu;Sys])
 //Transfer u-->[u;y=Sys*u]-->Obs-->xhat-->HUxhat=zhat  i.e. u-->output of Obs
 //this transfer must equal Sys2, the u-->z transfer  (H2=eye).
 
@@ -149,7 +149,7 @@ Idu=eye(nu,nu);Sys3=ss2tf(H*U(:,m+1:$)*Obs*[Idu;Sys])
 //1-Form BigR = [G*QN*G'         G*QN*H'+G*NN;
 //               H*QN*G'+NN*G'   H*QN*H'+RN];
 //the covariance matrix of the noise vector [Gw;Hw+v]
-//2-Build the plant P21 : dotx = A x + B1 e ; y = C2 x + D21 e 
+//2-Build the plant P21 : dotx = A x + B1 e ; y = C2 x + D21 e
 //with e a unit white noise.
 // [W,Wt]=fullrf(BigR);
 //B1=W(1:size(G,1),:);D21=W(($+1-size(C,1)):$,:);

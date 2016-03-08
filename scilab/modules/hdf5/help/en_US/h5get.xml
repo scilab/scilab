@@ -61,7 +61,7 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 x = ["Hello" "World"; "Salut" "Monde"];
-save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones
 
 // Open the created file
 a = h5open(TMPDIR + "/x.sod");
@@ -73,7 +73,7 @@ r = h5get(a, "/")
 x = h5get(a, "/x") // or h5get(a.root, "x")
 x.data
 
-// Get an unexisting dataset
+// Get an inexisting dataset
 y = h5get(a.root, "blahblah")
 
 // Get an attribute

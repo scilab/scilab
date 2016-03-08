@@ -77,7 +77,6 @@
             specified by the stream parameter <varname>fd</varname> and returns a
             vector of floating point data.
         </para>
-        
         <para>
             The <function>mgeti</function> function reads data in the input
             specified by the stream parameter <varname>fd</varname> and returns a
@@ -170,7 +169,7 @@
             <literal>little=endian</literal> status).
         </para>
         <para>
-            This default swapping behavior can be supressed by adding a flag in
+            This default swapping behavior can be suppressed by adding a flag in
             the <function>mopen</function> function.
         </para>
         <para>
