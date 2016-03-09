@@ -21,8 +21,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-                     householder() // demo
-                 u = householder(v [,w])
+            householder() // demo
+            u = householder(v [,w])
             [u, H] = householder(v [,w])
         </synopsis>
     </refsynopsisdiv>
@@ -198,9 +198,6 @@ a.children(2).foreground = 1;
 a.children(3).foreground = color("green");
 drawnow
  ]]></programlisting>
-        <scilab:image>
-            householder();
-        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
