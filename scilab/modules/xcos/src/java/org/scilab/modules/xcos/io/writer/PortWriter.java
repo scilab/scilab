@@ -91,11 +91,11 @@ public class PortWriter extends ScilabWriter {
         VectorOfInt datatype = new VectorOfInt();
         shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
 
-        int dataDescriptor = datatype.get(0);
-        if (0 <= dataDescriptor && dataDescriptor < BasicPort.DataType.values().length) {
-            shared.stream.writeAttribute("dataType", BasicPort.DataType.values()[dataDescriptor].name());
+        int type = datatype.get(2);
+        if (0 <= type && type < BasicPort.DataType.values().length) {
+            shared.stream.writeAttribute("dataType", BasicPort.DataType.values()[type].name());
             shared.stream.writeAttribute("dataColumns", Integer.toString(datatype.get(1)));
-            shared.stream.writeAttribute("dataLines", Integer.toString(datatype.get(2)));
+            shared.stream.writeAttribute("dataLines", Integer.toString(datatype.get(0)));
         }
 
         double[] firing = new double[1];

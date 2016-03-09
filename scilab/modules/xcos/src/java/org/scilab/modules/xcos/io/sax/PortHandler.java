@@ -125,7 +125,7 @@ class PortHandler implements ScilabHandler {
 
         v = atts.getValue("dataType");
         if (v != null) {
-            datatype.set(0, BasicPort.DataType.valueOf(v).ordinal());
+            datatype.set(2, BasicPort.DataType.valueOf(v).ordinal());
         }
         v = atts.getValue("dataColumns");
         if (v != null) {
@@ -133,7 +133,7 @@ class PortHandler implements ScilabHandler {
         }
         v = atts.getValue("dataLines");
         if (v != null) {
-            datatype.set(2, Integer.valueOf(v));
+            datatype.set(0, Integer.valueOf(v));
         }
 
         shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
