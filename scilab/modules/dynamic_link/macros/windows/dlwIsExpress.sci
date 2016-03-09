@@ -11,5 +11,5 @@
 // along with this program.
 //=============================================================================
 function ret = dlwIsExpress()
-    ret = strindex(findmsvccompiler(), "Express") <> [];
+    ret = strindex(findmsvccompiler(), "express") <> [];
 endfunction
