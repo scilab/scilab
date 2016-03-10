@@ -347,7 +347,6 @@ a.isoview='off';
             poly1.thickness = 3;
             poly1.clip_state='off'
             a.isoview='off';
-            
         </scilab:image>
         <programlisting role="example"><![CDATA[
 
