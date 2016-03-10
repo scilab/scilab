@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) ENPC
-//
+// Copyright (C) 2016 - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -46,9 +46,9 @@ function getd(path,option)
         return ;
     end
 
-    old = who("get");
-    //prot = funcprot();funcprot(0)
-
+    old = who("local");
+    old = old(isdef(old, "l"))
+    //prot = funcprot(); funcprot(0)
     for k=1:size(lst,"*");
         if fileparts(lst(k),"extension")==".sci" then
             if execstr("exec(lst(k));","errcatch")<>0 then
@@ -56,17 +56,11 @@ function getd(path,option)
             end
         end
     end
-
     //funcprot(prot);
-    new = who("get");
-    for i=1:size(old, "*")
-        b = find(new == old(i));
-        if isempty(b) == %f then
-            new(b) = [];
-        end
-    end
+    new = who("local");
+    new = new(isdef(new, "l"))
+    new = setdiff(new, old)
 
-    //new = new(1:(size(new,"*")-nold-2));  // -4 becomes -2: fix the fix for bug 2807
     if new<>[] then
         execstr("["+strcat(new,",")+"]=resume("+strcat(new,",")+")")
     end

@@ -406,6 +406,8 @@ In 6.0.0:
 
 * Bug #14476 fixed - Dotmultiplication between polynomials and imaginary numbers was always returning 0
 
+* Bug #14499 fixed - getd() did not update already defined functions
+
 
 In 6.0.0 beta-1:
 
