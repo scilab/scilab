@@ -322,6 +322,8 @@ In 6.0.0:
 
 * Bug #13869 fixed - bench_run with option nb_run=10 did not override the NB RUN tags
 
+* Bug #13897 fixed - concatenating structures with same fields in mismatching orders failed
+
 * Bug #13965 fixed - The rendering of histograms with histplot() was poor
 
 * Bug #13974 fixed - isoview(xmin, xmax, ymin, ymax) was unhandy.
