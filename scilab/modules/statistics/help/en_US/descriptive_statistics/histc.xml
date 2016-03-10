@@ -25,7 +25,7 @@
             [cf, ind] = histc(x, data [,normalization])
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -81,7 +81,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             This function computes a histogram of the <literal>data</literal> vector using the
@@ -106,7 +106,7 @@
             when <emphasis>x(1)&lt;=min(data)</emphasis> and <emphasis>max(data) &lt;= x(n+1)</emphasis>
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <simplelist>
             <member> Example #1: variations around a histogram of a gaussian random sample
@@ -136,11 +136,11 @@ clf()
 subplot(2,1,1)
 [cf, ind] = histc(c, d)
 histplot(c, d, style=2);
-xtitle("Normalized histogram")
+xtitle(_("Normalized histogram"))
 subplot(2,1,2)
 [cf, ind] = histc(c, d, normalization=%f)
 histplot(c, d, normalization=%f, style=5);
-xtitle("Non normalized histogram")
+xtitle(_("Non normalized histogram"))
 ]]></programlisting>
                 <scilab:image localized="true">
                     d = grand(1000,1,"bin", 6, 0.5);
@@ -149,11 +149,11 @@ xtitle("Non normalized histogram")
                     subplot(2,1,1)
                     [cf, ind] = histc(c, d)
                     histplot(c, d, style=2);
-                    xtitle("Normalized histogram")
+                    xtitle(_("Normalized histogram"))
                     subplot(2,1,2)
                     [cf, ind] = histc(c, d, normalization=%f)
                     histplot(c, d, normalization=%f, style=5);
-                    xtitle("Non normalized histogram")
+                    xtitle(_("Non normalized histogram"))
                 </scilab:image>
             </member>
             <member>
@@ -167,7 +167,7 @@ clf()
 histplot(40, X, style=2);
 x = linspace(0, max(Xmax), 100)';
 plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
-legend(["exponential random sample histogram" "exact density curve"]);
+legend([_("exponential random sample histogram") _("exact density curve")]);
 ]]></programlisting>
                 <scilab:image localized="true">
                     lambda = 2;
@@ -178,7 +178,7 @@ legend(["exponential random sample histogram" "exact density curve"]);
                     histplot(40, X, style=2);
                     x = linspace(0, max(Xmax), 100)';
                     plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
-                    legend(["exponential random sample histogram" "exact density curve"]);
+                    legend([_("exponential random sample histogram") _("exact density curve")]);
                 </scilab:image>
             </member>
             <member>
@@ -188,14 +188,14 @@ n = 10;
 data = rand(1, 1000, "normal");
 [cf, ind] = histc(n, data)
 clf(); histplot(n, data, style=12, polygon=%t);
-legend(["normalized histogram" "frequency polygon chart"]);
+legend([_("normalized histogram") _("frequency polygon chart")]);
 ]]></programlisting>
                 <scilab:image localized="true">
                     n = 10;
                     data = rand(1, 1000, "normal");
                     [cf, ind] = histc(n, data)
                     clf(); histplot(n, data, style=12, polygon=%t);
-                    legend(["normalized histogram" "frequency polygon chart"]);
+                    legend([_("normalized histogram") _("frequency polygon chart")]);
                 </scilab:image>
             </member>
         </simplelist>
@@ -217,7 +217,7 @@ legend(["normalized histogram" "frequency polygon chart"]);
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>History</title>
         <revhistory>
             <revision>

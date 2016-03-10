@@ -17,13 +17,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="flipdim" xml:lang="en">
     <refnamediv>
         <refname>flipdim</refname>
-        <refpurpose>flip x block components along a given dimension</refpurpose>
+        <refpurpose>reverses the order of (blocs of) rows, columns, pages.. of a matrix or hypermatrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>y = flipdim(x, dim [,sb])</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -46,7 +46,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             Given <literal>x</literal>, a scalar/vector/matrix/hypermatrix of any type and
@@ -61,7 +61,7 @@
             (<literal>dim=1</literal>) or <literal>size(x,1)*sb</literal> (<literal>dim=2</literal>).
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // Example 1: flip x components along the first dimension
@@ -120,7 +120,7 @@ flipdim(X, 2, 6) // => [6 7 8 9 10 11   0 1 2 3 4 5]
 y = flipdim(x, 2, 5); // size(X) = [1 12] and sb=5 does not divide 12.
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>History</title>
         <revhistory>
             <revision>
