@@ -315,6 +315,8 @@ In 6.0.0:
 
 * Bug #13869 fixed - bench_run with option nb_run=10 did not override the NB RUN tags
 
+* Bug #13965 fixed - The rendering of histograms with histplot() was poor
+
 * Bug #13974 fixed - isoview(xmin, xmax, ymin, ymax) was unhandy.
 
 * Bug #14035 fixed - ndgrid did not manage all homogeneous data type (booleans, integers, polynomials, rationals, strings, [])
