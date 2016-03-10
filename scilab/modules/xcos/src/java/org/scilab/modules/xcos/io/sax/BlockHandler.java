@@ -19,6 +19,7 @@ import java.util.Arrays;
 
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfInt;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
@@ -171,6 +172,16 @@ class BlockHandler implements ScilabHandler {
         if (v != null) {
             saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.SIM_BLOCKTYPE, v);
         }
+        VectorOfInt vecOfInt = new VectorOfInt(2);
+        v = atts.getValue("dependsOnU");
+        if ("1".equals(v)) {
+            vecOfInt.set(0, 1);
+        }
+        v = atts.getValue("dependsOnT");
+        if ("1".equals(v)) {
+            vecOfInt.set(1, 1);
+        }
+        saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.SIM_DEP_UT, vecOfInt);
         v = atts.getValue("simulationFunctionType");
         if (v != null) {
             SimulationFunctionType type = SimulationFunctionType.valueOf(v);
