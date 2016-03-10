@@ -331,6 +331,8 @@ In 6.0.0:
 
 * Bug #13897 fixed - concatenating structures with same fields in mismatching orders failed
 
+* Bug #13939 fixed - in HTML help pages, itemizedlist <ul> were rendered as ordered ones
+
 * Bug #13965 fixed - The rendering of histograms with histplot() was poor
 
 * Bug #13974 fixed - isoview(xmin, xmax, ymin, ymax) was unhandy.

@@ -114,16 +114,16 @@ a:hover {
 }
 
 .itemizedlist {
-    list-style-type: disk;
+    list-style-type: disc;
 }
 
 .inline-list li {
     display: inline;
-    list-style-type: disk;
+    list-style-type: disc;
 }
 
 .vert-list {
-    list-style-type: disk;
+    list-style-type: disc;
 }
 
 pre {
