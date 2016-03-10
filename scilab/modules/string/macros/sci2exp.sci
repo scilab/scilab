@@ -322,7 +322,7 @@ function t=pol2exp(a,lmax)
             end
         end
         if i<m then x($)=x($)+";",end
-        if lmax>0 then
+        if lmax>0 | t==[] then
             t=[t;x]
         else
             t=t+x

@@ -308,6 +308,8 @@ In 6.0.0:
 
 * Bug #14035 fixed - ndgrid did not manage all homogeneous data type (booleans, integers, polynomials, rationals, strings, [])
 
+* Bug #14099 fixed - sci2exp macro was fixed to avoid "a+[] Warning"
+
 * Bug #14347 fixed - plot2d crashed with multiple entries (non regression test).
 
 * Bug #14359 fixed - Black Hole demo updated. Stop and Clear buttons did not have priority tag set. Callback_type property has been added and set to 10.
