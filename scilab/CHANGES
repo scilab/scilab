@@ -323,6 +323,8 @@ In 6.0.0:
 
 * Bug #13465 fixed - The display of polyline .display_function and .display_function properties was not conventional
 
+* Bug #13769 fixed - t = "abc..//ghi" was parsed as a continued + comment
+
 * Bug #13810 fixed - householder(v, k*v) returned column of %nan. Input parameters were not checked. The Householder matrix could not be returned. Help pages were inaccurate and without examples. There was no householder() demo.
 
 * Bug #13839 fixed - sign() could not be used with sparse matrices
