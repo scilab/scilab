@@ -131,6 +131,8 @@ Other feature additions
   - rewriten: consolebox, double, isoview, householder
   - resorted: else, elseif, end, try, sciargs, global, halt, empty, power
 
+* real(), imag(), conj() and isreal() now accept rational fractions
+
 
 Installation
 ============
@@ -375,6 +377,8 @@ In 6.0.0:
 * Bug #14111 fixed - modified lib function to detect Scilab version 5 libraries and give proper error messages
 
 * Bug #14116 fixed - Invalid exponent in case of complex exponents especially 0*%i.
+
+* Bug #14118 fixed - real(), imag(), conj(), isreal() did not accept rationals
 
 * Bug #14271 fixed - conjgrad() displayed an incorrect error message about number of arguments.
 

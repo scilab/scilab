@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// Copyright (C) Samuel GOUGEON - 2015 - sgougeon@free.fr : Bug 13893
+// Copyright (C) Samuel GOUGEON - 2015-2016 - sgougeon@free.fr : Bug 13893
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -11,11 +11,16 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function h = %r_simp(h)
+function h = %r_simp(h, d)
     // implement complex case
     // 0/den => 0/1
-    n = numer(h)
-    d = denom(h)
+    if argn(2)==1 then
+        n = numer(h)
+        d = denom(h)
+    else
+        n = h
+        h = []
+    end
     i = find(clean(n)==0 & clean(d)~=0)
     [n, d] = simp(n, d);
     d(i) = 1
