@@ -343,7 +343,7 @@ In 6.0.0:
 
 * Bug #14099 fixed - sci2exp macro was fixed to avoid "a+[] Warning"
 
-* Bug #14111 fixed - modified lib function to detect Scilab version 5 libraries and give proper error messages.
+* Bug #14111 fixed - modified lib function to detect Scilab version 5 libraries and give proper error messages
 
 * Bug #14116 fixed - Invalid exponent in case of complex exponents especially 0*%i.
 
@@ -358,6 +358,8 @@ In 6.0.0:
 * Bug #14374 fixed - Parser did not manage comments properly in shellmode
 
 * Bug #14389 fixed - Updated int8(), type(), typeof(), overloading(), iconvert() and inttype() help pages. Added int64() and uint64() descriptions.
+
+* Bug #14390 fixed - double() help page had irrelevant syntaxes and was poor
 
 * Bug #14396 fixed - real number display was not proper for very wide decimal parts
 
