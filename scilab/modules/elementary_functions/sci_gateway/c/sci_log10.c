@@ -41,7 +41,11 @@ int sci_log10(char *fname, void* pvApiCtx)
     double* pIn = NULL;
     double* pOutR = NULL;
     double* pOutI = NULL;
-    double imag = M_PI / log(10.0);
+
+    // Wolfram Alpha : Pi / log(10)
+    const double imag = 1.364376353841841347485783625431355770210127483723925399900;
+    // Wolfram Alpha : 1 / log(10)
+    const double inverseLog10 = 0.434294481903251827651128918916605082294397005803666566114;
 
     int iRhs = nbInputArgument(pvApiCtx);
 
@@ -133,12 +137,14 @@ int sci_log10(char *fname, void* pvApiCtx)
     {
         if (pIn[i] < 0)
         {
-            pOutR[i] = log10(-pIn[i]);
+            // log10 = log * 1/log(10)
+            pOutR[i] = log(-pIn[i]) * inverseLog10;
             pOutI[i] = imag;
         }
         else
         {
-            pOutR[i] = log10(pIn[i]);
+            // log10 = log * 1/log(10)
+            pOutR[i] = log(pIn[i]) * inverseLog10;
         }
     }
 
@@ -146,3 +152,4 @@ int sci_log10(char *fname, void* pvApiCtx)
     ReturnArguments(pvApiCtx);
     return 0;
 }
+
