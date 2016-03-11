@@ -63,7 +63,7 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
             case 1 :
                 throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
             case 2 :
-                throw ast::InternalError(_W("Invalid exponent.\n"));
+                throw ast::InternalError(_W("Invalid exponent: expected real exponents.\n"));
             default:
                 //OK
                 break;
@@ -134,7 +134,7 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
             case 1 :
                 throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
             case 2 :
-                throw ast::InternalError(_W("Invalid exponent.\n"));
+                throw ast::InternalError(_W("Invalid exponent: expected real exponents.\n"));
             default:
                 //OK
                 break;
@@ -340,12 +340,12 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
 int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
 {
     bool bComplex1  = _pPoly->isComplex();
-    bool bComplex2  = _pDouble->isComplex();
     bool bScalar1   = _pPoly->isScalar();
+    double* bImg    = _pDouble->getImg();
+    bool bNumericallyComplex1 = _pDouble->isNumericallyComplex();
 
-    if (bComplex2)
+    if(!bNumericallyComplex1)
     {
-        //invalid exponent.
         return 2;
     }
 

@@ -83,6 +83,23 @@ public :
         return (m_pImgData != NULL) || isViewAsZComplex();
     }
 
+    inline bool isNumericallyComplex(double tolerance = 0)
+    {
+        if(isComplex())
+        {
+            int listSize = getSize();
+            double* bImg = getImg();
+            for(int i = 0; i < listSize; i++)
+            {
+                if(abs(bImg[i]) > tolerance)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     bool isTrue();
 
     bool neg(InternalType *& out)

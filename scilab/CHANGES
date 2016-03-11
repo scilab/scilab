@@ -349,6 +349,8 @@ In 6.0.0:
 
 * Bug #14111 fixed - modified lib function to detect Scilab version 5 libraries and give proper error messages.
 
+* Bug #14116 fixed - Invalid exponent in case of complex exponents especially 0*%i.
+
 * Bug #14271 fixed - conjgrad() displayed an incorrect error message about number of arguments.
 
 * Bug #14347 fixed - plot2d crashed with multiple entries (non regression test).
