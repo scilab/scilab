@@ -369,16 +369,15 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     critev = critev_in - 1;
     --ztyp;
     zcptr = zcptr_in - 1;
-    --simpar;
 
     /* Function Body */
-    Atol = simpar[1];
-    rtol = simpar[2];
-    ttol = simpar[3];
-    deltat = simpar[4];
-    C2F(rtfactor).scale = simpar[5];
-    C2F(cmsolver).solver = (int) simpar[6];
-    hmax = simpar[7];
+    Atol = simpar[0];
+    rtol = simpar[1];
+    ttol = simpar[2];
+    deltat = simpar[3];
+    C2F(rtfactor).scale = simpar[4];
+    C2F(cmsolver).solver = (int) simpar[5];
+    hmax = simpar[6];
 
     nordptr = *nordptr1;
     nblk  = *nblk1;
