@@ -565,7 +565,7 @@ public class XcosCell extends mxCell {
         JavaController controller = new JavaController();
         XcosCell c = (XcosCell) super.clone();
 
-        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), false, false), getKind());
+        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), true, false), getKind());
         return c;
     }
 }
