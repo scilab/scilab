@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="consolebox">
+    <refnamediv>
+        <refname>consolebox</refname>
+        <refpurpose>affiche ou cache le terminal Windows de lancement de Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>
+            consolebox on
+            consolebox off
+            status = consolebox("toogle")
+            status = consolebox()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para><varname>"on" | "off"</varname> : visibilité du
+                    terminal Windows après l'instruction
+                    <function>consolebox</function>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <itemizedlist>
+            <listitem><literal>consolebox on</literal> : affiche le terminal
+            Windows et ajoute son bouton à la barre des tâches. La fenêtre noire
+            du terminal (consolebox) est située en arrière fond et peut donc
+            être masquée par d'autres fenêtres du bureau Windows.
+            </listitem>
+            <listitem><literal>consolebox off</literal> : masque le terminal
+            et supprime son bouton de la barre des tâches.
+            </listitem>
+            <listitem><literal>consolebox toogle</literal> : commute la
+            visibilité du terminal.
+            </listitem>
+            <listitem><literal>status = consolebox()</literal> : indique
+            la visibilité actuelle du terminal Windows.
+            </listitem>
+        </itemizedlist>
+        <para>La fenêtre noire "consolebox" est le terminal (par défaut caché)
+        du système d'exploitation Windows depuis lequel la session courante de
+        Scilab a été lancée et se déroule. C'est en quelque sorte le "coté sombre"
+        de votre session Scilab :) Chaque session Scilab a sa propre "consolebox".
+        Sa durée de vie est celle de la session Scilab. La consolebox d'une session
+        Scilab cesse d'exister dés lors que la session Scilab est fermée.
+        </para>
+        <para>Certaines fonctions Scilab de bas niveau (tel que le compilateur
+        de la documentation Scilab, ou d'autres fonctions) envoient leurs
+        messages d'erreur dans la consolebox, sans quoi ces messages spammeraient
+        la console Scilab habituelle. Ces messages peuvent néanmoins être très
+        utiles pour le débogage. <literal>consolebox on</literal> permet de les
+        consulter.
+        </para>
+        <para>La fenêtre noire de la "consolebox" ne peut pas être fermée
+        "à la main" : la croix X de son coin supérieur droit est désactivée.
+        La suppression forcée de la consolebox ferme la session Scilab immédiatement.
+        </para>
+        <para>
+            Lorsque des instructions DOS/Windows externes sont envoyées par
+            Scilab au système d'exploitation via les fonctions
+            <link linkend="host">host(..)</link> ou de manière équivalente par
+            <link linkend="unix">unix(..)</link>, ou
+            <link linkend="unix_w">unix_w(..)</link>,
+            <link linkend="unix_g">unix_g(..)</link>,
+            <link linkend="unix_s">unix_s(..)</link>, ou
+            <link linkend="unix_x">unix_x(..)</link>,
+            ces instructions Windows sont reçues et traitées par la consolebox.
+            <para><literal>host(..)</literal> et
+                <literal>unix(..)</literal> affichent les résultats à même
+                la consolebox.
+            </para>
+            <para><literal>unix_g, unix_w, unix_x, unix_s</literal> interceptent
+            les résultats donnés par Windows et en suppriment l'affichage
+            dans la consolebox :
+            <itemizedlist>
+                <listitem>
+                    <literal>r = unix_g(..)</literal> saisit
+                    (<emphasis role="bold">g</emphasis>rabs) et retourne les
+                    résultats dans une variable texte <literal>r</literal>.
+                </listitem>
+                <listitem>
+                    <literal>unix_w(..)</literal> affiche les résultats dans la
+                    console Scilab (<emphasis role="bold">w</emphasis>indow).
+                </listitem>
+                <listitem>
+                    <literal>unix_x(..)</literal> affiche les résultats dans
+                    une <link linkend="messagebox">messagebox</link>.
+                </listitem>
+                <listitem>
+                    <literal>unix_s(..)</literal> travaille en
+                    <emphasis role="bold">s</emphasis>ilence, sans rien afficher
+                    ni retourner.
+                </listitem>
+            </itemizedlist>
+            </para>
+        </para>
+        <note><literal>host("cls")</literal> efface le contenu de la consolebox.</note>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+consolebox on
+mprintf("\nLe bouton de la consolebox apparaît dans la barre des tâches.\n"+..
+        "Cliquer dessus amène la consolebox au premier plan.\n");
+sleep(10,"s")
+consolebox('toggle')
+sleep(5,"s")
+consolebox('toggle')
+consolebox on
+consolebox()
+
+// Les instructions passées à host() ou unix() ou autres fonctions unix_#() sont
+// traitées dans la consolebox :
+host("echo Texte à afficher") // Affiche "Texte à afficher" dans la consolebox
+host("cls")  // efface le contenu de la consolebox
+host("set")  // liste toutes les variables d'environnement Windows définies
+
+// Les autres fonctions unix_#() interceptent les résultats donnés par Windows
+//  au lieu de les afficher dans la consolebox :
+host("cls")
+unix_w("echo Texte à afficher") // "Texte à afficher" s'affiche dans la console Scilab
+r = unix_g("set");   // Les variables d'environnement Windows sont retournées dans r.
+r                    //  Rien n'est affiché dans la consolebox.
+unix_x("set");       // Une messagebox s'ouvre et affiche les résultats.
+                     //  Rien dans la consolebox.
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="host">host</link>
+            </member>
+            <member>
+                <link linkend="unix_w">unix_w</link>
+            </member>
+            <member>
+                <link linkend="unix_g">unix_g</link>
+            </member>
+            <member>
+                <link linkend="unix_x">unix_x</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

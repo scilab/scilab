@@ -16,10 +16,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="harmean">
     <refnamediv>
         <refname>harmean</refname>
-        <refpurpose>harmonic mean : inverse of the inverses average (without zeros)</refpurpose>
+        <refpurpose>moyenne harmonique : inverse de la moyenne des inverses (zéros exclus)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Syntaxe</title>
         <synopsis>
             hm = harmean(x)
             hm = harmean(x, 'r'|1 )
@@ -27,23 +27,25 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>vector, matrix, or hypermatrix of real or complex
-                    numbers or polynomials. Rationals not supported.
+                    <para>vecteur, matrice, ou hypermatrice de nombres réels
+                    ou complexes, ou de polynômes à coefficients réels ou
+                    complexes. Fractions rationelles non acceptées.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>hm</term>
                 <listitem>
-                  <para>scalar, or row (if <literal>"r"</literal> is used), or
-                    column (if <literal>"c"</literal> is used).
-                    If <varname>x</varname> are polynomials,
-                    <varname>hm</varname> is of rational type.
+                  <para>scalaire, ou vecteur ligne (si <literal>"r"</literal>
+                  est utilisé), ou vecteur colonne
+                    (si <literal>"c"</literal> est utilisé).
+                    Si <varname>x</varname> sont des polynômes,
+                    <varname>hm</varname> est de type fraction rationelle.
                   </para>
                 </listitem>
             </varlistentry>
@@ -52,43 +54,44 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            This function  computes the harmonic mean of input values = inverse
-            of the average of inversed non-zero values.
+            <function>harmean</function> calcule la moyenne harmonique des
+            valeurs d'entrée, c'est à dire l'inverse de la moyenne des inverses
+            des valeurs d'entrée non nulles.
         </para>
         <para>
-            <literal>hm = harmean(x,'r')</literal>   (or,   equivalently,
-            <literal>hm = harmean(x, 1)</literal> ) returns  in each  entry of
-            the row vector <literal> hm</literal> the harmonic mean of each
-            column of <literal> x</literal>.
+            <literal>hm = harmean(x,'r')</literal>   (ou
+            <literal>hm = harmean(x, 1)</literal> ) retourne le vecteur ligne
+            <literal>hm</literal> où <literal>hm(1,j)</literal> est la moyenne
+            harmonique de chaque colonne <literal>x(:,j)</literal>.
         </para>
         <para>
-            <literal>hm = harmean(x,'c')</literal>   (or,   equivalently,
-            <literal>hm = harmean(x, 2)</literal> ) returns  in each entry
-            of the column vector <literal> hm</literal> the harmonic mean of
-            each  row of <literal> x </literal>.
+            <literal>hm = harmean(x,'c')</literal>   (ou
+            <literal>hm = harmean(x, 2)</literal> ) retourne le vecteur colonne
+            <literal>hm</literal> où <literal>hm(i,1)</literal> est la moyenne
+            harmonique de chaque ligne <literal>x(i,:)</literal>.
         </para>
         <warning>
-            If <varname>x</varname> is an hypermatrix and a
-            <literal>"r", 1, "c", 2</literal> flag is used, an error occurs.
+            Si <varname>x</varname> est une hypermatrice et une option
+            <literal>"r", 1, "c", 2</literal> est utilisée, une erreur se produit.
         </warning>
     </refsection>
     <refsection role="examples">
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-harmean(1:10) // Returns 1 / mean(1 ./(1:10))
-h = harmean([1 1 0 1 0 1])  // returns 1: zeros are not considered
-1 / mean(1./[1 1 0 1 0 1])  // returns 0, as soon as a zero is present
+harmean(1:10) // Retourne 1 / mean(1 ./(1:10))
+h = harmean([1 1 0 1 0 1])  // retourne 1: les zéros ne sont pas considérés
+1 / mean(1./[1 1 0 1 0 1])  // retourne 0 dés qu'au moins un zéro est fourni
 
 x = grand(3, 4, "uin",-10, 10)
 harmean(x)
 harmean(x, "r")
 harmean(x, 2)
 
-// Hypermatrix
+// Hypermatrice
 x = grand(3,4,2, "uin",-10, 10)
 harmean(x)
-harmean(x, "r") // error: not supported
-harmean(x, 3)   // error: not supported
+harmean(x, "r") // erreur: syntaxe exclue avec les hypermatrices
+harmean(x, 3)   // idem
 
 harmean([%z 0])
 harmean([%z %z/2])
@@ -97,14 +100,14 @@ harmean([%z %i+%z]) == 1 / ((1/%z + 1/(%i+%z))/2)
  ]]></programlisting>
     </refsection>
     <refsection role="bibliography">
-        <title>Bibliography</title>
+        <title>Bibliographie</title>
         <para>
             Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics,
-            fifth edition, J.Wiley &amp; Sons, 1990.
+            5ème édition, J.Wiley &amp; Sons, 1990.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="mean">mean</link>

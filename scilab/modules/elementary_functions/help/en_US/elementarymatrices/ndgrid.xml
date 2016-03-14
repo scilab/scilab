@@ -3,7 +3,6 @@
     <refnamediv>
         <refname>ndgrid</refname>
         <refpurpose>build matrices or N-D arrays by replicating some template vectors
-            
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -43,12 +42,12 @@
             Hence, the matrix or hypermatrix <literal>X</literal> is made by replicating the vector <literal>x</literal> as all its columns ; the matrix or hypermatrix <literal>Y</literal> is made by replicating the vector <literal>y</literal> as all its rows ; <literal>Z</literal> is made of replicating the vector <literal>z</literal> along all its local thicknesses (3rd dimension); etc.
         </para>
         <screen><![CDATA[--> [X, Y] = ndgrid([1 3 4], [0 2 4 6])
- X  = 
+ X  =
    1.   1.   1.   1.
    3.   3.   3.   3.
    4.   4.   4.   4.
 
-   Y  = 
+ Y  =
    0.   2.   4.   6.
    0.   2.   4.   6.
    0.   2.   4.   6.
@@ -68,11 +67,11 @@
             Then we want to build the set of all {n,c} possible pairs. It will just be the 2D grid:
         </para>
         <screen><![CDATA[--> [N, C] = ndgrid([3 7],["a" "e" "i" "o" "u" "y"])
- C  = 
+ C  =
 !a  e  i  o  u  y  !
 !a  e  i  o  u  y  !
 
- N  = 
+ N  =
    3.   3.   3.   3.   3.   3.
    7.   7.   7.   7.   7.   7.
 ]]></screen>
@@ -88,7 +87,7 @@
         <para>
             <emphasis role="bold">Example #1:</emphasis>
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
 // Create a simple 2d grid
 x = linspace(-10,2,40);
 y = linspace(-5,5,40);
@@ -96,10 +95,11 @@ y = linspace(-5,5,40);
 
 // Compute ordinates Z(X,Y) on the {X, Y} grid and plot Z(X,Y)
 Z = X - 3*X.*sin(X).*cos(Y-4) ;
+
 clf()
 plot3d(x,y,Z, flag=[color("green") 2 4], alpha=7, theta=60); show_window()
  ]]></programlisting>
-        <scilab:image><![CDATA[  
+        <scilab:image><![CDATA[
 x = linspace(-10,2,40);
 y = linspace(-5,5,40);
 
@@ -112,7 +112,7 @@ plot3d(x,y,Z, flag=[color("green") 2 4], alpha=7, theta=60); show_window()
         <para>
             <emphasis role="bold">Example #2:</emphasis>
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
 // Create a simple 3d grid
 nx = 10; ny = 6; nz = 4;
 x = linspace(0,2,nx);
@@ -149,16 +149,16 @@ z = linspace(0,0.5,nz);
 XF=[]; YF=[]; ZF=[];
 
 for k=1:nz
-	[xf,yf,zf] = nf3d(X(:,:,k),Y(:,:,k),Z(:,:,k));
-	XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+    [xf,yf,zf] = nf3d(X(:,:,k),Y(:,:,k),Z(:,:,k));
+    XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
 end
 
 for j=1:ny
-	[xf,yf,zf] = nf3d(matrix(X(:,j,:),[nx,nz]),...
-	matrix(Y(:,j,:),[nx,nz]),...
-	matrix(Z(:,j,:),[nx,nz]));
+    [xf,yf,zf] = nf3d(matrix(X(:,j,:),[nx,nz]),...
+                      matrix(Y(:,j,:),[nx,nz]),...
+                      matrix(Z(:,j,:),[nx,nz]));
 
-	XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+    XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
 end
 
 plot3d(XF,YF,ZF, flag=[0 6 3], 66, 61, leg="X@Y@Z")
@@ -167,17 +167,17 @@ xtitle("A 3d grid !");
         <para>
             <emphasis role="bold">Example #3: Creates a table of digrams:</emphasis>
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
 [c1, c2] = ndgrid(["a" "b" "c"], ["a" "b" "c" "d" "e" "f" "g" "h"])
 c1+c2
  ]]></programlisting>
         <screen><![CDATA[--> [c1, c2] = ndgrid(["a" "b" "c"], ["a" "b" "c" "d" "e" "f" "g" "h"])
- c2  = 
+ c2  =
 !a  b  c  d  e  f  g  h  !
 !a  b  c  d  e  f  g  h  !
 !a  b  c  d  e  f  g  h  !
 
- c1  = 
+ c1  =
 !a  a  a  a  a  a  a  a  !
 !b  b  b  b  b  b  b  b  !
 !c  c  c  c  c  c  c  c  !
