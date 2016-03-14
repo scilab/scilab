@@ -126,6 +126,13 @@ void ScilabWebView::registerToController(void)
                 WebUtils::updateValue(uid, value);
                 break;
             }
+
+            case __GO_UI_TAB__:
+            {
+                double value = (double)data->get_map()["value"]->get_int();
+                WebUtils::updateValue(uid, value);
+                break;
+            }
         }
 
         l.cond.notify_all();
@@ -225,7 +232,7 @@ void ScilabWebView::updateObject(int uid, int prop)
     {
         switch (prop)
         {
-            case __GO_SIZE__:
+            case __GO_AXES_SIZE__:
             {
                 std::ostringstream ostr;
                 WebUtils::setFigureSize(uid, ostr);

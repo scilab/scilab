@@ -51,10 +51,6 @@ body {
 .GO_FRAME {
     position: absolute;
     background-color : white;
-    left: 20px;
-    bottom: 40px;
-    width : 40px;
-    height : 20px;
     text-align:center;
     overflow : hidden;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
@@ -66,10 +62,6 @@ body {
 .GO_TEXT {
     position: absolute;
     background-color : white;
-    left: 20px;
-    bottom: 40px;
-    width : 40px;
-    height : 20px;
     line-height:20px;
     text-align:left;
     vertical-align: middle;
@@ -82,10 +74,6 @@ body {
 .GO_EDIT {
     position: absolute;
     background-color : white;
-    left: 20px;
-    bottom: 40px;
-    width : 40px;
-    height : 20px;
     text-align:left;
     overflow : hidden;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
@@ -96,10 +84,6 @@ body {
 .GO_CHECKBOX {
     position: absolute;
     background-color : white;
-    left: 20px;
-    bottom: 40px;
-    width : 40px;
-    height : 20px;
     line-height:20px;
     text-align:left;
     vertical-align: middle;
@@ -111,10 +95,6 @@ body {
 
 .GO_CHECKBOX_LABEL {
     background-color : inherit;
-    left: 20px;
-    bottom: 40px;
-    width : 40px;
-    height : 20px;
     text-align:left;
     overflow : hidden;
     font-family: inherit;
@@ -133,10 +113,6 @@ body {
 .GO_RADIO {
     position: absolute;
     background-color : white;
-    left: 20px;
-    bottom: 40px;
-    width : 40px;
-    height : 20px;
     line-height:20px;
     text-align:left;
     vertical-align: middle;
@@ -148,10 +124,6 @@ body {
 
 .GO_RADIO_LABEL {
     background-color : inherit;
-    left: 20px;
-    bottom: 40px;
-    width : 40px;
-    height : 20px;
     text-align:left;
     overflow : hidden;
     font-family: inherit;
@@ -170,10 +142,6 @@ body {
 .GO_SLIDER {
     position: absolute;
     background-color : white;
-    left: 20px;
-    bottom: 40px;
-    width : 40px;
-    height : 20px;
     overflow : hidden;
     visibility:inherit;
 }
@@ -181,10 +149,6 @@ body {
 .GO_LISTBOX {
     position: absolute;
     background-color : white;
-    left: 20px;
-    bottom: 40px;
-    width : 40px;
-    height : 20px;
     overflow : auto;
     visibility:inherit;
 }
@@ -192,10 +156,6 @@ body {
 .GO_COMBOBOX {
     position: absolute;
     background-color : white;
-    left: 20px;
-    bottom: 40px;
-    width : 40px;
-    height : 20px;
     overflow : auto;
     visibility:inherit;
 }
@@ -203,10 +163,6 @@ body {
 .GO_SPINNER {
     position: absolute;
     background-color : white;
-    left: 20px;
-    bottom: 40px;
-    width : 40px;
-    height : 20px;
     text-align:right;
     overflow : hidden;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
@@ -214,6 +170,62 @@ body {
     visibility:inherit;
 }
 
+.GO_TAB {
+    position: absolute;
+    background-color : white;
+    text-align:center;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+    width: 100%;
+    height: 100%;
+}
+
+.GO_TAB ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.GO_TAB li {
+    display: inline;
+    margin: 0;
+}
+
+.GO_TAB input {
+    padding: 0 1em;
+    text-decoration: none;
+    border-style: none;
+}
+
+.GO_TAB input:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.GO_TAB input:focus {
+    outline: none;
+}
+
+.GO_TAB_SELECTED input:hover {
+    text-decoration: none;
+}
+
+.GO_TAB_SELECTED input {
+    padding-bottom: 2px;
+    font-weight: bold;
+    border-width: 0px 2px 0px 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+.GO_TAB div {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: inherit;
+}
 .window {
     /*
         "position" must be relative or absolute 
@@ -318,7 +330,16 @@ body {
             }
             
             function onTab() {
-            }
+                var li = this.parentNode;
+                var ul = li.parentNode;
+                
+                var k = 0;
+                var elem = li;
+                while(elem=elem.previousSibling){k++;}
+                
+                var id = parseInt(ul.id.substring(3)); //ignore "uid"
+                socket.emit("callback", {uid:id, value:k});
+           }
             
             function onSlider() {
                 var id = parseInt(this.id.substring(3)); //ignore "uid"
@@ -416,6 +437,46 @@ body {
                 parent.insertBefore(child, null);
             }
             
+            function tabSelectHelper(tab, index) {
+                var __ul__ = document.getElementById(tab.id + "_ul");
+
+                if(!__ul__) {
+                    console.log("!ul");
+                    console.log(tab.id + "_ul");
+                    return;
+                }
+
+                var __item__ = __ul__.children[index];
+                
+                if(!__item__) {
+                    console.log("!item");
+                    console.log(__ul__.children.length);
+                    console.log(index);
+                    return;
+                }
+                
+                var __id__ = __item__.id.substr(0, __item__.id.indexOf('_'));
+                
+                //change tab label
+                for (var i = 0; i < __ul__.children.length; ++i) {
+                    __ul__.children[i].className = "";
+                }
+
+                __item__.className = "GO_TAB_SELECTED";
+                
+                //change div visibility
+                
+                //all hide
+                var __next__ = __ul__.nextElementSibling;
+                while(__next__) {
+                    __next__.style.display = "none";
+                    __next__ = __next__.nextElementSibling;
+                }
+                
+                //show good one
+                document.getElementById(__id__).style.display = "block";
+                console.log(__id__ + " -> block");
+            }
         </script>
     </body>
 </html>

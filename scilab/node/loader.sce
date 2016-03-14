@@ -111,7 +111,7 @@ if 0 then
     f.visible = %t;
 end
 
-//layout border
+//border layout
 if 0 then
     
     f = createWindow();
@@ -121,11 +121,11 @@ if 0 then
 
     c = createConstraints("border", "top", [50,20]);
 
-    t = %t;
-    l = %t;
+    t = %f;
+    l = %f;
     m = %t;
-    r = %t;
-    b = %t;
+    r = %f;
+    b = %f;
     
     if t then
         u_grid1 = uicontrol(f,...
@@ -168,8 +168,8 @@ if 0 then
     end
 end
 
-//gridbag
-if 1 then
+//gridbag layout
+if 0 then
     f = createWindow();
     f.position = [200 200 200 100];
     f.layout = "gridbag";
@@ -218,4 +218,27 @@ if 1 then
         "style"               , "frame", ...
         "backgroundcolor"     , [1 0 1], ...
         "constraints"         , c);
+end
+
+
+//tab
+if 1 then
+    f = createWindow();
+    f.position = [200 200 400 300];
+    f.layout = "border";
+    f.layout_options = createLayoutOptions("border", [10, 10]);
+    //f.layout_options = createLayoutOptions("border");
+
+    c = createConstraints("border", "center");
+
+    tab = uicontrol(f, "style", "tab", "constraints", c);
+    
+    tab3 = uicontrol(tab, "style", "frame", "string", "tab 3", "layout", "border", "backgroundcolor", [0 0 1]);
+    tab2 = uicontrol(tab, "style", "frame", "string", "tab 2", "layout", "border", "backgroundcolor", [0 1 0]);
+    tab1 = uicontrol(tab, "style", "frame", "string", "tab 1", "layout", "border", "backgroundcolor", [1 0 0]);
+    
+    uicontrol(tab1, "style", "pushbutton", "string", "tab1", "constraints", c);
+    uicontrol(tab2, "style", "pushbutton", "string", "tab2", "constraints", c);
+    uicontrol(tab3, "style", "pushbutton", "string", "tab3", "constraints", c);
+    
 end

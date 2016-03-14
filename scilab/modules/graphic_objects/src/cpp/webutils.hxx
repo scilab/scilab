@@ -173,6 +173,8 @@ public:
     static bool createListbox(int uid, std::ostringstream& ostr);
     static bool createCombobox(int uid, std::ostringstream& ostr);
     static bool createSpinner(int uid, std::ostringstream& ostr);
+    static bool createTab(int uid, std::ostringstream& ostr);
+    static bool addTabChild(int uid, int child, std::ostringstream& ostr);
 
     //update
     static bool updateDefaultProperties(int uid, std::ostringstream& ostr);
