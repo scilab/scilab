@@ -34,7 +34,7 @@ for y= 0:0.1:1
   E=[e E];
 end
 c=captions(E,string( 0:0.1:1));
-xpause(2d6)
+sleep(2000)
 clf();a=gca();a.axes_visible='on';a.box='on';
 xpoly([0 1],[1 1]/2);
 c=captions(gce(),'test');
@@ -52,10 +52,10 @@ locations=['upper_left','upper_right','lower_right','lower_left'];
 locations=['in_'+locations 'out_'+locations 'lower_caption' 'upper_caption'];
 for l=locations;
   c.legend_location=l;
-  xpause(2d6)
+  sleep(2000)
 end
 c.legend_location='by_coordinates';c.position=[0.5 1/8];
-xpause(2d6) 
+sleep(2000) 
 // captions with paches
 clf();a=gca();
 a.data_bounds=[-1 -1;2 2];a.axes_visible='on';
@@ -75,3 +75,4 @@ end
 E(3).thickness=3;
 c=captions(E,['A' 'B' 'C']);
 c.legend_location='in_upper_right';
+ 

@@ -37,7 +37,7 @@ pause
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-xpause - halt
+sleep - halt
 ]]></programlisting>
                 </td>
             </tr>
@@ -46,7 +46,7 @@ xpause - halt
     <refsection>
         <title>Particular cases</title>
         <para>
-            Scilab equivalent for Matlab <emphasis role="bold">pause(n)</emphasis> is <emphasis role="bold">xpause(1000*n)</emphasis>.
+            Scilab equivalent for Matlab <emphasis role="bold">pause(n)</emphasis> is <emphasis role="bold">sleep(n)</emphasis>.
         </para>
         <variablelist>
             <varlistentry>
@@ -68,3 +68,4 @@ xpause - halt
         </variablelist>
     </refsection>
 </refentry>
+

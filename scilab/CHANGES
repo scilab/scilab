@@ -111,6 +111,9 @@ Other feature additions
 
 * sign() can now handle a sparse matrix.
 
+* sleep(..,'s') allows now to specify the duration in seconds.
+
+
 Installation
 ============
 
@@ -206,6 +209,7 @@ Data Structures
 
 Removed Functions
 ==================
+* xpause will be removed in Scilab 6.1. Please use sleep() instead.
 
 * maxfiles function is now obsolete.
 
@@ -346,6 +350,8 @@ In 6.0.0:
 * Bug #14416 fixed - The file extension filter in Scinotes "Save as" window did not re-used the active file's extension when applicable.
 
 * Bug #14423 fixed - bench_run did not have a return value, export file was not configurable
+
+* Bug #14425 fixed - xpause() was a duplicate of sleep(). sleep() did not propose "s" time unit.
 
 * Bug #14429 fixed - rationals r+(-r) and r-r did not simplify the denominator to 1 in simp_mode(%t)
 
@@ -732,3 +738,4 @@ In 6.0.0 alpha-2 and earlier:
                      exactly "pvApyCtx" when macros are used in a gateway.
 
 * Bug #14044 fixed - MALLOC.h is now renamed to sci_malloc.h.
+ 

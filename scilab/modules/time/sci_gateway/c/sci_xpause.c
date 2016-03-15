@@ -28,6 +28,10 @@
 /*--------------------------------------------------------------------------*/
 int sci_xpause(char *fname, void* pvApiCtx)
 {
+
+    sciprint(_("%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"), _("Warning"), fname, "6.1");
+    sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "sleep()");
+
     SciErr sciErr;
     int m1 = 0, n1 = 0, sec = 0;
     int * p1_in_address = NULL;
@@ -86,6 +90,6 @@ int sci_xpause(char *fname, void* pvApiCtx)
     PutLhsVar();
 
     return 0;
-
 }
 /*--------------------------------------------------------------------------*/
+

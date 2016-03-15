@@ -1012,14 +1012,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xpause">xpause</link>
-                </term>
-                <listitem>
-                    <para>Suspend Scilab</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="show_window">show_window</link>
                 </term>
                 <listitem>
@@ -1287,3 +1279,4 @@
         </variablelist>
     </refsection>
 </refentry>
+
