@@ -73,7 +73,7 @@ class PortHandler implements ScilabHandler {
         }
 
         String value = atts.getValue("value");
-        if (value != null) {
+        if (value != null &&  shared.validCIdentifier.matcher(value).matches()) {
             shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.LABEL, value);
         }
 

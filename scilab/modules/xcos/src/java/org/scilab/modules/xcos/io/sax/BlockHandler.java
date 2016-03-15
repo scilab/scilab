@@ -68,10 +68,9 @@ class BlockHandler implements ScilabHandler {
 
         String value = atts.getValue("value");
         if (value != null) {
-            if (kind == Kind.BLOCK) {
+            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, value);
+            if (kind == Kind.BLOCK && saxHandler.validCIdentifier.matcher(value).matches()) {
                 saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.LABEL, value);
-            } else { // ANNOTATION
-                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, value);
             }
         }
 

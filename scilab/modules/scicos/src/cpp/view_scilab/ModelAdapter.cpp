@@ -1246,9 +1246,39 @@ struct dep_ut
     }
 };
 
+// Valid C identifier definition
+// https://msdn.microsoft.com/en-us/library/e7f8y25b.aspx
+bool isValidCIdentifier(const std::string& label)
+{
+    auto is_nondigit = [](char c)
+    {
+        return ('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z') || '_' == c;
+    };
+    auto is_digit = [](char c)
+    {
+        return ('0' <= c && c <= '9');
+    };
+
+    // is a valid but empty string
+    if (label.empty())
+    {
+        return true;
+    }
+    // the first character should be a non digit
+    if (!is_nondigit(label[0]))
+    {
+        return false;
+    }
+    // others  should be either a digit or a non digit
+    auto found = std::find_if_not(label.begin(), label.end(), [is_nondigit, is_digit](char c)
+    {
+        return is_nondigit(c) || is_digit(c);
+    } );
+    return found == label.end();
+}
+
 struct label
 {
-
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
@@ -1257,8 +1287,16 @@ struct label
         controller.getObjectProperty(adaptee, BLOCK, LABEL, label);
 
         types::String* o = new types::String(1, 1);
-        o->set(0, label.data());
 
+        // safety check ; the returned value should always be a valid C / modelica identifier
+        if (isValidCIdentifier(label))
+        {
+            o->set(0, label.data());
+        }
+        else
+        {
+            o->set(0, "");
+        }
         return o;
     }
 
@@ -1282,6 +1320,12 @@ struct label
         char* c_str = wide_string_to_UTF8(current->get(0));
         std::string label(c_str);
         FREE(c_str);
+
+        if (!isValidCIdentifier(label))
+        {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : Valid C identifier expected.\n"), "model", "label");
+            return false;
+        }
 
         controller.setObjectProperty(adaptee, BLOCK, LABEL, label);
         return true;
