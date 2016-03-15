@@ -589,8 +589,14 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         else // model::implicit
         {
             newPortIsImplicit = true;
-            sourceBlockPorts = in;
-            sourceBlockPorts.insert(sourceBlockPorts.end(), out.begin(), out.end());
+            if (v.kind == Start)
+            {
+                sourceBlockPorts = out;
+            }
+            else // End
+            {
+                sourceBlockPorts = in;
+            }
 
             // Rule out the explicit ports
             for (size_t i = 0; i < sourceBlockPorts.size(); ++i)

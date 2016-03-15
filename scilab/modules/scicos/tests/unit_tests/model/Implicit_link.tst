@@ -13,7 +13,7 @@ scicos_log("TRACE");
 o = Ground("define");
 l = scicos_link(ct=[1 2]);
 d = scicos_diagram(objs=list(o,l));
-d.objs(2).to = [1 1 0];
+d.objs(2).to = [1 1 1];
 
 assert_checkequal(d.objs(1).graphics.pin,  2);
 assert_checkequal(d.objs(1).graphics.pout, []);
@@ -21,7 +21,7 @@ assert_checkequal(d.objs(1).graphics.pout, []);
 o = Ground("define");
 l = scicos_link(ct=[1 2]);
 d = scicos_diagram(objs=list(o,l));
-d.objs(2).from = [1 1 0];
+d.objs(2).from = [1 1 1];
 
 assert_checkequal(d.objs(1).graphics.pin,  2);
 assert_checkequal(d.objs(1).graphics.pout, []);

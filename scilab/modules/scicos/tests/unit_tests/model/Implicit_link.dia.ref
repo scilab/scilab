@@ -151,7 +151,7 @@ Xcos debug: objectReferenced( 7 , LINK ) : 1
 Xcos trace: propertyUpdated( 7 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
-d.objs(2).to = [1 1 0];
+d.objs(2).to = [1 1 1];
 Xcos debug: objectReferenced( 5 , BLOCK ) : 2
 Xcos debug: objectReferenced( 5 , BLOCK ) : 3
 Xcos debug: objectUnreferenced( 5 , BLOCK ) : 2
@@ -346,7 +346,7 @@ Xcos debug: objectDeleted( 6 , PORT )
 Xcos debug: objectDeleted( 5 , BLOCK )
 Xcos debug: objectDeleted( 7 , LINK )
 Xcos debug: objectDeleted( 4 , DIAGRAM )
-d.objs(2).from = [1 1 0];
+d.objs(2).from = [1 1 1];
 Xcos debug: objectReferenced( 12 , BLOCK ) : 2
 Xcos debug: objectReferenced( 12 , BLOCK ) : 3
 Xcos debug: objectUnreferenced( 12 , BLOCK ) : 2
