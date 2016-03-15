@@ -121,11 +121,11 @@ if 0 then
 
     c = createConstraints("border", "top", [50,20]);
 
-    t = %f;
-    l = %f;
+    t = %t;
+    l = %t;
     m = %t;
-    r = %f;
-    b = %f;
+    r = %t;
+    b = %t;
     
     if t then
         u_grid1 = uicontrol(f,...

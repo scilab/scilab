@@ -660,7 +660,7 @@ void WebUtils::setUILayout(int uid, std::ostringstream& ostr, bool append)
                 ostr << "__layout__.style.display = 'flex';" << std::endl;
                 ostr << "__layout__.style.flexDirection = 'column';" << std::endl;
                 ostr << "__layout__.style.width = '100%';" << std::endl;
-                ostr << "__layout__.style.height = '100%';" << std::endl;
+                ostr << "__layout__.style.height = 'inherit';" << std::endl;
 
                 //add top
                 ostr << "var __top__ = " << createElement("HEADER") << std::endl;
@@ -1400,7 +1400,7 @@ bool WebUtils::addTabChild(int uid, int child, std::ostringstream& ostr)
     ostr << "__child__.style.left = 'inherit';" << std::endl;
     ostr << "__child__.style.bottom = 'inherit';" << std::endl;
     ostr << "__child__.style.width = '100%';" << std::endl;
-    ostr << "__child__.style.height = '100%';" << std::endl;
+    ostr << "__child__.style.height = 'inherit';" << std::endl;
 
     //be carefull, we change __child__ to tab uid instead of frame uid
     setUIValue(uid, ostr);

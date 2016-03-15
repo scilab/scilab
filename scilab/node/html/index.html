@@ -179,7 +179,9 @@ body {
     font-size:11px;
     visibility:inherit;
     width: 100%;
-    height: 100%;
+    height: inherit;
+    display: flex;
+    flex-direction:column;
 }
 
 .GO_TAB ul {
@@ -222,9 +224,9 @@ body {
 
 .GO_TAB div {
     width: 100%;
-    height: 100%;
     display: none;
     position: inherit;
+    flex:1;
 }
 .window {
     /*
@@ -474,8 +476,8 @@ body {
                 }
                 
                 //show good one
-                document.getElementById(__id__).style.display = "block";
-                console.log(__id__ + " -> block");
+                document.getElementById(__id__).style.display = "flex";
+                console.log(__id__ + " -> flex");
             }
         </script>
     </body>
