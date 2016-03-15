@@ -653,61 +653,58 @@ void WebUtils::setUILayout(int uid, std::ostringstream& ostr, bool append)
                 //|       BOTTOM        |
                 //+---------------------+
 
-                //table
-                ostr << "var __table__ = " << createElement("TABLE") << std::endl;
-                ostr << "__table__.id = " << getIdString(uid, "_table") << ";" << std::endl;
-                ostr << "__table__.style.margin = '0';" << std::endl;
-                ostr << "__table__.style.padding = '0';" << std::endl;
-                ostr << "__table__.style.width = '100%';" << std::endl;
-                ostr << "__table__.style.height = '100%';" << std::endl;
-                ostr << "__table__.style.borderCollapse = 'collapse';" << std::endl;
+                //add "frame" in child to be more ... flexible ;)
 
-                //rows
-                ostr << "var __tr_top__ = " << createElement("TR") << std::endl;
-                ostr << "var __tr_middle__ = " << createElement("TR") << std::endl;
-                ostr << "var __tr_bottom__ = " << createElement("TR") << std::endl;
+                ostr << "var __layout__ = " << createElement("DIV") << std::endl;
+                ostr << "__layout__.id = " << getIdString(uid, "_layout") << ";" << std::endl;
+                ostr << "__layout__.style.display = 'flex';" << std::endl;
+                ostr << "__layout__.style.flexDirection = 'column';" << std::endl;
+                ostr << "__layout__.style.width = '100%';" << std::endl;
+                ostr << "__layout__.style.height = '100%';" << std::endl;
 
-                //cell in rows
-                ostr << "var __td_top__ = " << createElement("TD") << std::endl;
-                ostr << "__td_top__.colSpan = '3';" << std::endl;
-                ostr << "__td_top__.id = " << getIdString(uid, "_top") << ";" << std::endl;
-                ostr << "__td_top__.style.width = '100%';" << std::endl;
+                //add top
+                ostr << "var __top__ = " << createElement("HEADER") << std::endl;
+                ostr << "__top__.id = " << getIdString(uid, "_top") << ";" << std::endl;
+                ostr << "__top__.style.width = '100%';" << std::endl;
 
-                ostr << "var __td_left__ = " << createElement("TD") << std::endl;
-                ostr << "__td_left__.id = " << getIdString(uid, "_left") << ";" << std::endl;
-                ostr << "__td_left__.style.height = '100%';" << std::endl;
+                //add middle band
+                ostr << "var __middle__ = " << createElement("DIV") << std::endl;
+                ostr << "__middle__.id = " << getIdString(uid, "_middle") << ";" << std::endl;
+                ostr << "__middle__.style.flex = '1';" << std::endl;
+                ostr << "__middle__.style.display = 'flex';" << std::endl;
 
-                ostr << "var __td_center__ = " << createElement("TD") << std::endl;
-                ostr << "__td_center__.id = " << getIdString(uid, "_center") << ";" << std::endl;
-                ostr << "__td_center__.style.width = '100%';" << std::endl;
-                ostr << "__td_center__.style.height = '100%';" << std::endl;
+                //add left
+                ostr << "var __left__ = " << createElement("ASIDE") << std::endl;
+                ostr << "__left__.id = " << getIdString(uid, "_left") << ";" << std::endl;
+                ostr << "__left__.style.display = 'flex';" << std::endl;
 
-                ostr << "var __td_right__ = " << createElement("TD") << std::endl;
-                ostr << "__td_right__.id = " << getIdString(uid, "_right") << ";" << std::endl;
-                ostr << "__td_right__.style.height = '100%';" << std::endl;
+                //add center
+                ostr << "var __center__ = " << createElement("ARTICLE") << std::endl;
+                ostr << "__center__.id = " << getIdString(uid, "_center") << ";" << std::endl;
+                ostr << "__center__.style.flex = '1';" << std::endl;
+                ostr << "__center__.style.display = 'flex';" << std::endl;
+                ostr << "__center__.style.width = '100%';" << std::endl;
 
-                ostr << "var __td_bottom__ = " << createElement("TD") << std::endl;
-                ostr << "__td_bottom__.colSpan = '3';" << std::endl;
-                ostr << "__td_bottom__.id = " << getIdString(uid, "_bottom") << ";" << std::endl;
-                ostr << "__td_bottom__.style.width = '100%';" << std::endl;
+                //add right
+                ostr << "var __right__ = " << createElement("ASIDE") << std::endl;
+                ostr << "__right__.id = " << getIdString(uid, "_right") << ";" << std::endl;
+                ostr << "__right__.style.display = 'flex';" << std::endl;
 
-                //hierarchy
+                //add bottom
+                ostr << "var __bottom__ = " << createElement("FOOTER") << std::endl;
+                ostr << "__bottom__.id = " << getIdString(uid, "_bottom") << ";" << std::endl;
+                ostr << "__bottom__.style.width = '100%';" << std::endl;
 
-                //td in tr
-                ostr << "__tr_top__.appendChild(__td_top__);" << std::endl;
-                ostr << "__tr_middle__.appendChild(__td_left__);" << std::endl;
-                ostr << "__tr_middle__.appendChild(__td_center__);" << std::endl;
-                ostr << "__tr_middle__.appendChild(__td_right__);" << std::endl;
-                ostr << "__tr_bottom__.appendChild(__td_bottom__);" << std::endl;
+                //hierarchie
+                ostr << "__middle__.appendChild(__left__);" << std::endl;
+                ostr << "__middle__.appendChild(__center__);" << std::endl;
+                ostr << "__middle__.appendChild(__right__);" << std::endl;
 
-                //tr in table
-                ostr << "__table__.appendChild(__tr_top__);" << std::endl;
-                ostr << "__table__.appendChild(__tr_middle__);" << std::endl;
-                ostr << "__table__.appendChild(__tr_bottom__);" << std::endl;
+                ostr << "__layout__.appendChild(__top__);" << std::endl;
+                ostr << "__layout__.appendChild(__middle__);" << std::endl;
+                ostr << "__layout__.appendChild(__bottom__);" << std::endl;
 
-                //table in parent
-                ostr << "__child__.appendChild(__table__);" << std::endl;
-
+                ostr << "__child__.appendChild(__layout__);" << std::endl;
                 break;
             }
             case LAYOUT_GRID:
@@ -895,8 +892,8 @@ void WebUtils::setUIBorder(int uid, std::ostringstream& ostr, bool append)
         default:
         case BORDER_CENTER:
             position = "_center";
-            ostr << "__child__.style.width = '100%';" << std::endl;
-            ostr << "__child__.style.height = '100%';" << std::endl;
+            ostr << "__child__.style.width = 'inherit';" << std::endl;
+            ostr << "__child__.style.height = 'inherit';" << std::endl;
             padding = getPadding(0, 0, 0, 0);
             break;
         case BORDER_BOTTOM:
@@ -941,7 +938,7 @@ void WebUtils::setUIBorder(int uid, std::ostringstream& ostr, bool append)
                 ostr << "__child__.style.width = '" << getSubPadding(size[0]) << "';" << std::endl;
             }
 
-            ostr << "__child__.style.height = '100%';" << std::endl;
+            ostr << "__child__.style.height = 'inherit';" << std::endl;
             padding = getPadding(0, pad[0], 0, 0);
             break;
         case BORDER_RIGHT:
@@ -956,7 +953,7 @@ void WebUtils::setUIBorder(int uid, std::ostringstream& ostr, bool append)
                 ostr << "__child__.style.width = '" << getSubPadding(size[0]) << "';" << std::endl;
             }
 
-            ostr << "__child__.style.height = '100%';" << std::endl;
+            ostr << "__child__.style.height = 'inherit';" << std::endl;
             padding = getPadding(0, 0, 0, pad[0]);
             break;
     }
