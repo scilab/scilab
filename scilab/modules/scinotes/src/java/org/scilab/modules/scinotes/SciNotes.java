@@ -1260,7 +1260,7 @@ public class SciNotes extends SwingScilabDockablePanel {
         fileChooser.addChoosableFileFilter(allFilter);
         fileChooser.addChoosableFileFilter(allScilabFilter);
 
-        String name = getTextPane().getName();
+        String name = initialDirectoryPath;
         File tempFile = new File(name);
 
         // Select default file type
