@@ -339,6 +339,8 @@ In 6.0.0:
 
 * Bug #14099 fixed - sci2exp macro was fixed to avoid "a+[] Warning"
 
+* Bug #14111 fixed - modified lib function to detect Scilab version 5 libraries and give proper error messages.
+
 * Bug #14271 fixed - conjgrad() displayed an incorrect error message about number of arguments.
 
 * Bug #14347 fixed - plot2d crashed with multiple entries (non regression test).
@@ -740,4 +742,4 @@ In 6.0.0 alpha-2 and earlier:
                      exactly "pvApyCtx" when macros are used in a gateway.
 
 * Bug #14044 fixed - MALLOC.h is now renamed to sci_malloc.h.
- 
+

@@ -28,9 +28,8 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_lib(types::typed_list &in, int /*_iRetCount*/, types::typed_list &out)
 {
-    int iXMLFileLen = 0;
     if (in.size() != 1)
     {
         Scierror(78, _("%s: Wrong number of input argument(s): %d expected.\n"), "lib", 1);
@@ -74,6 +73,16 @@ types::Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, type
         case 2:
         {
             Scierror(999, "%s: %s", "lib", _("Redefining permanent variable.\n"));
+            return types::Function::Error;
+        }
+        case 3:
+        {
+            Scierror(999, "%s: %s", "lib", _("Cannot read lib file: Not in proper XML format.\n"));
+            return types::Function::Error;
+        }
+        case 4:
+        {
+            Scierror(999, "%s: %s", "lib", _("Old binary lib detected. Please recompile it for Scilab 6.\n"));
             return types::Function::Error;
         }
         default:
