@@ -123,9 +123,9 @@ class PortHandler implements ScilabHandler {
         shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
 
         v = atts.getValue("dataType");
-        int intValue = BasicPort.DataType.REAL_MATRIX.ordinal();  // Magic default value, used in Scilab 5.x
+        int intValue = BasicPort.DataType.REAL_MATRIX.asScilabValue();  // Magic default value, used in Scilab 5.x
         if (v != null) {
-            intValue = BasicPort.DataType.valueOf(v).ordinal();
+            intValue = BasicPort.DataType.valueOf(v).asScilabValue();
         }
         datatype.set(2, intValue);
         intValue = -2; // Magic default value, used in Scilab 5.x
@@ -146,6 +146,8 @@ class PortHandler implements ScilabHandler {
         v = atts.getValue("initialState");
         if (v != null) {
             shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.FIRING, Double.valueOf(v));
+        } else {
+            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.FIRING, -1.0);
         }
 
         /*
