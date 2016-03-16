@@ -25,6 +25,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 #include "LayoutType.h"
 #include "BorderLayoutType.h"
+#include "FrameBorderType.h"
 }
 
 WebUtils::SETTER WebUtils::setter;
@@ -236,7 +237,7 @@ void WebUtils::setParent(int uid, std::ostringstream& ostr, bool append)
     if (getUILayout(parent) == LAYOUT_BORDER && hasStyle(parent, __GO_UI_TAB__) == false)
     {
         //force update of border position, especially for center
-        addInWaitingQueue(uid, __GO_UI_BORDER_PREFERREDSIZE__);
+        addInWaitingQueue(uid, __GO_UI_BORDER_POSITION__);
     }
 
     setWaitingProperties(uid, ostr, true);
@@ -695,7 +696,7 @@ void WebUtils::setUILayout(int uid, std::ostringstream& ostr, bool append)
                 ostr << "__bottom__.id = " << getIdString(uid, "_bottom") << ";" << std::endl;
                 ostr << "__bottom__.style.width = '100%';" << std::endl;
 
-                //hierarchie
+                //hierarchy
                 ostr << "__middle__.appendChild(__left__);" << std::endl;
                 ostr << "__middle__.appendChild(__center__);" << std::endl;
                 ostr << "__middle__.appendChild(__right__);" << std::endl;
@@ -1038,6 +1039,41 @@ void WebUtils::setUIGridBag(int uid, std::ostringstream& ostr, bool append)
     ostr << td << std::endl;
     ostr << tr << std::endl;
     ostr << tricktoforcerefresh << std::endl;
+}
+
+void WebUtils::setUIFrameBorder(int uid, std::ostringstream& ostr, bool append)
+{
+    std::string title;
+    int border = getIntProperty(uid, __GO_UI_FRAME_BORDER__);
+    int style = getIntProperty(border, __GO_UI_FRAME_BORDER_STYLE__);
+
+    if (style == TITLED)
+    {
+        title = getStringProperty(border, __GO_TITLE__);
+    }
+
+    if (append == false)
+    {
+        ostr << "var __child__ = " << getElementById(uid) << std::endl;
+    }
+
+
+    //One style with or without title
+    createCommonIUControl(border, "DIV", "GO_UI_FRAME_BORDER", ostr);
+    ostr << "var __fieldset__ = " + createElement("FIELDSET");
+    ostr << "__fieldset__.id = " << getIdString(uid, "_fieldset") << ";" << std::endl;
+    ostr << "var __legend__ = " + createElement("LEGEND");
+    ostr << "__legend__.id = " << getIdString(uid, "_legend") << ";" << std::endl;
+    ostr << "__legend__.innerHTML = '" << title << "';" << std::endl;
+
+    //hierarchy
+
+    int parent = getParent(uid);
+    ostr << "__fieldset__.appendChild(__legend__);" << std::endl;
+    ostr << "__fieldset__.appendChild(__child__);" << std::endl;
+    ostr << "__temp__.appendChild(__fieldset__);" << std::endl;
+    ostr << "var __parent__ = " << getElementById(parent) << std::endl;
+    ostr << "__parent__.appendChild(__temp__);" << std::endl;
 }
 
 bool WebUtils::hasCallback(int uid)
@@ -1514,9 +1550,10 @@ void WebUtils::fillSetter()
     setter[__GO_UI_SLIDERSTEP__] = WebUtils::setUIStep;
     setter[__GO_UI_VALUE__] = WebUtils::setUIValue;
     //preferred size is the last property to be set for border constraints
-    setter[__GO_UI_BORDER_PREFERREDSIZE__] = WebUtils::setUIBorder;
+    setter[__GO_UI_BORDER_POSITION__] = WebUtils::setUIBorder;
     //preferred size is the last property to be set for gridbag constraints
-    setter[__GO_UI_GRIDBAG_PREFERREDSIZE__] = WebUtils::setUIGridBag;
+    setter[__GO_UI_GRIDBAG_GRID__] = WebUtils::setUIGridBag;
+    setter[__GO_UI_FRAME_BORDER__] = WebUtils::setUIFrameBorder;
     //setter[__GO_CALLBACK__] = WebUtils::setCallback;
 }
 

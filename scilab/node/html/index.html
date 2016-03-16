@@ -52,7 +52,6 @@ body {
     position: absolute;
     background-color : white;
     text-align:center;
-    overflow : hidden;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
     font-size:11px;
     //border : 1px rgb(0,0,0) solid;
@@ -228,6 +227,14 @@ body {
     position: inherit;
     flex:1;
 }
+
+.GO_UI_FRAME_BORDER {
+}
+
+.GO_UI_FRAME_BORDER fieldset {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
 .window {
     /*
         "position" must be relative or absolute 
@@ -274,7 +281,7 @@ body {
         
         <!--  style="width:100%;height:100%" !-->
         
-        <table width=200 height=100 style="padding: 0px;border-collapse: collapse;">
+        <!--table width=200 height=100 style="padding: 0px;border-collapse: collapse;">
             <tr>
                 <td><div style="width:100%;height:100%;background-color:red"></div></td>
                 <td rowspan="2"><div style="width:100%;height:100%;background-color:yellow"></div></td>
@@ -287,7 +294,7 @@ body {
             <tr>
                 <td colspan="2"><div style="width:100%;height:100%;background-color:blue"></div></td>
             </tr>
-        </table>
+        </table!-->
         
         <div id='infobar'></div>
         <h3>Logger:</h3>

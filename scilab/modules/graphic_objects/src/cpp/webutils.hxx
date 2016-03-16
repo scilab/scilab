@@ -149,6 +149,9 @@ public:
     static void getUIGridBagGrid(int uid, std::vector<int>& vect);
     static void setUIGridBag(int uid, std::ostringstream& ostr, bool append = false);
 
+    static void getUIFrameBorder(int uid, std::vector<int>& vect);
+    static void setUIFrameBorder(int uid, std::ostringstream& ostr, bool append = false);
+
     static bool hasCallback(int uid);
     static void setCallback(int uid, std::ostringstream& ostr, bool append = false);
 

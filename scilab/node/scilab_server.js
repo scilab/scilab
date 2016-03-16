@@ -12,7 +12,7 @@ var fork = require('child_process').fork;
 
 server.listen(1337);
 
-var script = '/loader';
+var script = '/start';
 
 app.use('/favicon.ico', express.static('./favicon.ico'));
 app.get("/favicon.ico", function(req, res) {
@@ -23,7 +23,7 @@ app.get("*", function(req, res) {
     if(req.url != "/") {
         script = req.url;
     } else {
-        script = '/loader';
+        script = '/start';
     }
 });
 

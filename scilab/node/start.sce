@@ -1,4 +1,17 @@
-if 0 then
+//1 +/-
+//2 damier
+//3 spinner and sliders
+//4 demo uicontrol
+//5 RGB
+//6 border layout
+//7 gridbag layout
+//8 tab
+//9 visible
+//10 opticlim
+
+demo = 10
+
+if demo == 1 then
     f1 = createWindow();
     f1.position(3:4) = [250, 100];
 
@@ -7,7 +20,7 @@ if 0 then
     uicontrol(f1, "position", [175 25 50 50], "string", "-1", "callback", "v = eval(get(''num'', ''string''));set(''num'', ''string'', string(v - 1));");
 end
 
-if 0 then
+if demo == 2 then
     f2 = createWindow();
     f2.visible = %f;
     f2.position(3:4) = [500, 600];
@@ -21,7 +34,7 @@ if 0 then
     f2.visible = %t;
 end
 
-if 0 then
+if demo == 3 then
     xdel(winsid());
     clear;
     
@@ -64,7 +77,7 @@ if 0 then
 end
 
 
-if 0 then
+if demo == 4 then
     f = createWindow();
     f.position = [200 200 240 470];
     f.figure_name = "";
@@ -82,7 +95,7 @@ if 0 then
     combo = uicontrol(fr1, "style", "popupmenu", "string", "popupmenu1|popupmenu2", "position", [10 10 200 30], "backgroundcolor", [0.8 0.8 0.8]);
 end
 
-if 0 then
+if demo == 5 then
     xdel(winsid());
     clear;
 
@@ -112,7 +125,7 @@ if 0 then
 end
 
 //border layout
-if 0 then
+if demo == 6 then
     
     f = createWindow();
     f.layout = "border";
@@ -169,7 +182,7 @@ if 0 then
 end
 
 //gridbag layout
-if 0 then
+if demo == 7 then
     f = createWindow();
     f.position = [200 200 200 100];
     f.layout = "gridbag";
@@ -222,7 +235,7 @@ end
 
 
 //tab
-if 1 then
+if demo == 8 then
     f = createWindow();
     f.position = [200 200 400 300];
     f.layout = "border";
@@ -237,8 +250,36 @@ if 1 then
     tab2 = uicontrol(tab, "style", "frame", "string", "tab 2", "layout", "border", "backgroundcolor", [0 1 0]);
     tab1 = uicontrol(tab, "style", "frame", "string", "tab 1", "layout", "border", "backgroundcolor", [1 0 0]);
     
-    uicontrol(tab1, "style", "pushbutton", "string", "tab1", "constraints", c);
-    uicontrol(tab2, "style", "pushbutton", "string", "tab2", "constraints", c);
-    uicontrol(tab3, "style", "pushbutton", "string", "tab3", "constraints", c);
+    //uicontrol(tab1, "style", "pushbutton", "string", "tab1", "constraints", c);
+    //uicontrol(tab2, "style", "pushbutton", "string", "tab2", "constraints", c);
+    //uicontrol(tab3, "style", "pushbutton", "string", "tab3", "constraints", c);
     
+end
+
+if demo == 9 then
+
+    fig_pregui = createWindow();
+    fig_pregui.visible = "off";
+    fig_pregui.figure_name = _d("OPTICLIM", "OPTICLIM - site and weather selection");
+    fig_pregui.position = [200 200 500 170];
+    fig_pregui.layout = "border";
+    fig_pregui.background = color(244,244,244);
+    fig_pregui.tag = "figure_preopticlim";
+        
+    //sleep(500);
+
+    b1 = createBorder("titled", createBorder("etched"), _d("OPTICLIM", "Choose your site")+":", "left", "top", createBorderFont("", 11, "bold"), "black");
+    
+    f = uicontrol(fig_pregui, "style", "frame", "layout", "gridbag", "fontsize", 11);
+    f1 = uicontrol(f, "style", "frame", "layout", "gridbag", "border", b1, "constraints", createConstraints("gridbag", [1 1 3 1], [1 1], "both", "left"), "fontsize", 11);
+    uicontrol(f1, "style", "popupmenu", "string", [], "fontsize", 11, "horizontalAlignment", "center", "margins", [0,5,0,5], "tag", "site_list", "callback", "cbChangeSite", "constraints", createConstraints("gridbag", [1 1 1 1], [5 1], "horizontal", "left", [0,0], [330,22]));
+    uicontrol(f1, "style", "pushbutton", "string", "", "fontsize", 11, "horizontalAlignment", "center", "margins", [0,5,0,5], "callback", "cbAddSite", "constraints", createConstraints("gridbag", [2 1 1 1], [1 1], "horizontal", "left"));
+
+    fig_pregui.visible = "on";
+end
+
+//opticlim
+if demo == 10 then
+    exec("E:\git\toolbox\sanofi-opticlim\loader.sce");
+    OpticlimStart();
 end
