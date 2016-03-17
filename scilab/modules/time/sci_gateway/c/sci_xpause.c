@@ -23,19 +23,20 @@
 #endif
 #include "gw_time.h"
 #include "api_scilab.h"
+#include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_xpause(char *fname, void* pvApiCtx)
 {
 
-    sciprint(_("%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"), _("Warning"), fname, "6.1");
-    sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "sleep()");
-
     SciErr sciErr;
     int m1 = 0, n1 = 0, sec = 0;
     int * p1_in_address = NULL;
     double * pDblReal = NULL;
+
+    sciprint(_("%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"), _("Warning"), fname, "6.1");
+    sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "sleep()");
 
     CheckLhs(0, 1);
     CheckRhs(1, 1);
@@ -43,7 +44,17 @@ int sci_xpause(char *fname, void* pvApiCtx)
     if (Rhs == 1)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
         sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
         if (isScalar(pvApiCtx, p1_in_address) == 0)
         {
