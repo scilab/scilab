@@ -82,7 +82,17 @@ void ScilabWebView::registerToController(void)
     //get connected socket
     s = client.socket();
 
-    s->on("callback", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp){
+    s->on("imagepath", sio::socket::event_listener_aux([&](std::string const & name, sio::message::ptr const & data, bool isAck, sio::message::list & ack_resp)
+    {
+        l.lock.lock();
+        std::string path = (std::string)data->get_map()["path"]->get_string();
+        WebUtils::setImagePath(path);
+        l.cond.notify_all();
+        l.lock.unlock();
+    }));
+
+    s->on("callback", sio::socket::event_listener_aux([&](std::string const & name, sio::message::ptr const & data, bool isAck, sio::message::list & ack_resp)
+    {
         l.lock.lock();
         int uid = (int)data->get_map()["uid"]->get_int();
 
@@ -112,7 +122,7 @@ void ScilabWebView::registerToController(void)
                 WebUtils::updateValue(uid, d);
                 break;
             }
-                break;
+            break;
             case __GO_UI_EDIT__:
             {
                 std::string value = (std::string)data->get_map()["value"]->get_string();

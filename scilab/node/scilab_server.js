@@ -1,5 +1,5 @@
+var fork = require('child_process').fork;
 var L = console.log;
-
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
@@ -7,24 +7,12 @@ var io = require('socket.io')(server);
 
 var client = require('socket.io-client');
 
-var fork = require('child_process').fork;
-
+app.use(express.static('static'));
 
 server.listen(1337);
 
-var script = '/start';
-
-app.use('/favicon.ico', express.static('./favicon.ico'));
-app.get("/favicon.ico", function(req, res) {
-});
-
-app.get("*", function(req, res) {
-    res.sendFile(__dirname + '/html/index.html');
-    if(req.url != "/") {
-        script = req.url;
-    } else {
-        script = '/start';
-    }
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + '/static/index.html');
 });
 
 io.on('connection', function (socket) {
@@ -37,6 +25,8 @@ io.on('connection', function (socket) {
     prcSocket.on('connect', function() {
         L('Dispatcher connected');
 
+        prcSocket.emit('imagepath', {path:__dirname + '/static/'});
+        
         prcSocket.on('command_end', function() {
             socket.emit('command_end');
         });
@@ -54,11 +44,11 @@ io.on('connection', function (socket) {
         });
         
         prcSocket.on('status', function(msg) {
-            if(msg.data == 'ready') {
+            if(msg.data === 'ready') {
                 //send ready message to client
                 socket.emit('status', msg);
                 //send execution of initial script to scilab
-                prcSocket.emit('command', {data:"exec(getenv('SCIFILES') + '" + script + ".sce', -1);"});
+                prcSocket.emit('command', {data:"exec(getenv('SCIFILES') + '" + "/start" + ".sce', -1);"});
             }
         });
     });

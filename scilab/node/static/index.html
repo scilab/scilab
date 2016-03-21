@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset='UTF-8' />
+        <title>Scilab WebView</title>
+        <script type='text/javascript' src='/socket.io/socket.io.js'></script>
+        <link rel="stylesheet" type="text/css" href="scilab.css">
+        <script src="main.js"></script>
+        <script src="scilab_create.js"></script>
+        <script src="scilab_helper.js"></script>
+        <script src="scilab_setter.js"></script>
+        <script src="scilab_tools.js"></script>
+        <script src="scilab_enum.js"></script>
+    </head>
+    <body>
+        <h1>Scilab WebView</h1>
+        <!--table width=200 height=100>
+            <tr>
+                <td bgcolor="red"></td>
+                <td bgcolor="yellow" colspan="2"></td>
+            </tr>
+            <tr>
+                <td bgcolor="lime"></td>
+                <td bgcolor="magenta"></td>
+                <td bgcolor="cyan" rowspan="2"></td>
+            </tr>
+            <tr>
+                <td bgcolor="blue" colspan="2"></td>
+            </tr>
+        </table>
+        <br!-->
+        
+        <!--  style="width:100%;height:100%" !-->
+        
+        <!--table width=200 height=100 style="padding: 0px;border-collapse: collapse;">
+            <tr>
+                <td><div style="width:100%;height:100%;background-color:red"></div></td>
+                <td rowspan="2"><div style="width:100%;height:100%;background-color:yellow"></div></td>
+                <td><div style="width:100%;height:100%;background-color:magenta"></div></td>
+            </tr>
+            <tr>
+                <td><div style="width:100%;height:100%;background-color:lime"></div></td>
+                <td rowspan="2"><div style="width:100%;height:100%;background-color:cyan"></div></td>
+            </tr>
+            <tr>
+                <td colspan="2"><div style="width:100%;height:100%;background-color:blue"></div></td>
+            </tr>
+        </table!-->
+        
+        <div id='infobar'></div>
+        <h3>Logger:</h3>
+        <div class='log' id='logger'></div>
+        <br>
+        <div class='window' id='scilab'></div>
+        <script type='text/javascript'>
+            resetLogger();
+            setInfo('');
+        </script>
+    </body>
+</html>

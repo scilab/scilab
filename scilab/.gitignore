@@ -195,3 +195,6 @@ modules/pvm/
 
 # call_scilab examples
 call_scilab_*
+
+#node web server
+node/static/images

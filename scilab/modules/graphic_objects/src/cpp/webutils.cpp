@@ -13,6 +13,9 @@
 *
 */
 
+#ifdef _MSC_VER
+#include <io.h>
+#endif
 #include <string.h>
 #include <iostream>
 #include <cmath>
@@ -26,10 +29,14 @@ extern "C"
 #include "LayoutType.h"
 #include "BorderLayoutType.h"
 #include "FrameBorderType.h"
+#include "copyfile.h"
+#include "charEncoding.h"
+#include "sci_malloc.h"
 }
 
 WebUtils::SETTER WebUtils::setter;
 WebUtils::WAITING_PROP WebUtils::waitprop;
+std::string WebUtils::imagePath;
 
 int WebUtils::getIntProperty(int uid, int prop)
 {
@@ -124,21 +131,6 @@ bool WebUtils::setDoubleVectorProperty(int uid, int prop, const std::vector<doub
     return true;
 }
 
-std::string WebUtils::getIdString(int uid, const std::string& suffix)
-{
-    return "'uid" + std::to_string(uid) + suffix + "'";
-}
-
-std::string WebUtils::getElementById(int uid, const std::string& suffix)
-{
-    return "document.getElementById(" + getIdString(uid, suffix) + ");";
-}
-
-std::string WebUtils::createElement(const std::string& type)
-{
-    return "document.createElement('" + type + "');";
-}
-
 std::string WebUtils::getColor(const std::vector<double>& c)
 {
     if (c[0] == -1)
@@ -160,26 +152,14 @@ std::string WebUtils::getColor(const std::vector<double>& c)
     return str;
 }
 
-std::string WebUtils::getSubPadding(int val)
+void WebUtils::setImagePath(const std::string& path)
 {
-    if (val)
-    {
-        return std::to_string(val) + "px ";
-    }
-
-    return "0 ";
+    imagePath = path;
 }
 
-std::string WebUtils::getPadding(int t, int r, int b, int l)
+std::string WebUtils::getImagePath()
 {
-    std::string ret;
-
-    ret += getSubPadding(t);
-    ret += getSubPadding(r);
-    ret += getSubPadding(b);
-    ret += getSubPadding(l);
-
-    return ret;
+    return imagePath;
 }
 
 bool WebUtils::isManaged(int uid)
@@ -216,17 +196,11 @@ int WebUtils::getParent(int uid)
     return getIntProperty(uid, __GO_PARENT__);
 }
 
-void WebUtils::setParent(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setParent(int uid, std::ostringstream& ostr)
 {
     int parent = getParent(uid);
 
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    ostr << "var __parent__ = " << getElementById(parent) << std::endl;
-    ostr << "__parent__.appendChild(__child__);" << std::endl;
+    ostr << "setParent(" << uid << ", " << parent << ");";
 
     if (hasStyle(parent, __GO_UI_TAB__))
     {
@@ -240,7 +214,7 @@ void WebUtils::setParent(int uid, std::ostringstream& ostr, bool append)
         addInWaitingQueue(uid, __GO_UI_BORDER_POSITION__);
     }
 
-    setWaitingProperties(uid, ostr, true);
+    setWaitingProperties(uid, ostr);
 }
 
 void WebUtils::getFigureSize(int uid, std::vector<int>& vect)
@@ -250,17 +224,12 @@ void WebUtils::getFigureSize(int uid, std::vector<int>& vect)
     getIntVectorProterty(fig, __GO_AXES_SIZE__, vect);
 }
 
-void WebUtils::setFigureSize(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setFigureSize(int uid, std::ostringstream& ostr)
 {
     std::vector<int> size;
     getFigureSize(uid, size);
 
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-    ostr << "__child__.style.width = '" << size[0] << "px';" << std::endl;
-    ostr << "__child__.style.height = '" << size[1] << "px';" << std::endl;
+    ostr << "setFigureSize('" << uid << "', [" << size[0] << ", " << size[1] << "]);";
 }
 
 int WebUtils::getFigureId(int uid)
@@ -289,131 +258,58 @@ void WebUtils::getUIString(int uid, std::vector<std::string> & vect)
 }
 
 
-void WebUtils::setUIPosition(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIPosition(int uid, std::ostringstream& ostr)
 {
     std::vector<double> pos;
     getUIPosition(uid, pos);
 
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    ostr << "__child__.style.left = '" << (int)pos[0] << "px';" << std::endl;
-    ostr << "__child__.style.bottom = '" << (int)pos[1] << "px';" << std::endl;
-    ostr << "__child__.style.width = '" << (int)pos[2] << "px';" << std::endl;
-    ostr << "__child__.style.height = '" << (int)pos[3] << "px';" << std::endl;
+    ostr << "setUIPosition('" << uid << "', [" << (int)pos[0] << ", " << (int)pos[1] << ", " << (int)pos[2] << ", " << (int)pos[3] << "]);";
 
     //to ensure vertical alignement, adapt style.line-height
     if (hasStyle(uid, __GO_UI_TEXT__) || hasStyle(uid, __GO_UI_CHECKBOX__) || hasStyle(uid, __GO_UI_RADIOBUTTON__))
     {
         std::string v;
         getUIVerticalAlignment(uid, v);
+        std::string value;
         if (v == "middle")
         {
-            ostr << "__child__.style.lineHeight = '" << (int)pos[3] << "px';" << std::endl;
+            value = std::to_string((int)pos[3]) + "px';";
         }
         else
         {
-            ostr << "__child__.style.lineHeight = 'initial';" << std::endl;
+            value = "initial";
         }
+
+        ostr << "setUIVerticalAlignment('" << uid << "', '" << value << "');";
     }
 }
 
-void WebUtils::setUIString(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIString(int uid, std::ostringstream& ostr)
 {
     std::vector<std::string> s;
     getUIString(uid, s);
-    if (s.size() == 0)
+    int size = (int)s.size();
+
+    std::string strings = "[";
+    if (size)
     {
-        s.push_back("");
-    }
-
-    switch (getStyle(uid))
-    {
-        case __GO_UI_CHECKBOX__:
-        case __GO_UI_RADIOBUTTON__:
+        strings += ("'" + s[0] + "'");
+        for (int i = 1; i < size; ++i)
         {
-            if (append == false)
-            {
-                ostr << "var __child__ = " << getElementById(uid) << std::endl;
-            }
-
-            ostr << "var __label__ = " << getElementById(uid, "_label") << std::endl;
-            ostr << "__label__.innerHTML = '" << s[0] << "';" << std::endl;
-            break;
-        }
-
-        case __GO_UI_POPUPMENU__ :
-        case __GO_UI_LISTBOX__:
-        {
-            if (append == false)
-            {
-                ostr << "var __child__ = " << getElementById(uid) << std::endl;
-            }
-
-            //remove previous values
-            ostr << "while (__child__.length) {__child__.remove(0);}" << std::endl;
-
-            ostr << "var option;" << std::endl;
-            int size = (int)s.size();
-            for (int i = 0; i < size; ++i)
-            {
-                ostr << "option = new Option('" << s[i] << "');" << std::endl;
-                ostr << "__child__.add(option);" << std::endl;
-            }
-
-            if (hasStyle(uid, __GO_UI_LISTBOX__))
-            {
-                //switch to listbox instead of combobox
-                ostr << "__child__.size = 2;" << std::endl;
-            }
-            break;
-        }
-
-        case __GO_UI_TAB__:
-        {
-            //nothing to do
-            break;
-        }
-
-        case __GO_UI_FRAME__:
-        {
-            //if parent is a GO_UI_TAB, change value of button
-            if (hasStyle(getParent(uid), __GO_UI_TAB__))
-            {
-                if (append == false)
-                {
-                    ostr << "var __child__ = " << getElementById(uid) << std::endl;
-                }
-
-                ostr << "var __btn__ = " + getElementById(uid, "_btn") << std::endl;
-                ostr << "__btn__.value = '" << s[0] << "';" << std::endl;
-            }
-            break;
-        }
-
-        default:
-        {
-            if (append == false)
-            {
-                ostr << "var __child__ = " << getElementById(uid) << std::endl;
-            }
-
-            if (isInputType(uid))
-            {
-                ostr << "__child__.value = '" << s[0] << "';" << std::endl;
-            }
-            else
-            {
-                ostr << "__child__.innerHTML = '" << s[0] << "';" << std::endl;
-            }
-            break;
+            strings += ", ";
+            strings += ("'" + s[i] + "'");
         }
     }
-    
+    else
     {
+        strings += "''";
     }
+
+    strings += "]";
+
+    int parent = getParent(uid);
+
+    ostr << "setUIString('" << uid << "', " + strings + ", '" << parent << "');";
 }
 
 bool WebUtils::getVisible(int uid)
@@ -421,16 +317,11 @@ bool WebUtils::getVisible(int uid)
     return getBoolProperty(uid, __GO_VISIBLE__);
 }
 
-void WebUtils::setVisible(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setVisible(int uid, std::ostringstream& ostr)
 {
     //reverse flag value
     std::string v = getVisible(uid) ? "inherit" : "hidden";
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    ostr << "__child__.style.visibility  = '" << v << "';" << std::endl;
+    ostr << "setVisible('" << uid << "', '" + v << "');";
 }
 
 bool WebUtils::getUIEnable(int uid)
@@ -438,16 +329,11 @@ bool WebUtils::getUIEnable(int uid)
     return getBoolProperty(uid, __GO_UI_ENABLE__);
 }
 
-void WebUtils::setUIEnable(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIEnable(int uid, std::ostringstream& ostr)
 {
     //reverse flag value
     std::string v = getUIEnable(uid) ? "false" : "true";
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    ostr << "__child__.disabled  = " << v << ";" << std::endl;
+    ostr << "setUIEnable('" << uid << "', " + v << ");";
 }
 
 bool WebUtils::getUIBackgroundColor(int uid, std::vector<double>& vect)
@@ -457,16 +343,11 @@ bool WebUtils::getUIBackgroundColor(int uid, std::vector<double>& vect)
     return true;
 }
 
-void WebUtils::setUIBackgroundColor(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIBackgroundColor(int uid, std::ostringstream& ostr)
 {
     std::vector<double> c;
     getUIBackgroundColor(uid, c);
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    ostr << "__child__.style.backgroundColor  = " << getColor(c) << ";" << std::endl;
+    ostr << "setUIBackgroundColor('" << uid << "', " + getColor(c) << ");";
 }
 
 bool WebUtils::getUIFontAngle(int uid, std::string& val)
@@ -475,16 +356,11 @@ bool WebUtils::getUIFontAngle(int uid, std::string& val)
     return true;
 }
 
-void WebUtils::setUIFontAngle(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIFontAngle(int uid, std::ostringstream& ostr)
 {
     std::string angle;
     getUIFontAngle(uid, angle);
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    ostr << "__child__.style.fontStyle  = '" << angle << "';" << std::endl;
+    ostr << "setUIFontAngle('" << uid << "', '" + angle << "');";
 }
 
 bool WebUtils::getUIFontName(int uid, std::string& val)
@@ -493,16 +369,11 @@ bool WebUtils::getUIFontName(int uid, std::string& val)
     return true;
 }
 
-void WebUtils::setUIFontName(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIFontName(int uid, std::ostringstream& ostr)
 {
     std::string font;
     getUIFontName(uid, font);
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    ostr << "__child__.style.fontFamily  = '" << font << "','serif' ;" << std::endl;
+    ostr << "setUIFontName('" << uid << "', '" + font << "');";
 }
 
 bool WebUtils::getUIFontUnits(int uid, std::string& val)
@@ -516,7 +387,7 @@ double WebUtils::getUIFontSize(int uid)
     return getDoubleProperty(uid, __GO_UI_FONTSIZE__);
 }
 
-void WebUtils::setUIFontSize(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIFontSize(int uid, std::ostringstream& ostr)
 {
     int size = (int)getUIFontSize(uid);
 
@@ -533,12 +404,8 @@ void WebUtils::setUIFontSize(int uid, std::ostringstream& ostr, bool append)
         size = (int)(size * 0.75);
     }
 
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
+    ostr << "setUIFontSize('" << uid << "', '" << size << units << "');";
 
-    ostr << "__child__.style.fontSize  = '" << size << units << "';" << std::endl;
 }
 
 bool WebUtils::getUIFontWeight(int uid, std::string& val)
@@ -547,17 +414,11 @@ bool WebUtils::getUIFontWeight(int uid, std::string& val)
     return true;
 }
 
-void WebUtils::setUIFontWeight(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIFontWeight(int uid, std::ostringstream& ostr)
 {
     std::string weight;
     getUIFontWeight(uid, weight);
-
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    ostr << "__child__.style.fontWeight  = '" << weight << "';" << std::endl;
+    ostr << "setUIFontWeight('" << uid << "', '" << weight << "');";
 }
 
 bool WebUtils::getUIForegroundColor(int uid, std::vector<double>& vect)
@@ -567,17 +428,11 @@ bool WebUtils::getUIForegroundColor(int uid, std::vector<double>& vect)
     return true;
 }
 
-void WebUtils::setUIForegroundColor(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIForegroundColor(int uid, std::ostringstream& ostr)
 {
     std::vector<double> c;
     getUIForegroundColor(uid, c);
-
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    ostr << "__child__.style.color  = " << getColor(c) << ";" << std::endl;
+    ostr << "setUIForegroundColor('" << uid << "', " + getColor(c) << ");";
 }
 
 bool WebUtils::getUIHorizontalAlignment(int uid, std::string& val)
@@ -586,17 +441,11 @@ bool WebUtils::getUIHorizontalAlignment(int uid, std::string& val)
     return true;
 }
 
-void WebUtils::setUIHorizontalAlignment(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIHorizontalAlignment(int uid, std::ostringstream& ostr)
 {
     std::string align;
     getUIHorizontalAlignment(uid, align);
-
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    ostr << "__child__.style.textAlign  = '" << align << "';" << std::endl;
+    ostr << "setUIHorizontalAlignment('" << uid << "', '" + align << "');";
 }
 
 bool WebUtils::getUIRelief(int uid, std::string& val)
@@ -605,7 +454,7 @@ bool WebUtils::getUIRelief(int uid, std::string& val)
     return true;
 }
 
-void WebUtils::setUIRelief(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIRelief(int uid, std::ostringstream& ostr)
 {
 }
 
@@ -615,125 +464,24 @@ bool WebUtils::getUIVerticalAlignment(int uid, std::string& val)
     return true;
 }
 
-void WebUtils::setUIVerticalAlignment(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIVerticalAlignment(int uid, std::ostringstream& ostr)
 {
+    std::string align;
+    getUIVerticalAlignment(uid, align);
+    ostr << "setUIVerticalAlignment('" << uid << "', '" + align << "');";
 }
 
 int WebUtils::getUILayout(int uid)
 {
     return getIntProperty(uid, __GO_LAYOUT__);
-    return true;
 }
 
-void WebUtils::setUILayout(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUILayout(int uid, std::ostringstream& ostr)
 {
     if (isFigure(uid) || hasStyle(uid, __GO_UI_FRAME__))
     {
         //TODO clean previous layout before create new one
-
-        if (append == false)
-        {
-            ostr << "var __child__ = " << getElementById(uid) << ";" << std::endl;
-        }
-
-        int layout = getUILayout(uid);
-        switch (layout)
-        {
-            case LAYOUT_BORDER:
-            {
-                //create a table ( ascii art powa ! )
-                //+---------------------+
-                //|         TOP         |
-                //+---+-------------+---+
-                //| L |             | R |
-                //| E |             | I |
-                //| F |   CENTER    | G |
-                //| T |             | H |
-                //|   |             | T |
-                //+---+-------------+---+
-                //|       BOTTOM        |
-                //+---------------------+
-
-                //add "frame" in child to be more ... flexible ;)
-
-                ostr << "var __layout__ = " << createElement("DIV") << std::endl;
-                ostr << "__layout__.id = " << getIdString(uid, "_layout") << ";" << std::endl;
-                ostr << "__layout__.style.display = 'flex';" << std::endl;
-                ostr << "__layout__.style.flexDirection = 'column';" << std::endl;
-                ostr << "__layout__.style.width = '100%';" << std::endl;
-                ostr << "__layout__.style.height = 'inherit';" << std::endl;
-
-                //add top
-                ostr << "var __top__ = " << createElement("HEADER") << std::endl;
-                ostr << "__top__.id = " << getIdString(uid, "_top") << ";" << std::endl;
-                ostr << "__top__.style.width = '100%';" << std::endl;
-
-                //add middle band
-                ostr << "var __middle__ = " << createElement("DIV") << std::endl;
-                ostr << "__middle__.id = " << getIdString(uid, "_middle") << ";" << std::endl;
-                ostr << "__middle__.style.flex = '1';" << std::endl;
-                ostr << "__middle__.style.display = 'flex';" << std::endl;
-
-                //add left
-                ostr << "var __left__ = " << createElement("ASIDE") << std::endl;
-                ostr << "__left__.id = " << getIdString(uid, "_left") << ";" << std::endl;
-                ostr << "__left__.style.display = 'flex';" << std::endl;
-
-                //add center
-                ostr << "var __center__ = " << createElement("ARTICLE") << std::endl;
-                ostr << "__center__.id = " << getIdString(uid, "_center") << ";" << std::endl;
-                ostr << "__center__.style.flex = '1';" << std::endl;
-                ostr << "__center__.style.display = 'flex';" << std::endl;
-                ostr << "__center__.style.width = '100%';" << std::endl;
-
-                //add right
-                ostr << "var __right__ = " << createElement("ASIDE") << std::endl;
-                ostr << "__right__.id = " << getIdString(uid, "_right") << ";" << std::endl;
-                ostr << "__right__.style.display = 'flex';" << std::endl;
-
-                //add bottom
-                ostr << "var __bottom__ = " << createElement("FOOTER") << std::endl;
-                ostr << "__bottom__.id = " << getIdString(uid, "_bottom") << ";" << std::endl;
-                ostr << "__bottom__.style.width = '100%';" << std::endl;
-
-                //hierarchy
-                ostr << "__middle__.appendChild(__left__);" << std::endl;
-                ostr << "__middle__.appendChild(__center__);" << std::endl;
-                ostr << "__middle__.appendChild(__right__);" << std::endl;
-
-                ostr << "__layout__.appendChild(__top__);" << std::endl;
-                ostr << "__layout__.appendChild(__middle__);" << std::endl;
-                ostr << "__layout__.appendChild(__bottom__);" << std::endl;
-
-                ostr << "__child__.appendChild(__layout__);" << std::endl;
-                break;
-            }
-            case LAYOUT_GRID:
-            {
-                break;
-            }
-            case LAYOUT_GRIDBAG:
-            {
-                //add empty table
-                ostr << "var __table__ = " << createElement("TABLE") << std::endl;
-                ostr << "__table__.id = " << getIdString(uid, "_table") << ";" << std::endl;
-                ostr << "__table__.style.margin = '0';" << std::endl;
-                ostr << "__table__.style.padding = '0';" << std::endl;
-                ostr << "__table__.style.width = '100%';" << std::endl;
-                ostr << "__table__.style.height = '100%';" << std::endl;
-                ostr << "__table__.style.borderCollapse = 'collapse';" << std::endl;
-
-                //table in parent
-                ostr << "__child__.appendChild(__table__);" << std::endl;
-                break;
-            }
-            default:
-            case LAYOUT_NONE:
-            {
-                break;
-            }
-
-        }
+        ostr << "setUILayout('" << uid << "', " << getUILayout(uid) << ");";
     }
 }
 
@@ -742,18 +490,11 @@ double WebUtils::getUIMin(int uid)
     return getDoubleProperty(uid, __GO_UI_MIN__);
 }
 
-void WebUtils::setUIMin(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIMin(int uid, std::ostringstream& ostr)
 {
     if (hasStyle(uid, __GO_UI_SPINNER__) || hasStyle(uid, __GO_UI_SLIDER__))
     {
-        double min = getUIMin(uid);
-
-        if (append == false)
-        {
-            ostr << "var __child__ = " << getElementById(uid) << std::endl;
-        }
-
-        ostr << "__child__.min  = '" << min << "';" << std::endl;
+        ostr << "setUIMin('" << uid << "', '" << getUIMin(uid) << "');";
     }
 }
 
@@ -762,18 +503,11 @@ double WebUtils::getUIMax(int uid)
     return getDoubleProperty(uid, __GO_UI_MAX__);
 }
 
-void WebUtils::setUIMax(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIMax(int uid, std::ostringstream& ostr)
 {
     if (hasStyle(uid, __GO_UI_SPINNER__) || hasStyle(uid, __GO_UI_SLIDER__))
     {
-        double max = getUIMax(uid);
-
-        if (append == false)
-        {
-            ostr << "var __child__ = " << getElementById(uid) << std::endl;
-        }
-
-        ostr << "__child__.max  = '" << max << "';" << std::endl;
+        ostr << "setUIMax('" << uid << "', '" << getUIMax(uid) << "');";
     }
 }
 
@@ -784,18 +518,11 @@ double WebUtils::getUIStep(int uid)
     return step[0];
 }
 
-void WebUtils::setUIStep(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIStep(int uid, std::ostringstream& ostr)
 {
     if (hasStyle(uid, __GO_UI_SPINNER__) || hasStyle(uid, __GO_UI_SLIDER__))
     {
-        double step = getUIStep(uid);
-
-        if (append == false)
-        {
-            ostr << "var __child__ = " << getElementById(uid) << std::endl;
-        }
-
-        ostr << "__child__.step  = '" << step << "';" << std::endl;
+        ostr << "setUIStep('" << uid << "', '" << getUIStep(uid) << "');";
     }
 }
 
@@ -807,47 +534,16 @@ bool WebUtils::getUIValue(int uid, std::vector<double>& vect)
     return true;
 }
 
-void WebUtils::setUIValue(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIValue(int uid, std::ostringstream& ostr)
 {
-    switch (getStyle(uid))
+    std::vector<double> values;
+    getUIValue(uid, values);
+    if (values.size() == 0)
     {
-        case __GO_UI_SPINNER__:
-        case __GO_UI_SLIDER__:
-        {
-            std::vector<double> values;
-            getUIValue(uid, values);
-            if (values.size() == 0)
-            {
-                values.push_back(0);
-            }
-
-            if (append == false)
-            {
-                ostr << "var __child__ = " << getElementById(uid) << std::endl;
-            }
-
-            ostr << "__child__.value  = '" << values[0] << "';" << std::endl;
-            break;
-        }
-
-        case __GO_UI_TAB__:
-        {
-            std::vector<double> values;
-            getUIValue(uid, values);
-            if (values.size() == 0)
-            {
-                values.push_back(0);
-            }
-
-            if (append == false)
-            {
-                ostr << "var __child__ = " << getElementById(uid) << std::endl;
-            }
-
-            ostr << "tabSelectHelper(__child__, " << values[0] << ");" << std::endl;
-            break;
-        }
+        values.push_back(0);
     }
+
+    ostr << "setUIValue('" << uid << "', " << values[0] << ");";
 }
 
 void WebUtils::getUIBorderPreferredSize(int uid, std::vector<int>& vect)
@@ -867,110 +563,19 @@ int WebUtils::getUIBorderPosition(int uid)
     return getIntProperty(uid, __GO_UI_BORDER_POSITION__);
 }
 
-void WebUtils::setUIBorder(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIBorder(int uid, std::ostringstream& ostr)
 {
-    int parent = getParent(uid);
-    //std::cerr << "setUIBorder : " << uid << " -> " << parent << std::endl;
-    std::string position;
-    std::string padding;
-    int border = getUIBorderPosition(uid);
-
     std::vector<int> pad;
-    getUIBorderPadding(parent, pad);
-
     std::vector<int> size;
+    int parent = getParent(uid);
+    int border = getUIBorderPosition(uid);
+    getUIBorderPadding(parent, pad);
     getUIBorderPreferredSize(uid, size);
 
+    ostr << "setUIBorder('" << uid << "', '" << parent << "', " << border << ", [";
+    ostr << pad[0] << ", " << pad[1];
+    ostr << "], [" << size[0] << ", " << size[1] << "]);";
 
-
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    switch (border)
-    {
-        default:
-        case BORDER_CENTER:
-            position = "_center";
-            ostr << "__child__.style.width = 'inherit';" << std::endl;
-            ostr << "__child__.style.height = 'inherit';" << std::endl;
-            padding = getPadding(0, 0, 0, 0);
-            break;
-        case BORDER_BOTTOM:
-            position = "_bottom";
-            ostr << "__child__.style.width = '100%';" << std::endl;
-
-            if (size[1] == -1)
-            {
-                ostr << "__child__.style.height = 'inherit';" << std::endl;
-            }
-            else
-            {
-                ostr << "__child__.style.height = '" << getSubPadding(size[1]) << "';" << std::endl;
-            }
-
-            padding = getPadding(pad[1], 0, 0, 0);
-            break;
-        case BORDER_TOP:
-            position = "_top";
-            ostr << "__child__.style.width = '100%';" << std::endl;
-
-            if (size[1] == -1)
-            {
-                ostr << "__child__.style.height = 'inherit';" << std::endl;
-            }
-            else
-            {
-                ostr << "__child__.style.height = '" << getSubPadding(size[1]) << "';" << std::endl;
-            }
-
-            padding = getPadding(0, 0, pad[1], 0);
-            break;
-        case BORDER_LEFT:
-            position = "_left";
-
-            if (size[0] == -1)
-            {
-                ostr << "__child__.style.width = 'inherit';" << std::endl;
-            }
-            else
-            {
-                ostr << "__child__.style.width = '" << getSubPadding(size[0]) << "';" << std::endl;
-            }
-
-            ostr << "__child__.style.height = 'inherit';" << std::endl;
-            padding = getPadding(0, pad[0], 0, 0);
-            break;
-        case BORDER_RIGHT:
-            position = "_right";
-
-            if (size[0] == -1)
-            {
-                ostr << "__child__.style.width = 'inherit';" << std::endl;
-            }
-            else
-            {
-                ostr << "__child__.style.width = '" << getSubPadding(size[0]) << "';" << std::endl;
-            }
-
-            ostr << "__child__.style.height = 'inherit';" << std::endl;
-            padding = getPadding(0, 0, 0, pad[0]);
-            break;
-    }
-
-
-    //move child in targeted cell
-    ostr << "__parent__ = " << getElementById(parent, position) << std::endl;
-    ostr << "__parent__.appendChild(__child__);" << std::endl;
-    ostr << "__parent__.style.padding = '" << padding << "';" << std::endl;
-
-    //to well perform positionning, we must clear some default properties
-    //position left, right, width, height,
-
-    ostr << "__child__.style.position = 'inherit';" << std::endl;
-    ostr << "__child__.style.left = 'inherit';" << std::endl;
-    ostr << "__child__.style.bottom = 'inherit';" << std::endl;
 }
 
 void WebUtils::getUIGridBagGrid(int uid, std::vector<int>& vect)
@@ -980,100 +585,63 @@ void WebUtils::getUIGridBagGrid(int uid, std::vector<int>& vect)
 }
 
 
-void WebUtils::setUIGridBag(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIGridBag(int uid, std::ostringstream& ostr)
 {
     int parent = getParent(uid);
     std::vector<int> grid;
     getUIGridBagGrid(uid, grid);
 
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    ostr << "__child__.style.position = 'inherit';" << std::endl;
-    ostr << "__child__.style.left = 'inherit';" << std::endl;
-    ostr << "__child__.style.bottom = 'inherit';" << std::endl;
-    ostr << "__child__.style.width = '100%';" << std::endl;
-    ostr << "__child__.style.height = '100%';" << std::endl;
-    //we have to create a td with grid information and add it to the good cell ( or create if not exist ! )
-
-    //build td child
-    std::string td;
-    td = "var __td__ = " + createElement("TD");
-
-    std::string name("_" + std::to_string(grid[0]) + "_" + std::to_string(grid[1]));
-    td += "__td__.id = " + getIdString(parent, name) + ";";
-
-    if (grid[2] != 1)
-    {
-        td += "__td__.colSpan = '" + std::to_string(grid[2]) + "';";
-    }
-
-    if (grid[3] != 1)
-    {
-        td += "__td__.rowSpan = '" + std::to_string(grid[3]) + "';";
-    }
-
-    td += "__td__.appendChild(__child__);";
-
-    //build or get tr
-    name = "_" + std::to_string(grid[1]);
-    std::string tr;
-    tr = "var __tr__ = " + getElementById(parent, name);
-    tr += "var __table__ = " + getElementById(parent, "_table");
-    tr += "if(__tr__ == null){";
-    tr += "__tr__ = " + createElement("TR");
-    tr += "__tr__.id = " + getIdString(parent, name) + ";";
-    tr += "gridbagHelperTR(__table__, __tr__, " + std::to_string(grid[1]) + ");";
-    tr += "}";
-    tr += "gridbagHelperTD(__tr__,__td__, " + std::to_string(grid[0]) + ");";
-
-    //to force refresh of table, move it to another component and restore it
-    std::string tricktoforcerefresh("var __scilab__ = document.getElementById('scilab');");
-    tricktoforcerefresh += "__scilab__.appendChild(__table__);";
-    tricktoforcerefresh += "var __parent__ = " + getElementById(parent);
-    tricktoforcerefresh += "__parent__.appendChild(__table__);";
-
-
-    ostr << td << std::endl;
-    ostr << tr << std::endl;
-    ostr << tricktoforcerefresh << std::endl;
+    ostr << "setUIGridBag('" << uid << "', '" << parent << "', ['";
+    ostr << grid[0] << "', '" << grid[1] << "', '" << grid[2] << "', '" << grid[3] << "']);";
 }
 
-void WebUtils::setUIFrameBorder(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setUIFrameBorder(int uid, std::ostringstream& ostr)
 {
     std::string title;
     int border = getIntProperty(uid, __GO_UI_FRAME_BORDER__);
     int style = getIntProperty(border, __GO_UI_FRAME_BORDER_STYLE__);
+    int parent = getParent(uid);
 
     if (style == TITLED)
     {
         title = getStringProperty(border, __GO_TITLE__);
     }
 
-    if (append == false)
+    ostr << "setUIFrameBorder('" << uid << "', '" << border << "', '" << parent << "', '" << title << "');";
+}
+
+bool WebUtils::getUIIcon(int uid, std::string& val)
+{
+    val = getStringProperty(uid, __GO_UI_ICON__);
+    return true;
+}
+
+void WebUtils::setUIIcon(int uid, std::ostringstream& ostr)
+{
+    std::string icon;
+    getUIIcon(uid, icon);
+    std::vector<std::string> str;
+    getUIString(uid, str);
+    if (str.empty())
     {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
+        str.push_back("");
     }
 
+    size_t found = icon.find_last_of(".");
+    std::string ext = icon.substr(found);
 
-    //One style with or without title
-    createCommonIUControl(border, "DIV", "GO_UI_FRAME_BORDER", ostr);
-    ostr << "var __fieldset__ = " + createElement("FIELDSET");
-    ostr << "__fieldset__.id = " << getIdString(uid, "_fieldset") << ";" << std::endl;
-    ostr << "var __legend__ = " + createElement("LEGEND");
-    ostr << "__legend__.id = " << getIdString(uid, "_legend") << ";" << std::endl;
-    ostr << "__legend__.innerHTML = '" << title << "';" << std::endl;
+    std::string tmpname = std::tmpnam(nullptr);
+    tmpname = "images/" + tmpname.substr(1) + ext;
 
-    //hierarchy
+    //copy image file to web server path
+    wchar_t* src = to_wide_string(icon.data());
+    wchar_t* dst = to_wide_string((getImagePath() + tmpname).data());
 
-    int parent = getParent(uid);
-    ostr << "__fieldset__.appendChild(__legend__);" << std::endl;
-    ostr << "__fieldset__.appendChild(__child__);" << std::endl;
-    ostr << "__temp__.appendChild(__fieldset__);" << std::endl;
-    ostr << "var __parent__ = " << getElementById(parent) << std::endl;
-    ostr << "__parent__.appendChild(__temp__);" << std::endl;
+    CopyFileFunction(dst, src);
+    FREE(src);
+    FREE(dst);
+
+    ostr << "setUIIcon('" << uid << "', '" << tmpname << "', '" << str[0] << "');";
 }
 
 bool WebUtils::hasCallback(int uid)
@@ -1081,61 +649,9 @@ bool WebUtils::hasCallback(int uid)
     return getStringProperty(uid, __GO_CALLBACK__) != "";
 }
 
-void WebUtils::setCallback(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setCallback(int uid, std::ostringstream& ostr)
 {
-    if (append == false)
-    {
-        ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    }
-
-    std::string event;
-    std::string func;
-    switch (getStyle(uid))
-    {
-        case __GO_UI_PUSHBUTTON__ :
-            event = "click";
-            func = "onPushButton";
-            break;
-        case __GO_UI_CHECKBOX__:
-            event = "click";
-            func = "onCheckBox";
-            break;
-        case __GO_UI_RADIOBUTTON__:
-            event = "click";
-            func = "onRadioButton";
-            break;
-        case __GO_UI_LISTBOX__:
-            event = "change";
-            func = "onListBox";
-            break;
-        case __GO_UI_POPUPMENU__:
-            event = "change";
-            func = "onComboBox";
-            break;
-        /*
-                case __GO_UI_TAB__:
-                    event = "click";
-                    func = "onPushButton";
-                    break;
-        */
-        case __GO_UI_SLIDER__:
-            event = "input";
-            func = "onSlider";
-            break;
-        case __GO_UI_EDIT__:
-            event = "input";
-            func = "onEditBox";
-            break;
-        case __GO_UI_SPINNER__:
-            event = "input";
-            func = "onSpinner";
-            break;
-        default :
-            return;
-    }
-
-    //add callback listener
-    ostr << "__child__.addEventListener('" << event << "', " << func << ");" << std::endl;
+    ostr << "setCallback('" << uid << "');";
 }
 
 //is
@@ -1181,14 +697,7 @@ bool WebUtils::isButton(int uid)
 //create
 bool WebUtils::createFigure(int uid, std::ostringstream& ostr)
 {
-    //set figure uid to help children to find it
-    ostr << "var __parent__ = document.getElementById('scilab');" << std::endl;
-    ostr << "var __temp__ = " << createElement("DIV") << std::endl;
-    ostr << "__temp__.id = " << getIdString(uid) << ";" << std::endl;
-    ostr << "__temp__.className = 'GO_FIGURE';" << std::endl;
-    ostr << "__parent__.innerHTML += '<br>';" << std::endl;
-    ostr << "__parent__.appendChild(__temp__);" << std::endl;
-    ostr << "__parent__.innerHTML += '<br>';" << std::endl;
+    ostr << "__temp__ = createFigure('" << uid << "');";
     return true;
 }
 
@@ -1224,221 +733,75 @@ bool WebUtils::createUIControl(int uid, std::ostringstream& ostr)
     }
 }
 
-bool WebUtils::createCommonIUControl(int uid, const std::string& htmlType, const std::string& cssClass, std::ostringstream& ostr)
-{
-    //create a button, with no parent, wait update with _GO_PARENT to update it
-    ostr << "var __temp__ = " << createElement(htmlType) << std::endl;
-    ostr << "__temp__.id = " << getIdString(uid) << ";" << std::endl;
-    ostr << "__temp__.className = '" << cssClass << "';" << std::endl;
-
-    return true;
-}
-
 bool WebUtils::createPushButton(int uid, std::ostringstream& ostr)
 {
-    //create a <button>
-    createCommonIUControl(uid, "BUTTON", "GO_PUSHBUTTON", ostr);
-    //add item temporary in main scilabview div waiting __GO_PARENT__ update
-    ostr << "var __parent__ = document.getElementById('scilab');" << std::endl;
-    ostr << "__parent__.appendChild(__temp__);" << std::endl;
-
+    ostr << "var __temp__ = createPushButton(" + std::to_string(uid) + ");" << std::endl;
     return true;
 }
 
 bool WebUtils::createFrame(int uid, std::ostringstream& ostr)
 {
-    //create a <div>
-    createCommonIUControl(uid, "DIV", "GO_FRAME", ostr);
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "var __parent__ = document.getElementById('scilab');" << std::endl;
-    ostr << "__parent__.appendChild(__temp__);" << std::endl;
-
+    ostr << "var __temp__ = createFrame(" + std::to_string(uid) + ");" << std::endl;
     return true;
 }
 
 bool WebUtils::createText(int uid, std::ostringstream& ostr)
 {
-    //create a <div>
-    createCommonIUControl(uid, "LABEL", "GO_TEXT", ostr);
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "var __parent__ = document.getElementById('scilab');" << std::endl;
-    ostr << "__parent__.appendChild(__temp__);" << std::endl;
-
+    ostr << "var __temp__ = createText(" + std::to_string(uid) + ");" << std::endl;
     return true;
 }
 
 bool WebUtils::createEdit(int uid, std::ostringstream& ostr)
 {
-    //create a <input>
-    createCommonIUControl(uid, "INPUT", "GO_EDIT", ostr);
-    ostr << "__temp__.type = 'text';" << std::endl;
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "var __parent__ = document.getElementById('scilab');" << std::endl;
-    ostr << "__parent__.appendChild(__temp__);" << std::endl;
-
+    ostr << "var __temp__ = createEdit(" + std::to_string(uid) + ");" << std::endl;
     return true;
 }
 
 bool WebUtils::createCheckbox(int uid, std::ostringstream& ostr)
 {
-    //create a <input>
-
-    //for checkbox we need to create 3 elements.
-
-    //a div to enclose others
-    ostr << "var __main__ = " << createElement("DIV") << std::endl;
-    ostr << "__main__.id = " << getIdString(uid) << ";" << std::endl;
-    ostr << "__main__.className = 'GO_CHECKBOX';" << std::endl;
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "var __parent__ = document.getElementById('scilab');" << std::endl;
-    ostr << "__parent__.appendChild(__main__);" << std::endl;
-
-    //the checkbox itself
-    ostr << "var __temp__ = " << createElement("INPUT") << std::endl;
-    ostr << "__temp__.className = 'GO_CHECKBOX_CHECKBOX';" << std::endl;
-    ostr << "__temp__.type = 'checkbox';" << std::endl;
-    ostr << "__temp__.id = " << getIdString(uid, "_checkbox") << ";" << std::endl;
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "__main__.appendChild(__temp__);" << std::endl;
-
-    //the label of the checkbox
-    ostr << "var __label__ = " << createElement("LABEL") << std::endl;
-    ostr << "__label__.id = " << getIdString(uid, "_label") << ";" << std::endl;
-    ostr << "__label__.className = 'GO_CHECKBOX_LABEL';" << std::endl;
-    ostr << "__label__.htmlFor = " << getIdString(uid, "_checkbox") << ";" << std::endl;
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "__main__.appendChild(__label__);" << std::endl;
-
+    ostr << "var __temp__ = createCheckbox(" + std::to_string(uid) + ");" << std::endl;
     return true;
 }
 
 bool WebUtils::createRadio(int uid, std::ostringstream& ostr)
 {
-    //create a <input>
-
-    //for radio we need to create 3 elements.
-
-    //a div to enclose others
-    ostr << "var __main__ = " << createElement("DIV") << std::endl;
-    ostr << "__main__.id = " << getIdString(uid) << ";" << std::endl;
-    ostr << "__main__.className = 'GO_RADIO';" << std::endl;
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "var __parent__ = document.getElementById('scilab');" << std::endl;
-    ostr << "__parent__.appendChild(__main__)" << std::endl;
-
-    //the radio itself
-    ostr << "var __temp__ = " << createElement("INPUT") << std::endl;
-    ostr << "__temp__.className = 'GO_RADIO_RADIO';" << std::endl;
-    ostr << "__temp__.type = 'radio';" << std::endl;
-    ostr << "__temp__.id = " << getIdString(uid, "_radio") << ";" << std::endl;
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "__main__.appendChild(__temp__);" << std::endl;
-
-    //the label of the checkbox
-    ostr << "var __label__ = " << createElement("LABEL") << std::endl;
-    ostr << "__label__.id = " << getIdString(uid, "_label") << ";" << std::endl;
-    ostr << "__label__.className = 'GO_RADIO_LABEL';" << std::endl;
-    ostr << "__label__.htmlFor = " << getIdString(uid, "_radio") << ";" << std::endl;
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "__main__.appendChild(__label__);" << std::endl;
-
+    ostr << "var __temp__ = createRadio(" + std::to_string(uid) + ");" << std::endl;
     return true;
 }
 
 bool WebUtils::createSlider(int uid, std::ostringstream& ostr)
 {
-    //create a <input>
-    createCommonIUControl(uid, "INPUT", "GO_SLIDER", ostr);
-    ostr << "__temp__.type = 'range';" << std::endl;
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "var __parent__ = document.getElementById('scilab');" << std::endl;
-    ostr << "__parent__.appendChild(__temp__);" << std::endl;
-
+    ostr << "var __temp__ = createSlider(" + std::to_string(uid) + ");" << std::endl;
     return true;
 }
 
 bool WebUtils::createListbox(int uid, std::ostringstream& ostr)
 {
-    //create a <input>
-    createCommonIUControl(uid, "SELECT", "GO_LISTBOX", ostr);
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "var __parent__ = document.getElementById('scilab');" << std::endl;
-    ostr << "__parent__.appendChild(__temp__);" << std::endl;
-
+    ostr << "var __temp__ = createListbox(" + std::to_string(uid) + ");" << std::endl;
     return true;
 }
 
 bool WebUtils::createCombobox(int uid, std::ostringstream& ostr)
 {
-    //create a <input>
-    createCommonIUControl(uid, "SELECT", "GO_COMBOBOX", ostr);
-    ostr << "__temp__.size = 1;" << std::endl;
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "var __parent__ = document.getElementById('scilab');" << std::endl;
-    ostr << "__parent__.appendChild(__temp__);" << std::endl;
-
+    ostr << "var __temp__ = createCombobox(" + std::to_string(uid) + ");" << std::endl;
     return true;
 }
 
 bool WebUtils::createSpinner(int uid, std::ostringstream& ostr)
 {
-    //create a <input>
-    createCommonIUControl(uid, "INPUT", "GO_SPINNER", ostr);
-    ostr << "__temp__.type = 'number';" << std::endl;
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "var __parent__ = document.getElementById('scilab');" << std::endl;
-    ostr << "__parent__.appendChild(__temp__);" << std::endl;
-
+    ostr << "var __temp__ = createSpinner(" + std::to_string(uid) + ");" << std::endl;
     return true;
 }
 
 bool WebUtils::createTab(int uid, std::ostringstream& ostr)
 {
-    //create a <input>
-    createCommonIUControl(uid, "DIV", "GO_TAB", ostr);
-
-    //create a list
-    ostr << "var __ul__ = " << createElement("UL") << std::endl;
-    ostr << "__ul__.id = " << getIdString(uid, "_ul") << ";" << std::endl;
-    ostr << "__temp__.appendChild(__ul__);" << std::endl;
-
-
-    //add item temporary in main div waiting __GO_PARENT__ update
-    ostr << "var __parent__ = document.getElementById('scilab');" << std::endl;
-    ostr << "__parent__.appendChild(__temp__);" << std::endl;
-
+    ostr << "var __temp__ = createTab(" << uid << ");" << std::endl;
     return true;
 }
 
 bool WebUtils::addTabChild(int uid, int child, std::ostringstream& ostr)
 {
-    std::vector<std::string> vect;
-
-    //create il
-    ostr << "var __li__ = " << createElement("LI") << std::endl;
-    ostr << "__li__.id = " << getIdString(child, "_li") << ";" << std::endl;
-
-    //create input button
-    ostr << "var __btn__ = " << createElement("INPUT") << std::endl;
-    ostr << "__btn__.id = " << getIdString(child, "_btn") << ";" << std::endl;
-    ostr << "__btn__.type = 'button';" << std::endl;
-    ostr << "__btn__.addEventListener('click', onTab);" << std::endl;
-
-    //add button in il
-    ostr << "__li__.appendChild(__btn__);" << std::endl;
-
-    //add il as first child in ul
-    ostr << "var __ul__ = " << getElementById(uid, "_ul") << std::endl;
-    ostr << "__ul__.insertBefore(__li__, __ul__.firstChild);" << std::endl;
-
-    //update child properties
-    ostr << "__child__.style.position = 'inherit';" << std::endl;
-    ostr << "__child__.style.left = 'inherit';" << std::endl;
-    ostr << "__child__.style.bottom = 'inherit';" << std::endl;
-    ostr << "__child__.style.width = '100%';" << std::endl;
-    ostr << "__child__.style.height = 'inherit';" << std::endl;
-
-    //be carefull, we change __child__ to tab uid instead of frame uid
+    ostr << "addTabHelper(" << uid << ", " << child << ");";
     setUIValue(uid, ostr);
     return true;
 }
@@ -1446,9 +809,7 @@ bool WebUtils::addTabChild(int uid, int child, std::ostringstream& ostr)
 
 bool WebUtils::deleteObject(int uid, std::ostringstream& ostr)
 {
-    ostr << "var __child__ = " << getElementById(uid) << std::endl;
-    ostr << "__child__.parentNode.removeChild(__child__);" << std::endl;
-
+    ostr << "deleteObject(" << uid << ");";
     return true;
 }
 
@@ -1458,68 +819,68 @@ bool WebUtils::updateDefaultProperties(int uid, std::ostringstream& ostr)
     setVisible(uid, ostr);
 
     //backgoundcolor
-    setUIBackgroundColor(uid, ostr, true);
+    setUIBackgroundColor(uid, ostr);
 
     //enable
-    setUIEnable(uid, ostr, true);
+    setUIEnable(uid, ostr);
 
     //fontangle
-    setUIFontAngle(uid, ostr, true);
+    setUIFontAngle(uid, ostr);
 
     //fontname
-    setUIFontName(uid, ostr, true);
+    setUIFontName(uid, ostr);
 
     //fontsize & fontunits
-    setUIFontSize(uid, ostr, true);
+    setUIFontSize(uid, ostr);
 
     //fontweight
-    setUIFontWeight(uid, ostr, true);
+    setUIFontWeight(uid, ostr);
 
     //foregroundcolor
-    setUIForegroundColor(uid, ostr, true);
+    setUIForegroundColor(uid, ostr);
 
     //horizontalalignment
-    setUIHorizontalAlignment(uid, ostr, true);
+    setUIHorizontalAlignment(uid, ostr);
 
     //relief ?
-    setUIRelief(uid, ostr, true);
+    setUIRelief(uid, ostr);
 
     //string
-    setUIString(uid, ostr, true);
+    setUIString(uid, ostr);
 
     //verticalalignment
-    setUIVerticalAlignment(uid, ostr, true);
+    setUIVerticalAlignment(uid, ostr);
 
     //position
-    setUIPosition(uid, ostr, true);
+    setUIPosition(uid, ostr);
 
     //layout ?
-    setUILayout(uid, ostr, true);
+    setUILayout(uid, ostr);
 
     //min
-    setUIMin(uid, ostr, true);
+    setUIMin(uid, ostr);
 
     //max
-    setUIMax(uid, ostr, true);
+    setUIMax(uid, ostr);
 
     //step
-    setUIStep(uid, ostr, true);
+    setUIStep(uid, ostr);
 
     //vaue
-    setUIValue(uid, ostr, true);
+    setUIValue(uid, ostr);
 
     //set callback uses to update values from web view
-    setCallback(uid, ostr, true);
+    setCallback(uid, ostr);
 
     return true;
 }
 
-bool WebUtils::set(int prop, int uid, std::ostringstream& ostr, bool append)
+bool WebUtils::set(int prop, int uid, std::ostringstream& ostr)
 {
     SETTER::iterator it = setter.find(prop);
     if (it != setter.end())
     {
-        it->second(uid, ostr, append);
+        it->second(uid, ostr);
 
         return true;
     }
@@ -1554,6 +915,7 @@ void WebUtils::fillSetter()
     //preferred size is the last property to be set for gridbag constraints
     setter[__GO_UI_GRIDBAG_GRID__] = WebUtils::setUIGridBag;
     setter[__GO_UI_FRAME_BORDER__] = WebUtils::setUIFrameBorder;
+    setter[__GO_UI_ICON__] = WebUtils::setUIIcon;
     //setter[__GO_CALLBACK__] = WebUtils::setCallback;
 }
 
@@ -1590,18 +952,17 @@ bool WebUtils::updateValue(int uid, bool value)
 
 void WebUtils::addInWaitingQueue(int uid, int prop)
 {
-    std::cerr << "add in queue : " << uid << "(" << prop << ")" << std::endl;
     waitprop[uid].push_back(prop);
 }
 
-void WebUtils::setWaitingProperties(int uid, std::ostringstream& ostr, bool append)
+void WebUtils::setWaitingProperties(int uid, std::ostringstream& ostr)
 {
     WAITING_PROP::iterator it = waitprop.find(uid);
     if (it != waitprop.end())
     {
         for (int prop : it->second)
         {
-            set(prop, uid, ostr, append);
+            set(prop, uid, ostr);
         }
         waitprop.erase(it);
     }

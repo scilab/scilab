@@ -1,0 +1,252 @@
+body {
+    background-color : rgb(192,192,192);
+    color : black;
+    text-align : center;
+}
+
+.log {
+    background-color : white;
+    opacity : 1;
+    width : 500px;
+    height : 100px;
+    margin : auto;
+    text-align:left;
+    border : 2px rgb(0,0,0) solid;
+    overflow : auto;
+    font-family: 'Lucida Console', Monaco, monospace;
+    font-size:11px;
+}
+
+.GO_FIGURE {
+    /*
+        "position" must be relative or absolute 
+        to allow absolue positioning of children
+    */
+    position: relative;
+    background-color : rgb(192,192,192);
+    width : 610px;
+    height : 460px;
+    margin : auto;
+    border : 2px rgb(0,0,0) solid;
+    text-align: left;
+}
+
+.GO_UI_PUSHBUTTON {
+    position: absolute;
+    text-align:center;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size: 11px;
+    visibility:inherit;
+}
+
+.GO_UI_FRAME {
+    position: absolute;
+    background-color : white;
+    text-align:center;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+}
+
+.GO_UI_TEXT {
+    position: absolute;
+    background-color : white;
+    line-height:20px;
+    text-align:left;
+    vertical-align: middle;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+}
+
+.GO_UI_EDIT {
+    position: absolute;
+    background-color : white;
+    text-align:left;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+}
+
+.GO_UI_CHECKBOX {
+    position: absolute;
+    background-color : white;
+    line-height:20px;
+    text-align:left;
+    vertical-align: middle;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+}
+
+.GO_UI_CHECKBOX_LABEL {
+    background-color : inherit;
+    text-align:left;
+    overflow : hidden;
+    font-family: inherit;
+    font-size:inherit;
+    visibility:inherit;
+}
+
+.GO_UI_CHECKBOX_CHECKBOX {
+    background-color : inherit;
+    left: 0px;
+    bottom: 0px;
+    overflow : hidden;
+    visibility:inherit;
+}
+
+.GO_UI_RADIOBUTTON {
+    position: absolute;
+    background-color : white;
+    line-height:20px;
+    text-align:left;
+    vertical-align: middle;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+}
+
+.GO_UI_RADIOBUTTON_LABEL {
+    background-color : inherit;
+    text-align:left;
+    overflow : hidden;
+    font-family: inherit;
+    font-size:inherit;
+    visibility:inherit;
+}
+
+.GO_UI_RADIOBUTTON_RADIO {
+    background-color : inherit;
+    left: 0px;
+    bottom: 0px;
+    overflow : hidden;
+    visibility:inherit;
+}
+
+.GO_UI_SLIDER {
+    position: absolute;
+    background-color : white;
+    overflow : hidden;
+    visibility:inherit;
+}
+
+.GO_UI_LISTBOX {
+    position: absolute;
+    background-color : white;
+    overflow : auto;
+    visibility:inherit;
+}
+
+.GO_UI_POPUPMENU {
+    position: absolute;
+    background-color : white;
+    overflow : auto;
+    visibility:inherit;
+}
+
+.GO_UI_SPINNER {
+    position: absolute;
+    background-color : white;
+    text-align:right;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+}
+
+.GO_UI_TAB {
+    position: absolute;
+    background-color : white;
+    text-align:center;
+    overflow : hidden;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size:11px;
+    visibility:inherit;
+    width: 100%;
+    height: inherit;
+    display: flex;
+    flex-direction:column;
+}
+
+.GO_UI_TAB ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.GO_UI_TAB li {
+    display: inline;
+    margin: 0;
+}
+
+.GO_UI_TAB input {
+    padding: 0 1em;
+    text-decoration: none;
+    border-style: none;
+}
+
+.GO_UI_TAB input:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.GO_UI_TAB input:focus {
+    outline: none;
+}
+
+.GO_UI_TAB_SELECTED input:hover {
+    text-decoration: none;
+}
+
+.GO_UI_TAB_SELECTED input {
+    padding-bottom: 2px;
+    font-weight: bold;
+    border-width: 0px 2px 0px 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+.GO_UI_TAB div {
+    width: 100%;
+    display: none;
+    position: inherit;
+    flex:1;
+}
+
+.GO_UI_FRAME_BORDER {
+}
+
+.GO_UI_FRAME_BORDER fieldset {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.window {
+    /*
+        "position" must be relative or absolute 
+        to allow absolue positioning of children
+    */
+    position: relative;
+    background-color : rgb(192.192.192);
+    margin : auto;
+    /*
+    border : 2px rgb(0,0,0) solid;
+    */
+    overflow : auto;
+    text-align: left;
+}
+
+#infobar {
+    background-color : rgb(192,192,192);
+    opacity : 1;
+    width : 500px;
+    height : 20px;
+    margin : auto;
+    border : 1px rgb(0,0,0) solid;
+    font-weight: bold;
+}

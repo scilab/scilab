@@ -10,6 +10,7 @@ var cmdPort = 10000 + process.pid;
 var grpPort = 10001 + process.pid;
 var dspPort = 10002;
 
+var imagepath;
 //start server to chat with dispatcher
 var dispatchio = require('socket.io')(dspPort);
 dispatchio.on('connection', function (dspSocket) {
@@ -21,6 +22,10 @@ dispatchio.on('connection', function (dspSocket) {
 
     dspSocket.on('callback', function (msg) {
         graphicio.emit('callback', msg);
+    });
+
+    dspSocket.on('imagepath', function (msg) {
+        imagepath = msg;
     });
 
     dspSocket.on('quit', function () {
@@ -58,6 +63,7 @@ dispatchio.on('connection', function (dspSocket) {
     graphicio.on('connection', function (socket) {
         L('Scilab graphic connected');
 
+        socket.emit('imagepath', imagepath);
         socket.on('graphic_create', function (msg) {
             dspSocket.emit('graphic_create', msg);
         });
@@ -84,7 +90,7 @@ dispatchio.on('connection', function (dspSocket) {
 
     //launch scilab with init command
     var app;
-    if(process.platform == "win32") {
+    if(process.platform === "win32") {
         app = process.env.SCIPATH + "/bin/wscilex.exe";
     } else {
         app = process.env.SCIPATH + "/bin/scilab";
