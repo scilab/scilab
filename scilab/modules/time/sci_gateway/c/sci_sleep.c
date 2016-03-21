@@ -78,17 +78,19 @@ int sci_sleep(char *fname, void* pvApiCtx)
 
 #ifdef _MSC_VER
         {
+            double ms = 0;
             if (option == 1)
             {
-                double ms = sec * 1000; /* convert seconds into milliseconds */
+                ms = sec * 1000; /* convert seconds into milliseconds */
             }
             else
             {
-                double ms = sec;
+                ms = sec;
             }
+
             if (ms > 0)
             {
-                Sleep(ms);    /* Number of milliseconds to sleep. */
+                Sleep((DWORD)ms);    /* Number of milliseconds to sleep. */
             }
         }
 #else
