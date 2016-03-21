@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
         {
             if (in[i]->getId() != types::InternalType::IdScalarString)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname.data(), 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname.data(), i+1);
                 return types::Function::Error;
             }
 
