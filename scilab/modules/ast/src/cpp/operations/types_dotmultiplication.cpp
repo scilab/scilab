@@ -1472,7 +1472,7 @@ InternalType* dotmul_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
             {
                 for (int i = 0 ; i < iSize ; i++)
                 {
-                    dotmul(pSP[i]->get(), (size_t)pSP[i]->getSize(), dblR, dblI, pSP[i]->get(), pSP[i]->getImg());
+                    dotmul(pSPR[i]->get(), (size_t)pSPR[i]->getSize(), dblR, dblI, pSP[i]->get(), pSP[i]->getImg());
                 }
             }
         }
@@ -1482,7 +1482,7 @@ InternalType* dotmul_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
             {
                 for (int i = 0 ; i < iSize ; i++)
                 {
-                    dotmul(pSP[i]->get(), pSP[i]->getImg(), (size_t)pSP[i]->getSize(), dblR, pSP[i]->get(), pSP[i]->getImg());
+                    dotmul(pSPR[i]->get(), pSPR[i]->getImg(), (size_t)pSPR[i]->getSize(), dblR, pSP[i]->get(), pSP[i]->getImg());
                 }
             }
             else
@@ -1490,7 +1490,7 @@ InternalType* dotmul_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
                 //r .* P
                 for (int i = 0 ; i < iSize ; i++)
                 {
-                    dotmul(pSP[i]->get(), (size_t)pSP[i]->getSize(), dblR, pSP[i]->get());
+                    dotmul(pSPR[i]->get(), (size_t)pSPR[i]->getSize(), dblR, pSP[i]->get());
                 }
             }
         }
