@@ -642,7 +642,7 @@ assign			"="
 }
 
 
-<INITIAL,MATRIX>{startblockcomment}	{
+<INITIAL,MATRIX,SHELLMODE,BEGINID>{startblockcomment}	{
   yylval.comment = new std::wstring();
   comment_level = 1;
   ParserSingleInstance::pushControlStatus(Parser::WithinBlockComment);
@@ -650,7 +650,7 @@ assign			"="
 }
 
 
-<INITIAL,MATRIX>{startcomment}		{
+<INITIAL,MATRIX,SHELLMODE,BEGINID>{startcomment}		{
   pstBuffer.clear();
   yy_push_state(LINECOMMENT);
 }

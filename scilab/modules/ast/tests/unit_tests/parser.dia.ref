@@ -628,3 +628,18 @@ assert_checkequal(a, expected);
 str_cmd = ["a = [1 -... /* the start of a";
           "multiline comment */ 2 3]"]; // this currently generates an error
 assert_checktrue(execstr(str_cmd, "errcatch") <> 0);
+// bug_14374 comments in SHELLMODE
+// Testing if shellmode execution with command
+// convstr a u // a comment
+// convstr a /* a comment */
+// convstr a u /* some text
+//                ending comment here */
+ierr = execstr("convstr a u // a comment", "errcatch");
+assert_checkequal(ierr, 0);
+ierr = execstr("convstr a /* a comment */", "errcatch");
+assert_checkequal(ierr, 0);
+ierr = execstr(["convstr a u /* some text"; ..
+                "              ending comment here */"], "errcatch");
+assert_checkequal(ierr, 0);
+ierr = execstr("convstr a /* some comments */ u;", "errcatch");
+assert_checkequal(ierr, 0);

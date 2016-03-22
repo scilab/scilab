@@ -359,6 +359,8 @@ In 6.0.0:
 
 * Bug #14362 fixed - The ode() Lotka demo had typo errors
 
+* Bug #14374 fixed - Parser did not manage comments properly in shellmode
+
 * Bug #14389 fixed - Updated int8(), type(), typeof(), overloading(), iconvert() and inttype() help pages. Added int64() and uint64() descriptions.
 
 * Bug #14396 fixed - real number display was not proper for very wide decimal parts
