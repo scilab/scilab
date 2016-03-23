@@ -176,6 +176,23 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             continue;
         }
 
+        //extract implicit list for call()
+        if (pIT->isCallable() || pIT->isUserType())
+        {
+            if (inTmp[iterIn]->isImplicitList())
+            {
+                types::ImplicitList* pIL = inTmp[iterIn]->getAs<types::ImplicitList>();
+                if (pIL->isComputable())
+                {
+                    types::InternalType* pITExtract = pIL->extractFullMatrix();
+                    pITExtract->IncreaseRef();
+                    inTmp[iterIn] = pITExtract;
+                    pIL->DecreaseRef();
+                    pIL->killMe();
+                }
+            }
+        }
+
         // management of optional input
         if (arg->isAssignExp())
         {
@@ -196,25 +213,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             }
 
             continue;
-        }
-
-        //extract implicit list for call()
-        if (pIT->isCallable() || pIT->isUserType())
-        {
-            if (inTmp[iterIn]->isImplicitList())
-            {
-                types::ImplicitList* pIL = inTmp[iterIn]->getAs<types::ImplicitList>();
-                if (pIL->isComputable())
-                {
-                    types::InternalType* pITExtract = pIL->extractFullMatrix();
-                    pITExtract->IncreaseRef();
-                    in.push_back(pITExtract);
-                    pIL->DecreaseRef();
-                    pIL->killMe();
-                    iterIn++;
-                    continue;
-                }
-            }
         }
 
         // default case
