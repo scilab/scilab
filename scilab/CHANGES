@@ -93,6 +93,8 @@ Other feature changes
 Other feature additions
 =======================
 
+* Multiline blocs of comments /* ...\n ... \n ... */ are now possible.
+
 * scatter/scatter3 plot with different mark colors is now available.
 
 * parulacolormap is now available.
@@ -209,12 +211,53 @@ Data Structures
   - .dims and .entries fields have been removed, please use size and () instead.
 
 
-Removed Functions
-==================
-* xpause will be removed in Scilab 6.1. Please use sleep() instead.
+Syntax Modifications
+=====================
+* Declaration of a number on two lines is no longer allowed:
+ 1..
+ 2
 
+* 1./M is now parsed as 1 ./ M instead of 1. / M
+
+* {} and [] are now distinct operators. {} are now used to build cells.
+
+* Declaring non-homogenous strings ("string' or 'string") is no more allowed.
+
+* New shortcut operators have been introduced: && and ||.
+
+* Syntax %i:10 is now deprecated (only real scalars can be used).
+
+* (a=b) executed like a == b is now deprecated and returns an error.
+
+* while/else control instruction is no more supported.
+
+
+Modified Functions
+===================
+* exec: exec of macro executes the body in the current scope but the prototype must have zero input and output arguments.
+* error: an error number in input is deprecated.
+* impl: Recall impl with the same parameters as in its previous stop is now available.
+* ode: y0 is restricted to a column vector.
+* pppdiv: Return a scalar of type 'constant' when the rank is 0.
+* pdiv: Return a matrix of type 'constant' when all the rank are 0.
+* test_run can now take "[]" as argument to be used on console; for instance: test_run string [] no_check_ref
+* strange([]) now returns %nan instead of [], as all other functions for statistical dispersion
+* Writing string or string matrix in a file does not add blanck space before each value:
+    write("TMPDIR/test", ["test", "sample"; "sample", "test"])
+    "-" + mgetl("TMPDIR/test") + "-"
+
+
+Obsolete functions or features
+==============================
 * maxfiles function is now obsolete.
 
+* xpause will be removed from Scilab 6.1. Please use sleep(..) instead.
+
+* isoview(xmin,xmax,ymin,ymax) will be removed from Scilab 6.1. Please use isoview("on"), replot(..) instead.
+
+
+Removed Functions
+==================
 * intersci has been removed. Please use swig instead.
 
 * numdiff has been removed. Please use numderivative instead.
@@ -237,73 +280,18 @@ Removed Functions
   - trisolve
   - block2exp
 
-
-Removed Functions (based on former Scilab stack)
-================================================
-
-* comp.
-
-* errcatch.
-
-* iserror.
-
-* fun2string.
-
-* getvariablesonstack.
-
-* gstacksize.
-
-* macr2lst.
-
-* stacksize.
-
-* code2str.
-
-* str2code.
-
-* -mem option (used to set stacksize at startup).
-
-
-Modified Functions
-===================
-
-* exec: exec of macro executes the body in the current scope but the prototype must have zero input and output arguments.
-* error: an error number in input is deprecated.
-* impl: Recall impl with the same parameters as in its previous stop is now available.
-* ode: y0 is restricted to a column vector.
-* pppdiv: Return a scalar of type 'constant' when the rank is 0.
-* pdiv: Return a matrix of type 'constant' when all the rank are 0.
-* test_run can now take "[]" as argument to be used on console; for instance: test_run string [] no_check_ref
-
-
-Syntax Modifications
-=====================
-
-* Declaration of a number on two lines is no longer allowed:
- 1..
- 2
-
-* {"foo"} returns a cell not a string matrix.
-
-* Declaring non-homogenous strings ("string' or 'string") is no more allowed.
-
-* New shortcut operators have been introduced: && and ||.
-
-
-Deprecated Behaviors
-=====================
-
-* {} becomes different of [] and will be used on cells.
-
-* Syntax %i:10 is now deprecated (only real scalars can be used).
-
-* Writing string or string matrix in a file does not add blanck space before each value:
-    write("TMPDIR/test", ["test", "sample"; "sample", "test"])
-    "-" + mgetl("TMPDIR/test") + "-"
-
-* while/else control instruction is no more supported.
-
-* (a=b) executed like a == b is now deprecated and returns an error.
+*  Functions based on former Scilab stack are removed:
+  - comp
+  - errcatch
+  - iserror
+  - fun2string
+  - getvariablesonstack
+  - gstacksize
+  - macr2lst
+  - stacksize
+  - code2str
+  - str2code.
+  - -mem launching option (used to set stacksize at startup).
 
 
 Known issues
@@ -394,6 +382,8 @@ In 6.0.0:
 * Bug #14453 fixed - strcat([]) now returns [] instead of null string
 
 * Bug #14468 fixed - Scinotes was unable to export to HTML.
+
+* Bug #14471 fixed - strange([]) returned [] instead of %nan as all other functions for statistical dispersion
 
 * Bug #14476 fixed - Dotmultiplication between polynomials and imaginary numbers was always returning 0
 
