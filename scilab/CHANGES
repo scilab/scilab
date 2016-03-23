@@ -113,6 +113,8 @@ Other feature additions
 
 * sleep(..,'s') allows now to specify the duration in seconds.
 
+* deletefile can delete multiple files at once.
+
 
 Installation
 ============
