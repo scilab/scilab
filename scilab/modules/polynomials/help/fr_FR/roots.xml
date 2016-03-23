@@ -33,22 +33,29 @@
                 <term>p</term>
                 <listitem>
                     <para>
-                        un polynôme réel ou complexe, ou
-                        une m-par-1 or 1-par-m matrice de doubles, les coefficients du polynômes par ordre de puissance décroissante.
+                        un polynôme réel ou complexe ; ou un vecteur de nombres
+                        décimaux ou complexes = les coefficients du polynôme
+                        par ordre de puissances décroissantes.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>algo</term>
                 <listitem>
-                    <para>
-                        une chaîne de caractères, l'algorithme à utiliser (défaut algo="e").
-                        Si algo="e", alors les valeurs propres de la matrice compagnion sont utilisées.
-                        Si algo="f", alors l'algorithme de Jenkins-Traub est utilisé (si les coefficients
-                        du polynôme sont réels et que le degré du polynôme est plus petit que 100).
-                        Si algo="f" et que le polynôme est complexe, alors une erreur est générée.
-                        Si algo="f" et que le polynôme est de degré inférieur à 100, alors une erreur est
-                        générée.
+                    <para>un caractère désignant l'algorithme à utiliser :
+                        <itemizedlist>
+                            <listitem>"e" (par défaut) : les valeurs propres de
+                                la matrice compagnon sont utilisées.
+                            </listitem>
+                            <listitem>"f" : si isreal(p) et degree(p)&lt;100 :
+                                l'algorithme de Jenkins-Traub est utilisé.
+                            </listitem>
+                            <listitem>"f" : si isreal(p) et degree(p)>=100: une
+                                erreur est émise.
+                            </listitem>
+                            <listitem>"f" : si ~isreal(p), une erreur est émise.
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>

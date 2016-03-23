@@ -126,6 +126,11 @@ Other feature additions
 
 * deletefile can delete multiple files at once.
 
+* Help pages:
+  - fixed / improved:  members, part, ode, ode_optional_output, ode_roots, roots, printf, sprintf, iconvert, stdev, xlabel
+  - rewriten: consolebox, double, isoview, householder
+  - resorted: else, elseif, end, try, sciargs, global, halt, empty, power
+
 
 Installation
 ============
@@ -313,6 +318,7 @@ Bug Fixes
 =========
 
 In 6.0.0:
+* Bug #2104 fixed  - iw(1:9) and w(1:10) ode() output parameters were not documented
 
 * Bug #6314 fixed  - The identical code of %p_m_r() and  %r_m_p() was not factorized
 
@@ -331,6 +337,8 @@ In 6.0.0:
 * Bug #13468 fixed - Scilab hanged when incorrect format was used for file reading using mfscanf.
 
 * Bug #13725 fixed - xfpoly polygon filling would may fail for some cases
+
+* Bug #13748 fixed - printf, sprintf (en,ja): short descriptions and obsolete flags were missing.
 
 * Bug #13769 fixed - t = "abc..//ghi" was parsed as a continued + comment
 
@@ -407,6 +415,8 @@ In 6.0.0:
 * Bug #14471 fixed - strange([]) returned [] instead of %nan as all other functions for statistical dispersion
 
 * Bug #14476 fixed - Dotmultiplication between polynomials and imaginary numbers was always returning 0
+
+* Bug #14495 fixed - consolebox() help page shew wrong syntaxes and was poor.
 
 * Bug #14499 fixed - getd() did not update already defined functions
 

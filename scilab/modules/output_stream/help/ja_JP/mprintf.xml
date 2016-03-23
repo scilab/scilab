@@ -24,6 +24,10 @@
     </refnamediv>
     <refnamediv xml:id="printf">
         <refname>printf</refname>
+        <refpurpose>
+            変換, 整形し,
+            Scilab主ウインドウにデータを書き込む （廃止）
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>

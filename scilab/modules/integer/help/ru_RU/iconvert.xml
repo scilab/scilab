@@ -112,7 +112,7 @@
                 <term>itype = 8</term>
                 <listitem>
                     <para>
-                        возвращает числа <literal>int32</literal> в диапазоне <literal>[-9223372036854775808,9223372036854775807]</literal>
+                        возвращает числа <literal>int64</literal> в диапазоне <literal>[-9223372036854775808,9223372036854775807]</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -120,7 +120,7 @@
                 <term>itype = 18</term>
                 <listitem>
                     <para>
-                        возвращает числа <literal>uint32</literal> в диапазоне <literal>[0, 18446744073709551616]</literal>
+                        возвращает числа <literal>uint64</literal> в диапазоне <literal>[0, 18446744073709551616]</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -129,8 +129,8 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-b=int32([1 -120 127 312])
-y=iconvert(b,1)
+b = int32([1 -120 127 312])
+y = iconvert(b,1)
 
 typeof(b)
 typeof(y)

@@ -21,10 +21,11 @@
     </refnamediv>
     <refnamediv xml:id="sprintf">
         <refname>sprintf</refname>
+        <refpurpose>converts, formats, and writes data in a string (obsolete)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>str=msprintf(format,a1,...,an);</synopsis>
+        <synopsis>str = msprintf(format,a1,...,an);</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
