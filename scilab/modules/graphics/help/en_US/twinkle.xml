@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ * Copyright (C) 2015 - 2016 - Samuel GOUGEON
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -16,51 +16,60 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="twinkle">
     <refnamediv>
         <refname>twinkle</refname>
-        <refpurpose>is used to have a graphics entity twinkle</refpurpose>
+        <refpurpose>is used to have a graphics entity blinking</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>twinkle(h,[n])</synopsis>
+        <synopsis>twinkle
+twinkle(n)
+twinkle(h)
+twinkle(h,n)
+        </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="arguments">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>a handle of a graphics entity.</para>
+                    <para>handle of the unique graphics entity to blink. By default, the current graphic entity handled with <literal>gce()</literal> is considered.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>an integer.</para>
+                    <para>positive integer number: the number of blinks. Default n = 5.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
-            <function>twinkle</function> let the graphics entity given by its handle <varname>h</varname> twinkle. It can be used to
-            find the graphics object corresponding to a graphics handle in the graphics window. By default the graphics
-            entity twinkles 5 times, but you can change this by using optional argument <varname>n</varname>.
+            <function>twinkle</function> blinks <varname>n</varname> times the graphical entity
+            handled with <varname>h</varname>. If <function>twinkle()</function> is run while no
+            graphical figure exists, it does nothing and returns. If the handle <varname>h</varname>
+            is invalid (the entity has been deleted in the meantime),
+            <function>twinkle(h..)</function> yields an error.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-x=linspace(-2*%pi,2*%pi,100)';
+        <programlisting role="example"><![CDATA[
+clf
+plot()
+twinkle     // twinkles the last group of curves plotted in the plot() example
+twinkle(3)  // twinkles it only three times
+
+clf
+x = linspace(-2*%pi,2*%pi,100)';
 plot2d(x,[sin(x),cos(x)]);
-e=gce();
-p1=e.children(1);
-p2=e.children(2);
-// cos plot twinkle
-twinkle(p1)
-// sin plot twinkle 10 times
-twinkle(p2,10)
-// axes twinkle
-twinkle(gca())
+e = gce();
+p1 = e.children(1);
+p2 = e.children(2);
+twinkle(p1)       // cos plot twinkle
+twinkle(p2,10)    // sin plot twinkle 10 times
+twinkle(gca())    // axes twinkle
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -70,5 +79,16 @@ twinkle(gca())
                 <link linkend="graphics_entities">graphics entities</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>twinkle() and twinkle(n) added.</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -13,13 +13,13 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="twinkle">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="twinkle">
     <refnamediv>
         <refname>twinkle</refname>
-        <refpurpose>グラフィックエンティティを点滅させる</refpurpose>
+        <refpurpose>fait clignoter un élément graphique pour le repérer visuellement</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>呼び出し手順</title>
+        <title>Syntaxe</title>
         <synopsis>twinkle
 twinkle(n)
 twinkle(h)
@@ -27,42 +27,42 @@ twinkle(h,n)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
-        <title>Parameters</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>グラフィックエンティティのハンドル. By default, the current graphic entity
-                      handled with <literal>gce()</literal> is considered.
+                    <para>identifiant de l'élément graphique à repérer. Par défaut, l'élément
+                      graphique actif d'identifiant <literal>gce()</literal> est considéré.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>整数.</para>
+                    <para>nombre de clignotements. Par défaut, n=5</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection role="description">
-        <title>説明n</title>
+        <title>Description</title>
         <para>
-            <literal>twinkle</literal>はハンドル<literal>h</literal> で
-            指定したグラフィックエンティティを点滅させます.
-            グラフィックウインドウ内でグラフィックハンドルに対応するグラフィックオブジェクトを
-            探す際に使用することができます.
-            デフォルトでグラフィックエンティティは5回点滅しますが,
-            オプションの引数 <literal>n</literal>によりこの値を変更することができます.
+            <function>twinkle</function> fait clignoter <varname>n</varname> fois l'élément graphique
+            dont l'identifiant graphique <varname>h</varname> est spécifié.
+            Si <function>twinkle()</function> est appelé sans paramètre alors qu'aucune fenêtre
+            graphique n'existe, l'instruction est ignorée. Si l'identifiant graphique
+            <varname>h</varname> est invalide (l'élément graphique correspondant a été supprimé
+            entretemps), <function>twinkle(h..)</function> produit une erreur.
         </para>
     </refsection>
     <refsection role="examples">
-        <title>例</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 clf
 plot()
-twinkle     // twinkles the last group of curves plotted in the plot() example
-twinkle(3)  // twinkles it only three times
+twinkle    // fait clignoter le dernier groupe de courbes dessinées dans l'exemple de plot()
+twinkle(3) // le fait clignoter seulement 3 fois
 
 clf
 x = linspace(-2*%pi,2*%pi,100)';
@@ -70,27 +70,26 @@ plot2d(x,[sin(x),cos(x)]);
 e = gce();
 p1 = e.children(1);
 p2 = e.children(2);
-
-twinkle(p1)    // cos plot twinkle
-twinkle(p2,10) // sin plot twinkles 10 times
-twinkle(gca()) // axes twinkle
- ]]></programlisting>
+twinkle(p1)     // Courbe du cosinus
+twinkle(p2,10)  // Courbe du sinus, 10 fois
+twinkle(gca())  // Repère actif entier
+]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>参照</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="graphics_entities">graphics_entities</link>
+                <link linkend="graphics_entities">Eléments graphiques</link>
             </member>
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>履歴</title>
+        <title>Historique</title>
         <revhistory>
             <revision>
                 <revnumber>6.0</revnumber>
                 <revdescription>
-                    <para>twinkle() and twinkle(n) added.</para>
+                    <para>twinkle() et twinkle(n) ajoutés.</para>
                 </revdescription>
             </revision>
         </revhistory>

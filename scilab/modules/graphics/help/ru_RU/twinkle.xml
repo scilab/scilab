@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ * Copyright (C) 2015 - 2016 - Samuel GOUGEON
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -20,15 +20,21 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>twinkle(h,[n])</synopsis>
+        <synopsis>twinkle
+twinkle(n)
+twinkle(h)
+twinkle(h,n)
+        </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="arguments">
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>указатель на графический объект.</para>
+                    <para>указатель на графический объект. By default, the current graphic entity
+                      handled with <literal>gce()</literal> is considered.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -39,7 +45,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Описание</title>
         <para>
             Функция <function>twinkle</function> заставляет графический объект,
@@ -50,20 +56,22 @@
             <varname>n</varname>.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
-x=linspace(-2*%pi,2*%pi,100)';
+        <programlisting role="example"><![CDATA[
+clf
+plot()
+twinkle     // twinkles the last group of curves plotted in the plot() example
+twinkle(3)  // twinkles it only three times
+
+x = linspace(-2*%pi,2*%pi,100)';
 plot2d(x,[sin(x),cos(x)]);
-e=gce();
-p1=e.children(1);
-p2=e.children(2);
-// мерцает график косинуса
-twinkle(p1)
-// график синуса мерцает 10 раз
-twinkle(p2,10)
-// мерцают оси
-twinkle(gca())
+e = gce();
+p1 = e.children(1);
+p2 = e.children(2);
+twinkle(p1)     // мерцает график косинуса
+twinkle(p2,10)  // график синуса мерцает 10 раз
+twinkle(gca())  // мерцают оси
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -73,5 +81,16 @@ twinkle(gca())
                 <link linkend="graphics_entities">графические объекты</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>twinkle() and twinkle(n) added.</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

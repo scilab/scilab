@@ -103,6 +103,8 @@ Other feature additions
 
 * isoview, isoview on, isoview off, isoview(idGraphics, "on"|"off") are now supported
 
+* twinkle and twinkle(n) are now supported: by default, the current element gce() blinks.
+
 * householder() can now return the reflection matrix, and has a demo.
 
 * ndgrid() can now works with any types of homogeneous data
@@ -332,6 +334,8 @@ In 6.0.0:
 * Bug #13939 fixed - in HTML help pages, itemizedlist <ul> were rendered as ordered ones
 
 * Bug #13965 fixed - The rendering of histograms with histplot() was poor
+
+* Bug #13966 fixed - twinkle and twinkle(n) were not supported
 
 * Bug #13974 fixed - isoview(xmin, xmax, ymin, ymax) was unhandy.
 
