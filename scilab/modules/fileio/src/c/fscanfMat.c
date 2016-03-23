@@ -145,6 +145,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
             resultFscanfMat->text = NULL;
             resultFscanfMat->values = NULL;
         }
+        freeArrayOfWideString(pwsLines, nblines);
         return resultFscanfMat;
     }
 
