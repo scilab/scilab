@@ -485,6 +485,8 @@ In 6.0.0:
 
 * Bug #14476 fixed - Dotmultiplication between polynomials and imaginary numbers was always returning 0
 
+* Bug #14493 fixed - and() and or() help pages were poor and inaccurate.
+
 * Bug #14495 fixed - consolebox() help page shew wrong syntaxes and was poor.
 
 * Bug #14499 fixed - getd() did not update already defined functions
