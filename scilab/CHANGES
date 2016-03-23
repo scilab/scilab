@@ -365,6 +365,8 @@ In 6.0.0:
 
 * Bug #14396 fixed - real number display was not proper for very wide decimal parts
 
+* Bug #14398 fixed - Matrix extraction was mistakenly considered a function call in calling sequence
+
 * Bug #14415 fixed - Corrected some spellings error in help pages
 
 * Bug #14416 fixed - The file extension filter in Scinotes "Save as" window did not re-used the active file's extension when applicable.

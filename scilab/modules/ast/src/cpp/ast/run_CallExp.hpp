@@ -34,6 +34,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     {
         for (auto& arg : args)
         {
+            int iSize = getExpectedSize();
             if (arg->isAssignExp())
             {
                 AssignExp* pAssign = static_cast<AssignExp*>(arg);
@@ -49,6 +50,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
                 SimpleVar* pVar = pL->getAs<SimpleVar>();
                 Exp* pR = &pAssign->getRightExp();
+                // optional parameter have only one output argument
+                setExpectedSize(1);
                 try
                 {
                     pR->accept(*this);
@@ -58,6 +61,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     CoverageInstance::stopChrono((void*)&e);
                     throw;
                 }
+                setExpectedSize(iSize);
                 types::InternalType* pITR = getResult();
                 // IncreaseRef to protect opt argument of scope_end delete
                 // It will be deleted by clear_opt
@@ -71,7 +75,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 continue;
             }
 
-            int iSize = getExpectedSize();
             setExpectedSize(-1);
             try
             {
