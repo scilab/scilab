@@ -273,7 +273,7 @@ void WebUtils::setUIPosition(int uid, std::ostringstream& ostr)
         std::string value;
         if (v == "middle")
         {
-            value = std::to_string((int)pos[3]) + "px';";
+            value = std::to_string((int)pos[3]) + "px";
         }
         else
         {
