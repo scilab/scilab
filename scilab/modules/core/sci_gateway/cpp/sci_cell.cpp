@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_cell_gw(types::typed_list &in, int _iRetCount, 
                 piDimsArray[i] = (int)pD->get(i);
             }
             pRetVal = new types::Cell(pD->getSize(), piDimsArray);
-            delete piDimsArray;
+            delete[] piDimsArray;
         }
     }
     else if (in.size() == 2)

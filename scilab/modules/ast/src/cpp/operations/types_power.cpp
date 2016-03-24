@@ -521,9 +521,9 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
         }
     }
 
-    delete Col;
-    delete Row;
-    delete iPositVal;
+    delete[] Col;
+    delete[] Row;
+    delete[] iPositVal;
 
     pSpTemp->finalize();
     *_pOut = pSpTemp;
@@ -613,13 +613,13 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
         pSPOut[i]->DecreaseRef();
     }
 
-    // delete exp
-    for (int i = 0; i < iSize; i++)
+    //delete exp
+    for(int i = 0; i < iSize; i++)
     {
         delete pDblPower[i];
     }
-
-    delete pDblPower;
+    
+    delete[] pDblPower;
 
     // delete temporary polynom
     // do not delete the last SinglePoly of _pPoly setted without copy in pPolyTemp

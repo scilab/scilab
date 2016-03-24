@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, ty
             }
         }
 
-        delete piRankPolyIn;
+        delete[] piRankPolyIn;
 
         /***** return data *****/
         out.push_back(pPolyOut);
