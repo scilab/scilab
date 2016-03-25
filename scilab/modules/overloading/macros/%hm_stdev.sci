@@ -11,6 +11,7 @@
 // along with this program.
 
 function x = %hm_stdev(m, d, ms)
+    // d: 0, 1, 2...
     if argn(2) < 3 then
         ms = %f
     end
@@ -23,17 +24,13 @@ function x = %hm_stdev(m, d, ms)
         error(msprintf(msg,"stdev",2,1));
     end
 
-    if argn(2) == 1 | d == "*" then
+    if argn(2) == 1 | d==0 then
         if argn(2) == 3 then
             x = stdev(m(:), "*", ms);
         else
             x = stdev(m(:), "*");
         end
         return
-    elseif d == "r" then
-        d = 1;
-    elseif d == "c" then
-        d = 2;
     end
     dims = size(m);
     N = size(dims, "*");

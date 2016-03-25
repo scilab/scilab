@@ -260,6 +260,7 @@ Modified Functions
 * pdiv: Return a matrix of type 'constant' when all the rank are 0.
 * test_run can now take "[]" as argument to be used on console; for instance: test_run string [] no_check_ref
 * strange([]) now returns %nan instead of [], as all other functions for statistical dispersion
+* stdev(x, dir>ndims(x)) now yields an error instead of returning zeros(x)
 * Writing string or string matrix in a file does not add blanck space before each value:
     write("TMPDIR/test", ["test", "sample"; "sample", "test"])
     "-" + mgetl("TMPDIR/test") + "-"
