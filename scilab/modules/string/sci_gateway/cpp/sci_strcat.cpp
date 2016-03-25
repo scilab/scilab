@@ -68,11 +68,9 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
         }
     }
 
-    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->getSize() == 0)
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
     {
-        types::String *pOut = new types::String(1, 1);
-        pOut->set(0, L"");
-        out.push_back(pOut);
+        out.push_back(types::Double::Empty());
         return types::Function::OK;
     }
     else if (in[0]->isString() == false)
