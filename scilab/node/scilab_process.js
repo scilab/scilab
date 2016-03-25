@@ -6,15 +6,21 @@ var debug = true;
 var command_ready = false;
 var graphic_ready = false;
 
+L('process id: ' + process.pid);
 var cmdPort = 10000 + process.pid;
 var grpPort = 10001 + process.pid;
 var dspPort = 10002;
 
 var imagepath;
+var quitTO = 0;
+var msgHistory = [];
+
 //start server to chat with dispatcher
 var dispatchio = require('socket.io')(dspPort);
+
 dispatchio.on('connection', function (dspSocket) {
-    
+    //new connection incoming
+    L('dispatchio connection');
     dspSocket.on('command', function (msg) {
         L('command (' + process.pid + ') : ' + msg.data);
         commandio.emit('command', msg);
@@ -30,12 +36,31 @@ dispatchio.on('connection', function (dspSocket) {
 
     dspSocket.on('quit', function () {
         L('quit' + '(' + process.pid + ')');
-        commandio.emit('command', {data:'quit'});
-        commandio.close();
-        graphicio.close();
-        process.exit(0);
+        
+        //prevent accidental close, wait 10 minutes before really close Scilab.
+        quitTO = setTimeout( function() {
+            L('send quit to Scilab');
+            commandio.emit('command', {data:'quit'});
+            commandio.close();
+            graphicio.close();
+            process.exit(0);
+        }, /*60 * */10 * 1000); //10 seconds to test
+    });
+
+    dspSocket.on('reconnection', function () {
+        L('reconnection');
+        clearTimeout(quitTO);
+        quitTO = 0;
+        //resend all gui creation information
+        var size = msgHistory.length;
+        L('history: ' + size);
+        for(var i = 0 ; i < size ; ++i) {
+            //L('%d : %s', i+1, msgHistory[i]);
+            dspSocket.emit('graphic_create', msgHistory[i]);
+        }
     });
     
+    L('open commandio socket');
     //start command server to chat with Scilab
     var commandio = require('socket.io')(cmdPort);
     commandio.on('connection', function (socket) {
@@ -54,6 +79,7 @@ dispatchio.on('connection', function (dspSocket) {
         //send to server scilab is ready
         command_ready = true;
         if(graphic_ready) {
+            msgHistory = []; //reset history, sciab was closed or has crashed.
             dspSocket.emit('status', {data:'ready'});
         }
     });
@@ -65,18 +91,23 @@ dispatchio.on('connection', function (dspSocket) {
 
         socket.emit('imagepath', imagepath);
         socket.on('graphic_create', function (msg) {
+            msgHistory.push(msg);
             dspSocket.emit('graphic_create', msg);
         });
 
         socket.on('graphic_delete', function (msg) {
+            msgHistory.push(msg);
             dspSocket.emit('graphic_delete', msg);
         });
 
         socket.on('graphic_update', function (msg) {
+            msgHistory.push(msg);
             dspSocket.emit('graphic_update', msg);
         });
 
         socket.on('disconnect', function () {
+            msgHistory = []; //reset history, sciab was closed or has crashed.
+
             L('scilab graphic disconnected'+ '(' + process.pid + ')');
             graphic_ready = false;
         });

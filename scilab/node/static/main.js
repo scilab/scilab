@@ -7,14 +7,18 @@ socket.on('disconnect', function () {
 });
 
 socket.on('status', function (msg) {
-    if(msg.data === 'ready') {
-        setInfo('Scilab is ready');
-        resetLogger();
-        //reset "scilab" page
-        var parent = document.getElementById('scilab');
-        parent.innerHTML = '';
-    } else {
-        setInfo('Scilab is busy');
+    switch(msg.data) {
+        case 'ready':
+        case 'reconnection':
+            setInfo('Scilab is ready');
+            resetLogger();
+            //reset "scilab" page
+            var parent = document.getElementById('scilab');
+            parent.innerHTML = '';
+            break;
+        default:
+            setInfo('Scilab is busy');
+            break;
     }
     setLogger("<font color='black'>" +  msg.data + '</font>');
 });

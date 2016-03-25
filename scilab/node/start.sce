@@ -9,7 +9,7 @@
 //9 visible
 //10 opticlim
 
-demo = 8
+demo = 5
 
 if demo == 1 then
     f1 = createWindow();
