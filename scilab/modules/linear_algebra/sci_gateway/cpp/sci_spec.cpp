@@ -329,10 +329,22 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
             pDataA = (double*)oGetDoubleComplexFromPointer(pDblA->getReal(), pDblA->getImg(), pDblA->getSize());
             pDataB = (double*)oGetDoubleComplexFromPointer(pDblB->getReal(), pDblB->getImg(), pDblB->getSize());
 
-            if (!pDataA || !pDataB)
+            if (!pDataA && !pDataB)
             {
-                delete pDataA;
-                delete pDataB;
+                Scierror(999, _("%s: Cannot allocate more memory.\n"), "spec");
+                return types::Function::Error;
+            }
+
+            if (!pDataA)
+            {
+                vFreeDoubleComplexFromPointer((doublecomplex*)pDataB);
+                Scierror(999, _("%s: Cannot allocate more memory.\n"), "spec");
+                return types::Function::Error;
+            }
+            
+            if (!pDataB)
+            {
+                vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), "spec");
                 return types::Function::Error;
             }

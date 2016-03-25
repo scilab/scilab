@@ -129,7 +129,11 @@ int callSciNotesWWithOption(wchar_t **_wcfilenames, wchar_t** option, int _nbopt
                 }
             }
         }
-        FREE(opt);
+        for(int i = 0; i < _nboptions; i++)
+        {
+            FREE(opt[i]);
+        }
+        delete[] opt;
     }
     else
     {
