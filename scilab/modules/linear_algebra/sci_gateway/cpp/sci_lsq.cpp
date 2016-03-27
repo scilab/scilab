@@ -37,6 +37,7 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
     double* pdTol               = NULL;
     bool bComplexArgs           = false;
     int iRank                   = 0;
+    double dblTol               = 0.0; 
 
     if (in.size() < 2 || in.size() > 3)
     {
@@ -76,7 +77,7 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
             return types::Function::Error;
         }
 
-        double dblTol = in[2]->getAs<types::Double>()->get(0);
+        dblTol = in[2]->getAs<types::Double>()->get(0);
         pdTol = &dblTol;
     }
 
