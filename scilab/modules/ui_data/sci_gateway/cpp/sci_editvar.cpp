@@ -99,7 +99,7 @@ void clearWrap(T ** x, int r)
         delete [] x[i];
     }
 
-    delete x;
+    delete[] x;
 }
 /*--------------------------------------------------------------------------*/
 int sci_editvar(char * fname, void* pvApiCtx)

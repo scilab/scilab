@@ -209,8 +209,8 @@ types::Function::ReturnValue sci_semidef(types::typed_list &in, int _iRetCount, 
     C2F(spf)(&iSizeX, &iSizeB, pDblF->get(), piB, pDblC->get(), pDblX->get(), pDblZ->get(),
              pDblUl->get(), &dNu, &dAbstol, &dReltol, &dTv, &iIter, pdblWork, &iSizeWork, piWork, &iInfo);
 
-    delete pdblWork;
-    delete piWork;
+    delete[] pdblWork;
+    delete[] piWork;
 
     if (iInfo < 0)
     {
