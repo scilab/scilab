@@ -18,7 +18,22 @@
 
 y = [0, -4, 2, -3, -1, -1, 7, 0]
 x = [0, 1, 3, 6, 16, 7, 3, 0]
+
 scf();
 xfpoly(x*1e18, y, 3)
 
-// check that the polyline is correctly filled
+x = -x - 1e15;
+y = y - 1e15;
+scf();
+xfpoly(x, y, 3)
+
+scf();
+xfpoly(x*1d6, y, 3)
+
+scf();
+xfpoly(x*1d7, y, 3)
+
+scf();
+xfpoly(x*1d8, y, 3)
+
+// check that all polylines are correctly filled

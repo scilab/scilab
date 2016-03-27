@@ -326,6 +326,8 @@ In 6.0.0:
 
 * Bug #13468 fixed - Scilab hanged when incorrect format was used for file reading using mfscanf.
 
+* Bug #13725 fixed - xfpoly polygon filling would may fail for some cases
+
 * Bug #13769 fixed - t = "abc..//ghi" was parsed as a continued + comment
 
 * Bug #13810 fixed - householder(v, k*v) returned column of %nan. Input parameters were not checked. The Householder matrix could not be returned. Help pages were inaccurate and without examples. There was no householder() demo.
