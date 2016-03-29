@@ -31,7 +31,7 @@ dispatchio.on('connection', function (dspSocket) {
     });
 
     dspSocket.on('force_reload', function (msg) {
-		msgHistory = []; //reset history, sciab was closed or has crashed.
+        msgHistory = []; //reset history, sciab was closed or has crashed.
     });
 
     dspSocket.on('imagepath', function (msg) {
@@ -40,7 +40,7 @@ dispatchio.on('connection', function (dspSocket) {
 
     dspSocket.on('quit', function () {
         L('quit' + '(' + process.pid + ')');
-        
+
         //prevent accidental close, wait 10 minutes before really close Scilab.
         quitTO = setTimeout( function() {
             L('send quit to Scilab');
@@ -58,14 +58,14 @@ dispatchio.on('connection', function (dspSocket) {
         //resend all gui creation information
         var size = msgHistory.length;
         L('history: ' + size);
-		dspSocket.emit("graphic_reconnection", "start");
+        dspSocket.emit("graphic_reconnection", "start");
         for(var i = 0 ; i < size ; ++i) {
             //L('%d : %s', i+1, msgHistory[i]);
             dspSocket.emit('graphic_create', msgHistory[i]);
         }
-		dspSocket.emit("graphic_reconnection", "end");
+        dspSocket.emit("graphic_reconnection", "end");
     });
-    
+
     L('open commandio socket');
     //start command server to chat with Scilab
     var commandio = require('socket.io')(cmdPort);
@@ -117,7 +117,7 @@ dispatchio.on('connection', function (dspSocket) {
             L('scilab graphic disconnected'+ '(' + process.pid + ')');
             graphic_ready = false;
         });
-        
+
         //send to server scilab is ready
         graphic_ready = true;
         if(command_ready) {
@@ -145,7 +145,7 @@ dispatchio.on('connection', function (dspSocket) {
         scilabApp.stdout.on('data', function(data) {
             L('scilab out :' + data.toString());
         });
-    */                
+    */
         scilabApp.stderr.on('data', function(data) {
             L('scilab err :' + data.toString());
         });

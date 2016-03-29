@@ -12,37 +12,37 @@
         <script src="scilab_enum.js"></script>
         <link rel="stylesheet" href="scilab.css">
 
-		<!-- JQuery -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-		<!-- bootstrap -->
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		<!-- bootstrap-slider -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/css/bootstrap-slider.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.js"></script>
-		<!-- bootstrap touchspin >
-		<link rel="stylesheet" href="deps/jquery.bootstrap-touchspin.min.css">
-		<script src="deps/jquery.bootstrap-touchspin.min.js"></script-->
-		
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!-- bootstrap-slider -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/css/bootstrap-slider.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.js"></script>
+        <!-- bootstrap touchspin >
+        <link rel="stylesheet" href="deps/jquery.bootstrap-touchspin.min.css">
+        <script src="deps/jquery.bootstrap-touchspin.min.js"></script-->
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body onunload="unload()">
         <h1>Scilab WebView</h1>
-		<div class='window' id='scilab'></div>
-		<footer>
-			<div id='infobar'></div>
-			<br>
-			<button class='btn' style="position:relative;font-weight:bold" id='exec' onclick="force_reload();">clear and reload</button>
-			<div class='log' id='logger'></div>
-		</footer>
+        <div class='window' id='scilab'></div>
+        <footer>
+            <div id='infobar'></div>
+            <br>
+            <button class='btn' style="position:relative;font-weight:bold" id='exec' onclick="force_reload();">clear and reload</button>
+            <div class='log' id='logger'></div>
+        </footer>
         <script type='text/javascript'>
             resetLogger();
             setInfo('');
-			
-			function force_reload() {
-				document.getElementById('scilab').innerHTML = '';
-				socket.emit("force_reload");
-			}
+
+            function force_reload() {
+                document.getElementById('scilab').innerHTML = '';
+                socket.emit("force_reload");
+            }
         </script>
     </body>
 </html>

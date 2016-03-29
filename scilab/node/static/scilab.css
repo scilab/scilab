@@ -17,7 +17,7 @@ body {
 
 .GO_FIGURE {
     /*
-        "position" must be relative or absolute 
+        "position" must be relative or absolute
         to allow absolue positioning of children
     */
     position: relative;
@@ -51,7 +51,7 @@ body {
     line-height:20px;
     text-align:left;
     vertical-align: middle;
-	margin-bottom: 0px;
+    margin-bottom: 0px;
     overflow : hidden;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
     font-size:11px;
@@ -225,7 +225,7 @@ body {
 
 .window {
     /*
-        "position" must be relative or absolute 
+        "position" must be relative or absolute
         to allow absolue positioning of children
     */
     position: relative;
@@ -249,5 +249,5 @@ body {
 }
 
 #ex1Slider .slider-selection {
-	background: #BABABA;
+    background: #BABABA;
 }

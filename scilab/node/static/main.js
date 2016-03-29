@@ -39,17 +39,17 @@ socket.on('graphic_update', function (msg) {
 });
 
 socket.on('graphic_reconnection', function (msg) {
-	var scilab = document.getElementById('scilab');
-	switch(msg) {
-		case 'start':
-			console.log('hidden');
-			scilab.style.visibility = 'hidden';
-			break;
-		case 'end' :
-			console.log('visible');
-			scilab.style.visibility = 'visible';
-			break;
-	}
+    var scilab = document.getElementById('scilab');
+    switch(msg) {
+        case 'start':
+            console.log('hidden');
+            scilab.style.visibility = 'hidden';
+            break;
+        case 'end' :
+            console.log('visible');
+            scilab.style.visibility = 'visible';
+            break;
+    }
 });
 
 function onPushButton() {
@@ -111,7 +111,7 @@ function onSpinner() {
 //tools
 
 function unload() {
-	socket.close();
+    socket.close();
 }
 
 function setInfo(data) {

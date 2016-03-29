@@ -72,12 +72,12 @@ function setVisible(uid, val) {
 }
 
 function setUIEnable(uid, val) {
-	var __child__ = $('#' + getIdString(uid));
-	if(val) {
-		__child__.removeClass("disabled");
-	} else {
-		__child__.addClass("disabled");
-	}
+    var __child__ = $('#' + getIdString(uid));
+    if(val) {
+        __child__.removeClass("disabled");
+    } else {
+        __child__.addClass("disabled");
+    }
 }
 
 function setUIForegroundColor(uid, val) {
