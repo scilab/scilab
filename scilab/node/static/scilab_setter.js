@@ -72,8 +72,12 @@ function setVisible(uid, val) {
 }
 
 function setUIEnable(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.disabled = val;
+	var __child__ = $('#' + getIdString(uid));
+	if(val) {
+		__child__.removeClass("disabled");
+	} else {
+		__child__.addClass("disabled");
+	}
 }
 
 function setUIForegroundColor(uid, val) {
@@ -384,7 +388,7 @@ function setCallback(uid) {
     var __child__ = getElementById(uid);
 
     switch(__child__.className) {
-        case 'GO_UI_PUSHBUTTON' :
+        case 'btn' :
             event = "click";
             func = onPushButton;
             break;

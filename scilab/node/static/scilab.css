@@ -1,6 +1,4 @@
 body {
-    background-color : rgb(192,192,192);
-    color : black;
     text-align : center;
 }
 
@@ -31,12 +29,10 @@ body {
     text-align: left;
 }
 
-.GO_UI_PUSHBUTTON {
+.btn {
     position: absolute;
     text-align:center;
     overflow : hidden;
-    font-family: Tahoma, Verdana, Segoe, sans-serif;
-    font-size: 11px;
     visibility:inherit;
 }
 
@@ -55,6 +51,7 @@ body {
     line-height:20px;
     text-align:left;
     vertical-align: middle;
+	margin-bottom: 0px;
     overflow : hidden;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
     font-size:11px;
@@ -249,4 +246,8 @@ body {
     margin : auto;
     border : 1px rgb(0,0,0) solid;
     font-weight: bold;
+}
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
 }

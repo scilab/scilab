@@ -332,7 +332,7 @@ bool WebUtils::getUIEnable(int uid)
 void WebUtils::setUIEnable(int uid, std::ostringstream& ostr)
 {
     //reverse flag value
-    std::string v = getUIEnable(uid) ? "false" : "true";
+    std::string v = getUIEnable(uid) ? "true" : "false";
     ostr << "setUIEnable('" << uid << "', " + v << ");";
 }
 

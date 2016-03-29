@@ -30,6 +30,10 @@ dispatchio.on('connection', function (dspSocket) {
         graphicio.emit('callback', msg);
     });
 
+    dspSocket.on('force_reload', function (msg) {
+		msgHistory = []; //reset history, sciab was closed or has crashed.
+    });
+
     dspSocket.on('imagepath', function (msg) {
         imagepath = msg;
     });
@@ -44,7 +48,7 @@ dispatchio.on('connection', function (dspSocket) {
             commandio.close();
             graphicio.close();
             process.exit(0);
-        }, /*60 * */10 * 1000); //10 seconds to test
+        }, /*60 * 10 * 1000*/5 * 1000); //5 seconds to test
     });
 
     dspSocket.on('reconnection', function () {
@@ -54,10 +58,12 @@ dispatchio.on('connection', function (dspSocket) {
         //resend all gui creation information
         var size = msgHistory.length;
         L('history: ' + size);
+		dspSocket.emit("graphic_reconnection", "start");
         for(var i = 0 ; i < size ; ++i) {
             //L('%d : %s', i+1, msgHistory[i]);
             dspSocket.emit('graphic_create', msgHistory[i]);
         }
+		dspSocket.emit("graphic_reconnection", "end");
     });
     
     L('open commandio socket');

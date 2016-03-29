@@ -9,7 +9,7 @@ function createFigure(uid) {
 }
 
 function createPushButton(uid) {
-    return createCommonIUControl(uid, 'BUTTON', 'GO_UI_PUSHBUTTON');
+    return createCommonIUControl(uid, 'BUTTON', 'btn');
 }
 
 function createFrame(uid) {
@@ -85,7 +85,8 @@ function createCombobox(uid) {
 function createSpinner(uid) {
     var __temp__ = createCommonIUControl(uid, 'INPUT', 'GO_UI_SPINNER');
     __temp__.type = 'number';
-    return __temp__;
+	//$("#" + getIdString(uid)).TouchSpin({verticalbuttons: true});
+	return __temp__;
 }
 
 function createTab(uid) {
@@ -100,5 +101,7 @@ function createTab(uid) {
 
 function deleteObject(uid) {
     var __child__ = getElementById(uid);
-    __child__.parentNode.removeChild(__child__);
+	if(__child__) {
+		__child__.parentNode.removeChild(__child__);
+	}
 }

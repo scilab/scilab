@@ -38,6 +38,20 @@ socket.on('graphic_update', function (msg) {
     eval(msg);
 });
 
+socket.on('graphic_reconnection', function (msg) {
+	var scilab = document.getElementById('scilab');
+	switch(msg) {
+		case 'start':
+			console.log('hidden');
+			scilab.style.visibility = 'hidden';
+			break;
+		case 'end' :
+			console.log('visible');
+			scilab.style.visibility = 'visible';
+			break;
+	}
+});
+
 function onPushButton() {
     var id = getUID(this.id); //ignore "uid"
     socket.emit('callback', {uid:id});
@@ -95,6 +109,11 @@ function onSpinner() {
 }
 
 //tools
+
+function unload() {
+	socket.close();
+}
+
 function setInfo(data) {
     document.getElementById('infobar').innerHTML = data;
 }

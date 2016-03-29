@@ -9,7 +9,7 @@
 //9 visible
 //10 opticlim
 
-demo = 5
+demo = 3;
 
 if demo == 1 then
     f1 = createWindow();
@@ -21,16 +21,17 @@ if demo == 1 then
 end
 
 if demo == 2 then
+    dim = 10;
     f2 = createWindow();
     f2.visible = %f;
-    f2.position(3:4) = [500, 600];
-    for i=1:81
-        x = floor((i-1) / 9);
-        y = modulo((i-1), 9);
-        uicontrol(f2, "position", [25 + 50*x, 125 + 50*y,50,50],"string", string(x) + " - " + string(y), "callback", "set(gcbo, ''enable'', %f)");
+    f2.position(3:4) = [50 * dim + 50, 50 * dim + 125];
+    for i=1:dim*dim
+        x = floor((i-1) / dim);
+        y = modulo((i-1), dim);
+        uicontrol(f2, "position", [25 + 50*x, 100 + 50*y,50,50],"string", string(x) + " - " + string(y), "callback", "set(gcbo, ''enable'', %f)");
     end
 
-    uicontrol(f2, "position", [200, 25, 100, 50], "string", "reset", "callback", "c = gcbo.parent.children;for i=1:size(c, ''*''), c(i).enable = %t;end");
+    uicontrol(f2, "position", [f2.position(3)/2 - 50, 25, 100, 50], "string", "reset", "callback", "c = gcbo.parent.children;for i=1:size(c, ''*''), c(i).enable = %t;end");
     f2.visible = %t;
 end
 
@@ -100,22 +101,29 @@ if demo == 5 then
     clear;
 
     function onchange()
-        R = get("sliderR", "value") / 255;
-        G = get("sliderG", "value") / 255;
-        B = get("sliderB", "value") / 255;
-        set("color", "backgroundcolor", [R, G, B]);
+        R = get("sliderR", "value");
+        G = get("sliderG", "value");
+        B = get("sliderB", "value");
+        set("textR", "string", string(R));
+        set("textG", "string", string(G));
+        set("textB", "string", string(B));
+        set("color", "backgroundcolor", [R, G, B]/255);
     endfunction
 
 
     f = createWindow();
     f.visible = %f;
-    f.position(3:4) = [396, 130];
+    f.position(3:4) = [300, 130];
 
-    uicontrol("style", "slider", "position", [10 10 256 30], "min", 0, "max", 255, "sliderstep", [1, 1], "value", 0, "tag", "sliderB");
-    uicontrol("style", "slider", "position", [10 50 256 30], "min", 0, "max", 255, "sliderstep", [1, 1], "value", 0, "tag", "sliderG");
-    uicontrol("style", "slider", "position", [10 90 256 30], "min", 0, "max", 255, "sliderstep", [1, 1], "value", 0, "tag", "sliderR");
+    uicontrol("style", "slider", "position", [10 10 128 30], "min", 0, "max", 255, "sliderstep", [1, 10], "value", 0, "tag", "sliderB");
+    uicontrol("style", "slider", "position", [10 50 128 30], "min", 0, "max", 255, "sliderstep", [1, 10], "value", 0, "tag", "sliderG");
+    uicontrol("style", "slider", "position", [10 90 128 30], "min", 0, "max", 255, "sliderstep", [1, 10], "value", 0, "tag", "sliderR");
 
-    uicontrol("style", "frame", "position", [286 20 90 90], "tag", "color", "backgroundcolor", [0, 0, 0]);
+    uicontrol("style", "text", "position", [150 15 40 20], "string", "0", "backgroundcolor", [1, 1, 1], "horizontalalignment", "center", "tag", "textB");
+    uicontrol("style", "text", "position", [150 55 40 20], "string", "0", "backgroundcolor", [1, 1, 1], "horizontalalignment", "center", "tag", "textG");
+    uicontrol("style", "text", "position", [150 95 40 20], "string", "0", "backgroundcolor", [1, 1, 1], "horizontalalignment", "center", "tag", "textR");
+
+    uicontrol("style", "frame", "position", [200 20 90 90], "tag", "color", "backgroundcolor", [0, 0, 0]);
 
     set("sliderR", "callback", "onchange");
     set("sliderG", "callback", "onchange");

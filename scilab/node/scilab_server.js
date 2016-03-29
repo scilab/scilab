@@ -21,7 +21,7 @@ io.on('connection', function (socket) {
     
     if(processAlive === false) {
         //start process
-        fork('./scilab_process.js');
+        fork('./scilab_process.js'/*, [], {execArgv: ['--debug=5859']}*/);
         processAlive = true;
     
         var prcAddr = 'http://127.0.0.1:10002';
@@ -32,7 +32,7 @@ io.on('connection', function (socket) {
         socket.emit('status', {data:'reconnection'});
         prcSocket.emit('reconnection');
     }
-            
+
     prcSocket.emit('imagepath', {path:__dirname + '/static/'});
     
     prcSocket.on('command_end', function() {
@@ -51,7 +51,13 @@ io.on('connection', function (socket) {
     prcSocket.on('graphic_update', function(msg) {
         socket.emit('graphic_update', msg);
     });
+ 
+    prcSocket.on('graphic_reconnection', function(msg) {
+        //L(msg);
+        socket.emit('graphic_reconnection', msg);
+    });
         
+ 
     prcSocket.on('status', function(msg) {
         if(msg.data === 'ready') {
             //send ready message to client
@@ -61,9 +67,21 @@ io.on('connection', function (socket) {
         }
     });
 
+	prcSocket.on('connection', function(msg) {
+        L('dispatcher connected');
+    });
+
+	prcSocket.on('reconnect', function(msg) {
+        L('dispatcher reconnect');
+    });
+
+	prcSocket.on('reconnection', function(msg) {
+        L('dispatcher connected');
+    });
+
     prcSocket.on('disconnect', function(msg) {
         L('dispatcher disconnected');
-        prcSocket.close();
+        prcSocket.disconnect();
         processAlive = false;
     });
         
@@ -76,9 +94,14 @@ io.on('connection', function (socket) {
         prcSocket.emit('callback', msg);
     });
     
-    socket.on('disconnect', function () {
-        L('User disconnected');
-        prcSocket.emit('quit');
+    socket.on('callback', function (msg) {
+        prcSocket.emit('callback', msg);
+    });
+    
+    socket.on('force_reload', function () {
+        L('force reload');
+		prcSocket.emit('force_reload');
+		prcSocket.emit('command', {data:"exec(getenv('SCIFILES') + '" + "/start" + ".sce', -1);"});
     });
 });
 
