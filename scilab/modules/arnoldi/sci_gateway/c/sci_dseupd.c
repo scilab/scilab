@@ -439,7 +439,6 @@ int sci_dseupd(char *fname, void *pvApiCtx)
     // Retrieve a matrix of double at position 2.
     if (getAllocatedSingleString(pvApiCtx, piAddrpHOWMANY, &pHOWMANY))
     {
-        freeAllocatedSingleString(pHOWMANY);
         Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
@@ -455,7 +454,6 @@ int sci_dseupd(char *fname, void *pvApiCtx)
     // Retrieve a matrix of double at position 7.
     if (getAllocatedSingleString(pvApiCtx, piAddrpBMAT, &pBMAT))
     {
-        freeAllocatedSingleString(pBMAT);
         freeAllocatedSingleString(pHOWMANY);
         Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 7);
         return 1;
@@ -474,7 +472,6 @@ int sci_dseupd(char *fname, void *pvApiCtx)
     // Retrieve a matrix of double at position 9.
     if (getAllocatedSingleString(pvApiCtx, piAddrpWHICH, &pWHICH))
     {
-        freeAllocatedSingleString(pWHICH);
         freeAllocatedSingleString(pBMAT);
         freeAllocatedSingleString(pHOWMANY);
         Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 9);
