@@ -4,6 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
+// <-- CLI SHELL MODE -->
+
 function r=Err(x)
     r=norm(x,1)
 endfunction

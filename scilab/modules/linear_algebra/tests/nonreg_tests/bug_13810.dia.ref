@@ -4,6 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
 // <-- Non-regression test for bug 13810 -->
 //
 // <-- Bugzilla URL -->
