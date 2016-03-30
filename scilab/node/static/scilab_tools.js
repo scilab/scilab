@@ -17,15 +17,15 @@ function getPadding(t, r, b, l) {
 }
 
 function isInputType(uid) {
-    var __child__ = getElementById(uid);
-    switch (__child__.className) {
-        case 'GO_UI_EDIT' :
-        case 'GO_UI_SLIDER':
-        case 'GO_UI_SPINNER' :
-            return true;
-        default :
-            return false;
+    
+    var $child = getJElementById(uid);
+    if($child.hasClass('GO_UI_EDIT') || 
+        $child.hasClass('GO_UI_SLIDER') ||
+        $child.hasClass('GO_UI_SPINNER')) {
+        return true;
     }
+
+    return false;    
 }
 
 function getUID(id) {
@@ -41,9 +41,16 @@ function getIdString(uid, suffix) {
     return 'uid' + uid + suffix;
 }
 
+function getScilab() {
+    return document.getElementById('scilab');
+}
+
 function getElementById(uid, suffix) {
-    suffix = typeof suffix !== 'undefined' ? suffix : '';
     return document.getElementById(getIdString(uid, suffix));
+}
+
+function getJElementById(uid, suffix) {
+    return $("#" + getIdString(uid, suffix));
 }
 
 function createCommonIUControl(uid, htmlType, cssClass) {
@@ -52,7 +59,7 @@ function createCommonIUControl(uid, htmlType, cssClass) {
     __temp__.className = cssClass;
 
     //add item temporary in main scilabview div waiting __GO_PARENT__ update
-    var __parent__ = document.getElementById('scilab');
-    __parent__.appendChild(__temp__);
+    var $parent = $('#scilab');
+    $parent.append(__temp__);
     return __temp__;
 }

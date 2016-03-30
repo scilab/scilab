@@ -24,6 +24,8 @@
 Source: modules\{#GRAPHIC_OBJECTS}\license.txt; DestDir: {app}\modules\{#GRAPHIC_OBJECTS}; Components: {#COMPN_GRAPHICS}
 ;
 Source: bin\sci{#GRAPHIC_OBJECTS}.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: bin\sioclient.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+
 ;
 Source: bin\nosci{#GRAPHIC_OBJECTS}.dll; DestDir: {app}\bin; DestName: sci{#GRAPHIC_OBJECTS}.dll; Components: not ({#COMPN_GRAPHICS})
 ;

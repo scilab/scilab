@@ -1,7 +1,12 @@
 function setParent(uid, parent) {
-    var __child__ = getElementById(uid);
-    var __parent__ = getElementById(parent);
-    __parent__.appendChild(__child__);
+    var $child = getJElementById(uid);
+    var $parent = getJElementById(parent);
+    
+    if($parent.hasClass("GO_UI_FRAME")) {
+        $parent = getJElementById(parent, "_body");
+    }
+
+    $parent.append($child);
 }
 
 function setFigureSize(uid, val) {
@@ -10,59 +15,74 @@ function setFigureSize(uid, val) {
     __child__.style.height = val[1] + 'px';
 }
 
-function setUIPosition(uid, val) {
+function setFigureName(uid, val) {
+    var $fig = getJElementById(uid, '_btn');
+    $fig.text(val);
+}
+
+function setUIPosition(uid, val, units) {
+    var u = 'px';
+    if(units === 'normalized') {
+        u = '%';
+        val[0] *= 100;
+        val[1] *= 100;
+        val[2] *= 100;
+        val[3] *= 100;
+    }
+    
     var __child__ = getElementById(uid);
-    __child__.style.left = val[0] + 'px';
-    __child__.style.bottom = val[1] + 'px';
-    __child__.style.width = val[2] + 'px';
-    __child__.style.height = val[3] + 'px';
+    __child__.style.left = val[0] + u;
+    __child__.style.bottom = val[1] + u;
+    __child__.style.width = val[2] + u;
+    __child__.style.height = val[3] + u;
 }
 
 function setUIString(uid, val, parent) {
     var __child__ = getElementById(uid);
-    switch(__child__.className) {
-        case 'GO_UI_CHECKBOX':
-        case 'GO_UI_RADIOBUTTON':
-           var __label__ = getElementById(uid + '_label');
-            __label__.innerHTML = val[0];
-            break;
+    
+    var __jqchild__ = getJElementById(uid);
+    
+    if(__jqchild__.hasClass('GO_UI_CHECKBOX') || __jqchild__.hasClass('GO_UI_RADIOBUTTON')) {
+        var __label__ = getElementById(uid + '_span');
+        __label__.textContent = val[0];
+        return;
+    }
 
-        case 'GO_UI_POPUPMENU' :
-        case 'GO_UI_LISTBOX':
-            //remove previous values
-            while (__child__.length) {__child__.remove(0);}
+    if(__jqchild__.hasClass('GO_UI_POPUPMENU') || __jqchild__.hasClass('GO_UI_LISTBOX')) {
+        //remove previous values
+        while (__child__.length) {__child__.remove(0);}
 
-           var size = val.length;
-            for(var i = 0 ; i < size ; ++i) {
-                __child__.add(new Option(val[i]));
-            }
+       var size = val.length;
+        for(var i = 0 ; i < size ; ++i) {
+            __child__.add(new Option(val[i]));
+        }
 
-            if(__child__.className === 'GO_UI_LISTBOX') {
-                //switch to listbox instead of combobox
-               __child__.size = 2;
-            }
+        if(__child__.className === 'GO_UI_LISTBOX') {
+            //switch to listbox instead of combobox
+           __child__.size = 2;
+        }
+        
+        return;
+    }
+    
+    if(__jqchild__.hasClass('GO_UI_FRAME')) {
+       var $parent = getJElementById(parent);
+        if($parent && $parent.hasClass('GO_UI_TAB')) {
+           var __tab__ = getElementById(uid + '_tab');
+            __tab__.textContent = val[0];
+        }
+        
+        return;
+    }
 
-            break;
+    if(__jqchild__.hasClass('GO_UI_TAB')) {
+        return;
+    }
 
-        case 'GO_UI_TAB':
-            //nothing to do
-           break;
-
-       case 'GO_UI_FRAME':
-           var __parent__ = getElementById(parent);
-            if(__parent__ && __parent__.className === 'GO_UI_TAB') {
-               var __btn__ = getElementById(uid + '_btn');
-                __btn__.value = val[0];
-            }
-            break;
-
-        default:
-            if(isInputType(uid)) {
-                __child__.value = val[0];
-            } else {
-                __child__.innerHTML = val[0];
-            }
-            break;
+    if(isInputType(uid)) {
+        __child__.value = val[0];
+    } else {
+        __child__.textContent = val[0];
     }
 }
 
@@ -72,7 +92,7 @@ function setVisible(uid, val) {
 }
 
 function setUIEnable(uid, val) {
-    var __child__ = $('#' + getIdString(uid));
+    var __child__ = getJElementById(uid);
     if(val) {
         __child__.removeClass("disabled");
     } else {
@@ -111,8 +131,24 @@ function setUIFontWeight(uid, val) {
 }
 
 function setUIHorizontalAlignment(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.style.textAlign = val;
+    var $child = getJElementById(uid);
+    if($child.hasClass('GO_UI_TEXT')) {
+        switch(val) {
+            default:
+            case 'left' :
+                val = 'flex-start';
+                break;
+            case 'center' :
+                break;
+            case 'right' :
+                val = 'flex-end';
+                break;
+        }
+        
+        $child.css("justify-content", val);
+    } else {
+        $child.css("text-align", val);
+    }
 }
 
 function setUIVerticalAlignment(uid, val) {
@@ -218,6 +254,10 @@ function setUIStep(uid, val) {
 
 function setUIValue(uid, val) {
     var __child__ = getElementById(uid);
+    if(!__child__) {
+        console.log("setUIValue : " + uid);
+        return;
+    }
     switch(__child__.className) {
         case 'GO_UI_SPINNER':
         case 'GO_UI_SLIDER':
@@ -345,7 +385,7 @@ function setUIGridBag(uid, parent, grid) {
     gridbagHelperTD(__tr__,__td__, grid[0]);
 
     //force refresh of table, move it to another component and rollback
-    var __scilab__ = document.getElementById('scilab');
+    var __scilab__ = getScilab();
     __scilab__.appendChild(__table__);
     var __parent__ = getElementById(parent);
     __parent__.appendChild(__table__);
@@ -353,21 +393,29 @@ function setUIGridBag(uid, parent, grid) {
 
 
 
-function setUIFrameBorder(uid, border, parent, title) {
-    var __child__ = getElementById(uid);
-    var __border__ = createCommonIUControl(border, 'DIV', 'GO_UI_FRAME_BORDER');
+function setUIFrameBorder(uid, title) {
+    
+    var __border__;
+    var __header__ = getElementById(uid, "_header");
+    var __footer__ = getElementById(uid, "_footer");
 
-    var __fieldset__ = createElement('FIELDSET');
-   __fieldset__.id = getIdString(uid, '_fieldset');
-    var __legend__ = createElement('LEGEND');
-    __legend__.id = getIdString(uid, '_legend');
-    __legend__.innerHTML = title;
-
-    __fieldset__.appendChild(__legend__);
-    __fieldset__.appendChild(__child__);
-    __border__.appendChild(__fieldset__);
-    var __parent__ = getElementById(parent);
-    __parent__.appendChild(__border__);
+    if(title.position === "top") {
+       __header__.style.display = 'block';
+       __footer__.style.display = 'none';
+       __border__ = __header__;
+    } else { //bottom
+       __footer__.style.display = 'block';
+       __header__.style.display = 'none';
+       __border__ = __footer__;
+    }
+    
+    __border__.textContent = title.text;
+    __border__.style.textAlign = title.alignment;
+    __border__.style.fontName = title.fontName;
+    __border__.style.fontStyle = title.fontStyle;
+    __border__.style.fontSize = title.fontSize + 'px';
+    __border__.style.fontWeight = title.fontWeight;
+    __border__.style.color = title.fontColor;
 }
 
 function setUIIcon(uid, icon, val) {
@@ -375,11 +423,30 @@ function setUIIcon(uid, icon, val) {
 
     //add span element in button to show image
     var __icon__ = createElement('SPAN');
-    __icon__.style.background = '#f3f3f3 url(' + icon + ') no-repeat left center';
-    __icon__.style.paddingLeft = '20px';
+    if(icon.substring(0, 5) === 'glyph') {
+        __icon__.className = "glyphicon " + icon;
+        __icon__.style.paddingRight = '4px';
+    } else {
+        __icon__.style.background = '#f3f3f3 url(' + icon + ') no-repeat left center';
+        __icon__.style.paddingLeft = '20px';
+    }
+
+    var __text__ = createElement('SPAN');
+    __text__.textContent = val;
+    __text__.style = __child__.style;
+
+    __child__.innerHTML = "";
     __child__.appendChild(__icon__);
-    //__child__.innerHTML += val;
+    __child__.appendChild(__text__);
 }
+
+function setUIGroupName(uid, val) {
+    var __child__ = getElementById(uid, "_radio");
+    if(__child__) {
+        __child__.name  = val;
+    }
+}
+
 
 function setCallback(uid) {
     var event;
@@ -387,41 +454,36 @@ function setCallback(uid) {
 
     var __child__ = getElementById(uid);
 
-    switch(__child__.className) {
-        case 'btn' :
-            event = "click";
-            func = onPushButton;
-            break;
-        case 'GO_UI_CHECKBOX' :
-            event = "click";
-            func = onCheckBox;
-            break;
-        case 'GO_UI_RADIOBUTTON' :
-            event = "click";
-            func = onRadioButton;
-            break;
-        case 'GO_UI_LISTBOX' :
-            event = "change";
-            func = onListBox;
-            break;
-        case 'GO_UI_POPUPMENU' :
-            event = "change";
-            func = onComboBox;
-            break;
-        case 'GO_UI_SLIDER' :
-            event = "input";
-            func = onSlider;
-            break;
-        case 'GO_UI_EDIT' :
-            event = "input";
-            func = onEditBox;
-            break;
-        case 'GO_UI_SPINNER' :
-            event = "input";
-            func = onSpinner;
-            break;
-        default :
-            return;
+    var __jqchild__ = getJElementById(uid);
+
+    if(__jqchild__.hasClass('GO_UI_PUSHBUTTON')) {
+        event = "click";
+        func = onPushButton;
+    } else if(__jqchild__.hasClass('GO_UI_CHECKBOX')) {
+        //change __child__ to real checkbox
+        __child__ = getElementById(uid, "_checkbox");
+        event = "click";
+        func = onCheckBox;
+    } else if(__jqchild__.hasClass('GO_UI_RADIOBUTTON')) {
+        //change __child__ to real radio
+        __child__ = getElementById(uid, "_radio");
+        event = "click";
+        func = onRadioButton;
+    } else if(__jqchild__.hasClass('GO_UI_LISTBOX')) {
+        event = "change";
+        func = onListBox;
+    } else if(__jqchild__.hasClass('GO_UI_POPUPMENU')) {
+        event = "change";
+        func = onComboBox;
+    } else if(__jqchild__.hasClass('GO_UI_SLIDER')) {
+        event = "input";
+        func = onSlider;
+    } else if(__jqchild__.hasClass('GO_UI_EDIT')) {
+        event = "input";
+        func = onEditBox;
+    } else if(__jqchild__.hasClass('GO_UI_SPINNER')) {
+        event = "input";
+        func = onSpinner;
     }
 
     //add callback listener

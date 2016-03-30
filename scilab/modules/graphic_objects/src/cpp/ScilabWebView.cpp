@@ -249,6 +249,13 @@ void ScilabWebView::updateObject(int uid, int prop)
                 s->emit("graphic_update", ostr.str());
                 return;
             }
+            case __GO_NAME__:
+            {
+                std::ostringstream ostr;
+                WebUtils::setFigureName(uid, ostr);
+                s->emit("graphic_update", ostr.str());
+                return;
+            }
             case __GO_LAYOUT__:
             {
                 std::ostringstream ostr;

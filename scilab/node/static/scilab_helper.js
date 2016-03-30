@@ -30,37 +30,10 @@ function gridbagHelperTR(parent, child, pos) {
 }
 
 function tabSelectHelper(tab, index) {
-    var __ul__ = document.getElementById(tab.id + '_ul');
-
-    if(!__ul__) {
-        return;
-    }
-
-    var __item__ = __ul__.children[index];
-    if(!__item__) {
-        return;
-    }
-
-    var __id__ = __item__.id.substr(0, __item__.id.indexOf('_'));
-
-    //change tab label
-    for (var i = 0; i < __ul__.children.length; ++i) {
-        __ul__.children[i].className = '';
-    }
-
-    __item__.className = 'GO_UI_TAB_SELECTED';
-
-    //change div visibility
-
-    //all hide
-    var __next__ = __ul__.nextElementSibling;
-    while(__next__) {
-        __next__.style.display = 'none';
-        __next__ = __next__.nextElementSibling;
-    }
-
-    //show good one
-    document.getElementById(__id__).style.display = 'flex';
+    index = index === 0 ? index : index - 1;
+    //console.log(tab.id + ": " + index);
+    var b = '#' + tab.id + ' li:eq(' + index + ') a';
+    $(b).tab('show');
 }
 
 function addTabHelper(uid, child) {
@@ -68,23 +41,47 @@ function addTabHelper(uid, child) {
     var __li__ = createElement('LI');
     __li__.id = getIdString(child, '_li');
 
+    //move tab child to tab-content container
+    var __tab__ = getElementById(uid, '_tabs');
+    __tab__.appendChild(__child__);
+
     //create input button
-    var __btn__ = createElement('INPUT');
-    __btn__.id = getIdString(child, '_btn');
-    __btn__.type = 'button';
-    __btn__.addEventListener('click', onTab);
+    var __tablabel__ = createElement('a');
+    __tablabel__.id = getIdString(child, '_tab');
 
-    //add button in il
-    __li__.appendChild(__btn__);
+    //add button in li
+    __li__.appendChild(__tablabel__);
 
-    //add il as first child in ul
+    //add li as first child in ul
     var __ul__ = getElementById(uid, '_ul');
     __ul__.insertBefore(__li__, __ul__.firstChild);
+    var $ul = $('#' + __ul__.id);
+    var $tab = $('#' + __tablabel__.id);
+    $tab.attr('data-toggle', 'tab');
+    $tab.attr('href', '#' + __child__.id);
+
+    var $child = $('#' + __child__.id);
+    $child.addClass('tab-pane');
+    $child.addClass('fade');
 
     //update child properties
-    __child__.style.position = 'inherit';
-    __child__.style.left = 'inherit';
-    __child__.style.bottom = 'inherit';
+    __child__.style.position = 'absolute';
+    __child__.style.left = '';
+    __child__.style.bottom = '';
     __child__.style.width = '100%';
     __child__.style.height = 'inherit';
+    
+    updateTabHeight(getUID($ul.parent().attr('id')));
+    
+    //add event listener on new tab
+    $('#' + __tablabel__.id).on('show.bs.tab', onTab);
+
+}
+
+function updateTabHeight(uid) {
+    var $tab = getJElementById(uid);
+    
+    var $ul = $tab.children('ul');
+    var $tabs = $tab.children('div');
+    $tabs.height($tab.height() - $ul.height() - 13);
 }

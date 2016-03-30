@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta charset='UTF-8' />
-        <title>Scilab WebView</title>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.js'></script>
         <script src="main.js"></script>
         <script src="scilab_create.js"></script>
@@ -10,39 +9,39 @@
         <script src="scilab_setter.js"></script>
         <script src="scilab_tools.js"></script>
         <script src="scilab_enum.js"></script>
-        <link rel="stylesheet" href="scilab.css">
 
         <!-- JQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <!-- bootstrap -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <!-- bootstrap-slider -->
+        <!-- bootstrap-slider >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/css/bootstrap-slider.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.js"></script-->
         <!-- bootstrap touchspin >
         <link rel="stylesheet" href="deps/jquery.bootstrap-touchspin.min.css">
         <script src="deps/jquery.bootstrap-touchspin.min.js"></script-->
 
+        <!-- Scilab css -->
+        <link rel="stylesheet" href="scilab.css">
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body onunload="unload()">
-        <h1>Scilab WebView</h1>
-        <div class='window' id='scilab'></div>
-        <footer>
+    <body onload="init()" onunload="unload()">
+        <nav class='navbar navbar-default navbar-fixed-top' style="display:block">
+            <div id='taskbar' class='container' style='display:inline-block'>
+            </div>
+            <ul class='nav navbar-nav navbar-right'>
+                <button type='button' class='btn navbar-btn' style='display:inline-block;margin-right:20px'>User</button>
+            </ul>
+        </nav>    
+        <div class='window' id='scilab' style="display:initial"></div>
+        <div style="text-align:center">
             <div id='infobar'></div>
             <br>
             <button class='btn' style="position:relative;font-weight:bold" id='exec' onclick="force_reload();">clear and reload</button>
+            <br>
             <div class='log' id='logger'></div>
-        </footer>
-        <script type='text/javascript'>
-            resetLogger();
-            setInfo('');
-
-            function force_reload() {
-                document.getElementById('scilab').innerHTML = '';
-                socket.emit("force_reload");
-            }
-        </script>
+        </div>
     </body>
 </html>

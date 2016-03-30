@@ -62,6 +62,7 @@ dispatchio.on('connection', function (dspSocket) {
         for(var i = 0 ; i < size ; ++i) {
             //L('%d : %s', i+1, msgHistory[i]);
             dspSocket.emit('graphic_create', msgHistory[i]);
+            L("history " + i + ": " + msgHistory[i]);
         }
         dspSocket.emit("graphic_reconnection", "end");
     });

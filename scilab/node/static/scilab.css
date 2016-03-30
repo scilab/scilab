@@ -1,5 +1,5 @@
 body {
-    text-align : center;
+    padding-top: 70px; 
 }
 
 .log {
@@ -21,19 +21,20 @@ body {
         to allow absolue positioning of children
     */
     position: relative;
-    background-color : rgb(192,192,192);
+    display:none;
+    background-color : rgb(255,255,255);
     width : 610px;
     height : 460px;
     margin : auto;
-    border : 2px rgb(0,0,0) solid;
-    text-align: left;
+    text-align: center;
 }
 
-.btn {
+.GO_UI_PUSHBUTTON {
     position: absolute;
     text-align:center;
     overflow : hidden;
     visibility:inherit;
+    background-color : rgb(240,240,240);
 }
 
 .GO_UI_FRAME {
@@ -47,37 +48,25 @@ body {
 
 .GO_UI_TEXT {
     position: absolute;
-    background-color : white;
-    line-height:20px;
-    text-align:left;
-    vertical-align: middle;
-    margin-bottom: 0px;
     overflow : hidden;
-    font-family: Tahoma, Verdana, Segoe, sans-serif;
-    font-size:11px;
     visibility:inherit;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center; /* align vertical */
 }
 
 .GO_UI_EDIT {
     position: absolute;
-    background-color : white;
-    text-align:left;
     overflow : hidden;
-    font-family: Tahoma, Verdana, Segoe, sans-serif;
-    font-size:11px;
     visibility:inherit;
 }
 
 .GO_UI_CHECKBOX {
+    border:  1px solid black;
     position: absolute;
-    background-color : white;
-    line-height:20px;
-    text-align:left;
-    vertical-align: middle;
     overflow : hidden;
-    font-family: Tahoma, Verdana, Segoe, sans-serif;
-    font-size:11px;
     visibility:inherit;
+    margin-bottom: 0px;
 }
 
 .GO_UI_CHECKBOX_LABEL {
@@ -86,7 +75,10 @@ body {
     overflow : hidden;
     font-family: inherit;
     font-size:inherit;
+    font-weight:normal;
     visibility:inherit;
+    display: flex;
+    align-items: center; /* align vertical */
 }
 
 .GO_UI_CHECKBOX_CHECKBOX {
@@ -98,6 +90,7 @@ body {
 }
 
 .GO_UI_RADIOBUTTON {
+    border:  1px solid black;
     position: absolute;
     background-color : white;
     line-height:20px;
@@ -115,7 +108,10 @@ body {
     overflow : hidden;
     font-family: inherit;
     font-size:inherit;
+    font-weight:normal;
     visibility:inherit;
+    display: flex;
+    align-items: center; /* align vertical */
 }
 
 .GO_UI_RADIOBUTTON_RADIO {
@@ -161,7 +157,6 @@ body {
     position: absolute;
     background-color : white;
     text-align:center;
-    overflow : hidden;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
     font-size:11px;
     visibility:inherit;
@@ -169,51 +164,6 @@ body {
     height: inherit;
     display: flex;
     flex-direction:column;
-}
-
-.GO_UI_TAB ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.GO_UI_TAB li {
-    display: inline;
-    margin: 0;
-}
-
-.GO_UI_TAB input {
-    padding: 0 1em;
-    text-decoration: none;
-    border-style: none;
-}
-
-.GO_UI_TAB input:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.GO_UI_TAB input:focus {
-    outline: none;
-}
-
-.GO_UI_TAB_SELECTED input:hover {
-    text-decoration: none;
-}
-
-.GO_UI_TAB_SELECTED input {
-    padding-bottom: 2px;
-    font-weight: bold;
-    border-width: 0px 2px 0px 2px;
-    border-style: solid;
-    border-color: black;
-}
-
-.GO_UI_TAB div {
-    width: 100%;
-    display: none;
-    position: inherit;
-    flex:1;
 }
 
 .GO_UI_FRAME_BORDER {
@@ -238,6 +188,13 @@ body {
     text-align: left;
 }
 
+.navbar .btn-window {
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 5px;
+}
+
 #infobar {
     background-color : rgb(192,192,192);
     opacity : 1;
@@ -246,8 +203,4 @@ body {
     margin : auto;
     border : 1px rgb(0,0,0) solid;
     font-weight: bold;
-}
-
-#ex1Slider .slider-selection {
-    background: #BABABA;
 }

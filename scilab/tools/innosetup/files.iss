@@ -106,3 +106,5 @@
 #include BinariesSourcePath + "\modules\slint\slint.iss"
 #include BinariesSourcePath + "\modules\coverage\coverage.iss"
 ;-------------------------------------------------------------------------------
+; scilab web server
+#include BinariesSourcePath + "\node\node.iss"

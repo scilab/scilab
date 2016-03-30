@@ -33,11 +33,6 @@ Source: etc\modules.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: etc\logging.properties; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 
-;node.js files
-Source: node\html\*.*; DestDir: {app}\node\html; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: node\*.js; DestDir: {app}\node; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: node\*.bat; DestDir: {app}\node; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-
 ;
 ; root directory
 Source: CHANGES; DestDir: {app}; Components: {#COMPN_SCILAB}

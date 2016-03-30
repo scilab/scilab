@@ -232,6 +232,20 @@ void WebUtils::setFigureSize(int uid, std::ostringstream& ostr)
     ostr << "setFigureSize('" << uid << "', [" << size[0] << ", " << size[1] << "]);";
 }
 
+void WebUtils::getFigureName(int uid, std::string& val)
+{
+    val = getStringProperty(uid, __GO_NAME__);
+}
+
+void WebUtils::setFigureName(int uid, std::ostringstream& ostr)
+{
+    std::string val;
+    getFigureName(uid, val);
+
+    ostr << "setFigureName('" << uid << "', '" << val << "');";
+}
+
+
 int WebUtils::getFigureId(int uid)
 {
     int id = uid;
@@ -241,6 +255,11 @@ int WebUtils::getFigureId(int uid)
     }
 
     return id;
+}
+
+void WebUtils::getUIUnits(int uid, std::string& val)
+{
+    val = getStringProperty(uid, __GO_UI_UNITS__);
 }
 
 void WebUtils::getUIPosition(int uid, std::vector<double>& vect)
@@ -260,10 +279,12 @@ void WebUtils::getUIString(int uid, std::vector<std::string> & vect)
 
 void WebUtils::setUIPosition(int uid, std::ostringstream& ostr)
 {
+    std::string units;
+    getUIUnits(uid, units);
     std::vector<double> pos;
     getUIPosition(uid, pos);
 
-    ostr << "setUIPosition('" << uid << "', [" << (int)pos[0] << ", " << (int)pos[1] << ", " << (int)pos[2] << ", " << (int)pos[3] << "]);";
+    ostr << "setUIPosition('" << uid << "', [" << pos[0] << ", " << pos[1] << ", " << pos[2] << ", " << pos[3] << "], '" << units << "');";
 
     //to ensure vertical alignement, adapt style.line-height
     if (hasStyle(uid, __GO_UI_TEXT__) || hasStyle(uid, __GO_UI_CHECKBOX__) || hasStyle(uid, __GO_UI_RADIOBUTTON__))
@@ -575,7 +596,6 @@ void WebUtils::setUIBorder(int uid, std::ostringstream& ostr)
     ostr << "setUIBorder('" << uid << "', '" << parent << "', " << border << ", [";
     ostr << pad[0] << ", " << pad[1];
     ostr << "], [" << size[0] << ", " << size[1] << "]);";
-
 }
 
 void WebUtils::getUIGridBagGrid(int uid, std::vector<int>& vect)
@@ -597,17 +617,82 @@ void WebUtils::setUIGridBag(int uid, std::ostringstream& ostr)
 
 void WebUtils::setUIFrameBorder(int uid, std::ostringstream& ostr)
 {
-    std::string title;
+    std::string text;
+    std::string position;
+    std::string alignment;
+    std::string fontName;
+    std::string fontStyle;
+    std::string fontSize;
+    std::string fontWeight;
+    std::string fontColor;
+
     int border = getIntProperty(uid, __GO_UI_FRAME_BORDER__);
     int style = getIntProperty(border, __GO_UI_FRAME_BORDER_STYLE__);
     int parent = getParent(uid);
 
     if (style == TITLED)
     {
-        title = getStringProperty(border, __GO_TITLE__);
+        text = getStringProperty(border, __GO_TITLE__);
+        int pos = getIntProperty(border, __GO_UI_FRAME_BORDER_POSITION__);
+        switch (pos)
+        {
+            case 0:
+            case 1:
+            case 2:
+                position = "top";
+                break;
+            case 3:
+            case 4:
+            case 5:
+                position = "bottom";
+                break;
+        }
+
+        int justification = getIntProperty(border, __GO_UI_FRAME_BORDER_JUSTIFICATION__);
+        switch (justification)
+        {
+            default:
+            case 1:
+                alignment = "left";
+                break;
+            case 2:
+                alignment = "center";
+                break;
+            case 3:
+                alignment = "right";
+                break;
+        }
+
+        //fontname
+        fontName = getStringProperty(border, __GO_UI_FONTNAME__);
+
+        //font style/angle
+        fontStyle = getStringProperty(border, __GO_UI_FONTANGLE__);
+
+        //fontSize
+        int size = getIntProperty(border, __GO_UI_FONTSIZE__);
+        fontSize = std::to_string(size);
+
+        //fontWeight
+        fontWeight = getStringProperty(border, __GO_UI_FONTWEIGHT__);
+
+        //color
+        fontColor = getStringProperty(border, __GO_UI_FRAME_BORDER_COLOR__);
+
     }
 
-    ostr << "setUIFrameBorder('" << uid << "', '" << border << "', '" << parent << "', '" << title << "');";
+    //build struct
+    std::string var = "{";
+    var += "text:'" + text + "',";
+    var += "position:'" + position + "',";
+    var += "alignment:'" + alignment + "',";
+    var += "fontName:'" + fontName + "',";
+    var += "fontStyle:'" + fontStyle + "',";
+    var += "fontSize:'" + fontSize + "',";
+    var += "fontWeight:'" + fontWeight + "',";
+    var += "fontColor:'" + fontColor + "'}";
+
+    ostr << "setUIFrameBorder('" << uid << "', " << var << ");";
 }
 
 bool WebUtils::getUIIcon(int uid, std::string& val)
@@ -628,19 +713,23 @@ void WebUtils::setUIIcon(int uid, std::ostringstream& ostr)
     }
 
     size_t found = icon.find_last_of(".");
-    std::string ext = icon.substr(found);
+    std::string tmpname = icon;
 
-    std::string tmpname = std::tmpnam(nullptr);
-    tmpname = "images/" + tmpname.substr(1) + ext;
+    if (found != std::string::npos)
+    {
+        std::string ext = icon.substr(found);
 
-    //copy image file to web server path
-    wchar_t* src = to_wide_string(icon.data());
-    wchar_t* dst = to_wide_string((getImagePath() + tmpname).data());
+        tmpname = std::tmpnam(nullptr);
+        tmpname = "images/" + tmpname.substr(1) + ext;
 
-    CopyFileFunction(dst, src);
-    FREE(src);
-    FREE(dst);
+        //copy image file to web server path
+        wchar_t* src = to_wide_string(icon.data());
+        wchar_t* dst = to_wide_string((getImagePath() + tmpname).data());
 
+        CopyFileFunction(dst, src);
+        FREE(src);
+        FREE(dst);
+    }
     ostr << "setUIIcon('" << uid << "', '" << tmpname << "', '" << str[0] << "');";
 }
 
@@ -652,6 +741,20 @@ bool WebUtils::hasCallback(int uid)
 void WebUtils::setCallback(int uid, std::ostringstream& ostr)
 {
     ostr << "setCallback('" << uid << "');";
+}
+
+bool WebUtils::getUIGroupName(int uid, std::string& val)
+{
+    val = getStringProperty(uid, __GO_UI_GROUP_NAME__);
+    return true;
+}
+
+void WebUtils::setUIGroupName(int uid, std::ostringstream& ostr)
+{
+    std::string val;
+    getUIGroupName(uid, val);
+
+    ostr << "setUIGroupName('" << uid << "', '" << val << "');";
 }
 
 //is
@@ -916,6 +1019,7 @@ void WebUtils::fillSetter()
     setter[__GO_UI_GRIDBAG_GRID__] = WebUtils::setUIGridBag;
     setter[__GO_UI_FRAME_BORDER__] = WebUtils::setUIFrameBorder;
     setter[__GO_UI_ICON__] = WebUtils::setUIIcon;
+    setter[__GO_UI_GROUP_NAME__] = WebUtils::setUIGroupName;
     //setter[__GO_CALLBACK__] = WebUtils::setCallback;
 }
 
@@ -927,27 +1031,27 @@ bool WebUtils::updateValue(int uid, const std::string& value)
         setStringVectorProperty(uid, __GO_UI_STRING__, v);
     }
 
-    return false;
+    return true;
 }
 
 bool WebUtils::updateValue(int uid, const std::vector<double>& values)
 {
     setDoubleVectorProperty(uid, __GO_UI_VALUE__, values);
-    return false;
+    return true;
 }
 
 bool WebUtils::updateValue(int uid, double value)
 {
     std::vector<double> v(1, value);
     setDoubleVectorProperty(uid, __GO_UI_VALUE__, v);
-    return false;
+    return true;
 }
 
 bool WebUtils::updateValue(int uid, bool value)
 {
     std::vector<double> v(1, value ? getUIMax(uid) : getUIMin(uid));
     setDoubleVectorProperty(uid, __GO_UI_VALUE__, v);
-    return false;
+    return true;
 }
 
 void WebUtils::addInWaitingQueue(int uid, int prop)

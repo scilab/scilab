@@ -79,11 +79,15 @@ public:
     static int getParent(int uid);
     static int getFigureId(int uid);
     static void setParent(int uid, std::ostringstream& ostr);
+    static void getUIUnits(int uid, std::string& val);
     static void getUIPosition(int uid, std::vector<double>& vect);
     static void setUIPosition(int uid, std::ostringstream& ostr);
 
     static void getFigureSize(int uid, std::vector<int>& vect);
     static void setFigureSize(int uid, std::ostringstream& ostr);
+
+    static void getFigureName(int uid, std::string& val);
+    static void setFigureName(int uid, std::ostringstream& ostr);
 
     static void getUIString(int uid, std::vector<std::string>& vect);
     static void setUIString(int uid, std::ostringstream& ostr);
@@ -136,6 +140,9 @@ public:
 
     static bool getUIValue(int uid, std::vector<double>& vect);
     static void setUIValue(int uid, std::ostringstream& ostr);
+
+    static bool getUIGroupName(int uid, std::string& val);
+    static void setUIGroupName(int uid, std::ostringstream& ostr);
 
     //border layout
     static int getUIBorderPosition(int uid);

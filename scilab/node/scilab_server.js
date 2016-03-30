@@ -10,7 +10,7 @@ app.use(express.static('static'));
 server.listen(1337);
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/static/index.html');
+    res.sendFile(__dirname + '/static/scilab.html');
 });
 
 var processAlive = false;
@@ -94,10 +94,11 @@ io.on('connection', function (socket) {
         prcSocket.emit('callback', msg);
     });
 
-    socket.on('callback', function (msg) {
-        prcSocket.emit('callback', msg);
+    socket.on('disconnect', function () {
+        L('User disconnected');
+        prcSocket.emit('quit');
     });
-
+    
     socket.on('force_reload', function () {
         L('force reload');
         prcSocket.emit('force_reload');
