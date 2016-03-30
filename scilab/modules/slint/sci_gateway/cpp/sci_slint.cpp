@@ -31,9 +31,11 @@
 extern "C"
 {
 #include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
 }
 
+static bool contributionMsg = true;
 /**
  * slint(String[a,b] files, String[1,c] conf, String[1,1] out)
  * slint(String[a,b] files, String[1,1] out)                   : default conf is etc/slint.xml
@@ -211,6 +213,12 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
     }
 
     delete results;
+
+    if (contributionMsg)
+    {
+        sciprint("%s\n", _("Module developed with the contribution of CNES."));
+        contributionMsg = false;
+    }
 
     return types::Function::OK;
 }

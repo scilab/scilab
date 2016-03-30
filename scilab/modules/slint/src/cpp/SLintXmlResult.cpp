@@ -45,7 +45,7 @@ SLintXmlResult::SLintXmlResult(const std::wstring & _path) : current(nullptr), p
     else
     {
         (*out) << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-               << "<SLintResult>\n";
+            << "<SLintResult>\n";
     }
 }
 
@@ -60,6 +60,11 @@ SLintXmlResult::~SLintXmlResult()
 
 void SLintXmlResult::finalize()
 {
+    if (current.get())
+    {
+        (*out) << "  </File>\n";
+    }
+
     (*out) << "</SLintResult>\n";
     out->close();
     delete out;
@@ -71,7 +76,7 @@ const std::string SLintXmlResult::getStr(const std::wstring & str)
     return scilab::UTF8::toUTF8(replaceByEntities(str));
 }
 
-    void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg)
+void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg)
 {
     if (context.getSciFile().get() != current.get())
     {
@@ -102,23 +107,23 @@ void SLintXmlResult::print(const Location & loc, const SLintChecker & checker, c
 void SLintXmlResult::print(const Location & loc)
 {
     (*out) << "      <Location first_line=\"" << loc.first_line
-           << "\" first_column=\"" << loc.first_column
-           << "\" last_line=\"" << loc.last_line
-           << "\" last_column=\"" << loc.last_column
-           << "\"/>\n";
+        << "\" first_column=\"" << loc.first_column
+        << "\" last_line=\"" << loc.last_line
+        << "\" last_column=\"" << loc.last_column
+        << "\"/>\n";
 }
 
-    void SLintXmlResult::print(const SLintChecker & checker, const unsigned sub)
+void SLintXmlResult::print(const SLintChecker & checker, const unsigned sub)
 {
     (*out) << "      <Checker name=\"" << checker.getName()
-           << "\" id=\"" << getStr(checker.getId(sub))
-           << "\"/>\n";
+        << "\" id=\"" << getStr(checker.getId(sub))
+        << "\"/>\n";
 }
 
 void SLintXmlResult::print(const std::wstring & msg)
 {
     (*out) << "      <Message text=\"" << getStr(msg)
-           << "\"/>\n";
+        << "\"/>\n";
 }
 
 std::wstring SLintXmlResult::replaceByEntities(const std::wstring & seq)
