@@ -17,6 +17,7 @@
 #include <iostream>
 
 #include "parser.hxx"
+#include "prettyprintvisitor.hxx"
 #include "SLint.hxx"
 #include "threadmanagement.hxx"
 #include "UTF8.hxx"
@@ -40,6 +41,11 @@ extern "C"
 #define DEFAULT_FILESPEC L"*"
 #endif
 
+//#define SLINT_PRINT_AST
+#ifdef SLINT_PRINT_AST
+#include "prettyprintvisitor.hxx"
+#endif
+
 namespace slint
 {
 
@@ -60,6 +66,13 @@ void SLint::check()
     {
         context.setSciFile(scifile);
         visitor.preCheckFile();
+
+#ifdef SLINT_PRINT_AST
+        ast::PrettyPrintVisitor ppv(std::wcerr, false, true);
+        scifile->getTree()->accept(ppv);
+#undef SLINT_PRINT_AST
+#endif
+
         scifile->getTree()->accept(visitor);
         visitor.postCheckFile();
     }
@@ -101,6 +114,7 @@ void SLint::setFiles(const std::vector<std::wstring> & files)
                 if (sf.get())
                 {
                     scifiles.emplace_back(sf);
+                    context.addPublicFunction(sf->getMain());
                 }
             }
         }

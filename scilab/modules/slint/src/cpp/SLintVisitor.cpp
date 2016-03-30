@@ -222,7 +222,10 @@ void SLintVisitor::visit(const ast::CellExp & e)
 void SLintVisitor::visit(const ast::OpExp & e)
 {
     auto range = preCheck(e);
-    e.getLeft().accept(*this);
+    if (e.getOper() != ast::OpExp::unaryMinus)
+    {
+	e.getLeft().accept(*this);
+    }
     e.getRight().accept(*this);
     postCheck(e, range);
 }
@@ -325,6 +328,7 @@ void SLintVisitor::visit(const ast::AssignExp & e)
     context.setLHSExp(&e.getLeftExp());
     auto range = preCheck(e);
     e.getRightExp().accept(*this);
+    context.setLHSExp(&e.getLeftExp());
     e.getLeftExp().accept(*this);
     postCheck(e, range);
     context.setLHSExp(nullptr);

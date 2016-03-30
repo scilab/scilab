@@ -1,4 +1,5 @@
-%{                                                            /* -*- C++ -*- */
+%{
+/* -*- C++ -*- */
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2008-2012 - Scilab Enterprises - Bruno JOFRET
@@ -357,7 +358,7 @@ assign			"="
     return scan_throw(RETURN);
 }
 
-^{spaces}*/({id}){spaces}([^ \t\v\f(=<>~@]|([~@]{spaces}*[^=]?)) {
+^{spaces}*/({id}){spaces}([^ \t\v\f(=<>~@,;]|([~@]{spaces}*[^=]?)) {
         BEGIN(BEGINID);
 }
 
@@ -379,14 +380,13 @@ assign			"="
 	types::InternalType * pIT = symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str));
         if (pIT && pIT->isCallable())
         {
-            scan_throw(ID);
             BEGIN(SHELLMODE);
         }
         else
         {
             BEGIN(INITIAL);
-            return scan_throw(ID);
         }
+	return scan_throw(ID);
     }
 
 }
@@ -748,8 +748,9 @@ assign			"="
     return scan_throw(RPAREN);
   }
 
-  {spaces}*{lparen} {
-      unput(yytext[yyleng -1]);
+  {spaces}+{lparen} {
+      unput(yytext[yyleng - 1]);
+      --yylloc.last_column;
       if (last_token == ID
           || last_token == RPAREN
           || last_token == QUOTE
@@ -1306,7 +1307,7 @@ assign			"="
         if (last_token == ID)
         {
             scan_throw(SPACES);
-            return ID;
+            //return ID;
         }
     }
 

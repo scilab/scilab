@@ -45,7 +45,7 @@ SLintXmlResult::SLintXmlResult(const std::wstring & _path) : current(nullptr), p
     else
     {
         (*out) << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-               << "<SLintResult>\n";
+            << "<SLintResult>\n";
     }
 }
 
@@ -60,6 +60,11 @@ SLintXmlResult::~SLintXmlResult()
 
 void SLintXmlResult::finalize()
 {
+    if (current.get())
+    {
+        (*out) << "  </File>\n";
+    }
+
     (*out) << "</SLintResult>\n";
     out->close();
     delete out;
@@ -71,7 +76,7 @@ const std::string SLintXmlResult::getStr(const std::wstring & str)
     return scilab::UTF8::toUTF8(replaceByEntities(str));
 }
 
-void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg)
 {
     if (context.getSciFile().get() != current.get())
     {
@@ -82,7 +87,7 @@ void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc,
         current = context.getSciFile();
         print(current);
     }
-    print(loc, checker, msg);
+    print(loc, checker, sub, msg);
 }
 
 void SLintXmlResult::print(const SciFilePtr & file)
@@ -90,11 +95,11 @@ void SLintXmlResult::print(const SciFilePtr & file)
     (*out) << "  <File name=\"" << getStr(file->getFilename()) << "\">\n";
 }
 
-void SLintXmlResult::print(const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+void SLintXmlResult::print(const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg)
 {
     (*out) << "    <Result>\n";
     print(loc);
-    print(checker);
+    print(checker, sub);
     print(msg);
     (*out) << "    </Result>\n";
 }
@@ -102,23 +107,23 @@ void SLintXmlResult::print(const Location & loc, const SLintChecker & checker, c
 void SLintXmlResult::print(const Location & loc)
 {
     (*out) << "      <Location first_line=\"" << loc.first_line
-           << "\" first_column=\"" << loc.first_column
-           << "\" last_line=\"" << loc.last_line
-           << "\" last_column=\"" << loc.last_column
-           << "\"/>\n";
+        << "\" first_column=\"" << loc.first_column
+        << "\" last_line=\"" << loc.last_line
+        << "\" last_column=\"" << loc.last_column
+        << "\"/>\n";
 }
 
-void SLintXmlResult::print(const SLintChecker & checker)
+void SLintXmlResult::print(const SLintChecker & checker, const unsigned sub)
 {
     (*out) << "      <Checker name=\"" << checker.getName()
-           << "\" id=\"" << getStr(checker.getId())
-           << "\"/>\n";
+        << "\" id=\"" << getStr(checker.getId(sub))
+        << "\"/>\n";
 }
 
 void SLintXmlResult::print(const std::wstring & msg)
 {
     (*out) << "      <Message text=\"" << getStr(msg)
-           << "\"/>\n";
+        << "\"/>\n";
 }
 
 std::wstring SLintXmlResult::replaceByEntities(const std::wstring & seq)
@@ -128,23 +133,23 @@ std::wstring SLintXmlResult::replaceByEntities(const std::wstring & seq)
     {
         if (c == L'<')
         {
-            pushEntity(buf, L"&#0060;", 7);
+            pushEntity(buf, L"&lt;", 4);
         }
         else if (c == L'>')
         {
-            pushEntity(buf, L"&#0062;", 7);
+            pushEntity(buf, L"&gt;", 4);
         }
         else if (c == L'\'')
         {
-            pushEntity(buf, L"&#0039;", 7);
+            pushEntity(buf, L"&apos;", 6);
         }
         else if (c == L'\"')
         {
-            pushEntity(buf, L"&#0034;", 7);
+            pushEntity(buf, L"&quot;", 6);
         }
         else if (c == L'&')
         {
-            pushEntity(buf, L"&#0038;", 7);
+            pushEntity(buf, L"&amp;", 5);
         }
         else
         {

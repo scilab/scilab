@@ -38,12 +38,13 @@ public:
 
     virtual const std::vector<ast::Exp::ExpType> getAstNodes() const
     {
-        return { ast::Exp::SEQEXP };
+        return { ast::Exp::FUNCTIONDEC };
     }
 
 private:
 
     void check(const ast::Exp * e, SLintContext & context, SLintResult & result) const;
+    void checkSeqExp(const ast::SeqExp & e, SLintContext & context, SLintResult & result) const;
 };
 
 } // namespace slint

@@ -42,7 +42,7 @@ public:
     SLintScilabResult();
     virtual ~SLintScilabResult();
     virtual void handleFiles(const std::vector<SciFilePtr> & files) { }
-    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg);
+    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg);
     virtual void finalize();
 };
 
@@ -57,7 +57,7 @@ public:
     SLintScilabOut();
     virtual ~SLintScilabOut();
     virtual void handleFiles(const std::vector<SciFilePtr> & files) { }
-    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg);
+    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg);
     virtual void finalize();
 
     types::Struct * getStruct() const;

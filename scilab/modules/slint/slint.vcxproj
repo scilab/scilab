@@ -246,6 +246,7 @@
     <ClInclude Include="includes\checkers\DeprecatedChecker.hxx" />
     <ClInclude Include="includes\checkers\EmptyBlockChecker.hxx" />
     <ClInclude Include="includes\checkers\EqEqChecker.hxx" />
+    <ClInclude Include="includes\checkers\ExpInCondChecker.hxx" />
     <ClInclude Include="includes\checkers\FindSymVisitor.hxx" />
     <ClInclude Include="includes\checkers\FunctionArgsChecker.hxx" />
     <ClInclude Include="includes\checkers\FunctionArgsOrderChecker.hxx" />
@@ -262,6 +263,7 @@
     <ClInclude Include="includes\checkers\MopenMcloseChecker.hxx" />
     <ClInclude Include="includes\checkers\NaNChecker.hxx" />
     <ClInclude Include="includes\checkers\NestedBlocksChecker.hxx" />
+    <ClInclude Include="includes\checkers\NotEqualChecker.hxx" />
     <ClInclude Include="includes\checkers\NotNotChecker.hxx" />
     <ClInclude Include="includes\checkers\OldNotChecker.hxx" />
     <ClInclude Include="includes\checkers\PrintfChecker.hxx" />
@@ -274,7 +276,6 @@
     <ClInclude Include="includes\checkers\SLintChecker.hxx" />
     <ClInclude Include="includes\checkers\SpacesAroundOpChecker.hxx" />
     <ClInclude Include="includes\checkers\SpacesInArgsChecker.hxx" />
-    <ClInclude Include="includes\checkers\StatInCondChecker.hxx" />
     <ClInclude Include="includes\checkers\StructChecker.hxx" />
     <ClInclude Include="includes\checkers\TodoChecker.hxx" />
     <ClInclude Include="includes\checkers\UnreachableCodeChecker.hxx" />
@@ -283,9 +284,26 @@
     <ClInclude Include="includes\checkers\UselessRetChecker.hxx" />
     <ClInclude Include="includes\checkers\VariableNameChecker.hxx" />
     <ClInclude Include="includes\checkers\VariablesChecker.hxx" />
+    <ClInclude Include="includes\config\cnes\AnalysisConfiguration.hxx" />
+    <ClInclude Include="includes\config\cnes\AnalysisConfigurationType.hxx" />
+    <ClInclude Include="includes\config\cnes\AnalysisRuleParameterType.hxx" />
+    <ClInclude Include="includes\config\cnes\AnalysisRuleType.hxx" />
+    <ClInclude Include="includes\config\cnes\CNESConfig.hxx" />
+    <ClInclude Include="includes\config\cnes\CNESException.hxx" />
+    <ClInclude Include="includes\config\cnes\ExcludedProjectFileType.hxx" />
+    <ClInclude Include="includes\config\cnes\RuleLinkType.hxx" />
+    <ClInclude Include="includes\config\cnes\Standard.hxx" />
+    <ClInclude Include="includes\config\cnes\StandardRuleParameterType.hxx" />
+    <ClInclude Include="includes\config\cnes\StandardRuleParameterValueType.hxx" />
+    <ClInclude Include="includes\config\cnes\StandardRuleType.hxx" />
+    <ClInclude Include="includes\config\cnes\StandardType.hxx" />
+    <ClInclude Include="includes\config\cnes\ToolConfiguration.hxx" />
+    <ClInclude Include="includes\config\cnes\ToolConfigurationType.hxx" />
     <ClInclude Include="includes\config\XMLConfig.hxx" />
     <ClInclude Include="includes\dynlib_slint.h" />
     <ClInclude Include="includes\FileException.hxx" />
+    <ClInclude Include="includes\output\cnes\CNESCsvResult.hxx" />
+    <ClInclude Include="includes\output\cnes\CNESXmlResult.hxx" />
     <ClInclude Include="includes\output\SLintResult.hxx" />
     <ClInclude Include="includes\output\SLintScilabResult.hxx" />
     <ClInclude Include="includes\output\SLintXmlResult.hxx" />
@@ -303,13 +321,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sci_gateway\cpp\sci_slint.cpp" />
+    <ClCompile Include="src\cpp\AnalysisConfiguration.cpp" />
+    <ClCompile Include="src\cpp\AnalysisConfigurationType.cpp" />
+    <ClCompile Include="src\cpp\AnalysisRuleParameterType.cpp" />
+    <ClCompile Include="src\cpp\AnalysisRuleType.cpp" />
     <ClCompile Include="src\cpp\BracketedExpChecker.cpp" />
     <ClCompile Include="src\cpp\BreaksInLoopChecker.cpp" />
+    <ClCompile Include="src\cpp\CNESConfig.cpp" />
+    <ClCompile Include="src\cpp\CNESCsvResult.cpp" />
+    <ClCompile Include="src\cpp\CNESException.cpp" />
+    <ClCompile Include="src\cpp\CNESXmlResult.cpp" />
     <ClCompile Include="src\cpp\CommentRatioChecker.cpp" />
     <ClCompile Include="src\cpp\DecimalChecker.cpp" />
     <ClCompile Include="src\cpp\DeprecatedChecker.cpp" />
     <ClCompile Include="src\cpp\EmptyBlockChecker.cpp" />
     <ClCompile Include="src\cpp\EqEqChecker.cpp" />
+    <ClCompile Include="src\cpp\ExcludedProjectFileType.cpp" />
+    <ClCompile Include="src\cpp\ExpInCondChecker.cpp" />
     <ClCompile Include="src\cpp\FileException.cpp" />
     <ClCompile Include="src\cpp\FunctionArgsChecker.cpp" />
     <ClCompile Include="src\cpp\FunctionArgsOrderChecker.cpp" />
@@ -326,6 +354,7 @@
     <ClCompile Include="src\cpp\MopenMcloseChecker.cpp" />
     <ClCompile Include="src\cpp\NaNChecker.cpp" />
     <ClCompile Include="src\cpp\NestedBlocksChecker.cpp" />
+    <ClCompile Include="src\cpp\NotEqualChecker.cpp" />
     <ClCompile Include="src\cpp\NotNotChecker.cpp" />
     <ClCompile Include="src\cpp\OldNotChecker.cpp" />
     <ClCompile Include="src\cpp\PCREException.cpp" />
@@ -333,6 +362,7 @@
     <ClCompile Include="src\cpp\PrintfChecker.cpp" />
     <ClCompile Include="src\cpp\RedefinitionChecker.cpp" />
     <ClCompile Include="src\cpp\ReturnsCountChecker.cpp" />
+    <ClCompile Include="src\cpp\RuleLinkType.cpp" />
     <ClCompile Include="src\cpp\SciFile.cpp" />
     <ClCompile Include="src\cpp\SelectChecker.cpp" />
     <ClCompile Include="src\cpp\SemicolonAtEOLChecker.cpp" />
@@ -347,9 +377,15 @@
     <ClCompile Include="src\cpp\SLintXmlResult.cpp" />
     <ClCompile Include="src\cpp\SpacesAroundOpChecker.cpp" />
     <ClCompile Include="src\cpp\SpacesInArgsChecker.cpp" />
-    <ClCompile Include="src\cpp\StatInCondChecker.cpp" />
+    <ClCompile Include="src\cpp\Standard.cpp" />
+    <ClCompile Include="src\cpp\StandardRuleParameterType.cpp" />
+    <ClCompile Include="src\cpp\StandardRuleParameterValueType.cpp" />
+    <ClCompile Include="src\cpp\StandardRuleType.cpp" />
+    <ClCompile Include="src\cpp\StandardType.cpp" />
     <ClCompile Include="src\cpp\StructChecker.cpp" />
     <ClCompile Include="src\cpp\TodoChecker.cpp" />
+    <ClCompile Include="src\cpp\ToolConfiguration.cpp" />
+    <ClCompile Include="src\cpp\ToolConfigurationType.cpp" />
     <ClCompile Include="src\cpp\UnreachableCodeChecker.cpp" />
     <ClCompile Include="src\cpp\UselessArgChecker.cpp" />
     <ClCompile Include="src\cpp\UselessOpChecker.cpp" />
