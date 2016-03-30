@@ -69,6 +69,7 @@ Xcos debug: objectCreated( 4 , LINK )
 Xcos trace: propertyUpdated( 4 , LINK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , KIND ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , LINK , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , CONTROL_POINTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , THICK ) : NO_CHANGES
