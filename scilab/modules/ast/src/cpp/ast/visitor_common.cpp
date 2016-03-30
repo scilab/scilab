@@ -1796,6 +1796,10 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         {
             pOut = _pVar->getAs<types::Struct>()->insert(_pArgs, _pInsert);
         }
+        else if (_pVar->isUserType())
+        {
+            pOut = _pVar->getAs<types::UserType>()->insert(_pArgs, _pInsert);
+        }
         else if (_pInsert->isGenericType() && (_pInsert->isTList() == false &&  _pInsert->isMList() == false))
         {
             pOut = _pVar->getAs<types::GenericType>()->remove(_pArgs);
