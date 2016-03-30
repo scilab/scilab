@@ -208,14 +208,10 @@ namespace std {
     return $null;
   }
   $1 = &temp;
-  *$1 = "";
 }
 
 %typemap(argout) std::string &OUTPUT {
-  jstring jnewstring = NULL;
-  if ($1) {
-     jnewstring = JCALL1(NewStringUTF, jenv, $1->c_str());
-  }
+  jstring jnewstring = JCALL1(NewStringUTF, jenv, $1->c_str());
   JCALL3(SetObjectArrayElement, jenv, $input, 0, jnewstring);
 }
 
