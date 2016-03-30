@@ -5,7 +5,7 @@
         <refpurpose>retrieve the Cholesky factorization at the scilab level  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Ct,p] = taucs_chget(C_ptr)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -36,7 +36,7 @@
         <para>
             This function  may be used if you want  to plot  the sparse
             pattern  of the Cholesky factorization (or if you  code something which
-            use the factors). Traditionnaly, the factorization is written :
+            use the factors). Traditionally, the factorization is written :
         </para>
         <programlisting role=""><![CDATA[ 
 P A P' = C C'

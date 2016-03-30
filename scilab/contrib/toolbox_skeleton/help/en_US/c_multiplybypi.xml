@@ -9,7 +9,7 @@
         <refpurpose>multiply by %pi a number</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>a = multiplybypi(b)</synopsis>
     </refsynopsisdiv>
     <refsection>

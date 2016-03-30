@@ -25,7 +25,7 @@ function [X,U,Y,XP] = steadycos(scs_m,X,U,Y,Indx,Indu,Indy,Indxp,param)
     // steadycos - Finds an equilibrium state of a general
     // dynamical system described by a scicos diagram
 
-    // CALLING SEQUENCE
+    // SYNTAX
     //
     // [X,U,Y,XP] = steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])
     //

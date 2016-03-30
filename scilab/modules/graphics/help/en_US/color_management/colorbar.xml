@@ -5,7 +5,7 @@
         <refpurpose>draw a colorbar</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>colorbar(umin, umax [, colminmax, fmt])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>Design of iir filters, syredi code interface</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[fact,b2,b1,b0,c1,c0,zzeros,zpoles]=syredi(ityp,iapro,om,deltap,deltas)</synopsis>
     </refsynopsisdiv>
     <refsection>

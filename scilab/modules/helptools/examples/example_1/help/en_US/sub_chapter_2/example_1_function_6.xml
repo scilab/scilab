@@ -5,7 +5,7 @@
         <refpurpose>"example_1_function_6" description</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>a = example_1_function_6(b,c)</synopsis>
     </refsynopsisdiv>
     <refsection>

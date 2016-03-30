@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -114,10 +117,10 @@ void RunVisitorT<T>::visitprivate(const SimpleVar & e)
     setResult(pI);
     if (pI != nullptr)
     {
-        if (e.isVerbose() && pI->isCallable() == false && ConfigVariable::isPromptShow())
+        if (e.isVerbose() && pI->isCallable() == false && ConfigVariable::isPrintOutput())
         {
             std::wostringstream ostr;
-            ostr << e.getSymbol().getName() << L"  = ";
+            ostr << L" " << e.getSymbol().getName() << L"  = ";
 #ifndef NDEBUG
             ostr << L"(" << pI->getRef() << L")";
 #endif
@@ -370,7 +373,6 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     }
     catch (std::wstring & err)
     {
-        pValue->killMe();
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(err.c_str(), 999, e.getTail()->getLocation());
     }
@@ -920,6 +922,11 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
     {
         //return(x)
 
+        if (e.getParent() == nullptr || e.getParent()->isAssignExp() == false)
+        {
+            CoverageInstance::stopChrono((void*)&e);
+            throw InternalError(_W("With input arguments, return / resume expects output arguments.\n"), 999, e.getLocation());
+        }
         //in case of CallExp, we can return only one values
         int iSaveExpectedSize = getExpectedSize();
         setExpectedSize(1);
@@ -935,6 +942,8 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
         setExpectedSize(iSaveExpectedSize);
         const_cast<ReturnExp*>(&e)->setReturn();
     }
+
+    CoverageInstance::stopChrono((void*)&e);
 }
 
 template <class T>
@@ -1254,204 +1263,6 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
         pIT->DecreaseRef();
         pIT->killMe();
     }
-    CoverageInstance::stopChrono((void*)&e);
-}
-
-template <class T>
-void RunVisitorT<T>::visitprivate(const SeqExp  &e)
-{
-    CoverageInstance::invokeAndStartChrono((void*)&e);
-    int lastLine = 0;
-    for (auto exp : e.getExps())
-    {
-        if (exp->isCommentExp())
-        {
-            continue;
-        }
-
-        if (ConfigVariable::isExecutionBreak())
-        {
-            ConfigVariable::resetExecutionBreak();
-            if (ConfigVariable::getPromptMode() == 7)
-            {
-                ClearTemporaryPrompt();
-            }
-
-            StorePrioritaryCommand("pause");
-            ThreadManagement::WaitForRunMeSignal();
-        }
-
-        // interrupt me to execute a prioritary command
-        while (StaticRunner_isInterruptibleCommand() == 1 && StaticRunner_isRunnerAvailable() == 1)
-        {
-            StaticRunner_launch();
-            StaticRunner_setInterruptibleCommand(1);
-        }
-
-        try
-        {
-            //reset default values
-            setResult(NULL);
-            int iExpectedSize = getExpectedSize();
-            setExpectedSize(-1);
-            exp->accept(*this);
-            setExpectedSize(iExpectedSize);
-            types::InternalType * pIT = getResult();
-
-            // In case of exec file, set the file name in the Macro to store where it is defined.
-            int iFileID = ConfigVariable::getExecutedFileID();
-            if (iFileID && exp->isFunctionDec())
-            {
-                types::InternalType* pITMacro = symbol::Context::getInstance()->get(exp->getAs<FunctionDec>()->getSymbol());
-                if (pITMacro)
-                {
-                    types::Macro* pMacro = pITMacro->getAs<types::Macro>();
-                    const wchar_t* filename = getfile_filename(iFileID);
-                    // scilab.quit is not open with mopen
-                    // in this case filename is NULL because FileManager have not been filled.
-                    if (filename)
-                    {
-                        pMacro->setFileName(filename);
-                    }
-                }
-            }
-
-            if (pIT != NULL)
-            {
-                bool bImplicitCall = false;
-                if (pIT->isCallable()) //to manage call without ()
-                {
-                    types::Callable *pCall = pIT->getAs<types::Callable>();
-                    types::typed_list out;
-                    types::typed_list in;
-                    types::optional_list opt;
-
-                    try
-                    {
-                        //in this case of calling, we can return only one values
-                        int iSaveExpectedSize = getExpectedSize();
-                        setExpectedSize(1);
-
-                        pCall->invoke(in, opt, getExpectedSize(), out, e);
-                        setExpectedSize(iSaveExpectedSize);
-
-                        if (out.size() == 0)
-                        {
-                            setResult(NULL);
-                        }
-                        else
-                        {
-                            setResult(out[0]);
-                        }
-
-                        bImplicitCall = true;
-                    }
-                    catch (const InternalError& ie)
-                    {
-                        if (ConfigVariable::getLastErrorFunction() == L"")
-                        {
-                            ConfigVariable::setLastErrorFunction(pCall->getName());
-                            ConfigVariable::setLastErrorLine(e.getLocation().first_line);
-                        }
-                        CoverageInstance::stopChrono((void*)&e);
-                        throw ie;
-                    }
-                }
-                else if (pIT->isImplicitList())
-                {
-                    //expand implicit when possible
-                    types::ImplicitList* pIL = pIT->getAs<types::ImplicitList>();
-                    if (pIL->isComputable())
-                    {
-                        types::InternalType* p = pIL->extractFullMatrix();
-                        if (p)
-                        {
-                            setResult(p);
-                        }
-                    }
-                }
-
-                //don't output Simplevar and empty result
-                if (getResult() != NULL && (!exp->isSimpleVar() || bImplicitCall))
-                {
-                    //symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.getResult());
-                    types::InternalType* pITAns = getResult();
-                    symbol::Context::getInstance()->put(m_pAns, pITAns);
-                    if (exp->isVerbose() && ConfigVariable::isPromptShow())
-                    {
-                        //TODO manage multiple returns
-                        scilabWriteW(L" ans  =\n\n");
-                        std::wostringstream ostrName;
-                        ostrName << L"ans";
-                        VariableToString(pITAns, ostrName.str().c_str());
-                    }
-                }
-
-                pIT->killMe();
-            }
-
-            if (ConfigVariable::getPromptMode() == 7)
-            {
-                Location loc = exp->getLocation();
-                if (lastLine < loc.first_line)
-                {
-                    //break execution
-                    SetTemporaryPrompt(SCIPROMPT_PAUSE);
-                    ConfigVariable::setScilabCommand(0);
-                    char* pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
-                    if (pcConsoleReadStr) // exec is called from a callback
-                    {
-                        ThreadManagement::SendConsoleExecDoneSignal();
-                    }
-                    else // exec is called from the console
-                    {
-                        scilabRead();
-                        pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
-                    }
-
-                    if (pcConsoleReadStr && pcConsoleReadStr[0] == 'p' && pcConsoleReadStr[1] == '\0')
-                    {
-                        //mode pause
-                        ConfigVariable::setExecutionBreak();
-                    }
-                }
-
-                lastLine = loc.last_line;
-            }
-
-            if ((&e)->isBreakable() && exp->isBreak())
-            {
-                const_cast<SeqExp *>(&e)->setBreak();
-                exp->resetBreak();
-                break;
-            }
-
-            if ((&e)->isContinuable() && exp->isContinue())
-            {
-                const_cast<SeqExp *>(&e)->setContinue();
-                exp->resetContinue();
-                break;
-            }
-
-            if ((&e)->isReturnable() && exp->isReturn())
-            {
-                const_cast<SeqExp *>(&e)->setReturn();
-                exp->resetReturn();
-                break;
-            }
-        }
-        catch (const InternalError& ie)
-        {
-            ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
-            CoverageInstance::stopChrono((void*)&e);
-            throw ie;
-        }
-
-        // If something other than NULL is given to setResult, then that would imply
-        // to make a cleanup in visit(ForExp) for example (e.getBody().accept(*this);)
-        setResult(NULL);
-    }
-
     CoverageInstance::stopChrono((void*)&e);
 }
 
@@ -2114,10 +1925,10 @@ void RunVisitorT<T>::visitprivate(const TryCatchExp  &e)
 {
     CoverageInstance::invokeAndStartChrono((void*)&e);
     //save current prompt mode
-    int oldVal = ConfigVariable::getSilentError();
+    bool oldVal = ConfigVariable::isSilentError();
     int oldMode = ConfigVariable::getPromptMode();
     //set mode silent for errors
-    ConfigVariable::setSilentError(1);
+    ConfigVariable::setSilentError(true);
 
     symbol::Context* pCtx = symbol::Context::getInstance();
     try
@@ -2179,6 +1990,7 @@ void RunVisitorT<T>::visitprivate(const TryCatchExp  &e)
 
 } /* namespace ast */
 
+#include "run_SeqExp.hpp"
 #include "run_CallExp.hpp"
 #include "run_MatrixExp.hpp"
 #include "run_OpExp.hpp"

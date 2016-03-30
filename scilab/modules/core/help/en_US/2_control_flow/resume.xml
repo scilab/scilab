@@ -5,7 +5,7 @@
         <refpurpose>return or resume execution and copy some local variables</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>resume
             [x1,..,xn]=resume(a1,..,an)
         </synopsis>

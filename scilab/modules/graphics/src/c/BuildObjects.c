@@ -8,11 +8,14 @@
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -87,7 +90,7 @@ GRAPHICS_IMPEXP int getOrCreateDefaultSubwin(void)
 /**ConstructText
  * This function creates the parents window (manager) and the elementaries structures
  * @param  char *pparentsubwinUID : parent subwin UID
- * @param  char * text[] : intial text matrix string.
+ * @param  char * text[] : initial text matrix string.
  * @param  int nbCol : the number column of the text
  * @param  int nbRow : the number of row of the text
  * @return  : object UID if ok , NULL if not
@@ -691,7 +694,7 @@ int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pno
 
     setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, Nnode);
     setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, Nnode);
-    
+
     /* Fec-specific property: triangle indices plus special values (triangle number and flag) */
     setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_FEC_ELEMENTS__, pnoeud, jni_double_vector, Ntr);
 

@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -16,6 +19,7 @@
 #include "alltypes.hxx"
 #include "types_tools.hxx"
 #include "overload.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {
@@ -733,7 +737,7 @@ void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew)
     }
 }
 
-void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims)
+void getIndexesWithDims(int _iIndex, int* _piIndexes, const int* _piDims, int _iDims)
 {
     int iMul = 1;
     for (int i = 0; i < _iDims; i++)
@@ -771,7 +775,7 @@ void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims)
 }
 
 
-int getIndexWithDims(int* _piIndexes, int* _piDims, int _iDims)
+int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims)
 {
     int idx = 0;
     int iMult = 1;
@@ -841,6 +845,11 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
                 bFinish = linesmore() == 1;
             }
 
+            if (ConfigVariable::isPrintCompact() == false && ConfigVariable::isPrintInput() == false)
+            {
+                ostr << std::endl;
+            }
+
             scilabForcedWriteW(ostr.str().c_str());
             ostr.str(L"");
         }
@@ -854,4 +863,85 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
         return types::Function::OK;
     }
 }
+
+//n-uplet in french
+int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex)
+{
+    //if bRet == 1, previous dims has reach max value.
+    int iRet = 0;
+
+    if (_iCurrentDim == 0)
+    {
+        //last dims
+        if (_piIndex[_iCurrentDim] >= _piCountDim[_iCurrentDim])
+        {
+            _piIndex[_iCurrentDim] = 0;
+            return 1;
+        }
+    }
+    else
+    {
+        iRet = computeTuples(_piCountDim, _iDims, _iCurrentDim - 1, _piIndex);
+        if (iRet)
+        {
+            _piIndex[_iCurrentDim]++;
+            if (_piIndex[_iCurrentDim] >= _piCountDim[_iCurrentDim])
+            {
+                _piIndex[_iCurrentDim] = 0;
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+Double* createEmptyDouble()
+{
+    return Double::Empty();
+}
+
+int getIntValueFromDouble(InternalType* _pIT, int _iPos)
+{
+    return static_cast<int>(_pIT->getAs<Double>()->get(_iPos));
+}
+
+double* getDoubleArrayFromDouble(InternalType* _pIT)
+{
+    return _pIT->getAs<Double>()->get();
+}
+
+Double* createDoubleVector(int _iSize)
+{
+    int piDims[] = {1, _iSize};
+    Double* pOut = new Double(2, piDims);
+    for (int i = 0; i < _iSize; i++)
+    {
+        pOut->set(i, i + 1);
+    }
+    return pOut;
+}
+
+bool checkArgValidity(typed_list& _Arg)
+{
+    for (int i = 0; i < (int)_Arg.size(); i++)
+    {
+        if (_Arg[i]->isDouble() == false)
+        {
+            return false;
+        }
+
+        Double* pDbl = _Arg[i]->getAs<Double>();
+        double* pdbl = pDbl->get();
+        for (int j = 0; j < pDbl->getSize(); j++)
+        {
+            if (pdbl[j] <= 0)
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 }

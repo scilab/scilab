@@ -15,59 +15,59 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-21 17:21+0100\n"
+"Revision-Date: 2016-02-10 12:14+0100\n"
 
 #
-# File: modules/statistics/src/c/CdfBase.c, line: 125
+# File: modules/statistics/src/c/CdfBase.c, line: 129
 #, c-format
 msgid "%s: Answer appears to be lower than lowest search bound %g\n"
 msgstr ""
 
 #
-# File: modules/statistics/src/c/CdfBase.c, line: 130
+# File: modules/statistics/src/c/CdfBase.c, line: 134
 #, c-format
 msgid "%s: Answer appears to be higher than greatest search bound %s\n"
 msgstr ""
 
 #
-# File: modules/statistics/src/c/CdfBase.c, line: 134
+# File: modules/statistics/src/c/CdfBase.c, line: 138
 #, c-format
 msgid "%s: Answer appears to be higher than greatest search bound %f\n"
 msgstr ""
 
 #
-# File: modules/statistics/src/c/CdfBase.c, line: 151
+# File: modules/statistics/src/c/CdfBase.c, line: 155
 #, c-format
 msgid "%s: Std must not be zero\n"
 msgstr ""
 
 #
-# File: modules/statistics/src/c/CdfBase.c, line: 157
+# File: modules/statistics/src/c/CdfBase.c, line: 161
 #, c-format
 msgid "%s: cumgam returned an error\n"
 msgstr ""
 
 #
-# File: modules/statistics/src/c/CdfBase.c, line: 161
+# File: modules/statistics/src/c/CdfBase.c, line: 165
 #, c-format
 msgid "%s: gamma or inverse gamma routine failed\n"
 msgstr ""
 
 #
-# File: modules/statistics/src/c/CdfBase.c, line: 165
+# File: modules/statistics/src/c/CdfBase.c, line: 169
 #, c-format
 msgid "%s: Argument #%d out of range. Bound exceeded: %f.\n"
 msgstr ""
 
 #
-# File: modules/statistics/src/c/CdfBase.c, line: 230
+# File: modules/statistics/src/c/CdfBase.c, line: 234
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d': Same sizes expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/src/c/CdfBase.c, line: 381
-# File: modules/statistics/src/c/CdfBase.c, line: 391
+# File: modules/statistics/src/c/CdfBase.c, line: 385
+# File: modules/statistics/src/c/CdfBase.c, line: 395
 #, c-format
 msgid ""
 "%s: Warning: using non integer values for argument #%d may lead to incorrect "
@@ -75,105 +75,105 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/binomial.sci, line: 33
+# File: modules/statistics/macros/binomial.sci, line: 36
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/binomial.sci, line: 37
+# File: modules/statistics/macros/binomial.sci, line: 40
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/binomial.sci, line: 41
+# File: modules/statistics/macros/binomial.sci, line: 44
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/binomial.sci, line: 45
+# File: modules/statistics/macros/binomial.sci, line: 48
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/binomial.sci, line: 49
-# File: modules/statistics/macros/perctl.sci, line: 35
+# File: modules/statistics/macros/binomial.sci, line: 52
+# File: modules/statistics/macros/perctl.sci, line: 38
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/binomial.sci, line: 53
+# File: modules/statistics/macros/binomial.sci, line: 56
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/center.sci, line: 34
-# File: modules/statistics/macros/cmoment.sci, line: 36
-# File: modules/statistics/macros/cmoment.sci, line: 55
-# File: modules/statistics/macros/correl.sci, line: 26
-# File: modules/statistics/macros/geomean.sci, line: 32
-# File: modules/statistics/macros/geomean.sci, line: 44
-# File: modules/statistics/macros/harmean.sci, line: 33
-# File: modules/statistics/macros/harmean.sci, line: 51
-# File: modules/statistics/macros/nand2mean.sci, line: 33
-# File: modules/statistics/macros/nanmax.sci, line: 41
-# File: modules/statistics/macros/nanmean.sci, line: 31
-# File: modules/statistics/macros/nanmeanf.sci, line: 37
-# File: modules/statistics/macros/nanmin.sci, line: 40
-# File: modules/statistics/macros/nanreglin.sci, line: 19
-# File: modules/statistics/macros/reglin.sci, line: 20
-# File: modules/statistics/macros/sample.sci, line: 32
-# File: modules/statistics/macros/samplef.sci, line: 41
-# File: modules/statistics/macros/show_pca.sci, line: 24
-# File: modules/statistics/macros/stdev.sci, line: 36
-# File: modules/statistics/macros/stdevf.sci, line: 36
-# File: modules/statistics/macros/strange.sci, line: 24
-# File: modules/statistics/macros/tabul.sci, line: 58
-# File: modules/statistics/macros/trimmean.sci, line: 74
-# File: modules/statistics/macros/variance.sci, line: 36
-# File: modules/statistics/macros/variancef.sci, line: 42
-# File: modules/statistics/macros/wcenter.sci, line: 40
+# File: modules/statistics/macros/center.sci, line: 37
+# File: modules/statistics/macros/cmoment.sci, line: 39
+# File: modules/statistics/macros/cmoment.sci, line: 58
+# File: modules/statistics/macros/correl.sci, line: 29
+# File: modules/statistics/macros/geomean.sci, line: 35
+# File: modules/statistics/macros/geomean.sci, line: 47
+# File: modules/statistics/macros/harmean.sci, line: 36
+# File: modules/statistics/macros/harmean.sci, line: 54
+# File: modules/statistics/macros/nand2mean.sci, line: 36
+# File: modules/statistics/macros/nanmax.sci, line: 44
+# File: modules/statistics/macros/nanmean.sci, line: 34
+# File: modules/statistics/macros/nanmeanf.sci, line: 40
+# File: modules/statistics/macros/nanmin.sci, line: 43
+# File: modules/statistics/macros/nanreglin.sci, line: 22
+# File: modules/statistics/macros/reglin.sci, line: 23
+# File: modules/statistics/macros/sample.sci, line: 35
+# File: modules/statistics/macros/samplef.sci, line: 44
+# File: modules/statistics/macros/show_pca.sci, line: 27
+# File: modules/statistics/macros/stdev.sci, line: 39
+# File: modules/statistics/macros/stdevf.sci, line: 39
+# File: modules/statistics/macros/strange.sci, line: 27
+# File: modules/statistics/macros/tabul.sci, line: 61
+# File: modules/statistics/macros/trimmean.sci, line: 77
+# File: modules/statistics/macros/variance.sci, line: 39
+# File: modules/statistics/macros/variancef.sci, line: 45
+# File: modules/statistics/macros/wcenter.sci, line: 43
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/center.sci, line: 46
-# File: modules/statistics/macros/cmoment.sci, line: 51
-# File: modules/statistics/macros/harmean.sci, line: 47
-# File: modules/statistics/macros/mad.sci, line: 49
-# File: modules/statistics/macros/meanf.sci, line: 71
-# File: modules/statistics/macros/nanmedian.sci, line: 51
-# File: modules/statistics/macros/variance.sci, line: 79
-# File: modules/statistics/macros/wcenter.sci, line: 57
+# File: modules/statistics/macros/center.sci, line: 49
+# File: modules/statistics/macros/cmoment.sci, line: 54
+# File: modules/statistics/macros/harmean.sci, line: 50
+# File: modules/statistics/macros/mad.sci, line: 52
+# File: modules/statistics/macros/meanf.sci, line: 74
+# File: modules/statistics/macros/nanmedian.sci, line: 54
+# File: modules/statistics/macros/variance.sci, line: 82
+# File: modules/statistics/macros/wcenter.sci, line: 60
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/correl.sci, line: 33
-# File: modules/statistics/macros/correl.sci, line: 37
-# File: modules/statistics/macros/covar.sci, line: 32
-# File: modules/statistics/macros/covar.sci, line: 33
+# File: modules/statistics/macros/correl.sci, line: 36
+# File: modules/statistics/macros/correl.sci, line: 40
+# File: modules/statistics/macros/covar.sci, line: 35
+# File: modules/statistics/macros/covar.sci, line: 36
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/correl.sci, line: 52
+# File: modules/statistics/macros/correl.sci, line: 55
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected"
 msgstr ""
 
 #
-# File: modules/statistics/macros/correl.sci, line: 64
-# File: modules/statistics/macros/covar.sci, line: 37
+# File: modules/statistics/macros/correl.sci, line: 67
+# File: modules/statistics/macros/covar.sci, line: 40
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Same number of line as first input "
@@ -181,8 +181,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/correl.sci, line: 67
-# File: modules/statistics/macros/covar.sci, line: 38
+# File: modules/statistics/macros/correl.sci, line: 70
+# File: modules/statistics/macros/covar.sci, line: 41
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Same number of column as first input "
@@ -190,16 +190,16 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/cov.sci, line: 103
-# File: modules/statistics/macros/cov.sci, line: 115
-# File: modules/statistics/macros/cov.sci, line: 152
+# File: modules/statistics/macros/cov.sci, line: 106
+# File: modules/statistics/macros/cov.sci, line: 118
 # File: modules/statistics/macros/cov.sci, line: 155
+# File: modules/statistics/macros/cov.sci, line: 158
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/cov.sci, line: 118
+# File: modules/statistics/macros/cov.sci, line: 121
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: an integer or a real matrix "
@@ -207,84 +207,84 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/cov.sci, line: 125
-# File: modules/statistics/macros/cov.sci, line: 175
+# File: modules/statistics/macros/cov.sci, line: 128
+# File: modules/statistics/macros/cov.sci, line: 178
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/cov.sci, line: 136
 # File: modules/statistics/macros/cov.sci, line: 139
-# File: modules/statistics/macros/cov.sci, line: 164
+# File: modules/statistics/macros/cov.sci, line: 142
 # File: modules/statistics/macros/cov.sci, line: 167
+# File: modules/statistics/macros/cov.sci, line: 170
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/cov.sci, line: 158
-# File: modules/statistics/macros/cov.sci, line: 170
+# File: modules/statistics/macros/cov.sci, line: 161
+# File: modules/statistics/macros/cov.sci, line: 173
 #, c-format
 msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/cov.sci, line: 184
+# File: modules/statistics/macros/cov.sci, line: 187
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/covar.sci, line: 27
-# File: modules/statistics/macros/ftest.sci, line: 27
-# File: modules/statistics/macros/pca.sci, line: 63
-# File: modules/statistics/macros/perctl.sci, line: 31
+# File: modules/statistics/macros/covar.sci, line: 30
+# File: modules/statistics/macros/ftest.sci, line: 30
+# File: modules/statistics/macros/pca.sci, line: 66
+# File: modules/statistics/macros/perctl.sci, line: 34
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/ftuneq.sci, line: 38
+# File: modules/statistics/macros/ftuneq.sci, line: 41
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/histc.sci, line: 20
+# File: modules/statistics/macros/histc.sci, line: 23
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/histc.sci, line: 25
+# File: modules/statistics/macros/histc.sci, line: 28
 #, c-format
 msgid "%s: Wrong type of input argument #%d: A single boolean expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/histc.sci, line: 33
-# File: modules/statistics/macros/histc.sci, line: 40
-# File: modules/statistics/macros/stdev.sci, line: 69
-# File: modules/statistics/macros/stdev.sci, line: 76
+# File: modules/statistics/macros/histc.sci, line: 36
+# File: modules/statistics/macros/histc.sci, line: 43
+# File: modules/statistics/macros/stdev.sci, line: 72
+# File: modules/statistics/macros/stdev.sci, line: 79
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/histc.sci, line: 49
+# File: modules/statistics/macros/histc.sci, line: 52
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/histc.sci, line: 51
+# File: modules/statistics/macros/histc.sci, line: 54
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/histc.sci, line: 63
+# File: modules/statistics/macros/histc.sci, line: 66
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in increasing "
@@ -292,13 +292,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/iqr.sci, line: 35
+# File: modules/statistics/macros/iqr.sci, line: 38
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/iqr.sci, line: 50
+# File: modules/statistics/macros/iqr.sci, line: 53
 #, c-format
 msgid ""
 "%s: Wrong dimensions for input argument #%d: A column vector or matrix "
@@ -306,7 +306,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/iqr.sci, line: 55
+# File: modules/statistics/macros/iqr.sci, line: 58
 #, c-format
 msgid ""
 "%s: Wrong dimensions for input argument #%d: A row vector or matrix "
@@ -314,39 +314,39 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/iqr.sci, line: 59
+# File: modules/statistics/macros/iqr.sci, line: 62
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', %d, '%s' or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/mad.sci, line: 35
-# File: modules/statistics/macros/mean.sci, line: 26
-# File: modules/statistics/macros/meanf.sci, line: 39
-# File: modules/statistics/macros/moment.sci, line: 46
-# File: modules/statistics/macros/nanmedian.sci, line: 29
-# File: modules/statistics/macros/nanstdev.sci, line: 32
+# File: modules/statistics/macros/mad.sci, line: 38
+# File: modules/statistics/macros/mean.sci, line: 29
+# File: modules/statistics/macros/meanf.sci, line: 42
+# File: modules/statistics/macros/moment.sci, line: 49
+# File: modules/statistics/macros/nanmedian.sci, line: 32
+# File: modules/statistics/macros/nanstdev.sci, line: 35
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/mean.sci, line: 29
+# File: modules/statistics/macros/mean.sci, line: 32
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/mean.sci, line: 52
+# File: modules/statistics/macros/mean.sci, line: 55
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/meanf.sci, line: 44
-# File: modules/statistics/macros/meanf.sci, line: 49
+# File: modules/statistics/macros/meanf.sci, line: 47
+# File: modules/statistics/macros/meanf.sci, line: 52
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A full or sparse matrix, or an "
@@ -354,22 +354,22 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/meanf.sci, line: 53
-# File: modules/statistics/macros/stdevf.sci, line: 41
+# File: modules/statistics/macros/meanf.sci, line: 56
+# File: modules/statistics/macros/stdevf.sci, line: 44
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/median.sci, line: 22
-# File: modules/statistics/macros/quart.sci, line: 29
+# File: modules/statistics/macros/median.sci, line: 25
+# File: modules/statistics/macros/quart.sci, line: 32
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/median.sci, line: 39
+# File: modules/statistics/macros/median.sci, line: 42
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s','%s' or a positive number "
@@ -377,29 +377,29 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/mvcorrel.sci, line: 28
-# File: modules/statistics/macros/samwr.sci, line: 19
-# File: modules/statistics/macros/thrownan.sci, line: 27
+# File: modules/statistics/macros/mvcorrel.sci, line: 31
+# File: modules/statistics/macros/samwr.sci, line: 22
+# File: modules/statistics/macros/thrownan.sci, line: 30
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/nancumsum.sci, line: 37
+# File: modules/statistics/macros/nancumsum.sci, line: 40
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/nancumsum.sci, line: 41
-# File: modules/statistics/macros/nansum.sci, line: 34
+# File: modules/statistics/macros/nancumsum.sci, line: 44
+# File: modules/statistics/macros/nansum.sci, line: 37
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/nancumsum.sci, line: 45
-# File: modules/statistics/macros/nansum.sci, line: 38
+# File: modules/statistics/macros/nancumsum.sci, line: 48
+# File: modules/statistics/macros/nansum.sci, line: 41
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex, boolean, polynomial "
@@ -407,17 +407,17 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/nancumsum.sci, line: 58
-# File: modules/statistics/macros/nansum.sci, line: 50
+# File: modules/statistics/macros/nancumsum.sci, line: 61
+# File: modules/statistics/macros/nansum.sci, line: 53
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/nanmeanf.sci, line: 48
-# File: modules/statistics/macros/sample.sci, line: 51
-# File: modules/statistics/macros/samplef.sci, line: 100
-# File: modules/statistics/macros/variancef.sci, line: 132
+# File: modules/statistics/macros/nanmeanf.sci, line: 51
+# File: modules/statistics/macros/sample.sci, line: 54
+# File: modules/statistics/macros/samplef.sci, line: 103
+# File: modules/statistics/macros/variancef.sci, line: 135
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
@@ -425,14 +425,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/nanmedian.sci, line: 30
+# File: modules/statistics/macros/nanmedian.sci, line: 33
 #, c-format
 msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/nanreglin.sci, line: 27
-# File: modules/statistics/macros/reglin.sci, line: 26
+# File: modules/statistics/macros/nanreglin.sci, line: 30
+# File: modules/statistics/macros/reglin.sci, line: 29
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same column dimensions "
@@ -440,49 +440,49 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/nanreglin.sci, line: 30
+# File: modules/statistics/macros/nanreglin.sci, line: 33
 #, c-format
 msgid "%s: No NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/perctl.sci, line: 38
+# File: modules/statistics/macros/perctl.sci, line: 41
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/princomp.sci, line: 38
+# File: modules/statistics/macros/princomp.sci, line: 41
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/princomp.sci, line: 42
+# File: modules/statistics/macros/princomp.sci, line: 45
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected."
 msgstr ""
 
 #
-# File: modules/statistics/macros/reglin.sci, line: 29
+# File: modules/statistics/macros/reglin.sci, line: 32
 #, c-format
 msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/samplef.sci, line: 46
+# File: modules/statistics/macros/samplef.sci, line: 49
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/samplef.sci, line: 58
+# File: modules/statistics/macros/samplef.sci, line: 61
 #, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/samplef.sci, line: 74
+# File: modules/statistics/macros/samplef.sci, line: 77
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same number of rows of the second "
@@ -490,7 +490,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/samplef.sci, line: 88
+# File: modules/statistics/macros/samplef.sci, line: 91
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same number of columns of the second "
@@ -498,7 +498,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/samwr.sci, line: 24
+# File: modules/statistics/macros/samwr.sci, line: 27
 #, c-format
 msgid ""
 "%s: Wrong value of input argument #%d: Lower than or equal to size of input "
@@ -506,29 +506,29 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/show_pca.sci, line: 30
+# File: modules/statistics/macros/show_pca.sci, line: 33
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/show_pca.sci, line: 35
+# File: modules/statistics/macros/show_pca.sci, line: 38
 #, c-format
 msgid "%s: Graph demand out of bounds.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/show_pca.sci, line: 56
+# File: modules/statistics/macros/show_pca.sci, line: 59
 msgid "Correlations Circle"
 msgstr ""
 
 #
-# File: modules/statistics/macros/show_pca.sci, line: 71
+# File: modules/statistics/macros/show_pca.sci, line: 74
 msgid "Eigenvalues"
 msgstr ""
 
 #
-# File: modules/statistics/macros/stdev.sci, line: 52
+# File: modules/statistics/macros/stdev.sci, line: 55
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or a positive "
@@ -536,21 +536,21 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/stdev.sci, line: 80
-# File: modules/statistics/macros/stdev.sci, line: 88
-# File: modules/statistics/macros/stdev.sci, line: 97
+# File: modules/statistics/macros/stdev.sci, line: 83
+# File: modules/statistics/macros/stdev.sci, line: 91
+# File: modules/statistics/macros/stdev.sci, line: 100
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/strange.sci, line: 33
+# File: modules/statistics/macros/strange.sci, line: 36
 #, c-format
 msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/tabul.sci, line: 64
+# File: modules/statistics/macros/tabul.sci, line: 67
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Vector, matrix of numbers or strings "
@@ -558,14 +558,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/tabul.sci, line: 67
 # File: modules/statistics/macros/tabul.sci, line: 70
+# File: modules/statistics/macros/tabul.sci, line: 73
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/trimmean.sci, line: 81
+# File: modules/statistics/macros/trimmean.sci, line: 84
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Real number between %d to %d "
@@ -573,62 +573,62 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/trimmean.sci, line: 98
+# File: modules/statistics/macros/trimmean.sci, line: 101
 #, c-format
 msgid "Wrong value for input argument orien: %s.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/trimmean.sci, line: 103
+# File: modules/statistics/macros/trimmean.sci, line: 106
 #, c-format
 msgid "Size of x is zero : returning NaN.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/trimmean.sci, line: 117
+# File: modules/statistics/macros/trimmean.sci, line: 120
 #, c-format
 msgid "discard=%s\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/trimmean.sci, line: 118
+# File: modules/statistics/macros/trimmean.sci, line: 121
 #, c-format
 msgid "orien=%s\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/trimmean.sci, line: 119
+# File: modules/statistics/macros/trimmean.sci, line: 122
 #, c-format
 msgid "Size of x:%i\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/trimmean.sci, line: 120
+# File: modules/statistics/macros/trimmean.sci, line: 123
 #, c-format
 msgid "Keeping %i values from %i to %i in sorted order\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/trimmean.sci, line: 132
+# File: modules/statistics/macros/trimmean.sci, line: 135
 #, c-format
 msgid "Unexpected value of orien : %s\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/variance.sci, line: 51
-# File: modules/statistics/macros/variance.sci, line: 55
-# File: modules/statistics/macros/variance.sci, line: 60
-# File: modules/statistics/macros/variance.sci, line: 65
-# File: modules/statistics/macros/variancef.sci, line: 61
-# File: modules/statistics/macros/variancef.sci, line: 65
-# File: modules/statistics/macros/variancef.sci, line: 70
-# File: modules/statistics/macros/variancef.sci, line: 75
+# File: modules/statistics/macros/variance.sci, line: 54
+# File: modules/statistics/macros/variance.sci, line: 58
+# File: modules/statistics/macros/variance.sci, line: 63
+# File: modules/statistics/macros/variance.sci, line: 68
+# File: modules/statistics/macros/variancef.sci, line: 64
+# File: modules/statistics/macros/variancef.sci, line: 68
+# File: modules/statistics/macros/variancef.sci, line: 73
+# File: modules/statistics/macros/variancef.sci, line: 78
 #, c-format
 msgid "%s: Wrong value of m : a priori mean expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/variance.sci, line: 102
+# File: modules/statistics/macros/variance.sci, line: 105
 #, c-format
 msgid ""
 "%s: The significance of input argument #%d has been modified. Please refer "
@@ -636,10 +636,10 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/statistics/macros/variancef.sci, line: 52
-# File: modules/statistics/macros/variancef.sci, line: 86
-# File: modules/statistics/macros/variancef.sci, line: 100
-# File: modules/statistics/macros/variancef.sci, line: 117
+# File: modules/statistics/macros/variancef.sci, line: 55
+# File: modules/statistics/macros/variancef.sci, line: 89
+# File: modules/statistics/macros/variancef.sci, line: 103
+# File: modules/statistics/macros/variancef.sci, line: 120
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""

@@ -5,11 +5,14 @@
 # Copyright (C) INRIA - 2008 - Simon Lipp
 # Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2010-2011 - Bruno JOFRET
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 
 ####
 #
@@ -596,7 +599,7 @@ detect_java_vm() {
         fi # JAVA_HOME provided or found
     fi # IS_SCILAB_BINARY
 
-# Check if the lib exists or not
+    # Check if the lib exists
     LIBJAVA="$JRE_HOME/lib/$proc/$JAVA_SHLIB"
     if test ! -f $LIBJAVA; then
         if test $SCIVERBOSE -ne 0; then
@@ -608,6 +611,15 @@ detect_java_vm() {
         # It is different for other implementation of the JVM....
         LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
     fi
+
+    # Bug http://bugzilla.scilab.org/show_bug.cgi?id=14290 -
+    # Never run headless on Mac (unless explicitly asked through
+    # the SCI_JAVA_ENABLE_HEADLESS option -- which will not work anyway)
+    case $OS in
+        *darwin* | *Darwin*) # MacOS X
+            export _JAVA_OPTIONS="-Djava.awt.headless=false"
+    ;;        
+    esac
 
 ####### END OF JAVA ENV DETECTION/SETTING ######
 }
@@ -721,12 +733,18 @@ detect_macosx_version()
 set_macox_specific_path()
 {
 
+    PATH_TO_SPECIFIC_10_11=$SCIBINARYBASE/lib/thirdparty/10.11/
     PATH_TO_SPECIFIC_10_10=$SCIBINARYBASE/lib/thirdparty/10.10/
     PATH_TO_SPECIFIC_10_6=$SCIBINARYBASE/lib/thirdparty/10.6/
 
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
+		11)
+                    # not used yet
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_11${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_11${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
                 10)
                     # Specific libBLAS.dylib & libLAPACK.dylib version for 10.10
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
@@ -744,32 +762,43 @@ set_macox_specific_path()
 }
 
 #
-# Scilab will not work on some Mac OSX version
-# Check version number and ask user if he wants to go on.
+# Version checks for Mac
 #
+dialog_try_or_exit() 
+{
+    osascript $BINPATH/checkmacosx.applescript "$1" || exit 128
+}
+
+fail_macosx_too_old()
+{
+    dialog_try_or_exit "This version of Scilab will probably fail on this system ($macosxVersion): Scilab requires 10.8.3 (Mountain Lion) or newer system."
+}
 check_macosx_version()
 {
-
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
-                9|10)
-                   # We force to install JRE on Lion
+                9)
+                   # We force to install JRE on Mavericks
                    /usr/libexec/java_home --request > /dev/null
                    ;;
+		10|11)
+		   # ... but not on Yosemite or El Capitan:
+		   # there will be a (better) error at launch
+		   ;;
                 8)
                     if test $macosxBuildVersion -le 3; then
                         # Version <= 10.8.3
-                        osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.8.3 (Mountain Lion) or newer system" || exit 128
+                        fail_macosx_too_old
                     fi
                     ;;
                 *)
-                    osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.8.3 (Mountain Lion) or newer system" || exit 128
+                    fail_macosx_too_old
                     ;;
             esac
             ;;
         *)
-            osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.8.3 (Mountain Lion) or newer system" || exit 128
+            fail_macosx_too_old
             ;;
     esac
 }
@@ -856,7 +885,7 @@ do_scinotes()
         if test "$SCIARG" = "-indent"; then
             INDENT="['indent','trailing','quote']"
         else
-            ARGS="$ARGS '$SCIARG', "
+            ARGS="$ARGS '$SCIARG' "
         fi
     done
     ARGS="$ARGS]"
@@ -893,7 +922,7 @@ do_xcos()
                 fi
                 SIMULATE=1
             else
-                ARGS="$ARGS '$SCIARG', "
+                ARGS="$ARGS '$SCIARG' "
             fi
         done
         ARGS="$ARGS ]"
@@ -1014,8 +1043,8 @@ do_help()
     echo     "  Several environment variables can be declared:"
     echo     "  SCIVERBOSE               Provides debugging information of the startup"
     echo     "  JAVA_HOME                Declares which Java Virtual Machine to use"
-    echo     "  SCI_DISABLE_TK           Disable Tk (but not Tcl) features"
-    echo     "  SCI_JAVA_ENABLE_HEADLESS Enable Java Headless VM (ie without GUI features)"
+    echo     "  SCI_DISABLE_TK           Disables Tk (but not Tcl) features"
+    echo     "  SCI_JAVA_ENABLE_HEADLESS Runs Java Headless VM (without GUI; Windows and Linux only)"
     echo     "  SCI_DISABLE_EXCEPTION_CATCHING Disable the catch by Scilab of exception (segfault, ...)"
 
     exit

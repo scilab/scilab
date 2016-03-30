@@ -5,7 +5,7 @@
         <refpurpose>low-pass to other filter transform</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             hzt=trans(hz,tr_type,frq)
             hzt=trans(pd,zd,gd,tr_type,frq)

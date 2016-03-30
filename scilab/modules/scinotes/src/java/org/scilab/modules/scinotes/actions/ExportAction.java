@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -33,7 +36,6 @@ import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
-import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.CodeExporter;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
@@ -75,10 +77,11 @@ public class ExportAction extends DefaultAction {
             initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
         }
 
-        SciFileFilter pdfFilter = new SciFileFilter("*.pdf", null, 0);
-        SciFileFilter psFilter = new SciFileFilter("*.ps", null, 1);
-        SciFileFilter epsFilter = new SciFileFilter("*.eps", null, 2);
-        SciFileFilter rtfFilter = new SciFileFilter("*.rtf", null, 3);
+        SciFileFilter htmlFilter = new SciFileFilter("*.html", null, 0);
+        SciFileFilter pdfFilter = new SciFileFilter("*.pdf", null, 1);
+        SciFileFilter psFilter = new SciFileFilter("*.ps", null, 2);
+        SciFileFilter epsFilter = new SciFileFilter("*.eps", null, 3);
+        SciFileFilter rtfFilter = new SciFileFilter("*.rtf", null, 4);
 
         final SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
@@ -89,13 +92,14 @@ public class ExportAction extends DefaultAction {
         fileChooser.setApproveButtonText(Messages.gettext(title));
 
         // order is also important here
+        fileChooser.addChoosableFileFilter(htmlFilter);
         fileChooser.addChoosableFileFilter(pdfFilter);
         fileChooser.addChoosableFileFilter(psFilter);
         fileChooser.addChoosableFileFilter(epsFilter);
         fileChooser.addChoosableFileFilter(rtfFilter);
 
         //select default file type
-        fileChooser.setFileFilter(pdfFilter);
+        fileChooser.setFileFilter(htmlFilter);
         fileChooser.setTitle(title);
 
         fileChooser.addPropertyChangeListener(JFileChooser.FILE_FILTER_CHANGED_PROPERTY, new PropertyChangeListener() {
@@ -169,7 +173,10 @@ public class ExportAction extends DefaultAction {
             }
 
             if (extension == null) {
-                if (fileChooser.getFileFilter() == pdfFilter) {
+                if (fileChooser.getFileFilter() == htmlFilter) {
+                    extension = "html";
+                    type = "text/html";
+                } else if (fileChooser.getFileFilter() == pdfFilter) {
                     extension = "pdf";
                     type = CodeExporter.PDF;
                 } else if (fileChooser.getFileFilter() == psFilter) {
@@ -186,7 +193,9 @@ public class ExportAction extends DefaultAction {
                     type = null;
                 }
             } else {
-                if (extension.equalsIgnoreCase("pdf")) {
+                if (extension.equalsIgnoreCase("html")) {
+                    type = "text/html";
+                } else if (extension.equalsIgnoreCase("pdf")) {
                     type = CodeExporter.PDF;
                 } else if (extension.equalsIgnoreCase("ps")) {
                     type = CodeExporter.PS;

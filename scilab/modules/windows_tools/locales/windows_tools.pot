@@ -15,171 +15,171 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-21 17:21+0100\n"
+"Revision-Date: 2016-02-10 12:14+0100\n"
 
-# File: modules/windows_tools/sci_gateway/cpp/sci_consolebox.cpp, line: 31
+# File: modules/windows_tools/sci_gateway/cpp/sci_consolebox.cpp, line: 34
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_consolebox.cpp, line: 37
+# File: modules/windows_tools/sci_gateway/cpp/sci_consolebox.cpp, line: 40
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_consolebox.cpp, line: 68
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 93
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 159
+# File: modules/windows_tools/sci_gateway/cpp/sci_consolebox.cpp, line: 71
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 96
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 162
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_createGUID.cpp, line: 30
-# File: modules/windows_tools/sci_gateway/cpp/sci_findfileassociation.cpp, line: 38
-# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 39
+# File: modules/windows_tools/sci_gateway/cpp/sci_createGUID.cpp, line: 33
+# File: modules/windows_tools/sci_gateway/cpp/sci_findfileassociation.cpp, line: 41
+# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 42
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_createGUID.cpp, line: 36
-# File: modules/windows_tools/sci_gateway/cpp/sci_findfileassociation.cpp, line: 44
-# File: modules/windows_tools/sci_gateway/cpp/sci_getsystemmetrics.cpp, line: 39
-# File: modules/windows_tools/sci_gateway/cpp/sci_istssession.cpp, line: 36
-# File: modules/windows_tools/sci_gateway/cpp/sci_win64.cpp, line: 36
-# File: modules/windows_tools/sci_gateway/cpp/sci_winopen.cpp, line: 37
-# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 45
+# File: modules/windows_tools/sci_gateway/cpp/sci_createGUID.cpp, line: 39
+# File: modules/windows_tools/sci_gateway/cpp/sci_findfileassociation.cpp, line: 47
+# File: modules/windows_tools/sci_gateway/cpp/sci_getsystemmetrics.cpp, line: 42
+# File: modules/windows_tools/sci_gateway/cpp/sci_istssession.cpp, line: 39
+# File: modules/windows_tools/sci_gateway/cpp/sci_win64.cpp, line: 39
+# File: modules/windows_tools/sci_gateway/cpp/sci_winopen.cpp, line: 40
+# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 48
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_createGUID.cpp, line: 49
-# File: modules/windows_tools/sci_gateway/cpp/sci_createGUID.cpp, line: 56
+# File: modules/windows_tools/sci_gateway/cpp/sci_createGUID.cpp, line: 52
+# File: modules/windows_tools/sci_gateway/cpp/sci_createGUID.cpp, line: 59
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_createGUID.cpp, line: 63
+# File: modules/windows_tools/sci_gateway/cpp/sci_createGUID.cpp, line: 66
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 65
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 73
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 87
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 104
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 131
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 139
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 153
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 174
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 68
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 76
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 90
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 107
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 134
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 142
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 156
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 177
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 79
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 145
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 82
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 148
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 112
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 115
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 122
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 316
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 125
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 319
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 244
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 272
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 282
-# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 296
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 247
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 275
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 285
+# File: modules/windows_tools/sci_gateway/cpp/sci_dos.cpp, line: 299
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_findfileassociation.cpp, line: 57
-# File: modules/windows_tools/sci_gateway/cpp/sci_findfileassociation.cpp, line: 74
-# File: modules/windows_tools/sci_gateway/cpp/sci_mcisendstring.cpp, line: 61
-# File: modules/windows_tools/sci_gateway/cpp/sci_winopen.cpp, line: 50
-# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 58
-# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 73
-# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 90
+# File: modules/windows_tools/sci_gateway/cpp/sci_findfileassociation.cpp, line: 60
+# File: modules/windows_tools/sci_gateway/cpp/sci_findfileassociation.cpp, line: 77
+# File: modules/windows_tools/sci_gateway/cpp/sci_mcisendstring.cpp, line: 64
+# File: modules/windows_tools/sci_gateway/cpp/sci_winopen.cpp, line: 53
+# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 61
+# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 76
+# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 93
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_getsystemmetrics.cpp, line: 53
+# File: modules/windows_tools/sci_gateway/cpp/sci_getsystemmetrics.cpp, line: 56
 #, c-format
 msgid "%s: Wrong value for input argument: %s.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_getsystemmetrics.cpp, line: 53
+# File: modules/windows_tools/sci_gateway/cpp/sci_getsystemmetrics.cpp, line: 56
 msgid "see help"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_mcisendstring.cpp, line: 47
+# File: modules/windows_tools/sci_gateway/cpp/sci_mcisendstring.cpp, line: 50
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_winopen.cpp, line: 60
+# File: modules/windows_tools/sci_gateway/cpp/sci_winopen.cpp, line: 63
 #, c-format
 msgid "%s: Cannot open file %ls.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 146
+# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 149
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 179
+# File: modules/windows_tools/sci_gateway/cpp/sci_winqueryreg.cpp, line: 182
 #, c-format
 msgid "%s: Cannot query value of this type.\n"
 msgstr ""
 
 #
-# File: modules/windows_tools/src/c/scilab_windows/splashScreen.cpp, line: 225
+# File: modules/windows_tools/src/c/scilab_windows/splashScreen.cpp, line: 228
 #, c-format
 msgid "Scilab %s Console"
 msgstr ""
 
-# File: modules/windows_tools/macros/powershell.sci, line: 15
+# File: modules/windows_tools/macros/powershell.sci, line: 18
 msgid "Error(s) : see help powershell"
 msgstr ""
 
 #
-# File: modules/windows_tools/macros/powershell.sci, line: 15
+# File: modules/windows_tools/macros/powershell.sci, line: 18
 msgid "Please verify your powershell command without Scilab."
 msgstr ""
 
 #
-# File: modules/windows_tools/macros/powershell.sci, line: 21
+# File: modules/windows_tools/macros/powershell.sci, line: 24
 msgid "Only for Microsoft Windows."
 msgstr ""
 
 #
-# File: modules/windows_tools/macros/powershell.sci, line: 28
+# File: modules/windows_tools/macros/powershell.sci, line: 31
 msgid "Powershell 1.0 not found."
 msgstr ""

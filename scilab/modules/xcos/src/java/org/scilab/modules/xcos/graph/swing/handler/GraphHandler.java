@@ -1,19 +1,22 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.graph.swing.handler;
 
 import java.awt.datatransfer.DataFlavor;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +43,7 @@ import com.mxgraph.swing.handler.mxGraphHandler;
 import com.mxgraph.swing.util.mxGraphTransferable;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.view.mxGraph;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 
 /**
  * Handle double click operation on the graph.
@@ -140,7 +144,14 @@ public class GraphHandler extends mxGraphHandler {
      */
     private void createTextBlock(MouseEvent e) {
         // allocate
-        final TextBlock textBlock = (TextBlock) XcosCellFactory.createBlock(BlockInterFunction.TEXT_f);
+        final TextBlock textBlock;
+        try {
+            textBlock = (TextBlock) XcosCellFactory.createBlock(BlockInterFunction.TEXT_f);
+        } catch (ScilabInterpreterManagement.InterpreterException ex) {
+            // this is unexpected report : Scilab might not be accessible at all
+            throw new RuntimeException(ex);
+        }
+
 
         // set the position of the block
         final mxPoint pt = graphComponent.getPointForEvent(e);

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -94,7 +97,11 @@ struct objs
             }
 
             auto o = controller.getObject(children[i]);
-            controller.referenceObject(o);
+            // Reference objects only if don't come from the copy constructor
+            if (adaptor.getListObjects() != nullptr)
+            {
+                controller.referenceObject(o);
+            }
 
             switch (o->kind())
             {
@@ -104,7 +111,7 @@ struct objs
                 case BLOCK :
                 {
                     BlockAdapter* block = new BlockAdapter(controller, static_cast<model::Block*>(o));
-                    if (adaptor.getListObjects()->getSize() != 0)
+                    if (adaptor.getListObjects() != nullptr)
                     {
                         BlockAdapter* oldBlock = adaptor.getListObjects()->get(i)->getAs<BlockAdapter>();
                         block->setFrom(oldBlock->getFrom());
@@ -112,12 +119,22 @@ struct objs
                         block->setListObjects(oldBlock->getListObjects());
                         block->setContribContent(oldBlock->getContribContent());
                     }
+                    else
+                    {
+                        // The diagram doesn't have the list of his children adapters. Create it through BlockAdapter::model::get()
+                        std::wstring Model = L"model";
+                        property<BlockAdapter>::props_t_it found = std::lower_bound(property<BlockAdapter>::fields.begin(), property<BlockAdapter>::fields.end(), Model);
+                        if (found != property<BlockAdapter>::fields.end())
+                        {
+                            found->get(*block, controller);
+                        }
+                    }
                     ret->append(block);
                     break;
                 }
                 default : // LINK
                     LinkAdapter* link = new LinkAdapter(controller, static_cast<model::Link*>(o));
-                    if (adaptor.getListObjects()->getSize() != 0)
+                    if (adaptor.getListObjects() != nullptr)
                     {
                         link->setFrom(adaptor.getFrom()[link_i]);
                         link->setTo(adaptor.getTo()[link_i]);
@@ -499,12 +516,19 @@ DiagramAdapter::DiagramAdapter(const Controller& c, org_scilab_modules_scicos::m
         property<DiagramAdapter>::add_property(L"contrib", &contrib::get, &contrib::set);
     }
 
-    setListObjects(new types::List());
+    // objs::set will set the adapter's content (listObjects, from_vec & to_vec) if needed
+    Controller controller;
+    types::List* listObjects = objs::get(*this, controller)->getAs<types::List>();
+    if (listObjects->getSize() > 0)
+    {
+        objs::set(*this, listObjects, controller);
+    }
+
     setContribContent(new types::List());
 }
 
 DiagramAdapter::DiagramAdapter(const DiagramAdapter& adapter) :
-    BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::Diagram>(adapter, false),
+    BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::Diagram>(adapter, true),
     from_vec(),
     to_vec(),
     list_objects(nullptr),
@@ -513,8 +537,10 @@ DiagramAdapter::DiagramAdapter(const DiagramAdapter& adapter) :
     Controller controller;
 
     // set the list and perform from / to links update
-    objs::set(*this, adapter.getListObjects(), controller);
+    objs::set(*this, objs::get(*this, controller)->getAs<types::List>(), controller);
 
+    setFrom(adapter.getFrom());
+    setTo(adapter.getTo());
     setContribContent(adapter.getContribContent());
 }
 

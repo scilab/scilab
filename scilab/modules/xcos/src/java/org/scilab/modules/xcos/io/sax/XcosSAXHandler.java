@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -21,6 +24,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.JavaController;
@@ -48,10 +52,10 @@ public class XcosSAXHandler extends DefaultHandler {
      * Utilities classes and methods
      */
     protected static class UnresolvedReference {
-        private ScicosObjectOwner owner;
-        private ObjectProperties property;
-        private ObjectProperties associatedProperty;
-        private int associatedPropertyIndex;
+        final private ScicosObjectOwner owner;
+        final private ObjectProperties property;
+        final private ObjectProperties associatedProperty;
+        final private int associatedPropertyIndex;
 
         public UnresolvedReference(ScicosObjectOwner owner, ObjectProperties property, ObjectProperties associatedProperty, int associatedPropertyIndex) {
             this.owner = owner;
@@ -76,9 +80,6 @@ public class XcosSAXHandler extends DefaultHandler {
     }
 
     XcosCell lookupForParentXcosCellElement() {
-        // TODO in fact we can use the depth (eg. size) of the stack to retrieve
-        // this value
-        // is it necessary to improve performance (over safety) there ?
         Optional<XcosCell> parentBlock = parents.stream()
                                          .filter(o -> o instanceof XcosCell)
                                          .map(o -> (XcosCell) o)
@@ -94,6 +95,7 @@ public class XcosSAXHandler extends DefaultHandler {
     protected final ScilabList dictionary;
     protected final JavaController controller;
     protected final Map<String, HandledElement> elementMap;
+    protected final Pattern validCIdentifier;
 
     private final Map<HandledElementsCategory, ScilabHandler> handlers;
 
@@ -103,7 +105,7 @@ public class XcosSAXHandler extends DefaultHandler {
 
     /** Contains the decoded parent' node (as an in-depth view of decoded elements) */
     Stack<Object> parents = new Stack<>();
-    /** Mapping of UUID JGraphX strings to an MVC decoded object */
+    /** Mapping of UID JGraphX strings to an MVC decoded object */
     Stack<HashMap<String, Long>> allChildren = new Stack<>();
     /** List of unresolved references that will be resolved at {@link HandledElement#XcosDiagram} or {@link HandledElement#SuperBlockDiagram} ending */
     HashMap<String, ArrayList<UnresolvedReference>> unresolvedReferences = new HashMap<>();
@@ -114,6 +116,8 @@ public class XcosSAXHandler extends DefaultHandler {
 
         this.controller = new JavaController();
         this.elementMap = HandledElement.getMap();
+
+        this.validCIdentifier = Pattern.compile("[a-zA-Z][a-zA-Z0-9_]+");
 
         // add all the known handler to the map
         EnumMap<HandledElementsCategory, ScilabHandler> localHandlers = new EnumMap<>(HandledElementsCategory.class);
@@ -180,15 +184,17 @@ public class XcosSAXHandler extends DefaultHandler {
      *   <LI>{@link ObjectProperties#PARENT_BLOCK}
      *   <LI>{@link ObjectProperties#PARENT_DIAGRAM}
      *   <LI>{@link ObjectProperties#CHILDREN}
+     * </UL>
+     * @param cell to insert
      */
     protected void insertChild(final XcosCell cell) {
         long parentUID;
         Kind parentKind;
 
-        final XcosCell parentBlock = lookupForParentXcosCellElement();
-        if (parentBlock != null) {
-            parentUID = parentBlock.getUID();
-            parentKind = parentBlock.getKind();
+        final XcosCell parentCell = lookupForParentXcosCellElement();
+        if (Kind.BLOCK.equals(parentCell.getKind())) {
+            parentUID = parentCell.getUID();
+            parentKind = parentCell.getKind();
 
             controller.setObjectProperty(cell.getUID(), cell.getKind(), ObjectProperties.PARENT_BLOCK, parentUID);
         } else {
@@ -218,13 +224,13 @@ public class XcosSAXHandler extends DefaultHandler {
 
     @Override
     public void error(SAXParseException e) throws SAXException {
-        System.err.println("XcosSAXHandler warning: " + e.getSystemId() + " at line " + e.getLineNumber() + " column " + e.getColumnNumber());
+        System.err.println("XcosSAXHandler error: " + e.getSystemId() + " at line " + e.getLineNumber() + " column " + e.getColumnNumber());
         System.err.println(e.getMessage());
     }
 
     @Override
     public void fatalError(SAXParseException e) throws SAXException {
-        System.err.println("XcosSAXHandler warning: " + e.getSystemId() + " at line " + e.getLineNumber() + " column " + e.getColumnNumber());
+        System.err.println("XcosSAXHandler fatalError: " + e.getSystemId() + " at line " + e.getLineNumber() + " column " + e.getColumnNumber());
         System.err.println(e.getMessage());
     }
 }

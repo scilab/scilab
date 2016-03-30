@@ -3,11 +3,14 @@
 * Copyright (C) 2012 - INRIA - Serge STEER
 * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -122,11 +125,13 @@ int sci_dct_gen(const char *fname, types::Double* A, types::Double** O, int isn,
         if (errflag == 1)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            FREE(kind);
             return types::Function::Error;
         }
         else if (errflag == 2)
         {
             Scierror(999, _("%s: Creation of requested fftw plan failed.\n"), fname);
+            FREE(kind);
             return types::Function::Error;
         }
         /* execute FFTW plan */
@@ -155,15 +160,13 @@ int sci_dct_gen(const char *fname, types::Double* A, types::Double** O, int isn,
         if (errflag == 1)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-            FREE(dims1);
-            FREE(incr1);
+            FREE(kind);
             return types::Function::Error;
         }
         else if (errflag == 2)
         {
             Scierror(999, _("%s: Creation of requested fftw plan failed.\n"), fname);
-            FREE(dims1);
-            FREE(incr1);
+            FREE(kind);
             return types::Function::Error;
         }
 
@@ -172,8 +175,7 @@ int sci_dct_gen(const char *fname, types::Double* A, types::Double** O, int isn,
         if ((dims1 = (int *)MALLOC(sizeof(int) * howmany_rank)) == NULL)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-            FREE(dims1);
-            FREE(incr1);
+            FREE(kind);
             return types::Function::Error;
         }
         dims1[0] = howmany_dims[0].n;
@@ -186,8 +188,8 @@ int sci_dct_gen(const char *fname, types::Double* A, types::Double** O, int isn,
         if ((incr1 = (int *)MALLOC(sizeof(int) * howmany_rank)) == NULL)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            FREE(kind);
             FREE(dims1);
-            FREE(incr1);
             return types::Function::Error;
         }
         t = 1;
@@ -236,6 +238,7 @@ int sci_dct_gen(const char *fname, types::Double* A, types::Double** O, int isn,
         if (dct_scale_array(Ar, Ai, gdim, isn) == -1)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            FREE(kind);
             return types::Function::Error;
         }
     }

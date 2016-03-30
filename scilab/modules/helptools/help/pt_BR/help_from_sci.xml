@@ -89,7 +89,7 @@
             conter uma descrição breve da função.
         </para>
         <para>Os comentários restantes são formatados de acordo com os seguintes
-            cabeçalhos (opcionais): "Calling Sequence", "Parameters", "Description",
+            cabeçalhos (opcionais): "Syntax", "Parameters", "Description",
             "Examples", "See also", "Used functions", "Authors" e
             "Bibliography".
         </para>
@@ -99,7 +99,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <literal>Calling Sequence</literal>
+                    <literal>Syntax</literal>
                     - um exemplo por linha. 
                 </para>
             </listitem>

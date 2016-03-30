@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -25,6 +29,11 @@ import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 
 import com.mxgraph.model.mxICell;
+import java.util.HashMap;
+import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 
 /**
  * Convert BasicBlock pure objects to a mixed BasicBlock objects (update the scicos information)
@@ -125,15 +134,36 @@ public final class BasicBlockInfo {
             return data;
         }
 
+        HashMap<Class< ? extends BasicPort>, Integer> counterMap = new HashMap<>();
+
         final int childrenCount = block.getChildCount();
         for (int i = 0; i < childrenCount; ++i) {
             final mxICell cell = block.getChildAt(i);
-            if (cell instanceof BasicPort) {
+
+            // avoid generic class comparaison because inputs might be explicit or implicit
+            Class< ? extends BasicPort> klass;
+            if (cell instanceof InputPort) {
+                klass = InputPort.class;
+            } else if (cell instanceof OutputPort) {
+                klass = OutputPort.class;
+            } else if (cell instanceof ControlPort) {
+                klass = ControlPort.class;
+            } else if (cell instanceof CommandPort) {
+                klass = CommandPort.class;
+            } else {
+                klass = null;
+            }
+
+            if (klass != null) {
                 final BasicPort p = ((BasicPort) cell);
-                // FIXME is it really needed
-                // if (p.getOrdering() == position) {
-                data.add(p);
-                // }
+
+                // order the ports per kind using a locally allocated map (do not call Controller nor use an ordering field)
+                Integer counter = counterMap.getOrDefault(klass, 1);
+                if (counter == position) {
+                    data.add(p);
+                }
+
+                counterMap.put(p.getClass(), counter + 1);
             }
         }
 

@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [sm [,cwp]]=pspect(sec_step,sec_leng,wtype,x [,y] [,wpar])
             [sm [,cwp]]=pspect(sec_step,sec_leng,wtype,nx [,ny] [,wpar])
@@ -299,7 +299,7 @@
             For batch processing, the <literal>x</literal> and
             <literal>y</literal> data may be read segment by segment using the
             <literal>getx </literal>and <literal>gety</literal> user defined
-            functions. These functions have the following calling sequence:
+            functions. These functions have the following syntax:
         </para>
         <para>
             <literal>xk=getx(ns,offset)</literal> and

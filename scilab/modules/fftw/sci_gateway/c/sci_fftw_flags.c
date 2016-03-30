@@ -5,11 +5,14 @@
 * Copyright (C) 2012 - DIGITEO - Allan CORNET
 * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -25,7 +28,7 @@
 /*--------------------------------------------------------------------------*/
 /* fftw_flags function.
 *
-* Scilab Calling sequence :
+* Scilab Syntax :
 *   -->[a,b]=fftw_flags();
 * or
 *   -->[a,b]=fftw_flags(S);
@@ -206,6 +209,7 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
                 sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, NULL);
                 if (sciErr.iErr)
                 {
+                    free(piLen);
                     printError(&sciErr, 0);
                     return 1;
                 }
@@ -220,6 +224,8 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
                 sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, Str1);
                 if (sciErr.iErr)
                 {
+                    free(piLen);
+                    freeArrayOfString(Str1, m1 * n1);
                     printError(&sciErr, 0);
                     return 1;
                 }
@@ -236,6 +242,7 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
 
                     if (i == nb_flag)
                     {
+                        free(piLen);
                         freeArrayOfString(Str1, m1 * n1);
                         Scierror(999, _("%s: Wrong values for input argument #%d: FFTW flag expected.\n"), fname, 1);
                         return 0;
@@ -250,6 +257,7 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
                 }
 
                 uiVar1 = (unsigned int)flagv;
+                free(piLen);
                 freeArrayOfString(Str1, m1 * n1);
                 m1 = 1;
                 n1 = 1;

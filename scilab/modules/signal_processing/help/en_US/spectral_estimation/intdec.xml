@@ -5,7 +5,7 @@
         <refpurpose>Changes  sampling rate of a signal</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y]=intdec(x,lom)</synopsis>
     </refsynopsisdiv>
     <refsection>

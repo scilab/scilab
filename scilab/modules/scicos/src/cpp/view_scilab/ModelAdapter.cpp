@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -81,7 +84,7 @@ types::InternalType* get_with_vec2var(const ModelAdapter& adaptor, const Control
     return res;
 }
 
-const bool set_with_var2vec(ModelAdapter& adaptor, types::InternalType* v, Controller& controller, object_properties_t p)
+bool set_with_var2vec(ModelAdapter& adaptor, types::InternalType* v, Controller& controller, object_properties_t p)
 {
     ScicosID adaptee = adaptor.getAdaptee()->id();
 
@@ -949,7 +952,7 @@ struct rpar
             controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, oldDiagramChildren);
 
             std::sort(oldDiagramChildren.begin(), oldDiagramChildren.end());
-            std::vector<ScicosID> clonedChildren;
+            std::vector<ScicosID> newChildren;
             std::vector<ScicosID> clonedLinks;
             for (const ScicosID & id : diagramChildren)
             {
@@ -959,14 +962,18 @@ struct rpar
                     auto o = controller.getObject(cloneID);
                     controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, adaptor.getAdaptee()->id());
 
-                    clonedChildren.push_back(cloneID);
+                    newChildren.push_back(cloneID);
                     if (o->kind() == LINK)
                     {
                         clonedLinks.push_back(cloneID);
                     }
                 }
+                else
+                {
+                    newChildren.push_back(id);
+                }
             }
-            controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, clonedChildren);
+            controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, newChildren);
 
             std::sort(diagramChildren.begin(), diagramChildren.end());
             for (const ScicosID & id : oldDiagramChildren)
@@ -1239,9 +1246,39 @@ struct dep_ut
     }
 };
 
+// Valid C identifier definition
+// https://msdn.microsoft.com/en-us/library/e7f8y25b.aspx
+bool isValidCIdentifier(const std::string& label)
+{
+    auto is_nondigit = [](char c)
+    {
+        return ('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z') || '_' == c;
+    };
+    auto is_digit = [](char c)
+    {
+        return ('0' <= c && c <= '9');
+    };
+
+    // is a valid but empty string
+    if (label.empty())
+    {
+        return true;
+    }
+    // the first character should be a non digit
+    if (!is_nondigit(label[0]))
+    {
+        return false;
+    }
+    // others  should be either a digit or a non digit
+    auto found = std::find_if_not(label.begin(), label.end(), [is_nondigit, is_digit](char c)
+    {
+        return is_nondigit(c) || is_digit(c);
+    } );
+    return found == label.end();
+}
+
 struct label
 {
-
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
@@ -1250,8 +1287,16 @@ struct label
         controller.getObjectProperty(adaptee, BLOCK, LABEL, label);
 
         types::String* o = new types::String(1, 1);
-        o->set(0, label.data());
 
+        // safety check ; the returned value should always be a valid C / modelica identifier
+        if (isValidCIdentifier(label))
+        {
+            o->set(0, label.data());
+        }
+        else
+        {
+            o->set(0, "");
+        }
         return o;
     }
 
@@ -1275,6 +1320,12 @@ struct label
         char* c_str = wide_string_to_UTF8(current->get(0));
         std::string label(c_str);
         FREE(c_str);
+
+        if (!isValidCIdentifier(label))
+        {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : Valid C identifier expected.\n"), "model", "label");
+            return false;
+        }
 
         controller.setObjectProperty(adaptee, BLOCK, LABEL, label);
         return true;

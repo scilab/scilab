@@ -2,15 +2,19 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.xcos.io.writer;
 
+import java.rmi.server.UID;
 import javax.xml.stream.XMLStreamException;
 
 import org.scilab.modules.xcos.Kind;
@@ -75,18 +79,23 @@ public class PortWriter extends ScilabWriter {
         shared.stream.writeEmptyElement(localName);
 
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.UID, str);
+        while (str[0].isEmpty() || shared.uniqueUIDs.contains(str[0])) {
+            str[0] = new UID().toString();
+        }
+        shared.controller.setObjectProperty(uid, kind, ObjectProperties.UID, str[0]);
         shared.stream.writeAttribute("id", str[0]);
+
         shared.stream.writeAttribute("parent", shared.layers.peek());
         shared.stream.writeAttribute("ordering", Integer.toString(++ordering));
 
         VectorOfInt datatype = new VectorOfInt();
         shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
 
-        int dataDescriptor = datatype.get(0);
-        if (0 <= dataDescriptor && dataDescriptor < BasicPort.DataType.values().length) {
-            shared.stream.writeAttribute("dataType", BasicPort.DataType.values()[dataDescriptor].name());
+        int type = datatype.get(2);
+        if (0 <= type && type < BasicPort.DataType.values().length) {
+            shared.stream.writeAttribute("dataType", BasicPort.DataType.values()[type].name());
             shared.stream.writeAttribute("dataColumns", Integer.toString(datatype.get(1)));
-            shared.stream.writeAttribute("dataLines", Integer.toString(datatype.get(2)));
+            shared.stream.writeAttribute("dataLines", Integer.toString(datatype.get(0)));
         }
 
         double[] firing = new double[1];
@@ -97,5 +106,4 @@ public class PortWriter extends ScilabWriter {
         shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.STYLE, style);
         shared.stream.writeAttribute("style", style[0]);
     }
-
 }

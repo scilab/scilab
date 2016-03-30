@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -39,12 +42,12 @@ Polynom::Polynom(const std::wstring& _szVarName, int _iRows, int _iCols, const i
     createPoly(_szVarName, 2, piDims, _piRank);
 }
 
-Polynom::Polynom(const std::wstring& _szVarName, int _iDims, int* _piDims)
+Polynom::Polynom(const std::wstring& _szVarName, int _iDims, const int* _piDims)
 {
     createPoly(_szVarName, _iDims, _piDims, NULL);
 }
 
-Polynom::Polynom(const std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank)
+Polynom::Polynom(const std::wstring& _szVarName, int _iDims, const int* _piDims, const int *_piRank)
 {
     createPoly(_szVarName, _iDims, _piDims, _piRank);
 }
@@ -60,7 +63,7 @@ Polynom::~Polynom()
 #endif
 }
 
-void Polynom::createPoly(const std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank)
+void Polynom::createPoly(const std::wstring& _szVarName, int _iDims, const int* _piDims, const int *_piRank)
 {
     m_szVarName = _szVarName;
     SinglePoly** pPoly = NULL;
@@ -79,12 +82,18 @@ void Polynom::createPoly(const std::wstring& _szVarName, int _iDims, int* _piDim
 #endif
 }
 
-bool Polynom::set(int _iPos, SinglePoly* _pS)
+Polynom* Polynom::set(int _iPos, SinglePoly* _pS)
 {
-    bool bComplex = isComplex();
     if (m_pRealData == NULL || _iPos >= m_iSize)
     {
-        return false;
+        return NULL;
+    }
+
+    typedef Polynom* (Polynom::*set_t)(int, SinglePoly*);
+    Polynom* pIT = checkRef(this, (set_t)&Polynom::set, _iPos, _pS);
+    if (pIT != this)
+    {
+        return pIT;
     }
 
     if (m_pRealData[_iPos])
@@ -94,6 +103,7 @@ bool Polynom::set(int _iPos, SinglePoly* _pS)
 
     m_pRealData[_iPos] = copyValue(_pS);
 
+    bool bComplex = isComplex();
     if (_pS->isComplex() && bComplex == false)
     {
         setComplex(true);
@@ -103,44 +113,57 @@ bool Polynom::set(int _iPos, SinglePoly* _pS)
         m_pRealData[_iPos]->setComplex(true);
     }
 
-    return true;
+    return this;
 }
 
-bool Polynom::set(int _iRows, int _iCols, SinglePoly* _pS)
+Polynom* Polynom::set(int _iRows, int _iCols, SinglePoly* _pS)
 {
     return set(_iCols * getRows() + _iRows, _pS);
 }
 
-bool Polynom::set(SinglePoly** _pS)
+Polynom* Polynom::set(SinglePoly** _pS)
 {
+    typedef Polynom* (Polynom::*set_t)(SinglePoly**);
+    Polynom* pIT = checkRef(this, (set_t)&Polynom::set, _pS);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     for (int i = 0 ; i < m_iSize ; i++)
     {
         set(i, _pS[i]);
     }
-    return true;
+
+    return this;
 }
 
-bool Polynom::setCoef(int _iRows, int _iCols, Double *_pdblCoef)
+Polynom* Polynom::setCoef(int _iRows, int _iCols, Double *_pdblCoef)
 {
     int piDims[] = {_iRows, _iCols};
     int iPos = getIndex(piDims);
     return setCoef(iPos, _pdblCoef);
 }
 
-bool Polynom::setCoef(int _iIdx, Double *_pdblCoef)
+Polynom* Polynom::setCoef(int _iIdx, Double *_pdblCoef)
 {
-    if (_iIdx < getSize())
+    if (_iIdx > m_iSize)
     {
-        /*Get old SinglePoly*/
-        m_pRealData[_iIdx]->setRank(_pdblCoef->getSize() - 1);
-        m_pRealData[_iIdx]->setCoef(_pdblCoef);
-    }
-    else
-    {
-        return false;
+        return NULL;
     }
 
-    return true;
+    typedef Polynom* (Polynom::*setCoef_t)(int, Double*);
+    Polynom* pIT = checkRef(this, (setCoef_t)&Polynom::setCoef, _iIdx, _pdblCoef);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
+    /*Get old SinglePoly*/
+    m_pRealData[_iIdx]->setRank(_pdblCoef->getSize() - 1);
+    m_pRealData[_iIdx]->setCoef(_pdblCoef);
+
+    return this;
 }
 
 void Polynom::setZeros()
@@ -206,18 +229,29 @@ bool Polynom::isComplex()
     return false;
 }
 
-void Polynom::setComplex(bool _bComplex)
+Polynom* Polynom::setComplex(bool _bComplex)
 {
-    if (_bComplex != isComplex())
+    if (_bComplex == isComplex())
     {
-        for (int i = 0 ; i < getSize() ; i++)
-        {
-            get(i)->setComplex(_bComplex);
-        }
+        return this;
     }
+
+    typedef Polynom* (Polynom::*setcplx_t)(bool);
+    Polynom* pIT = checkRef(this, (setcplx_t)&Polynom::setComplex, _bComplex);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        get(i)->setComplex(_bComplex);
+    }
+
+    return this;
 }
 
-InternalType* Polynom::clone()
+Polynom* Polynom::clone()
 {
     Polynom* pMP = new Polynom(getVariableName(), getDims(), getDimsArray());
     for (int i = 0 ; i < getSize() ; i++)
@@ -381,8 +415,15 @@ Double* Polynom::getCoef(void)
     return pCoef;
 }
 
-void Polynom::setCoef(Double *_pCoef)
+Polynom* Polynom::setCoef(Double *_pCoef)
 {
+    typedef Polynom* (Polynom::*setCoef_t)(Double*);
+    Polynom* pIT = checkRef(this, (setCoef_t)&Polynom::setCoef, _pCoef);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     setComplex(_pCoef->isComplex());
     double *pR = _pCoef->getReal();
 
@@ -417,6 +458,8 @@ void Polynom::setCoef(Double *_pCoef)
             }
         }
     }
+
+    return this;
 }
 
 bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
@@ -707,6 +750,8 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
         osExp.str(L"");
         osCoef.str(L"");
     }
+
+    delete[] piMaxLen;
     return ostr.str();
 }
 
@@ -978,7 +1023,7 @@ void Polynom::deleteData(SinglePoly* data)
 }
 
 //overload to check variable name and call arrayof<>::insert after
-InternalType* Polynom::insert(typed_list* _pArgs, InternalType* _pSource)
+Polynom* Polynom::insert(typed_list* _pArgs, InternalType* _pSource)
 {
     Polynom* p = _pSource->getAs<Polynom>();
     if (p->getVariableName() != getVariableName())
@@ -990,7 +1035,8 @@ InternalType* Polynom::insert(typed_list* _pArgs, InternalType* _pSource)
         FREE(pwstError);
         throw ast::InternalError(wstError);
     }
-    return ArrayOf<SinglePoly*>::insert(_pArgs, _pSource);
+
+    return ArrayOf<SinglePoly*>::insert(_pArgs, _pSource)->getAs<Polynom>();
 }
 
 Polynom* Polynom::Dollar()

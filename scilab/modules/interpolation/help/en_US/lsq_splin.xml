@@ -5,7 +5,7 @@
         <refpurpose>weighted least squares cubic spline fitting</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y, d] = lsq_splin(xd, yd [, wd], x)</synopsis>
     </refsynopsisdiv>
     <refsection>

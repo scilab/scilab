@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: uk\n"
 
 #, c-format
@@ -151,8 +151,7 @@ msgid "%s: setgmn return with state %d.\n"
 msgstr "%s: функція setgmn завершила роботу зі станом %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
 "між %lf та %d.\n"
@@ -226,8 +225,7 @@ msgstr ""
 "булевих, рядкових або поліноміальних значень.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
 "%s: помилкове значення вхідних параметрів №%d і №%d: мало бути Low < High.\n"
 
@@ -366,8 +364,8 @@ msgid ""
 "The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
 msgstr ""
 "\n"
-"Третім компонентом вектора fsultra має бути ціле число у діапазоні [1, 2^32-"
-"1]\n"
+"Третім компонентом вектора fsultra має бути ціле число у діапазоні [1, "
+"2^32-1]\n"
 
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
 msgstr ""

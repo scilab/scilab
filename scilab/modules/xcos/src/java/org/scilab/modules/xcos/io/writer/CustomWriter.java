@@ -2,16 +2,19 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.xcos.io.writer;
 
-import java.util.UUID;
+import java.rmi.server.UID;
 
 import javax.xml.stream.XMLStreamException;
 
@@ -57,9 +60,6 @@ public class CustomWriter extends ScilabWriter {
                 /*
                  * Write diagram content
                  */
-
-                shared.controller.getObjectProperty(uid, kind, ObjectProperties.PATH, str);
-                shared.stream.writeAttribute("savedFile", str[0]);
                 shared.controller.getObjectProperty(uid, kind, ObjectProperties.DEBUG_LEVEL, integer);
                 shared.stream.writeAttribute("debugLevel", Integer.toString(integer[0]));
 
@@ -86,7 +86,9 @@ public class CustomWriter extends ScilabWriter {
 
                 // write the graphical part and children
                 shared.controller.getObjectProperty(uid, kind, ObjectProperties.CHILDREN, children);
-                writeDiagramAndSuperDiagramContent(uid, kind, children);
+                String zeroUID = new UID((short) 0).toString();
+                shared.uniqueUIDs.add(zeroUID);
+                writeDiagramAndSuperDiagramContent(uid, kind, children, zeroUID);
 
                 shared.stream.writeEndElement();
                 shared.stream.writeEndDocument();
@@ -99,19 +101,19 @@ public class CustomWriter extends ScilabWriter {
                 if (children.size() > 0) {
                     shared.stream.writeStartElement(HandledElement.SuperBlockDiagram.name());
                     shared.stream.writeAttribute("as", "child");
-                    writeDiagramAndSuperDiagramContent(uid, kind, children);
+                    writeDiagramAndSuperDiagramContent(uid, kind, children, shared.layers.peek());
                     shared.stream.writeEndElement(); // SuperBlockDiagram
                 }
                 break;
             case PORT:
-                // FIXME encode orientation from the model or not?
+                // the orientation is not encoded on the model but propagated inside the style
                 break;
             default:
                 break;
         }
     }
 
-    private void writeDiagramAndSuperDiagramContent(long uid, Kind kind, VectorOfScicosID children) throws XMLStreamException {
+    private void writeDiagramAndSuperDiagramContent(long uid, Kind kind, VectorOfScicosID children, String parentUID) throws XMLStreamException {
         VectorOfInt colors = new VectorOfInt();
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.COLOR, colors);
         shared.stream.writeAttribute("background", Integer.toString(colors.get(0)));
@@ -126,19 +128,32 @@ public class CustomWriter extends ScilabWriter {
          */
         shared.rawDataWriter.write(uid, kind);
 
-        UUID root = UUID.randomUUID();
-        UUID layer = UUID.randomUUID();
-        shared.layers.push(layer.toString());
+        /*
+         * Generate uniques but predictables UIDs
+         */
+        String[] parent = parentUID.split(":");
+        long uidCounter = 1;
+        String rootUID = parent[0] + ":" + Long.toString(Long.parseLong(parent[1], 16) + uidCounter, 16) + ":" + parent[2];
+        for (; shared.uniqueUIDs.contains(rootUID); uidCounter++) {
+            rootUID = parent[0] + ":" + Long.toString(Long.parseLong(parent[1], 16) + uidCounter, 16) + ":" + parent[2];
+        }
+        shared.uniqueUIDs.add(rootUID);
+        String layerUID = parent[0] + ":" + Long.toString(Long.parseLong(parent[1], 16) + uidCounter, 16) + ":" + parent[2];
+        for (; shared.uniqueUIDs.contains(layerUID); uidCounter++) {
+            layerUID = parent[0] + ":" + Long.toString(Long.parseLong(parent[1], 16) + uidCounter, 16) + ":" + parent[2];
+        }
+        shared.uniqueUIDs.add(layerUID);
+        shared.layers.push(layerUID);
 
         // children header
         shared.stream.writeStartElement("mxGraphModel");
         shared.stream.writeAttribute("as", "model");
         shared.stream.writeStartElement("root");
         shared.stream.writeEmptyElement("mxCell");
-        shared.stream.writeAttribute("id", root.toString());
+        shared.stream.writeAttribute("id", rootUID);
         shared.stream.writeEmptyElement("mxCell");
-        shared.stream.writeAttribute("id", shared.layers.peek());
-        shared.stream.writeAttribute("parent", root.toString());
+        shared.stream.writeAttribute("id", layerUID);
+        shared.stream.writeAttribute("parent", rootUID);
 
         // loop on all children, encode the blocks and ports then the links
         VectorOfInt kinds = new VectorOfInt();
@@ -156,7 +171,7 @@ public class CustomWriter extends ScilabWriter {
         shared.stream.writeEndElement(); // mxGraphModel
         shared.stream.writeEmptyElement("mxCell");
         shared.stream.writeAttribute("as", "defaultParent");
-        shared.stream.writeAttribute("id", layer.toString());
-        shared.stream.writeAttribute("parent", root.toString());
+        shared.stream.writeAttribute("id", layerUID);
+        shared.stream.writeAttribute("parent", rootUID);
     }
 }

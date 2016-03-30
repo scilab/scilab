@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -84,7 +88,7 @@ public abstract class BasicPort extends XcosCell {
         /**
          * @return A scicos compatible representation
          */
-        public double getAsDouble() {
+        public int asScilabValue() {
             if (this.equals(UNKNOW_TYPE)) {
                 return -1;
             }
@@ -118,18 +122,16 @@ public abstract class BasicPort extends XcosCell {
      * @param style
      *            Value to be set as a Style and as TypeName
      */
-    public BasicPort(long uid, String style, Orientation orientation) {
-        super(uid, Kind.PORT);
+    public BasicPort(final JavaController controller, long uid, Kind kind, Object value, String style, String id, Orientation orientation, boolean isImplicit, PortKind portKind) {
+        super(controller, uid, kind, value, new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE), style, id);
 
-        setVertex(true);
-        setStyle(style);
-        setGeometry(new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE));
-        setOrientation(orientation);
+        this.vertex = true;
 
-        boolean isImplicit = getType() == Type.IMPLICIT;
-        JavaController controller = new JavaController();
         controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.IMPLICIT, isImplicit);
-        controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.PORT_KIND, getPortKind().ordinal());
+        controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.PORT_KIND, portKind.ordinal());
+
+        this.orientation = orientation;
+        setLabelPosition(orientation);
     }
 
     /**
@@ -156,19 +158,12 @@ public abstract class BasicPort extends XcosCell {
     }
 
     /**
-     * Set the default values for newly created port.
-     */
-    public void setDefaultValues() {
-        setLabelPosition(getOrientation());
-    }
-
-    /**
      * Set the label position of the current port according to the orientation.
      *
      * @param current
      *            the port orientation, if null, does nothing.
      */
-    public void setLabelPosition(final Orientation current) {
+    public final void setLabelPosition(final Orientation current) {
         if (current != null) {
             StyleMap style = new StyleMap(getStyle());
 

@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -17,6 +20,7 @@
 #include "tostring_common.hxx"
 #include "configvariable.hxx"
 #include "type_traits.hxx"
+#include "types_tools.hxx"
 
 extern "C"
 {
@@ -51,7 +55,7 @@ Double* Double::Identity(int _iRows, int _iCols)
     return pI;
 }
 
-Double* Double::Identity(int _iDims, int* _piDims)
+Double* Double::Identity(int _iDims, const int* _piDims)
 {
     Double* pI = new Double(_iDims, _piDims);
     pI->setZeros();
@@ -80,7 +84,7 @@ Double* Double::Identity(int _iDims, int* _piDims)
     return pI;
 }
 
-Double* Double::Identity(int _iDims, int* _piDims, double _dblReal)
+Double* Double::Identity(int _iDims, const int* _piDims, double _dblReal)
 {
     Double* pI = new Double(_iDims, _piDims);
     pI->setZeros();
@@ -109,7 +113,7 @@ Double* Double::Identity(int _iDims, int* _piDims, double _dblReal)
     return pI;
 }
 
-Double* Double::Identity(int _iDims, int* _piDims, double _dblReal, double _dblImg)
+Double* Double::Identity(int _iDims, const int* _piDims, double _dblReal, double _dblImg)
 {
     Double* pI = new Double(_iDims, _piDims, true);
     pI->setZeros();
@@ -242,7 +246,7 @@ Double::Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg)
 #endif
 }
 
-Double::Double(int _iDims, int* _piDims, bool _bComplex, bool _bZComplex)
+Double::Double(int _iDims, const int* _piDims, bool _bComplex, bool _bZComplex)
 {
     double *pReal   = NULL;
     double *pImg    = NULL;
@@ -549,10 +553,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         int *piSize = new int[getCols()];
         memset(piSize, 0x00, getCols() * sizeof(int));
 
-        //Array with the max precision of each col (use to padd right with 0 3.6000)
-        int *piMaxPrec = new int[getCols()];
-        memset(piMaxPrec, 0x00, getCols() * sizeof(int));
-
         if (isComplex() == false)
         {
             //compute the row size for padding for each printed bloc.
@@ -567,7 +567,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     DoubleFormat df;
                     getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
                     piSize[iCols1] = std::max(piSize[iCols1], df.iWidth);
-                    piMaxPrec[iCols1] = std::max(piMaxPrec[iCols1], df.iPrec);
                 }
 
                 if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
@@ -589,7 +588,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             m_iRows2PrintState = iRows2;
                             m_iCols1PrintState = iLastCol;
                             delete[] piSize;
-                            delete[] piMaxPrec;
                             return false;
                         }
 
@@ -604,7 +602,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
 
-                            df.iPrec = piMaxPrec[iCols2];
                             df.iWidth = piSize[iCols2];
                             addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
                         }
@@ -644,7 +641,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     m_iRows2PrintState = iRows2;
                     m_iCols1PrintState = iLastCol;
                     delete[] piSize;
-                    delete[] piMaxPrec;
                     return false;
                 }
 
@@ -658,7 +654,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
 
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
-                    df.iPrec = piMaxPrec[iCols2];
                     df.iWidth = piSize[iCols2];
                     addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
                 }
@@ -692,7 +687,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                         piSize[iCols1] = iTotalWidth;
                     }
 
-                    piMaxPrec[iCols1] = std::max(piMaxPrec[iCols1], dfR.iPrec);
                 }
 
                 if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
@@ -714,7 +708,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             m_iRows2PrintState = iRows2;
                             m_iCols1PrintState = iLastCol;
                             delete[] piSize;
-                            delete[] piMaxPrec;
                             return false;
                         }
 
@@ -729,8 +722,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
 
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
-                            dfR.iPrec = piMaxPrec[iCols2];
-                            dfI.iPrec = piMaxPrec[iCols2];
                             addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
                         }
                         ostemp << std::endl;
@@ -769,7 +760,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     m_iRows2PrintState = iRows2;
                     m_iCols1PrintState = iLastCol;
                     delete[] piSize;
-                    delete[] piMaxPrec;
                     return false;
                 }
 
@@ -784,8 +774,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
 
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
-                    dfR.iPrec = piMaxPrec[iCols2];
-                    dfI.iPrec = piMaxPrec[iCols2];
                     addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
                 }
                 ostemp << std::endl;
@@ -799,13 +787,12 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         }
 
         delete[] piSize;
-        delete[] piMaxPrec;
     }
 
     return true;
 }
 
-InternalType* Double::clone()
+Double* Double::clone()
 {
     int iOne = 1;
     Double *pReturn = new Double(m_iDims, m_piDims, isComplex());
@@ -980,8 +967,14 @@ double* Double::allocData(int _iSize)
     }
 }
 
-bool Double::append(int _iRows, int _iCols, InternalType* _poSource)
+Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
 {
+    Double* pIT = checkRef(this, &Double::append, _iRows, _iCols, _poSource);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     Double* pD = _poSource->getAs<Double>();
     int iRows = pD->getRows();
     int iCols = pD->getCols();
@@ -990,7 +983,7 @@ bool Double::append(int _iRows, int _iCols, InternalType* _poSource)
     //insert without resize
     if (iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
     {
-        return false;
+        return NULL;
     }
 
     //Update complexity if necessary
@@ -1117,7 +1110,7 @@ bool Double::append(int _iRows, int _iCols, InternalType* _poSource)
             }
         }
     }
-    return true;
+    return this;
 }
 
 void Double::convertToInteger()

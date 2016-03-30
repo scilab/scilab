@@ -27,7 +27,7 @@
         <refpurpose>Get the type of a continuous time state variable</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[xprop] = pointer_xproperty()</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_pointer_xproperty">

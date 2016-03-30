@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -365,6 +368,7 @@ private:
     void visit(ast::CommentExp & e) { }
     void visit(ast::NilExp & e) { }
     void visit(ast::ColonVar & e) { }
+    void visit(ast::WhileExp & e);
 
     void visit(ast::ArrayListVar & e)
     {
@@ -386,16 +390,6 @@ private:
     {
         logger.log(L"LogicalOpExp", e.getLocation());
         visit(static_cast<ast::OpExp &>(e));
-    }
-
-    void visit(ast::WhileExp & e)
-    {
-        logger.log(L"WhileExp", e.getLocation());
-        loops.push(&e);
-        e.getTest().accept(*this);
-        dm.releaseTmp(getResult().getTempId(), &e.getTest());
-        e.getBody().accept(*this);
-        loops.pop();
     }
 
     void visit(ast::BreakExp & e)

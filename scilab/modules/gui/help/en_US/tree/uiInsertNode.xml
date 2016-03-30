@@ -5,7 +5,7 @@
         <refpurpose>Insertion in a uitree </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>insertTree = uiInsertNode(tree, position, node)</synopsis>
         <synopsis>insertTree = uiInsertNode(tree, parentNode, node)</synopsis>
     </refsynopsisdiv>

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -25,10 +28,13 @@ extern "C"
 #include "Scierror.h"
 #include "sci_malloc.h"
 #include "os_string.h"
+#include "Sciwarning.h"
 }
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    types::String *psInput = NULL;
+
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "warning", 1);
@@ -47,20 +53,29 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    types::String *psInput = in[0]->getAs<types::String>();
+    psInput = in[0]->getAs<types::String>();
 
     if (psInput->getSize() == 1)
     {
-        /* "on" "off" "query" */
+        /* "on" "off" "query" "stop" */
         if (wcscmp(psInput->get(0), L"on") == 0)
         {
             setWarningMode(TRUE);
+            setWarningStop(FALSE);
             return types::Function::OK;
         }
 
         if (wcscmp(psInput->get(0), L"off") == 0)
         {
             setWarningMode(FALSE);
+            setWarningStop(FALSE);
+            return types::Function::OK;
+        }
+
+        if (wcscmp(psInput->get(0), L"stop") == 0)
+        {
+            setWarningMode(TRUE);
+            setWarningStop(TRUE);
             return types::Function::OK;
         }
 
@@ -68,7 +83,16 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
         {
             if (getWarningMode())
             {
-                out.push_back(new types::String(L"on"));
+                if (getWarningStop())
+                {
+                    // WarningMode and WarningStop => warning stop mode active
+                    out.push_back(new types::String(L"stop"));
+                }
+                else
+                {
+                    // WarningMode and !WarningStop => warning on  mode active
+                    out.push_back(new types::String(L"on"));
+                }
             }
             else
             {
@@ -88,6 +112,11 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
             os_swprintf(pwstToPrint, iSize, _W("WARNING: %ls\n").c_str(), pwstTemp);
             scilabForcedWriteW(pwstToPrint);
             FREE(pwstToPrint);
+        }
+
+        if (getWarningStop())
+        {
+            Sciwarning("");
         }
     }
 

@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -1169,7 +1172,7 @@ static int import_handle_compound(int dataset, int parent)
 static int import_handle_datatip(int dataset, int parent)
 {
     int datatip = createGraphicObject(__GO_DATATIP__);
-    //set parent manualy, these no real releationship between datatip and parent
+    //set parent manually, these no real releationship between datatip and parent
     setGraphicObjectProperty(datatip, __GO_PARENT__, &parent, jni_int, 1);
 
     //data
@@ -2689,7 +2692,7 @@ static bool export_handle_matplot(int parent, int uid)
             {
                 size *= 3;
             }
-            else if ((ImageType)imagetype == MATPLOT_GL_RGBA)
+            else if ((GLType)imagetype == MATPLOT_GL_RGBA)
             {
                 size *= 4;
             }

@@ -5,7 +5,7 @@
         <refpurpose>plot the pattern of non nul elements of a sparse matrix  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>PlotSparse(A [,style])</synopsis>
     </refsynopsisdiv>
     <refsection>

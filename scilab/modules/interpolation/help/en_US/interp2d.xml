@@ -5,7 +5,7 @@
         <refpurpose>bicubic spline (2d) evaluation function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[zp[, dzpdx, dzpdy[, d2zpdxx, d2zpdxy, d2zpdyy]]]=interp2d(xp, yp, x, y, C [,out_mode])</synopsis>
     </refsynopsisdiv>
     <refsection>

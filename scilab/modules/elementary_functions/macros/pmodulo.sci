@@ -4,11 +4,14 @@
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2013 - Samuel GOUGEON :  : bugs 12373 & 13002
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function i = pmodulo(n, m)
     //i=pmodulo(n,m) the "positive modulo" of m et n.
@@ -42,6 +45,10 @@ function i = pmodulo(n, m)
 
     // --------------------------  Processing ----------------------------
 
+    if isempty(m)
+        i = n;
+        return;
+    end
     if  nt==2 then
         [i,q] = pdiv(n, m)
     else
@@ -57,11 +64,15 @@ function i = pmodulo(n, m)
         i = n - floor(n ./ m) .* m
         k = find(i<0)           // this may occur for encoded integers
         if length(m)>1 then
-            i(k) = i(k) + m(k)
+            if ~isempty(k)
+                i(k) = i(k) + m(k)
+            end
             i = iconvert(i, inttype(n))
             i = matrix(i, ms)
         else
-            i(k) = i(k) + m
+            if ~isempty(k)
+                i(k) = i(k) + m
+            end
             i = iconvert(i, inttype(n))
             i = matrix(i, ns)
         end

@@ -3,11 +3,14 @@
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -73,16 +76,17 @@ CPP_GATEWAY_PROTOTYPE(sci_debug);
 CPP_GATEWAY_PROTOTYPE(sci_recursionlimit);
 CPP_GATEWAY_PROTOTYPE(sci_type);
 CPP_GATEWAY_PROTOTYPE(sci_list_gw);
-CPP_GATEWAY_PROTOTYPE(sci_struct);
+CPP_GATEWAY_PROTOTYPE(sci_struct_gw);
 CPP_GATEWAY_PROTOTYPE(sci_null);
 CPP_GATEWAY_PROTOTYPE(sci_insert);
-CPP_GATEWAY_PROTOTYPE(sci_cell);
+CPP_GATEWAY_PROTOTYPE(sci_cell_gw);
 CPP_GATEWAY_PROTOTYPE(sci_makecell);
 CPP_GATEWAY_PROTOTYPE(sci_typeof);
 CPP_GATEWAY_PROTOTYPE(sci_tlist_gw);
 CPP_GATEWAY_PROTOTYPE(sci_mlist_gw);
 CPP_GATEWAY_PROTOTYPE(sci_isfield);
 CPP_GATEWAY_PROTOTYPE(sci_fieldnames);
+CPP_GATEWAY_PROTOTYPE(sci_oldEmptyBehaviour);
 
 #ifndef NDEBUG
 CPP_GATEWAY_PROTOTYPE(sci_inspectorGetItemCount);

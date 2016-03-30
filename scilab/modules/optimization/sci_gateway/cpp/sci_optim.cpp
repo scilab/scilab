@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -117,18 +120,18 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
         /*** get inputs arguments ***/
         // get optionals
-        for (int iOpt = 0 ; iOpt < opt.size() ; iOpt++)
+        for (const auto& o : opt)
         {
             // "imp"
-            if (opt[iOpt].first == L"imp")
+            if (o.first == L"imp")
             {
-                if (opt[iOpt].second->isDouble() == false)
+                if (o.second->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A scalar expected.\n"), "optim", "imp");
                     throw ast::ScilabException();
                 }
 
-                types::Double* pDblImp = opt[iOpt].second->getAs<types::Double>();
+                types::Double* pDblImp = o.second->getAs<types::Double>();
 
                 if (pDblImp->isScalar() == false)
                 {
@@ -139,15 +142,15 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 iImp = (int)pDblImp->get(0);
             }
             // "nap"
-            else if (opt[iOpt].first == L"nap")
+            else if (o.first == L"nap")
             {
-                if (opt[iOpt].second->isDouble() == false)
+                if (o.second->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "nap");
                     throw ast::ScilabException();
                 }
 
-                pDblNap = opt[iOpt].second->getAs<types::Double>();
+                pDblNap = o.second->getAs<types::Double>();
                 if (pDblNap->isScalar() == false || pDblNap->isComplex())
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "nap");
@@ -157,15 +160,15 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 iNap = (int)pDblNap->get(0);
             }
             // "iter"
-            else if (opt[iOpt].first == L"iter")
+            else if (o.first == L"iter")
             {
-                if (opt[iOpt].second->isDouble() == false)
+                if (o.second->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "iter");
                     throw ast::ScilabException();
                 }
 
-                pDblIter = opt[iOpt].second->getAs<types::Double>();
+                pDblIter = o.second->getAs<types::Double>();
                 if (pDblIter->isScalar() == false || pDblIter->isComplex())
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "iter");
@@ -175,15 +178,15 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 iItMax = (int)pDblIter->get(0);
             }
             // "epsg"
-            else if (opt[iOpt].first == L"epsg")
+            else if (o.first == L"epsg")
             {
-                if (opt[iOpt].second->isDouble() == false)
+                if (o.second->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "epsg");
                     throw ast::ScilabException();
                 }
 
-                pDblEpsg = opt[iOpt].second->getAs<types::Double>();
+                pDblEpsg = o.second->getAs<types::Double>();
                 if (pDblEpsg->isScalar() == false || pDblEpsg->isComplex())
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "epsg");
@@ -193,15 +196,15 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 dEpsg = pDblEpsg->get(0);
             }
             // "epsf"
-            else if (opt[iOpt].first == L"epsf")
+            else if (o.first == L"epsf")
             {
-                if (opt[iOpt].second->isDouble() == false)
+                if (o.second->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "epsf");
                     throw ast::ScilabException();
                 }
 
-                pDblEpsf = opt[iOpt].second->getAs<types::Double>();
+                pDblEpsf = o.second->getAs<types::Double>();
                 if (pDblEpsf->isScalar() == false || pDblEpsf->isComplex())
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "epsf");
@@ -211,15 +214,15 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 dEpsf = pDblEpsf->get(0);
             }
             // "epsx"
-            else if (opt[iOpt].first == L"epsx")
+            else if (o.first == L"epsx")
             {
-                if (opt[iOpt].second->isDouble() == false)
+                if (o.second->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "epsx");
                     throw ast::ScilabException();
                 }
 
-                pDblEpsx = opt[iOpt].second->getAs<types::Double>();
+                pDblEpsx = o.second->getAs<types::Double>();
                 iEpsx = 0;
                 pdblEpsx = pDblEpsx->get();
             }

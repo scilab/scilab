@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -30,7 +33,6 @@ import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfString;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.io.HandledElement;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
@@ -40,7 +42,6 @@ import org.xml.sax.Attributes;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
-import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.VectorOfInt;
 import org.scilab.modules.xcos.VectorOfScicosID;
 
@@ -400,10 +401,10 @@ class RawDataHandler implements ScilabHandler {
                     }
                     case DIAGRAM_CONTEXT: {
                         // defensive programming
-                        if (!(parent instanceof ScicosObjectOwner)) {
+                        if (!(parent instanceof XcosCell)) {
                             return;
                         }
-                        ScicosObjectOwner diagram = (ScicosObjectOwner) parent;
+                        XcosCell diagramOrSuperBlockRoot = (XcosCell) parent;
 
                         @SuppressWarnings("unchecked")
                         ArrayList value = (ArrayList) fieldValue.value;
@@ -411,7 +412,7 @@ class RawDataHandler implements ScilabHandler {
                         for (int i = 0; i < value.size(); i++) {
                             ctx.set(i, (String) value.get(i));
                         }
-                        saxHandler.controller.setObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.DIAGRAM_CONTEXT, ctx);
+                        saxHandler.controller.setObjectProperty(diagramOrSuperBlockRoot.getUID(), diagramOrSuperBlockRoot.getKind(), ObjectProperties.DIAGRAM_CONTEXT, ctx);
                         break;
                     }
                     case STATE:
@@ -430,7 +431,7 @@ class RawDataHandler implements ScilabHandler {
                             saxHandler.controller.getObjectProperty(cell.getUID(), cell.getKind(), ObjectProperties.CHILDREN, children);
                             if (children.size() == 0) {
                                 try {
-                                    new DiagramElement(saxHandler.controller).decode((ScilabMList) fieldValue.value, new XcosDiagram(cell.getUID(), cell.getKind()));
+                                    new DiagramElement(saxHandler.controller).decode((ScilabMList) fieldValue.value, new XcosDiagram(saxHandler.controller, cell.getUID(), cell.getKind(), cell.getId()));
                                 } catch (ScicosFormatException e) {
                                 }
                             }
@@ -442,11 +443,12 @@ class RawDataHandler implements ScilabHandler {
                             // defensive programming against old schema
                             ScilabDouble value = (ScilabDouble) fieldValue.value;
 
-                            vec = new VectorOfDouble(value.getHeight());
-                            for (int i = 0; i < value.getHeight(); i++) {
-                                vec.set(i, value.getRealElement(i, 0));
+                            vec = new VectorOfDouble(value.getHeight() * value.getWidth());
+                            for (int i = 0; i < value.getWidth(); i++) {
+                                for (int j = 0; j < value.getHeight(); j++) {
+                                    vec.set(value.getHeight() * i + j, value.getRealElement(j, i));
+                                }
                             }
-
                             saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), fieldValue.as, vec);
                         }
                         break;
@@ -465,33 +467,38 @@ class RawDataHandler implements ScilabHandler {
                             // defensive programming against old schema
                             ScilabDouble value = (ScilabDouble) fieldValue.value;
 
-                            vec = new VectorOfInt(value.getHeight());
-                            for (int i = 0; i < value.getHeight(); i++) {
-                                vec.set(i, (int) value.getRealElement(i, 0));
+                            vec = new VectorOfInt(value.getHeight() * value.getWidth());
+                            for (int i = 0; i < value.getWidth(); i++) {
+                                for (int j = 0; j < value.getHeight(); j++) {
+                                    vec.set(value.getHeight() * i + j, (int) value.getRealElement(j, i));
+                                }
                             }
                         } else if (fieldValue.value instanceof ScilabInteger) {
                             // defensive programming against old schema
                             ScilabInteger value = (ScilabInteger) fieldValue.value;
 
-                            vec = new VectorOfInt(value.getHeight());
-                            for (int i = 0; i < value.getHeight(); i++) {
-                                switch (value.getPrec()) {
-                                    case sci_int8:
-                                    case sci_uint8:
-                                        vec.set(i, value.getByteElement(i, 0));
-                                        break;
-                                    case sci_int16:
-                                    case sci_uint16:
-                                        vec.set(i, value.getShortElement(i, 0));
-                                        break;
-                                    case sci_int32:
-                                    case sci_uint32:
-                                        vec.set(i, value.getIntElement(i, 0));
-                                        break;
-                                    case sci_int64:
-                                    case sci_uint64:
-                                        vec.set(i, (int) value.getLongElement(i, 0));
-                                        break;
+                            vec = new VectorOfInt(value.getHeight() * value.getWidth());
+                            for (int i = 0; i < value.getWidth(); i++) {
+                                for (int j = 0; j < value.getHeight(); j++) {
+                                    int index = value.getHeight() * i + j;
+                                    switch (value.getPrec()) {
+                                        case sci_int8:
+                                        case sci_uint8:
+                                            vec.set(index, value.getByteElement(j, i));
+                                            break;
+                                        case sci_int16:
+                                        case sci_uint16:
+                                            vec.set(index, value.getShortElement(j, i));
+                                            break;
+                                        case sci_int32:
+                                        case sci_uint32:
+                                            vec.set(index, value.getIntElement(j, i));
+                                            break;
+                                        case sci_int64:
+                                        case sci_uint64:
+                                            vec.set(index, (int) value.getLongElement(j, i));
+                                            break;
+                                    }
                                 }
                             }
                         }

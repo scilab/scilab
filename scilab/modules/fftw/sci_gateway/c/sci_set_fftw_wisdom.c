@@ -4,11 +4,14 @@
 * Copyright (C) 2007 - INRIA - Allan CORNET
 * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -24,7 +27,7 @@
 
 /* Set fftw wisdom
 *
-* Scilab Calling sequence :
+* Scilab Syntax :
 *   -->set_fftw_wisdom(txt);
 *
 * Input : a scilab string matrix
@@ -81,6 +84,7 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
     sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, NULL);
     if (sciErr.iErr)
     {
+        free(piLen);
         printError(&sciErr, 0);
         return 1;
     }
@@ -95,6 +99,9 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
     sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, Str1);
     if (sciErr.iErr)
     {
+        free(piLen);
+        freeArrayOfString(Str1, m1 * n1);
+        free(Str1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -128,6 +135,7 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
     }
     Str[k - 1] = '\0';
 
+    free(piLen);
     freeArrayOfString(Str1, m1 * n1);
 
     if (!(call_fftw_import_wisdom_from_string(Str)))

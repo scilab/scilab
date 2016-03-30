@@ -5,7 +5,7 @@
         <refpurpose>Copy and paste strings to and from the system clipboard.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             clipboard("copy",data)
             str=clipboard("paste")

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -44,7 +47,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
 {
     slint::SLintResult * results = nullptr;
     bool printResults = false;
-    const unsigned size = in.size();
+    const int size = (int)in.size();
     types::String * conf = nullptr;
     types::String * outFile = nullptr;
 
@@ -56,7 +59,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
 
     if (!in[0]->isString())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "slint" , 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "slint", 1);
         return types::Function::Error;
     }
 
@@ -73,11 +76,11 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
             {
                 if (in[1]->getAs<types::Bool>()->getSize() == 1)
                 {
-                    printResults = in[1]->getAs<types::Bool>()->get(0);
+                    printResults = in[1]->getAs<types::Bool>()->get(0) == 0 ? false : true;
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A single boolean expected.\n"), "slint" , 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A single boolean expected.\n"), "slint", 2);
                     return types::Function::Error;
                 }
             }
@@ -87,7 +90,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string or a boolean expected.\n"), "slint" , 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A string or a boolean expected.\n"), "slint", 2);
                 return types::Function::Error;
             }
             break;
@@ -98,11 +101,11 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
             {
                 if (in[2]->getAs<types::Bool>()->getSize() == 1)
                 {
-                    printResults = in[2]->getAs<types::Bool>()->get(0);
+                    printResults = in[2]->getAs<types::Bool>()->get(0) == 0 ? false : true;
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A single boolean expected.\n"), "slint" , 3);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A single boolean expected.\n"), "slint", 3);
                     return types::Function::Error;
                 }
             }
@@ -112,13 +115,13 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string or a boolean expected.\n"), "slint" , 3);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A string or a boolean expected.\n"), "slint", 3);
                 return types::Function::Error;
             }
 
             if (!in[1]->isString())
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "slint" , 3);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "slint", 3);
                 return types::Function::Error;
             }
             conf = in[1]->getAs<types::String>();
@@ -149,17 +152,17 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
         {
             if (conf && conf->getSize() >= 2 && (std::wstring(conf->get(0)) == L"cnes"))
             {
-		const slint::CNES::ToolConfiguration tc = slint::CNES::ToolConfiguration::createFromXml(conf->get(1));
-		const std::wstring out(outFile->get(0));
-		const std::size_t pos = out.find_last_of(L'.');
-		if (pos != std::string::npos && out.substr(pos) == L".csv")
-		{
-		    results = new slint::CNES::CNESCsvResult(tc, conf, options.getId(), outFile->get(0));
-		}
-		else
-		{
-		    results = new slint::CNES::CNESXmlResult(tc, conf, options.getId(), outFile->get(0));
-		}
+                const slint::CNES::ToolConfiguration tc = slint::CNES::ToolConfiguration::createFromXml(conf->get(1));
+                const std::wstring out(outFile->get(0));
+                const std::size_t pos = out.find_last_of(L'.');
+                if (pos != std::string::npos && out.substr(pos) == L".csv")
+                {
+                    results = new slint::CNES::CNESCsvResult(tc, conf, options.getId(), outFile->get(0));
+                }
+                else
+                {
+                    results = new slint::CNES::CNESXmlResult(tc, conf, options.getId(), outFile->get(0));
+                }
             }
             else
             {

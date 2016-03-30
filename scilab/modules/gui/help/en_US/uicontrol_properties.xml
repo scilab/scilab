@@ -58,7 +58,7 @@
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>-1</literal> none (callback desactivated)
+                                <literal>-1</literal> none (callback deactivated)
                             </para>
                         </listitem>
                         <listitem>

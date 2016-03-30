@@ -3,20 +3,20 @@
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.block;
 
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
+import com.mxgraph.model.mxGeometry;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
@@ -31,7 +31,6 @@ import org.scilab.modules.xcos.block.actions.SuperblockMaskCustomizeAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskRemoveAction;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.w3c.dom.Node;
 
 /**
  * A SuperBlock contains an entire diagram on it. Thus it can be easily
@@ -72,20 +71,10 @@ public final class SuperBlock extends BasicBlock {
      */
     private static final String MASKED_INTERFUNCTION_NAME = "DSUPER";
 
-    /**
-     * Constructor
-     */
-    public SuperBlock(long uid, String label, boolean masked) {
-        super(uid);
+    public SuperBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
 
-        setValue(label);
-        if (masked) {
-            mask();
-        }
-    }
-
-    public SuperBlock(long uid) {
-        this(uid, INTERFUNCTION_NAME, false);
+        controller.setObjectProperty(uid, kind, ObjectProperties.SIM_FUNCTION_NAME, SIMULATION_NAME);
     }
 
     /**
@@ -118,9 +107,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Mask the SuperBlock
      */
-    public void mask() {
-        JavaController controller = new JavaController();
-
+    public void mask(final JavaController controller) {
         controller.setObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, MASKED_INTERFUNCTION_NAME);
         controller.setObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.SIM_FUNCTION_NAME, MASKED_SIMULATION_NAME);
 
@@ -132,9 +119,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Unmask the SuperBlock
      */
-    public void unmask() {
-        JavaController controller = new JavaController();
-
+    public void unmask(final JavaController controller) {
         controller.setObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, INTERFUNCTION_NAME);
         controller.setObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.SIM_FUNCTION_NAME, SIMULATION_NAME);
     }
@@ -160,35 +145,11 @@ public final class SuperBlock extends BasicBlock {
      */
     @Override
     public void setValue(Object value) {
-        super.setValue(value);
-
-        if (value == null) {
-            return;
+        if (value != null) {
+            super.setValue(FileUtils.toValidCIdentifier(value.toString()));
+        } else {
+            super.setValue(value);
         }
-
-        JavaController controller = new JavaController();
-        controller.setObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.TITLE, FileUtils.toValidCIdentifier(value.toString()));
-    }
-
-    /*
-     * Serializable custom implementation need to handle any copy / DnD case.
-     */
-
-    /**
-     * Decode the block as xml
-     *
-     * @param in
-     *            the input stream
-     * @throws IOException
-     *             on error
-     * @throws ClassNotFoundException
-     *             on error
-     * @throws ParserConfigurationException on error
-     */
-    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException, ParserConfigurationException {
-        final Node input = (Node) in.readObject();
-
-        // FIXME: clone the MVC data
     }
 }
 // CSON: ClassDataAbstractionCoupling

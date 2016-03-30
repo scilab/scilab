@@ -28,7 +28,7 @@
         <refpurpose>Block diagram editor and GUI for the hybrid simulator</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xcos()
             xcos(filename)

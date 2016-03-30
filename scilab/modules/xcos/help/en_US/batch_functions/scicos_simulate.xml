@@ -28,7 +28,7 @@
         <refpurpose>Function for running xcos simulation in batch mode</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Info=scicos_simulate(scs_m)</synopsis>
         <synopsis>Info=scicos_simulate(scs_m,Info)</synopsis>
         <synopsis>Info=scicos_simulate(scs_m,context)</synopsis>

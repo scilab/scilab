@@ -1,22 +1,26 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.block.io;
 
+import com.mxgraph.model.mxGeometry;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -292,11 +296,11 @@ public abstract class ContextUpdate extends BasicBlock {
         public static ContextUpdate createBlock(BasicPort port) {
             for (IOBlocks io : IOBlocks.values()) {
                 if (io.getReferencedPortClass().isInstance(port)) {
-                    final XcosView disabledView = (XcosView) JavaController.look_for_view(Xcos.class.getName());
+                    final XcosView disabledView = (XcosView) JavaController.lookup_view(Xcos.class.getName());
                     try {
                         JavaController controller = new JavaController();
 
-                        // FIXME: dunno if I should disable the view there :
+                        // TODO: dunno if I should disable the view there :
                         // CHECK
                         JavaController.unregister_view(disabledView);
 
@@ -312,18 +316,8 @@ public abstract class ContextUpdate extends BasicBlock {
                         // controller.setObjectProperty(block.getUID(), k, p, v)
 
                         return block;
-                    } catch (InstantiationException e) {
+                    } catch (ReflectiveOperationException e) {
                         Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
-                    } catch (IllegalAccessException e) {
-                        Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    } catch (SecurityException e) {
-                        e.printStackTrace();
-                    } catch (IllegalArgumentException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
                     } finally {
                         JavaController.register_view(Xcos.class.getName(), disabledView);
                     }
@@ -364,9 +358,10 @@ public abstract class ContextUpdate extends BasicBlock {
     /**
      * Constructor.
      */
-    public ContextUpdate(final long uid) {
-        super(uid);
+    public ContextUpdate(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
     }
+
 
     /**
      * @param context

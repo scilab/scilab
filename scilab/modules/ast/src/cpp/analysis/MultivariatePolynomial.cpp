@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -707,24 +710,52 @@ bool MultivariatePolynomial::isCoeffNegative(const bool checkConstant) const
 const std::wstring MultivariatePolynomial::print(const std::map<uint64_t, std::wstring> & vars) const
 {
     std::wostringstream wos;
-    wos << constant;
-    std::set<MultivariateMonomial, MultivariateMonomial::Compare> s(polynomial.begin(), polynomial.end());
-    for (const auto & m : s)
+    if (polynomial.empty())
     {
-        wos << L" + " << m.print(vars);
+        wos << constant;
     }
+    else
+    {
+        std::set<MultivariateMonomial, MultivariateMonomial::Compare> s(polynomial.begin(), polynomial.end());
+        auto i = s.begin();
+        if (constant)
+        {
+            wos << constant;
+            if (i->coeff >= 0)
+            {
+                wos << L'+' << i->print(vars);
+            }
+            else
+            {
+                wos << i->print(vars);
+            }
+        }
+        else
+        {
+            wos << i->print(vars);
+        }
+
+        for (i = std::next(s.begin()); i != s.end(); ++i)
+        {
+            if (i->coeff >= 0)
+            {
+                wos << L'+' << i->print(vars);
+            }
+            else
+            {
+                wos << i->print(vars);
+            }
+        }
+    }
+
     return wos.str();
 }
 
 std::wostream & operator<<(std::wostream & out, const MultivariatePolynomial & p)
 {
     const std::map<uint64_t, std::wstring> vars;
-    out << p.constant;
-    std::set<MultivariateMonomial, MultivariateMonomial::Compare> s(p.polynomial.begin(), p.polynomial.end());
-    for (const auto & m : s)
-    {
-        out << L" + " << m.print(vars);
-    }
+    out << p.print(vars);
+
     return out;
 }
 

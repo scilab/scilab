@@ -5,7 +5,7 @@
         <refpurpose>set interface argument passing properties</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>funs=intppty()
             intppty(fun)
             intppty(fun, action)

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -818,6 +821,12 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         } else if (parent.equals("refsection") && Pattern.matches("^[ \\t]*ex[ea]mpl[eo].*", contents.toLowerCase())) {
             hasExamples = true;
             return encloseContents("h3", clazz, contents);
+        } else if (parent.equals("refsect1")) {
+            return encloseContents("h3", clazz, contents);
+        } else if (parent.equals("refsect2")) {
+            return encloseContents("h4", clazz, contents);
+        } else if (parent.equals("refsect3")) {
+            return encloseContents("h5", clazz, contents);
         } else {
             return encloseContents("h3", clazz, contents);
         }
@@ -845,6 +854,23 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleLiteral(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("code", "literal", contents);
+    }
+
+    /**
+     * Handle a literallayout
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleLiterallayout(final Map<String, String> attributes, final String contents) throws SAXException {
+
+        //replace \n by <br>
+        String s = contents.replace("\n", "<BR>");
+        //replace spaces by &nbsp;
+        s = s.replace(" ", "&nbsp;");
+
+        return encloseContents("code", "literallayout", s);
     }
 
     /**
@@ -1015,6 +1041,54 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refsection", contents);
         } else {
             return encloseContents("div", "refsection", contents);
+        }
+    }
+
+    /**
+     * Handle a refsect1
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRefsect1(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refsect1", contents);
+        } else {
+            return encloseContents("div", "refsect1", contents);
+        }
+    }
+
+    /**
+     * Handle a refsect2
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRefsect2(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refsect2", contents);
+        } else {
+            return encloseContents("div", "refsect2", contents);
+        }
+    }
+
+    /**
+     * Handle a refsect3
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRefsect3(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refsect3", contents);
+        } else {
+            return encloseContents("div", "refsect3", contents);
         }
     }
 

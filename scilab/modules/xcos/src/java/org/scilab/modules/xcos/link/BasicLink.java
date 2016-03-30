@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -53,20 +57,13 @@ public abstract class BasicLink extends XcosCell {
     private static final int DETECTION_RECTANGLE_DIMENSION = 10;
     private transient int ordering;
 
-    /**
-     * Default constructor
-     *
-     * @param style
-     *            The style to use for this link
-     */
-    public BasicLink(long uid, String style) {
-        super(uid, Kind.LINK);
-        setVertex(false);
-        setEdge(true);
-        setStyle(style + XcosOptions.getEdition().getEdgeStyle());
+    public BasicLink(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id, int linkKind) {
+        super(controller, uid, kind, value, geometry, style == null ? XcosOptions.getEdition().getEdgeStyle() : style, id);
 
-        JavaController controller = new JavaController();
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.KIND, getLinkKind());
+        this.vertex = false;
+        this.edge = true;
+
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.KIND, linkKind);
     }
 
     /**

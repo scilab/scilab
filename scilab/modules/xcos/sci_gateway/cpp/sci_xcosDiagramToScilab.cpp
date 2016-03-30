@@ -3,11 +3,14 @@
  * Copyright (C) DIGITEO - 2009-2009 - Antoine ELIAS <antoine.elias@scilab.org>
  * Copyright (C) DIGITEO - 2009-2010 - Clément DAVID <clement.david@scilab.org>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -137,7 +140,7 @@ types::InternalType* importFile(char const* file)
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
-        Scierror(999, "%s: %s\n", funname, exception.getJavaDescription().c_str());
+        Scierror(999, "%s: %s\n%s\n", funname, exception.getJavaDescription().c_str(), exception.getJavaStackTrace().c_str());
         controller.deleteObject(uid);
         return nullptr;
     }
@@ -169,7 +172,7 @@ bool exportFile(int index, char const* file, types::InternalType* type)
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
-        Scierror(999, "%s: %s\n", funname, exception.getJavaDescription().c_str());
+        Scierror(999, "%s: %s\n%s\n", funname, exception.getJavaDescription().c_str(), exception.getJavaStackTrace().c_str());
         return false;
     }
     catch (GiwsException::JniException &exception)

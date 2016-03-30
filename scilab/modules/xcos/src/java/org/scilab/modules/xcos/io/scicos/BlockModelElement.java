@@ -1,22 +1,26 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.io.scicos;
 
+import java.rmi.server.UID;
 import static java.util.Arrays.asList;
 
 import java.util.List;
 
-import org.flexdock.util.UUID;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
@@ -156,8 +160,7 @@ final class BlockModelElement extends BlockPartsElement {
 
             int nbControlPort = dataNbControlPort.getHeight();
             for (int i = 0; i < nbControlPort; i++) {
-                final BasicPort port = new ControlPort(controller.createObject(Kind.PORT));
-                port.setId(UUID.randomUUID().toString());
+                final BasicPort port = new ControlPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
 
                 // do not use BasicPort#addPort() to avoid the view update
                 into.insert(port, baseIndex + i);
@@ -169,8 +172,7 @@ final class BlockModelElement extends BlockPartsElement {
 
             int nbCommandPort = dataNbCommandPort.getHeight();
             for (int i = 0; i < nbCommandPort; i++) {
-                final BasicPort port = new CommandPort(controller.createObject(Kind.PORT));
-                port.setId(UUID.randomUUID().toString());
+                final BasicPort port = new CommandPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
 
                 // do not use BasicPort#addPort() to avoid the view update
                 into.insert(port, baseIndex + i);
@@ -201,7 +203,7 @@ final class BlockModelElement extends BlockPartsElement {
         field++;
         if (data.get(field) instanceof ScilabMList) {
             try {
-                new DiagramElement(new JavaController()).decode((ScilabMList) data.get(field), new XcosDiagram(into.getUID(), into.getKind()));
+                new DiagramElement(controller).decode((ScilabMList) data.get(field), new XcosDiagram(controller, into.getUID(), into.getKind(), into.getId()));
             } catch (ScicosFormatException e) {}
         } else if (data.get(field) instanceof ScilabDouble ) {
             controller.setObjectProperty(into.getUID(), into.getKind(), ObjectProperties.RPAR, toVectorOfDouble((ScilabDouble) data.get(field)));

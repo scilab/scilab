@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -53,15 +56,25 @@ class PortHandler implements ScilabHandler {
         /*
          * First, check if the port has already been defined. Otherwise, create the object in the model
          */
-        v = atts.getValue("id");
+        String strUID = atts.getValue("id");
         long uid = 0;
-        if (v != null) {
-            if (shared.allChildren.peek().containsKey(v)) {
-                uid = shared.allChildren.peek().get(v);
+        if (strUID != null) {
+            if (shared.allChildren.peek().containsKey(strUID)) {
+                uid = shared.allChildren.peek().get(strUID);
             } else {
                 uid = shared.controller.createObject(Kind.PORT);
-                shared.allChildren.peek().put(v, uid);
+                shared.allChildren.peek().put(strUID, uid);
             }
+        }
+
+        String style = atts.getValue("style");
+        if (style != null) {
+            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.STYLE, style);
+        }
+
+        String value = atts.getValue("value");
+        if (value != null &&  shared.validCIdentifier.matcher(value).matches()) {
+            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.LABEL, value);
         }
 
         /*
@@ -70,32 +83,32 @@ class PortHandler implements ScilabHandler {
 
         switch (found) {
             case CommandPort:
-                port = new CommandPort(uid);
+                port = new CommandPort(shared.controller, uid, Kind.PORT, value, style, strUID);
                 relatedProperty = ObjectProperties.EVENT_OUTPUTS;
                 isImplicit = false;
                 break;
             case ControlPort:
-                port = new ControlPort(uid);
+                port = new ControlPort(shared.controller, uid, Kind.PORT, value, style, strUID);
                 relatedProperty = ObjectProperties.EVENT_INPUTS;
                 isImplicit = false;
                 break;
             case ExplicitInputPort:
-                port = new ExplicitInputPort(uid);
+                port = new ExplicitInputPort(shared.controller, uid, Kind.PORT, value, style, strUID);
                 relatedProperty = ObjectProperties.INPUTS;
                 isImplicit = false;
                 break;
             case ExplicitOutputPort:
-                port = new ExplicitOutputPort(uid);
+                port = new ExplicitOutputPort(shared.controller, uid, Kind.PORT, value, style, strUID);
                 relatedProperty = ObjectProperties.OUTPUTS;
                 isImplicit = false;
                 break;
             case ImplicitInputPort:
-                port = new ImplicitInputPort(uid);
+                port = new ImplicitInputPort(shared.controller, uid, Kind.PORT, value, style, strUID);
                 relatedProperty = ObjectProperties.INPUTS;
                 isImplicit = true;
                 break;
             case ImplicitOutputPort:
-                port = new ImplicitOutputPort(uid);
+                port = new ImplicitOutputPort(shared.controller, uid, Kind.PORT, value, style, strUID);
                 relatedProperty = ObjectProperties.OUTPUTS;
                 isImplicit = true;
                 break;
@@ -103,41 +116,38 @@ class PortHandler implements ScilabHandler {
                 throw new IllegalArgumentException();
         }
 
-        // set the decoded XML ID
-        port.setId(v);
-
-        // set the implicit
-        shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.IMPLICIT, isImplicit);
-
         /*
          * Setup the properties
          */
-        v = atts.getValue("style");
-        if (v != null) {
-            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.STYLE, v);
-        }
-
         VectorOfInt datatype = new VectorOfInt();
         shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
 
         v = atts.getValue("dataType");
+        int intValue = BasicPort.DataType.REAL_MATRIX.asScilabValue();  // Magic default value, used in Scilab 5.x
         if (v != null) {
-            datatype.set(0, BasicPort.DataType.valueOf(v).ordinal());
+            intValue = BasicPort.DataType.valueOf(v).asScilabValue();
         }
+        datatype.set(2, intValue);
+        intValue = -2; // Magic default value, used in Scilab 5.x
         v = atts.getValue("dataColumns");
         if (v != null) {
-            datatype.set(1, Integer.valueOf(v));
+            intValue = Integer.parseInt(v);
         }
+        datatype.set(1, intValue);
+        intValue = -1; // Magic default value, used in Scilab 5.x
         v = atts.getValue("dataLines");
         if (v != null) {
-            datatype.set(2, Integer.valueOf(v));
+            intValue = Integer.parseInt(v);
         }
+        datatype.set(0, intValue);
 
         shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
 
         v = atts.getValue("initialState");
         if (v != null) {
             shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.FIRING, Double.valueOf(v));
+        } else {
+            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.FIRING, -1.0);
         }
 
         /*
@@ -149,7 +159,7 @@ class PortHandler implements ScilabHandler {
 
         v = atts.getValue("ordering");
         if (v != null) {
-            ordering = Integer.valueOf(v) - 1;
+            ordering = Integer.parseInt(v) - 1;
         }
 
         v = atts.getValue("parent");

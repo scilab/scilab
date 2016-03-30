@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,7 +22,6 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,6 +42,7 @@ import org.scilab.modules.xcos.port.BasicPort;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
+import java.rmi.server.UID;
 
 /**
  * Perform a link transformation between Scicos and Xcos.
@@ -129,15 +133,16 @@ public final class LinkElement extends AbstractElement<BasicLink> {
         BasicLink link = null;
         final int type = (int) ((ScilabDouble) data.get(CT_INDEX)).getRealPart()[0][1];
 
+        String id = new UID().toString();
+
         try {
             Class<? extends BasicLink> klass = LinkPortMap.getLinkClass(type);
-            Constructor<? extends BasicLink> cstr = klass.getConstructor(Long.TYPE);
-            link = cstr.newInstance(controller.createObject(Kind.LINK));
+            Constructor<? extends BasicLink> cstr = klass.getConstructor(JavaController.class, Long.TYPE, Kind.class, Object.class, mxGeometry.class, String.class, String.class);
+            link = cstr.newInstance(controller, controller.createObject(Kind.LINK), Kind.LINK, null, null, null, id);
         } catch (ReflectiveOperationException e) {
             LOG.severe(e.toString());
         }
 
-        link.setId(UUID.randomUUID().toString());
         return link;
     }
 

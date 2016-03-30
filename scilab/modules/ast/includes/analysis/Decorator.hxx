@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -66,30 +69,45 @@ struct Decorator
         return *call;
     }
 
-    inline Clone * getClone() const
+    inline LoopDecoration * getLoopDecoration() const
     {
-        return opt.get<Clone>();
+        return opt.get<LoopDecoration>();
     }
 
-    inline Clone & setClone(Clone * _clone)
+    inline LoopDecoration & setLoopDecoration(LoopDecoration * _ld)
     {
-        opt.set(_clone);
-        return *_clone;
+        opt.set(_ld);
+        return *_ld;
     }
 
-    inline Clone & addClone(const symbol::Symbol & sym)
+    inline void addClone(const symbol::Symbol & sym)
     {
-        Clone * clone = opt.get<Clone>();
-        if (clone)
+        LoopDecoration * ld = opt.get<LoopDecoration>();
+        if (ld)
         {
-            clone->add(sym);
+            ld->addClone(sym);
         }
         else
         {
-            clone = new Clone(sym);
-            opt.set(clone);
+            ld = new LoopDecoration();
+            ld->addClone(sym);
+            opt.set(ld);
         }
-        return *clone;
+    }
+
+    inline void addPromotion(const symbol::Symbol & sym, const TIType & first, const TIType & second)
+    {
+        LoopDecoration * ld = opt.get<LoopDecoration>();
+        if (ld)
+        {
+            ld->addPromotion(sym, first, second);
+        }
+        else
+        {
+            ld = new LoopDecoration();
+            ld->addPromotion(sym, first, second);
+            opt.set(ld);
+        }
     }
 
     inline DollarInfo & setDollarInfo(const DollarInfo & di)

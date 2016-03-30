@@ -3,11 +3,14 @@
  *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
  *  Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -450,7 +453,7 @@ int BoolOrBool(Bool* _pL, Bool** _pOut)
     {
         if (_pL->get(i) == 0)
         {
-            //call non shorcut opearion
+            //call non shortcut opearion
             *_pOut = NULL;
             return 0;
         }
@@ -473,7 +476,7 @@ int DoubleOrDouble(Double* _pL, Bool** _pOut)
     {
         if (_pL->get(i) == 0)
         {
-            //call non shorcut operation
+            //call non shortcut operation
             *_pOut = NULL;
             return 0;
         }
@@ -490,7 +493,7 @@ static int IntOrInt(K* _pL, Bool** _pOut)
     {
         if (_pL->get(i) == 0)
         {
-            //call non shorcut opearion
+            //call non shortcut opearion
             *_pOut = NULL;
             return 0;
         }
@@ -564,7 +567,7 @@ InternalType* or_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -657,7 +660,7 @@ InternalType* or_int_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -717,9 +720,11 @@ InternalType* or_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Sparse
             {
                 for (int j = 0 ; j < iCols ; j++)
                 {
-                    pOut->set(i, j, true);
+                    pOut->set(i, j, true, false);
                 }
             }
+
+            pOut->finalize();
         }
         else
         {
@@ -740,9 +745,11 @@ InternalType* or_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Sparse
             {
                 for (int j = 0 ; j < iCols ; j++)
                 {
-                    pOut->set(i, j, true);
+                    pOut->set(i, j, true, false);
                 }
             }
+
+            pOut->finalize();
         }
         else
         {

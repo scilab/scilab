@@ -5,7 +5,7 @@
         <refpurpose>linear quadratic programming solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [x [,lagr [,info]]] = qld(Q, p, C, b, ci, cs, me [,tol])
         </synopsis>
@@ -95,7 +95,7 @@
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>Floatting point number, required precision.</para>
+                    <para>Floating point number, required precision.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

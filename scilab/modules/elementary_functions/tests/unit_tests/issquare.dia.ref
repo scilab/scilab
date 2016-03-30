@@ -117,7 +117,6 @@ assert_checkequal(issquare(l), %f); // Column case
 // Error messages
 errmsg1 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"issquare", 1);
 assert_checkerror("issquare()", errmsg1);
-errmsg2 = msprintf(_("Wrong number of input arguments."));
-assert_checkerror("issquare(1,2)", errmsg2);
-errmsg3 = msprintf(_("Wrong number of output arguments.\n"));
-assert_checkerror("[r,b]=issquare([1 2 3]);", errmsg3);
+assert_checkerror("issquare(1,2)", errmsg1);
+errmsg2 = msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "issquare", 1);
+assert_checkerror("[r,b]=issquare([1 2 3]);", errmsg2);

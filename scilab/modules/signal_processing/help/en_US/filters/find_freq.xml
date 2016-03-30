@@ -5,7 +5,7 @@
         <refpurpose>parameter compatibility for elliptic filter design</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[m]=find_freq(epsilon,A,n)</synopsis>
     </refsynopsisdiv>
     <refsection>

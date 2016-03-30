@@ -5,11 +5,14 @@
  * Copyright (C) 2008 - 2009 - INRIA - Michael Baudin
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="optim" xml:lang="en">
@@ -18,7 +21,7 @@
         <refpurpose>non-linear optimization routine</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             fopt = optim(costf, x0)
             fopt = optim(costf [,&lt;contr&gt;],x0 [,algo] [,df0 [,mem]] [,work] [,&lt;stop&gt;] [,&lt;params&gt;] [,imp=iflag])
@@ -597,7 +600,7 @@ binf <= x <= bsup]]>
                         <literal>costf</literal> argument can be the list
                         <literal>(real_costf, arg1,...,argn)</literal>. In this case,
                         <literal>real_costf</literal>, the first element in the list, must
-                        be a Scilab function with calling sequence:
+                        be a Scilab function with syntax:
                         <screen><![CDATA[
 [f,g,ind]=real_costf(x,ind,arg1,...,argn)]]>
                         </screen>
@@ -605,7 +608,7 @@ binf <= x <= bsup]]>
                         <literal>g</literal>, <literal>ind</literal> arguments have the same
                         meaning as before. In this case, each time the objective function is
                         called back, the arguments <literal>arg1,...,argn</literal> are
-                        automatically appended at the end of the calling sequence of
+                        automatically appended at the end of the syntax of
                         <literal>real_costf</literal>.
                     </para>
                 </listitem>
@@ -645,7 +648,7 @@ real tr(*)]]></screen>
                         <varlistentry>
                             <term>C case</term>
                             <listitem>
-                                <para>The calling sequence of the C function computing the
+                                <para>The syntax of the C function computing the
                                     objective must be:
                                 </para>
                                 <screen>void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)</screen>

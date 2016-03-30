@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.xcos.block;
@@ -17,6 +21,8 @@ import org.scilab.modules.xcos.port.BasicPort;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 
 /**
  * A SplitBlock is used on a junction between links.
@@ -31,8 +37,8 @@ public final class SplitBlock extends BasicBlock {
     /**
      * Constructor
      */
-    public SplitBlock(long uid) {
-        super(uid);
+    public SplitBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, new mxGeometry(geometry == null ? DEFAULT_POSITION_X : geometry.getX(), geometry == null ? DEFAULT_POSITION_Y : geometry.getY(), DEFAULT_SIZE, DEFAULT_SIZE), style, id);
     }
 
     /**
@@ -81,18 +87,6 @@ public final class SplitBlock extends BasicBlock {
         if (geometry != null) {
             geometry.setWidth(DEFAULT_SIZE);
             geometry.setHeight(DEFAULT_SIZE);
-
-            /*
-             * Align the geometry on the grid
-             */
-            // FIXME
-            //            if (getParentDiagram() != null && getParentDiagram().isGridEnabled()) {
-            //                final double cx = getParentDiagram().snap(geometry.getCenterX());
-            //                final double cy = getParentDiagram().snap(geometry.getCenterY());
-            //
-            //                geometry.setX(cx - (DEFAULT_SIZE / 2));
-            //                geometry.setY(cy - (DEFAULT_SIZE / 2));
-            //            }
         }
 
         super.setGeometry(geometry);

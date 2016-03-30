@@ -3,11 +3,14 @@
  *  Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
  *  Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -754,16 +757,16 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
             switch (port_kind)
             {
                 case INPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, PORT_IN);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, static_cast<int>(PORT_IN));
                     break;
                 case OUTPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, PORT_OUT);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, static_cast<int>(PORT_OUT));
                     break;
                 case EVENT_INPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, PORT_EIN);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, static_cast<int>(PORT_EIN));
                     break;
                 case EVENT_OUTPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, PORT_EOUT);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, static_cast<int>(PORT_EOUT));
                     break;
                 default:
                     // should never happen

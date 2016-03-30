@@ -5,7 +5,7 @@
         <refpurpose>Save a graphic user interface in a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>saveGui(fig, filename)</synopsis>
     </refsynopsisdiv>
     <refsection>

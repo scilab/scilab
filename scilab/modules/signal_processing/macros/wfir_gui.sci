@@ -1,13 +1,16 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011-2014 - INRIA - Serge Steer
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
-function [ok,values,exprs]=wfir_gui(exprs)
+function [ok,values_res,exprs]=wfir_gui(exprs)
     FT=["lp","hp","bp","sb"]
     WT=["re","tr","hn","hm","kr","ch","ch"]
     //  errcatch(-1,'continue')
@@ -23,7 +26,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
     ftype=exprs(1)
     wtype=exprs(2)
     if execstr("forder="+exprs(3)+";freq_ech="+exprs(4)+";low="+exprs(5)+";high="+exprs(6)+";fp="+exprs(7),"errcatch")<>0 then
-        values=[]
+        values_res=[]
         exprs=[]
         ok=%f
         return
@@ -45,7 +48,13 @@ function [ok,values,exprs]=wfir_gui(exprs)
     axes_h       = 2*margin_y+frame_h;// Frame height
     defaultfont  = "arial"; // Default Font
 
-    fig_id=max(winsid())+1
+    fig_id = max(winsid())
+    if isempty(fig_id)
+        fig_id = 1;
+    else
+        fig_id = fig_id + 1;
+    end
+
     fig = scf(fig_id)
 
     // Remove Scilab graphics menus & toolbar
@@ -524,13 +533,13 @@ function [ok,values,exprs]=wfir_gui(exprs)
     if ret==1&or(winsid()==fig_id) then
         ok=%t
         [ftype,forder,low,high,wtype,fpar,freq_ech]=wfirGetFilterParameters(gui.userdata)
-        values=tlist(["wfir","ftype","forder","low","high","wtype","fpar","freq_ech"],ftype,forder,low,high,wtype,fpar,freq_ech)
+        values_res=tlist(["wfir","ftype","forder","low","high","wtype","fpar","freq_ech"],ftype,forder,low,high,wtype,fpar,freq_ech)
         exprs= wfirGetFilterExprs(gui.userdata)
         delete(fig)
     else
         //user had canceled or closed the gui window
         ok=%f
-        values=[]
+        values_res=[]
         exprs=[]
     end
     clearglobal ret idle;

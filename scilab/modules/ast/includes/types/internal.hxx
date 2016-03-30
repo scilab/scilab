@@ -3,11 +3,14 @@
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -16,7 +19,7 @@
 #define __INTERNAL_HXX__
 
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -54,14 +57,14 @@ namespace types
 */
 class InternalType;
 typedef std::vector<InternalType *> typed_list;
-typedef std::vector<std::pair<std::wstring, InternalType *> > optional_list;
+typedef std::unordered_map<std::wstring, InternalType *> optional_list;
 
 class EXTERN_AST InternalType
 {
 public :
     enum ScilabType
     {
-        ScilabNull, //no type, no data, nothing !
+        ScilabNull = 0, //no type, no data, nothing !
         /* Internal Type */
         ScilabInternal,
         /* Generic Types */
@@ -220,6 +223,28 @@ public :
     virtual std::wstring            toStringInLine();
     virtual InternalType*           clone(void) = 0;
     virtual ast::Exp*               getExp(const Location& /*loc*/);
+
+    template <typename T, typename F, typename ... A>
+    T* checkRef(T* _pIT, F f, A ... a)
+    {
+        if (getRef() > 1)
+        {
+            // A types:: content in more than one Scilab variable
+            // must be cloned before to be modified.
+            T* pClone = _pIT->clone()->template getAs<T>();
+            T* pIT = (pClone->*f)(a...);
+            if (pIT == NULL)
+            {
+                pClone->killMe();
+            }
+
+            return pIT;
+        }
+
+        return _pIT;
+    }
+
+
 
 #ifdef _SCILAB_DEBUGREF_
     inline void _killme(const char * f, int l)

@@ -10,7 +10,7 @@
         <refpurpose>Nonblocking receive of data from a node</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>MPI_Irecv(rank,tag)</synopsis>
     </refsynopsisdiv>
     <refsection>

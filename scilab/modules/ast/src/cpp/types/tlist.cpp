@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -21,6 +24,8 @@
 #include "polynom.hxx"
 #include "overload.hxx"
 #include "configvariable.hxx"
+#include "types_tools.hxx"
+#include "scilabWrite.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -54,7 +59,7 @@ TList::~TList()
 ** Clone
 ** Create a new List and Copy all values.
 */
-InternalType* TList::clone()
+TList* TList::clone()
 {
     return new TList(this);
 }
@@ -278,14 +283,14 @@ std::wstring TList::getShortTypeStr()
     return getTypeStr();
 }
 
-bool TList::set(const std::wstring& _sKey, InternalType* _pIT)
+TList* TList::set(const std::wstring& _sKey, InternalType* _pIT)
 {
-    return List::set(getIndexFromString(_sKey), _pIT);
+    return List::set(getIndexFromString(_sKey), _pIT)->getAs<TList>();
 }
 
-bool TList::set(const int _iIndex, InternalType* _pIT)
+TList* TList::set(const int _iIndex, InternalType* _pIT)
 {
-    return List::set(_iIndex, _pIT);
+    return List::set(_iIndex, _pIT)->getAs<TList>();
 }
 
 String* TList::getFieldNames()

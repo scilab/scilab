@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -24,7 +27,6 @@ import org.scilab.modules.xcos.link.CommandControlLink;
 import org.scilab.modules.xcos.link.ExplicitLink;
 import org.scilab.modules.xcos.link.ImplicitLink;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXParseException;
 
 class LinkHandler implements ScilabHandler {
 
@@ -47,17 +49,24 @@ class LinkHandler implements ScilabHandler {
         int linkKind;
         final long uid = saxHandler.controller.createObject(Kind.LINK);
 
+        String strUID = atts.getValue("id");
+        if (strUID != null) {
+            saxHandler.allChildren.peek().put(strUID, uid);
+        }
+        String style = atts.getValue("style");
+        String value = atts.getValue("value");
+
         switch (found) {
             case CommandControlLink:
-                link = new CommandControlLink(uid);
+                link = new CommandControlLink(saxHandler.controller, uid, Kind.LINK, value, null, style, strUID);
                 linkKind = -1;
                 break;
             case ExplicitLink:
-                link = new ExplicitLink(uid);
+                link = new ExplicitLink(saxHandler.controller, uid, Kind.LINK, value, null, style, strUID);
                 linkKind = 1;
                 break;
             case ImplicitLink:
-                link = new ImplicitLink(uid);
+                link = new ImplicitLink(saxHandler.controller, uid, Kind.LINK, value, null, style, strUID);
                 linkKind = 2;
                 break;
             default:
@@ -67,11 +76,6 @@ class LinkHandler implements ScilabHandler {
         /*
          * Set the attributes
          */
-        v = atts.getValue("id");
-        if (v != null) {
-            link.setId(v);
-            saxHandler.allChildren.peek().put(v, uid);
-        }
 
         saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, linkKind);
 
@@ -111,16 +115,6 @@ class LinkHandler implements ScilabHandler {
                 }
                 refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.LINK), ObjectProperties.DESTINATION_PORT, ObjectProperties.CONNECTED_SIGNALS, 0));
             }
-        }
-
-        v = atts.getValue("style");
-        if (v != null) {
-            saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.STYLE, v);
-        }
-
-        v = atts.getValue("value");
-        if (v != null) {
-            saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.LABEL, v);
         }
 
         saxHandler.insertChild(link);

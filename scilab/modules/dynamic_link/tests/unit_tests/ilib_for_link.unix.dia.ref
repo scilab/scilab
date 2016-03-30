@@ -27,7 +27,7 @@ mputl(f1,TMP_DIR+filesep()+'fun1.c');
 //generated. 
 cur_dir = pwd();
 chdir(TMP_DIR);
-ilib_for_link('ext1c','fun1.c',[],"c") 
+ilib_for_link('ext1c','fun1.c',[],"c");
    Generate a loader file
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
@@ -35,9 +35,6 @@ ilib_for_link('ext1c','fun1.c',[],"c")
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
    Generate a cleaner file
- ans  =
- 
- libext1c.so   
 // load the shared library 
 exec loader.sce;
 Shared archive loaded.

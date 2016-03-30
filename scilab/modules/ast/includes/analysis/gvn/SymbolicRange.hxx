@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -45,7 +48,7 @@ public:
      * \param _end the ending value
      */
     SymbolicRange(GVN * _gvn, GVN::Value * _start, GVN::Value * _end) : gvn(_gvn), start(_start), end(_end) { }
-    
+
     /**
      * \brief constructor
      * \param _gvn the GVN to use
@@ -63,22 +66,22 @@ public:
     SymbolicRange(GVN & _gvn, int64_t _start, int64_t _end) : SymbolicRange(&_gvn, _gvn.getValue(_start), _gvn.getValue(_end)) { }
 
     inline void set(GVN & _gvn, GVN::Value * _start, GVN::Value * _end)
-	{
-	    gvn = &_gvn;
-	    start = _start;
-	    end = _end;
-	}
+    {
+        gvn = &_gvn;
+        start = _start;
+        end = _end;
+    }
 
     inline GVN::Value * getStart() const
-	{
-	    return start;
-	}
+    {
+        return start;
+    }
 
     inline GVN::Value * getEnd() const
-	{
-	    return end;
-	}
-    
+    {
+        return end;
+    }
+
     /**
      * \brief Get the associated GVN
      * \return the GVN

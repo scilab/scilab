@@ -2,6 +2,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA Michael Baudin
+// Copyright (C) 2015 - Scilab Enterprises - John Gliksberg
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -97,3 +98,22 @@ errmsg1 = msprintf(_("%s: Wrong type for input argument #%d: Square matrix expec
 assert_checkerror("det([1,2;3,4;5,6])", errmsg1, 20);
 errmsg2 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "det", 1);
 assert_checkerror("det(A,1)", errmsg2, 77);
+
+// Check det == 0 for simple cases
+A = 0;
+assert_checkalmostequal(det(A), 0);
+A = [1 2
+1 2];
+assert_checkalmostequal(det(A), 0);
+A = [1 2 3
+1 2 3
+1 2 3];
+assert_checkalmostequal(det(A), 0);
+b = rand(1, 5);
+A = [b
+b
+b
+b
+b];
+assert_checkalmostequal(det(A), 0);
+

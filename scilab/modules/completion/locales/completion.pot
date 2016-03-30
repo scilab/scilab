@@ -15,41 +15,41 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-21 17:21+0100\n"
+"Revision-Date: 2016-02-10 12:14+0100\n"
 
-# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 36
+# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 39
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
 msgstr ""
 
 #
-# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 42
+# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 45
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected."
 msgstr ""
 
 #
-# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 48
-# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 98
+# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 51
+# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 101
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 56
-# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 106
+# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 59
+# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 109
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 92
+# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 95
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
 msgstr ""
 
 #
-# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 137
+# File: modules/completion/sci_gateway/cpp/sci_completion.cpp, line: 140
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' "
@@ -57,11 +57,11 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/completion/src/java/org/scilab/modules/completion/AbstractSciCompletionWindow.java, line: 262
+# File: modules/completion/src/java/org/scilab/modules/completion/AbstractSciCompletionWindow.java, line: 265
 msgid "File or Directory"
 msgstr ""
 
 #
-# File: modules/completion/src/nocompletion/nocompletion.c, line: 18
+# File: modules/completion/src/nocompletion/nocompletion.c, line: 21
 msgid "Scilab completion module not installed.\n"
 msgstr ""

@@ -3,11 +3,14 @@
 *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
 *  Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -53,7 +56,7 @@ public :
 
     virtual std::wstring    getTypeStr() = 0;
     virtual std::wstring    getShortTypeStr() = 0;
-    virtual InternalType*   clone() = 0;
+    virtual UserType*       clone() = 0;
 
 public :
     /*** User can overload these methods                            ***/
@@ -82,7 +85,7 @@ public :
     // insertion by value
     // _pArs is a list of scilab types:: of where we want to extract
     // _pSource is what we wan to insert
-    virtual InternalType* insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
+    virtual UserType* insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
     {
         return NULL;
     }
@@ -90,7 +93,7 @@ public :
     // this method is called to perform an extraction by field. ie : a = myUserType.myfield
     // name is the field name
     // out contain extraction of field
-    virtual bool          extract(const std::wstring& /*name*/, InternalType *& /*out*/)
+    virtual bool extract(const std::wstring& /*name*/, InternalType *& /*out*/)
     {
         return false;
     }

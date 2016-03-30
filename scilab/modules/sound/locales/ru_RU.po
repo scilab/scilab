@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: ru\n"
 
 #, c-format
@@ -173,8 +173,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Произошла ошибка: %s не подерживается.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Произошла ошибка: неверный формат файла. Ошибка чтения блока <%s>.\n"
 
@@ -198,8 +197,7 @@ msgid "Cannot read .wav file  with more than 16 bits per sample."
 msgstr "Не удалось прочитать .wav файл с более чем 16-ю битами на сэмпл."
 
 msgid "Sample limit vector must have 2 entries."
-msgstr ""
-"Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
+msgstr "Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Неверные границы сэмплов (нужно указывать их по возрастанию)."

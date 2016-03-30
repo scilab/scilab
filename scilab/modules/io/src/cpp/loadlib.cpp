@@ -2,19 +2,21 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
-
+#include <fstream>
 #include "configvariable.hxx"
 #include "context.hxx"
 #include "loadlib.hxx"
 #include "macrofile.hxx"
-
 extern "C"
 {
 #include "FileExist.h"
@@ -41,7 +43,7 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
     get_full_pathW(pwstTemp, pwstPathLib, PATH_MAX * 2);
     FREE(pwstPathLib);
 
-    std::wstring wstOriginalPath(pwstTemp);
+    std::wstring wstOriginalPath(_wstXML);
     std::wstring wstFile(pwstTemp);
     std::wstring wstPath(pwstTemp);
     FREE(pwstTemp);
@@ -117,6 +119,19 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
         FREE(pstFile);
         return 1;
     }
+    std::string s(_wstXML.begin(),_wstXML.end());
+    std::ifstream file(s);
+    if (file)
+    {
+        const std::string XMLDecl("<?xml");
+        std::string readXMLDecl;
+        readXMLDecl.resize(XMLDecl.length(),' ');//reserve space
+        file.read(&*readXMLDecl.begin(),XMLDecl.length());
+        if (XMLDecl != readXMLDecl)
+        {
+          return 4;
+        }
+    }
 
     char *encoding = GetXmlFileEncoding(pstFile);
 
@@ -127,7 +142,7 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
     {
         FREE(pstFile);
         free(encoding);
-        return NULL;
+        return 3;
     }
 
     xmlDocPtr doc;
@@ -145,7 +160,7 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
     if (doc == NULL)
     {
         FREE(pstFile);
-        return 1;
+        return 3;
     }
 
     FREE(pstFile);

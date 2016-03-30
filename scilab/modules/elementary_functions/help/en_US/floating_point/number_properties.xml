@@ -5,7 +5,7 @@
         <refpurpose>determine floating-point parameters</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>pr = number_properties(prop)</synopsis>
     </refsynopsisdiv>
     <refsection>

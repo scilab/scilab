@@ -35,19 +35,19 @@
 //correct=%F
 a=matrix(1:9,3,3)
  a  = 
-    1.    4.    7.
-    2.    5.    8.
-    3.    6.    9.
+   1.   4.   7.
+   2.   5.   8.
+   3.   6.   9.
 [mia,kia]=min(a)
  kia  = 
-    1.    1.
+   1.   1.
  mia  = 
-    1.
+   1.
 [maa,kaa]=max(a)
  kaa  = 
-    3.    3.
+   3.   3.
  maa  = 
-    9.
+   9.
 b=int16(matrix(1:9,3,3))
  b  = 
   1  4  7
@@ -55,12 +55,12 @@ b=int16(matrix(1:9,3,3))
   3  6  9
 [mib,kib]=min(b)
  kib  = 
-    1.    1.
+   1.   1.
  mib  = 
   1
 [mab,kab]=max(b)
  kab  = 
-    3.    3.
+   3.   3.
  mab  = 
   9
 if mia<>mib     then bugmes();quit;end

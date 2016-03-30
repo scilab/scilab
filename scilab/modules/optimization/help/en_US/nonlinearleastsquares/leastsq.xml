@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="leastsq" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>Solves non-linear least squares problems</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             fopt=leastsq(fun, x0)
             fopt=leastsq(fun, x0)
@@ -96,7 +99,7 @@
                         introduced by the string keyword <literal>'b'</literal> followed by
                         the lower bound <literal>binf</literal> then by the upper bound
                         <literal>bsup</literal> (so <literal>cstr</literal> appears as
-                        <literal>'b',binf,bsup</literal> in the calling sequence). Those
+                        <literal>'b',binf,bsup</literal> in the syntax). Those
                         bounds are real vectors with same dimension than
                         <literal>x0</literal> (-%inf and +%inf may be used for dimension
                         which are unrestricted).
@@ -258,7 +261,7 @@ y=f(x,a1,a2,...)
                 <listitem>
                     <para>
                         When <literal>fun</literal> is a Fortran or C
-                        routine, it must be <literal>list(fun_name,m[,a1,a2,...])</literal> in the calling sequence of
+                        routine, it must be <literal>list(fun_name,m[,a1,a2,...])</literal> in the syntax of
                         <literal>leastsq</literal>, where <literal>fun_name</literal> is
                         a 1-by-1 matrix of strings, the name of the routine which must be linked to Scilab (see
                         <link linkend="link">link</link>). The header must be, in Fortran:
@@ -317,7 +320,7 @@ void fun(int *m, int *n, double *x, double *params, double *y)
  ]]></screen>
                         Note that, even if <literal>dfun</literal>
                         needs extra parameters, it must appear simply as
-                        <literal>dfun</literal> in the calling sequence of
+                        <literal>dfun</literal> in the syntax of
                         <literal>leastsq</literal>.
                     </para>
                 </listitem>

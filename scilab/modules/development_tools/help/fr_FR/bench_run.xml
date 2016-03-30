@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bench_run" xml:lang="fr">
+    <refnamediv>
+        <refname>bench_run</refname>
+        <refpurpose>Lance les tests de performances</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>
+            [modutests_names, elapsed_time, nb_iterations] = bench_run()
+            [modutests_names, elapsed_time, nb_iterations] = bench_run(module[, test_name[, options, [exportToFile]])
+            [modutests_names, elapsed_time, nb_iterations] = bench_run(path_to_module[, test_name[, options, [exportToFile]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>module</term>
+                <listitem>
+                    <para>Vecteur de chaînes de caractères. Noms des modules internes à Scilab à tester.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>path_to_module</term>
+                <listitem>
+                    <para>
+                        Vecteur de chaînes de caractères. Contient les chemins des modules à tester. Si <literal>"/chemin/vers/module"</literal> est donné en argument d'entrée, les tests sont récupérés dans le sous répertoire
+                        <literal>
+                            /chemin/vers/module/<emphasis role="bold">tests/benchmarks</emphasis>
+                        </literal>
+                        .A utiliser pour les tests de performance maison.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>test_name</term>
+                <listitem>
+                    <para>Vecteur de chaînes de caractères. Contient les noms des tests à effectuer.</para>
+                    <para>
+                        Le nom d'un test est le nom du fichier sans <literal>.tst</literal>. Si plusieurs modules ou répertoires sont donnés comme premier argument d'entrée, recherche les tests dans chacun de ces modules ou répertoires.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>options</term>
+                <listitem>
+                    <para>Vecteur de chaînes de caractères. Options parmi:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>"list"</literal> : liste les tests de performance (<literal>test_name</literal>) présents dans un module
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"help"</literal> : affiche quelques exemples d'utilisation en console
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"nb_run=value"</literal> : lance <literal>value</literal> fois chaque tests, par défaut <function>bench_run</function> effectue 10000 fois le code présent entre les balises BENCH START et BENCH END (voir ci-après). Remplace la valeur spécifiée dans la balise <literal>BENCH NB RUN</literal> pour les scripts de tests.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>exportToFile</term>
+                <listitem>
+                    <para>une chaîne de caractères</para>
+                    <para>
+                        Chemin du fichier d'export des résultats de <function>bench_run</function> au format xml. Par défaut ou si <literal>"", []</literal> ou <literal>"[]"</literal> sont donnés en paramètres d'entrée, the répertoire de sortie est <literal>TMPDIR/benchmarks/</literal>.
+                    </para>
+                    <para>
+                        Si <literal>exportToFile</literal> est un répertoire, crée un fichier horodaté dans le répertoire, sinon crée le fichier <literal>exportToFile</literal>. Si ce fichier n'a pas pu être créé, un avertissement est affiché et le fichier est créé sous le répertoire <literal>TMPDIR/benchmarks/</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>modutests_names</term>
+                <listitem>
+                    <para>matrice de chaînes de caractères de taille N-par-2</para>
+                    <para>
+                        La première colonne représente les modules et chemins vers les fichiers testés par <function>bench_run</function>, la seconde colonne représente les noms des tests de performance.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>elapsed_time</term>
+                <listitem>
+                    <para>vecteur de décimaux</para>
+                    <para>temps d'execution pour chaque test de performance</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nb_iterations</term>
+                <listitem>
+                    <para>vecteur de décimaux de taille N</para>
+                    <para>nombre de fois que chaque a été lancé respectivement</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Effectue des tests de performance, mesure les temps d'exécution et produit un rapport d'exécution pour ces tests.
+        </para>
+        <para>
+            Recherche tous les fichiers <literal>.tst</literal> sous le répertoire <literal>tests/benchmarks</literal> présent dans les modules internes scilab ou dans les chemins fournis en variable d'entrée, exécute ces fichiers 10000 fois et produit un rapport d'exécution.
+        </para>
+        <para>
+            Des balises présentes dans le fichier <literal>.tst</literal> permettent de contrôler le processus du test correspondant. Ces balises sont recherchées dans les commentaires du scripts.
+        </para>
+        <para>Les balises disponibles sont :</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>&lt;-- BENCH NB RUN : 10 --&gt;</literal>
+                </para>
+                <para>
+                    Par défaut, le test sera répété 10 fois, sauf si l'option <literal>"nb_run=###"</literal> de <literal>bench_run(...)</literal> est utilisée. Toute valeur entière peut être donnée pour cette balise.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <programlisting role="no-scilab-exec"><![CDATA[
+//    <-- BENCH START -->
+[code to be executed]
+//    <-- BENCH END -->
+]]></programlisting>
+                </para>
+                <para>
+                    Le code entre ces deux balises sera répétée lors du test de performance.
+                    Le code présent avant ces balises est exécuté avant la répétition, le code après ces balises est exécuté après.
+                    Si ces balises sont absentes du code, le code entier sera répété.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <para>
+            Quelques exemples d'utilisation de <function>bench_run</function>
+        </para>
+        <programlisting role="example"><![CDATA[
+// Lance tous les tests
+// Cela peut prendre du temps...
+// bench_run();
+// bench_run([]);
+// bench_run([],[]);
+
+// Test d'un ou de plusieurs modules
+bench_run('core');
+bench_run('core',[]);
+bench_run(['core','string']);
+
+// Lance des tests spécifiques sur un module
+bench_run('core',['trycatch','opcode']);
+
+// Avec des options
+bench_run([],[],'list');
+bench_run([],[],'help');
+bench_run("string", [], 'nb_run=100');
+// Résultats dans un ficher sous le répertoire local
+bench_run("string", [], 'nb_run=100', 'my_output_file.xml');
+// Résultats dans un répertoire, par défaut sous TMPDIR/benchmarks
+bench_run("string", [], 'nb_run=100', TMPDIR);
+ ]]></programlisting>
+        <para> Exemple de fichier de test
+            SCI/modules/linear_algebra/tests/benchmarks/bench_chol.tst.
+        </para>
+        <programlisting role="example"><![CDATA[
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+//==============================================================================
+// Benchmark for chol function
+//==============================================================================
+
+// <-- BENCH NB RUN : 10 -->
+
+a = 0;
+b = 0;
+a = rand(900, 900, 'n');
+a = a'*a;
+
+// <-- BENCH START -->
+b = chol(a);
+// <-- BENCH END -->
+]]></programlisting>
+        <para>résultat du test</para>
+        <screen><![CDATA[
+-->bench_run('linear_algebra','bench_chol')
+
+For Loop (as reference) ...........................      33.20 ms [ 1000000 x]
+
+001/001 - [linear_algebra] bench_chol ......................     1233.93 ms [      10 x]
+  ]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="test_run">test_run</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <literal>bench_run()</literal> peut maintenant retourner les résultats des tests de performance via les nouveaux paramètres de sortie
+                            <literal>modutests_names</literal>, <literal>elapsed_time</literal> et <literal>nb_iterations</literal>
+                        </listitem>
+                        <listitem>
+                            L'export des résultats au format XML est désormais possible
+                        </listitem>
+                        <listitem>
+                            Les paramètres de  configuration globale
+                            mode(),format(), ieee(), warning() et funcprot()
+                            sont protégés lors des tests.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

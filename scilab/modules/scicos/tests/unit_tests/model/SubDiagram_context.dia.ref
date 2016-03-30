@@ -11,6 +11,8 @@ scicos_log("TRACE");
 scs_m = scicos_diagram( objs=list(scicos_block()) );
 Xcos debug: objectCreated( 1 , BLOCK )
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
@@ -65,6 +67,8 @@ Xcos debug: objectUnreferenced( 2 , DIAGRAM ) : 0
 super = scicos_block();
 Xcos debug: objectCreated( 3 , BLOCK )
 Xcos debug: objectReferenced( 3 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 3 , BLOCK ) : 0
+Xcos debug: objectReferenced( 3 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , ANGLE ) : NO_CHANGES
@@ -102,6 +106,7 @@ Xcos trace: propertyUpdated( 3 , BLOCK , DSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos debug: objectCreated( 4 , BLOCK )
 Xcos trace: propertyUpdated( 4 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES

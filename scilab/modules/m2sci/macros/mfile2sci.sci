@@ -2,11 +2,14 @@
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 // Copyright (C) ???? - INRIA - Serge STEER
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
     // This function performs translation of a single M-file
@@ -197,7 +200,7 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
         func_proto=part(func_proto,1:keq)+strsubst(stripblanks(part(func_proto,keq+1:kpar-1))," ","_")+part(func_proto,kpar:length(func_proto))
 
         wold = who("get");
-        deff(func_proto,[firstline;txt(2:$)],"n")
+        deff(func_proto,[firstline;txt(2:$)])
         w = who("get");
         w(find(w == "deff")) = [];
         w(find(w == "wold")) = [];
@@ -263,25 +266,34 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
         size3=size(not_mtlb_fun,1)
 
         if size(mtlbref_fun,"*")<>0 then
-            mtlbref_fun(:,1)=""""+mtlbref_fun(:,1)+""""
+            mtlbref_fun(:,1) = """"+mtlbref_fun(:,1)+"""";
+            mtlbref_fun12 = mtlbref_fun(:,1) + mtlbref_fun(:,2);
+        else
+            mtlbref_fun12 = [];
         end
         if size(mtlbtool_fun,"*")<>0 then
-            mtlbtool_fun(:,1)=""""+mtlbtool_fun(:,1)+""""
+            mtlbtool_fun(:,1) = """"+mtlbtool_fun(:,1)+"""";
+            mtlbtool_fun12 = mtlbtool_fun(:,1) + mtlbtool_fun(:,2);
+        else
+            mtlbtool_fun12 = [];
         end
         if size(not_mtlb_fun,"*")<>0 then
-            not_mtlb_fun(:,1)=""""+not_mtlb_fun(:,1)+""""
+            not_mtlb_fun(:,1) = """"+not_mtlb_fun(:,1)+"""";
+            not_mtlb_fun12 = not_mtlb_fun(:,1) + not_mtlb_fun(:,2);
+        else
+            not_mtlb_fun12 = [];
         end
 
         info_resume=[msprintf(gettext("****** %s: Functions of mfile2sci() session ******"),fnam);
         "*";
         msprintf(gettext("%d Matlab Function(s) not yet converted, original calling sequence used:"),size1);
-        mtlbref_fun(:,1)+mtlbref_fun(:,2);
+        mtlbref_fun12;
         "*";
         msprintf(gettext("%d Matlab Toolbox(es) Functions, original calling sequence used :"),size2);
-        mtlbtool_fun(:,1)+mtlbtool_fun(:,2);
+        mtlbtool_fun12;
         "*";
         msprintf(gettext("%d Unknown Function(s), original calling sequence used :"),size3);
-        not_mtlb_fun(:,1)+not_mtlb_fun(:,2);
+        not_mtlb_fun12;
         "*"]
 
         write(resume_logfile,margin+info_resume)

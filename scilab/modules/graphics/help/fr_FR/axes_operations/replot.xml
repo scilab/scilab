@@ -4,12 +4,15 @@
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * Copyright (C) 2012 - Scilab Enterprises
  * Copyright (C) 2013 - Samuel GOUGEON
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="replot">
@@ -19,17 +22,19 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>replot(area)</synopsis>
-        <synopsis>replot(area, axesHandles)</synopsis>
+        <title>Syntaxe</title>
+        <synopsis>
+          replot(area)
+          replot(area, axesHandles)
+      </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>area</term>
                 <listitem>
-                    <para>vecteur [xmin ymin xmax ymax] ou [xmin ymin zmin xmax ymax zmax]: nouvelles bornes de la zone à réafficher. 
+                    <para>vecteur [xmin ymin xmax ymax] ou [xmin ymin zmin xmax ymax zmax]: nouvelles bornes de la zone à réafficher.
                         Utiliser <literal>%nan</literal> pour conserver une borne telle quelle.
                     </para>
                 </listitem>
@@ -43,15 +48,15 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
-            <literal>replot</literal> est utilisée pour recadrer les repères graphiques spécifiés par <literal>axesHandles</literal> 
+            <literal>replot</literal> est utilisée pour recadrer les repères graphiques spécifiés par <literal>axesHandles</literal>
             (ou par défaut le repère graphique actif de la fenêtre graphique active) en changeant leurs bornes communes spécifiées sous la forme
             <literal>rect = [xmin,ymin, xmax,ymax]</literal> ou <literal>rect = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>.
         </para>
         <para>
-            <varname>replot</varname> modifie les valeurs <literal>data_bounds</literal> des repères. 
+            <varname>replot</varname> modifie les valeurs <literal>data_bounds</literal> des repères.
             <note>
                 La propriété <literal>tight_limits</literal> des repères doit
                 être mise à  <literal>"on"</literal> pour sélectionner strictement ces bornes
@@ -59,9 +64,9 @@
             </note>
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
       // Premier exemple
       x=[0:0.1:2*%pi]';
       plot2d(x,sin(x))
@@ -72,13 +77,13 @@
             plot2d(x,sin(x))
             replot([-1,-1,10,2])
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // second exemple
 xdel(winsid());
 plot() // plot demo
 f=gcf();
 replot([-1,-1,10,2],f.children(1)) // specify axes handle's value
-replot([-3,-2,8,4],f.children(2)) 
+replot([-3,-2,8,4],f.children(2))
  ]]></programlisting>
         <scilab:image>
             xdel(winsid());
@@ -140,7 +145,7 @@ replot([-1 %nan 1.5 %nan], [ax1 ax2])
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>Historique</title>
         <revhistory>
             <revision>

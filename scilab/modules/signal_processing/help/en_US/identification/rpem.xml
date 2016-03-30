@@ -5,7 +5,7 @@
         <refpurpose>Recursive Prediction-Error Minimization estimation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[w1,[v]]=rpem(w0,u0,y0,[lambda,[k,[c]]])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -92,7 +92,7 @@ theta=phi=psi=l=0*ones(1,3*n). p=eye(3*n,3*n)
             <varlistentry>
                 <term>lambda</term>
                 <listitem>
-                    <para>optional argument (forgetting constant) choosed close to 1 as convergence occur:</para>
+                    <para>optional argument (forgetting constant) chosen close to 1 as convergence occur:</para>
                     <para>
                         <literal>lambda=[lambda0,alfa,beta]</literal> evolves according to :
                     </para>

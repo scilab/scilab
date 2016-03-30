@@ -5,7 +5,7 @@
         <refpurpose>get information about Scilab to debug</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>getdebuginfo()
             dynamic_info = getdebuginfo();
             [dynamic_info, static_info] = getdebuginfo();

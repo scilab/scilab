@@ -11,7 +11,6 @@ mkdir(pathconvert(TMPDIR+"/deleteNamedVariable"));
 cd(pathconvert(TMPDIR+"/deleteNamedVariable"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/deleteNamedVariable.c",pathconvert(TMPDIR+"/deleteNamedVariable/deleteNamedVariable.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-setenv("DEBUG_SCILAB_DYNAMIC_LINK","YES");
 ilib_build("gw_deleteNamedVariable", ["deleteNamedVariable", "sci_deleteNamedVariable"], "deleteNamedVariable.c", [], "", "", cflags);
 exec("loader.sce");
 function test()

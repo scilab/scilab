@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -56,6 +59,12 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
     if (in.size() < 2 || in.size() > 3)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "grep", 2, 3);
+        return types::Function::Error;
+    }
+
+    if (_iRetCount > 2)
+    {
+        Scierror(999, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "grep", 1, 2);
         return types::Function::Error;
     }
 
@@ -292,13 +301,10 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
     char *save = NULL;
     int iRet = GREP_OK;
     pcre_error_code answer = PCRE_FINISHED_OK;
-    for (x = 0; x <  mn_one ; x++)
-    {
-        results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
-    }
+    results->sizeArraysMax = mn_one * mn_two;
 
-    results->values = (int *)MALLOC(sizeof(int) * (3 * results->sizeArraysMax + 1));
-    results->positions = (int *)MALLOC(sizeof(int) * (3 * results->sizeArraysMax + 1));
+    results->values = (int *)MALLOC(sizeof(int) * results->sizeArraysMax);
+    results->positions = (int *)MALLOC(sizeof(int) * results->sizeArraysMax);
 
     if ( (results->values == NULL) || (results->positions == NULL) )
     {
@@ -327,17 +333,14 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
 
             if ( answer == PCRE_FINISHED_OK )
             {
-                if (results->currentLength < results->sizeArraysMax)
-                {
-                    results->values[results->currentLength] = y + 1;
-                    results->positions[results->currentLength] = x + 1;
-                    results->currentLength++;
-                }
+                results->values[results->currentLength] = y + 1;
+                results->positions[results->currentLength] = x + 1;
+                results->currentLength++;
             }
             else if (answer != NO_MATCH)
             {
                 pcre_error("grep", answer);
-                iRet = GREP_ERROR;
+                return GREP_ERROR;
             }
 
             if (save)
@@ -346,11 +349,6 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
                 save = NULL;
             }
         }
-    }
-
-    if (results->currentLength > results->sizeArraysMax)
-    {
-        results->currentLength = results->sizeArraysMax;
     }
 
     return iRet;

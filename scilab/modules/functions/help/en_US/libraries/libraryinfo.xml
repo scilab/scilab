@@ -5,7 +5,7 @@
         <refpurpose>get macros and path of a scilab library</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>macros = libraryinfo(libraryname)
             [macros,path] = libraryinfo(libraryname)
         </synopsis>

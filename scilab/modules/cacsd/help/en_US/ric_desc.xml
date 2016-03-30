@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ric_desc">
@@ -16,7 +19,7 @@
         <refpurpose>Riccati equation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>X=ric_desc(H [,E))
             [X1,X2,zero]=ric_desc(H [,E])
         </synopsis>
@@ -50,7 +53,7 @@
             Riccati solver with hamiltonian matrices as inputs.
         </para>
         <para>
-            In the continuous time case calling sequence is <literal>ric_descr(H)</literal> (one input):
+            In the continuous time case, the syntax is <literal>ric_descr(H)</literal> (one input):
         </para>
         <para>
             Riccati equation is:
@@ -66,7 +69,7 @@ H = [A  R;
      Q -A']
  ]]></programlisting>
         <para>
-            with the calling sequence <literal>[X1,X2,zero]=ric_descr(H)</literal>, the 
+            with the syntax <literal>[X1,X2,zero]=ric_descr(H)</literal>, the 
             solution <literal>X</literal> is given by <literal>X=X1/X2</literal>.
         </para>
         <para>
@@ -76,7 +79,7 @@ H = [A  R;
             The solution <literal>X</literal> is also given by <literal>X=riccati(A,Q,R,'c'))</literal>
         </para>
         <para>
-            In the discrete-time case calling sequence is <literal>ric_descr(H,E)</literal> (two inputs):
+            In the discrete-time case, the syntax is <literal>ric_descr(H,E)</literal> (two inputs):
         </para>
         <para>
             The Riccati equation is:
@@ -92,7 +95,7 @@ E=[eye(n,n),G;               H=[A, 0*ones(n,n);
    0*ones(n,n),A']             -C, eye(n,n)];
  ]]></programlisting>
         <para>
-            with the calling sequence <literal>[X1,X2,err]=ric_descr(H,E)</literal>, the 
+            with the syntax <literal>[X1,X2,err]=ric_descr(H,E)</literal>, the 
             solution <literal>X</literal> is given by <literal>X=X1/X2</literal>.
         </para>
         <para>

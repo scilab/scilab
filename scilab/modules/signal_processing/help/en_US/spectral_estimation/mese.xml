@@ -5,7 +5,7 @@
         <refpurpose>maximum entropy spectral estimation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[sm,fr]=mese(x [,npts]);</synopsis>
     </refsynopsisdiv>
     <refsection>

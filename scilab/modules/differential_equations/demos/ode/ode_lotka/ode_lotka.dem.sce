@@ -7,7 +7,7 @@
 // sharks and sardins: Lotka-Volterra ODE
 //
 
-function demo_ode_lokta()
+function demo_ode_lotka()
 
     text = ["Lotka-Volterra:"; ..
     "dy1/dt=  3*y1 - 2*y1*y2"; ..
@@ -52,7 +52,7 @@ function demo_ode_lokta()
     ylabel("y(2)","fontsize",3)
     a=gca();
     a.margins(3)=0.2;
-    title([_("Lokta-Volterra vector field")
+    title([_("Lotka-Volterra vector field")
     "dy1/dt=  3*y1 - 2*y1*y2";
     "dy2/dt= -2*y2 +   y1*y2"],"fontsize",3)
 
@@ -93,5 +93,5 @@ function demo_ode_lokta()
 
 endfunction
 
-demo_ode_lokta()
-clear demo_ode_lokta;
+demo_ode_lotka()
+clear demo_ode_lotka;

@@ -3,11 +3,14 @@
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -84,6 +87,7 @@ extern "C"
 #endif
 
 #include "InitializeTclTk.h"
+#include "dynamic_link.h"
 
     /* Defined without include to avoid useless header dependency */
     extern BOOL isItTheDisabledLib(void);
@@ -131,6 +135,7 @@ ScilabEngineInfo* InitScilabEngineInfo()
     pSEI->iForceQuit = 0;           // management of -quit argument
     pSEI->iCommandOrigin = NONE;
 
+    pSEI->iCodeAction = -1; //default value, no code action ( used on windows by file associations -O -X -P arguments)
     return pSEI;
 }
 
@@ -328,6 +333,13 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         }
         iMainRet = ConfigVariable::getExitStatus();
         iScript = 1;
+
+        if (_pSEI->iCodeAction != -1)
+        {
+            //alloc in main to manage shell interaction
+            FREE(_pSEI->pstExec);
+            _pSEI->pstExec = NULL;
+        }
     }
     else if (_pSEI->pstFile)
     {
@@ -391,14 +403,6 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
 
     clearScilabPreferences();
 
-    //close console scope
-    //symbol::Context::getInstance()->scope_end();
-
-    // close macros scope before close dynamic library.
-    // all pointers allocated by a dynamic library have to be free before dlclose.
-    symbol::Context::getInstance()->scope_end();
-
-    //execute scilab.quit
     if (_pSEI->pstFile)
     {
         //-f option execute exec('%s',-1)
@@ -411,10 +415,14 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     }
     else if (_pSEI->iNoStart == 0)
     {
+        //execute scilab.quit
         execScilabQuitTask(_pSEI->iSerialize != 0);
         //call all modules.quit
         EndModules();
     }
+
+    // close macros scope
+    symbol::Context::getInstance()->scope_end();
 
     //close gateways scope
     symbol::Context::getInstance()->scope_end();
@@ -423,10 +431,25 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     symbol::Context::getInstance()->clearAll();
     //destroy context
     symbol::Context::destroyInstance();
+
 #ifndef NDEBUG
     //uncomment to print mem leak log
     //types::Inspector::displayMemleak();
 #endif
+
+    //close dynamic linked libraries
+    std::vector<ConfigVariable::DynamicLibraryStr*>* pDLLIst = ConfigVariable::getDynamicLibraryList();
+    int size = pDLLIst->size();
+    for (int i = 0; i < size; i++)
+    {
+        ConfigVariable::DynamicLibraryStr* pStr = ConfigVariable::getDynamicLibrary(i);
+        if (pStr)
+        {
+            DynLibHandle iLib = pStr->hLib;
+            ConfigVariable::removeDynamicLibrary(i);
+            Sci_dlclose(iLib);
+        }
+    }
 
     // cleanup Java dependent features
     saveCWDInPreferences();
@@ -618,7 +641,7 @@ void* scilabReadAndStore(void* param)
 
         Parser::ParserStatus exitStatus = Parser::Failed;
 
-        if (ConfigVariable::isEmptyLineShow())
+        if (ConfigVariable::isPrintCompact() == false)
         {
             scilabWriteW(L"\n");
         }
@@ -633,12 +656,10 @@ void* scilabReadAndStore(void* param)
             //set prompt value
             C2F(setprlev) (&pause);
 
-            ConfigVariable::setScilabCommand(1);
-            scilabRead();
-            if (ConfigVariable::isScilabCommand() == 0)
+            if (scilabRead() == 0)
             {
-                // happens when the return of scilabRead is used
-                // in other thread (ie: call mscanf in a callback)
+                // happens when the return of scilabRead must not be interpreted by Scilab.
+                // ie: mscanf, step by step execution (mode 4 or 7)
                 ThreadManagement::WaitForConsoleExecDoneSignal();
                 continue;
             }
@@ -659,34 +680,54 @@ void* scilabReadAndStore(void* param)
             }
             else
             {
-                //+1 for null termination and +1 for '\n'
-                size_t iLen = strlen(command) + strlen(pstRead) + 2;
-                char *pstNewCommand = (char *)MALLOC(iLen * sizeof(char));
+                if (ConfigVariable::isExecutionBreak())
+                {
+                    //clean parser state and close opened instruction.
+                    if (parser.getControlStatus() != Parser::AllControlClosed)
+                    {
+                        parser.cleanup();
+                        FREE(command);
+                        command = NULL;
+                        parser.setControlStatus(Parser::AllControlClosed);
+                        controlStatus = parser.getControlStatus();
+                    }
+
+                    ConfigVariable::resetExecutionBreak();
+                    break;
+                }
+                else
+                {
+                    //+1 for null termination and +1 for '\n'
+                    size_t iLen = strlen(command) + strlen(pstRead) + 2;
+                    char *pstNewCommand = (char *)MALLOC(iLen * sizeof(char));
 
 #ifdef _MSC_VER
-                sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
+                    sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
 #else
-                sprintf(pstNewCommand, "%s\n%s", command, pstRead);
+                    sprintf(pstNewCommand, "%s\n%s", command, pstRead);
 #endif
-                FREE(pstRead);
-                FREE(command);
-                command = pstNewCommand;
+                    FREE(pstRead);
+                    FREE(command);
+                    command = pstNewCommand;
+                }
             }
 
             if (ConfigVariable::getEnableDebug())
             {
+                bool disableDebug = false;
                 char* tmpCommand = NULL;
+                int commandsize = strlen(command);
 
-                //all commands must be prefixed by debug except e(xec) (r)un or p(rint) "something" that become "something" or disp("someting")
+                //all commands must be prefixed by debug except e(xec) (r)un or p(rint) "something" that become "something" or disp("something")
                 if (strncmp(command, "e ", 2) == 0 || strncmp(command, "r ", 2) == 0)
                 {
                     tmpCommand = os_strdup(command + 2);
                 }
-                else if (strncmp(command, "exec ", 5) == 0)
+                else if (commandsize >= 5 && strncmp(command, "exec ", 5) == 0)
                 {
                     tmpCommand = os_strdup(command + 5);
                 }
-                else if (strncmp(command, "run ", 4) == 0)
+                else if (commandsize >= 4 && strncmp(command, "run ", 4) == 0)
                 {
                     tmpCommand = os_strdup(command + 5);
                 }
@@ -700,19 +741,37 @@ void* scilabReadAndStore(void* param)
                         continue;
                     }
                 }
-                else if ((command[0] == 'p') && command[1] == ' ')
+                else if (commandsize > 1 && command[0] == 'd' && command[1] == ' ')
                 {
                     std::string s("disp(");
                     s += command + 2;
                     s += ")";
                     tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
                 }
-                else if (strncmp(command, "disp ", 5) == 0)
+                else if (commandsize > 5 && strncmp(command, "disp ", 5) == 0)
                 {
                     std::string s("disp(");
                     s += command + 5;
                     s += ")";
                     tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
+                }
+                else if (commandsize > 1 && command[0] == 'p' && command[1] == ' ')
+                {
+                    std::string s("disp(");
+                    s += command + 2;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
+                }
+                else if (commandsize > 6 && strncmp(command, "print ", 6) == 0)
+                {
+                    std::string s("disp(");
+                    s += command + 6;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
                 }
                 else
                 {
@@ -723,6 +782,11 @@ void* scilabReadAndStore(void* param)
 #else
                     os_sprintf(tmpCommand, "%s %s", "debug", command);
 #endif
+                    disableDebug = true;
+                }
+
+                if (disableDebug)
+                {
                     //disable debugger time to exec debug command
                     //it will be enable in debuggervisitor, after execution
                     ConfigVariable::setEnableDebug(false);

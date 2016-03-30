@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - 2009 - INRIA - Michael Baudin
  * Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="neldermead" xml:lang="fr">
@@ -1037,7 +1040,7 @@
                             <term>key</term>
                             <listitem>
                                 <para>
-                                    the name of the key to quiery. The list of available
+                                    the name of the key to query. The list of available
                                     keys is the same as for the neldermead_configure
                                     function.
                                 </para>
@@ -1364,7 +1367,7 @@
                 [ f , c , index ] = myfun ( x , index , a1, a2, ...)
             </screen>
             where the input arguments <literal>a1, a2, ...</literal>
-            are automatically appended at the end of the calling sequence.
+            are automatically appended as parameters to the call.
         </para>
     </refsection>
     <refsection>
@@ -1458,7 +1461,7 @@
                 stop = outf ( state, data, a1, a2, ... )
             </screen>
             where the input arguments <literal>a1, a2, ...</literal>
-            are automatically appended at the end of the calling sequence.
+            are automatically appended as parameters to the call.
         </para>
         <para>
             If the output function sets the <literal>stop</literal> variable to true,
@@ -1470,9 +1473,9 @@
         <title>Termination</title>
         <para>
             The current component takes into account for several generic
-            termination criterias.
+            termination criteria.
         </para>
-        <para>The following termination criterias are enabled by default :</para>
+        <para>The following termination criteria are enabled by default :</para>
         <itemizedlist>
             <listitem>
                 <para>-maxiter,</para>
@@ -2302,7 +2305,7 @@ nm = neldermead_destroy(nm);
             In the following example, we reproduce the experiment 
             published by Ken McKinnon in 1998. 
             For this particular function and this particular initial simplex,
-            the Nelder-Mead algorithm converges to a nonstationnary point. 
+            the Nelder-Mead algorithm converges to a nonstationary point.
         </para>
         <para>
             We first define the objective function, the initial simplex 
@@ -2336,7 +2339,7 @@ fstar = -0.25;
         <para>
             Then we run the algorithm two times in sequence. 
             At the end of the first optimization process, the algorithm has 
-            converged to the point [0,0] which is nonstationnary. 
+            converged to the point [0,0] which is nonstationary.
             This is why we restart the algorithm and get the correct minimum.
         </para>
         <programlisting role="example"><![CDATA[ 
@@ -2443,8 +2446,8 @@ nm = neldermead_destroy(nm);
             Tagged -costfargument option of optimbase as obsolete: will be
             maintained for backward compatibility until 5.4.1.
             The -fun option can now be a list, where the element #1 is a
-            function, and the elements #2 to the end are automatically appended to
-            the calling sequence.
+            function, and the elements #2 to the end are automatically appended 
+            as parameters to the call.
             To update your code, replace:
         </para>
         <screen>
@@ -2462,7 +2465,7 @@ nm = neldermead_destroy(nm);
             maintained for backward compatibility until 5.4.1.
             The -outputcommand option can now be a list, where the element #1 is
             a function, and the elements #2 to the end are automatically appended
-            to the calling sequence.
+            as parameters to the call.
             To update your code, replace:
         </para>
         <screen>
@@ -2476,10 +2479,10 @@ nm = neldermead_destroy(nm);
             nm = neldermead_configure(nm,"-outputcommand",list(myoutputfun,mystuff));
         </screen>
         <para>
-            Tagged "outputfun(x,optimValues,state)" calling sequence of fminsearch
+            Tagged "outputfun(x,optimValues,state)" syntax of fminsearch
             as obsolete: will be maintained for backward compatibility until
             5.4.1.
-            The new calling sequence is "stop=outputfun(x,optimValues,state)"
+            The new syntax is "stop=outputfun(x,optimValues,state)"
             To update your code, replace:
         </para>
         <screen>
@@ -2497,10 +2500,10 @@ nm = neldermead_destroy(nm);
             endfunction
         </screen>
         <para>
-            Tagged "myoutputfun(state,data)" calling sequence of neldermead
+            Tagged "myoutputfun(state,data)" syntax of neldermead
             as obsolete: will be maintained for backward compatibility until
             5.4.1.
-            The new calling sequence is "stop=myoutputfun(state,data)"
+            The new syntax is "stop=myoutputfun(state,data)"
             To update your code, replace:
         </para>
         <screen>

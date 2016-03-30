@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - F. Delebecque
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
     // H-infinity optimal control for the continuous-time plant P
@@ -15,7 +18,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
     // r = size of the P22 plant i.e. 2-vector [#outputs,#inputs];
     // mumin,mumax = bounds on mu with mu=1/gama^2; (mumin=0  usually)
     // nmax = maximum number of iterations in the gama-iteration.
-    // Two possible calling sequences:
+    // Two possible syntaxes:
     // [Sk,mu]=h_inf(P,r,mumin,mumax,nmax) returns mu and the central controller
     // Sk in the same representation as P. (All calculations being done in state
     // space).

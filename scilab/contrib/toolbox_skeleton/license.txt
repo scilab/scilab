@@ -1,9 +1,10 @@
-Licence of the Toolbox_skeleton
+License of the Toolbox_skeleton
 
 Please update this file with the license terms (Copy and paste the license agreement).
 Note that all the files of the toolbox_skeleton are released into the public domain.
-Therefor, there is no limitation on the use of these files.
+Therefore, there is no limitation on the use of these files.
 
-Please note that Scilab is released under the terms of the CeCILL license :
-http://www.cecill.info/index.en.html
+Please note that Scilab is released under the terms of the GNU GPL v2.0 
+For more information, see the COPYING file which you should have received
+along with this program.
 

@@ -2,11 +2,14 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 //
 // fminsearch --
@@ -152,10 +155,15 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     endfunction
 
     function fms_warnheaderobsolete ( oldheader , newheader , removedVersion )
-        warnMessage = msprintf(_("Calling sequence %s is obsolete."),oldheader)
+        warnMessage = msprintf(_("Syntax %s is obsolete."),oldheader)
         warnMessage = [warnMessage, msprintf(_("Please use %s instead."),newheader)]
         warnMessage = [warnMessage, msprintf(_("This feature will be permanently removed in Scilab %s"), removedVersion)]
         warning(warnMessage);
+    endfunction
+
+    function errMessage = fms_errheaderobsolete (oldheader, newheader)
+        errMessage = msprintf(_("Calling sequence %s is obsolete."),oldheader)
+        errMessage = [errMessage, msprintf(_("Please use %s instead."),newheader)]
     endfunction
 
 
@@ -232,6 +240,29 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     end
     if ( Display == "iter" ) then
         mprintf ( "%10s   %10s   %10s %17s\n" , "Iteration", "Func-count" , "min f(x)" , "Procedure" );
+    end
+
+    //check OutputFcn format
+    if or(type(OutputFcn) == [11 13]) then
+        macroInfo = macrovar(OutputFcn);
+        if size(macroInfo(2), "*") <> 1 then
+            errMessage = fms_errheaderobsolete("outputfun(x,optimValues , state )", "stop=outputfun(x,optimValues , state )");
+            error(errMessage);
+        end
+    elseif type(OutputFcn) == 15 then
+        for i = 1 : size(OutputFcn)
+            if or(type(OutputFcn(i)) == [11 13]) then
+                macroInfo = macrovar(OutputFcn(i));
+                if size(macroInfo(2), "*") <> 1 then
+                    errMessage = fms_errheaderobsolete("outputfun(x,optimValues , state )", "stop=outputfun(x,optimValues , state )");
+                    error(errMessage);
+                end
+            end
+        end
+    elseif (OutputFcn <> [])
+        // The user did something wrong...
+        errmsg = msprintf(gettext("%s: The value of the ''OutputFcn'' option is neither a function nor a list."), "fminsearch");
+        error(errmsg)
     end
     //
     // Check input arguments

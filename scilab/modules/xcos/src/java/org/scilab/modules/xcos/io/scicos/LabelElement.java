@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -22,6 +26,8 @@ import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.graph.model.BlockInterFunction;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
@@ -31,6 +37,7 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeExceptio
  */
 public final class LabelElement extends AbstractElement<TextBlock> {
     protected static final List<String> DATA_FIELD_NAMES = asList("Text", "graphics", "model", "void", "gui");
+    private static final int INTERFUNCTION_INDEX = DATA_FIELD_NAMES.indexOf("gui");
 
     /** Mutable field to easily get the data through methods */
     private ScilabMList data;
@@ -68,8 +75,10 @@ public final class LabelElement extends AbstractElement<TextBlock> {
 
         validate();
 
+        final String interfunction = ((ScilabString) data.get(INTERFUNCTION_INDEX)).getData()[0][0];
         if (into == null) {
-            block = new TextBlock(controller.createObject(Kind.ANNOTATION));
+            BlockInterFunction func = XcosCellFactory.lookForInterfunction(interfunction);
+            block = (TextBlock) XcosCellFactory.createBlock(controller, func, interfunction, controller.createObject(Kind.ANNOTATION), Kind.ANNOTATION);
         }
 
         block = beforeDecode(element, block);

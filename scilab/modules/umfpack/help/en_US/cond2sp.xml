@@ -5,7 +5,7 @@
         <refpurpose>computes an approximation of the 2-norm condition number of a s.p.d. sparse matrix  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[K2, lm, vm, lM, vM] = cond2sp(A, C_ptr [, rtol, itermax, verb])</synopsis>
     </refsynopsisdiv>
     <refsection>

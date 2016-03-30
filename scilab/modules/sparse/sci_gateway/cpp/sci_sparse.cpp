@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bernard HUGUENEY
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -37,6 +40,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
 
     for (int i = 0 ; isValid && i < in.size() ; i++)
     {
+        // Valid input arguments are of Bool and Double types (dense or sparse)
         switch (in[i]->getType())
         {
             case types::InternalType::ScilabBool :
@@ -60,6 +64,14 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
             Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "sparse", i + 1);
             return types::Function::Error;
         }
+
+        // Valid input arguments are matrices and not hypermatrices
+        if ( in[i]->getAs<types::GenericType>()->getDims() > 2 )
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A m-by-n matrix expected.\n"), "sparse", i + 1);
+            return types::Function::Error;
+        }
+
     }
     // if one argument is given, it will be a matrix of constant or sparse type, which will be converted into a sparse matrix
     if (in.size() == 1)

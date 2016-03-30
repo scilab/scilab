@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <string.h>
@@ -27,6 +30,7 @@
 #include "os_string.h"
 #include "csvDefault.h"
 #include "strsubst.h"
+#include "Sciwarning.h"
 // =============================================================================
 #if _MSC_VER
 #define READ_ONLY_TEXT_MODE "rt"
@@ -376,11 +380,7 @@ static int getNumbersOfColumnsInLines(const char **lines, int sizelines,
             {
                 if (previousNbColumns != NbColumns)
                 {
-                    if (getWarningMode())
-                    {
-                        sciprint(_("%s: Inconsistency found in the columns. At line %d, found %d columns while the previous had %d.\n"), _("Warning"), i + 1, NbColumns, previousNbColumns);
-                    }
-
+                    Sciwarning(_("%s: Inconsistency found in the columns. At line %d, found %d columns while the previous had %d.\n"), _("Warning"), i + 1, NbColumns, previousNbColumns);
                     return 0;
                 }
             }

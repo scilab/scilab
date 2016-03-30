@@ -8,7 +8,7 @@
         <refpurpose>Inverse function for aplat.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>r = recons(fl,ind)</synopsis>
     </refsynopsisdiv>
     <refsection>

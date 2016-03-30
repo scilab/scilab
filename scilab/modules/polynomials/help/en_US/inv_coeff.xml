@@ -5,7 +5,7 @@
         <refpurpose>build a polynomial matrix from its coefficients</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -24,7 +27,6 @@ import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfInt;
 import org.scilab.modules.xcos.graph.ScicosParameters;
-import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.HandledElement;
@@ -83,10 +85,7 @@ class CustomHandler implements ScilabHandler {
                 /*
                  * Decode some graph properties
                  */
-                v = atts.getValue("savedFile");
-                if (v != null) {
-                    saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.PATH, v);
-                }
+                // the legacy savedFile attribute is removed to avoid any diff between two saved files with the same content
                 v = atts.getValue("debugLevel");
                 if (v != null) {
                     saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.DEBUG_LEVEL, Integer.valueOf(v));
@@ -133,15 +132,17 @@ class CustomHandler implements ScilabHandler {
 
                 saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.PROPERTIES, properties);
 
-            // no break on purpose, we decode non-root specific properties later
+                // no break on purpose, we decode non-root specific properties later
             case SuperBlockDiagram:
                 final Kind kind;
+                XcosCell parent;
                 if (uid == 0l) {
-                    XcosCell parent = saxHandler.lookupForParentXcosCellElement();
+                    parent = saxHandler.lookupForParentXcosCellElement();
                     uid = parent.getUID();
                     kind = parent.getKind();
                 } else {
                     kind = Kind.DIAGRAM;
+                    parent = new XcosCell(saxHandler.controller, uid, kind, null, null, "", "");
                 }
 
                 /*
@@ -159,6 +160,7 @@ class CustomHandler implements ScilabHandler {
                 }
                 saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.COLOR, colors);
 
+                // TODO: implement a GUI to setup the title property (currently file name is used)
                 v = atts.getValue("title");
                 if (v != null) {
                     saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.TITLE, v);
@@ -168,7 +170,7 @@ class CustomHandler implements ScilabHandler {
                  * Update some states
                  */
                 saxHandler.allChildren.push(new HashMap<>());
-                return new ScicosObjectOwner(uid, kind);
+                return parent;
             default:
                 throw new IllegalArgumentException();
         }

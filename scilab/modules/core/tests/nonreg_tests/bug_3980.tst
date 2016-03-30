@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // Wrong line number in error message
 
-deff("l=foo()","[l,m]=where()","n");
+deff("l=foo()","[l,m]=where()");
 ll = foo();
 assert_checkequal(ll(1), 2);
 

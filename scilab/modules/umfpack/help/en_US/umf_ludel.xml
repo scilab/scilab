@@ -5,7 +5,7 @@
         <refpurpose>utility function used with umf_lufact  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>umf_ludel(LU_ptr) or umf_ludel()</synopsis>
     </refsynopsisdiv>
     <refsection>

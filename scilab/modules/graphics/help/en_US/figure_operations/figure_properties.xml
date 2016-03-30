@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="figure_properties">
@@ -101,7 +104,7 @@
                         <varlistentry>
                             <term>viewport: </term>
                             <listitem>
-                                <para>Postion of the visible part of graphics in the
+                                <para>Position of the visible part of graphics in the
                                     panner.
                                 </para>
                             </listitem>
@@ -210,14 +213,14 @@
                             <term>user_data: </term>
                             <listitem>
                                 <para>This field can be use to store any scilab variable in the
-                                    figure data structure, and to retreive it.
+                                    figure data structure, and to retrieve it.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>tag: </term>
                             <listitem>
-                                <para>This field can be use to store a character string generally used to identify the control. It allows to give it a "name". Mainly used in conjontion with findobj().</para>
+                                <para>This field can be use to store a character string generally used to identify the control. It allows to give it a "name". Mainly used in conjunction with findobj().</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -297,7 +300,7 @@
                             <listitem>
                                 <para>This field can be used to customize the icon of a Scilab figure.</para>
                                 <para>
-                                    Its value is a character string containing the (absolute or relaitve to Scilab <link linkend="pwd">current working directory.</link> path of the image file containing the icon.
+                                    Its value is a character string containing the (absolute or relative to Scilab <link linkend="pwd">current working directory.</link> path of the image file containing the icon.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -357,7 +360,7 @@
                             <term>dockable</term>
                             <listitem>
                                 <para>
-                                    This property determines if created window can be docked inside Scilab environnment. If its value is <literal>"on"</literal> then the window will have a bar enabling the user to dock/undock it. Else the window will look like a standard OS window. This value can only be set at creation.
+                                    This property determines if created window can be docked inside Scilab environment. If its value is <literal>"on"</literal> then the window will have a bar enabling the user to dock/undock it. Else the window will look like a standard OS window. This value can only be set at creation.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -481,20 +484,20 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
-                <itemizedlist>
-                    <listitem>"visible" property meaning changed (uicontrols managed and the whole figure can be made invisible in some cases.</listitem>
-                    <listitem>"icon" property added to allow figure icon change.</listitem>
-                    <listitem>"menubar_visible" property added.</listitem>
-                    <listitem>"toolbar_visible" property added.</listitem>
-                    <listitem>"infobar_visible" property added.</listitem>
-                    <listitem>"resize" property added.</listitem>
-                    <listitem>"dockable" property added.</listitem>
-                    <listitem>"menubar" property added.</listitem>
-                    <listitem>"toolbar" property added.</listitem>
-                    <listitem>"default_axes" property added.</listitem>
-                    <listitem>"layout" property added.</listitem>
-                    <listitem>"layout_options" property added.</listitem>
-                </itemizedlist>
+                    <itemizedlist>
+                        <listitem>"visible" property meaning changed (uicontrols managed and the whole figure can be made invisible in some cases.</listitem>
+                        <listitem>"icon" property added to allow figure icon change.</listitem>
+                        <listitem>"menubar_visible" property added.</listitem>
+                        <listitem>"toolbar_visible" property added.</listitem>
+                        <listitem>"infobar_visible" property added.</listitem>
+                        <listitem>"resize" property added.</listitem>
+                        <listitem>"dockable" property added.</listitem>
+                        <listitem>"menubar" property added.</listitem>
+                        <listitem>"toolbar" property added.</listitem>
+                        <listitem>"default_axes" property added.</listitem>
+                        <listitem>"layout" property added.</listitem>
+                        <listitem>"layout_options" property added.</listitem>
+                    </itemizedlist>
                 </revremark>
             </revision>
             <revision>

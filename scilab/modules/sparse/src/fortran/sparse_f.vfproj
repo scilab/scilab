@@ -53,10 +53,14 @@
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 		<File RelativePath=".\sparse_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath=".\blkfc1.f"/>
+		<File RelativePath=".\blkfct.f"/>
+		<File RelativePath=".\inpnv.f"/>
 		<File RelativePath="isort1.f"/>
 		<File RelativePath=".\ordmmd.f"/>
 		<File RelativePath="spreshape.f"/>
 		<File RelativePath="spt.f"/>
+		<File RelativePath=".\symfct.f"/>
 		<File RelativePath="sz2ptr.f"/></Filter>
 		<File RelativePath="..\..\Makefile.am"/></Files>
 	<Globals/></VisualStudioProject>

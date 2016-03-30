@@ -2,12 +2,16 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -165,9 +169,7 @@ public final class Xcos {
          */
         try {
             LogManager.getLogManager().readConfiguration();
-        } catch (final SecurityException e) {
-            LOG.severe(e.toString());
-        } catch (final IOException e) {
+        } catch (final SecurityException | IOException e) {
             LOG.severe(e.toString());
         }
 
@@ -190,7 +192,7 @@ public final class Xcos {
         palette = PaletteManager.getInstance();
         configuration = ConfigurationManager.getInstance();
         styleSheet = new mxStylesheet();
-        externalActions = new ArrayList<ExternalAction>();
+        externalActions = new ArrayList<>();
 
         try {
             FileUtils.decodeStyle(styleSheet);
@@ -217,6 +219,8 @@ public final class Xcos {
         }
 
         JavaController.unregister_view(view);
+
+        super.finalize();
     }
 
     /**
@@ -278,11 +282,8 @@ public final class Xcos {
         if (sharedInstance == null) {
             try {
                 if (!SwingUtilities.isEventDispatchThread()) {
-                    SwingUtilities.invokeAndWait(new Runnable() {
-                        @Override
-                        public void run() {
-                            sharedInstance = new Xcos(factory);
-                        }
+                    SwingUtilities.invokeAndWait(() -> {
+                        sharedInstance = new Xcos(factory);
                     });
                 } else {
                     sharedInstance = new Xcos(factory);
@@ -307,6 +308,7 @@ public final class Xcos {
             return;
         }
 
+        // TODO : perform something ?
     }
 
     /**
@@ -334,12 +336,12 @@ public final class Xcos {
     /**
      * Opened diagrams
      *
-     * @param f
-     *            the file
+     * @param l
+     *            the root diagram uid
      * @return the opened diagrams list
      */
     public List<XcosDiagram> openedDiagrams(Long l) {
-        final List<XcosDiagram> opened = new ArrayList<XcosDiagram>();
+        final List<XcosDiagram> opened = new ArrayList<>();
         for (XcosDiagram d : diagrams.get(l)) {
             if (d.isOpened()) {
                 opened.add(d);
@@ -350,7 +352,7 @@ public final class Xcos {
     }
 
     public Long openedDiagramUID(File f) {
-        Long opened = Long.valueOf(0);
+        Long opened = 0l;
         if (f == null) {
             return opened;
         }
@@ -370,8 +372,8 @@ public final class Xcos {
     /**
      * Check if the in memory file representation is modified
      *
-     * @param f
-     *            the file
+     * @param l
+     *            the root diagram UID
      * @return is modified
      */
     public boolean isModified(Long l) {
@@ -489,7 +491,7 @@ public final class Xcos {
             /*
              * Allocate and setup a new diagram
              */
-            diag = new XcosDiagram(currentId, Kind.DIAGRAM);
+            diag = new XcosDiagram(controller, currentId, Kind.DIAGRAM, "");
             diag.installListeners();
 
             /*
@@ -581,8 +583,8 @@ public final class Xcos {
     /**
      * Add a diagram to the diagram list for a file. Be sure to set the right opened status on the diagram before calling this method.
      *
-     * @param f
-     *            the file
+     * @param l
+     *            the root diagram UID
      * @param diag
      *            the diag
      */
@@ -849,7 +851,7 @@ public final class Xcos {
      * @param file
      *            The filename (can be null)
      * @param diagramId
-     *            The Xcos DIAGRAM model ID (can be null)
+     *            The Xcos DIAGRAM model ID (can be 0)
      */
     @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
     public static void xcos(final String file, final long diagramId) {
@@ -897,13 +899,14 @@ public final class Xcos {
         if (filetype == null) {
             throw new IllegalArgumentException("not handled filetype");
         }
+
         switch (filetype) {
             case XCOS:
             case ZCOS:
                 if (export) {
-                    filetype.save(file, new XcosDiagram(diagramId, Kind.DIAGRAM));
+                    filetype.save(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
                 } else {
-                    filetype.load(file, new XcosDiagram(diagramId, Kind.DIAGRAM));
+                    filetype.load(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
                 }
                 break;
             case COSF:

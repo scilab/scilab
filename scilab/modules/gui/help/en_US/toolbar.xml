@@ -5,7 +5,7 @@
         <refpurpose>show or hide a toolbar</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>state1=toolbar(winnum,state2)
             state1=toolbar(winnum)
         </synopsis>

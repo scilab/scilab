@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -38,13 +41,19 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 2)
     {
-        if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->get(0) <= 0)
+        if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false)
         {
             Scierror(999, _("%s:  Wrong type for input argument #%d: Scalar positive integer expected.\n"), "find", 2);
             return types::Function::Error;
         }
 
-        iMax = (int)in[1]->getAs<types::Double>()->get(0);
+        iMax = (int)in[1]->getAs<types::Double>()->get()[0];
+        if (iMax <= 0 && iMax != -1)
+        {
+            Scierror(999, _("%s:  Wrong type for input argument #%d: Scalar positive integer expected.\n"), "find", 2);
+            return types::Function::Error;
+        }
+
     }
 
     int* piIndex = 0;
@@ -66,7 +75,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         int size = pB->getSize();
         int* p = pB->get();
         iMax = iMax == -1 ? size : std::min(iMax, size);
-        for (int i = 0 ; i < iMax ; i++)
+        for (int i = 0 ; i < size && iValues < iMax ; i++)
         {
             if (p[i])
             {
@@ -81,7 +90,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         int size = pD->getSize();
         double* p = pD->get();
         iMax = iMax == -1 ? size : std::min(iMax, size);
-        for (int i = 0; i < iMax; i++)
+        for (int i = 0; i < size && iValues < iMax; i++)
         {
             if (p[i])
             {
@@ -100,7 +109,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         int *pCols = pRows + iNNZ;
         iMax = iMax == -1 ? iNNZ : std::min(iMax, iNNZ);
 
-        for (int i = 0; i < iMax; i++)
+        for (int i = 0; i < iNNZ && iValues < iMax; i++)
         {
             piIndex[iValues] = (pCols[i] - 1) * iRows + (pRows[i] - 1);
             iValues++;
@@ -119,7 +128,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         int* pCols = pRows + iNNZ;
 
         iMax = iMax == -1 ? iNNZ : std::min(iMax, iNNZ);
-        for (int i = 0; i < iMax; i++)
+        for (int i = 0; i < iNNZ && iValues < iMax; i++)
         {
             piIndex[iValues] = (pCols[i] - 1) * iRows + (pRows[i] - 1);
             iValues++;

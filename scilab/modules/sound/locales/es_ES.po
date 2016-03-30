@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: es\n"
 
 #, c-format
@@ -171,8 +171,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Ha ocurrido un error: %s no está soportado.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Ha ocurrido un error: formato de archivo inválido. Error leyendo la "
 "porción <%s>.\n"

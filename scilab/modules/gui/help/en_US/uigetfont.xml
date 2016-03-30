@@ -5,7 +5,7 @@
         <refpurpose>Opens a dialog for selecting a font.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             uigetfont()
             

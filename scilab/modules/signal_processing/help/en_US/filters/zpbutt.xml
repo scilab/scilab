@@ -5,7 +5,7 @@
         <refpurpose>Butterworth analog filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[pols,gain]=zpbutt(n,omegac)</synopsis>
     </refsynopsisdiv>
     <refsection>

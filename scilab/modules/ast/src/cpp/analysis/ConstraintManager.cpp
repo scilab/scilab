@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -55,36 +58,36 @@ bool ConstraintManager::check(const MPolyConstraintSet & set, const std::vector<
     {
         case InferenceConstraint::RESULT_TRUE:
         {
-	    if (!set.empty())
-	    {
-		verified.add(set);
-		set.applyConstraints(values);
-	    }
+            if (!set.empty())
+            {
+                verified.add(set);
+                set.applyConstraints(values);
+            }
             return true;
         }
         case InferenceConstraint::RESULT_FALSE:
-	    if (!set.empty())
-	    {
-		unverified.emplace(set);
-	    }
+            if (!set.empty())
+            {
+                unverified.emplace(set);
+            }
             return false;
         case InferenceConstraint::RESULT_DUNNO:
         {
             if (parent && parent->function)
             {
                 const bool ret = parent->check(set.getMPConstraints(values), parent->function->getInValues());
-		if (!set.empty())
-		{
-		    if (ret)
-		    {
-			verified.add(set);
-			set.applyConstraints(values);
-		    }
-		    else
-		    {
-			unverified.emplace(set);
-		    }
-		}
+                if (!set.empty())
+                {
+                    if (ret)
+                    {
+                        verified.add(set);
+                        set.applyConstraints(values);
+                    }
+                    else
+                    {
+                        unverified.emplace(set);
+                    }
+                }
                 return ret;
             }
             else
@@ -101,43 +104,43 @@ bool ConstraintManager::check(Kind kind, const std::vector<GVN::Value *> & value
     {
         const InferenceConstraint & ic = *generalConstraints[kind];
         InferenceConstraint::Result res = ic.check(function->getGVN(), values);
-	const MPolyConstraintSet set = ic.getMPConstraints(values); 
+        const MPolyConstraintSet set = ic.getMPConstraints(values);
         //std::wcerr << "DEBUG2=" << res << std::endl;
 
         switch (res)
         {
             case InferenceConstraint::RESULT_TRUE:
             {
-		if (!set.empty())
-		{
-		    verified.add(set);
-		    ic.applyConstraints(values);
-		}
+                if (!set.empty())
+                {
+                    verified.add(set);
+                    ic.applyConstraints(values);
+                }
                 return true;
             }
             case InferenceConstraint::RESULT_FALSE:
-		if (!set.empty())
-		{
-		    unverified.emplace(set);
-		}
+                if (!set.empty())
+                {
+                    unverified.emplace(set);
+                }
                 return false;
             case InferenceConstraint::RESULT_DUNNO:
             {
                 MPolyConstraintSet set = ic.getMPConstraints(values);
                 const bool ret = check(set, function->getInValues());
 
-		if (!set.empty())
-		{
-		    if (ret)
-		    {
-			verified.add(set);
-			ic.applyConstraints(values);
-		    }
-		    else
-		    {
-			unverified.emplace(set);
-		    }
-		}
+                if (!set.empty())
+                {
+                    if (ret)
+                    {
+                        verified.add(set);
+                        ic.applyConstraints(values);
+                    }
+                    else
+                    {
+                        unverified.emplace(set);
+                    }
+                }
                 return ret;
             }
         }
@@ -179,5 +182,29 @@ bool ConstraintManager::checkGlobalConstants(const std::set<symbol::Symbol> & gc
         }
     }
     return true;
+}
+
+std::wostream & operator<<(std::wostream & out, const ConstraintManager & cm)
+{
+    if (!cm.verified.empty())
+    {
+        out << L"Verified: " << cm.verified << L'\n';
+    }
+    if (!cm.unverified.empty())
+    {
+        out << L"Unverified: ";
+        for (const auto & unv : cm.unverified)
+        {
+            out << unv << L' ';
+        }
+        out << L'\n';
+    }
+    if (!cm.constantConstraints.empty())
+    {
+        out << L"Constants: ";
+        tools::printSet(cm.constantConstraints, out);
+        out << L'\n';
+    }
+    return out;
 }
 }

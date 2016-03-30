@@ -16,14 +16,20 @@
 //
 // genlib no more adds a separator at the end of the lib path if it is not given in the directory path.
 
-ref = pathconvert("SCI/modules/string/macros/");
-genlib("slib", "SCI/modules/string/macros");
-s1=string(slib)(1);
-assert_checkequal(s1, ref);
-clear slib
+createdir(TMPDIR + "/macros");
+macro_dir = pathconvert("TMPDIR/macros");
+macro_foo = ["function [] = foo()"; ...
+"endfunction"];
+mputl(macro_foo, macro_dir + "foo.sci");
 
-genlib("slib", "SCI/modules/string/macros/");
-s2=string(slib)(1);
+ref = pathconvert("TMPDIR/macros/");
+genlib("foolib", TMPDIR + "/macros");
+s1=string(foolib)(1);
+assert_checkequal(s1, ref);
+clear foolib;
+
+genlib("foolib", TMPDIR + "/macros/");
+s2=string(foolib)(1);
 assert_checkequal(s2, ref);
-clear slib
+clear foolib;
 

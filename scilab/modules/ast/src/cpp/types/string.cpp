@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -41,7 +44,7 @@ String::~String()
 #endif
 }
 
-String::String(int _iDims, int* _piDims)
+String::String(int _iDims, const int* _piDims)
 {
     wchar_t** pwsData = NULL;
     create(_piDims, _iDims, &pwsData, NULL);
@@ -98,7 +101,7 @@ String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
 #endif
 }
 
-InternalType* String::clone()
+String* String::clone()
 {
     String *pstClone = new String(getDims(), getDimsArray());
     pstClone->set(m_pRealData);
@@ -578,60 +581,84 @@ void String::deleteData(wchar_t* data)
     }
 }
 
-bool String::set(int _iPos, const wchar_t* _pwstData)
+String* String::set(int _iPos, const wchar_t* _pwstData)
 {
     if (m_pRealData == NULL || _iPos >= m_iSize)
     {
-        return false;
+        return NULL;
+    }
+
+    typedef String* (String::*set_t)(int, const wchar_t*);
+    String* pIT = checkRef(this, (set_t)&String::set, _iPos, _pwstData);
+    if (pIT != this)
+    {
+        return pIT;
     }
 
     deleteString(_iPos);
     m_pRealData[_iPos] = copyValue(_pwstData);
-    return true;
+    return this;
 }
 
-bool String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
+String* String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
 {
     int piIndexes[2] = {_iRows, _iCols};
     return set(getIndex(piIndexes), _pwstData);
 }
 
-bool String::set(const wchar_t* const* _pwstData)
+String* String::set(const wchar_t* const* _pwstData)
 {
-    for (int i = 0; i < getSize(); i++)
+    typedef String* (String::*set_t)(const wchar_t * const*);
+    String* pIT = checkRef(this, (set_t)&String::set, _pwstData);
+    if (pIT != this)
     {
-        if (set(i, _pwstData[i]) == false)
-        {
-            return false;
-        }
+        return pIT;
     }
-    return true;
+
+    for (int i = 0; i < m_iSize; i++)
+    {
+        if (m_pRealData == NULL || i >= m_iSize)
+        {
+            return NULL;
+        }
+
+        deleteString(i);
+        m_pRealData[i] = copyValue(_pwstData[i]);
+    }
+    return this;
 }
 
-bool String::set(int _iPos, const char* _pcData)
+String* String::set(int _iPos, const char* _pcData)
 {
     wchar_t* w = to_wide_string(_pcData);
-    bool ret = set(_iPos, w);
+    String* ret = set(_iPos, w);
     FREE(w);
     return ret;
 }
 
-bool String::set(int _iRows, int _iCols, const char* _pcData)
+String* String::set(int _iRows, int _iCols, const char* _pcData)
 {
     int piIndexes[2] = {_iRows, _iCols};
     return set(getIndex(piIndexes), _pcData);
 }
 
-bool String::set(const char* const* _pstrData)
+String* String::set(const char* const* _pstrData)
 {
-    for (int i = 0; i < getSize(); i++)
+    typedef String* (String::*set_t)(const char * const*);
+    String* pIT = checkRef(this, (set_t)&String::set, _pstrData);
+    if (pIT != this)
     {
-        if (set(i, _pstrData[i]) == false)
+        return pIT;
+    }
+
+    for (int i = 0; i < m_iSize; i++)
+    {
+        if (set(i, _pstrData[i]) == NULL)
         {
-            return false;
+            return NULL;
         }
     }
-    return true;
+    return this;
 }
 
 wchar_t** String::allocData(int _iSize)

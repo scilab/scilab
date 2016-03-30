@@ -134,7 +134,7 @@ S10:
     fk = (double)ignpoi;
     difmuk = *mu - fk;
     u = C2F(ranf)();
-    if (d*u >= difmuk * difmuk * difmuk)
+    if (d * u >= difmuk * difmuk * difmuk)
     {
         return ignpoi;
     }
@@ -174,7 +174,7 @@ S40:
     /*
          STEP Q. QUOTIENT ACCEPTANCE (RARE CASE)
     */
-    if (fy - u*fy <= py * exp(px - fx))
+    if (fy - u * fy <= py * exp(px - fx))
     {
         return ignpoi;
     }
@@ -311,7 +311,7 @@ S150:
     l += 1;
     for (k = l; k <= 35; k++)
     {
-        p = p* *mu / (double)k;
+        p = p * *mu / (double)k;
         q += p;
         *(pp + k - 1) = q;
         if (u <= q)

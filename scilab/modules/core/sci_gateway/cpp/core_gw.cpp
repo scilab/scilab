@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -65,16 +68,17 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"debug", &sci_debug, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"recursionlimit", &sci_recursionlimit, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"list", &sci_list_gw, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"struct", &sci_struct, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"struct", &sci_struct_gw, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"null", &sci_null, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"insert", &sci_insert, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"cell", &sci_cell, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"cell", &sci_cell_gw, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"makecell", &sci_makecell, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"typeof", &sci_typeof, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tlist", &sci_tlist_gw, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mlist", &sci_mlist_gw, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isfield", &sci_isfield, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fieldnames", &sci_fieldnames, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"oldEmptyBehaviour", &sci_oldEmptyBehaviour, MODULE_NAME));
 
 #ifndef NDEBUG
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorGetItemCount", &sci_inspectorGetItemCount, MODULE_NAME));

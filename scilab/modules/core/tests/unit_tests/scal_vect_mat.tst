@@ -113,7 +113,6 @@ assert_checktrue(0<>1);
 assert_checkfalse("1"=="0");
 assert_checkfalse("1"<>"1");
 
-%s=poly(0,"s");
 assert_checkfalse(%s==0);
 assert_checkfalse(0==%s);
 assert_checktrue(%s==%s);

@@ -10,7 +10,7 @@
         <refpurpose>Broadcasts a message from the process with rank root to all other processes of the group.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = MPI_Bcast(value,rootID)</synopsis>
     </refsynopsisdiv>
     <refsection>

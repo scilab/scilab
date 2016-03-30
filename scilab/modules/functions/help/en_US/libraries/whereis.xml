@@ -5,7 +5,7 @@
         <refpurpose>name of library containing a function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[librname]=whereis(function-name)</synopsis>
     </refsynopsisdiv>
     <refsection>

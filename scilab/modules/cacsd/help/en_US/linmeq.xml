@@ -5,7 +5,7 @@
         <refpurpose>Sylvester and Lyapunov equations solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X(,sep)] = linmeq(task,A,(B,)C,flag,trans(,schur))</synopsis>
     </refsynopsisdiv>
     <refsection>

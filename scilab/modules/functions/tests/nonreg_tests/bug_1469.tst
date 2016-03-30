@@ -201,14 +201,14 @@ clear foo1;
 // ================ Test 17 ====================================================
 
 //pb execution des macros non compilee
-deff("y=foo(a,b,c)","y=a+b+c","n");
+deff("y=foo(a,b,c)","y=a+b+c");
 R17=foo("aaa","bbb","cc")=="aaabbbcc";
 if ~R17 then pause,end
 clear foo
 
 // ================ Test 18 ====================================================
 
-deff("y=foo(a,b,c)",["","y=a+b+c"],"n");
+deff("y=foo(a,b,c)",["","y=a+b+c"]);
 R18=foo("aaa","bbb","cc")=="aaabbbcc";
 if ~R18 then pause,end
 clear foo

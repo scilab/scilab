@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_function" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>Calls cost function.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [opt, f, index] = optimbase_function(opt, x, index)
             [opt, f, c, index] = optimbase_function(opt, x, index)
@@ -164,14 +167,14 @@
             optimization algorithm.
         </para>
         <para>
-            Each calling sequence of the <literal>optimbase_function</literal> function corresponds 
-            to a specific calling sequence of the user-provided cost function.
+            Each syntax of the <literal>optimbase_function</literal> function corresponds 
+            to a specific syntax of the user-provided cost function.
         </para>
         <itemizedlist>
             <listitem>
                 <para>
                     If the <literal>-withderivatives</literal> is false and there is no non-linear
-                    constraint, the calling sequence is
+                    constraint, the syntax is
                 </para>
                 <programlisting role="no-scilab-exec">
                     <![CDATA[ 
@@ -188,7 +191,7 @@
             <listitem>
                 <para>
                     If the <literal>-withderivatives</literal> is false and there are non-linear constraints, 
-                    the calling sequence is
+                    the syntax is
                 </para>
                 <programlisting role="no-scilab-exec">
                     <![CDATA[ 
@@ -207,7 +210,7 @@
             <listitem>
                 <para>
                     If the <literal>-withderivatives</literal> is true and there is no non-linear constraint, 
-                    the calling sequence is
+                    the syntax is
                 </para>
                 <programlisting role="no-scilab-exec">
                     <![CDATA[ 
@@ -226,7 +229,7 @@
             <listitem>
                 <para>
                     If the <literal>-withderivatives</literal> is true and there are non-linear constraints, 
-                    the calling sequence is
+                    the syntax is
                 </para>
                 <programlisting role="no-scilab-exec">
                     <![CDATA[ 
@@ -244,7 +247,7 @@
             </listitem>
         </itemizedlist>
         <para>
-            Each calling sequence corresponds to a particular class of algorithms, including for example
+            Each syntax corresponds to a particular class of algorithms, including for example
         </para>
         <itemizedlist>
             <listitem>
@@ -289,8 +292,8 @@
                 ]]>
         </programlisting>
         <para>
-            where the input arguments <literal>a1, a2, ...</literal> are automatically appended at 
-            the end of the calling sequence.
+            where the input arguments <literal>a1, a2, ...</literal> are automatically appended
+            as parameters to the call.
         </para>
     </refsection>
     <refsection>

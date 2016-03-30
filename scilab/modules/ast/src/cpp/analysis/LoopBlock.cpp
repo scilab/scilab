@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -19,19 +22,29 @@ bool LoopBlock::requiresAnotherTrip()
 {
     if (first)
     {
+        bool ret = false;
         for (auto & p : symMap)
         {
             tools::SymbolMap<Info>::iterator it;
-            Block * block = getParent()->getDefBlock(p.first, it, false);
-            if (block)
+            if (p.second.type.type != TIType::UNKNOWN)
             {
-                const Info & info = it->second;
-                if (info.type != p.second.type || !info.data->same(p.second.data))
+                Block * block = getParent()->getDefBlock(p.first, it, false);
+                if (block)
                 {
-                    return true;
+                    const Info & info = it->second;
+                    if (info.type != p.second.type || (info.type.type == TIType::DOUBLE && info.isAnInt() != p.second.isAnInt()))
+                    {
+                        getParent()->getExp()->getDecorator().addPromotion(p.first, info.type, p.second.type);
+                        ret = true;
+                    }
+                    else if (!info.data->same(p.second.data))
+                    {
+                        ret = true;
+                    }
                 }
             }
         }
+        return ret;
     }
     else
     {
@@ -136,7 +149,7 @@ void LoopBlockHead::finalize()
         }
 
         // ii) clone is in first and in second so we clone the data at each iteration
-        // iii) clone is only in second so we clone the daat at each iteration except for the first one
+        // iii) clone is only in second so we clone the data at each iteration except for the first one
         //      => for now, we clone at each iteration (TODO: improve that in removing clone at the first iteration)
         for (auto & p : inBoth)
         {

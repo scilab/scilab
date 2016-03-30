@@ -14,15 +14,13 @@
 cd(TMPDIR);
 name = 'gw_example1';
 table = ['sci_func1', 'func1'];
-WITHOUT_AUTO_PUTLHSVAR = %t;
 n1 = ilib_gen_gateway(name,table);
 r1 = fileinfo(n1);
-WITHOUT_AUTO_PUTLHSVAR = %f;
+table = ['sci_func1', 'func1';'sci_func2', 'func2'];
 n2 = ilib_gen_gateway(name,table);
 r2 = fileinfo(n2);
 // there is a modification then gateway must be modified
 if ~or(r1 <> r2) then bugmes();quit;end
-WITHOUT_AUTO_PUTLHSVAR = %f;
 n3 = ilib_gen_gateway(name,table);
 r3 = fileinfo(n3);
 // there is no modification 

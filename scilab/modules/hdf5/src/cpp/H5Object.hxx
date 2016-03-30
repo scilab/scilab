@@ -2,16 +2,19 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #ifdef _MSC_VER
-#pragma warning(disable: 4355) //disable Warning C4355: 'this' : used in base member initializer list 
+#pragma warning(disable: 4355) //disable Warning C4355: 'this' : used in base member initializer list
 #endif
 
 #ifndef __H5OBJECT_HXX__
@@ -51,13 +54,18 @@ class H5Object
 {
     static H5Object* root;
 
-    bool locked;
     H5Object & parent;
+    std::set<H5Object *> children;
+    bool locked;
     int scilabId;
 
     friend class H5AttributesList;
     friend class H5LinkList;
     friend class H5Dataset;
+
+protected: // for error report only
+
+    const std::string name;
 
 public :
 
@@ -254,7 +262,7 @@ public :
         scilabId = id;
     }
 
-    const int getScilabId() const
+    int getScilabId() const
     {
         return scilabId;
     }
@@ -398,8 +406,6 @@ protected :
         OpDataSoftLinkFilter(std::vector<std::string> * _name, std::vector<std::string> * _value, FilterType _type) : name(_name), value(_value), type(_type) { }
     };
 
-    const std::string name;
-    std::set<H5Object *> children;
     void registerChild(H5Object * child)
     {
         if (!locked)

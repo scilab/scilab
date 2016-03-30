@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -27,7 +30,7 @@ extern "C"
 #include "Thread_Wrapper.h"
 }
 
-typedef enum EnumCommand
+enum EnumCommand
 {
     AbortCommand,
     BreakCommand,
@@ -36,6 +39,7 @@ typedef enum EnumCommand
     DeleteCommand,
     EnableCommand,
     HelpCommand,
+    HelpShortCommand,
     ListCommand,
     NextCommand,
     QuitCommand,
@@ -47,6 +51,7 @@ typedef enum EnumCommand
 };
 
 const char fname[] = "debug";
+const std::string HELP_DEBUG_COMMAND("help debug");
 
 void print_help();
 EnumCommand getCommand(const std::wstring& command);
@@ -291,6 +296,22 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
+            if (ConfigVariable::getScilabMode() == SCILAB_NW || ConfigVariable::getScilabMode() == SCILAB_STD)
+            {
+                StorePrioritaryCommand(HELP_DEBUG_COMMAND.data());
+                return types::Function::OK;
+            }
+
+            //continue tp HelpShortCommand
+        }
+        case HelpShortCommand:
+        {
+            if (iRhs > 1)
+            {
+                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "help", 0);
+                return types::Function::Error;
+            }
+
             //help
             print_help();
             return types::Function::OK;
@@ -495,32 +516,35 @@ void print_help()
     //a,b,c,d,h,i,n,o,q,s,w
 
     sciprint(_("debug commands : \n"));
-    sciprint("  help (h)          : %s.\n", _("show this help"));
+    sciprint("  h                            : %s.\n", _("show this help"));
+    sciprint("  help                         : %s.\n", _("open debug documentation page"));
     sciprint("\n");
-    sciprint("  quit (q)          : %s.\n", _("stop debugging"));
-    sciprint("  where (w, bt)     : %s.\n", _("show callstack"));
+    sciprint("  (q)uit                       : %s.\n", _("stop debugging"));
+    sciprint("  (w)here or bt                : %s.\n", _("show callstack"));
     sciprint("\n");
-    sciprint("  exec (e) cmd      : %s.\n", _("execute cmd"));
-    sciprint("  run (r) cmd       : %s.\n", _("execute cmd"));
+    sciprint("  (e)xec cmd                   : %s.\n", _("execute cmd"));
+    sciprint("  (r)un cmd                    : %s.\n", _("execute cmd"));
     sciprint("\n");
-    sciprint("  continue (c)      : %s.\n", _("continue execution"));
-    sciprint("  abort (a)         : %s.\n", _("abort execution"));
-    sciprint("  next (n)          : %s.\n", _("continue to next statement"));
-    sciprint("  stepin (i, in)    : %s.\n", _("step into function"));
-    sciprint("  stepout (o, out)  : %s.\n", _("step outside function"));
+    sciprint("  (d)isp var                   : %s.\n", _("display variable"));
+    sciprint("  (p)rint var                  : %s.\n", _("display variable"));
     sciprint("\n");
-    sciprint("  breakpoint (break, b)\n     func [l [cond]]: %s.\n", _("set a breakpoint"));
-    sciprint("  delete (del)      : %s.\n", _("delete all breakpoints"));
-    sciprint("  delete (del) n    : %s.\n", _("delete a specific breakpoint"));
-    sciprint("  enable            : %s.\n", _("enable all breakpoints"));
-    sciprint("  enable n          : %s.\n", _("enable a specific breakpoint"));
-    sciprint("  disable           : %s.\n", _("disable all breakpoints"));
-    sciprint("  disable n         : %s.\n", _("disable a specific breakpoint"));
-    sciprint("  show (s)          : %s.\n", _("show all breakpoints"));
-    sciprint("  show (s) n        : %s.\n", _("show a specific breakpoint"));
+    sciprint("  (c)ontinue                   : %s.\n", _("continue execution"));
+    sciprint("  (a)bort                      : %s.\n", _("abort execution"));
+    sciprint("  step(n)ext or next           : %s.\n", _("continue to next statement"));
+    sciprint("  step(i)n or in               : %s.\n", _("step into function"));
+    sciprint("  step(o)ut or out             : %s.\n", _("step outside function"));
     sciprint("\n");
-    sciprint(_("  for more details, help debug.\n"));
-
+    sciprint("  (b)reakpoint or break\n     func [line [\"condition\"]] : %s.\n", _("add a breakpoint"));
+    sciprint("  (del)ete                     : %s.\n", _("delete all breakpoints"));
+    sciprint("  (del)ete n                   : %s.\n", _("delete a specific breakpoint"));
+    sciprint("  enable                       : %s.\n", _("enable all breakpoints"));
+    sciprint("  enable n                     : %s.\n", _("enable a specific breakpoint"));
+    sciprint("  disable                      : %s.\n", _("disable all breakpoints"));
+    sciprint("  disable n                    : %s.\n", _("disable a specific breakpoint"));
+    sciprint("  (s)how                       : %s.\n", _("show all breakpoints"));
+    sciprint("  (s)how n                     : %s.\n", _("show a specific breakpoint"));
+    sciprint("\n");
+    sciprint(_("  for more details, show help page.\n"));
 }
 
 EnumCommand getCommand(const std::wstring& command)
@@ -581,10 +605,16 @@ EnumCommand getCommand(const std::wstring& command)
         }
         case L'h':
         {
-            if (command.size() == 1 || command == L"help")
+            if (command.size() == 1)
+            {
+                return HelpShortCommand;
+            }
+
+            if (command == L"help")
             {
                 return HelpCommand;
             }
+
             break;
         }
         case L'l':

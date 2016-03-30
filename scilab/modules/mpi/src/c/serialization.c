@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011-2011 - DIGITEO - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <string.h>
@@ -314,7 +317,7 @@ static int serialize_int(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBu
                 sciErr = getMatrixOfUnsignedInteger64(_pvCtx, _piAddr, &iRows, &iCols, (unsigned long long**)&pvData);
                 break;
                 }
-        */ default:
+    */ default:
             FREE(piOut);
             return 1;
     }

@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -99,7 +102,7 @@ bool Variable::put(types::InternalType* _pIT, int _iLevel)
                 int iFuncProt = ConfigVariable::getFuncprot();
                 if (iFuncProt != 0)
                 {
-                    bool bEquals = false;
+                    bool bEquals = true;
                     if (pIT && pIT->isCallable())
                     {
                         if (pIT->isMacroFile())
@@ -121,13 +124,16 @@ bool Variable::put(types::InternalType* _pIT, int _iLevel)
                             return false;
                         }
 
-                        wchar_t pwstFuncName[1024];
-                        os_swprintf(pwstFuncName, 1024, L"%-24ls", name.getName().c_str());
-                        char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
+                        if (ConfigVariable::getWarningMode())
+                        {
+                            wchar_t pwstFuncName[1024];
+                            os_swprintf(pwstFuncName, 1024, L"%-24ls", name.getName().c_str());
+                            char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
 
-                        sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
-                        sciprint("\n");
-                        FREE(pstFuncName);
+                            sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
+                            sciprint("\n");
+                            FREE(pstFuncName);
+                        }
                     }
                 }
             }
@@ -320,7 +326,7 @@ bool Variables::getGlobalNameForWho(std::list<std::wstring>& lstVarName, int* iV
 {
     for (auto it : vars)
     {
-        if (it.second->empty() == false && it.second->isGlobal())
+        if (it.second->isGlobal())
         {
             std::wstring wstrVarName(it.first.getName().c_str());
             lstVarName.push_back(wstrVarName);
@@ -396,21 +402,21 @@ int Variables::getFunctionList(std::list<types::Callable *>& lst, std::wstring _
 {
     for (auto var : vars)
     {
-	if (var.second->empty())
-	{
-	    continue;
-	}
-	
-	if ((var.second->top()->m_iLevel == _iLevel || _iLevel == 1) && var.second->top()->m_pIT->isCallable())
-	{
-	    types::Callable * pCall = var.second->top()->m_pIT->getAs<types::Callable>();
-	    if (_stModuleName == L"" || _stModuleName == pCall->getModule())
-	    {
-		lst.push_back(pCall);
-	    }
-	}
+        if (var.second->empty())
+        {
+            continue;
+        }
+
+        if ((var.second->top()->m_iLevel == _iLevel || _iLevel == 1) && var.second->top()->m_pIT->isCallable())
+        {
+            types::Callable * pCall = var.second->top()->m_pIT->getAs<types::Callable>();
+            if (_stModuleName == L"" || _stModuleName == pCall->getModule())
+            {
+                lst.push_back(pCall);
+            }
+        }
     }
-    
+
     return static_cast<int>(lst.size());
 }
 

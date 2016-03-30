@@ -5,10 +5,10 @@
         <refpurpose>coefficients d'une matrice de polynômes  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>[C]=coeff(Mp [,v])</synopsis>
+        <title>Syntaxe</title>
+        <synopsis>C = coeff(Mp [,v])</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
@@ -34,22 +34,22 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>C=coeff(Mp)</literal>
             renvoie dans une grosse matrice <literal>C</literal> les coefficients de la
             matrice de polynômes <literal>Mp</literal>. <literal>C</literal> est
-            partitionnée comme <literal>C=[C0,C1,...,Ck]</literal> 
-            où les <literal>Ci</literal> sont arrangés dans l'ordre décroissant .
+            partitionnée comme <literal>C=[C0,C1,...,Ck]</literal>
+            où les <literal>Ci</literal> sont arrangés en ordre croissant, avec
             <literal>k = max(degree(Mp))</literal>
         </para>
         <para>
-            <literal>C=coeff(Mp,v)</literal> renvoie la matrice des coefficients avec les 
-            degrés dans <literal>v</literal>.
+            <literal>C = coeff(Mp,v)</literal> renvoie la matrice des coefficients des termes dont
+            les degrés sont indiqués dans <literal>v</literal>.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 s=poly(0,'s');
@@ -62,10 +62,9 @@ coeff(r)
 
 r = poly([-1-%i -1+2*%i 0],'s',"roots");
 coeff(r)
-
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[xn, rn] = rafiter(A, C_ptr, b, x0, [, nb_iter, verb])</synopsis>
     </refsynopsisdiv>
     <refsection>

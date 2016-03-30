@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -119,8 +122,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                     return types::Function::Error;
                 }
 
-                types::Polynom* pPolyNumOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
-                types::Polynom* pPolyDenOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
+                types::Polynom* pPolyNumOut = new types::Polynom(wstrName, pNum->getDims(), pNum->getDimsArray());
+                types::Polynom* pPolyDenOut = new types::Polynom(wstrName, pNum->getDims(), pNum->getDimsArray());
 
                 iMaxDegrNum = pNum->getMaxRank();
                 iMaxDegrDen = pDen->getMaxRank();

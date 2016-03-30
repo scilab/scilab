@@ -22,8 +22,8 @@ try
 catch
     ok=%t;
 end
-k  = 
+ k  = 
   F
-k  = 
+ k  = 
   T
 if ok then bugmes();quit;end

@@ -7,13 +7,13 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>123.33
-
+            
             a.*b
             a .*. b
-
+            
             %pi * (%e + ..
             %i)
-
+            
             cd ..
             dir ..
         </synopsis>
@@ -42,9 +42,8 @@
                     </para>
                     <para>
                         <note>
-                            Notez que lorsqu'un point suit un nombre entier il est
-                            considéré comme en faisant partie. Ainsi <literal>2.*x</literal> est évalué comme <literal>2.0*x</literal>
-                            et <literal>2 .*x</literal> est évalué comme <literal>(2).*x</literal>.
+                            Notez que lorsqu'un point est utilisé pour un opérateur, il n'est pas
+                            considéré comme faisant partie d'un nombre précédant ce point. Ainsi <literal>2.*x</literal> et <literal>2 .*x</literal> sont évalués comme <literal>(2).*x</literal> et pas comme <literal>2.0*x</literal>.
                         </note>
                     </para>
                 </listitem>
@@ -52,9 +51,9 @@
             <varlistentry>
                 <term>..</term>
                 <listitem>
-                    <para>A suivre. Deux points ou plus à la fin d'une ligne font en
+                    <para>Passage à la ligne. Deux points ou plus à la fin d'une ligne font en
                         sorte que la ligne suivante est considérée comme en étant la suite
-                        (le passage à la ligne n'est pas pris en compte).
+                        (le retour chariot n'est pas pris en compte).
                     </para>
                     <para>Les lignes de suite sont traitées par un préprocesseur dont
                         l'objet est de construire une ligne logique à partir d'une suite de
@@ -86,18 +85,66 @@ endfunction
                         n'importe où dans la ligne logique, même à l'intérieur d'une
                         expression.
                         <note>La différence entre lignes logiques et lignes physiques
-                        a son importance lors de l'édition (scinotes, edit), lors de profilage (profile, 
-                        showprofile, plotprofile), et dans les messages d'erreurs (whereami),
-                        lorsque le numéro de ligne est fourni ou affiché.
+                            a son importance lors de l'édition (scinotes, edit) et dans les messages d'erreurs (whereami),
+                            lorsque le numéro de ligne est fourni ou affiché.
                         </note>
                     </para>
+                    <para>
+                        Il y a des exception à cette règle dans un environnement matriciel afin
+                        de faciliter la lecture des scripts scilab. L'exemple suivant met à jour quelques
+                        différences entre l'environnement matriciel et non matriciel pour la marque de passage
+                        à la ligne.
+                    </para>
+                    <programlisting role=""><![CDATA[
+// Dans un environnement matriciel .. est la marque de passage à la ligne
+// sauf dans quelques cas où la lisibilité du script est importante
+
+// ma_matrice == [1 2 3 -4 5 6]
+ma_matrice = [ 1 2 3 -4 5 6] // le signe moins ici est unaire
+
+// ma_matrice == [1 2 -1 5 6]
+ma_matrice = [ 1 2 3 -... // le signe moins séparé par .. est toujours considéré comme une opération binaire
+4 5 6]
+                     ]]></programlisting>
+
+                    <para>
+                        Une erreur est générée si la marque de passage à la ligne est insérée dans un mot-clé, un nom de variable ou un mot reservé du langage.
+                    </para>
+                    <programlisting role=""><![CDATA[
+// ceci est possible en scilab
+for a_word = 1:10
+    disp("test " + string(a_word))
+end
+
+
+// cela génère une erreur
+for a_...
+word = 1:10
+    disp("test " + string(a_word))
+end
+// Scilab ne peut analyser correctement a_...word
+                    ]]></programlisting>
+                    <para>
+                        Une erreur est générée si autre chose qu'une commentaire suit la marque de passage à la ligne
+                    </para>
+
+                    <programlisting role=""><![CDATA[
+this_wont_work = 3 + ... 4 // Scilab ne sait pas analyser cette ligne
+
+this_wont_work_either = 3 + ... /* un commentaire
+sur plusieurs lignes suivi de texte */ 4
+
+this_works = 3 + ... /* un commentaire
+sur plusieurs lignes puis retour à la ligne */
+4
+                     ]]></programlisting>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Point decimal
 1.345
 x = [1 2 3];
@@ -105,17 +152,16 @@ x.^2 .*x // il faut absolument mettre un espace entre le 2 et le point
 
 // Dans le symbole de certains operateurs
 x = [1 2 3];
-x.^2 .*x  // Attention à l'espace :  2. * x  n'est pas   2 .* x !
+x .^ 2 .*x  // L'espace entre 2 et .* n'est pas nécessaire
 
 // Lorsqu'une matrice est écrite ligne par ligne, ".." peut être utilisé mais n'est pas obligatoire.
-N = [   ..
+N_ligne = [   ..
     63.    89.    3.   ..
     91.    56.    22.  ..
     15.    64.    40.  ..
     ]
-// Elle peut être plus simplement saisi (ou copié/collé depuis/dans la console ou un script),
-// sans devoir manuellement ajouter ".." à la fin de chaque ligne :
-N = [
+// Sans la marque de passage à la ligne la matrix est lue ligne par ligne
+N_carree = [
     63.    89.    3.
     91.    56.    22.
     15.    64.    40.
@@ -171,9 +217,6 @@ y = 12..
             </member>
             <member>
                 <link linkend="whereami">whereami</link>
-            </member>
-            <member>
-                <link linkend="showprofile">showprofile</link>
             </member>
             <member>
                 <link linkend="edit">edit</link>

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 17865)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -73,8 +73,7 @@ msgstr ""
 "niepustego łańcuchu znaków.\n"
 
 #, c-format
-msgid ""
-"%s: The XML Document has not an URI and there is no second argument.\n"
+msgid "%s: The XML Document has not an URI and there is no second argument.\n"
 msgstr ""
 
 #, c-format
@@ -103,8 +102,7 @@ msgid "%s: XMLList does not exist.\n"
 msgstr "%s: XMLList nie istnieje.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano '%s', '%s' "
 "lub '%s'.\n"

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -105,9 +108,9 @@ MacroOut FunctionBlock::getOuts(CompleteMacroSignature & cms)
         Block * block = getDefBlock(*s, it, false);
         if (block == this)
         {
-	    const TIType & ty = it->second.type;
-	    const SymbolicDimension rows(cmsGVN, cmsGVN.getValue(*ty.rows.getValue()->poly));
-	    const SymbolicDimension cols(cmsGVN, cmsGVN.getValue(*ty.cols.getValue()->poly));
+            const TIType & ty = it->second.type;
+            const SymbolicDimension rows(cmsGVN, cmsGVN.getValue(*ty.rows.getValue()->poly));
+            const SymbolicDimension cols(cmsGVN, cmsGVN.getValue(*ty.cols.getValue()->poly));
             v.emplace_back(TIType(cmsGVN, ty.type, rows, cols));
         }
         else
@@ -115,10 +118,10 @@ MacroOut FunctionBlock::getOuts(CompleteMacroSignature & cms)
             addGlobal(*s);
             if (block)
             {
-		const TIType & ty = it->second.type;
-		const SymbolicDimension rows(cmsGVN, cmsGVN.getValue(*ty.rows.getValue()->poly));
-		const SymbolicDimension cols(cmsGVN, cmsGVN.getValue(*ty.cols.getValue()->poly));
-		v.emplace_back(TIType(cmsGVN, ty.type, rows, cols));
+                const TIType & ty = it->second.type;
+                const SymbolicDimension rows(cmsGVN, cmsGVN.getValue(*ty.rows.getValue()->poly));
+                const SymbolicDimension cols(cmsGVN, cmsGVN.getValue(*ty.cols.getValue()->poly));
+                v.emplace_back(TIType(cmsGVN, ty.type, rows, cols));
             }
             else
             {
@@ -295,7 +298,9 @@ std::wostream & operator<<(std::wostream & out, const FunctionBlock & fblock)
         }
     }
 
-    out << L'\n';
+    out << L'\n'
+        << L"Constraint Manager\n" << fblock.constraintManager << L'\n';
+
     const std::map<TypeLocal, std::stack<int>> & temps = fblock.getTemp();
     if (temps.empty())
     {

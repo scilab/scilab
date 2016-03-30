@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -30,7 +33,7 @@ public :
     ~Struct();
     Struct();
     Struct(int _iRows, int _iCols);
-    Struct(int _iDims, int* _piDims);
+    Struct(int _iDims, const int* _piDims);
 
 private :
     Struct(Struct* _oCellCopyMe);
@@ -64,13 +67,13 @@ public :
     ** Clone
     ** Create a new List and Copy all values.
     */
-    InternalType*               clone();
+    Struct*                     clone();
 
-    bool                        set(int _iRows, int _iCols, SingleStruct* _pIT);
-    bool                        set(int _iRows, int _iCols, const SingleStruct* _pIT);
-    bool                        set(int _iIndex, SingleStruct* _pIT);
-    bool                        set(int _iIndex, const SingleStruct* _pIT);
-    bool                        set(SingleStruct** _pIT);
+    Struct*                     set(int _iRows, int _iCols, SingleStruct* _pIT);
+    Struct*                     set(int _iRows, int _iCols, const SingleStruct* _pIT);
+    Struct*                     set(int _iIndex, SingleStruct* _pIT);
+    Struct*                     set(int _iIndex, const SingleStruct* _pIT);
+    Struct*                     set(SingleStruct** _pIT);
 
     bool                        operator==(const InternalType& it);
     bool                        operator!=(const InternalType& it);
@@ -100,7 +103,7 @@ public :
         return false;
     }
 
-    bool                        subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    bool                        subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
     String*                     getFieldNames();
     bool                        exists(const std::wstring& _sKey);
     Struct*                     addField(const std::wstring& _sKey);
@@ -112,8 +115,8 @@ public :
     std::vector<InternalType*>  extractFields(typed_list* _pArgs);
     inline InternalType *       extractField(const std::wstring& wstField);
 
-    bool                        resize(int* _piDims, int _iDims);
-    bool                        resize(int _iNewRows, int _iNewCols);
+    Struct*                     resize(int* _piDims, int _iDims);
+    Struct*                     resize(int _iNewRows, int _iNewCols);
 
     /*specials functions to disable clone operation during copydata*/
     InternalType*               insertWithoutClone(typed_list* _pArgs, InternalType* _pSource);

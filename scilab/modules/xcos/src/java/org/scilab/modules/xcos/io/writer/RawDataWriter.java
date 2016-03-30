@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.xcos.io.writer;
@@ -53,7 +56,7 @@ public class RawDataWriter extends ScilabWriter {
             return;
         }
 
-        // reserve the size with null values
+        // reserve the size with empty values
         shared.dictionary.addAll(Collections.nCopies(dictionaryMap.size(), new ScilabDouble()));
 
         // push all the values
@@ -202,8 +205,8 @@ public class RawDataWriter extends ScilabWriter {
         /*
          * Emit the elements
          */
-        final int len = value.getHeight() * value.getWidth();
-        if (len > 0) {
+        final boolean isNotEmptyElement = value.getHeight() > 0 &&  value.getWidth() > 0;
+        if (isNotEmptyElement) {
             shared.stream.writeStartElement(localName);
         } else {
             shared.stream.writeEmptyElement(localName);
@@ -218,7 +221,7 @@ public class RawDataWriter extends ScilabWriter {
             writeMatrix(value, type, intPrecision);
         }
 
-        if (len > 0) {
+        if (isNotEmptyElement) {
             shared.stream.writeEndElement();
         }
     }
@@ -244,8 +247,8 @@ public class RawDataWriter extends ScilabWriter {
         for (int i = 0; i < value.getHeight(); i++) {
             for (int j = 0; j < value.getWidth(); j++) {
                 shared.stream.writeEmptyElement("data");
-                shared.stream.writeAttribute("column", Integer.toString(i));
-                shared.stream.writeAttribute("line", Integer.toString(j));
+                shared.stream.writeAttribute("line", Integer.toString(i));
+                shared.stream.writeAttribute("column", Integer.toString(j));
 
                 switch (type) {
                     case sci_boolean:

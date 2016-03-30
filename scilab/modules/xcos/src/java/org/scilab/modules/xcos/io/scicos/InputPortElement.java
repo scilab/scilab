@@ -1,20 +1,24 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.io.scicos;
 
+import java.rmi.server.UID;
 import java.util.List;
 
-import org.flexdock.util.UUID;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
@@ -102,7 +106,7 @@ public final class InputPortElement extends AbstractElement<InputPort> {
         data = (ScilabMList) element;
 
         port = allocatePort();
-        port.setId(UUID.randomUUID().toString());
+        port.setId(new UID().toString());
 
         port = beforeDecode(element, port);
 
@@ -129,7 +133,7 @@ public final class InputPortElement extends AbstractElement<InputPort> {
          * backward compatibility, use explicit as default.
          */
         if (graphics.size() <= GRAPHICS_INIMPL_INDEX) {
-            return new ExplicitInputPort(controller.createObject(Kind.PORT));
+            return new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
         ScilabType inImpl = graphics.get(GRAPHICS_INIMPL_INDEX);
 
@@ -137,7 +141,7 @@ public final class InputPortElement extends AbstractElement<InputPort> {
          * backward compatibility, use explicit as default.
          */
         if (isEmptyField(inImpl)) {
-            return new ExplicitInputPort(controller.createObject(Kind.PORT));
+            return new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
 
         final ScilabString inImplicit = (ScilabString) inImpl;
@@ -146,7 +150,7 @@ public final class InputPortElement extends AbstractElement<InputPort> {
          * backward compatibility, use explicit as default.
          */
         if (isEmptyField(inImplicit)) {
-            return new ExplicitInputPort(controller.createObject(Kind.PORT));
+            return new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
 
         final boolean isColumnDominant = inImplicit.getHeight() >= inImplicit.getWidth();
@@ -160,12 +164,12 @@ public final class InputPortElement extends AbstractElement<InputPort> {
          * when the type is set, create a new port instance; create an explicit typed port otherwise.
          */
         if (isSet && inimpl[indexes[0]][indexes[1]].equals(EXPLICIT)) {
-            ret = new ExplicitInputPort(controller.createObject(Kind.PORT));
+            ret = new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         } else if (isSet && inimpl[indexes[0]][indexes[1]].equals(IMPLICIT)) {
-            ret = new ImplicitInputPort(controller.createObject(Kind.PORT));
+            ret = new ImplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         } else {
             // when not specified, use explicit
-            ret = new ExplicitInputPort(controller.createObject(Kind.PORT));
+            ret = new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
 
         return ret;

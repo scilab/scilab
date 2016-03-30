@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -134,8 +137,35 @@ void DebuggerMagager::sendUpdate() const
 
 void DebuggerMagager::addBreakPoint(Breakpoint* bp)
 {
-    breakpoints.push_back(bp);
-    sendUpdate();
+    //check if breakpoint does not exist
+
+    bool add = true;
+    for (const auto b : breakpoints)
+    {
+        if (b->getFunctioName() != bp->getFunctioName())
+        {
+            continue;
+        }
+
+        if (b->getMacroLine() != bp->getMacroLine())
+        {
+            continue;
+        }
+
+        if (b->getCondition() != bp->getCondition())
+        {
+            continue;
+        }
+
+        //same breakpoint, cancel add
+        add = false;
+    }
+
+    if (add)
+    {
+        breakpoints.push_back(bp);
+        sendUpdate();
+    }
 }
 
 void DebuggerMagager::removeBreakPoint(int _iBreakPoint)

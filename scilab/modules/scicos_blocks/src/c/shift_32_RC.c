@@ -36,7 +36,7 @@ SCICOS_BLOCKS_IMPEXP void shift_32_RC(scicos_block *block, int flag)
 
     for (i = 0; i < mu * nu; i++)
     {
-         SCSINT32_COP v = u[i];
+        SCSINT32_COP v = u[i];
         for (j = 0; j < -ipar[0]; j++)
         {
             y[i] = v & 1;

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -17,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.zip.CRC32;
 import java.util.zip.ZipEntry;
@@ -38,6 +42,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import org.scilab.modules.commons.ScilabCommons;
 
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
@@ -110,6 +115,7 @@ public class XcosPackage {
      */
     private final File file;
     private Document manifest;
+    private final long time;
 
     /**
      * Entries encoder/decoder stored in the encoding order
@@ -119,7 +125,7 @@ public class XcosPackage {
      * <li>the order is the encoding order (from start to end)
      * <li>decoding will be performed from the end to the start
      */
-    private Entry[] availableEntries = new Entry[] { new ContentEntry(), new DictionaryEntry() };
+    private final Entry[] availableEntries = new Entry[] { new ContentEntry(), new DictionaryEntry() };
 
     /*
      * Data to store or load into
@@ -147,6 +153,8 @@ public class XcosPackage {
         manifest = ScilabDocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
         final Element root = manifest.createElementNS("urn:scilab:xcos:xmlns:manifest:0.1", "manifest:manifest");
         manifest.appendChild(root);
+
+        time = ScilabCommons.getScilabVersionTimestamp();
     }
 
     private boolean hasInvalidManifest() {
@@ -176,9 +184,8 @@ public class XcosPackage {
             // open the file on each entry to manage non well ordered (but still
             // valid) zip files
             final FileInputStream fis = new FileInputStream(file);
-            final ZipInputStream zin = new ZipInputStream(fis);
+            try (ZipInputStream zin = new ZipInputStream(fis)) {
 
-            try {
                 ZipEntry entry;
                 while ((entry = zin.getNextEntry()) != null) {
                     final String path = entry.getName();
@@ -195,8 +202,7 @@ public class XcosPackage {
                         }
                     }
                 }
-            } finally {
-                zin.close();
+
             }
         }
     }
@@ -204,8 +210,6 @@ public class XcosPackage {
     /**
      * Check an xcos file as a ZIP package.
      *
-     * @param file
-     *            the file to read
      * @throws IOException
      *             on I/O Exception or invalid format
      * @throws TransformerException
@@ -213,10 +217,9 @@ public class XcosPackage {
      */
     public void checkHeader() throws IOException, TransformerException {
         final FileInputStream fis = new FileInputStream(file);
-        final ZipInputStream zin = new ZipInputStream(fis);
+        try (ZipInputStream zin = new ZipInputStream(fis)) {
 
-        ZipEntry entry;
-        try {
+            ZipEntry entry;
             while ((entry = zin.getNextEntry()) != null) {
                 // extract data
                 // open output streams
@@ -245,8 +248,6 @@ public class XcosPackage {
                     manifest = (Document) result.getNode();
                 }
             }
-        } finally {
-            zin.close();
         }
 
         if (hasInvalidManifest()) {
@@ -256,24 +257,31 @@ public class XcosPackage {
 
     public void store() throws IOException {
         final FileOutputStream fos = new FileOutputStream(file);
-        final ZipOutputStream zout = new ZipOutputStream(fos);
+        try (ZipOutputStream zout = new ZipOutputStream(fos,  Charset.forName("UTF-8"))) {
 
-        try {
             // add the header (standard package)
             storeHeader(zout);
+            zout.flush();
 
             // store the entries in encoding order
             for (final Entry entry : availableEntries) {
                 entry.setup(this);
+
+                final ZipEntry zentry = new ZipEntry(entry.getFullPath());
+                zentry.setTime(getTime());
+                zout.putNextEntry(zentry);
+                zout.flush();
+
                 entry.store(zout);
+                zout.flush();
             }
 
             // store the manifest file
             storeTrailer(zout);
+            zout.flush();
+
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            zout.close();
         }
     }
 
@@ -287,6 +295,7 @@ public class XcosPackage {
         crc.update(MIME_BYTES);
         entry.setCrc(crc.getValue());
         entry.setMethod(ZipEntry.STORED);
+        entry.setTime(getTime());
         zout.putNextEntry(entry);
         zout.write(MIME_BYTES);
 
@@ -305,6 +314,7 @@ public class XcosPackage {
          * Append the entry
          */
         final ZipEntry entry = new ZipEntry(META_INF_MANIFEST_XML);
+        entry.setTime(getTime());
         zout.putNextEntry(entry);
 
         /*
@@ -343,6 +353,10 @@ public class XcosPackage {
 
     public ScilabList getDictionary() {
         return dictionary;
+    }
+
+    public long getTime() {
+        return time;
     }
 
     /*

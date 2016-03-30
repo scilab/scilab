@@ -4,11 +4,14 @@
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,7 +26,7 @@
  *    -Assumes that sparse matrices have been converted into the Matlab
  *    format. Scilab sparse matrices are stored in the transposed Matlab
  *    format. If A is a sparse Scilab matrix, it should be converted
- *    by the command A=mtlb_sparse(A) in the calling sequence of the
+ *    by the command A=mtlb_sparse(A) in the syntax of the
  *    mex function.
  *    -Structs and Cells are Scilab mlists:
  *    Struct=mlist(["st","dims","field1",...,"fieldk"],
@@ -1437,7 +1440,7 @@ int mxGetNumberOfFields(const mxArray *ptr)
     {
         return 0;
     }
-    
+
     types::Struct * pa = (types::Struct*)ptr;
     return pa->getFieldNames()->getSize();
 }
@@ -1463,7 +1466,7 @@ int mxGetFieldNumber(const mxArray *ptr, const char *string)
     {
         return -1;
     }
-    
+
     types::Struct *pa = (types::Struct *)ptr;
     types::String *names = pa->getFieldNames();
     wchar_t *field_name = to_wide_string(string);
@@ -1494,7 +1497,7 @@ mxArray *mxGetFieldByNumber(const mxArray *ptr, int lindex, int field_number)
     {
         return NULL;
     }
-    
+
     types::Struct *pa = (types::Struct *)ptr;
     types::String *names = pa->getFieldNames();
     types::SingleStruct *s = pa->get(lindex);
@@ -1517,7 +1520,7 @@ int mxAddField(mxArray *ptr, const char *fieldname)
     {
         return -1;
     }
-    
+
     types::Struct *pa = (types::Struct*)ptr;
     wchar_t *wfieldname = to_wide_string(fieldname);
     pa->addField(wfieldname);

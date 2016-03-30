@@ -6,7 +6,7 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>This page lists all available propeties for menus in Scilab GUI.</para>
+        <para>This page lists all available properties for menus in Scilab GUI.</para>
         <para>
             These properties can be set at creation through <link linkend="uimenu">uimenu</link> function.
         </para>

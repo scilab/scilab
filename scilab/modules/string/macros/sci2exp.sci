@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function t=sci2exp(a,nom,lmax)
@@ -175,7 +178,7 @@ function t=mat2exp(a,lmax)
     end
     a=String(a);
     dots="."+"."
-    t=[];
+    t="";
     if n==1 then
         x=strcat(a,";")
         lx=length(x)
@@ -319,7 +322,7 @@ function t=pol2exp(a,lmax)
             end
         end
         if i<m then x($)=x($)+";",end
-        if lmax>0 then
+        if lmax>0 | t==[] then
             t=[t;x]
         else
             t=t+x
@@ -596,7 +599,7 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
     f46="''event_handler_enable'', ";
     f47="''resizefcn'', ";
     f48="''closerequestfcn'', ";
-    x=[];
+    x="";
 
 
     if a.type=="uicontrol"
@@ -648,7 +651,13 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
         x=x+f16+"''"+a.Relief+"''"+", ";
         f17_strg=String(a.sliderStep); f17_strg="["+f17_strg(1)+" "+f17_strg(2)+"]";
         if a.sliderStep <> [0.01 0.1] then x=x+f17+f17_strg+", "; end
-        if a.String <>"" then x=x+f18+"''"+a.String+"''"+" ,"; end
+        if a.String <>"" then
+            if isempty(a.String)
+                x = x + f18 + "'''' ,";
+            else
+                x=x+f18+"''"+a.String+"''"+" ,";
+            end
+        end
         if a.Style <> "pushbutton" then x=x+f19+"''"+a.Style+"''"+", "; end
         if a.TooltipString <> "" then x=x+f20+"''"+a.TooltipString+"''"+", "; end
         if a.Units <> "pixels" then x=x+f21+"''"+a.Units+"''"+", "; end

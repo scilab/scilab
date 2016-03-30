@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
  * Copyright (C) 2010 - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optim_sa" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>A Simulated Annealing optimization method</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             x_best = optim_sa(x0,f,ItExt,ItInt,T0,Log,temp_law,param_temp_law,neigh_func,param_neigh_func)
             [x_best,f_best] = optim_sa(..)
@@ -375,7 +378,7 @@ Log = %f;
             input argument of the <literal>quadp</literal> function. In order to 
             pass this parameter to the objective function, we define the objective 
             function as <literal>list(quadp,p)</literal>. In this case,
-            the solver makes so that the calling sequence includes a second argument.
+            the solver makes so that the syntax includes a second argument.
         </para>
         <programlisting role="example"><![CDATA[ 
   function f = quadp ( x , p )

@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Scilab Enterprises - 2012 - Adeline CARNIS
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function y = nthroot(x,n)
 
@@ -28,6 +31,14 @@ function y = nthroot(x,n)
     // If n is a vector which size is different from x's
     if (size(n,"*")>1 & size(n,"*")<>size(x,"*")) then
         error(msprintf(gettext("%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"),"nthroot", 1, 2));
+    end
+    if isempty(x)
+        y = [];
+        return
+    end
+    if isempty(n)
+        y = x;
+        return
     end
 
     reste = modulo(n,2);

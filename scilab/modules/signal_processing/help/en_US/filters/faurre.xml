@@ -5,7 +5,7 @@
         <refpurpose>filter computation by simple Faurre algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,R,T]=faurre(n,H,F,G,R0)</synopsis>
     </refsynopsisdiv>
     <refsection>

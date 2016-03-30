@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -222,13 +225,16 @@ template<class T>
 void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 {
     CoverageInstance::invokeAndStartChrono((void*)&e);
+    types::InternalType *pITR = NULL; //assign only in non shortcut operations.
+    types::InternalType *pITL = NULL;
+    types::InternalType *pResult = NULL;
+
     try
     {
-        types::InternalType *pITR = NULL; //assign only in non shortcut operations.
 
         /*getting what to assign*/
         e.getLeft().accept(*this);
-        types::InternalType *pITL = getResult();
+        pITL = getResult();
         if (isSingleResult() == false)
         {
             std::wostringstream os;
@@ -248,8 +254,6 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 pIL->killMe();
             }
         }
-
-        types::InternalType *pResult = NULL;
 
         switch (e.getOper())
         {
@@ -350,7 +354,19 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
     }
     catch (ast::InternalError& error)
     {
-        clearResult();
+        setResult(NULL);
+        if (pResult)
+        {
+            pResult->killMe();
+        }
+        if (pITL && (pITL != pResult))
+        {
+            pITL->killMe();
+        }
+        if (pITR && (pITR != pResult))
+        {
+            pITR->killMe();
+        }
         error.SetErrorLocation(e.getLocation());
         CoverageInstance::stopChrono((void*)&e);
         throw error;
