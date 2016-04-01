@@ -15,7 +15,9 @@
  */
 
 
+#ifdef _MSC_VER
 #pragma comment(lib,"../../../../../bin/libintl.lib")
+#endif
 
 #include <cstdio>
 #include <iostream>
