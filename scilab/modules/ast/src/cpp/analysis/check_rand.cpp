@@ -102,7 +102,6 @@ TIType Checkers::check_rand(GVN & gvn, const TIType & in0, const TIType & in1)
     {
         return TIType(gvn);
     }
-    return TIType(gvn);
 }
 
 } // namespace analysis
