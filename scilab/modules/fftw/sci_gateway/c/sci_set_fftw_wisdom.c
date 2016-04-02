@@ -101,7 +101,6 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
     {
         free(piLen);
         freeArrayOfString(Str1, m1 * n1);
-        free(Str1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -122,6 +121,7 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
         if (Str == NULL)
         {
             freeArrayOfString(Str1, m1 * n1);
+            free(piLen);
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
             return 1;
         }

@@ -89,7 +89,6 @@ int sci_addlocalizationdomain(char *fname, void* pvApiCtx)
     pstRet = bindtextdomain(pstDomain, expandedPath);
 
     freeAllocatedSingleString(pstPath);
-    freeAllocatedSingleString(pstDomain);
     FREE(expandedPath);
 
     if (pstRet == NULL)
@@ -108,6 +107,7 @@ int sci_addlocalizationdomain(char *fname, void* pvApiCtx)
         return 0;
     }
 
+    freeAllocatedSingleString(pstDomain);
     AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
     ReturnArguments(pvApiCtx);
     return 0;

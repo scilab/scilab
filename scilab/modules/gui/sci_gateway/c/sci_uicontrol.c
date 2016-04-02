@@ -310,18 +310,21 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
+                        FREE(propertiesValuesIndices);
                         return 1;
                     }
 
                     if (isScalar(pvApiCtx, piAddr) == 0)
                     {
                         Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
+                        FREE(propertiesValuesIndices);
                         return FALSE;
                     }
 
                     if (getScalarDouble(pvApiCtx, piAddr, &dblValue))
                     {
                         Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
+                        FREE(propertiesValuesIndices);
                         return 1;
                     }
 
@@ -331,6 +334,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                              "Frame uicontrol");
+                    FREE(propertiesValuesIndices);
                     return FALSE;
                 }
             }
@@ -342,6 +346,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(propertiesValuesIndices);
                     return 1;
                 }
 
@@ -349,12 +354,14 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                              "Frame uicontrol");
+                    FREE(propertiesValuesIndices);
                     return FALSE;
                 }
 
                 if (getScalarHandle(pvApiCtx, piAddr, &hParent))
                 {
                     Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 1);
+                    FREE(propertiesValuesIndices);
                     return 1;
                 }
 
@@ -365,6 +372,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                          "Frame uicontrol");
+                FREE(propertiesValuesIndices);
                 return FALSE;
             }
 
@@ -377,6 +385,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                              "Frame uicontrol");
+                    FREE(propertiesValuesIndices);
                     return FALSE;
                 }
             }
@@ -403,6 +412,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
             if ((!checkInputArgumentType(pvApiCtx, inputIndex, sci_strings)))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, inputIndex);
+                FREE(propertiesValuesIndices);
                 return FALSE;
             }
             else
@@ -412,12 +422,14 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(propertiesValuesIndices);
                     return 1;
                 }
 
                 if (getAllocatedSingleString(pvApiCtx, piAddr, &propertyName))
                 {
                     Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, inputIndex);
+                    FREE(propertiesValuesIndices);
                     return 1;
                 }
 
@@ -439,13 +451,14 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                     }
                 }
 
-                freeAllocatedSingleString(propertyName);
-
                 if (found == 0)
                 {
                     Scierror(999, _("%s: Unknown property: %s for '%s' handles.\n"), fname, propertyName, "Uicontrol");
+                    freeAllocatedSingleString(propertyName);
+                    FREE(propertiesValuesIndices);
                     return FALSE;
                 }
+                freeAllocatedSingleString(propertyName);
             }
         }
 
@@ -458,12 +471,14 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(propertiesValuesIndices);
                     return 1;
                 }
 
                 if (getAllocatedSingleString(pvApiCtx, piAddr, &styleProperty))
                 {
                     Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, propertiesValuesIndices[style_property]);
+                    FREE(propertiesValuesIndices);
                     return 1;
                 }
 
@@ -478,12 +493,14 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                         if (sciErr.iErr)
                         {
                             printError(&sciErr, 0);
+                            FREE(propertiesValuesIndices);
                             return 1;
                         }
 
                         if (isStringType(pvApiCtx, piAddr) == 0 && isBooleanType(pvApiCtx, piAddr) == 0 && isScalar(pvApiCtx, piAddr) == 0)
                         {
                             Scierror(202, _("%s: Wrong type for argument #%d: string or boolean expected.\n"), fname, propertiesValuesIndices[scrollable_property]);
+                            FREE(propertiesValuesIndices);
                             return 1;
                         }
 
@@ -492,6 +509,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                             if (getAllocatedSingleString(pvApiCtx, piAddr, &pstScroll))
                             {
                                 Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, propertiesValuesIndices[scrollable_property]);
+                                FREE(propertiesValuesIndices);
                                 return 1;
                             }
 
@@ -507,6 +525,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                             if (getScalarBoolean(pvApiCtx, piAddr, &iScroll))
                             {
                                 Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, propertiesValuesIndices[scrollable_property]);
+                                FREE(propertiesValuesIndices);
                                 return 1;
                             }
                         }
@@ -524,6 +543,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
             else
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, propertiesValuesIndices[style_property]);
+                FREE(propertiesValuesIndices);
                 return FALSE;
             }
         }
@@ -534,6 +554,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
         if (iUicontrol == 0) /* Error in creation */
         {
             Scierror(999, _("%s: Could not create 'Uicontrol' handle.\n"), fname);
+            FREE(propertiesValuesIndices);
             return FALSE;
         }
         GraphicHandle = getHandle(iUicontrol);
@@ -568,6 +589,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(propertiesValuesIndices);
                     return 1;
                 }
 
@@ -590,6 +612,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                             {
                                 printError(&sciErr, 0);
                                 Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                                FREE(propertiesValuesIndices);
                                 return 1;
                             }
 
@@ -604,6 +627,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                                 if (getAllocatedMatrixOfString(pvApiCtx, piAddr, &nbRow, &nbCol, &pstValue))
                                 {
                                     Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                                    FREE(propertiesValuesIndices);
                                     return 1;
                                 }
 
@@ -616,6 +640,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                                 if (getAllocatedSingleString(pvApiCtx, piAddr, &pstValue))
                                 {
                                     Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                                    FREE(propertiesValuesIndices);
                                     return 1;
                                 }
 
@@ -633,6 +658,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                             {
                                 printError(&sciErr, 0);
                                 Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                                FREE(propertiesValuesIndices);
                                 return 1;
                             }
 
@@ -652,6 +678,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 if (setStatus == SET_PROPERTY_ERROR)
                 {
                     Scierror(999, _("%s: Could not set property '%s'.\n"), fname, (char*)propertiesNames[inputIndex]);
+                    FREE(propertiesValuesIndices);
                     return FALSE;
                 }
             }
