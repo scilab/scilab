@@ -447,6 +447,7 @@ int getAllocatedSingleString(void* _pvCtx, int* _piAddress, char** _pstData)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_SINGLE_STRING, _("%s: Unable to get argument data"), "getAllocatedSingleString");
         printError(&sciErr, 0);
+        FREE(*_pstData);
         return sciErr.iErr;
     }
 
@@ -512,6 +513,7 @@ int getAllocatedMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int*
             FREE(piLen);
             piLen = NULL;
         }
+        FREE(*_pstData);
         return sciErr.iErr;
     }
 
@@ -530,6 +532,7 @@ int getAllocatedMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int*
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_STRING_MATRIX, _("%s: Unable to get argument data"), "getAllocatedMatrixOfString");
         printError(&sciErr, 0);
+        FREE(*_pstData);
         return sciErr.iErr;
     }
 
