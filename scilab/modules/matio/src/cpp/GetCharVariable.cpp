@@ -102,6 +102,7 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
         char** ppcName = (char**)MALLOC(sizeof(char*) * pDims[0] * pDims[1]);
         if (ppcName == NULL)
         {
+            FREE(psize_t);
             Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
             return NULL;
         }
@@ -110,14 +111,15 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
         if (pstMatData == NULL)
         {
             FREE(ppcName);
+            FREE(psize_t);
             Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
             return NULL;
         }
-
+        
         for (int i = 0; i < pDims[0]; ++i)
         {
             ppcName[i] = wide_string_to_UTF8(pStr->get(i));
-            if (pstMatData == NULL)
+            if (ppcName[i] == NULL)
             {
                 for (int idelete = 0; idelete < i; ++idelete)
                 {
@@ -125,11 +127,11 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
                 }
                 FREE(ppcName);
                 FREE(pstMatData);
+                FREE(psize_t);
                 Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
                 return NULL;
             }
         }
-
 
         for (int i = 0; i < pDims[0]; ++i)
         {

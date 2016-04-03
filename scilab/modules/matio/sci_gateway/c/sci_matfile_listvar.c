@@ -96,6 +96,8 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
         if (varnames == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
+            FREE(varclasses);
+            FREE(vartypes);
             return FALSE;
         }
         varnames[nbvar - 1] = os_strdup(matvar->name);
@@ -103,6 +105,8 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
         if (varclasses  == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
+            FREE(vartypes);
+            FREE(varnames);
             return FALSE;
         }
         varclasses[nbvar - 1] = (double) matvar->class_type;
@@ -110,6 +114,8 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
         if (vartypes == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
+            FREE(varnames);
+            FREE(varclasses);
             return FALSE;
         }
         vartypes[nbvar - 1] = (double) matvar->data_type;

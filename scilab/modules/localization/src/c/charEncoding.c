@@ -267,10 +267,10 @@ wchar_t *to_wide_string(const char *_UTFStr)
         iconv_close(cd_ISO8851_to_UTF16);
         if (iSize == (size_t)(-1))
         {
+            FREE(pOut);
             return NULL;
         }
     }
-
     return pOutSave;
 }
 /*--------------------------------------------------------------------------*/

@@ -111,8 +111,8 @@ matvar_t* GetIntegerMatVar(types::InternalType* pITIn, const char *name)
 #endif
         default:
             Scierror(999, _("%s: Wrong type for input argument #%d: Integer matrix expected.\n"), "GetIntegerMatVar", 1);
+            FREE(psize_t);
             return NULL;
-            break;
     }
 
     FREE(psize_t);

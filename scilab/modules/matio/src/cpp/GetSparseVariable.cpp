@@ -70,6 +70,8 @@ matvar_t* GetSparseMatVar(types::Sparse* pSparse, const char *name)
     {
         FREE(sparseData);
         Scierror(999, _("%s: No more memory.\n"), "GetSparseMatVar");
+        delete[] colPos;
+        delete[] itemsRow;
         return NULL;
     }
 
@@ -85,6 +87,8 @@ matvar_t* GetSparseMatVar(types::Sparse* pSparse, const char *name)
     {
         FREE(sparseData);
         FREE(colIndexes);
+        delete[] colPos;
+        delete[] itemsRow;
         Scierror(999, _("%s: No more memory.\n"), "GetSparseVariable");
         return NULL;
     }
@@ -118,19 +122,19 @@ matvar_t* GetSparseMatVar(types::Sparse* pSparse, const char *name)
     }
 
     psize_t = (size_t*)MALLOC(Dims * sizeof(size_t));
-    if (rowIndexes == NULL)
+    if (psize_t == NULL)
     {
         FREE(sparseData);
         FREE(rowIndexes);
         FREE(colIndexes);
+        delete[] itemsRow;
+        delete[] colPos;
+        delete[] iPositVal;
         Scierror(999, _("%s: No more memory.\n"), "GetSparseVariable");
         return NULL;
     }
-
     psize_t[0] = (int)pDims[1];
     psize_t[1] = (int)pDims[0];
-
-
 
     if (pSparse->isComplex())
     {
@@ -143,6 +147,9 @@ matvar_t* GetSparseMatVar(types::Sparse* pSparse, const char *name)
             FREE(sparseData);
             FREE(colIndexes);
             FREE(rowIndexes);
+            delete[] itemsRow;
+            delete[] colPos;
+            delete[] iPositVal;
             Scierror(999, _("%s: No more memory.\n"), "GetSparseMatVar");
             return NULL;
         }
@@ -154,6 +161,9 @@ matvar_t* GetSparseMatVar(types::Sparse* pSparse, const char *name)
             FREE(sparseData);
             FREE(colIndexes);
             FREE(rowIndexes);
+            delete[] itemsRow;
+            delete[] colPos;
+            delete[] iPositVal;
             Scierror(999, _("%s: No more memory.\n"), "GetSparseMatVar");
             return NULL;
         }
@@ -166,6 +176,9 @@ matvar_t* GetSparseMatVar(types::Sparse* pSparse, const char *name)
             FREE(sparseData);
             FREE(colIndexes);
             FREE(rowIndexes);
+            delete[] itemsRow;
+            delete[] colPos;
+            delete[] iPositVal;
             Scierror(999, _("%s: No more memory.\n"), "GetSparseMatVar");
             return NULL;
         }
@@ -195,6 +208,9 @@ matvar_t* GetSparseMatVar(types::Sparse* pSparse, const char *name)
             FREE(sparseData);
             FREE(colIndexes);
             FREE(rowIndexes);
+            delete[] itemsRow;
+            delete[] colPos;
+            delete[] iPositVal;
             Scierror(999, _("%s: No more memory.\n"), "GetSparseMatVar");
             return NULL;
         }
@@ -211,5 +227,8 @@ matvar_t* GetSparseMatVar(types::Sparse* pSparse, const char *name)
     }
 
     FREE(psize_t);
+    delete[] iPositVal;
+    delete[] colPos;
+    delete[] itemsRow;
     return pMatVarOut;
 }

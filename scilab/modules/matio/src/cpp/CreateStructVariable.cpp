@@ -52,6 +52,7 @@ int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
     {
         types::Struct* pStruct = new types::Struct();
         out[rhs - 1] = pStruct;
+        FREE(piDims);
         return TRUE;
     }
 

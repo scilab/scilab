@@ -76,6 +76,7 @@ matvar_t* GetStructMatVar(types::Struct* pStruct, const char *name, int matfile_
     if (structEntries == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "GetStructMatVar");
+        FREE(pszDims);
         return NULL;
     }
 

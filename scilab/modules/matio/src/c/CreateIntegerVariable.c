@@ -87,6 +87,7 @@ int CreateIntegerVariable(void *pvApiCtx, int iVar, int integerType, matvar_t *m
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(tmp_int8);
                     return 0;
                 }
 
@@ -121,6 +122,7 @@ int CreateIntegerVariable(void *pvApiCtx, int iVar, int integerType, matvar_t *m
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(tmp_int16);
                     return 0;
                 }
 
@@ -156,6 +158,7 @@ int CreateIntegerVariable(void *pvApiCtx, int iVar, int integerType, matvar_t *m
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(tmp_int32);
                     return 0;
                 }
 
@@ -190,6 +193,7 @@ int CreateIntegerVariable(void *pvApiCtx, int iVar, int integerType, matvar_t *m
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(tmp_int64);
                     return 0;
                 }
 
@@ -224,6 +228,7 @@ int CreateIntegerVariable(void *pvApiCtx, int iVar, int integerType, matvar_t *m
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(tmp_uint8);
                     return 0;
                 }
 
@@ -256,6 +261,7 @@ int CreateIntegerVariable(void *pvApiCtx, int iVar, int integerType, matvar_t *m
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(tmp_uint16);
                     return 0;
                 }
 
@@ -288,6 +294,7 @@ int CreateIntegerVariable(void *pvApiCtx, int iVar, int integerType, matvar_t *m
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(tmp_uint32);
                     return 0;
                 }
 
@@ -320,6 +327,7 @@ int CreateIntegerVariable(void *pvApiCtx, int iVar, int integerType, matvar_t *m
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(tmp_uint64);
                     return 0;
                 }
 
