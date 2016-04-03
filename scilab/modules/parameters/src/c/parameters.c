@@ -715,7 +715,6 @@ SciErr getColVectorOfDoubleInPList(void* _pvCtx, int * _piAddress, const char * 
     int pos_label = 0, i = 0;
     int m_label = 0, n_label = 0;
     int m_tmp = 0, n_tmp = 0;
-    int * len_label = NULL;
     double * tmp_values = NULL;
     char ** label_list = NULL;
     SciErr _SciErr;
@@ -728,11 +727,6 @@ SciErr getColVectorOfDoubleInPList(void* _pvCtx, int * _piAddress, const char * 
     pos_label = commonFindLabel(_pvCtx, _piAddress, _pstLabel);
     *_piFound = pos_label;
 
-    if (len_label)
-    {
-        FREE(len_label);
-        len_label = NULL;
-    }
     freeArrayOfString(label_list, m_label * n_label);
 
     if (pos_label != -1)

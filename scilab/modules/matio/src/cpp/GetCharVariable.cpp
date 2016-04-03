@@ -115,7 +115,7 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
             Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
             return NULL;
         }
-        
+
         for (int i = 0; i < pDims[0]; ++i)
         {
             ppcName[i] = wide_string_to_UTF8(pStr->get(i));
