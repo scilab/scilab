@@ -84,7 +84,7 @@ int createBorder(void* _pvCtx, int* _piAddrList, int _iParent)
     int iRows = 0;
     int iCols = 0;
     char* pstType = NULL;
-
+    int ret = 0; //empty uid
 
     sciErr = getListItemAddress(_pvCtx, _piAddrList, 1, &piAddr);
     if (sciErr.iErr)
@@ -98,8 +98,7 @@ int createBorder(void* _pvCtx, int* _piAddrList, int _iParent)
     }
 
     pstType = pstField[0];
-    int ret = 0; //empty uid
-    
+
     //depend of kind of tlist
     if (strcmp(pstType, "NoBorder") == 0)
     {
