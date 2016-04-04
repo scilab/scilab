@@ -422,6 +422,8 @@ In 6.0.0:
 
 * Bug #14453 fixed - strcat([]) now returns [] instead of null string
 
+* Bug #14455       - macr2tree crashed when passing a FieldExp
+
 * Bug #14468 fixed - Scinotes was unable to export to HTML.
 
 * Bug #14471 fixed - strange([]) returned [] instead of %nan as all other functions for statistical dispersion

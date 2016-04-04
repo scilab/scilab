@@ -520,7 +520,7 @@ void TreeVisitor::visit(const AssignExp &e)
     if (left.isCallExp())
     {
         CallExp* call = left.getAs<CallExp>();
-        types::List* ins = createOperation();
+        types::List* operation = createOperation();
         types::List* lhs = new types::List();
         //varname
         call->getName().accept(*this);
@@ -542,14 +542,14 @@ void TreeVisitor::visit(const AssignExp &e)
         {
             dlhs[0] = 1;//lhs = 1
         }
-        ins->append(lhs);
+        operation->append(lhs);
         lhs->killMe();
 
         //operator
-        ins->append(new types::String(L"ins"));
+        operation->append(new types::String(L"ins"));
         types::List* lst = new types::List();
-        lst->append(ins);
-        ins->killMe();
+        lst->append(operation);
+        operation->killMe();
         assign->append(lst);
         lst->killMe();
     }
@@ -619,39 +619,49 @@ void TreeVisitor::visit(const AssignExp &e)
 
 void TreeVisitor::visit(const CallExp &e)
 {
-    types::TList* call = new types::TList();
-
-    //header
-    types::String* varstr = new types::String(1, 4);
-    varstr->set(0, L"funcall");
-    varstr->set(1, L"rhs");
-    varstr->set(2, L"name");
-    varstr->set(3, L"lhsnb");
-    call->append(varstr);
-
-    //rhs
-    types::List* rhs = new types::List();
-    ast::exps_t args = e.getArgs();
-    for (auto arg : args)
+    if (e.getName().isSimpleVar())
     {
-        arg->accept(*this);
-        types::List* tmp = getList();
-        rhs->append(tmp);
-        tmp->killMe();
+        const ast::SimpleVar & var = static_cast<const ast::SimpleVar &>(e.getName());
+
+        types::TList* call = new types::TList();
+
+        //header
+        types::String* varstr = new types::String(1, 4);
+        varstr->set(0, L"funcall");
+        varstr->set(1, L"rhs");
+        varstr->set(2, L"name");
+        varstr->set(3, L"lhsnb");
+        call->append(varstr);
+
+        //rhs
+        types::List* rhs = new types::List();
+        ast::exps_t args = e.getArgs();
+        for (auto arg : args)
+        {
+            arg->accept(*this);
+            types::List* tmp = getList();
+            rhs->append(tmp);
+            tmp->killMe();
+        }
+
+        call->append(rhs);
+        rhs->killMe();
+
+        //name
+        const std::wstring & name = var.getSymbol().getName();
+        call->append(new types::String(name.c_str()));
+
+        //lhsnb
+        //use default value 1
+        //parent exp like assign can adapt it.
+        call->append(new types::Double(1));
+
+        l = call;
     }
-
-    call->append(rhs);
-    rhs->killMe();
-
-    //name
-    call->append(new types::String(e.getName().getAs<SimpleVar>()->getSymbol().getName().c_str()));
-
-    //lhsnb
-    //use default value 1
-    //parent exp like assign can adapt it.
-    call->append(new types::Double(1));
-
-    l = call;
+    else
+    {
+        //not yet managed
+    }
 }
 
 void TreeVisitor::visit(const ForExp &e)
