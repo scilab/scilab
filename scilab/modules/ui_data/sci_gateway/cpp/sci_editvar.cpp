@@ -199,7 +199,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
     if (strcmp(pStVarOne, "ans") == 0)
     {
         Scierror(999, _("%s: ans cannot be edited.\n"), fname);
-        FREE(pStVarOne);
+        freeAllocatedSingleString(pStVarOne);
         return 0;
     }
 
@@ -208,7 +208,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         Scierror(4, _("%s: Undefined variable: %s.\n"), fname, pStVarOne);
-        FREE(pStVarOne);
+        freeAllocatedSingleString(pStVarOne);
         return 0;
     }
 
@@ -239,7 +239,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
             strcmp(pStVarOne, "TMPDIR") 	== 0 )
     {
         Scierror(13, _("Redefining permanent variable.\n"), fname);
-        FREE(pStVarOne);
+        freeAllocatedSingleString(pStVarOne);
         return 0;
     }
 
@@ -250,7 +250,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             Scierror(4, _("%s: Undefined variable: %s.\n"), fname, pStVarOne);
-            FREE(pStVarOne);
+            freeAllocatedSingleString(pStVarOne);
             return 0;
         }
     }
@@ -259,9 +259,9 @@ int sci_editvar(char * fname, void* pvApiCtx)
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
         if (sciErr.iErr)
         {
-            FREE(pStVarOne);
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            freeAllocatedSingleString(pStVarOne);
             return 0;
         }
     }
@@ -273,23 +273,23 @@ int sci_editvar(char * fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
-            FREE(pStVarOne);
+            freeAllocatedSingleString(pStVarOne);
             return 0;
         }
 
         if (!isDoubleType(pvApiCtx, addr))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Double expected.\n"), fname, 3);
-            FREE(pStVarOne);
+            freeAllocatedSingleString(pStVarOne);
             return 0;
         }
 
         sciErr = getMatrixOfDouble(pvApiCtx, addr, &iRows, &iCols, &rowsIndex);
         if (sciErr.iErr)
         {
-            FREE(pStVarOne);
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+            freeAllocatedSingleString(pStVarOne);
             return 0;
         }
 
@@ -300,23 +300,23 @@ int sci_editvar(char * fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
-            FREE(pStVarOne);
+            freeAllocatedSingleString(pStVarOne);
             return 0;
         }
 
         if (!isDoubleType(pvApiCtx, addr))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Double expected.\n"), fname, 4);
-            FREE(pStVarOne);
+            freeAllocatedSingleString(pStVarOne);
             return 0;
         }
 
         sciErr = getMatrixOfDouble(pvApiCtx, addr, &iRows, &iCols, &colsIndex);
         if (sciErr.iErr)
         {
-            FREE(pStVarOne);
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
+            freeAllocatedSingleString(pStVarOne);
             return 0;
         }
 
@@ -329,9 +329,9 @@ int sci_editvar(char * fname, void* pvApiCtx)
     sciErr = getVarType(pvApiCtx, piAddr, &iType);
     if (sciErr.iErr)
     {
-        FREE(pStVarOne);
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        freeAllocatedSingleString(pStVarOne);
         return 0;
     }
 
@@ -349,9 +349,9 @@ int sci_editvar(char * fname, void* pvApiCtx)
                 sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
                 if (sciErr.iErr)
                 {
-                    FREE(pStVarOne);
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    freeAllocatedSingleString(pStVarOne);
                     return 0;
                 }
 
@@ -403,9 +403,9 @@ int sci_editvar(char * fname, void* pvApiCtx)
                 sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
                 if (sciErr.iErr)
                 {
-                    FREE(pStVarOne);
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    freeAllocatedSingleString(pStVarOne);
                     return 0;
                 }
                 /*
@@ -440,9 +440,9 @@ int sci_editvar(char * fname, void* pvApiCtx)
             //retrieve data
             if (getAllocatedMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &pstData))
             {
-                FREE(pStVarOne);
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                freeAllocatedSingleString(pStVarOne);
                 return 0;
             }
 
@@ -480,9 +480,9 @@ int sci_editvar(char * fname, void* pvApiCtx)
             sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &piBool);
             if (sciErr.iErr)
             {
-                FREE(pStVarOne);
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                freeAllocatedSingleString(pStVarOne);
                 return 0;
             }
 
@@ -519,9 +519,9 @@ int sci_editvar(char * fname, void* pvApiCtx)
             sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &prec);
             if (sciErr.iErr)
             {
-                FREE(pStVarOne);
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                freeAllocatedSingleString(pStVarOne);
                 return 0;
             }
 
@@ -533,6 +533,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        freeAllocatedSingleString(pStVarOne);
                         return -1;
                     }
 
@@ -565,6 +566,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        freeAllocatedSingleString(pStVarOne);
                         return -1;
                     }
 
@@ -597,6 +599,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        freeAllocatedSingleString(pStVarOne);
                         return -1;
                     }
 
@@ -629,6 +632,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        freeAllocatedSingleString(pStVarOne);
                         return -1;
                     }
 
@@ -661,6 +665,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        freeAllocatedSingleString(pStVarOne);
                         return -1;
                     }
 
@@ -693,6 +698,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        freeAllocatedSingleString(pStVarOne);
                         return -1;
                     }
 
@@ -720,8 +726,8 @@ int sci_editvar(char * fname, void* pvApiCtx)
                     break;
 
                 default :
-
                     Scierror(42, _("%s: Type not handle yet"), fname);
+                    freeAllocatedSingleString(pStVarOne);
                     return 0;
             }
 
@@ -731,9 +737,9 @@ int sci_editvar(char * fname, void* pvApiCtx)
             sciErr = getBooleanSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos);
             if (sciErr.iErr)
             {
-                FREE(pStVarOne);
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                freeAllocatedSingleString(pStVarOne);
                 return 0;
             }
 
@@ -764,9 +770,9 @@ int sci_editvar(char * fname, void* pvApiCtx)
                 sciErr = getComplexSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
                 if (sciErr.iErr)
                 {
-                    FREE(pStVarOne);
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    freeAllocatedSingleString(pStVarOne);
                     return 0;
                 }
 
@@ -798,9 +804,9 @@ int sci_editvar(char * fname, void* pvApiCtx)
                 sciErr = getSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos, &pdblReal);
                 if (sciErr.iErr)
                 {
-                    FREE(pStVarOne);
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    freeAllocatedSingleString(pStVarOne);
                     return 0;
                 }
 
@@ -827,12 +833,14 @@ int sci_editvar(char * fname, void* pvApiCtx)
             }
             break;
         default:
-
             Scierror(42, _("%s: Type not handle yet"), fname);
+            freeAllocatedSingleString(pStVarOne);
             return 0;
     }
 
-    FREE(pStVarOne);
+    freeAllocatedSingleString(pStVarOne);
+    FREE(piColPos);
+    FREE(piNbItemRow);
 
     LhsVar(1) = 0;
     PutLhsVar();

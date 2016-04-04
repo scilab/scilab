@@ -230,7 +230,11 @@ int sci_umf_lusolve(char* fname, void* pvApiCtx)
             return 1;
         }
 
-        getAllocatedSingleString(pvApiCtx, piAddr3, &pStr);
+        if (getAllocatedSingleString(pvApiCtx, piAddr3, &pStr))
+        {
+            return 0;
+        }
+
         if (strcmp(pStr, "Ax=b") == 0)
         {
             NoTranspose = 1;
@@ -242,8 +246,11 @@ int sci_umf_lusolve(char* fname, void* pvApiCtx)
         else
         {
             Scierror(999, _("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"), fname, 3, "Ax=b", "A'x=b");
+            freeAllocatedSingleString(pStr);
             return 1;
         }
+        
+        freeAllocatedSingleString(pStr);
 
         if (nbInputArgument(pvApiCtx) == 4)
         {
