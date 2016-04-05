@@ -907,20 +907,27 @@ function status = test_single(_module, _testPath, _testName)
             if ~isempty(tmp_errfile_info) then
                 txt = mgetl(tmp_err);
                 txt(txt==msg) = [];
-                if isempty(txt) then
-                    deletefile(tmp_err);
-                else // Remove messages due to warning message from library
+
+                // Remove messages due to warning message from external
+                // libraries
+
+                if ~isempty(txt) then
                     toRemove = grep(txt, "libEGL warning: failed to find any driver");
                     txt(toRemove) = [];
+                end
 
-                    if ~isempty(txt) then
-                        toRemove = grep(txt, "extension ""RANDR"" missing on display");
-                        txt(toRemove) = [];
-                    end
+                if ~isempty(txt) then
+                    toRemove = grep(txt, "extension ""RANDR"" missing on display");
+                    txt(toRemove) = [];
+                end
 
-                    if isempty(txt) then
-                        deletefile(tmp_err);
-                    end
+                if ~isempty(txt) then
+                    toRemove = grep(txt, "libEGL warning: DRI2: failed to authenticate");
+                    txt(toRemove) = [];
+                end
+
+                if isempty(txt) then
+                    deletefile(tmp_err);
                 end
             end
         end
