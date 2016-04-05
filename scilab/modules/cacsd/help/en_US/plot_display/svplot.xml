@@ -19,7 +19,7 @@
         <refpurpose>singular-value sigma-plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[SVM]=svplot(sl,[w])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>output=powershell(command-name)
             [output,bOK]=powershell(command-name)    
         </synopsis>

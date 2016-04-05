@@ -19,7 +19,7 @@
         <refpurpose>sound player facility</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[]=playsnd(y)
             []=playsnd(y,rate,bits [,command])
         </synopsis>

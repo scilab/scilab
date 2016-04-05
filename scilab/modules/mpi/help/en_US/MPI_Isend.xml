@@ -10,7 +10,7 @@
         <refpurpose>Nonblocking send data from a node to an other</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = MPI_Isend(value,node)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -20,7 +20,7 @@
         <refpurpose>convert from binary to decimal</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=bin2dec(str)</synopsis>
     </refsynopsisdiv>
     <refsection>

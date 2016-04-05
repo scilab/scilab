@@ -88,7 +88,7 @@ public abstract class BasicPort extends XcosCell {
         /**
          * @return A scicos compatible representation
          */
-        public double getAsDouble() {
+        public int asScilabValue() {
             if (this.equals(UNKNOW_TYPE)) {
                 return -1;
             }

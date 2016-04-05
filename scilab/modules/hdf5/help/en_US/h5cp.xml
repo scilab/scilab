@@ -19,7 +19,7 @@
         <refpurpose>Copy an object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5cp(srcobj [, srcloc], destobj [, destloc])
             h5cp(srcobj [, srcloc], destfile, destloc)

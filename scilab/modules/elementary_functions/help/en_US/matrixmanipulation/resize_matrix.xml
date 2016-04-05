@@ -20,21 +20,22 @@
         <refpurpose>trim or/and extend (and cast) a matrix or hypermatrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
+                     resize_matrix   // demo
             resMat = resize_matrix(mat, nbRows, nbCols)
-            
+
             resMat = resize_matrix(mat, nbRows, nbCols, resType)
             resMat = resize_matrix(mat, nbRows, nbCols, resType, padding)
             resMat = resize_matrix(mat, nbRows, nbCols,    ""  , padding)
-            
+
             resMat = resize_matrix(mat, newSizes)
             resMat = resize_matrix(mat, newSizes, resType)
             resMat = resize_matrix(mat, newSizes, resType, padding)
             resMat = resize_matrix(mat, newSizes,    ""  , padding)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -102,7 +103,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             Creates a matrix of sizes <literal>[nbRows, nbCols]</literal> or <literal>newSizes</literal>, or an hypermatrix of sizes <literal>newSizes</literal>.
@@ -113,7 +114,7 @@
             The type of the result may be changed by specifying the <literal>resType</literal> argument, with restrictions given above.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // Embedded examples, including with polynomials:
@@ -172,7 +173,7 @@ resize_matrix(P, [3 3 2], "", %z)
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>History</title>
         <revhistory>
             <revision>

@@ -19,7 +19,7 @@
         <refpurpose>Run build_help.sce script if it exists (toolbox compilation process)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_builder_help_lang(lang)
             tbx_builder_help_lang(lang, help_path)

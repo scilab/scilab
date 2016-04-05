@@ -19,7 +19,7 @@
         <refpurpose>extract unique components of a vector or matrices</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [N [,k]]=unique(M)
             [N [,k]]=unique(M ,orient)

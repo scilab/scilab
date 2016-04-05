@@ -34,7 +34,6 @@ TIType Checkers::check_ls(GVN & gvn, const TIType & in0)
     {
         return TIType(gvn);
     }
-    return TIType(gvn);
 }
 
 } // namespace analysis

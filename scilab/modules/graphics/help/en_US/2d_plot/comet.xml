@@ -18,7 +18,7 @@
         <refpurpose>2D comet animated plot. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>comet(y)</synopsis>
         <synopsis>comet(x,y)</synopsis>
         <synopsis>comet(x,fun)</synopsis>
@@ -59,7 +59,7 @@
                 <term>fun</term>
                 <listitem>
                     <para>
-                        a scilab function with calling sequence <literal>y=fun(x)</literal>.  <varname>fun</varname> can also be a polynomial or a rational fraction.
+                        a scilab function with syntax <literal>y=fun(x)</literal>.  <varname>fun</varname> can also be a polynomial or a rational fraction.
                     </para>
                 </listitem>
             </varlistentry>

@@ -5,7 +5,7 @@
         <refpurpose>(\) left matrix division.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>X=A\B</synopsis>
     </refsynopsisdiv>
     <refsection>

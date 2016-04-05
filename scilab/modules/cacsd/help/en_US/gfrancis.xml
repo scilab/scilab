@@ -19,7 +19,7 @@
         <refpurpose>Francis equations for tracking</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[L,M,T]=gfrancis(Plant,Model)</synopsis>
     </refsynopsisdiv>
     <refsection>

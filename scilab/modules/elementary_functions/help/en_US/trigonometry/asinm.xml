@@ -19,7 +19,7 @@
         <refpurpose>matrix wise sine inverse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = asinm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

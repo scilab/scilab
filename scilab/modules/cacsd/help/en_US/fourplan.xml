@@ -19,7 +19,7 @@
         <refpurpose>augmented plant to four plants</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P11,P12,P21,P22]=fourplan(P,r)</synopsis>
     </refsynopsisdiv>
     <refsection>

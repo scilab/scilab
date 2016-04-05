@@ -842,7 +842,7 @@ struct id
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string id;
-        controller.getObjectProperty(adaptee, BLOCK, LABEL, id);
+        controller.getObjectProperty(adaptee, BLOCK, DESCRIPTION, id);
 
         types::String* o = new types::String(1, 1);
         o->set(0, id.data());
@@ -871,7 +871,7 @@ struct id
         std::string id(c_str);
         FREE(c_str);
 
-        controller.setObjectProperty(adaptee, BLOCK, LABEL, id);
+        controller.setObjectProperty(adaptee, BLOCK, DESCRIPTION, id);
         return true;
     }
 };

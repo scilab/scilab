@@ -19,7 +19,7 @@
         <refpurpose>partial fraction decomposition</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>elts=pfss(Sl)
             elts=pfss(Sl,rmax)
             elts=pfss(Sl,cord)

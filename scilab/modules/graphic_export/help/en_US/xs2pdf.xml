@@ -19,7 +19,7 @@
         <refpurpose>export graphics to PDF.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xs2pdf(win_num, file_name [,orientation])
             xs2pdf(fig, file_name [,orientation])

@@ -19,7 +19,7 @@
         <refpurpose>Sets all in the simplex object.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimsimplex_setall(opt, simplex)
         </synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>matrix hyperbolic sine</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = sinhm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

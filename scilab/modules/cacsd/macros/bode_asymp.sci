@@ -12,7 +12,7 @@
 // along with this program.
 
 function [] = bode_asymp(sl, w_min, w_max)
-    // Calling sequence:
+    // Syntax:
     //     syntax: bode_asymp(sl, [w_min, w_max])
     // Arguments:
     //     sl: a linear system given by its transfer function representation or state-space form and defined by syslin.

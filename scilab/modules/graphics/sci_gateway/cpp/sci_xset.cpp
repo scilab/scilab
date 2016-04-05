@@ -291,7 +291,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             // reset format
             ConfigGraphicVariable::setFPF(L"");
 
-            double* pdblColorMap = (double*)malloc(m * 3 * sizeof(double));
+            double* pdblColorMap = new double[m * 3];
             if (pdblColorMap == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), "xset");
@@ -304,6 +304,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             {
                 iFigureUID = createNewFigureWithAxes();
                 setCurrentFigure(iFigureUID);
+                delete[] pdblColorMap;
                 return types::Function::OK;
             }
 
@@ -361,6 +362,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
 
             setGraphicObjectProperty(iFigureUID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
             setGraphicObjectProperty(iFigureUID, __GO_PARENT__, "", jni_string, 1);
+            delete[] pdblColorMap;
         }
         break;
         case 6 : // clipgrf

@@ -11,7 +11,7 @@
 // along with this program.
 function [y,e1]=convol(h,x,e0)
     //  convol - convolution
-    //%CALLING SEQUENCE
+    //%SYNTAX
     //  [y]=convol(h,x)
     //  [y,e1]=convol(h,x,e0)     (for use with overlap add method)
     //%PARAMETERS

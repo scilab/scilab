@@ -19,7 +19,7 @@
         <refpurpose>convert boolean matrix to a zero one matrix.  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>bool2s(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

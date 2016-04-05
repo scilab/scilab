@@ -19,7 +19,7 @@
         <refpurpose>zero pencil</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Z,U]=zeropen(Sl)</synopsis>
     </refsynopsisdiv>
     <refsection>

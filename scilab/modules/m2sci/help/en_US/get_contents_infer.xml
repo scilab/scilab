@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[infer,pos]=get_contents_infer(m2scitlist,index)</synopsis>
     </refsynopsisdiv>
     <refsection>

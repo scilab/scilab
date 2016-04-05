@@ -19,7 +19,7 @@
         <refpurpose>projection</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>P = proj(X1,X2)</synopsis>
     </refsynopsisdiv>
     <refsection>

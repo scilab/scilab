@@ -19,7 +19,7 @@
         <refpurpose>provides information about a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x, ierr] = fileinfo(files)</synopsis>
     </refsynopsisdiv>
     <refsection>

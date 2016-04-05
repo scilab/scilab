@@ -5,7 +5,7 @@
         <refpurpose>Comparing two trees </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>isEqual = uiEqualsTree(tree1, tree2)
         </synopsis>
     </refsynopsisdiv>

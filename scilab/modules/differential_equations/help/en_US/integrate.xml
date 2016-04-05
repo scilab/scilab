@@ -19,7 +19,7 @@
         <refpurpose>integration of an expression by quadrature</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x=integrate(expr,v,x0,x1 [,atol [,rtol]])</synopsis>
     </refsynopsisdiv>
     <refsection>

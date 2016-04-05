@@ -18,7 +18,7 @@
     </refnamediv>
     
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         
         <synopsis>allvalues = csvDefault() </synopsis>
         
@@ -81,16 +81,16 @@
         
         <para>This function allows to query or configure the options of the csv
             files. These options are used by the read and write function when the user
-            does not specify them in the calling sequence.
+            does not specify them in the syntax.
         </para>
         
         <para>
-            The <literal>allvalues = csvDefault()</literal> calling sequence
+            The <literal>allvalues = csvDefault()</literal> syntax
             returns the value of all the fields.
         </para>
         
         <para>
-            The <literal>value = csvDefault(field)</literal> calling sequence
+            The <literal>value = csvDefault(field)</literal> syntax
             returns the value corresponding to the given field.
         </para>
         

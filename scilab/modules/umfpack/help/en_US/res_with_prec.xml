@@ -5,7 +5,7 @@
         <refpurpose>computes the residual r = Ax-b with precision  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[r,norm2_r] = res_with_prec(A, x, b)</synopsis>
     </refsynopsisdiv>
     <refsection>

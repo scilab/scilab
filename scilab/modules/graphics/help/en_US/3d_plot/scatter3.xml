@@ -19,7 +19,7 @@
         <refpurpose>3D scatter plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             p = scatter3(x,y,z,&lt;s&gt;,&lt;c&gt;,&lt;"fill"&gt;,&lt;marker&gt;,&lt;marker_property,value&gt;)
             p = scatter3(&lt;axes_handle&gt;,...)

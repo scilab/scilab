@@ -369,17 +369,11 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
         }
         ret.port = static_cast<int>(std::distance(sourceBlockPorts.begin(), found) + 1);
 
-        bool isImplicit;
-        controller.getObjectProperty(endID, PORT, IMPLICIT, isImplicit);
-
-        if (isImplicit == false)
+        int kind;
+        controller.getObjectProperty(endID, PORT, PORT_KIND, kind);
+        if (kind == PORT_IN || kind == PORT_EIN)
         {
-            int kind;
-            controller.getObjectProperty(endID, PORT, PORT_KIND, kind);
-            if (kind == PORT_IN || kind == PORT_EIN)
-            {
-                ret.kind = End;
-            }
+            ret.kind = End;
         }
     }
     // Default case, the property was initialized at [].
@@ -638,7 +632,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         {
             concernedPort = controller.createObject(PORT);
             controller.setObjectProperty(concernedPort, PORT, IMPLICIT, newPortIsImplicit);
-            controller.setObjectProperty(concernedPort, PORT, PORT_KIND, newPortKind);
+            controller.setObjectProperty(concernedPort, PORT, PORT_KIND, static_cast<int>(newPortKind));
             controller.setObjectProperty(concernedPort, PORT, SOURCE_BLOCK, blkID);
             controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
             // Set the default dataType so it is saved in the model

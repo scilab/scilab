@@ -5,7 +5,7 @@
         <refpurpose>solve a linear sparse (s.p.d.) system given the Cholesky factors  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x] = taucs_chsolve(C_ptr, b [, A])</synopsis>
     </refsynopsisdiv>
     <refsection>

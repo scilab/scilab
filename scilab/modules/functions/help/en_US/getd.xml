@@ -19,7 +19,7 @@
         <refpurpose>Load all functions defined in a directory</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>getd(path)</synopsis>
     </refsynopsisdiv>
     <refsection>

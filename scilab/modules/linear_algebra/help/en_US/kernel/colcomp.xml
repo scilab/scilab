@@ -19,7 +19,7 @@
         <refpurpose>column compression, kernel, nullspace</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[W,rk]=colcomp(A [,flag] [,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

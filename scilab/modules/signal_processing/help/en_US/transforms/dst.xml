@@ -29,7 +29,7 @@
         <refpurpose>Inverse discrete sine transform.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>X=dst(A [,sign] [,option])
             X=dst(A,sign,selection [,option])
             X=dst(A,sign,dims,incr [,option])

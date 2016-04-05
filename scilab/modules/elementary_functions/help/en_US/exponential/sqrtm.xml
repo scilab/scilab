@@ -19,7 +19,7 @@
         <refpurpose>matrix square root</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = sqrtm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>standard deviation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s=stdevf(x,fre)
             s=stdevf(x,fre,'r') or s=stdevf(x,fre,1)
             s=stdevf(x,fre,'c') or s=stdevf(x,fre,2)

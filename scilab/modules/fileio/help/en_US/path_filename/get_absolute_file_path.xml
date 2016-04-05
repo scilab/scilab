@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>pathname = get_absolute_file_path(filename)</synopsis>
     </refsynopsisdiv>
     <refsection>

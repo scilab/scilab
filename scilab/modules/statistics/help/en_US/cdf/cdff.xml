@@ -19,7 +19,7 @@
         <refpurpose>cumulative distribution function Fisher distribution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,Q]=cdff("PQ",F,Dfn,Dfd)
             [F]=cdff("F",Dfn,Dfd,P,Q);
             [Dfn]=cdff("Dfn",Dfd,P,Q,F);

@@ -253,8 +253,8 @@ bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool
                     types::Bool * const pBool = static_cast<types::Bool *>(pIT);
                     const int size = pBool->getSize();
                     const int * data = pBool->get();
-                    int max = -1;
-                    int count = 0;
+                    int64_t max = -1;
+                    int64_t count = 0;
                     for (int i = 0; i < size; ++i)
                     {
                         if (data[i])
@@ -273,11 +273,11 @@ bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool
             {
                 if (be.getValue())
                 {
-                    out = SymbolicDimension(getGVN(), 1.);
+                    out = SymbolicDimension(getGVN(), int64_t(1));
                 }
                 else
                 {
-                    out = SymbolicDimension(getGVN(), 0.);
+                    out = SymbolicDimension(getGVN(), int64_t(0));
                 }
                 safe = true;
                 return true;
@@ -312,7 +312,7 @@ bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool
             if (range.isValid())
             {
                 //std::wcerr << *range.getStart()->poly << ":" << *range.getEnd()->poly << ",," << *dim.getValue()->poly << std::endl;
-                safe = getCM().check(ConstraintManager::VALID_RANGE, range.getStart(), range.getEnd(), getGVN().getValue(1), dim.getValue());
+                safe = getCM().check(ConstraintManager::VALID_RANGE, range.getStart(), range.getEnd(), getGVN().getValue(int64_t(1)), dim.getValue());
                 out = _res.getType().rows * _res.getType().cols;
 
                 return true;

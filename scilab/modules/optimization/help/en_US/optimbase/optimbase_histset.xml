@@ -19,7 +19,7 @@
         <refpurpose>Set the history value at given iteration for the given key.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimbase_histset(opt, iter, key, value)
         </synopsis>

@@ -22,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[I,err]=int2d(X,Y,f [,params])</synopsis>
     </refsynopsisdiv>
     <refsection>

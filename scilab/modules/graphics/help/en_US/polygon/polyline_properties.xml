@@ -420,7 +420,7 @@
                 <term>display_function: </term>
                 <listitem>
                     <para>
-                        A character string that contains a function name. This function calling sequence must be <literal>str=fun(datatipHandle)</literal> where <literal>datatipHandle</literal> is the handle of the datatip to be displayed. This function must return a string or a vector of strings in str.
+                        A character string that contains a function name. This function syntax must be <literal>str=fun(datatipHandle)</literal> where <literal>datatipHandle</literal> is the handle of the datatip to be displayed. This function must return a string or a vector of strings in str.
                     </para>
                     <para>
                         This function can be overloaded by setting the similar property on a datatip itself.

@@ -20,7 +20,7 @@
         <refpurpose>checks if argument is a directory path</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>r = isdir(path)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -21,7 +21,7 @@
         <refpurpose>2D plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             plot2d([logflag,][x,],y[,style[,strf[,leg[,rect[,nax]]]]])
             plot2d([logflag,][x,],y,&lt;opt_args&gt;)

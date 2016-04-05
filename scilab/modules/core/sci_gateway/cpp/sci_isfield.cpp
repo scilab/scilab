@@ -81,6 +81,9 @@ types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, 
             }
             break;
         }
+        default:
+            // never occurs
+            return types::Function::Error;
     }
 
     out.push_back(pOutBool);

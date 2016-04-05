@@ -235,7 +235,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         }
         else
         {
-            Scierror(999, _("Wrong number of input arguments."));
+            Scierror(999, _("Wrong number of input arguments.\n"));
         }
 
         pContext->scope_end();

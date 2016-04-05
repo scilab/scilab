@@ -18,7 +18,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
     // r = size of the P22 plant i.e. 2-vector [#outputs,#inputs];
     // mumin,mumax = bounds on mu with mu=1/gama^2; (mumin=0  usually)
     // nmax = maximum number of iterations in the gama-iteration.
-    // Two possible calling sequences:
+    // Two possible syntaxes:
     // [Sk,mu]=h_inf(P,r,mumin,mumax,nmax) returns mu and the central controller
     // Sk in the same representation as P. (All calculations being done in state
     // space).

@@ -23,7 +23,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y, rd, w, iw] = ode("root", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [,w,iw])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -111,7 +111,7 @@
             <literal>g</literal> should give the equation of the surface. It is
             an external i.e. a function with specified syntax, or the name of a
             Fortran subroutine or a C function (character string) with specified
-            calling sequence or a list.
+            syntax or a list.
         </para>
         <para>
             If <literal>g</literal> is a function the syntax should be as

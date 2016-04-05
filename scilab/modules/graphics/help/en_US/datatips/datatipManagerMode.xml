@@ -17,7 +17,7 @@
         <refpurpose>Set or toggles the datatips mode. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             datatipManagerMode()
             datatipManagerMode('on')

@@ -18,7 +18,7 @@
         <refpurpose>inverse of fftshift</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=ifftshift(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

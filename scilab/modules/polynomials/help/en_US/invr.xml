@@ -19,7 +19,7 @@
         <refpurpose>inversion of (rational) matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>F = invr(H)</synopsis>
     </refsynopsisdiv>
     <refsection>

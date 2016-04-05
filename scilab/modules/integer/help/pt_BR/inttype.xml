@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -48,13 +48,15 @@
         <para>1 : representação de inteiros de um byte</para>
         <para>2 : representação de inteiros de dois bytes</para>
         <para>4 : representação de inteiros de quatro bytes</para>
+        <para>8 : representação de inteiros de oito bytes</para>
         <para>11 : representação de inteiros de um byte sem sinal</para>
         <para>12 : representação de inteiros de dois bytes sem sinal</para>
         <para>14 : representação de inteiros de quatro bytes sem sinal</para>
+        <para>18 : representação de inteiros de oito bytes sem sinal</para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=uint16(1:10);
 inttype(x)
  ]]></programlisting>

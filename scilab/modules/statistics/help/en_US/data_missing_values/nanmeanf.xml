@@ -19,7 +19,7 @@
         <refpurpose>mean (ignoring Nan's) with a given frequency.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>m=nanmean(val,fre)
             m=nanmean(val,fre,'r') (or m=nanmean(val,fre,1))
             m=nanmean(val,fre,'c') (or m=nanmean(val,fre,2))

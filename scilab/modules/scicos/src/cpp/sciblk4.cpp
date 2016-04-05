@@ -149,6 +149,8 @@ static bool sci2var(types::InternalType* p, void* dest, const int desttype, cons
                 return sci2var(p->getAs<types::UInt32>(), dest, row, col);
             }
         }
+        default:
+            return false;
     }
 
     return false;

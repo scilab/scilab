@@ -20,7 +20,7 @@
         <refpurpose>removes a directory</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             removedir(dirname)
             [status] = removedir(dirname)

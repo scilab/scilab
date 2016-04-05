@@ -88,20 +88,33 @@ function [N,S] = weekday(D,form)
     Y        = floor(D/365.2425);
     temp     = D - (365.0*Y + ceil(0.25*Y)- ceil(0.01*Y) + ceil(0.0025*Y));
 
-    mask     = (temp <= 0);
-    Y(mask)  = Y(mask) - 1;
-    D(mask)  = D(mask) - (365.0*Y(mask) + ceil(0.25*Y(mask)) - ceil(0.01*Y(mask)) + ceil(0.0025*Y(mask)));
-    D(~mask) = temp(~mask)
+    mask     = find(temp <= 0);
+    if ~isempty(mask)
+        Y(mask)  = Y(mask) - 1;
+        D(mask)  = D(mask) - (365.0*Y(mask) + ceil(0.25*Y(mask)) - ceil(0.01*Y(mask)) + ceil(0.0025*Y(mask)));
+        D(~mask) = temp(~mask);
+    else
+        D = temp;
+    end
 
     M = int(D/29);
+    idx_leap_year = isLeapYear(Y);
 
-    month_day_mat(isLeapYear(Y))  = leap_year(M(isLeapYear(Y))+1);
-    month_day_mat(~isLeapYear(Y)) = common_year(M(~isLeapYear(Y))+1);
+    if ~isempty(M(idx_leap_year))
+        month_day_mat(idx_leap_year)  = leap_year(M(idx_leap_year)+1);
+    end
+    if ~isempty(M(~idx_leap_year))
+        month_day_mat(~idx_leap_year) = common_year(M(~idx_leap_year)+1);
+    end
 
     M( D>month_day_mat ) = M( D>month_day_mat )+1;
 
-    month_day_mat(isLeapYear(Y))  = leap_year(M(isLeapYear(Y)));
-    month_day_mat(~isLeapYear(Y)) = common_year(M(~isLeapYear(Y)));
+    if ~isempty(M(idx_leap_year))
+        month_day_mat(idx_leap_year)  = leap_year(M(idx_leap_year));
+    end
+    if ~isempty(M(~idx_leap_year))
+        month_day_mat(~idx_leap_year) = common_year(M(~idx_leap_year));
+    end
 
     d = D - month_day_mat;
 

@@ -19,7 +19,7 @@
         <refpurpose>Return the winId of current window created by sciGUI</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>winIds=winlist()</synopsis>
     </refsynopsisdiv>
     <refsection>

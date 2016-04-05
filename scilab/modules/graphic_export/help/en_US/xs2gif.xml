@@ -19,7 +19,7 @@
         <refpurpose>export graphics to GIF</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xs2gif(win_num, file_name)
             xs2gif(fig, file_name)

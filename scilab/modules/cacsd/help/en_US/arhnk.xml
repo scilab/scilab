@@ -19,7 +19,7 @@
         <refpurpose>Hankel norm approximant</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[slm]=arhnk(sl,ord,[tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

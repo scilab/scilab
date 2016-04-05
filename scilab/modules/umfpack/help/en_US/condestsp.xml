@@ -5,7 +5,7 @@
         <refpurpose>estimate the condition number of a sparse matrix  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[K1] = condestsp(A, LUp, t)
             [K1] = condestsp(A, LUp)
             [K1] = condestsp(A, t)

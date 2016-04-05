@@ -192,12 +192,13 @@ namespace std {
  * Custom typemap definition
  */
 
-%typemap(jni) std::string &OUTPUT "jobjectArray"
-%typemap(jtype) std::string &OUTPUT "String[]"
-%typemap(jstype) std::string &OUTPUT "String[]"
-%typemap(javain) std::string &OUTPUT "$javainput"
+// std::string &
+%typemap(jni)           std::string &           "jobjectArray"
+%typemap(jtype)         std::string &           "String[]"
+%typemap(jstype)        std::string &           "String[]"
+%typemap(javain)        std::string &           "$javainput"
 
-%typemap(in) std::string &OUTPUT($*1_ltype temp) {
+%typemap(in) std::string & ($*1_ltype temp) {
   if (!$input) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "array null");
     return $null;
@@ -207,17 +208,28 @@ namespace std {
     return $null;
   }
   $1 = &temp;
-  *$1 = "";
 }
 
 %typemap(argout) std::string &OUTPUT {
-  jstring jnewstring = NULL;
-  if ($1) {
-     jnewstring = JCALL1(NewStringUTF, jenv, $1->c_str());
-  }
+  jstring jnewstring = JCALL1(NewStringUTF, jenv, $1->c_str());
   JCALL3(SetObjectArrayElement, jenv, $input, 0, jnewstring);
 }
 
+// const std::string &
+%typemap(jni)           const std::string &     "jstring"
+%typemap(jtype)         const std::string &     "String"
+%typemap(jstype)        const std::string &     "String"
+%typemap(javain)        const std::string &     "$javainput"
+
+%typemap(in,noblock=1) const std::string & {
+  Swig::JavaString javaString(jenv, $input);
+  std::string $1_str(javaString.c_str());
+  $1 = &$1_str;
+}
+
+%typemap(argout,noblock=1) const std::string & { }
+
+// apply the typemaps to manage outputs arguments
 %apply double &OUTPUT { double &v };
 %apply int &OUTPUT { int &v };
 %apply bool &OUTPUT { bool &v };
@@ -260,29 +272,6 @@ namespace std {
 %ignore org_scilab_modules_scicos::Controller::unregister_view;
 %ignore org_scilab_modules_scicos::Controller::register_view;
 %include "../scicos/includes/Controller.hxx";
-
-// Instantiate templates mapped to Java
-%template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<int>;
-%template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<bool>;
-%template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<double>;
-%template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<std::string>;
-%template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<ScicosID>;
-%template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty< std::vector<int> >;
-%template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty< std::vector<bool> >;
-%template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty< std::vector<double> >;
-%template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty< std::vector<std::string> >;
-%template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty< std::vector<ScicosID> >;
-
-%template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty<int>;
-%template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty<bool>;
-%template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty<double>;
-%template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty<std::string>;
-%template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty<ScicosID>;
-%template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty< std::vector<int> >;
-%template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty< std::vector<bool> >;
-%template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty< std::vector<double> >;
-%template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty< std::vector<std::string> >;
-%template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty< std::vector<ScicosID> >;
 
 /*
  * Template instanciation

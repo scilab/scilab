@@ -19,7 +19,7 @@
         <refpurpose>Read a HTML stream from a local or distant file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             doc = htmlRead(path [, encoding])
         </synopsis>

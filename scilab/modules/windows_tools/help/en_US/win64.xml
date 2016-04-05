@@ -19,7 +19,7 @@
         <refpurpose>Determine whether Windows x64 version of Scilab (Windows only)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>win64()
         </synopsis>
     </refsynopsisdiv>

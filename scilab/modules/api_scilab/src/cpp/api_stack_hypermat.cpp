@@ -656,6 +656,7 @@ SciErr createHypermatOfPoly(void *_pvCtx, int _iVar, char* _pstVarName, int * _d
     {
         delete p;
         out[rhs - 1] = types::Double::Empty();
+        FREE(w);
         return sciErr;
     }
 
@@ -667,6 +668,7 @@ SciErr createHypermatOfPoly(void *_pvCtx, int _iVar, char* _pstVarName, int * _d
     }
 
     out[rhs - 1] = p;
+    FREE(w);
     return sciErr;
 }
 
@@ -687,6 +689,7 @@ SciErr createComplexHypermatOfPoly(void *_pvCtx, int _iVar, char* _pstVarName, i
     {
         delete p;
         out[rhs - 1] = types::Double::Empty();
+        FREE(w);
         return sciErr;
     }
 
@@ -698,6 +701,7 @@ SciErr createComplexHypermatOfPoly(void *_pvCtx, int _iVar, char* _pstVarName, i
     }
 
     out[rhs - 1] = p;
+    FREE(w);
     return sciErr;
 }
 

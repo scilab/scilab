@@ -19,7 +19,7 @@
         <refpurpose>Call the file export graphical interface</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>exportUI(figId)
             exportUI(fig)
         </synopsis>

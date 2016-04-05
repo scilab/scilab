@@ -30,6 +30,21 @@ extern "C"
 namespace types
 {
 
+static int get_max_size(int* _piDims, int _iDims)
+{
+    if (_iDims == 0)
+    {
+        return 0;
+    }
+
+    int iMax = 1;
+    for (int i = 0 ; i < _iDims ; i++)
+    {
+        iMax *= _piDims[i];
+    }
+    return iMax;
+}
+
 template <typename T>
 GenericType* ArrayOf<T>::createEmpty()
 {
@@ -1661,7 +1676,7 @@ bool ArrayOf<T>::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCou
         if (!_out)
         {
             std::wostringstream os;
-            os << _W("Invalid index.\n");
+            os << _W("Invalid index.") << std::endl;
             throw ast::InternalError(os.str(), 999, e.getLocation());
         }
         out.push_back(_out);

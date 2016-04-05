@@ -19,7 +19,7 @@
         <refpurpose>compute facets of a 3D parametric surface</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Xf,Yf,Zf]=eval3dp(fun,p1,p2)</synopsis>
     </refsynopsisdiv>
     <refsection>

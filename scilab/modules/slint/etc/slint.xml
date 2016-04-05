@@ -12,7 +12,7 @@
     <EmptyBlock enable="true" id="00010"/>
     <MopenMclose enable="true" id="00011"/>
     <McCabe enable="true" max="30" id="00012"/>
-    <Decimal enable="true" character="e" checkDot="true" id="00013"/>
+    <Decimal enable="true" character="eE" checkDot="true" id="00013"/>
     <Printf enable="true" id="00014"/>
     <LineLength enable="true" max="80" id="00015"/>
     <LinesCount enable="true" max="200" id="00016"/>
@@ -30,8 +30,8 @@
     <SpacesAroundOp enable="true" id="00028"/>
     <SpacesInArgs enable="true" id="00029"/>
     <BreaksInLoop enable="true" maxBreaks="1" maxContinues="1" id="00030"/>
-    <NestedBlocks enable="true" max="5" id="00031"/>
-    <StatInCond enable="true" max="5" id="00032"/>
+    <NestedBlocks enable="true" max="3" id="00031"/>
+    <ExpInCond enable="true" max="5" id="00032"/>
     <BracketedExp enable="true" id="00033"/>
     <NotNot enable="true" id="00034"/>
     <IllegalCalls enable="true" id="00035">
@@ -40,7 +40,6 @@
         <keyword name="quit"/>
         <keyword name="exit"/>
         <keyword name="resume"/>
-        
         <keyword name="stacksize"/>
         <keyword name="lib"/>
         <keyword name="disp"/>
@@ -56,4 +55,5 @@
     </FunctionTestReturn>
     <SemicolonAtEOL enable="true" id="00039"/>
     <ReturnsCount enable="true" max="1" id="00040"/>
+    <NotEqual enable="true" operator="&lt;&gt;" id="00041"/>
 </configuration>

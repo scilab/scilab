@@ -19,7 +19,7 @@
         <refpurpose>checks if a variable is a structure array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>bool = isstruct(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

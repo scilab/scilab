@@ -19,7 +19,7 @@
         <refpurpose>Compile macros (toolbox compilation process)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_build_macros(toolbox_name)
             tbx_build_macros(toolbox_name, macros_path)

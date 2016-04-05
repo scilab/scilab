@@ -13,7 +13,7 @@ c
       double precision function infinity(x)
 c Purpose
 c     Return infinity value	
-c Calling sequence
+c Syntax
 c     a = infinity(0.0d)
 c
       double precision x

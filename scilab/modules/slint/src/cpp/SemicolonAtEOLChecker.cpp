@@ -2,14 +2,11 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
@@ -19,25 +16,31 @@ namespace slint
 {
 void SemicolonAtEOLChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
-    if (e.isSeqExp())
+    if (context.isFirstLevelFn())
     {
-        const ast::exps_t & exps = static_cast<const ast::SeqExp &>(e).getExps();
-        if (!exps.empty())
-        {
-            int prevline = exps.front()->getLocation().last_line;
-            ast::Exp * prevexp = exps.front();
-            for (ast::exps_t::const_iterator i = std::next(exps.begin()), end = exps.end(); i != end; ++i)
+        checkSeqExp(static_cast<const ast::SeqExp &>(static_cast<const ast::FunctionDec &>(e).getBody()), context, result);
+    }
+
+    /*        if (e.isSeqExp())
             {
-                if ((*i)->getLocation().first_line != prevline)
+                const ast::exps_t & exps = static_cast<const ast::SeqExp &>(e).getExps();
+                if (!exps.empty())
                 {
+                    int prevline = exps.front()->getLocation().last_line;
+                    ast::Exp * prevexp = exps.front();
+                    for (ast::exps_t::const_iterator i = std::next(exps.begin()), end = exps.end(); i != end; ++i)
+                    {
+                        if ((*i)->getLocation().first_line != prevline)
+                        {
+                            check(prevexp, context, result);
+                        }
+                        prevexp = *i;
+                        prevline = prevexp->getLocation().last_line;
+                    }
                     check(prevexp, context, result);
                 }
-                prevexp = *i;
-                prevline = prevexp->getLocation().last_line;
             }
-            check(prevexp, context, result);
-        }
-    }
+    */
 }
 
 void SemicolonAtEOLChecker::postCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
@@ -47,6 +50,34 @@ void SemicolonAtEOLChecker::postCheckNode(const ast::Exp & e, SLintContext & con
 const std::string SemicolonAtEOLChecker::getName() const
 {
     return "SemicolonAtEOLChecker";
+}
+
+void SemicolonAtEOLChecker::checkSeqExp(const ast::SeqExp & e, SLintContext & context, SLintResult & result) const
+{
+    const ast::exps_t & exps = e.getExps();
+    if (!exps.empty())
+    {
+        int prevline = exps.front()->getLocation().last_line;
+        ast::Exp * prevexp = exps.front();
+        for (ast::exps_t::const_iterator i = std::next(exps.begin()), end = exps.end(); i != end; ++i)
+        {
+            if ((*i)->getLocation().first_line != prevline)
+            {
+                check(prevexp, context, result);
+            }
+            prevexp = *i;
+            prevline = prevexp->getLocation().last_line;
+            if (prevexp->isSeqExp())
+            {
+                checkSeqExp(static_cast<ast::SeqExp &>(*prevexp), context, result);
+            }
+            else if (prevexp->isFunctionDec())
+            {
+                checkSeqExp(static_cast<ast::SeqExp &>(static_cast<ast::FunctionDec *>(prevexp)->getBody()), context, result);
+            }
+        }
+        check(prevexp, context, result);
+    }
 }
 
 void SemicolonAtEOLChecker::check(const ast::Exp * e, SLintContext & context, SLintResult & result) const

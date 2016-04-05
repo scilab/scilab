@@ -381,6 +381,8 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
                 out.push_back(toInt<types::UInt64>(pDblOut));
                 break;
             }
+            default:
+                return types::Function::Error;
         }
 
         if (pDblOut)

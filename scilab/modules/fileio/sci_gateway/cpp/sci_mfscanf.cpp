@@ -128,6 +128,10 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
 
         // get data
         int err = do_xxscanf(L"mfscanf", fDesc, wcsFormat, &args, NULL, &retval, buf, type);
+        if (err == DO_XXPRINTF_MISMATCH)
+        {
+            break;
+        }
         if (err < 0)
         {
             return types::Function::Error;
@@ -212,6 +216,8 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                 uiFormatUsed |= (1 << 2);
                 break;
             }
+            case NONE:
+                break;
         }
     }
 

@@ -780,9 +780,6 @@ static int import_handle_border(int dataset)
         case MATTE:
             return import_handle_border_matte(dataset, border);
     }
-
-    closeList6(dataset);
-    return false;
 }
 
 static int import_handle_uicontrol(int dataset, int parent)
@@ -2416,9 +2413,6 @@ static bool export_handle_border(int dataset, int uid)
         case MATTE:
             return export_handle_border_matte(dataset, uid);
     }
-
-    closeList6(dataset);
-    return false;
 }
 
 static bool export_handle_uicontrol(int parent, int uid)
@@ -2692,7 +2686,7 @@ static bool export_handle_matplot(int parent, int uid)
             {
                 size *= 3;
             }
-            else if ((ImageType)imagetype == MATPLOT_GL_RGBA)
+            else if ((GLType)imagetype == MATPLOT_GL_RGBA)
             {
                 size *= 4;
             }

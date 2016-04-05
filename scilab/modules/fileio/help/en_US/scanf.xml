@@ -20,7 +20,7 @@
         <refpurpose>converts formatted input on standard input</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[v_1, ..., v_n] = scanf(format);</synopsis>
     </refsynopsisdiv>
     <refsection>

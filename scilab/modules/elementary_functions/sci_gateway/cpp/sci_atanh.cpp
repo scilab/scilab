@@ -70,13 +70,13 @@ types::Function::ReturnValue sci_atanh(types::typed_list &in, int _iRetCount, ty
                 double dAbsIn = abs(pInR[i]);
                 if (dAbsIn == 1)
                 {
-                    if (pInI && pDblIn->isComplex() == false)
-                    {
-                        delete[] pInI;
-                    }
-
                     if (ConfigVariable::getIeee() == 0)
                     {
+                        if (pInI && pDblIn->isComplex() == false)
+                        {
+                            delete[] pInI;
+                        }
+
                         Scierror(78, _("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "atanh", 1);
                         return types::Function::Error;
                     }
@@ -112,6 +112,11 @@ types::Function::ReturnValue sci_atanh(types::typed_list &in, int _iRetCount, ty
 
                 pOutR[i] = d.real();
                 pOutI[i] = d.imag();
+            }
+
+            if (pInI && pDblIn->isComplex() == false)
+            {
+                delete[] pInI;
             }
         }
         else

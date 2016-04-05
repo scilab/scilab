@@ -16,7 +16,7 @@
 function [modelica_path, modelica_directory] = getModelicaPath()
     // Return the Modelica directory path used by Xcos diagram containing Modelica blocks
     //
-    // Calling Sequence
+    // Syntax
     //  [modelica_path, modelica_directory] = getModelicaPath()
     //
     // Parameters

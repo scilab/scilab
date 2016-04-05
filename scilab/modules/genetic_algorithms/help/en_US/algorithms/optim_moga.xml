@@ -19,7 +19,7 @@
         <refpurpose>multi-objective genetic algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[pop_opt,fobj_pop_opt,pop_init,fobj_pop_init] = optim_moga(ga_f,pop_size,nb_generation,p_mut,p_cross,Log,param)</synopsis>
     </refsynopsisdiv>
     <refsection>

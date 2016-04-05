@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int getAllocatedSinglePoly(void* _pvCtx, int* _piAddress, int* _piNbCoef, double** _pdblReal)</synopsis>
         <synopsis>int getAllocatedNamedSinglePoly(void* _pvCtx, const char* _pstName, int* _piNbCoef, double** _pdblReal)</synopsis>
     </refsynopsisdiv>

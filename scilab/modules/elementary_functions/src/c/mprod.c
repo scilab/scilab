@@ -17,7 +17,7 @@
 /*
 purpose
     computes the product of the entries of a matrix according to flag
-calling sequence
+syntax
     subroutine dmprod(flag,a,na,m,n,v,nv)
     double precision a(na,n),v(*)
     integer na,n,m,nv
@@ -74,7 +74,7 @@ void vDmProd(int _iMode, double* _pdblIn, int _iLeadDim, int _iRows, int _iCols,
 /*
 purpose
     computes the product of the entries of a complex matrix according to flag
-calling sequence
+syntax
     subroutine wmprod(flag,ar,ai,na,m,n,vr,vi,nv)
     double precision ar(na,n),ai(na,n),vr(*),vi(*)
     integer na,n,m,nv

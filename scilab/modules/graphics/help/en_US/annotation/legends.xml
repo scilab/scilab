@@ -19,7 +19,7 @@
         <refpurpose>draw graph legend</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>legends(strings,style,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>

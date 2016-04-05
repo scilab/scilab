@@ -19,7 +19,7 @@
         <refpurpose>SISO model realization by L2 transfer approximation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>h=arl2(y,den0,n [,imp])
             h=arl2(y,den0,n [,imp],'all')
             [den,num,err]=arl2(y,den0,n [,imp])

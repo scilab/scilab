@@ -19,7 +19,7 @@
         <refpurpose>interquartile range</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>q=iqr(x)
             q=iqr(x,'r') (or, equivalently, q=iqr(x,1))
             q=iqr(x,'c') (or, equivalently, q=iqr(x,2))

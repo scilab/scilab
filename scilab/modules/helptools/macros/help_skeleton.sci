@@ -91,7 +91,7 @@ function txt = help_skeleton(funname, path, language)
     "    <refpurpose>" + _("Add short description here.") + "</refpurpose>"
     "  </refnamediv>"
     "  <refsynopsisdiv>"
-    "    <title>" + _("Calling Sequence") + "</title>"
+    "    <title>" + _("Syntax") + "</title>"
     "    <synopsis>" + Call + "</synopsis>"
     "  </refsynopsisdiv>"];
 

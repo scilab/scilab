@@ -19,7 +19,7 @@
         <refpurpose>find indices of boolean vector or matrix true elements</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[ii]=find(x [,nmax])
             [i1,i2,..]=find(x [,nmax])
         </synopsis>

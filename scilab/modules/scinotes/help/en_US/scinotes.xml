@@ -19,7 +19,7 @@
         <refpurpose>Scinotes: Embedded Scilab text editor</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             scinotes()
             scinotes(file)
@@ -86,7 +86,7 @@
         <para>It can be started with a fresh text buffer pressing the "Editor"
             button on top of the main Scilab window, or from Scilab command line with
             the instruction <literal>editor()</literal>, or it can open specific files
-            if invoked with any of the calling sequences above (without any
+            if invoked with any of the syntaxes above (without any
             parameters, it opens editor with a blank file).
         </para>
         <para>The same invocation adds further files to an already opened

@@ -19,7 +19,7 @@
         <refpurpose>conjugate gradient solvers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [x, flag, err, iter, res] = conjgrad(A, b [, method [, tol [, maxIter [, M [, M2 [, x0 [, verbose]]]]]]])
             [x, flag, err, iter, res] = conjgrad(A, b [, method [, key=value,...]])
@@ -167,7 +167,7 @@ function y = A ( x )
             <literal>M2</literal> such that <literal>M=M1*M2</literal>. in the case
             the function solves <literal>inv(M)*A*x = inv(M)*b</literal> for
             <literal>x</literal>. <literal>M</literal>, <literal>M1</literal> and
-            <literal>M2</literal> can be Scilab functions with calling sequence
+            <literal>M2</literal> can be Scilab functions with syntax
             <literal>y=Milx(x)</literal> which computes the corresponding left
             division <literal>y=Mi\x</literal>.
         </para>
@@ -191,7 +191,7 @@ function y = A ( x )
         <para>
             If <literal>method="pcg"</literal>, then the <literal>A</literal> matrix
             must be a symmetric positive definite matrix (full or sparse)
-            or a function with calling sequence <literal>y=Ax(x)</literal> which computes
+            or a function with syntax <literal>y=Ax(x)</literal> which computes
             <literal>y=A*x</literal>.
             Otherwise (<literal>method="cgs", "bicg" or "bicgstab"</literal>),
             <literal>A</literal> just needs to be square.

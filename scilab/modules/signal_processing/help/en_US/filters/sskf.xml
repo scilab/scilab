@@ -5,7 +5,7 @@
         <refpurpose>steady-state Kalman filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xe = sskf(y,f,h,q,r,x0)
             [xe, pe]=sskf(y,f,h,q,r,x0)

@@ -19,7 +19,7 @@
         <refpurpose>Check whether a set of graphic handles is still valid.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>isValid = is_handle_valid(h)</synopsis>
     </refsynopsisdiv>
     <refsection>

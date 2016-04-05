@@ -19,7 +19,7 @@
         <refpurpose>Computes the standard deviation.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             sd = optimsimplex_fvstdev(opt)
         </synopsis>

@@ -107,10 +107,10 @@ function [txt,rpar,ipar] = create_modelica(blklst,corinvm,cmat,NvM,name,scs_m)
         if mo.model<>"OutPutPort" & mo.model<>"InPutPort" then
             //## retrieve the object in the scs_m structure
             o_scsm = scs_m(scs_full_path(corinvm(k)));
-            //## get the structure graphics
-            o_gr  = o_scsm.graphics;
+            //## get the structure model
+            o_model  = o_scsm.model;
             //## get the identification field
-            id = stripblanks(o_gr.id)
+            id = stripblanks(o_model.label)
 
             if id<>"" then
                 models($)=models($)+" """+id+""";"

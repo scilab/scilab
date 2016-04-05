@@ -17,7 +17,7 @@
         <refpurpose>Create a datatip on a polyline by program</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>datatip_handle = datatipCreate(polyline_handle,index)
             datatip_handle = datatipCreate(polyline_handle,pt)
         </synopsis>

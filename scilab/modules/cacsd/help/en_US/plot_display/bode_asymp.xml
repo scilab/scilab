@@ -20,7 +20,7 @@
         <refpurpose>Bode plot asymptote</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             bode_asymp(sl, [wmin, wmax])
         </synopsis>

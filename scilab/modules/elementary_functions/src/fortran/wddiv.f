@@ -16,7 +16,7 @@ c
 c     This subroutine wddiv computes c=a/b where a is a complex number
 c      and b a real number
 c
-c!Calling sequence
+c!Syntax
 c
 c     subroutine wddiv(ar,ai,br,bi,cr,ci,ierr)
 c

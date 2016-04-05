@@ -97,7 +97,7 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
         // perform operation
         double* pdblWork = new double[7 * n];
         C2F(sfact1)(pdblCoefOut, &iDegD2, pdblWork, &iMaxIt, &iErr);
-        delete pdblWork;
+        delete[] pdblWork;
         if (iErr == 2)
         {
             delete pSP;
@@ -153,7 +153,7 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
         int nm1 = n - 1;
         iMaxIt += n;
         C2F(sfact2)(pdblOut, &iRows, &nm1, pdblWork, &iMaxIt, &iErr);
-        delete pdblWork;
+        delete[] pdblWork;
 
         if (iErr < 0)
         {

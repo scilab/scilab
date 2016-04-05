@@ -30,7 +30,7 @@ c               job=10  scilab  -> fortran , complex matrix
 c               job=11 fortran -> scilab  , complex matrix
 c
 c    CAUTION: For scilab->fortran   m and n
-c    are defined by  matz. Calling sequence must be:
+c    are defined by  matz. Syntax must be:
 c    call matz(x,y,lda,m,n,name,0) and NOT
 c    call matz(x,y,lda,10,10,name,0) in the case where a
 c     is a 10 by 10 matrix. (Here y is not referenced: real case).

@@ -19,7 +19,7 @@
         <refpurpose>Load a saved variable or a serie of variables</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>load(filename [,x1,...,xn])</synopsis>
         <synopsis>load(fd [,x1,...,xn])</synopsis>
     </refsynopsisdiv>

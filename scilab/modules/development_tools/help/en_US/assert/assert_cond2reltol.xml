@@ -20,7 +20,7 @@
         <refpurpose>Suggests a relative error, computed from the condition number.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             rtol = assert_cond2reltol ( condition )
             rtol = assert_cond2reltol ( condition , offset )

@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * Copyright (C) 2013 - Samuel GOUGEON
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -17,16 +17,18 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="replot" xml:lang="pt">
     <refnamediv>
         <refname>replot</refname>
-        <refpurpose>reformula a ·rea de exibiÁ„o de um ou mais gr·ficos
+        <refpurpose>reformula a √°rea de exibi√ß√£o de um ou mais gr√°ficos
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq¸Íncia de Chamamento</title>
-        <synopsis>replot(area)</synopsis>
-        <synopsis>replot(area, axesHandles)</synopsis>
+        <title>Seq√º√™ncia de Chamamento</title>
+        <synopsis>
+          replot(area)
+          replot(area, axesHandles)
+      </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Par‚metros</title>
+    <refsection role="parameters">
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>area</term>
@@ -38,54 +40,54 @@
                 <term>axesHandles</term>
                 <listitem>
                     <para>argumento opcional. Manipulador(es) do tipo Axes para
-                        selecionar uma ou v·rias entidades Axes v·lidas. DisponÌvel apenas
-                        no novo modo de gr·ficos.
+                        selecionar uma ou v√°rias entidades Axes v√°lidas. Dispon√≠vel apenas
+                        no novo modo de gr√°ficos.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>DescriÁ„o</title>
+    <refsection role="description">
+        <title>Descri√ß√£o</title>
         <para>
-            <literal>replot</literal> È utilizado para redesenhar o conte˙do da
-            janela de gr·ficos atual com novas fronteiras definidas por
-            <literal>area = [xmin,ymin,xmax,ymax]</literal> ou <literal> rect = [xmin, ymin, zmin, xmax, ymax, zmax] </literal>. 
+            <literal>replot</literal> √© utilizado para redesenhar o conte√∫do da
+            janela de gr√°ficos atual com novas fronteiras definidas por
+            <literal>area = [xmin,ymin,xmax,ymax]</literal> ou <literal> rect = [xmin, ymin, zmin, xmax, ymax, zmax] </literal>.
         </para>
-        <para>Sob o novo modo de gr·ficos, esta transformaÁ„o pode ser aplicada a
-            eixos especÌficos fornecidos por manipuladores gr·ficos Axes via o
-            argumento <varname>axesHandles</varname>. Se <varname>axesHandles</varname> 
-            n„o for especificado, as novas fronteiras s„o
-            aplicadas aos eixos correntes da figura corrente. A transformaÁ„o muda os
-            valores de <literal>data_bounds</literal> para estes eixos. 
+        <para>Sob o novo modo de gr√°ficos, esta transforma√ß√£o pode ser aplicada a
+            eixos espec√≠ficos fornecidos por manipuladores gr√°ficos Axes via o
+            argumento <varname>axesHandles</varname>. Se <varname>axesHandles</varname>
+            n√£o for especificado, as novas fronteiras s√£o
+            aplicadas aos eixos correntes da figura corrente. A transforma√ß√£o muda os
+            valores de <literal>data_bounds</literal> para estes eixos.
             <note>
-                A propriedade de eixos <literal>tight_limits</literal> tambÈm deve ser
+                A propriedade de eixos <literal>tight_limits</literal> tamb√©m deve ser
                 ajustada para "on" para selecionar estritamente estas fronteiras (ver
                 <link linkend="axes_properties">axes_properties</link>).
             </note>
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // primeiro exemplo
 x=[0:0.1:2*%pi]';
-plot2d(x,sin(x)) 
-replot([-1,-1,10,2]) 
+plot2d(x,sin(x))
+replot([-1,-1,10,2])
  ]]></programlisting>
         <scilab:image>
             x=[0:0.1:2*%pi]';
             plot2d(x,sin(x))
             replot([-1,-1,10,2])
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // segundo exemplo
 xdel(winsid());
 plot() // plot demo
 f=gcf();
 replot([-1,-1,10,2],f.children(1)) // especificando o valor do manipulador dos eixos
-replot([-3,-2,8,4],f.children(2)) 
+replot([-3,-2,8,4],f.children(2))
  ]]></programlisting>
         <scilab:image>
             xdel(winsid());
@@ -95,15 +97,15 @@ replot([-3,-2,8,4],f.children(2))
             replot([-3,-2,8,4],f2.children(2))
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// Os fronteiras indicadas pelo valor %nan n„o s„o alterados:
+// Os fronteiras indicadas pelo valor %nan n√£o s√£o alterados:
 x = linspace(0,360,200).';
 clf
 plot2d(x,[sind(x) tand(x)])
 ax = gca();
 ax.data_bounds				// Fronteiras iniciais
-replot([%nan,-10,%nan,10])	// Ymin e Ymax sÛ s„o modificados
+replot([%nan,-10,%nan,10])	// Ymin e Ymax s√≥ s√£o modificados
 ax.data_bounds				// novas fronteiras
-// 3D Fronteiras Z tambÈm pode ser modificadas :
+// 3D Fronteiras Z tamb√©m pode ser modificadas :
 clf
 x = linspace(-4,4,100);
 X = meshgrid(x);
@@ -117,7 +119,7 @@ ax.data_bounds
 sleep(3000)
 replot([-5 0 -0.4 0 5 0.5])
 ax.data_bounds
-// Diversos gr·ficos podem ser cortadas simultaneamente :
+// Diversos gr√°ficos podem ser cortadas simultaneamente :
 clf
 x = linspace(-%pi,%pi,400);
 subplot(2,2,1)
@@ -134,7 +136,7 @@ replot([-1 %nan 1.5 %nan], [ax1 ax2])
       ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver TambÈm</title>
+        <title>Ver Tamb√©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="zoom_rect">zoom_rect</link>
@@ -147,22 +149,22 @@ replot([-1 %nan 1.5 %nan], [ax1 ax2])
             </member>
         </simplelist>
     </refsection>
-    <refsection>
-        <title>histÛrico</title>
+    <refsection role="history">
+        <title>hist√≥rico</title>
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revdescription>
                     <itemizedlist>
                         <listitem>
-                            <para>Extens„o para o 3D</para>
+                            <para>Extens√£o para o 3D</para>
                         </listitem>
                         <listitem>
-                            <para>V·rios coordenadas gr·ficos podem agora ser redimensionadas simultaneamente</para>
+                            <para>V√°rios coordenadas gr√°ficos podem agora ser redimensionadas simultaneamente</para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>%nan</literal> pode ser usado para manter um limite como est·.
+                                <literal>%nan</literal> pode ser usado para manter um limite como est√°.
                             </para>
                         </listitem>
                     </itemizedlist>

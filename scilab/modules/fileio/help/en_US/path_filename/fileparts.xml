@@ -20,7 +20,7 @@
         <refpurpose>returns the path, filename and extension for a file path</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[path, fname, extension] = fileparts(fullpath)
             value = fileparts(fullpath, sel)
         </synopsis>

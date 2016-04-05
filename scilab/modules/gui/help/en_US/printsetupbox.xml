@@ -19,7 +19,7 @@
         <refpurpose>Display print dialog box.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             printsetupbox()
             status=printsetupbox()

@@ -19,7 +19,7 @@
         <refpurpose>Label a dataset</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5label(obj, location, dims, names)
             h5label(filename, location, dims, names)

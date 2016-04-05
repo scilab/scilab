@@ -19,7 +19,7 @@
         <refpurpose>fortran file binary read</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x=read4b(file-name,m,n [,rec])</synopsis>
     </refsynopsisdiv>
     <refsection>

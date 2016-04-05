@@ -19,7 +19,7 @@
         <refpurpose>object type</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[t]=typeof(object)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -183,10 +183,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"int8" or "uint8" or "int16" or "uint16" or "int32" or "uint32"</term>
+                <term>"int8" or "uint8" or "int16" or "uint16" or "int32" or "uint32" or "int64" or "uint64"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a matrix of [unsigned] integers stored on 8, 16 or 32 bits. (See <link linkend="int8">int</link>)
+                        if <varname>object</varname> is a matrix of [unsigned] integers stored on 8, 16, 32 or 64 bits. (See <link linkend="int8">int</link>)
                     </para>
                 </listitem>
             </varlistentry>

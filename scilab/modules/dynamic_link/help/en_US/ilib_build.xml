@@ -19,7 +19,7 @@
         <refpurpose>utility for shared library management</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ilib_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags,ismex, cc])</synopsis>
     </refsynopsisdiv>
     <refsection>

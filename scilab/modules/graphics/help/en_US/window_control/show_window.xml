@@ -19,7 +19,7 @@
         <refpurpose>raises a graphics window</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>show_window([figure])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>Shrinks the simplex.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimsimplex_shrink(opt, fun, [sigma])
             [opt, data] = optimsimplex_shrink(opt, fun, sigma, data)

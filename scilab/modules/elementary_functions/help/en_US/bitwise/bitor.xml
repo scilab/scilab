@@ -21,7 +21,7 @@
         <refpurpose>bitwise OR</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             z = bitor(x, y)            
         </synopsis>

@@ -29,7 +29,7 @@
     </refnamediv>
     
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         
         <synopsis>[proto, server, path, query, username, port, fragment] = splitURL(URL);
         </synopsis>

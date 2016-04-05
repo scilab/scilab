@@ -19,7 +19,7 @@
         <refpurpose>Dump a XML object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             str = xmlDump(xmlObj [, indent])
         </synopsis>

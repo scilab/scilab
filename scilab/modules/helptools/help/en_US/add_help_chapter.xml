@@ -19,7 +19,7 @@
         <refpurpose>Add an entry in the help list</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ok = add_help_chapter(title,path[,mode])</synopsis>
     </refsynopsisdiv>
     <refsection>

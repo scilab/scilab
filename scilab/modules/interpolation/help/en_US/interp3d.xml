@@ -5,7 +5,7 @@
         <refpurpose>3d spline evaluation function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[fp[,dfpdx,dfpdy,dfpdz]]=interp3d(xp,yp,zp,tl,out_mode)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>read a Harwell-Boeing sparse format file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[A, description, ref, mtype] = ReadHBSparse([filename])</synopsis>
     </refsynopsisdiv>
     <refsection>

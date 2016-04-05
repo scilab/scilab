@@ -20,7 +20,7 @@
         <refpurpose>cumulative distribution function normal distribution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [P,Q]=cdfnor("PQ",X,Mean,Std)
             X=cdfnor("X",Mean,Std,P,Q)

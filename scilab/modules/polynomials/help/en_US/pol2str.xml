@@ -20,7 +20,7 @@
         <refpurpose>polynomial to string conversion</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>strs = pol2str(p)</synopsis>
     </refsynopsisdiv>
     <refsection>

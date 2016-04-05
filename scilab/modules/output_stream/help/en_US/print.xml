@@ -19,7 +19,7 @@
         <refpurpose>prints variables  in a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>print('file-name',x1,[x2,...xn])</synopsis>
     </refsynopsisdiv>
     <refsection>

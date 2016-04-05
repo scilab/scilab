@@ -19,7 +19,7 @@
         <refpurpose>kernel, null space</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>W=kernel(A [,tol,[,flag])</synopsis>
     </refsynopsisdiv>
     <refsection>

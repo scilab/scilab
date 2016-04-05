@@ -5,7 +5,7 @@
         <refpurpose>solve sparse linear system  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x = umfpack(A,"\",b)
             x = umfpack(b,"/",A)
         </synopsis>

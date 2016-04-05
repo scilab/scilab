@@ -19,7 +19,7 @@
         <refpurpose>Return handle of current axes. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>a = gca()</synopsis>
     </refsynopsisdiv>
     <refsection>

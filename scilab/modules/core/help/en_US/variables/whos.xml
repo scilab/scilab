@@ -5,7 +5,7 @@
         <refpurpose>listing of variables in long form</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             whos()
             whos -type typ

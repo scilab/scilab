@@ -27,7 +27,7 @@
         <refpurpose>Build of the sublist %cpr.state.outtb</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[outtb]=buildouttb(lnksz,lnktyp)</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_buildouttb">

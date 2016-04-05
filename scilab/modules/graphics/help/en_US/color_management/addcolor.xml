@@ -19,7 +19,7 @@
         <refpurpose>add new colors to the current colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>new=addcolor(c)</synopsis>
     </refsynopsisdiv>
     <refsection>

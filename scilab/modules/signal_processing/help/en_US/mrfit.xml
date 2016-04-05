@@ -5,7 +5,7 @@
         <refpurpose>frequency response fit</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sys=mrfit(w,mag,order)
             [num,den]=mrfit(w,mag,order)
             sys=mrfit(w,mag,order,weight)

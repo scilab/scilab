@@ -19,7 +19,7 @@
         <refpurpose>Estimates state and B and D matrices of a discrete-time linear system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X0,B,D] = findx0BD(A,C,Y,U,WITHX0,WITHD,TOL,PRINTW)
             [x0,B,D,V,rcnd] = findx0BD(A,C,Y,U)
         </synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>get date and time information</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>dt=getdate()
             x=getdate("s")
             dt=getdate(x)

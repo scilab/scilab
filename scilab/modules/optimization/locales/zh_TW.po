@@ -888,7 +888,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "Calling sequence %s is obsolete."
+msgid "Syntax %s is obsolete."
 msgstr ""
 
 #, c-format

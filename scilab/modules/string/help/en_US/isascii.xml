@@ -19,7 +19,7 @@
         <refpurpose>tests if character is a 7-bit US-ASCII character</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = isascii(str)</synopsis>
     </refsynopsisdiv>
     <refsection>

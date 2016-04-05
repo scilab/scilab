@@ -19,7 +19,7 @@
         <refpurpose>polar form</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Ro, Theta] = polar(A)</synopsis>
     </refsynopsisdiv>
     <refsection>

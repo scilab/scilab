@@ -22,6 +22,11 @@ import java.io.OutputStream;
 import java.io.StringReader;
 
 import java.awt.print.PageFormat;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
@@ -42,6 +47,7 @@ import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.MimeConstants;
+import org.scilab.modules.helptools.scilab.HTMLWithStyleScilabCodeHandler;
 
 /**
  * Code converter Class
@@ -104,8 +110,21 @@ public class CodeExporter extends FOCodeConverter {
      * @param format the page format
      */
     public static void convert(ScilabEditorPane pane, String fileName, String type, PageFormat format) {
-        CodeExporter exporter = new CodeExporter(pane);
-        exporter.convert(((ScilabDocument) pane.getDocument()).getText(), pane.getXln().getLineNumber(), fileName, type, pane.getShortName(), format);
+
+        if ("text/html".equals(type)) {
+            try {
+                // HTML is hardcoded to export only a file
+                HTMLWithStyleScilabCodeHandler codeHandler = new HTMLWithStyleScilabCodeHandler(Collections.emptySet(), Collections.emptySet());
+                codeHandler.convert(new StringReader(((ScilabDocument) pane.getDocument()).getText()), new FileWriter(fileName));
+            } catch (IOException e) {
+                System.err.println(SciNotesMessages.EXPORTERROR + ":");
+                e.printStackTrace();
+            }
+        } else {
+            // let's FOP convert the mimetype
+            CodeExporter exporter = new CodeExporter(pane);
+            exporter.convert(((ScilabDocument) pane.getDocument()).getText(), pane.getXln().getLineNumber(), fileName, type, pane.getShortName(), format);
+        }
     }
 
     /**

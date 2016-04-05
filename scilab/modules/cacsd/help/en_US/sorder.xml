@@ -19,7 +19,7 @@
         <refpurpose>computing the order of a discrete-time system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Ro[,n,sval,rcnd]] = sorder(meth,alg,jobd,batch,conct,s,Y[,U,tol,printw,ldwork,Ri])</synopsis>
     </refsynopsisdiv>
     <refsection>

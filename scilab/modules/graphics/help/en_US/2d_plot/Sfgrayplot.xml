@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             Sfgrayplot(x, y, f, &lt;opt_args&gt;)
             Sfgrayplot(x, y, f [,strf, rect, nax, zminmax, colminmax, mesh, colout])

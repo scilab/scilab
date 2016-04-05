@@ -5,7 +5,7 @@
         <refpurpose>associates a name to variable type</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[types [ [,names]]=typename()
         </synopsis>
     </refsynopsisdiv>

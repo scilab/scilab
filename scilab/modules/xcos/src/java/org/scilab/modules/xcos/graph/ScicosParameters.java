@@ -90,9 +90,9 @@ public class ScicosParameters implements Serializable, Cloneable {
     public static final int INTEGRATOR_RELATIVE_TOLERANCE = 2;
     public static final int TOLERANCE_ON_TIME = 3;
     public static final int MAX_INTEGRATION_TIME_INTERVAL = 4;
-    public static final int MAXIMUM_STEP_SIZE = 5;
-    public static final int REAL_TIME_SCALING = 6;
-    public static final int SOLVER = 7;
+    public static final int REAL_TIME_SCALING = 5;
+    public static final int SOLVER = 6;
+    public static final int MAXIMUM_STEP_SIZE = 7;
 
     /*
      * Default values from the preferences

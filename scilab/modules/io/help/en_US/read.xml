@@ -20,7 +20,7 @@
         <refpurpose>matrices read</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x] = read(file-desc,m,n,[format])
             [x]=read(file-desc,m,n,k,format)
         </synopsis>

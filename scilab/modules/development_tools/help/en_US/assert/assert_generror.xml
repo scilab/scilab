@@ -20,7 +20,7 @@
         <refpurpose>Generates an error.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             assert_generror ( errormsg )
             assert_generror ( errormsg , errornb )

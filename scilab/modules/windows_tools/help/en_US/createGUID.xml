@@ -19,7 +19,7 @@
         <refpurpose>Creates a GUID (Windows only)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = createGUID(number_of_GUID)
         </synopsis>
     </refsynopsisdiv>

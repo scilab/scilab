@@ -19,7 +19,7 @@
         <refpurpose>check if a variable is a vector</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t=isvector(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

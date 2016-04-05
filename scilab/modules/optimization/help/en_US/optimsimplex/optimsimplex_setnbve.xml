@@ -19,7 +19,7 @@
         <refpurpose>Sets the number of vertices of the simplex.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimsimplex_setnbve(opt, nbve)
         </synopsis>

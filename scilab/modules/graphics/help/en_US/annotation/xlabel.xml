@@ -27,7 +27,7 @@
         <refpurpose>sets the z-axis label</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xlabel([axis_handle], label, [property_name, property_value,...])</synopsis>
         <synopsis>ylabel([axis_handle], label, [property_name, property_value,...])</synopsis>
         <synopsis>zlabel([axis_handle], label, [property_name, property_value,...])</synopsis>

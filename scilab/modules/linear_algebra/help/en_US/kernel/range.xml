@@ -19,7 +19,7 @@
         <refpurpose>range (span) of A^k</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X,dim]=range(A,k)</synopsis>
     </refsynopsisdiv>
     <refsection>

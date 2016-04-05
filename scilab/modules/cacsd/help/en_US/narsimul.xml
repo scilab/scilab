@@ -19,7 +19,7 @@
         <refpurpose>armax simulation (using rtitr)   </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[z]=narsimul(a,b,d,sig,u,[up,yp,ep])
             [z]=narsimul(ar,u,[up,yp,ep])
         </synopsis>

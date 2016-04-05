@@ -5,7 +5,7 @@
         <refpurpose>list of variables in a saved data file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>listvarinfile(filename)
             [names, typs, dims, vols] = listvarinfile(filename)
         </synopsis>

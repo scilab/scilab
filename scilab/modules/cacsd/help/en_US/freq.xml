@@ -19,7 +19,7 @@
         <refpurpose>frequency response</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x]=freq(A,B,C [,D],f)
             [x]=freq(NUM,DEN,f)
         </synopsis>

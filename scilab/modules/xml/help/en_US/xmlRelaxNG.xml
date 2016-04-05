@@ -19,7 +19,7 @@
         <refpurpose>Create a XML Relax NG object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             schema = xmlRelaxNG(path)
         </synopsis>

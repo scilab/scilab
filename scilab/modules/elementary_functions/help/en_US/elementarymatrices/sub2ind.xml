@@ -19,7 +19,7 @@
         <refpurpose>matrix subscript values to linear index</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>I = sub2ind(dims,i1,i2,...)
             J = sub2ind(dims,Mi)
         </synopsis>

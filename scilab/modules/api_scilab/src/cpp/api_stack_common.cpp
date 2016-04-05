@@ -117,8 +117,6 @@ int returnArguments(void* _pvCtx)
 
 int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
 {
-    SciErr sciErr = sciErrInit();
-
     types::GatewayStruct *pStr = (types::GatewayStruct*)_pvCtx;
     int iRhs            = *getNbInputArgument(_pvCtx);
 
@@ -158,8 +156,6 @@ SciErr reshapeArray(void* _pvCtx, int* _piAddress, int* _iDimsArray, int _iDims)
 /*--------------------------------------------------------------------------*/
 int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
 {
-    SciErr sciErr = sciErrInit();
-
     if (_iMin <= nbInputArgument(_pvCtx))
     {
         return 1;
@@ -172,8 +168,6 @@ int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
 /*--------------------------------------------------------------------------*/
 int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
 {
-    SciErr sciErr = sciErrInit();
-
     if (_iMax >= nbInputArgument(_pvCtx))
     {
         return 1;
@@ -186,8 +180,6 @@ int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
 /*--------------------------------------------------------------------------*/
 int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
 {
-    SciErr sciErr = sciErrInit();
-
     if (_iMin <= nbOutputArgument(_pvCtx) && _iMax >= nbOutputArgument(_pvCtx))
     {
         return 1;
@@ -208,8 +200,6 @@ int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
 /*--------------------------------------------------------------------------*/
 int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
 {
-    SciErr sciErr = sciErrInit();
-
     if (_iMin <= nbOutputArgument(_pvCtx))
     {
         return 1;
@@ -222,8 +212,6 @@ int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
 /*--------------------------------------------------------------------------*/
 int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
 {
-    SciErr sciErr = sciErrInit();
-
     if (_iMax >= nbOutputArgument(_pvCtx))
     {
         return 1;
@@ -511,9 +499,9 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
         case types::InternalType::ScilabSparseBool :
             *_piType = sci_boolean_sparse;
             break;
-        //case types::InternalType::RealMatlabSparse :
-        //    *_piType = sci_matlab_sparse;
-        //    break;
+            //case types::InternalType::RealMatlabSparse :
+            //    *_piType = sci_matlab_sparse;
+            //    break;
         case types::InternalType::ScilabInt8 :
         case types::InternalType::ScilabUInt8 :
         case types::InternalType::ScilabInt16 :

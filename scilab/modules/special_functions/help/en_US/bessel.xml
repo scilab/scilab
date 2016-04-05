@@ -44,7 +44,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = besseli(alpha,x [,ice])
             y = besselj(alpha,x [,ice])
             y = besselk(alpha,x [,ice])

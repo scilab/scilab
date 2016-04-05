@@ -19,7 +19,7 @@
         <refpurpose>returns Java Runtime Environment used by Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>p=jre_path()</synopsis>
     </refsynopsisdiv>
     <refsection>

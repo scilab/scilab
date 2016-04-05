@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - INRIA - Serge Steer
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -20,11 +20,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Sequence d'appel</title>
-        <synopsis>B = repmat(A,m,n,...)</synopsis>
-        <synopsis>B = repmat(A,siz)</synopsis>
-        <synopsis>B = repmat(A,m)</synopsis>
+        <synopsis>
+          B = repmat(A, siz)
+          B = repmat(A, m)
+          B = repmat(A, m, n,...)
+      </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -59,7 +61,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>repmat(A,m,n)</literal> or de façon équivalente,
@@ -69,7 +71,7 @@
             <literal>[size(A,1)*M, size(A,2)*N]</literal>.
         </para>
         <para>
-            <literal>repmat(A,m)</literal> crée un pavage 
+            <literal>repmat(A,m)</literal> crée un pavage
             <literal>m</literal>-by- <literal>m</literal>.
         </para>
         <para>
@@ -88,9 +90,9 @@
             être étendue en utilisant le méchanisme de surcharge.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     repmat(1:3,2,2)
     repmat(int8([1 0 1;0 1 0]),2,3,2)
     repmat("Scilab",3,2)
@@ -113,7 +115,7 @@
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>Historique</title>
         <revhistory>
             <revision>

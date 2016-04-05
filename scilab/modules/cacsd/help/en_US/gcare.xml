@@ -19,7 +19,7 @@
         <refpurpose>Continuous time control Riccati equation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X,F]=gcare(Sl)</synopsis>
     </refsynopsisdiv>
     <refsection>

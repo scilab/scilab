@@ -19,7 +19,7 @@
         <refpurpose>Nehari approximant of continuous time dynamical systems</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x]=nehari(R [,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

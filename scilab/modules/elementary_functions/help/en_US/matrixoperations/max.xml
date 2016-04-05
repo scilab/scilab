@@ -19,7 +19,7 @@
         <refpurpose>maximum</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[m [,k]]=max(A)
             [m [,k]]=max(A,'c')
             [m [,k]]=max(A,'r')

@@ -19,7 +19,7 @@
         <refpurpose>return the list of graphics windows</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x = winsid()</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>double coprime factorization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[N,M,X,Y,NT,MT,XT,YT]=dcf(G,[polf,polc,[tol]])</synopsis>
     </refsynopsisdiv>
     <refsection>

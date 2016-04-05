@@ -19,7 +19,7 @@
         <refpurpose>Add an entry in the demos list</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>add_demo(title,path)</synopsis>
     </refsynopsisdiv>
     <refsection>

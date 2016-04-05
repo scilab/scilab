@@ -8,7 +8,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>void Scierror(error_level,format,value_1,..,value_n)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>Convert decimal to base N number in string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>str = dec2base(d, base)</synopsis>
         <synopsis>str = dec2base(d, base, n)</synopsis>
     </refsynopsisdiv>

@@ -17,7 +17,7 @@
         <refpurpose>Removes all datatips on a set of polylines. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             datatipRemoveAll(curve_handles)
             datatipRemoveAll()

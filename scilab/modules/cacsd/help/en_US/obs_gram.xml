@@ -19,7 +19,7 @@
         <refpurpose>observability gramian</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Go=obs_gram(A,C [,dom])
             Go=obs_gram(sl)
         </synopsis>

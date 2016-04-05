@@ -19,7 +19,7 @@
         <refpurpose>controllable part</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[slc]=contrss(sl [,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

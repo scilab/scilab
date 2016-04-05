@@ -20,7 +20,7 @@
         <refpurpose>Solves non-linear least squares problems</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             fopt=leastsq(fun, x0)
             fopt=leastsq(fun, x0)
@@ -99,7 +99,7 @@
                         introduced by the string keyword <literal>'b'</literal> followed by
                         the lower bound <literal>binf</literal> then by the upper bound
                         <literal>bsup</literal> (so <literal>cstr</literal> appears as
-                        <literal>'b',binf,bsup</literal> in the calling sequence). Those
+                        <literal>'b',binf,bsup</literal> in the syntax). Those
                         bounds are real vectors with same dimension than
                         <literal>x0</literal> (-%inf and +%inf may be used for dimension
                         which are unrestricted).
@@ -261,7 +261,7 @@ y=f(x,a1,a2,...)
                 <listitem>
                     <para>
                         When <literal>fun</literal> is a Fortran or C
-                        routine, it must be <literal>list(fun_name,m[,a1,a2,...])</literal> in the calling sequence of
+                        routine, it must be <literal>list(fun_name,m[,a1,a2,...])</literal> in the syntax of
                         <literal>leastsq</literal>, where <literal>fun_name</literal> is
                         a 1-by-1 matrix of strings, the name of the routine which must be linked to Scilab (see
                         <link linkend="link">link</link>). The header must be, in Fortran:
@@ -320,7 +320,7 @@ void fun(int *m, int *n, double *x, double *params, double *y)
  ]]></screen>
                         Note that, even if <literal>dfun</literal>
                         needs extra parameters, it must appear simply as
-                        <literal>dfun</literal> in the calling sequence of
+                        <literal>dfun</literal> in the syntax of
                         <literal>leastsq</literal>.
                     </para>
                 </listitem>

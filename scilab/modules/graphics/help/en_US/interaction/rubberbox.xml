@@ -19,7 +19,7 @@
         <refpurpose>rubberband box for rectangle selection</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [final_rect, btn] = rubberbox()
             [final_rect, btn] = rubberbox(initial_rect)

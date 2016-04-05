@@ -19,7 +19,7 @@
         <refpurpose>SISO least square identification</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[H [,err]]=time_id(n,u,y)</synopsis>
     </refsynopsisdiv>
     <refsection>

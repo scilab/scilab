@@ -14,12 +14,12 @@
             of some high-level primitives (such as <literal>ode</literal>, <literal>optim</literal>, <literal>schur</literal>...).
         </para>
         <para>
-            The calling sequence of the external (function or routine) is imposed by
+            The syntax of the external (function or routine) is imposed by
             the high-level primitive which sets the arguments of the external.
         </para>
         <para>
             For example the external function <literal>costfunc</literal> is an argument of the <literal>optim</literal> 
-            primitive. Its calling sequence must be: <literal>[f,g,ind]=costfunc(x,ind)</literal> and 
+            primitive. Its syntax must be: <literal>[f,g,ind]=costfunc(x,ind)</literal> and 
             <literal>optim</literal> (the high-level optimization primitive) is invoked as follows:
         </para>
         <programlisting role="no-scilab-exec"><![CDATA[ 
@@ -50,7 +50,7 @@ optim(list(costfunc,a1,b1,c1),....
         </para>
         <para>
             The name of the routine is given to the high-level primitive
-            as a character string. The calling sequence of the routine 
+            as a character string. The syntax of the routine 
             is also imposed.  
         </para>
         <para>

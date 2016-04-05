@@ -19,7 +19,7 @@
         <refpurpose>Convert to serial date number</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>N = datenum()
             N = datenum(DT)
             N = datenum(Y, M, D)

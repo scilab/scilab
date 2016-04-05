@@ -20,7 +20,7 @@
         <refpurpose>get a tlist, mlist or struct fields names</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>f = fieldnames(lst)</synopsis>
     </refsynopsisdiv>
     <refsection>

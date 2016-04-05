@@ -19,7 +19,7 @@
         <refpurpose>Create a group</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5group(obj, names)
             h5group(filename, names)

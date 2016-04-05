@@ -19,7 +19,7 @@
         <refpurpose>Continuous time dynamical systems stable anti-stable decomposition</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Ga,Gs,Gi]=dtsi(G,[tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

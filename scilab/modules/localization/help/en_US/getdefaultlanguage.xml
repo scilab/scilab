@@ -20,7 +20,7 @@
         <refpurpose>returns the default language used by Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>getdefaultlanguage()</synopsis>
     </refsynopsisdiv>
     <refsection>

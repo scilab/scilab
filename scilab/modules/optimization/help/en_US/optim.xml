@@ -21,7 +21,7 @@
         <refpurpose>non-linear optimization routine</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             fopt = optim(costf, x0)
             fopt = optim(costf [,&lt;contr&gt;],x0 [,algo] [,df0 [,mem]] [,work] [,&lt;stop&gt;] [,&lt;params&gt;] [,imp=iflag])
@@ -600,7 +600,7 @@ binf <= x <= bsup]]>
                         <literal>costf</literal> argument can be the list
                         <literal>(real_costf, arg1,...,argn)</literal>. In this case,
                         <literal>real_costf</literal>, the first element in the list, must
-                        be a Scilab function with calling sequence:
+                        be a Scilab function with syntax:
                         <screen><![CDATA[
 [f,g,ind]=real_costf(x,ind,arg1,...,argn)]]>
                         </screen>
@@ -608,7 +608,7 @@ binf <= x <= bsup]]>
                         <literal>g</literal>, <literal>ind</literal> arguments have the same
                         meaning as before. In this case, each time the objective function is
                         called back, the arguments <literal>arg1,...,argn</literal> are
-                        automatically appended at the end of the calling sequence of
+                        automatically appended at the end of the syntax of
                         <literal>real_costf</literal>.
                     </para>
                 </listitem>
@@ -648,7 +648,7 @@ real tr(*)]]></screen>
                         <varlistentry>
                             <term>C case</term>
                             <listitem>
-                                <para>The calling sequence of the C function computing the
+                                <para>The syntax of the C function computing the
                                     objective must be:
                                 </para>
                                 <screen>void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)</screen>

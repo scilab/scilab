@@ -19,7 +19,7 @@
         <refpurpose>singular value approximation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[U,s,V]=sva(A,k)
             [U,s,V]=sva(A,tol)
         </synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>hyperbolic cosine</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[t] = cosh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

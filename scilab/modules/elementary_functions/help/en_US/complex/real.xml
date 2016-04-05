@@ -19,7 +19,7 @@
         <refpurpose>real part</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y]=real(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

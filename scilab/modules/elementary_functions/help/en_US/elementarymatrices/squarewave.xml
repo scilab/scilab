@@ -19,7 +19,7 @@
         <refpurpose>generates a square wave with period 2*%pi</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x=squarewave(t [,percent])</synopsis>
     </refsynopsisdiv>
     <refsection>

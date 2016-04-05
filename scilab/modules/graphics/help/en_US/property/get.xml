@@ -22,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>h=get(prop)
             val=get(h,prop)
             val=get(handlePath,prop)

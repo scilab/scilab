@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>txt = help_skeleton(funname [,path [,language]])</synopsis>
     </refsynopsisdiv>
     <refsection>

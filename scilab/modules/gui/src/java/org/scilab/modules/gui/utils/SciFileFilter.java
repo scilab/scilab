@@ -79,6 +79,8 @@ public class SciFileFilter extends FileFilter {
                 description = Messages.gettext("All PNG image files") +  "(*.png)";
             } else if (fileMask.equals("*.rtf")) {
                 description = Messages.gettext("All RTF (Rich Text Format) files") +  "(*.rtf)";
+            } else if (fileMask.equals("*.html")) {
+                description = Messages.gettext("All HTML files") +  "(*.html)";
             } else if (fileMask.equals("*.*")) {
                 description = Messages.gettext("All files") +  "(*.*)";
             } else {

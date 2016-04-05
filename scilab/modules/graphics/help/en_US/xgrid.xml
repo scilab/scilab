@@ -20,7 +20,7 @@
         <refpurpose>add a grid on a 2D or 3D plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xgrid([color] [, thickness] [, style])</synopsis>
     </refsynopsisdiv>
     <refsection>

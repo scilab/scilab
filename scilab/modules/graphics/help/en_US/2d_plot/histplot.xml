@@ -20,7 +20,7 @@
         <refpurpose>plot a histogram</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [cf, ind] = histplot(n, data [,normalization] [,polygon], &lt;opt_args&gt;)
             [cf, ind] = histplot(x, data [,normalization] [,polygon], &lt;opt_args&gt;)

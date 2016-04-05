@@ -31,7 +31,7 @@ int sci_legendre(char *fname, void* pvApiCtx)
 {
     /*
     *   Interface onto the (Slatec) dxleg.f code.
-    *   Scilab calling sequence :
+    *   Scilab syntax:
     *
     *   p = legendre(n, m, x [, norm_flag] )
     *

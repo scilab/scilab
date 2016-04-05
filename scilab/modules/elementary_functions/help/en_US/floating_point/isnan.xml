@@ -20,7 +20,7 @@
         <refpurpose>check for "Not a Number" entries</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>r=isnan(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

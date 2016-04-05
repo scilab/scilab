@@ -19,7 +19,7 @@
         <refpurpose>extract union components of a vector</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [v [,ka, kb] ] = union(a,b)
             [v [,ka, kb] ] = union(a,b,orient)

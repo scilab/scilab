@@ -19,7 +19,7 @@
         <refpurpose>transfer function to descriptor</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>S=tf2des(G)
             S=tf2des(G,flag)
         </synopsis>

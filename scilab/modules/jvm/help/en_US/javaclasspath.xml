@@ -19,7 +19,7 @@
         <refpurpose>set and get dynamic Java class path</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res=javaclasspath()
             javaclasspath(path)
         </synopsis>

@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_build_gateway_loader(langs)
             tbx_build_gateway_loader(langs, gateway_path)

@@ -28,6 +28,10 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
+
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -284,7 +288,7 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
      */
     private JTable getUiTable() {
         if (uiTable == null) {
-            uiTable = new JTable(data, colNames);
+            uiTable = createTable(data, colNames);
             uiTable.setFillsViewportHeight(true);
             if (uiTable.getGridColor().equals(Color.WHITE)) {
                 uiTable.setGridColor(new Color(128, 128, 128));
@@ -351,7 +355,7 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
         //updates table with new column names
         nCol = names.length;
         colNames = names;
-        uiTable = new JTable(data, names);
+        uiTable = createTable(data, names);
         getViewport().add(uiTable);
         uiTable.doLayout();
     }
@@ -412,7 +416,7 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
         }
 
         //adds and updates table with new data
-        uiTable = new JTable(data, colNames);
+        uiTable = createTable(data, colNames);
         getViewport().add(uiTable);
         uiTable.doLayout();
     }
@@ -499,5 +503,26 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
         if (color != null) {
             setForeground(color);
         }
+    }
+
+    /* Create a JTable and adds an event listener for updating table data */
+    private JTable createTable(Object[][] data, Object[] names) {
+        JTable table = new JTable(data, names);
+
+        table.getModel().addTableModelListener(new TableModelListener() {
+            public void tableChanged(TableModelEvent e) {
+                int row = e.getFirstRow();
+                int column = e.getColumn();
+                Object data = ((TableModel)e.getSource()).getValueAt(row, column);
+
+                String[] tableData = (String[]) GraphicController.getController().getProperty(uid, __GO_UI_STRING__);
+                int ncols = (Integer) GraphicController.getController().getProperty(uid, __GO_UI_STRING_COLNB__);
+                int nrows = tableData.length / ncols;
+                tableData[(column + 1) * nrows + row + 1] = data.toString();
+                GraphicController.getController().setProperty(uid, __GO_UI_STRING__, tableData);
+            }
+        });
+
+        return table;
     }
 }

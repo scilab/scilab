@@ -33,7 +33,7 @@ enum command_origin_t
  * @param iCmdorigin        : origine of the command
  * @return <ReturnValue>
  */
-int StoreCommandWithFlags(char* command, int iPrioritary, int iInterruptible, enum command_origin_t iCmdorigin);
+int StoreCommandWithFlags(const char* command, int iPrioritary, int iInterruptible, enum command_origin_t iCmdorigin);
 
 /**
  * Store a non-prioritary and interruptible command
@@ -41,7 +41,7 @@ int StoreCommandWithFlags(char* command, int iPrioritary, int iInterruptible, en
  * @param command : the command
  * @return <ReturnValue>
  */
-int StoreCommand(char *command);
+int StoreCommand(const char *command);
 
 /**
  * Store a prioritary and interruptible command
@@ -50,14 +50,14 @@ int StoreCommand(char *command);
  * @return <ReturnValue>
  */
 
-int StoreConsoleCommand(char *command, int iWaitFor);
+int StoreConsoleCommand(const char *command, int iWaitFor);
 /**
  * Store a prioritary and non-interruptible command
  *
  * @param command : the command
  * @return <ReturnValue>
  */
-int StorePrioritaryCommand(char *command);
+int StorePrioritaryCommand(const char *command);
 
 /**
  * Get the next command to execute

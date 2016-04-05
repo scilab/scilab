@@ -17,7 +17,7 @@ along with this program.
         <refpurpose>Computes discrete auto or cross covariance</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[c [,lagindex]] = xcov(x [,maxlags [,scaling]])
             [c [,lagindex]] = xcov(x,y [,maxlags [,scaling]])
         </synopsis>

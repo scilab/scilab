@@ -5,7 +5,7 @@
         <refpurpose>Graphical user interface that can be used to interactively design wfir filters</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[ftype,forder,cfreq,wtype,fpar] = wfir_gui()</synopsis>
     </refsynopsisdiv>
     <refsection>

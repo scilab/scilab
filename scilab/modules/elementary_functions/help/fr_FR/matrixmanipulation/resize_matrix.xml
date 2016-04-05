@@ -20,21 +20,22 @@
         <refpurpose>élague et/ou étend (et convertit) une matrice ou une hypermatrice</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
+        <title>Syntaxe</title>
         <synopsis>
+                     resize_matrix    //  Démo
             resMat = resize_matrix(mat, nbRows, nbCols)
-            
+
             resMat = resize_matrix(mat, nbRows, nbCols, resType)
             resMat = resize_matrix(mat, nbRows, nbCols, resType, padding)
             resMat = resize_matrix(mat, nbRows, nbCols,    ""  , padding)
-            
+
             resMat = resize_matrix(mat, newSizes)
             resMat = resize_matrix(mat, newSizes, resType)
             resMat = resize_matrix(mat, newSizes, resType, padding)
             resMat = resize_matrix(mat, newSizes,    ""  , padding)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
@@ -102,7 +103,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             Crée une matrice de taille <literal>[nbRows, nbCols]</literal> ou <literal>newSizes</literal>, ou une hypermatrice de taille <literal>newSizes</literal>.
@@ -113,7 +114,7 @@
             Le type du retour peut être modifié en spécifiant l'argument <literal>resType</literal>, avec les restrictions mentionnées ci-dessus.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 // Exemples de démonstration, dont avec des polynômes :
@@ -172,7 +173,7 @@ resize_matrix(P, [3 3 2], "", %z)
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>Historique</title>
         <revhistory>
             <revision>

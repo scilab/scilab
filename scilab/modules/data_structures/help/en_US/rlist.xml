@@ -19,7 +19,7 @@
         <refpurpose>Scilab rational fraction function definition</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[r] = rlist()
             [r] = rlist(N, D [,dom])
         </synopsis>

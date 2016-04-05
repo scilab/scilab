@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=9960
 //
 // <-- Short Description -->
-// There was no simplified assert_checkerror calling sequence.
+// There was no simplified assert_checkerror syntax.
 
 function flag = MY_assert_equal ( computed , expected )
   if computed==expected then
@@ -39,7 +39,7 @@ endfunction
 // do not check the error message.
 assert_checkerror("f(1,2)",[],1234);
 
-// This is an impossible calling sequence of assert_checkerror.
+// This is an impossible syntax of assert_checkerror.
 // Either the message or the error number must be set to 
 // a non empty value.
 instr = "f(1,2)";

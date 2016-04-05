@@ -19,7 +19,7 @@
         <refpurpose>discrete time response (state space)  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X]=ltitr(A,B,U,[x0])
             [xf,X]=ltitr(A,B,U,[x0])
         </synopsis>

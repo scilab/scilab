@@ -57,11 +57,15 @@ function [Y,M,D,h,m,s] = datevec(N)
 
     // On retranche 1 si la valeur est inferieur à 0
 
-    mask       = (temp <= 0);
-    Year(mask) = Year(mask)-1;
+    mask       = find(temp <= 0);
+    if ~isempty(mask)
+        Year(mask) = Year(mask)-1;
 
-    N(mask)    = N(mask) - (365.0*Year(mask) + ceil(0.25*Year(mask)) - ceil(0.01*Year(mask)) + ceil(0.0025*Year(mask)));
-    N(~mask)   = temp(~mask);
+        N(mask)    = N(mask) - (365.0*Year(mask) + ceil(0.25*Year(mask)) - ceil(0.01*Year(mask)) + ceil(0.0025*Year(mask)));
+        N(~mask)   = temp(~mask);
+    else
+        N = temp;
+    end
 
     // ... and the month
     // =========================================================================
@@ -71,16 +75,25 @@ function [Y,M,D,h,m,s] = datevec(N)
     // construction de la matrice
 
     month_day_mat = ones(nr,nc);
+    idx_leap_year = isLeapYear(Year);
 
-    month_day_mat(isLeapYear(Year))  = leap_year(Month(isLeapYear(Year))+1);
-    month_day_mat(~isLeapYear(Year)) = common_year(Month(~isLeapYear(Year))+1);
+    if ~isempty(Month(idx_leap_year))
+        month_day_mat(idx_leap_year)  = leap_year(Month(idx_leap_year)+1);
+    end
+    if ~isempty(Month(~idx_leap_year))
+        month_day_mat(~idx_leap_year) = common_year(Month(~idx_leap_year)+1);
+    end
 
     Month( N>month_day_mat ) = Month( N>month_day_mat )+1;
 
     Day = ones(nr,nc);
 
-    month_day_mat(isLeapYear(Year))  = leap_year(Month(isLeapYear(Year)));
-    month_day_mat(~isLeapYear(Year)) = common_year(Month(~isLeapYear(Year)));
+    if ~isempty(Month(idx_leap_year))
+        month_day_mat(idx_leap_year)  = leap_year(Month(idx_leap_year));
+    end
+    if ~isempty(Month(~idx_leap_year))
+        month_day_mat(~idx_leap_year) = common_year(Month(~idx_leap_year));
+    end
 
     Day = N - month_day_mat;
 

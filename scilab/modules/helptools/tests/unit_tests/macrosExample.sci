@@ -1,7 +1,7 @@
 function [helptxt,demotxt]=macrosExample(funname,helpdir,demodir)
     // Generate help files and demo files from the head comments section of a .sci source file.
     //
-    // Calling Sequence
+    // Syntax
     //  help_from_sci() // generate an empty function template
     //  help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci.
     //  help_from_sci(dirname,helpdir) // process dirname/*.sci and create helpdir/*.xml help files.
@@ -28,12 +28,12 @@ function [helptxt,demotxt]=macrosExample(funname,helpdir,demodir)
     //  of the function.
     //
     //  The remaining comments are formatted according to the following (optional) headlines:
-    //  "Calling Sequence", "Parameters", "Description", "Examples", "See also", "Used functions",
+    //  "Syntax", "Parameters", "Description", "Examples", "See also", "Used functions",
     //  "Authors" and "Bibliography".
     //
     //  The following guidelines should be used when writing the source code comments:
     //  <itemizedlist>
-    //    <listitem><literal>Calling Sequence</literal> - one example pr. line.</listitem>
+    //    <listitem><literal>Syntax</literal> - one example pr. line.</listitem>
     //    <listitem><literal>Parameters</literal> - separate parameter name and
     //    description by a ":". Keep the description of each parameter on the same line.</listitem>
     //    <listitem><literal>Description</literal> - formatting of the text can be done
@@ -61,7 +61,7 @@ function [helptxt,demotxt]=macrosExample(funname,helpdir,demodir)
     //  // create both a xml help file and a demo file in the current directory.
     //  help_from_sci('test_fun','.','.')
     //
-    //  // From a toolbox root directory a typical calling sequence would be:
+    //  // From a toolbox root directory a typical syntax would be:
     //  // help_from_sci('macros','help\en_US','demos')
     //  // This command would process all .sci files in the macros directory
     //  // and use the head comments section to update all .xml help files in the

@@ -19,7 +19,7 @@
         <refpurpose>Get a namespace by its href</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             ns = xmlGetNsByHref(elem, href)
         </synopsis>

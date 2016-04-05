@@ -185,7 +185,7 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
         double* pdblTempReal = new double[iSize + 1];
         C2F(dcopy)(&iSizeP1, pdblInReal, &iOne, pdblTempReal, &imOne);
         C2F(rpoly)(pdblTempReal, &iSize, pDblOut->get(), pDblOut->getImg(), &iFail);
-        delete pdblTempReal;
+        delete[] pdblTempReal;
 
         if (iFail)
         {
@@ -275,10 +275,10 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
 
     if (pDblIn)
     {
-        delete pdblInReal;
+        delete[] pdblInReal;
         if (bComplex)
         {
-            delete pdblInImg;
+            delete[] pdblInImg;
         }
     }
 

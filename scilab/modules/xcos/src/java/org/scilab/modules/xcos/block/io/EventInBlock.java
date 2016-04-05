@@ -20,6 +20,7 @@ package org.scilab.modules.xcos.block.io;
 import com.mxgraph.model.mxGeometry;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
 
 /**
  * Implement an event entry point of a
@@ -34,5 +35,7 @@ public final class EventInBlock extends ContextUpdate {
      */
     public EventInBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
         super(controller, uid, kind, value, geometry, style, id);
+
+        controller.setObjectProperty(uid, kind, ObjectProperties.SIM_FUNCTION_NAME, "input");
     }
 }

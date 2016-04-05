@@ -8,7 +8,7 @@
         <refpurpose>element wise hyperbolic cotangent inverse.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = acoth(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

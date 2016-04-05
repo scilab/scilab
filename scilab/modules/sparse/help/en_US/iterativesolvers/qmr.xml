@@ -19,7 +19,7 @@
         <refpurpose>quasi minimal residual method with preconditioning  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x,flag,err,iter,res] = qmr(A,Ap,b,x0,M1,M1p,M2,M2p,maxi,tol)
             [x,flag,err,iter,res] = qmr(A,b,x0,M1,M2,maxi,tol)
         </synopsis>

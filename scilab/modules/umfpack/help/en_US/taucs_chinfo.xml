@@ -5,7 +5,7 @@
         <refpurpose>get information on Cholesky factors  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[OK, n, cnz] = taucs_chinfo(C_ptr)</synopsis>
     </refsynopsisdiv>
     <refsection>

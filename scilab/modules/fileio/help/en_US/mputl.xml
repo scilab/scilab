@@ -20,7 +20,7 @@
         <refpurpose>writes strings in a text file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>r = mputl(txt, file_desc)</synopsis>
     </refsynopsisdiv>
     <refsection>

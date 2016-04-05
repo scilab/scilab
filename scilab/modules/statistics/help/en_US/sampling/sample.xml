@@ -19,7 +19,7 @@
         <refpurpose>Sampling with replacement</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s = sample(n,X,orient)</synopsis>
     </refsynopsisdiv>
     <refsection>

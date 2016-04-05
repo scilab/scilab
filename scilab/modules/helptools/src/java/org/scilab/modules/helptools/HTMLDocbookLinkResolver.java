@@ -43,13 +43,13 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
 
     private static boolean isCaseInsensitiveOS = System.getProperty("os.name").toLowerCase().contains("windows");
 
-    private Map<String, String> mapId = new LinkedHashMap<String, String>();
-    private List<String> listIdIgnoreCase = new ArrayList<String>();
-    private Map<String, String> toc = new LinkedHashMap<String, String>();
-    private Map<String, String> mapIdPurpose = new LinkedHashMap<String, String>();
-    private Map<String, String> mapIdRefname = new LinkedHashMap<String, String>();
-    private Map<String, TreeId> mapTreeId = new HashMap<String, TreeId>();
-    private Map<String, String> mapIdDeclaringFile = new HashMap<String, String>();
+    private Map<String, String> mapId = new LinkedHashMap<>();
+    private List<String> listIdIgnoreCase = new ArrayList<>();
+    private Map<String, String> toc = new LinkedHashMap<>();
+    private Map<String, String> mapIdPurpose = new LinkedHashMap<>();
+    private Map<String, String> mapIdRefname = new LinkedHashMap<>();
+    private Map<String, TreeId> mapTreeId = new HashMap<>();
+    private Map<String, String> mapIdDeclaringFile = new HashMap<>();
     private TreeId tree = new TreeId(null, "root");
 
     private TreeId currentLeaf = tree;
@@ -327,7 +327,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
         return "No id attribute in <refentry> or <refnamediv> in file " + str + " at line " + locator.getLineNumber();
     }
 
-    class TreeId {
+    public class TreeId {
 
         String id;
         TreeId parent;
@@ -345,7 +345,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
 
         void add(TreeId child) {
             if (children == null) {
-                children = new ArrayList<TreeId>();
+                children = new ArrayList<>();
             }
             child.pos = children.size();
             children.add(child);

@@ -19,7 +19,7 @@
         <refpurpose>load a saved graphics</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xload(file_name,[win_num])</synopsis>
     </refsynopsisdiv>
     <refsection>

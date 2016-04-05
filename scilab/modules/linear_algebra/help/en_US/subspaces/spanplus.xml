@@ -19,7 +19,7 @@
         <refpurpose>sum of subspaces</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X,dim,dima]=spanplus(A,B[,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

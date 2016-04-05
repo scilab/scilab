@@ -20,7 +20,7 @@
         <refpurpose>write a Matlab MAT-file (binary or ASCII)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>savematfile('filename')
             savematfile('filename', 'var1', 'var2', ...)
             savematfile('filename', '-struct', 's')

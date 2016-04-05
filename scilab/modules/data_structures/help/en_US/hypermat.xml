@@ -19,7 +19,7 @@
         <refpurpose>initializes an  N dimensional matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>M = hypermat(dims [,v])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>sparse Cholesky solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sol=chsolve(spcho,rhs)</synopsis>
     </refsynopsisdiv>
     <refsection>

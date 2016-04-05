@@ -19,7 +19,7 @@
         <refpurpose>create a struct</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>st = struct(field1, value1, field2, value2, ...)</synopsis>
     </refsynopsisdiv>
     <refsection>

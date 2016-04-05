@@ -19,7 +19,7 @@
         <refpurpose>matrix or pencil balancing</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Ab,X]=balanc(A)
             [Eb,Ab,X,Y]=balanc(E,A)
         </synopsis>

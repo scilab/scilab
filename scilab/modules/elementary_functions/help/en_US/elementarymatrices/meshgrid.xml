@@ -19,7 +19,7 @@
         <refpurpose>create matrices or 3-D arrays</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X, Y] = meshgrid(x)
             [X, Y] = meshgrid(x,y)
             [X, Y, Z] = meshgrid(x,y,z)

@@ -19,7 +19,7 @@
         <refpurpose>harmonic mean</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>hm=harmean(x)
             hm=harmean(x,'r')(or, equivalently, hm=harmean(x,1))
             hm=harmean(x,'c')(or, equivalently, hm=harmean(x,2))

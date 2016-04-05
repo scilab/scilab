@@ -19,7 +19,7 @@
         <refpurpose>get span until character in string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = strcspn(string_one, string_two)</synopsis>
     </refsynopsisdiv>
     <refsection>

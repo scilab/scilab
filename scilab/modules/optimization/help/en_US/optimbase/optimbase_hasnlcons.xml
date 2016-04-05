@@ -19,7 +19,7 @@
         <refpurpose>Checks if the non linear constraints are specified.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [opt, hasnlcons] = optimbase_hasnlcons(opt)
         </synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>save the current history in a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>savehistory()
             savehistory(f)
         </synopsis>

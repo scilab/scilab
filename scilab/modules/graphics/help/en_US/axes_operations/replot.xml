@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * Copyright (C) 2013 - Samuel GOUGEON
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -21,17 +21,19 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>replot(area)</synopsis>
-        <synopsis>replot(area, axesHandles)</synopsis>
+        <title>Syntax</title>
+        <synopsis>
+          replot(area)
+          replot(area, axesHandles)
+      </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>area</term>
                 <listitem>
-                    <para>row vector [xmin ymin xmax ymax] or [xmin ymin zmin xmax ymax zmax]: new bounds of the area to be replotted. 
+                    <para>row vector [xmin ymin xmax ymax] or [xmin ymin zmin xmax ymax zmax]: new bounds of the area to be replotted.
                         <note>
                             Use <literal>%nan</literal> to keep a bound as is.
                         </note>
@@ -47,11 +49,11 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>replot</literal> is used to redraw the content of the current graphics axes with new boundaries defined by
-            <literal>area = [xmin,ymin, xmax,ymax]</literal> or <literal>area = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>. 
+            <literal>area = [xmin,ymin, xmax,ymax]</literal> or <literal>area = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>.
         </para>
         <para>This transformation can be applied to specific
             axes given by Axes graphics handles via the <varname>axesHandles</varname> argument. If <varname>axesHandles</varname> is
@@ -65,7 +67,7 @@
             <link linkend="axes_properties">axes_properties</link>)
         </note>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
       x=[0:0.1:2*%pi]';
@@ -144,7 +146,7 @@ replot([-1 %nan 1.5 %nan], [ax1 ax2])
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>History</title>
         <revhistory>
             <revision>

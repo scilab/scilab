@@ -19,7 +19,7 @@
         <refpurpose>locate substring</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = strstr(haystack, needle)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -20,7 +20,7 @@
         <refpurpose>Solve linear matrix inequations.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[XLISTF[,OPT]] = lmisolver(XLIST0,evalfunc [,options])</synopsis>
     </refsynopsisdiv>
     <refsection>

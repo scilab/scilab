@@ -5,7 +5,7 @@
         <refpurpose>interfacing a Fortran or C routine</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[s_1,s_2,...,s_lhs]=user(e_1,e_2,...,e_rhs)</synopsis>
     </refsynopsisdiv>
     <refsection>

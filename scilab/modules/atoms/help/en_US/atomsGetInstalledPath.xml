@@ -19,7 +19,7 @@
         <refpurpose>Get the install path of installed external modules</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             paths = atomsGetInstalledPath(modules)
         </synopsis>

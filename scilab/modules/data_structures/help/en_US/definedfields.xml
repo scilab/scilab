@@ -19,7 +19,7 @@
         <refpurpose>returns an index of list's defined fields</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>k = definedfields(lst)</synopsis>
     </refsynopsisdiv>
     <refsection>

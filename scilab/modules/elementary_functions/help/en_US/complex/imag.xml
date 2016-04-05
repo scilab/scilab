@@ -19,7 +19,7 @@
         <refpurpose>imaginary part</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y]=imag(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

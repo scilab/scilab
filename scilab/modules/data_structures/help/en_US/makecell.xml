@@ -19,7 +19,7 @@
         <refpurpose>Creates a cell array. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s = makecell(dims,a1,a2,...an)</synopsis>
     </refsynopsisdiv>
     <refsection>

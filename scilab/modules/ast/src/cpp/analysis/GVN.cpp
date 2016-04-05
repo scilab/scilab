@@ -126,23 +126,28 @@ GVN::Value * GVN::getExistingValue(const symbol::Symbol & sym)
     }
 }
 
+GVN::Value * GVN::getValue(const int64_t x)
+{
+    const auto i = mapi64.find(x);
+    if (i == mapi64.end())
+    {
+        GVN::Value & value = mapi64.emplace(x, current++).first->second;
+        insertValue(x, value);
+
+        return &value;
+    }
+    else
+    {
+        return &i->second;
+    }
+}
+
 GVN::Value * GVN::getValue(const double x)
 {
     int64_t _x;
     if (tools::asInteger(x, _x))
     {
-        const auto i = mapi64.find(_x);
-        if (i == mapi64.end())
-        {
-            GVN::Value & value = mapi64.emplace(_x, current++).first->second;
-            insertValue(_x, value);
-
-            return &value;
-        }
-        else
-        {
-            return &i->second;
-        }
+        return getValue(_x);
     }
 
     return nullptr;

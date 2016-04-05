@@ -20,7 +20,7 @@
         <refpurpose>get md5 checksum</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = getmd5(filename)
             res = getmd5(ParamString,'string')
         </synopsis>

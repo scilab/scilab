@@ -19,7 +19,7 @@
         <refpurpose>sparse to full matrix conversion</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>X=full(sp)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>W*W' hermitian factorization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sqroot(X)</synopsis>
     </refsynopsisdiv>
     <refsection>

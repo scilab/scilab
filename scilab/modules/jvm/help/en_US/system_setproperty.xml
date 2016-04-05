@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>prev = system_setproperty(key,value)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>matrix tangent</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[t] = tanm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

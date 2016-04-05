@@ -19,7 +19,7 @@
         <refpurpose>extract polynomial matrices from ar representation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[A,B,D]=arma2p(ar)</synopsis>
     </refsynopsisdiv>
     <refsection>

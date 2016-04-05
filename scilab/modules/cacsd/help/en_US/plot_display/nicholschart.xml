@@ -19,7 +19,7 @@
         <refpurpose>Nichols chart</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>nicholschart([modules] [,args] [,colors])</synopsis>
         <synopsis/>
     </refsynopsisdiv>
@@ -69,8 +69,8 @@
     <refsection>
         <title>Remark</title>
         <para>
-            Traditionally, the type of a calling sequence for <code>nicholschart</code> is: nicholschart(modules=gains, args=phases, colors=colors), 
-            but the following calling sequence is also allowed: nicholschart(gains, phases, colors).
+            Traditionally, the syntax for <code>nicholschart</code> is: nicholschart(modules=gains, args=phases, colors=colors), 
+            but the following syntax is also allowed: nicholschart(gains, phases, colors).
         </para>
     </refsection>
     <refsection>
@@ -134,7 +134,7 @@
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark> Calling sequence allowed: nicholschart(gains, phases, colors).</revremark>
+                <revremark> Syntax allowed: nicholschart(gains, phases, colors).</revremark>
             </revision>
         </revhistory>
     </refsection>

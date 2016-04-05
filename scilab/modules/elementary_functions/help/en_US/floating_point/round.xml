@@ -20,7 +20,7 @@
         <refpurpose>round to nearest integer</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=round(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

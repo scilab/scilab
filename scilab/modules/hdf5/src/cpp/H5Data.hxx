@@ -26,11 +26,11 @@ class H5Data : public H5Object
 
 protected:
 
-    void * data;
     const hsize_t totalSize;
     const hsize_t dataSize;
     const hsize_t ndims;
     const hsize_t * dims;
+    void * data;
     const hsize_t stride;
     const size_t offset;
     const bool dataOwner;

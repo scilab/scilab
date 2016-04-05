@@ -23,7 +23,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [i_bin [,counts [,outside]]] = dsearch(X, bins )
             [i_bin [,counts [,outside]]] = dsearch(X, bins , pm )

@@ -397,9 +397,11 @@
         <programlisting role="example"><![CDATA[
 // 全てのテストを実行
 // =============================================
-test_run();
-test_run([]);
-test_run([],[]);
+// test_run();
+// test_run([]);
+// test_run([],[]);
+// test_run("[]","[]");
+// test_run [] [];
 // 1つまたは複数のモジュールをテスト
 // =============================================
 // 1つのモジュールをテスト
@@ -437,6 +439,8 @@ test_run([],[],'unit_test');
 test_run('boolean','bug_2799','no_check_error_output');
 // 複数のオプションを同時に指定
 test_run([],[],['no_check_ref','mode_nw']);
+// Console mode
+test_run time [] no_check_ref //tests time module with no_check_ref option
  ]]></programlisting>
         <programlisting role="example"><![CDATA[
 //  (パスで指定した)外部モジュールのユニットテストを実行

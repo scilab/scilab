@@ -19,7 +19,7 @@
         <refpurpose>detects Intel fortran Compiler</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ifortv = findmsifortcompiler()</synopsis>
     </refsynopsisdiv>
     <refsection>

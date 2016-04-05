@@ -123,13 +123,16 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
     int const job   = 0;
 
     /* allocating the two memory buffers in one place as the original code did */
-    double* le = (double*) MALLOC( 2 * iDim * sizeof(double) );
+    double* le = (double*) MALLOC(2 * iDim * sizeof(double));
     int*    lib = (int*) MALLOC(iDim * sizeof(int));
-    double* lw = (double*)MALLOC(iDim * sizeof(double));
+    double* lw = (double*) MALLOC(iDim * sizeof(double));
 
-    if ((le && lib && lw) == false)
+    if (!le || !lw || !lib)
     {
         Scierror(999, _("%s: Allocation failed.\n"), "bdiag");
+        FREE(lw);
+        FREE(le);
+        FREE(lib);
         return types::Function::Error;
     }
 

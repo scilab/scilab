@@ -19,7 +19,7 @@
         <refpurpose>unobservable subspace</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[n,[U]]=unobs(A,C,[tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>create a figure</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             f = figure(num);
             f = figure("PropertyName1", Propertyvalue1, ..., ..., "PropertyNameN", PropertyvalueN);

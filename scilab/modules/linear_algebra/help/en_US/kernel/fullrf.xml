@@ -19,7 +19,7 @@
         <refpurpose>full rank factorization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Q,M,rk]=fullrf(A,[tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

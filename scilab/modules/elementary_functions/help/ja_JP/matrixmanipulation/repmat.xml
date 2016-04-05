@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - INRIA - Serge Steer
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -20,11 +20,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>B = repmat(A,m,n,...)</synopsis>
-        <synopsis>B = repmat(A,siz)</synopsis>
-        <synopsis>B = repmat(A,m)</synopsis>
+        <synopsis>
+          B = repmat(A, siz)
+          B = repmat(A, m)
+          B = repmat(A, m, n,...)
+      </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>引数</title>
         <variablelist>
             <varlistentry>
@@ -62,7 +64,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>説明</title>
         <para>
             <literal>repmat(A,m,n)</literal> または同様な
@@ -87,9 +89,9 @@
             この関数の定義は,オーバーロード機能により拡張することができます.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     repmat(1:3,2,2)
     repmat(int8([1 0 1;0 1 0]),2,3,2)
     repmat("Scilab",3,2)
@@ -97,7 +99,7 @@
     repmat([1/%s;2/(%s+1)],1,3)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
@@ -111,7 +113,7 @@
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>履歴</title>
         <revhistory>
             <revision>

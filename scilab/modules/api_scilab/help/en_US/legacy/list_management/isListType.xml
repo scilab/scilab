@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int isListType(void* _pvCtx, int* _piAddress)</synopsis>
         <synopsis>int isNamedListType(void* _pvCtx, const char* _pstName)</synopsis>
         <synopsis>int isTListType(void* _pvCtx, int* _piAddress)</synopsis>

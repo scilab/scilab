@@ -19,7 +19,7 @@
         <refpurpose>query about the concurrency of the current execution context</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>C=parallel_concurrency()</synopsis>
     </refsynopsisdiv>
     <refsection>

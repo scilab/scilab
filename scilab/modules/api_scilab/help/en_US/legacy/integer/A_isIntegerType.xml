@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int isIntegerType(void* _pvCtx, int* _piAddress)</synopsis>
         <synopsis>int isNamedIntegerType(void* _pvCtx, const char* _pstName)</synopsis>
     </refsynopsisdiv>

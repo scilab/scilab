@@ -29,7 +29,6 @@ TIType Checkers::check_gettext(GVN & gvn, const TIType & in0)
     {
         return TIType(gvn);
     }
-    return TIType(gvn);
 }
 
 TIType Checkers::check_gettext(GVN & gvn, const TIType & in0, const TIType & in1)
@@ -53,7 +52,6 @@ TIType Checkers::check_gettext(GVN & gvn, const TIType & in0, const TIType & in1
     {
         return TIType(gvn);
     }
-    return TIType(gvn);
 }
 
 } // namespace analysis

@@ -19,7 +19,7 @@
         <refpurpose>Opens a printing dialog and prints a figure.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             printfigure(figid)
             status = printfigure(figid)

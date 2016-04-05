@@ -19,7 +19,7 @@
         <refpurpose>LQG compensator</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[K]=lqg(P,r)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>subspace intersection</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X,dim]=spaninter(A,B [,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

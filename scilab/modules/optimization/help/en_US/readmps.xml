@@ -20,7 +20,7 @@
         <refpurpose>Reads a Linear Program from a MPS file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             mps= readmps (file-name, bounds);
             mps= readmps (file-name, bounds,maxsizes);

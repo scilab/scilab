@@ -161,10 +161,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"int8" または "uint8" または "int16" または "uint16" または "int32" または "uint32"</term>
+                <term>"int8" または "uint8" または "int16" または "uint16" または "int32" または "uint32" または "int64" または "uint64"</term>
                 <listitem>
                     <para>
-                        オブジェクトが 8,16または32ビットに保存される[符号なしの]整数の行列の場合.
+                        オブジェクトが 8,16,32または64ビットに保存される[符号なしの]整数の行列の場合.
                         <link linkend="int8">int8</link>参照)
                     </para>
                 </listitem>

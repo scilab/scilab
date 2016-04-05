@@ -5,7 +5,7 @@
         <refpurpose>Create a border for a frame uicontrol.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             border = createBorder(borderType, varargin)
         </synopsis>

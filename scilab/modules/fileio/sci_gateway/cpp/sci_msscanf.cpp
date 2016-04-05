@@ -91,6 +91,10 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
             break;
         }
         int err = do_xxscanf(L"sscanf", (FILE *)0, wcsFormat, &args, pStrRead->get(rowcount), &retval, buf, type);
+        if (err == DO_XXPRINTF_MISMATCH)
+        {
+            break;
+        }
         if (err < 0)
         {
             return types::Function::Error;
@@ -159,6 +163,8 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                 uiFormatUsed |= (1 << 2);
             }
             break;
+            case NONE:
+                break;
         }
     }
 

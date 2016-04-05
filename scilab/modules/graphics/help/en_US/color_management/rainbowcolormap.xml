@@ -19,7 +19,7 @@
         <refpurpose>red through orange, yellow, green,blue to violet colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>cmap=rainbowcolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

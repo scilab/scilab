@@ -19,10 +19,10 @@
         <refpurpose>determines whether a module is loaded or not</refpurpose>
     </refnamediv>
     <!-- ===================================================================== -->
-    <!-- Calling Sequence -->
+    <!-- Syntax -->
     <!-- ===================================================================== -->
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             result = atomsIsLoaded(modules)
         </synopsis>

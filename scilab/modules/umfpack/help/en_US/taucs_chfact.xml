@@ -5,7 +5,7 @@
         <refpurpose>cholesky factorization of a sparse s.p.d. matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>C_ptr = taucs_chfact(A)</synopsis>
     </refsynopsisdiv>
     <refsection>

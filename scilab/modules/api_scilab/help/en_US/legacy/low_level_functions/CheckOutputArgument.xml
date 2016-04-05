@@ -8,7 +8,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>CheckOutputArgument(void* _pvCtx, int iMin, int iMax)</synopsis>
     </refsynopsisdiv>
     <refsection>

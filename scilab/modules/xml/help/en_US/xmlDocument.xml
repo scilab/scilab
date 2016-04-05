@@ -19,7 +19,7 @@
         <refpurpose>Create a new XML document</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             doc = xmlDocument([uri, [, version]])
         </synopsis>

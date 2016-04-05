@@ -19,7 +19,7 @@
         <refpurpose>returns the tokens of a character string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>T = tokens(str [,delimiter])</synopsis>
     </refsynopsisdiv>
     <refsection>

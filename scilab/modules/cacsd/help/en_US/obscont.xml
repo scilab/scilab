@@ -19,7 +19,7 @@
         <refpurpose>observer based controller</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[K]=obscont(P,Kc,Kf)
             [J,r]=obscont(P,Kc,Kf)
         </synopsis>

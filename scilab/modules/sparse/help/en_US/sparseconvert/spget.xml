@@ -19,7 +19,7 @@
         <refpurpose>retrieves entries of sparse matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[ij,v,mn]=spget(sp)</synopsis>
     </refsynopsisdiv>
     <refsection>

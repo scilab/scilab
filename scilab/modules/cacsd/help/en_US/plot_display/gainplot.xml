@@ -19,7 +19,7 @@
         <refpurpose>magnitude plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>gainplot(sl,fmin,fmax [,step] [,comments] )
             gainplot(frq,db,phi [,comments])
             gainplot(frq, repf [,comments])

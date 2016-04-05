@@ -19,7 +19,7 @@
         <refpurpose>phase margin and associated crossover frequency</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [phm,fr] = p_margin(h)
             phm=p_margin(h)

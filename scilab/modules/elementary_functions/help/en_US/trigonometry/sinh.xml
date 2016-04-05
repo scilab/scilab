@@ -19,7 +19,7 @@
         <refpurpose>hyperbolic sine</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[t] = sinh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

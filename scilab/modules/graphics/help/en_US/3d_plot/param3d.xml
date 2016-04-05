@@ -19,7 +19,7 @@
         <refpurpose>3D plot of a parametric curve</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>param3d(x,y,z,[theta,alpha,leg,flag,ebox])</synopsis>
     </refsynopsisdiv>
     <refsection>

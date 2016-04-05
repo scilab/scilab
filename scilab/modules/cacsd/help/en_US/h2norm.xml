@@ -19,7 +19,7 @@
         <refpurpose>H2 norm of a continuous time proper dynamical system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[n]=h2norm(Sl [,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

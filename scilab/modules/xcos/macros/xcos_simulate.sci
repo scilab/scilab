@@ -19,7 +19,7 @@ function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
     // Load the block libs if not defined
     prot = funcprot();
     funcprot(0);
-    if ~exists("scicos_diagram") then
+    if ~exists("Sourceslib") then
         loadXcosLibs();
     end
     funcprot(prot);

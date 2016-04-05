@@ -19,7 +19,7 @@
         <refpurpose>Cholesky factorization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[R]=chol(X)</synopsis>
     </refsynopsisdiv>
     <refsection>

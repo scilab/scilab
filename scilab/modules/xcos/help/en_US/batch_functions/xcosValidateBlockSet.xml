@@ -5,7 +5,7 @@
         <refpurpose>Function to validate Xcos Block interface function.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[status, message] = xcosValidateBlockSet(interfFunctionName)</synopsis>
     </refsynopsisdiv>
     <refsection id="Parameters_xcosValidateBlockSet">

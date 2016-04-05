@@ -53,8 +53,8 @@ struct Info
     SymbolicRange range;
     SymbolicDimension maxIndex;
 
-    Info(Data * _data = nullptr) : R(false), W(false), O(false), isint(false), local(Local::INFO_TRUE), cleared(false), exists(true), data(_data), exp(nullptr) { }
-    Info(const Info & i) : R(i.R), W(i.W), O(i.O), isint(i.isint), local(i.local), cleared(i.cleared), exists(i.exists), constant(i.constant), range(i.range), maxIndex(i.maxIndex), type(i.type), data(i.data ? new Data(*i.data) : nullptr), exp(i.exp) { }
+    Info(Data * _data = nullptr) : R(false), W(false), O(false), isint(false), local(Local::INFO_TRUE), cleared(false), exists(true), type(), data(_data), exp(nullptr), constant(), range(), maxIndex() { }
+    Info(const Info & i) : R(i.R), W(i.W), O(i.O), isint(i.isint), local(i.local), cleared(i.cleared), exists(i.exists), type(i.type), data(i.data ? new Data(*i.data) : nullptr), exp(i.exp), constant(i.constant), range(i.range), maxIndex(i.maxIndex) { }
 
     void merge(const Info & info, bool & isSameData);
     void addData(const bool known, const symbol::Symbol & sym);

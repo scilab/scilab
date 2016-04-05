@@ -25,7 +25,7 @@ H5AttributesList::H5AttributesList(H5Object & _parent, const unsigned int _size,
 
 H5AttributesList::~H5AttributesList() { }
 
-const unsigned int H5AttributesList::getSize() const
+unsigned int H5AttributesList::getSize() const
 {
     if (H5ListObject<H5Attribute>::indexList)
     {

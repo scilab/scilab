@@ -1367,7 +1367,7 @@
                 [ f , c , index ] = myfun ( x , index , a1, a2, ...)
             </screen>
             where the input arguments <literal>a1, a2, ...</literal>
-            are automatically appended at the end of the calling sequence.
+            are automatically appended as parameters to the call.
         </para>
     </refsection>
     <refsection>
@@ -1461,7 +1461,7 @@
                 stop = outf ( state, data, a1, a2, ... )
             </screen>
             where the input arguments <literal>a1, a2, ...</literal>
-            are automatically appended at the end of the calling sequence.
+            are automatically appended as parameters to the call.
         </para>
         <para>
             If the output function sets the <literal>stop</literal> variable to true,
@@ -2446,8 +2446,8 @@ nm = neldermead_destroy(nm);
             Tagged -costfargument option of optimbase as obsolete: will be
             maintained for backward compatibility until 5.4.1.
             The -fun option can now be a list, where the element #1 is a
-            function, and the elements #2 to the end are automatically appended to
-            the calling sequence.
+            function, and the elements #2 to the end are automatically appended 
+            as parameters to the call.
             To update your code, replace:
         </para>
         <screen>
@@ -2465,7 +2465,7 @@ nm = neldermead_destroy(nm);
             maintained for backward compatibility until 5.4.1.
             The -outputcommand option can now be a list, where the element #1 is
             a function, and the elements #2 to the end are automatically appended
-            to the calling sequence.
+            as parameters to the call.
             To update your code, replace:
         </para>
         <screen>
@@ -2479,10 +2479,10 @@ nm = neldermead_destroy(nm);
             nm = neldermead_configure(nm,"-outputcommand",list(myoutputfun,mystuff));
         </screen>
         <para>
-            Tagged "outputfun(x,optimValues,state)" calling sequence of fminsearch
+            Tagged "outputfun(x,optimValues,state)" syntax of fminsearch
             as obsolete: will be maintained for backward compatibility until
             5.4.1.
-            The new calling sequence is "stop=outputfun(x,optimValues,state)"
+            The new syntax is "stop=outputfun(x,optimValues,state)"
             To update your code, replace:
         </para>
         <screen>
@@ -2500,10 +2500,10 @@ nm = neldermead_destroy(nm);
             endfunction
         </screen>
         <para>
-            Tagged "myoutputfun(state,data)" calling sequence of neldermead
+            Tagged "myoutputfun(state,data)" syntax of neldermead
             as obsolete: will be maintained for backward compatibility until
             5.4.1.
-            The new calling sequence is "stop=myoutputfun(state,data)"
+            The new syntax is "stop=myoutputfun(state,data)"
             To update your code, replace:
         </para>
         <screen>

@@ -19,7 +19,7 @@
         <refpurpose>controllability matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Cc=cont_mat(A,B)
             Cc=cont_mat(sl)
         </synopsis>

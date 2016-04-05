@@ -145,7 +145,7 @@ msgstr " * Добавьте какие-нибудь комментарии о XM
 msgid "Add short description here."
 msgstr "Добавьте сюда краткое описание."
 
-msgid "Calling Sequence"
+msgid "Syntax"
 msgstr "Последовательность вызова"
 
 msgid "Arguments"

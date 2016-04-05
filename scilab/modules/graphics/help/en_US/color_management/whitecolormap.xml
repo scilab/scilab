@@ -19,7 +19,7 @@
         <refpurpose>completely white colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>cmap=whitecolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

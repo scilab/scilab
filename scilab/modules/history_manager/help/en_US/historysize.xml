@@ -20,7 +20,7 @@
         <refpurpose>get number of lines in history</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>nb = historysize()</synopsis>
         <synopsis>nbMax = historysize("max")</synopsis>
         <synopsis>nbMax = historysize(newMax)</synopsis>

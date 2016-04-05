@@ -8,7 +8,7 @@
         <refpurpose>3D comet animated plot. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>comet3d(z)</synopsis>
         <synopsis>comet3d(x,y,z)</synopsis>
         <synopsis>comet3d(x,y,fun)</synopsis>
@@ -61,7 +61,7 @@
                 <term>fun</term>
                 <listitem>
                     <para>
-                        a scilab function with calling sequence <literal>z=fun(x,y)</literal>.
+                        a scilab function with syntax <literal>z=fun(x,y)</literal>.
                     </para>
                 </listitem>
             </varlistentry>

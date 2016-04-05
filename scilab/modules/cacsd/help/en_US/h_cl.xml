@@ -19,7 +19,7 @@
         <refpurpose>closed loop matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Acl]=h_cl(P,r,K)
             [Acl]=h_cl(P22,K)
         </synopsis>

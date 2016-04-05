@@ -19,7 +19,7 @@
         <refpurpose>descriptor to state-space</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Sl]=des2ss(A,B,C,D,E [,tol])
             [Sl]=des2ss(Des)
         </synopsis>

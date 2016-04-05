@@ -57,6 +57,7 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
 import javax.swing.text.View;
@@ -1259,11 +1260,21 @@ public class SciNotes extends SwingScilabDockablePanel {
         fileChooser.addChoosableFileFilter(allFilter);
         fileChooser.addChoosableFileFilter(allScilabFilter);
 
-        // select default file type
-        fileChooser.setFileFilter(sceFilter);
+        String name = initialDirectoryPath;
+        File tempFile = new File(name);
+
+        // Select default file type
+        SciFileFilter fileFilter = sceFilter;
+        // Look for a supported extension
+        for (FileFilter filter : fileChooser.getChoosableFileFilters()) {
+            if (((SciFileFilter) filter).accept(tempFile)) {
+                fileFilter = (SciFileFilter) filter;
+                break;
+            }
+        }
+        fileChooser.setFileFilter(fileFilter);
         fileChooser.setTitle(title);
 
-        String name = getTextPane().getName();
         if (name == null) {
             name = ((ScilabDocument) getTextPane().getDocument()).getFirstFunctionName();
             if (name != null) {

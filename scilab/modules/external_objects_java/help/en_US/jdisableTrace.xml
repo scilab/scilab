@@ -21,7 +21,7 @@
         <refpurpose>Stop the trace process.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             jdisableTrace()
         </synopsis>

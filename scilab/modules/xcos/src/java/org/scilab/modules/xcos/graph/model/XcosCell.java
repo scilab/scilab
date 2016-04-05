@@ -29,9 +29,11 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
+import java.util.regex.Pattern;
 
 public class XcosCell extends mxCell {
     private static final long serialVersionUID = 1L;
+    private static Pattern validCIdentifier = Pattern.compile("[a-zA-Z][a-zA-Z0-9_]+");
 
     private transient ScicosObjectOwner owner;
 
@@ -101,10 +103,14 @@ public class XcosCell extends mxCell {
         }
 
         switch (getKind()) {
+            case BLOCK:
+                if (validCIdentifier.matcher(String.valueOf(value)).matches()) {
+                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, String.valueOf(value));
+                }
+            // no break on purpose
             case ANNOTATION:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));
                 break;
-            case BLOCK:
             case LINK:
             case PORT:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, String.valueOf(value));
@@ -565,7 +571,7 @@ public class XcosCell extends mxCell {
         JavaController controller = new JavaController();
         XcosCell c = (XcosCell) super.clone();
 
-        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), false, false), getKind());
+        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), true, false), getKind());
         return c;
     }
 }

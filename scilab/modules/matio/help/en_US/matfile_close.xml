@@ -19,7 +19,7 @@
         <refpurpose>Closes a Matlab binary MAT-file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>status = matfile_close(fd)</synopsis>
     </refsynopsisdiv>
     <refsection>

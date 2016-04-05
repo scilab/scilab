@@ -19,7 +19,7 @@
         <refpurpose>Hue-saturation-value colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>cmap = hsvcolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -2110,7 +2110,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     /************************
     * Call scicos simulator
     ************************/
-    /* Calling sequence :
+    /* Syntax :
     * int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     *                 void **work,int *zptr,int *modptr_in,
     *                 void **oz,int *ozsz,int *oztyp,int *ozptr,

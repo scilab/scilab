@@ -19,7 +19,7 @@
         <refpurpose>delete TCL interpreter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>TCL_DeleteInterp(interp)
             TCL_DeleteInterp()
         </synopsis>

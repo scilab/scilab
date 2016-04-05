@@ -5,7 +5,7 @@
         <refpurpose>Natural frequencies and damping factors. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [wn,z] = damp(sys)
             [wn,z] = damp(P [,dt])

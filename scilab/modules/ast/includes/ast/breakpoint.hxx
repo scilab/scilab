@@ -27,8 +27,6 @@ struct Breakpoint
 {
     Breakpoint(const std::wstring& functionName, int iLine = -1, const std::wstring& condition = L"")
         : _pFunctionName(functionName), _iMacroLine(iLine), _file(L""), _iFileLine(0), _condition(condition), _conditionExp(NULL), enable(true) {}
-    //Breakpoint(std::wstring& file, int iLine = -1, ast::Exp* condition = NULL)
-    //    : _pFunctionName(NULL), _iMacroLine(iLine), _file(file), _condition(condition) {}
 
     ~Breakpoint()
     {
@@ -115,11 +113,11 @@ struct Breakpoint
 
 private:
     std::wstring _pFunctionName;
+    int _iMacroLine;
     std::wstring _file;
+    int _iFileLine;
     std::wstring _condition;
     ast::Exp* _conditionExp;
-    int _iFileLine;
-    int _iMacroLine;
     bool enable;
 };
 

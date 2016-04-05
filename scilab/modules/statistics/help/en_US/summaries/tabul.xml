@@ -19,7 +19,7 @@
         <refpurpose>frequency of values of a matrix or vector</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[m]=tabul(X [,order])</synopsis>
     </refsynopsisdiv>
     <refsection>

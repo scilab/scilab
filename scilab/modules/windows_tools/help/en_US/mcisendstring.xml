@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mcisendstring(mcistring)
             bOK=mcisendstring(mcistring)
             [bOK,CodeError]=mcisendstring(mcistring)

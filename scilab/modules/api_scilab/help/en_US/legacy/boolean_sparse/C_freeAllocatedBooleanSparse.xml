@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>void freeAllocatedBooleanSparse(int* _piNbItemRow, int* _piColPos)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -104,6 +104,7 @@ int sci_taucs_chget(char* fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        taucs_ccs_free(C);
         return 1;
     }
 
@@ -112,6 +113,7 @@ int sci_taucs_chget(char* fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        taucs_ccs_free(C);
         return 1;
     }
 

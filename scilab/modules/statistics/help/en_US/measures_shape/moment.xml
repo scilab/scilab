@@ -19,7 +19,7 @@
         <refpurpose>non central moments of all orders</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mom=moment(x,ord)
             mom=moment(x,ord,'r') or mom=moment(x,ord,1)
             mom=moment(x,ord,'c') or mom=moment(x,ord,2)

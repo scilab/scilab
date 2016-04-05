@@ -19,7 +19,7 @@
         <refpurpose>Checks if the given point satisfies bounds constraints.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [opt, isfeasible] = optimbase_isinbounds(opt, x)
         </synopsis>

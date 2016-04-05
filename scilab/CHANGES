@@ -89,15 +89,42 @@ Other feature changes
   cause any error. The previous behavior can be recalled by simply
   calling: ieee(0)
 
+* Function without output argument cannot be call in assignation expression
+
+    function foo()
+        //...
+    endfunction
+
+    val = foo() //return error
 
 Other feature additions
 =======================
+
+* Multiline blocs of comments /* ...\n ... \n ... */ are now possible.
 
 * scatter/scatter3 plot with different mark colors is now available.
 
 * parulacolormap is now available.
 
 * name2rgb can now handle a single string and a matrix of strings.
+
+* isoview, isoview on, isoview off, isoview(idGraphics, "on"|"off") are now supported
+
+* twinkle and twinkle(n) are now supported: by default, the current element gce() blinks.
+
+* householder() can now return the reflection matrix, and has a demo.
+
+* ndgrid() can now works with any types of homogeneous data
+
+* bench_run() can now return its results and/or record them in a file
+
+* typeof(.., "overload") allows now to get the overloading type-code of an object
+
+* sign() can now handle a sparse matrix.
+
+* sleep(..,'s') allows now to specify the duration in seconds.
+
+* deletefile can delete multiple files at once.
 
 
 Installation
@@ -193,11 +220,53 @@ Data Structures
   - .dims and .entries fields have been removed, please use size and () instead.
 
 
-Removed Functions
-==================
+Syntax Modifications
+=====================
+* Declaration of a number on two lines is no longer allowed:
+ 1..
+ 2
 
+* 1./M is now parsed as 1 ./ M instead of 1. / M
+
+* {} and [] are now distinct operators. {} are now used to build cells.
+
+* Declaring non-homogenous strings ("string' or 'string") is no more allowed.
+
+* New shortcut operators have been introduced: && and ||.
+
+* Syntax %i:10 is now deprecated (only real scalars can be used).
+
+* (a=b) executed like a == b is now deprecated and returns an error.
+
+* while/else control instruction is no more supported.
+
+
+Modified Functions
+===================
+* exec: exec of macro executes the body in the current scope but the prototype must have zero input and output arguments.
+* error: an error number in input is deprecated.
+* impl: Recall impl with the same parameters as in its previous stop is now available.
+* ode: y0 is restricted to a column vector.
+* pppdiv: Return a scalar of type 'constant' when the rank is 0.
+* pdiv: Return a matrix of type 'constant' when all the rank are 0.
+* test_run can now take "[]" as argument to be used on console; for instance: test_run string [] no_check_ref
+* strange([]) now returns %nan instead of [], as all other functions for statistical dispersion
+* Writing string or string matrix in a file does not add blanck space before each value:
+    write("TMPDIR/test", ["test", "sample"; "sample", "test"])
+    "-" + mgetl("TMPDIR/test") + "-"
+
+
+Obsolete functions or features
+==============================
 * maxfiles function is now obsolete.
 
+* xpause will be removed from Scilab 6.1. Please use sleep(..) instead.
+
+* isoview(xmin,xmax,ymin,ymax) will be removed from Scilab 6.1. Please use isoview("on"), replot(..) instead.
+
+
+Removed Functions
+==================
 * intersci has been removed. Please use swig instead.
 
 * numdiff has been removed. Please use numderivative instead.
@@ -220,73 +289,18 @@ Removed Functions
   - trisolve
   - block2exp
 
-
-Removed Functions (based on former Scilab stack)
-================================================
-
-* comp.
-
-* errcatch.
-
-* iserror.
-
-* fun2string.
-
-* getvariablesonstack.
-
-* gstacksize.
-
-* macr2lst.
-
-* stacksize.
-
-* code2str.
-
-* str2code.
-
-* -mem option (used to set stacksize at startup).
-
-
-Modified Functions
-===================
-
-* exec: exec of macro executes the body in the current scope but the prototype must have zero input and output arguments.
-* error: an error number in input is deprecated.
-* impl: Recall impl with the same parameters as in its previous stop is now available.
-* ode: y0 is restricted to a column vector.
-* pppdiv: Return a scalar of type 'constant' when the rank is 0.
-* pdiv: Return a matrix of type 'constant' when all the rank are 0.
-* typeof: Add a 2nd argument "overload" of get overloaded name (typeof(cell(), "overload") -> "ce")
-
-
-Syntax Modifications
-=====================
-
-* Declaration of a number on two lines is no longer allowed:
- 1..
- 2
-
-* {"foo"} returns a cell not a string matrix.
-
-* Declaring non-homogenous strings ("string' or 'string") is no more allowed.
-
-* New shortcut operators have been introduced: && and ||.
-
-
-Deprecated Behaviors
-=====================
-
-* {} becomes different of [] and will be used on cells.
-
-* Syntax %i:10 is now deprecated (only real scalars can be used).
-
-* Writing string or string matrix in a file does not add blanck space before each value:
-    write("TMPDIR/test", ["test", "sample"; "sample", "test"])
-    "-" + mgetl("TMPDIR/test") + "-"
-
-* while/else control instruction is no more supported.
-
-* (a=b) executed like a == b is now deprecated and returns an error.
+*  Functions based on former Scilab stack are removed:
+  - comp
+  - errcatch
+  - iserror
+  - fun2string
+  - getvariablesonstack
+  - gstacksize
+  - macr2lst
+  - stacksize
+  - code2str
+  - str2code.
+  - -mem launching option (used to set stacksize at startup).
 
 
 Known issues
@@ -297,6 +311,101 @@ Known issues
 
 Bug Fixes
 =========
+
+In 6.0.0:
+
+* Bug #6314 fixed  - The identical code of %p_m_r() and  %r_m_p() was not factorized
+
+* Bug #9456 fixed  - bench_run did not work on a path or in a toolbox
+
+* Bug #11625 fixed - uicontrol table would not update object strings when edited interactively in the plot window
+
+* Bug #12559       - Fixed some memory leaks in FFTW
+
+* Bug #12872       - help pages of else, elseif, end, try, sciargs, global, halt, empty and power were in wrong help sections
+
+* Bug #13465 fixed - The display of polyline .display_function and .display_function properties was not conventional
+
+* Bug #13468 fixed - Scilab hanged when incorrect format was used for file reading using mfscanf.
+
+* Bug #13725 fixed - xfpoly polygon filling would may fail for some cases
+
+* Bug #13769 fixed - t = "abc..//ghi" was parsed as a continued + comment
+
+* Bug #13810 fixed - householder(v, k*v) returned column of %nan. Input parameters were not checked. The Householder matrix could not be returned. Help pages were inaccurate and without examples. There was no householder() demo.
+
+* Bug #13839 fixed - sign() could not be used with sparse matrices
+
+* Bug #13869 fixed - bench_run with option nb_run=10 did not override the NB RUN tags
+
+* Bug #13873 fixed - %hm_stdev(H,idim>2) returned zeros(H)
+
+* Bug #13897 fixed - concatenating structures with same fields in mismatching orders failed
+
+* Bug #13939 fixed - in HTML help pages, itemizedlist <ul> were rendered as ordered ones
+
+* Bug #13965 fixed - The rendering of histograms with histplot() was poor
+
+* Bug #13966 fixed - twinkle and twinkle(n) were not supported
+
+* Bug #13974 fixed - isoview(xmin, xmax, ymin, ymax) was unhandy.
+
+* Bug #14035 fixed - ndgrid did not manage all homogeneous data type (booleans, integers, polynomials, rationals, strings, [])
+
+* Bug #14099 fixed - sci2exp macro was fixed to avoid "a+[] Warning"
+
+* Bug #14111 fixed - modified lib function to detect Scilab version 5 libraries and give proper error messages
+
+* Bug #14116 fixed - Invalid exponent in case of complex exponents especially 0*%i.
+
+* Bug #14271 fixed - conjgrad() displayed an incorrect error message about number of arguments.
+
+* Bug #14347 fixed - plot2d crashed with multiple entries (non regression test).
+
+* Bug #14359 fixed - Black Hole demo updated. Stop and Clear buttons did not have priority tag set. Callback_type property has been added and set to 10.
+
+* Bug #14362 fixed - The ode() Lotka demo had typo errors
+
+* Bug #14374 fixed - Parser did not manage comments properly in shellmode
+
+* Bug #14389 fixed - Updated int8(), type(), typeof(), overloading(), iconvert() and inttype() help pages. Added int64() and uint64() descriptions.
+
+* Bug #14390 fixed - double() help page had irrelevant syntaxes and was poor
+
+* Bug #14396 fixed - real number display was not proper for very wide decimal parts
+
+* Bug #14398 fixed - Matrix extraction was mistakenly considered a function call in calling sequence
+
+* Bug #14415 fixed - Corrected some spellings error in help pages
+
+* Bug #14416 fixed - The file extension filter in Scinotes "Save as" window did not re-used the active file's extension when applicable.
+
+* Bug #14418 fixed - saxon9he.jar made scilab throw an XPathFactoryConfigurationException.
+
+* Bug #14423 fixed - bench_run did not have a return value, export file was not configurable
+
+* Bug #14425 fixed - xpause() was a duplicate of sleep(). sleep() did not propose "s" time unit.
+
+* Bug #14429 fixed - rationals r+(-r) and r-r did not simplify the denominator to 1 in simp_mode(%t)
+
+* Bug #14432 fixed - using an implicit list as scoped assignation to a variable in function call caused scilab to crash
+
+* Bug #14433 fixed - acoth (which call atanh) crash scilab
+
+* Bug #14434 fixed - PlotSparse did not work anymore.
+
+* Bug #14446 fixed - Corrected the number of argument in the error message generated by save() on passing wrong type of argument.
+
+* Bug #14450 fixed - builder_help.sce of a toolbox ignored some existing language directories
+
+* Bug #14453 fixed - strcat([]) now returns [] instead of null string
+
+* Bug #14468 fixed - Scinotes was unable to export to HTML.
+
+* Bug #14471 fixed - strange([]) returned [] instead of %nan as all other functions for statistical dispersion
+
+* Bug #14476 fixed - Dotmultiplication between polynomials and imaginary numbers was always returning 0
+
 
 In 6.0.0 beta-1:
 
@@ -489,6 +598,8 @@ In 6.0.0 beta-1:
 * Bug #14331 fixed - The third argument of lsq crashed Scilab.
 
 * Bug #14348 fixed - Scilab did not open sce/sci file from Windows explorer.
+
+* Bug #14361 fixed - Parser did not manage linebreak + blockcomment "... /* a comment */"
 
 In 6.0.0 alpha-2 and earlier:
 

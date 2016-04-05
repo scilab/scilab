@@ -19,7 +19,7 @@
         <refpurpose>Return current time as date vector</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>c = clock</synopsis>
     </refsynopsisdiv>
     <refsection>

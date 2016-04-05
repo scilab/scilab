@@ -19,7 +19,7 @@
         <refpurpose>sensitivity functions</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Se,Re,Te]=sensi(G,K)
             [Si,Ri,Ti]=sensi(G,K,flag)
         </synopsis>

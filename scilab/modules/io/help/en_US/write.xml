@@ -19,7 +19,7 @@
         <refpurpose>write in a formatted file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>write(file-desc,a,[format])
             write(file-desc,a,k,format)
         </synopsis>

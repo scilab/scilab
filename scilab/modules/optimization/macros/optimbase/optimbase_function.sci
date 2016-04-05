@@ -40,12 +40,12 @@
 //     if index > 0, everything went fine
 //     if index == 0, interrupts the optimization
 //     if index < 0, f cannot be evaluated
-// Calling sequences :
+// Syntaxes:
 //   [ this , f , index ] = optimbase_function ( this , x , index )
 //   [ this , f , g , index ] = optimbase_function ( this , x , index )
 //   [ this , f , c , index ] = optimbase_function ( this , x , index )
 //   [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index )
-// Not Authorized Calling sequences of the optimbase_function:
+// Not Authorized syntaxes of the optimbase_function:
 //   Rejected because there is no index in input :
 //   [ this , f , index ] = optimbase_function ( this , x )
 //   [ this , f ] = optimbase_function ( this , x )
@@ -55,7 +55,7 @@
 //   [ this , f , c ] = optimbase_function ( this , x , index )
 //   [ this , f , g , c , gc ] = optimbase_function ( this , x , index )
 //
-// Calling sequences of the cost function:
+// Syntaxes of the cost function:
 //   > Without additional data
 //   [ f , index ] = costf ( x , index )
 //   [ f , g , index ] = costf ( x , index )
@@ -66,7 +66,7 @@
 //   [ f , g , index ] = costf ( x , index , a1, a2, ... )
 //   [ f , c , index ] = costf ( x , index , a1, a2, ... )
 //   [ f , g , c , gc , index ] = costf ( x , index , a1, a2, ... )
-// Not Authorized Calling sequences of the cost function:
+// Not Authorized syntaxes of the cost function:
 //   Rejected because there is no index in input :
 //   [ f ] = costf ( this , x )
 //   [ f , index ] = costf ( this , x )

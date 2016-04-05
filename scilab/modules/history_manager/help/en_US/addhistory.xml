@@ -19,7 +19,7 @@
         <refpurpose>add lines to current history.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>addhistory(string)
             addhistory(string_matrix)
         </synopsis>

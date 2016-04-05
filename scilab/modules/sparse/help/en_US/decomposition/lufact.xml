@@ -19,7 +19,7 @@
         <refpurpose>sparse lu factorization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[hand,rk]=lufact(A,prec)</synopsis>
     </refsynopsisdiv>
     <refsection>

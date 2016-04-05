@@ -19,7 +19,7 @@
         <refpurpose>recurrent and transient classes of Markov matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[perm,rec,tr,indsRec,indsT]=classmarkov(M)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>Checks if the bounds are specified.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [opt, hasbounds] = optimbase_hasbounds(opt)
         </synopsis>

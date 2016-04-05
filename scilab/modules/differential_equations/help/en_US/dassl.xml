@@ -20,7 +20,7 @@
         <refpurpose>differential algebraic equation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[r [,hd]]=dassl(x0,t0,t [,atol,[rtol]],res [,jac] [,info] [,hd])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -92,7 +92,7 @@
                     <itemizedlist>
                         <listitem>
                             <para>A Scilab function.</para>
-                            <para>Its calling sequence must be
+                            <para>Its syntax must be
                                 <literal>[r,ires]=res(t,y,ydot)</literal> and
                                 <literal>res</literal> must return the residue
                                 <literal>r=g(t,y,ydot)</literal> and error flag
@@ -113,7 +113,7 @@
                             <programlisting role="no-scilab-exec"><![CDATA[ 
 list(res,x1,x2,...)
  ]]></programlisting>
-                            <para>where the calling sequence of the function
+                            <para>where the syntax of the function
                                 <literal>res</literal> is now
                             </para>
                             <programlisting role="no-scilab-exec"><![CDATA[ 
@@ -130,7 +130,7 @@ r=res(t,y,ydot,x1,x2,...)
                             <para>It must refer to the name of a C or Fortran subroutine
                                 linked with Scilab.
                             </para>
-                            <para>In C the calling sequence must be:</para>
+                            <para>In C the syntax must be:</para>
                             <programlisting role="no-scilab-exec"><![CDATA[ 
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
@@ -160,7 +160,7 @@ integer ires,ipar(*)
                     <itemizedlist>
                         <listitem>
                             <para>A Scilab function.</para>
-                            <para>Its calling sequence must be
+                            <para>Its syntax must be
                                 <literal>r=jac(t,y,ydot,cj)</literal> and the
                                 <literal>jac</literal> function must return
                                 <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal> where
@@ -173,7 +173,7 @@ integer ires,ipar(*)
                             <programlisting role="no-scilab-exec"><![CDATA[ 
 list(jac,x1,x2,...)
  ]]></programlisting>
-                            <para>where the calling sequence of the function
+                            <para>where the syntax of the function
                                 <literal>jac</literal> is now
                             </para>
                             <programlisting role="no-scilab-exec"><![CDATA[ 
@@ -190,7 +190,7 @@ r=jac(t,y,ydot,cj,x1,x2,...)
                             <para>It must refer to the name of a C or Fortran subroutine linked
                                 with Scilab.
                             </para>
-                            <para>In C the calling sequence must be:</para>
+                            <para>In C the syntax must be:</para>
                             <programlisting role="no-scilab-exec"><![CDATA[ 
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])

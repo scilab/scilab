@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int getAllocatedSingleString(void* _pvCtx, int* _piAddress, char** _pstData)</synopsis>
         <synopsis>int getAllocatedNamedSingleString(void* _pvCtx, const char* _pstName, char** _pstData)</synopsis>
         <synopsis>int getAllocatedSingleWideString(void* _pvCtx, int* _piAddress, wchar_t** _pwstData)</synopsis>

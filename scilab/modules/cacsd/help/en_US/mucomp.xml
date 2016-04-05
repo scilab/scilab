@@ -19,7 +19,7 @@
         <refpurpose>mu (structured singular value) calculation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[BOUND, D, G] = mucomp(Z, K, T)</synopsis>
     </refsynopsisdiv>
     <refsection>

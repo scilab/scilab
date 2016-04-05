@@ -19,7 +19,7 @@
         <refpurpose>lexicographic matrix rows sorting</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[N, [k]]=lex_sort(M [,sel] [,'unique'])
         </synopsis>
     </refsynopsisdiv>

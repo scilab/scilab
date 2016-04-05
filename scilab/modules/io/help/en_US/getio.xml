@@ -19,7 +19,7 @@
         <refpurpose>get Scilab input/output logical units</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ios=getio()</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>matrix sine function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = sinm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

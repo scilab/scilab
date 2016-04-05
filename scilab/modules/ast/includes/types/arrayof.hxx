@@ -36,12 +36,6 @@ extern "C"
 namespace types
 {
 
-static int get_max_size(int* _piDims, int _iDims);
-
-/*    template<typename T>
-    inline bool _neg_(InternalType * in, InternalType *& out);
-*/
-
 template <typename T>
 class ArrayOf : public GenericType
 {
@@ -587,20 +581,6 @@ public :
     }
 };
 
-static int get_max_size(int* _piDims, int _iDims)
-{
-    if (_iDims == 0)
-    {
-        return 0;
-    }
-
-    int iMax = 1;
-    for (int i = 0 ; i < _iDims ; i++)
-    {
-        iMax *= _piDims[i];
-    }
-    return iMax;
-}
 }
 
 #endif /* !__ARRAYOF_HXX__ */

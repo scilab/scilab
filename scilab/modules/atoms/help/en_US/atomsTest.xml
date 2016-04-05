@@ -20,7 +20,7 @@
         <refpurpose>Execute tests of given module installed</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             status = atomsTest(module)
             status = atomsTest(module, test_name)

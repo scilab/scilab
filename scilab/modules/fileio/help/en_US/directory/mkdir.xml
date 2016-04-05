@@ -20,7 +20,7 @@
         <refpurpose>makes a new directory</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             mkdir(dirname)
             mkdir(parentdir, dirname)

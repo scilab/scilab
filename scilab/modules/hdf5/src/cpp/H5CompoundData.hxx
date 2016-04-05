@@ -76,11 +76,11 @@ protected:
 
 private:
 
+    const hid_t type;
     const hsize_t * cumprod;
     unsigned int nfields;
     std::map<std::string, FieldInfo *> * infos;
     FieldInfo ** fieldinfos;
-    const hid_t type;
 };
 }
 

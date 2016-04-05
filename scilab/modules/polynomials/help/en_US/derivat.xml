@@ -19,7 +19,7 @@
         <refpurpose>Rational matrix derivative</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>pd=derivat(p)</synopsis>
     </refsynopsisdiv>
     <refsection>

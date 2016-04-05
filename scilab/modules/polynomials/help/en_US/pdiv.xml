@@ -19,7 +19,7 @@
         <refpurpose>polynomial division</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[R,Q]=pdiv(P1,P2)
             [Q]=pdiv(P1,P2)
         </synopsis>

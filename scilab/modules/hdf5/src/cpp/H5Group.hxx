@@ -69,7 +69,7 @@ public:
     virtual H5NamedObjectsList<H5Dataset> & getHardDatasets();
     virtual H5DatasetsList & getDatasets();
     virtual H5TypesList & getTypes();
-    const unsigned int getLinksSize() const;
+    unsigned int getLinksSize() const;
     virtual std::string getCompletePath() const;
     virtual std::string toString(const unsigned int indentLevel) const;
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel = 0) const;

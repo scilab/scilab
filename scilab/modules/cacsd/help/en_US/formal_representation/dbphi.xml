@@ -19,7 +19,7 @@
         <refpurpose>frequency response to phase and magnitude representation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[db,phi] =dbphi(repf)</synopsis>
     </refsynopsisdiv>
     <refsection>

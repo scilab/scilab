@@ -20,7 +20,7 @@
         <refpurpose>A function which performs binary mutation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Mut_Indiv, pos] = mutation_ga_binary(Indiv,param)</synopsis>
     </refsynopsisdiv>
     <refsection>

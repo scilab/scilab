@@ -5,7 +5,7 @@
         <refpurpose>Concatenation of trees </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>concatenatedTree = uiConcatTree(tree1, tree2)
         </synopsis>
     </refsynopsisdiv>

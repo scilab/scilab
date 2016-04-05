@@ -58,7 +58,7 @@ public:
     };
 
     Block(DataManager * _dm);
-    Block(const unsigned int _id, Block * _parent, ast::Exp * _exp) : dm(_parent->dm), parent(_parent), exp(_exp), gvn(&_parent->getGVN()), isReturn(false), id(_id) { }
+    Block(const unsigned int _id, Block * _parent, ast::Exp * _exp) : dm(_parent->dm), exp(_exp), parent(_parent), symMap(), blocks(), gvn(&_parent->getGVN()), isReturn(false), id(_id) { }
 
     virtual ~Block();
 

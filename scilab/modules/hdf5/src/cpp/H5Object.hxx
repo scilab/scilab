@@ -54,13 +54,18 @@ class H5Object
 {
     static H5Object* root;
 
-    bool locked;
     H5Object & parent;
+    std::set<H5Object *> children;
+    bool locked;
     int scilabId;
 
     friend class H5AttributesList;
     friend class H5LinkList;
     friend class H5Dataset;
+
+protected: // for error report only
+
+    const std::string name;
 
 public :
 
@@ -257,7 +262,7 @@ public :
         scilabId = id;
     }
 
-    const int getScilabId() const
+    int getScilabId() const
     {
         return scilabId;
     }
@@ -401,8 +406,6 @@ protected :
         OpDataSoftLinkFilter(std::vector<std::string> * _name, std::vector<std::string> * _value, FilterType _type) : name(_name), value(_value), type(_type) { }
     };
 
-    const std::string name;
-    std::set<H5Object *> children;
     void registerChild(H5Object * child)
     {
         if (!locked)

@@ -19,7 +19,7 @@
         <refpurpose>fill a set of polygons</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xfpolys(xpols,ypols,[fill])</synopsis>
     </refsynopsisdiv>
     <refsection>

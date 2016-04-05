@@ -19,7 +19,7 @@
         <refpurpose>Read the stopwatch timer</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>toc()
             t = toc()
         </synopsis>

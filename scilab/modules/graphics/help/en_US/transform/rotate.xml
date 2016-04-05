@@ -19,7 +19,7 @@
         <refpurpose>rotation of a set of points</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xy1=rotate(xy,[theta,orig])</synopsis>
     </refsynopsisdiv>
     <refsection>

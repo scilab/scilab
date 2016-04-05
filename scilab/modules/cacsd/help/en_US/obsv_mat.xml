@@ -19,7 +19,7 @@
         <refpurpose>observability matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[O]=obsv_mat(A,C)
             [O]=obsv_mat(sl)
         </synopsis>

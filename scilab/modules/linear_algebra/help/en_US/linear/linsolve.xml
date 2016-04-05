@@ -19,7 +19,7 @@
         <refpurpose>linear equation solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x0,kerA]=linsolve(A,b [,x0])</synopsis>
     </refsynopsisdiv>
     <refsection>

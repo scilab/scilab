@@ -20,7 +20,7 @@
         <refpurpose>checks if the given fieldname exists in a structure or mlist or tlist</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>bool = isfield(s, fieldname)</synopsis>
     </refsynopsisdiv>
     <refsection>

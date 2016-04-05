@@ -19,7 +19,7 @@
         <refpurpose>frequency response</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[ [frq,] repf]=repfreq(sys,fmin,fmax [,step])
             [ [frq,] repf]=repfreq(sys [,frq])
             [ frq,repf,splitf]=repfreq(sys,fmin,fmax [,step])

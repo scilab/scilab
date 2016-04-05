@@ -19,7 +19,7 @@
         <refpurpose>augmented plant</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,r]=augment(G)
             [P,r]=augment(G,flag1)
             [P,r]=augment(G,flag1,flag2)

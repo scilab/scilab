@@ -19,7 +19,7 @@
         <refpurpose>Sylvester matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[S]=sylm(a,b)</synopsis>
     </refsynopsisdiv>
     <refsection>

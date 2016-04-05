@@ -19,7 +19,7 @@
         <refpurpose>associated Legendre functions</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = legendre(n,m,x [,normflag])</synopsis>
     </refsynopsisdiv>
     <refsection>

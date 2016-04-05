@@ -19,7 +19,7 @@
         <refpurpose>script file execution </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>demo_run(fil)</synopsis>
     </refsynopsisdiv>
     <refsection>

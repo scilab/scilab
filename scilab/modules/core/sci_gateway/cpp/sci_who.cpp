@@ -30,14 +30,14 @@ extern "C"
 
 types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, types::typed_list& out)
 {
-    wchar_t* wcsWhat = L"";
+    std::wstring wcsWhat(L"");
     bool bSorted = false;
     types::String* pStrOut = NULL;
     types::Double* pDblOut = NULL;
     std::list<std::wstring> lstVar;
     int size = 0;
 
-    if (in.size() < 0 || in.size() > 2)
+    if (in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "who", 0, 2);
         return types::Function::Error;
@@ -104,15 +104,15 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
         wcsWhat = pStrWhat->get(0);
     }
 
-    if (wcscmp(wcsWhat, L"local") == 0 || wcscmp(wcsWhat, L"get") == 0)
+    if (wcsWhat == L"local" || wcsWhat == L"get")
     {
         size = symbol::Context::getInstance()->getVarsNameForWho(lstVar, bSorted);
     }
-    else if (wcscmp(wcsWhat, L"global") == 0)
+    else if (wcsWhat == L"global")
     {
         size = symbol::Context::getInstance()->getGlobalNameForWho(lstVar, bSorted);
     }
-    else if (bSorted == false && wcscmp(wcsWhat, L"sorted") == 0)
+    else if (bSorted == false && wcsWhat == L"sorted")
     {
         bSorted = true;
         std::wstringstream wstream;

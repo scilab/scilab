@@ -19,7 +19,7 @@
         <refpurpose>mean absolute deviation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s2=mad(x)
             s2=mad(x,'r') or s2=mad(x,1)
             s2=mad(x,'c') or s2=mad(x,2)

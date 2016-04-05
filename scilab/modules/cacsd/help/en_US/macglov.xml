@@ -19,7 +19,7 @@
         <refpurpose>Continuous time dynamical systems Mac Farlane Glover problem</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,r]=macglov(Sl)</synopsis>
     </refsynopsisdiv>
     <refsection>

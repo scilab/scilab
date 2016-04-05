@@ -19,7 +19,7 @@
         <refpurpose>The imaginary error function.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = erfi(z)</synopsis>
     </refsynopsisdiv>
     <refsection>

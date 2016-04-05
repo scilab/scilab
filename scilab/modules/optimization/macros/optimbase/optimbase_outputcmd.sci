@@ -57,7 +57,7 @@ function stop = optimbase_outputcmd ( this , ...
 endfunction
 
 function optb_warnheaderobsolete ( oldheader , newheader , removedVersion )
-    warnMessage = msprintf(_("Calling sequence %s is obsolete."),oldheader)
+    warnMessage = msprintf(_("Syntax %s is obsolete."),oldheader)
     warnMessage = [warnMessage, msprintf(_("Please use %s instead."),newheader)]
     warnMessage = [warnMessage, msprintf(_("This feature will be permanently removed in Scilab %s"), removedVersion)]
     warning(warnMessage);

@@ -19,7 +19,7 @@
         <refpurpose>Resets the historyfopt and historyxopt fields of an object.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimbase_destroy(opt)
         </synopsis>

@@ -21,7 +21,7 @@
         <refpurpose>reads a character string from a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>str = mgetstr(n, [fd])</synopsis>
     </refsynopsisdiv>
     <refsection>

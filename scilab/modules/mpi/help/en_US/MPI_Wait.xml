@@ -10,7 +10,7 @@
         <refpurpose>Waits for an MPI request to complete </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = MPI_Wait(request)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>given absolute directories and absolute filenames, returns relative file names</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>rel_file = getrelativefilename(abs_dir, abs_file)</synopsis>
     </refsynopsisdiv>
     <refsection>

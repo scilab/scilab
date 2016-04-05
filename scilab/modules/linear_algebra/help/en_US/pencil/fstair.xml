@@ -19,7 +19,7 @@
         <refpurpose>computes  pencil  column echelon form by qz transformations</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[AE,EE,QE,ZE,blcks,muk,nuk,muk0,nuk0,mnei]=fstair(A,E,Q,Z,stair,rk,tol)</synopsis>
     </refsynopsisdiv>
     <refsection>

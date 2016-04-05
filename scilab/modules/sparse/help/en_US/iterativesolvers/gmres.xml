@@ -20,7 +20,7 @@
         <refpurpose>Generalized Minimum RESidual method</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x,flag,err,iter,res] = gmres(A,b,[rstr,[tol,[maxi,[M,[x0]]]]])</synopsis>
     </refsynopsisdiv>
     <refsection>

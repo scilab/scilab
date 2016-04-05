@@ -19,7 +19,7 @@
         <refpurpose>matrix hyperbolic cotangent</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[t] = cothm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>Evaluate a string within the Tcl/Tk interpreter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>TCL_EvalStr(str [,interp])
             res = TCL_EvalStr(str [,interp])
         </synopsis>

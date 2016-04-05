@@ -19,7 +19,7 @@
         <refpurpose>Returns the reflected simplex object.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             r = optimsimplex_reflect(opt, fun)
             [r, data] = optimsimplex_reflect(opt, fun, data)

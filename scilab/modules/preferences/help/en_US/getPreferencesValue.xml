@@ -19,7 +19,7 @@
         <refpurpose>Get preferences value</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             getPreferencesValue(xpath, attributes [, doc])
         </synopsis>

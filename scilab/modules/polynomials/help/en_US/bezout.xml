@@ -19,7 +19,7 @@
         <refpurpose>Bezout equation for polynomials or integers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[thegcd,U]=bezout(p1,p2)</synopsis>
     </refsynopsisdiv>
     <refsection>

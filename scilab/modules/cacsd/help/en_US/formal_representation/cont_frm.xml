@@ -19,7 +19,7 @@
         <refpurpose>transfer to controllable state-space</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[sl]=cont_frm(NUM,den)</synopsis>
     </refsynopsisdiv>
     <refsection>

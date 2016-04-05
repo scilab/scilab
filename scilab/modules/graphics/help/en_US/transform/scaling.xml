@@ -19,7 +19,7 @@
         <refpurpose>affine transformation of a set of points</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xy1=scaling(xy,scalingFactor,[orig])</synopsis>
     </refsynopsisdiv>
     <refsection>

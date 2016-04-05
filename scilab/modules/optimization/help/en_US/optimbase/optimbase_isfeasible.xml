@@ -19,7 +19,7 @@
         <refpurpose>Checks if the point satisfies constraints.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [opt, isfeasible] = optimbase_isfeasible(opt, x)
         </synopsis>

@@ -9,7 +9,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>CheckRhs(nb_min_params,nb_max_params)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>SciErr getHypermatOfInt8(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, char* _pcData)</synopsis>
         <synopsis>SciErr getHypermatOfUnsignedInt8(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, unsigned char* _pucData)</synopsis>
         <synopsis>SciErr getHypermatOfInt16(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, short* _psData)</synopsis>

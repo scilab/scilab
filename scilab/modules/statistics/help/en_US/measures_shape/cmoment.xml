@@ -19,7 +19,7 @@
         <refpurpose>central moments of all orders</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mom=cmoment(x,ord)
             mom=cmoment(x,ord,'r') or mom=cmoment(x,ord,1)
             mom=cmoment(x,ord,'c') or mom=cmoment(x,ord,2)

@@ -35,7 +35,7 @@ public :
     virtual void setObject(const unsigned int pos, H5Attribute & attribute);
     virtual H5Attribute & getObject(const int pos);
     virtual H5Attribute & getObject(const std::string & name);
-    virtual const unsigned int getSize() const;
+    virtual unsigned int getSize() const;
 
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const;
     virtual std::string toString(const unsigned int indentLevel) const;

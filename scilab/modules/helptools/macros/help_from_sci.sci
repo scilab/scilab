@@ -16,7 +16,7 @@
 function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     // Generate help files and demo files from the head comments section of a .sci source file.
     //
-    // Calling Sequence
+    // Syntax
     //  help_from_sci() // generate an empty function template
     //  helptxt = help_from_sci() // generate an empty function template
     //  help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci.
@@ -43,12 +43,12 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     //  of the function.
     //
     //  The remaining comments are formatted according to the following (optional) headlines:
-    //  "Calling Sequence", "Parameters", "Description", "Examples", "See also", "Used functions",
+    //  "Syntax", "Parameters", "Description", "Examples", "See also", "Used functions",
     //  "Authors" and "Bibliography".
     //
     //  The following guidelines should be used when writing the source code comments:
     //  <itemizedlist>
-    //    <listitem><para><literal>Calling Sequence</literal> - one example pr. line.</para></listitem>
+    //    <listitem><para><literal>Syntax</literal> - one example pr. line.</para></listitem>
     //    <listitem><para><literal>Parameters</literal> - separate parameter name and
     //    description by a ":". Keep the description of each parameter on the same line.</para></listitem>
     //    <listitem><para><literal>Description</literal> - formatting of the text can be done
@@ -76,7 +76,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     //  // create both a xml help file and a demo file in the current directory.
     //  help_from_sci("test_fun",".",".")
     //
-    //  // From a toolbox root directory a typical calling sequence would be:
+    //  // From a toolbox root directory a typical syntax would be:
     //  // help_from_sci("macros","help\en_US","demos")
     //  // This command would process all .sci files in the macros directory
     //  // and use the head comments section to update all .xml help files in the
@@ -97,7 +97,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
         "function [z] = function_template(x,y)"
         "// Short description on the first line following the function header."
         "//"
-        "// Calling Sequence"
+        "// Syntax"
         "//   [z] = template_function(x,y) // calling examples, one pr. line"
         "//"
         "// Parameters"
@@ -245,7 +245,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     "  </refnamediv>"
     ];
 
-    cmds = ["CALLING SEQUENCE", "PARAMETERS", "DESCRIPTION", "EXAMPLES", "SEE ALSO", ..
+    cmds = ["SYNTAX", "PARAMETERS", "DESCRIPTION", "EXAMPLES", "SEE ALSO", ..
     "AUTHORS", "BIBLIOGRAPHY", "USED FUNCTIONS"];
 
     doing = "search";
@@ -287,7 +287,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
             [add_txt, doing] = change_activity(doing, in);
             helptxt = [helptxt; add_txt];
         else
-            if doing == "Calling Sequence" then
+            if doing == "Syntax" then
                 helptxt = [helptxt;"   " + in];
             elseif doing == "Parameters" then
                 i = strindex(in, ":");
@@ -405,7 +405,7 @@ endfunction
 function [txt, doing] = change_activity(currently_doing, start_doing)
     doing = start_doing;
     select convstr(currently_doing,"u")
-    case "CALLING SEQUENCE" then
+    case "SYNTAX" then
         txt = ["   </synopsis>"; "</refsynopsisdiv>"];
     case "PARAMETERS" then
         txt = ["   </variablelist>"; "</refsection>"];
@@ -426,8 +426,8 @@ function [txt, doing] = change_activity(currently_doing, start_doing)
     end
 
     select convstr(start_doing, "u"),
-    case "CALLING SEQUENCE"
-        txt = [txt; ""; "<refsynopsisdiv>"; "   <title>Calling Sequence</title>"; "   <synopsis>"];
+    case "SYNTAX"
+        txt = [txt; ""; "<refsynopsisdiv>"; "   <title>Syntax</title>"; "   <synopsis>"];
     case "PARAMETERS"
         txt = [txt; ""; "<refsection>"; "   <title>Parameters</title>"; "   <variablelist>"];
     case "DESCRIPTION"

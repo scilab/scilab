@@ -19,7 +19,7 @@
         <refpurpose>Central H-infinity continuous time controller</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[K]=ccontrg(P,r,gamma);</synopsis>
     </refsynopsisdiv>
     <refsection>

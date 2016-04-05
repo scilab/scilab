@@ -256,7 +256,7 @@ types::Function::ReturnValue common_2args(std::string& name, types::typed_list &
         Scierror(999, _("%s: Cannot allocate more memory.\n"), name.data());
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
-        return types::Function::OK;
+        return types::Function::Error;
     }
 
     j = 0;
@@ -282,7 +282,7 @@ types::Function::ReturnValue common_2args(std::string& name, types::typed_list &
     {
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
-        return types::Function::OK;
+        return types::Function::Error;
     }
     FREE(gdim.dims);
     FREE(gdim.howmany_dims);
@@ -524,6 +524,9 @@ types::Function::ReturnValue common_3args(std::string& name, types::typed_list &
         return types::Function::Error;
     }
 
+    FREE(gdim.dims);
+    FREE(gdim.howmany_dims);
+    FREE(Sel);
     out.push_back(D);
     return types::Function::OK;
 }

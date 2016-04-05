@@ -21,7 +21,7 @@
         <refpurpose>Create a Java array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             jarray(className, n_1 [, n_2 [, ...]])
         </synopsis>

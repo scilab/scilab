@@ -19,7 +19,7 @@
         <refpurpose>red through orange to yellow colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>cmap=autumncolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

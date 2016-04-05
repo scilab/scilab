@@ -19,7 +19,7 @@
         <refpurpose>nyquist plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             nyquist( sl,[fmin,fmax] [,step] [,comments] [,symmetry])
             nyquist( sl, frq [,comments] [,symmetry])

@@ -13,7 +13,7 @@
 function tbx_build_blocks(module, names, macros_path)
     // Build a default block instance
     //
-    // Calling Sequence
+    // Syntax
     //   tbx_build_blocks(module, names)
     //
     // Parameters

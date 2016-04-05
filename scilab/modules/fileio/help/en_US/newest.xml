@@ -19,7 +19,7 @@
         <refpurpose>returns newest file of a set of files</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>k = newest(paths)
             k = newest(path1, path2, ..., pathn)
         </synopsis>

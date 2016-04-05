@@ -19,7 +19,7 @@
         <refpurpose>prompt for user input</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x = input(message [, "string"])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -44,7 +44,7 @@
                 <term>x</term>
                 <listitem>
                     <para>real number (or character string if
-                        <literal>"string"</literal> is in the calling sequence)
+                        <literal>"string"</literal> is in the syntax)
                     </para>
                 </listitem>
             </varlistentry>

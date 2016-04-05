@@ -15,7 +15,6 @@ toolbox_skeleton/demos/fortran_sum.dem.sce \
 toolbox_skeleton/demos/scilab_sum.dem.sce \
 toolbox_skeleton/demos/toolbox_skeleton.dem.gateway.sce \
 toolbox_skeleton/DESCRIPTION \
-toolbox_skeleton/DESCRIPTION-FUNCTIONS \
 toolbox_skeleton/etc/toolbox_skeleton_preferences.xml \
 toolbox_skeleton/etc/toolbox_skeleton_preferences.xsl \
 toolbox_skeleton/etc/toolbox_skeleton.quit \
@@ -86,7 +85,6 @@ xcos_toolbox_skeleton/demos/allSum.dem.sce \
 xcos_toolbox_skeleton/demos/Blocks.zcos \
 xcos_toolbox_skeleton/demos/xcos_toolbox_skeleton.dem.gateway.sce \
 xcos_toolbox_skeleton/DESCRIPTION \
-xcos_toolbox_skeleton/DESCRIPTION-FUNCTIONS \
 xcos_toolbox_skeleton/etc/xcos_toolbox_skeleton.quit \
 xcos_toolbox_skeleton/etc/xcos_toolbox_skeleton.start \
 xcos_toolbox_skeleton/examples/AllSum.zcos \

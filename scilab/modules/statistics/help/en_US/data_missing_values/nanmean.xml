@@ -19,7 +19,7 @@
         <refpurpose>mean  (ignoring  Nan's)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>m=nanmean(val)
             m=nanmean(val,'r') (or m=nanmean(val,1))
             m=nanmean(val,'c') (or m=nanmean(val,2))

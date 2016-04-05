@@ -21,6 +21,7 @@ import javax.xml.stream.XMLStreamException;
 
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfInt;
 import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
@@ -64,6 +65,11 @@ public class BlockWriter extends ScilabWriter {
         if (kind == Kind.BLOCK) {
             shared.controller.getObjectProperty(uid, kind, ObjectProperties.SIM_BLOCKTYPE, v);
             shared.stream.writeAttribute("blockType", v[0]);
+
+            VectorOfInt vecOfInt = new VectorOfInt(2);
+            shared.controller.getObjectProperty(uid, kind, ObjectProperties.SIM_DEP_UT, vecOfInt);
+            shared.stream.writeAttribute("dependsOnU", Integer.toString(vecOfInt.get(0)));
+            shared.stream.writeAttribute("dependsOnT", Integer.toString(vecOfInt.get(1)));
 
             shared.controller.getObjectProperty(uid, kind, ObjectProperties.SIM_FUNCTION_NAME, v);
             shared.stream.writeAttribute("simulationFunctionName", v[0]);

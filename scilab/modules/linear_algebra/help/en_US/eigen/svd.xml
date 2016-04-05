@@ -19,7 +19,7 @@
         <refpurpose>singular value decomposition</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s=svd(X)
             [U,S,V]=svd(X)
             [U,S,V]=svd(X,0) (obsolete)

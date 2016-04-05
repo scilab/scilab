@@ -232,6 +232,8 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(L_mnel);
+        FREE(U_mnel);
         return 1;
     }
 
@@ -248,6 +250,8 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(L_mnel);
+        FREE(U_mnel);
         return 1;
     }
 
@@ -256,6 +260,8 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(L_mnel);
+        FREE(U_mnel);
         return 1;
     }
 
@@ -264,6 +270,8 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(L_mnel);
+        FREE(U_mnel);
         return 1;
     }
 
@@ -272,6 +280,8 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(L_mnel);
+        FREE(U_mnel);
         return 1;
     }
 

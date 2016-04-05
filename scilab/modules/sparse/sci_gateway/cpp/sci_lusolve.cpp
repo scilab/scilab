@@ -100,9 +100,9 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
         C2F(lufact1)(dbl, itemsRow, colPos, &m1, &nonZeros, fmatindex, &abstol, &reltol, &nrank, &ierr);
         fact = true;
 
-        delete dbl;
-        delete colPos;
-        delete itemsRow;
+        delete[] dbl;
+        delete[] colPos;
+        delete[] itemsRow;
     }
     else
     {

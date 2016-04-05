@@ -19,7 +19,7 @@
         <refpurpose>Sets the data at given index in the current simplex.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimsimplex_setve(opt, ive, fv, x)
         </synopsis>

@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_build_loader(toolbox_name)
             tbx_build_loader(toolbox_name, toolbox_path)

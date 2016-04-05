@@ -19,7 +19,7 @@
         <refpurpose>system matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Sm]=systmat(Sl);</synopsis>
     </refsynopsisdiv>
     <refsection>

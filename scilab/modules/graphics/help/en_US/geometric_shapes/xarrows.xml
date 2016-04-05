@@ -19,7 +19,7 @@
         <refpurpose>draw a set of arrows in 2D or in 3D.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xarrows(nx, ny [,nz] [,arsize, color])</synopsis>
     </refsynopsisdiv>
     <refsection>

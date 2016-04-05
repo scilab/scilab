@@ -185,9 +185,6 @@ int sci_taucs_chsolve(char* fname, void* pvApiCtx)
         return 1;
     }
 
-    /* allocate memory for a temporary vector v */
-    pdblV = (double*)MALLOC(mb * sizeof(double));
-
     if (Refinement)
     {
         pdblRes = (double*)MALLOC(mb * sizeof(double));
@@ -195,11 +192,18 @@ int sci_taucs_chsolve(char* fname, void* pvApiCtx)
         {
             if ( (wk = (long double*)MALLOC( n * sizeof(long double))) == NULL )
             {
+                if (pdblRes)
+                {
+                    FREE(pdblRes);
+                }
                 Scierror(999, _("%s: not enough memory.\n"), fname);
                 return 1;
             }
         }
     }
+    
+    /* allocate memory for a temporary vector v */
+    pdblV = (double*)MALLOC(mb * sizeof(double));
 
     for (j = 0; j < nb ; j++)
     {

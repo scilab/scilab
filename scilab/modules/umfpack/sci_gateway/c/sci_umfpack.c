@@ -255,9 +255,6 @@ int sci_umfpack(char* fname, void* pvApiCtx)
         return 1;
     }
 
-    /* allocate memory for umfpack_di_wsolve usage or umfpack_zi_wsolve usage*/
-    Wi = (int*)MALLOC(mA * sizeof(int));
-
     if (A.it == 1)
     {
         mW = 10 * mA;
@@ -266,8 +263,6 @@ int sci_umfpack(char* fname, void* pvApiCtx)
     {
         mW = 5 * mA;
     }
-
-    W = (double*)MALLOC(mW * sizeof(double));
 
     if (A.it == 1  &&  pdblBI == NULL)
     {
@@ -325,7 +320,10 @@ int sci_umfpack(char* fname, void* pvApiCtx)
         Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("numeric factorization"), UmfErrorMes(stat));
         return 1;
     }
-
+    
+    /* allocate memory for umfpack_di_wsolve usage or umfpack_zi_wsolve usage*/
+    Wi = (int*)MALLOC(mA * sizeof(int));
+    W = (double*)MALLOC(mW * sizeof(double));
 
     if ( Case == 1 )   /*  x = A\b  <=> Ax = b */
     {

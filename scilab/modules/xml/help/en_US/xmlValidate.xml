@@ -19,7 +19,7 @@
         <refpurpose>Validate a document in using a DTD, a Relax NG or a Schema.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             error = xmlValidate(docs [, valid])
         </synopsis>

@@ -27,7 +27,7 @@
         <refpurpose>linear quadratic programming solver builtin</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x [,iact [,iter [,f [,info]]]]] = qp_solve(Q, p, C, b, me)</synopsis>
     </refsynopsisdiv>
     <refsection>

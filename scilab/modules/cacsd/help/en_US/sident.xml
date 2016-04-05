@@ -19,7 +19,7 @@
         <refpurpose>discrete-time state-space realization and Kalman gain</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[[A,C][,B[,D]][,K,Q,Ry,S][,rcnd]] = sident(meth,job,s,n,l,R[,tol,t,Ai,Ci,printw])</synopsis>
     </refsynopsisdiv>
     <refsection>

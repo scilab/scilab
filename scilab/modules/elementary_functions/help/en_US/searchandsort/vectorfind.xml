@@ -21,7 +21,7 @@
         <refpurpose>finds in a matrix rows or columns matching a vector</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ind = vectorfind(m,v[,job])</synopsis>
     </refsynopsisdiv>
     <refsection>

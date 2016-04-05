@@ -290,20 +290,20 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
         sciprint(_("%s: exception caught in '%s' subroutine.\n"), "fsolve", pstrFunc);
         Scierror(999, pstrMsg);
         FREE(pstrMsg);
-        delete pdblWork;
+        delete[] pdblWork;
         delete pDblX;
         if (pdblJac)
         {
-            delete pdblJac;
+            delete[] pdblJac;
         }
 
         return types::Function::Error;
     }
 
-    delete pdblWork;
+    delete[] pdblWork;
     if (pdblJac)
     {
-        delete pdblJac;
+        delete[] pdblJac;
     }
 
     /*** return output arguments ***/

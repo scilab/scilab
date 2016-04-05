@@ -5,7 +5,7 @@
         <refpurpose>Find node in an uitree </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>nodeList = uiFindNode(tree, node)</synopsis>
         <synopsis>nodeList = uiFindNode(tree, position)</synopsis>
         <synopsis>nodeList = uiFindNode(tree, property, value)</synopsis>

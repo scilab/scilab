@@ -19,7 +19,7 @@
         <refpurpose>LQ compensator (full state)  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[K,X]=lqr(P12)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>Save consecutive duplicate commands.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>saveconsecutivecommands(boolean_in)
             boolean_out = saveconsecutivecommands()
         </synopsis>

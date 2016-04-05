@@ -19,7 +19,7 @@
         <refpurpose>computes  matrix row echelon form by lu transformations</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>R=rref(A)</synopsis>
     </refsynopsisdiv>
     <refsection>

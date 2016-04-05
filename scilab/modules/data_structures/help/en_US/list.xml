@@ -19,7 +19,7 @@
         <refpurpose>a Scilab object and a list definition function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>list(a1, ..., an)</synopsis>
     </refsynopsisdiv>
     <refsection>

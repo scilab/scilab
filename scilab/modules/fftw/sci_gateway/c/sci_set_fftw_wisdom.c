@@ -27,7 +27,7 @@
 
 /* Set fftw wisdom
 *
-* Scilab Calling sequence :
+* Scilab Syntax :
 *   -->set_fftw_wisdom(txt);
 *
 * Input : a scilab string matrix
@@ -84,6 +84,7 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
     sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, NULL);
     if (sciErr.iErr)
     {
+        free(piLen);
         printError(&sciErr, 0);
         return 1;
     }
@@ -98,6 +99,8 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
     sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, Str1);
     if (sciErr.iErr)
     {
+        free(piLen);
+        freeArrayOfString(Str1, m1 * n1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -118,6 +121,7 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
         if (Str == NULL)
         {
             freeArrayOfString(Str1, m1 * n1);
+            free(piLen);
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
             return 1;
         }
@@ -131,6 +135,7 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
     }
     Str[k - 1] = '\0';
 
+    free(piLen);
     freeArrayOfString(Str1, m1 * n1);
 
     if (!(call_fftw_import_wisdom_from_string(Str)))

@@ -19,7 +19,7 @@
         <refpurpose>converts an array into a cell array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             y=num2cell(x [,dims])
         </synopsis>

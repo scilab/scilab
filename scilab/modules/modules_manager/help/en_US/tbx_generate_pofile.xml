@@ -19,7 +19,7 @@
         <refpurpose>Extract localized strings from toolbox sources (toolbox compilation process)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             pofile = tbx_generate_pofile(tbx_name, tbx_path)
         </synopsis>

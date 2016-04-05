@@ -603,7 +603,7 @@ Triangulator::Triangulator(void)
     numColinearVertices = 0;
 
     xmin = ymin = zmin = std::numeric_limits<double>::max();
-    xmax = ymax = zmax = std::numeric_limits<double>::min();
+    xmax = ymax = zmax = std::numeric_limits<double>::lowest();
 
     inputPoints.clear();
     points.clear();

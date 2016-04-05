@@ -10,7 +10,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = acot(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

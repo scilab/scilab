@@ -19,7 +19,7 @@
         <refpurpose>divide a graphics window into a matrix of sub-windows</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>subplot(m,n,p)
             subplot(mnp)
         </synopsis>

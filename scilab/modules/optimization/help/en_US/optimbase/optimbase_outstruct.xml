@@ -19,7 +19,7 @@
         <refpurpose>Returns a data structure with type T_OPTDATA.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             data = optimbase_outstruct(opt)
         </synopsis>

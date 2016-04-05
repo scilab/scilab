@@ -19,7 +19,7 @@
         <refpurpose>Greatest Common Divisor</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[pgcd, U] = gcd(p)</synopsis>
     </refsynopsisdiv>
     <refsection>

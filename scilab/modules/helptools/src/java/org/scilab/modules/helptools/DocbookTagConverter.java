@@ -637,6 +637,9 @@ public abstract class DocbookTagConverter extends DefaultHandler implements Conv
     public abstract String handleRefname(final Map<String, String> attributes, final String contents) throws SAXException;
     public abstract String handleRefpurpose(final Map<String, String> attributes, final String contents) throws SAXException;
     public abstract String handleRefsection(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefsect1(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefsect2(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefsect3(final Map<String, String> attributes, final String contents) throws SAXException;
     public abstract String handleRefsynopsisdiv(final Map<String, String> attributes, final String contents) throws SAXException;
     public abstract String handleReplaceable(final Map<String, String> attributes, final String contents) throws SAXException;
     public abstract String handleRevdescription(final Map<String, String> attributes, final String contents) throws SAXException;

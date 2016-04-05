@@ -48,8 +48,6 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
         if (pS->getSize() == 1 && pS->get(0)[0] == L'f')
         {
             //[cov,mean]=corr('fft',xmacro,[ymacro],n,sect)
-            types::InternalType* pXFunction = NULL;
-            types::InternalType* pYFunction = NULL;
 
             int iErr        = 0;
             int iSect       = 0;
@@ -102,12 +100,10 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
             //get xmacro
             if (in[1]->isCallable())
             {
-                pXFunction = in[1]->getAs<types::Callable>();
                 spFunctionsManager->setDgetx(in[1]->getAs<types::Callable>());
             }
             else if (in[1]->isString())
             {
-                pXFunction = in[1]->getAs<types::String>();
                 spFunctionsManager->setDgetx(in[1]->getAs<types::String>());
             }
             else
@@ -123,12 +119,10 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
                 //get ymacro
                 if (in[2]->isCallable())
                 {
-                    pYFunction = in[2]->getAs<types::Callable>();
                     spFunctionsManager->setDgety(in[2]->getAs<types::Callable>());
                 }
                 else if (in[2]->isString())
                 {
-                    pYFunction = in[2]->getAs<types::String>();
                     spFunctionsManager->setDgety(in[2]->getAs<types::String>());
                 }
                 else

@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Sl1,right,left]=ss2ss(Sl,T, [F, [G , [flag]]])</synopsis>
     </refsynopsisdiv>
     <refsection>

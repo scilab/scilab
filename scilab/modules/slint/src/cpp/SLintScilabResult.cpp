@@ -28,10 +28,10 @@ namespace slint
 SLintScilabResult::SLintScilabResult() { }
 SLintScilabResult::~SLintScilabResult() { }
 
-void SLintScilabResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+void SLintScilabResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg)
 {
     auto & mmap = results[context.getFilename()];
-    mmap.emplace(loc, checker.getId() + L": " + msg);
+    mmap.emplace(loc, checker.getId(sub) + L": " + msg);
 }
 
 void SLintScilabResult::finalize()
@@ -42,7 +42,7 @@ void SLintScilabResult::finalize()
         scilabWriteW(str.c_str());
         for (const auto & p2 : p1.second)
         {
-            std::wstring str = L"  At line " + std::to_wstring(p2.first.first_line) + L": " + p2.second + L"\n";
+            std::wstring str = L"  At l. " + std::to_wstring(p2.first.first_line) + L", c. " +  std::to_wstring(p2.first.first_column) + L": " + p2.second + L"\n";
             scilabWriteW(str.c_str());
         }
     }
@@ -51,9 +51,9 @@ void SLintScilabResult::finalize()
 SLintScilabOut::SLintScilabOut() { }
 SLintScilabOut::~SLintScilabOut() { }
 
-void SLintScilabOut::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+void SLintScilabOut::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg)
 {
-    results[context.getFilename()][checker.getId()].emplace_back(loc, msg);
+    results[context.getFilename()][checker.getId(sub)].emplace_back(loc, msg);
 }
 
 void SLintScilabOut::finalize()

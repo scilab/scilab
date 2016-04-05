@@ -19,7 +19,7 @@
         <refpurpose>observable part</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Ao,Bo,Co]=obsvss(A,B,C [,tol])
             [slo]=obsvss(sl [,tol])
         </synopsis>

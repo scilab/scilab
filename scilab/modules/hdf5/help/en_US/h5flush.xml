@@ -19,7 +19,7 @@
         <refpurpose>Flush all the buffers associated with a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5flush(obj [, local])
         </synopsis>

@@ -23,7 +23,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             y = stdev(x)
             y = stdev(x, '*')

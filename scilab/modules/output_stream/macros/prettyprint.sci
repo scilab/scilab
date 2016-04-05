@@ -13,7 +13,7 @@
 function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapped)
     // From any Scilab datatype and provide a representation to the TeX, LaTeX or MathML formats
     //
-    // Calling Sequence
+    // Syntax
     // str = prettyprint(a) // Show the variable a with the default format (LaTeX)
     // str = prettyprint(a,exportFormat) // Show the variable a with the specified format
     // str = prettyprint(a,exportFormat, delim) // As above but change the delimiter

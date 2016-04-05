@@ -19,7 +19,7 @@
         <refpurpose>cleans matrices (round to zero small entries)    </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>B=clean(A [,epsa [,epsr]])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>triangularization of polynomial matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Ar,U,rk]=htrianr(A)</synopsis>
     </refsynopsisdiv>
     <refsection>

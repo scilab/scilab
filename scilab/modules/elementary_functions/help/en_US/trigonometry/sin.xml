@@ -19,7 +19,7 @@
         <refpurpose>sine function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[t] = sin(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -24,7 +24,7 @@
         <refpurpose>Load the Xcos simulation native library.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>loadScicos()</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_loadScicos">

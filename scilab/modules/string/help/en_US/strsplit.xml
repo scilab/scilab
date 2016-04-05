@@ -19,7 +19,7 @@
         <refpurpose>split a string into a vector of strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             v = strsplit(str,ind)
             [v, matched_separators] = strsplit(str)

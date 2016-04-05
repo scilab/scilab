@@ -10,7 +10,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>LhsVar(RankPos) = RankVar;</synopsis>
     </refsynopsisdiv>
     <refsection>

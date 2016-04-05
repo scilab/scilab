@@ -19,7 +19,7 @@
         <refpurpose>load a sound wav file into scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x=loadwave(filename);
             [x,y]=loadwave(filename);
         </synopsis>

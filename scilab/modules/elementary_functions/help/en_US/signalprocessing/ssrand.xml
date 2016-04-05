@@ -19,7 +19,7 @@
         <refpurpose>random system generator</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sl=ssrand(nout,nin,nstate)
             [sl,U]=ssrand(nout,nin,nstate,flag)
         </synopsis>

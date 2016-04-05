@@ -19,7 +19,7 @@
         <refpurpose>Destroys the simplex object.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimsimplex_destroy(opt)
         </synopsis>

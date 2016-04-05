@@ -19,7 +19,7 @@
         <refpurpose>get a figure handle from its id</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>f = get_figure_handle(figure_id)</synopsis>
     </refsynopsisdiv>
     <refsection>

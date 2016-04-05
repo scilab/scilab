@@ -19,7 +19,7 @@
         <refpurpose>change the name of the current graphics window</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xname(name)</synopsis>
     </refsynopsisdiv>
     <refsection>

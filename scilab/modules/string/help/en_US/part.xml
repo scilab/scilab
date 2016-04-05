@@ -20,7 +20,7 @@
         <refpurpose>Extraction of characters from strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[strings_out] = part(strings_in, v)</synopsis>
     </refsynopsisdiv>
     <refsection>

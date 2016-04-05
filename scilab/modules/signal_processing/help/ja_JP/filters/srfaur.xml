@@ -12,7 +12,7 @@
     
     <refsynopsisdiv>
         
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         
         <synopsis>[p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)</synopsis>
         

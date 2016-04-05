@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - INRIA - Serge Steer
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -19,12 +19,14 @@
         <refpurpose>Replicate and tile an array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>B = repmat(A,m,n,...)</synopsis>
-        <synopsis>B = repmat(A,siz)</synopsis>
-        <synopsis>B = repmat(A,m)</synopsis>
+        <title>Syntax</title>
+        <synopsis>
+            B = repmat(A, siz)
+            B = repmat(A, m)
+            B = repmat(A, m, n,...)
+        </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -61,22 +63,22 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>repmat(A,m,n)</literal> or similarly
             <literal>repmat(A,[m,n])</literal> returns a large matrix
-            consisting of an <literal>m</literal>-by- <literal>n</literal>
+            consisting of an <literal>m</literal>-by-<literal>n</literal>
             tiling of copies of <literal>A</literal>. The size of the result
             is <literal>[size(A,1)*M, size(A,2)*N]</literal>.
         </para>
         <para>
             <literal>repmat(A,m)</literal> creates an
-            <literal>m</literal>-by- <literal>m</literal>tiling.
+            <literal>m</literal>-by-<literal>m</literal> tiling.
         </para>
         <para>
-            <literal>repmat(A,[m n p ...])</literal> tiles the array A to produce a 
-            multidimensional array  composed of copies of  <literal>A</literal>. The size of the result is 
+            <literal>repmat(A,[m n p ...])</literal> tiles the array A to produce a
+            multidimensional array  composed of copies of  <literal>A</literal>. The size of the result is
             <literal>[size(A,1)*M, size(A,2)*N, size(A,3)*P, ...] </literal>.
         </para>
         <para>For now,only arrays of real, integer, boolean, character
@@ -85,18 +87,17 @@
             overloading mechanism.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-    repmat(1:3,2,2)
-    repmat(int8([1 0 1;0 1 0]),2,3,2)
-    repmat("Scilab",3,2)
-    t="Scilab";t(ones(3,2))
-    repmat([1/%s;2/(%s+1)],1,3)
-
+        <programlisting role="example"><![CDATA[
+repmat(1:3,2,2)
+repmat(int8([1 0 1;0 1 0]),2,3,2)
+repmat("Scilab",3,2)
+t="Scilab";t(ones(3,2))
+repmat([1/%s;2/(%s+1)],1,3)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
             <member>
@@ -110,7 +111,7 @@
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>History</title>
         <revhistory>
             <revision>

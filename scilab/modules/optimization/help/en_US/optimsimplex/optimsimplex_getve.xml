@@ -19,7 +19,7 @@
         <refpurpose>Gets the vertex at the given index.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             vertex = optimsimplex_getve(opt, ive)
         </synopsis>

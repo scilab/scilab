@@ -20,7 +20,7 @@
         <refpurpose>copies a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>copyfile(source, destination)
             [status, message] = copyfile(source, destination)
         </synopsis>

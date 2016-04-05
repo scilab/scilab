@@ -19,7 +19,7 @@
         <refpurpose>pole placement</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[K]=ppol(A,B,poles)</synopsis>
     </refsynopsisdiv>
     <refsection>
