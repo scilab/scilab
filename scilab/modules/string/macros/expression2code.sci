@@ -28,7 +28,7 @@ function C=expression2code(e)
     prodops=["*","/",".*","./","\",".\","^",".^"] //2
     othops=["==",">=","<=","~=",">","<","~",".''",".''",":"] //3
 
-    C=[]
+    C=""
     select typeof(e)
         // ---------
         // OPERATION
@@ -311,7 +311,7 @@ function C=expression2code(e)
         // ----
     case "list"
         // Recursive extraction
-        C=[]
+        C=""
         for k=1:lstsize(e)
             ind=expression2code(e(k))
             if type(e(k))==15 then // Recursive extraction in recursive extraction

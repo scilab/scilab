@@ -33,8 +33,8 @@ function C=tree2code(P,bprettyprintformat)
     C=""
 
     // Function prototype
-    lhsstr=[]
-    rhsstr=[]
+    lhsstr=""
+    rhsstr=""
     if P.name<>"" then // Not a batch file
         for k=1:size(P.outputs)
             lhsstr=[lhsstr,expression2code(P.outputs(k))]
