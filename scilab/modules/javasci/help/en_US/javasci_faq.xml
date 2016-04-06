@@ -37,11 +37,17 @@
             </qandaentry>
             <qandaentry>
                 <question>
-                    <para>On Linux/Unix/MacOSX, the native library javasci2 does not exist or cannot be found.</para>
+                    <para>
+                        On Unix (Linux or MacOSX), the error message <screen>the native library javasci2 does not exist or cannot be found.</screen> appears.
+                    </para>
                 </question>
                 <answer>
-                    <para>Probably the java.library.path value has not been set. See
-                        <link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
+                    <para>
+                        The dynamic link resolution failed. The <varname>java.library.path</varname> value has not been set or is poorly handled by your JVM. See
+                        <link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link> to find the right setup.
+                    </para>
+                    <para>
+                        You might also enforce the <literal>sun.boot.library.path</literal> environment variables to pre-load the javasci and Scilab libraries.
                     </para>
                 </answer>
             </qandaentry>
