@@ -168,10 +168,6 @@ BOOL InitializeLocalization(void)
     }
 #endif
 
-    if (previousPathLocales)
-    {
-        FREE(previousPathLocales);
-    }
     if (pathLocales)
     {
         FREE(pathLocales);
