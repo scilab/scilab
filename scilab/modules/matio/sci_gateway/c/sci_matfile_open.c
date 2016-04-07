@@ -178,7 +178,6 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
             freeAllocatedSingleString(optionStr);
             return 0;
         }
-        printf("sci_strings %d %d\n", var_type, sci_strings);
         if (var_type == sci_strings)
         {
             if (getAllocatedSingleString(pvApiCtx, version_addr, &versionStr) != 0)
