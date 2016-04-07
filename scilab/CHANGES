@@ -245,6 +245,8 @@ Syntax Modifications
 
 * while/else control instruction is no more supported.
 
+* Transposed matrix can now use the extraction operator directly A'(1, 2)
+
 
 Modified Functions
 ===================
@@ -321,6 +323,8 @@ In 6.0.0:
 * Bug #2104 fixed  - iw(1:9) and w(1:10) ode() output parameters were not documented
 
 * Bug #6314 fixed  - The identical code of %p_m_r() and  %r_m_p() was not factorized
+
+* Bug #7646 fixed  - Extractions A'(1,2) and A.'(1,2) from a transposed matrix were not possible
 
 * Bug #8210 fixed  - Added UMFPACK examples to the Demo gui
 

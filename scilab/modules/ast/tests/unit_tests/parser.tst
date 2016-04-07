@@ -740,15 +740,7 @@ assert_checktrue(execstr(str_cmd, "errcatch") <> 0);
 // convstr a /* a comment */
 // convstr a u /* some text
 //                ending comment here */
-ierr = execstr("convstr a u // a comment", "errcatch");
-assert_checkequal(ierr, 0);
+exec(SCI + "/modules/ast/tests/nonreg_tests/bug_14374.tst");
 
-ierr = execstr("convstr a /* a comment */", "errcatch");
-assert_checkequal(ierr, 0);
-
-ierr = execstr(["convstr a u /* some text"; ..
-                "              ending comment here */"], "errcatch");
-assert_checkequal(ierr, 0);
-
-ierr = execstr("convstr a /* some comments */ u;", "errcatch");
-assert_checkequal(ierr, 0);
+// Bug 7646: matrix transpose extraction
+exec(SCI + "/modules/ast/tests/nonreg_tests/bug_7646.tst");
