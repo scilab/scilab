@@ -67,7 +67,7 @@ struct dummy_property
 struct wpar
 {
 
-    static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
+    static types::InternalType* get(const ParamsAdapter& /*adaptor*/, const Controller& /*controller*/)
     {
         types::Double* ret = new types::Double(1, 6);
         ret->set(0, 600);
