@@ -105,6 +105,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
             }
 
             FREE(pst);
+            FREE(expandedFileName);
             return types::Function::Error;
         }
         FREE(expandedFileName);

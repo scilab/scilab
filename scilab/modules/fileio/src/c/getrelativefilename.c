@@ -249,6 +249,7 @@ wchar_t* getrelativefilenameW(wchar_t *currentDirectory, wchar_t *absoluteFilena
     // check that the result will not be too long
     if (levels * 3 + afLen - afMarker > PATH_MAX)
     {
+        FREE(relativeFilename);
         return NULL;
     }
 

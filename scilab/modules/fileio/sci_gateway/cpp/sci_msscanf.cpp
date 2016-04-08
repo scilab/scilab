@@ -46,8 +46,9 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
     int retval_s    = 0;
     int rowcount    = -1;
     rec_entry buf[MAXSCAN];
-    entry *data;
-    sfdir type[MAXSCAN], type_s[MAXSCAN];
+    entry *data = NULL;
+    sfdir type[MAXSCAN]   = {NONE};
+    sfdir type_s[MAXSCAN] = {NONE};
 
     if (size < 2 || size > 3)
     {
@@ -117,7 +118,6 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                     Free_Scan(rowcount, ncol, type_s, &data);
                     Scierror(999, _("%s: No more memory.\n"), "msscanf");
                     return types::Function::Error;
-                    break;
             }
             if (err == DO_XXPRINTF_MISMATCH)
             {
@@ -274,6 +274,7 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                             }
                             break;
                             default :
+                                delete pITTemp;
                                 return types::Function::Error;
                         }
                     }

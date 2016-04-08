@@ -71,6 +71,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
             if (in[1]->isString() == false)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "mopen", 2);
+                FREE(pstFilename);
                 return types::Function::Error;
             }
 
@@ -78,6 +79,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
             if (pS2->getSize() != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "mopen" , 2);
+                FREE(pstFilename);
                 return types::Function::Error;
             }
 
@@ -89,6 +91,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
                 if (in[2]->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), "mopen" , 3);
+                    FREE(pstFilename);
                     return types::Function::Error;
                 }
 
@@ -96,6 +99,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
                 if (pD3->getSize() != 1 || pD3->isComplex())
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), "mopen", 3);
+                    FREE(pstFilename);
                     return types::Function::Error;
                 }
 
@@ -108,6 +112,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
                 if (in.size() >= 4)
                 {
                     Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mopen" , 1, 3);
+                    FREE(pstFilename);
                     return types::Function::Error;
                 }
 

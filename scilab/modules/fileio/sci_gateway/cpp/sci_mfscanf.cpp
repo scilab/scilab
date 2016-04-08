@@ -52,7 +52,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     int retval_s    = 0;
     int rowcount    = 0;
     rec_entry buf[MAXSCAN] = {0};
-    entry *data;
+    entry *data = NULL;
     sfdir type[MAXSCAN] = {NONE};
     sfdir type_s[MAXSCAN] = {NONE};
 

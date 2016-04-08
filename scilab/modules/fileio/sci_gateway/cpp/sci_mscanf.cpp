@@ -51,12 +51,14 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
     int retval_s    = 0;
     int rowcount    = -1;
     rec_entry buf[MAXSCAN];
-    entry *data;
-    sfdir type[MAXSCAN], type_s[MAXSCAN];
+    entry *data = NULL;
+    sfdir type[MAXSCAN] = {NONE};
+    sfdir type_s[MAXSCAN] = {NONE};
 
     if (size < 1 || size > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mscanf", 1, 2);
+        delete pIT;
         return types::Function::Error;
     }
 
@@ -65,6 +67,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
         if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mscanf", 1);
+            delete pIT;
             return types::Function::Error;
         }
         iNiter = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
@@ -77,6 +80,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
     if (in[size - 1]->isString() == false || in[size - 1]->getAs<types::String>()->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "mscanf", size);
+        delete pIT;
         return types::Function::Error;
     }
 
@@ -111,6 +115,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
         FREE(wcsRead);
         if (err < 0)
         {
+            delete pIT;
             return types::Function::Error;
         }
         err = Store_Scan(&nrow, &ncol, type_s, type, &retval, &retval_s, buf, &data, rowcount, args);
@@ -131,7 +136,6 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
                     Free_Scan(rowcount, ncol, type_s, &data);
                     Scierror(999, _("%s: No more memory.\n"), "mscanf");
                     return types::Function::Error;
-                    break;
             }
             if (err == DO_XXPRINTF_MISMATCH)
             {
@@ -201,6 +205,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
         if (sizeOfVector == 0)
         {
             out.push_back(new types::String(L""));
+            delete pIT;
             return types::Function::OK;
         }
 
@@ -284,6 +289,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
                             }
                             break;
                             default :
+                                delete pITTemp;
                                 return types::Function::Error;
                         }
                     }
@@ -304,6 +310,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
         }
     }
     Free_Scan(rowcount, ncol, type_s, &data);
+    delete pIT;
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

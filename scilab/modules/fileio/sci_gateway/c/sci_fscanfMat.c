@@ -166,6 +166,10 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
     else
     {
         results = fscanfMat(expandedFilename, Format, separator);
+        if (results && results->err != FSCANFMAT_NO_ERROR)
+        {
+            freeFscanfMatResult(results);
+        }
     }
 
     if (results == NULL)

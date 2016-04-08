@@ -66,7 +66,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
     int ignore_flag = 0;
     int str_flag = 0;
     int num_conversion = -1;
-    void *ptrtab[MAXSCAN];
+    void *ptrtab[MAXSCAN] = {NULL};
     wchar_t sformat[MAX_STR];
     wchar_t backupcurrrentchar;
     wchar_t directive;

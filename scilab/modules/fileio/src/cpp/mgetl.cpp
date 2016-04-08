@@ -29,6 +29,7 @@ extern "C"
 #include "mtell.h"
 #include "mseek.h"
 #include "sciprint.h"
+#include "freeArrayOfString.h"
 }
 
 #include <iostream>
@@ -110,6 +111,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
             {
                 *nbLinesOut = 0;
                 *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
+                FREE(Line);
                 return NULL;
             }
             while ( getLine ( Line, LINE_MAX * iLineSizeMult, pFile ) != NULL )
@@ -140,6 +142,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                 {
                     *nbLinesOut = 0;
                     *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
+                    FREE(Line);
                     return NULL;
                 }
 
@@ -148,6 +151,8 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                 {
                     *nbLinesOut = 0;
                     *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
+                    freeArrayOfWideString(strLines, nbLines);
+                    FREE(Line);
                     return NULL;
                 }
                 wcscpy(Line, EMPTYSTRW);
@@ -161,11 +166,6 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
             {
                 *ierr = MGETL_EOF;
                 *nbLinesOut = 0;
-                if (strLines)
-                {
-                    FREE(strLines);
-                }
-                strLines = NULL;
             }
             else
             {
@@ -176,6 +176,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                 {
                     *nbLinesOut = 0;
                     *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
+                    FREE(Line);
                     return NULL;
                 }
 
@@ -209,6 +210,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                                 wchar_t* tmpLine = os_wcsdup(Line);
                                 memset(Line, 0x00, LINE_MAX * iLineSizeMult);
                                 wcscpy(Line, &tmpLine[1]);
+                                FREE(tmpLine);
                             }
                             nbLines++;
                             strLines[nbLines - 1] = os_wcsdup(removeEOL(Line));
@@ -216,6 +218,8 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                             {
                                 *nbLinesOut = 0;
                                 *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
+                                FREE(Line);
+                                freeArrayOfWideString(strLines, nbLines);
                                 return NULL;
                             }
                             wcscpy(Line, EMPTYSTRW);
