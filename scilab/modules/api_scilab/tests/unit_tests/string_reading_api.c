@@ -109,6 +109,14 @@ int read_string(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        //free memory
+        FREE(piLen);
+        for (i = 0 ; i < iRows * iCols ; i++)
+        {
+            FREE(pstData[i]);
+        }
+        FREE(pstData);
+        FREE(pstOut);
         return 0;
     }
 

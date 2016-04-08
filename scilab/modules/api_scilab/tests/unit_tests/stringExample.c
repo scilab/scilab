@@ -44,7 +44,6 @@ int stringExample(char *fname, void* pvApiCtx)
             iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
             if (iRet)
             {
-                freeAllocatedSingleString(pstData);
                 return iRet;
             }
 
@@ -66,7 +65,6 @@ int stringExample(char *fname, void* pvApiCtx)
             iRet = getAllocatedMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &pstData);
             if (iRet)
             {
-                freeAllocatedMatrixOfString(iRows, iCols, pstData);
                 return iRet;
             }
 
