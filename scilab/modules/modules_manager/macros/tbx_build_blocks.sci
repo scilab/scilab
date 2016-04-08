@@ -61,7 +61,7 @@ function tbx_build_blocks(module, names, macros_path)
     mprintf(gettext("Building blocks...\n"));
 
     // load Xcos libraries when not already loaded.
-    if ~exists("scicos_diagram") then loadXcosLibs(); end
+    if ~exists("Sourceslib") then loadXcosLibs(); end
 
     // create directories
     if ~isdir(module + "/images") then

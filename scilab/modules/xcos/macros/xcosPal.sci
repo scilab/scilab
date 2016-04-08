@@ -70,7 +70,7 @@ function pal = xcosPal(name, scs_m)
         name = "New palette";
     end
     // loading the scicos_diagram macro
-    if exists("scicos_diagram", "a") == 0 then loadXcosLibs(), end
+    if exists("Sourceslib", "a") == 0 then loadXcosLibs(), end
     if exists("scs_m", "l") == 0 then scs_m = scicos_diagram(), end
 
     if typeof(name) <> "string" then
