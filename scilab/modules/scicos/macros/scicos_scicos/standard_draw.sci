@@ -51,7 +51,13 @@ function standard_draw (o, frame, draw_ports, up)
     nout  = size(o.model.out,1);
     clkin = size(o.model.evtin,1);
     clkout= size(o.model.evtout,1);
-    [orig,sz,orient] = (o.graphics.orig,o.graphics.sz,o.graphics.flip)
+    [orig,sz] = (o.graphics.orig,o.graphics.sz)
+    orient=%t;
+    style=graphics.style;
+    subStr=strstr(style,"flip=");
+    if subStr<>"" then
+        orient=%f;
+    end
 
     //** Default values -------------------
     thick = 1              ; //** patch Simone

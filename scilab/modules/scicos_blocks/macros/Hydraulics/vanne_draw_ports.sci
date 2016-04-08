@@ -20,7 +20,13 @@
 //
 
 function vanne_draw_ports(o)
-    [orig,sz,orient]=(o.graphics.orig,o.graphics.sz,o.graphics.flip)
+    [orig,sz]=(o.graphics.orig,o.graphics.sz)
+    orient=%t;
+    style=graphics.style;
+    subStr=strstr(style,"flip=");
+    if subStr<>"" then
+        orient=%f;
+    end
     xset("pattern",default_color(0))
     // draw input/output ports
     //------------------------

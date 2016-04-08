@@ -91,44 +91,10 @@ struct Descriptor
     Descriptor() : functionName(), functionApi(0), dep_ut(0), blocktype(BLOCKTYPE_C) {}
 };
 
-/*
- * Flip and theta
- */
-struct Angle
-{
-    bool flip;
-    bool mirror;
-    double theta;
-
-    Angle() : flip(false), mirror(false), theta(0) {};
-    Angle(const Angle& a) : flip(a.flip), mirror(a.mirror), theta(a.theta) {};
-    Angle(const std::vector<double>& a) :
-        flip(  ((static_cast<int>(a[0]) & 0x0001) == 0) ? false : true),
-        mirror(((static_cast<int>(a[0]) & 0x0002) == 0) ? false : true),
-        theta(a[1])
-    {};
-
-    void fill(std::vector<double>& a) const
-    {
-        a.resize(2);
-
-        int mirrorAndFlip = static_cast<int>(a[0]);
-        (flip == false) ?   mirrorAndFlip &= ~(1 << 0) : mirrorAndFlip |= 1 << 0;
-        (mirror == false) ? mirrorAndFlip &= ~(1 << 1) : mirrorAndFlip |= 1 << 1;
-
-        a[0] = mirrorAndFlip;
-        a[1] = theta;
-    }
-    bool operator==(const Angle& a) const
-    {
-        return flip == a.flip && mirror == a.mirror && theta == a.theta;
-    }
-};
-
 class Block: public BaseObject
 {
 public:
-    Block() : BaseObject(BLOCK), m_parentDiagram(ScicosID()), m_interfaceFunction(), m_geometry(), m_angle(),
+    Block() : BaseObject(BLOCK), m_parentDiagram(ScicosID()), m_interfaceFunction(), m_geometry(),
         m_description(), m_label(), m_style(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
         m_parameter(), m_state(), m_parentBlock(ScicosID()), m_children(), m_childrenColor(), m_context(), m_portReference(ScicosID())
     {
@@ -141,7 +107,7 @@ public:
         m_childrenColor = { -1, 1};
     }
     Block(const Block& o) : BaseObject(BLOCK), m_parentDiagram(o.m_parentDiagram), m_interfaceFunction(o.m_interfaceFunction), m_geometry(o.m_geometry),
-        m_angle(o.m_angle), m_exprs(o.m_exprs), m_description(o.m_description), m_label(o.m_label), m_style(o.m_style), m_nzcross(o.m_nzcross), m_nmode(o.m_nmode), m_equations(o.m_equations), m_uid(o.m_uid),
+        m_exprs(o.m_exprs), m_description(o.m_description), m_label(o.m_label), m_style(o.m_style), m_nzcross(o.m_nzcross), m_nmode(o.m_nmode), m_equations(o.m_equations), m_uid(o.m_uid),
         m_sim(o.m_sim), m_in(o.m_in), m_out(o.m_out), m_ein(o.m_ein), m_eout(o.m_eout), m_parameter(o.m_parameter), m_state(o.m_state), m_parentBlock(o.m_parentBlock),
         m_children(o.m_children), m_childrenColor(o.m_childrenColor), m_context(o.m_context), m_portReference(o.m_portReference) {}
     ~Block() = default;
@@ -200,28 +166,6 @@ private:
         }
 
         m_geometry = g;
-        return SUCCESS;
-    }
-
-    void getAngle(std::vector<double>& data) const
-    {
-        m_angle.fill(data);
-    }
-
-    update_status_t setAngle(const std::vector<double>& data)
-    {
-        if (data.size() != 2)
-        {
-            return FAIL;
-        }
-
-        Angle a = Angle(data);
-        if (a == m_angle)
-        {
-            return NO_CHANGES;
-        }
-
-        m_angle = a;
         return SUCCESS;
     }
 
@@ -740,7 +684,6 @@ private:
     ScicosID m_parentDiagram;
     std::string m_interfaceFunction;
     Geometry m_geometry;
-    Angle m_angle;
     std::vector<double> m_exprs;
     std::string m_description;
     std::string m_label;

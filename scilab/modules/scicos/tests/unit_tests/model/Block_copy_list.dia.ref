@@ -15,8 +15,6 @@ Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : SUCCESS
-Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : SUCCESS
-Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : SUCCESS
 Xcos trace: propertyUpdated( 1 , BLOCK , EXPRS ) : SUCCESS
 Xcos debug: objectCreated( 2 , PORT )
 Xcos trace: propertyUpdated( 2 , PORT , SOURCE_BLOCK ) : SUCCESS
@@ -29,7 +27,7 @@ Xcos debug: objectCreated( 4 , PORT )
 Xcos trace: propertyUpdated( 4 , PORT , SOURCE_BLOCK ) : SUCCESS
 Xcos trace: propertyUpdated( 4 , PORT , PORT_KIND ) : SUCCESS
 Xcos trace: propertyUpdated( 1 , BLOCK , OUTPUTS ) : SUCCESS
-Xcos trace: propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , PORT , IMPLICIT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
@@ -39,7 +37,7 @@ Xcos trace: propertyUpdated( 4 , PORT , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , PORT , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
@@ -72,8 +70,6 @@ Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
           orig = [0,0]
           sz = [2,3]
-          flip = %t
-          theta = 0
           exprs = "[1;1]"
           pin = [0;0]
           pout = 0
@@ -125,8 +121,6 @@ Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
           orig = [0,0]
           sz = [2,3]
-          flip = %t
-          theta = 0
           exprs = "[1;1]"
           pin = [0;0]
           pout = 0

@@ -15,11 +15,9 @@ Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : SUCCESS
-Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : SUCCESS
 Xcos trace: propertyUpdated( 1 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
@@ -64,11 +62,9 @@ Xcos debug: objectUnreferenced( 3 , BLOCK ) : 0
 Xcos debug: objectReferenced( 3 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 3 , BLOCK , STYLE ) : SUCCESS
-Xcos trace: propertyUpdated( 3 , BLOCK , STYLE ) : SUCCESS
 Xcos trace: propertyUpdated( 3 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace: propertyUpdated( 3 , BLOCK , LABEL ) : NO_CHANGES
-Xcos trace: propertyUpdated( 3 , BLOCK , STYLE ) : SUCCESS
+Xcos trace: propertyUpdated( 3 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , BLOCK , STYLE ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 3 , BLOCK ) : 0
 Xcos debug: objectReferenced( 3 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 3 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES

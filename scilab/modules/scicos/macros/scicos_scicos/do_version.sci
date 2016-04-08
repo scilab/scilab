@@ -1034,11 +1034,16 @@ function scs_m_new=do_version272(scs_m)
                 out_implicit=I(ones(grphic.pout(:)));
             end
 
-            scs_m_new.objs(i).graphics=scicos_new(["graphics","orig","sz","flip","exprs","pin",..
-            "pout","pein","peout","gr_i","id","in_implicit","out_implicit"],..
-            grphic.orig,grphic.sz,grphic.flip,grphic.exprs,grphic.pin,..
+            if grphic.flip == %f then
+                style = "flip=0;";
+            else
+                style = "";
+            end
+            scs_m_new.objs(i).graphics=scicos_new(["graphics","orig","sz","exprs","pin",..
+            "pout","pein","peout","gr_i","id","in_implicit","out_implicit","style"],..
+            grphic.orig,grphic.sz,grphic.exprs,grphic.pin,..
             grphic.pout,grphic.pein,grphic.peout,grphic.gr_i,grphic.id,..
-            in_implicit,out_implicit)
+            in_implicit,out_implicit,style)
 
             if or(scs_m_new.objs(i).model.sim==["super","csuper"]) then
                 rpar=do_version272(scs_m_new.objs(i).model.rpar)
@@ -2141,10 +2146,15 @@ function scs_m_new=do_version27(scs_m)
                 end
             end
 
-            graphics=scicos_graphics27(orig=o(2)(1),sz=o(2)(2),flip=o(2)(3),..
+            if o(2)(3) == %f then
+                style = "flip=0;";
+            else
+                style = "";
+            end
+            graphics=scicos_graphics27(orig=o(2)(1),sz=o(2)(2),..
             exprs=o(2)(4),pin=o(2)(5),pout=o(2)(6),..
             pein=o(2)(7),peout=o(2)(8),gr_i=gr_i,..
-            id=mdl(15))
+            id=mdl(15),style=style)
 
 
             model=scicos_model27(sim=mdl(1),in=mdl(2),out=mdl(3),evtin=mdl(4),..
@@ -2313,7 +2323,6 @@ function graphics=scicos_graphics27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
     //initialisation de graphics scicos_new
     if exists("orig","local")==0 then orig=[0 0],end
     if exists("sz","local")==0 then sz=[20 20],end
-    if exists("flip","local")==0 then flip=%t,end
     if exists("exprs","local")==0 then exprs=[],end
     if exists("pin","local")==0 then pin=[],end
     if exists("pout","local")==0 then pout=[],end
@@ -2321,8 +2330,9 @@ function graphics=scicos_graphics27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
     if exists("peout","local")==0 then peout=[],end
     if exists("gr_i","local")==0 then gr_i=[],end
     if exists("id","local")==0 then id="",end
+    if exists("style","local")==0 then style="",end
 
-    graphics=scicos_new(["graphics","orig","sz","flip","exprs","pin",..
-    "pout","pein","peout","gr_i","id"],..
-    orig,sz,flip,exprs,pin,pout,pein,peout,gr_i,id)
+    graphics=scicos_new(["graphics","orig","sz","exprs","pin",..
+    "pout","pein","peout","gr_i","id","style"],..
+    orig,sz,flip,exprs,pin,pout,pein,peout,gr_i,id,style)
 endfunction

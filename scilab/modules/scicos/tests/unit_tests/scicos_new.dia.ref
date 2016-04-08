@@ -8,11 +8,9 @@
 loadXcosLibs();
 // sub-objects not mapped to the model
 o = scicos_graphics()
-o  = 
+ o  = 
 orig = [0,0]
 sz = [20,20]
-flip = %t
-theta = 0
 exprs = []
 pin = []
 pout = []
@@ -28,7 +26,7 @@ in_label = []
 out_label = []
 style = ""
 o = scicos_model()
-o  = 
+ o  = 
  type: 0
 in = []
 in2 = []
@@ -58,13 +56,11 @@ o = TEXT_f("define");
 clear o;
 // allocate a Block
 o = scicos_block()
-o  = 
+ o  = 
 GUI     : 
 Graphics: 
           orig = [0,0]
           sz = [20,20]
-          flip = %t
-          theta = 0
           exprs = []
           pin = []
           pout = []
@@ -106,7 +102,7 @@ Model   :
 clear o;
 // allocate a Link
 o = scicos_link()
-o  = 
+ o  = 
 Link    :
           xx: []
           yy: []
@@ -118,7 +114,7 @@ Link    :
 clear o;
 // allocate a Diagram
 scs_m = scicos_diagram()
-scs_m  = 
+ scs_m  = 
 wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
@@ -143,7 +139,7 @@ scs_m.objs($+1) = blk;
 scs_m.objs($+1) = scicos_link();
 lnk = scs_m.objs($);
 lnk.from = [1 1 0]
-lnk  = 
+ lnk  = 
 Link    :
           xx: []
           yy: []
@@ -153,7 +149,7 @@ Link    :
           from: 1 1 0
           to: 0 0 1
 lnk.to = [2 1 1]
-lnk  = 
+ lnk  = 
 Link    :
           xx: []
           yy: []

@@ -29,7 +29,13 @@ function [x,y,typ]=standard_inputs(o)
     yf=40
     graphics=o.graphics
     model=o.model
-    orig=graphics.orig;sz=graphics.sz;orient=graphics.flip;
+    orig=graphics.orig;sz=graphics.sz;
+    orient=%t;
+    style=graphics.style;
+    subStr=strstr(style,"flip=");
+    if subStr<>"" then
+        orient=%f;
+    end
     inp=size(model.in,1);clkinp=size(model.evtin,1);
     if orient then
         xo=orig(1)
