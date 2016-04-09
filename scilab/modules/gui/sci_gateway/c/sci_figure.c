@@ -211,6 +211,7 @@ int sci_figure(char * fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i + 1);
+                freeAllocatedSingleString(pstProName);
                 return 1;
             }
 
@@ -234,7 +235,12 @@ int sci_figure(char * fname, void* pvApiCtx)
                     freeAllocatedSingleString(pstProName);
                 }
 
-                getAllocatedSingleString(pvApiCtx, piAddrData, &pstVal);
+                if (getAllocatedSingleString(pvApiCtx, piAddrData, &pstVal))
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, i + 1);
+                    freeAllocatedSingleString(pstProName);
+                    return 1;
+                }
 
                 if (stricmp(pstVal, "none") == 0)
                 {
@@ -264,7 +270,12 @@ int sci_figure(char * fname, void* pvApiCtx)
                     return 1;
                 }
 
-                getAllocatedSingleString(pvApiCtx, piAddrData, &pstVal);
+                if (getAllocatedSingleString(pvApiCtx, piAddrData, &pstVal))
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, i + 1);
+                    freeAllocatedSingleString(pstProName);
+                    return 1;
+                }
 
                 if (stricmp(pstVal, "none") == 0)
                 {
@@ -311,6 +322,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                 if (isDoubleType(pvApiCtx, piAddrData) == FALSE)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A double vector expected.\n"), fname, i + 1);
+                    freeAllocatedSingleString(pstProName);
                     return 1;
                 }
 
@@ -318,6 +330,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                 if (iRows * iCols != 2)
                 {
                     Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "figure_size", 2);
+                    freeAllocatedSingleString(pstProName);
                     return 1;
                 }
             }
@@ -328,6 +341,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                 if (isDoubleType(pvApiCtx, piAddrData) == FALSE)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A double vector expected.\n"), fname, i + 1);
+                    freeAllocatedSingleString(pstProName);
                     return 1;
                 }
 
@@ -335,6 +349,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                 if (iRows * iCols != 2)
                 {
                     Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "axes_size", 2);
+                    freeAllocatedSingleString(pstProName);
                     return 1;
                 }
             }
@@ -349,6 +364,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     if (iRows * iCols != 4)
                     {
                         Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "position", 4);
+                        freeAllocatedSingleString(pstProName);
                         return 1;
                     }
 
@@ -360,13 +376,19 @@ int sci_figure(char * fname, void* pvApiCtx)
                     char* pstVal = NULL;
                     int iVal = 0;
 
-                    getAllocatedSingleString(pvApiCtx, piAddrData, &pstVal);
+                    if (getAllocatedSingleString(pvApiCtx, piAddrData, &pstVal))
+                    {
+                        Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, i + 1);
+                        freeAllocatedSingleString(pstProName);
+                        return 1;
+                    }
 
                     iVal = sscanf(pstVal, "%lf|%lf|%lf|%lf", &val[0], &val[1], &val[2], &val[3]);
                     freeAllocatedSingleString(pstVal);
                     if (iVal != 4)
                     {
                         Scierror(999, _("Wrong value for '%s' property: string or 1 x %d real row vector expected.\n"), "position", 4);
+                        freeAllocatedSingleString(pstProName);
                         return 1;
                     }
 
@@ -376,6 +398,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                 else
                 {
                     Scierror(999, _("Wrong value for '%s' property: string or 1 x %d real row vector expected.\n"), "position", 4);
+                    freeAllocatedSingleString(pstProName);
                     return 1;
                 }
             }
@@ -419,7 +442,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     return 1;
                 }
             }
-
+            freeAllocatedSingleString(pstProName);
         }
 
         iFig = createFigure(bDockable, iMenubarType, iToolbarType, bDefaultAxes, bVisible);
@@ -477,8 +500,8 @@ int sci_figure(char * fname, void* pvApiCtx)
         sciErr = getVarAddressFromPosition(pvApiCtx, i + 1, &piAddrData);
         if (sciErr.iErr)
         {
-            freeAllocatedSingleString(pstProName);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i + 1);
+            freeAllocatedSingleString(pstProName);
             return 1;
         }
 
@@ -516,8 +539,8 @@ int sci_figure(char * fname, void* pvApiCtx)
                     {
                         if (getAllocatedSingleString(pvApiCtx, piAddrData, (char**)&_pvData))
                         {
-                            freeAllocatedSingleString(pstProName);
                             Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 3);
+                            freeAllocatedSingleString(pstProName);
                             return 1;
                         }
                         iRows = (int)strlen((char*)_pvData);
@@ -526,7 +549,12 @@ int sci_figure(char * fname, void* pvApiCtx)
                     else
                     {
                         isMatrixOfString = 1;
-                        getAllocatedMatrixOfString(pvApiCtx, piAddrData, &iRows, &iCols, (char***)&_pvData);
+                        if (getAllocatedMatrixOfString(pvApiCtx, piAddrData, &iRows, &iCols, (char***)&_pvData))
+                        {
+                            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
+                            freeAllocatedSingleString(pstProName);
+                            return 1;
+                        }
                     }
                     break;
                 case sci_list :
@@ -634,7 +662,10 @@ int getStackArgumentAsBoolean(void* _pvCtx, int* _piAddr)
         {
             int ret = 0;
             char* pst = NULL;
-            getAllocatedSingleString(_pvCtx, _piAddr, &pst);
+            if (getAllocatedSingleString(_pvCtx, _piAddr, &pst))
+            {
+                return -1;
+            }
 
             if (stricmp(pst, "on") == 0)
             {

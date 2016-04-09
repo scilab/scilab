@@ -251,6 +251,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    FREE(lenStVarOne);
                     return 1;
                 }
 
@@ -262,9 +263,8 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                 pStVarOne = (char **)MALLOC(sizeof(char *) * mnOne);
                 if (pStVarOne == NULL)
                 {
-                    FREE(lenStVarOne);
-                    lenStVarOne = NULL;
                     Scierror(999, _("%s: No more memory.\n"), fname);
+                    FREE(lenStVarOne);
                     return 1;
                 }
 
@@ -273,36 +273,28 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                     pStVarOne[i] = (char *)MALLOC(sizeof(char) * (lenStVarOne[i] + 1));
                     if (pStVarOne[i] == NULL)
                     {
-                        freeArrayOfString(pStVarOne, i);
-                        if (lenStVarOne)
-                        {
-                            FREE(lenStVarOne);
-                            lenStVarOne = NULL;
-                        }
                         Scierror(999, _("%s: No more memory.\n"), fname);
+                        freeArrayOfString(pStVarOne, i);
+                        FREE(lenStVarOne);
                         return 1;
                     }
                 }
 
                 sciErr = getMatrixOfString(_pvCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, pStVarOne);
-                if (lenStVarOne)
-                {
-                    FREE(lenStVarOne);
-                    lenStVarOne = NULL;
-                }
+                FREE(lenStVarOne);
                 if (sciErr.iErr)
                 {
-                    freeArrayOfString(pStVarOne, mnOne);
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    freeArrayOfString(pStVarOne, mnOne);
                     return 1;
                 }
 
                 lines = (char *)MALLOC((lenLineToPrint + 1) * sizeof(char));
                 if (lines == NULL)
                 {
-                    freeArrayOfString(pStVarOne, mnOne);
                     Scierror(999, _("%s: No more memory.\n"), fname);
+                    freeArrayOfString(pStVarOne, mnOne);
                     return 1;
                 }
 

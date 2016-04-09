@@ -73,22 +73,23 @@ int sci_x_choose_modeless(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
             return 1;
         }
 
         // Retrieve a matrix of string at position 2.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrmessageAdr, &nbRow, &nbCol, &messageAdr))
         {
-            freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
             Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
+            freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
             return 1;
         }
 
     }
     else
     {
-        freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
         Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname, 2);
+        freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
         return FALSE;
     }
 

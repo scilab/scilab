@@ -204,6 +204,7 @@ int sci_x_mdialog(char *fname, void* pvApiCtx)
             if ((nbRowDefaultValues != nbRowLineLabels * nbColLineLabels) || (nbColDefaultValues != nbRowColumnLabels * nbColColumnLabels))
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"), fname, 4, nbRowLineLabels * nbColLineLabels, nbRowColumnLabels * nbColColumnLabels);
+                freeArrayOfString(defaultValuesAdr, nbColDefaultValues * nbRowDefaultValues);
                 return FALSE;
             }
             setMessageBoxDefaultInput(messageBoxID, defaultValuesAdr, nbColDefaultValues * nbRowDefaultValues);

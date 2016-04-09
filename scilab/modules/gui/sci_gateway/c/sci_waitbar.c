@@ -242,6 +242,7 @@ int sci_waitbar(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
                 return 1;
             }
 
@@ -251,12 +252,14 @@ int sci_waitbar(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 2);
+                freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
                 return 1;
             }
 
             if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle expected.\n"), fname, 2, "Waitbar");
+                freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
                 return FALSE;
             }
 
@@ -265,6 +268,7 @@ int sci_waitbar(char *fname, void* pvApiCtx)
             if (iWaitbarUID == 0)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"), fname, 2, "Waitbar");
+                freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
                 return FALSE;
             }
 
@@ -337,6 +341,7 @@ int sci_waitbar(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
                 return 1;
             }
 
@@ -346,6 +351,7 @@ int sci_waitbar(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 3);
+                freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
                 return 1;
             }
 

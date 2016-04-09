@@ -246,7 +246,11 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 1;
             }
-
+        }
+        
+        if (selectedFontName)
+        {
+            freeAllocatedSingleString(selectedFontName);
         }
 
         if (nbOutputArgument(pvApiCtx) >= 2)
@@ -290,6 +294,10 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
     }
     else /* The user canceled */
     {
+        if (selectedFontName)
+        {
+            freeAllocatedSingleString(selectedFontName);
+        }
         nbRow = 0;
         nbCol = 0;
         if (nbOutputArgument(pvApiCtx) >= 1)
@@ -344,11 +352,6 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
     AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
     AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
     AssignOutputVariable(pvApiCtx, 4) = nbInputArgument(pvApiCtx) + 4;
-
-    if (selectedFontName)
-    {
-        freeAllocatedSingleString(selectedFontName);
-    }
 
     if (fontNameSize)
     {

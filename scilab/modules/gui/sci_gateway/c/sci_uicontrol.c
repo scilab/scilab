@@ -494,6 +494,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                         {
                             printError(&sciErr, 0);
                             FREE(propertiesValuesIndices);
+                            freeAllocatedSingleString(styleProperty);
                             return 1;
                         }
 
@@ -501,6 +502,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                         {
                             Scierror(202, _("%s: Wrong type for argument #%d: string or boolean expected.\n"), fname, propertiesValuesIndices[scrollable_property]);
                             FREE(propertiesValuesIndices);
+                            freeAllocatedSingleString(styleProperty);
                             return 1;
                         }
 
@@ -510,6 +512,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                             {
                                 Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, propertiesValuesIndices[scrollable_property]);
                                 FREE(propertiesValuesIndices);
+                                freeAllocatedSingleString(styleProperty);
                                 return 1;
                             }
 
@@ -525,6 +528,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                             if (getScalarBoolean(pvApiCtx, piAddr, &iScroll))
                             {
                                 Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, propertiesValuesIndices[scrollable_property]);
+                                freeAllocatedSingleString(styleProperty);
                                 FREE(propertiesValuesIndices);
                                 return 1;
                             }

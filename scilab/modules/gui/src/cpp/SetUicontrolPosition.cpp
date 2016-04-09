@@ -44,6 +44,7 @@ int SetUicontrolPosition(int iObjUID, void* pvData, int valueType, int nbRow, in
         if (nbValues != 4)
         {
             Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: string or 1 x %d real row vector expected.\n")), "Position", 4);
+            delete[] position;
             return SET_PROPERTY_ERROR;
         }
     }
@@ -81,6 +82,10 @@ int SetUicontrolPosition(int iObjUID, void* pvData, int valueType, int nbRow, in
         if (status == FALSE)
         {
             Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Position");
+            if (valueType == sci_strings)
+            {
+                delete[] position;
+            }
             return SET_PROPERTY_ERROR;
         }
         status = setGraphicObjectProperty(iObjUID, __GO_AXES_SIZE__, figureSize, jni_int_vector, 2);
