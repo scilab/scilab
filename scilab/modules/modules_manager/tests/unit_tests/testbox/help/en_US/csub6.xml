@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * This file is released under the 3-clause BSD license. See COPYING-BSD.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:scilab="http://www.scilab.org" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="csub6" xml:lang="en">
+    <refnamediv>
+        <refname>csub6</refname>
+        <refpurpose>subtraction from C</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>a = csub6(b,c)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>first input argument</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>second input argument</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>output argument</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Do a subtraction.</para>
+        <para>Add here a paragraph of the function description </para>
+        <para>
+            LaTeX can also be used to render equation: In this case, the rendering should <latex>$x-y$</latex>
+        </para>
+        <para>It is now possible to include an image in using Scilab code (this requires to declare the namespace xmlns:scilab="http://www.scilab.org"):</para>
+        <programlisting role="xml">
+            <![CDATA[
+	  <scilab:image>
+	    plot3d();
+	  </scilab:image>
+	  ]]>
+        </programlisting>
+        <scilab:image>
+            plot3d();
+        </scilab:image>
+        <para>If an image contains a localized string then the attribute scilab:localized="true" is required:</para>
+        <programlisting role="xml">
+            <![CDATA[
+	  <scilab:image localized="true">
+	    plot2d();
+	    xtitle("My Beautiful 2D plots");
+	  </scilab:image>
+	  ]]>
+        </programlisting>
+        <scilab:image localized="true">
+            plot2d();
+            xtitle("My Beautiful 2D plots");
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">csub6(3,4)</programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="csum6">csum6</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

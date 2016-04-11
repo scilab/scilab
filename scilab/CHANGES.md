@@ -33,12 +33,17 @@ In summary, the main new features are:
   - Better performance for some objects (cells and structs).
   - Clearer, less ambiguous, language syntax.
   - Xcos also uses the new re-written Scilab engine.
-* New code productivity features: full-featured debugger, profiler / coverage tool, 
-and "lint"-like commands.
-* Newsfeed, providing a continuous feed of news, tips, and general communication
-from the community and from Scilab Enterprises.
-* Licensing change: Scilab is now released under the terms of the GNU General Public License (GPL) v2.0.
+* New code productivity features: full-featured debugger, profiler / coverage tool, and "lint"-like commands.
+* Newsfeed, providing a continuous feed of news, tips, and general communication from the community and from Scilab Enterprises.
+* Licensing change: Scilab is now released under the terms of the GNU General Public License (GPL) v2.0
 It is still also available under the terms of the CeCILL v2.1.
+* A `tbx_make()` function is added to build a toolbox following the toolbox directory structure convention
+* ATOMS builder functions are now less dependent on the script files in the macros, `help`, `etc`, `src` and `sci_gateway` directories. These functions will do nothing (but warn the user) if they find no target to build:
+  - `tbx_builder_macros`: compiles the `.sci` files present in `macros/` directory into the toolbox library. If `buildmacros.sce` or `builder.sce` script in `macros/` are present, executes them instead;
+  - `tbx_builder_help`: compiles the help for each language (`la_LA`) directories in `help/`. If `builder_help` script is present in help, executes it instead;
+  - `tbx_build_loader`: builds a default loader that mimics the skeleton `.start` files. If a `.start` file is found in `etc/` builds a loader calling this script;
+  - `tbx_builder_src`: scans the subdirectories under `src` for builder files and executes them
+  - `tbx_builder_gateway`: scans the subdirectories under `sci_gateway` for builder files and executes them
 
 
 Installation

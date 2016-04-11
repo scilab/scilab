@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from foo.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="foo" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+    
+    <refnamediv>
+        <refname>foo</refname>
+        <refpurpose>Tests for simple toolbox build</refpurpose>
+    </refnamediv>
+    
+    
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            res = foo(A, B)
+        </synopsis>
+    </refsynopsisdiv>
+    
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>res:</term>
+                <listitem>
+                    <para> boolean. Return value</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>txt:</term>
+                <listitem>
+                    <para> a single string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nb:</term>
+                <listitem>
+                    <para> a numeric value</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    
+    <refsection>
+        <title>Description</title>
+        <para>
+            Does nothing but display txt and nb and returns %t
+            Author
+            Pierre-Aimé Agnel
+        </para>
+    </refsection>
+</refentry>

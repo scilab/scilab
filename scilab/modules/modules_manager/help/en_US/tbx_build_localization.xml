@@ -2,6 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
+// Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
+ * Copyright (C) 2016 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -21,22 +23,29 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            tbx_build_localization(tbx_name, tbx_path)
+            tbx_build_localization()
+            tbx_build_localization(tbx_path)
+            tbx_build_localization(tbx_name)               // obsolete
+            tbx_build_localization(tbx_name, tbx_path)     // obsolete
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>tbx_name</term>
-                <listitem>
-                    <para>name of the toolbox, use to name localization files and domain.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>tbx_path</term>
                 <listitem>
                     <para>path of the toolbox, use to locate files to compile.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tbx_name (deprecated)</term>
+                <listitem>
+                    <para>Name of the toolbox, use to name localization files and domain.</para>
+                    <para>The name of the toolbox is now retrieved as the basename of the file
+                        <literal>tbx_path/etc/*.start</literal>. This file must be available, even
+                        if it is empty.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -44,7 +53,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-    tbx_build_localization("toolbox_skeleton", "SCI/contrib/toolbox_skeleton")
+    tbx_build_localization("SCI/contrib/toolbox_skeleton")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -55,12 +64,16 @@
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>History</title>
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revdescription>Function tbx_build_localization added.</revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>tbx_name is no longer required.</revdescription>
             </revision>
         </revhistory>
     </refsection>
