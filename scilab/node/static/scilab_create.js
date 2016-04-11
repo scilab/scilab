@@ -1,181 +1,186 @@
 function createFigure(uid) {
-    var __parent__ = getScilab();
-    var __temp__ = createElement("DIV");
-    __temp__.id = getIdString(uid);
-    __temp__.className = 'GO_FIGURE';
-    __parent__.appendChild(__temp__);
-    addWindow(__temp__);
-    return __temp__;
+    var parent = getScilab();
+    var temp = createElement("DIV");
+    temp.id = getIdString(uid);
+    temp.className = 'GO_FIGURE';
+    parent.appendChild(temp);
+    addWindow(temp);
+    return temp;
+}
+
+function createAxes(uid) {
+    var temp = createCommonIUControl(uid, 'DIV', 'GO_AXES');
+    return temp;
 }
 
 function createPushButton(uid) {
-    var __temp__ = createCommonIUControl(uid, 'BUTTON', 'GO_UI_PUSHBUTTON');
+    var temp = createCommonIUControl(uid, 'BUTTON', 'GO_UI_PUSHBUTTON');
     //add bootstrap class
-    var $temp = $("#" + __temp__.id);
+    var $temp = $("#" + temp.id);
     $temp.addClass("btn");
     
-    return __temp__;
+    return temp;
 }
 
 function createFrame(uid) {
-    var __temp__ = createCommonIUControl(uid, 'DIV', 'GO_UI_FRAME');
+    var temp = createCommonIUControl(uid, 'DIV', 'GO_UI_FRAME');
 
     //add bootstrap class
-    var $temp = $("#" + __temp__.id);
+    var $temp = $("#" + temp.id);
     $temp.addClass("panel");
     $temp.addClass("panel-default");
     $temp.css("margin", "0");
     
-    var __header__ = createCommonIUControl(uid, 'DIV', 'panel-heading');
-    __header__.id = getIdString(uid, "_header");
-    __header__.style.display = 'none';
+    var header = createCommonIUControl(uid, 'DIV', 'panel-heading');
+    header.id = getIdString(uid, "_header");
+    header.style.display = 'none';
     
-    var __footer__ = createCommonIUControl(uid, 'DIV', 'panel-footer');
-    __footer__.id = getIdString(uid, "_footer");
-    __footer__.style.display = 'none';
+    var footer = createCommonIUControl(uid, 'DIV', 'panel-footer');
+    footer.id = getIdString(uid, "_footer");
+    footer.style.display = 'none';
     
-    var __child__ = createCommonIUControl(uid, 'DIV', 'panel-body');
-    __child__.id = getIdString(uid, "_body");
+    var child = createCommonIUControl(uid, 'DIV', 'panel-body');
+    child.id = getIdString(uid, "_body");
     
-    __temp__.appendChild(__header__);
-    __temp__.appendChild(__child__);
-    __temp__.appendChild(__footer__);
-    return __temp__;
+    temp.appendChild(header);
+    temp.appendChild(child);
+    temp.appendChild(footer);
+    return temp;
 }
 
 function createText(uid) {
-    var __temp__ = createCommonIUControl(uid, 'LABEL', 'GO_UI_TEXT');
-//    var $temp = $("#" + __temp__.id);
+    var temp = createCommonIUControl(uid, 'LABEL', 'GO_UI_TEXT');
+//    var $temp = $("#" + temp.id);
 //    $temp.addClass("label");
 //    $temp.addClass("label-default");
-    return __temp__;
+    return temp;
 }
 
 function createEdit(uid) {
-    var __temp__ = createCommonIUControl(uid, 'INPUT', 'GO_UI_EDIT');
-    __temp__.type = 'text';
+    var temp = createCommonIUControl(uid, 'INPUT', 'GO_UI_EDIT');
+    temp.type = 'text';
 
     //add bootstrap class
-    var $temp = $("#" + __temp__.id);
+    var $temp = $("#" + temp.id);
     $temp.addClass("form-control");
-    return __temp__;
+    return temp;
 }
 
 function createCheckbox(uid) {
     //for checkbox we need to create 4 elements.
 
     //a div to enclose others
-    var __main__ = createCommonIUControl(uid, 'DIV', 'GO_UI_CHECKBOX');
+    var main = createCommonIUControl(uid, 'DIV', 'GO_UI_CHECKBOX');
 
     //add bootstrap class
-    var __jqmain__ = $("#" + __main__.id);
-    __jqmain__.addClass("checkbox");
-    __main__.style.position = 'absolute';
-    __main__.style.margin = '0';
-    __main__.style.display = 'flex';
-    __main__.style.alignItems = 'center';
+    var $main = $("#" + main.id);
+    $main.addClass("checkbox");
+    main.style.position = 'absolute';
+    main.style.margin = '0';
+    main.style.display = 'flex';
+    main.style.alignItems = 'center';
     
     //the label of the checkbox
-    var __label__ = createCommonIUControl(uid, 'LABEL', 'GO_UI_CHECKBOX_LABEL');
-    __label__.id = getIdString(uid, '_label');
-    __main__.appendChild(__label__);
+    var label = createCommonIUControl(uid, 'LABEL', 'GO_UI_CHECKBOX_LABEL');
+    label.id = getIdString(uid, '_label');
+    main.appendChild(label);
 
      //the checkbox itself
-   var __temp__ = createCommonIUControl(uid, 'INPUT', 'GO_UI_CHECKBOX_RADIO');
-    __temp__.type = 'checkbox';
-    __temp__.id = getIdString(uid, '_checkbox');
-    __temp__.style.marginLeft = '-15px';
-    __label__.appendChild(__temp__);
+    var temp = createCommonIUControl(uid, 'INPUT', 'GO_UI_CHECKBOX_RADIO');
+    temp.type = 'checkbox';
+    temp.id = getIdString(uid, '_checkbox');
+    temp.style.marginLeft = '-15px';
+    label.appendChild(temp);
     
     //and a span to esay update text value
-    var __span__ = createCommonIUControl(uid, 'SPAN', '');
-    __span__.id = getIdString(uid, '_span');
-    __label__.appendChild(__span__);
+    var span = createCommonIUControl(uid, 'SPAN', '');
+    span.id = getIdString(uid, '_span');
+    label.appendChild(span);
 
-    return __main__;
+    return main;
 }
 
 function createRadio(uid) {
     //for checkbox we need to create 4 elements.
 
     //a div to enclose others
-    var __main__ = createCommonIUControl(uid, 'DIV', 'GO_UI_RADIOBUTTON');
+    var main = createCommonIUControl(uid, 'DIV', 'GO_UI_RADIOBUTTON');
 
     //add bootstrap class
-    var __jqmain__ = $("#" + __main__.id);
-    __jqmain__.addClass("radio");
-    __main__.style.position = 'absolute';
-    __main__.style.margin = '0';
-    __main__.style.display = 'flex';
-    __main__.style.alignItems = 'center';
+    var $main = $("#" + main.id);
+    $main.addClass("radio");
+    main.style.position = 'absolute';
+    main.style.margin = '0';
+    main.style.display = 'flex';
+    main.style.alignItems = 'center';
  
     //the label of the radio
-    var __label__ = createCommonIUControl(uid, 'LABEL', 'GO_UI_RADIOBUTTON_LABEL');
-    __label__.id = getIdString(uid, '_label');
-    __main__.appendChild(__label__);
+    var label = createCommonIUControl(uid, 'LABEL', 'GO_UI_RADIOBUTTON_LABEL');
+    label.id = getIdString(uid, '_label');
+    main.appendChild(label);
 
      //the radio itself
-   var __temp__ = createCommonIUControl(uid, 'INPUT', 'GO_UI_RADIOBUTTON_RADIO');
-    __temp__.type = 'radio';
-    __temp__.id = getIdString(uid, '_radio');
-    __temp__.style.marginLeft = '4px';
-    __temp__.style.marginBottom = '12px';
-    __label__.appendChild(__temp__);
+   var temp = createCommonIUControl(uid, 'INPUT', 'GO_UI_RADIOBUTTON_RADIO');
+    temp.type = 'radio';
+    temp.id = getIdString(uid, '_radio');
+    temp.style.marginLeft = '4px';
+    temp.style.marginBottom = '12px';
+    label.appendChild(temp);
     
     //and a span to esay update text value
-    var __span__ = createCommonIUControl(uid, 'SPAN', '');
-    __span__.id = getIdString(uid, '_span');
-    __label__.appendChild(__span__);
+    var span = createCommonIUControl(uid, 'SPAN', '');
+    span.id = getIdString(uid, '_span');
+    label.appendChild(span);
 
-    return __main__;
+    return main;
 }
 
 function createSlider(uid) {
-    var __temp__ = createCommonIUControl(uid, 'INPUT', 'GO_UI_SLIDER');
-    __temp__.type = 'range';
-    return __temp__;
+    var temp = createCommonIUControl(uid, 'INPUT', 'GO_UI_SLIDER');
+    temp.type = 'range';
+    return temp;
 }
 
 function createListbox(uid) {
-    var __temp__ = createCommonIUControl(uid, 'SELECT', 'GO_UI_LISTBOX');
-    return __temp__;
+    var temp = createCommonIUControl(uid, 'SELECT', 'GO_UI_LISTBOX');
+    return temp;
 }
 
 function createCombobox(uid) {
-    var __temp__ = createCommonIUControl(uid, 'SELECT', 'GO_UI_POPUPMENU');
-    __temp__.size = 1;
-    var $temp = $("#" + __temp__.id);
+    var temp = createCommonIUControl(uid, 'SELECT', 'GO_UI_POPUPMENU');
+    temp.size = 1;
+    var $temp = $("#" + temp.id);
     $temp.addClass("form-control");
-    return __temp__;
+    return temp;
 }
 
 function createSpinner(uid) {
-    var __temp__ = createCommonIUControl(uid, 'INPUT', 'GO_UI_SPINNER');
-    __temp__.type = 'number';
+    var temp = createCommonIUControl(uid, 'INPUT', 'GO_UI_SPINNER');
+    temp.type = 'number';
     //$("#" + getIdString(uid)).TouchSpin({verticalbuttons: true});
-    return __temp__;
+    return temp;
 }
 
 function createTab(uid) {
-    var __temp__ = createCommonIUControl(uid, 'DIV', 'GO_UI_TAB');
+    var temp = createCommonIUControl(uid, 'DIV', 'GO_UI_TAB');
 
     //create a list for tab headers
-    var __ul__ = createElement('UL');
-    __ul__.id = getIdString(uid, '_ul');
-    __temp__.appendChild(__ul__);
+    var ul = createElement('UL');
+    ul.id = getIdString(uid, '_ul');
+    temp.appendChild(ul);
 
-    var $ul = $("#" + __ul__.id);
+    var $ul = $("#" + ul.id);
     $ul.addClass("nav");
     $ul.addClass("nav-tabs");
 
-    var __content__ = createElement('DIV');
-    __content__.id = getIdString(uid, '_tabs');
-    __temp__.appendChild(__content__);
+    var content = createElement('DIV');
+    content.id = getIdString(uid, '_tabs');
+    temp.appendChild(content);
 
-    var $content = $("#" + __content__.id);
+    var $content = $("#" + content.id);
     $content.addClass("tab-content");
 
-    return __temp__;
+    return temp;
 }
 
 function deleteObject(uid) {

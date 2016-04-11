@@ -2,17 +2,24 @@ function setParent(uid, parent) {
     var $child = getJElementById(uid);
     var $parent = getJElementById(parent);
     
+    if($child.hasClass("GO_AXES")) {
+        $child.width($parent.width());
+        $child.height($parent.height());
+
+        Plotly.newPlot($child.prop('id'), [{}], {}, {displayModeBar:false, showLink:false, scrollZoom:true});
+    }
+
     if($parent.hasClass("GO_UI_FRAME")) {
         $parent = getJElementById(parent, "_body");
     }
-
+    
     $parent.append($child);
 }
 
 function setFigureSize(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.style.width = val[0] + 'px';
-    __child__.style.height = val[1] + 'px';
+    var child = getElementById(uid);
+    child.style.width = val[0] + 'px';
+    child.style.height = val[1] + 'px';
 }
 
 function setFigureName(uid, val) {
@@ -30,104 +37,108 @@ function setUIPosition(uid, val, units) {
         val[3] *= 100;
     }
     
-    var __child__ = getElementById(uid);
-    __child__.style.left = val[0] + u;
-    __child__.style.bottom = val[1] + u;
-    __child__.style.width = val[2] + u;
-    __child__.style.height = val[3] + u;
+    var child = getElementById(uid);
+    child.style.left = val[0] + u;
+    child.style.bottom = val[1] + u;
+    child.style.width = val[2] + u;
+    child.style.height = val[3] + u;
 }
 
 function setUIString(uid, val, parent) {
-    var __child__ = getElementById(uid);
+    var child = getElementById(uid);
     
-    var __jqchild__ = getJElementById(uid);
+    var $child = getJElementById(uid);
     
-    if(__jqchild__.hasClass('GO_UI_CHECKBOX') || __jqchild__.hasClass('GO_UI_RADIOBUTTON')) {
-        var __label__ = getElementById(uid + '_span');
-        __label__.textContent = val[0];
+    if($child.hasClass('GO_UI_CHECKBOX') || $child.hasClass('GO_UI_RADIOBUTTON')) {
+        var label = getElementById(uid + '_span');
+        label.textContent = val[0];
         return;
     }
 
-    if(__jqchild__.hasClass('GO_UI_POPUPMENU') || __jqchild__.hasClass('GO_UI_LISTBOX')) {
+    if($child.hasClass('GO_UI_POPUPMENU') || $child.hasClass('GO_UI_LISTBOX')) {
         //remove previous values
-        while (__child__.length) {__child__.remove(0);}
+        while (child.length) {child.remove(0);}
 
        var size = val.length;
         for(var i = 0 ; i < size ; ++i) {
-            __child__.add(new Option(val[i]));
+            child.add(new Option(val[i]));
         }
 
-        if(__child__.className === 'GO_UI_LISTBOX') {
+        if(child.className === 'GO_UI_LISTBOX') {
             //switch to listbox instead of combobox
-           __child__.size = 2;
+           child.size = 2;
         }
         
         return;
     }
     
-    if(__jqchild__.hasClass('GO_UI_FRAME')) {
+    if($child.hasClass('GO_UI_FRAME')) {
        var $parent = getJElementById(parent);
         if($parent && $parent.hasClass('GO_UI_TAB')) {
-           var __tab__ = getElementById(uid + '_tab');
-            __tab__.textContent = val[0];
+           var tab = getElementById(uid + '_tab');
+            tab.textContent = val[0];
         }
         
         return;
     }
 
-    if(__jqchild__.hasClass('GO_UI_TAB')) {
+    if($child.hasClass('GO_UI_TAB')) {
         return;
     }
 
     if(isInputType(uid)) {
-        __child__.value = val[0];
+        child.value = val[0];
     } else {
-        __child__.textContent = val[0];
+        child.textContent = val[0];
     }
 }
 
 function setVisible(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.style.visibility = val;
+    var child = getElementById(uid);
+    if(!child) {
+        console.log("setVisible : " + uid);
+        return;
+    }
+    child.style.visibility = val;
 }
 
 function setUIEnable(uid, val) {
-    var __child__ = getJElementById(uid);
+    var child = getJElementById(uid);
     if(val) {
-        __child__.removeClass("disabled");
+        child.removeClass("disabled");
     } else {
-        __child__.addClass("disabled");
+        child.addClass("disabled");
     }
 }
 
 function setUIForegroundColor(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.style.color = val;
+    var child = getElementById(uid);
+    child.style.color = val;
 }
 
 function setUIBackgroundColor(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.style.backgroundColor = val;
+    var child = getElementById(uid);
+    child.style.backgroundColor = val;
 }
 
 function setUIFontAngle(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.style.fontStyle = val;
+    var child = getElementById(uid);
+    child.style.fontStyle = val;
 }
 
 function setUIFontName(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.style.fontFamily = val;
+    var child = getElementById(uid);
+    child.style.fontFamily = val;
 }
 
 function setUIFontSize(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.style.fontSize = val;
+    var child = getElementById(uid);
+    child.style.fontSize = val;
 }
 
 function setUIFontWeight(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.style.fontWeight = val;
+    var child = getElementById(uid);
+    child.style.fontWeight = val;
 }
 
 function setUIHorizontalAlignment(uid, val) {
@@ -152,66 +163,66 @@ function setUIHorizontalAlignment(uid, val) {
 }
 
 function setUIVerticalAlignment(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.style.lineHeight = val;
+    var child = getElementById(uid);
+    child.style.lineHeight = val;
 }
 
 function setUILayout(uid, val) {
-    var __child__ = getElementById(uid);
+    var child = getElementById(uid);
 
     switch(val) {
         case LayoutType.LAYOUT_BORDER :
             //add 'frame' in child to be more ... flexible ;)
-           var __layout__ = createElement('DIV');
-            __layout__.id = getIdString(uid, '_layout');
-            __layout__.style.display = 'flex';
-            __layout__.style.flexDirection = 'column';
-            __layout__.style.width = '100%';
-            __layout__.style.height = 'inherit';
+            var layout = createElement('DIV');
+            layout.id = getIdString(uid, '_layout');
+            layout.style.display = 'flex';
+            layout.style.flexDirection = 'column';
+            layout.style.width = '100%';
+            layout.style.height = 'inherit';
 
             //add top
-           var __top__ = createElement('HEADER');
-            __top__.id = getIdString(uid, '_top');
-            __top__.style.width = '100%';
+            var header = createElement('HEADER');
+            header.id = getIdString(uid, '_top');
+            header.style.width = '100%';
 
             //add middle band
-           var __middle__ = createElement('DIV');
-            __middle__.id = getIdString(uid, '_middle');
-            __middle__.style.flex = '1';
-            __middle__.style.display = 'flex';
+            var middle = createElement('DIV');
+            middle.id = getIdString(uid, '_middle');
+            middle.style.flex = '1';
+            middle.style.display = 'flex';
 
             //add left
-           var __left__ = createElement('ASIDE');
-            __left__.id = getIdString(uid, '_left');
-            __left__.style.display = 'flex';
+            var left = createElement('ASIDE');
+            left.id = getIdString(uid, '_left');
+            left.style.display = 'flex';
 
             //add center
-           var __center__ = createElement('ARTICLE');
-            __center__.id = getIdString(uid, '_center');
-            __center__.style.flex = '1';
-            __center__.style.display = 'flex';
-            __center__.style.width = '100%';
+            var center = createElement('ARTICLE');
+            center.id = getIdString(uid, '_center');
+            center.style.flex = '1';
+            center.style.display = 'flex';
+            center.style.width = '100%';
 
             //add right
-           var __right__ = createElement('ASIDE');
-            __right__.id = getIdString(uid, '_right');
-            __right__.style.display = 'flex';
+            var right = createElement('ASIDE');
+            right.id = getIdString(uid, '_right');
+            right.style.display = 'flex';
 
             //add bottom
-           var __bottom__ = createElement('FOOTER');
-            __bottom__.id = getIdString(uid, '_bottom');
-            __bottom__.style.width = '100%';
+            var footer = createElement('FOOTER');
+            footer.id = getIdString(uid, '_bottom');
+            footer.style.width = '100%';
 
             //hierarchy
-            __middle__.appendChild(__left__);
-            __middle__.appendChild(__center__);
-            __middle__.appendChild(__right__);
+            middle.appendChild(left);
+            middle.appendChild(center);
+            middle.appendChild(right);
 
-            __layout__.appendChild(__top__);
-            __layout__.appendChild(__middle__);
-            __layout__.appendChild(__bottom__);
+            layout.appendChild(header);
+            layout.appendChild(middle);
+            layout.appendChild(footer);
 
-            __child__.appendChild(__layout__);
+            child.appendChild(layout);
             break;
 
         case LayoutType.LAYOUT_GRID:
@@ -219,16 +230,16 @@ function setUILayout(uid, val) {
 
         case LayoutType.LAYOUT_GRIDBAG:
             //add empty table
-           var __table__ = createElement('TABLE');
-            __table__.id = getIdString(uid, '_table');
-            __table__.style.margin = '0';
-            __table__.style.padding = '0';
-            __table__.style.width = '100%';
-            __table__.style.height = '100%';
-            __table__.style.borderCollapse = 'collapse';
+           var table = createElement('TABLE');
+            table.id = getIdString(uid, '_table');
+            table.style.margin = '0';
+            table.style.padding = '0';
+            table.style.width = '100%';
+            table.style.height = '100%';
+            table.style.borderCollapse = 'collapse';
 
             //insert table in parent
-            __child__.appendChild(__table__);
+            child.appendChild(table);
             break;
 
         default:
@@ -238,56 +249,56 @@ function setUILayout(uid, val) {
 }
 
 function setUIMin(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.min  = val;
+    var child = getElementById(uid);
+    child.min  = val;
 }
 
 function setUIMax(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.max  = val;
+    var child = getElementById(uid);
+    child.max  = val;
 }
 
 function setUIStep(uid, val) {
-    var __child__ = getElementById(uid);
-    __child__.step  = val;
+    var child = getElementById(uid);
+    child.step  = val;
 }
 
 function setUIValue(uid, val) {
-    var __child__ = getElementById(uid);
-    if(!__child__) {
+    var child = getElementById(uid);
+    if(!child) {
         console.log("setUIValue : " + uid);
         return;
     }
-    switch(__child__.className) {
+    switch(child.className) {
         case 'GO_UI_SPINNER':
         case 'GO_UI_SLIDER':
-            __child__.value  = '' + val;
+            child.value  = '' + val;
             break;
         case 'GO_UI_TAB':
-            tabSelectHelper(__child__, val);
+            tabSelectHelper(child, val);
             break;
     }
 }
 
 function setUIBorder(uid, parent, pos, pad, size) {
-    var __child__ = getElementById(uid);
+    var child = getElementById(uid);
     var position;
     var padding;
     switch(pos) {
         case BorderLayoutType.BORDER_CENTER:
             position = '_center';
-            __child__.style.width = 'inherit';
-            __child__.style.height = 'inherit';
+            child.style.width = 'inherit';
+            child.style.height = 'inherit';
             padding = getPadding(0, 0, 0, 0);
             break;
 
         case BorderLayoutType.BORDER_BOTTOM:
             position = '_bottom';
-            __child__.style.width = '100%';
+            child.style.width = '100%';
             if(size[1] === -1) {
-                __child__.style.height = 'inherit';
+                child.style.height = 'inherit';
             } else {
-                __child__.style.height = getSubPadding(size[1]);
+                child.style.height = getSubPadding(size[1]);
             }
 
             padding = getPadding(pad[1], 0, 0, 0);
@@ -295,12 +306,12 @@ function setUIBorder(uid, parent, pos, pad, size) {
 
         case BorderLayoutType.BORDER_TOP:
             position = '_top';
-            __child__.style.width = '100%';
+            child.style.width = '100%';
 
             if (size[1] === -1) {
-                __child__.style.height = 'inherit';
+                child.style.height = 'inherit';
             } else {
-                __child__.style.height = getSubPadding(size[1]);
+                child.style.height = getSubPadding(size[1]);
             }
 
             padding = getPadding(0, 0, pad[1], 0);
@@ -310,12 +321,12 @@ function setUIBorder(uid, parent, pos, pad, size) {
             position = '_left';
 
             if (size[0] == -1){
-                __child__.style.width = 'inherit';
+                child.style.width = 'inherit';
             } else {
-                __child__.style.width = getSubPadding(size[0]);
+                child.style.width = getSubPadding(size[0]);
             }
 
-            __child__.style.height = 'inherit';
+            child.style.height = 'inherit';
             padding = getPadding(0, pad[0], 0, 0);
             break;
 
@@ -323,127 +334,134 @@ function setUIBorder(uid, parent, pos, pad, size) {
             position = '_right';
 
             if (size[0] == -1) {
-                __child__.style.width = 'inherit';
+                child.style.width = 'inherit';
             } else {
-                __child__.style.width = getSubPadding(size[0]);
+                child.style.width = getSubPadding(size[0]);
             }
 
-            __child__.style.height = 'inherit';
+            child.style.height = 'inherit';
             padding = getPadding(0, 0, 0, pad[0]);
             break;
     }
 
     //move child in targeted cell
-    var __parent__ = getElementById(parent, position);
-    __parent__.appendChild(__child__);
-    __parent__.style.padding = padding;
+    var parentGrid = getElementById(parent, position);
+    parentGrid.appendChild(child);
+    parentGrid.style.padding = padding;
 
     //to well perform positionning, we must clear some default properties
     //position left, right, width, height,
 
-    __child__.style.position = 'inherit';
-    __child__.style.left = 'inherit';
-    __child__.style.bottom = 'inherit';
+    child.style.position = 'inherit';
+    child.style.left = 'inherit';
+    child.style.bottom = 'inherit';
 }
 
 function setUIGridBag(uid, parent, grid) {
-    var __child__ = getElementById(uid);
-    __child__.style.position = 'inherit';
-    __child__.style.left = 'inherit';
-    __child__.style.bottom = 'inherit';
-    __child__.style.width = '100%';
-    __child__.style.height = '100%';
+    var child = getElementById(uid);
+    if(!child) {
+        console.log("setUIGridBag: " + uid);
+        return;
+    }
+    child.style.position = 'inherit';
+    child.style.left = 'inherit';
+    child.style.bottom = 'inherit';
+    child.style.width = '100%';
+    child.style.height = '100%';
 
     //create a td with grid information and add it to the good cell ( or create if not exist ! )
 
     //build td child
-    var __td__ = createElement('TD');
-    __td__.id = getIdString(parent, '_' + grid[0] + '_' + grid[1]);
+    var td = createElement('TD');
+    td.id = getIdString(parent, '_' + grid[0] + '_' + grid[1]);
 
     if (grid[2] !== '1') {
-        __td__.colSpan = grid[2];
+        td.colSpan = grid[2];
     }
 
     if (grid[3] !== '1') {
-        __td__.rowSpan = grid[3];
+        td.rowSpan = grid[3];
     }
 
-    __td__.appendChild(__child__);
+    td.appendChild(child);
 
-    var __table__ = getElementById(parent, '_table');
+    var table = getElementById(parent, '_table');
 
     //build or get tr
     var trName = '_' + grid[1];
-    var __tr__ = getElementById(parent, trName);
+    var tr = getElementById(parent, trName);
 
-    if(__tr__ == null) {
-        __tr__ = createElement('TR');
-        __tr__.id = getIdString(parent, trName);
-        gridbagHelperTR(__table__, __tr__, grid[1]);
+    if(tr == null) {
+        tr = createElement('TR');
+        tr.id = getIdString(parent, trName);
+        gridbagHelperTR(table, tr, grid[1]);
     }
 
-    gridbagHelperTD(__tr__,__td__, grid[0]);
+    gridbagHelperTD(tr,td, grid[0]);
 
     //force refresh of table, move it to another component and rollback
-    var __scilab__ = getScilab();
-    __scilab__.appendChild(__table__);
-    var __parent__ = getElementById(parent);
-    __parent__.appendChild(__table__);
+    var scilab = getScilab();
+    scilab.appendChild(table);
+    var elem = getElementById(parent);
+    elem.appendChild(table);
 }
 
 
 
 function setUIFrameBorder(uid, title) {
     
-    var __border__;
-    var __header__ = getElementById(uid, "_header");
-    var __footer__ = getElementById(uid, "_footer");
+    if(title.position === "") {
+        return;
+    }
+    var border;
+    var header = getElementById(uid, "_header");
+    var footer = getElementById(uid, "_footer");
 
     if(title.position === "top") {
-       __header__.style.display = 'block';
-       __footer__.style.display = 'none';
-       __border__ = __header__;
+       header.style.display = 'block';
+       footer.style.display = 'none';
+       border = header;
     } else { //bottom
-       __footer__.style.display = 'block';
-       __header__.style.display = 'none';
-       __border__ = __footer__;
+       footer.style.display = 'block';
+       header.style.display = 'none';
+       border = footer;
     }
     
-    __border__.textContent = title.text;
-    __border__.style.textAlign = title.alignment;
-    __border__.style.fontName = title.fontName;
-    __border__.style.fontStyle = title.fontStyle;
-    __border__.style.fontSize = title.fontSize + 'px';
-    __border__.style.fontWeight = title.fontWeight;
-    __border__.style.color = title.fontColor;
+    border.textContent = title.text;
+    border.style.textAlign = title.alignment;
+    border.style.fontName = title.fontName;
+    border.style.fontStyle = title.fontStyle;
+    border.style.fontSize = title.fontSize + 'px';
+    border.style.fontWeight = title.fontWeight;
+    border.style.color = title.fontColor;
 }
 
 function setUIIcon(uid, icon, val) {
-    var __child__ = getElementById(uid);
+    var child = getElementById(uid);
 
     //add span element in button to show image
-    var __icon__ = createElement('SPAN');
+    var span = createElement('SPAN');
     if(icon.substring(0, 5) === 'glyph') {
-        __icon__.className = "glyphicon " + icon;
-        __icon__.style.paddingRight = '4px';
+        span.className = "glyphicon " + icon;
+        span.style.paddingRight = '4px';
     } else {
-        __icon__.style.background = '#f3f3f3 url(' + icon + ') no-repeat left center';
-        __icon__.style.paddingLeft = '20px';
+        span.style.background = '#f3f3f3 url(' + icon + ') no-repeat left center';
+        span.style.paddingLeft = '20px';
     }
 
-    var __text__ = createElement('SPAN');
-    __text__.textContent = val;
-    __text__.style = __child__.style;
+    var text = createElement('SPAN');
+    text.textContent = val;
+    text.style = child.style;
 
-    __child__.innerHTML = "";
-    __child__.appendChild(__icon__);
-    __child__.appendChild(__text__);
+    child.innerHTML = "";
+    child.appendChild(span);
+    child.appendChild(text);
 }
 
 function setUIGroupName(uid, val) {
-    var __child__ = getElementById(uid, "_radio");
-    if(__child__) {
-        __child__.name  = val;
+    var child = getElementById(uid, "_radio");
+    if(child) {
+        child.name  = val;
     }
 }
 
@@ -452,40 +470,40 @@ function setCallback(uid) {
     var event;
     var func;
 
-    var __child__ = getElementById(uid);
+    var child = getElementById(uid);
 
-    var __jqchild__ = getJElementById(uid);
+    var $child = getJElementById(uid);
 
-    if(__jqchild__.hasClass('GO_UI_PUSHBUTTON')) {
+    if($child.hasClass('GO_UI_PUSHBUTTON')) {
         event = "click";
         func = onPushButton;
-    } else if(__jqchild__.hasClass('GO_UI_CHECKBOX')) {
-        //change __child__ to real checkbox
-        __child__ = getElementById(uid, "_checkbox");
+    } else if($child.hasClass('GO_UI_CHECKBOX')) {
+        //change child to real checkbox
+        child = getElementById(uid, "_checkbox");
         event = "click";
         func = onCheckBox;
-    } else if(__jqchild__.hasClass('GO_UI_RADIOBUTTON')) {
-        //change __child__ to real radio
-        __child__ = getElementById(uid, "_radio");
+    } else if($child.hasClass('GO_UI_RADIOBUTTON')) {
+        //change child to real radio
+        child = getElementById(uid, "_radio");
         event = "click";
         func = onRadioButton;
-    } else if(__jqchild__.hasClass('GO_UI_LISTBOX')) {
+    } else if($child.hasClass('GO_UI_LISTBOX')) {
         event = "change";
         func = onListBox;
-    } else if(__jqchild__.hasClass('GO_UI_POPUPMENU')) {
+    } else if($child.hasClass('GO_UI_POPUPMENU')) {
         event = "change";
         func = onComboBox;
-    } else if(__jqchild__.hasClass('GO_UI_SLIDER')) {
+    } else if($child.hasClass('GO_UI_SLIDER')) {
         event = "input";
         func = onSlider;
-    } else if(__jqchild__.hasClass('GO_UI_EDIT')) {
+    } else if($child.hasClass('GO_UI_EDIT')) {
         event = "input";
         func = onEditBox;
-    } else if(__jqchild__.hasClass('GO_UI_SPINNER')) {
+    } else if($child.hasClass('GO_UI_SPINNER')) {
         event = "input";
         func = onSpinner;
     }
 
     //add callback listener
-    __child__.addEventListener(event, func);
+    child.addEventListener(event, func);
 }

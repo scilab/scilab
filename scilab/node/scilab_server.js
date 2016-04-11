@@ -94,6 +94,10 @@ io.on('connection', function (socket) {
         prcSocket.emit('callback', msg);
     });
 
+    socket.on('closeWindow', function (msg) {
+        prcSocket.emit('closeWindow', msg);
+    });
+
     socket.on('disconnect', function () {
         L('User disconnected');
         prcSocket.emit('quit');

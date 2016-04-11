@@ -10,7 +10,9 @@
 //0 visible
 //11 opticlim uicontrol
 //12 normalized
-//13 opticlim
+//13 plot 2d
+
+//100 opticlim
 
 demo = 13;
 
@@ -289,7 +291,7 @@ if demo == 9 then
     function onPush()
         set("push", "string", string(get("tab", "value")));
     endfunction
-    
+
     f = createWindow();
     f.position = [200 200 400 300];
 
@@ -298,9 +300,9 @@ if demo == 9 then
     tab3 = uicontrol(tab, "style", "frame", "string", "Blue", "layout", "border", "backgroundcolor", [0 0 1]);
     tab2 = uicontrol(tab, "style", "frame", "string", "Green", "layout", "border", "backgroundcolor", [0 1 0]);
     tab1 = uicontrol(tab, "style", "frame", "string", "Red", "layout", "border", "backgroundcolor", [1 0 0]);
-    
+
     uicontrol(f, "style", "pushbutton", "string", "push me", "callback", "onPush", "tag", "push", "position", [150 0 100 30]);
-    
+
     set("tab", "value", 1);
 end
 
@@ -429,8 +431,19 @@ if demo == 12 then
     label = uicontrol(fr1, "style", "text", "string", "some text", "units", "normalized", "position", [0.02 0.005 0.96 0.09], "horizontalalignment", "center", "tag", "label");
 end
 
-//opticlim
 if demo == 13 then
+    xdel(winsid());
+    f = createWindow();
+    f.figure_name = "My first plot";
+    f.position = [100, 100, 500, 400];
+
+    fr = uicontrol(f, "style", "frame", "position", [0, 0, 500, 400]);
+    newaxes(fr);
+    plot(1:10);
+end
+
+//opticlim
+if demo == 100 then
     exec("SCI/contrib/sanofi-opticlim/loader.sce");
     OpticlimStart();
 end

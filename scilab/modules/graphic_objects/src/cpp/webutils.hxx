@@ -172,6 +172,8 @@ public:
     //create
     static bool createFigure(int uid, std::ostringstream& ostr);
 
+    static bool createAxes(int uid, std::ostringstream& ostr);
+
     static bool createUIControl(int uid, std::ostringstream& ostr);
     static bool createPushButton(int uid, std::ostringstream& ostr);
     static bool createFrame(int uid, std::ostringstream& ostr);
@@ -190,6 +192,7 @@ public:
     static bool updateDefaultProperties(int uid, std::ostringstream& ostr);
     //delete
     static bool deleteObject(int uid, std::ostringstream& ostr);
+    static void deleteGraphicObject(int uid);
 };
 #endif /* !__WEB_UTILS_HXX__ */
 

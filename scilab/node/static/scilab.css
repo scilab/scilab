@@ -29,6 +29,13 @@ body {
     text-align: center;
 }
 
+.GO_AXES {
+    position: absolute;
+    text-align:center;
+    left: 0px;
+    bottom: 0px;
+}
+
 .GO_UI_PUSHBUTTON {
     position: absolute;
     text-align:center;
@@ -59,6 +66,7 @@ body {
     position: absolute;
     overflow : hidden;
     visibility:inherit;
+    color: black;
 }
 
 .GO_UI_CHECKBOX {
@@ -188,11 +196,26 @@ body {
     text-align: left;
 }
 
-.navbar .btn-window {
-    width: 150px;
+.win-btn {
+    width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-right: 5px;
+}
+
+.close-btn {
+    width: 10px;
+    height: 10px;
+    font-size: 6px;
+    padding: 0 0 0 0;
+    margin: -20px 10px 0 -13px;
+    color: white;
+    background-color: darkgray;
+    border-radius: 2px;
+}
+
+.close-btn:hover {
+  background-color: #8E001C;
+  color: white;
 }
 
 #infobar {

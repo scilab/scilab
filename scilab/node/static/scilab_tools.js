@@ -54,12 +54,12 @@ function getJElementById(uid, suffix) {
 }
 
 function createCommonIUControl(uid, htmlType, cssClass) {
-    var __temp__ = createElement(htmlType);
-    __temp__.id = getIdString(uid);
-    __temp__.className = cssClass;
+    var temp = createElement(htmlType);
+    temp.id = getIdString(uid);
+    temp.className = cssClass;
 
     //add item temporary in main scilabview div waiting __GO_PARENT__ update
     var $parent = $('#scilab');
-    $parent.append(__temp__);
-    return __temp__;
+    $parent.append(temp);
+    return temp;
 }

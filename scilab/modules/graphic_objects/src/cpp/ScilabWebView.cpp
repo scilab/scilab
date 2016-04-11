@@ -82,6 +82,15 @@ void ScilabWebView::registerToController(void)
     //get connected socket
     s = client.socket();
 
+    s->on("closeWindow", sio::socket::event_listener_aux([&](std::string const & name, sio::message::ptr const & data, bool isAck, sio::message::list & ack_resp)
+    {
+        l.lock.lock();
+        int uid = (int)data->get_map()["uid"]->get_int();
+        WebUtils::deleteGraphicObject(uid);
+        l.cond.notify_all();
+        l.lock.unlock();
+    }));
+
     s->on("imagepath", sio::socket::event_listener_aux([&](std::string const & name, sio::message::ptr const & data, bool isAck, sio::message::list & ack_resp)
     {
         l.lock.lock();
@@ -188,36 +197,28 @@ void ScilabWebView::unregisterToController(void)
 
 void ScilabWebView::createObject(int uid)
 {
-    if (WebUtils::isManaged(uid) == false)
+    std::ostringstream ostr;
+    switch (WebUtils::getType(uid))
     {
-        return;
+        case __GO_FIGURE__:
+            WebUtils::createFigure(uid, ostr);
+            break;
+        case __GO_UICONTROL__:
+            WebUtils::createUIControl(uid, ostr);
+            WebUtils::updateDefaultProperties(uid, ostr);
+            break;
+        case __GO_AXES__ :
+            WebUtils::createAxes(uid, ostr);
+            break;
+        default:
+            return;
     }
 
-    if (WebUtils::isFigure(uid))
-    {
-        std::ostringstream ostr;
-        WebUtils::createFigure(uid, ostr);
-        s->emit("graphic_create", ostr.str());
-        return;
-    }
-
-    if (WebUtils::isUIcontrol(uid))
-    {
-        std::ostringstream ostr;
-        WebUtils::createUIControl(uid, ostr);
-        WebUtils::updateDefaultProperties(uid, ostr);
-        s->emit("graphic_create", ostr.str());
-        return;
-    }
+    s->emit("graphic_create", ostr.str());
 }
 
 void ScilabWebView::deleteObject(int uid)
 {
-    if (WebUtils::isManaged(uid) == false)
-    {
-        return;
-    }
-
     std::ostringstream ostr;
     WebUtils::deleteObject(uid, ostr);
     s->emit("graphic_delete", ostr.str());
@@ -225,62 +226,53 @@ void ScilabWebView::deleteObject(int uid)
 
 void ScilabWebView::updateObject(int uid, int prop)
 {
-    if (WebUtils::isManaged(uid) == false)
+    std::ostringstream ostr;
+    switch (WebUtils::getType(uid))
     {
-        return;
-    }
-
-    if (prop == __GO_VISIBLE__)
-    {
-        std::ostringstream ostr;
-        WebUtils::setVisible(uid, ostr);
-        s->emit("graphic_update", ostr.str());
-        return;
-    }
-
-    if (WebUtils::isFigure(uid))
-    {
-        switch (prop)
-        {
-            case __GO_AXES_SIZE__:
+        case __GO_FIGURE__ :
+            switch (prop)
             {
-                std::ostringstream ostr;
-                WebUtils::setFigureSize(uid, ostr);
-                s->emit("graphic_update", ostr.str());
+                case __GO_AXES_SIZE__:
+                case __GO_NAME__:
+                case __GO_LAYOUT__:
+                case __GO_VISIBLE__:
+                    if (WebUtils::set(prop, uid, ostr) == false)
+                    {
+                        return;
+                    }
+                    break;
+                default :
+                    return;
+            }
+            break;
+        case __GO_AXES__ :
+            std::cerr << "axes prop:" << prop << std::endl;
+            switch (prop)
+            {
+                case __GO_PARENT__ :
+                    if (WebUtils::set(prop, uid, ostr) == false)
+                    {
+                        return;
+                    }
+                    break;
+            }
+            break;
+        case __GO_UICONTROL__:
+            if (WebUtils::hasValidParent(uid) || prop == __GO_PARENT__)
+            {
+                if (WebUtils::set(prop, uid, ostr) == false)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                //parent is not already set, put update in waiting queue
+                WebUtils::addInWaitingQueue(uid, prop);
                 return;
             }
-            case __GO_NAME__:
-            {
-                std::ostringstream ostr;
-                WebUtils::setFigureName(uid, ostr);
-                s->emit("graphic_update", ostr.str());
-                return;
-            }
-            case __GO_LAYOUT__:
-            {
-                std::ostringstream ostr;
-                WebUtils::setUILayout(uid, ostr);
-                s->emit("graphic_update", ostr.str());
-                return;
-            }
-        }
+            break;
     }
 
-    if (WebUtils::isUIcontrol(uid))
-    {
-        if (WebUtils::hasValidParent(uid) || prop == __GO_PARENT__)
-        {
-            std::ostringstream ostr;
-            if (WebUtils::set(prop, uid, ostr))
-            {
-                s->emit("graphic_update", ostr.str());
-            }
-        }
-        else
-        {
-            //parent is not already set, put update in waiting queue
-            WebUtils::addInWaitingQueue(uid, prop);
-        }
-        return;
-    }
+    s->emit("graphic_update", ostr.str());
 }

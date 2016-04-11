@@ -26,6 +26,7 @@ extern "C"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "deleteGraphicObject.h"
 #include "LayoutType.h"
 #include "BorderLayoutType.h"
 #include "FrameBorderType.h"
@@ -169,6 +170,7 @@ bool WebUtils::isManaged(int uid)
     {
         case __GO_FIGURE__:
         case __GO_UICONTROL__:
+        case __GO_AXIS__:
             return true;
         default:
             return false;
@@ -804,6 +806,12 @@ bool WebUtils::createFigure(int uid, std::ostringstream& ostr)
     return true;
 }
 
+bool WebUtils::createAxes(int uid, std::ostringstream& ostr)
+{
+    ostr << "__temp__ = createAxes('" << uid << "');";
+    return true;
+}
+
 bool WebUtils::createUIControl(int uid, std::ostringstream& ostr)
 {
     int style = getStyle(uid);
@@ -916,6 +924,11 @@ bool WebUtils::deleteObject(int uid, std::ostringstream& ostr)
     return true;
 }
 
+void WebUtils::deleteGraphicObject(int uid)
+{
+    ::deleteGraphicObject(uid);
+}
+
 bool WebUtils::updateDefaultProperties(int uid, std::ostringstream& ostr)
 {
     //visible
@@ -1020,6 +1033,12 @@ void WebUtils::fillSetter()
     setter[__GO_UI_FRAME_BORDER__] = WebUtils::setUIFrameBorder;
     setter[__GO_UI_ICON__] = WebUtils::setUIIcon;
     setter[__GO_UI_GROUP_NAME__] = WebUtils::setUIGroupName;
+
+    //figure props
+    setter[__GO_AXES_SIZE__] = WebUtils::setFigureSize;
+    setter[__GO_NAME__] = WebUtils::setFigureName;
+    setter[__GO_LAYOUT__] = WebUtils::setUILayout;
+
     //setter[__GO_CALLBACK__] = WebUtils::setCallback;
 }
 

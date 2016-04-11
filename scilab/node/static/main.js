@@ -66,32 +66,38 @@ function force_reload() {
 function addWindow(win) {
     var $win = $('#scilab');
 
-    //create taskbar button
+    //create taskbar buttons
     var $btn = $(document.createElement('button'));
     $btn.prop('type', 'button');
-    $btn.dblclick(onDelWindow);
+    $btn.dblclick(closeWindow);
     $btn.click(onSelectWindow);
-    $btn.addClass('btn btn-default navbar-btn btn-window');
+    $btn.addClass('btn btn-default navbar-btn btn-window win-btn');
     $btn.prop('id', win.id + '_btn');
     $btn.text(win.id);
     $('#taskbar').append($btn);
 
-    //create window div
+    var $close = $(document.createElement('button'));
+    $close.prop('type', 'button');
+    $close.click(closeWindow);
+    $close.addClass('btn btn-default navbar-btn btn-window close-btn glyphicon glyphicon-remove');
+    $close.prop('id', win.id + '_close');
+    $('#taskbar').append($close);
+
     $('#windows').append(win);
-    
+
+    //select me
     selectWindow(win);
 }
 
-function onDelWindow() {
-    var idxstr = this.id.indexOf('_');
-    var id = this.id.substring(0, idxstr);
-    delWindow(parseInt(this.id.substring(3)));
+function closeWindow() {
+    socket.emit("closeWindow", {uid:parseInt(this.id.substring(3))});
 }
 
 function delWindow(uid) {
     //delete element and btn
     getJElementById(uid).remove();
     getJElementById(uid, '_btn').remove();
+    getJElementById(uid, '_close').remove();
     selectWindow();
 }
 
@@ -134,9 +140,9 @@ function onRadioButton() {
     var id = getUID(this.id); //ignore "uid"
     
     //send check state of all group components
-    var __sibling__ = $('input[name="' + this.name + '"]');
-    for(var i = 0 ; i < __sibling__.length ; ++i) {
-        socket.emit('callback', {uid:getUID(__sibling__[i].id), value:__sibling__[i].checked});
+    var children = $('input[name="' + this.name + '"]');
+    for(var i = 0 ; i < children.length ; ++i) {
+        socket.emit('callback', {uid:getUID(children[i].id), value:children[i].checked});
     }
 }
 
@@ -196,23 +202,23 @@ function unload() {
 }
 
 function setInfo(data) {
-    var __info__ = document.getElementById('infobar');
-    if(__info__) {
-        __info__.innerHTML = data;
+    var info = document.getElementById('infobar');
+    if(info) {
+        info.innerHTML = data;
     }
 }
 
 function resetLogger() {
-    var __log__ = document.getElementById('logger');
-    if(__log__) {
-        __log__.innerHTML = '';
+    var log = document.getElementById('logger');
+    if(log) {
+        log.innerHTML = '';
     }
 }
 
 function setLogger(data) {
-    var __log__ = document.getElementById('logger');
-    if(__log__) {
-        __log__.innerHTML += data + '</br>';
-        __log__.scrollTop = __log__.scrollHeight;
+    var log = document.getElementById('logger');
+    if(log) {
+        log.innerHTML += data + '</br>';
+        log.scrollTop = log.scrollHeight;
     }
 }

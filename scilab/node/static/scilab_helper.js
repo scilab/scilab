@@ -1,11 +1,11 @@
 //helper call by scilab to insert gridbad child in good order.
 function gridbagHelperTD(parent, child, pos) {
     for(var i = 0 ; i < parent.cells.length ; ++i){
-        var __tr__ = parent.cells[i];
-        var idxstr = __tr__.id.indexOf('_');
-        var idx = parseInt(__tr__.id.substring(idxstr+1));
+        var tr = parent.cells[i];
+        var idxstr = tr.id.indexOf('_');
+        var idx = parseInt(tr.id.substring(idxstr+1));
         if(idx > pos) {
-            parent.insertBefore(child, __tr__);
+            parent.insertBefore(child, tr);
             return;
         }
     }
@@ -16,11 +16,11 @@ function gridbagHelperTD(parent, child, pos) {
 
 function gridbagHelperTR(parent, child, pos) {
     for(var i = 0 ; i < parent.rows.length ; ++i){
-        var __tr__ = parent.rows[i];
-        var idxstr = __tr__.id.indexOf('_');
-        var idx = parseInt(__tr__.id.substring(idxstr+1));
+        var tr = parent.rows[i];
+        var idxstr = tr.id.indexOf('_');
+        var idx = parseInt(tr.id.substring(idxstr+1));
         if(idx > pos) {
-            parent.insertBefore(child, __tr__);
+            parent.insertBefore(child, tr);
             return;
         }
     }
@@ -37,44 +37,44 @@ function tabSelectHelper(tab, index) {
 }
 
 function addTabHelper(uid, child) {
-    var __child__ = getElementById(child);
-    var __li__ = createElement('LI');
-    __li__.id = getIdString(child, '_li');
+    var elem = getElementById(child);
+    var li = createElement('LI');
+    li.id = getIdString(child, '_li');
 
     //move tab child to tab-content container
-    var __tab__ = getElementById(uid, '_tabs');
-    __tab__.appendChild(__child__);
+    var tab = getElementById(uid, '_tabs');
+    tab.appendChild(elem);
 
     //create input button
-    var __tablabel__ = createElement('a');
-    __tablabel__.id = getIdString(child, '_tab');
+    var tablabel = createElement('a');
+    tablabel.id = getIdString(child, '_tab');
 
     //add button in li
-    __li__.appendChild(__tablabel__);
+    li.appendChild(tablabel);
 
     //add li as first child in ul
-    var __ul__ = getElementById(uid, '_ul');
-    __ul__.insertBefore(__li__, __ul__.firstChild);
-    var $ul = $('#' + __ul__.id);
-    var $tab = $('#' + __tablabel__.id);
+    var ul = getElementById(uid, '_ul');
+    ul.insertBefore(li, ul.firstChild);
+    var $ul = $('#' + ul.id);
+    var $tab = $('#' + tablabel.id);
     $tab.attr('data-toggle', 'tab');
-    $tab.attr('href', '#' + __child__.id);
+    $tab.attr('href', '#' + elem.id);
 
-    var $child = $('#' + __child__.id);
+    var $child = $('#' + elem.id);
     $child.addClass('tab-pane');
     $child.addClass('fade');
 
     //update child properties
-    __child__.style.position = 'absolute';
-    __child__.style.left = '';
-    __child__.style.bottom = '';
-    __child__.style.width = '100%';
-    __child__.style.height = 'inherit';
+    elem.style.position = 'absolute';
+    elem.style.left = '';
+    elem.style.bottom = '';
+    elem.style.width = '100%';
+    elem.style.height = 'inherit';
     
     updateTabHeight(getUID($ul.parent().attr('id')));
     
     //add event listener on new tab
-    $('#' + __tablabel__.id).on('show.bs.tab', onTab);
+    $('#' + tablabel.id).on('show.bs.tab', onTab);
 
 }
 

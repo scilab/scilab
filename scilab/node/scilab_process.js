@@ -30,6 +30,10 @@ dispatchio.on('connection', function (dspSocket) {
         graphicio.emit('callback', msg);
     });
 
+    dspSocket.on('closeWindow', function (msg) {
+        graphicio.emit('closeWindow', msg);
+    });
+
     dspSocket.on('force_reload', function (msg) {
         msgHistory = []; //reset history, sciab was closed or has crashed.
     });
