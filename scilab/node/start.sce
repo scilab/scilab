@@ -431,7 +431,7 @@ end
 
 //opticlim
 if demo == 13 then
-    exec("E:\git\toolbox\sanofi-opticlim\loader.sce");
+    exec("SCI/contrib/sanofi-opticlim/loader.sce");
     OpticlimStart();
 end
 
