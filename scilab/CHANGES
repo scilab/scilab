@@ -330,8 +330,6 @@ In 6.0.0:
 
 * Bug #8210 fixed  - Added UMFPACK examples to the Demo gui
 
-* Bug #8310        - Wrong triangulation of non-convex polygons, now it is working for planar polygons with Z coordinates constant, for non-planar polygons a new triangulator is needed.
-
 * Bug #9456 fixed  - bench_run did not work on a path or in a toolbox
 
 * Bug #11625 fixed - uicontrol table would not update object strings when edited interactively in the plot window
