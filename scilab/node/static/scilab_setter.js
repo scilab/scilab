@@ -6,7 +6,22 @@ function setParent(uid, parent) {
         $child.width($parent.width());
         $child.height($parent.height());
 
-        Plotly.newPlot($child.prop('id'), [{}], {}, {displayModeBar:false, showLink:false, scrollZoom:true});
+        var layout = {
+            xaxis: {
+                showgrid: false,
+                zeroline: false,
+                autotick: true,
+                showticklabels: false //for clean display
+            },
+            yaxis: {
+                showgrid: false,
+                zeroline: false,
+                autotick: true,
+                showticklabels: false //for clean display
+            }
+        };
+        
+        Plotly.newPlot($child.prop('id'), [{}], layout, {displayModeBar:false, showLink:false, scrollZoom:true});
     }
 
     if($parent.hasClass("GO_UI_FRAME")) {

@@ -182,7 +182,7 @@ void ScilabWebView::registerToController(void)
         }
     }));
 
-    WebUtils::fillSetter();
+    WebUtils::fillSetters();
 }
 
 void ScilabWebView::unregisterToController(void)
@@ -230,37 +230,22 @@ void ScilabWebView::updateObject(int uid, int prop)
     switch (WebUtils::getType(uid))
     {
         case __GO_FIGURE__ :
-            switch (prop)
+            if (WebUtils::setFigureProperty(prop, uid, ostr) == false)
             {
-                case __GO_AXES_SIZE__:
-                case __GO_NAME__:
-                case __GO_LAYOUT__:
-                case __GO_VISIBLE__:
-                    if (WebUtils::set(prop, uid, ostr) == false)
-                    {
-                        return;
-                    }
-                    break;
-                default :
-                    return;
+                return;
             }
             break;
         case __GO_AXES__ :
             std::cerr << "axes prop:" << prop << std::endl;
-            switch (prop)
+            if (WebUtils::setAxesProperty(prop, uid, ostr) == false)
             {
-                case __GO_PARENT__ :
-                    if (WebUtils::set(prop, uid, ostr) == false)
-                    {
-                        return;
-                    }
-                    break;
+                return;
             }
             break;
         case __GO_UICONTROL__:
             if (WebUtils::hasValidParent(uid) || prop == __GO_PARENT__)
             {
-                if (WebUtils::set(prop, uid, ostr) == false)
+                if (WebUtils::setUIControlProperty(prop, uid, ostr) == false)
                 {
                     return;
                 }

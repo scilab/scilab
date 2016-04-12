@@ -439,7 +439,8 @@ if demo == 13 then
 
     fr = uicontrol(f, "style", "frame", "position", [0, 0, 500, 400]);
     newaxes(fr);
-    plot(1:10);
+    plot(0:8);
+    plot(8:-1:0);
 end
 
 //opticlim

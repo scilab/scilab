@@ -30,7 +30,9 @@ class WebUtils
     ~WebUtils() {}
 
     typedef std::unordered_map<int, setFunction> SETTER;
-    static SETTER setter;
+    static SETTER setterUIControl;
+    static SETTER setterFigure;
+    static SETTER setterAxes;
 
     typedef std::unordered_map<int, std::list<int>> WAITING_PROP;
     static WAITING_PROP waitprop;
@@ -50,8 +52,11 @@ public:
     static void addInWaitingQueue(int uid, int prop);
     static void setWaitingProperties(int uid, std::ostringstream& ostr);
 
-    static void fillSetter();
-    static bool set(int prop, int uid, std::ostringstream& ostr);
+    static void fillSetters();
+    static bool setUIControlProperty(int prop, int uid, std::ostringstream& ostr);
+    static bool setFigureProperty(int prop, int uid, std::ostringstream& ostr);
+    static bool setAxesProperty(int prop, int uid, std::ostringstream& ostr);
+    static bool setProperty(const SETTER& setter, int prop, int uid, std::ostringstream& ostr);
 
     static bool updateValue(int uid, bool value);
     static bool updateValue(int uid, double value);

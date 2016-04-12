@@ -35,7 +35,9 @@ extern "C"
 #include "sci_malloc.h"
 }
 
-WebUtils::SETTER WebUtils::setter;
+WebUtils::SETTER WebUtils::setterUIControl;
+WebUtils::SETTER WebUtils::setterFigure;
+WebUtils::SETTER WebUtils::setterAxes;
 WebUtils::WAITING_PROP WebUtils::waitprop;
 std::string WebUtils::imagePath;
 
@@ -991,9 +993,24 @@ bool WebUtils::updateDefaultProperties(int uid, std::ostringstream& ostr)
     return true;
 }
 
-bool WebUtils::set(int prop, int uid, std::ostringstream& ostr)
+bool WebUtils::setUIControlProperty(int prop, int uid, std::ostringstream& ostr)
 {
-    SETTER::iterator it = setter.find(prop);
+    return setProperty(setterUIControl, prop, uid, ostr);
+}
+
+bool WebUtils::setFigureProperty(int prop, int uid, std::ostringstream& ostr)
+{
+    return setProperty(setterFigure, prop, uid, ostr);
+}
+
+bool WebUtils::setAxesProperty(int prop, int uid, std::ostringstream& ostr)
+{
+    return setProperty(setterAxes, prop, uid, ostr);
+}
+
+bool WebUtils::setProperty(const SETTER& setter, int prop, int uid, std::ostringstream& ostr)
+{
+    SETTER::const_iterator it = setter.find(prop);
     if (it != setter.end())
     {
         it->second(uid, ostr);
@@ -1004,42 +1021,44 @@ bool WebUtils::set(int prop, int uid, std::ostringstream& ostr)
     return false;
 }
 
-void WebUtils::fillSetter()
+void WebUtils::fillSetters()
 {
-    setter[__GO_PARENT__] = WebUtils::setParent;
-    setter[__GO_POSITION__] = WebUtils::setUIPosition;
-    setter[__GO_SIZE__] = WebUtils::setFigureSize;
-    setter[__GO_UI_STRING__] = WebUtils::setUIString;
-    setter[__GO_VISIBLE__] = WebUtils::setVisible;
-    setter[__GO_UI_ENABLE__] = WebUtils::setUIEnable;
-    setter[__GO_UI_BACKGROUNDCOLOR__] = WebUtils::setUIBackgroundColor;
-    setter[__GO_UI_FONTANGLE__] = WebUtils::setUIFontAngle;
-    setter[__GO_UI_FONTNAME__] = WebUtils::setUIFontName;
-    setter[__GO_UI_FONTSIZE__] = WebUtils::setUIFontSize;
-    setter[__GO_UI_FONTWEIGHT__] = WebUtils::setUIFontWeight;
-    setter[__GO_UI_FOREGROUNDCOLOR__] = WebUtils::setUIForegroundColor;
-    setter[__GO_UI_HORIZONTALALIGNMENT__] = WebUtils::setUIHorizontalAlignment;
-    setter[__GO_UI_RELIEF__] = WebUtils::setUIRelief;
-    setter[__GO_UI_VERTICALALIGNMENT__] = WebUtils::setUIVerticalAlignment;
-    setter[__GO_LAYOUT__] = WebUtils::setUILayout;
-    setter[__GO_UI_MIN__] = WebUtils::setUIMin;
-    setter[__GO_UI_MAX__] = WebUtils::setUIMax;
-    setter[__GO_UI_SLIDERSTEP__] = WebUtils::setUIStep;
-    setter[__GO_UI_VALUE__] = WebUtils::setUIValue;
+    setterUIControl[__GO_PARENT__] = WebUtils::setParent;
+    setterUIControl[__GO_POSITION__] = WebUtils::setUIPosition;
+    setterUIControl[__GO_SIZE__] = WebUtils::setFigureSize;
+    setterUIControl[__GO_UI_STRING__] = WebUtils::setUIString;
+    setterUIControl[__GO_VISIBLE__] = WebUtils::setVisible;
+    setterUIControl[__GO_UI_ENABLE__] = WebUtils::setUIEnable;
+    setterUIControl[__GO_UI_BACKGROUNDCOLOR__] = WebUtils::setUIBackgroundColor;
+    setterUIControl[__GO_UI_FONTANGLE__] = WebUtils::setUIFontAngle;
+    setterUIControl[__GO_UI_FONTNAME__] = WebUtils::setUIFontName;
+    setterUIControl[__GO_UI_FONTSIZE__] = WebUtils::setUIFontSize;
+    setterUIControl[__GO_UI_FONTWEIGHT__] = WebUtils::setUIFontWeight;
+    setterUIControl[__GO_UI_FOREGROUNDCOLOR__] = WebUtils::setUIForegroundColor;
+    setterUIControl[__GO_UI_HORIZONTALALIGNMENT__] = WebUtils::setUIHorizontalAlignment;
+    setterUIControl[__GO_UI_RELIEF__] = WebUtils::setUIRelief;
+    setterUIControl[__GO_UI_VERTICALALIGNMENT__] = WebUtils::setUIVerticalAlignment;
+    setterUIControl[__GO_LAYOUT__] = WebUtils::setUILayout;
+    setterUIControl[__GO_UI_MIN__] = WebUtils::setUIMin;
+    setterUIControl[__GO_UI_MAX__] = WebUtils::setUIMax;
+    setterUIControl[__GO_UI_SLIDERSTEP__] = WebUtils::setUIStep;
+    setterUIControl[__GO_UI_VALUE__] = WebUtils::setUIValue;
     //preferred size is the last property to be set for border constraints
-    setter[__GO_UI_BORDER_POSITION__] = WebUtils::setUIBorder;
+    setterUIControl[__GO_UI_BORDER_POSITION__] = WebUtils::setUIBorder;
     //preferred size is the last property to be set for gridbag constraints
-    setter[__GO_UI_GRIDBAG_GRID__] = WebUtils::setUIGridBag;
-    setter[__GO_UI_FRAME_BORDER__] = WebUtils::setUIFrameBorder;
-    setter[__GO_UI_ICON__] = WebUtils::setUIIcon;
-    setter[__GO_UI_GROUP_NAME__] = WebUtils::setUIGroupName;
+    setterUIControl[__GO_UI_GRIDBAG_GRID__] = WebUtils::setUIGridBag;
+    setterUIControl[__GO_UI_FRAME_BORDER__] = WebUtils::setUIFrameBorder;
+    setterUIControl[__GO_UI_ICON__] = WebUtils::setUIIcon;
+    setterUIControl[__GO_UI_GROUP_NAME__] = WebUtils::setUIGroupName;
 
     //figure props
-    setter[__GO_AXES_SIZE__] = WebUtils::setFigureSize;
-    setter[__GO_NAME__] = WebUtils::setFigureName;
-    setter[__GO_LAYOUT__] = WebUtils::setUILayout;
+    setterFigure[__GO_AXES_SIZE__] = WebUtils::setFigureSize;
+    setterFigure[__GO_NAME__] = WebUtils::setFigureName;
+    setterFigure[__GO_LAYOUT__] = WebUtils::setUILayout;
+    setterFigure[__GO_VISIBLE__] = WebUtils::setVisible;
 
-    //setter[__GO_CALLBACK__] = WebUtils::setCallback;
+    //axes props
+    setterAxes[__GO_PARENT__] = WebUtils::setParent;
 }
 
 bool WebUtils::updateValue(int uid, const std::string& value)
@@ -1085,7 +1104,7 @@ void WebUtils::setWaitingProperties(int uid, std::ostringstream& ostr)
     {
         for (int prop : it->second)
         {
-            set(prop, uid, ostr);
+            setUIControlProperty(prop, uid, ostr);
         }
         waitprop.erase(it);
     }
