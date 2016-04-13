@@ -571,6 +571,20 @@ void WebUtils::setUIValue(int uid, std::ostringstream& ostr)
     ostr << "setUIValue('" << uid << "', " << values[0] << ");";
 }
 
+bool WebUtils::getUIGroupName(int uid, std::string& val)
+{
+    val = getStringProperty(uid, __GO_UI_GROUP_NAME__);
+    return true;
+}
+
+void WebUtils::setUIGroupName(int uid, std::ostringstream& ostr)
+{
+    std::string val;
+    getUIGroupName(uid, val);
+
+    ostr << "setUIGroupName('" << uid << "', '" << val << "');";
+}
+
 void WebUtils::getUIBorderPreferredSize(int uid, std::vector<int>& vect)
 {
     vect.resize(2, 0);
@@ -747,19 +761,77 @@ void WebUtils::setCallback(int uid, std::ostringstream& ostr)
     ostr << "setCallback('" << uid << "');";
 }
 
-bool WebUtils::getUIGroupName(int uid, std::string& val)
+//axes properties
+bool WebUtils::getXAxisVisisble(int uid)
 {
-    val = getStringProperty(uid, __GO_UI_GROUP_NAME__);
-    return true;
+    return getBoolProperty(uid, __GO_X_AXIS_VISIBLE__);
 }
 
-void WebUtils::setUIGroupName(int uid, std::ostringstream& ostr)
+void WebUtils::setXAxisVisisble(int uid, std::ostringstream& ostr)
 {
-    std::string val;
-    getUIGroupName(uid, val);
-
-    ostr << "setUIGroupName('" << uid << "', '" << val << "');";
+    std::string visible = getXAxisVisisble(uid) ? "true" : "false";
+    ostr << "getAxisVisisble('" << uid << "', 'xaxis',  " << visible << ");";
 }
+
+bool WebUtils::getYAxisVisisble(int uid)
+{
+    return getBoolProperty(uid, __GO_Y_AXIS_VISIBLE__);
+}
+
+void WebUtils::setYAxisVisisble(int uid, std::ostringstream& ostr)
+{
+    std::string visible = getYAxisVisisble(uid) ? "true" : "false";
+    ostr << "getAxisVisisble('" << uid << "', 'yaxis',  " << visible << ");";
+}
+
+bool WebUtils::getZAxisVisisble(int uid)
+{
+    return getBoolProperty(uid, __GO_Z_AXIS_VISIBLE__);
+}
+
+void WebUtils::setZAxisVisisble(int uid, std::ostringstream& ostr)
+{
+    std::string visible = getZAxisVisisble(uid) ? "true" : "false";
+    ostr << "getAxisVisisble('" << uid << "', 'zaxis',  " << visible << ");";
+}
+
+int WebUtils::getXAxisLabel(int uid)
+{
+    return getIntProperty(uid, __GO_X_AXIS_LABEL__);
+}
+
+int WebUtils::getYAxisLabel(int uid)
+{
+    return getIntProperty(uid, __GO_Y_AXIS_LABEL__);
+}
+
+int WebUtils::getZAxisLabel(int uid)
+{
+    return getIntProperty(uid, __GO_Z_AXIS_LABEL__);
+}
+
+int WebUtils::getXAxisLocation(int uid)
+{
+    return getIntProperty(uid, __GO_X_AXIS_LOCATION__);
+}
+
+void WebUtils::setXAxisLocation(int uid, std::ostringstream& ostr)
+{
+    int loc = getXAxisLocation(uid);
+    ostr << "setAxisLocation('" << uid << "', 'xaxis',  " << loc << ");";
+}
+
+int WebUtils::getYAxisLocation(int uid)
+{
+    return getIntProperty(uid, __GO_Y_AXIS_LOCATION__);
+}
+
+void WebUtils::setYAxisLocation(int uid, std::ostringstream& ostr)
+{
+    int loc = getYAxisLocation(uid);
+    ostr << "setAxisLocation('" << uid << "', 'yaxis',  " << loc << ");";
+}
+
 
 //is
 bool WebUtils::isInputType(int uid)
@@ -1059,6 +1131,12 @@ void WebUtils::fillSetters()
 
     //axes props
     setterAxes[__GO_PARENT__] = WebUtils::setParent;
+    setterAxes[__GO_VISIBLE__] = WebUtils::setVisible;
+    setterAxes[__GO_X_AXIS_VISIBLE__] = WebUtils::setXAxisVisisble;
+    setterAxes[__GO_X_AXIS_LOCATION__] = WebUtils::setXAxisLocation;
+    setterAxes[__GO_Y_AXIS_VISIBLE__] = WebUtils::setYAxisVisisble;
+    setterAxes[__GO_Y_AXIS_LOCATION__] = WebUtils::setYAxisLocation;
+    setterAxes[__GO_Z_AXIS_VISIBLE__] = WebUtils::setZAxisVisisble;
 }
 
 bool WebUtils::updateValue(int uid, const std::string& value)

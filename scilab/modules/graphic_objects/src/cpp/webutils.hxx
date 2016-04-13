@@ -168,6 +168,23 @@ public:
     static bool hasCallback(int uid);
     static void setCallback(int uid, std::ostringstream& ostr);
 
+    //axes properties
+    static bool getXAxisVisisble(int uid);
+    static void setXAxisVisisble(int uid, std::ostringstream& ostr);
+    static bool getYAxisVisisble(int uid);
+    static void setYAxisVisisble(int uid, std::ostringstream& ostr);
+    static bool getZAxisVisisble(int uid);
+    static void setZAxisVisisble(int uid, std::ostringstream& ostr);
+
+    static int getXAxisLabel(int uid);
+    static int getYAxisLabel(int uid);
+    static int getZAxisLabel(int uid);
+
+    static int getXAxisLocation(int uid);
+    static void setXAxisLocation(int uid, std::ostringstream& ostr);
+    static int getYAxisLocation(int uid);
+    static void setYAxisLocation(int uid, std::ostringstream& ostr);
+
     //is
     static bool isManaged(int uid);
     static bool isFigure(int uid);
