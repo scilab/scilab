@@ -14,7 +14,7 @@
 
 //100 opticlim
 
-demo = 13;
+demo = 100;
 
 if demo == 1 then
     f1 = createWindow();
