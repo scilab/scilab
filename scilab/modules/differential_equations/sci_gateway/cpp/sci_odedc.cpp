@@ -1687,6 +1687,10 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     if (dStructTab)
     {
         FREE(dStructTab);
+    }
+
+    if (iStructTab)
+    {
         FREE(iStructTab);
     }
 
