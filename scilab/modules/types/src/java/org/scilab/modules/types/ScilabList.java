@@ -146,7 +146,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
      * different elements of the list. ii) returned[i] for i&gt;=1 contains the
      * serialized form of each items.
      *
-     * @return a serialized SiclabList/
+     * @return a serialized ScilabList/
      */
     public Object[] getSerializedObject() {
         int[] types = new int[size()];

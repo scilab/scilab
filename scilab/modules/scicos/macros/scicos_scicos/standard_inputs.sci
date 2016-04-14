@@ -21,7 +21,7 @@
 
 function [x,y,typ]=standard_inputs(o)
     //get position of inputs ports and clock inputs port for a standard block
-    //  the input ports are located on the left (or rigth if tilded) vertical
+    //  the input ports are located on the left (or right if tilded) vertical
     //    side of the block, regularly located from top to bottom
     //  the clock input ports are located on the top horizontal side
     //    side of the block, regularly located from left to right

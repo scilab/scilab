@@ -131,7 +131,7 @@ public class ScilabTabBridge {
     }
 
     /**
-     * Gets the visibility status of a Siclab tab
+     * Gets the visibility status of a Scilab tab
      * @param tab the tab we want to get the visibility status of
      * @return the visibility status of the tab (true if the tab is visible, false if not)
      */
@@ -140,7 +140,7 @@ public class ScilabTabBridge {
     }
 
     /**
-     * Sets the visibility status of a Siclab tab
+     * Sets the visibility status of a Scilab tab
      * @param tab the tab we want to set the visibility status of
      * @param newVisibleState the visibility status to set to the tab (true to set the tab visible, false else)
      */

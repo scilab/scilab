@@ -17,9 +17,9 @@ function left=%i_i_i(varargin)
     //            different integer type
 
     left  = varargin($);
-    rigth = varargin($-1);
+    right = varargin($-1);
 
-    rigth = iconvert(rigth, inttype(left));
+    right = iconvert(rigth, inttype(left));
 
-    left(varargin(1:$-2)) = rigth;
+    left(varargin(1:$-2)) = right;
 endfunction

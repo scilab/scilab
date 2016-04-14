@@ -34,7 +34,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>fs</term>
+                <term>rate</term>
                 <listitem>
                     <para>real number, sampling frequency (default value is 22050).</para>
                 </listitem>
@@ -65,8 +65,8 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// a two channel signal
-y=loadwave("SCI/modules/sound/demos/chimes.wav");
+// A two channel signal
+y = loadwave("SCI/modules/sound/demos/chimes.wav");
 playsnd(y)
  ]]></programlisting>
     </refsection>
