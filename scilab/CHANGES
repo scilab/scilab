@@ -385,6 +385,8 @@ In 6.0.0:
 
 * Bug #14035 fixed - ndgrid did not manage all homogeneous data type (booleans, integers, polynomials, rationals, strings, [])
 
+* Bug #14067 fixed - 3rd argument of fsolve() became mandatory
+
 * Bug #14099 fixed - sci2exp macro was fixed to avoid "a+[] Warning". string(polynomials|rationals) had badly formated outputs and was not vectorized
 
 * Bug #14111 fixed - modified lib function to detect Scilab version 5 libraries and give proper error messages
