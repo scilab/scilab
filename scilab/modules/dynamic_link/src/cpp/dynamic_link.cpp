@@ -195,6 +195,8 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
     if (_iLibID < 0 || ConfigVariable::isDynamicLibrary(_iLibID) == false)
     {
         //no valid library at this ID
+        FREE(pwstEntryPointName);
+        FREE(pEP);
         return -3;
     }
 
@@ -202,6 +204,8 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
     if (ConfigVariable::getEntryPoint(_pwstEntryPointName, _iLibID) != NULL)
     {
         sciprint(_("Entry name %ls.\n"), _pwstEntryPointName);
+        FREE(pwstEntryPointName);
+        FREE(pEP);
         return -4;
     }
 
@@ -220,6 +224,8 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
         {
             sciprint(_("%ls is not an entry point.\n"), _pwstEntryPointName);
         }
+        FREE(pwstEntryPointName);
+        FREE(pEP);
         return -5;
     }
 
