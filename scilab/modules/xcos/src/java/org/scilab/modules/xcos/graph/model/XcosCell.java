@@ -403,14 +403,13 @@ public class XcosCell extends mxCell {
     @Override
     public mxICell setTerminal(mxICell terminal, boolean isSource) {
         mxICell cell = super.setTerminal(terminal, isSource);
-
-        final long uid;
         if (cell == null) {
-            uid = 0l;
-        } else {
-            // a terminal of an XcosCell is always another XcosCell
-            uid = ((XcosCell) cell).getUID();
+            return cell;
         }
+
+        // a terminal of an XcosCell is always another XcosCell
+        final long uid = ((XcosCell) cell).getUID();
+        final Kind kind = ((XcosCell) cell).getKind();
 
         JavaController controller = new JavaController();
         switch (getKind()) {
@@ -421,7 +420,7 @@ public class XcosCell extends mxCell {
                     controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESTINATION_PORT, uid);
                 }
                 if (uid != 0l) {
-                    controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.CONNECTED_SIGNALS, getUID());
+                    controller.setObjectProperty(uid, kind, ObjectProperties.CONNECTED_SIGNALS, getUID());
                 }
                 break;
             default:

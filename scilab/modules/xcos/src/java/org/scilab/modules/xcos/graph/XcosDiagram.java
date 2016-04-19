@@ -887,10 +887,10 @@ public class XcosDiagram extends ScilabGraph {
 
         // snap the center of the split block on the grid
         mxGeometry geom = splitBlock.getGeometry();
-        double x = snap(splitPoint.getX());
-        double y = snap(splitPoint.getY());
-        geom.setX(x - (geom.getWidth() / 2.));
-        geom.setY(y - (geom.getHeight() / 2.));
+        double x = snap(splitPoint.getX()) - (SplitBlock.DEFAULT_SIZE / 2.);
+        double y = snap(splitPoint.getY()) - (SplitBlock.DEFAULT_SIZE / 2.);
+        geom.setX(x);
+        geom.setY(y);
         splitBlock.setGeometry(geom);
 
         getModel().beginUpdate();
@@ -1125,6 +1125,29 @@ public class XcosDiagram extends ScilabGraph {
         getUndoManager().addListener(mxEvent.REDO, UndoUpdateTracker.getInstance());
 
     }
+
+    /**
+     * Translate the cell and align any split block
+     * @param cell any object
+     * @param dx the X delta
+     * @param dy the Y delta
+     */
+    @Override
+    public void translateCell(Object cell, double dx, double dy) {
+        if (cell instanceof SplitBlock) {
+            mxGeometry geom = model.getGeometry(cell);
+
+            final double posX = snap(geom.getX() + dx) - (SplitBlock.DEFAULT_SIZE / 2.);
+            final double posY = snap(geom.getY() + dy) - (SplitBlock.DEFAULT_SIZE / 2.);
+
+            dx = posX - geom.getX();
+            dy = posY - geom.getY();
+        }
+
+        super.translateCell(cell, dx, dy);
+    }
+
+
 
     /**
      * Removes the given cells from the graph including all connected edges if includeEdges is true. The change is carried out using cellsRemoved.
