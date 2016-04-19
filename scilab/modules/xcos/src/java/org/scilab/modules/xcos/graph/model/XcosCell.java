@@ -265,8 +265,9 @@ public class XcosCell extends mxCell {
         }
 
         switch (getKind()) {
-            case ANNOTATION:
             case BLOCK:
+            case LINK:
+            case ANNOTATION:
             case PORT:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.STYLE, style);
                 break;
