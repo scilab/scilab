@@ -152,9 +152,3 @@ if getscilabmode() == "STD" then
 end
 // ====================================================================
 clear ans
-
-printf("------------------------------------------------------------\n");
-printf("This is a beta software: \n");
-printf("please report any bug at http://bugzilla.scilab.org.\n");
-printf("Thank you!\n");
-printf("------------------------------------------------------------\n");
