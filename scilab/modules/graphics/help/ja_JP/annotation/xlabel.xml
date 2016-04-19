@@ -160,12 +160,12 @@ ylabel(axes_handle, "sin(t)", "fontsize", 6, "color", "red");
             plot(t, sin(t), "r");
             xlabel("t", "fontsize", 2);
             ylabel("sin(t)");
-            axes1_handle = gca();
+            axes_handle = gca();
             subplot(2,1,2);
             plot(t, cos(t), "b");
             xlabel("t", "fontsize", 2);
             ylabel("cos(t)", "fontsize", 6, "color", "blue");
-            ylabel(axes1_handle, "sin(t)", "fontsize", 6, "color", "red");
+            ylabel(axes_handle, "sin(t)", "fontsize", 6, "color", "red");
         </scilab:image>
     </refsection>
     <refsection role="see also">
