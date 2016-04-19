@@ -72,6 +72,16 @@ public class ScilabGraphConstants extends mxConstants {
      */
     public static final String HTML_NEWLINE = "<br>";
 
+    /**
+     * The html pre symbol begin
+     */
+    public static final String HTML_BEGIN_CODE = "<code>";
+
+    /**
+     * The html pre symbol end
+     */
+    public static final String HTML_END_CODE = "</code>";
+
     /* Events */
     /** Name of the edit event */
     public static final String EVENT_CHANGE_EDIT = "edit";

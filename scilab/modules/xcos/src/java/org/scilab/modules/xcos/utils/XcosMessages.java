@@ -294,6 +294,22 @@ public final class XcosMessages {
     public static final String LINK_NOT_CONNECTED = Messages
             .gettext("<html><body>Compilation error: link ignored because it is not connected. <br/>Please reconnect it.</body></html>");
 
+    /* Tooltips */
+    public static final String TOOLTIP_BLOCK = Messages.gettext("Block name: ");
+    public static final String TOOLTIP_BLOCK_SIMULATION = Messages.gettext("Simulation: ");
+    public static final String TOOLTIP_BLOCK_UID = Messages.gettext("UID: ");
+    public static final String TOOLTIP_BLOCK_STYLE = Messages.gettext("Style: ");
+    public static final String TOOLTIP_BLOCK_RPAR = Messages.gettext("Rpar: ");
+    public static final String TOOLTIP_BLOCK_IPAR = Messages.gettext("Ipar: ");
+    public static final String TOOLTIP_BLOCK_OPAR = Messages.gettext("Opar: ");
+    public static final String TOOLTIP_PORT_DATATYPE = Messages.gettext("Datatype: ");
+    public static final String TOOLTIP_PORT_IMPLICIT = Messages.gettext("Implicit: ");
+    public static final String TOOLTIP_PORT_STYLE = Messages.gettext("Style: ");
+    public static final String TOOLTIP_LINK_SRC_DATATYPE = Messages.gettext("Source datatype: ");
+    public static final String TOOLTIP_LINK_TRG_DATATYPE = Messages.gettext("Target datatype: ");
+    public static final String TOOLTIP_LINK_LABEL = Messages.gettext("Label: ");
+    public static final String TOOLTIP_LINK_STYLE = Messages.gettext("Style: ");
+
     // CSON: JavadocVariable
     // CSON: LineLength
     // CSON: MultipleStringLiterals

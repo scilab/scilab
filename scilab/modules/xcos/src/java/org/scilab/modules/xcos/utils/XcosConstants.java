@@ -37,7 +37,7 @@ public final class XcosConstants extends ScilabGraphConstants {
     public static final int PALETTE_VMARGIN = 5;
 
     /** Define the maximum number of char that might be represented as style */
-    public static final int MAX_CHAR_IN_STYLE = 24;
+    public static final int MAX_CHAR_IN_STYLE = 37;
 
     /* Events */
     /**

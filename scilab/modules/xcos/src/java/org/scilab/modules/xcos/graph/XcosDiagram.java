@@ -2003,10 +2003,165 @@ public class XcosDiagram extends ScilabGraph {
      */
     @Override
     public String getToolTipForCell(final Object cell) {
-        if (cell instanceof XcosCell) {
-            return String.valueOf(((XcosCell) cell).getUID());
+        if (cell instanceof BasicBlock) {
+            return getToolTipForCell((BasicBlock) cell);
+        } else if (cell instanceof BasicPort) {
+            return getToolTipForCell((BasicPort) cell);
+        } else if (cell instanceof BasicLink) {
+            return getToolTipForCell((BasicLink) cell);
         }
         return "";
+    }
+
+    private String getToolTipForCell(final BasicBlock o) {
+        JavaController controller = new JavaController();
+        String[] strValue = {""};
+        VectorOfDouble vecValue = new VectorOfDouble();
+
+        StringBuilder result = new StringBuilder();
+        result.append(ScilabGraphConstants.HTML_BEGIN);
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.INTERFACE_FUNCTION, strValue);
+        result.append(XcosMessages.TOOLTIP_BLOCK).append(ScilabGraphConstants.HTML_BEGIN_CODE)
+        .append(strValue[0])
+        .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.SIM_FUNCTION_NAME, strValue);
+        result.append(XcosMessages.TOOLTIP_BLOCK_SIMULATION).append(ScilabGraphConstants.HTML_BEGIN_CODE)
+        .append(strValue[0])
+        .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.UID, strValue);
+        result.append(XcosMessages.TOOLTIP_BLOCK_UID).append(ScilabGraphConstants.HTML_BEGIN_CODE)
+        .append(strValue[0])
+        .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.STYLE, strValue);
+        result.append(XcosMessages.TOOLTIP_BLOCK_STYLE).append(ScilabGraphConstants.HTML_BEGIN_CODE);
+        appendReduced(result, strValue[0])
+        .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+
+        result.append(ScilabGraphConstants.HTML_NEWLINE);
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.RPAR, vecValue);
+        result.append(XcosMessages.TOOLTIP_BLOCK_RPAR).append(ScilabGraphConstants.HTML_BEGIN_CODE);
+        appendReduced(result, ScilabTypeCoder.toString(vecValue))
+        .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.IPAR, vecValue);
+        result.append(XcosMessages.TOOLTIP_BLOCK_IPAR).append(ScilabGraphConstants.HTML_BEGIN_CODE);
+        appendReduced(result, ScilabTypeCoder.toString(vecValue))
+        .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.OPAR, vecValue);
+        result.append(XcosMessages.TOOLTIP_BLOCK_OPAR).append(ScilabGraphConstants.HTML_BEGIN_CODE);
+        appendReduced(result, ScilabTypeCoder.toString(vecValue))
+        .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+
+        result.append(ScilabGraphConstants.HTML_END);
+        return result.toString();
+    }
+
+    private String getToolTipForCell(final BasicPort o) {
+        JavaController controller = new JavaController();
+        boolean[] boolValue = {false};
+        String[] strValue = {""};
+        VectorOfInt intVecValue = new VectorOfInt();
+
+        StringBuilder result = new StringBuilder();
+        result.append(ScilabGraphConstants.HTML_BEGIN);
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.DATATYPE, intVecValue);
+        result.append(XcosMessages.TOOLTIP_PORT_DATATYPE).append(ScilabGraphConstants.HTML_BEGIN_CODE);
+        formatDatatype(result, intVecValue)
+        .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.IMPLICIT, boolValue);
+        result.append(XcosMessages.TOOLTIP_PORT_IMPLICIT).append(ScilabGraphConstants.HTML_BEGIN_CODE)
+        .append(boolValue[0])
+        .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.STYLE, strValue);
+        result.append(XcosMessages.TOOLTIP_PORT_STYLE).append(ScilabGraphConstants.HTML_BEGIN_CODE);
+        appendReduced(result, strValue[0])
+        .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+
+        result.append(ScilabGraphConstants.HTML_END);
+        return result.toString();
+    }
+
+    private String getToolTipForCell(final BasicLink o) {
+        JavaController controller = new JavaController();
+        long[] longValue = {0l};
+        boolean[] boolValue = {false};
+        String[] strValue = {""};
+        VectorOfInt intVecValue = new VectorOfInt();
+
+        StringBuilder result = new StringBuilder();
+        result.append(ScilabGraphConstants.HTML_BEGIN);
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.SOURCE_PORT, longValue);
+        if (longValue[0] != 0l) {
+            controller.getObjectProperty(longValue[0], Kind.PORT, ObjectProperties.DATATYPE, intVecValue);
+            result.append(XcosMessages.TOOLTIP_LINK_SRC_DATATYPE).append(ScilabGraphConstants.HTML_BEGIN_CODE);
+            formatDatatype(result, intVecValue)
+            .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+        }
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.DESTINATION_PORT, longValue);
+        if (longValue[0] != 0l) {
+            controller.getObjectProperty(longValue[0], Kind.PORT, ObjectProperties.DATATYPE, intVecValue);
+            result.append(XcosMessages.TOOLTIP_LINK_TRG_DATATYPE).append(ScilabGraphConstants.HTML_BEGIN_CODE);
+            formatDatatype(result, intVecValue)
+            .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+        }
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.LABEL, strValue);
+        result.append(XcosMessages.TOOLTIP_LINK_LABEL).append(ScilabGraphConstants.HTML_BEGIN_CODE)
+        .append(strValue[0])
+        .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.STYLE, strValue);
+        result.append(XcosMessages.TOOLTIP_LINK_STYLE).append(ScilabGraphConstants.HTML_BEGIN_CODE);
+        appendReduced(result, strValue[0])
+        .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
+
+        result.append(ScilabGraphConstants.HTML_END);
+        return result.toString();
+    }
+
+    private StringBuilder appendReduced(final StringBuilder result, final String msg) {
+        if (msg.length() > XcosConstants.MAX_CHAR_IN_STYLE) {
+            result.append(msg.substring(0, XcosConstants.MAX_CHAR_IN_STYLE));
+            result.append(XcosMessages.DOTS);
+        } else {
+            result.append(msg);
+        }
+
+        return result;
+    }
+
+    private StringBuilder formatDatatype(final StringBuilder result, final VectorOfInt intVecValue) {
+        if (intVecValue.size() != 3) {
+            result.append(ScilabTypeCoder.toString(intVecValue));
+        } else {
+            // this is a known encoding, output representative strings
+            int rows = intVecValue.get(0);
+            int cols = intVecValue.get(1);
+            int type = intVecValue.get(2);
+
+            String strType;
+            // should be similar to the naming used on scicos_model doc
+            String[] typeTable = {"real", "complex", "int32", "int16", "int8", "uint32", "uint16", "uint8"};
+            if (0 <= type && type < typeTable.length) {
+                strType = typeTable[type - 1];
+            } else {
+                strType = "auto";
+            }
+
+            result.append(String.format("%s [%d %d]", strType, rows, cols));
+        }
+
+        return result;
     }
 
     /**
