@@ -107,7 +107,9 @@ function [N,S] = weekday(D,form)
         month_day_mat(~idx_leap_year) = common_year(M(~idx_leap_year)+1);
     end
 
-    M( D>month_day_mat ) = M( D>month_day_mat )+1;
+    if ~isempty(M( D>month_day_mat )) then
+        M( D>month_day_mat ) = M( D>month_day_mat )+1;
+    end
 
     if ~isempty(M(idx_leap_year))
         month_day_mat(idx_leap_year)  = leap_year(M(idx_leap_year));
@@ -121,10 +123,16 @@ function [N,S] = weekday(D,form)
     m(M==1) = 13;
     m(M==2) = 14;
 
-    y( M==1 | M==2 ) = Y( M==1 | M==2 ) - 1;
-
-    m( M<>1 & M<>2 ) = M( M<>1 & M<>2 );
-    y( M<>1 & M<>2 ) = Y( M<>1 & M<>2 );
+    if ~isempty(Y( M==1 | M==2 )) then
+        y( M==1 | M==2 ) = Y( M==1 | M==2 ) - 1;
+    end
+    
+    if ~isempty(M( M<>1 & M<>2 )) then
+        m( M<>1 & M<>2 ) = M( M<>1 & M<>2 );
+    end
+    if ~isempty(Y( M<>1 & M<>2 )) then
+        y( M<>1 & M<>2 ) = Y( M<>1 & M<>2 );
+    end
 
     n =  modulo(  (d + floor(2*m) + floor(3*(m+1)/5) + y + floor(y/4) - floor(y/100) + floor(y/400) + 2)  ,  7  );
 
