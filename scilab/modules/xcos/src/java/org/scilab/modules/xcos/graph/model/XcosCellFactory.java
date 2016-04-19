@@ -413,10 +413,10 @@ public final class XcosCellFactory {
                                 properties.get(ObjectProperties.EVENT_OUTPUTS);
             convertGeometry = (2 * w + 2 * h) < (numberOfPorts * BasicPort.DEFAULT_PORTSIZE);
         } else {
-            convertGeometry = w < (properties.get(ObjectProperties.INPUTS) * BasicPort.DEFAULT_PORTSIZE) |
-                              w < (properties.get(ObjectProperties.OUTPUTS) * BasicPort.DEFAULT_PORTSIZE) |
-                              h < (properties.get(ObjectProperties.EVENT_INPUTS) * BasicPort.DEFAULT_PORTSIZE) |
-                              h < (properties.get(ObjectProperties.EVENT_OUTPUTS) * BasicPort.DEFAULT_PORTSIZE);
+            convertGeometry = h < (properties.get(ObjectProperties.INPUTS) * BasicPort.DEFAULT_PORTSIZE) |
+                              h < (properties.get(ObjectProperties.OUTPUTS) * BasicPort.DEFAULT_PORTSIZE) |
+                              w < (properties.get(ObjectProperties.EVENT_INPUTS) * BasicPort.DEFAULT_PORTSIZE) |
+                              w < (properties.get(ObjectProperties.EVENT_OUTPUTS) * BasicPort.DEFAULT_PORTSIZE);
         }
 
         if (convertGeometry) {
