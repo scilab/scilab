@@ -348,6 +348,7 @@
         <add as="shape" value="ellipse"/>
         <remove as="image"/>
         <add as="fontSize" value="20"/>
+        <add as="displayedLabel" value="×"/>
     </add>
     <add as="MATZREIM" extend="blockWithLabel">
         <add as="displayedLabel" value="Re &amp; Im"/>
@@ -398,6 +399,7 @@
         <add as="shape" value="ellipse"/>
         <remove as="image"/>
         <add as="fontSize" value="20"/>
+        <add as="displayedLabel" value="+"/>
     </add>
     <add as="SOM_f" extend="blockWithLabel">
         <add as="shape" value="ellipse"/>
