@@ -13,57 +13,85 @@
  *
  */
 
+#include <string>
+
+#include "gw_xcos.hxx"
 #include "Palette.hxx"
-#include "Controller.hxx"
+#include "model/BaseObject.hxx"
+#include "view_scilab/Adapters.hxx"
+
+#include "types.hxx"
+#include "function.hxx"
+#include "string.hxx"
+#include "UTF8.hxx"
+
 #include "GiwsException.hxx"
 #include "xcosUtilities.hxx"
 #include "loadStatus.hxx"
 
 extern "C"
 {
-#include "gw_xcos.h"
-#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
 #include "getScilabJavaVM.h"
 }
 
 using namespace org_scilab_modules_xcos_palette;
 using namespace org_scilab_modules_scicos;
 
-int sci_xcosPalGenerateIcon(char *fname, void* pvApiCtx)
+static char funname[] = "xcosPalGenerateIcon";
+
+types::Function::ReturnValue sci_xcosPalGenerateIcon(types::typed_list &in, int _iRetCount, types::typed_list &/*out*/)
 {
-    CheckRhs(1, 1);
-    CheckLhs(0, 1);
-
-    char *iconPath = NULL;
-
-    /* iconPath setup */
-    if (readSingleString(pvApiCtx, 1, &iconPath, fname))
+    if (in.size() != 2)
     {
-        return 0;
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), funname, 2);
+        return types::Function::Error;
     }
+
+    if (_iRetCount > 1)
+    {
+        Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), funname, 1);
+        return types::Function::Error;
+    }
+
+    const model::BaseObject* o = view_scilab::Adapters::instance().descriptor(in[0]);
+    if (o == nullptr || o->kind() != BLOCK)
+    {
+        Scierror(999, _("%s: Argument #%d: ""%s"" expected.\n"), funname, 1, "Block");
+        return types::Function::Error;
+    }
+
+    if (!in[1]->isString())
+    {
+        Scierror(999, _("%s: Argument #%d: ""%s"" expected.\n"), funname, 2, "String");
+        return types::Function::Error;
+    }
+    types::String* path = in[1]->getAs<types::String>();
+    if (path->getSize() != 1)
+    {
+        Scierror(999, _("%s: Argument #%d: Scalar (1 element) expected.\n"), funname, 2);
+        return types::Function::Error;
+    }
+    std::string iconPath = scilab::UTF8::toUTF8(path->get(0));
 
     /* Call the java implementation */
     set_loaded_status(XCOS_CALLED);
     try
     {
-        Controller controller;
-        Palette::generatePaletteIcon(getScilabJavaVM(), controller.createObject(DIAGRAM), iconPath);
+        Palette::generatePaletteIcon(getScilabJavaVM(), o->id(), iconPath.c_str());
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
-        Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
+        Scierror(999, "%s: %s\n", funname, exception.getJavaDescription().c_str());
+        return types::Function::Error;
     }
     catch (GiwsException::JniException &exception)
     {
-        Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
+        Scierror(999, "%s: %s\n", funname, exception.whatStr().c_str());
+        return types::Function::Error;
     }
 
-    FREE(iconPath);
-
-    LhsVar(1) = 0;
-    PutLhsVar();
-    return 0;
+    return types::Function::OK;
 }
+

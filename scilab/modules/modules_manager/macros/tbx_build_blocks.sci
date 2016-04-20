@@ -111,7 +111,7 @@ function tbx_build_blocks(module, names, macros_path)
         files = files(isfile(files));
         if files == [] then
             filename = gif_tlbx + "/" + names(i) + ".gif";
-            xcosPalGenerateIcon(filename);
+            xcosPalGenerateIcon(blk, filename);
         end
     end
 endfunction
