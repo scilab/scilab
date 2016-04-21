@@ -61,7 +61,7 @@ function pal = xcosPal(name, scs_m)
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "xcosPal", 0, 2));
     end
 
-    if exists("name", "l") == 0 then
+    if ~isdef("name", "l") then
         name = "New palette";
     elseif typeof(name) == "diagram" then
         scs_m = name;
@@ -95,7 +95,7 @@ function pal = xcosPal(name, scs_m)
     for block = scs_m.objs
         if typeof(block)=="Block" & block.gui == "PAL_f" then
             // customize palette name
-            name = block.model.rpar.props.title(1);
+            name = scs_m.props.title(1);
 
             // Add PAL_f children blocks
             children = block.model.rpar.objs;
