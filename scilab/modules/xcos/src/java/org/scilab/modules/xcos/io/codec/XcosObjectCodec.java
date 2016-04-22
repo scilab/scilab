@@ -32,7 +32,6 @@ import org.w3c.dom.Node;
 import com.mxgraph.io.mxCellCodec;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxICell;
-import com.mxgraph.util.mxConstants;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**

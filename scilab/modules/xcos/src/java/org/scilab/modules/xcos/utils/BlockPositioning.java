@@ -32,9 +32,7 @@ import org.scilab.modules.xcos.port.Orientation;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxIGraphModel;
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxStyleUtils;
-import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
 
 /**

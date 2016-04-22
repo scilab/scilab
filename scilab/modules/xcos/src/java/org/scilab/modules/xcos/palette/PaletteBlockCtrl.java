@@ -25,7 +25,6 @@ import java.awt.dnd.DragSource;
 import java.awt.dnd.InvalidDnDOperationException;
 import java.awt.event.MouseListener;
 import java.lang.ref.WeakReference;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;

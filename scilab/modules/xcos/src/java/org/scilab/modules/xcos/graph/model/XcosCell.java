@@ -107,7 +107,7 @@ public class XcosCell extends mxCell {
                 if (validCIdentifier.matcher(String.valueOf(value)).matches()) {
                     controller.setObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, String.valueOf(value));
                 }
-            // no break on purpose
+                // no break on purpose
             case ANNOTATION:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));
                 break;
@@ -215,8 +215,8 @@ public class XcosCell extends mxCell {
                 }
 
                 /*
-                * At that point, the sourcePoint, targetPoint and points are valid values (but may be unknown) encode them to the the CONTROL_POINTS
-                */
+                 * At that point, the sourcePoint, targetPoint and points are valid values (but may be unknown) encode them to the the CONTROL_POINTS
+                 */
 
                 // Allocate some space to contains them all
                 int nbOfPoints = 2 + points.size();

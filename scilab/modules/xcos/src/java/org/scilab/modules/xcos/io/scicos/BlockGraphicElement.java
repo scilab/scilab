@@ -30,7 +30,6 @@ import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.ObjectProperties;
-import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
