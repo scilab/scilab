@@ -262,6 +262,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="FindFileAssociation.c" />
     <ClCompile Include="httpdownloadfile.c" />
     <ClCompile Include="InitializeWindows_tools.c" />
+    <ClCompile Include="..\cpp\SignalManagement.cpp" />
     <ClCompile Include="TerminateWindows_tools.c" />
     <ClCompile Include="WinConsole.c" />
     <ClCompile Include="..\cpp\windows_tools_gw.cpp" />
@@ -318,6 +319,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="..\..\includes\gw_windows_tools.h" />
     <ClInclude Include="..\..\includes\InitializeWindows_tools.h" />
     <ClInclude Include="..\..\includes\MutexClosingScilab.h" />
+    <ClInclude Include="..\..\includes\SignalManagement.h" />
     <ClInclude Include="..\..\includes\TerminateWindows_tools.h" />
     <ClInclude Include="..\..\includes\windows_tools_gw.hxx" />
     <ClInclude Include="..\cpp\registry.hxx" />

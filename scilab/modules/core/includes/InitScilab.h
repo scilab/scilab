@@ -46,6 +46,7 @@ typedef struct
     int isPrioritary;
     int iStartConsoleThread;
     int iForceQuit;
+    int iTimeoutDelay;
     int iCodeAction;
     enum command_origin_t iCommandOrigin;
 } ScilabEngineInfo;

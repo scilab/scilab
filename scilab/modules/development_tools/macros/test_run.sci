@@ -834,18 +834,23 @@ function status = test_single(_module, _testPath, _testName)
 
     loader_path = pathconvert(fullfile(_module.moduleName, "loader.sce"), %f);
 
+    SCI_ARGS = " -nb -quit "
+    if ~_module.longtime then
+        SCI_ARGS = SCI_ARGS + "--timeout 5m "
+    end
+
     // Build final command
     if getos() == "Windows" then
         if (isdir(_module.moduleName) & isfile(loader_path)) // external module not in Scilab
-            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + " -nb -quit -e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         else // standard module
-            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + " -nb -quit -e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         end
     else
         if (isdir(_module.moduleName) & isfile(loader_path))
-            test_cmd = "( " + valgrind_opt + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + " -nb -quit -e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + valgrind_opt + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
         else
-            test_cmd = "( " + valgrind_opt + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + " -nb -quit -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + valgrind_opt + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + SCI_ARGS + " -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
         end
     end
 

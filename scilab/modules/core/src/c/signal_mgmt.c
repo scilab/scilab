@@ -1,6 +1,7 @@
 /*
   Copyright (C) 2006  EDF - Code Saturne
   Copyright (C) 2001 - DIGITEO - Sylvestre LEDRU. Adapted for Scilab
+  Copyright (C) 2016 - Scilab Enterprises - Clement DAVID
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -22,6 +23,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <signal.h>
+#include <time.h>
 #include <string.h>
 #include <libintl.h>
 
@@ -482,6 +484,27 @@ void base_error_init(void)
             fprintf(stderr, "Could not set handler for signal %d\n", signals[j]);
         }
     }
+}
+
+void timeout_process_after(int timeoutDelay)
+{
+    struct sigevent event_timer;
+    timer_t timerid;
+    struct itimerspec value;
+
+    /*
+     * Send a SIGABRT to ensure process termination, if used with the signal
+     * trap a backtrace might be displayed.
+     */
+    memset(&event_timer, 0, sizeof(struct sigevent));
+    event_timer.sigev_notify = SIGEV_SIGNAL;
+    event_timer.sigev_signo = SIGABRT;
+
+    timer_create(CLOCK_MONOTONIC, &event_timer, &timerid);
+
+    memset(&value, 0, sizeof(struct itimerspec));
+    value.it_value.tv_sec = timeoutDelay;
+    timer_settime(timerid, 0, &value, NULL);
 }
 
 /*--------------------------------------------------------------------------*/

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Sylvestre LEDRU
+ * Copyright (C) 2016 - 2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -12,18 +12,16 @@
  * along with this program.
  *
  */
+
 #ifndef __SIGNAL_MGMT_H__
 #define __SIGNAL_MGMT_H__
 
-/**
- * Initialize the signal management system
- */
-void base_error_init(void);
+#include "dynlib_windows_tools.h"
 
 /**
  * Install a timeout on the process (watchdog behavior)
  * @param timeoutDelay delay in seconds (0 will disable the timeout)
  */
-void timeout_process_after(int timeoutDelay);
+WINDOWS_TOOLS_IMPEXP void timeout_process_after(int timeoutDelay);
 
 #endif /* __SIGNAL_MGMT_H__ */

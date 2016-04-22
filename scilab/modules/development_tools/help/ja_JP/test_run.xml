@@ -469,6 +469,11 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
             テストが実行された後に,ユーザがログファイルを取得できるように
             するためです.
         </para>
+        <para>
+            An execution timeout delay (watchdog timer) is setup to 5 minutes
+            for each regular test. To ignore this timeout use the long-time
+            execution (<literal>LONG TIME EXECUTION</literal>) flag.
+        </para>
     </refsection>
     <refsection>
         <title>履歴</title>
@@ -501,7 +506,12 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
                 <revnumber>5.5.0</revnumber>
                 <revdescription>32/64bits separation available</revdescription>
                 <revnumber>6.0.0</revnumber>
-                <revdescription>profiling mode added to profile execution with valgrind (Linux only)</revdescription>
+                <revdescription>
+                    <para>profiling mode added to profile execution with valgrind (Linux only)</para>
+                    <para>
+                        timeout delay (watchdog timer) set to 5 minutes for single tests without <literal>LONG TIME EXECUTION</literal>
+                    </para>
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>

@@ -1036,6 +1036,7 @@ do_help()
     echo     "  --no-exec        : Only do Lexing/parsing do not execute instructions."
     echo     "  --context-dump   : Display context status."
     echo     "  --exec-verbose   : Display command before execute it."
+    echo     "  --timeout delay  : Kill the Scilab process after a delay (s, m, h, d)."
     echo     " "
     echo     "      All these arguments can be retrieved by the Scilab function sciargs."
     echo     " "
@@ -1105,6 +1106,10 @@ if test "$rest" = "yes"; then
             --parse-trace|--pretty-print|--help|--AST-trace|--no-exec|--context-dump|--exec-verbose|--timed|--AST-timed|--serialize|-quit)
 	    #This are Scilab6 dedicated options.
 	            ;;
+            --timeout)
+	    #This are Scilab6 dedicated options with an argument
+                prevarg=1
+	        ;;
             -psn_*)
             # Under Mac OS X, .app is adding the arg -psn_0_xxxx
             # (psn = ProcessSerialNumber). It is not used (but could be in the future)

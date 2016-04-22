@@ -95,6 +95,7 @@ static void usage(void)
     std::cerr << "      --no-exec        : Only do Lexing/parsing do not execute instructions." << std::endl;
     std::cerr << "      --context-dump   : Display context status." << std::endl;
     std::cerr << "      --exec-verbose   : Display command before running it." << std::endl;
+    std::cerr << "      --timeout delay  : Kill the Scilab process after a delay." << std::endl;
 }
 
 /*
@@ -242,6 +243,49 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
         else if (!strcmp("--exec-verbose", argv[i]))
         {
             _pSEI->iExecVerbose = 1;
+        }
+        else if (!strcmp("--timeout", argv[i]))
+        {
+            i++;
+            if (argc > i)
+            {
+                char* timeout = argv[i];
+
+                char* str_end = NULL;
+                int iTimeoutDelay = strtol(timeout, &str_end, 0);
+
+                int modifier = 1;
+                if (str_end != '\0')
+                {
+                    switch (*str_end)
+                    {
+                        case 'd':
+                            modifier = 86400;
+                            break;
+                        case 'h':
+                            modifier = 3600;
+                            break;
+                        case 'm':
+                            modifier = 60;
+                            break;
+                        case 's':
+                            modifier = 1;
+                            break;
+                        default:
+                            std::cerr << "Invalid timeout delay unit: s (for seconds), m (for minutes), h (for hours), d (for days) are supported" << std::endl;
+                            exit(EXIT_FAILURE);
+                            break;
+                    }
+                }
+
+                _pSEI->iTimeoutDelay = iTimeoutDelay * modifier;
+            }
+            else
+            {
+                std::cerr << "Unspecified timeout delay" << std::endl;
+                exit(EXIT_FAILURE);
+            }
+
         }
         else if (!strcmp("-keepconsole", argv[i]))
         {
