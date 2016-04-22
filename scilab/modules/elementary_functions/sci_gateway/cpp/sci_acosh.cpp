@@ -101,6 +101,10 @@ types::Function::ReturnValue sci_acosh(types::typed_list &in, int _iRetCount, ty
                     std::complex<double> c(pInR[i], 0);
                     std::complex<double> d = std::acosh(c);
                     pOutR[i] = d.real();
+                    if (pOutR[i] < 0)
+                    {
+                        pOutR[i] = -pOutR[i];
+                    }
                     pOutI[i] = d.imag();
                 }
             }
