@@ -58,12 +58,20 @@ function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprintoutput)
         for k=1:size(scitree.outputs)
             lhsstr=[lhsstr,expression2code(scitree.outputs(k))]
         end
-        lhsstr="["+strcat(lhsstr,",")+"]"
+        if ~isempty(lhsstr) then
+            lhsstr="["+strcat(lhsstr,",")+"]"
+        else
+            lhsstr = "[]";
+        end
 
         for k=1:size(scitree.inputs)
             rhsstr=[rhsstr,expression2code(scitree.inputs(k))]
         end
-        rhsstr="("+strcat(rhsstr,",")+")"
+        if ~isempty(rhsstr) then
+            rhsstr="("+strcat(rhsstr,",")+")"
+        else
+            rhsstr = "()";
+        end
 
         crp=lhsstr+" = "+scitree.name+rhsstr;
     end
