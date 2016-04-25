@@ -17,5 +17,5 @@
 
 f = figure(1,"position","100|100|300|500");
 
-if or(get(f,"figure_position")<>[100 100]) then pause;end		
-if or(get(f,"axes_size")<>[300 500]) then pause;end		
+if or(get(f,"figure_position")<>[100 100]) then pause;end
+if or(get(f,"axes_size")<>[300 500]) then pause;end
