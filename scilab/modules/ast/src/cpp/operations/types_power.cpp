@@ -344,7 +344,7 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
     double* bImg    = _pDouble->getImg();
     bool bNumericallyComplex1 = _pDouble->isNumericallyComplex();
 
-    if(!bNumericallyComplex1)
+    if (!bNumericallyComplex1)
     {
         return 2;
     }
@@ -440,7 +440,7 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
 
     size_t iSize = _pSp->nonZeros();
     int* Col = new int[iSize];
-    int* Row = new int[iSize];
+    int* Row = new int[_pSp->getRows()];
     _pSp->getColPos(Col);
     _pSp->getNbItemByRow(Row);
     int* iPositVal = new int[iSize];
@@ -450,7 +450,6 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
     {
         for (int k = 0; k < Row[j]; k++)
         {
-
             iPositVal[i] = (Col[i] - 1) * _pSp->getRows() + j;
             i++;
         }
@@ -614,11 +613,11 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
     }
 
     //delete exp
-    for(int i = 0; i < iSize; i++)
+    for (int i = 0; i < iSize; i++)
     {
         delete pDblPower[i];
     }
-    
+
     delete[] pDblPower;
 
     // delete temporary polynom

@@ -435,6 +435,8 @@ In 6.0.0:
 
 * Bug #14499 fixed - getd() did not update already defined functions
 
+* Bug #14500 fixed - Operator ".^" was broken for sparse matrices.
+
 
 In 6.0.0 beta-1:
 
