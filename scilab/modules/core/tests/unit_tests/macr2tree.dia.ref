@@ -7,14 +7,14 @@
 //<-- CLI SHELL MODE -->
 // parse all the macros in core
 funs = libraryinfo("corelib");
-for i=1:size(funs, '*')
+for i=1:size(funs, "*")
     macr2tree(evstr(funs(i)));
 end
 // parse all the tests in ast
 parsing_tests = ls("SCI/modules/ast/tests/unit_tests/*.tst");
-for i=1:size(parsing_tests, '*')
+for i=1:size(parsing_tests, "*")
     text = mgetl(parsing_tests(i));
-    deff('[] = macr2tree_fun()',text);
+    deff("[] = macr2tree_fun()",text);
     macr2tree(macr2tree_fun);
     clear macr2tree_fun;
 end
