@@ -128,8 +128,14 @@ libscilab_la_rootdir = $(mydatadir)
 pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES =
 
-libscilab_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS   = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+AM_FFLAGS   = $(SCI_FFLAGS)
+AM_LDFLAGS  = $(SCI_LDFLAGS)
 
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS += -version-number $(SCILAB_LIBRARY_VERSION)
 
 GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \

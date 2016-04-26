@@ -201,9 +201,6 @@ libscilab_la_DEPENDENCIES = $(am__append_7) $(am__append_8) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
-libscilab_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(libscilab_la_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -633,7 +630,13 @@ libscilab_la_rootdir = $(mydatadir)
 # libscilab-cli is for scilab-cli (without GUI)
 pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES = 
-libscilab_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+AM_FFLAGS = $(SCI_FFLAGS)
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
 GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
@@ -806,7 +809,7 @@ libscilab-cli.la: $(libscilab_cli_la_OBJECTS) $(libscilab_cli_la_DEPENDENCIES) $
 	$(AM_V_CCLD)$(libscilab_cli_la_LINK) -rpath $(pkglibdir) $(libscilab_cli_la_OBJECTS) $(libscilab_cli_la_LIBADD) $(LIBS)
 
 libscilab.la: $(libscilab_la_OBJECTS) $(libscilab_la_DEPENDENCIES) $(EXTRA_libscilab_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(libscilab_la_LINK) -rpath $(pkglibdir) $(libscilab_la_OBJECTS) $(libscilab_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscilab_la_OBJECTS) $(libscilab_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
