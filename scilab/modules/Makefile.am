@@ -61,6 +61,7 @@ spreadsheet \
 tclsci \
 commons \
 jvm \
+types \
 action_binding \
 graphic_objects \
 renderer \
@@ -93,7 +94,6 @@ ui_data \
 history_browser \
 preferences \
 xml \
-types \
 external_objects \
 slint \
 coverage
@@ -149,6 +149,7 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
+	$(top_builddir)/modules/types/libscitypes-java.la \
 	$(top_builddir)/modules/preferences/libscipreferences.la \
 	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
