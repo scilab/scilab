@@ -19,17 +19,20 @@
 */
 
 
+#include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <signal.h>
-#include <time.h>
 #include <string.h>
+#include <time.h>
 #include <libintl.h>
+#include <pthread.h>
 
 #include <setjmp.h>
 
 #include <sys/types.h>          /* getpid */
+#include <sys/time.h>           /* gettimeofday */
 #include <unistd.h>             /* gethostname */
 
 #include "csignal.h"
@@ -64,12 +67,14 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
 
     char stacktrace_hostname[64];
 
-    const char * bt;
+    char* bt;
 
     gethostname(stacktrace_hostname, sizeof(stacktrace_hostname));
     stacktrace_hostname[sizeof(stacktrace_hostname) - 1] = '\0';
     /* to keep these somewhat readable, only print the machine name */
-    for (i = 0; i < (int)sizeof(stacktrace_hostname); ++i)
+    for (i = 0;
+            i < (int)sizeof(stacktrace_hostname) && stacktrace_hostname[i] != '\0';
+            ++i)
     {
         if (stacktrace_hostname[i] == '.')
         {
@@ -486,25 +491,59 @@ void base_error_init(void)
     }
 }
 
+static void* watchdog_thread(void* arg)
+{
+    long timeoutDelay = (long) arg;
+
+    pthread_mutex_t watchdog_mutex;
+    pthread_cond_t dummy_condition;
+    struct timeval tv;
+    struct timespec abstime;
+
+    if (pthread_mutex_init(&watchdog_mutex, NULL) != 0)
+    {
+        return NULL;
+    }
+
+    if (pthread_cond_init(&dummy_condition, NULL) != 0)
+    {
+        pthread_mutex_destroy(&watchdog_mutex);
+        return NULL;
+    }
+
+    if (gettimeofday(&tv, NULL) != 0)
+    {
+        pthread_cond_destroy(&dummy_condition);
+        pthread_mutex_destroy(&watchdog_mutex);
+        return NULL;
+    }
+
+    memset(&abstime, 0, sizeof(struct timespec));
+    abstime.tv_sec = tv.tv_sec + timeoutDelay;
+
+    while (1)
+    {
+        if (pthread_cond_timedwait(&dummy_condition, &watchdog_mutex, &abstime) == ETIMEDOUT)
+        {
+            /*
+             * Send a SIGABRT to ensure process termination, if used with the signal
+             * trap a backtrace might be displayed.
+             */
+            kill(getpid(), SIGABRT);
+        }
+    }
+    return NULL;
+}
+
 void timeout_process_after(int timeoutDelay)
 {
-    struct sigevent event_timer;
-    timer_t timerid;
-    struct itimerspec value;
+    pthread_t watchdog;
 
-    /*
-     * Send a SIGABRT to ensure process termination, if used with the signal
-     * trap a backtrace might be displayed.
-     */
-    memset(&event_timer, 0, sizeof(struct sigevent));
-    event_timer.sigev_notify = SIGEV_SIGNAL;
-    event_timer.sigev_signo = SIGABRT;
-
-    timer_create(CLOCK_MONOTONIC, &event_timer, &timerid);
-
-    memset(&value, 0, sizeof(struct itimerspec));
-    value.it_value.tv_sec = timeoutDelay;
-    timer_settime(timerid, 0, &value, NULL);
+    // Spawn a watchdog thread as POSIX timer API is not available on MacOS X
+    if (pthread_create(&watchdog, NULL, watchdog_thread, (void*) (long) timeoutDelay) != 0)
+    {
+        return;
+    }
 }
 
 /*--------------------------------------------------------------------------*/

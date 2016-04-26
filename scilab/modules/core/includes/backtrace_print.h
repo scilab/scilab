@@ -22,6 +22,6 @@
  * @param unmangle if !=0 then demangle the functions names
  * @return a string (to be freed) containing the complete backtrace
  */
-const char * backtrace_print(int first_level, int unmangle);
+char * backtrace_print(int first_level, int unmangle);
 
 #endif // __BACKTRACE_PRINT_H__

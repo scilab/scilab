@@ -254,28 +254,26 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
                 char* str_end = NULL;
                 int iTimeoutDelay = strtol(timeout, &str_end, 0);
 
-                int modifier = 1;
-                if (str_end != '\0')
+                int modifier;
+                switch (*str_end)
                 {
-                    switch (*str_end)
-                    {
-                        case 'd':
-                            modifier = 86400;
-                            break;
-                        case 'h':
-                            modifier = 3600;
-                            break;
-                        case 'm':
-                            modifier = 60;
-                            break;
-                        case 's':
-                            modifier = 1;
-                            break;
-                        default:
-                            std::cerr << "Invalid timeout delay unit: s (for seconds), m (for minutes), h (for hours), d (for days) are supported" << std::endl;
-                            exit(EXIT_FAILURE);
-                            break;
-                    }
+                    case 'd':
+                        modifier = 86400;
+                        break;
+                    case 'h':
+                        modifier = 3600;
+                        break;
+                    case 'm':
+                        modifier = 60;
+                        break;
+                    case 's':
+                    case '\0': // no modifiers
+                        modifier = 1;
+                        break;
+                    default:
+                        std::cerr << "Invalid timeout delay unit: s (for seconds, default), m (for minutes), h (for hours), d (for days) are supported" << std::endl;
+                        exit(EXIT_FAILURE);
+                        break;
                 }
 
                 _pSEI->iTimeoutDelay = iTimeoutDelay * modifier;
