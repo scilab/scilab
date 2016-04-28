@@ -44,29 +44,42 @@ void* get_tip_orientation_property(void* _pvCtx, int iObjUID)
 }
 
 /**
- * Get the status if the Z component is displayed.
+ * Old z_componet property, warns the user
  */
-void* get_tip_3component_property(void* _pvCtx, int iObjUID)
+void* get_tip_z_component_property(void* _pvCtx, int iObjUID)
 {
-    int tip_3component;
-    int *piTip_3component = &tip_3component;
+    char * tip_display_components;
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_DISPLAY_COMPONENTS__, jni_string, (void **)&tip_display_components);
 
-    getGraphicObjectProperty(iObjUID, __GO_DATATIP_3COMPONENT__, jni_bool, (void **)&piTip_3component);
-
-    if (piTip_3component == NULL)
+    //Only warns if the property exists for the object.
+    if (tip_display_components == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_component");
-        return NULL;
-    }
-
-    if (tip_3component)
-    {
-        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString("off");
+        Scierror(999, _("'%s' property is obsolete and will be removed, use '%s' instead.\n"), "z_component", "display_components");
     }
+
+    return NULL;
+}
+
+
+/**
+ * Get the datatip components that should be displayed
+ */
+void* get_tip_display_components_property(void* _pvCtx, int iObjUID)
+{
+    char * tip_display_components;
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_DISPLAY_COMPONENTS__, jni_string, (void **)&tip_display_components);
+
+    if (tip_display_components == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "display_components");
+        return NULL;
+    }
+
+    return sciReturnString(tip_display_components);
 }
 
 /**

@@ -313,7 +313,8 @@ function save_graphichandle(h,fd)
         mput(length(h.label_mode),characterFormat,fd); // label_mode
         mput(ascii(h.label_mode),characterFormat,fd);
         mput(h.orientation,characterFormat,fd) // orientation
-        mput(bool2s(h.z_component=="on"),characterFormat,fd) // z_component
+        mput(length(h.display_components),characterFormat,fd);
+        mput(h.display_components,characterFormat,fd) // display_components
         mput(bool2s(h.auto_orientation=="on"),characterFormat,fd) // auto_orientation
         mput(bool2s(h.interp_mode=="on"),characterFormat,fd) // interp_mode
         mput(length(ascii(h.display_function)),stringFormat,fd); // display_function

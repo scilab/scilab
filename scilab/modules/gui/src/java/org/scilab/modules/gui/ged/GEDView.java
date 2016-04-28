@@ -40,7 +40,7 @@ public class GEDView implements GraphicView {
     private static boolean surfaceMode = true;
     private static boolean colored = true;
     private static Integer datatipOrientation = 0;
-    private static boolean datatip3Component = false;
+    private static String datatipDisplayComponents = "";
     private static boolean datatipAutoOrientation = true;
     private static boolean datatipBoxMode = true;
     private static boolean datatipLabelMode = true;
@@ -164,11 +164,11 @@ public class GEDView implements GraphicView {
                         datatipOrientation = c_datatipOrientation;
                     }
                     break;
-                case GraphicObjectProperties.__GO_DATATIP_3COMPONENT__:
-                    boolean c_datatip3Component = (Boolean) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_DATATIP_3COMPONENT__);
-                    if (datatip3Component != c_datatip3Component) {
+                case GraphicObjectProperties.__GO_DATATIP_DISPLAY_COMPONENTS__:
+                    String c_datatipDisplayComponents = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_DATATIP_DISPLAY_COMPONENTS__);
+                    if (datatipDisplayComponents != c_datatipDisplayComponents) {
                         isValid = true;
-                        datatip3Component = c_datatip3Component;
+                        datatipDisplayComponents = c_datatipDisplayComponents;
                     }
                     break;
                 case GraphicObjectProperties.__GO_DATATIP_AUTOORIENTATION__:

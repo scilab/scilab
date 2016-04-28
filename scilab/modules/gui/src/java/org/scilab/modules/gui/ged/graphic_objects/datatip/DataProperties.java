@@ -60,7 +60,7 @@ public class DataProperties extends SimpleSection {
         final int leftmargin = 0; //to inner components
         int column = 1; //first column
 
-        datatip.tip3Component(sectionPanel, row++, column, leftmargin, objectID);
+        datatip.tipDisplayComponents(sectionPanel, row++, column, leftmargin, objectID);
 
         datatip.tipData(sectionPanel, row++, column, leftmargin, objectID);
 

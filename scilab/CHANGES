@@ -97,6 +97,11 @@ Other feature changes
 
     val = foo() //return error
 
+* The graphics entity "Datatip" has its property "z_component = 'on|off'"
+  changed to "display_components = 'xyz'", now it is possible to choose which
+  components to display and the order. Loading old *.scg files containing 
+  datatips with "z_component" property may not display the z component. 
+
 Other feature additions
 =======================
 

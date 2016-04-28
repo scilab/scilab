@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="datatip_properties">
     <refnamediv>
-        <refname>datatip properties</refname>
-        <refpurpose>description of the Datatip
-            entity properties
+        <refname>propriedades das datatips</refname>
+        <refpurpose>Descição das propriedades para a entidade Datatip.
         </refpurpose>
     </refnamediv>
     <refsection>
-        <title>Description</title>
-        <para>The Datatip entity is a leaf of the graphics entities hierarchy. This
-            entity defines the parameters for datatips.
+        <title>Descrição</title>
+        <para>
+            A entidade Datatip é uma das folhas na hierarquia de entidades gráficas. Esta
+            entidade define os parametros para as Datatips.
         </para>
         <variablelist>
             <varlistentry>
                 <term>parent: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>children: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>visible: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>data: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,9 +60,9 @@
                 <term>box_mode: </term>
                 <listitem>
                     <para>
-                        This field contains the default <literal>box_mode</literal> property
-                        value for the datatip. Its value should be <literal>"on" </literal>(box
-                        drawn) or <literal>"off"</literal> (no box drawn).
+                        Esse campo contêm o valor padrão para a propriedade <literal>box_mode</literal>
+                        das datatips. Quando este valor é <literal>"on"</literal> a caixa envoltória é desenhada, 
+                        quando o valor é <literal>"off"</literal> nenhuma caixa é desenhada.
                     </para>
                 </listitem>
             </varlistentry>
@@ -70,18 +70,19 @@
                 <term>label_mode: </term>
                 <listitem>
                     <para>
-                        This field contains the default <literal>label_mode</literal> property
-                        value for the datatip. Its value should be <literal>"on" </literal>(label
-                        written) or <literal>"off"</literal> (no label written).
+                        Esse campo contêm o valor padrão para a propriedade <literal>label_mode</literal>
+                        das datatips. Quando este valor é <literal>"on"</literal> os rótulos são desenhados, 
+                        quando o valor é <literal>"off"</literal> nenhuma  rótulo é desenhado.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orientation: </term>
                 <listitem>
-                    <para>This field sets the position on the text box with respect to polyline point. 
-                        The possible values are 0 (upper left), 1 (upper right), 2 (lower left), 3 (lower right), 4 (left), 5 (right), 
-                        6 (upper) or 7 (lower).
+                    <para>
+                        Este campo controla a posição da caixa de texto em respeito ao ponto de âncora na polyline.
+                        Os possíveis valores são 0 (esquerdo superior), 1 (direito superior), 2 (esquerdo inferior), 3 (direito inferior),
+                        4 (esquerda), 5 (direita), 6 (superior) ou 7 (inferior).
                     </para>
                 </listitem>
             </varlistentry>
@@ -89,11 +90,12 @@
                 <term>display_components: </term>
                 <listitem>
                     <para>
-                        This field controls which components are displayed. Its default value
-                        is <literal>"xy"</literal>for 2D views and <literal>"xyz"</literal> for 3D views.
-                        Possible values for this field are any combination of <literal>"x"</literal>, <literal>"y"</literal> and <literal>"z"</literal>.
-                        Some examples for this field are <literal>"zy"</literal>, <literal>"xzy"</literal>, <literal>"xz"</literal>, <literal>"y"</literal> and so on.
-                        PS: The components are drawn in the same order they are found in the string.
+                        Esse campo controla quais componentes são desenhadas. Quando em 2D, seu valor padrão é 
+                        <literal>"xy"</literal>, para 3D seu valor padrão é <literal>"xyz"</literal>.
+                        Possíveis valores para este campo incluem qualquer combinação de <literal>"x"</literal>, 
+                        <literal>"y"</literal> e <literal>"z"</literal>.
+                        Alguns exemplos para este campo são <literal>"zy"</literal>, <literal>"xzy"</literal>, <literal>"xz"</literal>, <literal>"y"</literal> e assim por diante.
+                        Nota: As componentes sao desenhadas na mesma ordem em que são encontradas na string.
                     </para>
                 </listitem>
             </varlistentry>
@@ -101,31 +103,32 @@
                 <term>auto_orientation: </term>
                 <listitem>
                     <para>
-                        This field contains the default <literal>auto_orientation</literal> property
-                        value for the datatip. Its value should be <literal>"on" </literal>(automatic orientation)
-                        or <literal>"off"</literal> (no automatic orientation). In the <literal>"off"</literal> case, 
-                        See <literal>orientation</literal> property.
+                        Esse campo contêm o valor padrão para a propriedade <literal>auto_orientation</literal>
+                        das datatips.  Quando este valor é <literal>"on"</literal> a orientação é automatica, 
+                        quando o valor é <literal>"off"</literal> a orientação é dada pelo campo <literal>orientation</literal>.
+                        Veja a propriedade <literal>orientation</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>interp_mode: </term>
                 <listitem>
-                    <para>This field sets the interpolation mode for tip location. Its value should be 
-                        <literal>"on" </literal>(interpolation is made between mesh points) or <literal>"off"
-                        </literal>
-                        (the tips can only be located at the mesh points).
+                    <para>
+                        Esse campo controla a interpolação utilizada para posicionar a datatip. Quando este valor é 
+                        <literal>"on"</literal> é aplicada uma interpolação linear entre a malha de pontos no posicionamento
+                        das datatips, quando seu valor é <literal>"off"</literal> as datatips so podem ser posicionadas sobre 
+                        os pontos contidos na malha.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>display_function: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
@@ -133,8 +136,8 @@
                 <term>font_foreground: </term>
                 <listitem>
                     <para>
-                        This field contains the default <literal>font_foreground</literal> property
-                        Its value should be a color index (relative to the current colormap).
+                        Esse campo contêm o valor padrão para a propriedade <literal>font_foreground</literal>.
+                        Seu valor deve ser o índice de uma cor relativo ao mapa de cores atual.
                     </para>
                 </listitem>
             </varlistentry>
@@ -142,108 +145,109 @@
                 <term>foreground: </term>
                 <listitem>
                     <para>
-                        This field contains the default <literal>foreground</literal> property
-                        used to draw the box. Its value should be a color index (relative
-                        to the current colormap).
+                        Esse campo contêm o valor padrão para a propriedade <literal>foreground</literal>
+                        usado para desenhar a caixa envoltória. Seu valor deve ser o índice de
+                        uma cor relativo ao mapa de cores atual.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>background: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mark_mode: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mark_style: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mark_size_unit: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mark_size: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mark_foreground: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mark_background: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>user_data: </term>
                 <listitem>
-                    <para>See 
+                    <para>Veja
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>tag: </term>
                 <listitem>
-                    <para>This fields contains a string generally used to identify the control.
-                        See <literal>
+                    <para>
+                        Esse campo contêm uma string normalmente utilizada para identificar o controle.
+                        Veja <literal>
                             <link linkend="figure_properties">figure_properties</link>
                         </literal>
-                        help page.
+                        nas páginas de ajuda.
                     </para>
                 </listitem>
             </varlistentry>
@@ -270,7 +274,7 @@
                 <revnumber>5.5.2</revnumber>
                 <revremark>
                     <para>
-                        New "orientation" values available: "left", "right", "upper", "lower".
+                        Novo "orientation" valores disponíveis: "left", "right", "upper", "lower".
                     </para>
                 </revremark>
             </revision>
