@@ -382,6 +382,8 @@ In 6.0.0:
 
 * Bug #13816 fixed - show_margins caused a scilab crash
 
+* Bug #13831 fixed - ss2ss does not transform initial state
+
 * Bug #13839 fixed - sign() could not be used with sparse matrices
 
 * Bug #13869 fixed - bench_run with option nb_run=10 did not override the NB RUN tags
