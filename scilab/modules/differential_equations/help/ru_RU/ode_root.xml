@@ -4,12 +4,15 @@
 * Copyright (C) 2008 - INRIA
 * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 * ...
-* 
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at    
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode_root" xml:lang="ru">
@@ -23,7 +26,7 @@
         <title>Последовательность вызова</title>
         <synopsis>[y, rd, w, iw] = ode("root", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [,w, iw])</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
@@ -65,14 +68,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>w, iw</term>
-                <listitem>
-                    <para>
-                        векторы вещественных значений (ВХОДНЫЕ/ВЫХОДНЫЕ).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>ng</term>
                 <listitem>
                     <para>целое число.</para>
@@ -96,9 +91,18 @@
                     <para>вещественный вектор (ВЫХОДНОЙ).</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>w, iw</term>
+                <listitem>
+                    <para>
+                        векторы вещественных значений.
+                        See <link linkend="ode_optional_output">ode() optional output</link>
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Описание</title>
         <para>
             С таким синтаксисом (первый аргумент равен <literal>"root"</literal>) <literal>ode</literal> вычисляет решение дифференциального уравнения  <literal>dy/dt=f(t,y)</literal> до тех пор, пока состояние <literal>y(t)</literal> не пересечёт поверхность <literal>g(t,y)=0</literal>.
@@ -109,7 +113,7 @@
         <para>
             Если <literal>g</literal> является функцией, то её синтаксис должен быть следующим:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
     z = g(t,y)
     ]]></programlisting>
         <para>
@@ -123,16 +127,16 @@
             Другие аргументы и другие опции те же самые, что и для <literal>ode</literal>, см. справку по <link linkend="ode">ode</link>.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     // Интегрирование дифференциального уравнения
     // dy/dt=y , y(0)=1, и поиск такого минимального времени t, что y(t)=2
     deff("[ydot]=f(t,y)","ydot=y")
     deff("[z]=g(t,y)","z=y-2")
     y0=1;ng=1;
     [y,rd]=ode("roots",y0,0,2,f,ng,g)
-    
+
     deff("[z]=g(t,y)","z=y-[2;2;33]")
     [y,rd]=ode("roots",1,0,2,f,3,g)
     ]]></programlisting>
@@ -141,10 +145,19 @@
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="ode_optional_output">ode_optional_output</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
+            </member>
+            <member>
                 <link linkend="dasrt">dasrt</link>
             </member>
             <member>
-                <link linkend="ode">ode</link>
+                <link linkend="daskr">daskr</link>
             </member>
         </simplelist>
     </refsection>

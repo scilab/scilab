@@ -51,14 +51,12 @@ function [n,M]=foo1
   n=size(find(who('local')=='M'),'*')
 endfunction
 Warning : redefining function: foo1                    . Use funcprot(0) to avoid this message
-
 clear M;[n,M]=foo1();
 if n<>1 then bugmes();quit;end
 if M<>2 then bugmes();quit;end
 [foo1(),size(find(who('local')=='M'),'*')]
  ans  =
- 
-    2.    1.  
+   1.   1.
 //----------------------------------------
 function [n,M1]=foo2(),
   [n1,M1]=foo1(),
@@ -70,8 +68,6 @@ function [n,M]=foo1
   ldcsv()
   n=size(find(who('local')=='M'),'*')
 endfunction
-Warning : redefining function: foo1                    . Use funcprot(0) to avoid this message
-
 clear M;[n,M]=foo2();
 if n<>1 then bugmes();quit;end
 if M<>2 then bugmes();quit;end

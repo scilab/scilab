@@ -1,16 +1,19 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009-2010 - Calixte Denizet
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapped)
     // From any Scilab datatype and provide a representation to the TeX, LaTeX or MathML formats
     //
-    // Calling Sequence
+    // Syntax
     // str = prettyprint(a) // Show the variable a with the default format (LaTeX)
     // str = prettyprint(a,exportFormat) // Show the variable a with the specified format
     // str = prettyprint(a,exportFormat, delim) // As above but change the delimiter
@@ -194,7 +197,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
         select a1(1)
             //Cell type
         case "ce" then
-            dim = double(a.dims);
+            dim = double(size(a));
             L = length(dim);
             if L >= 3 then
                 str = unknown_type("ce",a,exportFormat);
@@ -203,7 +206,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
             str = emptystr(dim(1),dim(2));
             for i = 1:dim(1) do
                 for j = 1:dim(2) do
-                    str(i,j) = prettyprint(a(i,j).entries,exportFormat,delimiter,%F,%F);
+                    str(i,j) = prettyprint(a{i,j},exportFormat,delimiter,%F,%F);
                 end
             end
         else

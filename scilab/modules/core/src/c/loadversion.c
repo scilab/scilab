@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <stdlib.h>
@@ -17,38 +20,37 @@
 #include <libxml/xmlreader.h>
 #include "loadversion.h"
 #include "with_module.h"
-#include "setgetSCIpath.h"
-#include "MALLOC.h"
+#include "sci_path.h"
+#include "sci_malloc.h"
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
 #include "localization.h"
-#include "stricmp.h"
 #include "FileExist.h"
-#include "version.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "getshortpathname.h"
+#include "charEncoding.h"
+#include "version.h"
 /*--------------------------------------------------------------------------*/
-BOOL getversionmodule(char *modulename,
+BOOL getversionmodule(wchar_t* _pwstModule,
                       int *sci_version_major,
                       int *sci_version_minor,
                       int *sci_version_maintenance,
-                      char *sci_version_string,
+                      wchar_t* _pwstSciVersionString,
                       int *sci_version_revision)
 {
     BOOL bOK = FALSE;
 
-    if (with_module(modulename))
+    if (with_module(_pwstModule))
     {
-        char *filename_VERSION_module = NULL;
-        char *SciPath = NULL;
+        char* filename_VERSION_module = NULL;
+        char* pstModule = wide_string_to_UTF8(_pwstModule);
+        char* SciPath = NULL;
         int len = 0;
 
-        SciPath = getSCIpath();
-        len = (int)strlen(FORMATVERSIONFILENAME) + (int)strlen(SciPath) + (int)strlen(modulename) + 1;
+        SciPath = getSCI();
+        len = (int)strlen(FORMATVERSIONFILENAME) + (int)strlen(SciPath) + (int)strlen(pstModule) + 1;
         filename_VERSION_module = (char*)MALLOC(sizeof(char) * len);
-        sprintf(filename_VERSION_module, FORMATVERSIONFILENAME, SciPath, modulename);
+        sprintf(filename_VERSION_module, FORMATVERSIONFILENAME, SciPath, pstModule);
         if (SciPath)
         {
             FREE(SciPath);
@@ -73,7 +75,7 @@ BOOL getversionmodule(char *modulename,
                 int version_minor = 0;
                 int version_maintenance = 0;
                 int version_revision = 0;
-                char *version_string = 0;
+                wchar_t *pwstSciVersionString = 0;
 
                 {
                     BOOL bConvert = FALSE;
@@ -129,7 +131,7 @@ BOOL getversionmodule(char *modulename,
                         {
                             /* we found <string> */
                             const char *str = (const char*)attrib->children->content;
-                            version_string = strdup(str);
+                            pwstSciVersionString = to_wide_string(str);
                         }
 
                         attrib = attrib->next;
@@ -139,11 +141,11 @@ BOOL getversionmodule(char *modulename,
                     *sci_version_minor = version_minor;
                     *sci_version_maintenance = version_maintenance;
                     *sci_version_revision = version_revision;
-                    strncpy(sci_version_string, version_string, 1024);
-                    if (version_string)
+                    wcscpy(_pwstSciVersionString, pwstSciVersionString);
+                    if (pwstSciVersionString)
                     {
-                        FREE(version_string);
-                        version_string = NULL;
+                        FREE(pwstSciVersionString);
+                        pwstSciVersionString = NULL;
                     }
                 }
                 else
@@ -180,7 +182,7 @@ BOOL getversionmodule(char *modulename,
             *sci_version_minor = SCI_VERSION_MINOR;
             *sci_version_maintenance = SCI_VERSION_MAINTENANCE;
             *sci_version_revision = SCI_VERSION_TIMESTAMP;
-            strcpy(sci_version_string, "");
+            wcscpy(_pwstSciVersionString, L"");
             bOK = TRUE;
         }
 

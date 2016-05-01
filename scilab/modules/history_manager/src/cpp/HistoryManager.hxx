@@ -3,11 +3,14 @@
 * Copyright (C) 2007-2008 - INRIA - Allan CORNET
 * Copyright (C) 2011 - DIGITEO - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -19,27 +22,28 @@
 /*------------------------------------------------------------------------*/
 extern "C"
 {
+#include "dynlib_history_manager.h"
 #include <time.h>
 };
 /*------------------------------------------------------------------------*/
 #include <list>
-#include "CommandLine.hxx"
 #include "HistoryFile.hxx"
 #include "HistorySearch.hxx"
-using namespace std;
+
+#ifdef _MSC_VER
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+#endif
+
 /*------------------------------------------------------------------------*/
-class HistoryManager
+class HISTORY_MANAGER_IMPEXP HistoryManager
 {
 public:
-    /**
-    * Constructor
-    */
-    HistoryManager();
 
-    /**
-    * Destructor
-    */
-    ~HistoryManager();
+    static HistoryManager* getInstance(void);
+    static void killInstance(void);
+
+    static BOOL historyIsEnabled(void);
 
     /*
     * add a line to History manager
@@ -47,7 +51,7 @@ public:
     * line isn't added if it is the same as previous (FALSE)
     * @return TRUE or FALSE
     */
-    BOOL appendLine(char *cline);
+    BOOL appendLine(char *_pstLine);
 
     /**
     * append lines to History manager
@@ -55,7 +59,7 @@ public:
     * @param size of the array of string
     * @return TRUE or FALSE
     */
-    BOOL appendLines(char **lines, int nbrlines);
+    BOOL appendLines(char **_pstLines, int _iLines);
 
     /**
     * Display history
@@ -66,14 +70,14 @@ public:
     * get filename of history
     * @return a filename
     */
-    char *getFilename(void);
+    char* getFilename(void);
 
     /**
     * set filename of history
     * @param filename of history
     * @return TRUE or FALSE
     */
-    void setFilename(char *filename);
+    BOOL setFilename(char* _pstFilename);
 
     /**
     * set default filename of history
@@ -84,40 +88,42 @@ public:
     /**
     * save history in a file
     * @param a filename if NULL saves in default filename
+    * default filename --> SCIHOME/history.scilab
     * @return TRUE or FALSE
     */
-    BOOL writeToFile(char *filename);
+    BOOL writeToFile(char* _pstFilename);
 
     /**
     * load history from a file
     * @param a filename if NULL load from default filename
+    * default filename --> SCIHOME/<scilab version>history.scilab
     * @return TRUE or FALSE
     */
-    BOOL loadFromFile(char *filename);
+    BOOL loadFromFile(char* _pstFilename);
 
     /**
     * reset history manager
     */
-    void reset(void);
+    BOOL reset(void);
 
     /**
     * Get all lines in history
     * @param output size of the array of string
     * @return an array of strings
     */
-    char **getAllLines(int *numberoflines);
+    char** getAllLines(int* _iLines);
 
     /**
     * returns the first line in history
     * @return a string
     */
-    char *getFirstLine(void);
+    char* getFirstLine(void);
 
     /**
     * returns the last line in history
     * @return a string
     */
-    char *getLastLine(void);
+    char* getLastLine(void);
 
     /**
     * get number of lines of history
@@ -130,20 +136,20 @@ public:
     * @param N
     * @return the Nth Line
     */
-    char *getNthLine(int N);
+    char* getNthLine(int _iLine);
 
     /**
     * delete the Nth Line in history
     * @param N
     * @return TRUE or FALSE
     */
-    BOOL deleteNthLine(int N);
+    BOOL deleteNthLine(int _iLine);
 
     /**
     * Allow to save consecutive duplicate lines
     * @param doit : TRUE (to allow) or FALSE
     */
-    void setSaveConsecutiveDuplicateLines(BOOL doit);
+    void setSaveConsecutiveDuplicateLines(BOOL _bAllow);
 
     /**
     * get state about to save consecutive duplicate lines
@@ -155,7 +161,7 @@ public:
     * set after how many lines history is saved
     * @param num : number of lines
     */
-    void setAfterHowManyLinesHistoryIsSaved(int num);
+    void setAfterHowManyLinesHistoryIsSaved(int _iNum);
 
     /**
     * get after how many lines history is saved
@@ -168,13 +174,13 @@ public:
     * @param token (a string)
     * @return TRUE or FALSE
     */
-    BOOL setToken(char *token);
+    BOOL setToken(const char* _pstToken);
 
     /**
     * get token searched in history
     * @return token (a string)
     */
-    char *getToken(void);
+    char* getToken(void);
 
     /**
     * resettoken searched in history
@@ -186,14 +192,14 @@ public:
     * Get the previous line in search
     * @return a line
     */
-    char *getPreviousLine(void);
+    char* getPreviousLine(void);
 
     /**
     * Get the next line in Scilab history
     * @return a line or NULL
     * after an appendLine iterator go to end
     */
-    char *getNextLine(void);
+    char* getNextLine(void);
 
     /**
     * get info about history file was truncated
@@ -204,43 +210,49 @@ public:
     /**
     *
     */
-    BOOL setNumberOfLinesMax(int nbLinesMax);
+    BOOL setNumberOfLinesMax(int _iMaxLines);
 
     /**
     *
     */
     int getNumberOfLinesMax(void);
 
+    /**
+    * search if line is a beginning of a session
+    * @return TRUE or FALSE
+    */
+    BOOL isBeginningSessionLine(char* _pstLine);
+
 protected:
 
 private:
-    HistoryFile my_file;
-    HistorySearch my_search;
-
-    list<CommandLine> CommandsList;
-
-    BOOL saveconsecutiveduplicatelines;
-    int afterhowmanylineshistoryissaved;
-    int numberoflinesbeforehistoryissaved;
 
     /**
-    * indicates if command line is a beginning of a session
-    * @return TRUE or FALSE
+    * Constructor
     */
-    BOOL isBeginningSessionLine(CommandLine& line);
+    HistoryManager();
 
     /**
-    * indicates if a string has the pattern "beginning of a session"
-    * @return TRUE or FALSE
+    * Destructor
     */
-    BOOL isBeginningSessionLine(const char *line);
+    ~HistoryManager();
+
+    static HistoryManager* m_pHM;
+    HistoryFile m_HF;
+    HistorySearch m_HS;
+
+    std::list<std::string> m_Commands;
+
+    BOOL m_bAllowConsecutiveCommand;
+    int m_iSaveLimit;
+    int m_iSavedLines;
 
     /**
     * add as first line  beginning session info
     */
     void fixHistorySession(void);
 
-    BOOL bTruncated;
+    BOOL m_bTruncated;
 
 };
 /*------------------------------------------------------------------------*/

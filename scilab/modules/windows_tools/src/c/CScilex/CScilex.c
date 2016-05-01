@@ -3,11 +3,14 @@
 *  Copyright (C) INRIA - Allan CORNET
 *  Copyright (C) 2010 - DIGITEO - Allan CORNET
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -16,10 +19,10 @@
 #include <string.h>
 #include <stdio.h>
 #include "GetWindowsVersion.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_XP_OR_MORE "Scilab requires Windows XP or more."
-#define MSG_DETECT_UNKNOW "Scilab does not support this unknow version of Windows."
+#define MSG_DETECT_UNKNOW "Scilab does not support this unknown version of Windows."
 #define MSG_DETECT_SSE_OR_MORE "Scilab requires SSE Instructions."
 #define MSG_WARNING "Warning"
 #define MSG_LOAD_LIBRARIES "scilex.exe failed with error %d: %s"

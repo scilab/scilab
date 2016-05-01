@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005 - INRIA - Farid Belahcene
 // Copyright (C) 2012 - Michael Baudin
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function  barh(varargin)
@@ -13,7 +16,7 @@ function  barh(varargin)
     // barh(x,y,width,style,color)
     // Input :
     // x : a scalar or a vector of reals
-    // y : a sclar, a vector or a matrix of reals
+    // y : a scalar, a vector or a matrix of reals
     // width : a double, the bar width, it's the percentage (0<width<1) of the max width of one bar which is wanted (default: width=0.8)
     // style : a string, 'grouped' or 'stacked' (default: style='grouped')
 
@@ -46,13 +49,13 @@ function  barh(varargin)
     if size(ListArg) == 4 then
         COLOR=ListArg(4);
         if type(COLOR) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"barh",4));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"barh",4));
         end
     end
     if size(ListArg) == 5 then
         STYLE=ListArg(5);
         if type(STYLE) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"barh",5));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"barh",5));
         end
     end
 

@@ -1,0 +1,22 @@
+LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; elementary_functions_f
+; --------------------------------------- 
+intrat_ 
+coef_
+inteye_
+dad_
+dmcopy_
+dmmul_
+dclmat_
+cerr_
+rat_
+danints_
+wacos_
+wasin_
+watan_
+wlog_
+wtan_

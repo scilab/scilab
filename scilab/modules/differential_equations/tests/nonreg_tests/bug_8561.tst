@@ -38,7 +38,7 @@ rtol = [1e-5, 1e-5, 1e-5, 1e-4, 1e-4, 1e-4];
 atol = 2*rtol;
 
 assert_checkfalse(execstr("y = dassl([Y0 Yd0], 0, t, atol, rtol, f);", "errcatch") == 0);
-refMsg = msprintf(_("Wrong size for argument: Incompatible dimensions.\n"));
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar or a matrix of size %d expected.\n"), "dassl", 4, 7);
 assert_checkerror("y = dassl([Y0 Yd0], 0, t, atol, rtol, f);", refMsg);
 
 rtol = [1e-5, 1e-5, 1e-5, 1e-4, 1e-4, 1e-4, 1e-3];
@@ -68,7 +68,7 @@ rtol = [1e-5, 1e-5, 1e-5, 1e-4, 1e-4, 1e-4];
 atol = 2*rtol;
 
 assert_checkfalse(execstr("[y, n] = dasrt([Y0 Yd0], 0, t, atol, rtol, f, 0, ''gr1'');", "errcatch") == 0);
-refMsg = msprintf(_("Wrong size for argument: Incompatible dimensions.\n"));
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar or a matrix of size %d expected.\n"), "dasrt", 4, 7);
 assert_checkerror("[y, n] = dasrt([Y0 Yd0], 0, t, atol, rtol, f, 0, ''gr1'');", refMsg);
 
 rtol = [1e-5, 1e-5, 1e-5, 1e-4, 1e-4, 1e-4, 1e-3];
@@ -98,7 +98,7 @@ rtol = [1e-5, 1e-5, 1e-5, 1e-4, 1e-4, 1e-4];
 atol = 2*rtol;
 
 assert_checkfalse(execstr("[y, n] = daskr([Y0 Yd0], 0, t, atol, rtol, f, 0, ''gr1'');", "errcatch") == 0);
-refMsg = msprintf(_("Wrong size for argument: Incompatible dimensions.\n"));
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar or a matrix of size %d expected.\n"), "daskr", 4, 7);
 assert_checkerror("[y, n] = daskr([Y0 Yd0], 0, t, atol, rtol, f, 0, ''gr1'');", refMsg);
 
 rtol = [1e-5, 1e-5, 1e-5, 1e-4, 1e-4, 1e-4, 1e-3];

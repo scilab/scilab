@@ -3,11 +3,14 @@
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -37,49 +40,60 @@ public class XcosCodec extends mxCodec {
      * Register packages for encoding/decoding diagrams
      */
     static {
-        // Add all xcos packages
-        mxCodecRegistry.addPackage("org.scilab.modules.graph");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.graph");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
-        mxCodecRegistry
-        .addPackage("org.scilab.modules.xcos.block.positionning");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.link");
-        mxCodecRegistry
-        .addPackage("org.scilab.modules.xcos.link.commandcontrol");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.explicit");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.implicit");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.port");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.command");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.control");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.input");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.output");
-        // Add 'types' package to have all scilab types known
-        mxCodecRegistry.addPackage("org.scilab.modules.types");
+        try {
+
+            // Add all xcos packages
+            mxCodecRegistry.addPackage("org.scilab.modules.graph");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.graph");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
+            mxCodecRegistry
+            .addPackage("org.scilab.modules.xcos.block.positionning");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.link");
+            mxCodecRegistry
+            .addPackage("org.scilab.modules.xcos.link.commandcontrol");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.explicit");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.implicit");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.port");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.command");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.control");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.input");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.output");
+            // Add 'types' package to have all scilab types known
+            mxCodecRegistry.addPackage("org.scilab.modules.types");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Install codecs for serializable instance
      */
     static {
+        try {
 
-        // Types
-        ScilabObjectCodec.register();
+            // Types
+            ScilabObjectCodec.register();
 
-        // Diagram
-        XcosDiagramCodec.register();
+            // Diagram
+            XcosDiagramCodec.register();
 
-        // Blocks
-        BasicBlockCodec.register();
+            // Blocks
+            BasicBlockCodec.register();
 
-        // Link
-        BasicLinkCodec.register();
+            // Link
+            BasicLinkCodec.register();
 
-        // Ports
-        BasicPortCodec.register();
+            // Ports
+            BasicPortCodec.register();
 
-        // Orientation
-        OrientationCodec.register();
+            // Orientation
+            OrientationCodec.register();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static final Logger LOG = Logger.getLogger(XcosCodec.class.getSimpleName());

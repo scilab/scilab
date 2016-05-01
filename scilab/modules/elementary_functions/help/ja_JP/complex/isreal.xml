@@ -1,120 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2015 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isreal" xml:lang="ja">
-    
     <refnamediv>
-        
         <refname>isreal</refname>
-        
         <refpurpose>変数が実数または複素数のエントリかどうかを調べるc</refpurpose>
-        
     </refnamediv>
-    
     <refsynopsisdiv>
-        
         <title>呼び出し手順</title>
-        
-        <synopsis>t=isreal(x)
-            
-            t=isreal(x,eps)
-            
+        <synopsis>t = isreal(x)
+            t = isreal(x,eps)
         </synopsis>
-        
     </refsynopsisdiv>
-    
     <refsection>
-        
         <title>引数</title>
-        
         <variablelist>
-            
             <varlistentry>
-                
                 <term>x</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         浮動小数点数のエントリまたは係数を有するベクトルまたは行列
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
-                <term>t</term>
-                
+                <term>eps</term>
                 <listitem>
-                    
-                    <para>論理値</para>
-                    
+                    <para>a positive or null real number (default value = 0)</para>
                 </listitem>
-                
             </varlistentry>
-            
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>論理値</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>説明</title>
-        
         <para>
-            
             <literal>isreal(x)</literal> は,
-            
             <literal>x</literal>が実数変数として保持されている場合に真,
-            
             <literal>x</literal>に虚部(0の場合もある)を保持する変数の場合に偽
-            
             を返します.
-            
         </para>
-        
         <para>
-            
             <literal>isreal(x,eps)</literal> は
-            
             <literal>x</literal>が実数変数として保持されているか,
-            
             虚部の浮動小数点数の絶対値の最大値が <literal>eps</literal>以下の場合に
-            
             真を返します.
-            
         </para>
-        
     </refsection>
-    
     <refsection>
-        
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 isreal([1 2])
 isreal(1+0*%i)
 isreal(1+0*%i,0)
-isreal(1+%s)
-isreal(sprand(3,3,0.1))
- ]]></programlisting>
-        
-    </refsection>
-    
-</refentry>
 
+// Sparse complex matrix:
+isreal(sparse([1-%i -3+4*%i]))
+
+// Complex polynomial:
+p = (1-2*%s)^2
+isreal(p)
+
+// Complex rational fraction:
+r = [ (%i-%s)/%s^2 %s/(2-%s)]
+isreal(r)
+]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>Extension to rationals
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

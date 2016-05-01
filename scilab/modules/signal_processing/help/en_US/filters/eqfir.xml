@@ -5,7 +5,7 @@
         <refpurpose>minimax approximation of FIR filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[hn]=eqfir(nf,bedge,des,wate)</synopsis>
     </refsynopsisdiv>
     <refsection>

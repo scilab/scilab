@@ -5,7 +5,6 @@ EXPORTS
 ; --------------------------------------- 
 ; elementary_functions_f
 ; --------------------------------------- 
-wbdiag_
-bdiag_
 wwrdiv_
 dset_
+pythag_

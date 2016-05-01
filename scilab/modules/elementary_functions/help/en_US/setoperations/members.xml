@@ -4,11 +4,14 @@
  * Copyright (C) 2013 - Samuel GOUGEON
  * Copyright (C) 2009 - Université du Maine - Samuel GOUGEON
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="members" xml:lang="en">
@@ -18,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [nb [,loc]] = members(N, H)
             [nb [,loc]] = members(N, H, "last")
@@ -98,7 +101,7 @@
                         In normal mode: <literal>loc</literal> and <literal>N</literal> have the same format. <literal>loc(i, j, ...)</literal> returns the smallest linearized index in <literal>H</literal> where <literal>N(i, j, ...)</literal> occurs. If the <literal>"last"</literal> flag is used, the greatest linearized index is returned instead. If <literal>N(i, j, ...)</literal> in not found in <literal>H</literal>, <literal>loc(i, j, ...)</literal> is set to <literal>0</literal>.
                     </para>
                     <para>
-                        In <literal>"rows"</literal> or <literal>"cols"</literal> mode: <literal>loc</literal> is a row of reals with as many components as <literal>N</literal> has respectively rows or columns. <literal>loc(i)</literal> returns the index of the first line <literal>H(loc(i), :)</literal> matching <literal>N(i, :)</literal> (or the index of the first column <literal>H(:, loc(i))</literal> matching <literal>N(:, i)</literal>). If the <literal>"shuffle"</literal> flag is additionaly specified, the order of components along the rows/columns is not considered.
+                        In <literal>"rows"</literal> or <literal>"cols"</literal> mode: <literal>loc</literal> is a row of reals with as many components as <literal>N</literal> has respectively rows or columns. <literal>loc(i)</literal> returns the index of the first line <literal>H(loc(i), :)</literal> matching <literal>N(i, :)</literal> (or the index of the first column <literal>H(:, loc(i))</literal> matching <literal>N(:, i)</literal>). If the <literal>"shuffle"</literal> flag is additionally specified, the order of components along the rows/columns is not considered.
                     </para>
                 </listitem>
             </varlistentry>
@@ -116,7 +119,7 @@
             In normal mode, <literal>%nan</literal> are supported in <literal>N</literal> but not in <literal>H</literal>. In <literal>"rows"</literal> or <literal>"cols"</literal> modes, <literal>%nan</literal> are supported everywhere.
         </para>
         <para>
-            In normal element-wise mode, members(..) uses <link linkend="dsearch">dsearch(..)</link> to fastly proceed with booleans, integer-encoded numbers (any length 8-16-32 bits signed or not), and real numbers. For complex numbers, texts, and polynomials, a slower and more memory-consuming algorithm is used. For better performances with these types of data, for big <literal>N</literal> or/and <literal>H</literal>, the user may priorly increase the <link linkend="stacksize">stacksize(..)</link>. For long calculations, a progression bar is displayed.
+            In normal element-wise mode, members(..) uses <link linkend="dsearch">dsearch(..)</link> to proceed fast with booleans, integer-encoded numbers (any length 8-16-32 bits signed or not), and real numbers. For complex numbers, texts, and polynomials, a slower and more memory-consuming algorithm is used. For long calculations, a progression bar is displayed.
         </para>
     </refsection>
     <refsection>
@@ -191,6 +194,9 @@ H = [ "Hello" "Bonjour" "Allo"
             </member>
             <member>
                 <link linkend="intersect">intersect</link>
+            </member>
+            <member>
+                <link linkend="grep">grep</link>
             </member>
             <member>
                 <link linkend="find">find</link>

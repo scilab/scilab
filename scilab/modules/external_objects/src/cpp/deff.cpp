@@ -2,22 +2,32 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
-#include "ScilabGateway.hxx"
-
 extern "C" {
 #include "scicurdir.h"
+#include "os_string.h"
 }
+
+#include "function.hxx"
+#include "string.hxx"
+#include "context.hxx"
+#include "ScilabGateway.hxx"
 
 namespace org_modules_external_objects
 {
+
+//no need to delete, just a pointer on existing varaible
+static types::Callable* pCall = nullptr;
 
 int ScilabGateway::deff(char * fname, const int envId, void * pvApiCtx)
 {
@@ -29,7 +39,6 @@ int ScilabGateway::deff(char * fname, const int envId, void * pvApiCtx)
     char ** names[] = {0, 0, 0};
     int ret = 0;
     std::ostringstream os;
-    char * str;
     int * addr[] = {0, 0, 0};
     int rows[] = {0, 0, 0};
     int cols[] = {0, 0, 0};
@@ -44,6 +53,20 @@ int ScilabGateway::deff(char * fname, const int envId, void * pvApiCtx)
     OptionsHelper::setCopyOccurred(false);
     ScilabObjects::initialization(env, pvApiCtx);
     options.setIsNew(false);
+
+    if (pCall == nullptr)
+    {
+        symbol::Context* ctx = symbol::Context::getInstance();
+        types::InternalType* pIT = ctx->get(symbol::Symbol(L"#_deff_wrapper"));
+        if (pIT && pIT->isCallable())
+        {
+            pCall = pIT->getAs<types::Callable>();
+        }
+        else
+        {
+            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+        }
+    }
 
     for (int i = 0; i < 3; i++)
     {
@@ -98,7 +121,7 @@ int ScilabGateway::deff(char * fname, const int envId, void * pvApiCtx)
     {
         ret = env.loadclass(names[0][0], cwd, false, helper.getAllowReload());
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         FREE(cwd);
         for (int j = 0; j < 3; j++)
@@ -111,50 +134,28 @@ int ScilabGateway::deff(char * fname, const int envId, void * pvApiCtx)
 
     for (int i = 0; i < rows[1] * cols[1]; i++)
     {
-        err = createMatrixOfString(pvApiCtx, ONE, 1, 1, (const char * const *) & (names[2][i]));
-        if (err.iErr)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                freeAllocatedMatrixOfString(rows[j], cols[j], names[j]);
-            }
-            env.removeobject(ret);
-            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot create the data"));
-        }
+        //call #_deff_wrapper
+        types::typed_list in, out;
+        types::optional_list opt;
 
+        //name
+        in.push_back(new types::String(names[2][i]));
+
+
+        //protopype
         os.str("");
         os << "y=" << names[2][i] << "(varargin)" << std::flush;
-        str = strdup(os.str().c_str());
+        in.push_back(new types::String(os.str().c_str()));
 
-        err = createMatrixOfString(pvApiCtx, TWO, 1, 1, (const char * const *)&str);
-        free(str);
-        if (err.iErr)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                freeAllocatedMatrixOfString(rows[j], cols[j], names[j]);
-            }
-            env.removeobject(ret);
-            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot create the data"));
-        }
-
+        //body
         os.str("");
         os << "y=invoke_lu(int32(" << ret << "),int32(" << envId << "),\"" << names[1][i] << "\",varargin)" << std::flush;
-        str = strdup(os.str().c_str());
+        in.push_back(new types::String(os.str().c_str()));
 
-        err = createMatrixOfString(pvApiCtx, THREE, 1, 1, (const char * const *)&str);
-        free(str);
-        if (err.iErr)
+        if (pCall->call(in, opt, 0, out) != types::Function::OK)
         {
-            for (int j = 0; j < 3; j++)
-            {
-                freeAllocatedMatrixOfString(rows[j], cols[j], names[j]);
-            }
-            env.removeobject(ret);
             throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot create the data"));
         }
-
-        SciString(&ONE, const_cast<char *>("!_deff_wrapper"), &ONE, &THREE);
     }
 
     for (int i = 0; i < 3; i++)

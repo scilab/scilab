@@ -4,17 +4,20 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2012 - INRIA - Serge STEER
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
-#include "fftw_utilities.h"
-#include "MALLOC.h"
-#include "callfftw.h"
 #include <math.h>
+#include "fftw_utilities.h"
+#include "sci_malloc.h"
+#include "callfftw.h"
 int check_1D_symmetry(double *Ar, double *Ai, int nA, int iA);
 int check_2D_symmetry(double *Ar, double *Ai, int mA, int iA, int nA, int jA);
 int check_ND_symmetry(double *Ar, double *Ai, int ndims, int *dims, int *incr);
@@ -102,7 +105,8 @@ int FreeFFTWPlan(FFTW_Plan_struct *Sci_Plan)
         FREE(Sci_Plan->gdim.howmany_dims);
         Sci_Plan->gdim.howmany_dims = NULL;
     }
-    return(1);
+
+    return (1);
 }
 /*--------------------------------------------------------------------------*/
 /* Return a valid plan ptr.
@@ -143,102 +147,99 @@ fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
         Sci_Plan = &Sci_Forward_Plan;
     }
 
-    if ( (!(CheckGuruDims(&(Sci_Plan->gdim), gdim))) ||
-            (!CheckKindArray(Sci_Plan->kind, kind, gdim->rank)) ||
-            (Sci_Plan->flags != cur_fftw_flags) ||
-            (Sci_Plan->plan_type != type))
+    /* plan must be changed */
+    FreeFFTWPlan(Sci_Plan);
+
+    Sci_Plan->plan_type = type;
+    if (gdim->rank != 0)
     {
-        /* plan must be changed */
-        FreeFFTWPlan(Sci_Plan);
-
-        Sci_Plan->plan_type = type;
-        if (gdim->rank != 0)
+        Sci_Plan->gdim.rank = gdim->rank;
+        if ((Sci_Plan->gdim.dims = (fftw_iodim *) MALLOC(sizeof(fftw_iodim) * (gdim->rank))) == NULL)
         {
-            Sci_Plan->gdim.rank = gdim->rank;
-            if ((Sci_Plan->gdim.dims = (fftw_iodim *) MALLOC(sizeof(fftw_iodim) * (gdim->rank))) == NULL)
-            {
-                *errflag = 1;
-                return(NULL);
-            }
-            for (i = 0; i < gdim->rank; i++)
-            {
-                Sci_Plan->gdim.dims[i].n  = gdim->dims[i].n;
-                Sci_Plan->gdim.dims[i].is = gdim->dims[i].is;
-                Sci_Plan->gdim.dims[i].os = gdim->dims[i].os;
-            }
-
-            if (kind != NULL)
-            {
-                if ((Sci_Plan->kind = (fftw_r2r_kind *) MALLOC(sizeof(fftw_r2r_kind) * (gdim->rank))) == NULL)
-                {
-                    *errflag = 1;
-                    return(NULL);
-                }
-                for (i = 0; i < gdim->rank; i++)
-                {
-                    Sci_Plan->kind[i]  = kind[i];
-                }
-            }
+            *errflag = 1;
+            return (NULL);
         }
-        if (gdim->howmany_rank != 0)
+        for (i = 0; i < gdim->rank; i++)
         {
-            Sci_Plan->gdim.howmany_rank = gdim->howmany_rank;
-            if ((Sci_Plan->gdim.howmany_dims = (fftw_iodim *) MALLOC(sizeof(fftw_iodim) * (gdim->howmany_rank))) == NULL)
+            Sci_Plan->gdim.dims[i].n  = gdim->dims[i].n;
+            Sci_Plan->gdim.dims[i].is = gdim->dims[i].is;
+            Sci_Plan->gdim.dims[i].os = gdim->dims[i].os;
+        }
+
+        if (kind != NULL)
+        {
+            if ((Sci_Plan->kind = (fftw_r2r_kind *) MALLOC(sizeof(fftw_r2r_kind) * (gdim->rank))) == NULL)
             {
                 FREE(Sci_Plan->gdim.dims);
                 *errflag = 1;
-                return(NULL);
+                return (NULL);
             }
-            for (i = 0; i < gdim->howmany_rank; i++)
+            for (i = 0; i < gdim->rank; i++)
             {
-                Sci_Plan->gdim.howmany_dims[i].n  = gdim->howmany_dims[i].n;
-                Sci_Plan->gdim.howmany_dims[i].is = gdim->howmany_dims[i].is;
-                Sci_Plan->gdim.howmany_dims[i].os = gdim->howmany_dims[i].os;
+                Sci_Plan->kind[i]  = kind[i];
             }
         }
-
-        Sci_Plan->flags = cur_fftw_flags;
-
-        switch (type)
-        {
-            case C2C_PLAN:
-                Sci_Plan->p = call_fftw_plan_guru_split_dft(Sci_Plan->gdim.rank,
-                              Sci_Plan->gdim.dims,
-                              Sci_Plan->gdim.howmany_rank,
-                              Sci_Plan->gdim.howmany_dims,
-                              ri, ii, ro, io,
-                              Sci_Plan->flags);
-                break;
-            case C2R_PLAN:
-                Sci_Plan->p = call_fftw_plan_guru_split_dft_c2r(Sci_Plan->gdim.rank,
-                              Sci_Plan->gdim.dims,
-                              Sci_Plan->gdim.howmany_rank,
-                              Sci_Plan->gdim.howmany_dims,
-                              ri, ii, ro, flags);
-                break;
-            case R2C_PLAN:
-                Sci_Plan->p = call_fftw_plan_guru_split_dft_r2c(Sci_Plan->gdim.rank,
-                              Sci_Plan->gdim.dims,
-                              Sci_Plan->gdim.howmany_rank,
-                              Sci_Plan->gdim.howmany_dims,
-                              ri, ro, io, flags);
-
-                break;
-            case R2R_PLAN:
-                Sci_Plan->p = call_fftw_plan_guru_split_dft_r2r(Sci_Plan->gdim.rank,
-                              Sci_Plan->gdim.dims,
-                              Sci_Plan->gdim.howmany_rank,
-                              Sci_Plan->gdim.howmany_dims,
-                              ri, ro, kind, flags);
-                break;
-        }
-
     }
+
+    if (gdim->howmany_rank != 0)
+    {
+        Sci_Plan->gdim.howmany_rank = gdim->howmany_rank;
+        if ((Sci_Plan->gdim.howmany_dims = (fftw_iodim *) MALLOC(sizeof(fftw_iodim) * (gdim->howmany_rank))) == NULL)
+        {
+            FREE(Sci_Plan->gdim.dims);
+            *errflag = 1;
+            return (NULL);
+        }
+        for (i = 0; i < gdim->howmany_rank; i++)
+        {
+            Sci_Plan->gdim.howmany_dims[i].n  = gdim->howmany_dims[i].n;
+            Sci_Plan->gdim.howmany_dims[i].is = gdim->howmany_dims[i].is;
+            Sci_Plan->gdim.howmany_dims[i].os = gdim->howmany_dims[i].os;
+        }
+    }
+
+    Sci_Plan->flags = cur_fftw_flags;
+
+    switch (type)
+    {
+        case C2C_PLAN:
+            Sci_Plan->p = call_fftw_plan_guru_split_dft(Sci_Plan->gdim.rank,
+                          Sci_Plan->gdim.dims,
+                          Sci_Plan->gdim.howmany_rank,
+                          Sci_Plan->gdim.howmany_dims,
+                          ri, ii, ro, io,
+                          Sci_Plan->flags);
+            break;
+        case C2R_PLAN:
+            Sci_Plan->p = call_fftw_plan_guru_split_dft_c2r(Sci_Plan->gdim.rank,
+                          Sci_Plan->gdim.dims,
+                          Sci_Plan->gdim.howmany_rank,
+                          Sci_Plan->gdim.howmany_dims,
+                          ri, ii, ro, flags);
+            break;
+        case R2C_PLAN:
+            Sci_Plan->p = call_fftw_plan_guru_split_dft_r2c(Sci_Plan->gdim.rank,
+                          Sci_Plan->gdim.dims,
+                          Sci_Plan->gdim.howmany_rank,
+                          Sci_Plan->gdim.howmany_dims,
+                          ri, ro, io, flags);
+
+            break;
+        case R2R_PLAN:
+            Sci_Plan->p = call_fftw_plan_guru_split_dft_r2r(Sci_Plan->gdim.rank,
+                          Sci_Plan->gdim.dims,
+                          Sci_Plan->gdim.howmany_rank,
+                          Sci_Plan->gdim.howmany_dims,
+                          ri, ro, kind, flags);
+            break;
+    }
+
     if (Sci_Plan->p == NULL)
     {
         *errflag = 2;
     }
-    return(Sci_Plan->p);
+
+    return (Sci_Plan->p);
 }
 /*--------------------------------------------------------------------------*/
 /* Check if two guru_dim structures are equal
@@ -260,37 +261,37 @@ int CheckGuruDims(guru_dim_struct *gdim1, guru_dim_struct *gdim2)
         {
             if (gdim1->dims[i].n  != gdim2->dims[i].n)
             {
-                return(0);
+                return (0);
             }
             if (gdim1->dims[i].is != gdim2->dims[i].is)
             {
-                return(0);
+                return (0);
             }
             if (gdim1->dims[i].os != gdim2->dims[i].os)
             {
-                return(0);
+                return (0);
             }
         }
         for (i = 0; i < gdim1->howmany_rank; i++)
         {
             if (gdim1->howmany_dims[i].n  != gdim2->howmany_dims[i].n)
             {
-                return(0);
+                return (0);
             }
             if (gdim1->howmany_dims[i].is != gdim2->howmany_dims[i].is)
             {
-                return(0);
+                return (0);
             }
             if (gdim1->howmany_dims[i].os != gdim2->howmany_dims[i].os)
             {
-                return(0);
+                return (0);
             }
         }
-        return(1);
+        return (1);
     }
     else
     {
-        return(0);
+        return (0);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -308,17 +309,17 @@ int CheckKindArray(fftw_r2r_kind *kind1, fftw_r2r_kind *kind2, int rank)
     int i;
     if ((kind1 == NULL) && (kind2 == NULL))
     {
-        return(1);
+        return (1);
     }
 
     for (i = 0; i < rank; i++)
     {
         if (kind1[i]  != kind2[i])
         {
-            return(0);
+            return (0);
         }
     }
-    return(1);
+    return (1);
 }
 /*--------------------------------------------------------------------------*/
 /* call different fftw_execute_split_dft_xxx procedures according to type input
@@ -753,6 +754,8 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                         {
                             if ((r = check_1D_symmetry(Ar + j, NULL, gdim.dims[0].n, gdim.dims[0].is)) != 1 )
                             {
+                                FREE(dims1);
+                                FREE(incr1);
                                 return r;
                             }
                             j += gdim.howmany_dims[0].is;
@@ -776,6 +779,8 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                         {
                             if ((r = check_1D_symmetry(Ar + j, Ai + j, gdim.dims[0].n, gdim.dims[0].is)) != 1 )
                             {
+                                FREE(dims1);
+                                FREE(incr1);
                                 return r;
                             }
                             j += gdim.howmany_dims[0].is;
@@ -791,6 +796,7 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                     }
                 }
                 FREE(dims1);
+                FREE(incr1);
                 return 1;
             case 2:  /* multiple 2D fft */
                 if (Ai == NULL)
@@ -803,6 +809,8 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                             if ((r = check_2D_symmetry(Ar + j, NULL, gdim.dims[0].n, gdim.dims[0].is,
                                                        gdim.dims[1].n, gdim.dims[1].is)) != 1 )
                             {
+                                FREE(dims1);
+                                FREE(incr1);
                                 return r;
                             }
                             j += gdim.howmany_dims[0].is;
@@ -828,6 +836,8 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                             if ((r = check_2D_symmetry(Ar + j, Ai + j, gdim.dims[0].n, gdim.dims[0].is,
                                                        gdim.dims[1].n, gdim.dims[1].is)) != 1 )
                             {
+                                FREE(dims1);
+                                FREE(incr1);
                                 return r;
                             }
                             j += gdim.howmany_dims[0].is;
@@ -848,11 +858,15 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
             default: /*general N-D case*/
                 if ((dims = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)
                 {
+                    FREE(dims1);
+                    FREE(incr1);
                     return -1;
                 }
                 if ((incr = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)
                 {
                     FREE(dims);
+                    FREE(dims1);
+                    FREE(incr1);
                     return -1;
                 }
                 for (i = 0; i < ndims; i++)
@@ -876,8 +890,9 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                         if (r <= 0)
                         {
                             FREE(dims);
-                            FREE(incr);
                             FREE(dims1);
+                            FREE(incr);
+                            FREE(incr1);
                             return r;
                         }
                         j += gdim.howmany_dims[0].is;
@@ -892,8 +907,9 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                     }
                 }
                 FREE(dims);
-                FREE(incr);
                 FREE(dims1);
+                FREE(incr);
+                FREE(incr1);
                 return 1;
         }
     }
@@ -1234,6 +1250,7 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                     }
                 }
                 FREE(dims1);
+                FREE(incr1);
                 return 0;
             case 2: /* multiple 2D fft */
                 if (Ai == NULL)
@@ -1272,16 +1289,20 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                     }
                 }
                 FREE(dims1);
+                FREE(incr1);
                 return 0;
             default:  /* multiple ND fft */
                 if ((dims = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)
                 {
+                    FREE(dims1);
+                    FREE(incr1);
                     return -1;
                 }
                 if ((incr = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)
                 {
                     FREE(dims);
                     FREE(dims1);
+                    FREE(incr1);
                     return -1;
                 }
                 for (i = 0; i < ndims; i++)
@@ -1303,8 +1324,9 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                     if (r < 0)
                     {
                         FREE(dims);
-                        FREE(incr);
                         FREE(dims1);
+                        FREE(incr);
+                        FREE(incr1);
                         return r;
                     }
                     j += gdim.howmany_dims[0].is;
@@ -1317,10 +1339,9 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                         }
                     }
                 }
-
                 FREE(dims);
-                FREE(incr);
                 FREE(dims1);
+                FREE(incr);
                 FREE(incr1);
         }
     }
@@ -1334,9 +1355,23 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
 
 int withMKL(void)
 {
-    return (call_fftw_export_wisdom_to_string() == NULL);
-}
-/*--------------------------------------------------------------------------*/
+    static int iWithMKL = -1;
+    if (iWithMKL == -1)
+    {
+        char* str = NULL;
+        iWithMKL = 1;
+        str = call_fftw_export_wisdom_to_string();
+        if (str)
+        {
+            iWithMKL = 0;
+            // According to the FFTW documentation we should free str
+            // string but doing makes Scilab crash!?
+            //free(str);
+        }
+    }
+
+    return iWithMKL;
+}/*--------------------------------------------------------------------------*/
 
 
 

@@ -6,9 +6,9 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 // Maple code used to create reference
-//  Digits := 40:
-//  writeto("atand.ref"): interface(prettyprint = 0):
-//  for i from -100  to 100 do print(i, evalf[30](arctan(i)*180/Pi, 30)) end do;
+//  Digits := 40: 
+//  writeto("atand.ref"): interface(prettyprint = 0): 
+//  for i from -100  to 100 do print(i, evalf[30](arctan(i)*180/Pi, 30)) end do; 
 // writeto(terminal):
 pi=%pi;eps=%eps;Inf=%inf;NaN=%nan; //used to make following code runnable under Matlab
 ieee(2);

@@ -6,7 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // 1. Test with a scalar argument
 function y = myfunction (x)
@@ -301,10 +301,10 @@ Q = qr(rand(2, 2));
 funf = list(myfunction6, 7., 8.);
 instr = "J = numderivative(funf, x, [], [], [], Q)";
 lclmsg = "%s: Error while evaluating the function: ""%s""\n";
-assert_checkerror (instr, lclmsg, [], "numderivative", msprintf(_("Inconsistent multiplication.\n")));
+assert_checkerror (instr, lclmsg, [], "numderivative", msprintf(_("Inconsistent row/column dimensions.\n")));
 // 9.3 Various error cases
 x = 2;
-// Correct calling sequence: [J, H] = numderivative(myfunction, x)
+// Correct syntax: [J, H] = numderivative(myfunction, x)
 // Number of input arguments
 instr = "J = numderivative()";
 lclmsg = "%s: Wrong number of input arguments: %d to %d expected.\n";

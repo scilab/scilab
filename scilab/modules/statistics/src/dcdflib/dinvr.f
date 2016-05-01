@@ -44,8 +44,8 @@ C                         DOUBLE PRECISION FX
 C
 C     QLEFT <-- Defined only if QMFINV returns .FALSE.  In that
 C          case it is .TRUE. If the stepping search terminated
-C          unsucessfully at SMALL.  If it is .FALSE. the search
-C          terminated unsucessfully at BIG.
+C          unsuccessfully at SMALL.  If it is .FALSE. the search
+C          terminated unsuccessfully at BIG.
 C                    QLEFT is LOGICAL
 C
 C     QHI <-- Defined only if QMFINV returns .FALSE.  In that
@@ -59,7 +59,6 @@ C**********************************************************************
 C     Modified by S. Steer INRIA 1998,to replace ASSIGN instruction by
 c     Computed GOTO
 C**********************************************************************
-      include 'stack.h'
 C     .. Scalar Arguments ..
       DOUBLE PRECISION fx,x,zabsst,zabsto,zbig,zrelst,zrelto,zsmall,
      +                 zstpmu
@@ -93,7 +92,7 @@ C     .. Executable Statements ..
       IF (status.GT.0) GO TO 310
 
       qcond = .NOT. qxmon(small,x,big)
-      IF (qcond) then 
+      IF (qcond) then
          call basout(io,wte,' SMALL, X, BIG not monotone in INVR')
          status = -100
          return

@@ -14,9 +14,7 @@
 //
 // <-- Short Description -->
 // graypolarplot uses to much memory.
-// 
-
-stacksize('max');
+//
 
 rho=1:256;
 theta=(1:360)./180.*%pi;

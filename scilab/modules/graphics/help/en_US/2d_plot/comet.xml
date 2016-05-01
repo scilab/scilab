@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Serge Steer
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en_US" xml:id="comet">
     <refnamediv>
@@ -15,7 +18,7 @@
         <refpurpose>2D comet animated plot. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>comet(y)</synopsis>
         <synopsis>comet(x,y)</synopsis>
         <synopsis>comet(x,fun)</synopsis>
@@ -56,7 +59,7 @@
                 <term>fun</term>
                 <listitem>
                     <para>
-                        a scilab function with calling sequence <literal>y=fun(x)</literal>.  <varname>fun</varname> can also be a polynomial or a rational fraction.
+                        a scilab function with syntax <literal>y=fun(x)</literal>.  <varname>fun</varname> can also be a polynomial or a rational fraction.
                     </para>
                 </listitem>
             </varlistentry>
@@ -75,7 +78,7 @@
         <para>
             If <literal>(x,y)</literal> are two vectors with the same number
             of elements, this function draws a 2D comet animated plot
-            showing the progession of the curve
+            showing the progression of the curve
             <literal>(x(1:k),y(1:k))</literal> for <literal>k</literal>
             varying from <literal>1</literal> to
             <literal>size(x,'*')</literal>.  

@@ -333,13 +333,13 @@ v = "ハロー・ワールド";
 c = "ド";
 if strsubst(v,c,'ç')<> 'ハロー・ワールç'  then bugmes();quit;end
 v = "เฮลโลเวิลด์";
-c = "เ"; 
+c = "เ";
 if strsubst(v,c,'ç')<> 'çฮลโลçวิลด์' then bugmes();quit;end
 v = "حريات وحقوق";
 c = "قوق";
 if strsubst(v,c,'ç')<> 'حريات وحç'  then bugmes();quit;end
 v = "ഹലോ വേള്‍ഡ";
-c = "‍ഡ"; 
+c = "‍ഡ";
 if strsubst(v,c,'ç')<>'ഹലോ വേള്ç'  then bugmes();quit;end
 v = "תוכנית";
 c = "י";

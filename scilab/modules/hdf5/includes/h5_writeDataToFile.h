@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,12 +18,14 @@
 
 #include "dynlib_hdf5_scilab.h"
 
+#include <hdf5.h>
+
 HDF5_SCILAB_IMPEXP int updateFileVersion(int _iFile);
 HDF5_SCILAB_IMPEXP int updateScilabVersion(int _iFile);
 
-HDF5_SCILAB_IMPEXP char* createGroupName(char* _pstGroupName);
+HDF5_SCILAB_IMPEXP char* createGroupName(const char* _pstGroupName);
 HDF5_SCILAB_IMPEXP char* createPathName(char* _pstGroupName, int _iIndex);
-HDF5_SCILAB_IMPEXP int deleteHDF5Var(int _iFile, char* _pstName);
+HDF5_SCILAB_IMPEXP int deleteHDF5Var(int _iFile, const char* _pstName);
 
 HDF5_SCILAB_IMPEXP int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iDims, int* _piDims, double *_pdblData);
 HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix(int _iFile, char* _pstDatasetName, int _iDims, int* _piDims, double *_pdblReal, double *_pdblImg);
@@ -54,4 +59,19 @@ HDF5_SCILAB_IMPEXP void* openList(int _iFile, char* pstDatasetName, int _iNbItem
 HDF5_SCILAB_IMPEXP int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName);
 HDF5_SCILAB_IMPEXP int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int _iVarType);
 
+
+/*scilab 6*/
+
+HDF5_SCILAB_IMPEXP int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, double* data);
+HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix6(int parent, const char* name, int dims, int* pdims, double* real, double* img);
+HDF5_SCILAB_IMPEXP int writeStringMatrix6(int parent, const char* name, int dims, int* pdims, char** data);
+HDF5_SCILAB_IMPEXP int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int* data);
+HDF5_SCILAB_IMPEXP int writeIntegerMatrix6(int parent, const char* name, int type, const char* prec, int dims, int* pdims, void* data);
+
+HDF5_SCILAB_IMPEXP int openList6(int parent, const char *name, const char* type);
+HDF5_SCILAB_IMPEXP int closeList6(int lst);
+HDF5_SCILAB_IMPEXP int addItemStruct6(int dataset, hobj_ref_t * refs, int pos, const char *name);
+HDF5_SCILAB_IMPEXP int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_ref_t * refs);
+HDF5_SCILAB_IMPEXP int writeVoid6(int parent, const char* name);
+HDF5_SCILAB_IMPEXP int writeUndefined6(int parent, const char* name);
 #endif /* !__H5_WRITEDATATOFILE_H__ */

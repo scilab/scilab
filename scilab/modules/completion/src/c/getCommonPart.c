@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008 - DIGITEO - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -15,14 +18,12 @@
 #include <stdlib.h>
 #include "getCommonPart.h"
 #include "core_math.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int cmp( const void *a , const void *b)
 {
-    return strcmp(*(const char **)a, *(const char **)b );
+    return strcmp(*(char**)a, *(char**)b );
 }
 /*--------------------------------------------------------------------------*/
 static int cmpPos(char *str1, char *str2)
@@ -68,15 +69,16 @@ char *getCommonPart(char **dictionary, int sizeDictionary)
 
     if (sizeDictionary == 1)
     {
-        return strdup(dictionary[0]);
+        return os_strdup(dictionary[0]);
     }
 
     if (sizeDictionary >= 2)
     {
         int i = 0;
         int r = 0;
-        char *currentstr = dictionary[0];
-        qsort(dictionary, sizeof dictionary / sizeof dictionary[0], sizeof dictionary[0], cmp);
+        char *currentstr = NULL;
+        qsort(dictionary, sizeDictionary, sizeof dictionary[0], cmp);
+        currentstr = dictionary[0];
 
         r = cmpPos(currentstr, dictionary[1]);
         for (i = 1; i < sizeDictionary - 1; i++)
@@ -89,7 +91,7 @@ char *getCommonPart(char **dictionary, int sizeDictionary)
             }
         }
 
-        commonpart = strdup(currentstr);
+        commonpart = os_strdup(currentstr);
         commonpart[r] = '\0';
     }
     return commonpart;

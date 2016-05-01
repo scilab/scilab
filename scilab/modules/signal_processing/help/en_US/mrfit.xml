@@ -5,7 +5,7 @@
         <refpurpose>frequency response fit</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sys=mrfit(w,mag,order)
             [num,den]=mrfit(w,mag,order)
             sys=mrfit(w,mag,order,weight)
@@ -61,7 +61,7 @@
             its frequency response magnitude <literal>abs(G(w(i)))</literal> 
             matches <literal>mag(i)</literal> i.e. <literal>abs(freq(num,den,%i*w))</literal> should be 
             close to <literal>mag</literal>.
-            <literal>weight(i)</literal> is the weigth given to <literal>w(i)</literal>.
+            <literal>weight(i)</literal> is the weight given to <literal>w(i)</literal>.
         </para>
     </refsection>
     <refsection>

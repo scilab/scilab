@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Bruno JOFRET
@@ -12,11 +13,8 @@
 assert_checkequal(stdev(0), 0);
 assert_checkequal(stdev(zeros(3,3)), 0);
 assert_checkequal(stdev(zeros(3,3,3)), 0);
-// stdev returns 0 when asking for singleton dimensions
 assert_checkequal(stdev(1, 1), 0);
 assert_checkequal(stdev(1, 2), 0);
-assert_checkequal(stdev(ones(3,3), 3), zeros(3,3));
-assert_checkequal(stdev(ones(3,3,3), 4), zeros(3,3,3));
 
 rand("seed", 0);
 a = rand(3, 3, 3);

@@ -4,11 +4,14 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Cong WU
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -17,13 +20,14 @@
 #include "gw_elementary_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
-#include "msgs.h"
-#include "setieee.h"
+#include "sciprint.h"
+#include "configvariable_interface.h"
+#include "Sciwarning.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_log10(char *fname, unsigned long fname_len)
+int sci_log10(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int i = 0;
@@ -37,7 +41,11 @@ int sci_log10(char *fname, unsigned long fname_len)
     double* pIn = NULL;
     double* pOutR = NULL;
     double* pOutI = NULL;
-    double imag = M_PI / log(10.0);
+
+    // Wolfram Alpha : Pi / log(10)
+    const double imag = 1.364376353841841347485783625431355770210127483723925399900;
+    // Wolfram Alpha : 1 / log(10)
+    const double inverseLog10 = 0.434294481903251827651128918916605082294397005803666566114;
 
     int iRhs = nbInputArgument(pvApiCtx);
 
@@ -93,13 +101,13 @@ int sci_log10(char *fname, unsigned long fname_len)
     {
         if (getieee() == 0)
         {
-            SciError(32);
+            Scierror(999, "Singularity of log or tan function.\n");
             return 0;
         }
 
         if (getieee() == 1)
         {
-            Msgs(64, 0);
+            Sciwarning(_("Warning : singularity of 'log' or 'tan' function.\n"));
         }
     }
 
@@ -129,12 +137,14 @@ int sci_log10(char *fname, unsigned long fname_len)
     {
         if (pIn[i] < 0)
         {
-            pOutR[i] = log10(-pIn[i]);
+            // log10 = log * 1/log(10)
+            pOutR[i] = log(-pIn[i]) * inverseLog10;
             pOutI[i] = imag;
         }
         else
         {
-            pOutR[i] = log10(pIn[i]);
+            // log10 = log * 1/log(10)
+            pOutR[i] = log(pIn[i]) * inverseLog10;
         }
     }
 
@@ -142,3 +152,4 @@ int sci_log10(char *fname, unsigned long fname_len)
     ReturnArguments(pvApiCtx);
     return 0;
 }
+

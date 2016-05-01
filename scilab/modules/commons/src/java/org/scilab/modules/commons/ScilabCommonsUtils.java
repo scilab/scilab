@@ -2,11 +2,14 @@
  * Scilab (http://www.scilab.org/) - This file is part of Scilab
  * Copyright (C) 2011 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,10 +19,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import javax.swing.SwingUtilities;
 
 /**
  * Basic utils
@@ -154,20 +160,47 @@ public final class ScilabCommonsUtils {
      * @param str the action
      */
     public static void loadOnUse(String str) {
+        final String finalStr = str;
         try {
-            Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
-            Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
-            loadOnUseMethod.invoke(null, str);
-        } catch (java.lang.ClassNotFoundException ex) {
-            System.err.println("Could not find the Scilab class to load dependency: " + ex);
-        } catch (java.lang.NoSuchMethodException ex) {
-            System.err.println("Could not find the Scilab method to load dependency: " + ex);
-        } catch (java.lang.IllegalAccessException ex) {
-            System.err.println("Could not access to the Scilab method to load dependency: " + ex);
-        } catch (java.lang.reflect.InvocationTargetException ex) {
-            System.err.println("Could not invoke the Scilab method to load dependency: " + ex);
+            if (SwingUtilities.isEventDispatchThread()) {
+                try {
+                    Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
+                    Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
+                    loadOnUseMethod.invoke(null, finalStr);
+                } catch (java.lang.ClassNotFoundException ex) {
+                    System.err.println("Could not find the Scilab class to load dependency: " + ex);
+                } catch (java.lang.NoSuchMethodException ex) {
+                    System.err.println("Could not find the Scilab method to load dependency: " + ex);
+                } catch (java.lang.IllegalAccessException ex) {
+                    System.err.println("Could not access to the Scilab method to load dependency: " + ex);
+                } catch (java.lang.reflect.InvocationTargetException ex) {
+                    System.err.println("Could not invoke the Scilab method to load dependency: " + ex);
+                }
+            } else {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
+                            Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
+                            loadOnUseMethod.invoke(null, finalStr);
+                        } catch (java.lang.ClassNotFoundException ex) {
+                            System.err.println("Could not find the Scilab class to load dependency: " + ex);
+                        } catch (java.lang.NoSuchMethodException ex) {
+                            System.err.println("Could not find the Scilab method to load dependency: " + ex);
+                        } catch (java.lang.IllegalAccessException ex) {
+                            System.err.println("Could not access to the Scilab method to load dependency: " + ex);
+                        } catch (java.lang.reflect.InvocationTargetException ex) {
+                            System.err.println("Could not invoke the Scilab method to load dependency: " + ex);
+                        }
+                    }
+                });
+            }
+        } catch (final InterruptedException e) {
+        } catch (final InvocationTargetException e) {
         }
     }
+
 
     /**
      * Set the scilab thread as the current thread

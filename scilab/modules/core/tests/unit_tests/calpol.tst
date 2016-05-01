@@ -1,10 +1,11 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// 
+//
 
 deff('[ok]=cmpr(h1,h2,eps)',['h1=h1-h2;';
          'if norm(coeff(h1(2)))>eps then ok=0,else ok=1,end'])
@@ -33,7 +34,7 @@ assert_checkequal(cmpr(h1 + x, rlist(num + x * den, den, []), eps), 1);
 assert_checkequal(cmpr(x + h1, rlist(num + x * den, den, []), eps), 1);
 assert_checkequal(cmpr(h1 - x, rlist(num - x * den, den, []), eps), 1);
 assert_checkequal(cmpr(x - h1, rlist(-num + x * den, den, []), eps), 1);
- 
+
 x = 1.5 + 3 * s;
 assert_checkequal(cmpr(h1 + x, rlist(num + x * den, den, []), eps), 1);
 assert_checkequal(cmpr(x + h1, rlist(num + x * den, den, []), eps), 1);
@@ -117,7 +118,7 @@ assert_checkequal(cmpr(h1(2, 1), den / num, eps), 1);
 assert_checkequal(cmpr(h1(1:2, 1), h1, eps), 1);
 assert_checkequal(cmpr(h1([2 1], 1), [den / num ; num / den], eps), 1);
 
-y = -0.5 + s ** 3; 
+y = -0.5 + s ** 3;
 h1 = [num / den, den / num];
 h2 = [num / den, den / num; num / y, y * y / (y + 1)];
 assert_checkequal(cmpr(h2(2, 1), num / y, eps), 1);
@@ -183,7 +184,7 @@ assert_checkequal(cmpr(hh, x([2 1]), eps), 1);
 hh = h1;
 hh([2;1], 1) = x;
 assert_checkequal(cmpr(hh, x([2 1]), eps), 1);
- 
+
 h1 = [num / den, den / num];
 x = 0.33 * s + 1;
 hh = h1;
@@ -230,7 +231,7 @@ hh = h1;
 hh(:,:) = x;
 assert_checkequal(cmpr(hh, x, eps), 1);
 
-hh = h1; 
+hh = h1;
 hh([2 1], 1) = x;
 assert_checkequal(cmpr(hh, x([2 1]), eps), 1);
 
@@ -289,7 +290,7 @@ hh([2;1],1) = x;
 assert_checkequal(cmpr(hh, x([2 1], 1), eps), 1);
 
 //
-// matrix operations 
+// matrix operations
 //
 h1 = [num / den, den / num];
 x = [0.3 1.5];
@@ -302,11 +303,11 @@ assert_checkequal(cmpr(x - h1, [-h1(1,1) + x(1,1) -h1(1,2) + x(1,2)], eps), 1);
 h1 = [num / den; den / num];
 x = [0.3; 1.5];
 assert_checkequal(cmpr(-h1, (-1) * h1, eps), 1);
-assert_checkequal(cmpr(h1 + x, [h1(1,1) + x(1,1); h1(2,1) + x(2,1)], eps), 1); 
+assert_checkequal(cmpr(h1 + x, [h1(1,1) + x(1,1); h1(2,1) + x(2,1)], eps), 1);
 assert_checkequal(cmpr(x + h1, [h1(1,1) + x(1,1); h1(2,1) + x(2,1)], eps), 1);
-assert_checkequal(cmpr(h1 - x, [h1(1,1) - x(1,1); h1(2,1) - x(2,1)], eps), 1); 
-assert_checkequal(cmpr(x - h1, [-h1(1,1) + x(1,1); -h1(2,1) + x(2,1)], eps), 1);  
- 
+assert_checkequal(cmpr(h1 - x, [h1(1,1) - x(1,1); h1(2,1) - x(2,1)], eps), 1);
+assert_checkequal(cmpr(x - h1, [-h1(1,1) + x(1,1); -h1(2,1) + x(2,1)], eps), 1);
+
 h1 = [num / den, den / num];
 x=[0.3 + s, 1.5];
 assert_checkequal(cmpr(-h1, (-1) * h1, eps), 1);
@@ -318,10 +319,10 @@ assert_checkequal(cmpr(x - h1,[-h1(1,1) + x(1,1) -h1(1,2) + x(1,2)], eps), 1);
 h1 = [num / den; den / num];
 x = [0.3; 1.5 - 3 * s];
 assert_checkequal(cmpr(-h1, (-1) * h1, eps), 1);
-assert_checkequal(cmpr(h1 + x, [h1(1,1) + x(1,1); h1(2,1) + x(2,1)], eps), 1); 
-assert_checkequal(cmpr(x + h1, [h1(1,1) + x(1,1); h1(2,1) + x(2,1)], eps), 1); 
-assert_checkequal(cmpr(h1 - x, [h1(1,1) - x(1,1); h1(2,1) - x(2,1)], eps), 1); 
-assert_checkequal(cmpr(x - h1, [-h1(1,1) + x(1,1); -h1(2,1) + x(2,1)], eps), 1); 
+assert_checkequal(cmpr(h1 + x, [h1(1,1) + x(1,1); h1(2,1) + x(2,1)], eps), 1);
+assert_checkequal(cmpr(x + h1, [h1(1,1) + x(1,1); h1(2,1) + x(2,1)], eps), 1);
+assert_checkequal(cmpr(h1 - x, [h1(1,1) - x(1,1); h1(2,1) - x(2,1)], eps), 1);
+assert_checkequal(cmpr(x - h1, [-h1(1,1) + x(1,1); -h1(2,1) + x(2,1)], eps), 1);
 
 //
 h1 = [num / den, den / num];
@@ -344,7 +345,7 @@ assert_checkequal(cmpr([num; den] / den, [num / den; 1], eps), 1);
 assert_checkequal(cmpr(den \ [num; den],[num / den; 1], eps), 1);
 assert_checkequal(cmpr([num; den]./[den; num], h1, eps), 1);
 assert_checkequal(cmpr([den; num].\[num; den], h1, eps), 1);
- 
+
 x = [0.3; 1.5];
 assert_checkequal(cmpr(h1 / x(1), [h1(1,1) / x(1); h1(2,1) / x(1)], eps), 1);
 assert_checkequal(cmpr(x(1) \ h1, [h1(1,1) / x(1) ; h1(2,1) / x(1)], eps), 1);
@@ -384,7 +385,7 @@ assert_checkequal(cmpr(h1 ./ x, [h1(1,1) / x(1,1), h1(1,2) / x(1,2)], eps), 1);
 assert_checkequal(cmpr(x .\ h1, [h1(1,1) / x(1,1), h1(1,2) / x(1,2)], eps), 1);
 assert_checkequal(cmpr(h1 * x(1,1), [h1(1,1) * x(1,1), h1(1,2) * x(1,1)], eps), 1);
 assert_checkequal(cmpr(h1 .* x, [h1(1,1) * x(1,1), h1(1,2) * x(1,2)], eps), 1);
- 
+
 h1 = [num /den; den / num];
 x = [0.3 / s; 1.5 - s**2 / (1 + s**2)];
 assert_checkequal(cmpr(h1 / x(1,1), [h1(1,1) / x(1,1); h1(2,1) /  x(1,1)], eps), 1);
@@ -436,7 +437,7 @@ assert_checkalmostequal(norm(coeff([s un] * q - [p 0])), 0, [], 10 * %eps);
 assert_checkalmostequal(norm(coeff([un un] * q - [p 0])), 0, [], 10 * %eps);
 
 [p, q] = bezout(zer, s);
-assert_checkalmostequal(norm(coeff([zer s] * q - [p 0])), 0, [], 10 * %eps); 
+assert_checkalmostequal(norm(coeff([zer s] * q - [p 0])), 0, [], 10 * %eps);
 
 [p, q] = bezout(s, zer);
 assert_checkalmostequal(norm(coeff([s zer] * q - [p 0])), 0, [], 10 * %eps);
@@ -449,11 +450,11 @@ assert_checkalmostequal(norm(coeff([zer un] * q - [p 0])), 0, [], 10 * %eps);
 
 [p,q] = bezout(un, zer);
 assert_checkalmostequal(norm(coeff([un zer] * q - [p 0])), 0, [], 10 * %eps);
- 
+
 //simple
 a = poly([1 2 3], 'z');
 b = poly([4 1], 'z');
- 
+
 [p q] = bezout(a, b);
 dt = q(1,1) * q(2,2) - q(1,2) * q(2,1);
 dt0 = coeff(dt, 0);
@@ -462,7 +463,7 @@ assert_checkalmostequal(norm(coeff(dt / dt0 - 1)), 0, [], 10 * %eps);
 qi = [q(2,2) -q(1,2); -q(2,1) q(1,1)] / dt0;
 assert_checkalmostequal(norm(coeff([p 0] * qi - [a b])), 0, [], 100 * %eps);
 
-//more difficult 
+//more difficult
 b1 = poly([4 1 + 1000 * %eps], 'z');
 del = 10 * norm(coeff(b1 - b));
 [p, q] = bezout(a, b1);
@@ -472,7 +473,7 @@ assert_checkalmostequal(norm(coeff(dt / dt0 - 1)), 0, [], del);
 
 qi = [q(2,2) -q(1,2); -q(2,1) q(1,1)] / dt0;
 assert_checkalmostequal(norm(coeff([p 0] * qi - [a b1])), 0, [], del);
- 
+
 b1 = poly([4 1 + .001], 'z');
 del = 10 * norm(coeff(b1 - b));
 [p, q]=bezout(a, b1);
@@ -494,27 +495,27 @@ qi = [q(2,2) -q(1,2); -q(2,1) q(1,1)] / dt0;
 assert_checkalmostequal(norm(coeff([p 0] * qi - [a b1])), 0, [], del);
 
 z = poly(0, 'z');
-num = 0.99999999999999922 + z *(-4.24619123578530730 + ..
-      z * (10.0503215227460350 + z * (-14.6836461849931740 + ..
-      z * (13.924822877119892 + z * (-5.63165998008533460 + ..
-      z * (-5.63165998008530710 + z * (13.9248228771198730 + ..
-      z * (-14.683646184993167 + z * (10.0503215227460330 + ..
-      z * (-4.24619123578530910 + z * (0.99999999999999989)))))))))));
-den = -0.17323463717888873 + z * (1.91435457459735380 + ..
-      z * (-9.90126732768255560 + z * (31.6286096652930410 + ..
-      z * (-69.3385546880304280 + z * (109.586435800377690+..
-      z * (-127.516160100808290 + z * (109.388684898145950+..
-      z * (-67.92645394857864+z*(29.1602681026148110+..
-      z * (-7.8212498781094952+z*(0.99999999999999989)))))))))));
-      
+num =   0.99999999999999922 + z *(-4.24619123578530730 + ...
+        z * (10.0503215227460350 + z * (-14.6836461849931740 + ...
+        z * (13.924822877119892 + z * (-5.63165998008533460 + ...
+        z * (-5.63165998008530710 + z * (13.9248228771198730 + ...
+        z * (-14.683646184993167 + z * (10.0503215227460330 + ...
+        z * (-4.24619123578530910 + z * (0.99999999999999989)))))))))));
+den =   -0.17323463717888873 + z * (1.91435457459735380 + ...
+        z * (-9.90126732768255560 + z * (31.6286096652930410 + ...
+        z * (-69.3385546880304280 + z * (109.586435800377690+ ...
+        z * (-127.516160100808290 + z * (109.388684898145950+ ...
+        z * (-67.92645394857864+z*(29.1602681026148110+ ...
+        z * (-7.8212498781094952+z*(0.99999999999999989)))))))))));
+
 [p, q] = bezout(num, den);
 del = 1.d-4;
-dt = q(1,1) * q(2,2) - q(1,2) * q(2,1); 
+dt = q(1,1) * q(2,2) - q(1,2) * q(2,1);
 dt0 = coeff(dt,0);
 assert_checkalmostequal(norm(coeff(dt / dt0 - 1)), 0, [], del);
 
 qi = [q(2,2) -q(1,2); -q(2,1) q(1,1)] / dt0;
-// JPC 
+// JPC
 del = 3 * del;
 assert_checkalmostequal(norm(coeff([p 0] * qi - [num den])), 0, [], del);
 assert_checkalmostequal(degree(p), 0, [], del);

@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [tree]=sci_beta(tree)
     // M2SCI function
@@ -20,14 +23,14 @@ function [tree]=sci_beta(tree)
 
     if is_a_scalar(A) & not_a_scalar(B) then // A is a scalar but not B
         n=gettempvar()
-        insert(Equal(list(n),B))
-        insert(Equal(list(Operation("ins",list(n,Cste(":")),list())),A))
+        m2sci_insert(Equal(list(n),B))
+        m2sci_insert(Equal(list(Operation("ins",list(n,Cste(":")),list())),A))
         tree.rhs(1)=n
         tree.lhs(1).dims=B.dims
     elseif is_a_scalar(B) & not_a_scalar(A) then // B is be a scalar but not A
         n=gettempvar()
-        insert(Equal(list(n),A))
-        insert(Equal(list(Operation("ins",list(n,Cste(":")),list())),B))
+        m2sci_insert(Equal(list(n),A))
+        m2sci_insert(Equal(list(Operation("ins",list(n,Cste(":")),list())),B))
         tree.rhs(2)=n
         tree.lhs(1).dims=A.dims
     elseif is_a_scalar(A) & is_a_scalar(B) then // Both A and B are scalars

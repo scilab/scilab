@@ -13,15 +13,15 @@ errmsg1 = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\
 assert_checkerror("fileparts(SCI+''/etc/scilab.start'', ""extension"", ""extension"")", errmsg1);
 errmsg2 = msprintf(_("%s: Wrong number of output arguments: %d expected.\n"),  "fileparts", 1);
 assert_checkerror("[a,b] = fileparts(SCI+''/etc/scilab.start'',""extension"")", errmsg2);
-errmsg3 = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "fileparts", 1);
+errmsg3 = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "fileparts", 1);
 assert_checkerror("[path,fname,extension] = fileparts([]);", errmsg3);
 errmsg4 = msprintf(_("%s: Wrong value for input argument #%d.\n"), "fileparts", 2);
 assert_checkerror("extension = fileparts(SCI+''/etc/scilab.start'',''rpr'');", errmsg4);
-errmsg5 = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "fileparts", 2);
+errmsg5 = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "fileparts", 2);
 assert_checkerror("extension = fileparts(SCI+''/etc/scilab.start'',10);", errmsg5);
-errmsg6 = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "fileparts", 1);
+errmsg6 = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "fileparts", 1);
 assert_checkerror("extension = fileparts(10,10);", errmsg6);
-errmsg7 = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "fileparts", 2);
+errmsg7 = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "fileparts", 2);
 assert_checkerror("fileparts(SCI+''/etc/scilab.start'', [""extension"", ""extension""])", errmsg7);
 // For a string
 [path,fname,extension] = fileparts(SCI+'/etc/scilab.start');

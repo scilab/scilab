@@ -10,7 +10,7 @@
         <refpurpose>Export a palette instance to a path.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xcosPalExport(pal, path);
             status = xcosPalExport(pal, path);

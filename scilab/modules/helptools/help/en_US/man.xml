@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="man" xml:lang="en">
@@ -60,7 +63,7 @@ xmlns:xlink="http://www.w3.org/1999/xlink"
 xmlns:svg="http://www.w3.org/2000/svg"
 xmlns:ns4="http://www.w3.org/1999/xhtml"
 xmlns:mml="http://www.w3.org/1998/Math/MathML"
-xmlns:db="http://docbook.org/ns/docbook"&gt; 
+xmlns:db="http://docbook.org/ns/docbook"&gt;
  ]]></programlisting>
         <para role="bold">Example:</para>
         <programlisting role="example"><![CDATA[
@@ -91,7 +94,7 @@ end
     &lt;refpurpose&gt;Add short description here. &lt;/refpurpose&gt;
   &lt;/refnamediv&gt;
   &lt;refsynopsisdiv&gt;
-    &lt;title&gt;Calling Sequence&lt;/title&gt;
+    &lt;title&gt;Syntax&lt;/title&gt;
     &lt;synopsis&gt;y = foo(a,b,c)&lt;/synopsis&gt;
   &lt;/refsynopsisdiv&gt;
   &lt;refsection&gt;
@@ -134,8 +137,8 @@ end
   &lt;refsection&gt;
     &lt;title&gt;Description&lt;/title&gt;
     &lt;para&gt;
-      Add here a paragraph of the function description. 
-      Other paragraph can be added 
+      Add here a paragraph of the function description.
+      Other paragraph can be added
     &lt;/para&gt;
     &lt;para&gt;With a latex expression
     &lt;latex&gt;
@@ -149,7 +152,7 @@ end
     &lt;title&gt;More information&lt;/title&gt;
     &lt;note&gt;&lt;para&gt;A note about foo&lt;/para&gt;&lt;/note&gt;
     &lt;caution&gt;&lt;para&gt;A caution about foo&lt;/para&gt;&lt;/caution&gt;
-    &lt;warning&gt;&lt;para&gt;A warsning about foo&lt;/para&gt;&lt;/warning&gt;
+    &lt;warning&gt;&lt;para&gt;A warning about foo&lt;/para&gt;&lt;/warning&gt;
     &lt;important&gt;&lt;para&gt;A important about foo&lt;/para&gt;&lt;/important&gt;
     &lt;tip&gt;&lt;para&gt;A tip about foo&lt;/para&gt;&lt;/tip&gt;
   &lt;/refsection&gt;
@@ -218,7 +221,7 @@ end
     </refsection>
     <refsection>
         <title>List of docbook supported tags</title>
-        <para>Generic tags
+        <para>Sectionning and referencing tags:
             <informaltable border="1">
                 <tr>
                     <td>
@@ -228,9 +231,9 @@ end
                 </tr>
                 <tr>
                     <td>
-                        <ulink url="http://docbook.org/tdg/en/html/section.html">section</ulink>
+                        <ulink url="http://docbook.org/tdg/en/html/refsection.html">refsection</ulink>
                     </td>
-                    <td>A recursive section</td>
+                    <td>A recursive section in a refentry</td>
                 </tr>
                 <tr>
                     <td>
@@ -252,9 +255,9 @@ end
                 </tr>
                 <tr>
                     <td>
-                        <ulink url="http://docbook.org/tdg/en/html/title.html">title</ulink>
+                        <ulink url="http://docbook.org/tdg/en/html/section.html">section</ulink>
                     </td>
-                    <td>The text of the title of a section of a document or of a formal block-level element</td>
+                    <td>A recursive section</td>
                 </tr>
                 <tr>
                     <td>
@@ -262,12 +265,11 @@ end
                     </td>
                     <td>A paragraph</td>
                 </tr>
-                <tr>
-                    <td>
-                        <ulink url="http://docbook.org/tdg/en/html/literal.html">literal</ulink>
-                    </td>
-                    <td>Inline text that is some literal value</td>
-                </tr>
+            </informaltable>
+        </para>
+
+        <para>Contents types:
+            <informaltable border="1">
                 <tr>
                     <td>
                         <ulink url="http://docbook.org/tdg/en/html/refnamediv.html">refnamediv</ulink>
@@ -301,9 +303,16 @@ end
                 </tr>
                 <tr>
                     <td>
-                        <ulink url="http://docbook.org/tdg/en/html/refsection.html">refsection</ulink>
+                        <ulink url="http://docbook.org/tdg/en/html/title.html">title</ulink>
                     </td>
-                    <td>A recursive section in a refentry</td>
+                    <td>The text of the title of a section of a document or of a formal block-level element</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/informalequation.html">informalequation</ulink>
+                    </td>
+                    <td>A displayed mathematical equation without a title
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -319,46 +328,75 @@ end
                 </tr>
                 <tr>
                     <td>
+                        <ulink url="http://docbook.org/tdg/en/html/caption.html">caption</ulink>
+                    </td>
+                    <td>A caption</td>
+                </tr>
+                <tr>
+                    <td>
                         <ulink url="http://docbook.org/tdg/en/html/pubdate.html">pubdate</ulink>
                     </td>
                     <td>The date of publication of a document</td>
                 </tr>
                 <tr>
                     <td>
-                        <ulink url="http://docbook.org/tdg/en/html/link.html">link</ulink>
+                        <ulink url="http://docbook.org/tdg/en/html/bibliomset.html">bibliomset</ulink>
                     </td>
-                    <td>A hypertext link</td>
+                    <td>A 'cooked' container for related bibliographic information</td>
                 </tr>
                 <tr>
                     <td>
-                        <ulink url="http://docbook.org/tdg/en/html/ulink.html">ulink</ulink>
+                        <ulink url="http://docbook.org/tdg/en/html/bibliomixed.html">bibliomixed</ulink>
                     </td>
-                    <td>A link that addresses its target by means of a URL (Uniform Resource Locator)</td>
+                    <td>An entry in a Bibliography</td>
                 </tr>
                 <tr>
                     <td>
-                        <ulink url="http://docbook.org/tdg/en/html/xref.html">xref</ulink>
+                        <ulink url="http://docbook.org/tdg/en/html/surname.html">surname</ulink>
                     </td>
-                    <td>A cross reference to another part of the document</td>
+                    <td>A family name; in western cultures the 'last name'</td>
                 </tr>
                 <tr>
                     <td>
-                        <ulink url="http://docbook.org/tdg/en/html/term.html">term</ulink>
+                        <ulink url="http://docbook.org/tdg/en/html/firstname.html">firstname</ulink>
                     </td>
-                    <td>The word or phrase being defined or described in a variable list</td>
+                    <td>The first name of a person
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/replaceable.html">replaceable</ulink>
+                    </td>
+                    <td>Content that may or must be replaced by the user
+                    </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>Contents styles:
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/function.html">function</ulink>
+                    </td>
+                    <td>The name of a function or subroutine, as in a programming language</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/varname.html">varname</ulink>
+                    </td>
+                    <td>The name of a variable</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/literal.html">literal</ulink>
+                    </td>
+                    <td>Inline text that is some literal value</td>
                 </tr>
                 <tr>
                     <td>
                         <ulink url="http://docbook.org/tdg/en/html/emphasis.html">emphasis</ulink>
                     </td>
                     <td>Emphasized text</td>
-                </tr>
-                <tr>
-                    <td>
-                        <ulink url="http://docbook.org/tdg/en/html/informalequation.html">informalequation</ulink>
-                    </td>
-                    <td>A displayed mathematical equation without a title
-                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -376,43 +414,27 @@ end
                         A superscript (as in x<superscript>2</superscript>, the mathematical notation for x multiplied by itself)
                     </td>
                 </tr>
+            </informaltable>
+        </para>
+        <para>Links:
+            <informaltable border="1">
                 <tr>
                     <td>
-                        <ulink url="http://docbook.org/tdg/en/html/replaceable.html">replaceable</ulink>
+                        <ulink url="http://docbook.org/tdg/en/html/ulink.html">ulink</ulink>
                     </td>
-                    <td>Content that may or must be replaced by the user
-                    </td>
+                    <td>A link that addresses its target by means of a URL (Uniform Resource Locator)</td>
                 </tr>
                 <tr>
                     <td>
-                        <ulink url="http://docbook.org/tdg/en/html/caption.html">caption</ulink>
+                        <ulink url="http://docbook.org/tdg/en/html/link.html">link</ulink>
                     </td>
-                    <td>A caption</td>
+                    <td>A hypertext link</td>
                 </tr>
                 <tr>
                     <td>
-                        <ulink url="http://docbook.org/tdg/en/html/surname.html">surname</ulink>
+                        <ulink url="http://docbook.org/tdg/en/html/xref.html">xref</ulink>
                     </td>
-                    <td>A family name; in western cultures the 'last name'</td>
-                </tr>
-                <tr>
-                    <td>
-                        <ulink url="http://docbook.org/tdg/en/html/firstname.html">firstname</ulink>
-                    </td>
-                    <td>The first name of a person
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <ulink url="http://docbook.org/tdg/en/html/bibliomset.html">bibliomset</ulink>
-                    </td>
-                    <td>A 'cooked' container for related bibliographic information</td>
-                </tr>
-                <tr>
-                    <td>
-                        <ulink url="http://docbook.org/tdg/en/html/bibliomixed.html">bibliomixed</ulink>
-                    </td>
-                    <td>An entry in a Bibliography</td>
+                    <td>A cross reference to another part of the document</td>
                 </tr>
             </informaltable>
         </para>
@@ -432,25 +454,6 @@ end
                 </tr>
                 <tr>
                     <td>
-                        <ulink url="http://docbook.org/tdg/en/html/listitem.html">listitem</ulink>
-                    </td>
-                    <td>A wrapper for the elements of a list item
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <ulink url="http://docbook.org/tdg/en/html/varlistentry.html">varlistentry</ulink>
-                    </td>
-                    <td>A wrapper for a set of terms and the associated description in a variable list</td>
-                </tr>
-                <tr>
-                    <td>
-                        <ulink url="http://docbook.org/tdg/en/html/variablelist.html">variablelist</ulink>
-                    </td>
-                    <td>A list in which each entry is composed of a set of one or more terms and an associated description</td>
-                </tr>
-                <tr>
-                    <td>
                         <ulink url="http://docbook.org/tdg/en/html/itemizedlist.html">itemizedlist</ulink>
                     </td>
                     <td>A list in which each entry is marked with a bullet or other dingbat
@@ -462,6 +465,31 @@ end
                     </td>
                     <td>A list in which each entry is marked with a sequentially incremented label
                     </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/listitem.html">listitem</ulink>
+                    </td>
+                    <td>A wrapper for the elements of a list item
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/variablelist.html">variablelist</ulink>
+                    </td>
+                    <td>A list in which each entry is composed of a set of one or more terms and an associated description</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/term.html">term</ulink>
+                    </td>
+                    <td>The word or phrase being defined or described in a variable list</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/varlistentry.html">varlistentry</ulink>
+                    </td>
+                    <td>A wrapper for a set of terms and the associated description in a variable list</td>
                 </tr>
             </informaltable>
         </para>
@@ -665,7 +693,7 @@ end
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revdescription>Management of tags &lt;note&gt;, &lt;caution&gt;, &lt;warning&gt;, &lt;important&gt; and &lt;tip&gt; 
+                <revdescription>Management of tags &lt;note&gt;, &lt;caution&gt;, &lt;warning&gt;, &lt;important&gt; and &lt;tip&gt;
                 </revdescription>
             </revision>
         </revhistory>

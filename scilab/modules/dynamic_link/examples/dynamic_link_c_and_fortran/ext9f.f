@@ -26,7 +26,7 @@ c     -->param=[0.04,10000,3d+7];
 c     -->y=ode([1;0;0],0,[0.4,4],list('ext9f',param))
 c     param is retrieved in ext9f by:
 c     param(1)=y(n+1) , param(2)=y(n+2) etc 
-c     with this calling sequence y is a n+np vector
+c     with this syntax y is a n+np vector
 c     where np=dimension of scilab variable param
 c
 

@@ -4,11 +4,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,7 +19,7 @@
 /* file: sci_fec.c                                                        */
 /* desc : interface for sci_fec routine                                   */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "GetCommandArg.h"
@@ -27,7 +30,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_fec(char *fname, unsigned long fname_len)
+int sci_fec(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0, mn1 = 0;
@@ -68,7 +71,7 @@ int sci_fec(char *fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
 
@@ -80,7 +83,7 @@ int sci_fec(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (FirstOpt() < 5)
+    if (FirstOpt(pvApiCtx) < 5)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 5);
         return -1;

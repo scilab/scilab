@@ -27,7 +27,7 @@
         <refpurpose>set the block error number</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>set_blockerror(n)</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_set_blockerror">

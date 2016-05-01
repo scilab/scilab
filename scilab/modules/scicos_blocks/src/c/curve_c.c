@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include "scicos.h"
 #include "scicos_block4.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos_evalhermite.h"
@@ -49,7 +49,7 @@ SCICOS_BLOCKS_IMPEXP void curve_c(scicos_block *block, int flag)
 
     switch (flag)
     {
-            /* init */
+        /* init */
         case 4  :  /* the workspace is used to store discrete counter value */
         {
             if ((*work = (int*) scicos_malloc(4 * sizeof(int))) == NULL)

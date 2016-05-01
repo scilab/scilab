@@ -3,11 +3,14 @@
 //                                                        (third input argument)
 // Copyright (C) 2000 - INRIA - Carlos Klimann
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
 
 function sd = stdev(x, o, m)
@@ -33,7 +36,8 @@ function sd = stdev(x, o, m)
     [lhs, rhs] = argn(0);
 
     if rhs < 1 then
-        error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"stdev",1,3));
+        msg = _("%s: Wrong number of input arguments: %d to %d expected.\n")
+        error(msprintf(msg, "stdev", 1, 3))
     end
 
     if rhs < 2 then
@@ -48,19 +52,24 @@ function sd = stdev(x, o, m)
         case "c" then
             on = 2
         else
-            if type(o) <> 1 | size(o, "*") <> 1 | o < 0 | floor(o) <> o then
-                error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'' or a positive integer expected.\n"),"stdev",2,"*","r","c")),
+            if type(o) <> 1 || size(o, "*") <> 1 || floor(o) <> o | o < 1 | o > ndims(x) then
+                msg = _("%s: Argument #%d: Must be in the set {%s}.\n")
+                sset =  """*"" ""r"" ""c"" 1 2"
+                if ndims(x)>2
+                    sset = sset + strcat(msprintf(" %d\n",(3:ndims(x))'))
+                end
+                error(msprintf(msg, "stdev", 2, sset))
             else
                 on = o
             end
         end
     end
 
-    if typeof(x) == "hypermat" then
+    if (length(size(x)) > 2) then
         if rhs == 3 then
-            sd = %hm_stdev(x, o, m);
+            sd = %hm_stdev(x, on, m);
         else
-            sd = %hm_stdev(x, o);
+            sd = %hm_stdev(x, on);
         end
         return
     end
@@ -72,7 +81,7 @@ function sd = stdev(x, o, m)
 
     siz = size(x);
     if rhs == 3 then
-        if and(typeof(m) ~= ["constant" "hypermat"]) | ~isreal(m) then
+        if typeof(m) ~= "constant" | ~isreal(m) then
             tmp = _("%s: Wrong type for input argument #%d: A real matrix expected.\n")
             error(msprintf(tmp, "stdev", 3))
         elseif on == 0 then

@@ -13,50 +13,50 @@ global status;
 status = [];
 
 function continueSimulation = pre1(scs_m, needcompile)
-  global status;
+    global status;
 
-  [linenum,mac]=where();
-  status = [status mac(1)];
-  continueSimulation=%t;
+    [linenum,mac]=where();
+    status = [status mac(1)];
+    continueSimulation=%t;
 endfunction
 
 function continueSimulation = pre2(scs_m, needcompile)
-  global status;
+    global status;
 
-  [linenum,mac]=where();
-  status = [status mac(1)];
-  continueSimulation=%t;
+    [linenum,mac]=where();
+    status = [status mac(1)];
+    continueSimulation=%t;
 endfunction
 
 function continueSimulation = pre3(scs_m, needcompile)
-  global status;
+    global status;
 
-  [linenum,mac]=where();
-  status = [status mac(1)];
-  continueSimulation=%t;
+    [linenum,mac]=where();
+    status = [status mac(1)];
+    continueSimulation=%t;
 endfunction
 
 function post1(%cpr, scs_m, needcompile)
-  global status;
+    global status;
 
-  [linenum,mac]=where();
-  status = [status mac(1)];
+    [linenum,mac]=where();
+    status = [status mac(1)];
 endfunction
 
 function post2(%cpr, scs_m, needcompile)
-  global status;
+    global status;
 
-  [linenum,mac]=where();
-  status = [status mac(1)];
+    [linenum,mac]=where();
+    status = [status mac(1)];
 endfunction
 
 // register the hooks
-pre_xcos_simulate=list('pre1', 'pre2', 'pre3');
-post_xcos_simulate=list('post1', 'post2');
+pre_xcos_simulate=list("pre1", "pre2", "pre3");
+post_xcos_simulate=list("post1", "post2");
 
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/Simple_Demo.zcos"));
 xcos_simulate(scs_m, 4);
 
-assert_checkequal(status, ['pre1', 'pre2', 'pre3', 'post1', 'post2'])
+assert_checkequal(status, ["pre1", "pre2", "pre3", "post1", "post2"]);
 
 

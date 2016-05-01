@@ -3,23 +3,24 @@
 * Copyright (C) INRIA
 * Copyright (C) DIGITEO - 2010
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 #include <stdio.h>
 #include <string.h>
 #include "prompt.h"
 #include "sciprint.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 #include "BOOL.h"
 /*------------------------------------------------------------------------*/
 static char Sci_Prompt[PROMPT_SIZE_MAX];
@@ -30,9 +31,29 @@ static char *temporaryPrompt = NULL;
 /*------------------------------------------------------------------------*/
 void C2F(setprlev)( int *pause)
 {
-    if ( *pause == 0 )
+    //debugger prompt first !
+    if (isEnableDebug())
     {
-        sprintf(Sci_Prompt, SCIPROMPT);
+        if (isDebugInterrupted())
+        {
+            sprintf(Sci_Prompt, SCIPROMPTBREAK);
+        }
+        else
+        {
+            sprintf(Sci_Prompt, SCIPROMPTDEBUG);
+        }
+    }
+    else if ( *pause == 0 )
+    {
+        if (temporaryPrompt != NULL)
+        {
+            strcpy(Sci_Prompt, temporaryPrompt);
+            ClearTemporaryPrompt();
+        }
+        else
+        {
+            sprintf(Sci_Prompt, SCIPROMPT);
+        }
     }
     else if ( *pause > 0 )
     {
@@ -47,7 +68,7 @@ void C2F(setprlev)( int *pause)
         sprintf(Sci_Prompt, SCIPROMPT_INTERRUPT, *pause);
         // bug 5513
         // when we change prompt to a pause level, we change also temp. prompt
-        SetTemporaryPrompt(Sci_Prompt);
+        //SetTemporaryPrompt(Sci_Prompt);
     }
     else
     {
@@ -66,14 +87,10 @@ void GetCurrentPrompt(char *CurrentPrompt)
     }
 }
 /*------------------------------------------------------------------------*/
-void SetTemporaryPrompt(char *tempPrompt)
+void SetTemporaryPrompt(const char *tempPrompt)
 {
-    if (temporaryPrompt)
-    {
-        FREE(temporaryPrompt);
-        temporaryPrompt = NULL;
-    }
-    temporaryPrompt = strdup(tempPrompt);
+    ClearTemporaryPrompt();
+    temporaryPrompt = os_strdup(tempPrompt);
 }
 /*------------------------------------------------------------------------*/
 char *GetTemporaryPrompt(void)

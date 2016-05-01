@@ -4,11 +4,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
@@ -28,7 +31,7 @@
         
         <para>functions は Scilab プロシージャです
             
-            "macro", "function" および 
+            "macro", "function" および
             
             "procedure"は同じ意味を有します).
             
@@ -46,7 +49,7 @@
             
             <link linkend="exec">exec</link>関数またはライブラリ
             
-            (<link linkend="lib">lib</link> または 
+            (<link linkend="lib">lib</link> または
             
             <link linkend="genlib">genlib</link>参照)
             
@@ -54,7 +57,7 @@
             
             しかし,オンライン定義
             
-            (<link linkend="deff">deff</link> または 
+            (<link linkend="deff">deff</link> または
             
             <link linkend="function">function</link>参照)
             
@@ -171,7 +174,7 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
                     
                 </para>
                 
-                <para> 
+                <para>
                     
                     <code>y = fun1(x1=33, y='foo')</code>のような構文で
                     
@@ -193,7 +196,7 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
                     
                 </para>
                 
-                <para> 
+                <para>
                     
                     定義された変数を
                     
@@ -239,7 +242,7 @@ fun a toto 'a string'
         
         <para>
             
-            関数はScilabオブジェクト(型番号は13または11)です. 
+            関数はScilabオブジェクト(型番号は13または11)です.
             
             関数は他の変数型と同様に操作
             
@@ -316,12 +319,6 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
             <member>
                 
                 <link linkend="exec">exec</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="comp">comp</link>
                 
             </member>
             

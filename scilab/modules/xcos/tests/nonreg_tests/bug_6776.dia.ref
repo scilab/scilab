@@ -21,6 +21,6 @@ obj = scs_m.objs(1);
 if size(obj.doc) <> 0 then bugmes();quit;end
 // check that the export will not fail
 tempFile = TMPDIR + "/6776temp.sod";
-ierr = export_to_hdf5(tempFile, "scs_m");
-if ierr <> %t then bugmes();quit;end
+err = execstr("save(tempFile, ""scs_m"")", "errcatch");
+if err <> %t then bugmes();quit;end
 deletefile(tempFile);

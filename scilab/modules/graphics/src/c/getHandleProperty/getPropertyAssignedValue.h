@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -22,7 +25,7 @@
 #include <stdlib.h> /* for size_t */
 #include "dynlib_graphics.h"
 #include "sci_types.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "BOOL.h"
 /*------------------------------------------------------------------------------*/
 /* Basic type parameters */
@@ -43,7 +46,7 @@ GRAPHICS_IMPEXP char ** createCopyStringMatrixFromStack(void* _pvData, int nbEle
  *         FALSE if the given parameter is 'off', %F, 'F', 0, ...
  *         NOT_A_BOOLEAN_VALUE otherwise
  */
-GRAPHICS_IMPEXP int tryGetBooleanValueFromStack(void* _pvData, int valueType, int nbRow, int nbCol, char* propertyName);
+GRAPHICS_IMPEXP int tryGetBooleanValueFromStack(void* _pvData, int valueType, int nbRow, int nbCol, const char* propertyName);
 // with that we are sure to be nether equal to TRUE nor FALSE
 #define NOT_A_BOOLEAN_VALUE (2*FALSE) - TRUE
 

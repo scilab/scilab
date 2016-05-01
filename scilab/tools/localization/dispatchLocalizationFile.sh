@@ -3,11 +3,14 @@
 # Copyright (C) INRIA - 2007-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2010 - Sylvestre Ledru
 # Copyright (C) 2010 - Calixte DENIZET
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 # This script takes a list of localization files dumped by launchpad
 # here https://translations.launchpad.net/scilab/trunk/+export
@@ -27,7 +30,13 @@ if test -z "$SCI"; then
         exit 2
 fi
 
+TMPDIR=""
 LAUNCHPAD_DIRECTORY=$1
+if test \( ! -d $LAUNCHPAD_DIRECTORY -a -f $LAUNCHPAD_DIRECTORY \); then
+    TMPDIR=$(mktemp -d)
+    tar --one-top-level=$TMPDIR -xzf $LAUNCHPAD_DIRECTORY
+    LAUNCHPAD_DIRECTORY=$TMPDIR
+fi
 if test ! -d $LAUNCHPAD_DIRECTORY; then
     echo "Could not find $LAUNCHPAD_DIRECTORY."
     echo "Exiting..."
@@ -72,22 +81,19 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
         
         # Do not copy empty files
         if test -n "$(msgcat $LAUNCHPAD_DIRECTORY/$file)"; then
-        # Before the copy, strip the line with the date. It is only making
-        # diff too big for a little gain.
-        # See bug #7059
-        sed -i -e "/X-Launchpad-Export-Date/d" $LAUNCHPAD_DIRECTORY/$file
+	    # Before the copy, strip the line with the date. It is only making
+	    # diff too big for a little gain.
+	    # See bug #7059
+	    sed -i -e "/X-Launchpad-Export-Date/d" $LAUNCHPAD_DIRECTORY/$file
 
-
-        /bin/cp -f $LAUNCHPAD_DIRECTORY/$file $TARGETFILE
-        if test $? -ne 0; then
-            echo "Error detected in the copy"
-            echo "/bin/cp $LAUNCHPAD_DIRECTORY/$file $TARGETFILE"
-            exit 1;
-        fi
+	    cp -f $LAUNCHPAD_DIRECTORY/$file $TARGETFILE
         fi
     else
         echo "Ignore locale $LOC"
     fi
 done
+
 # Remove english variants
 rm -f modules/*/locales/en_*.po
+[ -d $TMPDIR ] && rm -fr $TMPDIR
+

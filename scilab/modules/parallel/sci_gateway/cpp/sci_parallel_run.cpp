@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 extern "C" {
@@ -18,17 +21,14 @@ extern "C" {
 #include "api_scilab.h"
 #include "gw_parallel.h"
 #include "dynamic_link.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "parameters.h"
 #include "Thread_Wrapper.h" /* locks for concurrency access */
-#include "stack-def.h" /* #define nlgh nsiz*4   */
-#include "stack-c.h"
 
 #ifdef _MSC_VER
 #include "mmapWindows.h"
-#include "strdup_windows.h"
 #else
 #include <sys/mman.h>
 #ifndef MAP_ANONYMOUS
@@ -99,7 +99,7 @@ typedef std::pair<int, int> dim_t;
 struct scilabDesc_t : std::pair<char const*, dim_t>
 {
     scilabDesc_t(char const* name = "constant", dim_t dim = dim_t(1, 1)) /* default variable is a scalar i.e. 1x1 matrix of typename "constant" */
-        : std::pair<char const*, dim_t>(name, dim)
+        : std::pair<char const *, dim_t>(name, dim)
     {
     }
     /* for debug purposes only
@@ -722,7 +722,7 @@ bool check_args(void)
                         int rows, cols;
                         err = getMatrixOfString(pvApiCtx, addr, &rows, &cols, 0, 0);
                         ok = (rows == 1) && (cols == 1);
-                    }/* no break */
+                        }/* no break */
                     case sci_c_function:
                     {
                         before_function = false;
@@ -730,7 +730,7 @@ bool check_args(void)
                     }
                     default :
                     {
-                        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), currentFname, 1);
+                        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), currentFname, 1);
                         ok = false;
                     }
                 }
@@ -869,7 +869,7 @@ struct ConcurrencyState
     {
         ScopedUpdater(ConcurrencyState& c, bool threads)
             : lock(c.lock), countPtr( threads
-                                      ? &c.threadConcurrencyLevel
+                                      ? & c.threadConcurrencyLevel
                                       : c.processConcurrencyLevelPtr)
         {
             __LockSignal(lock);

@@ -5,7 +5,7 @@
         <refpurpose>set floating point exception mode</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mod=ieee()
             ieee(mod)
         </synopsis>
@@ -51,7 +51,9 @@
             <literal>ieee(mod)</literal> sets the current floating point
             exception mode.
         </para>
-        <para>The initial mode value is 0.</para>
+        <warning>
+            <para>The initial mode value is 2.</para>
+        </warning>
     </refsection>
     <refsection>
         <title>Remarks</title>
@@ -66,12 +68,13 @@ ieee(1);1/0
 ieee(2);1/0,log(0)
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="errcatch">errcatch</link>
-            </member>
-        </simplelist>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>2 is now the initial mode value.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

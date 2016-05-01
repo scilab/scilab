@@ -2,11 +2,14 @@
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
-; This file must be used under the terms of the CeCILL.
-; This source file is licensed as described in the file COPYING, which
-; you should have received as part of this distribution.  The terms
-; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+; Copyright (C) 2012 - 2016 - Scilab Enterprises
+;
+; This file is hereby licensed under the terms of the GNU GPL v2.0,
+; pursuant to article 5.3.4 of the CeCILL v.2.1.
+; This file was originally licensed under the terms of the CeCILL v2.1,
+; and continues to be available under such terms.
+; For more information, see the COPYING file which you should have received
+; along with this program.
 ;
 ;-------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -28,10 +31,6 @@ pl_PL.MsgBoxDevToolsRequired1 =You choose to install toolbox_skeleton module but
 pl_PL.MsgBoxDevToolsRequired2 =Please install development_tools module.
 pl_PL.MsgBoxDevToolsRequired3 =You choose to install tests module but development_tools module is not selected.
 pl_PL.MsgBoxTclsciRequired2 =Please install tclsci module.
-pl_PL.MsgBoxFftw1 =You choose to install FFTW module for Scilab.
-pl_PL.MsgBoxFftw2 =This module requires to download FFTW library (GPL).
-pl_PL.MsgBoxFftw3 =Do you want to open a web page about this add-on ?
-pl_PL.MsgBoxFftw4 =Can not open web page.
 pl_PL.MsgBoxWinVer =Windows 2000 is required.
 pl_PL.MsgBoxScicosRequired1 =You choose to install Xcos module but Scicos module is not selected.
 pl_PL.MsgBoxScicosRequired2 =Please also install Scicos module.
@@ -67,7 +66,7 @@ pl_PL.DescriptionSpreadsheet =Spreadsheet Toolbox
 pl_PL.DescriptionJVM =Java Runtime
 pl_PL.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
 pl_PL.DescriptionFftwModule =FFTW interface for Scilab
-pl_PL.DescriptionFftwMKLDownload =Download FFTW library optimized by Intel Math Kernel Library
+pl_PL.DescriptionMKLFftwLibrary =FFTW library optimized by Intel Math Kernel Library
 pl_PL.DescriptionRefFftwLibrary =Reference FFTW library
 pl_PL.DescriptionParametersTlbx =Parameters Toolbox
 pl_PL.DescriptionGeneticTlbx =Genetic Algorithms Toolbox
@@ -120,18 +119,10 @@ pl_PL.DescriptionCLIInstall =Command Line Minimal Installation (no gui)
 pl_PL.DescriptionCPUOptimization =CPU Optimization for Scilab
 pl_PL.DescriptionATLASLibrary =Atlas Library for Scilab
 pl_PL.DescriptionRefBlasLibrary =Blas, Lapack Reference libraries for Scilab
-pl_PL.DescriptionMKLLibrary =Download Intel Math Kernel Library for Scilab
-;
-pl_PL.DownloadMKLLabel =Downloading Intel Math Kernel Library files for Scilab
-pl_PL.DownloadMKLDescription =Please wait while Setup is downloading extra files to your computer.
-;
-pl_PL.DownloadMKLFFTWLabel =Downloading FFTW3 library optimized by Intel Math Kernel.
+pl_PL.DescriptionMKLLibrary =Intel Math Kernel Library for Scilab
 ;
 pl_PL.DoTasksJustAfterInstallMsg2 =BLAS, LAPACK reference libraries will be installed and used.
 pl_PL.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed and used.
-;
-pl_PL.NextButtonClickwpReadyMsg1 =Impossible to download Intel Math Kernel Library files for Scilab (Default library will be used).
-pl_PL.NextButtonClickwpReadyMsg2 =Impossible to download FFTW3 library optimized by Intel Math Kernel Library (Default library will be used).
 ;
 pl_PL.DescriptionAtoms =ATOMS
 ;-------------------------------------------------------------------------------

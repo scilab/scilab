@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2012 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -19,7 +22,7 @@
 #include "dynlib_scicos_blocks.h"
 #include "scoUtils.h"
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "elementary_functions.h"
 
 #include "setGraphicObjectProperty.h"
@@ -33,9 +36,7 @@
 #include "scicos.h"
 
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 
 #include "FigureList.h"
 #include "BuildObjects.h"
@@ -131,8 +132,9 @@ static int getArc(int iAxeUID, scicos_block * block, int row);
  * Set the bounds
  *
  * \param block the block
+ * \param iAxeUID the axe id
  */
-static BOOL setBounds(scicos_block * block);
+static BOOL setBounds(scicos_block * block, int iAxeUID);
 
 /*****************************************************************************
  * Simulation function
@@ -409,7 +411,7 @@ static int getFigure(scicos_block * block)
         setGraphicObjectProperty(iAxe, __GO_BOX_TYPE__, &i__1, jni_int, 1);
         setGraphicObjectProperty(iAxe, __GO_ISOVIEW__, &b_true, jni_bool, 1);
 
-        setBounds(block);
+        setBounds(block, iAxe);
     }
 
     if (sco->scope.cachedFigureUID == 0)
@@ -541,11 +543,8 @@ static int getArc(int iAxeUID, scicos_block * block, int row)
     return sco->scope.cachedArcsUIDs[row];
 }
 
-static BOOL setBounds(scicos_block * block)
+static BOOL setBounds(scicos_block * block, int iAxeUID)
 {
-    int iFigureUID;
-    int iAxeUID;
-
     double dataBounds[6];
 
     dataBounds[0] = block->rpar[0]; // xMin
@@ -554,9 +553,6 @@ static BOOL setBounds(scicos_block * block)
     dataBounds[3] = block->rpar[3]; // yMax
     dataBounds[4] = -1.0;       // zMin
     dataBounds[5] = 1.0;        // zMax
-
-    iFigureUID = getFigure(block);
-    iAxeUID = getAxe(iFigureUID, block);
 
     return setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 }

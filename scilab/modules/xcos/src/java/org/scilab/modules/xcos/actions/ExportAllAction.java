@@ -2,12 +2,16 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -22,7 +26,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.ListIterator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -39,20 +42,21 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfScicosID;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
-import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
 
-import com.mxgraph.model.mxCell;
-import com.mxgraph.model.mxGraphModel;
-import com.mxgraph.model.mxGraphModel.Filter;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxUtils;
+import com.mxgraph.util.mxXmlUtils;
 
 /**
  * Diagram export management
@@ -105,12 +109,10 @@ public final class ExportAllAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        final XcosDiagram graph = (XcosDiagram) getGraph(null);
+        final XcosDiagram graph = ((XcosDiagram) getGraph(null)).getRootDiagram();
 
         // Adds a filter for each supported image format
-        Collection<String> imageFormats = Arrays.asList(ImageIO
-                                          .getWriterFileSuffixes());
+        Collection<String> imageFormats = Arrays.asList(ImageIO.getWriterFileSuffixes());
 
         // The mask ordered collection
         Set<String> mask = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
@@ -132,7 +134,7 @@ public final class ExportAllAction extends DefaultAction {
 
         ConfigurationManager.configureCurrentDirectory(fc);
 
-        int selection = fc.showSaveDialog(graph.getAsComponent());
+        int selection = fc.showSaveDialog(getGraph(null).getAsComponent());
         if (selection == JFileChooser.APPROVE_OPTION) {
             File dir = fc.getSelectedFile();
 
@@ -141,45 +143,27 @@ public final class ExportAllAction extends DefaultAction {
 
             /* update states from the format */
             if ((!format.equalsIgnoreCase("png"))
-                    || ScilabModalDialog.show(XcosTab.get(graph),
+                    || ScilabModalDialog.show(XcosTab.get((XcosDiagram) getGraph(null)),
                                               XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS,
                                               IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
                 useBackground = true;
             }
 
-            final Filter superBlockFilter = new Filter() {
-                @Override
-                public boolean filter(Object cell) {
-                    if (cell instanceof SuperBlock) {
-                        final SuperBlock blk = (SuperBlock) cell;
-                        blk.createChildDiagram();
-                        return true;
-                    }
-                    return false;
-                }
-            };
-
             /*
-             * Append all the superblocks
+             * Instantiate all the sub-diagrams
              */
-            final ArrayList<Object> superBlocks = new ArrayList<Object>();
-            final ArrayList<String> filenameDescriptors = new ArrayList<String>();
-            Collection<Object> filtered = mxGraphModel.filterDescendants(graph.getModel(), superBlockFilter);
-            superBlocks.addAll(filtered);
+            JavaController controller = new JavaController();
+            ArrayList<XcosDiagram> diagrams = new ArrayList<>();
+            diagrams.add(graph);
 
-            fillFilenameDescriptors(graph.getTitle(), graph, filenameDescriptors, filtered);
+            // append the already allocated diagram
+            diagrams.addAll(Xcos.getInstance().getDiagrams(graph.getUID()));
 
-            /*
-             * Iterate recursively on children
-             */
-            for (int i = 0; i < superBlocks.size(); i++) {
-                final SuperBlock blk = (SuperBlock) superBlocks.get(i);
-                final SuperBlockDiagram diag = blk.getChild();
-
-                filtered = mxGraphModel.filterDescendants(diag.getModel(), superBlockFilter);
-                superBlocks.addAll(filtered);
-
-                fillFilenameDescriptors(graph.getTitle(), graph, filenameDescriptors, filtered);
+            ArrayList<Long> stash = new ArrayList<>();
+            allocateDiagrams(controller, diagrams, stash, graph.getUID(), Kind.DIAGRAM);
+            while (!stash.isEmpty()) {
+                final long uid = stash.remove(stash.size() - 1);
+                allocateDiagrams(controller, diagrams, stash, uid, Kind.BLOCK);
             }
 
             /*
@@ -188,8 +172,8 @@ public final class ExportAllAction extends DefaultAction {
             try {
                 export(graph, new File(dir, graph.getTitle() + "." + format), format);
 
-                for (int i = 0; i < superBlocks.size(); i++) {
-                    export(((SuperBlock)superBlocks.get(i)).getChild(), new File(dir, filenameDescriptors.get(i) + "." + format), format);
+                for (XcosDiagram d : diagrams) {
+                    export(d, new File(dir, d.getTitle() + "." + format), format);
                 }
             } catch (IOException e1) {
                 e1.printStackTrace();
@@ -198,29 +182,32 @@ public final class ExportAllAction extends DefaultAction {
         }
     }
 
-    private void fillFilenameDescriptors(final String rootName, final XcosDiagram graph, final ArrayList<String> filenameDescriptors, final Collection<Object> filtered) {
-        filenameDescriptors.ensureCapacity(filenameDescriptors.size() + filtered.size());
+    private void allocateDiagrams(JavaController controller, ArrayList<XcosDiagram> diagrams, ArrayList<Long> stash,
+                                  final long uid, final Kind kind) {
+        final VectorOfScicosID children = new VectorOfScicosID();
+        controller.getObjectProperty(uid, kind, ObjectProperties.CHILDREN, children);
 
-        ListIterator<String> it = filenameDescriptors.listIterator();
-        for (Object object : filtered) {
-            final SuperBlock blk = (SuperBlock) object;
+        final int len = children.size();
+        for (int i = 0; i < len ; i++) {
+            String[] interfaceFunction = new String[1];
+            long currentUID = children.get(i);
+            if (controller.getKind(currentUID) == Kind.BLOCK) {
+                controller.getObjectProperty(children.get(i), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
+                if (!"SUPER_f".equals(interfaceFunction[0])) {
+                    continue;
+                }
 
-            final mxCell identifierLabel = graph.getCellIdentifier(blk);
-            final String identifier;
-            if (identifierLabel != null) {
-                identifier = identifierLabel.getValue().toString();
-            } else {
-                identifier = "";
+
+                if (diagrams.stream().noneMatch(d -> d.getUID() == currentUID)) {
+                    String[] strUID = new String[1];
+                    controller.getObjectProperty(currentUID, Kind.BLOCK, ObjectProperties.UID, strUID);
+
+                    final XcosDiagram child = new XcosDiagram(controller, currentUID, Kind.BLOCK, strUID[0]);
+                    diagrams.add(child);
+                    stash.add(currentUID);
+                }
             }
 
-
-            String filename = rootName;
-            if (!identifier.isEmpty()) {
-                filename += "_" + identifier;
-            } else {
-                filename += "_" + it.nextIndex();
-            }
-            it.add(filename);
         }
     }
 
@@ -249,14 +236,14 @@ public final class ExportAllAction extends DefaultAction {
             Document doc = mxCellRenderer.createVmlDocument(graph, null, 1,
                            null, null);
             if (doc != null) {
-                mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()),
+                mxUtils.writeFile(mxXmlUtils.getXml(doc.getDocumentElement()),
                                   filename.getCanonicalPath());
             }
         } else if (fileFormat.equalsIgnoreCase(HTML)) {
             Document doc = mxCellRenderer.createHtmlDocument(graph, null, 1,
                            null, null);
             if (doc != null) {
-                mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()),
+                mxUtils.writeFile(mxXmlUtils.getXml(doc.getDocumentElement()),
                                   filename.getCanonicalPath());
             }
         } else {

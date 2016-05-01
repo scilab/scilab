@@ -2,22 +2,26 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
 
 #ifndef _MSC_VER
 #include <errno.h>
+#include <string.h>
 #else
 #include <windows.h>
 #endif
 #include "gw_fileio.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -29,10 +33,10 @@
 #include "charEncoding.h"
 #include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/
-static wchar_t *getFilenameWithExtension(wchar_t * wcFullFilename);
-static int returnCopyFileResultOnStack(int ierr, char *fname);
+static wchar_t *getFilenameWithExtension(wchar_t* wcFullFilename);
+static int returnCopyFileResultOnStack(int ierr, char *fname , void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
-int sci_copyfile(char *fname, unsigned long fname_len)
+int sci_copyfile(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -57,7 +61,7 @@ int sci_copyfile(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return 0;
     }
 
@@ -71,7 +75,7 @@ int sci_copyfile(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, piAddressVarTwo) == 0 || isScalar(pvApiCtx, piAddressVarTwo) == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return 0;
     }
 
@@ -185,7 +189,7 @@ int sci_copyfile(char *fname, unsigned long fname_len)
                 FREE(pStVarOneExpanded);
                 FREE(pStVarTwoExpanded);
                 Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
-                return 0;
+                return 1;
             }
         }
         else
@@ -196,11 +200,14 @@ int sci_copyfile(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        returnCopyFileResultOnStack(ierrCopy, fname);
+        returnCopyFileResultOnStack(ierrCopy, fname, pvApiCtx);
     }
     else
     {
+        FREE(pStVarOneExpanded);
+        FREE(pStVarTwoExpanded);
         Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+        return 1;
     }
 
     FREE(pStVarOneExpanded);
@@ -246,7 +253,7 @@ static wchar_t *getFilenameWithExtension(wchar_t * wcFullFilename)
     return wcfilename;
 }
 /*--------------------------------------------------------------------------*/
-static int returnCopyFileResultOnStack(int ierr, char *fname)
+static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
 {
     double dError = 0.;
     wchar_t *sciError = NULL;

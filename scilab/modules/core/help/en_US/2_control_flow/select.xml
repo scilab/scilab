@@ -5,7 +5,7 @@
         <refpurpose>select keyword</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             select variable
             case value1 then

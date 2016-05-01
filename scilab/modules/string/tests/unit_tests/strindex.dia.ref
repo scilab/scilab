@@ -30,8 +30,8 @@ if or(pos<>[8 11])|or(which<>[1 2]) then bugmes();quit;end
 [pos,which]=strindex('abc,cbd,aa,bxe',[',a','bb']);
 if or(pos<>[8])|or(which<>[1]) then bugmes();quit;end
 //===============================
-rand('u');str=strcat(string(round(8*rand(1,5000))));s= string(0:9);     
-[pos,which]=strindex(str,s); 
+rand('u');str=strcat(string(round(8*rand(1,5000))));s= string(0:9);
+[pos,which]=strindex(str,s);
 if part(str,pos)<>strcat(s(which)) then bugmes();quit;end
 //===============================
 ref = [4 10];
@@ -83,7 +83,7 @@ if (ref2 <> r2) then bugmes();quit;end;
 if (ref1 <> r1) then bugmes();quit;end;
 //===============================
 ierr = execstr("strindex(''2'' ,''/2(]*)?$\1/'' ,''dummy'');","errcatch");
-if ierr <> 999 then bugmes();quit;end 
+if ierr <> 999 then bugmes();quit;end
 //===============================
 lf = ascii(10);
 if strindex('abc','/abc/','r') <>  1   then bugmes();quit;end

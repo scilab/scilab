@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,13 +18,13 @@
 #include "gw_special_functions.h"
 #include "Scierror.h"
 #include "msgs.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 extern void  C2F(dbesiv) (double *x, int* nx, double *alpha, int *na, int *kode, double *r, double *w, int *ierr);
 extern void  C2F(zbesiv) (double *xr, double *xi, int* nx, double *alpha, int *na, int *kode, double *rr, double *ri, double *wr, double *wi, int *ierr);
 /*--------------------------------------------------------------------------*/
-int sci_besseli(char *fname, unsigned long fname_len)
+int sci_besseli(char *fname, void* pvApiCtx)
 {
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     int mr = 0, nr = 0, itr = 0, nw = 0;
@@ -71,7 +74,7 @@ int sci_besseli(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        if (m1*n1 != 1)
+        if (m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 3);
             return 1;
@@ -96,7 +99,7 @@ int sci_besseli(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    if (m1*n1 == 0)
+    if (m1 * n1 == 0)
     {
         /*besseli([],x) */
         AssignOutputVariable(pvApiCtx, 1) = 1;
@@ -120,7 +123,7 @@ int sci_besseli(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    if (m2*n2 == 0)
+    if (m2 * n2 == 0)
     {
         /*besseli(alpha,[]) */
         AssignOutputVariable(pvApiCtx, 1) = 2;
@@ -176,7 +179,7 @@ int sci_besseli(char *fname, unsigned long fname_len)
         memset(pdblXI, 0x00, iSize);
     }
 
-    if (m1*n1 == 1)
+    if (m1 * n1 == 1)
     {
         /*besseli(scalar,matrix) */
         double wr[2], wi[2];
@@ -196,7 +199,7 @@ int sci_besseli(char *fname, unsigned long fname_len)
             C2F(zbesiv) (pdblXR, pdblXI, &nx, pdbl1, &na, &kode, lr, li, wr, wi, &ierr);
         }
     }
-    else if (m2*n2 == 1)
+    else if (m2 * n2 == 1)
     {
         /* besseli(matrix,scalar) */
         nx = 1;
@@ -277,16 +280,17 @@ int sci_besseli(char *fname, unsigned long fname_len)
 
     if (ierr == 2)
     {
-        if ( C2F(errgst).ieee == 0)
-        {
-            ierr = 69;
-            SciError(ierr);
-        }
-        else if ( C2F(errgst).ieee == 1)
-        {
-            ierr = 63;
-            C2F(msgs)(&ierr, &un);
-        }
+        // FIX ME
+        //        if ( C2F(errgst).ieee == 0)
+        //        {
+        //            ierr = 69;
+        //            SciError(ierr);
+        //        }
+        //        else if ( C2F(errgst).ieee == 1)
+        //        {
+        //            ierr = 63;
+        //            C2F(msgs)(&ierr, &un);
+        //        }
     }
     else if (ierr == 3)
     {
@@ -296,16 +300,17 @@ int sci_besseli(char *fname, unsigned long fname_len)
     }
     else if (ierr == 4 || ierr == 5)
     {
-        if ( C2F(errgst).ieee == 0)
-        {
-            ierr = 69;
-            SciError(ierr);
-        }
-        else if ( C2F(errgst).ieee == 1)
-        {
-            ierr = 107;
-            C2F(msgs)(&ierr, &un);
-        }
+        // FIX ME
+        //        if ( C2F(errgst).ieee == 0)
+        //        {
+        //            ierr = 69;
+        //            SciError(ierr);
+        //        }
+        //        else if ( C2F(errgst).ieee == 1)
+        //        {
+        //            ierr = 107;
+        //            C2F(msgs)(&ierr, &un);
+        //        }
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArg + 1;

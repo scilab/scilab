@@ -10,11 +10,14 @@
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -36,9 +39,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_string.h"
 
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -56,7 +57,7 @@
 #include "loadTextRenderingAPI.h"
 #include "sciprint.h"
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
@@ -114,21 +115,39 @@ int sciSetLineStyle(int iObjUID, int linestyle)
     return -1;
 }
 
-int sciSetMarkSize(int iObjUID, int marksize)
+int sciSetMarkSize(int iObjUID, int *markSizes, int numMarkSizes)
 {
-    if (marksize < 0)
+    BOOL status;
+    int k;
+
+    if ( markSizes == NULL || numMarkSizes < 1 )
     {
-        Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "mark_size", 0);
+        Scierror(999, _("Wrong value for '%s' property: Number of mark sizes %d.\n"), "mark_size", numMarkSizes);
         return -1;
+    }
+
+    // check values >= 0
+    for ( k = 0; k < numMarkSizes; ++k )
+    {
+        if ( markSizes[k] < 0 )
+        {
+            Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "mark_size", 0);
+            return -1;
+        }
+    }
+
+    if ( numMarkSizes == 1 )
+    {
+        status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZE__, &markSizes[0], jni_int, numMarkSizes);
     }
     else
     {
-        BOOL status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZE__, &marksize, jni_int, 1);
+        status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZES__, markSizes, jni_int_vector, numMarkSizes);
+    }
 
-        if (status == TRUE)
-        {
-            return 0;
-        }
+    if (status == TRUE)
+    {
+        return 0;
     }
 
     printSetGetErrorMessage("mark_size");
@@ -634,10 +653,10 @@ int sciSetPoint(int iObjUID, double *tab, int *numrow, int *numcol)
             printSetGetErrorMessage("data");
             return -1;
         }
-        /*
-         * Deactivated for now
-         * Same condition as the default one
-         */
+            /*
+             * Deactivated for now
+             * Same condition as the default one
+             */
 #if 0
         case SCI_UIMENU:
 #endif

@@ -7,7 +7,7 @@
 // <-- CLI SHELL MODE -->
 //ouvrir le fichier 
 FLN = 'SCI/modules/fileio/tests/unit_tests/text.txt';
-fd = mopen(FLN,'rt'); 
+fd = mopen(FLN,'rt');
 i = 0;
 while ~meof(fd) do
    mfscanf(1, fd, "%c");
@@ -15,3 +15,9 @@ while ~meof(fd) do
 end
 mclose(fd);
 if i <> 1479 then bugmes();quit;end
+ierr = execstr('meof(0)','errcatch');
+if ierr <> 999 then bugmes();quit;end
+ierr = execstr('meof(5)','errcatch');
+if ierr <> 999 then bugmes();quit;end
+ierr = execstr('meof(6)','errcatch');
+if ierr <> 999 then bugmes();quit;end

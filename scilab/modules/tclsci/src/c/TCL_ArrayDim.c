@@ -3,11 +3,14 @@
  * Copyright (C) 2005 - INRIA - Allan CORNET
  * Copyright (C) 2008-2008 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,13 +19,11 @@
 #endif
 
 #include <string.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "TCL_ArrayDim.h"
 #include "Scierror.h"
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define TCL_ALL_INDEXES "TclScilabTmpVar1"
 #define TCL_NUMERICAL_INDEXES "TclScilabTmpVar2"
@@ -106,7 +107,7 @@ char **TCL_ArrayDim(Tcl_Interp *TCLinterpreter, char *VarName, int *nb_lines, in
             while (current != NULL)
             {
                 tmp_list = REALLOC(tmp_list, (i + 1) * sizeof(char *));
-                tmp_list[i] = strdup(current);
+                tmp_list[i] = os_strdup(current);
                 sscanf(current, "%d,%d", &current_line, &current_column);
                 *nb_lines = MAX(*nb_lines, current_line);
                 *nb_columns = MAX(*nb_columns, current_column);
@@ -144,7 +145,7 @@ char **TCL_ArrayDim(Tcl_Interp *TCLinterpreter, char *VarName, int *nb_lines, in
             while (current != NULL)
             {
                 index_list = REALLOC(index_list, (*nb_lines + 1) * sizeof(char *));
-                index_list[*nb_lines] = strdup(current);
+                index_list[*nb_lines] = os_strdup(current);
                 current = strtok (NULL, " ");
                 ++(*nb_lines);
             }

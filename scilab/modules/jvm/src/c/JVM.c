@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -17,7 +20,7 @@
 #include "dynamiclibrary.h"
 #include "JVM.h"
 #include "JVM_functions.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getScilabJavaVM.h"
 #include "getScilabJNIEnv.h"
 #include "fromjava.h"
@@ -46,6 +49,8 @@ static void freeJavaVMOption(void)
             }
         }
         nOptions = 0;
+        FREE(jvm_options);
+        jvm_options = NULL;
     }
 }
 
@@ -244,8 +249,10 @@ BOOL startJVM(char *SCI_PATH)
                         fprintf(stderr, _("Options:\n"));
                         for (j = 0; j < vm_args.nOptions; j++)
                         {
-                            fprintf(stderr, "%d: %s\n", j, vm_args.options[j]);
+                            fprintf(stderr, "%d: %s\n", j, vm_args.options[j].optionString);
                         }
+
+                        freeJavaVMOption();
                     }
                     return FALSE;
                 }
@@ -267,10 +274,9 @@ BOOL startJVM(char *SCI_PATH)
         freeJavaVMOption();
         return FALSE;
     }
-    else
-    {
-        return TRUE;
-    }
+
+    freeJavaVMOption();
+    return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL finishJVM(void)

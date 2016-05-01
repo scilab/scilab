@@ -18,8 +18,9 @@ clear;
 clc;
 fig = figure();
 B1 = uicontrol(fig, "style", "pushbutton", "string", "1", ..
-  "position", [50 50 50 20], "callback", "disp(1)");
+"position", [50 50 50 20], "callback", "disp(1)");
 exit_condition = %f;
 while ~exit_condition
-  xpause(1e4)
+    sleep(10)
 end
+

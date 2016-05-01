@@ -11,21 +11,24 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3598
 //
 // Short description:
-// stripblanks(1) returns "stripblank : Pas assez de mémoire."
+// stripblanks(1) returns "stripblank : Pas assez de mÃ©moire."
+
+// <-- CLI SHELL MODE -->
+
 //==============================================================
-ierr = execstr('r = stripblanks(1);','errcatch');
+ierr = execstr("r = stripblanks(1);","errcatch");
 if ierr <> 999 then pause,end
 //==============================================================
-ierr = execstr('r = cd(1);','errcatch');
+ierr = execstr("r = cd(1);","errcatch");
 if ierr <> 999 then pause,end
 //==============================================================
-ierr = execstr('r = ls(1);','errcatch');
+ierr = execstr("r = ls(1);","errcatch");
 if ierr <> 999 then pause,end
 //==============================================================
-ierr = execstr('r = dir(1);','errcatch');
+ierr = execstr("r = dir(1);","errcatch");
 if ierr <> 999 then pause,end
 //==============================================================
-ierr = execstr('r = help(1);','errcatch');
+ierr = execstr("r = help(1);","errcatch");
 if ierr <> 999 then pause,end
 //==============================================================
 

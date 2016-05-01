@@ -4,11 +4,14 @@
  * Copyright (C) 2012 - Scilab Enterprises - Vincent COUVERT
  * desc : interface for xs2png routine
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -22,7 +25,7 @@
 #include "getGraphicObjectProperty.h"
 #include "FigureList.h"
 /*--------------------------------------------------------------------------*/
-int sci_exportUI(char * fname, unsigned long fname_len)
+int sci_exportUI(char * fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -61,7 +64,7 @@ int sci_exportUI(char * fname, unsigned long fname_len)
         if (iRows * iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
-            return FALSE;
+            return 0;
         }
 
         iFigureUID = getObjectFromHandle((unsigned long) * stackPointer);
@@ -70,7 +73,7 @@ int sci_exportUI(char * fname, unsigned long fname_len)
         if (iHandleType != __GO_FIGURE__)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
-            return FALSE;
+            return 0;
         }
 
         getGraphicObjectProperty(iFigureUID, __GO_ID__, jni_int, (void **)&piFigureId);
@@ -91,7 +94,7 @@ int sci_exportUI(char * fname, unsigned long fname_len)
         if (iRows * iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
-            return FALSE;
+            return 0;
         }
 
         iFigureId = (int) * stackPointer;
@@ -99,13 +102,13 @@ int sci_exportUI(char * fname, unsigned long fname_len)
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
-        return FALSE;
+        return 0;
     }
 
     if (getFigureFromIndex(iFigureId) == 0)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"), fname, 1);
-        return FALSE;
+        return 0;
     }
 
     // call the export function

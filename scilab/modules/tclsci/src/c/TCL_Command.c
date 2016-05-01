@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,13 +17,13 @@
 
 #ifdef _MSC_VER
 #include <Windows.h>
-#include "strdup_windows.h"
 #define usleep(micro) Sleep(micro/1000)
 #else
 #include <unistd.h>
 #endif
 
-#include "MALLOC.h"
+#include "os_string.h"
+#include "sci_malloc.h"
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"
 
@@ -121,6 +124,7 @@ static void evaluateTclFile()
 */
 void startTclLoop()
 {
+    __threadKey key;
     __threadId sleepThreadId;
 
     __InitLock(&singleExecutionLock);
@@ -130,7 +134,7 @@ void startTclLoop()
     __InitSignal(&workIsDone);
     __InitSignalLock(&launchCommand);
 
-    __CreateThread(&sleepThreadId, sleepAndSignal);
+    __CreateThread(&sleepThreadId, &key, sleepAndSignal);
 
     __LockSignal(&InterpReadyLock);
     __Signal(&InterpReady);
@@ -164,6 +168,7 @@ void startTclLoop()
             /* Reinit local interpreter,
                default is the biggest one. */
             LocalTCLinterp = getTclInterp();
+            releaseTclInterp();
 
             /* Check if it's supposed to be run in root or slave */
             if (TclSlave != NULL)
@@ -190,7 +195,7 @@ void startTclLoop()
             /* Update return value and result */
             if (Tcl_GetStringResult(LocalTCLinterp) && strlen(Tcl_GetStringResult(LocalTCLinterp)) != 0)
             {
-                TclInterpResult = strdup(Tcl_GetStringResult(LocalTCLinterp));
+                TclInterpResult = os_strdup(Tcl_GetStringResult(LocalTCLinterp));
             }
             else
             {
@@ -243,10 +248,10 @@ int sendTclFileToSlave(char* file, char* slave)
     __Lock(&singleExecutionLock);
     {
         __LockSignal(&launchCommand);
-        TclFile = strdup(file);
+        TclFile = os_strdup(file);
         if (slave != NULL)
         {
-            TclSlave = strdup(slave);
+            TclSlave = os_strdup(slave);
         }
         else
         {
@@ -292,10 +297,10 @@ int sendTclCommandToSlave(char* command, char* slave)
         __Lock(&singleExecutionLock);
 
         __LockSignal(&launchCommand);
-        TclCommand = strdup(command);
+        TclCommand = os_strdup(command);
         if (slave != NULL)
         {
-            TclSlave = strdup(slave);
+            TclSlave = os_strdup(slave);
         }
         else
         {
@@ -328,10 +333,10 @@ int sendTclCommandToSlave(char* command, char* slave)
         /*
         ** File Evaluation in progress
         */
-        TclCommand = strdup(command);
+        TclCommand = os_strdup(command);
         if (slave != NULL)
         {
-            TclSlave = strdup(slave);
+            TclSlave = os_strdup(slave);
         }
         else
         {
@@ -375,9 +380,9 @@ char *getTclCommandResult(void)
 #endif
     if (TclInterpResult != NULL)
     {
-        char *result = strdup(TclInterpResult);
+        char *result = os_strdup(TclInterpResult);
         TclInterpResult = NULL;
         return result;
     }
-    return strdup("\0");
+    return os_strdup("\0");
 }

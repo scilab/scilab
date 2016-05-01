@@ -21,6 +21,6 @@ int ext1c(int *n, double *a, double *b,  double *c)
     {
         c[k] = a[k] + b[k];
     }
-    return(0);
+    return (0);
 }
 

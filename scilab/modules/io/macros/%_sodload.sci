@@ -2,36 +2,27 @@
 // Copyright (C) 2012 - DIGITEO - Antoine ELIAS
 // Copyright (C) 2012 - DIGITEO - Vincent COUVERT
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
-function %_sodload(%__filename__, varargin)
+function varargout = %_sodload(%__varnameList__)
 
-    function v = getScilabFileVersion(%__filename__)
-        verStr = h5readattr(%__filename__, "/", "SCILAB_scilab_version")
-        [a,b,c,d] = regexp(verStr, "/scilab-.*(\d)\.(\d)\.(\d)/");
-        if size(d, "*") == 3 then
-            v = evstr(d(1)) * 100 + evstr(d(2)) * 10 + evstr(d(3));
-        else
-            error("unable to find file version: %s", %__filename__);
-        end
-    endfunction
-
-    function [varValues] = %__convertVariable__(varValues, varNames)
-        for i = 1:size(varValues)
-            if typeof(varValues(i)) == "ScilabMatrixHandle" then
-                //convert tlist to handle
-                varValues(i) = createMatrixHandle(varValues(i));
-            elseif typeof(varValues(i)) == "ScilabMacro" then
-                //convert tlist to macro
-                varValues(i) = createMacro(varValues(i), varNames(i));
-            elseif isList(varValues(i)) then
-                //list container
-                varValues(i) = parseList(varValues(i));
-            end
+    function varValue = %__convertVariable__(varValue, varName)
+        if typeof(varValue) == "ScilabMatrixHandle" then
+            //convert tlist to handle
+            varValue = createMatrixHandle(varValue);
+        elseif typeof(varValue) == "ScilabMacro" then
+            //convert tlist to macro
+            varValue = createMacro(varValue, varName);
+        elseif isList(varValue) then
+            //list container
+            varValue = parseList(varValue);
         end
     endfunction
 
@@ -47,7 +38,50 @@ function %_sodload(%__filename__, varargin)
     endfunction
 
     function varValue = parseList(varValue)
-        if typeof(varValue)=="list" then
+
+        if or(typeof(varValue)==["ce","st"]) then
+            if typeof(varValue)=="st" then
+                fieldNames = fieldnames(varValue);
+            else
+                fieldNames = varValue;
+            end
+
+            for kField = 1:size(fieldNames,"*")
+
+                if typeof(varValue)=="st" then
+                    fieldValue = varValue(fieldNames(kField));
+                else
+                    fieldValue = varValue{kField};
+                end
+
+                if typeof(fieldValue) == "ScilabMatrixHandle" then
+                    fieldValue = createMatrixHandle(fieldValue);
+                elseif typeof(fieldValue) == "ScilabMacro" then
+                    //convert tlist to macro
+                    fieldValue = createMacro(fieldValue, "function");
+                elseif isList(fieldValue) then
+                    fieldValue = parseList(fieldValue);
+                end
+
+                if typeof(varValue)=="st" then
+                    s = size(varValue, "*");
+                    if s > 1 then
+                        if typeof(fieldValue) <> "list" then //houston !
+                        end
+
+                        for iDim = 1:s
+                            varValue(iDim)(fieldNames(kField)) = fieldValue(iDim);
+                        end
+                    else
+                        varValue(fieldNames(kField)) = fieldValue;
+                    end
+                else
+                    varValue{kField} = fieldValue;
+                end
+
+            end
+
+        elseif typeof(varValue)=="list" then
             for i = definedfields(varValue)
                 if typeof(varValue(i)) == "ScilabMatrixHandle" then
                     varValue(i) = createMatrixHandle(varValue(i));
@@ -72,7 +106,7 @@ function %_sodload(%__filename__, varargin)
                 elseif isList(fieldValue) then
                     fieldValue = parseList(fieldValue);
                 end
-                setfield(kField, fieldValue, varValue);
+                varValue = setfield(kField, fieldValue, varValue);
             end
         end
     endfunction
@@ -846,7 +880,7 @@ function %_sodload(%__filename__, varargin)
         if or(fields=="scrollable") then
             // Properties added in Scilab 5.5.0
             //  - scrollable must be set at creation (for frames)
-            //  - contraints & margins must be set before parent
+            //  - constraints & margins must be set before parent
             h = uicontrol("style", uicontrolProperties.style, ...
             "scrollable", uicontrolProperties.scrollable, ...
             "constraints", uicontrolProperties.constraints, ...
@@ -919,7 +953,6 @@ function %_sodload(%__filename__, varargin)
     endfunction
 
     function macro = createMacro(macroStr, macroName)
-
         macroSt = macroStr(3);
         if macroStr(2) == %t then
             flag = "c";
@@ -935,58 +968,9 @@ function %_sodload(%__filename__, varargin)
         execstr("macro = " + macroName);
     endfunction
 
-    [%__lhs__, %__rhs__] = argn();
-    %__resumeList__ = list();
-    %__resumeVarlist__ = [];
-    if %__rhs__ < 1 then
-        error(999, msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "load", 1));
+    varargout = list();
+    for i = 1:size(%__varnameList__, "*")
+        varargout(i) = %__convertVariable__(evstr(%__varnameList__(i)), %__varnameList__(i));
+        //printf("add %s: type %s become %s\n", %__varnameList__(i), typeof(evstr(%__varnameList__(i))), typeof(varargout(i)));
     end
-
-    if %__rhs__ >= 1 then
-        if typeof(%__filename__) <> "string" | size(%__filename__, "*") <> 1 then
-            error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "load", 1));
-        end
-    end
-
-    if isfile(%__filename__) & is_hdf5_file(%__filename__) then
-        %__loadFunction__ = import_from_hdf5;
-        //fileVersion = getScilabFileVersion(%__filename__); // Not needed for the moment
-    else
-        %__loadFunction__ = %_load;
-    end
-
-    //multiple output variables to prevent listinfile prints
-    [%__variableList__, %__varB__, %__varC__, %__varD__] = listvarinfile(%__filename__);
-    //
-    if size(varargin) <> 0 then
-        for i = 1:size(varargin)
-            %__variableName__ = varargin(i);
-            if typeof(%__variableName__) <> "string" | size(%__variableName__, "*") <> 1 then
-                error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "load", i));
-            end
-
-            if or(%__variableList__ == %__variableName__) then
-                %__loadFunction__(%__filename__, %__variableName__);
-                %__resumeList__($+1) = evstr(%__variableName__);
-                %__resumeVarlist__($+1) = %__variableName__;
-                clear(%__variableName__);
-            else
-                error(999, msprintf(gettext("%s: variable ''%s'' does not exist in ''%s''.\n"), "load", %__variableName__, %__filename__));
-            end
-        end
-    else
-        for i = 1:size(%__variableList__, "*")
-            %__variableName__ = %__variableList__(i);
-            %__loadFunction__(%__filename__, %__variableName__);
-            %__resumeList__($+1) = evstr(%__variableName__);
-            %__resumeVarlist__($+1) = %__variableName__;
-            clear(%__variableName__);
-        end
-    end
-
-    if isfile(%__filename__) & is_hdf5_file(%__filename__) then
-        %__resumeList__ = %__convertVariable__(%__resumeList__, %__resumeVarlist__);
-    end
-
-    execstr("[" + strcat(%__resumeVarlist__, ",") + "] = resume(%__resumeList__(:))");
 endfunction

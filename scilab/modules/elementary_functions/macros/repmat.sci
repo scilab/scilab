@@ -1,10 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) - 2011 -  INRIA, Serge Steer
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 function B = repmat(A,varargin)
     //ajouter test sur les type des elements de varargin
     rhs = argn(2);
@@ -38,7 +41,7 @@ function B = repmat(A,varargin)
         if typeof(A)=="rational" then
             B=rlist(repmat(A.num,varargin(:)),repmat(A.den,varargin(:)),A.dt)
             return
-        elseif typeof(A)<>"hypermat" then
+        else
             execstr("B=%"+typeof(A)+"_repmat(A,varargin(:))")
             return
         end
@@ -99,7 +102,7 @@ function B = repmat(A,varargin)
             I(i)=ind;
         end
 
-        if typeof(A) == "hypermat" | (size(varargin(1),"*") <> 1 & size(varargin(1)) <3) then // Works if A is hypermat but not for int8,int16 matrix
+        if nda > 2 | (size(varargin(1),"*") <> 1 & size(varargin(1)) <3) then // Works if A is hypermat but not for int8,int16 matrix
             B=A(I(:));
         else // Works for int8, int16... matrix but not for hypermat
             if rhs ==2 then
@@ -146,7 +149,7 @@ function B = repmat(A,varargin)
                 end
                 J=J';
                 A_final=A_base(J);
-                B=mlist(["hm", "dims", "entries"], matrix(dims,1,-1), matrix(A_final,-1,1));
+                B=matrix(A_final, dims);
             end
         end
     end

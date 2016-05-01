@@ -2,54 +2,14 @@ LIBRARY    elementary_functions_f.dll
 
 
 EXPORTS
-; --------------------------------------- 
+; ---------------------------------------
 ; elementary_functions_f
-; --------------------------------------- 
-intabs_
-intacos_
-intasin_
-intatan_
-intceil_
-intchinesehat_
-intclean_
-intconj_
-intcos_ 
-intcumprod_
-intcumsum_
-intdiag_
-intdsearch_
-intexp_
-intexpm_
-inteye_
-intfloor_
-intfrexp_
-intimag_
-intimult_
-intint_
-intisequal_
-intisreal_
-intkron_
-intlog_
-intlog1p_
-intmatrix_
-intmaxi_
-intnearfl_
-intnbprop_
-intones_
-intprod_
-intrand_
-intrat_
-intreal_
-intround_
-intsign_
-intsin_
-intsize_
-intspones_
-intsqrt_
-intsum_
-inttan_
-inttestmatrix_
-inttril_
-inttriu_
-intzeros_
-intfind_
+; ---------------------------------------
+coef_
+dad_
+dmcopy_
+dmmul_
+dclmat_
+cerr_
+nearfloat_
+; ---------------------------------------

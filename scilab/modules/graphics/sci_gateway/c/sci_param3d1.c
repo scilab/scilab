@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,17 +18,17 @@
 /* file: sci_param3d1.h                                                   */
 /* desc : interface for param3d1 routine                                  */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
 #include "sciCall.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int sci_param3d1(char *fname, unsigned long fname_len)
+int sci_param3d1(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int izcol = 0, isfac = 0;
@@ -63,7 +66,7 @@ int sci_param3d1(char *fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
 
@@ -75,10 +78,10 @@ int sci_param3d1(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (FirstOpt() < 4)
+    if (FirstOpt(pvApiCtx) < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 4);
-        return(0);
+        return (0);
     }
 
     //get variable address

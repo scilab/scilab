@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void gainblk_i16n(scicos_block *block, int flag)
@@ -43,7 +43,7 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i16n(scicos_block *block, int flag)
         y = Getint16OutPortPtrs(block, 1);
         opar = Getint16OparPtrs(block, 1);
         k = pow(2, 16);
-        if (mo*no == 1)
+        if (mo * no == 1)
         {
             for (i = 0; i < ny * mu; ++i)
             {

@@ -5,7 +5,7 @@
         <refpurpose>interfacing a Fortran or C routine</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[s_1,s_2,...,s_lhs]=user(e_1,e_2,...,e_rhs)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -16,7 +16,7 @@
             where  <literal>(s_1,s_2,...,s_lhs)</literal> are the output variables and
             <literal>(e_1,e_2,...,e_rhs)</literal> are the input variables. To insert this command 
             in Scilab one has to write a few lines in the <literal>user</literal> fortran subroutine
-            of Scilab. See <link linkend="intersci">intersci</link> or the Scilab documentation for more information.
+            of Scilab.
         </para>
     </refsection>
     <refsection role="see also">
@@ -27,9 +27,6 @@
             </member>
             <member>
                 <link linkend="link">link</link>
-            </member>
-            <member>
-                <link linkend="intersci">intersci</link>
             </member>
         </simplelist>
     </refsection>

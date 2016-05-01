@@ -1,13 +1,15 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 // <-- CLI SHELL MODE -->
-stacksize("max");
 ilib_verbose(0);
 funcprot(0);
 function make_compiled_function(name, ext, code)
@@ -180,7 +182,7 @@ for sched=0:1
   res= parallel_run(many_args, "g", init_param('dynamic_scheduling', sched,'nb_workers', many_workers ));
   if res<>g(many_args) then bugmes();quit;end;
 end;
-// test scheduling: sleeping is embarassingly parallel even on uniprocessors ! :)
+// test scheduling: sleeping is embarrassingly parallel even on uniprocessors ! :)
 function r=do_sleep(t);sleep(t*1000);r=1;endfunction
 many_workers= 80;
 sleep_time=2;

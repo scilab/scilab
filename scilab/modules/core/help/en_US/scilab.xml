@@ -7,14 +7,14 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>scilab &lt;Options&gt;
             scilab-adv-cli &lt;Options&gt;
             scilab-cli &lt;Options&gt;
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
+    <refsection role="arguments">
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>-args Arguments</term>
@@ -51,14 +51,14 @@
                         Define the variable <literal>SCILAB_GDB_OPT</literal> to add custom options to
                         gdb.
                     </para>
-                    <para>Advise: use this option on a Scilab source tree.</para>
+                    <para>Advice: use this option on a Scilab source tree.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>-debug-kdbg</term>
                 <listitem>
                     <para>Start Scilab under kdbg (Unix/Linux/Mac OS X only).</para>
-                    <para>Advise: use this option on a Scilab source tree.</para>
+                    <para>Advice: use this option on a Scilab source tree.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -68,7 +68,7 @@
                     <para>Define the variable SCILAB_VALGRIND_OPT to add custom options
                         to valgrind (and override the existing valgrind options).
                     </para>
-                    <para>Advise: use this option on a Scilab source tree.</para>
+                    <para>Advice: use this option on a Scilab source tree.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -78,14 +78,14 @@
                     <para>Define the variable SCILAB_VALGRIND_OPT to add custom options
                         to callgrind (and override the existing callgrind options).
                     </para>
-                    <para>Advise: use this option on a Scilab source tree.</para>
+                    <para>Advice: use this option on a Scilab source tree.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>-electric-fence</term>
                 <listitem>
                     <para>Start Scilab with the Electric Fence (Unix/Linux/Mac OS X only).</para>
-                    <para>Advise: use this option on a Scilab source tree.</para>
+                    <para>Advice: use this option on a Scilab source tree.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -114,6 +114,17 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>-quit</term>
+                <listitem>
+                    <para>
+                        This option forces scilab to always exit after the instruction(s) passed with the <literal>-e</literal>
+                        option, or the script referred to by the <literal>-f</literal> option, have been executed,
+                        even in case of a runtime error. This option should always be used in batch mode.
+                        It is ignored if neither <literal>-e</literal> nor <literal>-f</literal> options are present.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>-l lang</term>
                 <listitem>
                     <para>If this option is present it fixes the user language.
@@ -138,16 +149,6 @@
                         # equivalent to
                         scilab -l ja_JP
                     </programlisting>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>-mem N</term>
-                <listitem>
-                    <para>
-                        Set the initial <literal>stacksize</literal>, for use with <literal>-ns</literal> 
-                        option. Without <literal>-ns</literal> option the initial <literal>stacksize</literal> 
-                        is set by <literal>scilab.start</literal> script.
-                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -256,14 +257,14 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description of environment variables</title>
         <variablelist>
             <varlistentry>
                 <term>SCIVERBOSE</term>
                 <listitem>
                     <para>
-                        If this variable is present, Scilab startup script will show a startup debug information. 
+                        If this variable is present, Scilab startup script will show a startup debug information.
                         Mainly used for bug report and debugging purposes.
                     </para>
                 </listitem>
@@ -272,7 +273,7 @@
                 <term>JAVA_HOME</term>
                 <listitem>
                     <para>
-                        Specify which Java to use. For example, 
+                        Specify which Java to use. For example,
                         <literal>JAVA_HOME=/usr/lib/jvm/java-7-openjdk/ scilab</literal> will start Scilab with Java 7.
                     </para>
                 </listitem>
@@ -293,7 +294,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Java Virtual Machine options</title>
         <para>Starting from Scilab 5.0, the graphical user interface (GUI) and the
             build documentation are based on Java features. In some cases, it can be
@@ -351,9 +352,9 @@
             change look and feel, change memory managements... See: <ulink url="http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html">http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</ulink>.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 # Let's start Scilab in profiling mode without attaching a gdb once a SIGSEGV is met.
 # We are under Bash shell
 export SCILAB_VALGRIND_OPT="--db-attach=no --log-file=myfile.txt"
@@ -394,7 +395,7 @@ echo $? ]]></programlisting>
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>History</title>
         <revhistory>
             <revision>
@@ -404,6 +405,12 @@ echo $? ]]></programlisting>
             <revision>
                 <revnumber>5.4.1</revnumber>
                 <revremark>scinotes and xcos individual scripts introduced. See SEP #87.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <literal>-quit</literal> option added. <literal>-mem</literal> option removed.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

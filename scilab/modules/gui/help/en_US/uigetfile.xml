@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[FileName[,PathName[,FilterIndex]]]=uigetfile([file_mask[,dir[,boxTitle[,multipleSelection]]]])
             PathFileName=uigetfile([file_mask[,dir[,boxTitle[,multiple]]]])
         </synopsis>

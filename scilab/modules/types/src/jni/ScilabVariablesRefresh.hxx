@@ -8,31 +8,14 @@ This is generated code.
 This software is a computer program whose purpose is to hide the complexity
 of accessing Java objects/methods from C++ code.
 
-This software is governed by the CeCILL-B license under French law and
-abiding by the rules of distribution of free software.  You can  use,
-modify and/ or redistribute the software under the terms of the CeCILL-B
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info".
+Copyright (C) 2012 - 2016 - Scilab Enterprises
 
-As a counterpart to the access to the source code and  rights to copy,
-modify and redistribute granted by the license, users are provided only
-with a limited warranty  and the software's author,  the holder of the
-economic rights,  and the successive licensors  have only  limited
-liability.
-
-In this respect, the user's attention is drawn to the risks associated
-with loading,  using,  modifying and/or developing or reproducing the
-software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate,  and  that  also
-therefore means  that it is reserved for developers  and  experienced
-professionals having in-depth computer knowledge. Users are therefore
-encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or
-data to be ensured and,  more generally, to use and operate it in the
-same conditions as regards security.
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL-B license and that you accept its terms.
+This file is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This file was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
 */
 
 
@@ -84,7 +67,7 @@ jmethodID jintgetScilabVariablesRefreshIdID; // cache method id
 jobject instance;
 jclass instanceClass; // cache class
 
-                       
+
 // Caching (if any)
 
 
@@ -111,9 +94,9 @@ ScilabVariablesRefresh(JavaVM * jvm_);
 ScilabVariablesRefresh(JavaVM * jvm_, jobject JObj);
 
 
-/** 
+/**
 * This is a fake constructor to avoid the constructor
-* chaining when dealing with extended giws classes 
+* chaining when dealing with extended giws classes
 */
 #ifdef FAKEGIWSDATATYPE
 ScilabVariablesRefresh(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
@@ -146,18 +129,18 @@ static int getScilabVariablesRefreshId(JavaVM * jvm_);
                         * Get class name to use for static methods
                         * @return class name to use for static methods
                         */
-                        
+
                 static const std::string className()
                 {
                 return "org/scilab/modules/types/ScilabVariablesRefresh";
                 }
-                
+
 
                         /**
                         * Get class to use for static methods
                         * @return class to use for static methods
                         */
-                        
+
                 static jclass initClass(JNIEnv * curEnv)
                 {
                     static jclass cls = 0;
@@ -173,7 +156,7 @@ static int getScilabVariablesRefreshId(JavaVM * jvm_);
 
                     return cls;
                  }
-                
+
 };
 
 

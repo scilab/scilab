@@ -1,0 +1,112 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+loadXcosLibs();
+scicos_log("TRACE");
+// Creating a Diagram containing a Link connected to a Block
+scs = scicos_diagram( objs=list(scicos_block(),scicos_link(from=[1,1,0])) );
+Xcos debug: objectCreated( 1 , BLOCK )
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EXPRS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , RPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
+Xcos trace: propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
+Xcos debug: objectCreated( 2 , LINK )
+Xcos trace: propertyUpdated( 2 , LINK , CONTROL_POINTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , LINK , CONTROL_POINTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , LINK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , LINK , THICK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , LINK , COLOR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , LINK , KIND ) : NO_CHANGES
+Xcos debug: objectCreated( 3 , DIAGRAM )
+Xcos debug: objectReferenced( 3 , DIAGRAM ) : 1
+Xcos trace: propertyUpdated( 3 , DIAGRAM , TITLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , PATH ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 3 , DIAGRAM ) : 0
+Xcos trace: propertyUpdated( 3 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 2 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 2 , LINK ) : 1
+Xcos debug: objectCreated( 4 , PORT )
+Xcos trace: propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , OUTPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+Xcos trace: propertyUpdated( 2 , LINK , SOURCE_PORT ) : SUCCESS
+Xcos trace: propertyUpdated( 2 , LINK , DESTINATION_PORT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+// Extracting and modifying the Link should not modify the original Diagram
+newLink = scs.objs(2);
+Xcos debug: objectReferenced( 1 , BLOCK ) : 2
+Xcos debug: objectReferenced( 1 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 2
+Xcos debug: objectReferenced( 2 , LINK ) : 2
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 1
+newLink.from = [3 1 0];
+assert_checkequal(scs.objs(1).graphics.pout, 2);
+Xcos debug: objectReferenced( 1 , BLOCK ) : 2
+Xcos debug: objectReferenced( 1 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 2
+Xcos debug: objectReferenced( 2 , LINK ) : 3
+Xcos debug: objectUnreferenced( 2 , LINK ) : 2
+Xcos debug: objectReferenced( 1 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 1
+assert_checkequal(scs.objs(2).from, [1 1 0]);
+Xcos debug: objectReferenced( 1 , BLOCK ) : 2
+Xcos debug: objectReferenced( 1 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 2
+Xcos debug: objectReferenced( 2 , LINK ) : 3
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 2 , LINK ) : 2
+assert_checkequal(newLink.from, [3 1 0]);
+// Check that all the model items are freed
+clear
+Xcos debug: objectUnreferenced( 2 , LINK ) : 1
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
+Xcos debug: objectUnreferenced( 2 , LINK ) : 0
+Xcos trace: propertyUpdated( 1 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 2 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , OUTPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , LINK , SOURCE_PORT ) : SUCCESS
+Xcos debug: objectDeleted( 4 , PORT )
+Xcos debug: objectDeleted( 1 , BLOCK )
+Xcos debug: objectDeleted( 2 , LINK )
+Xcos debug: objectDeleted( 3 , DIAGRAM )

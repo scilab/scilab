@@ -35,7 +35,13 @@ function bache_draw_ports(o)
     clkin=size(o.model.evtin,1);
     clkout=size(o.model.evtout,1);
 
-    [orig,sz,orient]=(o.graphics.orig,o.graphics.sz,o.graphics.flip)
+    [orig,sz]=(o.graphics.orig,o.graphics.sz)
+    orient=%t;
+    style=graphics.style;
+    subStr=strstr(style,"flip=");
+    if subStr<>"" then
+        orient=%f;
+    end
     xset("pattern",default_color(0));
 
     //xset('thickness',1)

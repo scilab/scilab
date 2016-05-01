@@ -1,6 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
 //==================================
 // unit tests printf
-// INRIA 2007 (A.C)
 //==================================
 printf("printf test 1:%s\n", "simple string");
 printf test 1:simple string
@@ -56,6 +62,6 @@ printf test 17:AA
 printf("printf test 18:%.5s\n", "abcdefghij");
 printf test 18:abcde
 //==================================
-printf("printf test 195:%-2s\n", "gazonk");
-printf test 195:gazonk
+printf("printf test 19:%-2s\n", "gazonk");
+printf test 19:gazonk
 //==================================

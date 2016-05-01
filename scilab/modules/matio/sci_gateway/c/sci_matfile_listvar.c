@@ -3,11 +3,14 @@
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,13 +19,11 @@
 #include "gw_matio.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_string.h"
 
-int sci_matfile_listvar(char *fname, unsigned long fname_len)
+int sci_matfile_listvar(char *fname, void* pvApiCtx)
 {
     int nbRow = 0, nbCol = 0;
     mat_t *matfile = NULL;
@@ -95,13 +96,17 @@ int sci_matfile_listvar(char *fname, unsigned long fname_len)
         if (varnames == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
+            FREE(varclasses);
+            FREE(vartypes);
             return FALSE;
         }
-        varnames[nbvar - 1] = strdup(matvar->name);
+        varnames[nbvar - 1] = os_strdup(matvar->name);
         varclasses = (double*) REALLOC(varclasses, nbvar * sizeof(double));
         if (varclasses  == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
+            FREE(vartypes);
+            FREE(varnames);
             return FALSE;
         }
         varclasses[nbvar - 1] = (double) matvar->class_type;
@@ -109,6 +114,8 @@ int sci_matfile_listvar(char *fname, unsigned long fname_len)
         if (vartypes == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
+            FREE(varnames);
+            FREE(varclasses);
             return FALSE;
         }
         vartypes[nbvar - 1] = (double) matvar->data_type;

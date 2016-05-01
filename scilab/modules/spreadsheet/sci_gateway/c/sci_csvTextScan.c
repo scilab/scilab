@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - 2012 - INRIA - Allan CORNET
  * Copyright (C) 2011 - INRIA - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  * This code is also published under the GPL v3 license.
  *
@@ -16,25 +19,23 @@
 #include "gw_spreadsheet.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 #include "stringToComplex.h"
 #include "csvDefault.h"
 #include "csvRead.h"
 #include "getRange.h"
 #include "gw_csv_helpers.h"
+#include "os_string.h"
 
 static void freeVar(char*** text, int sizeText, int** lengthText, char** separator, char** decimal, char** conversion, int** iRange);
 // =============================================================================
 #define CONVTOSTR "string"
 #define CONVTODOUBLE "double"
 // =============================================================================
-int sci_csvTextScan(char *fname, unsigned long fname_len)
+int sci_csvTextScan(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iErr = 0;
@@ -117,7 +118,7 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
     }
     else
     {
-        conversion = strdup(getCsvDefaultConversion());
+        conversion = os_strdup(getCsvDefaultConversion());
     }
 
     if (Rhs >= 3)
@@ -138,7 +139,7 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
     }
     else
     {
-        decimal = strdup(getCsvDefaultDecimal());
+        decimal = os_strdup(getCsvDefaultDecimal());
     }
 
     if (Rhs >= 2)
@@ -152,7 +153,7 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
     }
     else
     {
-        separator = strdup(getCsvDefaultSeparator());
+        separator = os_strdup(getCsvDefaultSeparator());
     }
 
     if (!csv_isRowVector(pvApiCtx, 1) &&
@@ -319,6 +320,9 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
 
             case CSV_READ_READLINES_ERROR:
             case CSV_READ_ERROR:
+            case CSV_READ_MOPEN_ERROR:
+            case CSV_READ_FILE_NOT_EXIST:
+            case CSV_READ_REGEXP_ERROR:
             {
                 Scierror(999, _("%s: can not read text.\n"), fname);
             }

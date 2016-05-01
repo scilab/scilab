@@ -5,7 +5,7 @@
         <refpurpose>Terminates Scilab or  decreases the pause level </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>quit</synopsis>
     </refsynopsisdiv>
     <refsection>

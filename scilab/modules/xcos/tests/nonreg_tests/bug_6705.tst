@@ -14,14 +14,12 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=6705
 //
 // <-- Short Description -->
-// When drag and drop port alignement is not right
+// When drag-and-dropping, port alignment is not right
 
 // xcos();
 // Put a BIGSOM_f block (#1) by right click and the "Add to" action.
-// Put another BIGSOM_f (#2) by a single drag an drop (with an input port next
+// Put another BIGSOM_f (#2) by a single drag-and-drop (with an input port next
 // to #1 output port)
-// 
+//
 // Linking #1 output port to the #2 input port should be a straight horizontal
 // line.
-//
-

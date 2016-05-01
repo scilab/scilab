@@ -9,11 +9,11 @@
 // Benchmark for fft function
 //==============================================================================
 
+// <-- BENCH NB RUN : 100 -->
 a = 0; b = 0;
-stacksize(30000000);
-a = rand(800000, 1, 'n');
+a = rand(800000, 1, "n");
 
 // <-- BENCH START -->
-    b = fft(a, -1);
+b = fft(a, -1);
 // <-- BENCH END -->
 

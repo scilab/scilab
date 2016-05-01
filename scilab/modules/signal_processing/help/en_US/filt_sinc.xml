@@ -5,7 +5,7 @@
         <refpurpose>samples of sinc function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x]=filt_sinc(n,fl)</synopsis>
     </refsynopsisdiv>
     <refsection>

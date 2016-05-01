@@ -2,19 +2,23 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011-2011 - DIGITEO - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <string.h>
 #include <stdio.h>
 #include "api_scilab.h"
 #include "BOOL.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "serialization.h"
+#include "elem_common.h"
 
 static int serialize_double(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
 {
@@ -313,7 +317,7 @@ static int serialize_int(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBu
                 sciErr = getMatrixOfUnsignedInteger64(_pvCtx, _piAddr, &iRows, &iCols, (unsigned long long**)&pvData);
                 break;
                 }
-        */ default:
+    */ default:
             FREE(piOut);
             return 1;
     }
@@ -430,25 +434,33 @@ static int serialize_sparse(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_p
 
 int serialize_to_mpi(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
 {
-    switch (*_piAddr)
+    int iType = 0;
+    SciErr sciErr = getVarType(_pvCtx, _piAddr, &iType);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    switch (iType)
     {
         case sci_matrix:
-            return serialize_double(pvApiCtx, _piAddr, _piBuffer, _piBufferSize);
+            return serialize_double(_pvCtx, _piAddr, _piBuffer, _piBufferSize);
             break;
         case sci_strings:
-            return serialize_string(pvApiCtx, _piAddr, _piBuffer, _piBufferSize);
+            return serialize_string(_pvCtx, _piAddr, _piBuffer, _piBufferSize);
             break;
         case sci_boolean:
-            return serialize_boolean(pvApiCtx, _piAddr, _piBuffer, _piBufferSize);
+            return serialize_boolean(_pvCtx, _piAddr, _piBuffer, _piBufferSize);
             break;
         case sci_sparse:
-            return serialize_sparse(pvApiCtx, _piAddr, _piBuffer, _piBufferSize, TRUE);
+            return serialize_sparse(_pvCtx, _piAddr, _piBuffer, _piBufferSize, TRUE);
             break;
         case sci_boolean_sparse:
-            return serialize_sparse(pvApiCtx, _piAddr, _piBuffer, _piBufferSize, FALSE);
+            return serialize_sparse(_pvCtx, _piAddr, _piBuffer, _piBufferSize, FALSE);
             break;
         case sci_ints:
-            return serialize_int(pvApiCtx, _piAddr, _piBuffer, _piBufferSize);
+            return serialize_int(_pvCtx, _piAddr, _piBuffer, _piBufferSize);
             break;
         default:
             return -1;

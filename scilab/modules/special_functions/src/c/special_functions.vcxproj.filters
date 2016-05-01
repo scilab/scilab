@@ -2,31 +2,28 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{4a17d76a-a867-44e3-9d8b-a2bed0fbcecb}</UniqueIdentifier>
+      <UniqueIdentifier>{8a047fc3-021b-42d6-8588-a20e27a5a45c}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{dca5366d-3611-4fd3-8dbe-8b7c745080b4}</UniqueIdentifier>
+      <UniqueIdentifier>{83448b4e-86ff-4783-bf1c-285c8e5f8ab8}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{1f93d917-8473-4c34-9008-77a6ed350575}</UniqueIdentifier>
+      <UniqueIdentifier>{362c614a-c166-4c23-8a6f-6b17bda74429}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{3ef71fdb-3cf0-4913-affe-911bdad374ce}</UniqueIdentifier>
+      <UniqueIdentifier>{0b158929-8ca7-4a3e-8553-f685c3ab90c1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{05347971-2ad2-40bb-ac1f-144fa4a294bb}</UniqueIdentifier>
+      <UniqueIdentifier>{99bddf78-187b-4b42-83f3-0e6d5d7e1b1c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource File">
-      <UniqueIdentifier>{ee85f5a0-cec2-4ed5-b690-db614ae6d230}</UniqueIdentifier>
+      <UniqueIdentifier>{c76195df-1cae-49b2-8386-c6f7f3747452}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DllmainSpecial_functions.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_special_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_besselh.c">
@@ -47,16 +44,7 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_beta.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_dlgamma.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_gamma.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_legendre.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_lgamma.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="zbeshv.c">
@@ -66,6 +54,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\faddeeva.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_dlgamma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_gamma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_lgamma.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,6 +80,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\faddeeva.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\special_functions_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

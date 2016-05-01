@@ -2,11 +2,14 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 //
@@ -365,7 +368,7 @@ Scaling vertex #3/8 at [3.3076221 2.5678358 6.9949047 3.7146204]...
 Function Evaluation #10, index=5, x= [3.3076221 2.5678358 6.9949047 3.7146204]
 Inequality constraint #1/3 is not satisfied for x
 Scaling inequality constraint with alpha = 0.5
-Function Evaluation #11, index=5, x= [1.653811 1.2839179 3.4974524 1.8573102]
+Function Evaluation #11, index=5, x= [1.6538110 1.2839179 3.4974524 1.8573102]
 Inequality constraint #1/3 is not satisfied for x
 Scaling inequality constraint with alpha = 0.25
 Function Evaluation #12, index=5, x= [0.8269055 0.6419589 1.7487262 0.9286551]
@@ -417,7 +420,7 @@ Scaling vertex #7/8 at [-3.8478185 8.6592324 -5.7079843 -3.7471601]...
 Function Evaluation #26, index=5, x= [-3.8478185 8.6592324 -5.7079843 -3.7471601]
 Inequality constraint #1/3 is not satisfied for x
 Scaling inequality constraint with alpha = 0.5
-Function Evaluation #27, index=5, x= [-1.9239093 4.3296162 -2.8539921 -1.87358]
+Function Evaluation #27, index=5, x= [-1.9239093 4.3296162 -2.8539921 -1.8735800]
 Inequality constraint #1/3 is not satisfied for x
 Scaling inequality constraint with alpha = 0.25
 Function Evaluation #28, index=5, x= [-0.9619546 2.1648081 -1.4269961 -0.9367900]
@@ -425,12 +428,12 @@ Inequality constraint #2/3 is not satisfied for x
 Scaling inequality constraint with alpha = 0.125
 Function Evaluation #29, index=5, x= [-0.4809773 1.0824041 -0.7134980 -0.4683950]
  > After scaling into inequality constraints p = [-0.4809773 1.0824041 -0.7134980 -0.4683950]
-Scaling vertex #8/8 at [-2.767278 -4.1554667 1.3284976 -0.3470561]... 
- > After projection into bounds p = [-2.767278 -4.1554667 1.3284976 -0.3470561]
-Function Evaluation #30, index=5, x= [-2.767278 -4.1554667 1.3284976 -0.3470561]
+Scaling vertex #8/8 at [-2.7672780 -4.1554667 1.3284976 -0.3470561]... 
+ > After projection into bounds p = [-2.7672780 -4.1554667 1.3284976 -0.3470561]
+Function Evaluation #30, index=5, x= [-2.7672780 -4.1554667 1.3284976 -0.3470561]
 Inequality constraint #1/3 is not satisfied for x
 Scaling inequality constraint with alpha = 0.5
-Function Evaluation #31, index=5, x= [-1.383639 -2.0777334 0.6642488 -0.1735280]
+Function Evaluation #31, index=5, x= [-1.3836390 -2.0777334 0.6642488 -0.1735280]
 Inequality constraint #1/3 is not satisfied for x
 Scaling inequality constraint with alpha = 0.25
 Function Evaluation #32, index=5, x= [-0.6918195 -1.0388667 0.3321244 -0.0867640]
@@ -463,8 +466,8 @@ xbar=[0.0029736 -0.1880846 0.3589327 0.0411304]
 _boxlinesearch
 > xhigh=[-0.7216878 0.6401096 -1.2494472 -0.4241823], fhigh=27.909746
 > xbar=[0.0029736 -0.1880846 0.3589327 0.0411304]
-> xr = [0.9450335 -1.264737 2.4498264 0.6460369]
-Function Evaluation #41, index=5, x= [0.9450335 -1.264737 2.4498264 0.6460369]
+> xr = [0.9450335 -1.2647370 2.4498264 0.6460369]
+Function Evaluation #41, index=5, x= [0.9450335 -1.2647370 2.4498264 0.6460369]
 Inequality constraint #1/3 is not satisfied for x
 Function Evaluation #42, index=5, x= [0.4740036 -0.7264108 1.4043795 0.3435837]
 Function Evaluation #43, index=2, x= [0.4740036 -0.7264108 1.4043795 0.3435837]
@@ -478,7 +481,7 @@ Xopt : [0.8269055 0.6419589 1.7487262 0.9286551]
 Fopt : -29.492616
 DeltaFv : 40.830666
 Center : [0.0618524 -0.2553754 0.4896135 0.0789371]
-Size : 3.14942
+Size : 3.1494200
 Optim Simplex Object:
 =====================
 nbve: 8
@@ -490,12 +493,12 @@ fv: 8-by-1 matrix
   > funevals=43 >= maxfunevals=1000
   > e(x)=0.4132440 < 1.490D-08 * 0.5612439 + 0
   > Terminate = F, status = continue
-  > simplex size=3.14942 < 0 + 0.001 * 2.239716
+  > simplex size=3.1494200 < 0 + 0.001 * 2.2397160
   > Terminate = F, status = continue
 Reflect
 xbar=[0.1393995 -0.4464867 0.6614866 0.1571274]
 _boxlinesearch
-> xhigh=[-0.4809773 1.0824041 -0.7134980 -0.4683950], fhigh=11.33805
+> xhigh=[-0.4809773 1.0824041 -0.7134980 -0.4683950], fhigh=11.338050
 > xbar=[0.1393995 -0.4464867 0.6614866 0.1571274]
 > xr = [0.9458893 -2.4340447 2.4489666 0.9703065]
 Function Evaluation #44, index=5, x= [0.9458893 -2.4340447 2.4489666 0.9703065]
@@ -526,7 +529,7 @@ fv: 8-by-1 matrix
   > funevals=47 >= maxfunevals=1000
   > e(x)=0.3705056 < 1.490D-08 * 0.9130556 + 0
   > Terminate = F, status = continue
-  > simplex size=2.8582402 < 0 + 0.001 * 2.239716
+  > simplex size=2.8582402 < 0 + 0.001 * 2.2397160
   > Terminate = F, status = continue
 Reflect
 xbar=[0.2869482 -0.4328452 0.7723769 0.2210111]
@@ -536,9 +539,9 @@ _boxlinesearch
 > xr = [1.5593463 0.3549827 1.3447051 0.6211188]
 Function Evaluation #48, index=5, x= [1.5593463 0.3549827 1.3447051 0.6211188]
 Inequality constraint #3/3 is not satisfied for x
-Function Evaluation #49, index=5, x= [0.9231472 -0.0389312 1.058541 0.4210649]
-Function Evaluation #50, index=2, x= [0.9231472 -0.0389312 1.058541 0.4210649]
-xr=[0.9231472 -0.0389312 1.058541 0.4210649], f(xr)=-20.430956
+Function Evaluation #49, index=5, x= [0.9231472 -0.0389312 1.0585410 0.4210649]
+Function Evaluation #50, index=2, x= [0.9231472 -0.0389312 1.0585410 0.4210649]
+xr=[0.9231472 -0.0389312 1.0585410 0.4210649], f(xr)=-20.430956
   > Perform Reflection
 Sort
 =================================================================
@@ -560,7 +563,7 @@ fv: 8-by-1 matrix
   > funevals=50 >= maxfunevals=1000
   > e(x)=0.2620103 < 1.490D-08 * 0.9975385 + 0
   > Terminate = F, status = continue
-  > simplex size=2.6934096 < 0 + 0.001 * 2.239716
+  > simplex size=2.6934096 < 0 + 0.001 * 2.2397160
   > Terminate = F, status = continue
 Reflect
 xbar=[0.3512877 -0.3613307 0.9127312 0.2521709]

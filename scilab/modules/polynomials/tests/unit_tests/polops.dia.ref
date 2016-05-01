@@ -5,7 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
-mode(5)
 lines(0)
 s=poly(0,'s');
 //polynomial operations

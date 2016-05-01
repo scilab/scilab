@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -26,7 +29,7 @@ BOOL DataModel::setGraphicObjectProperty(int iUID, int _iName, void const* _dblV
     int property = 0;
     int returnValue = 0;
 
-    dataObject = (*m_dataMap)[iUID];
+    dataObject = m_dataMap[iUID];
     if (dataObject == NULL)
     {
         return FALSE;
@@ -49,7 +52,7 @@ void DataModel::getGraphicObjectProperty(int iUID, int _iName, void **_pvData)
     Data3D* dataObject = NULL;
     int property = 0;
 
-    dataObject = (*m_dataMap)[iUID];
+    dataObject = m_dataMap[iUID];
 
     if (dataObject == NULL)
     {
@@ -100,26 +103,26 @@ int DataModel::createDataObject(int iUID, int _iType)
             return 0;
     }
 
-    (*m_dataMap)[iUID] = newObject;
+    m_dataMap[iUID] = newObject;
 
     return iUID;
 }
 
 void DataModel::deleteDataObject(int iUID)
 {
-    std::map<int, Data3D*>::iterator it = m_dataMap->find(iUID);
-    if (it != m_dataMap->end() && it->second != NULL)
+    std::map<int, Data3D*>::iterator it = m_dataMap.find(iUID);
+    if (it != m_dataMap.end() && it->second != NULL)
     {
         delete it->second;
-        m_dataMap->erase(it);
+        m_dataMap.erase(it);
     }
 
-    /*Data3D* newObject = (*m_dataMap)[std::string(_pstID)];
+    /*Data3D* newObject = m_dataMap[std::string(_pstID)];
       if (newObject != NULL)
       {
       delete newObject;
       }
 
-      m_dataMap->erase(std::string(_pstID));*/
+      m_dataMap.erase(std::string(_pstID));*/
 }
 

@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan Simon
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -17,6 +21,8 @@ import java.util.logging.Logger;
 
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
@@ -70,17 +76,19 @@ public class BasicPortCodec extends XcosObjectCodec {
      * Register all the know codecs on the {@link mxCodecRegistry}
      */
     public static void register() {
-        XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(new ExplicitOutputPort(), IGNORED_FIELDS, REFS, null);
+        JavaController controller = new JavaController();
+
+        XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(new ExplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(explicitOutputPortCodec);
-        XcosObjectCodec explicitInputPortCodec = new BasicPortCodec(new ExplicitInputPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec explicitInputPortCodec = new BasicPortCodec(new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(explicitInputPortCodec);
-        XcosObjectCodec implicitOutputPortCodec = new BasicPortCodec(new ImplicitOutputPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec implicitOutputPortCodec = new BasicPortCodec(new ImplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(implicitOutputPortCodec);
-        XcosObjectCodec implicitInputPortCodec = new BasicPortCodec(new ImplicitInputPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec implicitInputPortCodec = new BasicPortCodec(new ImplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(implicitInputPortCodec);
-        XcosObjectCodec commandPortCodec = new BasicPortCodec(new CommandPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec commandPortCodec = new BasicPortCodec(new CommandPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(commandPortCodec);
-        XcosObjectCodec controlPortCodec = new BasicPortCodec(new ControlPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec controlPortCodec = new BasicPortCodec(new ControlPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(controlPortCodec);
         mxCodecRegistry.register(new mxObjectCodec(Orientation.EAST));
     }
@@ -100,8 +108,6 @@ public class BasicPortCodec extends XcosObjectCodec {
      */
     @Override
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
-        ((Element) node).setAttribute(DATA_TYPE, String.valueOf(((BasicPort) obj).getDataType()));
-
         /*
          * Log some information
          */
@@ -162,14 +168,6 @@ public class BasicPortCodec extends XcosObjectCodec {
         final BasicPort port = (BasicPort) obj;
         final String attr = ((Element) node).getAttribute(DATA_TYPE);
 
-        // set default data type
-        if (attr == null || attr.equals("")) {
-            port.setDataType(BasicPort.DataType.REAL_MATRIX);
-
-        } else {
-            port.setDataType(BasicPort.DataType.valueOf(attr));
-        }
-
         // update connectable flag
         port.setConnectable(true);
 
@@ -216,12 +214,12 @@ public class BasicPortCodec extends XcosObjectCodec {
      */
     private void updateRotationFromOrientation(StyleMap map, BasicPort obj) {
         final Orientation orientation = obj.getOrientation();
-        int rotation = 0;
+        double rotation = 0;
         boolean flipped = false;
         boolean mirrored = false;
 
         if (map.get(mxConstants.STYLE_ROTATION) != null) {
-            rotation = Integer.parseInt(map.get(mxConstants.STYLE_ROTATION));
+            rotation = Double.parseDouble(map.get(mxConstants.STYLE_ROTATION));
         } else {
             rotation = 0;
         }
@@ -237,16 +235,10 @@ public class BasicPortCodec extends XcosObjectCodec {
         flipped = Boolean.parseBoolean(parentBlockMap.get(ScilabGraphConstants.STYLE_FLIP));
         mirrored = Boolean.parseBoolean(parentBlockMap.get(ScilabGraphConstants.STYLE_MIRROR));
 
-        final int baseAngle = orientation.getRelativeAngle(((BasicBlock) obj.getParent()).getAngle(), obj.getClass(), flipped, mirrored);
-
-        if (rotation == baseAngle) {
-            return;
-        }
-
         // Calculate the rotation for this kind of port.
         rotation = orientation.getAbsoluteAngle(obj.getClass(), flipped, mirrored);
 
-        map.put(mxConstants.STYLE_ROTATION, Integer.toString(rotation));
+        map.put(mxConstants.STYLE_ROTATION, Double.toString(rotation));
     }
 }
 // CSON: ClassDataAbstractionCoupling

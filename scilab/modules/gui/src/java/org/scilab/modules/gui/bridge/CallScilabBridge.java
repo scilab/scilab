@@ -5,11 +5,14 @@
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
  * Copyright (C) 2010-2011 - DIGITEO - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -31,6 +34,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.imageio.ImageIO;
 import javax.print.Doc;
@@ -349,7 +353,22 @@ public class CallScilabBridge {
      * @param id the id of the messageBox
      */
     public static void messageBoxDisplayAndWait(int id) {
-        ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
+        final int finalId = id;
+        try {
+            SwingUtilities.invokeAndWait(new Runnable() {
+
+                @Override
+                public void run() {
+                    ((MessageBox) UIElementMapper.getCorrespondingUIElement(finalId)).displayAndWait();
+                }
+            });
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**

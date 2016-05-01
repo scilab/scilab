@@ -1,0 +1,4 @@
+LIBRARY    fileio.dll
+
+EXPORTS
+isdir

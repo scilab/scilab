@@ -2,23 +2,28 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <stdio.h>
+
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "gw_linear_algebra2.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "norm.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(intnorm)(char *fname, unsigned long fname_len)
+int sci_norm(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     // Arguments' addresses
@@ -74,7 +79,7 @@ int C2F(intnorm)(char *fname, unsigned long fname_len)
         isComplex = 1;
         for (i = 0; i < iRows * iCols; ++i) // Checking A for %inf, which is not supported by Lapack.
         {
-            if (isinf(pAC[i].r) != 0 || isinf(pAC[i].i) != 0 || ISNAN(pAC[i].r) || ISNAN(pAC[i].i))
+            if (la_isinf(pAC[i].r) != 0 || la_isinf(pAC[i].i) != 0 || ISNAN(pAC[i].r) || ISNAN(pAC[i].i))
             {
                 Scierror(264, _("%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"), fname, 1);
                 return 0;
@@ -93,7 +98,7 @@ int C2F(intnorm)(char *fname, unsigned long fname_len)
 
         for (i = 0 ; i < iRows * iCols ; i++) // Checking A for %inf, which is not supported by Lapack.
         {
-            if (isinf(pA[i]) != 0 || ISNAN(pA[i]))
+            if (la_isinf(pA[i]) != 0 || ISNAN(pA[i]))
             {
                 Scierror(264, _("%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"), fname, 1);
                 return 0;
@@ -155,7 +160,7 @@ int C2F(intnorm)(char *fname, unsigned long fname_len)
     {
         if (getAllocatedSingleString(pvApiCtx, pflagAddr, &pflagChar)) // Retrieving flag dimensions.
         {
-            Scierror(205, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(205, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -204,7 +209,7 @@ int C2F(intnorm)(char *fname, unsigned long fname_len)
         }
 
         // Call the norm functions.
-        if (isinf(flagVal) == 1 && flagVal > 0) // flag = %inf
+        if (la_isinf(flagVal) == 1 && flagVal > 0) // flag = %inf
         {
             if (isComplex)
             {
@@ -221,7 +226,7 @@ int C2F(intnorm)(char *fname, unsigned long fname_len)
         }
         else
         {
-            if (isMat == 1 && flagVal != 1 && flagVal != 2 && isinf(flagVal) == 0)
+            if (isMat == 1 && flagVal != 1 && flagVal != 2 && la_isinf(flagVal) == 0)
             {
                 Scierror(116, _("%s: Wrong value for input argument #%d: %s, %s, %s or %s expected.\n"), fname, 2, "1", "2", "inf", "-inf");
                 return 0;

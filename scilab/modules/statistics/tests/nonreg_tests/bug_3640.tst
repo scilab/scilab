@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO - Allan CORNET
@@ -37,3 +38,4 @@ assert_checkequal(size(r), [250 1]);
 test = rand(250,1,166);
 assert_checkfalse(execstr("r = mean(test,3);"   ,"errcatch") <> 0);
 assert_checkequal(size(r), [250 1]);
+

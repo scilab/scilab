@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 // INTLINMEQ.F - Gateway function for solving Sylvester and Lyapunov matrix
@@ -130,12 +133,13 @@
 //   Adapted from the Slicot Matlab Mexfile by S. Steer Oct 2001
 //
 // **********************************************************************
-
-#include "gw_slicot.h"
+#include "gw_cacsd.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
+#include "elem_common.h"
+#include "Sciwarning.h"
 
 extern int C2F(lsame)();
 extern int C2F(dlacpy)();
@@ -151,7 +155,7 @@ extern int C2F(sb04py)();
 extern int C2F(sb04qd)();
 extern int C2F(sb04rd)();
 
-int sci_linmeq(char *fname, unsigned long fname_len)
+int sci_linmeq(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -179,8 +183,6 @@ int sci_linmeq(char *fname, unsigned long fname_len)
     double* lWR  = NULL;
     double* lCC  = NULL;
     double* lSEP = NULL;
-
-    char* tmpbuf[bsiz];
 
     // .. Parameters ..
     double ONE  = 1.;
@@ -523,7 +525,7 @@ int sci_linmeq(char *fname, unsigned long fname_len)
         }
     }
 
-    // Determine the lenghts of working arrays.
+    // Determine the lengths of working arrays.
     // Use a larger value for NDWORK for enabling calls of block algorithms
     // in DGEES, and possibly in DGEHRD, DGEQRF, DGERQF, SB04PD.
     LDA = Max(1, N);
@@ -1061,7 +1063,7 @@ int sci_linmeq(char *fname, unsigned long fname_len)
     }
 
     // form output
-    PERTRB =  (TASK == 1 && (INFO == N + M + 1 || (FLAG[1] * FLAG[2] == 1 & INFO == 1))) ||
+    PERTRB =  (TASK == 1 && (INFO == N + M + 1 || (FLAG[1] * FLAG[2] == 1 && INFO == 1))) ||
               (TASK == 2 && INFO == N + 1) || (TASK == 3 && INFO == 1);
 
     if (INFO == 0 || PERTRB)
@@ -1222,13 +1224,14 @@ int sci_linmeq(char *fname, unsigned long fname_len)
     }
     else if (SCALE != ONE)
     {
-        sciprint(_("%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"), fname, TEMP);
+        Sciwarning(_("%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"), fname, TEMP);
     }
 
     if (PERTRB)
     {
-        sciprint(_("%s: Warning: the equation is (almost) singular. Perturbed values have been used.\n"), fname);
+        Sciwarning(_("%s: Warning: the equation is (almost) singular. Perturbed values have been used.\n"), fname);
     }
 
+    ReturnArguments(pvApiCtx);
     return 0;
 }

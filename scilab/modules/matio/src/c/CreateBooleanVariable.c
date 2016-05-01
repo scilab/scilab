@@ -3,17 +3,20 @@
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #include "api_scilab.h"
 #include "CreateMatlabVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
@@ -51,6 +54,7 @@ int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int *
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(intPtr);
                     return 0;
                 }
             }
@@ -60,6 +64,7 @@ int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int *
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(intPtr);
                     return 0;
                 }
             }
@@ -85,6 +90,7 @@ int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int *
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(dblPtr);
                     return 0;
                 }
             }
@@ -94,6 +100,7 @@ int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int *
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(dblPtr);
                     return 0;
                 }
             }
@@ -114,7 +121,7 @@ int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int *
             piDims[K] = (int)matVariable->dims[K];
         }
 
-        CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_BOOLEAN_DATATYPE,  NULL, &matVariable->rank, piDims, (double*)matVariable->data, NULL, parent, item_position);
+        CreateHyperMatrixVariable(pvApiCtx, iVar, matVariable->class_type, NULL, &matVariable->rank, piDims, matVariable, parent, item_position);
 
         FREE(piDims);
     }

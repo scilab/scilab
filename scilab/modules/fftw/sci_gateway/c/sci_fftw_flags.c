@@ -5,29 +5,30 @@
 * Copyright (C) 2012 - DIGITEO - Allan CORNET
 * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "api_scilab.h"
 #include "fftw_utilities.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_fftw.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 /* fftw_flags function.
 *
-* Scilab Calling sequence :
+* Scilab Syntax :
 *   -->[a,b]=fftw_flags();
 * or
 *   -->[a,b]=fftw_flags(S);
@@ -45,7 +46,7 @@
 *  (default is FFTW_ESTIMATE)
 */
 /*--------------------------------------------------------------------------*/
-int sci_fftw_flags(char *fname, unsigned long fname_len)
+int sci_fftw_flags(char *fname,  void* pvApiCtx)
 {
     /* declaration of variables to store scilab parameters address */
     static int m1 = 0, n1 = 0;
@@ -159,12 +160,12 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
 
                 if (iPrecision == SCI_INT32)
                 {
-                    sciErr = getMatrixOfInteger32(pvApiCtx, piAddr1, &m1, &n1, pi32Data);
+                    sciErr = getMatrixOfInteger32(pvApiCtx, piAddr1, &m1, &n1, &pi32Data);
                     uiVar1 = (unsigned int)pi32Data[0];
                 }
                 else
                 {
-                    sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, piAddr1, &m1, &n1, pui32Data);
+                    sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, piAddr1, &m1, &n1, &pui32Data);
                     uiVar1 = pui32Data[0];
                 }
 
@@ -202,26 +203,29 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
                     return 1;
                 }
 
-                piLen = (int*)malloc(sizeof(int) * m1 * n1);
+                piLen = (int*)MALLOC(sizeof(int) * m1 * n1);
 
                 //second call to retrieve length of each string
                 sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, NULL);
                 if (sciErr.iErr)
                 {
+                    free(piLen);
                     printError(&sciErr, 0);
                     return 1;
                 }
 
-                Str1 = (char**)malloc(sizeof(char*) * m1 * n1);
+                Str1 = (char**)MALLOC(sizeof(char*) * m1 * n1);
                 for (i = 0 ; i < m1 * n1 ; i++)
                 {
-                    Str1[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+                    Str1[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
                 }
 
                 //third call to retrieve data
                 sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, Str1);
                 if (sciErr.iErr)
                 {
+                    free(piLen);
+                    freeArrayOfString(Str1, m1 * n1);
                     printError(&sciErr, 0);
                     return 1;
                 }
@@ -238,6 +242,7 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
 
                     if (i == nb_flag)
                     {
+                        free(piLen);
                         freeArrayOfString(Str1, m1 * n1);
                         Scierror(999, _("%s: Wrong values for input argument #%d: FFTW flag expected.\n"), fname, 1);
                         return 0;
@@ -252,6 +257,7 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
                 }
 
                 uiVar1 = (unsigned int)flagv;
+                free(piLen);
                 freeArrayOfString(Str1, m1 * n1);
                 m1 = 1;
                 n1 = 1;
@@ -262,7 +268,12 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
                 return 1;
         }
 
-        CheckDims(1, m1, n1, 1, 1);
+        if (m1 != 1 || n1 != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), fname, 1, 1, 1);
+            return 1;
+        }
+
         setCurrentFftwFlags(uiVar1);
     }
 
@@ -287,7 +298,7 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        Str3[0] = strdup(Str[0]);
+        Str3[0] = os_strdup(Str[0]);
         if (Str3[0] == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
@@ -317,7 +328,7 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
                     return 1;
                 }
 
-                Str3[j - 1] = strdup(Str[i]);
+                Str3[j - 1] = os_strdup(Str[i]);
                 if (Str3[j - 1] == NULL)
                 {
                     freeArrayOfString(Str3, j);

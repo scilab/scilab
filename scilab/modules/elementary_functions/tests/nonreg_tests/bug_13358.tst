@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // intersect and unique are slower due to gsort behaving in o(n^2) on sorted arrays
 //
-
+// <-- INTERACTIVE TEST -->
 // <-- CLI SHELL MODE -->
 
 err = 0.15
@@ -38,8 +38,8 @@ for i = 1:nb_test
     tic(); unique(A_rand); t_elapsed_rand = toc();
     delta_u = [delta_u, abs(t_elapsed_rand - t_elapsed_sorted) / (t_elapsed_rand + t_elapsed_sorted)];
 
-    tic(); gsort(1:1E6); t_elapsed_sorted = toc();
-    tic(); gsort(rand(1,1E6)); t_elapsed_rand = toc();
+    tic(); gsort(1:1E6); t_elapsed_sorted = toc()
+    tic(); gsort(rand(1,1E6)); t_elapsed_rand = toc()
     delta_s = [delta_s, abs(t_elapsed_rand - t_elapsed_sorted) / (t_elapsed_rand + t_elapsed_sorted)];
 end
 

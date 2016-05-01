@@ -5,7 +5,7 @@
         <refpurpose>linear quadratic programming solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x [,iact [,iter [,f]]]]=qpsolve(Q,p,C,b,ci,cs,me)</synopsis>
     </refsynopsisdiv>
     <refsection>

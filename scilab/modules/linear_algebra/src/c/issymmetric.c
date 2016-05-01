@@ -2,12 +2,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Bruno Jofret <bruno.jofret@inria.fr>
+ * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,14 +20,10 @@
 **
 ** issymmetric.c
 **
-** Started on  Thu Jul 19 12:12:28 2007 bruno
-** Last update Thu Sep 13 09:48:48 2007 bruno
 */
-#include "stack-c.h"
 #include "issymmetric.h"
-
 /*
-** Check wether or not a Matrix is Symmetric.
+** Check whether or not a Matrix is Symmetric.
 */
 
 /*
@@ -39,90 +39,75 @@
 */
 
 
-int C2F(issymmetric)(int *stackPosition)
+int isSymmetric(double* _pdblReal, double* _pdblImg, int _iIsComplex, int _iRows, int _iCols)
 {
+    int iDiag   = 0;
+    int iRow    = 0;
+    int iCol    = 0;
 
-    int relativePosition = Top - Rhs + *stackPosition;
-    int address = *Lstk(relativePosition);
-    int intAddress = iadr(address);
-    int m = getNumberOfLines(intAddress);
-    int n = getNumberOfColumns(intAddress);
-    int l = getDoubleDataAddress(intAddress);
-    int size = m * n;
-
-    /* Local variables */
-    int lineIterator = 0;
-    int columnIterator = 0;
-    int elementAddress = 0;
-    int symetricElementAddress = 0;
-    double realRest = 0;
-    double imagRest = 0;
-
-    /** If the matrix is not Square, it can not be symmetric */
-    if (m != n)
+    // If the matrix is not Square, it can not be symmetric
+    if (_iRows != _iCols)
     {
-        return(NOT_SYMMETRIC);
+        return NOT_SYMMETRIC;
     }
 
-    if (isComplex(intAddress))
+    if (_iIsComplex)
     {
-        /*
-        ** REAL Case.
-        */
-        for (lineIterator = 0 ; lineIterator < n ; ++lineIterator)
-        {
-            for (columnIterator = 0 ; columnIterator < lineIterator ; ++columnIterator)
-            {
-                elementAddress = l + columnIterator + lineIterator * n;
-                symetricElementAddress = l + columnIterator * n + lineIterator;
-                realRest = fabs(getElementByAddress(elementAddress) - getElementByAddress(symetricElementAddress));
-                if (realRest > 0)
-                {
-                    return NOT_SYMMETRIC;
-                }
-            }
-        }
-        /* We have not detected the Matrix is not Symetric */
-        return SYMMETRIC;
-    }
-    else
-    {
-        /*
-        ** COMPLEX case.
-        */
+        // complex case
 
-        /*
-        ** Just Checking that diags are completely real
-        ** i.e their imaginary part is 0.
-        */
-        /** { BEGIN : Diag check */
-        for (lineIterator = 0 ; lineIterator < n ; ++lineIterator)
+        //matrix must be an Hermitian matrix
+
+        //Diag must be real
+        for (iDiag = 0 ; iDiag < _iRows ; iDiag++)
         {
-            elementAddress = l + lineIterator + lineIterator * n;
-            symetricElementAddress = elementAddress + size;
-            if (fabs(getElementByAddress(symetricElementAddress)) > 0)
+            int iPos = iDiag + iDiag * _iRows;
+            if (_pdblImg[iPos] != 0)
             {
                 return NOT_SYMMETRIC;
             }
         }
-        /** END : Diag Check */
 
-        /** Generic Complex case */
-        for (lineIterator = 1 ; lineIterator < n ; ++lineIterator)
+        //real part == real part and img part == -(img part)
+        for (iRow = 0 ; iRow < _iRows; iRow++)
         {
-            for (columnIterator = 1 ; columnIterator <= lineIterator ; ++columnIterator)
+            for (iCol = 0 ; iCol < iRow ; iCol++)
             {
-                elementAddress = l + columnIterator - 1 + lineIterator * n;
-                symetricElementAddress = l + (columnIterator - 1) * n + lineIterator;
-                realRest = fabs(getElementByAddress(elementAddress) - getElementByAddress(symetricElementAddress));
-                imagRest = fabs(getElementByAddress(elementAddress + size) + getElementByAddress(symetricElementAddress + size));
-                if (realRest > 0 || imagRest > 0)
+                int iRef    = iRow + iCol * _iRows;
+                int iCheck  = iCol + iRow * _iRows;
+
+                if (_pdblReal[iRef] != _pdblReal[iCheck])
                 {
+                    //real part
+                    return NOT_SYMMETRIC;
+                }
+
+                if (_pdblImg[iRef] != -(_pdblImg[iCheck]))
+                {
+                    //real part
+                    return NOT_SYMMETRIC;
+                }
+
+            }
+        }
+    }
+    else
+    {
+        //real case
+        for (iRow = 0 ; iRow < _iRows; iRow++)
+        {
+            for (iCol = 0 ; iCol < iRow ; iCol++)
+            {
+                int iRef    = iRow + iCol * _iRows;
+                int iCheck  = iCol + iRow * _iRows;
+
+                if (_pdblReal[iRef] != _pdblReal[iCheck])
+                {
+                    //real part
                     return NOT_SYMMETRIC;
                 }
             }
         }
-        /* We have not detected the Matrix is not Symetric */
-        return SYMMETRIC;
     }
+
+    return SYMMETRIC;
 }

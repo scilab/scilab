@@ -1,4 +1,4 @@
-; Definition of lib used in Scilab 
+; Definition of lib used in Scilab
 
 freehep-graphics2d.jar=@FREEHEP_GRAPHICS2D@
 
@@ -27,6 +27,8 @@ jrosetta-engine.jar=@JROSETTA_ENGINE@
 checkstyle.jar=@CHECKSTYLE@
 
 junit4.jar=@JUNIT4@
+
+hamcrest-all.jar=@HAMCREST@
 
 cobertura.jar=@COBERTURA@
 

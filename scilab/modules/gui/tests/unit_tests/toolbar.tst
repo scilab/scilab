@@ -48,11 +48,11 @@ assert_checkerror("toolbar(g)", refMsg, 999);
 assert_checkerror("toolbar(g, ""on"")", refMsg, 999);
 
 // Check errors: wrong type for second argument
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "toolbar", 2);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "toolbar", 2);
 assert_checkerror("toolbar(f, 2)", refMsg, 999);
 
 // Check errors: wrong size for second argument
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "toolbar", 2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "toolbar", 2);
 assert_checkerror("toolbar(f, [""on"", ""off""])", refMsg, 999);
 
 // Check errors: wrong value for second argument

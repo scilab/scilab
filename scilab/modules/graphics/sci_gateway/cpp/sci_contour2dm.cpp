@@ -9,7 +9,7 @@ extern "C"
 #include "math_graphics.h"
 }
 
-int sci_contour2dm(char * fname, unsigned long fname_len)
+int sci_contour2dm(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0, m5 = 0, n5 = 0, mn1 = 0;

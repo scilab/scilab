@@ -25,9 +25,7 @@
 #include <stdlib.h> /* getenv */
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "code2str.h"
-#include "stack-c.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos_print.h"
 #include "cvstr.h"
 #include "mopen.h"
@@ -41,7 +39,7 @@
 #include "localization.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(namstr)(int* id, int* i, int* j, int* k);
+//extern int C2F(namstr)(int* id, int* i, int* j, int* k);
 /*--------------------------------------------------------------------------*/
 /*YAPASDETROUDANSLESLISTESDANSLESFICHERS*/
 /*ONLITPASPTR_I[8-9-10-11]*/
@@ -74,7 +72,7 @@ extern int C2F(namstr)(int* id, int* i, int* j, int* k);
 	ptr_i[38]  = nu2; \
 	ptr_i[39]  = nz;
 /*--------------------------------------------------------------------------*/
-static int id[nsiz];
+//static int id[nsiz];
 /*--------------------------------------------------------------------------*/
 static char *str_hmlst[] = {"hm", "dims", "entries"};
 /*--------------------------------------------------------------------------*/
@@ -187,15 +185,15 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag)
         }
 
         /* Scilab variable code name */
-        C2F(namstr)(id, (i = 29, &i), (j = 1, &j), (k = 0, &k));
+        //        C2F(namstr)(id, (i = 29, &i), (j = 1, &j), (k = 0, &k));
 
         ptr_i    = (int*) ptr->workt;
-        ptr_i[0] = id[0];
-        ptr_i[1] = id[1];
-        ptr_i[2] = id[2];
-        ptr_i[3] = id[3];
-        ptr_i[4] = id[4];
-        ptr_i[5] = id[5];
+        //        ptr_i[0] = id[0];
+        //        ptr_i[1] = id[1];
+        //        ptr_i[2] = id[2];
+        //        ptr_i[3] = id[3];
+        //        ptr_i[4] = id[4];
+        //        ptr_i[5] = id[5];
 
         /*
         * x
@@ -628,15 +626,15 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag)
         }
 
         /* Scilab variable code name */
-        C2F(namstr)(id, (i = 33, &i), (j = 1, &j), (k = 0, &k));
+        //        C2F(namstr)(id, (i = 33, &i), (j = 1, &j), (k = 0, &k));
 
         ptr_i    = (int*) ptr->work;
-        ptr_i[0] = id[0];
-        ptr_i[1] = id[1];
-        ptr_i[2] = id[2];
-        ptr_i[3] = id[3];
-        ptr_i[4] = id[4];
-        ptr_i[5] = id[5];
+        //        ptr_i[0] = id[0];
+        //        ptr_i[1] = id[1];
+        //        ptr_i[2] = id[2];
+        //        ptr_i[3] = id[3];
+        //        ptr_i[4] = id[4];
+        //        ptr_i[5] = id[5];
 
         /*
         * cnt

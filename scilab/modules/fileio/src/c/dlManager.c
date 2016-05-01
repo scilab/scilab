@@ -2,24 +2,27 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012-2013 - S/E - Sylvestre LEDRU
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #ifndef _MSC_VER
 #define _GNU_SOURCE             /* basename crashes this extension otherwise */
 #endif
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include <curl/curl.h>
 #include <libxml/uri.h>
 #include <string.h>
 #include "dlManager.h"
 #include "Scierror.h"
-#include "SCIHOME.h"
+#include "sci_home.h"
 #include "PATH_MAX.h"
 #include "isdir.h"
 #include "charEncoding.h"
@@ -29,7 +32,7 @@
 #include "scicurdir.h"
 #include "splitpath.h"
 #include "getScilabPreference.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "freeArrayOfString.h"
 /* ==================================================================== */
 #ifndef HAVE_BASENAME
@@ -60,7 +63,7 @@ static void init_string(inputString *s)
 /* ==================================================================== */
 static void free_string(inputString *s)
 {
-    if (s->len && s->ptr)
+    if (s->ptr)
     {
         FREE(s->ptr);
         s->ptr = NULL;
@@ -144,6 +147,7 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
         }
 
         FREE(values[4]);
+        FREE(values[0]);
         FREE(values);
     }
     else
@@ -171,8 +175,6 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         Scierror(999, "Failed opening the curl handle.\n");
         return NULL;
     }
-
-    init_string(&buffer);
 
     res = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
     if (res != CURLE_OK)
@@ -249,6 +251,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
 
     if (destfile == NULL)
     {
+        FREE(destdir);
         return NULL;
     }
 
@@ -277,22 +280,19 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
             uplen = uplen + (int)strlen(password);
         }
 
-        userpass = (char *)MALLOC((uplen + 2) * sizeof(char));
+        res = curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        if (res != CURLE_OK)
+        {
+            Scierror(999, "Failed to set httpauth type to ANY [%s]\n", errorBuffer);
+            return NULL;
+        }
 
+        userpass = (char *)MALLOC((uplen + 2) * sizeof(char));
         strcpy(userpass, username);
         strcat(userpass, ":");
         if (password != NULL)
         {
             strcat(userpass, password);
-        }
-
-        res = curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-        if (res != CURLE_OK)
-        {
-            FREE(filename);
-            FREE(userpass);
-            Scierror(999, "Failed to set httpauth type to ANY [%s]\n", errorBuffer);
-            return NULL;
         }
 
         res = curl_easy_setopt(curl, CURLOPT_USERPWD, userpass);
@@ -302,6 +302,8 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
             Scierror(999, _("Failed to set user:pwd [%s]\n"), errorBuffer);
             return NULL;
         }
+
+        FREE(userpass);
     } /* end authentication section */
 
     {
@@ -360,6 +362,8 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         return NULL;
     }
 
+    init_string(&buffer);
+
     //Get data to be written to the variable
     res = curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
     if (res != CURLE_OK)
@@ -392,6 +396,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     wcfopen(file, (char*)filename, "wb");
     if (file == NULL)
     {
+        free_string(&buffer);
         Scierror(999, _("Failed opening '%s' for writing.\n"), filename);
         FREE(filename);
         return NULL;

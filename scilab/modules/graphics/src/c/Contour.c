@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1998-2001 - ENPC - Jean-Philippe Chancelier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,7 +21,7 @@
 #include "math_graphics.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Format.h"
 #include "Contour.h"
 
@@ -81,7 +84,7 @@ static void InitValues(double *x, double *y, double *z, int n1, int n2)
 
 static double phi_cont(int i, int j)
 {
-    return(GZ[i + Gn1 * j]);
+    return (GZ[i + Gn1 * j]);
 }
 
 /*---------return the coordinates between  [xi,xj] along one axis
@@ -89,7 +92,7 @@ static double phi_cont(int i, int j)
 
 static double f_intercept(double zCont, double fi, double xi, double fj, double xj)
 {
-    return(xi + (zCont - fi) * (xj - xi) / (fj - fi));
+    return (xi + (zCont - fi) * (xj - xi) / (fj - fi));
 }
 
 /* check for boundary points */
@@ -105,7 +108,7 @@ static  int *itg_cont, *xbd_cont, *ybd_cont;
 
 static int get_itg_cont(int i, int j)
 {
-    return(itg_cont[i + Gn1 * j]);
+    return (itg_cont[i + Gn1 * j]);
 }
 
 static void inc_itg_cont(int i, int j, int val)
@@ -117,36 +120,36 @@ static int not_same_sign(double val1, double val2)
 {
     if (ISNAN(val1) == 1 || ISNAN(val2) == 1)
     {
-        return(0);
+        return (0);
     }
     /** 0.0 est consid\'er\'e comme positif **/
     if (val1 >= 0.0)
     {
         if (val2 < 0.0)
         {
-            return(1) ;
+            return (1) ;
         }
         else
         {
-            return(0);
+            return (0);
         }
     }
     else
     {
         if (val2 >= 0.0)
         {
-            return(1) ;
+            return (1) ;
         }
         else
         {
-            return(0);
+            return (0);
         }
     }
 }
 
 static int oddp(int i)
 {
-    return(i == 1 || i == 3);
+    return (i == 1 || i == 3);
 }
 
 /*---------return the x-value of a grid point--------*/

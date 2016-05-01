@@ -5,7 +5,7 @@
         <refpurpose>magnitude of elliptic filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[v]=ell1mag(eps,m1,z)</synopsis>
     </refsynopsisdiv>
     <refsection>

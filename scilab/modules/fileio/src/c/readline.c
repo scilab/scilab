@@ -3,11 +3,14 @@
 * Copyright (C) INRIA
 * Copyright (C) DIGITEO - 2010 - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -15,8 +18,8 @@
 #include <string.h>
 #include "readline.h"
 #include "mgetl.h"
-#include "stack-def.h" /* bsiz */
 #include "freeArrayOfString.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 #define EMPTYSTR ""
 /*--------------------------------------------------------------------------*/
@@ -27,7 +30,10 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
     int nbLinesReaded = 0;
     int mgetIerr = MGETL_ERROR;
 
-    char **lines = mgetl(fd, nbLinesToRead, &nbLinesReaded, &mgetIerr);
+    wchar_t **lines = mgetl(fd, nbLinesToRead, &nbLinesReaded, &mgetIerr);
+    char* line = wide_string_to_UTF8(lines[0]);
+    freeArrayOfWideString(lines, nbLinesReaded);
+
     *cnt = 0;
     *nr = 0;
 
@@ -38,17 +44,17 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
     {
         case MGETL_NO_ERROR:
         {
-            if (lines && lines[0] && nbLinesReaded == 1)
+            if (line && nbLinesReaded == 1)
             {
                 /* current limitation (bsiz) of line readed by scilab */
-                if ((int)strlen(lines[0]) < bsiz)
+                if ((int)wcslen(lines[0]) < bsiz)
                 {
-                    strcpy(buf, lines[0]);
+                    strcpy(buf, line);
                     returnedInfo = READNEXTLINE_ERROR_EOL;
                 }
                 else
                 {
-                    strncpy(buf, lines[0], bsiz);
+                    strncpy(buf, line, bsiz);
                     returnedInfo = READNEXTLINE_ERROR_BUFFER_FULL;
                 }
             }
@@ -70,14 +76,14 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
                 else
                 {
                     /* current limitation (bsiz) of line readed by scilab */
-                    if ((int)strlen(lines[0]) >= bsiz)
+                    if ((int)strlen(line) >= bsiz)
                     {
-                        strcpy(buf, lines[0]);
+                        strcpy(buf, line);
                         returnedInfo = READNEXTLINE_ERROR_EOF_REACHED_AFTER_EOL;
                     }
                     else
                     {
-                        strncpy(buf, lines[0], bsiz);
+                        strncpy(buf, line, bsiz);
                         returnedInfo = READNEXTLINE_ERROR_BUFFER_FULL;
                     }
                 }
@@ -101,10 +107,9 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
     *cnt = (int)strlen(buf) + 1;
     *nr = *cnt;
 
-    if (lines)
+    if (line)
     {
-        freeArrayOfString(lines, nbLinesReaded);
-        lines = NULL;
+        FREE(line);
     }
 
     return returnedInfo;

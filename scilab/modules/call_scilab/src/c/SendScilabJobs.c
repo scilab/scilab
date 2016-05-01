@@ -3,25 +3,27 @@
 * Copyright (C) 2007 - INRIA - Allan CORNET
 * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 #include <stdio.h>
 #include <string.h>
 #include "call_scilab.h"
-#include "MALLOC.h"
-#include "scirun.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "api_scilab.h"
 #include "call_scilab_engine_state.h"
+#include "InitScilab.h"
+
 /*--------------------------------------------------------------------------*/
 static BOOL RemoveCharsFromEOL(char *line, char CharToRemove);
 static BOOL RemoveComments(char *line);
@@ -38,8 +40,8 @@ int SendScilabJob(char *job)
     int retCode = -1;
     char *command = NULL;
 
-#define COMMAND_EXECSTR  "Err_Job = execstr(TMP_EXEC_STRING,\"errcatch\",\"n\");quit;"
-#define COMMAND_CLEAR "clear TMP_EXEC_STRING;clear Err_Job;quit;"
+#define COMMAND_EXECSTR  "Err_Job = execstr(TMP_EXEC_STRING,\"errcatch\");"
+#define COMMAND_CLEAR "clear TMP_EXEC_STRING;clear Err_Job;"
 
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STOP)
     {
@@ -47,20 +49,18 @@ int SendScilabJob(char *job)
         return retCode;
     }
 
-    command = strdup(job);
+    command = os_strdup(job);
 
     if (command)
     {
         double Err_Job = 0.;
         int m = 0, n = 0;
-
-        /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-        C2F(scirun) (COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));
+        ScilabEngineInfo* pSEI = InitScilabEngineInfo();
 
         SetLastJob(command);
 
         /* Creation of a temp variable in Scilab which contains the command */
-        sciErr = createNamedMatrixOfString(pvApiCtx, "TMP_EXEC_STRING", 1, 1, &command);
+        sciErr = createNamedMatrixOfString(NULL, "TMP_EXEC_STRING", 1, 1, (char const * const*) &command);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -74,12 +74,15 @@ int SendScilabJob(char *job)
                 command = NULL;
             }
 
+            FREE(pSEI);
             return retCode;
         }
 
         /* Run the command within an execstr */
-        C2F(scirun) (COMMAND_EXECSTR, (long int)strlen(COMMAND_EXECSTR));
-        sciErr = getNamedVarDimension(pvApiCtx, "Err_Job", &m, &n);
+        pSEI->pstExec = COMMAND_EXECSTR;
+        ExecExternalCommand(pSEI);
+
+        sciErr = getNamedVarDimension(NULL, "Err_Job", &m, &n);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -92,6 +95,7 @@ int SendScilabJob(char *job)
                 command = NULL;
             }
 
+            FREE(pSEI);
             return retCode;
         }
 
@@ -106,10 +110,11 @@ int SendScilabJob(char *job)
                 command = NULL;
             }
 
+            FREE(pSEI);
             return retCode;
         }
 
-        sciErr = readNamedMatrixOfDouble(pvApiCtx, "Err_Job", &m, &n, &Err_Job);
+        sciErr = readNamedMatrixOfDouble(NULL, "Err_Job", &m, &n, &Err_Job);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -122,6 +127,7 @@ int SendScilabJob(char *job)
                 command = NULL;
             }
 
+            FREE(pSEI);
             return retCode;
         }
 
@@ -134,7 +140,9 @@ int SendScilabJob(char *job)
         retCode = (int)Err_Job;
 
         /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-        C2F(scirun) (COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));
+        pSEI->pstExec = COMMAND_CLEAR;
+        ExecExternalCommand(pSEI);
+        FREE(pSEI);
     }
     else
     {
@@ -156,7 +164,7 @@ static BOOL SetLastJob(char *JOB)
 
     if (JOB)
     {
-        lastjob = strdup(JOB);
+        lastjob = os_strdup(JOB);
         if (lastjob)
         {
             return TRUE;

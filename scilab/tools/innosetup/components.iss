@@ -2,11 +2,14 @@
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ; Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 ;
-; This file must be used under the terms of the CeCILL.
-; This source file is licensed as described in the file COPYING, which
-; you should have received as part of this distribution.  The terms
-; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+; Copyright (C) 2012 - 2016 - Scilab Enterprises
+;
+; This file is hereby licensed under the terms of the GNU GPL v2.0,
+; pursuant to article 5.3.4 of the CeCILL v.2.1.
+; This file was originally licensed under the terms of the CeCILL v2.1,
+; and continues to be available under such terms.
+; For more information, see the COPYING file which you should have received
+; along with this program.
 ;
 ;-------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -18,9 +21,9 @@
 Name: {#COMPN_SCILAB}; Description: Scilab {#ScilabVersion}; Types: full custom cli; Flags: fixed;
 
 #define COMPN_JVM_MODULE 'JVM_MODULE'
-#define COMPN_GRAPHICS 'JVM_MODULE\graphics'
-#define COMPN_XCOS 'JVM_MODULE\xcos'
 #define COMPN_SCINOTES 'JVM_MODULE\scinotes'
+#define COMPN_GRAPHICS 'JVM_MODULE\graphics'
+#define COMPN_XCOS 'JVM_MODULE\graphics\xcos'
 #define COMPN_JRE 'JVM_MODULE\JRE_1_6'
 Name: {#COMPN_JVM_MODULE}; Description: {cm:DescriptionModuleJVM}; Types: full;
 Name: {#COMPN_GRAPHICS}; Description: {cm:DescriptionGraphics}; Types: full;
@@ -45,7 +48,7 @@ Name: {#COMPN_REF_CPU_LIBRARY}; Description:{cm:DescriptionRefBlasLibrary}; Flag
 #define COMPN_FFTW_REF_LIBRARY 'FFTW\REF_LIBRARY'
 #define COMPN_FFTW_MKL_LIBRARY 'FFTW\MKL_LIBRARY'
 Name: {#COMPN_FFTW}; Description: {cm:DescriptionFftwModule}; Types: full custom cli; Flags: fixed;
-Name: {#COMPN_FFTW_MKL_LIBRARY};Description: {cm:DescriptionFftwMKLDownload}; Types: custom cli; Flags: exclusive
+Name: {#COMPN_FFTW_MKL_LIBRARY};Description: {cm:DescriptionMKLFftwLibrary}; Types: custom cli; Flags: exclusive
 Name: {#COMPN_FFTW_REF_LIBRARY};Description: {cm:DescriptionRefFftwLibrary}; Types: full custom cli; Flags: exclusive
 
 #define COMPN_DEVTOOLS 'Development_tools'

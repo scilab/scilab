@@ -23,6 +23,6 @@ assert_checkequal(a("toto%"), 2);
 clear a
 
 // Non-existing field name
-refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: not a valid field name.\n"),"%st_e",1);
+refMsg = msprintf(gettext("Field ""%s"" does not exists\n"),"toto");
 a = struct();
-assert_checkerror("a(""toto%"")", refMsg);
+assert_checkerror("a(""toto"")", refMsg);

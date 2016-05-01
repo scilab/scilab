@@ -27,7 +27,7 @@
         <refpurpose>Set the level of the Scicos debugging</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>scicos_debug(level)
             level = scicos_debug()
         </synopsis>

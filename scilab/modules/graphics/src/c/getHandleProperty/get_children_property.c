@@ -5,11 +5,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -22,7 +25,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "HandleManagement.h"
@@ -32,10 +35,10 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int get_children_property(void* _pvCtx, int iObjUID)
+void* get_children_property(void* _pvCtx, int iObjUID)
 {
     int i = 0;
-    int status = 0;
+    void* status = NULL;
     long *plChildren = NULL;
     int* piChildrenUID = NULL;
     int iHidden = 0;
@@ -56,7 +59,7 @@ int get_children_property(void* _pvCtx, int iObjUID)
     if (piChildrenCount == NULL || piChildrenCount[0] == 0)
     {
         // No Child
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
 
     getGraphicObjectProperty(iObjUID, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
@@ -82,7 +85,8 @@ int get_children_property(void* _pvCtx, int iObjUID)
         if (childrenNumber == 0)
         {
             // No Child
-            return sciReturnEmptyMatrix(_pvCtx);
+            releaseGraphicObjectProperty(__GO_CHILDREN__, piChildrenUID, jni_int_vector, iChildrenCount);
+            return sciReturnEmptyMatrix();
         }
     }
     else
@@ -100,7 +104,8 @@ int get_children_property(void* _pvCtx, int iObjUID)
         if (childrenNumber == 0)
         {
             // No Child
-            return sciReturnEmptyMatrix(_pvCtx);
+            releaseGraphicObjectProperty(__GO_CHILDREN__, piChildrenUID, jni_int_vector, iChildrenCount);
+            return sciReturnEmptyMatrix();
         }
 
     }
@@ -112,17 +117,17 @@ int get_children_property(void* _pvCtx, int iObjUID)
         getGraphicObjectProperty(piChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
         if (iHidden == 0 || iShowHiddenHandles == 1)
         {
-	    getGraphicObjectProperty(piChildrenUID[i], __GO_TYPE__, jni_int, (void**) &piType);
-	    if (type != __GO_DATATIP__)
-	    {
+            getGraphicObjectProperty(piChildrenUID[i], __GO_TYPE__, jni_int, (void**)&piType);
+            if (type != __GO_DATATIP__)
+            {
                 plChildren[iChildIndex++] = getHandle(piChildrenUID[i]);
-	    }
+            }
         }
     }
 
-    status = sciReturnColHandleVector(_pvCtx, plChildren, childrenNumber);
+    status = sciReturnColHandleVector(plChildren, childrenNumber);
     FREE(plChildren);
-
+    releaseGraphicObjectProperty(__GO_CHILDREN__, piChildrenUID, jni_int_vector, iChildrenCount);
     return status;
 }
 

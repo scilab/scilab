@@ -67,10 +67,10 @@ assert_checkalmostequal(meanf(sparse(A), A, "c"), sparse([8.0769231; 7.0369541])
 assert_checkalmostequal(meanf(sparse(A), A, 2), sparse([8.0769231; 7.0369541]), [], %eps);
 assert_checkalmostequal(meanf(A, sparse(A)), 7.4333069, [], %eps);
 assert_checkalmostequal(meanf(A, sparse(A), "*"), 7.4333069, [], %eps);
-assert_checkalmostequal(meanf(A, sparse(A), "r"), [6.25 5.9791209 8.7677895], [], %eps);
-assert_checkalmostequal(meanf(A, sparse(A), 1), [6.25 5.9791209 8.7677895], [], %eps);
-assert_checkalmostequal(meanf(A, sparse(A), "c"), [8.0769231; 7.0369541], [], %eps);
-assert_checkalmostequal(meanf(A, sparse(A), 2), [8.0769231; 7.0369541], [], %eps);
+assert_checkalmostequal(meanf(A, sparse(A), "r"), sparse( [6.25 5.9791209 8.7677895]), [], %eps);
+assert_checkalmostequal(meanf(A, sparse(A), 1),  sparse([6.25 5.9791209 8.7677895]), [], %eps);
+assert_checkalmostequal(meanf(A, sparse(A), "c"),  sparse([8.0769231; 7.0369541]), [], %eps);
+assert_checkalmostequal(meanf(A, sparse(A), 2),  sparse([8.0769231; 7.0369541]), [], %eps);
 assert_checkequal(meanf(int8(A), 3), int8(34));
 assert_checkequal(meanf(int8(A), 3, "*"), int8(34));
 assert_checkequal(meanf(int8(A), 3, "r"), int8([8 9 17]));

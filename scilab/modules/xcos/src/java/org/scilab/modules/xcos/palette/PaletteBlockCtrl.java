@@ -1,20 +1,20 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.palette;
-
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.synchronousScilabExec;
 
 import java.awt.Point;
 import java.awt.datatransfer.Transferable;
@@ -23,23 +23,19 @@ import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSource;
 import java.awt.dnd.InvalidDnDOperationException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.lang.ref.WeakReference;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
@@ -49,6 +45,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.handler.mxGraphTransferHandler;
 import com.mxgraph.swing.util.mxGraphTransferable;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 
 /**
  * A palette block is the representation of the block in the palette. All the
@@ -60,7 +57,8 @@ public final class PaletteBlockCtrl {
      */
     public static final XcosDiagram INTERNAL_GRAPH;
     static {
-        INTERNAL_GRAPH = new XcosDiagram();
+        JavaController controller = new JavaController();
+        INTERNAL_GRAPH = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
         INTERNAL_GRAPH.installListeners();
     }
 
@@ -123,18 +121,11 @@ public final class PaletteBlockCtrl {
     public synchronized Transferable getTransferable() throws ScicosFormatException {
         Transferable transfer = transferable.get();
         if (transfer == null) {
-            /* Load the block from the H5 file */
             BasicBlock block;
             try {
-                block = loadBlock();
-            } catch (ScicosFormatException ex) {
-                getView().setEnabled(false);
-                throw ex;
-            }
-            if (block == null) {
-                if (LOG.isLoggable(Level.FINEST)) {
-                    LOG.finest(String.format(UNABLE_TO_LOAD_BLOCK, getModel().getData().getEvaluatedPath()));
-                }
+                block = XcosCellFactory.createBlock(model.getName());
+            } catch (ScilabInterpreterManagement.InterpreterException ex) {
+                LOG.finest(String.format(UNABLE_TO_LOAD_BLOCK, model.getName()));
                 getView().setEnabled(false);
                 throw new InvalidDnDOperationException();
             }
@@ -147,105 +138,16 @@ public final class PaletteBlockCtrl {
             INTERNAL_GRAPH.addCell(block);
             INTERNAL_GRAPH.selectAll();
 
-            BlockPositioning.updateBlockView(block);
+            BlockPositioning.updateBlockView(INTERNAL_GRAPH, block);
 
             mxGraphTransferHandler handler = ((mxGraphTransferHandler) INTERNAL_GRAPH.getAsComponent().getTransferHandler());
-            transfer = handler.createTransferable(INTERNAL_GRAPH.getAsComponent());
+            Object[] cells = new Object[] {block};
+            transfer = new mxGraphTransferable(cells, INTERNAL_GRAPH.getPaintBounds(cells), handler.createTransferableImage(INTERNAL_GRAPH.getAsComponent(), cells));
             transferable = new WeakReference<Transferable>(transfer);
 
             INTERNAL_GRAPH.removeCells();
         }
         return transfer;
-    }
-
-    /**
-     * @return the loaded block.
-     * @throws ScicosFormatException
-     *             on error
-     */
-    private BasicBlock loadBlock() throws ScicosFormatException {
-        BasicBlock block;
-        if (model.getName().compareTo("TEXT_f") != 0) {
-
-            // Load the block with a reference instance
-            final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-            if (handler == null) {
-                return null;
-            }
-
-            try {
-                synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
-                block = handler.readBlock();
-            } catch (InterpreterException e1) {
-                LOG.severe(e1.toString());
-                block = null;
-            } finally {
-                handler.release();
-            }
-
-            // invalid block case
-            if (block == null) {
-                return null;
-            }
-
-            if (block.getStyle().compareTo("") == 0) {
-                block.setStyle(block.getInterfaceFunctionName());
-            }
-        } else {
-            block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);
-        }
-        return block;
-    }
-
-    /**
-     * @param callback
-     *            called after the block loading
-     */
-    protected void loadBlock(final ActionListener callback) {
-        if (model.getName().compareTo("TEXT_f") != 0) {
-
-            // Load the block with a reference instance
-            final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-            if (handler == null) {
-                return;
-            }
-
-            final ActionListener internalCallback = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        final BasicBlock block = handler.readBlock();
-
-                        // invalid block case
-                        if (block == null) {
-                            return;
-                        }
-
-                        // update style
-                        if (block.getStyle().compareTo("") == 0) {
-                            block.setStyle(block.getInterfaceFunctionName());
-                        }
-
-                        callback.actionPerformed(new ActionEvent(block, 0, "loaded"));
-                    } catch (ScicosFormatException e1) {
-                        e1.printStackTrace();
-                    } finally {
-                        handler.release();
-                    }
-                }
-            };
-
-            try {
-                asynchronousScilabExec(internalCallback, ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
-            } catch (InterpreterException e1) {
-                LOG.severe(e1.toString());
-            } finally {
-                handler.release();
-            }
-        } else {
-            final BasicBlock block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);
-            callback.actionPerformed(new ActionEvent(block, 0, "loaded"));
-        }
     }
 
     /**

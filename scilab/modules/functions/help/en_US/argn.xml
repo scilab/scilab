@@ -5,7 +5,7 @@
         <refpurpose>Returns the number of input/output arguments in a function call</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[lhs [,rhs] ]=argn()
             lhs=argn(1)
             rhs=argn(2)

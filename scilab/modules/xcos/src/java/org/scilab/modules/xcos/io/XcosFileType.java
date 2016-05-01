@@ -3,22 +3,24 @@
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2014 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.io;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumSet;
@@ -29,24 +31,25 @@ import java.util.logging.Logger;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamWriter;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
-import org.scilab.modules.commons.xml.ScilabTransformerFactory;
+import org.scilab.modules.commons.xml.ScilabXMLOutputFactory;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.View;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.codec.XcosCodec;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
+import org.scilab.modules.xcos.io.sax.XcosSAXHandler;
 import org.scilab.modules.xcos.io.spec.XcosPackage;
+import org.scilab.modules.xcos.io.writer.IndentingXMLStreamWriter;
+import org.scilab.modules.xcos.io.writer.XcosWriter;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.XMLReaderFactory;
 
 /**
  * All the filetype recognized by Xcos.
@@ -62,9 +65,16 @@ public enum XcosFileType {
             ParserConfigurationException {
             LOG.entering("XcosFileType.ZCOS", "load");
 
-            XcosPackage p = new XcosPackage(new File(file));
-            p.setContent(into);
-            p.load();
+            View xcosView = JavaController.lookup_view(Xcos.class.getName());
+            try {
+                JavaController.unregister_view(xcosView);
+
+                XcosPackage p = new XcosPackage(new File(file));
+                p.setContent(into);
+                p.load();
+            } finally {
+                JavaController.register_view(Xcos.class.getName(), xcosView);
+            }
 
             LOG.exiting("XcosFileType.ZCOS", "load");
         }
@@ -86,48 +96,43 @@ public enum XcosFileType {
     XCOS("xcos", XcosMessages.FILE_XCOS) {
         @Override
         public void load(String file, XcosDiagram into)
-        throws TransformerException {
-            final XcosCodec codec = new XcosCodec();
-            final TransformerFactory tranFactory = ScilabTransformerFactory
-                                                   .newInstance();
-            final Transformer aTransformer = tranFactory.newTransformer();
-
-            StreamSource src;
+        throws IOException {
+            View xcosView = JavaController.lookup_view(Xcos.class.getName());
             try {
-                src = new StreamSource(new File(file).toURI().toURL()
-                                       .toString());
-                final DOMResult result = new DOMResult(codec.getDocument());
+                JavaController.unregister_view(xcosView);
 
-                LOG.entering("Transformer", "transform");
-                aTransformer.transform(src, result);
-                LOG.exiting("Transformer", "transform");
+                XcosSAXHandler handler = new XcosSAXHandler(into, null);
+                XMLReader reader = XMLReaderFactory.createXMLReader();
+                reader.setContentHandler(handler);
+                reader.setErrorHandler(handler);
 
-                LOG.entering("XcosCodec", "decode");
-                codec.setElementIdAttributes();
-                codec.decode(result.getNode().getFirstChild(), into);
-                LOG.exiting("XcosCodec", "decode");
-            } catch (MalformedURLException e) {
+                LOG.entering("XMLReader", "parse");
+                reader.parse(new InputSource(file));
+                LOG.exiting("XMLReader", "parse");
+            } catch (SAXException e) {
                 e.printStackTrace();
+                throw new RuntimeException(e);
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw e;
+            } finally {
+                JavaController.register_view(Xcos.class.getName(), xcosView);
             }
         }
 
         @Override
         public void save(String file, XcosDiagram from) throws Exception {
-            final XcosCodec codec = new XcosCodec();
-            final TransformerFactory tranFactory = ScilabTransformerFactory
-                                                   .newInstance();
-            final Transformer aTransformer = tranFactory.newTransformer();
+            final OutputStream result = new FileOutputStream(file);
 
-            LOG.entering("XcosCodec", "encode");
-            final Node doc = codec.encode(from);
-            LOG.exiting("XcosCodec", "encode");
-
-            final DOMSource src = new DOMSource(doc);
-            final StreamResult result = new StreamResult(file);
-
-            LOG.entering("Transformer", "transform");
-            aTransformer.transform(src, result);
-            LOG.exiting("Transformer", "transform");
+            final XMLOutputFactory factory = ScilabXMLOutputFactory.newInstance();
+            final XMLStreamWriter writer = factory.createXMLStreamWriter(result, "UTF-8");
+            try {
+                LOG.entering("XMLStreamWriter", "write");
+                new XcosWriter(null, new IndentingXMLStreamWriter(writer)).write(from.getUID(), from.getKind());
+                LOG.exiting("XMLStreamWriter", "write");
+            } finally {
+                writer.close();
+            }
         }
     },
     /**
@@ -136,22 +141,8 @@ public enum XcosFileType {
     COSF("cosf", XcosMessages.FILE_COSF) {
         @Override
         public void load(String file, XcosDiagram into) throws Exception {
-            loadScicosDiagram(file, into);
-        }
-
-        @Override
-        public void save(String file, XcosDiagram from) throws Exception {
-            throw new UnsupportedOperationException();
-        }
-    },
-    /**
-     * Represent the old Scicos binary format.
-     */
-    COS("cos", XcosMessages.FILE_COS) {
-
-        @Override
-        public void load(String file, XcosDiagram into) throws Exception {
-            loadScicosDiagram(file, into);
+            XcosDiagram diagram = XcosCellFactory.createDiagramFromCOSF(new JavaController(), file);
+            into.addCell(diagram.getDefaultParent(), into.getDefaultParent());
         }
 
         @Override
@@ -165,8 +156,8 @@ public enum XcosFileType {
     private static final Logger LOG = Logger.getLogger(XcosFileType.class
                                       .getName());
 
-    private String extension;
-    private String description;
+    private final String extension;
+    private final String description;
 
     /**
      * Default constructor
@@ -265,7 +256,7 @@ public enum XcosFileType {
 
         int index = 0;
         for (FileFilter fileFilter : filters) {
-            if (fileFilter.getDescription() == filter.getDescription()) {
+            if (fileFilter.getDescription().equals(filter.getDescription())) {
                 break;
             }
 
@@ -324,9 +315,7 @@ public enum XcosFileType {
             try {
                 new XcosPackage(theFile).checkHeader();
                 retValue = ZCOS;
-            } catch (IOException e) {
-            } catch (ParserConfigurationException e) {
-            } catch (TransformerException e) {
+            } catch (IOException | ParserConfigurationException | TransformerException e) {
             }
         }
 
@@ -351,7 +340,7 @@ public enum XcosFileType {
      *
      * @param file
      *            the file to save to
-     * @param into
+     * @param from
      *            the diagram instance to save
      * @throws Exception
      *             in case of problem
@@ -437,41 +426,5 @@ public enum XcosFileType {
         values.add(XcosFileType.XCOS);
         values.add(XcosFileType.ZCOS);
         return values;
-    }
-
-    /**
-     * Load a Scicos diagram file int a diagram
-     */
-    private static void loadScicosDiagram(final String filename,
-                                          final XcosDiagram into) {
-        final StringBuilder cmd = new StringBuilder();
-        cmd.append(ScilabDirectHandler.SCS_M);
-        cmd.append(" = importScicosDiagram(\"");
-        cmd.append(filename);
-        cmd.append("\");");
-
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        if (handler == null) {
-            return;
-        }
-
-        ActionListener callback = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    handler.readDiagram(into);
-                } finally {
-                    handler.release();
-                }
-            }
-        };
-
-        try {
-            ScilabInterpreterManagement.asynchronousScilabExec(callback,
-                    cmd.toString());
-        } catch (InterpreterException e) {
-            e.printStackTrace();
-            handler.release();
-        }
     }
 }

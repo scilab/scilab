@@ -6,7 +6,7 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 // This test is to show priority between == and <> operator
-// the disp are done on purpose to track calling sequence.
+// the disp are done on purpose to track the calls.
 function b=a(x)
   disp("Compute "+x)
   b=tlist(["tut", "val"], %t)
@@ -27,20 +27,13 @@ endfunction
 // Calling %tut_o_tut
 // Calling %tut_n_tut
 (a("1") == a("2")) <> (a("3")==a("4"));
- 
- Compute 1   
- 
- Compute 2   
- 
- Calling %tut_o_tut   
- 
- Compute 3   
- 
- Compute 4   
- 
- Calling %tut_o_tut   
- 
- Calling %tut_n_tut   
+ Compute 1
+ Compute 2
+ Calling %tut_o_tut
+ Compute 3
+ Compute 4
+ Calling %tut_o_tut
+ Calling %tut_n_tut
 // Compute 1
 // Compute 2
 // Calling %tut_o_tut
@@ -49,17 +42,10 @@ endfunction
 // Compute 4
 // Calling %tut_o_tut
 a("1") == a("2") <> a("3")==a("4");
- 
- Compute 1   
- 
- Compute 2   
- 
- Calling %tut_o_tut   
- 
- Compute 3   
- 
- Calling %tut_n_tut   
- 
- Compute 4   
- 
- Calling %tut_o_tut   
+ Compute 1
+ Compute 2
+ Calling %tut_o_tut
+ Compute 3
+ Calling %tut_n_tut
+ Compute 4
+ Calling %tut_o_tut

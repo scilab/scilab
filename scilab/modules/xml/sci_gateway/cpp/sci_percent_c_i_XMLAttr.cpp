@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -31,7 +34,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_c_i_XMLAttr(char *fname, unsigned long fname_len)
+int sci_percent_c_i_XMLAttr(char *fname, void* pvApiCtx)
 {
     XMLAttr *a;
     int lhsid;
@@ -63,7 +66,7 @@ int sci_percent_c_i_XMLAttr(char *fname, unsigned long fname_len)
         err = getMatrixOfDouble(pvApiCtx, prefixaddr, &rows, &cols, &indexes);
         if (rows != 1 || cols != 1)
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a single integer expected\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string or single integer expected\n"), fname, 1);
             return 0;
         }
     }
@@ -71,7 +74,7 @@ int sci_percent_c_i_XMLAttr(char *fname, unsigned long fname_len)
     {
         if (!isStringType(pvApiCtx, prefixaddr) || !checkVarDimension(pvApiCtx, prefixaddr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a single integer expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string or single integer expected.\n"), fname, 1);
             return 0;
         }
 
@@ -95,13 +98,14 @@ int sci_percent_c_i_XMLAttr(char *fname, unsigned long fname_len)
             if (!isStringType(pvApiCtx, nameaddr) || !checkVarDimension(pvApiCtx, nameaddr, 1, 1))
             {
                 freeAllocatedSingleString(prefix);
-                Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+                Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
                 return 0;
             }
 
             if (getAllocatedSingleString(pvApiCtx, nameaddr, &name) != 0)
             {
                 Scierror(999, _("%s: No more memory.\n"), fname);
+                freeAllocatedSingleString(prefix);
                 return 0;
             }
         }
@@ -165,7 +169,7 @@ int sci_percent_c_i_XMLAttr(char *fname, unsigned long fname_len)
         {
             freeAllocatedSingleString(name);
         }
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, Rhs - 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, Rhs - 1);
         return 0;
     }
 

@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Sabine Gaüzere
+// Copyright (C) 2008 - INRIA - Sabine GaÃ¼zere
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
@@ -67,7 +67,7 @@ for i=floor(linspace(50,70,10))
   //if norm(P-PS) > prec then bugmes();quit;end
 end
 N=100;A=5;B=0.7;
-Rdev=grand(N,N,'bin',A,B); 
+Rdev=grand(N,N,'bin',A,B);
 Rdev=matrix(Rdev,1,N^2);
 RdevS=gsort(Rdev,"g","i")';
 PS=(1:(N^2))'/(N^2);
@@ -75,7 +75,7 @@ PS=(1:(N^2))'/(N^2);
 //if norm(P-PS) > prec then bugmes();quit;end
 // test for f 
 N=10000;A=1;B=3;
-Rdev=grand(1,N,'f',A,B); 
+Rdev=grand(1,N,'f',A,B);
 RdevS=gsort(Rdev,"g","i")';
 PS=(1:N)'/N;
 [P]=cdff("PQ",RdevS,A*ones(RdevS),B*ones(RdevS));
@@ -84,21 +84,21 @@ if norm(P-PS) > prec then bugmes();quit;end
 // TODO 
 // test for nor 
 N=10000;A=1;B=2;
-Rdev=grand(1,N,'nor',A,B); 
+Rdev=grand(1,N,'nor',A,B);
 RdevS=gsort(Rdev,"g","i")';
 PS=(1:N)'/N;
 [P]=cdfnor("PQ",RdevS,A*ones(RdevS),B*ones(RdevS));
 if norm(P-PS) > prec then bugmes();quit;end
 // test for unf 
 N=10000;A=1;B=2;
-Rdev=grand(1,N,'unf',A,B); 
+Rdev=grand(1,N,'unf',A,B);
 RdevS=gsort(Rdev,"g","i")';
 PS=(1:N)'/N;
 [P]=RdevS-A;
 if norm(P-PS) > prec then bugmes();quit;end
 // test for uin ( a finir ) 
 N=10000;A=1;B=10;
-Rdev=grand(1,N,'uin',A,B); 
+Rdev=grand(1,N,'uin',A,B);
 RdevS=gsort(Rdev,"g","i")';
 PS=(1:N)'/N;
 [P]=RdevS-A;
@@ -116,7 +116,7 @@ PS=(1:N)'/N;
 //if norm(P-PS) > prec then bugmes();quit;end
 // test for nbn 
 N=10000;A=5;B=0.7;
-Rdev=grand(1,N,'nbn',A,B); 
+Rdev=grand(1,N,'nbn',A,B);
 RdevS=gsort(Rdev,"g","i")';
 PS=(1:N)'/N;
 [P]=cdfnbn("PQ",RdevS,A*ones(RdevS),B*ones(RdevS),(1-B)*ones(RdevS));
@@ -133,14 +133,14 @@ PS=(1:N)'/N;
 if norm(P-PS) > prec then bugmes();quit;end
 // test for nch or chn 
 N=10000;A=5;B=4;
-Rdev=grand(1,N,'nch',A,B); 
+Rdev=grand(1,N,'nch',A,B);
 RdevS=gsort(Rdev,"g","i")';
 PS=(1:N)'/N;
 [P]=cdfchn("PQ",RdevS,A*ones(RdevS),B*ones(RdevS));
 if norm(P-PS) > prec then bugmes();quit;end
 // test for nf or fnc
 N=10000;A=5;B=4;C=10;
-Rdev=grand(1,N,'nf',A,B,C); 
+Rdev=grand(1,N,'nf',A,B,C);
 RdevS=gsort(Rdev,"g","i")';
 PS=(1:N)'/N;
 [P]=cdffnc("PQ",RdevS,A*ones(RdevS),B*ones(RdevS),C*ones(RdevS));

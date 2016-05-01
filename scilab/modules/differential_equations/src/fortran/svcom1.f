@@ -13,7 +13,9 @@ c!
       integer i, lenils, lenrls
       double precision rsav,   rls
       dimension rsav(*), isav(*)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rls(219), ils(39)
+cDEC$ ATTRIBUTES DLLIMPORT:: /eh0001/
       common /eh0001/ ieh(2)
       data lenrls/219/, lenils/39/
 c

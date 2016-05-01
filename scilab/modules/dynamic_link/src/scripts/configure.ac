@@ -2,12 +2,16 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2010 - Sylvestre Ledru
+# Copyright (C) Scilab Enterprises - 2015 - Clement DAVID
 # 
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at    
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 ##########
@@ -25,6 +29,9 @@ AM_INIT_AUTOMAKE([foreign])
 
 AM_MAINTAINER_MODE
 
+# Initialise libtool
+LT_INIT([shared disable-static dlopen])
+
 # Detect C compiler
 AC_PROG_CC
 
@@ -36,10 +43,12 @@ AC_PROG_F77
 AC_PROG_FC
 
 # Initialise libtool
-AC_PROG_LIBTOOL
-
+LT_INIT
 # Specify which Makefile.in should be "adapted"
 AC_CONFIG_FILES([Makefile])
+
+AC_PROG_CPP
+AC_PROG_GREP
 
 # x86_64 needs -fPIC
 case "$host" in

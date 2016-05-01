@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function [K]=ccontrg(PP,r,Gamma);
@@ -110,13 +113,13 @@ function [K]=ccontrg(PP,r,Gamma);
     hd11=(eye(p1,p1)-u1*u1')*d11;
     hb1=b1-b2*v1*(s1\(u1'*d11));
     that=dk*c2*px+v1*s1\(u1'*c1*px+s1\v1'*b2'*qx+..
-    (d0*z1'+u1'*d11*(eye(m1,m1)-z1*z1'))*..
+    (d0*z1'+u1'*d11*(eye(m1,m1)-z1*z1'))* ..
     ((gs*eye(m1,m1)-hd11'*hd11)\(hb1'*qx+hd11'*c1*px)));
 
     td11=d11*(eye(m1,m1)-z1*z1');
     tc1=c1-(d11*z1/ph1)*w1'*c2;
     ttil=py'*b2*dk+(py'*b1*z1+qy'*c2'*w1/ph1+..
-    ((qy'*tc1'+py'*b1*td11')/(gs*eye(p1,p1)-td11*td11'))*..
+    ((qy'*tc1'+py'*b1*td11')/(gs*eye(p1,p1)-td11*td11'))* ..
     ((eye(p1,p1)-u1*u1')*d11*z1+u1*d0))/ph1*w1';
 
     ck=-that*uz/sz; bk=-sz\vz'*ttil;
@@ -125,10 +128,10 @@ function [K]=ccontrg(PP,r,Gamma);
     //just checking...
     x=qx/px; y=qy/py;
     d12p=pinv(d12);  d21p=pinv(d21);
-    thh=d12p*(c1+d12p'*b2'*x)+dk*c2+(d12p*d11+dk*d21)/..
+    thh=d12p*(c1+d12p'*b2'*x)+dk*c2+(d12p*d11+dk*d21)/ ..
     (gs*eye(m1,m1)-hd11'*hd11)*((b1-b2*d12p*d11)'*x+hd11'*c1);
     thh=thh*px;
-    ttt=(b1+y*c2'*d21p')*d21p+b2*dk+(y*tc1'+b1*td11')/..
+    ttt=(b1+y*c2'*d21p')*d21p+b2*dk+(y*tc1'+b1*td11')/ ..
     (gs*eye(p1,p1)-td11*td11')*(d11*d21p+d12*dk);
     ttt=py'*ttt;
 
@@ -141,8 +144,8 @@ function [K]=ccontrg(PP,r,Gamma);
 
     ca=a+b2*dk*c2; cb=b1+b2*dk*d21; cc=c1+d12*dk*c2; Cd=d11+d12*dk*d21;
     ak=py'*b2*that+ttil*c2*px-py'*ca*px-qy'*ca'*qx/gs+..
-    [-qy'*cc'/Gamma,py'*cb-ttil*d21]/..
-    [Gamma*eye(p1,p1),Cd;Cd',Gamma*eye(m1,m1)]*..
+    [-qy'*cc'/Gamma,py'*cb-ttil*d21]/ ..
+    [Gamma*eye(p1,p1),Cd;Cd',Gamma*eye(m1,m1)]* ..
     [cc*px-d12*that;-cb'*qx/Gamma];
     ak=sz\(vz'*ak*uz)/sz;
 
@@ -224,5 +227,3 @@ function n=nthresh(d,tol)
         n=n-1
     end
 endfunction
-
-

@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -14,37 +17,33 @@
 #include <shlwapi.h>
 #include <stdio.h>
 #include "FindFileAssociation.h"
-#include "MALLOC.h"
-#include "strdup_windows.h"
+#include "sci_malloc.h"
+#include "os_string.h"
 #include "PATH_MAX.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib,"shlwapi.lib") /* AssocQueryString */
 /*--------------------------------------------------------------------------*/
-char *FindFileAssociation (char *ptrFindStr, char *Extra)
+wchar_t* FindFileAssociation (const wchar_t* ptrFindStr, const wchar_t* Extra)
 {
-    char *ptrResult = NULL ;
-
-    if ( ptrFindStr )
+    if (ptrFindStr)
     {
-        wchar_t *wcptrFindStr = to_wide_string(ptrFindStr);
-        wchar_t *wcExtra = to_wide_string(Extra);
         wchar_t szDefault[PATH_MAX + FILENAME_MAX];
         DWORD ccDefault = PATH_MAX + FILENAME_MAX;
 
-        if (wcptrFindStr)
+        if (ptrFindStr)
         {
-            HRESULT rc = AssocQueryStringW (0, ASSOCSTR_EXECUTABLE, wcptrFindStr, wcExtra, szDefault, &ccDefault);
+            HRESULT rc = AssocQueryStringW(0, ASSOCSTR_EXECUTABLE, ptrFindStr, Extra, szDefault, &ccDefault);
             if (ccDefault)
             {
                 if (rc == S_OK)
                 {
-                    ptrResult = wide_string_to_UTF8(szDefault);
+                    return os_wcsdup(szDefault);
                 }
             }
         }
     }
-    return ptrResult;
+    return NULL;
 }
 /*--------------------------------------------------------------------------*/
 

@@ -1,15 +1,17 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA Michael Baudin
+// Copyright (C) 2015 - Scilab Enterprises - John Gliksberg
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 //==========================================================================
-//==============================   det        ============================== 
+//==============================   det        ==============================
 //==========================================================================
 
-//Small dimension 
+//Small dimension
 //Real
 A=[1 1; 1 2];
 assert_checkalmostequal(det(A), 1);
@@ -28,7 +30,7 @@ assert_checkalmostequal(imag(m), 1);
 A=[1 1; 1 2];
 A=sparse(A);
 assert_checkalmostequal(det(A), 1);
-[e,m]=det(A)
+[e,m]=det(A);
 assert_checkalmostequal(e, 0);
 assert_checkalmostequal(m, 1);
 //Polynomials
@@ -70,7 +72,7 @@ assert_checktrue(abs(det(A) - prod(v)) < 1D-7);
 [e,m]=det(A);
 assert_checktrue(abs(m*(10^e) - prod(v)) < 1d-7);
 //Polynomials
-v=rand(1,21)
+v=rand(1,21);
 v=v+%s;
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
 assert_checktrue(abs(coeff(det(A)-prod(v))) < 1D-7);
@@ -92,7 +94,26 @@ assert_checktrue(abs(m*(10^e) - prod(v)) < 1d-7);
 
 //Error messages
 A=[1 1; 1 2];
-errmsg1 = msprintf(_("Wrong type for first argument: Square matrix expected.\n"));
+errmsg1 = msprintf(_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), "det", 1);
 assert_checkerror("det([1,2;3,4;5,6])", errmsg1, 20);
 errmsg2 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "det", 1);
 assert_checkerror("det(A,1)", errmsg2, 77);
+
+// Check det == 0 for simple cases
+A = 0;
+assert_checkalmostequal(det(A), 0);
+A = [1 2
+1 2];
+assert_checkalmostequal(det(A), 0);
+A = [1 2 3
+1 2 3
+1 2 3];
+assert_checkalmostequal(det(A), 0);
+b = rand(1, 5);
+A = [b
+b
+b
+b
+b];
+assert_checkalmostequal(det(A), 0);
+

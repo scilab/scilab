@@ -5,7 +5,7 @@
         <refpurpose>solve a linear sparse (s.p.d.) system given the Cholesky factors  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x] = taucs_chsolve(C_ptr, b [, A])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -40,7 +40,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function must be used in conjonction with <link linkend="taucs_chfact">taucs_chfact</link> which
+            This function must be used in conjunction with <link linkend="taucs_chfact">taucs_chfact</link> which
             computes the Cholesky factorization of a sparse real s.p.d. matrix.
             When the matrix <literal>A</literal> is provided, one iterative refinement
             step is done (the refined solution is accepted if it improves the

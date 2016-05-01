@@ -28,23 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -85,7 +85,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../windows_tools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../cpp;../../includes;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../commons/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_OBJECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -122,7 +122,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../windows_tools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../cpp;../../includes;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../commons/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_OBJECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -140,7 +140,7 @@
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../../../bin/sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -160,7 +160,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../windows_tools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../cpp;../../includes;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../commons/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_OBJECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -203,7 +203,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../windows_tools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../cpp;../../includes;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../commons/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_OBJECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -221,7 +221,7 @@
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../../../bin/sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -244,6 +244,7 @@
     <ClCompile Include="..\cpp\CurrentFigure.cpp" />
     <ClCompile Include="..\cpp\CurrentObject.cpp" />
     <ClCompile Include="..\cpp\CurrentSubwin.cpp" />
+    <ClCompile Include="..\cpp\DllmainGraphic_objects.cpp" />
     <ClCompile Include="..\cpp\Fac3DColorComputer.cpp" />
     <ClCompile Include="..\cpp\FigureList.cpp" />
     <ClCompile Include="..\cpp\FigureModel.cpp" />
@@ -272,7 +273,6 @@
     <ClCompile Include="..\jni\ObjectData_wrap.c" />
     <ClCompile Include="..\jni\PolylineData_wrap.c" />
     <ClCompile Include="..\jni\ScilabNativeView_wrap.c" />
-    <ClCompile Include="DllmainGraphic_objects.c" />
     <ClCompile Include="..\cpp\Fac3DDecomposer.cpp" />
     <ClCompile Include="..\cpp\getGraphicObjectProperty.cpp" />
     <ClCompile Include="..\cpp\NgonData.cpp" />
@@ -290,11 +290,20 @@
     <ClCompile Include="..\cpp\pickSurface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\AxesModel.h" />
+    <ClInclude Include="..\..\includes\ColorComputer.hxx" />
+    <ClInclude Include="..\..\includes\CurrentFigure.h" />
+    <ClInclude Include="..\..\includes\CurrentObject.h" />
+    <ClInclude Include="..\..\includes\CurrentSubwin.h" />
+    <ClInclude Include="..\..\includes\DataLoader.hxx" />
+    <ClInclude Include="..\..\includes\DataModel.hxx" />
     <ClInclude Include="..\..\includes\Fac3DColorComputer.hxx" />
     <ClInclude Include="..\..\includes\FigureList.h" />
+    <ClInclude Include="..\..\includes\FigureModel.h" />
     <ClInclude Include="..\..\includes\getConsoleIdentifier.h" />
     <ClInclude Include="..\..\includes\getGraphicObjectProperty.h" />
     <ClInclude Include="..\..\includes\graphicObjectProperties.h" />
+    <ClInclude Include="..\..\includes\HandleManagement.h" />
     <ClInclude Include="..\..\includes\Matplot.h" />
     <ClInclude Include="..\..\includes\MatPlotDecomposer.hxx" />
     <ClInclude Include="..\..\includes\NgonGridMatplotDataDecomposer.hxx" />
@@ -323,8 +332,6 @@
     <ClInclude Include="..\..\includes\NormalGenerator.hxx" />
     <ClInclude Include="..\..\includes\Plot3DDecomposer.hxx" />
     <ClInclude Include="..\..\includes\PolylineDecomposer.hxx" />
-    <ClInclude Include="..\..\includes\TriangleMeshData.hxx" />
-    <ClInclude Include="..\..\includes\TriangleMeshFecDataDecomposer.hxx" />
     <ClInclude Include="..\jni\CallXmlLoader.hxx" />
   </ItemGroup>
   <ItemGroup>
@@ -341,6 +348,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>

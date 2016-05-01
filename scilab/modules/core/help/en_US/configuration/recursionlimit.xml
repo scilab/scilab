@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="recursionlimit" xml:lang="en">
+    <refnamediv>
+        <refname>recursionlimit</refname>
+        <refpurpose>get or set recursion limit</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>limit = recursionlimit()
+            old = recursionlimit(new)
+            current = recursionlimit("current")
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>"current"</term>
+                    <para>used to get current recursion level</para>
+            </varlistentry>
+            <varlistentry>
+                <term>limit</term>
+                <listitem>
+                    <para>current recursion limit</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>new</term>
+                <listitem>
+                    <para>new recursion limit</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>old</term>
+                <listitem>
+                    <para>old recursion limit</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+        Use this function to change the recursion of Scilab.
+        each built-in, macro or overload is a level.
+        This parameter can be setup in Scilab preferences.
+        Default value is set to 1000.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+recursionlimit(20);
+function testRecursion()
+    printf("recursion: %d\n", recursionlimit("current") - 1);
+    testRecursion;
+endfunction
+
+testRecursion;
+
+]]></programlisting>
+        <programlisting role="example"><![CDATA[
+//show that cos and %rec_cos increment the current recursion level.
+recursionlimit(40);
+function %rec_cos(val)
+    printf("recursion: %d\n", recursionlimit("current") - 1);
+    val.count = val.count + 1;
+    //disp(val.count);
+    cos(val);
+endfunction
+
+a = tlist(["rec", "count"], 0);
+cos(a)
+
+]]></programlisting>
+        <programlisting role="example"><![CDATA[
+recursionlimit(10);
+function [out] = recfib(in)
+    printf("recursion: %d\n", recursionlimit("current") - 1);
+    if in == 1  then
+        out = 1;
+    elseif in == 2
+        out = 1;
+    else
+        out = recfib(in-1) + recfib(in-2);
+    end
+endfunction
+
+recfib(10); //OK
+recfib(11); //KO
+]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    Added in Scilab 6 family
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

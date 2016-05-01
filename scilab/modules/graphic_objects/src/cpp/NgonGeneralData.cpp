@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -31,7 +34,7 @@ NgonGeneralData::NgonGeneralData(void)
     coordinates = NULL;
 
     colorValues = NULL;
-    numColors = 0;
+    numColorValues = 0;
 }
 
 NgonGeneralData::~NgonGeneralData(void)
@@ -41,7 +44,7 @@ NgonGeneralData::~NgonGeneralData(void)
         delete [] coordinates;
     }
 
-    if (numColors > 0)
+    if (numColorValues > 0)
     {
         delete [] colorValues;
     }
@@ -224,7 +227,7 @@ int NgonGeneralData::setNumElementsArray(int const* numElementsArray)
         result = 1;
     }
 
-    if (numElementsArray[2] != this->numColors)
+    if (numElementsArray[2] != this->numColorValues)
     {
         if (numElementsArray[2] > 0)
         {
@@ -258,13 +261,13 @@ int NgonGeneralData::setNumElementsArray(int const* numElementsArray)
 
         if (newColorValues != NULL || numElementsArray[2] == 0)
         {
-            if (this->numColors > 0)
+            if (this->numColorValues > 0)
             {
                 delete [] colorValues;
             }
 
             colorValues = newColorValues;
-            this->numColors = numElementsArray[2];
+            this->numColorValues = numElementsArray[2];
         }
     }
     else
@@ -290,7 +293,7 @@ double* NgonGeneralData::getColors(void)
 
 void NgonGeneralData::setColors(double const* colors, int numElements)
 {
-    if (numElements > numColors)
+    if (numElements > numColorValues)
     {
         return;
     }
@@ -299,6 +302,5 @@ void NgonGeneralData::setColors(double const* colors, int numElements)
 
 int NgonGeneralData::getNumColors(void)
 {
-    return numColors;
+    return numColorValues;
 }
-

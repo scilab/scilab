@@ -5,6 +5,7 @@ EXPORTS
 ; --------------------------------------- 
 ; localization explicit export (SEP 35)
 ; --------------------------------------- 
+InitializeLocalization
 to_wide_string
 wide_string_to_UTF8
 wcstat
@@ -19,5 +20,8 @@ LanguageIsOK
 needtochangelanguage
 exportLocaleToSystem
 IsValidUTF8
-setLanguageFromCommandLine
 getLcidString
+setLanguagePreferences
+getLanguagePreferences
+isValidLanguage
+setLanguageFromCommandLine

@@ -92,7 +92,6 @@ scs_m.props.context = "per = 0.05"; // Period, to get more varied results
 scicos_simulate(scs_m);   // IDA
 --------------------------------------------\
  Main Modelica : TMPDIR/Hydraulics_im.mo
-
  Flat Modelica : TMPDIR/Hydraulics_imf.mo
  Simulation C code :TMPDIR/Hydraulics_im.c
 assert_checkalmostequal(res.values($-67:$, :), IDA_val_ref, [], 1d-7);

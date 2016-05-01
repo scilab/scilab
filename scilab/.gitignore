@@ -17,6 +17,7 @@ bin/xml2-config
 .dirstamp
 .deps
 .libs
+/config.cache
 Makefile
 
 #
@@ -50,6 +51,8 @@ lib
 #
 # windows files
 #
+vld.ini
+modules/windows_tools/src/c/WScilex/memory_leak_report.txt
 
 #
 # Innosetup files (Windows)
@@ -81,6 +84,7 @@ Debug
 *.suo
 *.ncb
 VTune
+*.pdb
 
 #
 # F2C files (windows)
@@ -113,6 +117,10 @@ workspace/
 .cproject
 .settings/
 
+# vim files
+/tags
+*.swp
+
 # MacOS files
 .DS_Store
 
@@ -134,6 +142,7 @@ lib
 tcllib
 _tmp_project.h
 scilab-bin
+scilab6-bin
 scilab-cli-bin
 tclmajor
 tclminor

@@ -1,15 +1,32 @@
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [flag,errmsg] = assert_checkerror ( varargin )
-    //  Check that an instruction produces the expected error.
+    function argin = assert_argindefault ( rhs , vararglist , ivar , default )
+        // Returns the value of the input argument #ivar.
+        // If this argument was not provided, or was equal to the
+        // empty matrix, returns the default value.
+        if ( rhs < ivar ) then
+            argin = default
+        else
+            if ( vararglist(ivar) <> [] ) then
+                argin = vararglist(ivar)
+            else
+                argin = default
+            end
+        end
+    endfunction
 
+    //  Check that an instruction produces the expected error.
     [lhs,rhs]=argn()
     if ( rhs < 2 ) then
         errmsg = sprintf ( gettext ( "%s: Wrong number of input argument: At least %d expected.\n") , "assert_checkerror" , 2 )
@@ -19,7 +36,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     // Get arguments
     instr = varargin(1);
     expectedmsg = varargin(2);
-    expectederrnb = argindefault ( rhs , varargin , 3 , [] );
+    expectederrnb = assert_argindefault ( rhs , varargin , 3 , [] );
     //
     // Check types of variables
     if ( typeof(instr) <> "string" ) then
@@ -137,20 +154,6 @@ function [flag,errmsg] = assert_checkerror ( varargin )
             else
                 return
             end
-        end
-    end
-endfunction
-function argin = argindefault ( rhs , vararglist , ivar , default )
-    // Returns the value of the input argument #ivar.
-    // If this argument was not provided, or was equal to the
-    // empty matrix, returns the default value.
-    if ( rhs < ivar ) then
-        argin = default
-    else
-        if ( vararglist(ivar) <> [] ) then
-            argin = vararglist(ivar)
-        else
-            argin = default
         end
     end
 endfunction

@@ -21,9 +21,10 @@
 /*--------------------------------------------------------------------------*/
 #include <memory.h>
 #include "scicos_block4.h"
+#include "scicos.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 typedef struct
@@ -52,8 +53,12 @@ SCICOS_BLOCKS_IMPEXP void dollar4_m(scicos_block *block, int flag)
     if (flag == 4)
     {
         *work = (dol_struct*) scicos_malloc(sizeof(dol_struct));
+        if (*work == NULL)
+        {
+            set_block_error(-5);
+            return;
+        }
         ptr = *work;
-        /*	ptr->s=(int) scicos_malloc(sizeof(int));*/
         ptr->s = GetSizeOfOz(block, 1);
     }
     if (flag == 1 || flag == 6)

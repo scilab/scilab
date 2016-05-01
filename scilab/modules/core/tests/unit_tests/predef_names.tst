@@ -8,8 +8,8 @@
 // <-- CLI SHELL MODE -->
 //
 variables_names_1 = predef('names');
-assert_checkequal(size(grep(variables_names_1,'SCI'), '*') <> [], %t);
-assert_checkequal(size(grep(variables_names_1,'corelib'), '*'), 1);
+assert_checkequal(size(grep(variables_names_1,'jnull'), '*'), 1);
+assert_checkequal(size(grep(variables_names_1,'evoid'), '*'), 1);
 
 clear
 // we add 3 variables
@@ -19,7 +19,7 @@ toto_3 = 1;
 
 predef("all"); // and protect
 variables_names_2 = predef('names');
-ref = ["toto_1";
-       "toto_2";
-       "toto_3"];
-assert_checkequal(variables_names_2($-2:$), ref);
+assert_checktrue(grep(variables_names_2,'toto_1') <> []);
+assert_checktrue(grep(variables_names_2,'toto_2') <> []);
+assert_checktrue(grep(variables_names_2,'toto_3') <> []);
+

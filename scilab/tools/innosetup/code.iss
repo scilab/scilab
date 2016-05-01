@@ -2,11 +2,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010-2012 - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
 //------------------------------------------------------------------------------
 // Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -34,45 +37,21 @@ function isCLIType(): Boolean;
   end;
 //------------------------------------------------------------------------------
 function getExecNameForDesktop(Param: String): String;
-  begin
-    if (isCLIType() = true) then
-      begin
-        Result := ExpandConstant('{app}') + '\bin\scilex.exe';
-      end
-    else
-      begin
-        Result := ExpandConstant('{app}') + '\bin\wscilex.exe';
-      end;
-  end;
-//------------------------------------------------------------------------------
-function DoTaskInstall_MKL: Boolean;
-  begin
-    Result := true;
-    if (IsComponentSelected( ExpandConstant('{#COMPN_MKL_CPU_LIBRARY}') ) = true) then
-      begin
-        Result := Install_commons_MKL();
-        if (Result = true) then
-          begin
-            Result := Install_MKL();
-          end
-      end;
-  end;
-//------------------------------------------------------------------------------
-function DoTaskInstall_MKL_FFTW: Boolean;
-  begin
-    Result := true;
-    if (IsComponentSelected( ExpandConstant('{#COMPN_FFTW_MKL_LIBRARY}') ) = true) then
-      begin
-        Result := Install_MKL_FFTW();
-      end;
-  end;
+    begin
+        if (isCLIType() = true) then
+            begin
+                Result := ExpandConstant('{app}') + '\bin\Scilex.exe';
+            end
+        else
+            begin
+                Result := ExpandConstant('{app}') + '\bin\WScilex.exe';
+            end;
+    end;
 //------------------------------------------------------------------------------
 function DoTasksJustAfterInstall: Boolean;
   begin
     Result := true;
     Result := CreateModulesFile();
-    Result := DoTaskInstall_MKL();
-    Result := DoTaskInstall_MKL_FFTW();
   end;
 //------------------------------------------------------------------------------
 function GetJREVersion(): String;
@@ -150,32 +129,6 @@ end;
       end;
   end;
 //------------------------------------------------------------------------------
-function NextButtonClick_Download_MKL(): Boolean;
-  Var
-    bRes : Boolean;
-  begin
-    Result := true;
-    if (IsComponentSelected( ExpandConstant('{#COMPN_MKL_CPU_LIBRARY}') ) = true) then
-      begin
-        bRes := Download_commons_MKL();
-        if ( bRes = true ) then
-          begin
-            bRes := Download_MKL();
-          end;
-      end;
-  end;
-//------------------------------------------------------------------------------
-function NextButtonClick_Download_MKL_FFTW(): Boolean;
-  Var
-    bRes : Boolean;
-  begin
-    Result := true;
-    if (IsComponentSelected( ExpandConstant('{#COMPN_FFTW_MKL_LIBRARY}') ) = true) then
-      begin
-        bRes := Download_MKL_FFTW();
-      end;
-  end;
-//------------------------------------------------------------------------------
 function NextButtonClick(CurPageID: Integer): Boolean;
   Var
     bRes : Boolean;
@@ -206,12 +159,6 @@ function NextButtonClick(CurPageID: Integer): Boolean;
         AboutModulesButton.Visible := true;
       end else begin
         AboutModulesButton.Visible := false;
-      end;
-
-    if (CurPageID =  wpReady) then
-      begin
-        bRes := NextButtonClick_Download_MKL();
-        bRes := NextButtonClick_Download_MKL_FFTW();
       end;
 
     if (CurPageId = wpSelectComponents) then
@@ -324,8 +271,6 @@ begin
   AboutModulesButton.OnClick := @ButtonAboutModulesOnClick;
   AboutModulesButton.Parent := CancelButton.Parent;
   AboutModulesButton.Visible := false;
-
-  CreateOfflineInstallationCheckBox;
 
   OriginalOnTypesComboChange := WizardForm.TypesCombo.OnChange;
   WizardForm.TypesCombo.OnChange := @OnTypesComboChange;

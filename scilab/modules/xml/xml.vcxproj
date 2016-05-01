@@ -28,23 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../output_stream/includes;../string/includes;../fileio/includes;../localization/includes;../../libs/intl;../../libs/libxml2;../api_scilab/includes;../windows_tools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../../libs/intl;../../libs/libxml2;../core/includes;../output_stream/includes;../string/includes;../fileio/includes;../localization/includes;../api_scilab/includes;../windows_tools/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;XML_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -107,7 +107,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../output_stream/includes;../string/includes;../fileio/includes;../localization/includes;../../libs/intl;../../libs/libxml2;../api_scilab/includes;../windows_tools/includes;../windows_tools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../../libs/intl;../../libs/libxml2;../core/includes;../output_stream/includes;../string/includes;../fileio/includes;../localization/includes;../api_scilab/includes;../windows_tools/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;XML_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -132,7 +132,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../output_stream/includes;../string/includes;../fileio/includes;../localization/includes;../../libs/intl;../../libs/libxml2;../api_scilab/includes;../windows_tools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../../libs/intl;../../libs/libxml2;../core/includes;../output_stream/includes;../string/includes;../fileio/includes;../localization/includes;../api_scilab/includes;../windows_tools/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;XML_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -165,7 +165,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../output_stream/includes;../string/includes;../fileio/includes;../localization/includes;../../libs/intl;../../libs/libxml2;../api_scilab/includes;../windows_tools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../../libs/intl;../../libs/libxml2;../core/includes;../output_stream/includes;../string/includes;../fileio/includes;../localization/includes;../api_scilab/includes;../windows_tools/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;XML_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -208,6 +208,9 @@
     </ProjectReference>
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
@@ -296,12 +299,12 @@
     <ClCompile Include="sci_gateway\cpp\sci_xmlValidationFile.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlWrite.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlXPath.cpp" />
-    <ClCompile Include="sci_gateway\c\gw_xml.c" />
     <ClCompile Include="src\cpp\VariableScope.cpp" />
     <ClCompile Include="src\cpp\XMLAttr.cpp" />
     <ClCompile Include="src\cpp\XMLDocument.cpp" />
     <ClCompile Include="src\cpp\XMLElement.cpp" />
     <ClCompile Include="src\cpp\XMLList.cpp" />
+    <ClCompile Include="src\cpp\XMLMlistsManagement.cpp" />
     <ClCompile Include="src\cpp\XMLNodeList.cpp" />
     <ClCompile Include="src\cpp\XMLNodeSet.cpp" />
     <ClCompile Include="src\cpp\XMLNotHandledElement.cpp" />
@@ -313,7 +316,6 @@
     <ClCompile Include="src\cpp\XMLValidationSchema.cpp" />
     <ClCompile Include="src\cpp\XMLXPath.cpp" />
     <ClCompile Include="src\c\DllmainXml.c" />
-    <ClCompile Include="src\c\XMLMlistsManagement.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

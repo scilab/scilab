@@ -1,103 +1,38 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA -
- * Copyright (C) 2010 - DIGITEO - Allan CORNET
+ * Copyright (C) 2009 - Digiteo - Vincent LIARD
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
-/*--------------------------------------------------------------------------*/
-#include <string.h>
 #include "gw_statistics.h"
-#include "stack-c.h"
 #include "CdfBase.h"
-#include "Scierror.h"
-#include "localization.h"
-/*--------------------------------------------------------------------------*/
+
 extern int C2F(cdfnor)(int *, double *, double *, double*, double *, double *, int *, double *);
-/*--------------------------------------------------------------------------*/
-static void cdfnorErr(int status, double bound);
-/*--------------------------------------------------------------------------*/
-/*
-* hand written interface
-* Interface for cdfnor
-* Cumulative Distribution Function
-* NORmal distribution
-*/
-/*--------------------------------------------------------------------------*/
-int cdfnorI(char* fname, unsigned long l)
+
+/**
+ * Interface to dcdflib's cdfnor
+ * SUBROUTINE CDFNOR ( WHICH, P, Q, X, MEAN, SD, STATUS, BOUND )
+ * Cumulative Distribution Function, NORmal distribution
+ */
+int sci_cdfnor(char* fname, void* pvApiCtx)
 {
-    int m1 = 0, n1 = 0, l1 = 0;
-    Nbvars = 0;
-    CheckRhs(4, 5);
-    CheckLhs(1, 2);
-    GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
-    if ( strcmp(cstk(l1), "PQ") == 0)
+    struct cdf_item items[] =
     {
-        static int callpos[5] = {3, 4, 0, 1, 2};
-        CdfBase(fname, 3, 2, callpos, "PQ", _("X,Mean and Std"), 1, C2F(cdfnor),
-                cdfnorErr);
-    }
-    else if ( strcmp(cstk(l1), "X") == 0)
-    {
-        static int callpos[5] = {2, 3, 4, 0, 1};
-        CdfBase(fname, 4, 1, callpos, "X", _("Mean,Std,P and Q"), 2, C2F(cdfnor),
-                cdfnorErr);
-    }
-    else if ( strcmp(cstk(l1), "Mean") == 0)
-    {
-        static int callpos[5] = {1, 2, 3, 4, 0};
-        CdfBase(fname, 4, 1, callpos, "Mean", _("Std,P,Q and X"), 3, C2F(cdfnor),
-                cdfnorErr);
-    }
-    else if ( strcmp(cstk(l1), "Std") == 0)
-    {
-        static int callpos[5] = {0, 1, 2, 3, 4};
-        CdfBase(fname, 4, 1, callpos, "Std", _("P,Q,X and Mean"), 4, C2F(cdfnor),
-                cdfnorErr);
-    }
-    else
-    {
-        Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), fname, 1, "PQ", "X", "Mean", "Std");
-    }
-    return 0;
+        {"PQ"  , 3, 2, 2},
+        {"X"   , 4, 1, 3},
+        {"Mean", 4, 1, 4},
+        {"Std" , 4, 1, 0}
+    };
+    struct cdf_descriptor cdf = mkcdf(cdfnor, 4, 5, 1, 2, items);
+    return cdf_generic(fname, pvApiCtx, &cdf);
 }
-/*--------------------------------------------------------------------------*/
-static void cdfnorErr(int status, double bound)
-{
-    static char *param[7] = {"X", "P", "Q", "X", "Mean", "Std"};
-    switch ( status )
-    {
-        case 1 :
-        {
-            cdfLowestSearchError(bound);
-        }
-        break;
-        case 2 :
-        {
-            cdfGreatestSearchError(bound);
-        }
-        break;
-        case 3 :
-        {
-            Scierror(999, " P + Q .ne. 1\n");
-        }
-        break;
-        case 4 :
-        {
-            Scierror(999, _(" Std must not be zero\n"));
-        }
-        break;
-        default :
-        {
-            CdfDefaultError(param, status, bound);
-        }
-        break;
-    }
-}
-/*--------------------------------------------------------------------------*/

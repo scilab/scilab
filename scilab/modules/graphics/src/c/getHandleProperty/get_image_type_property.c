@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -29,7 +32,7 @@
 #include "Matplot.h"
 
 /*------------------------------------------------------------------------*/
-int get_image_type_property(void* _pvCtx, int iObjUID)
+void* get_image_type_property(void* _pvCtx, int iObjUID)
 {
     int imagetype = 0;
     int * piImagetype = &imagetype;
@@ -39,7 +42,7 @@ int get_image_type_property(void* _pvCtx, int iObjUID)
     if (piImagetype == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "image_type");
-        return -1;
+        return NULL;
     }
 
     itype = (ImageType)imagetype;
@@ -47,34 +50,34 @@ int get_image_type_property(void* _pvCtx, int iObjUID)
     switch (itype)
     {
         case MATPLOT_RGB :
-            return sciReturnString(_pvCtx, "rgb");
+            return sciReturnString("rgb");
         case MATPLOT_RGBA :
-            return sciReturnString(_pvCtx, "rgba");
+            return sciReturnString("rgba");
         case MATPLOT_GRAY :
-            return sciReturnString(_pvCtx, "gray");
+            return sciReturnString("gray");
         case MATPLOT_INDEX :
-            return sciReturnString(_pvCtx, "index");
+            return sciReturnString("index");
         case MATPLOT_RED :
-            return sciReturnString(_pvCtx, "red");
+            return sciReturnString("red");
         case MATPLOT_GREEN :
-            return sciReturnString(_pvCtx, "green");
+            return sciReturnString("green");
         case MATPLOT_BLUE :
-            return sciReturnString(_pvCtx, "blue");
+            return sciReturnString("blue");
         case MATPLOT_RGB_332 :
-            return sciReturnString(_pvCtx, "rgb332");
+            return sciReturnString("rgb332");
         case MATPLOT_RGB_444 :
-            return sciReturnString(_pvCtx, "rgb444");
+            return sciReturnString("rgb444");
         case MATPLOT_RGBA_4444 :
-            return sciReturnString(_pvCtx, "rgba444");
+            return sciReturnString("rgba444");
         case MATPLOT_RGB_555 :
-            return sciReturnString(_pvCtx, "rgb555");
+            return sciReturnString("rgb555");
         case MATPLOT_RGBA_5551 :
-            return sciReturnString(_pvCtx, "rgba5551");
+            return sciReturnString("rgba5551");
         case MATPLOT_ARGB :
-            return sciReturnString(_pvCtx, "argb");
+            return sciReturnString("argb");
         default :
             Scierror(999, _("Wrong value for '%s' property.\n"), "image_type");
-            return -1;
+            return NULL;
     }
 }
 /*------------------------------------------------------------------------*/

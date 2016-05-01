@@ -3,17 +3,5 @@ LIBRARY    core.dll
 
 EXPORTS
 ;
-callFunctionFromGateway
-getScilabMode
-com_
-getGlobalSizefromId
-getGlobalNamefromId
-getLocalSizefromId
-getLocalNamefromId 
-getgvariablesinfo_
-getvariablesinfo_
-freeArrayOfString
-gettype_
-vstk_
 MyHeapAlloc
 MyHeapFree

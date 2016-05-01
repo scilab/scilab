@@ -2,22 +2,26 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #ifndef __H5BASICDATA_HXX__
 #define __H5BASICDATA_HXX__
 
+#include <string.h>
 #include "H5Data.hxx"
 #include "H5Object.hxx"
 #include "H5DataConverter.hxx"
 
-#define __SCILAB_STACK_CREATOR__(U,NAME) static void create(void * pvApiCtx, const int position, const int rows, const int cols, U * ptr, int * list, const int listPosition) \
+#define __SCILAB_STACK_CREATOR__(U,NAME) static void create(void * pvApiCtx, const int position, const int rows, const int cols, U const* ptr, int * list, const int listPosition) \
     {                                                                   \
         SciErr err;                                                     \
         if (list)                                                       \
@@ -188,9 +192,39 @@ public:
             }
             else
             {
-                int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition, flip);
-                alloc(pvApiCtx, lhsPosition, (int)_totalSize, 1, list, 3, &newData);
-                H5DataConverter::C2FHypermatrix((int)_ndims, _dims, _totalSize, static_cast<T *>(getData()), newData, flip);
+                int* pNewDataVar = NULL;
+                int i = 0;
+                int indims = (int)_ndims;
+                int* piDimsArray = new int[indims];
+
+                alloc(pvApiCtx, lhsPosition, (int)_totalSize, 1, parentList, listPosition, &newData);
+                if (parentList)
+                {
+                    getListItemAddress(pvApiCtx, parentList, listPosition, &pNewDataVar);
+                }
+                else
+                {
+                    getVarAddressFromPosition(pvApiCtx, lhsPosition, &pNewDataVar);
+                }
+
+                if (flip)
+                {
+                    for (i = 0; i < indims; i++)
+                    {
+                        piDimsArray[indims - 1 - i] = (int)_dims[i];
+                    }
+                }
+                else
+                {
+                    for (i = 0; i < indims; i++)
+                    {
+                        piDimsArray[i] = (int)_dims[i];
+                    }
+                }
+                reshapeArray(pvApiCtx, pNewDataVar, piDimsArray, indims);
+                delete[] piDimsArray;
+
+                H5DataConverter::C2FHypermatrix(indims, _dims, _totalSize, static_cast<T *>(getData()), newData, flip);
             }
         }
     }
@@ -231,7 +265,7 @@ public:
     __SCILAB_ALLOCATORS_CREATORS__(int, Integer32)
     __SCILAB_ALLOCATORS_CREATORS__(unsigned int, UnsignedInteger32)
 
-#ifdef  _SCILAB_INT64__
+#ifdef  __SCILAB_INT64__
     __SCILAB_ALLOCATORS_CREATORS__(long long, Integer64)
     __SCILAB_ALLOCATORS_CREATORS__(unsigned long long, UnsignedInteger64)
 #endif

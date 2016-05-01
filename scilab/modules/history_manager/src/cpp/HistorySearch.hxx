@@ -2,20 +2,34 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 /*------------------------------------------------------------------------*/
 #include <list>
-#include "CommandLine.hxx"
-using namespace std;
+#include <vector>
+#include <string>
+extern "C"
+{
+#include "dynlib_history_manager.h"
+#include "BOOL.h"
+}
+
+#ifdef _MSC_VER
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+#endif
+
 /*------------------------------------------------------------------------*/
-class HistorySearch
+class HISTORY_MANAGER_IMPEXP HistorySearch
 {
 public:
     /**
@@ -30,17 +44,17 @@ public:
 
     /**
     * set History to search
-    * @param a list of CommandLine
+    * @param a list of std::string
     * @return TRUE or FALSE
     */
-    BOOL setHistory(list<CommandLine> commands);
+    BOOL setHistory(std::list<std::string> _lstCommands);
 
     /**
     * set new token to search in history
     * @param token (a string)
     * @return TRUE or FALSE
     */
-    BOOL setToken(std::string token);
+    BOOL setToken(std::string _stToken);
 
     /**
     * get token searched in history
@@ -74,19 +88,11 @@ public:
 protected:
 
 private:
-    list<CommandLine> Commands;
-    std::string my_token;
-    char **my_lines;
-    int *my_linenumbers;
-    int my_sizearray;
-    int current_position;
-    BOOL moveOnNext;
+    std::list<std::string> m_Commands;
+    std::string m_stToken;
+    std::vector<std::string> m_vstLines;
+    int m_iPosition;
 
     BOOL search(void);
-
-    BOOL freeMyToken(void);
-    BOOL freeMylines(void);
-    BOOL freeMylinenumbers(void);
-
 };
 /*------------------------------------------------------------------------*/

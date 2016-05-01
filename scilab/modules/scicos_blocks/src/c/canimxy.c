@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,7 +18,7 @@
 #include "dynlib_scicos_blocks.h"
 #include "scoUtils.h"
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "elementary_functions.h"
 
 #include "getGraphicObjectProperty.h"
@@ -29,9 +32,7 @@
 #include "scicos.h"
 
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 
 #include "FigureList.h"
 #include "BuildObjects.h"
@@ -128,8 +129,9 @@ static int getPolyline(int AxeUID, scicos_block * block, int row);
  * Set the polylines bounds
  *
  * \param block the block
+ * \param iAxeUID the axe id
  */
-static BOOL setPolylinesBounds(scicos_block * block);
+static BOOL setPolylinesBounds(scicos_block * block, int iAxeUID);
 
 /*****************************************************************************
  * Simulation function
@@ -289,6 +291,7 @@ static void freeScoData(scicos_block * block)
 static void appendData(scicos_block * block, double *x, double *y)
 {
     int i;
+    int setLen;
 
     sco_data *sco = (sco_data *) * (block->work);
     int maxNumberOfPoints = sco->internal.maxNumberOfPoints;
@@ -297,9 +300,9 @@ static void appendData(scicos_block * block, double *x, double *y)
     /*
      * Handle the case where the scope has more points than maxNumberOfPoints
      */
-    if (sco != NULL && numberOfPoints >= maxNumberOfPoints)
+    if (numberOfPoints >= maxNumberOfPoints)
     {
-        unsigned int setLen = (unsigned int)maxNumberOfPoints - 1;
+        setLen = maxNumberOfPoints - 1;
 
         // on a full scope, push data
         for (i = 0; i < block->insz[0]; i++)
@@ -318,21 +321,18 @@ static void appendData(scicos_block * block, double *x, double *y)
     /*
      * Update data
      */
-    if (sco != NULL)
+
+
+    for (i = 0; i < block->insz[0]; i++)
     {
-        int setLen;
-
-        for (i = 0; i < block->insz[0]; i++)
+        for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
         {
-            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
-            {
-                sco->internal.coordinates[i][numberOfPoints + setLen] = x[i];
-            }
+            sco->internal.coordinates[i][numberOfPoints + setLen] = x[i];
+        }
 
-            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
-            {
-                sco->internal.coordinates[i][maxNumberOfPoints + numberOfPoints + setLen] = y[i];
-            }
+        for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+        {
+            sco->internal.coordinates[i][maxNumberOfPoints + numberOfPoints + setLen] = y[i];
         }
 
         sco->internal.numberOfPoints++;
@@ -459,7 +459,7 @@ static int getFigure(scicos_block * block)
         setGraphicObjectProperty(iAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
         setGraphicObjectProperty(iAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
 
-        setPolylinesBounds(block);
+        setPolylinesBounds(block, iAxe);
     }
 
     if (sco->scope.cachedFigureUID == 0)
@@ -607,11 +607,8 @@ static int getPolyline(int iAxeUID, scicos_block * block, int row)
     return iPolyline;
 }
 
-static BOOL setPolylinesBounds(scicos_block * block)
+static BOOL setPolylinesBounds(scicos_block * block, int iAxeUID)
 {
-    int iFigureUID = 0;
-    int iAxeUID = 0;
-
     double dataBounds[6];
 
     dataBounds[0] = block->rpar[0]; // xMin
@@ -620,9 +617,6 @@ static BOOL setPolylinesBounds(scicos_block * block)
     dataBounds[3] = block->rpar[3]; // yMax
     dataBounds[4] = -1.0;       // zMin
     dataBounds[5] = 1.0;        // zMax
-
-    iFigureUID = getFigure(block);
-    iAxeUID = getAxe(iFigureUID, block);
 
     return setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 }

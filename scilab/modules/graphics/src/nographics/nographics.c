@@ -5,42 +5,27 @@
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_graphics.h"
-#include "stack-c.h"
-#include "callFunctionFromGateway.h"
-#include "graphicModuleLoad.h"
 #include "TerminateGraphics.h"
-#include "getDictionaryGetProperties.h"
-#include "getDictionarySetProperties.h"
-#include "DrawObjects.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
-#include "math_graphics.h"
-#include "DestroyObjects.h"
-#include "axesScale.h"
 #include "BuildObjects.h"
-#include "BasicAlgos.h"
-#include "pixel_mode.h"
-#include "Axes.h"
-#include "getPropertyAssignedValue.h"
-#include "SetHashTable.h"
-#include "Scierror.h"
-#include "localization.h"
-#include "Format.h"
-#include "MALLOC.h"
-#include "Interaction.h"
-#include "InitObjects.h"
-#include "scilabmode.h"
-
+#include "sci_malloc.h"
+#include "getDictionaryGetProperties.h"
+#include "getDictionarySetProperties.h"
+#include "graphicModuleLoad.h"
 /*--------------------------------------------------------------------------*/
 
 /*
@@ -54,41 +39,6 @@
 #define DELETE_INDEX 62
 #define GET_INDEX    63
 #define SET_INDEX    64
-
-int gw_graphics(void)
-{
-    Rhs = Max(0, Rhs);
-
-    if ((Fin == DELETE_INDEX || Fin == GET_INDEX || Fin == SET_INDEX) && (VarType(1) == sci_tlist || VarType(1) == sci_mlist))
-    {
-        int lw = 1 + Top - Rhs;
-
-        if (Fin == DELETE_INDEX)
-        {
-            C2F(overload) (&lw, "delete", 6);
-        }
-        if (Fin == GET_INDEX)
-        {
-            C2F(overload) (&lw, "get", 3);
-        }
-        if (Fin == SET_INDEX)
-        {
-            C2F(overload) (&lw, "set", 3);
-        }
-    }
-    else
-    {
-        if (getScilabMode() == SCILAB_NWNI)
-        {
-            Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "graphics");
-        }
-        else
-        {
-            Scierror(999, _("Scilab '%s' module not installed.\n"), "graphics");
-        }
-    }
-    return 0;
-}
 
 /*--------------------------------------------------------------------------*/
 void loadGraphicModule(void)
@@ -133,7 +83,7 @@ unsigned long getHandleFromStack(size_t stackPointer)
 }
 
 /*--------------------------------------------------------------------------*/
-int callSetProperty(void* _pvCtx, int pObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char * propertyName)
+int callSetProperty(void* _pvCtx, int pObjUID, void* _pvData, int valueType, int nbRow, int nbCol, const char * propertyName)
 {
     return -1;
 }
@@ -416,6 +366,14 @@ void cloneAxesModel(int pstFigureUID)
 /*--------------------------------------------------------------------------*/
 int createNewFigureWithAxes(void)
 {
-    return NULL;
+    return 0;
 }
+
+/*--------------------------------------------------------------------------*/
+int getOrCreateDefaultSubwin(void)
+{
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
 

@@ -22,7 +22,7 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "scicos_indexfinder.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 #define InterpExtrap    0
@@ -48,7 +48,7 @@ SCICOS_BLOCKS_IMPEXP void tablex2d_c(scicos_block *block, int flag)
 
     switch (flag)
     {
-            /* init */
+        /* init */
         case 4  :
 
         case 1  :

@@ -14,16 +14,16 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{a08a1bb0-42d6-47fa-89f1-e3a68953672b}</UniqueIdentifier>
+      <UniqueIdentifier>{cd413737-690e-409f-92a6-d8fe04d1bc5f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{c1619684-3ac2-49ce-863d-0220f601b5af}</UniqueIdentifier>
+      <UniqueIdentifier>{f7d58b34-5b3b-4137-a74e-b39908128097}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{f6d8f46d-407b-4f19-8370-117a3081191c}</UniqueIdentifier>
+      <UniqueIdentifier>{39a9a30c-7b74-4198-a222-fef6e43042c2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Export">
-      <UniqueIdentifier>{3e800ca7-dfcf-4478-85a1-3973fe2afe49}</UniqueIdentifier>
+      <UniqueIdentifier>{3515912c-3dea-4c26-8d86-24af5dbc5857}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -46,9 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Scilab_windows_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="parameters_export.def">

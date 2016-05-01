@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -18,14 +21,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "sci_malloc.h"
 #include "fscanfMat.h"
 #include "charEncoding.h"
 #include "BOOL.h"
 #include "localization.h"
 #include "Scierror.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "freeArrayOfString.h"
 #include "mgetl.h"
 #include "mopen.h"
@@ -37,9 +39,9 @@
 #define NegInfString "-Inf"
 /*--------------------------------------------------------------------------*/
 #if _MSC_VER
-#define READ_ONLY_TEXT_MODE "rt"
+#define READ_ONLY_TEXT_MODE L"rt"
 #else
-#define READ_ONLY_TEXT_MODE "r"
+#define READ_ONLY_TEXT_MODE L"r"
 #endif
 /*--------------------------------------------------------------------------*/
 #define NB_FORMAT_SUPPORTED 7
@@ -76,7 +78,6 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
     int f_swap = 0;
     double res = 0.0;
     int errMOPEN = MOPEN_INVALID_STATUS;
-    double dErrClose = 0.;
     int errMGETL = MGETL_ERROR;
     int i = 0;
     int nbLinesTextDetected = 0;
@@ -85,9 +86,11 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
 
 
     fscanfMatResult *resultFscanfMat = NULL;
+    wchar_t **pwsLines = NULL;
     char **lines = NULL;
     int nblines = 0;
     double *dValues = NULL;
+    wchar_t* filenameW = NULL;
 
     if ((filename == NULL) || (format == NULL) || (separator == NULL))
     {
@@ -109,7 +112,9 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
         return resultFscanfMat;
     }
 
-    C2F(mopen)(&fd, filename, READ_ONLY_TEXT_MODE, &f_swap, &res, &errMOPEN);
+    filenameW = to_wide_string(filename);
+    errMOPEN = mopen(filenameW, READ_ONLY_TEXT_MODE, f_swap, &fd);
+    FREE(filenameW);
     if (errMOPEN != MOPEN_NO_ERROR)
     {
         resultFscanfMat = (fscanfMatResult*)(MALLOC(sizeof(fscanfMatResult)));
@@ -125,8 +130,9 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
         return resultFscanfMat;
     }
 
-    lines = mgetl(fd, -1, &nblines, &errMGETL);
-    C2F(mclose)(&fd, &dErrClose);
+    pwsLines = mgetl(fd, -1, &nblines, &errMGETL);
+    mclose(fd);
+
     if (errMGETL != MGETL_NO_ERROR)
     {
         resultFscanfMat = (fscanfMatResult*)(MALLOC(sizeof(fscanfMatResult)));
@@ -139,8 +145,17 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
             resultFscanfMat->text = NULL;
             resultFscanfMat->values = NULL;
         }
+        freeArrayOfWideString(pwsLines, nblines);
         return resultFscanfMat;
     }
+
+    lines = (char**)MALLOC(sizeof(char*) * nblines);
+    for (i = 0; i < nblines; i++)
+    {
+        lines[i] = wide_string_to_UTF8(pwsLines[i]);
+    }
+
+    freeArrayOfWideString(pwsLines, nblines);
 
     lines = removeEmptyLinesAtTheEnd(lines, &nblines);
     lines = removeTextLinesAtTheEnd(lines, &nblines, format, separator);
@@ -216,7 +231,7 @@ void freeFscanfMatResult(fscanfMatResult *resultStruct)
     {
         if (resultStruct->text)
         {
-            FREE(resultStruct->text);
+            freeArrayOfString(resultStruct->text, resultStruct->sizeText);
             resultStruct->text = NULL;
         }
 
@@ -247,7 +262,7 @@ static BOOL itCanBeMatrixLine(char *line, char *format, char *separator)
 
         if ((ierr == EOF) || (ierr == 0))
         {
-            char *str = strdup(line);
+            char *str = os_strdup(line);
             if (str)
             {
                 ierr = sscanf(line, "%4s", str);
@@ -354,7 +369,7 @@ static int getNbColumnsInLine(char *line, char *format, char *separator)
                 }
                 else
                 {
-                    char *str = strdup(splittedStr[i]);
+                    char *str = os_strdup(splittedStr[i]);
                     strcpy(str, "");
 
                     ierr = sscanf(splittedStr[i], "%4s", str);
@@ -431,7 +446,7 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
                 retstr = (char **) MALLOC(sizeof(char *));
                 if (retstr)
                 {
-                    retstr[0] = strdup(str);
+                    retstr[0] = os_strdup(str);
                     *toks = 1;
                 }
             }
@@ -568,15 +583,49 @@ static double *getDoubleValuesInLine(char *line,
             dValues = (double*)MALLOC(sizeof(double) * nbColumnsMax);
             for (i = 0; i < nbColumnsMax; i++)
             {
+                int ierr = 0;
                 double dValue = 0.;
-                int ierr = sscanf(splittedStr[i], format, &dValue);
+                char *cleanedFormat = getCleanedFormat(format);
+                int iLen = strlen(cleanedFormat);
+                switch (cleanedFormat[iLen - 1])
+                {
+                    case 'e' :
+                    case 'g' :
+                    case 'f' :
+                    {
+                        if (cleanedFormat[iLen - 2] == 'l')
+                        {
+                            double tmp = 0.;
+                            ierr = sscanf(splittedStr[i], cleanedFormat, &tmp);
+                            dValue = tmp;
+                        }
+                        else
+                        {
+                            float tmp = 0.;
+                            ierr = sscanf(splittedStr[i], cleanedFormat, &tmp);
+                            dValue = tmp;
+                        }
+                        break;
+                    }
+                    case 'd' :
+                    case 'i' :
+                    {
+                        int tmp = 0;
+                        ierr = sscanf(splittedStr[i], cleanedFormat, &tmp);
+                        dValue = tmp;
+                        break;
+                    }
+                }
+
+                FREE(cleanedFormat);
+
                 if ((ierr != 0) && (ierr != EOF))
                 {
                     dValues[i] = dValue;
                 }
                 else
                 {
-                    char *str = strdup(line);
+                    char *str = os_strdup(line);
                     strcpy(str, "");
                     ierr = sscanf(splittedStr[i], "%4s", str);
                     if ((ierr != 0) && (ierr != EOF))
@@ -689,7 +738,7 @@ static char *getCleanedFormat(char *format)
                 if (token)
                 {
                     int nbcharacters = (int)(strlen(percent) - strlen(token));
-                    cleanedFormat = strdup(percent);
+                    cleanedFormat = os_strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
                     if ( (nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters - 1]) ||
                                                     (cleanedFormat[nbcharacters - 1]) == '.') ||
@@ -796,6 +845,8 @@ static char ** removeTextLinesAtTheEnd(char **lines, int *sizelines, char *forma
         if (itCanBeMatrixLine(lines[i], format, separator) == FALSE)
         {
             nbLinesToRemove++;
+            FREE(lines[i]);
+            lines[i] = NULL;
         }
         else
         {
@@ -805,8 +856,9 @@ static char ** removeTextLinesAtTheEnd(char **lines, int *sizelines, char *forma
 
     if (nbLinesToRemove > 0)
     {
-        linesReturned = (char**)REALLOC(lines, sizeof(char*) * (*sizelines - nbLinesToRemove));
+        //must free last lines.
         *sizelines = *sizelines - nbLinesToRemove;
+        linesReturned = lines;
     }
     else
     {

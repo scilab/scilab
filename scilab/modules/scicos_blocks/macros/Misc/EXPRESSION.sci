@@ -140,7 +140,7 @@ endfunction
 
 function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
     ok=%t
-    %lst=macr2lst(%foo);
+    %tlst=macr2tree(%foo);
     %mm=macrovar(%foo);
     %MM=%mm(3);
     %FF=["sin";"cos";"tan";"exp";"log";
@@ -157,76 +157,247 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
     1;1;2;2;
     1;1;1;1;1;1;
     2;
-    1
+    1;
     ];  //number of arguments
-    %ZCR=[16,17,18,19,20,21,28,29,30,109,110,111,112,113,114,115,116];  // ops with zero-crossing
+    %OP = emptystr(32, 1); // ops
+    %OP(1) = "+";
+    %OP(2) = "-";
+    %OP(3) = "*";
+    %OP(4) = ".*";
+    %OP(5) = "*.";
+    %OP(6) = ".*.";
+    %OP(7) = "/";
+    %OP(8) = "./";
+    %OP(9) = "/.";
+    %OP(10) = "./.";
+    %OP(11) = "\";
+    %OP(12) = ".\";
+    %OP(13) = "\.";
+    %OP(14) = ".\.";
+    %OP(15) = "^";
+    %OP(22) = ":";
+    %OP(23) = "rc"; // "[,]"
+    %OP(26) = "''";
+    %OP(27) = "cc"; // "[;]"
+    %OP(31) = ".^";
+    %OP(32) = ".''";
+    %ZCR = emptystr(116, 1);  // ops with zero-crossing
+    %ZCR(16) = "==";
+    %ZCR(17) = "<";
+    %ZCR(18) = ">";
+    %ZCR(19) = "<=";
+    %ZCR(20) = ">=";
+    %ZCR(21) = "<>"; // Also works for "~=" operator
+    %ZCR(28) = "|";
+    %ZCR(29) = "&";
+    %ZCR(30) = "~";
+    // FIXME: find what these ops correspond to in Scilab 5 and update decypher_operation & decypher_funcall accordingly
+    //%ZCR(109) = "";
+    //%ZCR(110) = "";
+    //%ZCR(111) = "";
+    //%ZCR(112) = "";
+    //%ZCR(113) = "";
+    //%ZCR(114) = "";
+    //%ZCR(115) = "";
+    //%ZCR(116) = "";
+    // Only 24 and 25 are missing in the intersection of %OP and %ZCR indexes,
+    // that is because they correspond to insertion and extraction:
+    // insertion is not needed and extraction is handled locally.
     %UU=%mm(1)
     %ipar=[]
     %rpar=[]
     %nrpar=0
     %nz=0
-    %ijk=4
-    while %ijk<length(%lst)
-        %ijk=%ijk+1
-        select evstr(%lst(%ijk)(1))
-        case 2
-            %jjk=find(%lst(%ijk)(2)==%FF)
-            if %jjk<> [] then
-                if evstr(%lst(%ijk)(4))<>%num_arg(%jjk) then
-                    message(%lst(%ijk)(2)+" must have "+string(%num_arg(%jjk))+" arguments")
-                    ok=%f
+
+    function [ok, rpar, nrpar, ipar] = decypher_variable(var, rpar, nrpar, ipar)
+        ok = %t
+        %indOut = find(var("name")==%MM)
+        if %indOut <> [] then
+            if ~exists(%MM(%indOut)) then
+                message("Variable "+%MM(%indOut)+" is not defined.")
+                ok = %f
+                return
+            end
+            %var = evstr(%MM(%indOut))
+            if size(%var,"*") <> 1 then
+                message("Variable "+%MM(%indOut)+" is not scalar.")
+                ok=%f
+                return
+            else
+                nrpar = nrpar+1
+                rpar(nrpar) = %var
+                ipar = [ipar; 6; nrpar]
+            end
+        else
+            %indIn = find(var("name")==%UU)
+            if %indIn <> [] then
+                ipar = [ipar; 2; %indIn]
+            else
+                // All defined variables that are not in the prototype (for instance, Scilab constants)
+                ierr = execstr("localVar = evstr(var(""name""))", "errcatch");
+                if ierr == 0 then
+                    if size(localVar,"*") <> 1 then
+                        message("Variable "+var("name")+" is not scalar.")
+                        ok=%f
+                        return
+                    end
+                    nrpar = nrpar+1
+                    rpar(nrpar) = localVar
+                    ipar = [ipar; 6; nrpar]
+                else
+                    message("Unknown variable "+var("name"))
+                    ok = %f
                     return
-                else
-                    %ipar=[%ipar;5;100+%jjk]
-                    if or(100+%jjk==%ZCR) then
-                        %nz=%nz+1,
-                    end
-                    %ijk=%ijk+1
-                end
-            else
-                %jjk=find(%lst(%ijk)(2)==%MM)
-                if %jjk<> [] then
-                    if ~exists(%MM(%jjk)) then
-                        message("Variable "+%MM(%jjk)+" is not defined.")
-                        ok=%f
-                        return
-                    end
-                    %var=evstr(%MM(%jjk))
-                    if size(%var,"*")<>1 then
-                        message("Variable "+%MM(%jjk)+" is not scalar.")
-                        ok=%f
-                        return
-                    else
-                        %nrpar=%nrpar+1
-                        %rpar(%nrpar)=%var
-                        %ipar=[%ipar;6;%nrpar]
-                    end
-                else
-                    %jjk=find(%lst(%ijk)(2)==%UU)
-                    if %jjk<> [] then
-                        %ipar=[%ipar;2;%jjk]
-                    else
-                        message("Unknown variable "+%lst(%ijk)(2))
-                        ok=%f
-                    end
-                    //%ipar=[%ipar;2;evstr(strsubst(%lst(%ijk)(2),'u',''))]
                 end
             end
-        case 5
-            // case of - with one operand (-u1)
-            if (evstr(%lst(%ijk)(2))==2)&(evstr(%lst(%ijk)(3))==1) then
-                %ipar=[%ipar;5;99]
+            // ipar = [ipar; 2; evstr(strsubst(var("name"),'u',''))]
+        end
+    endfunction
+
+    function [ok, rpar, nrpar, ipar, nz] = decypher_funcall(f, rpar, nrpar, ipar, nz)
+        ok = %t
+        // Check number of operands for concerned operation
+        %indOperator = find(f("name")==%FF)
+        if %indOperator <> [] then
+            if length(f("rhs")) <> %num_arg(%indOperator) then
+                message(f("name")+" must have "+string(%num_arg(%indOperator))+" arguments")
+                ok = %f
+                return
+            end
+        end
+
+        for i=1:length(f("rhs"))
+            oper = f("rhs")(i)
+            select typeof(oper)
+            case "operation"
+                [ok, rpar, nrpar, ipar, nz] = decypher_operation(oper, rpar, nrpar, ipar, nz);
+                if ~ok then
+                    return
+                end
+            case "funcall"
+                [ok, rpar, nrpar, ipar, nz] = decypher_funcall(oper, rpar, nrpar, ipar, nz);
+                if ~ok then
+                    return
+                end
+            case "variable"
+                [ok, rpar, nrpar, ipar] = decypher_variable(oper, rpar, nrpar, ipar);
+                if ~ok then
+                    return
+                end
+            else // "cste"
+                // ipar = [ipar; 6; evstr(op)]
+                nrpar = nrpar+1
+                if oper("value") == [] then
+                    rpar(nrpar) = 0; // We are dealing with scalars so [] = 0
+                else
+                    rpar(nrpar) = oper("value")
+                end
+                ipar = [ipar; 6; nrpar]
+            end
+        end
+
+        %indIn = find(f("name")==%UU) // Handling of extraction
+        if %indIn <> [] then
+            ipar = [ipar; 2; %indIn; 5; 25]
+        elseif %indOperator <> [] then
+            ipar = [ipar; 5; 100+%indOperator]
+        else
+            %indOperator = find(f("name")==%ZCR)
+            if %indOperator <> [] then
+                ipar = [ipar; 5; %indOperator]
+                nz = nz+1
             else
-                %ipar=[%ipar;5;evstr(%lst(%ijk)(2))]
-                if or(evstr(%lst(%ijk)(2))==%ZCR) then
-                    %nz=%nz+1,
+                message("Function "+f("name")+" not supported.")
+                ok = %f
+                return
+            end
+        end
+    endfunction
+
+    function [ok, rpar, nrpar, ipar, nz] = decypher_operation(op, rpar, nrpar, ipar, nz)
+        ok = %t
+        // 'operations' are not "functions", not no need to look for theù in %FF here
+
+        for i=1:length(op("operands"))
+            oper = op("operands")(i)
+            select typeof(oper)
+            case "operation"
+                [ok, rpar, nrpar, ipar, nz] = decypher_operation(oper, rpar, nrpar, ipar, nz);
+                if ~ok then
+                    return
+                end
+            case "funcall"
+                [ok, rpar, nrpar, ipar, nz] = decypher_funcall(oper, rpar, nrpar, ipar, nz);
+                if ~ok then
+                    return
+                end
+            case "variable"
+                [ok, rpar, nrpar, ipar] = decypher_variable(oper, rpar, nrpar, ipar);
+                if ~ok then
+                    return
+                end
+            else // "cste"
+                // ipar = [ipar; 6; evstr(op)]
+                nrpar = nrpar+1
+                if oper("value") == [] then
+                    rpar(nrpar) = 0; // We are dealing with scalars so [] = 0
+                else
+                    rpar(nrpar) = oper("value")
+                end
+                ipar = [ipar; 6; nrpar]
+            end
+        end
+
+        if op("operator") == "-" & length(op("operands")) == 1 then
+            ipar = [ipar; 5; 99] // case of - with one operand (-u1)
+        else
+            %indOperator = find(op("operator")==%OP)
+            if %indOperator <> [] then
+                ipar = [ipar; 5; %indOperator]
+            else
+                if op("operator") == "~=" then
+                    op("operator") = "<>"
+                end
+                %indOperator = find(op("operator")==%ZCR)
+                if %indOperator <> [] then
+                    ipar = [ipar; 5; %indOperator]
+                    nz = nz+1
                 end
             end
-        case 6
-            //      %ipar=[%ipar;6;evstr(%lst(%ijk)(2))]
-            %nrpar=%nrpar+1
-            %rpar(%nrpar)=evstr(%lst(%ijk)(2))
-            %ipar=[%ipar;6;%nrpar]
+        end
+    endfunction
+
+    // Check statements
+    i = "statements"
+    for j=1:length(%tlst(i))
+        if typeof(%tlst(i)(j)) == "equal" then
+            expr = %tlst(i)(j)("expression");
+            select typeof(expr)
+            case "operation"
+                [ok, %rpar, %nrpar, %ipar, %nz] = decypher_operation(expr, %rpar, %nrpar, %ipar, %nz);
+                if ~ok then
+                    return
+                end
+            case "funcall"
+                [ok, %rpar, %nrpar, %ipar, %nz] = decypher_funcall(expr, %rpar, %nrpar, %ipar, %nz);
+                if ~ok then
+                    return
+                end
+            case "variable"
+                [ok, %rpar, %nrpar, %ipar] = decypher_variable(expr, %rpar, %nrpar, %ipar);
+                if ~ok then
+                    return
+                end
+            else // "cste"
+                // %ipar = [%ipar; 6; evstr(expr)]
+                %nrpar = %nrpar+1
+                if expr("value") == [] then
+                    %rpar(%nrpar) = 0; // We are dealing with scalars so [] = 0
+                else
+                    %rpar(%nrpar) = expr("value")
+                end
+                %ipar = [%ipar; 6; %nrpar]
+            end
         end
     end
 endfunction

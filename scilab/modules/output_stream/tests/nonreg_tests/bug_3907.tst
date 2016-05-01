@@ -17,7 +17,7 @@
 
 command_test = "msprintf(''%s%d%s%s'',''r'',''e'',''w'',1);";
 ierr = execstr(command_test , "errcatch");
-if ierr <> 246 then pause,end
+if ierr <> 999 then pause,end
 
 ierr = execstr("msprintf(''%s%d%s%s'',''r'',1,''e'',''w'');","errcatch");
 if ierr <> 0 then pause,end

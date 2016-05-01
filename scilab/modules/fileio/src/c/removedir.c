@@ -2,12 +2,16 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2007 - INRIA - Allan CORNET
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
+* Copyright (C) 2010 - DIGITEO - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -28,8 +32,10 @@
 #include "sciprint.h"
 #include "removedir.h"
 #include "isdir.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
+#include "os_string.h"
+#include "Sciwarning.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 static int DeleteDirectory(wchar_t *refcstrRootDirectory);
@@ -88,15 +94,15 @@ BOOL removedirW(wchar_t *pathW)
 #ifdef _MSC_VER
 static int DeleteDirectory(wchar_t *refcstrRootDirectory)
 {
-#define DEFAULT_PATTERN L"%s/*.*"
-    BOOL bDeleteSubdirectories = TRUE;
-    BOOL bSubdirectory = FALSE;
-    HANDLE hFile;
-    WIN32_FIND_DATAW FileInformation;
-    DWORD dwError;
-    wchar_t	*strPattern		= NULL;
-    wchar_t	*strFilePath	= NULL;
-    int len = 0;
+#define DEFAULT_PATTERN L"%ls/*.*"
+BOOL bDeleteSubdirectories = TRUE;
+BOOL bSubdirectory = FALSE;
+HANDLE hFile;
+WIN32_FIND_DATAW FileInformation;
+DWORD dwError;
+wchar_t	*strPattern		= NULL;
+wchar_t	*strFilePath	= NULL;
+int len = 0;
 
     if (refcstrRootDirectory == NULL)
     {
@@ -108,7 +114,7 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
     strPattern = (wchar_t*)MALLOC(sizeof(wchar_t) * len);
     if (strPattern)
     {
-        swprintf(strPattern, len, DEFAULT_PATTERN, refcstrRootDirectory);
+        os_swprintf(strPattern, len, DEFAULT_PATTERN, refcstrRootDirectory);
     }
     else
     {
@@ -128,13 +134,13 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
         {
             if ( (wcscmp(FileInformation.cFileName, L".") != 0) && (wcscmp(FileInformation.cFileName, L"..") != 0) )
             {
-#define FORMAT_PATH_TO_REMOVE L"%s\\%s"
-                int len = (int) (wcslen(refcstrRootDirectory) + wcslen(FORMAT_PATH_TO_REMOVE) + wcslen((wchar_t*)(FileInformation.cFileName)) + 1);
-                strFilePath = (wchar_t*) MALLOC(sizeof(wchar_t) * len);
-                if (strFilePath)
-                {
-                    swprintf(strFilePath, len, FORMAT_PATH_TO_REMOVE, refcstrRootDirectory, FileInformation.cFileName);
-                }
+#define FORMAT_PATH_TO_REMOVE L"%ls\\%ls"
+int len = (int) (wcslen(refcstrRootDirectory) + wcslen(FORMAT_PATH_TO_REMOVE) + wcslen((wchar_t*)(FileInformation.cFileName)) + 1);
+strFilePath = (wchar_t*) MALLOC(sizeof(wchar_t) * len);
+if (strFilePath)
+{
+os_swprintf(strFilePath, len, FORMAT_PATH_TO_REMOVE, refcstrRootDirectory, FileInformation.cFileName);
+}
 
                 if (FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
                 {
@@ -195,6 +201,12 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
                     }
                 }
             }
+
+            if (strFilePath)
+            {
+                FREE(strFilePath);
+                strFilePath = NULL;
+            }
         }
         while (FindNextFileW(hFile, &FileInformation) == TRUE);
 
@@ -254,7 +266,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
 
     if (dir == NULL)
     {
-        sciprint(_("Warning: Error while opening %s: %s\n"), refcstrRootDirectory, strerror(errno));
+        Sciwarning(_("Warning: Error while opening %s: %s\n"), refcstrRootDirectory, strerror(errno));
         return -1;
     }
 
@@ -279,7 +291,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
             /* Not a directory... It must be a file (at least, I hope it is a file */
             if (remove(filename) != 0)
             {
-                sciprint(_("Warning: Could not remove file %s: %s\n"), filename, strerror(errno));
+                Sciwarning(_("Warning: Could not remove file %s: %s\n"), filename, strerror(errno));
             }
 
             FREE(filename);
@@ -287,7 +299,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
     }
     if (rmdir(refcstrRootDirectory) != 0)
     {
-        sciprint(_("Warning: Could not remove directory %s: %s\n"), refcstrRootDirectory, strerror(errno));
+        Sciwarning(_("Warning: Could not remove directory %s: %s\n"), refcstrRootDirectory, strerror(errno));
     }
 
     if (dir)

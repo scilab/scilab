@@ -344,7 +344,7 @@ cmplx FADDEEVA(erf)(cmplx z, double relerr)
                     exp(y^2) -> Inf but Im[w(y)] -> 0, so
                     IEEE will give us a NaN when it should be Inf */
                  y * y > 720 ? (y > 0 ? Inf : -Inf)
-                     : exp(y * y) * FADDEEVA(w_im)(y));
+                 : exp(y * y) * FADDEEVA(w_im)(y));
 
     double mRe_z2 = (y - x) * (x + y); // Re(-z^2), being careful of overflow
     double mIm_z2 = -2 * x * y; // Im(-z^2)
@@ -449,7 +449,7 @@ cmplx FADDEEVA(erfi)(cmplx z, double relerr)
 double FADDEEVA_RE(erfi)(double x)
 {
     return x * x > 720 ? (x > 0 ? Inf : -Inf)
-               : exp(x * x) * FADDEEVA(w_im)(x);
+           : exp(x * x) * FADDEEVA(w_im)(x);
 }
 
 // erfc(x) = 1 - erf(x)
@@ -480,7 +480,7 @@ cmplx FADDEEVA(erfc)(cmplx z, double relerr)
                     exp(y^2) -> Inf but Im[w(y)] -> 0, so
                     IEEE will give us a NaN when it should be Inf */
                  y * y > 720 ? (y > 0 ? -Inf : Inf)
-                     : -exp(y * y) * FADDEEVA(w_im)(y));
+                 : -exp(y * y) * FADDEEVA(w_im)(y));
     if (y == 0.)
     {
         if (x * x > 750) // underflow
@@ -891,7 +891,7 @@ cmplx FADDEEVA(w)(cmplx z, double relerr)
             return ret;
         }
     }
-#endif // !USE_CONTINUED_FRACTION 
+#endif // !USE_CONTINUED_FRACTION
 
     /* Note: The test that seems to be suggested in the paper is x <
        sqrt(-log(DBL_MIN)), about 26.6, since otherwise exp(-x^2)
@@ -2337,11 +2337,11 @@ int main(void)
             C(Inf, NaN)
         };
         cmplx w[NTST] = { /* w(z), computed with WolframAlpha
-               ... note that WolframAlpha is problematic
-               some of the above inputs, so I had to
-               use the continued-fraction expansion
-               in WolframAlpha in some cases, or switch
-               to Maple */
+... note that WolframAlpha is problematic
+some of the above inputs, so I had to
+use the continued-fraction expansion
+in WolframAlpha in some cases, or switch
+to Maple */
                             C(-3.78270245518980507452677445620103199303131110e-7,
                               0.000903861276433172057331093754199933411710053155),
                             C(0.1764906227004816847297495349730234591778719532788,

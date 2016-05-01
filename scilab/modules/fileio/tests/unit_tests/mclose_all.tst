@@ -6,14 +6,13 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- INTERACTIVE TEST -->
 // <-- CLI SHELL MODE -->
 
-mclose('all');
+mclose("all");
 
 // Check that mclose('all') closes all files (except stdin and stdout)
 f1 = mopen(TMPDIR + filesep() + "mclose1.txt","w");
 f2 = mopen(TMPDIR + filesep() + "mclose2.txt","w");
 mclose("all");
 
-if size(file())<>2 then pause; end
+if size(file())<>[1 3] then pause; end

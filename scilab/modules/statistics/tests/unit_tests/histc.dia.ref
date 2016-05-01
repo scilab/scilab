@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
@@ -9,26 +10,26 @@ rand("seed", 0);
 d = rand(1, 10000, "normal");
 [cfC, indC] = histc(20, d);
 refCF = [
-0.000257209601
-0.001028838404
-0.005144192018
-0.009259545632
-0.027007008092
-0.073561945850
-0.128604800438
-0.205767680700
-0.303764538634
-0.364723214041
-0.397131623751
-0.363179956436
-0.289875220186
-0.190335104648
-0.110085709175
-0.061215885008
-0.026749798491
-0.010288384035
-0.002829305610
-0.001286048004 ]';
+0.0001
+0.0004
+0.002
+0.0036
+0.0105
+0.0286
+0.05
+0.08
+0.1181
+0.1418
+0.1544
+0.1412
+0.1127
+0.074
+0.0428
+0.0238
+0.0104
+0.004
+0.0011
+0.0005 ]';
 assert_checkequal(size(indC), [1 10000]);
 assert_checkalmostequal(cfC, refCF);
 [cfC, indC] = histc(int32(20), d);
@@ -64,7 +65,7 @@ assert_checkequal(size(indC), [1 10000]);
 assert_checkequal(cfC, refCF);
 // With x instead of n as first argument
 cfC = histc([-5 0 5], d);
-refCF = [0.09982 0.10018];
+refCF = [0.4991 0.5009];
 assert_checkequal(cfC, refCF);
 cfC = histc(int8([-5 0 5]), d);
 assert_checkequal(cfC, refCF);
@@ -72,7 +73,7 @@ cfC = histc(int16([-5 0 5]), d);
 assert_checkequal(cfC, refCF);
 cfC = histc(int32([-5 0 5]), d);
 assert_checkequal(cfC, refCF);
-assert_checkequal(sum(cfC), 0.2);
+assert_checkequal(sum(cfC), 1);
 cfC = histc([-5 0 5], d, %f);
 assert_checkequal(sum(cfC), 10000); // -5 > d > 5, and d has 10000 elements.
 lambda = 2;
@@ -80,46 +81,46 @@ grand("setsd", 0);
 D = grand(100000, 1, "exp", 1/lambda);
 [cfC, indC] = histc(40, D);
 refCF = [
-1.698711801698
-1.24408608389
-0.908431380900
-0.656611502242
-0.489635746028
-0.352875852007
-0.257181774872
-0.194479129735
-0.141490978915
-0.097271105433
-0.073615680960
-0.050401824411
-0.038416409344
-0.028512671632
-0.021447584856
-0.014634822607
-0.010660711296
-0.008200547151
-0.005866545269
-0.004289516971
-0.004163354707
-0.001387784902
-0.001450866034
-0.000946216979
-0.000756973583
-0.000756973583
-0.000441567923
-0.000315405660
-0.000252324528
-0.000189243396
-0.000063081132
-0.000189243396
-0.000126162264
-0.000063081132
-0.000063081132
+0.26929
+0.19722
+0.14401
+0.10409
+0.07762
+0.05594
+0.04077
+0.03083
+0.02243
+0.01542
+0.01167
+0.00799
+0.00609
+0.00452
+0.0034
+0.00232
+0.00169
+0.0013
+0.00093
+0.00068
+0.00066
+0.00022
+0.00023
+0.00015
+0.00012
+0.00012
+0.00007
+0.00005
+0.00004
+0.00003
+0.00001
+0.00003
+0.00002
+0.00001
+0.00001
 0
 0
-0.000063081132
+0.00001
 0
-0.000063081132 ]';
+0.00001 ]';
 assert_checkequal(size(indC), [100000 1]);
 assert_checkalmostequal(cfC, refCF);
 [cfC, indC] = histc(int8(40), D);
@@ -175,7 +176,7 @@ assert_checkequal(size(indC), [100000 1]);
 assert_checkalmostequal(cfC, refCF);
 // With x instead of n as first argument
 cfC = histc([0 7], D);
-refCF = 0.142857142857;
+refCF = 1;
 assert_checkalmostequal(cfC, refCF);
 cfC = histc(int8([0 7]), D);
 assert_checkalmostequal(cfC, refCF);

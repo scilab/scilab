@@ -39,8 +39,8 @@ assert_checkequal(y, ref_bool);
 x_txt = matrix(strsplit("a":"x", 1:23), 4, 6);
 x_txt = x_txt + x_txt;
 ref_txt = ["uu" "qq" "mm" "ii" "ee" "aa"; "vv" "rr" "nn" "jj" "ff" "bb";
- "ww" "ss" "oo" "kk" "gg" "cc";
-  "xx" "tt" "pp" "ll" "hh" "dd" ];
+"ww" "ss" "oo" "kk" "gg" "cc";
+"xx" "tt" "pp" "ll" "hh" "dd" ];
 y = flipdim(x_txt, 2);
 assert_checkequal(y, ref_txt);
 // Polynomials:

@@ -16,7 +16,7 @@ assert_checkequal(isfile(F), %t);
 F = tempname('PRE');
 assert_checkequal(isfile(F), %t);
 
-msgerror = "%s: Wrong type for input argument #%d: A string expected.\n";
+msgerror = "%s: Wrong type for input argument #%d: string expected.\n";
 assert_checkerror ( "F = tempname(1)" , msgerror, 999, "tempname" , 1);
 
 msgerror = "%s: Wrong size for input argument #%d: A scalar expected.\n";

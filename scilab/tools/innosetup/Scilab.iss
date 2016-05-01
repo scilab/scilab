@@ -2,11 +2,14 @@
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ; Copyright (C) DIGITEO - 2010-2012 - Allan CORNET
 ;
-; This file must be used under the terms of the CeCILL.
-; This source file is licensed as described in the file COPYING, which
-; you should have received as part of this distribution.  The terms
-; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+; Copyright (C) 2012 - 2016 - Scilab Enterprises
+;
+; This file is hereby licensed under the terms of the GNU GPL v2.0,
+; pursuant to article 5.3.4 of the CeCILL v.2.1.
+; This file was originally licensed under the terms of the CeCILL v2.1,
+; and continues to be available under such terms.
+; For more information, see the COPYING file which you should have received
+; along with this program.
 ;
 ;-------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -27,10 +30,6 @@
 ;#define SCILAB_F2C
 ;-------------------------------------------------------------------------------
 #define MODULES_LIST_WEB_PAGE 'http://wiki.scilab.org/howto/install/windows'
-#define MKL_DOWNLOAD_HTTP 'http://fileexchange.scilab.org/toolboxes/MKL'
-#define MKL_BLASLAPACK_PACKAGENAME 'blas-lapack-mkl-5.4-win32.zip'
-#define MKL_COMMONS_PACKAGENAME 'commons-mkl-5.4-win32.zip'
-#define MKL_FFTW_PACKAGENAME 'fftw-mkl-5.4-win32.zip'
 ;-------------------------------------------------------------------------------
 [CustomMessages]
 #include BinariesSourcePath + "\tools\innosetup\custommessages.iss"
@@ -65,10 +64,7 @@
 #include BinariesSourcePath + "\tools\innosetup\registry.iss"
 ;-------------------------------------------------------------------------------
 [Code]
-#include BinariesSourcePath + "\tools\innosetup\code_unzip.iss"
-#include BinariesSourcePath + "\tools\innosetup\code_download.iss"
 #include BinariesSourcePath + "\tools\innosetup\code_modules.iss"
-#include BinariesSourcePath + "\tools\innosetup\code_offline_installation.iss"
 #include BinariesSourcePath + "\tools\innosetup\code.iss"
 [Run]
 ;-------------------------------------------------------------------------------

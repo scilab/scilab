@@ -43,10 +43,10 @@ public class FopConverter extends ContainerConverter {
         String fileName = outputDirectory + "/" + baseName + "." + format.name().toLowerCase();
 
         try {
-            FopFactory fopFactory = FopFactory.newInstance();
+            final File configuration = new File(System.getenv("SCI") + "/modules/helptools/etc/fopconf.xml");
+            FopFactory fopFactory = FopFactory.newInstance(configuration);
             fopFactory.addElementMapping(new JLaTeXMathElementMapping());
             fopFactory.getXMLHandlerRegistry().addXMLHandler(new JLaTeXMathXMLHandler());
-            fopFactory.setUserConfig(new File(System.getenv("SCI") + "/modules/helptools/etc/fopconf.xml"));
 
             // Step 3: Construct fop with desired output format
             OutputStream out = new BufferedOutputStream(new FileOutputStream(fileName));

@@ -3,37 +3,37 @@
  * Copyright (C) 2013 - Scilab Enterprises - Sylvestre LEDRU
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <stdio.h>
+#include <string.h>
 #include "sciprint.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dlManager.h"
 #include "localization.h"
 /* ==================================================================== */
 static void freeAllocatedStrings(char** url, char** dest, char** username, char** password, char** content, char** filePath);
 /* ==================================================================== */
-int sci_getURL(char *fname, int fname_len)
+int sci_getURL(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
-    int length = 0;
 
-    int *piAddr = NULL;
     char *url = NULL;
     char *dest = NULL;
     char *username = NULL;
     char *password = NULL;
     char *content = NULL;
 
-    int iRows = 0, iCols = 0;
-    int iType = 0;
     int *piAddressVarOne = NULL;
     int ret = 0;
     char *filePath = NULL;
@@ -54,7 +54,7 @@ int sci_getURL(char *fname, int fname_len)
     ret = getAllocatedSingleString(pvApiCtx, piAddressVarOne, &url);
     if (ret)
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
         freeAllocatedStrings(&url, &dest, &username, &password, &content, &filePath);
         return 0;
     }
@@ -75,7 +75,7 @@ int sci_getURL(char *fname, int fname_len)
         ret = getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &dest);
         if (ret)
         {
-            Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
             freeAllocatedStrings(&url, &dest, &username, &password, &content, &filePath);
             return 0;
         }
@@ -97,7 +97,7 @@ int sci_getURL(char *fname, int fname_len)
         ret = getAllocatedSingleString(pvApiCtx, piAddressVarThree, &username);
         if (ret)
         {
-            Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
             freeAllocatedStrings(&url, &dest, &username, &password, &content, &filePath);
             return 0;
         }
@@ -120,7 +120,7 @@ int sci_getURL(char *fname, int fname_len)
         ret = getAllocatedSingleString(pvApiCtx, piAddressVarFour, &password);
         if (ret)
         {
-            Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 4);
+            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 4);
             freeAllocatedStrings(&url, &dest, &username, &password, &content, &filePath);
             return 0;
         }

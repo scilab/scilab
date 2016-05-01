@@ -5,7 +5,7 @@
         <refpurpose>Description of the border layout options set of properties.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             layout_options = createLayoutOptions("border")
             layout_options = createLayoutOptions("border", padding)

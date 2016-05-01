@@ -3,11 +3,14 @@
  *  Copyright (C) 2010-2012 - DIGITEO - Bruno JOFRET
  *  Copyright (C) 2012-2014 - Scilab-Enterprises - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -416,5 +419,11 @@ public class GraphicObjectProperties {
     public static final int __GO_UI_FRAME_BORDER_TYPE__ = 392;
     public static final int __GO_UI_SCROLLABLE__ = 393;
     public static final int __GO_COLOR_SET__ = 394;
+    public static final int __GO_MARK_SIZES__ = 395;
+    public static final int __GO_NUM_MARK_SIZES__ = 396;
+    public static final int __GO_MARK_FOREGROUNDS__ = 397;
+    public static final int __GO_NUM_MARK_FOREGROUNDS__ = 398;
+    public static final int __GO_MARK_BACKGROUNDS__ = 399;
+    public static final int __GO_NUM_MARK_BACKGROUNDS__ = 400;
 
 }

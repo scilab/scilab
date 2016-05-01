@@ -22,7 +22,7 @@
 function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,cor)
     //store modified parameters in compiled structure state,sim
     //newparameters gives modified blocks numbers in original structure scs_m
-    //cor is the correspondance table from original structure to compiled one
+    //cor is the correspondence table from original structure to compiled one
     xptr=sim.xptr
     zptr=sim.zptr
     ozptr=sim.ozptr

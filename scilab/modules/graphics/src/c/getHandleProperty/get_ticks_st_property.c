@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -25,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_ticks_st_property(void* _pvCtx, int iObjUID)
+void* get_ticks_st_property(void* _pvCtx, int iObjUID)
 {
     int const propr[3] = {__GO_X_AXIS_ST_FACTORS__, __GO_Y_AXIS_ST_FACTORS__, __GO_Z_AXIS_ST_FACTORS__};
     double factors[] = {1., 0., 1., 0., 1., 0.};
@@ -38,12 +41,12 @@ int get_ticks_st_property(void* _pvCtx, int iObjUID)
         if (dbls == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "ticks_st");
-            return -1;
+            return NULL;
         }
         factors[2 * i] = dbls[0];
         factors[2 * i + 1] = dbls[1];
     }
 
-    return sciReturnMatrix(_pvCtx, factors, 2, 3);
+    return sciReturnMatrix(factors, 2, 3);
 }
 /*------------------------------------------------------------------------*/

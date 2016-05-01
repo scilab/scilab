@@ -5,7 +5,7 @@
         <refpurpose>smoothing by spline functions</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[pt]=smooth(ptd [,step])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -8,17 +8,17 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
+warning("off")
 ilib_verbose(0);
 
 version = getversion("scilab");
 
- // to check that ode works
- // ---------- Simple one dimension ODE (Scilab function external)
- // dy/dt=y^2-y sin(t)+cos(t), y(0)=0
- function ydot=f(t,y),ydot=y^2-y*sin(t)+cos(t),endfunction
- y0=0;t0=0;t=0:0.1:%pi;
- y=ode(y0,t0,t,f);
+// to check that ode works
+// ---------- Simple one dimension ODE (Scilab function external)
+// dy/dt=y^2-y sin(t)+cos(t), y(0)=0
+function ydot=f(t,y),ydot=y^2-y*sin(t)+cos(t),endfunction
+y0=0;t0=0;t=0:0.1:%pi;
+y=ode(y0,t0,t,f);
 assert_checkalmostequal(size(y), [1 32] , %eps, [], "matrix");
 clear y;
 clear t;
@@ -26,25 +26,25 @@ clear t;
 // create functions
 cd TMPDIR;
 
-CC=['void fex1(int* neq, double* t, double* y, double* ydot)'
-    '{'
-    '   ydot[0] = -0.04*y[0] + 1.0e+4*y[1]*y[2];'
-    '   ydot[2] = 3.0e+7*y[1]*y[1];'
-    '   ydot[1] = -ydot[0] - ydot[2];'
-    '}'];
-mputl(CC,TMPDIR+'/fex1.c');
-ilib_for_link('fex1','fex1.c',[],'c');
+CC=["void fex1(int* neq, double* t, double* y, double* ydot)"
+"{"
+"   ydot[0] = -0.04*y[0] + 1.0e+4*y[1]*y[2];"
+"   ydot[2] = 3.0e+7*y[1]*y[1];"
+"   ydot[1] = -ydot[0] - ydot[2];"
+"}"];
+mputl(CC,TMPDIR+"/fex1.c");
+ilib_for_link("fex1","fex1.c",[],"c");
 exec loader.sce;
 
-C=[ 'void fex2(int* neq, double* t, double* y, double* ydot)'
-    '{'
-    '   ydot[0] = y[4]*y[0] + y[5]*y[1]*y[2];'
-    '   ydot[2] = y[3]*y[1]*y[1];'
-    '   ydot[1] = -ydot[0] - ydot[2];'
-    '}'];
+C=[ "void fex2(int* neq, double* t, double* y, double* ydot)"
+"{"
+"   ydot[0] = y[4]*y[0] + y[5]*y[1]*y[2];"
+"   ydot[2] = y[3]*y[1]*y[1];"
+"   ydot[1] = -ydot[0] - ydot[2];"
+"}"];
 
-mputl(C,TMPDIR+'/fex2.c');
-ilib_for_link('fex2','fex2.c',[],'c');
+mputl(C,TMPDIR+"/fex2.c");
+ilib_for_link("fex2","fex2.c",[],"c");
 exec loader.sce;
 clear f;
 function ydot = f(t,yin)
@@ -104,10 +104,10 @@ resDoc(:,11) = [ 4.659031e-07 ; 1.863613e-12 ; 9.999995e-01 ];
 resDoc(:,12) = [ 1.404280e-08 ; 5.617126e-14 ; 1.000000e+00 ];
 
 // f as a string (dynamic link function)
-res  = ode(y, t,tout, rtol, atol, 'fex1');
+res  = ode(y, t,tout, rtol, atol, "fex1");
 // f as a list(string,...
 if version(1) > 5 then
-    res2 = ode(y, t, tout, rtol, atol, list('fex2', 3.0d+7, -0.04, 1.0d+4));
+    res2 = ode(y, t, tout, rtol, atol, list("fex2", 3.0d+7, -0.04, 1.0d+4));
 end
 // f as a macro
 res3 = ode(y, t, tout, rtol, atol, f);
@@ -116,7 +116,7 @@ res4 = ode(y, t, tout, rtol, atol, list(f1, 3.0d+7, -0.04, 1.0d+4));
 args = [ 3.0d+7, -0.04, 1.0d+4 ];
 res5 = ode(y, t, tout, rtol, atol, list(f2, args));
 // f as a string (static link function)
-res6 = ode(y, t,tout, rtol, atol, 'fex');
+res6 = ode(y, t,tout, rtol, atol, "fex");
 
 // check results
 assert_checkalmostequal(resDoc, res, 2d-7, [], "matrix"); // There are a little diff between resDoc and res
@@ -151,50 +151,51 @@ assert_checkalmostequal(yout2(3*12+1:3*13), yout1, %eps, [], "matrix");
 //for i=1:12, assert_checkequal(poly(res(:,i), "s", "coeff"), res7(i), %eps); end
 
 //*************************** function Jac and lsode ********************************/
-CC=['void jac(int* neq, double* t, double* y, int* mu, int* ml, double* j, int nj)'
-    '{'
-    '  j[0] = y[6]; '
-    '  j[1] = y[7]; '
-    '  j[2] = y[8]; '
-    '  j[3] = y[9]; '
-    '}'];
+CC=["void jac(int* neq, double* t, double* y, int* mu, int* ml, double* j, int nj)"
+"{"
+"  j[0] = y[6]; "
+"  j[1] = y[7]; "
+"  j[2] = y[8]; "
+"  j[3] = y[9]; "
+"}"];
 
-mputl(CC,TMPDIR+'/jac.c');
-ilib_for_link('jac','jac.c',[],'c');
+mputl(CC,TMPDIR+"/jac.c");
+ilib_for_link("jac","jac.c",[],"c");
 exec loader.sce;
 
-CC=['void jac2(int* neq, double* t, double* y, int* mu, int* ml, double* j, int nj)'
-    '{'
-    '  j[0] = 10; '
-    '  j[1] = 0; '
-    '  j[2] = 0; '
-    '  j[3] = -1; '
-    '}'];
-mputl(CC,TMPDIR+'/jac2.c');
-ilib_for_link('jac2','jac2.c',[],'c');
+CC=["void jac2(int* neq, double* t, double* y, int* mu, int* ml, double* j, int nj)"
+"{"
+"  j[0] = 10; "
+"  j[1] = 0; "
+"  j[2] = 0; "
+"  j[3] = -1; "
+"}"];
+mputl(CC,TMPDIR+"/jac2.c");
+ilib_for_link("jac2","jac2.c",[],"c");
 exec loader.sce;
 
 // ydot = A * y
-C=[ 'void fext(int* neq, double* t, double* y, double* ydot)'
-    '{'
-    '   ydot[0] = y[2]*y[0] + y[4]*y[1];'
-    '   ydot[1] = y[3]*y[0] + y[5]*y[1];'
-    '}'];
+C=[ "void fext(int* neq, double* t, double* y, double* ydot)"
+"{"
+"   ydot[0] = y[2]*y[0] + y[4]*y[1];"
+"   ydot[1] = y[3]*y[0] + y[5]*y[1];"
+"}"];
 
-mputl(C,TMPDIR+'/fext.c');
-ilib_for_link('fext','fext.c',[],'c');
+mputl(C,TMPDIR+"/fext.c");
+ilib_for_link("fext","fext.c",[],"c");
 exec loader.sce;
 
-C=[ 'void fext2(int* neq, double* t, double* y, double* ydot)'
-    '{'
-    '   ydot[0] = 10*y[0] + 0*y[1];'
-    '   ydot[1] = 0*y[0] + (-1)*y[1];'
-    '}'];
+C=[ "void fext2(int* neq, double* t, double* y, double* ydot)"
+"{"
+"   ydot[0] = 10*y[0] + 0*y[1];"
+"   ydot[1] = 0*y[0] + (-1)*y[1];"
+"}"];
 
-mputl(C,TMPDIR+'/fext2.c');
-ilib_for_link('fext2','fext2.c',[],'c');
+mputl(C,TMPDIR+"/fext2.c");
+ilib_for_link("fext2","fext2.c",[],"c");
 exec loader.sce;
 clear f;
+
 function ydot=f(t, y)
     ydot=A*y
 endfunction
@@ -210,11 +211,11 @@ t=1;
 
 res  = ode("stiff", y0, t0, t, f, Jacobian);
 if version(1) > 5 then
-    res1 = ode("stiff", y0, t0, t, list('fext', 10, 0, 0,-1), list('jac', A));
+    res1 = ode("stiff", y0, t0, t, list("fext", 10, 0, 0,-1), list("jac", A));
 end
-res2 = ode("stiff", y0, t0, t, 'fext2', 'jac2');
-res3 = ode("stiff", y0, t0, t, f, 'jac2');
-res4 = ode("stiff", y0, t0, t, 'fext2', Jacobian);
+res2 = ode("stiff", y0, t0, t, "fext2", "jac2");
+res3 = ode("stiff", y0, t0, t, f, "jac2");
+res4 = ode("stiff", y0, t0, t, "fext2", Jacobian);
 
 assert_checkalmostequal(res, expm(A*t)*y0, 1.0D-7, [], "matrix");
 if version(1) > 5 then
@@ -251,15 +252,15 @@ assert_checkalmostequal(y, y1, %eps, [], "matrix");
 y0=1;
 ng=1;
 
-C=[ 'void fextern(int* neq, double* t, double* y, double* ydot)'
-    '{'
-    'int i = 0;'
-    'for( i = 0; i < *neq; i++)'
-    '   ydot[i] = y[i];'
-    '}'];
+C=[ "void fextern(int* neq, double* t, double* y, double* ydot)"
+"{"
+"int i = 0;"
+"for( i = 0; i < *neq; i++)"
+"   ydot[i] = y[i];"
+"}"];
 
-mputl(C,TMPDIR+'/fextern.c');
-ilib_for_link('fextern','fextern.c',[],'c');
+mputl(C,TMPDIR+"/fextern.c");
+ilib_for_link("fextern","fextern.c",[],"c");
 exec loader.sce;
 clear f;
 function ydot=f(t,y)
@@ -269,14 +270,14 @@ endfunction
 clear g;
 // check rd result
 function z=g(t,y)
-z=y-2;
+    z=y-2;
 endfunction
 [y,rd]=ode("root",y0,0,2,f,ng,g);
 assert_checkequal( rd(2) <> 1 , %f);
 
 clear g;
 function z=g(t,y)
-z=y-[2;2;33];
+    z=y-[2;2;33];
 endfunction
 [y,rd]=ode("root",y0,0,2,f,3,g);
 assert_checkequal( rd(2) <> 1 , %f);
@@ -284,7 +285,7 @@ assert_checkequal( rd(3) <> 2 , %f);
 
 clear g;
 function z=g(t,y)
-z=y-[2;2;2];
+    z=y-[2;2;2];
 endfunction
 [y,rd]=ode("root",y0,0,2,f,3,g);
 assert_checkequal( rd(2) <> 1 , %f);
@@ -293,7 +294,7 @@ assert_checkequal( rd(4) <> 3 , %f);
 
 clear g;
 function z=g(t,y)
-z=y-[2;6;2;2];
+    z=y-[2;6;2;2];
 endfunction
 [y,rd]=ode("root",y0,0,2,f,4,g);
 assert_checkequal( rd(2) <> 1 , %f);
@@ -335,14 +336,14 @@ resDoc(:,11) = [ 4.659031e-07 ; 1.863613e-12 ; 9.999995e-01 ];
 //   at t =  4.0000e+10
 resDoc(:,12) = [ 1.404280e-08 ; 5.617126e-14 ; 1.000000e+00 ];
 
-G=[ 'void gex(int* neq, double* t, double* y, int* ng, double* gout)'
-    '{'
-        'gout[0] = y[0] - 1.0e-4;'
-        'gout[1] = y[2] - 1.0e-2;'
-    '}'];
+G=[ "void gex(int* neq, double* t, double* y, int* ng, double* gout)"
+"{"
+"gout[0] = y[0] - 1.0e-4;"
+"gout[1] = y[2] - 1.0e-2;"
+"}"];
 
-mputl(G,TMPDIR+'/gex.c');
-ilib_for_link('gex','gex.c',[],'c');
+mputl(G,TMPDIR+"/gex.c");
+ilib_for_link("gex","gex.c",[],"c");
 exec loader.sce;
 
 y(1) = 1;
@@ -350,9 +351,9 @@ y(2) = 0;
 y(3) = 0;
 t0   = 0;
 
-[yout1,rd1,w,iw] = ode("root", y, t0, tout, 'fex1', 2, 'gex');
+[yout1,rd1,w,iw] = ode("root", y, t0, tout, "fex1", 2, "gex");
 assert_checkalmostequal(rd1(1), 2.64d-01, 1d-4);
-[yout2,rd2,w,iw] = ode("root", y, t0, tout, 'fex1', 2, 'gex', w, iw);
+[yout2,rd2,w,iw] = ode("root", y, t0, tout, "fex1", 2, "gex", w, iw);
 assert_checkalmostequal(rd2(1), 2.0795776d+07, 4d-5);
 err = execstr("[yout3,rd,w,iw] = ode(""root"", y, t0, tout, ""fex1"", 2, ""gex"", w, iw);","errcatch");
 assert_checkequal( err == 0 , %f);
@@ -384,3 +385,4 @@ rkfRes(18:32) = [    0.99166478935902302    0.97384760697150774    0.94630006094
 assert_checkalmostequal(rkRes, rk, %eps * 20, [], "matrix");
 assert_checkalmostequal(rkfRes, rkf, %eps, [], "matrix");
 assert_checkalmostequal(rkf, fixx, %eps, [], "matrix");
+warning("on")

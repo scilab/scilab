@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -17,13 +20,8 @@
 /*--------------------------------------------------------------------------*/
 OPTIMIZATION_IMPEXP int gw_optimization(void);
 /*--------------------------------------------------------------------------*/
-OPTIMIZATION_IMPEXP int sci_optim(char *fname, unsigned long fname_len);
-OPTIMIZATION_IMPEXP int sci_semidef(char *fname, unsigned long fname_len);
-OPTIMIZATION_IMPEXP int sci_fsolve(char *fname, unsigned long fname_len);
-OPTIMIZATION_IMPEXP int sci_sqrsolve(char *fname, unsigned long fname_len);
-OPTIMIZATION_IMPEXP int sci_qld(char *fname, unsigned long fname_len);
-OPTIMIZATION_IMPEXP int sci_qp_solve(char *fname, unsigned long fname_len);
-OPTIMIZATION_IMPEXP int sci_readmps(char *fname, unsigned long fname_len);
+OPTIMIZATION_IMPEXP int sci_qld(char *fname,  void* pvApiCtx);
+OPTIMIZATION_IMPEXP int sci_qp_solve(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_OPTIM__ */
 /*--------------------------------------------------------------------------*/

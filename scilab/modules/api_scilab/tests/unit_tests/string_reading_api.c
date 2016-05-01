@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution. The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,9 +17,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
-int read_string(char *fname, unsigned long fname_len)
+int read_string(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int i, j;
@@ -52,7 +55,7 @@ int read_string(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+    piLen = (int*)MALLOC(sizeof(int) * iRows * iCols);
 
     //second call to retrieve length of each string
     sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, NULL);
@@ -62,10 +65,10 @@ int read_string(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+    pstData = (char**)MALLOC(sizeof(char*) * iRows * iCols);
     for (i = 0 ; i < iRows * iCols ; i++)
     {
-        pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+        pstData[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
     }
 
     //third call to retrieve data
@@ -83,7 +86,7 @@ int read_string(char *fname, unsigned long fname_len)
     }
 
     //alloc output variable
-    pstOut = (char*)malloc(sizeof(char) * (iLen + iRows * iCols));
+    pstOut = (char*)MALLOC(sizeof(char) * (iLen + iRows * iCols));
     //initialize string to 0x00
     memset(pstOut, 0x00, sizeof(char) * (iLen + iRows * iCols));
 
@@ -106,19 +109,27 @@ int read_string(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        //free memory
+        FREE(piLen);
+        for (i = 0 ; i < iRows * iCols ; i++)
+        {
+            FREE(pstData[i]);
+        }
+        FREE(pstData);
+        FREE(pstOut);
         return 0;
     }
 
     //free memory
-    free(piLen);
+    FREE(piLen);
 
     for (i = 0 ; i < iRows * iCols ; i++)
     {
-        free(pstData[i]);
+        FREE(pstData[i]);
     }
 
-    free(pstData);
-    free(pstOut);
+    FREE(pstData);
+    FREE(pstOut);
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }

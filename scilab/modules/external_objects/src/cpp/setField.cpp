@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -44,7 +47,7 @@ int ScilabGateway::setField(char * fname, const int envId, void * pvApiCtx)
     {
         fieldName = ScilabObjects::getSingleString(2, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & e)
+    catch (ScilabAbstractEnvironmentException & /*e*/)
     {
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
         throw;
@@ -62,7 +65,7 @@ int ScilabGateway::setField(char * fname, const int envId, void * pvApiCtx)
     {
         arg = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & e)
+    catch (ScilabAbstractEnvironmentException & /*e*/)
     {
         freeAllocatedSingleString(fieldName);
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
@@ -73,7 +76,7 @@ int ScilabGateway::setField(char * fname, const int envId, void * pvApiCtx)
     {
         env.setfield(idObj, fieldName, arg);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         freeAllocatedSingleString(fieldName);
         ScilabObjects::removeTemporaryVars(envId, tmpvar);

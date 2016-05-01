@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[dfp]=bsplin3val(xp,yp,zp,tl,der)</synopsis>
     </refsynopsisdiv>
     <refsection>

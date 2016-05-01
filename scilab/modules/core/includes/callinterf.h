@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -28,32 +31,32 @@
 /* 05 */						#include "../../io/includes/gw_io.h"
 /* 06 */						#include "../../elementary_functions/includes/gw_elementary_functions.h"
 /* 07 */						#include "../../graphics/includes/gw_graphics.h"
-/* 08 */						#include "../../cacsd/includes/gw_cacsd0.h"
-/* 09 */						#include "../../cacsd/includes/gw_cacsd1.h"
-/* 10 */						#include "../../cacsd/includes/gw_cacsd2.h"
+/* 08 *///						#include "../../cacsd/includes/gw_cacsd0.h"
+/* 09 *///						#include "../../cacsd/includes/gw_cacsd1.h"
+/* 10 *///						#include "../../cacsd/includes/gw_cacsd2.h"
 /* 11 */						#include "dynamic_gateways.h" /* optimization */
-/* 12 */						#include "../../differential_equations/includes/gw_differential_equations1.h"
+/* 12 *///						#include "../../differential_equations/includes/gw_differential_equations1.h"
 /* 13 */						#include "gw_core.h"
-/* 14  gw_user(); RESERVED to gw_user (see callinter.h.f) */
+/* 14  gw_user(); RESERVED to gw_user (was callinter.h.f / REMOVED) */
 /* 15  gw_user(); FREE */
-/* 16 */						#include "../../polynomials/includes/gw_polynomials.h"
+/* 16 						#include "../../polynomials/includes/gw_polynomials.h"*/
 /* 17 */						#include "../../data_structures/includes/gw_data_structures1.h"
 /* 18 */						#include "dynamic_gateways.h" /* signal_processing */
 /* 19 */						#include "dynamic_gateways.h" /* interpolation */
-/* 20 */						#include "../../cacsd/includes/gw_cacsd3.h"
-/* 21 */						#include "../../string/includes/gw_string.h"
+/* 20 *///						#include "../../cacsd/includes/gw_cacsd3.h"
+/* 21 *///						#include "../../string/includes/gw_string.h"
 /* 22 */						#include "dynamic_gateways.h" /* symbolic */
 /* 23 */						#include "../../boolean/includes/gw_boolean.h"
-/* 24  gw_user2(); RESERVED to gw_user (see callinter.h.f) */
+/* 24  gw_user2(); RESERVED to gw_user (was callinter.h.f / REMOVED) */
 #include "gw_user2.h"
 /* 25 */						#include "../../gui/includes/gw_gui.h"
-/* 26 */						#include "../../differential_equations/includes/gw_differential_equations2.h"
-/* 27 */						#include "../../sparse/includes/gw_sparse.h"
-/* 28 */						#include "../../cacsd/includes/gw_slicot.h"
-/* 29 */						#include "../../differential_equations/includes/gw_differential_equations3.h"
-/* 30 */						#include "../../differential_equations/includes/gw_differential_equations4.h"
+/* 26 *///						#include "../../differential_equations/includes/gw_differential_equations2.h"
+/* 27 *///						#include "../../sparse/includes/gw_sparse.h"
+/* 28 *///						#include "../../cacsd/includes/gw_slicot.h"
+/* 29 *///						#include "../../differential_equations/includes/gw_differential_equations3.h"
+/* 30 *///						#include "../../differential_equations/includes/gw_differential_equations4.h"
 /* 31 */     					#include "dynamic_gateways.h"	/* functions */
-/* 32 */						#include "../../differential_equations/includes/gw_differential_equations6.h"
+/* 32 *///						#include "../../differential_equations/includes/gw_differential_equations6.h"
 /* 33 */                        #include "../../output_stream/includes/gw_output_stream.h"
 /* 34 */						#include "../../fileio/includes/gw_fileio.h"
 /* 35 */						#include "dynamic_gateways.h" /* arnoldi */
@@ -75,7 +78,7 @@
 /* 51 */						#include "../../fftw/includes/gw_fftw.h"
 /* 52 */						#include "../../jvm/includes/gw_jvm.h"
 /* 53 */						#include "../../console/includes/gw_console.h"
-/* 54 */						#include "../../completion/includes/gw_completion.h"
+/* 54 */						//#include "../../completion/includes/gw_completion.h"
 /* 55 */						#include "../../history_manager/includes/gw_history_manager.h"
 /* 56 */						#include "dynamic_gateways.h" /* spreadsheet */
 /* 57 */						#include "dynamic_gateways.h" /* graphic_export */

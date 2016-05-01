@@ -67,32 +67,31 @@ l=list(a,list(c,list(a0,c0,b0),b),h);
 l(2)(2)(3)=null();if l<>list(a,list(c,list(a0,c0),b),h); then pause,end
 
 l=list(a,list(c,list(a0,c0,b0),b),h);
-l(2)(2)(4)=g;if l<>list(a,list(c,list(a0,c0,b0,g),b),h); then
-pause,end
+l(2)(2)(4)=g;if l<>list(a,list(c,list(a0,c0,b0,g),b),h); then pause,end
 l=list();l(5)=33;
 ll=l;
 
-l=list(a,1/%s);l(2)('num')=33;if l<>list(a,33/%s) then pause,end
-l=list(a,1/%s);l(2)('num')=%s+1;if l<>list(a,((%s+1)/%s)) then pause,end
-l=list(a,1/%s);l(2)('den')=%s^1+1;if l<>list(a,1/(%s^2+1)) then pause,end
-l=list(a,1/%s);l(2)('num')(1)=33;if l<>list(a,33/%s) then pause,end
-l=list(a,1/%s);l(2)('num')(1)=%s+1;if l<>list(a,((%s+1)/%s)) then pause,end
-l=list(a,1/%s);l(2)('den')(1)=%s^1+1;if l<>list(a,1/(%s^2+1)) then pause,end
-l=list(a,1/%s);l(2)('num')(1,1)=33;if l<>list(a,33/%s) then pause,end
-l=list(a,1/%s);l(2)('num')(1,1)=%s+1;if l<>list(a,((%s+1)/%s)) then pause,end
-l=list(a,1/%s);l(2)('den')(1,1)=%s^1+1;if l<>list(a,1/(%s^2+1)) then pause,end
+l=list(a,1/%s);l(2)("num")=33;if l<>list(a,33/%s) then pause,end
+l=list(a,1/%s);l(2)("num")=%s+1;if l<>list(a,((%s+1)/%s)) then pause,end
+l=list(a,1/%s);l(2)("den")=%s^1+1;if l<>list(a,1/(%s^2+1)) then pause,end
+l=list(a,1/%s);l(2)("num")(1)=33;if l<>list(a,33/%s) then pause,end
+l=list(a,1/%s);l(2)("num")(1)=%s+1;if l<>list(a,((%s+1)/%s)) then pause,end
+l=list(a,1/%s);l(2)("den")(1)=%s^1+1;if l<>list(a,1/(%s^2+1)) then pause,end
+l=list(a,1/%s);l(2)("num")(1,1)=33;if l<>list(a,33/%s) then pause,end
+l=list(a,1/%s);l(2)("num")(1,1)=%s+1;if l<>list(a,((%s+1)/%s)) then pause,end
+l=list(a,1/%s);l(2)("den")(1,1)=%s^1+1;if l<>list(a,1/(%s^2+1)) then pause,end
 
-l=list(a,1/%s,g);l(2)('num')=33;if l<>list(a,33/%s,g) then pause,end
-l=list(a,1/%s,g);l(2)('num')=%s+1;if l<>list(a,(%s+1)/%s,g) then pause,end
-l=list(a,1/%s,g);l(2)('den')=%s^1+1;if l<>list(a,1/(%s^2+1),g) then pause,end
-l=list(a,1/%s,g);l(2)('num')(1)=33;if l<>list(a,33/%s,g) then pause,end
-l=list(a,1/%s,g);l(2)('num')(1)=%s+1;if l<>list(a,(%s+1)/%s,g) then pause,end
-l=list(a,1/%s,g);l(2)('den')(1)=%s^1+1;if l<>list(a,1/(%s^2+1),g) then pause,end
-l=list(a,1/%s,g);l(2)('num')(1,1)=33;if l<>list(a,33/%s,g) then pause,end
-l=list(a,1/%s,g);l(2)('num')(1,1)=%s+1;if l<>list(a,(%s+1)/%s,g) then pause,end
-l=list(a,1/%s,g);l(2)('den')(1,1)=%s^1+1;if l<>list(a,1/(%s^2+1),g) then pause,end
+l=list(a,1/%s,g);l(2)("num")=33;if l<>list(a,33/%s,g) then pause,end
+l=list(a,1/%s,g);l(2)("num")=%s+1;if l<>list(a,(%s+1)/%s,g) then pause,end
+l=list(a,1/%s,g);l(2)("den")=%s^1+1;if l<>list(a,1/(%s^2+1),g) then pause,end
+l=list(a,1/%s,g);l(2)("num")(1)=33;if l<>list(a,33/%s,g) then pause,end
+l=list(a,1/%s,g);l(2)("num")(1)=%s+1;if l<>list(a,(%s+1)/%s,g) then pause,end
+l=list(a,1/%s,g);l(2)("den")(1)=%s^1+1;if l<>list(a,1/(%s^2+1),g) then pause,end
+l=list(a,1/%s,g);l(2)("num")(1,1)=33;if l<>list(a,33/%s,g) then pause,end
+l=list(a,1/%s,g);l(2)("num")(1,1)=%s+1;if l<>list(a,(%s+1)/%s,g) then pause,end
+l=list(a,1/%s,g);l(2)("den")(1,1)=%s^1+1;if l<>list(a,1/(%s^2+1),g) then pause,end
 
-l=list(a,1/%s,g);l(2)('num')(1,2)=33;l(2)('den')(1,2)=%s+1;
+l=list(a,1/%s,g);l(2)("num")(1,2)=33;l(2)("den")(1,2)=%s+1;
 if l<>list(a,[1 33]./[%s %s+1],g) then pause,end
 
 
@@ -114,8 +113,8 @@ l=list(b,g0);l(2)(2,3)=3;x=g0;x(2,3)=3;if l<>list(b,x) then pause,end
 l=list(b,g0);l(2)(2,2:3)=[1 3];x=g0;x(2,2:3)=[1 3];if l<>list(b,x) then pause,end
 
 
-a=1:10;b=3:2:33;c=(-10:0)';d=[1 2+%s 3];e=['1';'2';'3';'4'];
-f=[%t %t %f];g=['12345','abcdefghijk'];
+a=1:10;b=3:2:33;c=(-10:0)';d=[1 2+%s 3];e=["1";"2";"3";"4"];
+f=[%t %t %f];g=["12345","abcdefghijk"];
 h=rand(3,3);i=eye(10,10);a0=10+%s;c0=20;b0=sparse(eye(30,30));
 
 l=list();l(0)=a;if l<>list(a) then pause,end
@@ -176,75 +175,75 @@ l(2)(2)(3)=null();if l<>list(a,list(c,list(a0,c0),b),h); then pause,end
 l=list(a,list(c,list(a0,c0,b0),b),h);
 l(2)(2)(4)=g;if l<>list(a,list(c,list(a0,c0,b0,g),b),h); then pause,end
 
-l=list(a,1/%s);l(2)('num')=33;if l<>list(a,33/%s) then pause,end
-l=list(a,1/%s);l(2)('num')=%s+1;if l<>list(a,((%s+1)/%s)) then pause,end
-l=list(a,1/%s);l(2)('den')=%s^1+1;if l<>list(a,1/(%s^2+1)) then pause,end
-l=list(a,1/%s);l(2)('num')(1)=33;if l<>list(a,33/%s) then pause,end
-l=list(a,1/%s);l(2)('num')(1)=%s+1;if l<>list(a,((%s+1)/%s)) then pause,end
-l=list(a,1/%s);l(2)('den')(1)=%s^1+1;if l<>list(a,1/(%s^2+1)) then pause,end
-l=list(a,1/%s);l(2)('num')(1,1)=33;if l<>list(a,33/%s) then pause,end
-l=list(a,1/%s);l(2)('num')(1,1)=%s+1;if l<>list(a,((%s+1)/%s)) then pause,end
-l=list(a,1/%s);l(2)('den')(1,1)=%s^1+1;if l<>list(a,1/(%s^2+1)) then pause,end
+l=list(a,1/%s);l(2)("num")=33;if l<>list(a,33/%s) then pause,end
+l=list(a,1/%s);l(2)("num")=%s+1;if l<>list(a,((%s+1)/%s)) then pause,end
+l=list(a,1/%s);l(2)("den")=%s^1+1;if l<>list(a,1/(%s^2+1)) then pause,end
+l=list(a,1/%s);l(2)("num")(1)=33;if l<>list(a,33/%s) then pause,end
+l=list(a,1/%s);l(2)("num")(1)=%s+1;if l<>list(a,((%s+1)/%s)) then pause,end
+l=list(a,1/%s);l(2)("den")(1)=%s^1+1;if l<>list(a,1/(%s^2+1)) then pause,end
+l=list(a,1/%s);l(2)("num")(1,1)=33;if l<>list(a,33/%s) then pause,end
+l=list(a,1/%s);l(2)("num")(1,1)=%s+1;if l<>list(a,((%s+1)/%s)) then pause,end
+l=list(a,1/%s);l(2)("den")(1,1)=%s^1+1;if l<>list(a,1/(%s^2+1)) then pause,end
 
-l=list(a,1/%s,g);l(2)('num')=33;if l<>list(a,33/%s,g) then pause,end
-l=list(a,1/%s,g);l(2)('num')=%s+1;if l<>list(a,(%s+1)/%s,g) then pause,end
-l=list(a,1/%s,g);l(2)('den')=%s^1+1;if l<>list(a,1/(%s^2+1),g) then pause,end
-l=list(a,1/%s,g);l(2)('num')(1)=33;if l<>list(a,33/%s,g) then pause,end
-l=list(a,1/%s,g);l(2)('num')(1)=%s+1;if l<>list(a,(%s+1)/%s,g) then pause,end
-l=list(a,1/%s,g);l(2)('den')(1)=%s^1+1;if l<>list(a,1/(%s^2+1),g) then pause,end
-l=list(a,1/%s,g);l(2)('num')(1,1)=33;if l<>list(a,33/%s,g) then pause,end
-l=list(a,1/%s,g);l(2)('num')(1,1)=%s+1;if l<>list(a,(%s+1)/%s,g) then pause,end
-l=list(a,1/%s,g);l(2)('den')(1,1)=%s^1+1;if l<>list(a,1/(%s^2+1),g) then pause,end
+l=list(a,1/%s,g);l(2)("num")=33;if l<>list(a,33/%s,g) then pause,end
+l=list(a,1/%s,g);l(2)("num")=%s+1;if l<>list(a,(%s+1)/%s,g) then pause,end
+l=list(a,1/%s,g);l(2)("den")=%s^1+1;if l<>list(a,1/(%s^2+1),g) then pause,end
+l=list(a,1/%s,g);l(2)("num")(1)=33;if l<>list(a,33/%s,g) then pause,end
+l=list(a,1/%s,g);l(2)("num")(1)=%s+1;if l<>list(a,(%s+1)/%s,g) then pause,end
+l=list(a,1/%s,g);l(2)("den")(1)=%s^1+1;if l<>list(a,1/(%s^2+1),g) then pause,end
+l=list(a,1/%s,g);l(2)("num")(1,1)=33;if l<>list(a,33/%s,g) then pause,end
+l=list(a,1/%s,g);l(2)("num")(1,1)=%s+1;if l<>list(a,(%s+1)/%s,g) then pause,end
+l=list(a,1/%s,g);l(2)("den")(1,1)=%s^1+1;if l<>list(a,1/(%s^2+1),g) then pause,end
 
-l=list(a,1/%s,g);l(2)('num')(1,2)=33;l(2)('den')(1,2)=%s+1;
+l=list(a,1/%s,g);l(2)("num")(1,2)=33;l(2)("den")(1,2)=%s+1;
 if l<>list(a,[1 33]./[%s %s+1],g) then pause,end
 
 //test with field names not defined in the structure here row1 and row2
 
 function M=%to_e(varargin)
-  M = varargin($),
-  select varargin(1)
-    case 'row2' then
-    M.N = M.N(2, eye())
-    M.V = M.V(2, eye())
-  case 'row1' then
-    M.N = M.N(1, eye())
-    M.V = M.V(1, eye())
-  else
-    M.N = M.N(varargin(1:$ - 1))
-    M.V = M.V(varargin(1:$ - 1))
-  end
+    M = varargin($),
+    select varargin(1)
+    case "row2" then
+        M.N = M.N(2, eye())
+        M.V = M.V(2, eye())
+    case "row1" then
+        M.N = M.N(1, eye())
+        M.V = M.V(1, eye())
+    else
+        M.N = M.N(varargin(1:$ - 1))
+        M.V = M.V(varargin(1:$ - 1))
+    end
 endfunction
 
 
 %to_6=%to_e;
 
 function M=%to_i_to(varargin)
-  M=varargin($);N=varargin($-1)
-  select varargin(1)
-    case 'row2'
-    M.N(2,:)=N.N
-    M.V(2,:)=N.V
-    case 'row1'
-    M.N(1,:)=N.N
-    M.V(1,:)=N.V
-  else
-    M.N(varargin(1:$-2))=N.N
-    M.V(varargin(1:$-2))=N.V
-  end
+    M=varargin($);N=varargin($-1)
+    select varargin(1)
+    case "row2"
+        M.N(2,:)=N.N
+        M.V(2,:)=N.V
+    case "row1"
+        M.N(1,:)=N.N
+        M.V(1,:)=N.V
+    else
+        M.N(varargin(1:$-2))=N.N
+        M.V(varargin(1:$-2))=N.V
+    end
 endfunction
 
-M=mlist(['to','V','N'],[1 2 3;4 5 6],['a','b','c';'d','e','f']);
+M=mlist(["to","V","N"],[1 2 3;4 5 6],["a","b","c";"d","e","f"]);
 M.row1(2)=M.row2(1);
 assert_checkequal(M.V, [1 4 3;4 5 6]);
-assert_checkequal(M.N, ['a','d','c';'d','e','f']);
+assert_checkequal(M.N, ["a","d","c";"d","e","f"]);
 l=list(1,M,2);
 l(2).row1(2)=M.row1(1);
 assert_checkequal(l(1), 1);
 assert_checkequal(l(2).V, [1 1 3;4 5 6]);
-assert_checkequal(l(2).N, ['a','a','c';'d','e','f']);
+assert_checkequal(l(2).N, ["a","a","c";"d","e","f"]);
 assert_checkequal(M.V, [1 4 3;4 5 6]);
-assert_checkequal(M.N, ['a','d','c';'d','e','f']);
+assert_checkequal(M.N, ["a","d","c";"d","e","f"]);
 l(1)="foo";
 assert_checkequal(l(1), "foo");
 
@@ -270,7 +269,7 @@ S.a=11;
 S(2).b=12;
 
 S1.a=33;
-S1.b='toto';
+S1.b="toto";
 S(1)=S1;
 assert_checkequal(S.a, list(33,[]));
 assert_checkequal(S.b, list("toto",12));
@@ -404,16 +403,7 @@ S(1,2).a(1,2).b(1,2,3)=4;
 assert_checkequal(S(1).a, []);
 assert_checkequal(S(2).a.b, list([], hypermat([1 2 3], [0;0;0;0;0;4])));
 
-mtlb_mode(%t)
-clear S;S(1,2).a=3;S(3).a=44 ;
-assert_checkequal(S.a, list([],3,44));
-assert_checkequal(size(S), [1, 3]);
-
-clear S;S.a=3;S(3).a=44;
-assert_checkequal(S.a, list(3,[],44));
-assert_checkequal(size(S), [1, 3]);
-
-clear S;S(4).a=3;
-assert_checkequal(S.a, list([],[],[],3));
-assert_checkequal(size(S), [1, 4]);
-mtlb_mode(%f)
+tl=tlist(["ltype" "f1"], 12);
+assert_checkequal(typeof(tl), "ltype");
+tl(1) = 12;
+assert_checkequal(typeof(tl), "list");

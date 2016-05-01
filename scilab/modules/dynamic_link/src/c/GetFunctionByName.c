@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,55 +17,14 @@
 #include <string.h>
 #include "GetFunctionByName.h"
 #include "dynamic_link.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 static BOOL SearchComp(FTAB *Ftab, char *op, void (**realop) ());
 static void Emptyfunc(void) {}
 /*--------------------------------------------------------------------------*/
 voidf GetFunctionByName (char *name, int *rep, FTAB *table)
 {
-    void (*loc)();
-    if (name)
-    {
-        int length_name = 0;
-        char *s = name;
-        char *buf = name;
-        while ( *s != ' ' && *s != '\0')
-        {
-            s++;
-            length_name++;
-        };
-
-        buf = (char*)MALLOC(sizeof(char) * (length_name + 1));
-        if (buf)
-        {
-            strncpy(buf, name, length_name);
-            buf[length_name] = '\0';
-
-            /* search name in functions table */
-            if ( ( SearchComp(table, buf, &loc) == TRUE) || ( SearchInDynLinks(buf, &loc) >= 0 ) )
-            {
-                *rep = 0;
-            }
-            else
-            {
-                loc = Emptyfunc;
-                *rep = 1;
-            }
-
-            FREE(buf);
-            buf = NULL;
-        }
-        else
-        {
-            *rep = 0;
-        }
-    }
-    else
-    {
-        *rep = 0;
-    }
-    return(loc);
+    return NULL;
 }
 /*--------------------------------------------------------------------------*/
 static BOOL SearchComp(FTAB *Ftab, char *op, void (**realop) ())

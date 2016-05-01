@@ -6,11 +6,14 @@
  * Copyright (C) 2006 - INRIA - Vincent Couvert
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,11 +21,9 @@
 /* file: sci_get.c                                                        */
 /* desc : interface for sci_get routine                                   */
 /*------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_graphics.h"
-/*--------------------------------------------------------------------------*/
-
 #include "HandleManagement.h"
-
 #include "GetHashTable.h"
 #include "BuildObjects.h"
 #include "localization.h"
@@ -42,15 +43,7 @@
 #include "MALLOC.h"
 
 /*--------------------------------------------------------------------------*/
-int sciGet(void* _pvCtx, int iObjUID, char *marker)
-{
-    /* find the function in the hashtable relative to the property name */
-    /* and call it */
-    return callGetProperty(_pvCtx, iObjUID, marker);
-}
-
-/*--------------------------------------------------------------------------*/
-int sci_get(char *fname, unsigned long fname_len)
+int sci_get(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -110,7 +103,7 @@ int sci_get(char *fname, unsigned long fname_len)
                 char *stkAdr = NULL;
                 if (nbInputArgument(pvApiCtx) == 1)
                 {
-                    if (sciReturnHandle(pvApiCtx, getHandle(getConsoleIdentifier())) != 0)    /* Get Console handle */
+                    if (sciReturnHandle(getHandle(getConsoleIdentifier())) != 0)    /* Get Console handle */
                     {
                         ReturnArguments(pvApiCtx);
                         return 0;
@@ -131,7 +124,7 @@ int sci_get(char *fname, unsigned long fname_len)
                 // Retrieve a matrix of string at position 2.
                 if (getAllocatedSingleString(pvApiCtx, piAddrstkAdr, &stkAdr))
                 {
-                    Scierror(202, _("%s: Wrong type for argument #%d: Single string expected.\n"), fname, 2);
+                    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                     return 1;
                 }
 
@@ -196,14 +189,14 @@ int sci_get(char *fname, unsigned long fname_len)
 
             if (isScalar(pvApiCtx, piAddrl2) == 0 || isStringType(pvApiCtx, piAddrl2) == 0)
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                 return 1;
             }
 
             // Retrieve a matrix of double at position 2.
             if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                 return 1;
             }
 
@@ -223,7 +216,7 @@ int sci_get(char *fname, unsigned long fname_len)
             // Retrieve a matrix of double at position 1.
             if (getAllocatedSingleString(pvApiCtx, piAddrl1, &pstFirst))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
             }
 
@@ -263,13 +256,13 @@ int sci_get(char *fname, unsigned long fname_len)
 
                     if (isScalar(pvApiCtx, piAddrl2) == 0 || isStringType(pvApiCtx, piAddrl2) == 0)
                     {
-                        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                         return 1;
                     }
 
                     if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
                     {
-                        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                         return 1;
                     }
                 }
@@ -295,7 +288,7 @@ int sci_get(char *fname, unsigned long fname_len)
     if (hdl == 0)
     {
         /* No handle specified */
-        if (sciGet(pvApiCtx, 0, (l2)) != 0)
+        if (callGetProperty(pvApiCtx, 0, (l2)) != 0)
         {
             /* An error has occurred */
             freeAllocatedSingleString(l2);
@@ -309,7 +302,7 @@ int sci_get(char *fname, unsigned long fname_len)
         if (iObjUID != 0)
         {
 
-            if (sciGet(pvApiCtx, iObjUID, (l2)) != 0)
+            if (callGetProperty(pvApiCtx, iObjUID, (l2)) != 0)
             {
                 /* An error has occurred */
                 freeAllocatedSingleString(l2);

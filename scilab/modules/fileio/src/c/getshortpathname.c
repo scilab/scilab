@@ -3,24 +3,25 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * ...
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-#include <windows.h>
-#include "strdup_windows.h"
-#endif
 #include "getshortpathname.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
+#include <Windows.h> /* GetShortPathNameW */
 #ifndef MAX_PATH_SHORT
 #define MAX_PATH_SHORT 260
 #endif
@@ -46,7 +47,7 @@ int C2F(getshortpathname)(char *pathname, int *len)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-char *getshortpathname(char *longpathname, BOOL *convertok)
+char *getshortpathname(const char *longpathname, BOOL *convertok)
 {
     char *ShortName = NULL;
 
@@ -76,7 +77,7 @@ char *getshortpathname(char *longpathname, BOOL *convertok)
             else
             {
                 /* FAILED */
-                ShortName = strdup(longpathname);
+                ShortName = os_strdup(longpathname);
                 *convertok = FALSE;
             }
             if (ptwShortName)
@@ -88,7 +89,7 @@ char *getshortpathname(char *longpathname, BOOL *convertok)
         else
         {
             /* FAILED */
-            ShortName = strdup(longpathname);
+            ShortName = os_strdup(longpathname);
             *convertok = FALSE;
         }
         if (ptwlongpathname)
@@ -113,5 +114,53 @@ char *getshortpathname(char *longpathname, BOOL *convertok)
         *convertok = FALSE;
     }
     return ShortName;
+}
+/*--------------------------------------------------------------------------*/
+wchar_t* getshortpathnameW(wchar_t* _pwstLongPathName, BOOL* _pbOK)
+{
+    wchar_t* pwstOutput = NULL;
+    if (_pwstLongPathName)
+    {
+#ifdef _MSC_VER
+        int iLen = GetShortPathNameW(_pwstLongPathName, NULL, 0);
+
+        if (iLen <= 0)
+        {
+            iLen = MAX_PATH_SHORT;
+        }
+
+        pwstOutput = (wchar_t*)MALLOC((iLen + 1) * sizeof(wchar_t));
+
+        if (pwstOutput)
+        {
+            /* second converts path */
+            if (GetShortPathNameW(_pwstLongPathName, pwstOutput, iLen))
+            {
+                *_pbOK = TRUE;
+            }
+            else
+            {
+                FREE(pwstOutput);
+                pwstOutput = os_wcsdup(_pwstLongPathName);
+                *_pbOK = FALSE;
+            }
+        }
+        else
+        {
+            /* FAILED */
+            pwstOutput = os_wcsdup(_pwstLongPathName);
+            *_pbOK = FALSE;
+        }
+#else
+        /* Linux and MacOS*/
+        pwstOutput = os_wcsdup(_pwstLongPathName);
+        *_pbOK = FALSE;
+#endif
+    }
+    else
+    {
+        *_pbOK = FALSE;
+    }
+    return pwstOutput;
 }
 /*--------------------------------------------------------------------------*/

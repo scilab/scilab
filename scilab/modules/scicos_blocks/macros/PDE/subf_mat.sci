@@ -39,7 +39,7 @@ function vect=subf_mat(M,N)
     [n,m]=size(M);
     for i=1:n
         for j=1:m
-            vect(i,j)=subf(M(i,j),N(i,j));
+            vect(i,j)=M(i,j)+"-"+N(i,j);
         end
     end
 endfunction

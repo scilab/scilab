@@ -5,7 +5,7 @@
         <refpurpose>get information on Cholesky factors  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[OK, n, cnz] = taucs_chinfo(C_ptr)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -65,7 +65,7 @@
         <para>
             Due to the supernodal structure used for <literal>C</literal>, <literal>cnz</literal> is larger 
             than the exact number of non-zeros elements in <literal>C</literal> (and so this <literal>cnz</literal>
-            is a mesure of the memory used internally). To get the exact <literal>cnz</literal> you may retrieve 
+            is a measure of the memory used internally). To get the exact <literal>cnz</literal> you may retrieve
             the Cholesky factor with <link linkend="taucs_chget">taucs_chget</link> then apply 
             the <link linkend="nnz">nnz</link> scilab function (see the 2d example in <link linkend="taucs_chget">taucs_chget</link>).
         </para>
@@ -87,7 +87,7 @@ Cp = taucs_chfact(A);
         <programlisting role="example"><![CDATA[ 
 // Example #2 a real example
 // first load a sparse matrix
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 // compute the factorization
 Cp = taucs_chfact(A);
 [OK, n, cnz]=taucs_chinfo(Cp)

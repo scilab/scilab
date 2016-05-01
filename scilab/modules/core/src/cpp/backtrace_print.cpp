@@ -26,9 +26,7 @@ extern "C" {
 #include "backtrace.h"
 #include "backtrace_print.h"
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 }
 
 #ifdef _MSC_VER
@@ -38,7 +36,7 @@ extern "C" {
 #define FUNCNAMEBUFFERSIZE 256
 #define BTBUFFERSIZE 1024
 
-const char * backtrace_print(int niv_debut, int unmangle)
+char * backtrace_print(int niv_debut, int unmangle)
 {
     size_t ind = 0;
     sci_backtrace_t * tr = 0;
@@ -109,5 +107,5 @@ const char * backtrace_print(int niv_debut, int unmangle)
         }
     }
 
-    return strdup(ss.str().c_str());
+    return os_strdup(ss.str().c_str());
 }

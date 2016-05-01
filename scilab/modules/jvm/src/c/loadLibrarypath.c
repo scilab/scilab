@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,13 +21,10 @@
 #include "GetXmlFileEncoding.h"
 #include "FileExist.h"
 #include "addToLibrarypath.h"
-#include "setgetSCIpath.h"
-#include "MALLOC.h"
+#include "sci_path.h"
+#include "sci_malloc.h"
 #include "localization.h"
-#include "stricmp.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "BOOL.h"
 #include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/
@@ -93,7 +93,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
                     {
 #define KEYWORDSCILAB "$SCILAB"
                         char *FullLibrarypath = NULL;
-                        char *sciPath = getSCIpath();
+                        char *sciPath = getSCI();
 
                         if (strncmp(libraryPath, KEYWORDSCILAB, strlen(KEYWORDSCILAB)) == 0)
                         {
@@ -106,7 +106,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
                         }
                         else
                         {
-                            FullLibrarypath = strdup(libraryPath);
+                            FullLibrarypath = os_strdup(libraryPath);
                         }
 
 

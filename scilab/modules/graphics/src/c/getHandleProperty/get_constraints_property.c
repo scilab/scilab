@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -30,7 +33,7 @@
 #include "AnchorType.h"
 #include "returnPropertyList.h"
 /*------------------------------------------------------------------------*/
-int get_constraints_property(void* _pvCtx, int iObjUID)
+void* get_constraints_property(void* _pvCtx, int iObjUID)
 {
     int iParent = 0;
     int* piParent = &iParent;
@@ -41,14 +44,14 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
     if (piParent == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(iParent, __GO_LAYOUT__, jni_int, (void **)&piLayout);
     if (piLayout == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-        return -1;
+        return NULL;
     }
 
     switch (iLayout)
@@ -57,21 +60,21 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
         case LAYOUT_NONE :
         {
             char * variable_tlist[] = {"NoLayoutConstraint"};
-            returnedList * tList = createReturnedList(0, variable_tlist);
-            destroyReturnedList(tList);
+            void * tList = createReturnedList(0, variable_tlist);
+            return tList;
         }
         break;
         case LAYOUT_GRID :
         {
             char * variable_tlist[] = {"GridConstraints"};
-            returnedList * tList = createReturnedList(0, variable_tlist);
-            destroyReturnedList(tList);
+            void * tList = createReturnedList(0, variable_tlist);
+            return tList;
         }
         break;
         case LAYOUT_BORDER :
         {
             char * variable_tlist[] = {"BorderConstraint", "position", "preferredsize"};
-            returnedList * tList = createReturnedList(2, variable_tlist);
+            void * tList = createReturnedList(2, variable_tlist);
 
             int iBorder = 0;
             int* piBorder = &iBorder;
@@ -83,7 +86,7 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
             if (piBorder == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-                return -1;
+                return NULL;
             }
 
             switch (iBorder)
@@ -110,7 +113,7 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
             if (piPreferredSize == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-                return -1;
+                return NULL;
             }
 
             //convert to double
@@ -118,14 +121,13 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
             pdblPreferredSize[1] = (double)piPreferredSize[1];
 
             addRowVectorToReturnedList(tList, pdblPreferredSize, 2);
-
-            destroyReturnedList(tList);
+            return tList;
         }
         break;
         case LAYOUT_GRIDBAG :
         {
             char * variable_tlist[] = {"GridBagConstraints", "grid", "weight", "fill", "anchor", "padding", "preferredsize"};
-            returnedList * tList = createReturnedList(6, variable_tlist);
+            void * tList = createReturnedList(6, variable_tlist);
             int* piGrid = NULL;
             double pdblGrid[4];
             double* pdblWeight = NULL;
@@ -141,46 +143,47 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
             double pdblPreferredSize[2];
             int* piPreferredSize = NULL;
 
+
             getGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_GRID__, jni_int_vector, (void **)&piGrid);
             if (piGrid == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-                return -1;
+                return NULL;
             }
 
             getGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_WEIGHT__, jni_double_vector, (void **)&pdblWeight);
             if (pdblWeight == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-                return -1;
+                return NULL;
             }
 
             getGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_FILL__, jni_int, (void **)&piFill);
             if (piFill == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-                return -1;
+                return NULL;
             }
 
             getGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_ANCHOR__, jni_int, (void **)&piAnchor);
             if (piAnchor == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-                return -1;
+                return NULL;
             }
 
             getGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PADDING__, jni_int_vector, (void **)&piPadding);
             if (piPadding == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-                return -1;
+                return NULL;
             }
 
             getGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PREFERREDSIZE__, jni_int_vector, (void **)&piPreferredSize);
             if (piPreferredSize == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
-                return -1;
+                return NULL;
             }
 
             //convert to double
@@ -249,7 +252,7 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
 
             addRowVectorToReturnedList(tList, pdblPadding, 2);
             addRowVectorToReturnedList(tList, pdblPreferredSize, 2);
-            destroyReturnedList(tList);
+            return tList;
         }
         break;
     }

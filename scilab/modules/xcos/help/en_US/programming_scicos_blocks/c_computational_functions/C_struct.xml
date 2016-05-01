@@ -28,7 +28,6 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Description</title>
-        
     </refsynopsisdiv>
     <refsection id="Contents_C_struct">
         <title>Contents</title>
@@ -163,7 +162,7 @@ boxht=Dim1start.ht * 0.5;
                     </textobject>
                 </mediaobject>
                 <para>
-                    Do the difference here in the type numbers defined at the <emphasis role="bold">Scilab level</emphasis> (2,1,3) and the type numbers defined at the <emphasis role="bold">C level</emphasis> (84,11,10). The following table gives the correspondance for all Scicos type:
+                    Do the difference here in the type numbers defined at the <emphasis role="bold">Scilab level</emphasis> (2,1,3) and the type numbers defined at the <emphasis role="bold">C level</emphasis> (84,11,10). The following table gives the correspondence for all Scicos type:
                 </para>
                 <informaltable border="1" cellpadding="3">
                     <tr>
@@ -424,7 +423,7 @@ boxht=Dim1start.ht * 0.5;
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">block->outptr :</emphasis> An array of pointers of size [nout,1] that allow to directly acces to the data contained in the regular output matrices.
+                    <emphasis role="bold">block->outptr :</emphasis> An array of pointers of size [nout,1] that allow to directly access to the data contained in the regular output matrices.
                 </para>
                 <para> Suppose the previous example (block with three outputs : an int32 matrix of size [3,2], a complex scalar and a real matrix of size [4,1]).</para>
                 <para>
@@ -476,7 +475,6 @@ line at Outptr2ptr.e; arc cw; line; line; arc; arrow;
                 </mediaobject>
                 <para>
                     For i.e., to directly access to the data, the user can use theses instructions :
-                    
                 </para>
                 <programlisting role="c"><![CDATA[
 #include "scicos_block4.h"
@@ -616,13 +614,11 @@ void mycomputfunc(scicos_block *block,int flag)
             </listitem>
         </itemizedlist>
         <para>
-            
         </para>
     </refsection>
     <refsection id="Parameters_C_struct">
         <title>Arguments</title>
         <para>
-            
         </para>
         <itemizedlist>
             <listitem>
@@ -675,13 +671,11 @@ void mycomputfunc(scicos_block *block,int flag)
 }
                     ]]></programlisting>
                 <para>
-                    
                     You can also use the C macro <literal>GetRparPtrs(block)</literal> to get the pointer of the
                     real parameter register. For i.e., if we define the following
                     <link linkend="scicos_model">scicos_model</link>
                     in an interfacing function of a
                     scicos block :
-                    
                 </para>
                 <programlisting role="code"><![CDATA[
 A = [1.3 ; 4.5 ; 7.9 ; 9.8];
@@ -798,7 +792,7 @@ model.ipar = [A_sz;B_sz]
 model.rpar = [A;B]
 ]]></programlisting>
                 <para>
-                    the array of real parameters (parametrized by <literal>ipar</literal>) can be retrieved in the correspondig C computational function with :
+                    the array of real parameters (parametrized by <literal>ipar</literal>) can be retrieved in the corresponding C computational function with :
                 </para>
                 <programlisting role="c"><![CDATA[
 #include "scicos_block4.h"
@@ -1084,18 +1078,16 @@ void mycomputfunc(scicos_block *block,int flag)
             </listitem>
         </itemizedlist>
         <para>
-            
         </para>
     </refsection>
     <refsection id="Statesandwork_C_struct">
         <title>States and work</title>
         <para>
-            
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">block->nx :</emphasis> Integer that gives the length of the continus state register.
+                    <emphasis role="bold">block->nx :</emphasis> Integer that gives the length of the continuous state register.
                 </para>
                 <para>
                     One can't override the index <literal>block->nx-1</literal> when reading or writing data in the array , or with a C computational function.
@@ -1134,7 +1126,7 @@ void mycomputfunc(scicos_block *block,int flag)
                     <emphasis role="bold">block->xd :</emphasis> Array of double of size [nx,1] corresponding to the derivative of the continuous state register.
                 </para>
                 <para>
-                    When systems are explicitly given in terms of Ordinary Differential Equations (ODE), it can be explicitly expressed or implicitly used in the residual vector <literal>res</literal> when systems are expressed in terms of Differantial Algebraic Equations (DAE).
+                    When systems are explicitly given in terms of Ordinary Differential Equations (ODE), it can be explicitly expressed or implicitly used in the residual vector <literal>res</literal> when systems are expressed in terms of Differential Algebraic Equations (DAE).
                 </para>
                 <para>
                     Both systems must be programmed with <literal>flag=0</literal>.
@@ -1409,7 +1401,6 @@ line at Ozptr1ptr.e; line; arrow;
                         ]]></programlisting>
                     </textobject>
                 </mediaobject>
-                
                 <para>For i.e., to directly access to the data, the user can use theses instructions : </para>
                 <programlisting role="c"><![CDATA[
 #include "scicos_block4.h"
@@ -1515,13 +1506,11 @@ void mycomputfunc(scicos_block *block,int flag)
             </listitem>
         </itemizedlist>
         <para>
-            
         </para>
     </refsection>
     <refsection id="Zerocrossingsurfacesandmodes_C_struct">
         <title>Zero crossing surfaces and modes</title>
         <para>
-            
         </para>
         <itemizedlist>
             <listitem>
@@ -1572,7 +1561,6 @@ void mycomputfunc(scicos_block *block,int flag)
             </listitem>
         </itemizedlist>
         <para>
-            
         </para>
     </refsection>
     <refsection id="Miscallaneous_C_struct">

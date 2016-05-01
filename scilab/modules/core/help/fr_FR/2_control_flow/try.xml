@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="try" xml:lang="fr">
+    <refnamediv>
+        <refname>try</refname>
+        <refpurpose>mot clé de début du bloc try dans une instruction de contrôle
+            try-catch
+        </refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="catch">
+        <refname>catch</refname>
+        <refpurpose>mot clé de début du bloc catch dans une instruction de
+            contrôle try-catch
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>
+            try
+            statements
+            catch
+            statements
+            end
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>L'instruction de contrôle
+            <literal>try</literal>-<literal>catch</literal> peut être utilisée pour
+            controler les conséquences d'une erreur d'exécution en permettant
+            l'exécution de code spécifique en cas d'erreur.
+        </para>
+        <para>Quand une instruction de contrôle
+            <literal>try</literal>-<literal>catch</literal> est exécutée, normalement
+            seules les instructions comprises entre les mots clés
+            <literal>try</literal> et <literal>catch</literal> sont exécutées.
+            Cependant, si une erreur se produit pendant l'exécution de ces
+            instructions, l'erreur est mémorisée, les instructions restantes jusqu'au
+            mot clé <literal>catch</literal> sont ignorées et les instructions
+            comprises entre les mots clés <literal>catch</literal> et
+            <literal>end</literal> sont exécutées en utilisant le mode de gestion des
+            erreurs par défaut.
+        </para>
+        <para>L'erreur mémorisée peut être retrouvée en utilisant la fonction
+            <link linkend="lasterror">lasterror</link>.
+        </para>
+        <para>Les intructions comprises entre les mots clés
+            <literal>catch</literal> et <literal>end</literal> peuvent être omises
+            ainsi que le mot clé <literal>catch</literal> si aucun code alternatif
+            n'est fourni.
+        </para>
+        <para>
+            Notez que l'on peut aussi utiliser la fonction <link linkend="execstr">execstr</link> avec l'argument
+            <literal>'errcatch'</literal> pour gérer les erreurs et tout
+            particulièrement pour gérer les erreurs de syntaxe.
+        </para>
+        <para>
+            Notez également que <literal>try-catch</literal> est plus ou moins
+            similaire à :
+        </para>
+        <programlisting role=""><![CDATA[
+if execstr("<instructions du bloc try>","errcatch")<>0 then
+  <instructions du bloc catch>
+end
+ ]]></programlisting>
+        <para>
+            Il utilise le même mécanisme interne que "errcatch". C'est pourquoi <emphasis>execstr(...,"errcatch")
+            </emphasis>
+            ne peut pas être utilisé à l'intérieur d'une structure
+            <literal>try</literal>-<literal>catch</literal>. Un tel contexte est
+            détecté et génère un message d'erreur spécifique (cette erreur est masquée
+            et mémorisée comme n'importe quelle autre erreur si elle se produit dans
+            le bloc <literal>try</literal>).
+        </para>
+        <para>Par contre plusieurs structures
+            <literal>try</literal>-<literal>catch</literal> peuvent être imbriquées
+            les unes dans les autres (voir le deuxième exemple ci-dessous).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+// premier exemple
+file_path=TMPDIR+'/wrong'
+try
+  u=mopen(file_path,'r')
+  x=mget(10,'c',u)
+catch
+  disp(['le fichier '+file_path+ 'ne peut pas être lu',
+        'on utilise la valeur  par défaut de x'])
+  x=1:10
+end
+[error_message,error_number]=lasterror(%t)
+ ]]></programlisting>
+        <programlisting role=""><![CDATA[
+// 2ème exemple (structures try/catch imbriquées)
+function nestedtry(a,b)
+disp("DEBUT")
+mprintf("\ta est %s\t\tb est %s\n",string(a),string(b))
+try
+  disp("try 1")
+  try
+    disp("try 2")
+    z=a+1;  // err si chaîne
+  catch
+    disp("catch 2")
+    t=b+1;  // err si chaîne
+  end
+  disp("après try 2")
+catch
+  disp("catch 1")
+end
+disp("après try 1 - FIN")
+endfunction
+nestedtry(1,1)
+nestedtry("une chaîne",1)
+nestedtry(1,"une chaîne")
+nestedtry("une chaîne","une chaîne")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="error">error</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="lasterror">lasterror</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

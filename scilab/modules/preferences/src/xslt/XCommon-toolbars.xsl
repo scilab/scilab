@@ -16,13 +16,13 @@
 		          %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with SciNotes"));
 		          if ~(%fileToOpen == "") then
 		            editor(%fileToOpen);
-		          end
+		          end;
 		          clear("%fileToOpen");'/>
 			<item title="Change folder"          icon="folder.png"                   script='
 		          %newDir = uigetdir(pwd(), gettext("Select a directory"));
 		          if ~(%newDir == "") then 
 		            cd(%newDir);
-		          end
+		          end;
 		          clear("%newDir");'/>
 			<item title="Module manager - ATOMS" icon="package-x-generic.png"        script='
 		          if with_module("atoms") then 

@@ -14,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=6578
 //
 // <-- Short Description -->
-// This test validate that the 10001 simulation index (4.X.X blocks) is working
+// This test validates that the 10001 simulation index (4.X.X blocks) is working
 
 // xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_6578.zcos");
 // Simulate

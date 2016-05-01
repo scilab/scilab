@@ -1,5 +1,0 @@
-LIBRARY    elementary_functions.dll
-
-
-EXPORTS
-unsfdcopy_

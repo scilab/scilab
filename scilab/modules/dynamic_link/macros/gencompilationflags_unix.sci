@@ -2,11 +2,14 @@
 // Copyright (C) 2008 - INRIA - Sylvestre LEDRU
 // Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 //=============================================================================
 function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
@@ -22,8 +25,25 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"gencompilationflags_unix",5));
         return
     end
+    if isempty(ldflags)
+        ldflags = ""
+    end
+    if isempty(cflags)
+        cflags = ""
+    end
+    if isempty(fflags)
+        fflags = ""
+    end
+    if isempty(cc)
+        cc = ""
+    end
+    if isempty(flagsType)
+        flagsType = ""
+    end
 
     cmd = "";
+
+    ScilabTreeFound=%f;
     tbxFlag = " -D__SCILAB_TOOLBOX__ ";
     envFlag = "";
 
@@ -31,7 +51,8 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
         envFlag = " -D__USE_DEPRECATED_STACK_FUNCTIONS__ ";
     end
 
-    if getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "YES" then
+    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK", "");
+    if (val == "" & isDebug()) | val == "YES" then
         envFlag = envFlag + " -g ";
     end
 

@@ -1,16 +1,19 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Clément DAVID <clement.david@scilab.org>
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function tbx_build_blocks(module, names, macros_path)
     // Build a default block instance
     //
-    // Calling Sequence
+    // Syntax
     //   tbx_build_blocks(module, names)
     //
     // Parameters
@@ -27,10 +30,10 @@ function tbx_build_blocks(module, names, macros_path)
 
     // checking module argument
     if type(module) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_blocks",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_blocks",1));
     end
     if size(module,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_build_blocks",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"tbx_build_blocks",1));
     end
     if ~isdir(module) then
         error(msprintf(gettext("%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"),"tbx_build_blocks",module));
@@ -38,7 +41,7 @@ function tbx_build_blocks(module, names, macros_path)
 
     // checking names argument
     if type(names) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_blocks",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_blocks",2));
     end
 
     // checking optional macros_path argument
@@ -46,10 +49,10 @@ function tbx_build_blocks(module, names, macros_path)
         macros_path = module + "/macros/";
     end
     if type(macros_path) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_blocks",3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_blocks",3));
     end
     if size(macros_path,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_build_blocks",3));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"tbx_build_blocks",3));
     end
     if ~isdir(macros_path) then
         error(msprintf(gettext("%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"),"tbx_build_blocks",macros_path));
@@ -58,7 +61,7 @@ function tbx_build_blocks(module, names, macros_path)
     mprintf(gettext("Building blocks...\n"));
 
     // load Xcos libraries when not already loaded.
-    if ~exists("scicos_diagram") then loadXcosLibs(); end
+    if ~exists("Sourceslib") then loadXcosLibs(); end
 
     // create directories
     if ~isdir(module + "/images") then
@@ -85,7 +88,9 @@ function tbx_build_blocks(module, names, macros_path)
 
         // export the instance
         execstr(msprintf("scs_m = %s (''define'');", names(i)));
-        if ~export_to_hdf5(h5Files(i), "scs_m") then
+        try
+            save(h5Files(i), "scs_m");
+        catch
             error(msprintf(gettext("%s: Unable to export %s to %s.\n"),"tbx_build_blocks",names(i), h5Files(i)));
         end
 
@@ -106,7 +111,7 @@ function tbx_build_blocks(module, names, macros_path)
         files = files(isfile(files));
         if files == [] then
             filename = gif_tlbx + "/" + names(i) + ".gif";
-            xcosPalGenerateIcon(filename);
+            xcosPalGenerateIcon(blk, filename);
         end
     end
 endfunction

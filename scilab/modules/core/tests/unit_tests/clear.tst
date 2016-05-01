@@ -6,7 +6,7 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // Run with test_run('core, 'clear')
 
@@ -64,9 +64,9 @@ assert_checkequal(isdef("D"), %f);
 
 
 function test_clear()
-  A = 6;
-  clear("A")
-  assert_checkequal(isdef("A"), %f);
+    A = 6;
+    clear("A")
+    assert_checkequal(isdef("A"), %f);
 endfunction
 test_clear();
 A = 3;
@@ -75,9 +75,17 @@ assert_checkequal(A, 3);
 
 ierr = execstr("clear SCI", "errcatch");
 msg_err = lasterror();
-assert_checkequal(ierr, 13);
 msg_ref = msprintf(gettext("Redefining permanent variable.\n"));
 assert_checkequal (msg_err, msg_ref);
+
+assert_checktrue(isdef("SCI"));
+oldSCI = SCI;
+ierr = execstr("SCI = 14;", "errcatch");
+msg_err = lasterror();
+assert_checkequal (msg_err, msg_ref);
+
+assert_checktrue(isdef("SCI"));
+assert_checkequal(oldSCI, SCI);
 
 ierr = execstr("clear(1)", "errcatch");
 assert_checkequal(ierr, 207);

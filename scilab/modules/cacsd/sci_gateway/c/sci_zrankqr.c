@@ -2,14 +2,19 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include "sci_rankqr.h"
+
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -19,7 +24,7 @@ extern int C2F(zcopy)();
 extern int C2F(zb03od)();
 extern int C2F(zungqr)();
 
-int sci_zrankqr(char *fname, unsigned long fname_len)
+int sci_zrankqr(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -37,11 +42,11 @@ int sci_zrankqr(char *fname, unsigned long fname_len)
     int* piAddrptrQ     = NULL;
     int* piAddrptrDWORK = NULL;
 
-    doublecomplex* ptrA     = NULL;
-    doublecomplex* ptrTAU   = NULL;
-    doublecomplex* ptrR     = NULL;
-    doublecomplex* ptrQ     = NULL;
-    doublecomplex* ptrDWORK = NULL;
+    doublecomplex* ptrA             = NULL;
+    const doublecomplex* ptrTAU     = NULL;
+    const doublecomplex* ptrR       = NULL;
+    const doublecomplex* ptrQ       = NULL;
+    const doublecomplex* ptrDWORK   = NULL;
 
     int minrhs = 1;
     int maxrhs = 3;
@@ -331,5 +336,6 @@ int sci_zrankqr(char *fname, unsigned long fname_len)
     AssignOutputVariable(pvApiCtx, 4) = RANK;
     AssignOutputVariable(pvApiCtx, 5) = SVAL;
 
+    ReturnArguments(pvApiCtx);
     return 0;
 }

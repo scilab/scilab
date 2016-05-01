@@ -5,7 +5,7 @@
         <refpurpose>check if a variable is global</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = isglobal(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

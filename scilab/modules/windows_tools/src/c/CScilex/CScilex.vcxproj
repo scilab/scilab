@@ -28,22 +28,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -79,8 +79,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../core/src/c;../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../startup/src/c;../../../../windows_tools/src/c/scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WITHOUT_GUI;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -102,8 +102,8 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../core/src/c;../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../startup/src/c;../../../../windows_tools/src/c/scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WITHOUT_GUI;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -122,8 +122,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../core/src/c;../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../startup/src/c;../../../../windows_tools/src/c/scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WITHOUT_GUI;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -147,8 +147,8 @@
     </Midl>
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../core/src/c;../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../startup/src/c;../../../../windows_tools/src/c/scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WITHOUT_GUI;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
       <WarningLevel>Level3</WarningLevel>
@@ -167,19 +167,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CScilex.c" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="CScilex.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\libs\GetWindowsVersion\GetWindowsVersion.vcxproj">
-      <Project>{982bf37f-42c4-4d37-8d14-60521b141503}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\console\src\c\console.vcxproj">
+      <Project>{445d3b85-c9b1-498b-9c88-0a3c2390b1cc}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\core\src\c\core.vcxproj">
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\scilab_windows\scilab_windows.vcxproj">
+      <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\startup\src\cpp\scilab.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

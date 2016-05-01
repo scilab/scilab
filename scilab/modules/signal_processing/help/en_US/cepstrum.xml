@@ -5,7 +5,7 @@
         <refpurpose>cepstrum calculation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>fresp = cepstrum(w,mag)</synopsis>
     </refsynopsisdiv>
     <refsection>

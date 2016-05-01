@@ -26,7 +26,6 @@ params = add_param(params, "stringval", "1");
 params = add_param(params, "stringmat", ["1" "2"]);
 string(params)
  ans  =
- 
 !Parameters list:                  !
 !                                  !
 !================                  !

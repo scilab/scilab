@@ -5,7 +5,7 @@
         <refpurpose>Get the position of a block in the Xcos editor.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x,y] = standard_origin(block)
         </synopsis>
     </refsynopsisdiv>

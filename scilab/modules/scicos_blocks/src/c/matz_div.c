@@ -22,20 +22,20 @@
 #include <stdio.h>
 #include <math.h>
 #include "machine.h" /* C2F */
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos.h"
 #include "core_math.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
+#include "numericconstants_interface.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(zlacpy)(char *uplo, int *m, int *n,
                        double *a, int *lda, double *b, int *ldb);
 extern int C2F(zgetrf)(int *m, int *n, double *a,
                        int *lda, int *ipiv, int *info);
 extern int C2F(mtran)(double* a, int* na, double* b, int* nb, int* m, int* n);
-extern double C2F(dlamch)(char *cmach);
 extern double C2F(zlange)(char *norm, int *m, int *n, double *a,
                           int *lda, double *work);
 extern int C2F(zgecon)(char *norm, int *n, double *a,
@@ -340,7 +340,7 @@ SCICOS_BLOCKS_IMPEXP void matz_div(scicos_block *block, int flag)
             ptr->IN2[2 * i] = ptr->urT2[i];
             ptr->IN2[2 * i + 1] = -ptr->uiT2[i];
         }
-        EPS = C2F(dlamch)("e");
+        EPS = nc_eps();
         ANORM = C2F(zlange)("1", &nu, &mu1, ptr->IN1, &nu, ptr->dwork);
         if (mu1 == nu)
         {

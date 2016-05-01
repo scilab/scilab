@@ -19,7 +19,7 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void selector(int *flag, int *nevprt,

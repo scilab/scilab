@@ -2,21 +2,21 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution. The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
-#include "api_scilab.h"
-#include "Scierror.h"
+#include <api_scilab.h>
 #include "localization.h"
-#include "sciprint.h"
-#include "MALLOC.h"
 
-int hypermatIntExample(char *fname, unsigned long fname_len)
+int hypermatIntExample(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;
@@ -153,6 +153,36 @@ int hypermatIntExample(char *fname, unsigned long fname_len)
                     }
 
                     sciErr = createHypermatOfUnsignedInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dims, ndims, (const unsigned int*)data);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+                    break;
+                case SCI_INT64:
+                    sciErr = getHypermatOfInteger64(pvApiCtx, piAddr, &dims, &ndims, (long long*)&data);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+
+                    sciErr = createHypermatOfInteger64(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dims, ndims, (const long long*)data);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+                    break;
+                case SCI_UINT64:
+                    sciErr = getHypermatOfUnsignedInteger64(pvApiCtx, piAddr, &dims, &ndims, (unsigned long long*)&data);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+
+                    sciErr = createHypermatOfUnsignedInteger64(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dims, ndims, (const unsigned long long*)data);
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);

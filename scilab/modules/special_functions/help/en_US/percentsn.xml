@@ -5,7 +5,7 @@
         <refpurpose>Jacobi's elliptic function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y]=%sn(x,m)</synopsis>
     </refsynopsisdiv>
     <refsection>

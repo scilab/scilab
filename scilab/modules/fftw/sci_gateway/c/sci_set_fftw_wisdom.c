@@ -4,18 +4,21 @@
 * Copyright (C) 2007 - INRIA - Allan CORNET
 * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
-
+#include <string.h>
 #include "api_scilab.h"
 #include "callfftw.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_fftw.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
@@ -24,7 +27,7 @@
 
 /* Set fftw wisdom
 *
-* Scilab Calling sequence :
+* Scilab Syntax :
 *   -->set_fftw_wisdom(txt);
 *
 * Input : a scilab string matrix
@@ -33,7 +36,7 @@
 *          wisdom can't be read by fftw
 *
 */
-int sci_set_fftw_wisdom(char *fname, unsigned long fname_len)
+int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     char **Str1 = NULL;
@@ -63,7 +66,7 @@ int sci_set_fftw_wisdom(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, piAddr1) == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return 1;
     }
 
@@ -75,26 +78,29 @@ int sci_set_fftw_wisdom(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    piLen = (int*)malloc(sizeof(int) * m1 * n1);
+    piLen = (int*)MALLOC(sizeof(int) * m1 * n1);
 
     //second call to retrieve length of each string
     sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, NULL);
     if (sciErr.iErr)
     {
+        free(piLen);
         printError(&sciErr, 0);
         return 1;
     }
 
-    Str1 = (char**)malloc(sizeof(char*) * m1 * n1);
+    Str1 = (char**)MALLOC(sizeof(char*) * m1 * n1);
     for (i = 0 ; i < m1 * n1 ; i++)
     {
-        Str1[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+        Str1[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
     }
 
     //third call to retrieve data
     sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, Str1);
     if (sciErr.iErr)
     {
+        free(piLen);
+        freeArrayOfString(Str1, m1 * n1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -115,6 +121,7 @@ int sci_set_fftw_wisdom(char *fname, unsigned long fname_len)
         if (Str == NULL)
         {
             freeArrayOfString(Str1, m1 * n1);
+            free(piLen);
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
             return 1;
         }
@@ -128,6 +135,7 @@ int sci_set_fftw_wisdom(char *fname, unsigned long fname_len)
     }
     Str[k - 1] = '\0';
 
+    free(piLen);
     freeArrayOfString(Str1, m1 * n1);
 
     if (!(call_fftw_import_wisdom_from_string(Str)))

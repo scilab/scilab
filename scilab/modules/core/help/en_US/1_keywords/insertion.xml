@@ -11,7 +11,7 @@
         <refpurpose>partial variable assignation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x(i,j)=a
             x(i)=a
             l(i)=a

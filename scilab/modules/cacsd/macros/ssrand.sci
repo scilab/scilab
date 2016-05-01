@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [sl,U]=ssrand(nout,nin,nstate,flag)
     //flag=list('co',dim_cont_subs)
@@ -108,7 +111,12 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
     //         row dimension C2.= row dimension of D2. =rk
     //***************************************************************
 
-    deff("[w]=st_able(w,margin)","if w~=[] then w=w-(max(real(spec(w)))+margin)*eye();end")
+    function [w]=st_able(w,margin)
+        if w~=[] then
+            w=w-(max(real(spec(w)))+margin)*eye();
+        end
+    endfunction
+
     margin=0.5;  //M "stable"  will mean real-part(M) < -margin
     [lhs,rhs]=argn(0)
     //rand('seed',0)
@@ -243,7 +251,13 @@ function w=imag_axis(ns,nn,nu,flag);
     [LHS,RHS]=argn(0);
     if RHS==3 then flag="siu";end
     if flag=="siu" then
-        deff("[w]=st_able(w,margin)","if w~=[] then w=w-(max(real(spec(w)))+margin)*eye();end")
+
+        function [w]=st_able(w,margin)
+            if w~=[] then
+                w=w-(max(real(spec(w)))+margin)*eye();
+            end
+        endfunction
+
         margin=0.5;  //M "stable"  will mean real-part(M) < -margin
         w=[];k=int(nn/2);
         rand("normal");
@@ -259,7 +273,13 @@ function w=imag_axis(ns,nn,nu,flag);
         return
     end
     if flag=="uis" then
-        deff("[w]=st_able(w,margin)","if w~=[] then w=w-(max(real(spec(w)))+margin)*eye();end")
+
+        function [w]=st_able(w,margin)
+            if w~=[] then
+                w=w-(max(real(spec(w)))+margin)*eye();
+            end
+        endfunction
+
         w=[];k=int(nn/2);
         rand("normal");
         //rand('seed',0);

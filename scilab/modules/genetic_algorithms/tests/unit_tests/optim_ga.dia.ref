@@ -2,11 +2,14 @@
 // Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: standardized and added tests
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
@@ -99,8 +102,7 @@ ga_params = add_param(ga_params, "dimension", 2);
 ga_params = add_param(ga_params, "init_func", myinitga);
 [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = ..
 optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
- 
- Initializing the Population with grand   
+ Initializing the Population with grand
 optim_ga: iteration 1 / 10 
     min / max value found = 0.010016 / 0.928237
 optim_ga: iteration 2 / 10 
@@ -129,7 +131,6 @@ function y = f(x, a1, a2)
     y = a1*sum(x.^2) + a2;
 endfunction
 Warning : redefining function: f                       . Use funcprot(0) to avoid this message
-
 ga_params = init_param();
 // Parameters to control the initial population.
 ga_params = add_param(ga_params, "dimension", 3);

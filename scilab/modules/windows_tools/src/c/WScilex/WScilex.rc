@@ -28,12 +28,12 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE 
+1 TEXTINCLUDE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE 
+2 TEXTINCLUDE
 BEGIN
     "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
     "#include ""windows.h""\r\n"
@@ -42,7 +42,7 @@ BEGIN
     "\0"
 END
 
-3 TEXTINCLUDE 
+3 TEXTINCLUDE
 BEGIN
     "\r\n"
     "\0"
@@ -57,8 +57,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 5,6,0,0
- PRODUCTVERSION 5,6,0,0
+ FILEVERSION 6,0,0,0
+ PRODUCTVERSION 6,0,0,0
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -74,13 +74,13 @@ BEGIN
         BLOCK "040c04b0"
         BEGIN
             VALUE "CompanyName", "Scilab Enterprises"
-            VALUE "FileDescription", "Scilab 5.6.0 (GUI)"
-            VALUE "FileVersion", "5, 6, 0, 0"
+            VALUE "FileDescription", "Scilab 6.0.0 (GUI)"
+            VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "WScilex"
-            VALUE "LegalCopyright", "Copyright (C) 2015"
+            VALUE "LegalCopyright", "Copyright (C) 2016"
             VALUE "OriginalFilename", "WScilex.exe"
-            VALUE "ProductName", "Scilab 5.x Application"
-            VALUE "ProductVersion", "5, 6, 0, 0"
+            VALUE "ProductName", "Scilab 6.x Application"
+            VALUE "ProductVersion", "6, 0, 0, 0"
         END
     END
     BLOCK "VarFileInfo"

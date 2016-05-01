@@ -6,11 +6,14 @@
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -26,13 +29,13 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "HandleManagement.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_title_property(void* _pvCtx, int iObjUID)
+void* get_title_property(void* _pvCtx, int iObjUID)
 {
     int iLabelUID = 0;
     int* piLabelUID = &iLabelUID;
@@ -45,13 +48,13 @@ int get_title_property(void* _pvCtx, int iObjUID)
     if (piType == NULL)
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "type");
-        return -1;
+        return NULL;
     }
 
     if (iType != __GO_AXES__)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "title");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(iObjUID, __GO_TITLE__, jni_int, (void **)&piLabelUID);
@@ -59,11 +62,11 @@ int get_title_property(void* _pvCtx, int iObjUID)
     if (iLabelUID == 0)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "title");
-        return -1;
+        return NULL;
     }
 
     labelHandle = getHandle(iLabelUID);
 
-    return sciReturnHandle(_pvCtx, labelHandle);
+    return sciReturnHandle(labelHandle);
 }
 /*------------------------------------------------------------------------*/

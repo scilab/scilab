@@ -24,6 +24,12 @@
             pas prédéfinie peut être utilisé pour définir de nouveaux opérateurs (voir
             <link linkend="overloading">overloading</link>) avec la même priorité que <literal>*</literal> ou <literal>/</literal>.
         </para>
+        <para>
+            <note>
+                Notez que <code>/*</code> et <code>*/</code>
+                servent à mettre un bloc de code en commentaire.
+            </note>
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -74,6 +80,9 @@ W' * W
             </member>
             <member>
                 <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="comments">comments</link>
             </member>
         </simplelist>
     </refsection>

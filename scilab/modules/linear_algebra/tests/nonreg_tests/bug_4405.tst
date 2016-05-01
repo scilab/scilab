@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=4405
 //
 // <-- Short Description -->
-// Calling sequence [Q,R,rk,E]=qr(A,"e") should return an error
+// Syntax [Q,R,rk,E]=qr(A,"e") should return an error
 
 A=[1 2; 3 4; 5 6];
 expectedMsg = msprintf(_("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "qr", 2);

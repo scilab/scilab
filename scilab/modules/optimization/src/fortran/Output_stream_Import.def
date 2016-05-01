@@ -4,6 +4,4 @@
 EXPORTS
 ;
 ; output_stream
-error_
-msgs_
 basout_

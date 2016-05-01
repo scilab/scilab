@@ -51,7 +51,13 @@ function standard_draw (o, frame, draw_ports, up)
     nout  = size(o.model.out,1);
     clkin = size(o.model.evtin,1);
     clkout= size(o.model.evtout,1);
-    [orig,sz,orient] = (o.graphics.orig,o.graphics.sz,o.graphics.flip)
+    [orig,sz] = (o.graphics.orig,o.graphics.sz)
+    orient=%t;
+    style=graphics.style;
+    subStr=strstr(style,"flip=");
+    if subStr<>"" then
+        orient=%f;
+    end
 
     //** Default values -------------------
     thick = 1              ; //** patch Simone
@@ -174,7 +180,7 @@ function standard_draw (o, frame, draw_ports, up)
         sz   = sz - e   ;
     end
     //@@ Alan,28/11/08 : protect variables of standard_draw
-    deff("ierr=exec_gr_i(gr_i)","ierr=execstr(gr_i,''errcatch'',''n'');") ; //** on line function definition
+    deff("ierr=exec_gr_i(gr_i)","ierr=execstr(gr_i,''errcatch'');") ; //** on line function definition
     //** Check of the graphics object has generated any error
     if exec_gr_i(gr_i)<>0 then
         messagebox(["Error in Icon defintion"; lasterror()],"modal")

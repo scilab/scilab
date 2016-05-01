@@ -3,17 +3,20 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "partfunction.h"
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
@@ -68,5 +71,33 @@ char **partfunction(char** stringInput, int m, int n, int *vectInput, int row)
         FREE(wcOutput);
     }
     return parts;
+}
+/*--------------------------------------------------------------------------*/
+wchar_t **partfunctionW(wchar_t** _pwstStringInput, int _iRows, int _iCols, int *_piVectInput, int _iVectSize)
+{
+    int i, j;
+    wchar_t **pwstParts = NULL;
+    int iSize = _iRows * _iCols;
+
+    pwstParts = (wchar_t**)MALLOC(sizeof(wchar_t*) * (iSize));
+
+    for (i = 0 ; i < iSize ; i++)
+    {
+        pwstParts[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (_iVectSize + 1));
+
+        for (j = 0 ; j < _iVectSize ; j++)
+        {
+            if (_piVectInput[j] > wcslen(_pwstStringInput[i]))
+            {
+                pwstParts[i][j] = L' ';
+            }
+            else
+            {
+                pwstParts[i][j] = _pwstStringInput[i][_piVectInput[j] - 1];
+            }
+        }
+        pwstParts[i][j] = '\0';
+    }
+    return pwstParts;
 }
 /*--------------------------------------------------------------------------*/

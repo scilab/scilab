@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,17 +26,17 @@ extern "C"
 #include "xml_mlist.h"
 #include "libxml/tree.h"
 #include "expandPathVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #ifdef _MSC_VER
-#include "strdup_windows.h"
+#include "os_string.h"
 #endif
 }
 
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_htmlWrite(char *fname, unsigned long fname_len)
+int sci_htmlWrite(char *fname, void* pvApiCtx)
 {
     org_modules_xml::XMLDocument * doc = 0;
     xmlDoc *document = 0;
@@ -81,13 +84,13 @@ int sci_htmlWrite(char *fname, unsigned long fname_len)
 
         if (Rhs == 2 && !isStringType(pvApiCtx, addr) && !isBooleanType(pvApiCtx, addr))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a boolean expected.\n"), fname, 2);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string or boolean expected.\n"), fname, 2);
             return 0;
         }
 
         if (Rhs == 3 && !isStringType(pvApiCtx, addr))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -95,7 +98,7 @@ int sci_htmlWrite(char *fname, unsigned long fname_len)
         {
             if (!checkVarDimension(pvApiCtx, addr, 1, 1))
             {
-                Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A string expected.\n"), fname, 2);
+                Scierror(999, gettext("%s: Wrong dimension for input argument #%d: string expected.\n"), fname, 2);
                 return 0;
             }
 

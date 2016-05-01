@@ -1,22 +1,26 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab Copyright (C)
- * 2011 - DIGITEO - Clement DAVID This file must be used under the terms of the
- * CeCILL. This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution. The terms are also
- * available at http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
  */
 
 package org.scilab.modules.xcos.block.actions;
 
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Set;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 
@@ -24,15 +28,10 @@ import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.types.ScilabDouble;
-import org.scilab.modules.types.ScilabString;
-import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -42,12 +41,29 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
+import java.nio.LongBuffer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import static java.util.stream.Collectors.toList;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfDouble;
+import org.scilab.modules.xcos.VectorOfInt;
+import org.scilab.modules.xcos.VectorOfScicosID;
+import org.scilab.modules.xcos.graph.model.XcosCell;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
+import org.scilab.modules.xcos.io.ScilabTypeCoder;
+import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**
  * Move the Selected cells to a new SuperBlock diagram
@@ -237,16 +253,19 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
          */
         public BasicPort getParentPort() {
             if (parentPort == null) {
+                JavaController controller = new JavaController();
+                long uid = controller.createObject(Kind.PORT);
+
                 try {
                     if (containsSource) {
-                        parentPort = IOBlocks.getOpposite(target.getClass()).newInstance();
+                        parentPort = IOBlocks.getOpposite(target.getClass()).getConstructor(Long.TYPE).newInstance(uid);
                     } else {
-                        parentPort = IOBlocks.getOpposite(source.getClass()).newInstance();
+                        parentPort = IOBlocks.getOpposite(source.getClass()).getConstructor(Long.TYPE).newInstance(uid);
                     }
-                } catch (InstantiationException e) {
+                } catch (ReflectiveOperationException e) {
                     Logger.getLogger(RegionToSuperblockAction.class.getName()).severe(e.toString());
-                } catch (IllegalAccessException e) {
-                    Logger.getLogger(RegionToSuperblockAction.class.getName()).severe(e.toString());
+                } catch (IllegalArgumentException ex) {
+                    Logger.getLogger(RegionToSuperblockAction.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -273,17 +292,18 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 
         /**
          * Set the ordering on the I/O block and port
-         *
+
          * @param ordering
          *            the ordering to set
          */
-        public void setOrdering(int ordering) {
+        public void setOrdering(JavaController controller, int ordering) {
             // update the child ordering
-            getChildBlock().setIntegerParameters(new ScilabDouble(ordering));
-            getChildBlock().setExprs(new ScilabString(Integer.toString(ordering)));
+            VectorOfInt ipar = new VectorOfInt(1);
+            ipar.set(0, ordering);
+            controller.setObjectProperty(getChildBlock().getUID(), getChildBlock().getKind(), ObjectProperties.IPAR, ipar);
 
-            // update the port value
-            getParentPort().setOrdering(ordering);
+            VectorOfDouble exprs = new ScilabTypeCoder().var2vec(new ScilabString(Integer.toString(ordering)));
+            controller.setObjectProperty(getChildBlock().getUID(), getChildBlock().getKind(), ObjectProperties.EXPRS, exprs);
         }
 
         /**
@@ -355,46 +375,35 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
         parentGraph.info(XcosMessages.GENERATE_SUPERBLOCK);
         parentGraph.getModel().beginUpdate();
         try {
-
+            final JavaController controller = new JavaController();
             final SuperBlock superBlock;
             final Collection<Broken> brokenLinks;
-            final Set<Object> inSelectionCells;
 
             /*
              * Allocate superBlock
              */
             final Object[] selection = parentGraph.getSelectionCells();
-            final Object[] blocks = XcosDiagram.filterByClass(selection, BasicBlock.class);
-            inSelectionCells = new LinkedHashSet<Object>(Arrays.asList(blocks));
+            List<XcosCell> toBeMoved = Arrays.stream(selection)
+                                       .filter(o -> o instanceof XcosCell)
+                                       .map(o -> (XcosCell) o)
+                                       .collect(toList());
 
-            superBlock = allocateSuperBlock(parentGraph, selection);
+            superBlock = allocateSuperBlock(controller, parentGraph, selection);
 
             /*
              * First perform all modification on the parent diagram to handle
              * well undo/redo operations.
              */
-            brokenLinks = updateParent(parentGraph, superBlock, inSelectionCells);
+            brokenLinks = updateParent(controller, parentGraph, superBlock, toBeMoved);
 
             /*
              * Then move some cells to the child diagram
              */
-            final SuperBlockDiagram childGraph = moveToChild(parentGraph, superBlock, brokenLinks, inSelectionCells);
+            moveToChild(controller, parentGraph, superBlock, brokenLinks, toBeMoved);
 
-            /*
-             * Finish the install on the child and sync it.
-             */
-            childGraph.installListeners();
-            childGraph.installSuperBlockListeners();
-            superBlock.invalidateRpar();
-            superBlock.updateExportedPort();
-
-            /*
-             * Clear the transaction log in the child.
-             * From the user point of view, the operation cannot be undo'ed.
-             */
-            childGraph.getUndoManager().clear();
-
-            Xcos.getInstance().addDiagram(parentGraph.getSavedFile(), childGraph);
+            BlockPositioning.updateBlockView(parentGraph, superBlock);
+        } catch (ScilabInterpreterManagement.InterpreterException ex) {
+            // Scilab seems to be blocked, just consume the exception at this point
         } finally {
             parentGraph.getModel().endUpdate();
             parentGraph.info(XcosMessages.EMPTY_INFO);
@@ -410,16 +419,17 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
      *            the selected blocks
      * @return the allocated super block (without specific listeners)
      */
-    private SuperBlock allocateSuperBlock(final XcosDiagram parentGraph, final Object[] selection) {
-        final SuperBlock superBlock = (SuperBlock) BlockFactory.createBlock(INTERFUNCTION_NAME);
-        superBlock.setStyle(INTERFUNCTION_NAME);
+    private SuperBlock allocateSuperBlock(final JavaController controller, final XcosDiagram parentGraph, final Object[] selection) throws ScilabInterpreterManagement.InterpreterException {
+        final SuperBlock superBlock = (SuperBlock) XcosCellFactory.createBlock(INTERFUNCTION_NAME);
 
         /*
-         * Allocate the diagram
+         * Remove the default allocated ports
          */
-        final SuperBlockDiagram diag = new SuperBlockDiagram(superBlock);
-        superBlock.setChild(diag);
-        superBlock.setParentDiagram(parentGraph);
+        while (superBlock.getChildCount() > 0) {
+            superBlock.remove(superBlock.getChildCount() - 1);
+        }
+        VectorOfScicosID children = new VectorOfScicosID();
+        controller.setObjectProperty(superBlock.getUID(), superBlock.getKind(), ObjectProperties.CHILDREN, children);
 
         /*
          * Place the super block
@@ -431,12 +441,16 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
         final double minY = dims.getY();
         final double maxY = minY + dims.getHeight();
 
-        superBlock.getGeometry().setX((maxX + minX - superBlock.getGeometry().getWidth()) / 2.0);
-        superBlock.getGeometry().setY((maxY + minY - superBlock.getGeometry().getHeight()) / 2.0);
+        mxGeometry geom = superBlock.getGeometry();
+        geom.setX((maxX + minX - geom.getWidth()) / 2.0);
+        geom.setY((maxY + minY - geom.getHeight()) / 2.0);
+        superBlock.setGeometry(geom);
 
         /*
-         * get statistics
+         * get statistics to flip and rotate
          */
+        VectorOfDouble mvcAngle = new VectorOfDouble();
+
         int angleCounter = 0;
         int flipCounter = 0;
         int mirrorCounter = 0;
@@ -444,23 +458,41 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
             if (object instanceof BasicBlock) {
                 final BasicBlock b = (BasicBlock) object;
 
-                angleCounter += b.getAngle();
-                if (b.getFlip()) {
+                String[] style = new String[1];
+                controller.getObjectProperty(b.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);
+                StyleMap styleMap = new StyleMap(style[0]);
+
+                final boolean mirrored = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
+                final boolean flipped = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
+                final double doubleRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0"));
+
+                angleCounter += doubleRotation;
+                if (flipped) {
                     flipCounter++;
                 }
-                if (b.getMirror()) {
+                if (mirrored) {
                     mirrorCounter++;
                 }
             }
         }
 
         /*
-         * apply statistics
+         * apply statistics to flip and rotate
          */
         final int halfSize = selection.length / 2;
-        superBlock.setAngle(BlockPositioning.roundAngle(angleCounter / selection.length));
-        superBlock.setFlip(flipCounter > halfSize);
-        superBlock.setMirror(mirrorCounter > halfSize);
+        String[] style = new String[1];
+        controller.getObjectProperty(superBlock.getUID(), superBlock.getKind(), ObjectProperties.STYLE, style);
+        StyleMap styleMap = new StyleMap(style[0]);
+
+        styleMap.put(XcosConstants.STYLE_ROTATION, Double.toString(BlockPositioning.roundAngle(angleCounter / selection.length)));
+        if (flipCounter > halfSize) {
+            styleMap.put(XcosConstants.STYLE_FLIP, Boolean.toString(true));
+        }
+        if (mirrorCounter > halfSize) {
+            styleMap.put(XcosConstants.STYLE_MIRROR, Boolean.toString(true));
+        }
+
+        controller.setObjectProperty(superBlock.getUID(), superBlock.getKind(), ObjectProperties.STYLE, styleMap.toString());
 
         return superBlock;
     }
@@ -477,7 +509,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
      *            the cells in the selection
      * @return the broken descriptor set
      */
-    private Collection<Broken> updateParent(final XcosDiagram parentGraph, final SuperBlock superBlock, final Set<Object> inSelectionCells) {
+    private Collection<Broken> updateParent(final JavaController controller, final XcosDiagram parentGraph, final SuperBlock superBlock, final List<XcosCell> inSelectionCells) {
         final Collection<Broken> brokenLinks;
         final mxGraphModel parentModel = (mxGraphModel) parentGraph.getModel();
 
@@ -488,7 +520,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
              * links by position (to perform a good numbering order) and keep
              * only one occurrence of a broken link.
              */
-            brokenLinks = new TreeSet<Broken>();
+            brokenLinks = new TreeSet<>();
             fillLinks(parentModel, inSelectionCells, brokenLinks);
 
             /*
@@ -511,7 +543,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
             for (Broken broken : brokenLinks) {
 
                 // set the ordering
-                incrementOrdering(ordering, broken);
+                incrementOrdering(controller, ordering, broken);
 
                 connectParent(parentGraph, parentModel, superBlock, broken);
                 connectChild(parentGraph, parentModel, broken);
@@ -519,7 +551,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
                 /*
                  * Update the view
                  */
-                BlockPositioning.updateBlockView(broken.getChildBlock());
+                BlockPositioning.updateBlockView(parentGraph, broken.getChildBlock());
             }
         } finally {
             parentModel.endUpdate();
@@ -540,8 +572,8 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
      * @param brokenLinks
      *            the broken links to find.
      */
-    private void fillLinks(final mxGraphModel parentModel, final Collection<Object> inSelectionCells, final Collection<Broken> brokenLinks) {
-        final Queue<Object> loopQueue = new LinkedList<Object>(inSelectionCells);
+    private void fillLinks(final mxGraphModel parentModel, final Collection<XcosCell> inSelectionCells, final Collection<Broken> brokenLinks) {
+        final Queue<Object> loopQueue = new LinkedList<>(inSelectionCells);
 
         while (!loopQueue.isEmpty()) {
             final Object cell = loopQueue.remove();
@@ -563,8 +595,8 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
                     final boolean containsSource = inSelectionCells.contains(parentModel.getParent(source));
                     final boolean containsTarget = inSelectionCells.contains(parentModel.getParent(target));
 
-                    if (containsSource && containsTarget) {
-                        inSelectionCells.add(edge);
+                    if (containsSource && containsTarget && edge instanceof XcosCell) {
+                        inSelectionCells.add((XcosCell) edge);
                         continue;
                     }
 
@@ -589,21 +621,22 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
     /**
      * Increment and set the ordering to the broken entry.
      *
+     * @param controller the controller
      * @param ordering
      *            4x1 array of ordering
      * @param broken
      *            the current broken entry.
      */
     // CSOFF: MagicNumber
-    private void incrementOrdering(final int[] ordering, Broken broken) {
+    private void incrementOrdering(JavaController controller, final int[] ordering, Broken broken) {
         if (broken.getTerminal() instanceof InputPort) {
-            broken.setOrdering(++ordering[0]);
+            broken.setOrdering(controller, ++ordering[0]);
         } else if (broken.getTerminal() instanceof OutputPort) {
-            broken.setOrdering(++ordering[1]);
+            broken.setOrdering(controller, ++ordering[1]);
         } else if (broken.getTerminal() instanceof ControlPort) {
-            broken.setOrdering(++ordering[2]);
+            broken.setOrdering(controller, ++ordering[2]);
         } else { // if (broken.getTerminal() instanceof CommandPort)
-            broken.setOrdering(++ordering[3]);
+            broken.setOrdering(controller, ++ordering[3]);
         }
     }
 
@@ -666,61 +699,73 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
      *            the cells in selection
      * @return the superblock child diagram
      */
-    private SuperBlockDiagram moveToChild(final XcosDiagram parentGraph, final SuperBlock superBlock, final Collection<Broken> brokenLinks,
-                                          final Set<Object> inSelectionCells) {
-        final SuperBlockDiagram childGraph = superBlock.getChild();
-        final mxGraphModel childModel = (mxGraphModel) childGraph.getModel();
+    private void moveToChild(final JavaController controller, final XcosDiagram parentGraph, final SuperBlock superBlock, final Collection<Broken> brokenLinks, final List<XcosCell> inSelectionCells) {
+        final Collection<XcosCell> cellsToCopy = new ArrayList<>();
 
-        childModel.beginUpdate();
-        try {
-            final Collection<Object> cellsToCopy = new ArrayList<Object>();
-
-            /*
-             * create a collection with all the cells to move
-             */
-            cellsToCopy.addAll(inSelectionCells);
-            for (Broken b : brokenLinks) {
-                cellsToCopy.add(b.getChildBlock());
-                cellsToCopy.add(b.getChildLink());
-            }
-
-            // create the local array to use the JGraphX API
-            final Object[] cells = cellsToCopy.toArray();
-
-            /*
-             * Really copy the cells
-             */
-            parentGraph.removeCells(cells, false);
-            childGraph.addCells(cells);
-
-            /*
-             * Translate the cells to the origin
-             *
-             * In this algorithm only block position are handled to avoid any
-             * placement issue and a static margin is added to avoid
-             * misplacement.
-             */
-            final double margin = 10.0;
-            mxPoint orig = null;
-            for (int i = 0; i < cells.length; i++) {
-                if (cells[i] instanceof BasicBlock) {
-                    final mxGeometry geom = ((BasicBlock) cells[i]).getGeometry();
-                    if (orig == null) {
-                        orig = geom;
-                    } else {
-                        orig = new mxPoint(Math.min(geom.getX(), orig.getX()), Math.min(geom.getY(), orig.getY()));
-                    }
-                }
-            }
-            childGraph.moveCells(cells, -orig.getX() + margin, -orig.getY() + margin);
-
-            childGraph.setChildrenParentDiagram();
-            BlockPositioning.updateBlockView(superBlock);
-        } finally {
-            childModel.endUpdate();
+        /*
+         * create a collection with all the cells to move
+         */
+        cellsToCopy.addAll(inSelectionCells);
+        for (Broken b : brokenLinks) {
+            cellsToCopy.add(b.getChildBlock());
+            cellsToCopy.add(b.getChildLink());
         }
 
-        return childGraph;
+        /*
+         * Really move the cells
+         */
+        parentGraph.removeCells(cellsToCopy.toArray(), false);
+
+        VectorOfScicosID children = new VectorOfScicosID(cellsToCopy.size());
+        LongBuffer childrenUIDs = children.asByteBuffer(0, cellsToCopy.size()).asLongBuffer();
+
+        final long parentBlock = superBlock.getUID();
+        final long parentDiagram;
+        if (parentGraph.getKind() == Kind.DIAGRAM) {
+            parentDiagram = parentGraph.getUID();
+        } else {
+            parentDiagram = parentGraph.getRootDiagram().getUID();
+        }
+
+        cellsToCopy.stream().forEach(c -> {
+            childrenUIDs.put(c.getUID());
+            controller.referenceObject(c.getUID());
+
+            controller.setObjectProperty(c.getUID(), c.getKind(), ObjectProperties.PARENT_BLOCK, parentBlock);
+            controller.setObjectProperty(c.getUID(), c.getKind(), ObjectProperties.PARENT_DIAGRAM, parentDiagram);
+        });
+
+        controller.setObjectProperty(superBlock.getUID(), superBlock.getKind(), ObjectProperties.CHILDREN, children);
+
+
+        /*
+         * Translate the cells to the origin
+         *
+         * In this algorithm only block position are handled to avoid any
+         * placement issue and a static margin is added to avoid
+         * misplacement.
+         */
+        final double margin = 10.0;
+        final mxPoint orig = new mxPoint(Double.MAX_VALUE, Double.MAX_VALUE);
+        for (XcosCell c : cellsToCopy) {
+            if (c instanceof BasicBlock) {
+                final mxGeometry geom = c.getGeometry();
+
+                orig.setX(Math.min(geom.getX(), orig.getX()));
+                orig.setY(Math.min(geom.getY(), orig.getY()));
+            }
+        }
+
+        // move the cells
+        final VectorOfDouble geometry = new VectorOfDouble();
+        cellsToCopy.stream().forEach(c -> {
+            controller.getObjectProperty(c.getUID(), c.getKind(), ObjectProperties.GEOMETRY, geometry);
+
+            geometry.set(0, geometry.get(0) - orig.getX() + margin);
+            geometry.set(1, geometry.get(1) - orig.getY() + margin);
+
+            controller.setObjectProperty(c.getUID(), c.getKind(), ObjectProperties.GEOMETRY, geometry);
+        });
     }
 }
 // CSON: ClassFanOutComplexity

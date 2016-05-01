@@ -4,26 +4,30 @@
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "matfile_manager.h"
 #include "gw_matio.h"
 #include "localization.h"
 #include "Scierror.h"
+#include <string.h>
 
 /*******************************************************************************
    Interface for MATIO function called Mat_Open
    Scilab function name : matfile_open
 *******************************************************************************/
-int sci_matfile_open(char *fname, unsigned long fname_len)
+int sci_matfile_open(char *fname, void* pvApiCtx)
 {
     int nbRow = 0, nbCol = 0;
     mat_t *matfile;
@@ -54,24 +58,28 @@ int sci_matfile_open(char *fname, unsigned long fname_len)
 
     if (var_type == sci_strings)
     {
-        getAllocatedSingleString(pvApiCtx, filename_addr, &filename);
+        if (getAllocatedSingleString(pvApiCtx, filename_addr, &filename) != 0)
+        {
+            return 0;
+        }
         sciErr = getVarDimension(pvApiCtx, filename_addr, &nbRow, &nbCol);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(filename);
             return 0;
         }
 
         if (nbCol != 1)
         {
-            Scierror(999, _("%s: Wrong size for first input argument: A string expected.\n"), fname);
+            Scierror(999, _("%s: Wrong size for first input argument: string expected.\n"), fname);
             freeAllocatedSingleString(filename);
             return FALSE;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for first input argument: A string expected.\n"), fname);
+        Scierror(999, _("%s: Wrong type for first input argument: string expected.\n"), fname);
         freeAllocatedSingleString(filename);
         return FALSE;
     }
@@ -82,6 +90,7 @@ int sci_matfile_open(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(filename);
             return 0;
         }
 
@@ -89,22 +98,29 @@ int sci_matfile_open(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(filename);
             return 0;
         }
 
         if (var_type == sci_strings)
         {
-            getAllocatedSingleString(pvApiCtx, option_addr, &optionStr);
+            if (getAllocatedSingleString(pvApiCtx, option_addr, &optionStr) != 0)
+            {
+                freeAllocatedSingleString(filename);
+                return 0;
+            }
             sciErr = getVarDimension(pvApiCtx, option_addr, &nbRow, &nbCol);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedSingleString(filename);
+                freeAllocatedSingleString(optionStr);
                 return 0;
             }
 
             if (nbCol != 1)
             {
-                Scierror(999, _("%s: Wrong size for second input argument: A string expected.\n"), fname);
+                Scierror(999, _("%s: Wrong size for second input argument: string expected.\n"), fname);
                 freeAllocatedSingleString(filename);
                 freeAllocatedSingleString(optionStr);
 
@@ -130,7 +146,7 @@ int sci_matfile_open(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for second input argument: A string expected.\n"), fname);
+            Scierror(999, _("%s: Wrong type for second input argument: string expected.\n"), fname);
             freeAllocatedSingleString(filename);
             freeAllocatedSingleString(optionStr);
 
@@ -149,6 +165,8 @@ int sci_matfile_open(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(filename);
+            freeAllocatedSingleString(optionStr);
             return 0;
         }
 
@@ -156,21 +174,30 @@ int sci_matfile_open(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(filename);
+            freeAllocatedSingleString(optionStr);
             return 0;
         }
-        printf("sci_strings %d %d\n", var_type, sci_strings);
         if (var_type == sci_strings)
         {
-            getAllocatedSingleString(pvApiCtx, version_addr, &versionStr);
+            if (getAllocatedSingleString(pvApiCtx, version_addr, &versionStr) != 0)
+            {
+                freeAllocatedSingleString(filename);
+                freeAllocatedSingleString(optionStr);
+                return 0;
+            }
             sciErr = getVarDimension(pvApiCtx, version_addr, &nbRow, &nbCol);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedSingleString(filename);
+                freeAllocatedSingleString(optionStr);
+                freeAllocatedSingleString(versionStr);
                 return 0;
             }
             if (nbCol != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
+                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 3);
                 freeAllocatedSingleString(filename);
                 freeAllocatedSingleString(optionStr);
                 freeAllocatedSingleString(versionStr);
@@ -189,7 +216,9 @@ int sci_matfile_open(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
+            freeAllocatedSingleString(filename);
+            freeAllocatedSingleString(optionStr);
             return 0;
         }
     }

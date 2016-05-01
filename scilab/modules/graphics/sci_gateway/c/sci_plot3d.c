@@ -4,11 +4,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU (nicer default plot3d)
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,18 +21,18 @@
 /*------------------------------------------------------------------------*/
 
 #include <stdio.h>
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "BuildObjects.h"
 #include "GetCommandArg.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sciCall.h"
 #include "localization.h"
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_plot3d(char * fname, unsigned long fname_len)
+int sci_plot3d(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
     static double  ebox_def [6] = { 0, 1, 0, 1, 0, 1};
@@ -74,7 +77,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
     */
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
 
@@ -92,7 +95,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (nbInputArgument(pvApiCtx) != 1 && FirstOpt() < 4)
+    if (nbInputArgument(pvApiCtx) != 1 && FirstOpt(pvApiCtx) < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 4);
         return -1;
@@ -147,7 +150,7 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         l2 = (double *)MALLOC(sizeof(double) * n2);
         for (i = 0; i < n2; ++i)
         {
-            l1[i] = i + 1;
+            l2[i] = i + 1;
         }
 
         mustFree = 1;

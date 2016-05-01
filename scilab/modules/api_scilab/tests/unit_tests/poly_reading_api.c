@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution. The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,9 +17,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
-int read_poly(char *fname, unsigned long fname_len)
+int read_poly(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int i, j;
@@ -56,7 +59,7 @@ int read_poly(char *fname, unsigned long fname_len)
     }
 
     //alloc buff to receive variable name
-    pstVarname = (char*)malloc(sizeof(char) * (iVarLen + 1));//1 for null termination
+    pstVarname = (char*)MALLOC(sizeof(char) * (iVarLen + 1));//1 for null termination
 
     //get variable name
     sciErr = getPolyVariableName(pvApiCtx, piAddr, pstVarname, &iVarLen);
@@ -75,7 +78,7 @@ int read_poly(char *fname, unsigned long fname_len)
     }
 
     //alloc array of coefficient
-    piNbCoef = (int*)malloc(sizeof(int) * iRows * iCols);
+    piNbCoef = (int*)MALLOC(sizeof(int) * iRows * iCols);
 
     //Second call: retrieve coefficient
     sciErr = getComplexMatrixOfPoly(pvApiCtx, piAddr, &iRows, &iCols, piNbCoef, NULL, NULL);
@@ -86,13 +89,13 @@ int read_poly(char *fname, unsigned long fname_len)
     }
 
     //alloc arrays of data
-    pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
-    pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
+    pdblReal    = (double**)MALLOC(sizeof(double*) * iRows * iCols);
+    pdblImg     = (double**)MALLOC(sizeof(double*) * iRows * iCols);
 
     for (i = 0 ; i < iRows * iCols ; i++)
     {
-        pdblReal[i] = (double*)malloc(sizeof(double) * piNbCoef[i]);
-        pdblImg[i] = (double*)malloc(sizeof(double) * piNbCoef[i]);
+        pdblReal[i] = (double*)MALLOC(sizeof(double) * piNbCoef[i]);
+        pdblImg[i] = (double*)MALLOC(sizeof(double) * piNbCoef[i]);
     }
 
     //Third call: retrieve data
@@ -146,15 +149,15 @@ int read_poly(char *fname, unsigned long fname_len)
     }
 
     //free OS memory
-    free(pstVarname);
-    free(piNbCoef);
+    FREE(pstVarname);
+    FREE(piNbCoef);
     for (i = 0 ; i < iRows * iCols ; i++)
     {
-        free(pdblReal[i]);
-        free(pdblImg[i]);
+        FREE(pdblReal[i]);
+        FREE(pdblImg[i]);
     }
-    free(pdblReal);
-    free(pdblImg);
+    FREE(pdblReal);
+    FREE(pdblImg);
     //assign allocated variables to Lhs position
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;

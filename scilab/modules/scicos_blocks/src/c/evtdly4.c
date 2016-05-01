@@ -19,7 +19,7 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
@@ -39,7 +39,7 @@ SCICOS_BLOCKS_IMPEXP void evtdly4(scicos_block *block, int flag)
 
     switch (flag)
     {
-            /* init */
+        /* init */
         case 4  :  /* the workspace is used to store discrete counter value */
         {
             if ((*work = (time_counter_t*) scicos_malloc(sizeof(time_counter_t))) == NULL)

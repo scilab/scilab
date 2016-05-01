@@ -3,23 +3,25 @@
  * Copyright (C) INRIA
  * Copyright (C) DIGITEO - 2010 - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
-#include "stack-def.h" /* for paus */
 #include "texmacs.h"
 #include "prompt.h"
 #include "readline.h"
 #include "api_scilab.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 #if 0 /* to debug TeXmacs interface */
 #define DATA_BEGIN  ((char) 'B')
@@ -29,7 +31,6 @@
 #define DATA_END    ((char) 5)
 #endif
 #define DATA_ESCAPE  ((char) 27)
-#define Pause C2F(recu).paus
 /*--------------------------------------------------------------------------*/
 static int first = 1;
 static int texmacs_mode = 0;
@@ -47,14 +48,14 @@ int C2F(intexmacs)(void)
 void next_input (void)
 {
     fprintf(stdout, "%cchannel:prompt%c", DATA_BEGIN, DATA_END);
-    if (Pause == 0)
+    //if (Pause == 0)
     {
         fprintf(stdout, SCIPROMPT);
     }
-    else
-    {
-        fprintf(stdout, SCIPROMPT_INTERRUPT, Pause);
-    }
+    //else
+    //{
+    //    fprintf(stdout, SCIPROMPT_INTERRUPT, Pause);
+    //}
 
     fprintf(stdout, "%c", DATA_END);
     fflush (stdout);
@@ -67,7 +68,7 @@ void C2F(texmacsin)(char buffer[], int *buf_size, int *len_line, int *eof, long 
     int nr = 0, info = 0;
     if (first == 1)
     {
-        if (isNamedVarExist(pvApiCtx, TEXMACSLIB) == 0)
+        if (isNamedVarExist(NULL, TEXMACSLIB) == 0)
         {
             if (getWarningMode())
             {

@@ -197,7 +197,7 @@
         </itemizedlist>
     </refsection>
     <refsection id="Example_INIMPL_f">
-        <title>Exemple</title>
+        <title>Example</title>
         <para>
             The following example shows the use of the INIMPL_f block. The Super block contains a simple electrical circuit with two inputs, one on the
             resistor and the other for the ground. These inputs are connected to the external environment of the bloc via two INIMPL_f blocks numbered 1

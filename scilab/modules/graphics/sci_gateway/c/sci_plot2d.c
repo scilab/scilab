@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,7 +18,7 @@
 /* file: sci_plot2d.c                                                     */
 /* desc : interface for plot2d routine                                    */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "GetCommandArg.h"
 #include "api_scilab.h"
@@ -27,10 +30,10 @@
 #include <sciprint.h>
 
 #include "BuildObjects.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /*------------------------------------------------------------------------*/
-int sci_plot2d(char* fname, unsigned long fname_len)
+int sci_plot2d(char* fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -64,7 +67,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
     char strfl[4];
     BOOL freeStrf = FALSE;
 
-    static rhs_opts opts[] =
+    rhs_opts opts[] =
     {
         { -1, "axesflag", -1, 0, 0, NULL},
         { -1, "frameflag", -1, 0, 0, NULL},
@@ -79,7 +82,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) == 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
 
@@ -99,7 +102,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
         iskip = 1;
     }
 
-    if (FirstOpt() == 2 + iskip)                                /** plot2d([loglags,] y, <opt_args>); **/
+    if (FirstOpt(pvApiCtx) == 2 + iskip)                                /** plot2d([loglags,] y, <opt_args>); **/
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1 + iskip, &piAddrl2);
         if (sciErr.iErr)
@@ -131,8 +134,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
         }
         else
         {
-            lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
-            C2F(overload)(&lw, "plot2d", 6);
+            OverLoad(1);
             return 0;
         }
 
@@ -161,7 +163,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             }
         }
     }
-    else if (FirstOpt() >= 3 + iskip)     /** plot2d([loglags,] x, y[, style [,...]]); **/
+    else if (FirstOpt(pvApiCtx) >= 3 + iskip)     /** plot2d([loglags,] x, y[, style [,...]]); **/
     {
         /* x */
         sciErr = getVarAddressFromPosition(pvApiCtx, 1 + iskip, &piAddrl1);
@@ -194,8 +196,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
         }
         else
         {
-            lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
-            C2F(overload)(&lw, "plot2d", 6);
+            OverLoad(1);
             return 0;
         }
 
@@ -230,8 +231,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
         }
         else
         {
-            lw = 2 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
-            C2F(overload)(&lw, "plot2d", 6);
+            OverLoad(2);
             return 0;
         }
 

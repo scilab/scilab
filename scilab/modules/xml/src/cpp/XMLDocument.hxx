@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -46,7 +49,7 @@ class XMLValidation;
  */
 class XML_SCILAB_IMPEXP XMLDocument: public XMLObject
 {
-    static std::list < XMLDocument * >&openDocs;
+    static std::list < XMLDocument * > openDocs;
     xmlDoc *document;
 
 public:
@@ -67,7 +70,7 @@ public:
      * @param validate a boolean to indicate if the document must be validated in using a DTD
      * @param error a pointer to a string which will receive the error message
      */
-	    XMLDocument(const char *path, bool validate, std::string * error, const char * encoding = 0, const bool html = false);
+    XMLDocument(const char *path, bool validate, std::string * error, const char * encoding = 0, const bool html = false);
 
     /**
      * Builds a document with a given code
@@ -227,8 +230,8 @@ private:
      */
     static htmlParserCtxt *initHTMLContext(std::string * error);
 
-    static std::string * errorBuffer;
-    static std::string * errorXPathBuffer;
+    static std::string errorBuffer;
+    static std::string errorXPathBuffer;
 };
 }
 

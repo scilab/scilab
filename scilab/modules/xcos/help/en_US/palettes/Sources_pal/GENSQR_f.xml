@@ -225,7 +225,7 @@ xcos_simulate(scs_m, 4);
             The second source block (blue) illustrate a much more problematic use case. The signal edge is not as fast as the previous one and can lead problematic use case. Users can use these parameters to illustrate some limitations of a design.
         </para>
         <para>
-            The third source block (yellow) illustrate a mis-use and a common first user error. The block activation times are the same as the <link linkend="CMSCOPE">scope</link>. The scope compute only one positve or negative <emphasis>M</emphasis> point at a <latex>t_{n}</latex> and draw a line from <latex>t_{n-1}</latex> (positive) to <latex>t_{n}</latex> (negative).
+            The third source block (yellow) illustrate a mis-use and a common first user error. The block activation times are the same as the <link linkend="CMSCOPE">scope</link>. The scope compute only one positive or negative <emphasis>M</emphasis> point at a <latex>t_{n}</latex> and draw a line from <latex>t_{n-1}</latex> (positive) to <latex>t_{n}</latex> (negative).
         </para>
     </refsection>
     <refsection id="Interfacingfunction_GENSQR_f">

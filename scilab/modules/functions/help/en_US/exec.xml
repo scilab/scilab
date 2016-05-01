@@ -5,7 +5,7 @@
         <refpurpose>script file execution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>exec(path [,mode])
             exec(fun [,mode])
             ierr = exec(path, 'errcatch' [,mode])
@@ -111,8 +111,7 @@
         </variablelist>
         <para>
             <code>exec(fun [,mode])</code> executes function  <varname>fun</varname> as a script: no
-            input nor output argument nor specific variable environment. This form
-            is more efficient, because script code may be pre-compiled (see <link linkend="comp">comp</link>). This method for script evaluation allows to store scripts as
+            input nor output argument nor specific variable environment. This method for script evaluation allows to store scripts as
             function in libraries.
         </para>
         <para>
@@ -168,9 +167,6 @@ whos -name "y "
             </member>
             <member>
                 <link linkend="evstr">evstr</link>
-            </member>
-            <member>
-                <link linkend="comp">comp</link>
             </member>
             <member>
                 <link linkend="mode">mode</link>

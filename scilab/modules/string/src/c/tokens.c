@@ -1,92 +1,71 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
  * Copyright (C) INRIA - 2008 - Allan CORNET
+ * Copyright (C) Digiteo - 2011 - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "tokens.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
-#include "charEncoding.h"
-/*------------------------------------------------------------------------*/
-char** stringTokens(char *str, char **delim, int sizedelim, int *sizeOutputs)
-{
-    char **Outputs = NULL;
-    *sizeOutputs = 0;
+#include "os_string.h"
+#include "os_wcstok.h"
 
+
+/*------------------------------------------------------------------------*/
+wchar_t** stringTokens(wchar_t* str, wchar_t* delim, int* sizeOutputs)
+{
+    wchar_t **Outputs = NULL;
+    *sizeOutputs = 0;
     if (str)
     {
-        wchar_t *wcdelimiters = NULL;
-        wcdelimiters = (wchar_t*)MALLOC(sizeof(wchar_t) * (sizedelim + 1));
-
-        if (wcdelimiters)
+        if (delim)
         {
             int i = 0;
-            wchar_t * wcstr = to_wide_string(str);
-            wchar_t *wctoken = NULL;
-#ifndef _MSC_VER
-            wchar_t *state = NULL;
-#endif
+            wchar_t *pwstToken = NULL;
+            wchar_t *pwstWork = os_wcsdup(str);
+            wchar_t *pwstState = NULL;
 
-            for (i = 0; i < sizedelim; i++)
+            //compute size of outputs array
+            for (pwstToken = os_wcstok(pwstWork, delim, &pwstState);
+                    pwstToken != NULL;
+                    pwstToken = os_wcstok(NULL, delim, &pwstState), (*sizeOutputs)++)
             {
-                wchar_t * wcdelim = to_wide_string(delim[i]);
-                wcdelimiters[i] = wcdelim[0];
-                FREE(wcdelim);
-                wcdelim = NULL;
-            }
-            wcdelimiters[i] = L'\0';
-
-#ifndef _MSC_VER
-            wctoken = wcstok(wcstr, wcdelimiters, &state);
-#else
-            wctoken = wcstok(wcstr, wcdelimiters);
-#endif
-
-            while ( wctoken != NULL)
-            {
-                (*sizeOutputs)++;
-                if (Outputs == NULL)
-                {
-                    Outputs = (char**)MALLOC(sizeof(char*) * (*sizeOutputs));
-                }
-                else
-                {
-                    Outputs = (char**)REALLOC(Outputs, sizeof(char*) * (*sizeOutputs));
-                }
-                Outputs[*sizeOutputs - 1] = wide_string_to_UTF8(wctoken);
-#ifndef _MSC_VER
-                wctoken =  wcstok(NULL, wcdelimiters, &state);
-#else
-                wctoken =  wcstok(NULL, wcdelimiters);
-#endif
+                ;
             }
 
-            if (wcdelimiters)
+            if (*sizeOutputs == 0)
             {
-                FREE(wcdelimiters);
-                wcdelimiters = NULL;
+                FREE(pwstWork);
+                return NULL;
             }
-            if (wcstr)
+
+            //alloc output array
+            Outputs = (wchar_t**)MALLOC(sizeof(wchar_t*) * *sizeOutputs);
+
+            FREE(pwstWork);
+            pwstWork = os_wcsdup(str);
+            for (pwstToken = os_wcstok(pwstWork, delim, &pwstState);
+                    pwstToken != NULL;
+                    pwstToken = os_wcstok(NULL, delim, &pwstState), i++)
             {
-                FREE(wcstr);
-                wcstr = NULL;
+                Outputs[i] = os_wcsdup(pwstToken);
             }
+
+            FREE(pwstWork);
         }
-
     }
     return Outputs;
 }

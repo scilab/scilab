@@ -2,16 +2,21 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #include <math.h>
 #include <string.h>
+
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "core_math.h"
 #include "gw_arnoldi.h"
@@ -25,7 +30,7 @@ extern int C2F(znaupd)(int * ido, char * bmat, int * n, char * which,
                        doublecomplex * workl, int * lworkl, double * rwork,
                        int * info);
 /*--------------------------------------------------------------------------*/
-int sci_znaupd(char *fname, unsigned long fname_len)
+int sci_znaupd(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -62,9 +67,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     doublecomplex* pWORKL   = NULL;
 
     int IDO,   mIDO,   nIDO;
-    int mBMAT,  nBMAT;
     int mN,     nN;
-    int mWHICH, nWHICH;
     int mNEV,   nNEV;
     int mTOL,   nTOL;
     int RESID, mRESID, nRESID;
@@ -317,19 +320,19 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     }
 
     /* Check some sizes */
-    if (mIPARAM*nIPARAM != 11)
+    if (mIPARAM * nIPARAM != 11)
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "IPARAM", 11);
         return 0;
     }
 
-    if (mIPNTR*nIPNTR != 14)
+    if (mIPNTR * nIPNTR != 14)
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "IPNTR", 14);
         return 0;
     }
 
-    if (mRESID*nRESID != pN[0])
+    if (mRESID * nRESID != pN[0])
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "RESID", pN[0]);
         return 0;
@@ -366,7 +369,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     // Retrieve a matrix of double at position 2.
     if (getAllocatedSingleString(pvApiCtx, piAddrpBMAT, &pBMAT))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -382,7 +385,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (getAllocatedSingleString(pvApiCtx, piAddrpWHICH, &pWHICH))
     {
         freeAllocatedSingleString(pBMAT);
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 4);
         return 1;
     }
 
@@ -397,7 +400,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
 
     if (pINFO[0] < 0)
     {
-        C2F(errorinfo)("znaupd", pINFO, 6L);
+        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
         return 0;
     }
 

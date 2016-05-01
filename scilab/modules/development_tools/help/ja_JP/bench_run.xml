@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bench_run" xml:lang="ja">
@@ -18,8 +21,9 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            bench_run()
-            bench_run(module[,test_name[,options]])
+            [modutests_names, elapsed_time, nb_iterations] = bench_run()
+            [modutests_names, elapsed_time, nb_iterations] = bench_run(module[, test_name[, options, [exportToFile]])
+            [modutests_names, elapsed_time, nb_iterations] = bench_run(path_to_module[, test_name[, options, [exportToFile]])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,9 +36,24 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>path_to_module</term>
+                <listitem>
+                    <para>
+                        a vector of string. Contains the paths to directories of modules to test. If <literal>"/path/to/directory"</literal> is given as input parameter, tests are retrieved in the subdirectory
+                        <literal>
+                            /path/to/directory/<emphasis role="bold">tests/benchmarks</emphasis>
+                        </literal>
+                        .Used for homemade benchmarks.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>test_name</term>
                 <listitem>
-                    <para>文字列ベクトル</para>
+                    <para>a vector of string. Contains the names of the tests to perform.</para>
+                    <para>
+                        The name of a test is its filename without <literal>.tst</literal>. If several modules or directory are given as first input parameter, scans for tests in each of these modules or directory.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -43,15 +62,52 @@
                     <para>文字列ベクトル</para>
                     <itemizedlist>
                         <listitem>
-                            <para>list : モジュールで利用可能なベンチマークテストのリスト</para>
+                            <para>"list" : モジュールで利用可能なベンチマークテストのリスト</para>
                         </listitem>
                         <listitem>
-                            <para>help : Scilabコンソールにいくつかの使用例を表示</para>
+                            <para>"help" : Scilabコンソールにいくつかの使用例を表示</para>
                         </listitem>
                         <listitem>
-                            <para>nb_run=value : ベンチマークテストを指定回数反復実行</para>
+                            <para>
+                                <literal>"nb_run=value"</literal>: runs each benchmark <literal>value</literal> times ; by default <function>bench_run</function> runs 10000 times the code between BENCH START and BENCH END tags (see below). Overrides any <literal>BENCH NB RUN</literal> specified in the benchmark test files.
+                            </para>
                         </listitem>
                     </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>exportToFile</term>
+                <listitem>
+                    <para>a single string</para>
+                    <para>
+                        File path to the result of the <function>bench_run</function> in xml format. By default, or if <literal>"", "[]"</literal> or <literal>[]</literal> is given, the output directory is <literal>TMPDIR/benchmarks/</literal>.
+                    </para>
+                    <para>
+                        If <literal>exportToFile</literal> is a directory, creates a timestamped output file is the directory, otherwize creates the file <literal>exportToFile</literal>. If the file could not be created a warning is issued and the file is created under <literal>TMPDIR/benchmarks/</literal> instead.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>modutests_names</term>
+                <listitem>
+                    <para>a N-by-2 matrix of strings</para>
+                    <para>
+                        the first column lists the modules tested by <function>bench_run</function>, the second column lists the names of the benchmarks
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>elapsed_time</term>
+                <listitem>
+                    <para>a vector of doubles</para>
+                    <para>the execution time for each benchmark</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nb_iterations</term>
+                <listitem>
+                    <para>a vector of doubles of size N</para>
+                    <para>the number of iterations of respective test</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -59,50 +115,67 @@
     <refsection>
         <title>説明</title>
         <para>
-            ベンチマークテストライブラリの .tst ファイルを探して実行し,実行時間に関する
-            レポートを表示します.
-            .tst ファイルはSCI+"/modules/*/tests/benchmark"ディレクトリで探されます.
+            Performs benchmark tests, measures execution time and produces a report about benchmark tests.
         </para>
         <para>
-            テスト処理を制御しやすくするために,.tstファイルに特殊なタグを挿入できます.
-            これらのタグはScilabコメントとして記入します.
+            Searches for .tst files in benchmark test library or input parameter path under <literal>tests/benchmark</literal> subdirectory,
+            executes them 10000 times and displays a report about execution time.
         </para>
-        <para>利用可能なタグを以下に示します :</para>
+        <para>
+            Special tags may be inserted in the .tst file, which help to
+            control the processing of the corresponding test. These tags
+            are expected to be found in Scilab comments.
+        </para>
+        <para>These are the available tags :</para>
         <itemizedlist>
             <listitem>
                 <para>
-                    &lt;-- BENCH NB RUN : 10 --&gt;
-                    このテストは10回反復実行されます.
+                    <literal>&lt;-- BENCH NB RUN : 10 --&gt;</literal>
+                </para>
+                <para>
+                    By default, this test will be repeated 10 times, unless the "nb_run=###"<literal>bench_run(..)</literal> option is used. The value given for the flag can be set to any integer value.
                 </para>
             </listitem>
             <listitem>
+                <programlisting role="no-scilab-exec"><![CDATA[
+//    <-- BENCH START -->
+[code to be executed]
+//    <-- BENCH END -->
+]]></programlisting>
                 <para>
-                    &lt;-- BENCH START --&gt;
-                    &lt;-- BENCH END --&gt;
-                    ベンチマークの関心がある部分をこれらのタグで括りますThe 
+                    Code between these tags will be repeated. Code before will be executed before the repetition, code after will be executed after the repetition.
+                    If these are not present, the entire code will be repeated.
                 </para>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection>
-        <title>例</title>
-        <para>bench_runを実行例をいくつか示します</para>
+        <title>Examples</title>
+        <para>Some simple examples of invocation of bench_run</para>
         <programlisting role="example"><![CDATA[
-// 全てのテストを実行
-bench_run();
-bench_run([]);
-bench_run([],[]);
-// 1つまたは複数のモジュールをテスト
+// Launch all tests
+// This may take some time...
+// bench_run();
+// bench_run([]);
+// bench_run([],[]);
+
+// Test one or several module
 bench_run('core');
 bench_run('core',[]);
 bench_run(['core','string']);
-// 指定したモジュールの1つまたは複数のテストを実行
+
+// Launch one or several test in a specified module
 bench_run('core',['trycatch','opcode']);
-// オプションを指定
+
+// With options
 bench_run([],[],'list');
 bench_run([],[],'help');
-bench_run([],[],'nb_run=2000');
- ]]></programlisting>
+bench_run("string", [], 'nb_run=100');
+// results in an output file in the current directory
+bench_run("string", [], 'nb_run=100', 'my_output_file.xml');
+// results in an output directory, TMPDIR/benchmarks is the default
+bench_run("string", [], 'nb_run=100', TMPDIR);
+]]></programlisting>
         <para>ベンチマークファイルの例. このファイルはファイル
             SCI/modules/linear_algebra/tests/benchmarks/bench_chol.tstに対応します.
         </para>
@@ -113,25 +186,30 @@ bench_run([],[],'nb_run=2000');
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 //==============================================================================
 // Benchmark for chol function
 //==============================================================================
+
 // <-- BENCH NB RUN : 10 -->
-stacksize(30000000);
+
 a = 0;
 b = 0;
 a = rand(900, 900, 'n');
 a = a'*a;
+
 // <-- BENCH START -->
 b = chol(a);
 // <-- BENCH END -->
- ]]></programlisting>
+]]></programlisting>
         <para>テストの結果</para>
-        <programlisting role="example"><![CDATA[
+        <screen><![CDATA[
 -->bench_run('linear_algebra','bench_chol')
-           For Loop (as reference) ...........................      143.00 ms [ 1000000 x]
-  001/001 - [linear_algebra] bench_chol ......................      130.60 ms [      10 x]
- ]]></programlisting>
+
+For Loop (as reference) ...........................      33.20 ms [ 1000000 x]
+
+001/001 - [linear_algebra] bench_chol ......................     1233.93 ms [      10 x]
+ ]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -140,5 +218,30 @@ b = chol(a);
                 <link linkend="test_run">test_run</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <literal>bench_run()</literal> can now return its results through the new
+                            <literal>modutests_names</literal>, <literal>elapsed_time</literal>
+                            and <literal>nb_iterations</literal> output parameters.
+                        </listitem>
+                        <listitem>
+                            Exportation of results in XML is now possible
+                        </listitem>
+                        <listitem>
+                            Global configuration settings mode(),
+                            format(), ieee(), warning() and funcprot()
+                            are now protected against tests.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

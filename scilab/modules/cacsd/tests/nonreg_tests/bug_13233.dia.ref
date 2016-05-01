@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Charlotte HECQUET
 //
@@ -12,7 +13,7 @@
 // <-- Short Description -->
 // There is an offset in the result of a step response for transfer function
 // (a*s^2+b*s+c)/(d*s^2+e*s+f)
-s=poly(0,'s'); 
+s=poly(0,'s');
 Uo=6;
 Da=0.5;
 Go=1/15;

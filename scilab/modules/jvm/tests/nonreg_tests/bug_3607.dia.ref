@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO - Allan CORNET
@@ -11,9 +12,6 @@
 //
 // <-- Short Description -->
 // wrong value <option value="-Xmx1024m"/>
-res = mgetl(SCI+'/etc/jvm_options.xml');
-line = grep(res,'<option value=""-Xmx');
-assert_checkequal(stripblanks(res(line)) ,'<option value=""-Xmx256m""/>');
-stacksize('max');
-memstack = stacksize();
-if memstack < 1e8 then bugmes();quit;end
+res = mgetl(SCI+"/etc/jvm_options.xml");
+line = grep(res,"<option value=""-Xmx");
+assert_checkequal(stripblanks(res(line)) ,"<option value=""-Xmx256m""/>");

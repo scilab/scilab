@@ -20,3 +20,10 @@ end
 mclose(fd);
 
 if i <> 1479 then pause,end
+
+ierr = execstr('meof(0)','errcatch');
+if ierr <> 999 then pause,end
+ierr = execstr('meof(5)','errcatch');
+if ierr <> 999 then pause,end
+ierr = execstr('meof(6)','errcatch');
+if ierr <> 999 then pause,end

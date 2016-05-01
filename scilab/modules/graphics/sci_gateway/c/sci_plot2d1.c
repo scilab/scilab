@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,7 +18,7 @@
 /* file: sci_plot2d1.c                                                    */
 /* desc : interface for plot2d1, plot2d2, plot2d3 and plot2d4 routines    */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "GetCommandArg.h"
@@ -23,30 +26,30 @@
 #include "sciCall.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_plot2d1_1 (char *fname, unsigned long fname_len)
+int sci_plot2d1_1 (char *fname, void *pvApiCtx)
 {
-    return sci_plot2d1_G("plot2d1", 1, fname_len); /* NG */
+    return sci_plot2d1_G("plot2d1", 1, pvApiCtx); /* NG */
 }
 /*--------------------------------------------------------------------------*/
-int sci_plot2d1_2 (char *fname, unsigned long fname_len)
+int sci_plot2d1_2 (char *fname, void *pvApiCtx)
 {
-    return sci_plot2d1_G("plot2d2", 2, fname_len); /* NG */
+    return sci_plot2d1_G("plot2d2", 2, pvApiCtx); /* NG */
 }
 /*--------------------------------------------------------------------------*/
-int sci_plot2d1_3 (char *fname, unsigned long fname_len)
+int sci_plot2d1_3 (char *fname, void *pvApiCtx)
 {
-    return sci_plot2d1_G("plot2d3", 3, fname_len); /* NG */
+    return sci_plot2d1_G("plot2d3", 3, pvApiCtx); /* NG */
 }
 /*--------------------------------------------------------------------------*/
-int sci_plot2d1_4 (char *fname, unsigned long fname_len)
+int sci_plot2d1_4 (char *fname, void *pvApiCtx)
 {
-    return sci_plot2d1_G("plot2d4", 4, fname_len); /* NG */
+    return sci_plot2d1_G("plot2d4", 4, pvApiCtx); /* NG */
 }
 /*--------------------------------------------------------------------------*/
-int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
+int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
 {
     SciErr sciErr;
     int* piAddrl1 = NULL;
@@ -87,7 +90,7 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
     if (nbInputArgument(pvApiCtx) <= 0)
     {
         /* lauch the default routines depending on the name of the calling function */
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
     CheckInputArgument(pvApiCtx, 1, 9); /* to allow plot2dxx(y) */
@@ -110,7 +113,7 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
     /* added to support plot2dxx([logflags],y) */
     if (nbInputArgument(pvApiCtx) == 1 + iskip)
     {
-        if (FirstOpt() <= nbInputArgument(pvApiCtx))
+        if (FirstOpt(pvApiCtx) <= nbInputArgument(pvApiCtx))
         {
             Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 3 + iskip);
             return (0);
@@ -161,7 +164,7 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) >= 2 + iskip)
     {
-        if (FirstOpt() < 3 + iskip)
+        if (FirstOpt(pvApiCtx) < 3 + iskip)
         {
             Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
                      fname, 1, 3 + iskip);

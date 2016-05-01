@@ -41,7 +41,7 @@ ilib_verbose(0);
 cd TMPDIR;
 TEST_NAME = "optim_external_fortran";
 mkdir(TEST_NAME);
-cd(TEST_NAME);   
+cd(TEST_NAME);
 mputl(F,  TMPDIR + '/' + TEST_NAME + '/rosenf.f');
 // compile the Fortran code
 l = ilib_for_link('rosenf', 'rosenf.f', [], 'f');

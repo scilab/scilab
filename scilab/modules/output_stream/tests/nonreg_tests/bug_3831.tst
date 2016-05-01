@@ -14,19 +14,24 @@
 //
 // <-- Short Description -->
 // Display bug of ascii() in SciLab 5.x
+// In scilab 6, ascii(0) is equal to '\0' (end of string)
 
 refASCIICODE = [84  114  97  110  115  109  105  115  115  105  111  110];
-refSTRING = 'Transmission';
+refSTRING = "Transmission";
 res = ascii(refASCIICODE);
 if length(res) <> length(refSTRING) then pause,end
 if refSTRING <> res then pause,end
 
-refASCIICODE2 = [84  114  97  110  115  0  105  115  115  105  111  110];
-refSTRING2 = 'Trans' + ascii(0) + 'ission';
+refASCIICODE2 = [84  114  97  110  115  105  115  115  105  111  110];
+refSTRING2 = "Trans" + ascii(0) + "ission";
 // no ; to display result
 res = ascii(refASCIICODE2)
 if length(res) <> length(refSTRING2) then pause,end
 if refSTRING2 <> res then pause,end
 
-
-
+refASCIICODE3 = [84  114  97  110  115  0  105  115  115  105  111  110];
+refSTRING3 = "Trans" + ascii(0);
+// no ; to display result
+res = ascii(refASCIICODE3)
+if length(res) <> length(refSTRING3) then pause,end
+if refSTRING3 <> res then pause,end

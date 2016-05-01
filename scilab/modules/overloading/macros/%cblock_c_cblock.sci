@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 function a=%cblock_c_cblock(a,b)
     na=length(a)
     if na==1 then a=b,return,end
@@ -15,13 +18,13 @@ function a=%cblock_c_cblock(a,b)
 
     if size(v1,1)<>size(v2,1) then error(5),end
     if type(v1)==type(v2) then
-        setfield(na,[v1 v2],a)
+        a=setfield(na,[v1 v2],a)
     else
-        setfield(na+1,v2,a);na=na+1
+        a=setfield(na+1,v2,a);na=na+1
     end
 
     for k=3:length(b)
-        setfield(na+1,getfield(k,b),a)
+        a=setfield(na+1,getfield(k,b),a)
         na=na+1
     end
 endfunction

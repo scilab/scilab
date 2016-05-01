@@ -5,7 +5,7 @@
         <refpurpose>Open a message box.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [btn] = messagebox(msg)
             [btn] = messagebox(msg, msgboxtitle)

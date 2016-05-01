@@ -2,12 +2,16 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -22,6 +26,7 @@ import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -68,17 +73,19 @@ public class RotateAction extends VertexSelectionDependantAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
+            Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
 
-            Object[] allCells = ((XcosDiagram) getGraph(null))
-                                .getSelectionCells();
+            try {
+                getGraph(null).getModel().beginUpdate();
 
-            getGraph(null).getModel().beginUpdate();
-            for (int i = 0; i < allCells.length; ++i) {
-                if (allCells[i] instanceof BasicBlock) {
-                    ((BasicBlock) allCells[i]).toggleAntiClockwiseRotation();
+                for (int i = 0; i < allCells.length; ++i) {
+                    if (allCells[i] instanceof BasicBlock) {
+                        BlockPositioning.rotateAllPorts((XcosDiagram) getGraph(null), (BasicBlock) allCells[i]);
+                    }
                 }
+            } finally {
+                getGraph(null).getModel().endUpdate();
             }
-            getGraph(null).getModel().endUpdate();
         }
     }
 }

@@ -3,7 +3,7 @@ C****************************************************
 C     ****  RDMPS1 ... READ THE  MPS FILE  ****
 C****************************************************
       SUBROUTINE rdmps1(RCODE,buffer,MAXM,MAXN,MAXNZA,
-     X M,N,NZA,IROBJ,BIG,DLOBND,DUPBND,  
+     X M,N,NZA,IROBJ,BIG,DLOBND,DUPBND,
      X NAMEC,NAMEB,NAMRAN,NAMBND,NAMMPS,inmps,
      X RWNAME,CLNAME,STAVAR,RWSTAT,
      X HDRWCD,LNKRW,HDCLCD,LNKCL,
@@ -98,16 +98,16 @@ C *** NOTES
 C
 C
 C *** REFERENCES:
-C     Altman A., Gondzio J. (1993). An efficient implementation of 
-C        a higher order primal-dual interior point method for large 
-C        sparse linear programs, Archives of Control Sciences 2, 
-C        No 1-2, pp. 23-40. 
+C     Altman A., Gondzio J. (1993). An efficient implementation of
+C        a higher order primal-dual interior point method for large
+C        sparse linear programs, Archives of Control Sciences 2,
+C        No 1-2, pp. 23-40.
 C     Altman A., Gondzio J. (1993). HOPDM - A higher order primal-
 C        dual method for large scale linear programmming, European
 C        Journal of Operational Research 66 (1993) pp 158-160.
-C     Gondzio J., Tachat D. (1994). The design and application of 
-C        IPMLO - a FORTRAN library for linear optimization with 
-C        interior point methods, RAIRO Recherche Operationnelle 28, 
+C     Gondzio J., Tachat D. (1994). The design and application of
+C        IPMLO - a FORTRAN library for linear optimization with
+C        interior point methods, RAIRO Recherche Operationnelle 28,
 C        No 1, pp. 37-56.
 C     Murtagh B. (1981). Advanced Linear Programming, McGrew-Hill,
 C        New York, 1981.
@@ -247,7 +247,7 @@ C     Read COLUMNS section.
 
       INDEX=1
 C
-C     ENCODE all row names and create linked lists of rows 
+C     ENCODE all row names and create linked lists of rows
 C     with the same codes.
       IMPSOK=1
       DO 210 I=1,M
@@ -411,7 +411,7 @@ C
       READ(INMPS,1000,END=9000) RDLINE
       IF(RDLINE(1:1).EQ.'*'.OR. LNBLNK(RDLINE).EQ.0) GO TO 550
 C
-C     ENCODE all column names and create linked lists of columns 
+C     ENCODE all column names and create linked lists of columns
 C     with the same codes.
 C     DO 560 J=1,N
 C        LNKCL(J)=HDCLCD(KCODE)
@@ -759,7 +759,6 @@ C
      X NAMEB,RRHS,RWNAME,SECT,INMPS,IOLOG)
 C
 C
-      include 'stack.h'
 C
 C *** PARAMETERS
       INTEGER*4 RCODE,MAXM,M,LINE,INMPS,IOLOG
@@ -819,16 +818,16 @@ C
 C
 C
 C *** REFERENCES:
-C     Altman A., Gondzio J. (1993). An efficient implementation of 
-C        a higher order primal-dual interior point method for large 
-C        sparse linear programs, Archives of Control Sciences 2, 
-C        No 1-2, pp. 23-40. 
+C     Altman A., Gondzio J. (1993). An efficient implementation of
+C        a higher order primal-dual interior point method for large
+C        sparse linear programs, Archives of Control Sciences 2,
+C        No 1-2, pp. 23-40.
 C     Altman A., Gondzio J. (1993). HOPDM - A higher order primal-
 C        dual method for large scale linear programmming, European
 C        Journal of Operational Research 66 (1993) pp 158-160.
-C     Gondzio J., Tachat D. (1994). The design and application of 
-C        IPMLO - a FORTRAN library for linear optimization with 
-C        interior point methods, RAIRO Recherche Operationnelle 28, 
+C     Gondzio J., Tachat D. (1994). The design and application of
+C        IPMLO - a FORTRAN library for linear optimization with
+C        interior point methods, RAIRO Recherche Operationnelle 28,
 C        No 1, pp. 37-56.
 C
 C
@@ -937,7 +936,7 @@ C
 C *** PARAMETERS DESCRIPTION
 C     NAME    8-character name (row or column name).
 C     KCODE   Integer code associated to the name.
-C     M       The number of rows (or columns) in matrix A. 
+C     M       The number of rows (or columns) in matrix A.
 C     IOLOG   Output unit number where log messages are to be written.
 C
 C *** HISTORY:

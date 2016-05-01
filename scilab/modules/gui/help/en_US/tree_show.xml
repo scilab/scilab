@@ -5,7 +5,7 @@
         <refpurpose>Display a tree view of a list</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tree_show(x)
         </synopsis>

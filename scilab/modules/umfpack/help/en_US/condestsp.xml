@@ -5,7 +5,7 @@
         <refpurpose>estimate the condition number of a sparse matrix  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[K1] = condestsp(A, LUp, t)
             [K1] = condestsp(A, LUp)
             [K1] = condestsp(A, t)
@@ -77,7 +77,7 @@ K1 = condestsp(A)
 K1e = norm(A,1)*norm(inv(full(A)),1)
 
 // another example
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/arc130.rua");
 K1 = condestsp(A)
 // this example is not so big so that we can do the verif
 K1e = norm(A,1)*norm(inv(full(A)),1)

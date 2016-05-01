@@ -5,7 +5,7 @@
         <refpurpose>Creation of an uitree </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>myTree = uiCreateTree(myParentTree, mySubTree1, mySubTree2,...,mySubTreeN)
         </synopsis>
     </refsynopsisdiv>

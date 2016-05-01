@@ -5,7 +5,7 @@
         <refpurpose>Discrete-time analytic signal computation of a real signal  using Hilbert transform </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x=hilbert(xr)</synopsis>
     </refsynopsisdiv>
     <refsection>

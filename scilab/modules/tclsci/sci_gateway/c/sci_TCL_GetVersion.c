@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,13 +17,15 @@
 #include "gw_tclsci.h"
 #include "Scierror.h"
 #include "localization.h"
-#if _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_TCL_GetVersion(char *fname, unsigned long l)
+int sci_TCL_GetVersion(char *fname, void* pvApiCtx)
 {
-    static int l1, n1, m1;
+    SciErr sciErr;
+
+    int* piAddrl1 = NULL;
+    static int n1, m1;
     int major = 0;
     int minor = 0;
     int patchLevel = 0;
@@ -29,12 +34,12 @@ int sci_TCL_GetVersion(char *fname, unsigned long l)
     char VersionString[256];
     char ReleaseType[256];
 
-    CheckRhs(0, 1);
-    CheckLhs(1, 1);
+    CheckInputArgument(pvApiCtx, 0, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
     Tcl_GetVersion(&major, &minor, &patchLevel, &type);
 
-    if (Rhs == 0)
+    if (nbInputArgument(pvApiCtx) == 0)
     {
         switch (type)
         {
@@ -53,27 +58,41 @@ int sci_TCL_GetVersion(char *fname, unsigned long l)
         }
 
         sprintf(VersionString, "TCL/TK %d.%d.%d %s", major, minor, patchLevel, ReleaseType);
-        output = strdup(VersionString);
-        n1 = 1;
-        m1 = (int)strlen(output);
-        CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &m1, &n1, &output);
+        output = os_strdup(VersionString);
+        if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, output))
+        {
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
+
         if (output)
         {
             FREE(output);
             output = NULL;
         }
 
-        LhsVar(1) = Rhs + 1;
-        PutLhsVar();
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+        ReturnArguments(pvApiCtx);
     }
     else
     {
-        if (GetType(1) == sci_strings)
+        if (checkInputArgumentType(pvApiCtx, 1, sci_strings))
         {
             char *Param = NULL;
 
-            GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
-            Param = cstk(l1);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 1.
+            if (getAllocatedSingleString(pvApiCtx, piAddrl1, &Param))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                return 1;
+            }
 
             if (strcmp(Param, "numbers") == 0)
             {
@@ -87,20 +106,28 @@ int sci_TCL_GetVersion(char *fname, unsigned long l)
 
                 m1 = 1;
                 n1 = 4;
-                CreateVarFromPtr(Rhs + 1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 , &VERSIONMATRIX);
+                sciErr = createMatrixOfDoubleAsInteger(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m1, n1 , VERSIONMATRIX);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    return 1;
+                }
+
                 if (VERSIONMATRIX)
                 {
                     FREE(VERSIONMATRIX);
                     VERSIONMATRIX = NULL;
                 }
-                LhsVar(1) = Rhs + 1;
-                PutLhsVar();
-
+                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                ReturnArguments(pvApiCtx);
             }
             else
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 1, "numbers");
             }
+
+            freeAllocatedSingleString(Param);
         }
         else
         {

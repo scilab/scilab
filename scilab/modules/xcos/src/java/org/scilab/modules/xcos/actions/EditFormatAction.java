@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -38,7 +42,6 @@ import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
-import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -285,11 +288,7 @@ public final class EditFormatAction extends DefaultAction {
         final mxGraphModel model = (mxGraphModel) graph.getModel();
 
         final mxCell cell = dialog.getCell();
-        final StyleMap cellStyle = new StyleMap("");
-        if (cell instanceof BasicBlock) {
-            cellStyle.put(((BasicBlock) cell).getInterfaceFunctionName(), null);
-        }
-        cellStyle.putAll(cell.getStyle());
+        final StyleMap cellStyle = new StyleMap(cell.getStyle());
 
         final mxCell identifier;
         final StyleMap identifierStyle;
@@ -377,9 +376,6 @@ public final class EditFormatAction extends DefaultAction {
         }
 
         cellStyle.clear();
-        if (cell instanceof BasicBlock) {
-            cellStyle.put(((BasicBlock) cell).getInterfaceFunctionName(), null);
-        }
 
         dialog.setValues(DEFAULT_BORDERCOLOR, DEFAULT_FILLCOLOR, mxConstants.DEFAULT_FONTFAMILY, mxConstants.DEFAULT_FONTSIZE, 0, DEFAULT_BORDERCOLOR, "", null);
 

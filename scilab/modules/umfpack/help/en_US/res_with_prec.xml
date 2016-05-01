@@ -5,7 +5,7 @@
         <refpurpose>computes the residual r = Ax-b with precision  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[r,norm2_r] = res_with_prec(A, x, b)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -60,7 +60,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 C_ptr = taucs_chfact(A);
 b = rand(size(A,1),1);
 x0 = taucs_chsolve(C_ptr, b);

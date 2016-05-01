@@ -15,12 +15,12 @@
 // <-- Short Description -->
 // libraryinfo did not check size of input argument.
 //
-if execstr("macros = libraryinfo()", "errcatch") <> 77 then bugmes();quit;end
+if execstr("macros = libraryinfo()", "errcatch") <> 999 then bugmes();quit;end
 if lasterror() <> msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "libraryinfo", 1) then bugmes();quit;end
 if execstr("macros = libraryinfo([""functionslib"", ""corelib""])", "errcatch") <> 999 then bugmes();quit;end
-if lasterror() <> msprintf(_("%s: Wrong size for input argument #%d: String expected.\n"), "libraryinfo", 1) then bugmes();quit;end
-macros = libraryinfo('functionslib');
+if lasterror() <> msprintf(_("%s: Wrong size for input argument #%d: A String expected.\n"), "libraryinfo", 1) then bugmes();quit;end
+macros = libraryinfo("functionslib");
 if size(macros) == [] then bugmes();quit;end
-[macroslist, pathmacros] = libraryinfo('functionslib');
+[macroslist, pathmacros] = libraryinfo("functionslib");
 if size(macros) == [] then bugmes();quit;end
 if ~isdir(pathmacros) then bugmes();quit;end

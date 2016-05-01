@@ -5,7 +5,7 @@
         <refpurpose>Chebyshev analog filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[zeros,poles,gain]=zpch2(n,A,omegar)</synopsis>
     </refsynopsisdiv>
     <refsection>

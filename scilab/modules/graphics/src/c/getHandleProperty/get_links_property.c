@@ -4,11 +4,14 @@
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,19 +26,19 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "HandleManagement.h"
 
 /*------------------------------------------------------------------------*/
-int get_links_property(void* _pvCtx, int iObjUID)
+void* get_links_property(void* _pvCtx, int iObjUID)
 {
     int i = 0;
     long *handles = NULL;
     int* links = NULL;
-    int status = 0;
+    void* status = 0;
     int iLinksCount = 0;
     int* piLinksCount = &iLinksCount;
 
@@ -44,19 +47,19 @@ int get_links_property(void* _pvCtx, int iObjUID)
     if (piLinksCount == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "links");
-        return -1;
+        return NULL;
     }
 
     if (iLinksCount == 0)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
 
     handles = (long *)MALLOC(iLinksCount * sizeof(long));
     if (handles == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "get_links_property");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(iObjUID, __GO_LINKS__, jni_int_vector, (void **) &links);
@@ -65,7 +68,7 @@ int get_links_property(void* _pvCtx, int iObjUID)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "links");
         FREE(handles);
-        return -1;
+        return NULL;
     }
 
     for (i = 0; i < iLinksCount; i++)
@@ -73,8 +76,7 @@ int get_links_property(void* _pvCtx, int iObjUID)
         handles[i] = getHandle(links[i]);
     }
 
-    status = sciReturnRowHandleVector(_pvCtx, handles, iLinksCount);
-
+    status = sciReturnRowHandleVector(handles, iLinksCount);
     FREE(handles);
 
     return status;

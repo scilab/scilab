@@ -24,6 +24,12 @@
             新しい演算子を定義する際に使用可能です(
 	    (<link linkend="overloading">オーバーロード</link>参照).
         </para>
+        <para>
+            <note>
+                Remark that <code>/*</code> start to comment a block of code and
+                <code>*/</code> end to comment this block.
+            </note>
+        </para>
     </refsection>
     <refsection>
         <title>例</title>
@@ -76,6 +82,9 @@ W' * W
             </member>
             <member>
                 <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="comments">comments</link>
             </member>
         </simplelist>
     </refsection>

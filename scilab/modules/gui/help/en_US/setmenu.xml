@@ -5,7 +5,7 @@
         <refpurpose>interactive button or menu activation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>setmenu(button [,nsub])
             setmenu(gwin,button [,nsub])
         </synopsis>

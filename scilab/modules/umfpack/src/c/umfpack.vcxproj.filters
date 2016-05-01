@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{4688766d-d464-4366-a904-83777ad38802}</UniqueIdentifier>
+      <UniqueIdentifier>{830a49f9-2a68-4279-9fe0-ce2112d7126c}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{d7abd8e4-a6ff-4662-ad5d-6ec271d08bd1}</UniqueIdentifier>
+      <UniqueIdentifier>{435490f8-f9a7-42c4-a841-aa169ee8457f}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{762f39c2-b65d-4de5-89fe-3ba56b76818e}</UniqueIdentifier>
+      <UniqueIdentifier>{b988757e-bc8c-425d-b021-848c1a84dffe}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{ac1f7959-0762-4853-a208-b267419ad8cf}</UniqueIdentifier>
+      <UniqueIdentifier>{49e2dd6f-bc95-4cec-9930-d99c5a3d9ee1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{451e0648-da6e-4fc9-bcac-0f97f2e86053}</UniqueIdentifier>
+      <UniqueIdentifier>{7077805e-7e4f-4c35-b1a0-5b438faf16a9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{5fef143b-567f-42bb-8085-2e7bae55d88a}</UniqueIdentifier>
+      <UniqueIdentifier>{3507018f-59a2-439a-bb24-2e84baf7c6b7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -27,9 +27,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DllMainUmfpack.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_umfpack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_res_with_prec.c">
@@ -96,9 +93,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Sparse_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

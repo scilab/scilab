@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="comments">
     <refnamediv>
         <refname>comments</refname>
-        <refpurpose>(//) comments</refpurpose>
+        <refpurpose>(// or /*...*/) comments</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -12,9 +12,14 @@
             as well as all the following characters up to the end of the lines
             are not interpreted.
         </para>
+        <para>
+            Another way to comment a block of code is to use /* at the beginning
+            and */ at the end. It is more useful than // which must be positioned at the
+            beginning of each line to comment.
+        </para>
         <para>Inside a function, the first comment lines, up to the first
             instruction or an empty line may be used to provide the default
-            contents for the function help. 
+            contents for the function help.
         </para>
     </refsection>
     <refsection>
@@ -23,6 +28,10 @@
 g=9.81// the gravity
 
 text='a//b'
+
+/* As this comment is quite long to be on many lines,
+the symbols slash and star to start the comment
+and star and slash to end the comment are used */
 
 function y=myfunction(x)
   // myfunction computes y=x^2+1

@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="call_scilab" xml:lang="ja">
@@ -26,7 +29,7 @@
             可能性を提供します.
         </para>
         <para>
-            このモジュールにより, 
+            このモジュールにより,
             他のコード/アプリケーションからScilabの機能をインターフェイスする
             ために,
             または,他の言語からScilabの機能をインターフェイスできるようにする
@@ -46,16 +49,16 @@
             注意: <link linkend="javasci">javasci</link> モジュールは
             call_scilabに基づいています.
         </para>
-        <para>注意: 
+        <para>注意:
             古いAPI (stackX.h) はScilab 6.0以降では利用できません.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="c"><![CDATA[ 
+        <programlisting role="c"><![CDATA[
 // 簡単な call_scilab の例
 #include <stdio.h> /* stderr */
-#include "stack-c.h" /* Scilabメモリにアクセスする関数を提供 */
+#include "api_scilab.h" /* Scilabメモリにアクセスする関数を提供 */
 #include "call_scilab.h" /* Scilabエンジンをコールする関数を提供 */
 // Filename: simple_call_scilab.c
 int main(void)
@@ -72,8 +75,8 @@ int main(void)
   }
 /****** 実際のScilabタスク *******/
  SendScilabJob("myMatrix=['sample','for the help']");
- SendScilabJob("disp(myMatrix);"); // !sample  for the help  !を表示します 
- SendScilabJob("disp([2,3]+[-44,39]);"); // - 42.    42.  を表示します   
+ SendScilabJob("disp(myMatrix);"); // !sample  for the help  !を表示します
+ SendScilabJob("disp([2,3]+[-44,39]);"); // - 42.    42.  を表示します
 /****** 終了 **********/
  if ( TerminateScilab(NULL) == FALSE ) {
   fprintf(stderr,"Error while calling TerminateScilab\n");
@@ -112,7 +115,7 @@ int main(void)
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="api_scilab">api Scilab</link>
+                <link linkend="api_scilab_legacy">api Scilab</link>
             </member>
             <member>
                 <link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link>

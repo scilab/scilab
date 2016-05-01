@@ -3,11 +3,14 @@
  * Copyright (C) 2012 - Scilab Enterprises - Vincent COUVERT
  * Set the tooltip string property of an uicontrol
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -35,7 +38,7 @@ int SetUicontrolTooltipString(void* _pvCtx, int iObjUID, void* _pvData, int valu
     // Label must be a character string
     if (valueType != sci_strings)
     {
-        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string or a vector of strings expected.\n")), "TooltipString");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: string or vector of strings expected.\n")), "TooltipString");
         return SET_PROPERTY_ERROR;
     }
 
@@ -44,7 +47,7 @@ int SetUicontrolTooltipString(void* _pvCtx, int iObjUID, void* _pvData, int valu
     // Value can be string or a string vector
     if (nbCol > 1 && nbRow > 1)
     {
-        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a vector of strings expected.\n")), "TooltipString");
+        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string or vector of strings expected.\n")), "TooltipString");
         return SET_PROPERTY_ERROR;
     }
 

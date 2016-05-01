@@ -22,8 +22,13 @@
 function [x,y,typ]=vanne_inputs(o)
     xf=60
     yf=40
-    [orig,sz,orient]=(o.graphics.orig,o.graphics.sz,o.graphics.flip)
-    //[orig,sz,orient]=o(2)(1:3);
+    [orig,sz]=(o.graphics.orig,o.graphics.sz)
+    orient=%t;
+    style=graphics.style;
+    subStr=strstr(style,"flip=");
+    if subStr<>"" then
+        orient=%f;
+    end
     inp=size(o.model.in,1);clkinp=size(o.model.evtin,1);
 
     if orient then

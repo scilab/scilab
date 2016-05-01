@@ -5,7 +5,7 @@
         <refpurpose>cascade realization of filter from coefficients</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[cels]=casc(x,z)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -42,7 +42,6 @@ assert_checktrue(importXcosDiagram("SCI/modules/xcos/demos/ModelicaBlocks/Hydrau
 [cpr, ok] = xcos_compile(scs_m);
 --------------------------------------------\
  Main Modelica : TMPDIR/Hydraulics_im.mo
-
  Flat Modelica : TMPDIR/Hydraulics_imf.mo
  Simulation C code :TMPDIR/Hydraulics_im.c
 WARNING: Diagram contains implicit blocks, compiling for implicit Solver.

@@ -3,11 +3,14 @@
  * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -17,10 +20,10 @@
 #include "Scierror.h"
 #include "msgs.h"
 #include "zbeshv.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_besselh(char *fname, unsigned long fname_len)
+int sci_besselh(char *fname, void* pvApiCtx)
 {
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     int rhs1 = 0, nw = 0;
@@ -69,7 +72,7 @@ int sci_besselh(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        if (m1*n1 != 1)
+        if (m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 4);
             return 1;
@@ -98,7 +101,7 @@ int sci_besselh(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        if (m1*n1 != 1)
+        if (m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
             return 1;
@@ -123,7 +126,7 @@ int sci_besselh(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    if (m1*n1 == 0)
+    if (m1 * n1 == 0)
     {
         /*besselh([],x) */
         AssignOutputVariable(pvApiCtx, 1) = 1;
@@ -147,7 +150,7 @@ int sci_besselh(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    if (m2*n2 == 0)
+    if (m2 * n2 == 0)
     {
         /*besselh(alpha,[]) */
         AssignOutputVariable(pvApiCtx, 1) = rhs1;
@@ -177,7 +180,7 @@ int sci_besselh(char *fname, unsigned long fname_len)
 
         zbeshv(pdblXR, pdblXI, &nx, pdbl1, &na, &kode, &K, yr, yi, wr, wi, &ierr);
     }
-    else if (m2*n2 == 1)
+    else if (m2 * n2 == 1)
     {
         /* bessely(matrix,scalar) */
         nx = 1;
@@ -232,16 +235,17 @@ int sci_besselh(char *fname, unsigned long fname_len)
 
     if (ierr == 2)
     {
-        if ( C2F(errgst).ieee == 0)
-        {
-            ierr = 69;
-            SciError(ierr);
-        }
-        else if (C2F(errgst).ieee == 1)
-        {
-            ierr = 63;
-            C2F(msgs)(&ierr, &un);
-        }
+        // FIX ME
+        //        if ( C2F(errgst).ieee == 0)
+        //        {
+        //            ierr = 69;
+        //            SciError(ierr);
+        //        }
+        //        else if (C2F(errgst).ieee == 1)
+        //        {
+        //            ierr = 63;
+        //            C2F(msgs)(&ierr, &un);
+        //        }
     }
     else if (ierr == 3)
     {
@@ -251,16 +255,17 @@ int sci_besselh(char *fname, unsigned long fname_len)
     }
     else if (ierr == 4 || ierr == 5)
     {
-        if ( C2F(errgst).ieee == 0)
-        {
-            ierr = 69;
-            SciError(ierr);
-        }
-        else if ( C2F(errgst).ieee == 1)
-        {
-            ierr = 107;
-            C2F(msgs)(&ierr, &un);
-        }
+        // FIX ME
+        //        if ( C2F(errgst).ieee == 0)
+        //        {
+        //            ierr = 69;
+        //            SciError(ierr);
+        //        }
+        //        else if ( C2F(errgst).ieee == 1)
+        //        {
+        //            ierr = 107;
+        //            C2F(msgs)(&ierr, &un);
+        //        }
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArg + 1;

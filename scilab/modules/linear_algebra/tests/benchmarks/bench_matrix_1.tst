@@ -11,12 +11,10 @@
 
 // <-- BENCH NB RUN : 10 -->
 
-stacksize(30000000);
-
 a = 0;
 b = 0;
 
-a = abs(rand(1500,1500,'n')/10);
+a = abs(rand(1500,1500,"n")/10);
 
 // <-- BENCH START -->
 b = a';

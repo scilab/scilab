@@ -3,28 +3,41 @@
 * Copyright (C) 2007-2008 - INRIA - Allan CORNET
 * Copyright (C) 2011 - DIGITEO - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
 /*------------------------------------------------------------------------*/
 #include <list>
-#include "CommandLine.hxx"
+
+extern "C"
+{
+#include "dynlib_history_manager.h"
+#include "BOOL.h"
+}
+
+#ifdef _MSC_VER
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+#endif
+
 /*------------------------------------------------------------------------*/
 typedef enum
 {
     NO_ERROR_HISTORY_LOADED,
     ERROR_HISTORY_NOT_LOADED,
     HISTORY_TRUNCATED
-} errorLoadHistoryCode;
+}
+errorLoadHistoryCode;
 /*------------------------------------------------------------------------*/
-using namespace std;
-/*------------------------------------------------------------------------*/
-class HistoryFile
+class HISTORY_MANAGER_IMPEXP HistoryFile
 {
 public:
     /**
@@ -38,19 +51,8 @@ public:
     ~HistoryFile();
 
     /**
-    * get filename used by history
-    * @return a string (filenam)
-    */
-    std::string getFilename(void);
-
-    /**
-    * set filename used by history
-    * @param a string (filename)
-    */
-    void setFilename(std::string filename);
-
-    /**
     * set default filename used by history
+    * SCIHOME/history.scilab
     * @return TRUE or FALSE
     */
     BOOL setDefaultFilename(void);
@@ -60,7 +62,19 @@ public:
     * @param a string the filename
     * @return TRUE or FALSE
     */
-    BOOL writeToFile(std::string filename);
+    BOOL writeToFile(std::string _stFilename);
+
+    /**
+    * get filename used by history
+    * @return a string (filenam)
+    */
+    std::string getFilename(void);
+
+    /**
+    * set filename used by history
+    * @param a string (filename)
+    */
+    void setFilename(std::string _stFilename);
 
     /**
     * write history to a file
@@ -74,7 +88,8 @@ public:
     * @param a string the filename
     * @return TRUE or FALSE
     */
-    errorLoadHistoryCode loadFromFile(std::string filename);
+    errorLoadHistoryCode loadFromFile(std::string _stFilename);
+
 
     /**
     * load history from a file
@@ -82,19 +97,6 @@ public:
     * @return TRUE or FALSE
     */
     errorLoadHistoryCode loadFromFile(void);
-
-    /**
-    * get loaded history
-    * @return a list of CommandLine
-    */
-    list<CommandLine> getHistory(void);
-
-    /**
-    * set History to save
-    * @param a list of CommandLine
-    * @return TRUE or FALSE
-    */
-    BOOL setHistory(list<CommandLine> commands);
 
     /**
     * reset HistoryFile Object
@@ -108,14 +110,28 @@ public:
     int getDefaultMaxNbLines(void);
 
     /**
+    * get loaded history
+    * @return a list of CommandLine
+    */
+    std::list<std::string> getHistory(void);
+
+    /**
+    * set History to save
+    * @param a list of CommandLine
+    * @return TRUE or FALSE
+    */
+    BOOL setHistory(std::list<std::string> _lstCommands);
+
+    /**
     *
     */
-    BOOL setDefaultMaxNbLines(int nbLinesMax);
+    BOOL setDefaultMaxNbLines(int _iMaxLines);
 
 protected:
 private:
-    std::string my_history_filename;
-    list<CommandLine> Commands;
-    int MaxLinesToRead;
+
+    int m_iMaxLines;
+    std::string m_stFilename;
+    std::list<std::string> m_Commands;
 };
 /*------------------------------------------------------------------------*/

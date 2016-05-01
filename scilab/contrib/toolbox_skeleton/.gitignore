@@ -31,4 +31,16 @@ src/fortran/fsum.c
 libskeleton_c.c
 libskeleton_cpp.c
 libskeleton_fortran.c
+libskeleton_c.cpp
+libskeleton_c.h
+libskeleton_c.hxx
+libskeleton_cpp.cpp
+libskeleton_cpp.h
+libskeleton_cpp.hxx
+libskeleton_fortran.cpp
+libskeleton_fortran.h
+libskeleton_fortran.hxx
 *.so
+locales/en_US/
+locales/fr_FR/
+

@@ -10,7 +10,7 @@
         <refpurpose>Recv data from a node</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>value = MPI_Recv(rank,tag)</synopsis>
     </refsynopsisdiv>
     <refsection>

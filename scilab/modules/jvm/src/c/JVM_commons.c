@@ -4,11 +4,14 @@
  * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -19,7 +22,7 @@
 #include "localization.h"
 #include "getshortpathname.h"
 #include "BOOL.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static DynLibHandle hLibJVM = NULL;
@@ -142,19 +145,19 @@ char *getJniErrorFromStatusCode(long status)
             return _("JNI version error");
             break;
 #ifdef JNI_ENOMEM
-            /* ifdef because not defined with some version of gcj */
+        /* ifdef because not defined with some version of gcj */
         case JNI_ENOMEM:
             return _("JNI: not enough memory");
             break;
 #endif
 #ifdef JNI_EEXIST
-            /* ifdef because not defined with some version of gcj */
+        /* ifdef because not defined with some version of gcj */
         case JNI_EEXIST:
             return _("VM already created");
             break;
 #endif
 #ifdef JNI_EINVAL
-            /* ifdef because not defined with some version of gcj */
+        /* ifdef because not defined with some version of gcj */
         case JNI_EINVAL:
             return _("JNI: invalid arguments");
             break;

@@ -1,37 +1,85 @@
+// Modify this file to provide a description of your toolbox.
+// This file is used by Atoms GUI in scilab, to show information about the toolbox.
+//
+// Note that it will NOT be used when publishing your toolbox on http://atoms.scilab.org;
+// the present file is only used if you distribute your toolbox yourself.
+// On the http://atoms.scilab.org site, only the information you provide there is used.
+//
+//
+// Lines starting with // are comments
+// (you can remove all the comments designed to help you)
+// Lines starting with a space are continuation of the previous field.
+// Empty lines separate fields.
+
+
+// Unique identifier for this toolbox.
+// It must be alphanumeric, start with a letter and contain neither space
+// nor special characters other than underscore or dash.
 Toolbox: toolbox_skeleton
 
+// Human-friendly name for your toolbox
 Title: Toolbox Skeleton
 
+// One-line description for your toolbox
 Summary: Skeleton of a valid atoms package
 
-Version: 1.3
+// Version number, in format 'major.minor.patch', or
+// 'major.minor.patch', where all fields are numbers.
+// If you are just starting your toolbox, you should use '0.1' or '0.1.0'.
+// Use '1.0' or '1.0.0' for a tested, good quality first version.
+Version: 0.1.0
 
-Author: Scilab Enterprises
+// Name(s) of the author(s) of this toolbox.
+// They are usually the original copyright holders
+// (persons or entities)
+Author: Your Name
+  Other Author
 
-Maintainer: Scilab Enterprises
+// Name(s) and email address(es) of the person(s) maintaining this toolbox
+Maintainer: Your Name <name@address.com>
+  Other Maintainer <othername@address.com>
 
+// Categories that this toolbox belongs to.
+// The toolbox will appear in the Scilab Atoms GUI
+// under the categories that you select here.
 Category: biology - Robotic_2
  CatB - SScat2
  biology - modelisation_III
 
+// Name of the institution (company, university, lab...) who has developped the toolbox.
+// If you developped the toolbox as an individual, then just enter "private individual"
 Entity: Scilab Enterprises
 
+// Optional website that has more information about this toolbox
 WebSite: http://www.scilab.org
 
-License: CeCILL
+// License under which the toolbox will be published
+License: GPL 2.0
 
-ScilabVersion: >= 5.4
+// Version of Scilab supported by this toolbox,
+// prefixed by =, >= ...
+ScilabVersion: >= 6.0
 
+// Other toolbox(es) that must be installed in order
+// this toolboxes to work. Atoms will automatically ensure that
+// the dependent toolboxes listed here are installed on the user's
+// Scilab installation.
+// Each toolbox dependency must be in format:
+//    <operator> <toolbox name> <toolbox version|any>
+// where operator can be: ~, >, <, >=, <=
+// If multiple dependencies, put one per line (starting each line with a space)
 Depends: 
 
-Date: 2013-07-18
+// Creation date
+Date: 2016-03-01
 
-Description: files to the new Docbook based format.
- 
- install xmltodocbook
- - linux : unzip xmltodocbook.zip and exec builder.sce
- - windows : click on xmltodocbook-1.0.exe
- load toolbox in scilab
- exec loader.sce
- 
- help xmltodocbook 
+Description: Succinct presentation of this toolbox.
+
+ It should cover:
+ - What problem the toolbox solves,
+ - If it requires any third-party software or hardware,
+   and how to install them,
+ - Some basics about how to use it, such as an example of use.
+ but ensuring that each line starts with a space.
+
+

@@ -2,11 +2,14 @@
 // Copyright (C) 2008 - INRIA
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function txt = help_skeleton(funname, path, language)
 
@@ -17,11 +20,11 @@ function txt = help_skeleton(funname, path, language)
     end
 
     if type(funname) <> 10 then
-        error(999,msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"help_skeleton",1));
+        error(999,msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"help_skeleton",1));
     end
 
     if size(funname, "*") <> 1 then
-        error(999,msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"help_skeleton",1));
+        error(999,msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"help_skeleton",1));
     end
 
     if rhs > 1 then
@@ -88,7 +91,7 @@ function txt = help_skeleton(funname, path, language)
     "    <refpurpose>" + _("Add short description here.") + "</refpurpose>"
     "  </refnamediv>"
     "  <refsynopsisdiv>"
-    "    <title>" + _("Calling Sequence") + "</title>"
+    "    <title>" + _("Syntax") + "</title>"
     "    <synopsis>" + Call + "</synopsis>"
     "  </refsynopsisdiv>"];
 

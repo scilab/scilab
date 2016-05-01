@@ -3,16 +3,19 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Vincent COUVERT (Java implementation)
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #include "gw_gui.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "CallMessageBox.h"
@@ -21,7 +24,7 @@
 #include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_x_choice(char *fname, unsigned long fname_len)
+int sci_x_choice(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -51,7 +54,7 @@ int sci_x_choice(char *fname, unsigned long fname_len)
     CheckOutputArgument(pvApiCtx, 0, 1);
 
     /* READ THE DEFAULT VALUES */
-    if (VarType(1) ==  sci_matrix)
+    if (checkInputArgumentType(pvApiCtx, 1, sci_matrix))
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrdefaultValuesAdr);
         if (sciErr.iErr)
@@ -88,13 +91,15 @@ int sci_x_choice(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            FREE(defaultValuesInt);
             return 1;
         }
 
         // Retrieve a matrix of string at position 2.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrlabelsAdr, &nbRow, &nbCol, &labelsAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
+            FREE(defaultValuesInt);
             return 1;
         }
 
@@ -117,26 +122,29 @@ int sci_x_choice(char *fname, unsigned long fname_len)
     freeAllocatedMatrixOfString(nbRow, nbCol, labelsAdr);
 
     /* READ THE LABELS */
-    if (VarType(3) ==  sci_strings)
+    if (checkInputArgumentType(pvApiCtx, 3, sci_strings))
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrlineLabelsAdr);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            FREE(defaultValuesInt);
             return 1;
         }
 
         // Retrieve a matrix of string at position 3.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrlineLabelsAdr, &nbRowLineLabels, &nbColLineLabels, &lineLabelsAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
+            FREE(defaultValuesInt);
             return 1;
         }
 
         if (nbRow != 1 && nbCol != 1)
         {
-            freeAllocatedMatrixOfString(nbRowLineLabels, nbColLineLabels, lineLabelsAdr);
             Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
+            freeAllocatedMatrixOfString(nbRowLineLabels, nbColLineLabels, lineLabelsAdr);
+            FREE(defaultValuesInt);
             return FALSE;
         }
         setMessageBoxLineLabels(messageBoxID, lineLabelsAdr, nbColLineLabels * nbRowLineLabels);
@@ -145,11 +153,13 @@ int sci_x_choice(char *fname, unsigned long fname_len)
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname, 3);
+        FREE(defaultValuesInt);
         return FALSE;
     }
 
     /* Default selected buttons */
     setMessageBoxDefaultSelectedButtons(messageBoxID, defaultValuesInt, nbRowDefaultValues * nbColDefaultValues);
+    FREE(defaultValuesInt);
 
     /* Display it and wait for a user input */
     messageBoxDisplayAndWait(messageBoxID);
@@ -189,8 +199,6 @@ int sci_x_choice(char *fname, unsigned long fname_len)
 
         /* TO DO : do a delete []  getMessageBoxUserSelectedButtons */
     }
-
-    FREE(defaultValuesInt);
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);

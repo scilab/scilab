@@ -2,11 +2,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //
 //------------------------------------------------------------------------------
 // Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -45,8 +48,8 @@ begin
     ModulesXmlFileLines[i] := '<modules>'; i := i + 1;
 
     ModulesXmlFileLines[i] := '<module name="core" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="double" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="api_scilab" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="ast" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="differential_equations" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="elementary_functions" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="functions" activate="yes"/>'; i := i + 1;
@@ -61,7 +64,6 @@ begin
     ModulesXmlFileLines[i] := '<module name="integer" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="io" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="output_stream" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="intersci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="linear_algebra" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="localization" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="interpolation" activate="yes"/>'; i := i + 1;
@@ -72,7 +74,6 @@ begin
     ModulesXmlFileLines[i] := '<module name="sparse" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="special_functions" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="string" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="symbolic" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="time" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="windows_tools" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="statistics" activate="yes"/>'; i := i + 1;
@@ -95,13 +96,14 @@ begin
     ModulesXmlFileLines[i] := '<module name="xml" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="hdf5" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="fftw" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="slint" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="coverage" activate="yes"/>'; i := i + 1;
 
 #ifndef SCILAB_F2C
-    ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
+    //ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
 #endif
-
-
 
     ModulesXmlFileLines[i] := '<!-- JMV dependencies -->'; i := i + 1;
     if (IsComponentSelected( ExpandConstant('{#COMPN_JVM_MODULE}') )) then

@@ -4,11 +4,14 @@
 * Copyright (C) 2008 - INRIA - Vincent COUVERT
 * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -18,19 +21,17 @@
 #include "gw_gui.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sciprint.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
-#include "IsAScalar.h"
 #include "freeArrayOfString.h"
 #include "CallClipboard.h"
+#include "os_string.h"
 #include "FigureList.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+
 /*--------------------------------------------------------------------------*/
-int sci_ClipBoard(char *fname, unsigned long l)
+int sci_ClipBoard(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -67,7 +68,7 @@ int sci_ClipBoard(char *fname, unsigned long l)
                 // Retrieve a matrix of double at position 1.
                 if (getAllocatedSingleString(pvApiCtx, piAddrl1, &param1))
                 {
-                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                     return 1;
                 }
 
@@ -105,7 +106,7 @@ int sci_ClipBoard(char *fname, unsigned long l)
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
                 return FALSE;
             }
         }
@@ -124,7 +125,7 @@ int sci_ClipBoard(char *fname, unsigned long l)
                 // Retrieve a matrix of double at position 1.
                 if (getAllocatedSingleString(pvApiCtx, piAddrl1, &param1))
                 {
-                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                     return 1;
                 }
 
@@ -157,7 +158,7 @@ int sci_ClipBoard(char *fname, unsigned long l)
                         // Retrieve a matrix of double at position 2.
                         if (getAllocatedSingleString(pvApiCtx, piAddrl1, &param2))
                         {
-                            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                             return 1;
                         }
 
@@ -223,7 +224,7 @@ int sci_ClipBoard(char *fname, unsigned long l)
                         // Retrieve a matrix of string at position 2.
                         if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m2, &n2, &Str))
                         {
-                            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+                            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                             return 1;
                         }
 
@@ -252,7 +253,7 @@ int sci_ClipBoard(char *fname, unsigned long l)
                                 for (j = 0; j < n2; j++)
                                 {
                                     SizeofTextToSendInClipboard = SizeofTextToSendInClipboard + (int)strlen(Str[j * m2 + i]) + (int)strlen("\n") + (int)strlen(" ");
-                                    buffer[i * n2 + j] = strdup(Str[j * m2 + i]);
+                                    buffer[i * n2 + j] = os_strdup(Str[j * m2 + i]);
                                 }
                             }
 
@@ -311,7 +312,7 @@ int sci_ClipBoard(char *fname, unsigned long l)
                 else
                 {
                     freeAllocatedSingleString(param1);
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
                     return FALSE;
                 }
             }
@@ -343,7 +344,7 @@ int sci_ClipBoard(char *fname, unsigned long l)
 
                 num_win = pil1[0];
 
-                if (m1*n1 != 1)
+                if (m1 * n1 != 1)
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
                     return FALSE;
@@ -361,7 +362,7 @@ int sci_ClipBoard(char *fname, unsigned long l)
                     // Retrieve a matrix of double at position 2.
                     if (getAllocatedSingleString(pvApiCtx, piAddrl1, &param2))
                     {
-                        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                         return 1;
                     }
 
@@ -415,13 +416,13 @@ int sci_ClipBoard(char *fname, unsigned long l)
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
                     return FALSE;
                 }
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string or a real expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string or real expected.\n"), fname, 1);
                 return FALSE;
             }
         }

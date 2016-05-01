@@ -10,7 +10,7 @@
 \1// DO NOT FORGET TO RELEASE MEMORY via freeAllocatedMatrixOfString(\3, \4, \5).
 \1if (getAllocatedMatrixOfString(pvApiCtx, piAddr\5, &\3, &\4, &\5))\6
 \1{
-\1    Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, \2);
+\1    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, \2);
 \1    return 1;
 \1}
 

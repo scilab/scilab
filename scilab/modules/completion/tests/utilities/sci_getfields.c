@@ -2,23 +2,25 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) DIGITEO - 2009 - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "freeArrayOfString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "completion.h"
 #include "getPartLine.h"
 /*--------------------------------------------------------------------------*/
-int sci_getfields(char *fname, unsigned long fname_len)
+int sci_getfields(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int *piAddr = NULL;
@@ -48,7 +50,7 @@ int sci_getfields(char *fname, unsigned long fname_len)
 
     if (rows != 1 || cols != 1)
     {
-        Scierror(999, _("%s: Wrong size for input argument: A string expected.\n"), fname);
+        Scierror(999, _("%s: Wrong size for input argument: string expected.\n"), fname);
     }
 
     sciErr = getMatrixOfString(pvApiCtx, piAddr, &rows, &cols, &length, NULL);
@@ -80,7 +82,7 @@ int sci_getfields(char *fname, unsigned long fname_len)
         sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, &emptystr);
     }
 
-    freeArrayOfString(fields, sizefields);
+    freeAllocatedMatrixOfString(sizefields, 1, fields);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);

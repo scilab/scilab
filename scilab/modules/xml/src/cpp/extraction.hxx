@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -29,9 +32,7 @@ extern "C"
 #include "xml_mlist.h"
 #include "xml_constants.h"
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 }
 
 using namespace org_modules_xml;
@@ -56,7 +57,7 @@ int createStringOnStack(char * fname, const char * str, int pos, void* pvApiCtx)
 
     if (strchr(str, '\n'))
     {
-        char * tok = strdup(str);
+        char * tok = os_strdup(str);
         char * stok = tok;
         std::vector<char *> vector = std::vector<char *>();
 
@@ -236,7 +237,7 @@ int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos,
  * @param fname_len the function name length
  */
 template<class T>
-int sci_extraction(char * fname, void *pvApiCtx)
+int sci_extraction(char * fname, void* pvApiCtx)
 {
     T * t;
     int id;
@@ -258,7 +259,7 @@ int sci_extraction(char * fname, void *pvApiCtx)
 
     if (!isStringType(pvApiCtx, fieldaddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%i: string expected.\n"), fname, 1);
         return 0;
     }
 

@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 9285 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=9285 
+// http://bugzilla.scilab.org/show_bug.cgi?id=9285
 //
 // <-- Short Description -->
 // g_margin returned bad results in some special cases.
@@ -25,39 +25,14 @@ tw=1.4731525037117905;
 ta=8.678149822856799;
 au=0.0;
 ty=0.1;
-Process=(k*s^2-tw*s+1)/((k*s^2+(tw/2)*s+1)*(1+ts*s)^2*(ta*s+au))
- Process  =
- 
-                                                2                    
-                     1 - 1.4731525s + 0.0017123s                     
-    -------------------------------------------------------------    
-                           2            3            4            5  
-    8.6781498s + 10.731194s + 3.7533037s + 0.4069374s + 0.0009287s   
-FeedBack=1/((ty*ty)*s^2+(ty*2^0.5)*s+1) * (1 + (Kd*Td*s)/(Kd+Td*s))
- FeedBack  =
- 
-                  5 + 3.63s                  
-    -------------------------------------    
-                               2          3  
-    5 + 1.3121068s + 0.1355599s + 0.00605s   
+Process=(k*s^2-tw*s+1)/((k*s^2+(tw/2)*s+1)*(1+ts*s)^2*(ta*s+au));
+FeedBack=1/((ty*ty)*s^2+(ty*2^0.5)*s+1) * (1 + (Kd*Td*s)/(Kd+Td*s));
 REG=(Kp * ( 1 + Ki/s));
-FT20_0_ = syslin('c', REG * Process * FeedBack);
-[gm,fr]=g_margin(FT20_0_)
- fr  =
- 
-    0.1173008  
- gm  =
- 
-    6.6932617  
-if ~assert_checkalmostequal(fr,0.11730083,0,6e-9) then bugmes();quit;end
-if ~assert_checkalmostequal(gm,6.69326173,0,6e-9) then bugmes();quit;end
+FT20_0_ = syslin("c", REG * Process * FeedBack);
+[gm,fr]=g_margin(FT20_0_);
+assert_checkalmostequal(fr,0.11730083,0,6e-9);
+assert_checkalmostequal(gm,6.69326173,0,6e-9);
 FT20_0 = tf2ss(FT20_0_);
-[gm,fr]=g_margin(FT20_0)
- fr  =
- 
-    0.1173008  
- gm  =
- 
-    6.6932617  
-if ~assert_checkalmostequal(fr,0.11730083,0,6e-9) then bugmes();quit;end
-if ~assert_checkalmostequal(gm,6.69326173,0,6e-9) then bugmes();quit;end
+[gm,fr]=g_margin(FT20_0);
+assert_checkalmostequal(fr,0.11730083,0,6e-9);
+assert_checkalmostequal(gm,6.69326173,0,6e-9);

@@ -9,37 +9,20 @@ This is generated code.
 This software is a computer program whose purpose is to hide the complexity
 of accessing Java objects/methods from C++ code.
 
-This software is governed by the CeCILL-B license under French law and
-abiding by the rules of distribution of free software.  You can  use,
-modify and/ or redistribute the software under the terms of the CeCILL-B
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info".
+Copyright (C) 2012 - 2016 - Scilab Enterprises
 
-As a counterpart to the access to the source code and  rights to copy,
-modify and redistribute granted by the license, users are provided only
-with a limited warranty  and the software's author,  the holder of the
-economic rights,  and the successive licensors  have only  limited
-liability.
-
-In this respect, the user's attention is drawn to the risks associated
-with loading,  using,  modifying and/or developing or reproducing the
-software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate,  and  that  also
-therefore means  that it is reserved for developers  and  experienced
-professionals having in-depth computer knowledge. Users are therefore
-encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or
-data to be ensured and,  more generally, to use and operate it in the
-same conditions as regards security.
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL-B license and that you accept its terms.
+This file is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This file was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
 */
 
 namespace org_scilab_modules_types {
 
                 // Static declarations (if any)
-                
+
                 // Cache of the bytebuffer stuff
                 jclass ScilabVariables::ByteOrderClass = NULL;
                 jmethodID ScilabVariables::nativeOrderID = NULL;
@@ -107,7 +90,7 @@ localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
 if(localInstance == NULL){
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
 }
- 
+
 this->instance = curEnv->NewGlobalRef(localInstance) ;
 if(this->instance == NULL){
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
@@ -134,6 +117,7 @@ voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintj
 voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID=NULL;
 voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID=NULL;
 voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID=NULL;
+voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID=NULL;
 voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID=NULL;
 voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID=NULL;
 voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID=NULL;
@@ -187,6 +171,7 @@ voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__intintj
 voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID=NULL;
 voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID=NULL;
 voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID=NULL;
+voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID=NULL;
 voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID=NULL;
 voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID=NULL;
 voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID=NULL;
@@ -256,7 +241,7 @@ delete[] arrayOfString;
 }
 curEnv->DeleteLocalRef(res);
 return arrayOfString;
- } else { 
+ } else {
 curEnv->DeleteLocalRef(res);
 return NULL;
 }
@@ -894,7 +879,7 @@ curEnv->ExceptionDescribe();
 }
 bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
 
- jobject data_ = bufferdata; 
+ jobject data_ = bufferdata;
                          curEnv->CallStaticVoidMethod(cls, voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID ,varName_, indexes_, data_, rows, cols, handlerId);
                         curEnv->DeleteLocalRef(varName_);
 curEnv->DeleteLocalRef(indexes_);
@@ -980,7 +965,7 @@ curEnv->ExceptionDescribe();
 }
 bufferdata = curEnv->CallObjectMethod(bufferdata, orderID, nativeOrder);
 
- jobject data_ = bufferdata; 
+ jobject data_ = bufferdata;
                          curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_ByteBufferjava_lang_ByteBufferjintintjintintjintintID ,varName_, indexes_, data_, rows, cols, handlerId);
                         curEnv->DeleteLocalRef(varName_);
 curEnv->DeleteLocalRef(indexes_);
@@ -1724,6 +1709,71 @@ jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
                         curEnv->DeleteLocalRef(varName_);
 curEnv->DeleteLocalRef(indexes_);
 curEnv->DeleteLocalRef(data_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void ScilabVariables::sendUnsignedData (JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID = curEnv->GetStaticMethodID(cls, "sendUnsignedData", "(Ljava/lang/String;[I[[JZI)V" ) ;
+if (voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "sendUnsignedData");
+}
+
+jstring varName_ = curEnv->NewStringUTF( varName );
+if (varName != NULL && varName_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+jintArray indexes_ = curEnv->NewIntArray( indexesSize ) ;
+
+if (indexes_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetIntArrayRegion( indexes_, 0, indexesSize, (jint*)(indexes) ) ;
+
+
+ jobjectArray data_ = curEnv->NewObjectArray(dataSize, curEnv->FindClass("[J"),NULL);
+
+if (data_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+ for (int i=0; i<dataSize; i++){
+
+jlongArray dataLocal = curEnv->NewLongArray( dataSizeCol ) ;
+
+if (dataLocal == NULL)
+{
+// check that allocation succeed
+curEnv->DeleteLocalRef(data_);
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetLongArrayRegion( dataLocal, 0, dataSizeCol, (jlong*)(data[i]) ) ;
+curEnv->SetObjectArrayElement(data_, i, dataLocal);
+curEnv->DeleteLocalRef(dataLocal);
+}
+
+jboolean swaped_ = (static_cast<bool>(swaped) ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID ,varName_, indexes_, data_, swaped_, handlerId);
+                        curEnv->DeleteLocalRef(varName_);
+curEnv->DeleteLocalRef(indexes_);
+curEnv->DeleteLocalRef(data_);
+curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

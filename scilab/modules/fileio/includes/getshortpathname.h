@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -16,6 +19,7 @@
 #include "dynlib_fileio.h"
 #include "machine.h" /* C2F */
 #include "BOOL.h" /* BOOL */
+#include <wchar.h> /* wchar_t */
 
 /**
 * Retrieves the short path form of the specified path
@@ -25,9 +29,11 @@
 * on Linux returns same path name
 * used for Windows
 */
-FILEIO_IMPEXP char *getshortpathname(char *longpathname, BOOL *convertok);
+FILEIO_IMPEXP char *getshortpathname(const char *longpathname, BOOL *convertok);
 
 FILEIO_IMPEXP int C2F(getshortpathname)(char *pathname, int *len);
+
+FILEIO_IMPEXP wchar_t* getshortpathnameW(wchar_t* _pwstLongPathName, BOOL* _pbOK);
 
 #endif /* __GETSHORTPATHNAME_H__ */
 /*--------------------------------------------------------------------------*/

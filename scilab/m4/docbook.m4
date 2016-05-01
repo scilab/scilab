@@ -2,11 +2,14 @@ dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 dnl Copyright (C) INRIA - 2008 - Sylvestre Ledru
 dnl 
-dnl This file must be used under the terms of the CeCILL.
-dnl This source file is licensed as described in the file COPYING, which
-dnl you should have received as part of this distribution.  The terms
-dnl are also available at    
-dnl http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+dnl Copyright (C) 2012 - 2016 - Scilab Enterprises
+dnl
+dnl This file is hereby licensed under the terms of the GNU GPL v2.0,
+dnl pursuant to article 5.3.4 of the CeCILL v.2.1.
+dnl This file was originally licensed under the terms of the CeCILL v2.1,
+dnl and continues to be available under such terms.
+dnl For more information, see the COPYING file which you should have received
+dnl along with this program.
 dnl
 dnl DOCBOOK detection
 dnl
@@ -17,6 +20,9 @@ AC_DEFUN([AC_DOCBOOK], [
 
 DOCBOOK_OK=no
 DOCBOOK_ROOT=""
+
+if test "x$ac_java_jvm_name" != "x" ; then
+    # if JDK is not enabled, skip the docbook detection
 
 AC_ARG_WITH(docbook,
 		AC_HELP_STRING([--with-docbook=DIR],[Set the path to the docbook package]),
@@ -37,16 +43,18 @@ AC_ARG_WITH(docbook,
 
 	# Saxon XSLT Processor, as the JVM implementation is unable to parse the docbook xsl files
 	# check Saxon-HE 9.5 first then fallback to Saxon-6.5
-	AC_JAVA_CHECK_PACKAGE([saxon9he],[net.sf.saxon.Version],[Saxon XSLT Processor],"yes")
+	AC_JAVA_CHECK_JAR([saxon9he],[net.sf.saxon.Version],[Saxon XSLT Processor],"yes")
 	SAXON=$PACKAGE_JAR_FILE
 	if test -z "$SAXON"; then
-		AC_JAVA_CHECK_PACKAGE([saxon],[net.sf.saxon.Version],[Saxon XSLT Processor],"yes")
+		AC_JAVA_CHECK_JAR([saxon],[net.sf.saxon.Version],[Saxon XSLT Processor],"yes")
 		SAXON=$PACKAGE_JAR_FILE
 	fi
 	if test -z "$SAXON"; then
-		AC_JAVA_CHECK_PACKAGE([saxon],[com.icl.saxon.Loader],[Saxon XSLT Processor])
+		AC_JAVA_CHECK_JAR([saxon],[com.icl.saxon.Loader],[Saxon XSLT Processor])
 		SAXON=$PACKAGE_JAR_FILE
 	fi
 	AC_SUBST(SAXON)
+
+fi # JDK
 
 ])

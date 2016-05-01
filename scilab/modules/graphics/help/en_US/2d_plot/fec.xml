@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="fec">
@@ -16,7 +19,7 @@
         <refpurpose>pseudo-color plot of a function defined on a mesh</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>fec(x,y,triangles,func,&lt;opt_args&gt;)
             fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])
         </synopsis>
@@ -112,13 +115,13 @@
             <emphasis>dz = (zmax-zmin)/nc</emphasis>, then the part of the polygon mapping where  
             <emphasis>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</emphasis> is filled with the color <emphasis>i</emphasis>). 
             By default <emphasis>zmin = min(func)</emphasis> and <emphasis>zmax = max(func)</emphasis>. If you want to do 
-            an animation with func values that varie in time, take for zmin and zmax the global 
+            an animation with func values that varies in time, take for zmin and zmax the global
             minimum and maximum or something close.
         </para>
         <para>
             The <varname>colout</varname> argument lets the user choosing the colors for the 2 extremes
             regions <emphasis>{func &lt; zmin}</emphasis> and <emphasis>{func &gt; zmax}</emphasis>, <literal>under_min_col</literal> and 
-            <literal>upper_max_col</literal> may be equal (independantly) to:
+            <literal>upper_max_col</literal> may be equal (independently) to:
         </para>
         <variablelist>
             <varlistentry>

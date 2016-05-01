@@ -7,43 +7,31 @@
 // <-- ENGLISH IMPOSED -->
 // <-- CLI SHELL MODE -->
 if isempty([ atomsRepositoryList("user") ; atomsRepositoryList("allusers")]) then
-    rep1 = "http://scene10.test.atoms.scilab.org";
-    rep2 = "http://scene11.test.atoms.scilab.org";
+    rep1 = "http://scene10.6.0.test.atoms.scilab.org";
+    rep2 = "http://scene11.6.0.test.atoms.scilab.org";
     if atomsRepositoryAdd(rep1,"user")     <> 1 then bugmes();quit;end
-Scanning repository http://atoms.scilab.org/5.5 ... Done
-
-Scanning repository http://scene10.test.atoms.scilab.org ... Done
-
     if atomsRepositoryAdd(rep2,"allusers") <> 1 then bugmes();quit;end
-Scanning repository http://atoms.scilab.org/5.5 ... Done
-
-Scanning repository http://scene11.test.atoms.scilab.org ... Done
-
-Scanning repository http://scene10.test.atoms.scilab.org ... Done
-
     if or(atomsRepositoryList("user")     <> [rep1,"user"]) then bugmes();quit;end
     if or(atomsRepositoryList("allusers") <> [rep2,"allusers"]) then bugmes();quit;end
     if find( atomsRepositoryList("all") == [rep1]) == [] then bugmes();quit;end
     if find( atomsRepositoryList("all") == [rep2]) == [] then bugmes();quit;end
     if atomsRepositoryDel(rep1,"user") <> 1 then bugmes();quit;end
-Scanning repository http://atoms.scilab.org/5.5 ... Done
-
-Scanning repository http://scene11.test.atoms.scilab.org ... Done
-
     if atomsRepositoryDel(rep2,"allusers") <> 1 then bugmes();quit;end
-Scanning repository http://atoms.scilab.org/5.5 ... Done
-
     if atomsRepositoryAdd( [rep1;rep2],"user") <> 2 then bugmes();quit;end
-Scanning repository http://atoms.scilab.org/5.5 ... Done
-
-Scanning repository http://scene10.test.atoms.scilab.org ... Done
-
-Scanning repository http://scene11.test.atoms.scilab.org ... Done
-
     if or(atomsRepositoryList("user")     <> [rep1 "user";rep2 "user"]) then bugmes();quit;end
     if or(atomsRepositoryList("allusers") <> []) then bugmes();quit;end
     if atomsRepositoryDel([rep1;rep2],"user") <> 2 then bugmes();quit;end
-Scanning repository http://atoms.scilab.org/5.5 ... Done
-
     if ~isempty([ atomsRepositoryList("user") ; atomsRepositoryList("allusers")]) then bugmes();quit;end
 end
+Scanning repository http://atoms.scilab.org/6.0 ... Done
+Scanning repository http://scene10.6.0.test.atoms.scilab.org ... Done
+Scanning repository http://atoms.scilab.org/6.0 ... Done
+Scanning repository http://scene11.6.0.test.atoms.scilab.org ... Done
+Scanning repository http://scene10.6.0.test.atoms.scilab.org ... Done
+Scanning repository http://atoms.scilab.org/6.0 ... Done
+Scanning repository http://scene11.6.0.test.atoms.scilab.org ... Done
+Scanning repository http://atoms.scilab.org/6.0 ... Done
+Scanning repository http://atoms.scilab.org/6.0 ... Done
+Scanning repository http://scene10.6.0.test.atoms.scilab.org ... Done
+Scanning repository http://scene11.6.0.test.atoms.scilab.org ... Done
+Scanning repository http://atoms.scilab.org/6.0 ... Done

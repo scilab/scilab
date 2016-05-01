@@ -4,11 +4,14 @@
  * Copyright (C) 2007 - INRIA - Vicent Couvert
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -202,6 +205,6 @@ int set_marks_count_property(void* _pvCtx, int iObj, void* _pvData, int valueTyp
 int set_auto_margins_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_ticks_format_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_ticks_st_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
-int set_colors_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+int set_colors_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */

@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_new" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>Creates a new simplex object.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             newobj = optimsimplex_new([coords, [fun]])
             [newobj, data] = optimsimplex_new(coords, fun, data)
@@ -55,7 +58,7 @@
             <varlistentry>
                 <term>coords</term>
                 <listitem>
-                    <para>Matrix of point coordinatres in the simplex (optional).</para>
+                    <para>Matrix of point coordinates in the simplex (optional).</para>
                     <para>
                         This argument is expected to be <literal>nbve</literal>-by-<literal>n</literal> 
                         matrix, where <literal>n</literal> is the dimension of the space and <literal>nbve</literal>
@@ -85,7 +88,7 @@
                 <term>len</term>
                 <listitem>
                     <para>the length of the simplex (default length = 1.0) (optional).</para>
-                    <para>If length is a value, that unique lenght is used in all directions. If length is 
+                    <para>If length is a value, that unique length is used in all directions. If length is
                         a vector with n values, each length is used with the corresponding direction (n is 
                         the dimension of the space).
                     </para>
@@ -146,7 +149,7 @@
                         returns an empty simplex object.
                     </para>
                     <para>
-                        The following calling sequences are available.
+                        The following syntaxes are available.
                     </para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( )
@@ -164,7 +167,7 @@
                     <para>This function creates a new simplex object so that it is computed 
                         axis by axis, with the given length.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "axes" , x0 )
                         newobj = optimsimplex_new ( "axes" , x0 , fun )
@@ -182,7 +185,7 @@
                         from Pfeffer's method, i.e. a relative delta for non-zero values and an 
                         absolute delta for zero values.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "pfeffer" , x0 )
                         newobj = optimsimplex_new ( "pfeffer" , x0 , fun )
@@ -201,7 +204,7 @@
                         by taking the bounds into account with random scaling. The number of 
                         vertices in the simplex is arbitrary.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "randbounds", x0, fun, boundsmin, boundsmax )
                         [ newobj , data ] = optimsimplex_new ( "randbounds", x0, fun, boundsmin, boundsmax, nbpoints )
@@ -226,7 +229,7 @@
                         from Spendley's et al. method, i.e. a regular simplex made of 
                         <literal>nbve</literal> = <literal>n + 1</literal> vertices.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "spendley" , x0 )
                         newobj = optimsimplex_new ( "spendley" , x0 , fun )
@@ -245,7 +248,7 @@
                         "oriented" depending on the function value. The created simplex may be 
                         used, as Kelley suggest, for a restart of Nelder-Mead algorithm.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "oriented" , simplex0 , fun )
                         [ newobj , data ] = optimsimplex_new ( "oriented" , simplex0 , fun, data )

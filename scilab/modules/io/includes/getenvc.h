@@ -3,17 +3,21 @@
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2008 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #ifndef __GETENVC_H__
 #define __GETENVC_H__
 
+#include <wchar.h>
 #include "dynlib_io.h"
 #include "machine.h"
 
@@ -25,7 +29,7 @@
  * @param[out] buflen  the length of the variable
  * @param[in] iflag
  */
-IO_IMPEXP void C2F(getenvc)(int *ierr, char *var, char *buf, int *buflen, int *iflag);
+IO_IMPEXP void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *iflag);
 
 /**
 * Searches for a file using environment paths
@@ -34,6 +38,8 @@ IO_IMPEXP void C2F(getenvc)(int *ierr, char *var, char *buf, int *buflen, int *i
 * @return path found
 */
 IO_IMPEXP char *searchEnv(const char *name, const char *env_var);
+IO_IMPEXP wchar_t* searchEnvW(const wchar_t* _pwstName, const wchar_t* _pwstEnv);
+
 
 
 #endif /* __GETENVC_H__ */

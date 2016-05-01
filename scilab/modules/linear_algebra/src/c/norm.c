@@ -2,19 +2,22 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #include "norm.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #ifdef _MSC_VER
-int isinf(double dbl)
+int la_isinf(double dbl)
 {
     //check finite and non NaN values
     if (_finite(dbl) == 0 && dbl == dbl)
@@ -117,11 +120,11 @@ double normP (double *A, int iRows, int iCols, double p)
     }
 
     //
-    // /!\ isinf return only 0 or 1 on non Linux platforms
+    // /!\ la_isinf return only 0 or 1 on non Linux platforms
     //
-    if (isinf(p) != 0 && p < 0) // p = -%inf is a special case, return min(abs(A)).
+    if (la_isinf(p) != 0 && p < 0) // p = -%inf is a special case, return min(abs(A)).
     {
-      
+
         minA = Abs(A[0]);
         for (i = 0; i < iRows; ++i)
         {
@@ -238,8 +241,8 @@ double normPC (doublecomplex *A, int iRows, int iCols, double p)
         ret = (a - b) / (a - b);
         return ret;
     }
-    
-    if (isinf(p) != 0 && p < 0) // p = -%inf is a special case, return min(abs(A)).
+
+    if (la_isinf(p) != 0 && p < 0) // p = -%inf is a special case, return min(abs(A)).
     {
         minA = sqrt(A[0].r * A[0].r + A[0].i * A[0].i); // Retrieving A[0] modulus.
         for (i = 0; i < iRows; ++i)

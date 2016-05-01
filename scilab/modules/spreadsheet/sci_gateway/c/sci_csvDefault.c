@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - 2012 - INRIA - Allan CORNET
  * Copyright (C) 2011 - INRIA - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  * This code is also published under the GPL v3 license.
  *
@@ -18,16 +21,14 @@
 #include "gw_spreadsheet.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "csvDefault.h"
 #include "gw_csv_helpers.h"
-
+#include "csvDefault.h"
 
 // =============================================================================
 #define SEPARATOR_FIELDNAME "separator"
@@ -50,11 +51,11 @@
 #define NUMBER_FIELD 8
 // =============================================================================
 static void freeVar(char** fieldname, char** fieldvalue);
-static int sci_csvDefault_no_rhs(char *fname);
-static int sci_csvDefault_one_rhs(char *fname);
-static int sci_csvDefault_two_rhs(char *fname);
+static int sci_csvDefault_no_rhs(char *fname, void* pvApiCtx);
+static int sci_csvDefault_one_rhs(char *fname, void* pvApiCtx);
+static int sci_csvDefault_two_rhs(char *fname, void* pvApiCtx);
 // =============================================================================
-int sci_csvDefault(char *fname, unsigned long fname_len)
+int sci_csvDefault(char *fname, void* pvApiCtx)
 {
     Rhs = Max(0, Rhs);
     CheckRhs(0, 2);
@@ -63,16 +64,16 @@ int sci_csvDefault(char *fname, unsigned long fname_len)
     switch (Rhs)
     {
         case 0:
-            return sci_csvDefault_no_rhs(fname);
+            return sci_csvDefault_no_rhs(fname, pvApiCtx);
         case 1:
-            return sci_csvDefault_one_rhs(fname);
+            return sci_csvDefault_one_rhs(fname, pvApiCtx);
         case 2:
-            return sci_csvDefault_two_rhs(fname);
+            return sci_csvDefault_two_rhs(fname, pvApiCtx);
     }
     return 0;
 }
 // =============================================================================
-static int sci_csvDefault_no_rhs(char *fname)
+static int sci_csvDefault_no_rhs(char *fname, void* pvApiCtx)
 {
     int sizeArray = NUMBER_FIELD * 2;
     char **arrayOut = (char**)MALLOC(sizeof(char*) * sizeArray);
@@ -85,47 +86,47 @@ static int sci_csvDefault_no_rhs(char *fname)
         int nbCols = 2;
         const char *currentEol = getCsvDefaultEOL();
 
-        arrayOut[0] = strdup(SEPARATOR_FIELDNAME);
-        arrayOut[1] = strdup(DECIMAL_FIELDNAME);
-        arrayOut[2] = strdup(CONVERSION_FIELDNAME);
-        arrayOut[3] = strdup(PRECISION_FIELDNAME);
-        arrayOut[4] = strdup(COMMENTSREGEXP_FIELDNAME);
-        arrayOut[5] = strdup(EOL_FIELDNAME);
-        arrayOut[6] = strdup(ENCODING_FIELDNAME);
-        arrayOut[7] = strdup(BLANK_FIELDNAME);
+        arrayOut[0] = os_strdup(SEPARATOR_FIELDNAME);
+        arrayOut[1] = os_strdup(DECIMAL_FIELDNAME);
+        arrayOut[2] = os_strdup(CONVERSION_FIELDNAME);
+        arrayOut[3] = os_strdup(PRECISION_FIELDNAME);
+        arrayOut[4] = os_strdup(COMMENTSREGEXP_FIELDNAME);
+        arrayOut[5] = os_strdup(EOL_FIELDNAME);
+        arrayOut[6] = os_strdup(ENCODING_FIELDNAME);
+        arrayOut[7] = os_strdup(BLANK_FIELDNAME);
 
-        arrayOut[8] = strdup(getCsvDefaultSeparator());
-        arrayOut[9] = strdup(getCsvDefaultDecimal());
-        arrayOut[10] = strdup(getCsvDefaultConversion());
-        arrayOut[11] = strdup(getCsvDefaultPrecision());
-        arrayOut[12] = strdup(getCsvDefaultCommentsRegExp());
+        arrayOut[8] = os_strdup(getCsvDefaultSeparator());
+        arrayOut[9] = os_strdup(getCsvDefaultDecimal());
+        arrayOut[10] = os_strdup(getCsvDefaultConversion());
+        arrayOut[11] = os_strdup(getCsvDefaultPrecision());
+        arrayOut[12] = os_strdup(getCsvDefaultCommentsRegExp());
 
         if (currentEol)
         {
             if (strcmp(currentEol, MACOS9_EOL) == 0)
             {
-                arrayOut[13] = strdup(MACOS9_EOL_STRING);
+                arrayOut[13] = os_strdup(MACOS9_EOL_STRING);
             }
             else if (strcmp(currentEol, WINDOWS_EOL) == 0)
             {
-                arrayOut[13] = strdup(WINDOWS_EOL_STRING);
+                arrayOut[13] = os_strdup(WINDOWS_EOL_STRING);
             }
             else if (strcmp(currentEol, LINUX_EOL) == 0)
             {
-                arrayOut[13] = strdup(LINUX_EOL_STRING);
+                arrayOut[13] = os_strdup(LINUX_EOL_STRING);
             }
             else
             {
-                arrayOut[13] = strdup("ERROR");
+                arrayOut[13] = os_strdup("ERROR");
             }
         }
         else
         {
-            arrayOut[13] = strdup("ERROR");
+            arrayOut[13] = os_strdup("ERROR");
         }
 
-        arrayOut[14] = strdup(getCsvDefaultEncoding());
-        arrayOut[15] = strdup(getCsvDefaultCsvIgnoreBlankLine());
+        arrayOut[14] = os_strdup(getCsvDefaultEncoding());
+        arrayOut[15] = os_strdup(getCsvDefaultCsvIgnoreBlankLine());
 
         sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, nbRows, nbCols, arrayOut);
         freeArrayOfString(arrayOut, sizeArray);
@@ -146,7 +147,7 @@ static int sci_csvDefault_no_rhs(char *fname)
     return 0;
 }
 // =============================================================================
-static int sci_csvDefault_one_rhs(char *fname)
+static int sci_csvDefault_one_rhs(char *fname, void* pvApiCtx)
 {
     int iErr = 0;
 
@@ -162,23 +163,23 @@ static int sci_csvDefault_one_rhs(char *fname)
 
     if (strcmp(fieldname, SEPARATOR_FIELDNAME) == 0)
     {
-        fieldvalue = strdup(getCsvDefaultSeparator());
+        fieldvalue = os_strdup(getCsvDefaultSeparator());
     }
     else if (strcmp(fieldname, DECIMAL_FIELDNAME) == 0)
     {
-        fieldvalue = strdup(getCsvDefaultDecimal());
+        fieldvalue = os_strdup(getCsvDefaultDecimal());
     }
     else if (strcmp(fieldname, CONVERSION_FIELDNAME) == 0)
     {
-        fieldvalue = strdup(getCsvDefaultConversion());
+        fieldvalue = os_strdup(getCsvDefaultConversion());
     }
     else if (strcmp(fieldname, PRECISION_FIELDNAME) == 0)
     {
-        fieldvalue = strdup(getCsvDefaultPrecision());
+        fieldvalue = os_strdup(getCsvDefaultPrecision());
     }
     else if (strcmp(fieldname, COMMENTSREGEXP_FIELDNAME) == 0)
     {
-        fieldvalue = strdup(getCsvDefaultCommentsRegExp());
+        fieldvalue = os_strdup(getCsvDefaultCommentsRegExp());
     }
     else if (strcmp(fieldname, EOL_FIELDNAME) == 0)
     {
@@ -187,33 +188,33 @@ static int sci_csvDefault_one_rhs(char *fname)
         {
             if (strcmp(currentEol, MACOS9_EOL) == 0)
             {
-                fieldvalue = strdup(MACOS9_EOL_STRING);
+                fieldvalue = os_strdup(MACOS9_EOL_STRING);
             }
             else if (strcmp(currentEol, WINDOWS_EOL) == 0)
             {
-                fieldvalue = strdup(WINDOWS_EOL_STRING);
+                fieldvalue = os_strdup(WINDOWS_EOL_STRING);
             }
             else if (strcmp(currentEol, LINUX_EOL) == 0)
             {
-                fieldvalue = strdup(LINUX_EOL_STRING);
+                fieldvalue = os_strdup(LINUX_EOL_STRING);
             }
             else
             {
-                fieldvalue = strdup("ERROR");
+                fieldvalue = os_strdup("ERROR");
             }
         }
         else
         {
-            fieldvalue = strdup("ERROR");
+            fieldvalue = os_strdup("ERROR");
         }
     }
     else if (strcmp(fieldname, ENCODING_FIELDNAME) == 0)
     {
-        fieldvalue = strdup(getCsvDefaultEncoding());
+        fieldvalue = os_strdup(getCsvDefaultEncoding());
     }
     else if (strcmp(fieldname, BLANK_FIELDNAME) == 0)
     {
-        fieldvalue = strdup(getCsvDefaultCsvIgnoreBlankLine());
+        fieldvalue = os_strdup(getCsvDefaultCsvIgnoreBlankLine());
     }
     else if (strcmp(fieldname, RESET_PARAMATERS) == 0)
     {
@@ -244,7 +245,7 @@ static int sci_csvDefault_one_rhs(char *fname)
     return 0;
 }
 // =============================================================================
-static int sci_csvDefault_two_rhs(char *fname)
+static int sci_csvDefault_two_rhs(char *fname, void* pvApiCtx)
 {
     int iErr = 0;
     int resultSet = 0;

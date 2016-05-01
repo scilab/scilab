@@ -16,10 +16,10 @@
 // gsort() did not allow overloading on not managed type
 
 s.a = %pi;
-assert_checkequal(execstr("gsort(s)","errcatch"), 246);
+assert_checkequal(execstr("gsort(s)","errcatch"), 999);
 
 function r = %st_gsort(s)
-  r = 666;
+    r = 666;
 endfunction
 
 assert_checkequal(execstr("r = gsort(s)","errcatch"), 0);

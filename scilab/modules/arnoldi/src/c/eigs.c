@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 -Scilab Enterprises - Adeline CARNIS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -15,50 +18,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "eigs.h"
-#include "stack-c.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sciprint.h"
 #include "eigs_dependencies.h"
-/*--------------------------------------------------------------------------*/
-
-/*--------------------------------------------------------------------------*/
-// dgemv performs matrix-vector operations
-extern int C2F(dgemv) (char* trans, int* m, int* n, double* alpha, double* A, int* lda,
-                       double* x, int* incx, double* beta, double* y, int* incy);
-extern int C2F(zgemv) (char* trans, int* m, int* n, doublecomplex* alpha, doublecomplex* A,
-                       int* lda, doublecomplex* x, int* incx, doublecomplex* beta, doublecomplex* y, int* incy);
-
-// dgetrf computes an LU factorization of a general M by N matrix A (double) using partial pivoting with row interchanges
-extern int C2F(dgetrf)(int* m, int* n, double* A, int* lda, int* ipiv, int* info);
-
-// zgetrf computes an LU factorization of a general M by N matrix A (complex*16) using partial pivoting with row interchanges
-extern int C2F(zgetrf)(int* m, int* n, doublecomplex* A, int* lda, int* ipiv, int* info);
-// dgetrs solves a linear system using the factors computed by dgetrf
-extern int C2F(dgetrs) (char* trans, int* n, int* nrhs, double* A, int *lda, int* ipiv, double* B, int* ldb, int* info);
-// zgetrs solves a linear system using the factors computed by zgetrf
-extern int C2F(zgetrs) (char* trans, int* n, int* nrhs, doublecomplex* AC, int* lda, int* ipiv, doublecomplex* B, int* ldb, int* info);
-
-// dpotrf computes the cholesky factorization of a real symmetric positive definite matrix A
-extern int C2F(dpotrf)(char* uplo, int* n, double* A, int* lda, int* info);
-
-// zpotrf computes the cholesky factorization of a real hermitian positive definite matrix A
-extern int C2F(zpotrf)(char* uplo, int* n, doublecomplex* A, int* lda, int* info);
-
-// dtrsm solves a triangular linear system
-extern int C2F(dtrsm) (char* side, char* uplo, char* trans, char* diag, int* m, int* n, double* alpha, double* A, int* lda, double* B, int* ldb);
-// ztrsm solve a triangular linear system
-extern int C2F(ztrsm) (char* side, char* uplo, char* trans, char* diag, int* m, int* n, doublecomplex* alpha, doublecomplex* A, int* lda, doublecomplex* B, int* ldb);
-// dsyrk does a rank k symmetric update
-extern int C2F(dsyrk) (char* uplo, char* trans, int* n, int* k, double* alpha,
-                       double* A, int* lda, double* beta, double* B, int* ldb);
-// ztrmm multiply by a triangular matrix
-extern int C2F(ztrmm) (char* side, char* uplo, char* trans, char* diag, int* m, int* n, doublecomplex* alphac,
-                       doublecomplex* A, int* lda, doublecomplex* B, int* ldb);
-// ztrmv multiply a vector by a triangular matrix
-extern int C2F(ztrmv) (char* uplo, char* trans, char* diag, int* n, doublecomplex* A, int* lda, doublecomplex* x, int* incx);
-// dtrmv multiply a vector by a triangular matrix
-extern int C2F(dtrmv) (char* uplo, char* trans, char* diag, int* n, double* A, int* lda, double* x, int* incx);
-/*--------------------------------------------------------------------------*/
+#include "Sciwarning.h"
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(dsaupd)(int *ido, char *bmat, int *n, char *which, int *nev,
@@ -110,18 +73,6 @@ extern int C2F(zneupd)(int * rvec, char * howmny, int * select,
                        doublecomplex * v, int * ldv, int * iparam, int * ipntr,
                        doublecomplex * workd, doublecomplex * workl,
                        int * lworkl, double * rwork, int * info);
-/*--------------------------------------------------------------------------*/
-
-/*--------------------------------------------------------------------------*/
-extern int C2F(dsymv)(char* UPLO, int* N, double* ALPHA, double* A, int* LDA, double* X, int* INCX, double* BETA, double* Y, int* INCY);
-/*--------------------------------------------------------------------------*/
-
-/*--------------------------------------------------------------------------*/
-extern int C2F(daxpy)(int* N, double* DA, double* DX, int* INCX, double* DY, int* INCY);
-/*--------------------------------------------------------------------------*/
-
-/*--------------------------------------------------------------------------*/
-extern int C2F(zaxpy)(int* N, doublecomplex* ZA, doublecomplex* ZX, int* INCX, doublecomplex* ZY, int* INCY);
 /*--------------------------------------------------------------------------*/
 
 static double alpha = 1.;
@@ -376,7 +327,7 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym,
 
             if (INFO[0] == -1) //non critical error
             {
-                sciprint("%s: WARNING: Maximum number of iterations reached. Only %d eigenvalues converged.\n", "eigs", IPARAM[4]);
+                Sciwarning("%s: WARNING: Maximum number of iterations reached. Only %d eigenvalues converged.\n", "eigs", IPARAM[4]);
                 break;
             }
             else
@@ -649,7 +600,7 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym,
             {
                 free(IPVT);
                 free(AMSBC);
-                return(-7);
+                return (-7);
             }
         }
         LWORKL = 3 * ncv * ncv + 5 * ncv;
@@ -669,7 +620,7 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym,
 
             if (INFO[0] == -1) //non critical error
             {
-                sciprint("%s: WARNING: Maximum number of iterations reached. Only %d eigenvalues converged.\n", "eigs", IPARAM[4]);
+                Sciwarning("%s: WARNING: Maximum number of iterations reached. Only %d eigenvalues converged.\n", "eigs", IPARAM[4]);
                 break;
             }
             else

@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2007 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,18 +21,6 @@
 #include "dynlib_interpolation.h"
 /*--------------------------------------------------------------------------*/
 INTERPOLATION_IMPEXP int gw_interpolation(void);
-/*--------------------------------------------------------------------------*/
-INTERPOLATION_IMPEXP int intsplin(char *fname, unsigned long fname_len);
-INTERPOLATION_IMPEXP int intlsq_splin(char *fname, unsigned long fname_len);
-INTERPOLATION_IMPEXP int intinterp1(char *fname, unsigned long fname_len);
-INTERPOLATION_IMPEXP int intlinear_interpn(char *fname, unsigned long fname_len);
-INTERPOLATION_IMPEXP int intsplin2d(char *fname, unsigned long fname_len);
-INTERPOLATION_IMPEXP int intinterp2d(char *fname, unsigned long fname_len);
-INTERPOLATION_IMPEXP int intcshep2d(char *fname, unsigned long fname_len);
-INTERPOLATION_IMPEXP int inteval_cshep2d(char *fname, unsigned long fname_len);
-INTERPOLATION_IMPEXP int intsplin3d(char *fname, unsigned long fname_len);
-INTERPOLATION_IMPEXP int intinterp3d(char *fname, unsigned long fname_len);
-INTERPOLATION_IMPEXP int intbsplin3val(char *fname, unsigned long fname_len) ;
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_INTERPOLATION_H__ */
 /*--------------------------------------------------------------------------*/

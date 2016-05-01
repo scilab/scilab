@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -19,6 +22,11 @@ import java.io.OutputStream;
 import java.io.StringReader;
 
 import java.awt.print.PageFormat;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
@@ -39,6 +47,7 @@ import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.MimeConstants;
+import org.scilab.modules.helptools.scilab.HTMLWithStyleScilabCodeHandler;
 
 /**
  * Code converter Class
@@ -101,8 +110,21 @@ public class CodeExporter extends FOCodeConverter {
      * @param format the page format
      */
     public static void convert(ScilabEditorPane pane, String fileName, String type, PageFormat format) {
-        CodeExporter exporter = new CodeExporter(pane);
-        exporter.convert(((ScilabDocument) pane.getDocument()).getText(), pane.getXln().getLineNumber(), fileName, type, pane.getShortName(), format);
+
+        if ("text/html".equals(type)) {
+            try {
+                // HTML is hardcoded to export only a file
+                HTMLWithStyleScilabCodeHandler codeHandler = new HTMLWithStyleScilabCodeHandler(Collections.emptySet(), Collections.emptySet());
+                codeHandler.convert(new StringReader(((ScilabDocument) pane.getDocument()).getText()), new FileWriter(fileName));
+            } catch (IOException e) {
+                System.err.println(SciNotesMessages.EXPORTERROR + ":");
+                e.printStackTrace();
+            }
+        } else {
+            // let's FOP convert the mimetype
+            CodeExporter exporter = new CodeExporter(pane);
+            exporter.convert(((ScilabDocument) pane.getDocument()).getText(), pane.getXln().getLineNumber(), fileName, type, pane.getShortName(), format);
+        }
     }
 
     /**
@@ -114,11 +136,10 @@ public class CodeExporter extends FOCodeConverter {
      * @param format the page format
      */
     public void convert(String code, int[] lineNumberArray, String fileName, String type, String title, PageFormat format) {
-        FopFactory fopFactory = FopFactory.newInstance();
         OutputStream out = null;
 
         try {
-            fopFactory.setUserConfig(new File(ScilabConstants.SCI + "/modules/helptools/etc/fopconf.xml"));
+            FopFactory fopFactory = FopFactory.newInstance(new File(ScilabConstants.SCI + "/modules/helptools/etc/fopconf.xml"));
             FOUserAgent userAgent = fopFactory.newFOUserAgent();
             userAgent.setProducer(CREATOR);
             userAgent.setTitle(title);

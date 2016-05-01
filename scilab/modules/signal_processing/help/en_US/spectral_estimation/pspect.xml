@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [sm [,cwp]]=pspect(sec_step,sec_leng,wtype,x [,y] [,wpar])
             [sm [,cwp]]=pspect(sec_step,sec_leng,wtype,nx [,ny] [,wpar])
@@ -289,7 +289,7 @@
             </inlinemediaobject>
         </para>
         <para>The modified periodogram method of spectral estimation repeatedly
-            calculates the periodogram of windowed sub-sections of the data containes
+            calculates the periodogram of windowed sub-sections of the data contained
             in <literal>x</literal> and <literal>y</literal> . These periodograms are
             then averaged together and normalized by an appropriate constant to obtain
             the final spectral estimate. It is the averaging process which reduces the
@@ -299,7 +299,7 @@
             For batch processing, the <literal>x</literal> and
             <literal>y</literal> data may be read segment by segment using the
             <literal>getx </literal>and <literal>gety</literal> user defined
-            functions. These functions have the following calling sequence:
+            functions. These functions have the following syntax:
         </para>
         <para>
             <literal>xk=getx(ns,offset)</literal> and

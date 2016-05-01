@@ -1,24 +1,29 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.port;
 
-import org.scilab.modules.graph.ScilabGraphUniqueObject;
-import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.PortKind;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.utils.XcosConstants;
-import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.graph.model.XcosCell;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
@@ -27,23 +32,15 @@ import com.mxgraph.util.mxConstants;
 /**
  * Common implementation of any Port.
  */
-public abstract class BasicPort extends ScilabGraphUniqueObject {
+public abstract class BasicPort extends XcosCell {
+    private static final long serialVersionUID = 0L;
 
     /**
      * The side-size of any port. All ports must have the same size.
      */
     public static final double DEFAULT_PORTSIZE = 8;
 
-    private static final long serialVersionUID = -5022701071026919015L;
-    private static final int DEFAULT_DATALINES = -1;
-    private static final int DEFAULT_DATACOLUMNS = -2;
-
-    private int ordering;
-    private int dataLines;
-    private int dataColumns;
-    private DataType dataType = DataType.REAL_MATRIX;
     private Orientation orientation;
-    private transient String typeName;
 
     /** Type of any dataport */
     public enum Type {
@@ -91,7 +88,7 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
         /**
          * @return A scicos compatible representation
          */
-        public double getAsDouble() {
+        public int asScilabValue() {
             if (this.equals(UNKNOW_TYPE)) {
                 return -1;
             }
@@ -125,76 +122,24 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
      * @param style
      *            Value to be set as a Style and as TypeName
      */
-    public BasicPort(String style) {
-        super();
-        setVertex(true);
-        setStyle(style);
-        setTypeName(style);
-        setGeometry(new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE));
-    }
+    public BasicPort(final JavaController controller, long uid, Kind kind, Object value, String style, String id, Orientation orientation, boolean isImplicit, PortKind portKind) {
+        super(controller, uid, kind, value, new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE), style, id);
 
-    /**
-     * @return The number of data lines that can pass trough this port.
-     */
-    public int getDataLines() {
-        return dataLines;
-    }
+        this.vertex = true;
 
-    /**
-     * @param dataLines
-     *            The number of data lines that can pass trough this port.
-     */
-    public void setDataLines(int dataLines) {
-        this.dataLines = dataLines;
-    }
+        controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.IMPLICIT, isImplicit);
+        controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.PORT_KIND, portKind.ordinal());
 
-    /**
-     * @return The number of data columns that can pass trough this port.
-     */
-    public int getDataColumns() {
-        return dataColumns;
-    }
-
-    /**
-     * @param dataColumns
-     *            The number of data columns that can pass trough this port.
-     */
-    public void setDataColumns(int dataColumns) {
-        this.dataColumns = dataColumns;
-    }
-
-    /**
-     * @param dataType
-     *            the port data type
-     */
-    public void setDataType(DataType dataType) {
-        this.dataType = dataType;
-    }
-
-    /** @return the port data type */
-    public DataType getDataType() {
-        return dataType;
-    }
-
-    /**
-     * @param ordering
-     *            a unique order number per instance
-     */
-    public void setOrdering(int ordering) {
-        this.ordering = ordering;
-    }
-
-    /**
-     * @return the unique order number per instance
-     */
-    public int getOrdering() {
-        return ordering;
+        this.orientation = orientation;
+        setLabelPosition(orientation);
     }
 
     /**
      * @return the type of the port (Explicit or Implicit)
      */
     public abstract Type getType();
+
+    public abstract PortKind getPortKind();
 
     /** @return The default orientation of this port */
     public final Orientation getOrientation() {
@@ -213,60 +158,12 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
     }
 
     /**
-     * @return An html formatted documentation string
-     */
-    public String getToolTipText() {
-        StringBuilder result = new StringBuilder();
-        result.append(ScilabGraphConstants.HTML_BEGIN);
-        result.append("Port number : " + getOrdering() + ScilabGraphConstants.HTML_NEWLINE);
-
-        final int length = getStyle().length();
-        result.append("Style : ");
-        if (length > XcosConstants.MAX_CHAR_IN_STYLE) {
-            result.append(getStyle().substring(0, XcosConstants.MAX_CHAR_IN_STYLE));
-            result.append(XcosMessages.DOTS);
-        } else {
-            result.append(getStyle());
-        }
-        result.append(ScilabGraphConstants.HTML_NEWLINE);
-
-        result.append(ScilabGraphConstants.HTML_END);
-        return result.toString();
-    }
-
-    /**
-     * @param typeName
-     *            the typeName to set
-     */
-    private void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    /**
-     * @return the typeName
-     */
-    public String getTypeName() {
-        return typeName;
-    }
-
-    /**
-     * Set the default values for newly created port.
-     */
-    public void setDefaultValues() {
-        setDataLines(DEFAULT_DATALINES);
-        setDataColumns(DEFAULT_DATACOLUMNS);
-        setDataType(DataType.UNKNOW_TYPE);
-
-        setLabelPosition(getOrientation());
-    }
-
-    /**
      * Set the label position of the current port according to the orientation.
      *
      * @param current
      *            the port orientation, if null, does nothing.
      */
-    public void setLabelPosition(final Orientation current) {
+    public final void setLabelPosition(final Orientation current) {
         if (current != null) {
             StyleMap style = new StyleMap(getStyle());
 
@@ -312,7 +209,10 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
         final mxICell parent = getParent();
         if (parent != null) {
             if (parent instanceof BasicBlock) {
-                str.append(((BasicBlock) parent).getInterfaceFunctionName()).append('.');
+                JavaController controller = new JavaController();
+                String[] interfaceFunctionName = new String[1];
+                controller.getObjectProperty(((BasicBlock) parent).getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, interfaceFunctionName);
+                str.append(interfaceFunctionName[0]).append('.');
             } else {
                 str.append(parent.getClass().getSimpleName()).append('.');
             }

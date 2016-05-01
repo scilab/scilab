@@ -127,7 +127,7 @@ S10:
          STEP  3:  U= 0,1 -UNIFORM SAMPLE. SQUEEZE ACCEPTANCE (S)
     */
     u = C2F(ranf)();
-    if (d*u <= t * t * t)
+    if (d * u <= t * t * t)
     {
         return sgamma;
     }

@@ -3,11 +3,14 @@
  * Copyright (C) 2012 - Scilab Enterprises - Vincent COUVERT
  * Get the tooltip string of an uicontrol
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,22 +19,25 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-int GetUicontrolTooltipString(void* _pvCtx, int iObjUID)
+void* GetUicontrolTooltipString(void* _pvCtx, int iObjUID)
 {
     int iNbStrings = 0;
     int *piNbStrings = &iNbStrings;
     char **pstString = NULL;
+    void* ret = NULL;
 
     getGraphicObjectProperty(iObjUID, __GO_UI_TOOLTIPSTRING_SIZE__, jni_int, (void **) &piNbStrings);
     getGraphicObjectProperty(iObjUID, __GO_UI_TOOLTIPSTRING__, jni_string_vector, (void **) &pstString);
 
     if (pstString != NULL)
     {
-        return sciReturnStringMatrix(_pvCtx, pstString, 1, iNbStrings);
+        ret = sciReturnStringMatrix(pstString, 1, iNbStrings);
+        releaseGraphicObjectProperty(__GO_UI_TOOLTIPSTRING__, pstString, jni_string_vector, iNbStrings);
+        return ret;
     }
     else
     {
         Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "TooltipString");
-        return FALSE;
+        return NULL;
     }
 }

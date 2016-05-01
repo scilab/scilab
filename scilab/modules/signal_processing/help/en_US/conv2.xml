@@ -5,7 +5,7 @@
         <refpurpose>discrete 2-D convolution. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             C = conv2(A,B [,shape])
             C = conv2(hrow,hcol,B [,shape])

@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- ENGLISH IMPOSED -->
+// <-- CLI SHELL MODE -->
 // <-- TEST WITH ATOMS -->
 //
 // <-- Non-regression test for bug 9805 -->
@@ -15,5 +16,4 @@
 // <-- Short Description -->
 // atomsSystemUpdate() failed on some Windows.
 atomsSystemUpdate();
-Scanning repository http://atoms.scilab.org/5.5 ... Done
-
+Scanning repository http://atoms.scilab.org/6.0 ... Done

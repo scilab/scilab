@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -15,16 +18,16 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "numericconstants_interface.h"
 /*--------------------------------------------------------------------------*/
 /* fortran subroutines */
-extern double C2F(dlamch)  (char *CMACH, unsigned long int);
 extern int C2F(ql0001)(int *m, int *me, int *mmax, int *n, int *nmax, int *mnn,
                        double *c, double *d, double *a, double *b, double *xl,
                        double *xu, double *x, double *u, int *iout, int *ifail,
                        int *iprint, double *war, int *lwar, int *iwar, int *liwar,
                        double *eps1);
 /*--------------------------------------------------------------------------*/
-int sci_qld(char *fname, unsigned long fname_len)
+int sci_qld(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     static int un = 1, zero = 0;
@@ -67,7 +70,7 @@ int sci_qld(char *fname, unsigned long fname_len)
 
     /* RhsVar: qld(Q,p,C,b,lb,ub,me,eps) */
     /*             1,2,3,4,5 ,6 ,7, 8  */
-    eps1 = C2F(dlamch)("e", 1L);
+    eps1 = nc_eps();
     next = nbInputArgument(pvApiCtx) + 1;
     /*   Variable 1 (Q)   */
     //get variable address
@@ -192,7 +195,7 @@ int sci_qld(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    if (nbis*unbis == 0)
+    if (nbis * unbis == 0)
     {
         sciErr = allocMatrixOfDouble(pvApiCtx, next, n, un, &lb);
         if (sciErr.iErr)
@@ -204,7 +207,7 @@ int sci_qld(char *fname, unsigned long fname_len)
 
         for (k = 0; k < n; k++)
         {
-            (lb)[k] = -C2F(dlamch)("o", 1L);
+            (lb)[k] = -nc_double_max();
         }
         next = next + 1;
     }
@@ -232,7 +235,7 @@ int sci_qld(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    if (nbis*unbis == 0)
+    if (nbis * unbis == 0)
     {
         sciErr = allocMatrixOfDouble(pvApiCtx, next, n, un, &ub);
         if (sciErr.iErr)
@@ -244,7 +247,7 @@ int sci_qld(char *fname, unsigned long fname_len)
 
         for (k = 0; k < n; k++)
         {
-            (ub)[k] = C2F(dlamch)("o", 1L);
+            (ub)[k] = nc_double_max();
         }
         next = next + 1;
     }
@@ -282,7 +285,8 @@ int sci_qld(char *fname, unsigned long fname_len)
 
     if ((*(me) < 0) || (*(me) > n))
     {
-        Err = 7;
+        // FIX ME
+        //        Err = 7;
         SciError(116);
         return 0;
     }

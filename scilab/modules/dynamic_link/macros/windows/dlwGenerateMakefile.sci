@@ -1,10 +1,13 @@
 // Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 //=============================================================================
 function Makename = dlwGenerateMakefile(name, ..
     tables, ..
@@ -145,10 +148,10 @@ function ilib_gen_Make_win32(name, ..
 
     if with_gateway then
         if L == 1 then
-            FILES_SRC_MATRIX = [FILES_SRC_MATRIX , name + ".c"];
+            FILES_SRC_MATRIX = [FILES_SRC_MATRIX , name + ".cpp"];
         else
             for i=1:L
-                FILES_SRC_MATRIX = [FILES_SRC_MATRIX , name + string(i) + ".c"];
+                FILES_SRC_MATRIX = [FILES_SRC_MATRIX , name + string(i) + ".cpp"];
             end
         end
     end
@@ -181,16 +184,26 @@ function ilib_gen_Make_win32(name, ..
         error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make", 3));
     end
 
+    //update DEBUG_SCILAB_DYNAMIC_LINK to map with Scilab compilation mode
+    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
+    if val <> "YES" & val <> "NO" & isDebug() then
+        setenv("DEBUG_SCILAB_DYNAMIC_LINK","YES");
+        CFLAGS = CFLAGS + " -D_DEBUG";
+    else
+        setenv("DEBUG_SCILAB_DYNAMIC_LINK","");
+        CFLAGS = CFLAGS + " -DNDEBUG";
+    end
+
     // remove duplicated files
     FILES_SRC_MATRIX = unique(FILES_SRC_MATRIX);
 
     FILES_SRC = strcat(FILES_SRC_MATRIX," ");
 
     OBJ_DEST_PATH = "";
-    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
-        OBJ_DEST_PATH = "Release/";
-    else
+    if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","") == "YES") then
         OBJ_DEST_PATH = "Debug/";
+    else
+        OBJ_DEST_PATH = "Release/";
     end
 
     OBJS_MATRIX = [];
@@ -247,6 +260,7 @@ function ilib_gen_Make_win32(name, ..
         MAKEFILE_VC = strsubst(MAKEFILE_VC, "CC = __CC__","#CC = ");
     end
 
+    CFLAGS = CFLAGS + " -D" + convstr(name, "u") + "_GW_EXPORTS";
     MAKEFILE_VC = strsubst(MAKEFILE_VC, "__CFLAGS__", CFLAGS);
     MAKEFILE_VC = strsubst(MAKEFILE_VC, "__MEXCFLAGS__", MEXCFLAGS);
     MAKEFILE_VC = strsubst(MAKEFILE_VC, "__FFLAGS__", FFLAGS);
@@ -264,5 +278,9 @@ function ilib_gen_Make_win32(name, ..
         // TEMPLATE_MAKEFILE.VC not found
         warning(SCI+"/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.VC"+ _("not found.") );
     end
+
+    //restore DEBUG_SCILAB_DYNAMIC_LINK
+    setenv("DEBUG_SCILAB_DYNAMIC_LINK", val);
+
 endfunction
 //=============================================================================

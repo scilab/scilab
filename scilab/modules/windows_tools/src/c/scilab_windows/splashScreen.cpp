@@ -3,11 +3,14 @@
 * Copyright (C) INRIA - Allan CORNET
 * Copyright (C) DIGITEO - 2012 - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -28,7 +31,7 @@ extern "C"
 #include "charEncoding.h"
 #include "getScilabDirectory.h"
 #include "InnosetupMutex.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 };
 /*--------------------------------------------------------------------------*/
 #define SPLASH_WINDOW_CLASSNAME "Scilab splashscreen"
@@ -134,7 +137,7 @@ static DWORD WINAPI ThreadSplashScreen(LPVOID lpParam)
     wndcls.hCursor = LoadCursor(NULL, IDC_APPSTARTING);
     wndcls.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wndcls.lpszClassName = SPLASH_WINDOW_CLASSNAME;
-    wndcls.hIcon = LoadIcon(wndcls.hInstance, (char*)MAKEINTRESOURCE(IDI_APPLICATION));
+    wndcls.hIcon = LoadIcon(wndcls.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 
     if (!RegisterClass(&wndcls))
     {

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -54,7 +57,7 @@ template < class T > int sci_xmlValidationFile(char *fname, void *pvApiCtx)
 
     if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return 0;
     }
 
@@ -86,19 +89,19 @@ template < class T > int sci_xmlValidationFile(char *fname, void *pvApiCtx)
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlDTD(char *fname, unsigned long fname_len)
+int sci_xmlDTD(char *fname, void* pvApiCtx)
 {
     return sci_xmlValidationFile < XMLValidationDTD > (fname, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlRelaxNG(char *fname, unsigned long fname_len)
+int sci_xmlRelaxNG(char *fname, void* pvApiCtx)
 {
     return sci_xmlValidationFile < XMLValidationRelaxNG > (fname, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlSchema(char *fname, unsigned long fname_len)
+int sci_xmlSchema(char *fname, void* pvApiCtx)
 {
     return sci_xmlValidationFile < XMLValidationSchema > (fname, pvApiCtx);
 }

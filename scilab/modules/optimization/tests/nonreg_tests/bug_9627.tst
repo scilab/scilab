@@ -21,8 +21,8 @@
 // optimsimplex_check
 s1 = optimsimplex_new ();
 refMsg = msprintf(_("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_check", 1);
-assert_checkerror("s1 = optimsimplex_check(""1"");",refMsg);
-assert_checkerror("s1 = optimsimplex_check(%t);",refMsg);
+assert_checkerror("optimsimplex_check(""1"");",refMsg);
+assert_checkerror("optimsimplex_check(%t);",refMsg);
 
 // optimsimplex_getall
 refMsg = msprintf(_("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_getall", 1);

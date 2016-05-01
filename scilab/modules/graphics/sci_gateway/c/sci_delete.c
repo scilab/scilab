@@ -5,11 +5,14 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,7 +21,7 @@
 /* desc : interface for delete routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "DestroyObjects.h"
@@ -45,11 +48,9 @@
 #include "sciprint.h"
 #include "createGraphicObject.h"
 
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
-int sci_delete(char *fname, unsigned long fname_len)
+int sci_delete(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -58,7 +59,7 @@ int sci_delete(char *fname, unsigned long fname_len)
     int* piAddrl2 = NULL;
     char* l2 = NULL;
 
-    int m1 = 0, n1 = 0, lw = 0;
+    int m1 = 0, n1 = 0;
     unsigned long hdl = 0;
     int nb_handles = 0, i = 0, dont_overload = 0;
     int iObjUID = 0;
@@ -145,7 +146,7 @@ int sci_delete(char *fname, unsigned long fname_len)
                     // Retrieve a matrix of double at position 2.
                     if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))   /* Gets the command name */
                     {
-                        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                         return 1;
                     }
                 }
@@ -163,7 +164,7 @@ int sci_delete(char *fname, unsigned long fname_len)
                 // Retrieve a matrix of double at position 1.
                 if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
                 {
-                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                     return 1;
                 }
 
@@ -213,8 +214,7 @@ int sci_delete(char *fname, unsigned long fname_len)
                 break;
             default:
                 // Overload
-                lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
-                C2F(overload) (&lw, "delete", 6);
+                OverLoad(1);
                 return 0;
         }
     }
@@ -257,7 +257,6 @@ int sci_delete(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        //bug #11485 : duplicate pobjUID before delete it.
         iTemp = iObjUID;
         deleteGraphicObject(iObjUID);
 
@@ -309,8 +308,7 @@ int sci_delete(char *fname, unsigned long fname_len)
     if (!dont_overload)
     {
         // Overload
-        lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
-        C2F(overload) (&lw, "delete", 6);
+        OverLoad(1);
     }
     else
     {

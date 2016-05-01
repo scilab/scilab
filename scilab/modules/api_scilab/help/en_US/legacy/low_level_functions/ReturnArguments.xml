@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ReturnArguments">
+    <refnamediv>
+        <refname>ReturnArguments</refname>
+        <refpurpose>
+            A C gateway function which returns the various variables.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>ReturnArguments(pvApiCtx);</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            ReturnArguments(pvApiCtx) will return the various variables declared through
+            AssignOutputVariable(pvApiCtx, X).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>This example takes a matrix of doubles as input and returns:</para>
+        <itemizedlist>
+            <listitem>
+                <para>the number of lines (first output argument)</para>
+            </listitem>
+            <listitem>
+                <para>the number of rows (second output argument)</para>
+            </listitem>
+        </itemizedlist>
+        <programlisting role="example">
+            <![CDATA[
+#include "api_scilab.h"
+int sci_mysizedouble(char * fname, void* pvApiCtx)
+{
+    SciErr      sciErr;
+    int         m_in_row;
+    int         n_in_col;
+    int*        piAddr = NULL;
+    double*     pdblData = NULL;
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    /* get dimensions */
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &m_in_row, &n_in_col, &pdblData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+    sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, &m_in_row); // the m_in_row parameter handles the number of lines of the matrix sent as argument
+    sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 2, 1, 1, &m_in_row); // store a same value, but will neither be used nor returned to Scilab
+    sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 3, 1, 1, &n_in_col); // the n_in_col parameter handles the number of columns of the matrix sent as argument
+
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1; // We set the parameter "nbInputArgument(pvApiCtx) + 1" as an output argument
+    AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 3; // We set the parameter "nbInputArgument(pvApiCtx) + 3" as an output argument
+    ReturnArguments(pvApiCtx);
+    return 0;
+}
+ ]]>
+        </programlisting>
+    </refsection>
+</refentry>

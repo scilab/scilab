@@ -36,7 +36,14 @@ function [x,y,typ]=SOM_f(job,arg1,arg2)
         if size(exprs,"*")<>3 then
             exprs=string(model.rpar),
         end
-        if graphics.flip then
+
+        orient=%t;
+        style=graphics.style;
+        subStr=strstr(style,"flip=");
+        if subStr<>"" then
+            orient=%f;
+        end
+        if orient then
             labs=["down","left","up"]
         else
             labs=["down","right","up"]

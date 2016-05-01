@@ -2,6 +2,4 @@ LIBRARY    sciconsole.dll
 
 
 EXPORTS
-eventloopprompt_
-setprlev_
-promptecho_
+scilabread_

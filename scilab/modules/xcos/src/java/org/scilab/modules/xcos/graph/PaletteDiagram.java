@@ -1,12 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -18,6 +22,7 @@ import java.util.List;
 
 import javax.swing.ScrollPaneConstants;
 
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.TextBlock;
@@ -28,6 +33,8 @@ import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.model.mxGeometry;
+import java.rmi.server.UID;
+import org.scilab.modules.xcos.JavaController;
 
 /**
  * @author Antoine ELIAS
@@ -36,15 +43,8 @@ import com.mxgraph.model.mxGeometry;
 public class PaletteDiagram extends XcosDiagram {
 
     private static final int BLOCK_MAX_WIDTH = (int) (XcosConstants.PALETTE_BLOCK_WIDTH * 0.8); // 80%
-    // of
-    // the
-    // max
-    // size
     private static final int BLOCK_MAX_HEIGHT = (int) (XcosConstants.PALETTE_BLOCK_HEIGHT * 0.8); // 80%
-    // of
-    // the
-    // max
-    // size
+
     private String name;
     private String fileName;
     private double windowWidth;
@@ -52,10 +52,11 @@ public class PaletteDiagram extends XcosDiagram {
     /**
      * Constructor
      */
-    public PaletteDiagram() {
-        super();
+    public PaletteDiagram(long uid) {
+        super(new JavaController(), uid, Kind.DIAGRAM, new UID().toString());
         setComponent(new PaletteComponent(this));
-        installStylesheet();
+
+        setTitle(PaletteDiagram.class.getName());
 
         setCellsLocked(true);
         setGridVisible(false);
@@ -130,7 +131,7 @@ public class PaletteDiagram extends XcosDiagram {
             if (obj instanceof BasicBlock) {
                 BasicBlock block = (BasicBlock) obj;
                 block.setGeometry(getNewBlockPosition(block.getGeometry(), blockCount));
-                BlockPositioning.updateBlockView(block);
+                BlockPositioning.updateBlockView(this, block);
                 blockCount++;
             }
         }

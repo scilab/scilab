@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -15,6 +18,10 @@ package org.scilab.modules.xcos.graph;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
 
 /**
  * Compare two diagrams per kind.
@@ -28,37 +35,33 @@ public final class DiagramComparator implements Comparator<XcosDiagram> {
      */
 
     public static void sort(List<XcosDiagram> diagrams) {
-        Collections.sort(diagrams, getInstance());
+        Collections.sort(diagrams, new DiagramComparator());
     }
 
     public static void reverse(List<XcosDiagram> diagrams) {
-        Collections.sort(diagrams, Collections.reverseOrder(getInstance()));
+        Collections.sort(diagrams, Collections.reverseOrder(new DiagramComparator()));
     }
 
     /*
-     * Singleton
+     * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
      */
-    private static final DiagramComparator instance = new DiagramComparator();
-
-    public static final DiagramComparator getInstance() {
-        return instance;
-    }
-
-    private DiagramComparator() {
-    }
 
     @Override
     public int compare(final XcosDiagram o1, final XcosDiagram o2) {
+        long[] o1Parent = new long[] { o1.getUID() };
+        long[] o2Parent = new long[] { o2.getUID() };
+        JavaController controller = new JavaController();
+
         int o1Relative = 0;
-        for (XcosDiagram graph1 = o1; graph1 instanceof SuperBlockDiagram && ((SuperBlockDiagram) graph1).getContainer() != null; graph1 = ((SuperBlockDiagram) graph1)
-                .getContainer().getParentDiagram()) {
+        while (o1Parent[0] != 0l) {
             o1Relative++;
+            controller.getObjectProperty(o1Parent[0], Kind.DIAGRAM, ObjectProperties.PARENT_BLOCK, o1Parent);
         }
 
         int o2Relative = 0;
-        for (XcosDiagram graph2 = o2; graph2 instanceof SuperBlockDiagram && ((SuperBlockDiagram) graph2).getContainer() != null; graph2 = ((SuperBlockDiagram) graph2)
-                .getContainer().getParentDiagram()) {
+        while (o2Parent[0] != 0l) {
             o2Relative++;
+            controller.getObjectProperty(o2Parent[0], Kind.DIAGRAM, ObjectProperties.PARENT_BLOCK, o2Parent);
         }
 
         return o1Relative - o2Relative;

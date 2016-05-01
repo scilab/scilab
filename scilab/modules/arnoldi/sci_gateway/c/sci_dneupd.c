@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -25,7 +28,7 @@ extern int C2F(dneupd)(int *rvec, char *howmny, int *select, double *dr,
                        int *ncv, double *v, int *ldv, int *iparam, int *ipntr,
                        double *workd, double *workl, int *lworkl, int *info);
 /*--------------------------------------------------------------------------*/
-int sci_dneupd(char *fname, unsigned long fname_len)
+int sci_dneupd(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -75,7 +78,6 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     int* pINFO          = NULL;
 
     int mRVEC,     nRVEC;
-    int mHOWMANY,  nHOWMANY;
     int mSELECT,   nSELECT;
     int Dr,        mDr,       nDr;
     int Di,        mDi,       nDi;
@@ -83,9 +85,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     int mSIGMAr,   nSIGMAr;
     int mSIGMAi,   nSIGMAi;
     int mWORKev,   nWORKev;
-    int mBMAT,     nBMAT;
     int mN,        nN;
-    int mWHICH,    nWHICH;
     int mNEV,      nNEV;
     int mTOL,      nTOL;
     int RESID,    mRESID,    nRESID;
@@ -425,19 +425,19 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     LDZ = LDV;
 
     /* Check some sizes */
-    if (mIPARAM*nIPARAM != 11)
+    if (mIPARAM * nIPARAM != 11)
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "IPARAM", 11);
         return 0;
     }
 
-    if (mIPNTR*nIPNTR != 14)
+    if (mIPNTR * nIPNTR != 14)
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "IPNTR", 14);
         return 0;
     }
 
-    if (mRESID*nRESID != *(int*)(pN))
+    if (mRESID * nRESID != *(int*)(pN))
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "RESID", *(int*)(pN));
         return 0;
@@ -449,19 +449,19 @@ int sci_dneupd(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (mSELECT*nSELECT != *(int*)(pNCV))
+    if (mSELECT * nSELECT != *(int*)(pNCV))
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "SELECT", *(int*)(pNCV));
         return 0;
     }
 
-    if (mDr*nDr != (*(int*)(pNEV) + 1))
+    if (mDr * nDr != (*(int*)(pNEV) + 1))
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "Dr", *(int*)(pNEV) + 1);
         return 0;
     }
 
-    if (mDi*nDi != (*(int*)(pNEV) + 1))
+    if (mDi * nDi != (*(int*)(pNEV) + 1))
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "Di", *(int*)(pNEV) + 1);
         return 0;
@@ -473,7 +473,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (mWORKev*nWORKev != 3 * *(int*)(pNCV))
+    if (mWORKev * nWORKev != 3 * *(int*)(pNCV))
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "WORKev", 3 * *(int*)(pNCV));
         return 0;
@@ -503,7 +503,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     // Retrieve a matrix of double at position 2.
     if (getAllocatedSingleString(pvApiCtx, piAddrpHOWMANY, &pHOWMANY))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -519,7 +519,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (getAllocatedSingleString(pvApiCtx, piAddrpBMAT, &pBMAT))
     {
         freeAllocatedSingleString(pHOWMANY);
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 10);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 10);
         return 1;
     }
 
@@ -537,7 +537,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     {
         freeAllocatedSingleString(pHOWMANY);
         freeAllocatedSingleString(pBMAT);
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 12);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 12);
         return 1;
     }
 
@@ -557,7 +557,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
 
     if (pINFO[0] < 0)
     {
-        C2F(errorinfo)("dneupd", (int*)(pINFO), 6L);
+        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
         return 0;
     }
 

@@ -1,0 +1,10 @@
+	LIBRARY    ast.dll
+
+
+EXPORTS
+setLastError
+isPrintOutput
+isSilentError
+getConsoleWidth
+getWarningMode
+getWarningStop

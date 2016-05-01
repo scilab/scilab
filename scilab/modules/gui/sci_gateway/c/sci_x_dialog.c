@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Vincent COUVERT (Java version)
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -19,7 +22,7 @@
 #include "getPropertyAssignedValue.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int sci_x_dialog(char *fname, unsigned long fname_len)
+int sci_x_dialog(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -53,7 +56,7 @@ int sci_x_dialog(char *fname, unsigned long fname_len)
         // Retrieve a matrix of string at position 1.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrlabelsAdr, &nbRow, &nbCol, &labelsAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
     }
@@ -74,7 +77,7 @@ int sci_x_dialog(char *fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) == 2)
     {
-        if (VarType(2) ==  sci_strings)
+        if (checkInputArgumentType(pvApiCtx, 2, sci_strings))
         {
             sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrinitialValueAdr);
             if (sciErr.iErr)
@@ -86,7 +89,7 @@ int sci_x_dialog(char *fname, unsigned long fname_len)
             // Retrieve a matrix of string at position 2.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrinitialValueAdr, &nbRow, &nbCol, &initialValueAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                 return 1;
             }
         }
@@ -123,7 +126,8 @@ int sci_x_dialog(char *fname, unsigned long fname_len)
         userValue = getMessageBoxValue(messageBoxID);
 
         nbCol = 1;
-        CreateVarFromPtr(nbInputArgument(pvApiCtx) + 1, MATRIX_OF_STRING_DATATYPE, &userValueSize, &nbCol, userValue);
+        createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, userValueSize, nbCol, userValue);
+        freeArrayOfString(userValue, userValueSize);
         /* TO DO : delete of userValue */
     }
 

@@ -5,7 +5,7 @@
         <refpurpose>variable protection</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>n = predef()
             oldnew = predef(n)
             oldnew = predef('all')
@@ -17,7 +17,7 @@
         <title>Description</title>
         <para>
             Utility function used for defining "oldest" variables as "protected".
-            Protected variables cannot be killed. They are not saved 
+            Protected variables cannot be killed. They are not saved
             by the <function>save</function> command. The "oldest" are those appearing last in
             the <code>who('get')</code>.
         </para>
@@ -50,12 +50,12 @@
         </para>
         <para>
             A number of protected variables are set in the start-up file <literal>SCI/etc/scilab.start</literal>.
-            User may in particular set its own predefined variables in user's startup files 
+            User may in particular set its own predefined variables in user's startup files
             <literal>SCIHOME/.scilab</literal> or <literal>SCIHOME/scilab.ini</literal>
         </para>
         <para>
             <important>
-                Note that it is not possible to protect a new defined variable by using <code>predef(1)</code>. 
+                Note that it is not possible to protect a new defined variable by using <code>predef(1)</code>.
                 This means that to protect a variable, Scilab needs to protect all the variables that have been defined before it.
                 This limitation may disappear with Scilab 6, which will not be stack-designed.
             </important>
@@ -63,8 +63,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-errcatch(13, "continue") // Make sure we continue even when "clear a" will fail
+        <programlisting role="example"><![CDATA[
 a = 1;
 predef("all");
 clear a // fails

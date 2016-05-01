@@ -2,17 +2,20 @@
 // Copyright (C) DIGITEO - 2010 - Clément DAVID
 // Copyright (C) - 2011 - Scilab Enterprises - Clément DAVID
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
 
     //  Add a block to a Scilab/Xcos palette instance. Some optional properties can be added to customize the palette icon and the style of the block.
     //
-    // Calling Sequence
+    // Syntax
     //  pal = xcosPalAddBlock(pal, block);
     //  pal = xcosPalAddBlock(pal, block, pal_block_img);
     //  pal = xcosPalAddBlock(pal, block, [], style);
@@ -40,9 +43,9 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     //  bigSomPath = TMPDIR + "/sum.sod";
     //
     //  scs_m = SUM_f("define");
-    //  export_to_hdf5(sumPath, "scs_m");
+    //  save(sumPath, "scs_m");
     //  scs_m = BIGSOM_f("define");
-    //  export_to_hdf5(bigSomPath, "scs_m");
+    //  save(bigSomPath, "scs_m");
     //
     //  pal = xcosPalAddBlock(pal, sumPath);
     //  pal = xcosPalAddBlock(pal, bigSomPath);
@@ -84,8 +87,9 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         mclose(fd);
 
         // store the block instance
-        status = import_from_hdf5(block);
-        if ~status then
+        try
+            load(block);
+        catch
             error(msprintf(gettext("%s: Unable to load block from ""%s"": hdf5 file expected.\n"), "xcosPalAddBlock", block));
         end
 

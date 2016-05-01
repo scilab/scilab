@@ -30,19 +30,19 @@ if getos() == 'Windows' then
   if ierr <> 999 then pause,end
   ulink();
   
-  Cfunctions = ['Windows_Main'];
+  Cfunctions = ['CreateScilabConsole'];
   link(SCI+'/bin/scilab_windows.dll',Cfunctions,'c');
   ulink();
   
-  Cfunctions = ['Windows_Main','Console_Main','createInnosetupMutex','closeInnosetupMutex'];
+  Cfunctions = ['CreateScilabConsole','CloseScilabConsole','createInnosetupMutex','closeInnosetupMutex'];
   link(SCI+'/bin/scilab_windows.dll',Cfunctions,'c');
   ulink();
   
-  Cfunctions = ['Windows_Main';'Console_Main';'createInnosetupMutex';'closeInnosetupMutex'];
+  Cfunctions = ['CreateScilabConsole';'CloseScilabConsole';'createInnosetupMutex';'closeInnosetupMutex'];
   link(SCI+'/bin/scilab_windows.dll',Cfunctions,'c');
   ulink();
   
-  Cfunctions = ['Windows_Main','Console_Main';'createInnosetupMutex','closeInnosetupMutex'];
+  Cfunctions = ['CreateScilabConsole','CloseScilabConsole';'createInnosetupMutex','closeInnosetupMutex'];
   ierr = execstr("link(SCI+''/bin/scilab_windows.dll'',Cfunctions,''c'');",'errcatch');
   if ierr <> 999 then pause,end
   ulink();

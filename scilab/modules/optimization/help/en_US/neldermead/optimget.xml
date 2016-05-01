@@ -24,7 +24,7 @@
         <para>In the following, we analyse the various ways to call the optimget
             function.
         </para>
-        <para>The following calling sequence</para>
+        <para>The following syntax</para>
         <programlisting role="example"> 
             val = optimget(options , key)
         </programlisting>
@@ -39,7 +39,7 @@
             field "MaxFunEval". But the key "Tol" corresponds both to the "TolX" and
             "TolFun" fields and therefore will generate an error.
         </para>
-        <para>The following calling sequence</para>
+        <para>The following syntax</para>
         <programlisting role="example"> 
             val = optimget(options, key, value)
         </programlisting>
@@ -123,7 +123,7 @@
         <title>Example #4</title>
         <para>In the following example, we create an optimization structure and
             configure the maximum number of function evaluations to 1000. Then we
-            quiery the data structure, giving only the "MaxF" key to the
+            query the data structure, giving only the "MaxF" key to the
             <literal>optimget</literal> function. Since that corresponds only to the
             "MaxFunEvals" field, there is only one match and the function returns
             10000.

@@ -5,7 +5,7 @@
         <refpurpose>discrete 1-D convolution. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>C = conv(A,B [,shape])</synopsis>
     </refsynopsisdiv>
     <refsection>

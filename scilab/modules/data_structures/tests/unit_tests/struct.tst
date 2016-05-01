@@ -93,4 +93,4 @@ if ~isfield(z,"b") then pause, end
 if ~isfield(z.b,"c") then pause, end
 
 z(1).x.x = 1;
-if execstr('z(42).x','errcatch')<>21 then pause,end
+if execstr('z(42).x','errcatch')<>999 then pause,end

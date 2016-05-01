@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -20,7 +23,7 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #ifndef _MSC_VER
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 #endif
 /*--------------------------------------------------------------------------*/
 int gw_graphic_objects(void)
@@ -80,7 +83,47 @@ BOOL setGraphicObjectProperty(int iUID, const int _iPropertyName, void const* _p
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
+BOOL setGraphicObjectPropertyAndNoWarn(int iUID, const int _iPropertyName, void const* _pvValue, enum _ReturnType_ _valueTtype, int numElements)
+{
+    return FALSE;
+}
+/*--------------------------------------------------------------------------*/
 void setGraphicObjectRelationship(int iUID, int iUID2)
 {
+}
+/*--------------------------------------------------------------------------*/
+long getHandle(int UID)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createFigure(int iDockable, int iMenubarType, int iToolbarType, int iDefaultAxes, int iVisible)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createNewFigureWithAxes(void)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getObjectFromHandle(void)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getValidDefaultFigureId(void)
+{
+    return 0;
+}
+
+int getCurrentFigure(void)
+{
+    return 0;
+}
+
+int createSubWin(int iParent)
+{
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

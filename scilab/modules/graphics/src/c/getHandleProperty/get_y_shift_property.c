@@ -6,11 +6,14 @@
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -25,13 +28,13 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_y_shift_property(void* _pvCtx, int iObjUID)
+void* get_y_shift_property(void* _pvCtx, int iObjUID)
 {
     double* shiftCoordinates = NULL;
     int iValue = 0;
@@ -42,19 +45,19 @@ int get_y_shift_property(void* _pvCtx, int iObjUID)
     if (piValue == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "y_shift");
-        return -1;
+        return NULL;
     }
 
     if (iValue == 0)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
     else
     {
         getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector, (void **)&shiftCoordinates);
         getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**)&piValue);
 
-        return sciReturnRowVector(_pvCtx, shiftCoordinates, iValue);
+        return sciReturnRowVector(shiftCoordinates, iValue);
     }
 }
 /*------------------------------------------------------------------------*/

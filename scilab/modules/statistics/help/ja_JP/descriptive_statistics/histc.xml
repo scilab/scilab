@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  --><!-- This document was created with Syntext Serna Free. -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="histc">
@@ -22,7 +25,7 @@
             [cf, ind] = histc(x, data [,normalization])
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>引数</title>
         <variablelist>
             <varlistentry>
@@ -74,7 +77,7 @@
                 <listitem>
                     <para>
                         スカラー論理値.
-                        <varname>normalization=%f (デフォルト)</varname>: 
+                        <varname>normalization=%f (デフォルト)</varname>:
                         <varname>cf</varname>は,各クラスにおける点の総数を表します.
                         <varname>normalization=%t</varname>:
                         <varname>cf</varname>は,各クラスにおける点の数を点の総数に関して相対的に表します.
@@ -83,7 +86,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>説明</title>
         <para>
             この関数は,クラス<literal>x</literal>により<literal>data</literal>ベクトルの
@@ -93,12 +96,12 @@
             (ただし, <emphasis>dx = (x(n+1)-x(1))/n</emphasis>)となるクラスが選択されます.
         </para>
         <para>
-            クラスは<literal>C1 = [x(1), x(2)]</literal> および <literal>Ci = ( x(i), x(i+1)]</literal> 
+            クラスは<literal>C1 = [x(1), x(2)]</literal> および <literal>Ci = ( x(i), x(i+1)]</literal>
             (i &gt;= 2)で定義されます.
             <literal>Nmax</literal>は<literal>data</literal>の総数 (Nmax = length(data)),
             <literal>Ni</literal>は<literal>Ci</literal>に含まれる<literal>data</literal>要素の数,
             <literal>Ci</literal>における<literal>x</literal>のヒストグラムの値は,
-            <literal>"normalized"</literal>が選択された場合は	  
+            <literal>"normalized"</literal>が選択された場合は
             <emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis> となり,
             そうでない場合は単に<emphasis>Ni</emphasis>となります.
             正規化が行われた際,ヒストグラムは以下を確認します:
@@ -111,7 +114,7 @@
             の場合
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>例</title>
         <simplelist>
             <member> 例 #1: ガウス乱数標本のヒストグラム周辺の変化
@@ -139,11 +142,11 @@ clf()
 subplot(2,1,1)
 [cf, ind] = histc(c, d)
 histplot(c, d, style=2);
-xtitle("Normalized histogram")
+xtitle(_("Normalized histogram"))
 subplot(2,1,2)
 [cf, ind] = histc(c, d, normalization=%f)
 histplot(c, d, normalization=%f, style=5);
-xtitle("Non normalized histogram")
+xtitle(_("Non normalized histogram"))
 ]]></programlisting>
                 <scilab:image localized="true">
                     d = grand(1000,1,"bin", 6, 0.5);
@@ -152,11 +155,11 @@ xtitle("Non normalized histogram")
                     subplot(2,1,1)
                     [cf, ind] = histc(c, d)
                     histplot(c, d, style=2);
-                    xtitle("Normalized histogram")
+                    xtitle(_("Normalized histogram"))
                     subplot(2,1,2)
                     [cf, ind] = histc(c, d, normalization=%f)
                     histplot(c, d, normalization=%f, style=5);
-                    xtitle("Non normalized histogram")
+                    xtitle(_("Non normalized histogram"))
                 </scilab:image>
             </member>
             <member>
@@ -170,7 +173,7 @@ clf()
 histplot(40, X, style=2);
 x = linspace(0, max(Xmax), 100)';
 plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
-legend(["exponential random sample histogram" "exact density curve"]);
+legend([_("exponential random sample histogram") _("exact density curve")]);
 ]]></programlisting>
                 <scilab:image localized="true">
                     lambda = 2;
@@ -181,7 +184,7 @@ legend(["exponential random sample histogram" "exact density curve"]);
                     histplot(40, X, style=2);
                     x = linspace(0, max(Xmax), 100)';
                     plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
-                    legend(["exponential random sample histogram" "exact density curve"]);
+                    legend([_("exponential random sample histogram") _("exact density curve")]);
                 </scilab:image>
             </member>
             <member>
@@ -191,14 +194,14 @@ n = 10;
 data = rand(1, 1000, "normal");
 [cf, ind] = histc(n, data)
 clf(); histplot(n, data, style=12, polygon=%t);
-legend(["normalized histogram" "frequency polygon chart"]);
+legend([_("normalized histogram") _("frequency polygon chart")]);
 ]]></programlisting>
                 <scilab:image localized="true">
                     n = 10;
                     data = rand(1, 1000, "normal");
                     [cf, ind] = histc(n, data)
                     clf(); histplot(n, data, style=12, polygon=%t);
-                    legend(["normalized histogram" "frequency polygon chart"]);
+                    legend([_("normalized histogram") _("frequency polygon chart")]);
                 </scilab:image>
             </member>
         </simplelist>
@@ -220,7 +223,7 @@ legend(["normalized histogram" "frequency polygon chart"]);
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>履歴</title>
         <revhistory>
             <revision>

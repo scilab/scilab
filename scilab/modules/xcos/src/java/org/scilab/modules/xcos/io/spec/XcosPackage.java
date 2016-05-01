@@ -2,24 +2,26 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 package org.scilab.modules.xcos.io.spec;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.logging.Logger;
 import java.util.zip.CRC32;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -40,14 +42,15 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import org.scilab.modules.commons.ScilabCommons;
 
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
+import org.scilab.modules.commons.xml.ScilabXPathFactory;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 /**
@@ -56,7 +59,6 @@ import org.xml.sax.SAXException;
  * You can load/save from/to a file a specific package without storing any data.
  */
 public class XcosPackage {
-    private static final Logger LOG = Logger.getLogger(XcosPackage.class.getName());
     private static final String MIMETYPE = "mimetype";
     private static final String META_INF_MANIFEST_XML = "META-INF/manifest.xml";
 
@@ -65,8 +67,6 @@ public class XcosPackage {
     private static final byte[] MIME_BYTES = MIME.getBytes();
 
     private static final String INVALID_MIMETYPE = "Invalid mimetype";
-
-    private static final String DICTIONARY_PATH = "dictionary/dictionary.ser";
 
     /**
      * Specific InputStream implementation to use entry closing instead of
@@ -115,17 +115,23 @@ public class XcosPackage {
      */
     private final File file;
     private Document manifest;
+    private final long time;
 
     /**
      * Entries encoder/decoder stored in the encoding order
+     * <p>
+     * take care:
+     * <ul>
+     * <li>the order is the encoding order (from start to end)
+     * <li>decoding will be performed from the end to the start
      */
-    private Entry[] availableEntries;
+    private final Entry[] availableEntries = new Entry[] { new ContentEntry(), new DictionaryEntry() };
 
     /*
      * Data to store or load into
      */
     private XcosDiagram content;
-    private ScilabList dictionary;
+    private final ScilabList dictionary;
 
     /*
      * External methods, to save/load a file
@@ -142,13 +148,13 @@ public class XcosPackage {
      */
     public XcosPackage(final File file) throws ParserConfigurationException {
         this.file = file;
+        this.dictionary = new ScilabList();
 
         manifest = ScilabDocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
         final Element root = manifest.createElementNS("urn:scilab:xcos:xmlns:manifest:0.1", "manifest:manifest");
         manifest.appendChild(root);
 
-        // take care: the order is the encoding order
-        availableEntries = new Entry[] { new ContentEntry() };
+        time = ScilabCommons.getScilabVersionTimestamp();
     }
 
     private boolean hasInvalidManifest() {
@@ -171,86 +177,39 @@ public class XcosPackage {
             checkHeader();
         }
 
-        final ScilabList dictionary = getDictionary();
+        // Decode using the specified order (from end to start)
+        for (int i = availableEntries.length - 1; 0 <= i;) {
+            Entry e = availableEntries[i];
 
-        final FileInputStream fis = new FileInputStream(file);
-        final ZipInputStream zin = new ZipInputStream(fis);
-        // input stream without close operation
-        final EntryInputStream ein = new EntryInputStream(zin);
+            // open the file on each entry to manage non well ordered (but still
+            // valid) zip files
+            final FileInputStream fis = new FileInputStream(file);
+            try (ZipInputStream zin = new ZipInputStream(fis)) {
 
-        ZipEntry entry;
-        try {
-            while ((entry = zin.getNextEntry()) != null) {
-                final Node root = manifest.getFirstChild();
-                for (Node n = root.getFirstChild(); n != null; n = n.getNextSibling()) {
-                    // node precondition
-                    if (n.getNodeType() != Node.ELEMENT_NODE) {
-                        continue;
-                    }
-                    if (!n.hasAttributes()) {
-                        continue;
-                    }
+                ZipEntry entry;
+                while ((entry = zin.getNextEntry()) != null) {
+                    final String path = entry.getName();
+                    if (path.equals(e.getFullPath())) {
+                        // decode the current entry
+                        e.setup(this);
+                        e.load(entry, new EntryInputStream(zin));
 
-                    final String media = n.getAttributes().getNamedItem("manifest:media-type").getNodeValue();
-                    final String path = n.getAttributes().getNamedItem("manifest:full-path").getNodeValue();
-
-                    // path should be the entry one, if not continue
-                    if (!path.equals(entry.getName()) || path.equals(DICTIONARY_PATH)) {
-                        continue;
-                    }
-
-                    // select the right entry decoder
-                    for (final Entry e : availableEntries) {
-                        if (media.equals(e.getMediaType()) && path.matches(e.getFullPath())) {
-                            if (dictionary != null) {
-                                ((ContentEntry) e).setDictionary(dictionary);
-                            }
-                            e.setup(this);
-                            e.load(entry, ein);
-                            break;
+                        // try to decode the next entry (for well ordered zip,
+                        // the more common case)
+                        i--;
+                        if (0 <= i) {
+                            e = availableEntries[i];
                         }
                     }
                 }
+
             }
-
-        } finally {
-            zin.close();
         }
-    }
-
-    public ScilabList getDictionary() throws IOException {
-        LOG.entering("XcosPackage", "getDictionary");
-        final FileInputStream fis = new FileInputStream(file);
-        final ZipInputStream zin = new ZipInputStream(fis);
-
-        ZipEntry entry;
-        BufferedInputStream bis = new BufferedInputStream(zin);
-
-        try {
-            while ((entry = zin.getNextEntry()) != null) {
-                final String name = entry.getName();
-                if (name.equals(DICTIONARY_PATH)) {
-                    DictionaryEntry e = new DictionaryEntry();
-                    e.setup(this);
-                    e.load(entry, bis);
-                    return e.getDictionary();
-                }
-            }
-        } finally {
-            bis.close();
-            zin.close();
-
-            LOG.exiting("XcosPackage", "getDictionary");
-        }
-
-        return null;
     }
 
     /**
      * Check an xcos file as a ZIP package.
      *
-     * @param file
-     *            the file to read
      * @throws IOException
      *             on I/O Exception or invalid format
      * @throws TransformerException
@@ -258,10 +217,9 @@ public class XcosPackage {
      */
     public void checkHeader() throws IOException, TransformerException {
         final FileInputStream fis = new FileInputStream(file);
-        final ZipInputStream zin = new ZipInputStream(fis);
+        try (ZipInputStream zin = new ZipInputStream(fis)) {
 
-        ZipEntry entry;
-        try {
+            ZipEntry entry;
             while ((entry = zin.getNextEntry()) != null) {
                 // extract data
                 // open output streams
@@ -290,8 +248,6 @@ public class XcosPackage {
                     manifest = (Document) result.getNode();
                 }
             }
-        } finally {
-            zin.close();
         }
 
         if (hasInvalidManifest()) {
@@ -301,22 +257,31 @@ public class XcosPackage {
 
     public void store() throws IOException {
         final FileOutputStream fos = new FileOutputStream(file);
-        final ZipOutputStream zout = new ZipOutputStream(fos);
+        try (ZipOutputStream zout = new ZipOutputStream(fos,  Charset.forName("UTF-8"))) {
 
-        try {
             // add the header (standard package)
             storeHeader(zout);
+            zout.flush();
 
             // store the entries in encoding order
             for (final Entry entry : availableEntries) {
                 entry.setup(this);
+
+                final ZipEntry zentry = new ZipEntry(entry.getFullPath());
+                zentry.setTime(getTime());
+                zout.putNextEntry(zentry);
+                zout.flush();
+
                 entry.store(zout);
+                zout.flush();
             }
 
             // store the manifest file
             storeTrailer(zout);
-        } finally {
-            zout.close();
+            zout.flush();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -330,6 +295,7 @@ public class XcosPackage {
         crc.update(MIME_BYTES);
         entry.setCrc(crc.getValue());
         entry.setMethod(ZipEntry.STORED);
+        entry.setTime(getTime());
         zout.putNextEntry(entry);
         zout.write(MIME_BYTES);
 
@@ -348,6 +314,7 @@ public class XcosPackage {
          * Append the entry
          */
         final ZipEntry entry = new ZipEntry(META_INF_MANIFEST_XML);
+        entry.setTime(getTime());
         zout.putNextEntry(entry);
 
         /*
@@ -384,6 +351,14 @@ public class XcosPackage {
         return content;
     }
 
+    public ScilabList getDictionary() {
+        return dictionary;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
     /*
      * Utilities
      */
@@ -397,7 +372,7 @@ public class XcosPackage {
     public String getPackageVersion() {
         // cache the xpath expression
         if (XPATH_VERSION == null) {
-            final XPathFactory factory = XPathFactory.newInstance();
+            final XPathFactory factory = ScilabXPathFactory.newInstance();
             final XPath xpath = factory.newXPath();
 
             try {

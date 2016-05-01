@@ -132,8 +132,8 @@
             </listitem>
         </itemizedlist>
         <para>
-            Les fonctions équivalentes de EXTTRI dans Scilab sont respectivement <link linkend="triu">triu(u)</link>,
-            <link linkend="tril">tril(u)</link> et <link linkend="diag">diag(u)</link>
+            Equivalent functions of EXTTRI in Scilab are <link linkend="triu">triu(u)</link>,
+            <link linkend="tril">tril(u)</link> and <link linkend="diag">diag(u)</link>, respectively
         </para>
         <para/>
     </refsection>

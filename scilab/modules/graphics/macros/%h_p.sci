@@ -1,10 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function %h_p(h)
     if size(h,"*")>1 then
@@ -55,13 +58,34 @@ function %h_p(h)
                 if length(bzs)>70 then bzs="matrix "+strcat(string(size(h.z_shift)),"x"),end
             end
 
+            if size(h.mark_size,"*") > 10 then
+                msz="matrix "+strcat(string(size(h.mark_size)),"x")
+            else
+                msz=sci2exp(h.mark_size,0)
+                if length(msz)>70 then msz="matrix "+strcat(string(size(h.mark_size)),"x"),end
+            end
+
+            if size(h.mark_foreground,"*") > 10 then
+                mfg="matrix "+strcat(string(size(h.mark_foreground)),"x")
+            else
+                mfg=sci2exp(h.mark_foreground,0)
+                if length(mfg)>70 then mfg="matrix "+strcat(string(size(h.mark_foreground)),"x"),end
+            end
+
+            if size(h.mark_background,"*") > 10 then
+                mbg="matrix "+strcat(string(size(h.mark_background)),"x")
+            else
+                mbg=sci2exp(h.mark_background,0)
+                if length(mbg)>70 then mbg="matrix "+strcat(string(size(h.mark_background)),"x"),end
+            end
+
             u=h.user_data;
             t=[t;
             "parent: "+h.parent.type
             "children: "+fmtchildren(h.children)
             "datatips: "+fmtchildren(h.datatips)
-            "display_function: "++sci2exp(h.display_function)
-            "display_function_data: "+fmtuser_data(h.display_function_data)
+            "display_function = "++sci2exp(h.display_function)
+            "display_function_data = "+fmtuser_data(h.display_function_data)
             "visible = "+sci2exp(h.visible)
             "data = "+d
             "closed = "+sci2exp(h.closed)
@@ -79,9 +103,9 @@ function %h_p(h)
             "mark_mode = "+sci2exp(h.mark_mode)
             "mark_style = "+sci2exp(h.mark_style)
             "mark_size_unit = "+sci2exp(h.mark_size_unit)
-            "mark_size = "+string(h.mark_size)
-            "mark_foreground = "+string(h.mark_foreground)
-            "mark_background = "+string(h.mark_background)
+            "mark_size = "+msz
+            "mark_foreground = "+mfg
+            "mark_background = "+mbg
             "mark_offset = "+string(h.mark_offset)
             "mark_stride = "+string(h.mark_stride)
             "x_shift = "+bxs
@@ -111,7 +135,6 @@ function %h_p(h)
             // =====================================================================
 
         case "Axes"
-
             T=h.x_ticks
             if size(T.locations,"*")>9 then
                 locx="matrix "+strcat(string(size(T.locations)),"x")
@@ -1084,10 +1107,12 @@ function %h_p(h)
             "ambient_color = "+sci2exp(h.ambient_color)
             "diffuse_color = "+sci2exp(h.diffuse_color)
             "specular_color= "+sci2exp(h.specular_color)
+            "user_data = "+fmtuser_data(h.userdata)
+            "tag = "+sci2exp(h.tag)
             ]
         end
     end
-    write(%io(2),t)
+    printf("%s\n", t);
 endfunction
 
 

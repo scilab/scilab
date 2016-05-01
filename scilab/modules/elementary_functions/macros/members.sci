@@ -2,11 +2,14 @@
 // Copyright (C) 2013 - Samuel GOUGEON
 // Copyright (C) 2009 - Université du Maine - Samuel GOUGEON
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [nb, loc] = members(A, S, varargin)
     //
@@ -14,7 +17,7 @@ function [nb, loc] = members(A, S, varargin)
     // Looks for how many rows of S match each row of A
     // Can return the position in S of each respective first or last match.
     //
-    // Calling sequence:
+    // Syntax:
     // -------------------------
     // [nb [,loc]] = members(A, S)
     // [nb [,loc]] = members(A, S, "last")
@@ -232,7 +235,9 @@ function [nb, loc] = members(A, S, varargin)
                 loc = I;
                 loc(k) = kS(I(k));
                 if last then
-                    loc(k) = length(S)-loc(k)+1;
+                    if ~isempty(k)
+                        loc(k) = length(S)-loc(k)+1;
+                    end
                 end
                 loc = matrix(loc, size(A));
             end
@@ -277,26 +282,9 @@ function [nb, loc] = members(A, S, varargin)
             //    available and needed memory
             function j = set_j(i, LS, memS, rA)
                 // rA : remaining unprocessed part of A
-                [memA2, memS2, memtmp] = varspace("A2", "S2", "tmp");
-                // Available memory [bytes]:
-                m = stacksize();
-                avail = (m(1) - m(2))*8 + memA2 + memS2 + memtmp - 16*(i-1); // [bytes]
-                avail = 0.15*avail;  // A lot of memory is used as Intermediate memory
-                // Diadic loop on e = j-i+1 (slice's thickness):
-                // Init
                 e = size(rA, "*");
                 Vtest = rA(1:e);
                 memrA = varspace("Vtest");   // [bytes]
-                // Loop fitting the slice's thickness e for the available memory
-                while e*(memS+8*LS+16)+LS*memrA > avail & e > 1
-                    e = ceil(e/2);   // Remaining thickness => divided by 2
-                    Vtest = rA(1:e);
-                    memrA = varspace("Vtest");
-                end
-                if (e*(memS+8*LS+16)+LS*memrA > avail) then
-                    msg = _("%s: not enough memory to proceed\n");
-                    error(sprintf(msg, "members"));
-                end
                 j = i+e-1;
             endfunction
 
@@ -341,7 +329,9 @@ function [nb, loc] = members(A, S, varargin)
             if lhs > 1
                 if ~last
                     k = loc~=0;
-                    loc(k) = LS - loc(k) + 1;
+                    if ~isempty(loc(k))
+                        loc(k) = LS - loc(k) + 1;
+                    end
                 end
                 loc = matrix(loc, sA);
             end
