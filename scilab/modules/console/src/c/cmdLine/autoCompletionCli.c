@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <sys/stat.h>
 #include "charEncoding.h"
 #include "completion.h"
 #include "autoCompletionCli.h"
@@ -52,6 +53,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                                   char *lineBeforeCaret, char *lineAfterCaret, char *filePattern, char *defaultPattern,
                                   char **wk_buf, unsigned int *cursor, unsigned int *cursor_max);
 static int CopyLineAtPrompt(char **wk_buf, char *line, unsigned int *cursor, unsigned int *cursor_max);
+static void separateFilesDirectories(char** dictionnary, int size, char*** files, int* sizeFiles, char*** directories, int* sizeDirectories);
 
 static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern, char **wk_buf, unsigned int *cursor,
                                 unsigned int *cursor_max);
@@ -224,7 +226,17 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
         {
             char *common = getCommonPart(dictionaryFiles, sizedictionaryFiles);
 
-            displayCompletionDictionary(dictionaryFiles, sizedictionaryFiles, gettext("File or Directory"));
+            char** files;
+            int sizeFiles;
+            char** directories;
+            int sizeDirectories;
+            separateFilesDirectories(dictionaryFiles, sizedictionaryFiles, &files, &sizeFiles, &directories, &sizeDirectories);
+
+            //displayCompletionDictionary(dictionaryFiles, sizedictionaryFiles, gettext("File or Directory"));
+            displayCompletionDictionary(files, sizeFiles, gettext("File"));
+            displayCompletionDictionary(directories, sizeDirectories, gettext("Directory"));
+            freeArrayOfString(files, sizeFiles);
+            freeArrayOfString(directories, sizeDirectories);
 
             printf("\n");
 
@@ -316,6 +328,35 @@ static int CopyLineAtPrompt(char **wk_buf, char *line, unsigned int *cursor, uns
         (*wk_buf)[0] = '\0';
     }
     return 0;
+}
+
+static void separateFilesDirectories(char** dictionary, int size, char*** files, int* sizeFiles, char*** directories, int* sizeDirectories)
+{
+    int i;
+    *files = NULL;
+    *sizeFiles = 0;
+    *directories = NULL;
+    *sizeDirectories = 0;
+    for (i = 0; i < size; ++i)
+    {
+        struct stat statbuf;
+        if (stat(dictionary[i], &statbuf) != 0)
+        {
+            return;
+        }
+        if (S_ISDIR(statbuf.st_mode))
+        {
+            (*sizeDirectories)++;
+            *directories = (char **) REALLOC(*directories, sizeof(char *) * (*sizeDirectories));
+            (*directories)[*sizeDirectories - 1] = strdup(dictionary[i]);
+        }
+        else
+        {
+            (*sizeFiles)++;
+            *files = (char **) REALLOC(*files, sizeof(char *) * (*sizeFiles));
+            (*files)[*sizeFiles - 1] = strdup(dictionary[i]);
+        }
+    }
 }
 
 static char **concatenateStrings(int *sizearrayofstring, char *string1, char *string2, char *string3, char *string4, char *string5)

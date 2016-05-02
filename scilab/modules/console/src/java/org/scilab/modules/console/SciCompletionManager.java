@@ -17,6 +17,7 @@ package org.scilab.modules.console;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
 
 import org.scilab.modules.completion.Completion;
 import org.scilab.modules.localization.Messages;
@@ -60,9 +61,18 @@ public class SciCompletionManager implements CompletionManager {
         String fileSearchedPattern = ((SciInputParsingManager) inputParsingManager).getFilePartLevel(compLevel);
 
         String[] scilabFilesDictionnary = Completion.searchFilesDictionary(fileSearchedPattern);
-        addItemsToDictionnary(Messages.gettext("File or Directory"), scilabFilesDictionnary);
+        //addItemsToDictionnary(Messages.gettext("File or Directory"), scilabFilesDictionnary);
 
-        if (scilabFilesDictionnary == null) {
+        if (scilabFilesDictionnary != null) {
+            ArrayList<String> files = new ArrayList<String>();
+            ArrayList<String> directories = new ArrayList<String>();
+            separateFilesDirectories(scilabFilesDictionnary, files, directories);
+            String[] filesDictionnary = files.toArray(new String[files.size()]);
+            String[] directoriesDictionnary = directories.toArray(new String[directories.size()]);
+
+            addItemsToDictionnary(Messages.gettext("File"), filesDictionnary);
+            addItemsToDictionnary(Messages.gettext("Directory"), directoriesDictionnary);
+        } else {
             // Get the completion part used to filter the dictionary
             String searchedPattern = inputParsingManager.getPartLevel(compLevel);
             String commandLine = inputParsingManager.getCommandLine();
@@ -118,7 +128,23 @@ public class SciCompletionManager implements CompletionManager {
                 dictionnary.add(new CompletionItemImpl(type, items[i] + " (" + type + ")", items[i], Messages.gettext("No help")));
             }
         }
+    }
 
+    /**
+     * Separate files from directories
+     * @param scilabFilesDictionnary the input containing both
+     * @param filesDictionnary output: only the files
+     * @param directoriesDictionnary output: only the directories
+     */
+    public void separateFilesDirectories(String[] scilabFilesDictionnary, ArrayList<String> filesDictionnary, ArrayList<String> directoriesDictionnary) {
+        for (int i = 0; i < scilabFilesDictionnary.length; ++i) {
+            File cur = new File(scilabFilesDictionnary[i]);
+            if (cur.isDirectory()) {
+                directoriesDictionnary.add(new String(scilabFilesDictionnary[i]));
+            } else {
+                filesDictionnary.add(new String(scilabFilesDictionnary[i]));
+            }
+        }
     }
 
 }

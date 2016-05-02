@@ -1,7 +1,7 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008-2010 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2010 - DIGITEO - Allan CORNET
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -10,12 +10,13 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 #include "TermCompletion.h"
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
@@ -29,12 +30,15 @@
 #include "os_string.h"
 #include "completeLine.h"
 /*--------------------------------------------------------------------------*/
+#define S_ISDIR(x) (x & _S_IFDIR)
+/*--------------------------------------------------------------------------*/
 static void displayCompletionDictionary(char **dictionary, int sizedictionary, char *namedictionary);
 static char **concatenateStrings(int *sizearrayofstring, char *string1,
                                  char *string2, char *string3,
                                  char *string4, char *string5);
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
                                   char *lineBeforeCaret, char *lineAfterCaret, char *filePattern, char *defaultPattern);
+static void separateFilesDirectories(char** dictionnary, int size, char*** files, int* sizeFiles, char*** directories, int* sizeDirectories);
 static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern);
 /*--------------------------------------------------------------------------*/
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
@@ -57,8 +61,17 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
         {
             char *common = getCommonPart(dictionaryFiles, sizedictionaryFiles);
 
-            displayCompletionDictionary(dictionaryFiles,
-                                        sizedictionaryFiles, gettext("File or Directory"));
+            char** files;
+            int sizeFiles;
+            char** directories;
+            int sizeDirectories;
+            separateFilesDirectories(dictionaryFiles, sizedictionaryFiles, &files, &sizeFiles, &directories, &sizeDirectories);
+
+            //displayCompletionDictionary(dictionaryFiles, sizedictionaryFiles, gettext("File or Directory"));
+            displayCompletionDictionary(files, sizeFiles, gettext("File"));
+            displayCompletionDictionary(directories, sizeDirectories, gettext("Directory"));
+            freeArrayOfString(files, sizeFiles);
+            freeArrayOfString(directories, sizeDirectories);
 
             displayPrompt();
             newLine();
@@ -108,6 +121,57 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                 common = NULL;
             }
         }
+    }
+}
+/*--------------------------------------------------------------------------*/
+static void separateFilesDirectories(char** dictionary, int size, char*** files, int* sizeFiles, char*** directories, int* sizeDirectories)
+{
+    int i;
+    *files = NULL;
+    *sizeFiles = 0;
+    *directories = NULL;
+    *sizeDirectories = 0;
+    for (i = 0; i < size; ++i)
+    {
+        // Check that the item is a file or a directory
+        char* dict = dictionary[i];
+        int isCopy = 0;
+        int len = (int) strlen(dict);
+        if (len && dict[len - 1] == '\\')
+        {
+            isCopy = 1;
+            dict = os_strdup(dict);
+            dict[len - 1] = '\0';
+        }
+
+        struct stat statbuf;
+        if (stat(dict, &statbuf) == -1)
+        {
+            if (isCopy)
+            {
+                free(dict);
+            }
+            return;
+        }
+
+        if (S_ISDIR(statbuf.st_mode))
+        {
+            (*sizeDirectories)++;
+            *directories = (char **) REALLOC(*directories, sizeof(char *) * (*sizeDirectories));
+            (*directories)[*sizeDirectories - 1] = strdup(dictionary[i]);
+        }
+        else
+        {
+            (*sizeFiles)++;
+            *files = (char **) REALLOC(*files, sizeof(char *) * (*sizeFiles));
+            (*files)[*sizeFiles - 1] = strdup(dictionary[i]);
+        }
+
+        if (isCopy)
+        {
+            free(dict);
+        }
+
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -318,7 +382,7 @@ static void displayCompletionDictionary(char **dictionary, int sizedictionary, c
         for (i = 0; i < sizedictionary; i++)
         {
             int newlenLine = lenCurrentLine + (int)strlen(dictionary[i]) + (int)strlen(" ");
-            if ( newlenLine >= (getConsoleWidth() - 10) )
+            if (newlenLine >= (getConsoleWidth() - 10))
             {
                 TerminalPrintf("\n");
                 lenCurrentLine = 0;

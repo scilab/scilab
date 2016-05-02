@@ -353,6 +353,8 @@ In 6.0.0:
 
 * Bug #12872       - help pages of else, elseif, end, try, sciargs, global, halt, empty and power were in wrong help sections
 
+* Bug #13154       - In shellmode, completion now separates Files from Directories.
+
 * Bug #13465 fixed - The display of polyline .display_function and .display_function properties was not conventional
 
 * Bug #13468 fixed - Scilab hanged when incorrect format was used for file reading using mfscanf.
