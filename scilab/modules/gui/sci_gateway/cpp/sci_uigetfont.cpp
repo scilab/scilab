@@ -12,6 +12,9 @@
  * along with this program.
  *
  */
+
+extern "C"
+{
 #include <string.h>
 #include "gw_gui.h"
 #include "api_scilab.h"
@@ -20,6 +23,7 @@
 #include "CallFontChooser.h"
 #include "getPropertyAssignedValue.h"
 #include "freeArrayOfString.h"
+}
 
 /*--------------------------------------------------------------------------*/
 int sci_uigetfont(char *fname, void* pvApiCtx)
@@ -211,13 +215,13 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
     /* Default bold */
     if (boldAdr != 0)
     {
-        setFontChooserBold(fontChooserID, boldAdr[0]);
+        setFontChooserBold(fontChooserID, booltoBOOL(boldAdr[0]));
     }
 
     /* Default italic */
     if (italicAdr != 0)
     {
-        setFontChooserItalic(fontChooserID, italicAdr[0]);
+        setFontChooserItalic(fontChooserID, booltoBOOL(italicAdr[0]));
     }
 
     /* Display it and wait for a user input */
@@ -247,7 +251,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
                 return 1;
             }
         }
-        
+
         if (selectedFontName)
         {
             freeAllocatedSingleString(selectedFontName);

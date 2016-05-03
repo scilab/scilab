@@ -187,7 +187,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_messagebox.c \
     sci_gateway/c/sci_waitbar.c \
     sci_gateway/c/sci_progressionbar.c \
-    sci_gateway/c/sci_uigetfont.c \
     sci_gateway/c/sci_uigetcolor.c \
     sci_gateway/c/sci_getcallbackobject.c \
     sci_gateway/c/sci_exportUI.c \
@@ -202,6 +201,7 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_getlookandfeel.cpp \
     sci_gateway/cpp/sci_uigetdir.cpp \
     sci_gateway/cpp/sci_uigetfile.cpp \
+    sci_gateway/cpp/sci_uigetfont.cpp \
     sci_gateway/cpp/sci_displaytree.cpp \
     sci_gateway/cpp/sci_uiputfile.cpp \
     sci_gateway/cpp/sci_about.cpp \
