@@ -82,21 +82,24 @@ int sci_gettext(char *fname, void* pvApiCtx)
     if (isStringType(pvApiCtx, piAddressVarOne) == 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        freeAllocatedSingleString(pstDomain);
         return 0;
     }
 
     if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &StringsToTranslate) != 0)
     {
         Scierror(999, _("%s: No more memory.\n"), fname);
+        freeAllocatedSingleString(pstDomain);
         return 0;
     }
 
     TranslatedStrings = (char **)MALLOC(sizeof(char*) * (m * n));
     if (TranslatedStrings == NULL)
     {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        freeAllocatedSingleString(pstDomain);
         freeAllocatedMatrixOfString(m, n, StringsToTranslate);
         StringsToTranslate = NULL;
-        Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }
 
@@ -113,6 +116,7 @@ int sci_gettext(char *fname, void* pvApiCtx)
         }
     }
 
+    freeAllocatedSingleString(pstDomain);
     freeAllocatedMatrixOfString(m, n, StringsToTranslate);
     StringsToTranslate = NULL;
 
