@@ -95,6 +95,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), "tokens", 2);
                 delete pOutString;
+                FREE(seps);
                 return types::Function::Error;
             }
             seps[i] = pCharSample->get(i)[0];
