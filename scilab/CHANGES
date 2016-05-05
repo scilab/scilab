@@ -467,7 +467,9 @@ In 6.0.0:
 
 * Bug #14500 fixed - Operator ".^" was broken for sparse matrices.
 
-* Bug #14524 fixed - Numercic locales were not set to standard "C" by default at scilab startup
+* Bug #14540 fixed - Datatips did not clip outside axes bounds
+
+* Bug #14524 fixed - Numeric locales were not set to standard "C" by default at scilab startup
 
 
 In 6.0.0 beta-1:
