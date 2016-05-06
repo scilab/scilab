@@ -193,6 +193,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
                 if (bOK == false)
                 {
                     Scierror(50, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
+                    FREE(pst);
                     return types::Function::Error;
                 }
 
