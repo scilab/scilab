@@ -25,10 +25,13 @@ extern "C"
 #include "FileBrowserChDir.h"
 #include "scicurdir.h"
 #include "Scierror.h"
+#include "InitializeJVM.h"
 }
 
 std::atomic<Runner*> StaticRunner::m_RunMe(nullptr);
 std::atomic<bool> StaticRunner::m_bInterruptibleCommand(true);
+
+static bool initialJavaHooks = false;
 
 static void sendExecDoneSignal(Runner* _pRunner)
 {
@@ -48,6 +51,14 @@ static void sendExecDoneSignal(Runner* _pRunner)
 
 int StaticRunner::launch()
 {
+    //set execution thread in java
+    if (!initialJavaHooks && getScilabMode() != SCILAB_NWNI)
+    {
+        initialJavaHooks = true;
+        // Execute the initial hooks registered in Scilab.java
+        ExecuteInitialHooks();
+    }
+
     int iRet = 0;
     // get the runner to execute
     std::unique_ptr<Runner> runMe(getRunner());
