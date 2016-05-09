@@ -18,11 +18,10 @@
 
 extern "C"
 {
-#include <SignalManagement.h>
+#include "SignalManagement.h"
 }
 
-static void kill_process_callback(TP_CALLBACK_INSTANCE*, void*, TP_TIMER*);
-
+static VOID CALLBACK kill_process_callback(PTP_CALLBACK_INSTANCE Instance, PVOID Context, PTP_TIMER Timer){    std::cerr << "Watchdog timer expired: Scilab killed" << std::endl;    ExitProcess(1);}
 void timeout_process_after(int timeoutDelay)
 {
     auto timerid = CreateThreadpoolTimer(kill_process_callback, nullptr, nullptr);
@@ -37,10 +36,3 @@ void timeout_process_after(int timeoutDelay)
 
     SetThreadpoolTimer(timerid, &FileDueTime, 0, 0);
 }
-
-static void kill_process_callback(TP_CALLBACK_INSTANCE*, void*, TP_TIMER*)
-{
-    std::cerr << "Watchdog timer expired: Scilab killed" << std::endl;
-    ExitProcess(1);
-}
-
