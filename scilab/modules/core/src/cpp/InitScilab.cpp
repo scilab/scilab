@@ -16,6 +16,7 @@
 
 #include <string>
 #include <libxml/parser.h>
+#include <clocale>
 
 #include "inspector.hxx"
 #include "double.hxx"
@@ -181,6 +182,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     /* floating point exceptions */
     fpsetmask(0);
 #endif
+
+    // Make sure the default locale is applied at startup
+    std::setlocale(LC_NUMERIC, "C");
 
     ThreadManagement::initialize();
     NumericConstants::Initialize();
@@ -370,6 +374,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     //register console debugger as debugger
     debugger::DebuggerMagager::getInstance()->addDebugger(new debugger::ConsoleDebugger());
+
     return iMainRet;
 }
 
