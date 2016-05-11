@@ -64,5 +64,9 @@ function plot3d2(x,y,z,vect,theta,alpha,leg,flag,ebox)
         error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"plot3d2","theta","alpha","leg","flag","ebox"));
     end
 
-    execstr("plot3d(xx,yy,zz,"+strcat(opts,",")+")")
+    if isempty(opts)
+        plot3d(xx, yy, zz);
+    else
+        execstr("plot3d(xx,yy,zz,"+strcat(opts,",")+")")
+    end
 endfunction
