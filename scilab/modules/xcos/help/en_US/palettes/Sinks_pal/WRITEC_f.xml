@@ -141,7 +141,7 @@ box "Field #N";
             The record fields must contains data of the same type defined by the parameter <emphasis role="bold">Output Format</emphasis>.
         </para>
         <para>
-            Each event on the activation input of the bloc writes a record in the file. Note that contrary in <link linkend="WFILE_f">WFILE_f</link>, the event dates are not recorded.
+            Each event on the activation input of the bloc writes a record in the file.
         </para>
     </refsection>
     
@@ -345,9 +345,6 @@ box "Field #N";
             </listitem>
             <listitem>
                 <link linkend="RFILE_f">RFILE_f</link>
-            </listitem>
-            <listitem>
-                <link linkend="WFILE_f">WFILE_f</link>
             </listitem>
         </itemizedlist>
     </refsection>
