@@ -499,15 +499,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-<<<<<<< HEAD
-=======
-            <varlistentry>
-                <term>getsymbol</term>
-                <listitem>
-                    <para>Diálogo para a seleção de um símbolo e seu tamanho.</para>
-                </listitem>
-            </varlistentry>
->>>>>>> 9126f3f... * fcontour2d tagged as obsolete. Will be removed for Scilab 5.5.0.
         </variablelist>
     </refsection>
     <refsection>
