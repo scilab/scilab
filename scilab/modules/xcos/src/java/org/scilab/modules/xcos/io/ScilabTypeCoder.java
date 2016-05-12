@@ -12,7 +12,6 @@
  * along with this program.
  *
  */
-
 package org.scilab.modules.xcos.io;
 
 import java.nio.ByteBuffer;
@@ -23,6 +22,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.IllegalFormatException;
+import java.util.function.Consumer;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabInteger;
@@ -44,14 +45,17 @@ import java.util.logging.Logger;
  * Encode and decode using a var2vec / vec2var compatible encoding.
  *
  * <p>
- * This encoder is used to store arbitrary data to the model. Usually some properties are hard to map to both Java and C++ STL type system, using a shared encoding let us provide an implementation
- * whatever the language is without sharing too low-level information.
+ * This encoder is used to store arbitrary data to the model. Usually some
+ * properties are hard to map to both Java and C++ STL type system, using a
+ * shared encoding let us provide an implementation whatever the language is
+ * without sharing too low-level information.
  */
 public class ScilabTypeCoder {
 
     private static final Logger LOG = Logger.getLogger("org.scilab.modules.xcos.io");
 
     class JavaScilabType {
+
         final ScilabTypeEnum type;
         final ScilabIntegerTypeEnum intType;
 
@@ -61,7 +65,9 @@ public class ScilabTypeCoder {
         }
     }
 
-    /** current position in the vec buffer */
+    /**
+     * current position in the vec buffer
+     */
     int position = 0;
 
     public ScilabTypeCoder() {
@@ -70,12 +76,10 @@ public class ScilabTypeCoder {
     /*
      * var2vec implementation
      */
-
     /**
      * Encode any scilab type to a buffer
      *
-     * @param var
-     *            the Scilab value to encode
+     * @param var the Scilab value to encode
      * @return the encoded buffer
      */
     public VectorOfDouble var2vec(ScilabType var) {
@@ -139,10 +143,8 @@ public class ScilabTypeCoder {
     /**
      * Encode the double data
      *
-     * @param var
-     *            the data to encode
-     * @param vec
-     *            the resulting buffer
+     * @param var the data to encode
+     * @param vec the resulting buffer
      */
     private void encode(ScilabDouble var, VectorOfDouble vec) {
         // Header
@@ -156,17 +158,20 @@ public class ScilabTypeCoder {
         }
 
         // push the data
-        for (int i = 0; i < var.getHeight(); i++)
+        for (int i = 0; i < var.getHeight(); i++) {
             for (int j = 0; j < var.getWidth(); j++) {
                 vec.add(var.getRealElement(i, j));
             }
+        }
 
         // push the complex data
-        if (!var.isReal())
-            for (int i = 0; i < var.getHeight(); i++)
+        if (!var.isReal()) {
+            for (int i = 0; i < var.getHeight(); i++) {
                 for (int j = 0; j < var.getWidth(); j++) {
                     vec.add(var.getImaginaryElement(i, j));
                 }
+            }
+        }
     }
 
     private void encode(ScilabInteger var, VectorOfDouble vec) {
@@ -274,10 +279,8 @@ public class ScilabTypeCoder {
                 final int doubleLen = (requiredBytes + Double.BYTES - 1) / Double.BYTES;
 
                 // set the offset
-
                 offsetTableAccumulated += doubleLen;
                 vec.set(offsetTableStart++, offsetTableAccumulated);
-
 
                 // push the data through a temporary byte buffer
                 int index = vec.size();
@@ -301,16 +304,12 @@ public class ScilabTypeCoder {
     /**
      * Helper method to add an header of the detected type
      *
-     * @param var
-     *            the scilab matrix type to encode
-     * @param vec
-     *            the raw encoded data container
-     * @param as
-     *            the type to encode
-     * @param detected
-     *            the detected type
+     * @param var the scilab matrix type to encode
+     * @param vec the raw encoded data container
+     * @param as the type to encode
+     * @param detected the detected type
      */
-    @SuppressWarnings({ "unchecked", "fallthrough" })
+    @SuppressWarnings({"unchecked", "fallthrough"})
     private void encodeHeader(Object var, VectorOfDouble vec, final ScilabTypeEnum as) {
         ScilabType matrix = null;
         ArrayList<ScilabType> list = null;
@@ -350,12 +349,10 @@ public class ScilabTypeCoder {
     /*
      * vec2var implementation
      */
-
     /**
      * Decode a scilab type from a buffer
      *
-     * @param vec
-     *            the buffer containing encoded scilab types
+     * @param vec the buffer containing encoded scilab types
      * @return the decoded scilab type
      */
     public ScilabType vec2var(VectorOfDouble vec) {
@@ -378,6 +375,11 @@ public class ScilabTypeCoder {
         }
 
         return var;
+    }
+
+    @FunctionalInterface
+    private static interface StoreFunction<R, C, V> {
+        public void apply(R r, C c, V v);
     }
 
     @SuppressWarnings("unchecked")
@@ -412,18 +414,20 @@ public class ScilabTypeCoder {
 
     private ScilabType decode(VectorOfDouble vec, ScilabDouble var) {
         double[][] realPart = var.getRealPart();
-        for (int i = 0; i < var.getHeight(); i++)
+        for (int i = 0; i < var.getHeight(); i++) {
             for (int j = 0; j < var.getWidth(); j++) {
                 realPart[i][j] = vec.get(position++);
             }
+        }
 
         if (!var.isReal()) {
             double[][] imaginaryPart = var.getImaginaryPart();
 
-            for (int i = 0; i < var.getHeight(); i++)
+            for (int i = 0; i < var.getHeight(); i++) {
                 for (int j = 0; j < var.getWidth(); j++) {
                     imaginaryPart[i][j] = vec.get(position++);
                 }
+            }
         }
         return var;
     }
@@ -507,21 +511,24 @@ public class ScilabTypeCoder {
 
     private ScilabType decode(VectorOfDouble vec, ScilabString var) {
         final String[][] data = var.getData();
+        decodeString(var.getHeight(), var.getWidth(), vec, (i, j, str) -> data[i][j] = str);
+        return var;
+    }
 
+    private void decodeString(int height, int width, VectorOfDouble vec, StoreFunction<Integer, Integer, String> store) {
         // reconstruct the offset
-        int[][] offset = new int[var.getHeight()][var.getWidth()];
-        for (int i = 0; i < var.getHeight(); i++) {
-            for (int j = 0; j < var.getWidth(); j++) {
+        int[][] offset = new int[height][width];
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
                 offset[i][j] = (int) vec.get(position++);
             }
         }
 
         Charset utf8 = Charset.forName("UTF-8");
         int accumulatedOffset = 0;
-
         // reconstruct each String object
-        for (int i = 0; i < var.getHeight(); i++) {
-            for (int j = 0; j < var.getWidth(); j++) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
                 final int nbOfDouble = offset[i][j] - accumulatedOffset;
                 ByteBuffer view = vec.asByteBuffer(position, nbOfDouble);
                 byte[] bytes = new byte[nbOfDouble * Double.BYTES];
@@ -534,14 +541,12 @@ public class ScilabTypeCoder {
                     strlen++;
                 }
 
-                data[i][j] = new String(bytes, 0, strlen, utf8);
+                store.apply(i, j, new String(bytes, 0, strlen, utf8));
 
                 accumulatedOffset += nbOfDouble;
                 position += nbOfDouble;
             }
         }
-
-        return var;
     }
 
     private ScilabType decode(VectorOfDouble vec, ArrayList<ScilabType> var) {
@@ -616,7 +621,7 @@ public class ScilabTypeCoder {
             case sci_ints:
                 if (height * width == 0) {
                     return new ScilabInteger();
-                } else
+                } else {
                     switch (ScilabIntegerTypeEnum.swigToEnum(precision)) {
                         case sci_int8:
                             return new ScilabInteger(new byte[height][width], false);
@@ -636,6 +641,7 @@ public class ScilabTypeCoder {
                             return new ScilabInteger(new long[height][width], true);
 
                     }
+                }
             case sci_strings:
                 if (height * width == 0) {
                     return new ScilabString();
@@ -651,6 +657,159 @@ public class ScilabTypeCoder {
             default:
                 throw new IllegalArgumentException();
 
+        }
+    }
+
+    /**
+     * Format the encoded value accordingly to the Java format string
+     *
+     * @param format a
+     * {@link String#format(java.lang.String, java.lang.Object...)} compatible
+     * argument
+     * @param vec the buffer containing encoded scilab types
+     * @throws IllegalFormatException when the underlying formatting failed
+     * @throws IllegalArgumentException when the vec argument is wrongly encoded
+     * @return A formatted string
+     */
+    public String format(String format, VectorOfDouble vec) throws IllegalFormatException, IllegalArgumentException {
+        ArrayList<Object> arguments = new ArrayList<>();
+        decodeToJava(vec, arguments);
+        return String.format(format, arguments.toArray());
+    }
+
+    private void decodeToJava(VectorOfDouble vec, ArrayList<Object> arguments) {
+        int nativeScilabType = (int) vec.get(position++);
+
+        // specific integer sub-type
+        int precision = 0;
+
+        // for data[][]-based type
+        int height = 0;
+        int width = 0;
+
+        // for ArrayList-based type
+        int listLen = 0;
+
+        final ScilabTypeEnum type = ScilabTypeEnum.swigToEnum(nativeScilabType);
+        switch (type) {
+            case sci_ints:
+                // special case for integer precision
+                precision = (int) vec.get(position++);
+            case sci_matrix:
+            case sci_boolean:
+            case sci_strings:
+                position++; // n-Dims not managed
+                height = (int) vec.get(position++);
+                width = (int) vec.get(position++);
+                break;
+            case sci_list:
+            case sci_mlist:
+            case sci_tlist:
+                listLen = (int) vec.get(position++);
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        // special case for complex double matrix
+        boolean isComplex = false;
+        if (type == ScilabTypeEnum.sci_matrix) {
+            isComplex = vec.get(position++) != 0;
+        }
+
+        // allocate the right type with the decoded properties
+        switch (type) {
+            case sci_matrix:
+                for (int i = 0; i < height; i++) {
+                    for (int j = 0; j < width; j++) {
+                        arguments.add(vec.get(position++));
+                    }
+                }
+
+                if (isComplex) {
+                    for (int i = 0; i < height; i++) {
+                        for (int j = 0; j < width; j++) {
+                            arguments.add(vec.get(position++));
+                        }
+                    }
+                }
+                break;
+            case sci_boolean: {
+                final int doubleLen = (Integer.BYTES * height * width) / Double.BYTES + 1;
+                ByteBuffer view = vec.asByteBuffer(position, doubleLen);
+                for (int i = 0; i < height; i++) {
+                    for (int j = 0; j < width; j++) {
+                        arguments.add(view.getInt() != 0);
+                    }
+                }
+                position += doubleLen;
+            }
+            break;
+            case sci_ints:
+                switch (ScilabIntegerTypeEnum.swigToEnum(precision)) {
+                    case sci_int8:
+                    case sci_uint8: {
+                        final int sizeof = Byte.BYTES;
+                        final int doubleLen = (sizeof * height * width) / Double.BYTES + 1;
+                        ByteBuffer view = vec.asByteBuffer(position, doubleLen);
+                        for (int i = 0; i < height; i++) {
+                            for (int j = 0; j < width; j++) {
+                                arguments.add(view.get());
+                            }
+                        }
+                    }
+                    break;
+                    case sci_int16:
+                    case sci_uint16: {
+                        final int sizeof = Short.BYTES;
+                        final int doubleLen = (sizeof * height * width) / Double.BYTES + 1;
+                        ByteBuffer view = vec.asByteBuffer(position, doubleLen);
+                        for (int i = 0; i < height; i++) {
+                            for (int j = 0; j < width; j++) {
+                                arguments.add(view.getShort());
+                            }
+                        }
+                    }
+                    break;
+                    case sci_int32:
+                    case sci_uint32: {
+                        final int sizeof = Integer.BYTES;
+                        final int doubleLen = (sizeof * height * width) / Double.BYTES + 1;
+                        ByteBuffer view = vec.asByteBuffer(position, doubleLen);
+                        for (int i = 0; i < height; i++) {
+                            for (int j = 0; j < width; j++) {
+                                arguments.add(view.getInt());
+                            }
+                        }
+                    }
+                    break;
+                    case sci_int64:
+                    case sci_uint64: {
+                        final int sizeof = Long.BYTES;
+                        final int doubleLen = (sizeof * height * width) / Double.BYTES + 1;
+                        ByteBuffer view = vec.asByteBuffer(position, doubleLen);
+                        for (int i = 0; i < height; i++) {
+                            for (int j = 0; j < width; j++) {
+                                arguments.add(view.getLong());
+                            }
+                        }
+                    }
+                    break;
+                }
+                break;
+            case sci_strings:
+                decodeString(height, width, vec, (i, j, v) -> arguments.add(v));
+                break;
+            case sci_list:
+            case sci_mlist:
+            case sci_tlist: {
+                for (int i = 0; i < listLen; i++) {
+                    decodeToJava(vec, arguments);
+                }
+            }
+            break;
+            default:
+                throw new IllegalArgumentException();
         }
     }
 
