@@ -522,7 +522,7 @@ h5close(a)
                 <link linkend="dir">dir</link>
             </member>
             <member>
-                <link linkend="xmlobjects">XML Objects</link>
+                <link linkend="XMLObjects">XML Objects</link>
             </member>
             <member>
                 <link linkend="h5objects">HDF5 Objects</link>
