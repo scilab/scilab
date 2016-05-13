@@ -16,7 +16,6 @@
 
 #include <string>
 #include <libxml/parser.h>
-#include <clocale>
 
 #include "inspector.hxx"
 #include "double.hxx"
@@ -42,6 +41,7 @@
 
 extern "C"
 {
+#include <locale.h>
 #include "machine.h"
 #include "InitializeLocalization.h"
 #include "elem_common.h"
@@ -184,7 +184,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 #endif
 
     // Make sure the default locale is applied at startup
-    std::setlocale(LC_NUMERIC, "C");
+    setlocale(LC_NUMERIC, "C");
 
     ThreadManagement::initialize();
     NumericConstants::Initialize();
