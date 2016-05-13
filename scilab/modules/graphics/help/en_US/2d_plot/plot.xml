@@ -324,29 +324,29 @@ a.y_location = "origin";
 
 // Some operations on entities created by plot ...
 a=gca();
-a.isoview='on';
+isoview("on");
 a.children // list the children of the axes : here it is an Compound child composed of 2 entities
 poly1= a.children.children(2); //store polyline handle into poly1
 poly1.foreground = 4; // another way to change the style...
 poly1.thickness = 3;  // ...and the thickness of a curve.
 poly1.clip_state='off' // clipping control
-a.isoview='off';
+isoview("off");
  ]]></programlisting>
         <scilab:image>
             x=[0:0.1:2*%pi]';
             plot(x-4,sin(x),x+2,cos(x))
+            isoview()
             a=gca();
             a.x_location = "origin";
             a.y_location = "origin";
-            
+
             a=gca();
-            a.isoview='on';
             a.children
             poly1= a.children.children(2);
             poly1.foreground = 4;
             poly1.thickness = 3;
             poly1.clip_state='off'
-            a.isoview='off';
+            isoview("off");
         </scilab:image>
         <programlisting role="example"><![CDATA[
 

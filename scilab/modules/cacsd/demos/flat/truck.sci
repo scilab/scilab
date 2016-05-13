@@ -202,7 +202,7 @@ function display_truck_trajectory(state)
     bigL = 1 ; d1 = 1.5 ; d2 = 1;
     a=gca();
     drawlater();
-    a.isoview="on"
+    isoview("on")
     a.data_bounds=[min(state(:,1))-1.5*(d1+d2), min(state(:,2))-bigL
     max(state(:,1))+1.5*bigL, max(state(:,2))+bigL]
     rect=matrix(a.data_bounds',-1,1)

@@ -104,11 +104,11 @@ function demo_pend3d1()
 
     drawlater()
     title(_("spherical pendulum simulation"),"fontsize",3)
+    isoview()
     a                 = gca();
     a.view            = "3d";
     a.box             = "on";
     a.margins         = [0.1 0 0.2 0.1];
-    a.isoview         = "on"
     a.grid            =color("lightgray")*ones(1,3);
     a.rotation_angles = [35 45];
     a.axes_visible    = "on";

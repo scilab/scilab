@@ -152,7 +152,7 @@
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 t = linspace(0,10*%pi,500);
-clf();set(gca(),"isoview","on"); // установка равновеликого масштаба осей
+isoview("on");  // установка равновеликого масштаба осей
 comet(t.*sin(t),t.*cos(t))
     ]]></programlisting>
         <programlisting role="example"><![CDATA[

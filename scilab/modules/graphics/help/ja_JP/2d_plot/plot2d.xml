@@ -27,7 +27,7 @@
             plot2d([logflag,][x,],y,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>パラメータ</title>
         <variablelist>
             <varlistentry>
@@ -136,7 +136,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>説明</title>
         <para>
             <literal>plot2d</literal> は一連の2次元曲線をプロットします.
@@ -639,7 +639,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>その他の情報</title>
         <para>デフォルトで, 連続プロットは重ね書きされます. 前のプロットを
             消去するには,
@@ -673,7 +673,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>例</title>
         <programlisting role="example"><![CDATA[
 // x 初期化
@@ -776,8 +776,8 @@ a=gca(); // 軸エンティティのハンドル
 a.x_location = "origin";
 a.y_location = "origin";
 // plot2dで作成されたエンティティを操作 ...
-a=gca();
-a.isoview='on';
+isoview()
+a = gca();
 a.children // 軸の子の一覧.
 // 2個のポリラインと1個の凡例からなる複合要素がある
 poly1= a.children(1).children(1); //ポリラインのハンドルをpoly1に保存
@@ -787,7 +787,7 @@ poly1.clip_state='off'; // クリッピングの制御
 leg = a.children(2); // 凡例のハンドルをlegに保存
 leg.font_style = 9;
 leg.line_mode = "on";
-a.isoview='off';
+isoview("off")
  ]]></programlisting>
         <scilab:image>
             // axis centered at (0,0)
@@ -798,8 +798,8 @@ a.isoview='off';
             a.x_location = "origin";
             a.y_location = "origin";
             // Some operations on entities created by plot2d ...
+            isoview()
             a=gca();
-            a.isoview='on';
             a.children // list the children of the axes.
             // There are a compound made of two polylines and a legend
             poly1= a.children(1).children(1); //store polyline handle into poly1
@@ -809,7 +809,7 @@ a.isoview='off';
             leg = a.children(2); // store legend handle into leg
             leg.font_style = 9;
             leg.line_mode = "on";
-            a.isoview='off';
+            isoview("off")
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -817,6 +817,9 @@ a.isoview='off';
         <simplelist type="inline">
             <member>
                 <link linkend="plot">plot</link>
+            </member>
+            <member>
+                <link linkend="plot2d1">plot2d1</link>
             </member>
             <member>
                 <link linkend="plot2d2">plot2d2</link>

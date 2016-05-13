@@ -20,7 +20,7 @@
         <title>Syntax</title>
         <synopsis>[d,ptp,ind,c] = orthProj(data,pt)</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -75,18 +75,18 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             Computes the orthogonal projection of a point to a polyline in the plane.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
     x=linspace(0,1,30)';
     y=sin(4*x.^3)/2;
-    clf();a=gca();a.isoview='on';
+    clf(), isoview()
     plot(x,y)
     pt=[0.7 0.3];
     plot(pt(1),pt(2),'xb')
@@ -101,12 +101,11 @@
     plot(x(ind:ind+1),y(ind:ind+1),'+r')
     xpoly([pt(1);ptp(1)],[pt(2);ptp(2)])
     e=gce();e.polyline_style=4;e.arrow_size_factor = 1.5;
-
     ]]></programlisting>
         <scilab:image>
             x=linspace(0,1,30)';
             y=sin(4*x.^3)/2;
-            clf();a=gca();a.isoview='on';
+            clf(), isoview()
             plot(x,y)
             pt=[0.7 0.3];
             plot(pt(1),pt(2),'xb')
@@ -114,14 +113,13 @@
             plot(x(ind:ind+1),y(ind:ind+1),'+r')
             xpoly([pt(1);ptp(1)],[pt(2);ptp(2)])
             e=gce();e.polyline_style=4;e.arrow_size_factor = 1.5;
-            
+
             pt=[0.75 -0.3];
             plot(pt(1),pt(2),'xb')
             [d,ptp,ind,c]=orthProj([x y],pt);
             plot(x(ind:ind+1),y(ind:ind+1),'+r')
             xpoly([pt(1);ptp(1)],[pt(2);ptp(2)])
             e=gce();e.polyline_style=4;e.arrow_size_factor = 1.5;
-            
         </scilab:image>
     </refsection>
 </refentry>

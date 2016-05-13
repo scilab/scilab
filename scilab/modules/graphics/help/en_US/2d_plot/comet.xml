@@ -135,11 +135,11 @@
                 case <literal>ny</literal> is the number of rows of
                 <varname>x</varname> and <varname>y</varname>.
             </para>
-            
+
             <para>
                 <literal>comet(...,"colors",c)</literal> can be used to set the colors of each curves.
             </para>
-            
+
         </para>
     </refsection>
     <refsection>
@@ -147,7 +147,7 @@
         <programlisting role="example"><![CDATA[
 t = linspace(0,10*%pi,500);
 clf();
-set(gca(),"isoview","on"); //set isoview axes
+isoview; //set isoview axes
 comet(t.*sin(t), t.*cos(t))
     ]]></programlisting>
         <programlisting role="example"><![CDATA[

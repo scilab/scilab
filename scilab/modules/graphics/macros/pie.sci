@@ -90,6 +90,7 @@ function pie(varargin)
     CurColor = 0;
 
     drawlater();
+    a = gca();
     // Create a close polyline for every parts of pie, the polyline inside color is determinated by the plot colormap
     for i=1:size(x,"*")
         xi = [];
@@ -118,7 +119,6 @@ function pie(varargin)
 
         xfpolys(xi,yi);
         e = gce();
-        a = gca();
         ei = e.children;
         if or(i == iesp) then
             ei.x_shift = ones(1,size(xi,"*")) * (1/10) * cos((teta_2+teta_1)/2);
@@ -139,12 +139,11 @@ function pie(varargin)
         [Color,CurColor] = setDefaultColor(CurColor);
         ei.background = Color;
         ei.fill_mode = "on";
-        a.isoview = "on";
-        a.box = "off";
-        a.axes_visible = "off";
         // Update data_bounds
         a.data_bounds = [min(-1.3,a.data_bounds(1,1)) min(-1.3,a.data_bounds(1,2));max(1.3,a.data_bounds(2,1)) max(1.3,a.data_bounds(2,2))];
     end
+    isoview("on")
+    a.box = "off";
+    a.axes_visible = "off";
     drawnow();
-
 endfunction
