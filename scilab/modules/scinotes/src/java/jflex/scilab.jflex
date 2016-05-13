@@ -134,6 +134,11 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
     }
 
     public int getKeyword(int pos, boolean strict) {
+        // Pre condition
+        if (elem == null) {
+            return ScilabLexerConstants.DEFAULT;
+        }
+
         Element line = elem.getElement(elem.getElementIndex(pos));
         int end = line.getEndOffset();
         int tok = -1;
