@@ -427,6 +427,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
                             {
                                 pD->set((iRows - 1), i, pdData[i]);
                             }
+                            delete[] pdData;
                         }
 
                         //next line

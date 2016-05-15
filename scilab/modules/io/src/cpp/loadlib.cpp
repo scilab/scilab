@@ -129,6 +129,7 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
         file.read(&*readXMLDecl.begin(),XMLDecl.length());
         if (XMLDecl != readXMLDecl)
         {
+          FREE(pstFile);
           return 4;
         }
     }
