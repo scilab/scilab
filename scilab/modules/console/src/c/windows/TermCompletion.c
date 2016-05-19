@@ -16,7 +16,6 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdlib.h>
-#include <sys/stat.h>
 #include "TermCompletion.h"
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
@@ -29,8 +28,6 @@
 #include "scilines.h"
 #include "os_string.h"
 #include "completeLine.h"
-/*--------------------------------------------------------------------------*/
-#define S_ISDIR(x) (x & _S_IFDIR)
 /*--------------------------------------------------------------------------*/
 static void displayCompletionDictionary(char **dictionary, int sizedictionary, char *namedictionary);
 static char **concatenateStrings(int *sizearrayofstring, char *string1,
@@ -134,44 +131,20 @@ static void separateFilesDirectories(char** dictionary, int size, char*** files,
     for (i = 0; i < size; ++i)
     {
         // Check that the item is a file or a directory
-        char* dict = dictionary[i];
-        int isCopy = 0;
-        int len = (int) strlen(dict);
-        if (len && dict[len - 1] == '\\')
-        {
-            isCopy = 1;
-            dict = os_strdup(dict);
-            dict[len - 1] = '\0';
-        }
-
-        struct stat statbuf;
-        if (stat(dict, &statbuf) == -1)
-        {
-            if (isCopy)
-            {
-                free(dict);
-            }
-            return;
-        }
-
-        if (S_ISDIR(statbuf.st_mode))
+        char* word = dictionary[i];
+        int len = (int) strlen(word);
+        if (len && word[len - 1] == '\\')
         {
             (*sizeDirectories)++;
             *directories = (char **) REALLOC(*directories, sizeof(char *) * (*sizeDirectories));
-            (*directories)[*sizeDirectories - 1] = strdup(dictionary[i]);
+            (*directories)[*sizeDirectories - 1] = strdup(word);
         }
         else
         {
             (*sizeFiles)++;
             *files = (char **) REALLOC(*files, sizeof(char *) * (*sizeFiles));
-            (*files)[*sizeFiles - 1] = strdup(dictionary[i]);
+            (*files)[*sizeFiles - 1] = strdup(word);
         }
-
-        if (isCopy)
-        {
-            free(dict);
-        }
-
     }
 }
 /*--------------------------------------------------------------------------*/

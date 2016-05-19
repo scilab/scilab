@@ -18,7 +18,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <sys/stat.h>
 #include "charEncoding.h"
 #include "completion.h"
 #include "autoCompletionCli.h"
@@ -339,22 +338,20 @@ static void separateFilesDirectories(char** dictionary, int size, char*** files,
     *sizeDirectories = 0;
     for (i = 0; i < size; ++i)
     {
-        struct stat statbuf;
-        if (stat(dictionary[i], &statbuf) != 0)
-        {
-            return;
-        }
-        if (S_ISDIR(statbuf.st_mode))
+        // Check that the item is a file or a directory
+        char* word = dictionary[i];
+        int len = (int) strlen(word);
+        if (len && word[len - 1] == '/')
         {
             (*sizeDirectories)++;
             *directories = (char **) REALLOC(*directories, sizeof(char *) * (*sizeDirectories));
-            (*directories)[*sizeDirectories - 1] = strdup(dictionary[i]);
+            (*directories)[*sizeDirectories - 1] = strdup(word);
         }
         else
         {
             (*sizeFiles)++;
             *files = (char **) REALLOC(*files, sizeof(char *) * (*sizeFiles));
-            (*files)[*sizeFiles - 1] = strdup(dictionary[i]);
+            (*files)[*sizeFiles - 1] = strdup(word);
         }
     }
 }
