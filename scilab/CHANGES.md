@@ -229,9 +229,11 @@ Bug Fixes
 
 ### In 6.0.0:
 
+
 * [Bug #11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959) fixed - Allow "Zoom Area" to be clicked out of axes
 * [Bug #12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110) fixed - Unable to zoom multiple axes at once
 * [Bug #13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597) fixed - `help format` claimed setting a number of digits instead of characters
+* [Bug #13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757) fixed - The toolbox menu dit not load properly ATOMS modules not autoloaded.
 * [Bug #14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192) fixed - `g_margin` error-ed for double integrator.
 * [Bug #14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448) fixed - removed havewindow() was still documented
 * [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - `csim` failed when the system has no state.
