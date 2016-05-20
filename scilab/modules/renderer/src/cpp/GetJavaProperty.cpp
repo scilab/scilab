@@ -40,6 +40,7 @@ void sciGetJava2dViewPixelCoordinates(int iSubwinUID, const double userCoords[3]
 
     pixCoords[0] = (int) tmp[0];
     pixCoords[1] = (int) tmp[1];
+    delete[] tmp;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -56,6 +57,7 @@ void sciGetJava2dViewCoordinates(int iSubwinUID, const double userCoords3D[3], d
 
     userCoords2D[0] = tmp[0];
     userCoords2D[1] = tmp[1];
+    delete[] tmp;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -71,6 +73,7 @@ void sciGetJava2dViewCoordFromPixel(int iSubwinUID, const int pixCoords[2], doub
 
     userCoords2D[0] = tmp[0];
     userCoords2D[1] = tmp[1];
+    delete[] tmp;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -84,6 +87,7 @@ void sciGetJavaViewingArea(int iSubwinUID, int *xPos, int *yPos, int *width, int
     *yPos = (int) tmp[1];
     *width = (int) tmp[2];
     *height = (int) tmp[3];
+    delete[] tmp;
 }
 
 /*---------------------------------------------------------------------------------*/
