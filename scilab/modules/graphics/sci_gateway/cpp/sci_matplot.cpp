@@ -234,11 +234,8 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
         {
             if (in[2]->isDouble() == false)
             {
-                if (bFREE)
-                {
-                    FREE(strf);
-                }
                 Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "Matplot1", 3);
+                FREE(strf);
                 return types::Function::Error;
             }
 
@@ -247,11 +244,8 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
             {
                 if (in[3]->isDouble() == false)
                 {
-                    if (bFREE)
-                    {
-                        FREE(strf);
-                    }
                     Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "Matplot1", 4);
+                    FREE(strf);
                     return types::Function::Error;
                 }
 
@@ -271,12 +265,12 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
 
     if (opt.size() > 4)
     {
+        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "Matplot", 1, 5);
         if (bFREE)
         {
             FREE(strf);
         }
-
-        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "Matplot", 1, 5);
+        delete[] nax;
         return types::Function::Error;
     }
 
@@ -287,6 +281,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
         {
             if (o.second->isString() == false)
             {
+                Scierror(999, _("%s: Wrong type for input argument #%ls: string expected.\n"), "Matplot1", o.first.c_str());
                 if (bFREE)
                 {
                     FREE(strf);
@@ -306,7 +301,6 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                 {
                     delete[] axesflag;
                 }
-                Scierror(999, _("%s: Wrong type for input argument #%ls: string expected.\n"), "Matplot1", o.first.c_str());
                 return types::Function::Error;
             }
 
@@ -322,6 +316,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
         {
             if (o.second->isDouble() == false)
             {
+                Scierror(999, _("%s: Wrong type for input argument #%ls: A matrix expected.\n"), "Matplot1", o.first.c_str());
                 if (bFREE)
                 {
                     FREE(strf);
@@ -341,7 +336,6 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                 {
                     delete[] axesflag;
                 }
-                Scierror(999, _("%s: Wrong type for input argument #%ls: A matrix expected.\n"), "Matplot1", o.first.c_str());
                 return types::Function::Error;
             }
 

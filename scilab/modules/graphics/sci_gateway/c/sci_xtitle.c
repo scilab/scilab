@@ -152,6 +152,7 @@ int sci_xtitle(char * fname, void *pvApiCtx)
 
         if (m * n == 0)
         {
+            freeArrayOfString(Str, m * n);
             continue;
         }
 

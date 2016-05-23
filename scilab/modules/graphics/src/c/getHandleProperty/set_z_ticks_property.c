@@ -73,6 +73,7 @@ int set_z_ticks_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType
     {
         // if nbTicsRow = 0, it's just an empty matrix
         Scierror(999, _("%s: No more memory.\n"), "set_z_ticks_property");
+        destroyAssignedList(tlist);
         return SET_PROPERTY_ERROR;
     }
 
@@ -86,6 +87,7 @@ int set_z_ticks_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType
     if (status == FALSE)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_ticks");
+        destroyAssignedList(tlist);
         FREE(userGrads);
         return SET_PROPERTY_ERROR;
     }
@@ -115,7 +117,7 @@ int set_z_ticks_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType
     {
         FREE(userGrads);
     }
-
+    freeAllocatedMatrixOfString(nbTicsRow, nbTicsCol, userLabels);
     destroyAssignedList(tlist);
 
     return SET_PROPERTY_SUCCEED;

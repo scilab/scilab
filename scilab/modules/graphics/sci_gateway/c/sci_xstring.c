@@ -81,6 +81,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     {
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
+        freeArrayOfString(Str, m3 * n3);
         return 0;
     }
 
@@ -88,6 +89,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -97,6 +99,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -104,6 +107,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -113,6 +117,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -130,6 +135,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         Scierror(999, _("%s: Incompatible input arguments #%d and #%d: Same element number expected.\n"), fname, 1, 2);
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
+        freeArrayOfString(Str, m3 * n3);
         return 0;
     }
 
@@ -137,6 +143,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     {
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
+        freeArrayOfString(Str, m3 * n3);
         return 0;
     }
 
@@ -146,6 +153,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
@@ -155,6 +163,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
@@ -163,6 +172,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
             Scierror(999, _("%s: Wrong size for input argument #%d: %d or %d elements expected.\n"), fname, 4, 1, nbElement);
             AssignOutputVariable(pvApiCtx, 1) = 0;
             ReturnArguments(pvApiCtx);
+            freeArrayOfString(Str, m3 * n3);
             return 0;
         }
     }
@@ -172,6 +182,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
@@ -181,6 +192,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
@@ -189,6 +201,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
             Scierror(999, _("%s: Wrong size for input argument #%d: %d or %d elements expected.\n"), fname, 5, 1, nbElement);
             AssignOutputVariable(pvApiCtx, 1) = 0;
             ReturnArguments(pvApiCtx);
+            freeArrayOfString(Str, m3 * n3);
             return 0;
         }
     }

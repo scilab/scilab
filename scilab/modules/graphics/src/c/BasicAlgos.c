@@ -126,7 +126,7 @@ void intArrayCopy(int dest[], const int src[], int nbElement)
     memcpy( dest, src, nbElement * sizeof(int) ) ;
 }
 /*------------------------------------------------------------------------*/
-void stringArrayCopy(char * dest[], char * src[], int nbElement)
+BOOL stringArrayCopy(char * dest[], char * src[], int nbElement)
 {
     int i = 0;
     for ( i = 0 ; i < nbElement ; i++ )
@@ -139,11 +139,12 @@ void stringArrayCopy(char * dest[], char * src[], int nbElement)
         if ( dest[i] == NULL )
         {
             destroyStringArray( dest, nbElement ) ;
-            return ;
+            return FALSE;
         }
 
         strcpy( dest[i], src[i] ) ;
     }
+    return TRUE;
 }
 /*------------------------------------------------------------------------*/
 void setDoubleArraySingleValue(double dest[], double value, int nbElement)
@@ -220,9 +221,15 @@ char ** createStringArrayCopy(char * src[], int nbElement)
         return NULL ;
     }
 
-    stringArrayCopy( res, src, nbElement ) ;
+    if ( stringArrayCopy( res, src, nbElement ) )
+    {
+        return res ;
+    }
+    else
+    {
+        return NULL;
+    }
 
-    return res ;
 
 }
 /*--------------------------------------------------------------------------*/

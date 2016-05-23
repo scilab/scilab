@@ -43,6 +43,7 @@ AssignedList * createTlistForTicks(void* _pvCtx)
     if (!isListCurrentElementDoubleMatrix(_pvCtx, tlist))
     {
         Scierror(999, _("%s should be a vector of double.\n"), "locations");
+        destroyAssignedList(tlist);
         return NULL;
     }
 
@@ -54,6 +55,7 @@ AssignedList * createTlistForTicks(void* _pvCtx)
         if (!isListCurrentElementEmptyMatrix(_pvCtx, tlist))
         {
             Scierror(999, _("Ticks location and label vectors must have the same size.\n"));
+            destroyAssignedList(tlist);
             return NULL;
         }
     }
@@ -62,6 +64,7 @@ AssignedList * createTlistForTicks(void* _pvCtx)
         if (!isListCurrentElementStringMatrix(_pvCtx, tlist))
         {
             Scierror(999, _("%s should be a string vector.\n"), "labels");
+            destroyAssignedList(tlist);
             return NULL;
         }
 
@@ -70,6 +73,7 @@ AssignedList * createTlistForTicks(void* _pvCtx)
         if (nbRowLoc != nbRowLab || nbColLoc != nbColLab)
         {
             Scierror(999, _("Ticks location and label vectors must have the same size.\n"));
+            destroyAssignedList(tlist);
             return NULL;
         }
     }
