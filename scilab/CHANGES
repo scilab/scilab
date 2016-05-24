@@ -376,6 +376,8 @@ In 6.0.0:
 
 * Bug #13490 fixed - histc help page fixed to match the macro (by default, normalize the result).
 
+* Bug #13751 fixed - lqg2stan returned wrong (inverted) values.
+
 * Bug #13769 fixed - t = "abc..//ghi" was parsed as a continued + comment
 
 * Bug #13810 fixed - householder(v, k*v) returned column of %nan. Input parameters were not checked. The Householder matrix could not be returned. Help pages were inaccurate and without examples. There was no householder() demo.

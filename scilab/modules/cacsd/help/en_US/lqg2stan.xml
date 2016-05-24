@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[P,r]=lqg2stan(P22,bigQ,bigR)</synopsis>
+        <synopsis>[P_aug,r]=lqg2stan(P,Qxu,Qwv)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -29,23 +29,23 @@
                 <term>P22</term>
                 <listitem>
                     <para>
-                        <literal>syslin</literal> list (nominal plant) in state-space form
+                        State space representation of the nominal plant (<literal>nu</literal> inputs, <literal>ny</literal> outputs, <literal>nx</literal> states).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>bigQ</term>
+                <term>Qxu</term>
                 <listitem>
                     <para>
-                        <literal>[Q,S;S',N]</literal> (symmetric) weighting matrix
+                        <literal>[Q,S;S',N]</literal> symmetric <literal>nx+nu</literal> by <literal>nx+nu</literal> weighting matrix.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>bigR</term>
+                <term>Qwv</term>
                 <listitem>
                     <para>
-                        <literal>[R,T;T',V]</literal> (symmetric) covariance matrix
+                        <literal>[R,T;T',V]</literal> symmetric <literal>nx+ny</literal> by <literal>nx+ny</literal> covariance matrix.
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,15 +53,15 @@
                 <term>r</term>
                 <listitem>
                     <para>
-                        <literal>1</literal>x<literal>2</literal> row vector = (number of measurements, number of inputs)  (dimension of  the 2,2 part of <literal>P</literal>)
+                        Row vector <literal>[ny nu]</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>P</term>
+                <term>P_aug</term>
                 <listitem>
                     <para>
-                        <literal>syslin</literal> list (augmented plant)
+                        Augmented plant state space representation (see: <link linkend="syslin">syslin</link>)
                     </para>
                 </listitem>
             </varlistentry>
@@ -70,53 +70,83 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>lqg2stan</literal>  returns the augmented plant for linear LQG (H2) controller 
-            design.
+            <literal>lqg2stan</literal> returns the augmented plant for linear LQG (H2) controller 
+            design problem defined by:
         </para>
-        <para>
-            <literal>P22=syslin(dom,A,B2,C2)</literal> is the nominal plant; it can be in continuous 
-            time (<literal>dom='c'</literal>) or discrete time (<literal>dom='d'</literal>).
-        </para>
-        <programlisting role=""><![CDATA[ 
-. 
-x = Ax + w1 + B2u
-y = C2x + w2
- ]]></programlisting>
-        <para>
-            for continuous time plant.
-        </para>
-        <programlisting role=""><![CDATA[ 
-x[n+1]= Ax[n] + w1 + B2u
-    y = C2x + w2
- ]]></programlisting>
-        <para>
-            for discrete time plant.
-        </para>
-        <para>
-            The (instantaneous) cost function is <literal>[x' u'] bigQ [x;u]</literal>.
-        </para>
-        <para>
-            The covariance of <literal>[w1;w2]</literal> is <literal>E[w1;w2] [w1',w2'] = bigR</literal>
-        </para>
-        <para>
-            If <literal>[B1;D21]</literal> is a factor of <literal>bigQ</literal>, <literal>[C1,D12]</literal>
-            is a factor of <literal>bigR</literal> and <literal>[A,B2,C2,D22]</literal> is
-            a realization of P22, then <literal>P</literal> is a realization of
-            <literal>[A,[B1,B2],[C1,-C2],[0,D12;D21,D22]</literal>.
-            The (negative) feedback computed by <literal>lqg</literal> stabilizes <literal>P22</literal>,
-            i.e. the poles of <literal>cl=P22/.K</literal> are stable.
-        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    The nominal plant <literal>P22</literal>:described by
+                </para>
+                <latex style="display"
+                   align="left">\left\{\begin{array}{l}\dot{x}=A x+B
+                    u +w \\y=C x+D u +v\end{array}\right. \text{ for continuous time or }
+                    \left\{\begin{array}{l}x^+=A x+B u+w\\y=C
+                    x+D u +v\end{array}\right. \text{ for discrete time.}
+                </latex>
+            </listitem>
+            <listitem>
+                <para>
+                    The (instantaneous) cost function
+                    <latex><![CDATA[\left[\begin{array}{ll} x'&
+              u'\end{array}\right] Q_{xu}\left[\begin{array}{l} x\\
+              u\end{array}\right]]]></latex>.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The noises covariance matrix
+              <latex><![CDATA[\mathbb{E}(\left[\begin{array}{l}w\\v\end{array}\right]
+              \left[\begin{array}{ll}w'&v'\end{array}\right])=Q_{wv}
+              ]]></latex>
+                </para>
+            </listitem>
+        </itemizedlist>
+        
+        <latex style="display"
+        align="left">\text{P_aug }=\left\{\begin{array}{l}\dot{x}=A x+B_1 W+B
+            u  \\y_1=C_1 x+D_{12}W\\y_2=-C x+D_{21} W+D u
+            \end{array}\right. \text{ for continuous time or }
+            \left\{\begin{array}{l}x^+=A x+B_1 W+B
+            u  \\y_1=C_1 x+D_{12} W \\y_2=-C x+D_{21} W+D u
+            \end{array}\right. \text{ for discrete time.}
+        </latex>
+        
+        <caution>
+            <para>
+                Up to Scilab-5.5.2 lqg2stan returns wrong inverted values
+                (see <ulink url="http://bugzilla.scilab.org/show_bug.cgi?id=13751"> bug 13751</ulink>) 
+                to obtain the good result one had to use <code>[P,r]=lqg2stan(-P,Qxu,Qwv)</code>.
+            </para>
+            <para>
+                This bug is fixed since Scilab-6.0.0, old codes must be modified accordingly.
+            </para>
+        </caution>
     </refsection>
+    <refsection>
+        <title>Algorithm</title>
+        <para>
+            If <literal>[B1;D21]</literal> is a factor of
+            <literal>Qxu</literal>, <literal>[C1,D12]</literal> is a
+            factor of <literal>Qwv</literal> (see: <link
+            linkend="fullrf">fullrf</link>) then
+            <code>P_aug=syslin(P.dt,P.A,[B1,P.B],[C1;-P.C],[0,D12;D21,P.D])</code> 
+        </para>
+        
+    </refsection>
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 ny=2;nu=3;nx=4;
 P22=ssrand(ny,nu,nx);
-bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';
-bigR=rand(nx+ny,nx+ny);bigR=bigR*bigR';
-[P,r]=lqg2stan(P22,bigQ,bigR);K=lqg(P,r);  //K=LQG-controller
-spec(h_cl(P,r,K))      //Closed loop should be stable
+Qxu=rand(nx+nu,nx+nu);Qxu=Qxu*Qxu';
+Qwv=rand(nx+ny,nx+ny);Qwv=Qwv*Qwv';
+[P_aug,r]=lqg2stan(P,Qxu,Qwv);
+K=lqg(P_aug,r);  //K=LQG-controller
+spec(h_cl(P_aug,r,K))      //Closed loop should be stable
 //Same as Cl=P22/.K; spec(Cl('A'))
+
 s=poly(0,'s')
 lqg2stan(1/(s+2),eye(2,2),eye(2,2))
  ]]></programlisting>
