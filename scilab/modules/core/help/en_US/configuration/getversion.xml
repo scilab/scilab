@@ -5,7 +5,7 @@
         <refpurpose>get scilab and modules version information</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>version = getversion()
             [version, opts] = getversion()
             version_numbers = getversion('scilab')

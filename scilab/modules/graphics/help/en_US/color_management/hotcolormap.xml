@@ -19,7 +19,7 @@
         <refpurpose>red to yellow colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>cmap=hotcolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

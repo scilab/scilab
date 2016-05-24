@@ -201,7 +201,7 @@
                         <term>first_non_singleton</term>
                         <listitem>
                             <para>
-                                is an equivalent to <link linkend="firstnonsingleton">firstnonsingleton</link> for an M2SCI tlist. Calling sequence: <literal>dim = first_non_singleton(A)</literal>
+                                is an equivalent to <link linkend="firstnonsingleton">firstnonsingleton</link> for an M2SCI tlist. Syntax: <literal>dim = first_non_singleton(A)</literal>
                             </para>
                         </listitem>
                     </varlistentry>
@@ -209,7 +209,7 @@
                         <term>gettempvar</term>
                         <listitem>
                             <para>
-                                generates a temporary variable having a name which does not already exist. Calling sequence:<literal> v = gettempvar()</literal>
+                                generates a temporary variable having a name which does not already exist. Syntax:<literal> v = gettempvar()</literal>
                             </para>
                         </listitem>
                     </varlistentry>
@@ -217,7 +217,7 @@
                         <term>insert</term>
                         <listitem>
                             <para>
-                                allows to insert instructions. Calling sequence:<literal> m2sci_insert(Equal(...),opt)</literal> with <literal>opt~=1</literal>  to insert before current instruction and <literal> opt=1</literal>  to insert after it.
+                                allows to insert instructions. Syntax:<literal> m2sci_insert(Equal(...),opt)</literal> with <literal>opt~=1</literal>  to insert before current instruction and <literal> opt=1</literal>  to insert after it.
                             </para>
                         </listitem>
                     </varlistentry>
@@ -225,7 +225,7 @@
                         <term>getoperands</term>
                         <listitem>
                             <para>
-                                can be used to get each operand as a variable. Calling sequence: <literal>[A,B] = getoperands(operation_tlist)</literal>
+                                can be used to get each operand as a variable. Syntax: <literal>[A,B] = getoperands(operation_tlist)</literal>
                             </para>
                         </listitem>
                     </varlistentry>
@@ -233,7 +233,7 @@
                         <term>getrhs</term>
                         <listitem>
                             <para>
-                                can be used to get each parameter as a variable. Calling sequence: <literal>[A,...] = getrhs(funcall_tlist)</literal>
+                                can be used to get each parameter as a variable. Syntax: <literal>[A,...] = getrhs(funcall_tlist)</literal>
                             </para>
                         </listitem>
                     </varlistentry>
@@ -241,7 +241,7 @@
                         <term>convert2double</term>
                         <listitem>
                             <para>
-                                change type of input when this type is not implemented for a particular function is Scilab. Calling sequence:<literal> A = convert2double(A)</literal>
+                                change type of input when this type is not implemented for a particular function is Scilab. Syntax:<literal> A = convert2double(A)</literal>
                             </para>
                         </listitem>
                     </varlistentry>

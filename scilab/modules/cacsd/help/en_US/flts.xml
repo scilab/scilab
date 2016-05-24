@@ -19,7 +19,7 @@
         <refpurpose>time response (discrete time, sampled system)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y [,x]]=flts(u,sl [,x0])
             [y]=flts(u,sl [,past])
         </synopsis>

@@ -54,6 +54,7 @@ int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int *
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(intPtr);
                     return 0;
                 }
             }
@@ -63,6 +64,7 @@ int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int *
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(intPtr);
                     return 0;
                 }
             }
@@ -88,6 +90,7 @@ int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int *
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(dblPtr);
                     return 0;
                 }
             }
@@ -97,6 +100,7 @@ int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int *
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    FREE(dblPtr);
                     return 0;
                 }
             }

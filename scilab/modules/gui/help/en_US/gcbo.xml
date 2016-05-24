@@ -5,7 +5,7 @@
         <refpurpose>Handle of the object whose callback is executing.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             gcbo
         </synopsis>

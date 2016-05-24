@@ -21,7 +21,7 @@
         <refpurpose>Remove a Java Object on the Java side</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             jremove()
             jremove(varName_1 [, varName_2, ...])

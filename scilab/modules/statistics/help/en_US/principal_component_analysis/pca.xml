@@ -19,7 +19,7 @@
         <refpurpose>Computes  principal components analysis with  standardized variables</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[lambda,facpr,comprinc] = pca(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

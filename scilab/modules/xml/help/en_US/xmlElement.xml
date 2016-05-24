@@ -19,7 +19,7 @@
         <refpurpose>Create a new XML element</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             e = xmlElement(doc, name)
         </synopsis>

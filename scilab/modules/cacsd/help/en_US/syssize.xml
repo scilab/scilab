@@ -19,7 +19,7 @@
         <refpurpose>size of state-space system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[r,nx]=syssize(Sl)</synopsis>
     </refsynopsisdiv>
     <refsection>

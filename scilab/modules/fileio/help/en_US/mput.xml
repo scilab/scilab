@@ -20,7 +20,7 @@
         <refpurpose>writes  byte or word in a given binary format</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mput(x [, type, fd])</synopsis>
     </refsynopsisdiv>
     <refsection>

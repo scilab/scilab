@@ -19,7 +19,7 @@
         <refpurpose>natural logarithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=log(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

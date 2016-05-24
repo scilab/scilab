@@ -20,7 +20,7 @@
         <refpurpose>The factorial function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             f = factorial ( n )
             

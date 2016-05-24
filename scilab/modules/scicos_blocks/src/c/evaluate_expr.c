@@ -737,6 +737,9 @@ SCICOS_BLOCKS_IMPEXP void evaluate_expr(scicos_block *block, int flag)
                             stack[bottom] = log10(stack[bottom]);
                             break;
                     }
+                default:
+                    set_block_error(-2);
+                    return;
             }
         }
 #if _MSC_VER

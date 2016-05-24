@@ -92,11 +92,15 @@ int sci_matfile_varwrite(char *fname, void* pvApiCtx)
 
     if (var_type == sci_strings)
     {
-        getAllocatedSingleString(pvApiCtx, name_addr, &varname);
+        if (getAllocatedSingleString(pvApiCtx, name_addr, &varname) != 0)
+        {
+            return 0;
+        }
         sciErr = getVarDimension(pvApiCtx, name_addr, &nbRow, &nbCol);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(varname);
             return 0;
         }
         if (nbCol != 1)

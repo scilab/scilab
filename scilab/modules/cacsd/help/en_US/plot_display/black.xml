@@ -19,7 +19,7 @@
         <refpurpose>Black-Nichols diagram of a linear dynamical system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             black( sl,[fmin,fmax] [,step] [,comments] )
             black( sl,frq [,comments] )

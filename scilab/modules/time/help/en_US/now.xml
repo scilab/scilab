@@ -19,7 +19,7 @@
         <refpurpose>Return current date under the form of a Unix hour (timestamp)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = now()</synopsis>
     </refsynopsisdiv>
     <refsection>

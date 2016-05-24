@@ -19,7 +19,7 @@
         <refpurpose>Deletes all entries in the Scilab history.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>resethistory()</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -46,7 +46,8 @@ function [x] = input(msg, flag)
             error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' value expected.\n"),"input",2,"string"));
         end
 
-        prompt(msg);
+        prompt("");
+        mprintf(msg);
         x = mscanf(fmt);
 
         currentpromptAfter = prompt();
@@ -59,7 +60,8 @@ function [x] = input(msg, flag)
 
     else
         while %t
-            prompt(msg);
+            prompt("");
+            mprintf(msg);
             x = mscanf(fmt);
 
             currentpromptAfter = prompt();

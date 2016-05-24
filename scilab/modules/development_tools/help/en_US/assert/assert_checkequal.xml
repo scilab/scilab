@@ -20,7 +20,7 @@
         <refpurpose>Check that computed and expected are equal.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             assert_checkequal ( computed , expected )
             flag = assert_checkequal ( computed , expected )

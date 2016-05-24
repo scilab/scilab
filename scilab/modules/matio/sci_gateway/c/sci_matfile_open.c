@@ -58,11 +58,15 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
 
     if (var_type == sci_strings)
     {
-        getAllocatedSingleString(pvApiCtx, filename_addr, &filename);
+        if (getAllocatedSingleString(pvApiCtx, filename_addr, &filename) != 0)
+        {
+            return 0;
+        }
         sciErr = getVarDimension(pvApiCtx, filename_addr, &nbRow, &nbCol);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(filename);
             return 0;
         }
 
@@ -86,6 +90,7 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(filename);
             return 0;
         }
 
@@ -93,16 +98,23 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(filename);
             return 0;
         }
 
         if (var_type == sci_strings)
         {
-            getAllocatedSingleString(pvApiCtx, option_addr, &optionStr);
+            if (getAllocatedSingleString(pvApiCtx, option_addr, &optionStr) != 0)
+            {
+                freeAllocatedSingleString(filename);
+                return 0;
+            }
             sciErr = getVarDimension(pvApiCtx, option_addr, &nbRow, &nbCol);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedSingleString(filename);
+                freeAllocatedSingleString(optionStr);
                 return 0;
             }
 
@@ -153,6 +165,8 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(filename);
+            freeAllocatedSingleString(optionStr);
             return 0;
         }
 
@@ -160,16 +174,25 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(filename);
+            freeAllocatedSingleString(optionStr);
             return 0;
         }
-        printf("sci_strings %d %d\n", var_type, sci_strings);
         if (var_type == sci_strings)
         {
-            getAllocatedSingleString(pvApiCtx, version_addr, &versionStr);
+            if (getAllocatedSingleString(pvApiCtx, version_addr, &versionStr) != 0)
+            {
+                freeAllocatedSingleString(filename);
+                freeAllocatedSingleString(optionStr);
+                return 0;
+            }
             sciErr = getVarDimension(pvApiCtx, version_addr, &nbRow, &nbCol);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedSingleString(filename);
+                freeAllocatedSingleString(optionStr);
+                freeAllocatedSingleString(versionStr);
                 return 0;
             }
             if (nbCol != 1)
@@ -194,6 +217,8 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
+            freeAllocatedSingleString(filename);
+            freeAllocatedSingleString(optionStr);
             return 0;
         }
     }

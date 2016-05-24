@@ -20,7 +20,7 @@
         <refpurpose>convert from decimal to hexadecimal</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>h=dec2hex(d)</synopsis>
     </refsynopsisdiv>
     <refsection>

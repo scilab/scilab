@@ -19,7 +19,7 @@
         <refpurpose>hyperbolic sine inverse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[t] = asinh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

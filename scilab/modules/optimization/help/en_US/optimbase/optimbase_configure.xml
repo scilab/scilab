@@ -19,7 +19,7 @@
         <refpurpose>Configures the current object.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimbase_configure(opt, key, value)
         </synopsis>

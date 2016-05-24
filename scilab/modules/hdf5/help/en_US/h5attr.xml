@@ -19,7 +19,7 @@
         <refpurpose>Create an attribute</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5attr(obj, location, name, data [, targetType])
             h5attr(filename, location, name, data [, targetType])

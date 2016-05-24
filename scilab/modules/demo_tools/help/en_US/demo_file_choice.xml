@@ -19,7 +19,7 @@
         <refpurpose>choose and executes an item within a list </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>demo_file_choice(path,ch)</synopsis>
     </refsynopsisdiv>
     <refsection>

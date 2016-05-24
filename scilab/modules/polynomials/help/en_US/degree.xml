@@ -19,7 +19,7 @@
         <refpurpose>degree of polynomial matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[D]=degree(M)</synopsis>
     </refsynopsisdiv>
     <refsection>

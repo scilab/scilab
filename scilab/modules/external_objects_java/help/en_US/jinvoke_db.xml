@@ -21,7 +21,7 @@
         <refpurpose>Invoke a method of a Java object in using Java direct buffers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             ret = jinvoke_db(object, methodName [, varName_1 [, varName_2...]])
         </synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>Open an HDF5 file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             obj = h5open(filename [, access])
             obj = h5open(filename, access, driver [, driver_options...])

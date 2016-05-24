@@ -19,7 +19,7 @@
         <refpurpose>Uncompress a list of block-diagonal symmetric matrices.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>A=unpack(CA,blocksizes)</synopsis>
     </refsynopsisdiv>
     <refsection>

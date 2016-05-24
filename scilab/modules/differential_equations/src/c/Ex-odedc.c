@@ -70,7 +70,7 @@ void fexcd(int* jflag, int* nc, int* nd, double* t, double* y, double* ydp)
     // y=odedc([y0c;y0d],nd,[5,0],t0,t,list('fexcd',param))
     // param can be retrieved in fexcd by:
     // param(1)=y(nc+nd+1) , param(2)=y(nc+nd+2) etc
-    // with this calling sequence y is a nc+nd+np vector
+    // with this syntax y is a nc+nd+np vector
     // where np=dimension of scilab variable param
 
     if (*jflag == 0)

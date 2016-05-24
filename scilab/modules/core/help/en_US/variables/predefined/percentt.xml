@@ -19,7 +19,7 @@
         <refpurpose>Boolean variable for true.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>%t or %T</synopsis>
     </refsynopsisdiv>
     <refsection>

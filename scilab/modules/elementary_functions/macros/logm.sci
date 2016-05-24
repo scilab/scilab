@@ -13,7 +13,7 @@
 
 function x=logm(a)
     //   logm - log(A)
-    //%CALLING SEQUENCE
+    //%SYNTAX
     //   X=logm(A)
     //%PARAMETERS
     //   A   : square hermitian or diagonalizable matrix

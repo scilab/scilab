@@ -14,7 +14,7 @@ function [X1,X2,zero]=ric_desc(H,E)
     //[X1,X2,zero]=ric_desc(H [,E])  Descriptor Riccati solver with
     // hamiltonian matrices as inputs.
     //        (see also riccati)
-    //In the continuous time case calling sequence is ric_desc(H) (one input).
+    //In the continuous time case, the syntax is ric_desc(H) (one input).
     // Riccati equation is:
     //  (Ec)   A'*X + X*A + X*R*X -Q = 0.
     // Defining the hamiltonian matrix H by:
@@ -26,7 +26,7 @@ function [X1,X2,zero]=ric_desc(H,E)
     // (solution X is also given by   X=riccati(A,Q,R,'c'))
     //
     //
-    //In the discrete-time case calling sequence is ric_desc(H,E) (two inputs).
+    //In the discrete-time case, the syntax is ric_desc(H,E) (two inputs).
     // Riccati solution is:
     //   (Ed)  A'*X*A-(A'*X*B*(R+B'*X*B)^-1)*(B'*X*A)+C-X = 0.
     //

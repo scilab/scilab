@@ -73,6 +73,7 @@ int sci_x_choose(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
             return 1;
         }
 
@@ -87,6 +88,7 @@ int sci_x_choose(char *fname, void* pvApiCtx)
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname, 2);
+        freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
         return FALSE;
     }
 

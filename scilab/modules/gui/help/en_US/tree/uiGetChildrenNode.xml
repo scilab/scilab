@@ -5,7 +5,7 @@
         <refpurpose>Get Children of a node </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>children = uiGetChildrenNode(tree, node)</synopsis>
         <synopsis>children = uiGetChildrenNode(tree, position)</synopsis>
     </refsynopsisdiv>

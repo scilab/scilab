@@ -19,7 +19,7 @@
         <refpurpose>pseudoinverse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>pinv(A,[tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

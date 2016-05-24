@@ -19,7 +19,7 @@
         <refpurpose>tangent</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[t] = tan(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>Send text or figure to the printer.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             toprint(filename)
             toprint(linestoprint,pageheader)

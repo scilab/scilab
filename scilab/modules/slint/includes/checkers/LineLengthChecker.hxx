@@ -36,11 +36,14 @@ public:
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);
     void postCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);
+    bool isFileChecker() const;
+    void preCheckFile(SLintContext & context, SLintResult & result);
+    void postCheckFile(SLintContext & context, SLintResult & result);
     const std::string getName() const;
 
     virtual const std::vector<ast::Exp::ExpType> getAstNodes() const
     {
-        return { ast::Exp::FUNCTIONDEC };
+        return { };
     }
 };
 

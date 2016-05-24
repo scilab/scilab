@@ -40,6 +40,4 @@ double dabsz(double _dblRealVal, double _dblImgVal)
     W = MAX( XABS, YABS )
     Z = MIN( XABS, YABS )
     */
-
-    return 0;
 }

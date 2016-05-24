@@ -20,7 +20,7 @@
         <refpurpose>checks if end of file has been reached</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>err=meof(fd)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>removes primitive  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ret=clearfun('name')</synopsis>
     </refsynopsisdiv>
     <refsection>

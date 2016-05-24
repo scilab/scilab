@@ -5,7 +5,7 @@
         <refpurpose>Design of iir filters</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)</synopsis>
     </refsynopsisdiv>
     <refsection>

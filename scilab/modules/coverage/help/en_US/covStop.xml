@@ -5,7 +5,7 @@
         <refpurpose>Removes all instrumentation data</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>covStop()</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>Sampling without replacement </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s = samwr(sizam, numsamp, X)</synopsis>
     </refsynopsisdiv>
     <refsection>

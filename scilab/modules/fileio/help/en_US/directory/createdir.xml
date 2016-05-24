@@ -20,7 +20,7 @@
         <refpurpose>makes new directory</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>createdir(dirname)
             status = createdir(dirname)
         </synopsis>

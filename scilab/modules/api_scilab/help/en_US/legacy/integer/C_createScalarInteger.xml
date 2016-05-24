@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int createScalarInteger8(void* _pvCtx, int _iVar, char cData)</synopsis>
         <synopsis>int createNamedScalarInteger8(void* _pvCtx, const char* _pstName, char _cData)</synopsis>
         <synopsis>int createScalarInteger16(void* _pvCtx, int _iVar, short sData)</synopsis>

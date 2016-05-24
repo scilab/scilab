@@ -19,7 +19,7 @@
         <refpurpose>Return last day of month</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>E = eomday(Y, M)</synopsis>
     </refsynopsisdiv>
     <refsection>

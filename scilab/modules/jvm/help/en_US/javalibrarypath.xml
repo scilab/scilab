@@ -19,7 +19,7 @@
         <refpurpose>set and get dynamic java.library.path</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res=javalibrarypath()
             javalibrarypath(path)
         </synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>ilib_build utility: executes the Makefile produced by ilib_gen_Make</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>libn=ilib_compile(lib_name,makename [,files,ldflags,cflags,fflags,cc])</synopsis>
     </refsynopsisdiv>
     <refsection>

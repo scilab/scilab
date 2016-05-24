@@ -5,7 +5,7 @@
         <refpurpose>delete an element in a list</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>l(i)=null()</synopsis>
     </refsynopsisdiv>
     <refsection>

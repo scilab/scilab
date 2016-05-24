@@ -19,6 +19,9 @@
 #include "SLint.hxx"
 #include "output/SLintScilabResult.hxx"
 #include "output/SLintXmlResult.hxx"
+#include "output/cnes/CNESXmlResult.hxx"
+#include "output/cnes/CNESCsvResult.hxx"
+#include "config/cnes/ToolConfiguration.hxx"
 #include "config/XMLConfig.hxx"
 
 #include "struct.hxx"
@@ -28,9 +31,11 @@
 extern "C"
 {
 #include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
 }
 
+static bool contributionMsg = true;
 /**
  * slint(String[a,b] files, String[1,c] conf, String[1,1] out)
  * slint(String[a,b] files, String[1,1] out)                   : default conf is etc/slint.xml
@@ -44,7 +49,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
 {
     slint::SLintResult * results = nullptr;
     bool printResults = false;
-    const unsigned size = in.size();
+    const int size = (int)in.size();
     types::String * conf = nullptr;
     types::String * outFile = nullptr;
 
@@ -56,7 +61,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
 
     if (!in[0]->isString())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "slint" , 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "slint", 1);
         return types::Function::Error;
     }
 
@@ -73,11 +78,11 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
             {
                 if (in[1]->getAs<types::Bool>()->getSize() == 1)
                 {
-                    printResults = in[1]->getAs<types::Bool>()->get(0);
+                    printResults = in[1]->getAs<types::Bool>()->get(0) == 0 ? false : true;
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A single boolean expected.\n"), "slint" , 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A single boolean expected.\n"), "slint", 2);
                     return types::Function::Error;
                 }
             }
@@ -87,7 +92,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string or a boolean expected.\n"), "slint" , 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A string or a boolean expected.\n"), "slint", 2);
                 return types::Function::Error;
             }
             break;
@@ -98,11 +103,11 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
             {
                 if (in[2]->getAs<types::Bool>()->getSize() == 1)
                 {
-                    printResults = in[2]->getAs<types::Bool>()->get(0);
+                    printResults = in[2]->getAs<types::Bool>()->get(0) == 0 ? false : true;
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A single boolean expected.\n"), "slint" , 3);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A single boolean expected.\n"), "slint", 3);
                     return types::Function::Error;
                 }
             }
@@ -112,13 +117,13 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string or a boolean expected.\n"), "slint" , 3);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A string or a boolean expected.\n"), "slint", 3);
                 return types::Function::Error;
             }
 
             if (!in[1]->isString())
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "slint" , 3);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "slint", 3);
                 return types::Function::Error;
             }
             conf = in[1]->getAs<types::String>();
@@ -131,7 +136,14 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
         slint::SLintOptions options;
         if (conf)
         {
-            slint::XMLConfig::getOptions(conf->get(0), options);
+            if (conf->getSize() == 1)
+            {
+                slint::XMLConfig::getOptions(conf->get(0), options);
+            }
+            else
+            {
+                slint::XMLConfig::getOptions(*conf, options);
+            }
         }
         else
         {
@@ -140,7 +152,24 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
 
         if (outFile)
         {
-            results = new slint::SLintXmlResult(outFile->get(0));
+            if (conf && conf->getSize() >= 2 && (std::wstring(conf->get(0)) == L"cnes"))
+            {
+                const slint::CNES::ToolConfiguration tc = slint::CNES::ToolConfiguration::createFromXml(conf->get(1));
+                const std::wstring out(outFile->get(0));
+                const std::size_t pos = out.find_last_of(L'.');
+                if (pos != std::string::npos && out.substr(pos) == L".csv")
+                {
+                    results = new slint::CNES::CNESCsvResult(tc, conf, options.getId(), outFile->get(0));
+                }
+                else
+                {
+                    results = new slint::CNES::CNESXmlResult(tc, conf, options.getId(), outFile->get(0));
+                }
+            }
+            else
+            {
+                results = new slint::SLintXmlResult(outFile->get(0));
+            }
         }
         else
         {
@@ -184,6 +213,12 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
     }
 
     delete results;
+
+    if (contributionMsg)
+    {
+        sciprint("%s\n", _("Module developed with the contribution of CNES."));
+        contributionMsg = false;
+    }
 
     return types::Function::OK;
 }

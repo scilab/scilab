@@ -19,7 +19,7 @@
         <refpurpose>balancing of pair of symmetric matrices</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>T=equil(P,Q)</synopsis>
     </refsynopsisdiv>
     <refsection>

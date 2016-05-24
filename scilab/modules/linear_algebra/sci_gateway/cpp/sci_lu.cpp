@@ -125,6 +125,11 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
     if (iRet != 0)
     {
         Scierror(999, _("%s: LAPACK error n°%d.\n"), "lu", iRet);
+        FREE((doublecomplex*)pdL);
+        FREE((doublecomplex*)pdU);
+        delete pDblL;
+        delete pDblU;
+        delete pDblE;
         return types::Function::Error;
     }
 

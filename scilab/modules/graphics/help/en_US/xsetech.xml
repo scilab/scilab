@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xsetech(wrect, [frect, logflag])
             xsetech(wrect=[...], frect=[..], logflag="..", arect=[...])

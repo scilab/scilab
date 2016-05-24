@@ -135,7 +135,7 @@ msgstr ""
 msgid "Add short description here."
 msgstr ""
 
-msgid "Calling Sequence"
+msgid "Syntax"
 msgstr ""
 
 msgid "Arguments"

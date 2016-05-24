@@ -12,12 +12,11 @@
  * along with this program.
 *
 */
-
+#include <fstream>
 #include "configvariable.hxx"
 #include "context.hxx"
 #include "loadlib.hxx"
 #include "macrofile.hxx"
-
 extern "C"
 {
 #include "FileExist.h"
@@ -120,6 +119,20 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
         FREE(pstFile);
         return 1;
     }
+    std::string s(_wstXML.begin(),_wstXML.end());
+    std::ifstream file(s);
+    if (file)
+    {
+        const std::string XMLDecl("<?xml");
+        std::string readXMLDecl;
+        readXMLDecl.resize(XMLDecl.length(),' ');//reserve space
+        file.read(&*readXMLDecl.begin(),XMLDecl.length());
+        if (XMLDecl != readXMLDecl)
+        {
+          FREE(pstFile);
+          return 4;
+        }
+    }
 
     char *encoding = GetXmlFileEncoding(pstFile);
 
@@ -130,7 +143,7 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
     {
         FREE(pstFile);
         free(encoding);
-        return NULL;
+        return 3;
     }
 
     xmlDocPtr doc;
@@ -148,7 +161,7 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
     if (doc == NULL)
     {
         FREE(pstFile);
-        return 1;
+        return 3;
     }
 
     FREE(pstFile);

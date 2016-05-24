@@ -19,7 +19,7 @@
         <refpurpose>Date components</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>V=datevec(DT)
             [Y,M,D,H,MI,S]=datevec(DT)
         </synopsis>

@@ -134,7 +134,7 @@ types::InternalType * alloc_and_set_as_mlist(types::String* type_name, types::ty
     return mlist;
 }
 
-static types::Function::ReturnValue allocate(types::typed_list &in, int _iRetCount, types::typed_list &out)
+static types::Function::ReturnValue allocate(types::typed_list &in, int /*_iRetCount*/, types::typed_list &out)
 {
     types::InternalType* type = in[0];
 

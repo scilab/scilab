@@ -19,7 +19,7 @@
         <refpurpose>Delete a XML document</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xmlDelete(obj1 [, obj2, [...]])
             xmlDelete("all")

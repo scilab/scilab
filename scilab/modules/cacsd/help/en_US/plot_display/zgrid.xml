@@ -19,7 +19,7 @@
         <refpurpose>zgrid plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             zgrid()
             zgrid(zeta,wn [,colors])

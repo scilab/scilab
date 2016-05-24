@@ -5,7 +5,7 @@
         <refpurpose>n dimensional linear interpolation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis>
     </refsynopsisdiv>
     <refsection>

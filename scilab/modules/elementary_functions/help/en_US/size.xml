@@ -21,7 +21,7 @@
         <refpurpose>size of objects</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             sz = size(x)
             [n1, n2] = size(x)

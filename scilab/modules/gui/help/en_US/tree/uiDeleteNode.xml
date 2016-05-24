@@ -5,7 +5,7 @@
         <refpurpose>Deletion in an uitree </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>delTree = uiDeleteNode(tree, node)</synopsis>
         <synopsis>delTree = uiDeleteNode(tree, position)</synopsis>
     </refsynopsisdiv>

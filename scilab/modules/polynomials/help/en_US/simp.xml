@@ -19,7 +19,7 @@
         <refpurpose>rational simplification</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[N1,D1]=simp(N,D)
             H1=simp(H)
         </synopsis>

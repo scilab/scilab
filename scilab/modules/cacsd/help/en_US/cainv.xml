@@ -19,7 +19,7 @@
         <refpurpose>Dual of abinv</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>utility for ilib_build: generates a cleaner file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ilib_gen_cleaner(makename,[loadername],[files])</synopsis>
     </refsynopsisdiv>
     <refsection>

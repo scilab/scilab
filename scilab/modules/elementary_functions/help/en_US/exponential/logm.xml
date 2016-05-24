@@ -19,7 +19,7 @@
         <refpurpose>square matrix logarithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=logm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

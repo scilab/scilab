@@ -153,7 +153,7 @@ msgstr " * Додайте коментарі щодо файла XML"
 msgid "Add short description here."
 msgstr "Додайте короткий опис."
 
-msgid "Calling Sequence"
+msgid "Syntax"
 msgstr "Послідовність виклику"
 
 msgid "Arguments"

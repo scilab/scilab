@@ -34,7 +34,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>fs</term>
+                <term>rate</term>
                 <listitem>
                     <para>実数, サンプリング周波数 (デフォルト値は22050).</para>
                 </listitem>
@@ -70,8 +70,8 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-// a two channel signal
-y=loadwave("SCI/modules/sound/demos/chimes.wav");
+// A two channel signal
+y = loadwave("SCI/modules/sound/demos/chimes.wav");
 playsnd(y)
  ]]></programlisting>
     </refsection>

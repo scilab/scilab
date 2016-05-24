@@ -20,7 +20,7 @@
         <refpurpose>block-diagram to state-space conversion</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[sl]=bloc2ss(blocd)</synopsis>
     </refsynopsisdiv>
     <refsection>

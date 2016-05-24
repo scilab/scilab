@@ -19,7 +19,7 @@
         <refpurpose>parallel calls to a function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[R1[,…,Rm]]=parallel_run(A1[,…,Ak], f[,types][,dims], p)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -537,7 +537,7 @@ R4_6_7=parallel_run(data',N,[4;6;7],3,"quantiles_cxx", 3);]]></programlisting>
     <refsection>
         <title>Tuning the Parallelization with Configuration Parameters</title>
         
-        As we have seen in the calling sequence, it is possible to add a configuration parameter as a last argument to parallel_run. This argument is handled by the <literal>params</literal> module and created with<link linkend="init_param">init_param</link>() (further information on how to handle parameters can be found in the help pages of <link linkend="add_param">add_param</link>, <link linkend="set_param">set_param</link> and <link linkend="remove_param">remove_param</link>).
+        As we have seen in the syntax, it is possible to add a configuration parameter as a last argument to parallel_run. This argument is handled by the <literal>params</literal> module and created with<link linkend="init_param">init_param</link>() (further information on how to handle parameters can be found in the help pages of <link linkend="add_param">add_param</link>, <link linkend="set_param">set_param</link> and <link linkend="remove_param">remove_param</link>).
         
         <refsection>
             <title>Number of workers </title>

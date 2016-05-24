@@ -1,7 +1,7 @@
 function zoom_auto(h)
     // Zoom automatically to the visible values of all axes of the figure
     //
-    // Calling Sequence
+    // Syntax
     //   zoom_auto()
     //   zoom_auto(h)
     //

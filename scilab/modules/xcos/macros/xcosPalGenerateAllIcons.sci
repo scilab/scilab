@@ -49,7 +49,7 @@ function blocks = xcosPalGenerateAllIcons(path)
         end
 
         // generate the icon
-        xcosPalGenerateIcon(iconPath);
+        xcosPalGenerateIcon(blk, iconPath);
 
         blocks($+1) = name;
     end

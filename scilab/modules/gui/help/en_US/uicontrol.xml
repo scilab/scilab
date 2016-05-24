@@ -5,7 +5,7 @@
         <refpurpose>create a Graphic User Interface object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h = uicontrol(PropertyName,PropertyValue,...)
             h = uicontrol(parent,PropertyName,PropertyValue,...)

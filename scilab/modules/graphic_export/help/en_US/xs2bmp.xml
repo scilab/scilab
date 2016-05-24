@@ -19,7 +19,7 @@
         <refpurpose>export graphics to BMP</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xs2bmp(win_num, file_name)
             xs2bmp(fig, file_name)

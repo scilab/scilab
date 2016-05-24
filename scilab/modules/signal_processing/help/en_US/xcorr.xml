@@ -17,7 +17,7 @@ along with this program.
         <refpurpose>Computes discrete auto or cross correlation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[c [,lagindex]] = xcorr(x [,maxlags [,scaling]])
             [c [,lagindex]] = xcorr(x,y [,maxlags [,scaling]])
         </synopsis>

@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[la,sig]=levin(n,cov)</synopsis>
     </refsynopsisdiv>
     <refsection>

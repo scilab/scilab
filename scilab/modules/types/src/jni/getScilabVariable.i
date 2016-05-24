@@ -53,7 +53,7 @@ class%}
   static {
     try {
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-           System.loadLibrary("scitypes");
+           System.loadLibrary("typesjni");
         } else {
            System.loadLibrary("scilab");
         }

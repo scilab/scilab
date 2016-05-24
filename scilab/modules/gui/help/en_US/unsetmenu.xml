@@ -5,7 +5,7 @@
         <refpurpose>interactive button or menu or submenu de-activation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>unsetmenu(button,[nsub])
             unsetmenu(gwin,button,[nsub])
         </synopsis>

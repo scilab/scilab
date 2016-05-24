@@ -127,11 +127,6 @@ types::Function::ReturnValue sci_semidef(types::typed_list &in, int _iRetCount, 
 
     double* pdblB = pDblB->get();
     iSizeB = pDblB->getSize();
-    piB = new int[iSizeB];
-    for (int i = 0; i < iSizeB; i++)
-    {
-        piB[i] = (int)pdblB[i];
-    }
 
     // get C
     if (in[4]->isDouble() == false)
@@ -190,6 +185,11 @@ types::Function::ReturnValue sci_semidef(types::typed_list &in, int _iRetCount, 
     int sz      = 0;
     int upsz    = 0;
     int maxn    = 0;
+    piB = new int[iSizeB];
+    for (int i = 0; i < iSizeB; i++)
+    {
+        piB[i] = (int)pdblB[i];
+    }
 
     for (int i = 0; i < iSizeB; i++)
     {
@@ -209,8 +209,9 @@ types::Function::ReturnValue sci_semidef(types::typed_list &in, int _iRetCount, 
     C2F(spf)(&iSizeX, &iSizeB, pDblF->get(), piB, pDblC->get(), pDblX->get(), pDblZ->get(),
              pDblUl->get(), &dNu, &dAbstol, &dReltol, &dTv, &iIter, pdblWork, &iSizeWork, piWork, &iInfo);
 
-    delete pdblWork;
-    delete piWork;
+    delete[] pdblWork;
+    delete[] piWork;
+    delete[] piB;
 
     if (iInfo < 0)
     {

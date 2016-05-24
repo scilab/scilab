@@ -91,6 +91,7 @@ int sci_x_choice(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            FREE(defaultValuesInt);
             return 1;
         }
 
@@ -98,6 +99,7 @@ int sci_x_choice(char *fname, void* pvApiCtx)
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrlabelsAdr, &nbRow, &nbCol, &labelsAdr))
         {
             Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
+            FREE(defaultValuesInt);
             return 1;
         }
 
@@ -126,6 +128,7 @@ int sci_x_choice(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            FREE(defaultValuesInt);
             return 1;
         }
 
@@ -133,13 +136,15 @@ int sci_x_choice(char *fname, void* pvApiCtx)
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrlineLabelsAdr, &nbRowLineLabels, &nbColLineLabels, &lineLabelsAdr))
         {
             Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
+            FREE(defaultValuesInt);
             return 1;
         }
 
         if (nbRow != 1 && nbCol != 1)
         {
-            freeAllocatedMatrixOfString(nbRowLineLabels, nbColLineLabels, lineLabelsAdr);
             Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
+            freeAllocatedMatrixOfString(nbRowLineLabels, nbColLineLabels, lineLabelsAdr);
+            FREE(defaultValuesInt);
             return FALSE;
         }
         setMessageBoxLineLabels(messageBoxID, lineLabelsAdr, nbColLineLabels * nbRowLineLabels);
@@ -148,11 +153,13 @@ int sci_x_choice(char *fname, void* pvApiCtx)
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname, 3);
+        FREE(defaultValuesInt);
         return FALSE;
     }
 
     /* Default selected buttons */
     setMessageBoxDefaultSelectedButtons(messageBoxID, defaultValuesInt, nbRowDefaultValues * nbColDefaultValues);
+    FREE(defaultValuesInt);
 
     /* Display it and wait for a user input */
     messageBoxDisplayAndWait(messageBoxID);
@@ -192,8 +199,6 @@ int sci_x_choice(char *fname, void* pvApiCtx)
 
         /* TO DO : do a delete []  getMessageBoxUserSelectedButtons */
     }
-
-    FREE(defaultValuesInt);
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);

@@ -19,14 +19,14 @@
         <refpurpose>Converts HSV colors to RGB</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[r,g,b] = hsv2rgb(h,s,v)
             rgb = hsv2rgb(h,s,v)
             [r,g,b] = hsv2rgb(hsv)
             rgb = hsv2rgb(hsv)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -87,7 +87,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>The function hsv2rgb converts colormaps
             between the RGB and HSV color spaces. As hue varies from 0 to 1.0,
@@ -99,21 +99,22 @@
             corresponding colors become increasingly brighter.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+t = [0:0.3:2*%pi]'; 
+z = sin(t)*cos(t');
 plot3d1(t,t,z)
-f=gcf();
-for h=0:0.1:1
-  hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
-  f.color_map=hsv2rgb(hsv);
-  xpause(10000)
+f = gcf();
+for h = 0:0.1:1
+  hsv = [h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
+  f.color_map = hsv2rgb(hsv);
+  sleep(10)
 end
-for v=0:0.1:1
-  hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
-  f.color_map=hsv2rgb(hsv);
-  xpause(10000)
+for v = 0:0.1:1
+  hsv = [ones(32,1) linspace(0,1,32)' v*ones(32,1)];
+  f.color_map = hsv2rgb(hsv);
+  sleep(10)
 end
  ]]></programlisting>
         <scilab:image>
@@ -129,6 +130,6 @@ end
             f.color_map=hsv2rgb(hsv);
             end
         </scilab:image>
-        
     </refsection>
 </refentry>
+

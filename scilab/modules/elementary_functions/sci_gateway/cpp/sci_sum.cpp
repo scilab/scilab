@@ -120,12 +120,6 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         {
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sum";
             types::Function::ReturnValue ret = Overload::call(wstFuncName, in, _iRetCount, out);
-
-            if (isCopy && pDblIn)
-            {
-                pDblIn->killMe();
-            }
-
             return ret;
         }
     }

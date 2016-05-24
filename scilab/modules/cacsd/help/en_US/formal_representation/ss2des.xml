@@ -19,7 +19,7 @@
         <refpurpose>(polynomial) state-space to descriptor form</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>S=ss2des(Sl)
             S=ss2des(Sl,flag)
         </synopsis>

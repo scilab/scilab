@@ -19,7 +19,7 @@
         <refpurpose>controllability gramian</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Gc]=ctr_gram(A,B [,dom])
             [Gc]=ctr_gram(sl)
         </synopsis>

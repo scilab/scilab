@@ -20,7 +20,7 @@
         <refpurpose>Matlab M-file to Scilab conversion function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mfile2sci([M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprintoutput]]]]]])</synopsis>
     </refsynopsisdiv>
     <refsection>

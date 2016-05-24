@@ -20,7 +20,7 @@
         <refpurpose>inverse condition number</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>rcond(X)</synopsis>
     </refsynopsisdiv>
     <refsection>

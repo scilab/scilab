@@ -19,7 +19,7 @@
         <refpurpose>Move the cursor to the upper left corner of the Command Window</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>tohome()</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>system matrix to descriptor</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Des]=sm2des(Sm);</synopsis>
     </refsynopsisdiv>
     <refsection>

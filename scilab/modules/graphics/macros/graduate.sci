@@ -26,11 +26,14 @@ function [xi,xa,np]=graduate( xmi, xma,n1,n2)
     //           xa - xi / np  =  k(10**n)  k in [1 3 5]   for an integer n
     //           n1 <= np <= n2
     //%Exemple
-    //  y=0:0.33:145.78
-    //  clf();plot2d1('enn',0,y)
-    //  [ymn,ymx,np]=graduate(min(y),max(y))
-    //  rect=[1,ymn,prod(size(y)),ymx];
-    //  clf();plot2d1('enn',0,y,-1,'011',' ',rect,[10,3,10,np])
+    //  clf
+    //  subplot(1,2,1)
+    //  y = 0:0.33:145.78
+    //  plot2d(y)
+    //  subplot(1,2,2)
+    //  [ymn,ymx,np] = graduate(min(y), max(y))
+    //  rect = [1, ymn, prod(size(y)), ymx];
+    //  plot2d([], y, -1, '011', ' ', rect, [10,3,10,np])
 
     kadm=[1,2,5];nadm=prod(size(kadm))
 

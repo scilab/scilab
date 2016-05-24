@@ -294,6 +294,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Link* o = static_cast<model::Link*>(baseObject);
         switch (p)
         {
+            case STYLE:
+                o->getStyle(v);
+                return true;
             case LABEL:
                 o->getLabel(v);
                 return true;
@@ -439,9 +442,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         {
             case GEOMETRY:
                 o->getGeometry(v);
-                return true;
-            case ANGLE:
-                o->getAngle(v);
                 return true;
             case EXPRS:
                 o->getExprs(v);

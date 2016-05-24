@@ -109,12 +109,6 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
         {
             strcpy(_FullPath, pstWorkingPath);
             normalizePath(_FullPath);
-            FREE(_Path_start);
-            _Path_start = NULL;
-            FREE(_FullPath_start);
-            _FullPath_start = NULL;
-            FREE(_Path_tmp);
-            _Path_tmp = NULL;
         }
         else if (strcmp(_Path, _FullPath) != 0) // For case: fullpath("a/b/c") (2) or fullpath("../a/b/c") (3)
         {
@@ -122,15 +116,13 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
             strtok(_Path_tmp, "./"); // _Path_tmp becomes a (2) or ../a (3)
             toadd = strsub(pstWorkingPath, _Path_tmp, ""); // to add = "/b/c"
             strcat(_FullPath, toadd); //_FullPath=_Fullpath+toadd
-            FREE(_Path_tmp);
-            _Path_tmp = NULL;
-            FREE(_Path_start);
-            _Path_start = NULL;
-            FREE(_FullPath_start);
-            _FullPath_start = NULL;
+            FREE(toadd);
         }
-
+        
         FREE(pstWorkingPath);
+        FREE(_FullPath_start);
+        FREE(_Path_start);
+        FREE(_Path_tmp);
     }
 
     lenFullPath = (int)strlen(_FullPath);

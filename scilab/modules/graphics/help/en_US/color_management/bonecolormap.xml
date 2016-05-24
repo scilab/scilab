@@ -19,7 +19,7 @@
         <refpurpose>gray colormap with a light blue tone</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>cmap=bonecolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

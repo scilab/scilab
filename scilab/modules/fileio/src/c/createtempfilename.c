@@ -64,6 +64,7 @@ char *createtempfilename(const char *prefix, BOOL bShortFormat)
         }
         tempfilename = os_strdup(TempFileName);
     }
+    FREE(TmpDir);
 #endif
     return tempfilename;
 }
@@ -110,11 +111,6 @@ wchar_t *createtempfilenameW(const wchar_t *wcprefix, BOOL bShortFormat)
     {
         FREE(prefix);
         prefix = NULL;
-    }
-    if (result)
-    {
-        FREE(result);
-        result = NULL;
     }
 #endif
     return wcReturnedTempFilename;

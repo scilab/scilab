@@ -10,7 +10,7 @@
         <refpurpose>Add a palette to the Scilab/Xcos palette manager. Optional property can be added to set the category of the palette.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xcosPalAdd(pal);
             xcosPalAdd(pal, category);

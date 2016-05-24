@@ -56,28 +56,27 @@ int sci_getinstalledlookandfeels(char *fname, void* pvApiCtx)
         nbCol = 1;
 
         sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbElems, nbCol, lookandfeels);
+
+        if (lookandfeels)
+        {
+            for (int i = 0; i < nbElems; i++)
+            {
+                if (lookandfeels[i])
+                {
+                    delete[] lookandfeels[i];
+                }
+            }
+            delete[] lookandfeels;
+            lookandfeels = NULL;
+        }
+        delete lnf;
+
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 1;
         }
-
-        if (lookandfeels)
-        {
-            int i = 0;
-
-            for (i = 0; i < nbElems; i++)
-            {
-                if (lookandfeels[i])
-                {
-                    delete[]lookandfeels[i];
-                }
-            }
-            delete[]lookandfeels;
-            lookandfeels = NULL;
-        }
-        delete lnf;
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         returnArguments(pvApiCtx);

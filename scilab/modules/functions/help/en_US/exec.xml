@@ -5,7 +5,7 @@
         <refpurpose>script file execution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>exec(path [,mode])
             exec(fun [,mode])
             ierr = exec(path, 'errcatch' [,mode])

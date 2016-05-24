@@ -19,7 +19,7 @@
         <refpurpose>3D mesh plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mesh(Z)
             mesh(X,Y,Z)
             mesh(...,&lt;GlobalProperty&gt;)

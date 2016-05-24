@@ -17,7 +17,7 @@ function [nb, loc] = members(A, S, varargin)
     // Looks for how many rows of S match each row of A
     // Can return the position in S of each respective first or last match.
     //
-    // Calling sequence:
+    // Syntax:
     // -------------------------
     // [nb [,loc]] = members(A, S)
     // [nb [,loc]] = members(A, S, "last")

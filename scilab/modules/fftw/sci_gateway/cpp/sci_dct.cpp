@@ -125,11 +125,13 @@ int sci_dct_gen(const char *fname, types::Double* A, types::Double** O, int isn,
         if (errflag == 1)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            FREE(kind);
             return types::Function::Error;
         }
         else if (errflag == 2)
         {
             Scierror(999, _("%s: Creation of requested fftw plan failed.\n"), fname);
+            FREE(kind);
             return types::Function::Error;
         }
         /* execute FFTW plan */
@@ -158,15 +160,13 @@ int sci_dct_gen(const char *fname, types::Double* A, types::Double** O, int isn,
         if (errflag == 1)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-            FREE(dims1);
-            FREE(incr1);
+            FREE(kind);
             return types::Function::Error;
         }
         else if (errflag == 2)
         {
             Scierror(999, _("%s: Creation of requested fftw plan failed.\n"), fname);
-            FREE(dims1);
-            FREE(incr1);
+            FREE(kind);
             return types::Function::Error;
         }
 
@@ -175,8 +175,7 @@ int sci_dct_gen(const char *fname, types::Double* A, types::Double** O, int isn,
         if ((dims1 = (int *)MALLOC(sizeof(int) * howmany_rank)) == NULL)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-            FREE(dims1);
-            FREE(incr1);
+            FREE(kind);
             return types::Function::Error;
         }
         dims1[0] = howmany_dims[0].n;
@@ -189,8 +188,8 @@ int sci_dct_gen(const char *fname, types::Double* A, types::Double** O, int isn,
         if ((incr1 = (int *)MALLOC(sizeof(int) * howmany_rank)) == NULL)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            FREE(kind);
             FREE(dims1);
-            FREE(incr1);
             return types::Function::Error;
         }
         t = 1;
@@ -239,6 +238,7 @@ int sci_dct_gen(const char *fname, types::Double* A, types::Double** O, int isn,
         if (dct_scale_array(Ar, Ai, gdim, isn) == -1)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            FREE(kind);
             return types::Function::Error;
         }
     }

@@ -29,9 +29,11 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
+import java.util.regex.Pattern;
 
 public class XcosCell extends mxCell {
     private static final long serialVersionUID = 1L;
+    private static Pattern validCIdentifier = Pattern.compile("[a-zA-Z][a-zA-Z0-9_]+");
 
     private transient ScicosObjectOwner owner;
 
@@ -101,10 +103,14 @@ public class XcosCell extends mxCell {
         }
 
         switch (getKind()) {
+            case BLOCK:
+                if (validCIdentifier.matcher(String.valueOf(value)).matches()) {
+                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, String.valueOf(value));
+                }
+                // no break on purpose
             case ANNOTATION:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));
                 break;
-            case BLOCK:
             case LINK:
             case PORT:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, String.valueOf(value));
@@ -209,8 +215,8 @@ public class XcosCell extends mxCell {
                 }
 
                 /*
-                * At that point, the sourcePoint, targetPoint and points are valid values (but may be unknown) encode them to the the CONTROL_POINTS
-                */
+                 * At that point, the sourcePoint, targetPoint and points are valid values (but may be unknown) encode them to the the CONTROL_POINTS
+                 */
 
                 // Allocate some space to contains them all
                 int nbOfPoints = 2 + points.size();
@@ -259,8 +265,9 @@ public class XcosCell extends mxCell {
         }
 
         switch (getKind()) {
-            case ANNOTATION:
             case BLOCK:
+            case LINK:
+            case ANNOTATION:
             case PORT:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.STYLE, style);
                 break;
@@ -396,14 +403,13 @@ public class XcosCell extends mxCell {
     @Override
     public mxICell setTerminal(mxICell terminal, boolean isSource) {
         mxICell cell = super.setTerminal(terminal, isSource);
-
-        final long uid;
         if (cell == null) {
-            uid = 0l;
-        } else {
-            // a terminal of an XcosCell is always another XcosCell
-            uid = ((XcosCell) cell).getUID();
+            return cell;
         }
+
+        // a terminal of an XcosCell is always another XcosCell
+        final long uid = ((XcosCell) cell).getUID();
+        final Kind kind = ((XcosCell) cell).getKind();
 
         JavaController controller = new JavaController();
         switch (getKind()) {
@@ -414,7 +420,7 @@ public class XcosCell extends mxCell {
                     controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESTINATION_PORT, uid);
                 }
                 if (uid != 0l) {
-                    controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.CONNECTED_SIGNALS, getUID());
+                    controller.setObjectProperty(uid, kind, ObjectProperties.CONNECTED_SIGNALS, getUID());
                 }
                 break;
             default:
@@ -565,7 +571,7 @@ public class XcosCell extends mxCell {
         JavaController controller = new JavaController();
         XcosCell c = (XcosCell) super.clone();
 
-        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), false, false), getKind());
+        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), true, false), getKind());
         return c;
     }
 }

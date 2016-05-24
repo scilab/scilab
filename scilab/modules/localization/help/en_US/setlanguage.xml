@@ -20,7 +20,7 @@
         <refpurpose>Changes the language of Scilab's user interface</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>setlanguage(language)</synopsis>
     </refsynopsisdiv>
     <refsection>

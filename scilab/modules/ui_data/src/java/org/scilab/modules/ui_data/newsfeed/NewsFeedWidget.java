@@ -188,7 +188,7 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
 
     private void displayError(String errorMessage) {
         StringBuilder errMsgHtmlBuilder = new StringBuilder(errorMessage);
-        display(new AbstractAction() {
+        display(new AbstractAction("") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 URL url = newsFeedController.getNewsFetcher().getURL();

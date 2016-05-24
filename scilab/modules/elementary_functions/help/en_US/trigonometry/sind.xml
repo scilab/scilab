@@ -19,7 +19,7 @@
         <refpurpose>sine function, argument in degree.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = sind(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

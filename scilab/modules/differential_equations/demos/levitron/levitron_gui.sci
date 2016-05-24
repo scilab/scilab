@@ -5,6 +5,9 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
+prot = funcprot();
+funcprot(0);
+
 //The graphics objects builder and subsidiaries
 //--------------------------------------------
 function [H]=build_levitron(h)
@@ -412,3 +415,5 @@ function gui_createButtonFrame();
     c = createConstraints("gridbag", [7, 1, 1, 1], [1, 1], "horizontal", "right");
     empty = uicontrol(button_frame, "style", "frame", "backgroundcolor", [1, 1, 1], "constraints", c);
 endfunction
+
+funcprot(prot);

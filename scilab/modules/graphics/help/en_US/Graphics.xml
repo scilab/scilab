@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -139,20 +139,6 @@
                 </term>
                 <listitem>
                     <para>Level curves of a surface on a 2D plot</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="fcontour2d">fcontour2d</link>
-                </term>
-                <listitem>
-                    <para>Level curves of a surface defined by a function on a 2D plot</para>
-                    <para>
-                        <emphasis role="bold">Example:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fcontour2d();</scilab:image>
-                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -967,19 +953,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xclear">xclear</link>
-                </term>
-                <listitem>
-                    <para>
-                        Clear a graphics window
-                        <warning>
-                            Function <function>xclear</function> is obsolete.
-                        </warning>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="driver">driver</link>
                 </term>
                 <listitem>
@@ -1008,14 +981,6 @@
                 </term>
                 <listitem>
                     <para>Redraw the current graphics window with new boundaries</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xpause">xpause</link>
-                </term>
-                <listitem>
-                    <para>Suspend Scilab</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -1287,3 +1252,4 @@
         </variablelist>
     </refsection>
 </refentry>
+

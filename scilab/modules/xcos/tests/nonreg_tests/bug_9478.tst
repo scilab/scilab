@@ -37,8 +37,6 @@ gui="CONST_m",..
 graphics=scicos_graphics(..
 orig=[136.43864,240.71188],..
 sz=[40,40],..
-flip=%t,..
-theta=0,..
 exprs="0.1",..
 pin=[],..
 pout=11,..
@@ -81,7 +79,7 @@ doc=list());
 tmpFileName = TMPDIR + "/bug_9478_scs_m.sod";
 
 err = execstr("save(tmpFileName, ""scs_m"")", "errcatch");
-assert_checktrue(err, 0);
+assert_checkequal(err, 0);
 assert_checktrue(isfile(tmpFileName));
 
 xcos(tmpFileName)

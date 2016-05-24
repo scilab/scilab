@@ -19,7 +19,7 @@
         <refpurpose>H-infinity LQ gain (full state)  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[K,X,err]=leqr(P12,Vx)</synopsis>
     </refsynopsisdiv>
     <refsection>

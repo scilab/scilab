@@ -19,7 +19,7 @@
         <refpurpose>Set the value for the given key.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimbase_set(opt, key, value)
         </synopsis>

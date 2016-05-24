@@ -23,7 +23,7 @@ function nyquist(varargin)
         PID=syslin("c",(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
         nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
         hallchart(colors=color("light gray")*[1 1])
-        //move the caption in the lower rigth corner
+        //move the caption in the lower right corner
         ax=gca();Leg=ax.children(1);
         Leg.legend_location="in_upper_left";
         return;

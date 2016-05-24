@@ -268,6 +268,9 @@ Time for Adams / Functional:
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
             </member>
             <member>
+                <link linkend="CRANI">Crank-Nicolson 2(3)</link>
+            </member>
+            <member>
                 <link linkend="IDA">IDA</link>
             </member>
             <member>

@@ -156,7 +156,10 @@ Temps sans recherche de racine :
                 <link linkend="DoPri">Dormand-Prince 4(5)</link>
             </member>
             <member>
-                <link linkend="RKImp">Runge-Kutta Implicite 4(5)</link>
+                <link linkend="ImpRK">Runge-Kutta Implicite 4(5)</link>
+            </member>
+            <member>
+                <link linkend="CRANI">Crank-Nicolson 2(3)</link>
             </member>
             <member>
                 <link linkend="DDaskr">DDaskr</link>

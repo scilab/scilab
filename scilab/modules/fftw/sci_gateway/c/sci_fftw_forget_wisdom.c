@@ -22,7 +22,7 @@
 /*--------------------------------------------------------------------------*/
 /* Reset fftw wisdom
 *
-* Scilab Calling sequence :
+* Scilab Syntax :
 *   -->fftw_forget_wisdom();
 *
 * Input : Nothing

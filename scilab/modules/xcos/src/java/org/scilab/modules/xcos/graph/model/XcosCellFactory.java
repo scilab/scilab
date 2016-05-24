@@ -299,7 +299,7 @@ public final class XcosCellFactory {
         return block;
     }
 
-    private static BasicBlock createBlock(final JavaController controller, long uid, Kind kind) {
+    public static BasicBlock createBlock(final JavaController controller, long uid, Kind kind) {
         String[] interfaceFunction = new String[1];
         if (kind == Kind.BLOCK) {
             controller.getObjectProperty(uid, kind, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
@@ -359,15 +359,9 @@ public final class XcosCellFactory {
         }
 
         String value;
-        if (kind == Kind.ANNOTATION) {
-            String[] description = new String[1];
-            controller.getObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, description);
-            value = description[0];
-        } else { // BLOCK
-            String[] label = new String[1];
-            controller.getObjectProperty(uid, kind, ObjectProperties.LABEL, label);
-            value = label[0];
-        }
+        String[] description = new String[] { "" };
+        controller.getObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, description);
+        value = description[0];
 
         VectorOfDouble geom = new VectorOfDouble(4);
         controller.getObjectProperty(uid, kind, ObjectProperties.GEOMETRY, geom);
@@ -419,10 +413,10 @@ public final class XcosCellFactory {
                                 properties.get(ObjectProperties.EVENT_OUTPUTS);
             convertGeometry = (2 * w + 2 * h) < (numberOfPorts * BasicPort.DEFAULT_PORTSIZE);
         } else {
-            convertGeometry = w < (properties.get(ObjectProperties.INPUTS) * BasicPort.DEFAULT_PORTSIZE) |
-                              w < (properties.get(ObjectProperties.OUTPUTS) * BasicPort.DEFAULT_PORTSIZE) |
-                              h < (properties.get(ObjectProperties.EVENT_INPUTS) * BasicPort.DEFAULT_PORTSIZE) |
-                              h < (properties.get(ObjectProperties.EVENT_OUTPUTS) * BasicPort.DEFAULT_PORTSIZE);
+            convertGeometry = h < (properties.get(ObjectProperties.INPUTS) * BasicPort.DEFAULT_PORTSIZE) |
+                              h < (properties.get(ObjectProperties.OUTPUTS) * BasicPort.DEFAULT_PORTSIZE) |
+                              w < (properties.get(ObjectProperties.EVENT_INPUTS) * BasicPort.DEFAULT_PORTSIZE) |
+                              w < (properties.get(ObjectProperties.EVENT_OUTPUTS) * BasicPort.DEFAULT_PORTSIZE);
         }
 
         if (convertGeometry) {

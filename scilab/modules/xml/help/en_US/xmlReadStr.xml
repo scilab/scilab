@@ -19,7 +19,7 @@
         <refpurpose>Read a XML tree from a string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             doc = xmlReadStr(string [, validateDTD])
         </synopsis>

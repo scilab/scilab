@@ -19,7 +19,7 @@
         <refpurpose>set options for ode solvers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>odeoptions()</synopsis>
     </refsynopsisdiv>
     <refsection>

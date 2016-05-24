@@ -37,7 +37,6 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
 {
     double* pdblInR[2]  = {NULL, NULL};// real part of denominator and numerator
     double* pdblInI[2]  = {NULL, NULL};// rimaginary part
-    bool bDouble        = false;
     bool pbComplex[2]   = {false, false};
     int piSize[2]       = {0, 0}; // rank+1 of denominator and numerator
     int iErr            = 0;
@@ -62,12 +61,6 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
     {
         if (in[i]->isDouble())
         {
-            if (bDouble)
-            {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A polynomial expected.\n"), "pppdiv", i + 1);
-                return types::Function::Error;
-            }
-
             types::Double* pDblIn = in[i]->getAs<types::Double>();
             if (pDblIn->isScalar() == false)
             {

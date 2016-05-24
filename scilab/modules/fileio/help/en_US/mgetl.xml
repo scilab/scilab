@@ -20,7 +20,7 @@
         <refpurpose>reads lines from an text file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>txt = mgetl(file_desc [,m])</synopsis>
     </refsynopsisdiv>
     <refsection>

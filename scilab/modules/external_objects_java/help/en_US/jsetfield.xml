@@ -21,7 +21,7 @@
         <refpurpose>Set the field of a Java object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             jsetfield(object, fieldName, value)
         </synopsis>

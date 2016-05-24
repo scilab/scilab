@@ -19,7 +19,7 @@
         <refpurpose>least common multiple</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[pp, fact] = lcm(p)</synopsis>
     </refsynopsisdiv>
     <refsection>

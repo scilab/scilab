@@ -19,7 +19,7 @@
         <refpurpose>Fisher ratio for samples of unequal size.  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>f=ftuneq(sample1[,sample2[,sample3]...]])
             [f,p]=ftuneq(sample1[,sample2[,sample3]...]])
         </synopsis>

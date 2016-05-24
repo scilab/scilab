@@ -77,6 +77,7 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
             if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "findfiles", 2);
+                FREE(pwstPath);
                 return types::Function::Error;
             }
 

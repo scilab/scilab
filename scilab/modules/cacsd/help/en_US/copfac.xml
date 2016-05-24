@@ -19,7 +19,7 @@
         <refpurpose>right coprime factorization of continuous time dynamical systems</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[N,M,XT,YT]=copfac(G [,polf,polc,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>

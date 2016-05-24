@@ -12,7 +12,7 @@
 
 function x=%s_pow(a,p)
     //   g_pow - A^p special cases
-    //%CALLING SEQUENCE
+    //%SYNTAX
     //   X=g_pow(A,p)
     //%PARAMETERS
     //   A   : constant or square hermitian or diagonalizable matrix

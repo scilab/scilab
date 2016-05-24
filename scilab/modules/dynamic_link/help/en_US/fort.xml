@@ -19,7 +19,7 @@
         <refpurpose>Fortran or C user routines call</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>// long form 'out' is present
             [y1,...,yk] = fort("ident",x1,px1,"tx1",...,xn,pxn,"txn","out",[ny1,my1],py1,"ty1",...,[nyl,myl],pyl,"tyl")
             // short form : no 'out' parameter
@@ -138,7 +138,7 @@
                 <term>py1, ...</term>
                 <listitem>
                     <para>are the positions of output variables (possibly equal to
-                        <literal>pxi</literal> ) in the calling sequence of the routine. The
+                        <literal>pxi</literal> ) in the syntax of the routine. The
                         <literal>pyi</literal>'s integers must be in increasing
                         order.
                     </para>

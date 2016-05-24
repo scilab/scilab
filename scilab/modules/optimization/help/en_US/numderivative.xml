@@ -30,7 +30,7 @@
         <refpurpose>approximate derivatives of a function (Jacobian or Hessian)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             J = numderivative(f, x)
             J = numderivative(f, x, h)
@@ -188,7 +188,7 @@
                 y = myfun (x, a1, a2, ...)
             </screen>
             where the input arguments <literal>a1, a2, ...</literal>
-            are automatically appended at the end of the calling sequence.
+            are automatically appended as parameters to the call.
         </para>
     </refsection>
     <refsection>

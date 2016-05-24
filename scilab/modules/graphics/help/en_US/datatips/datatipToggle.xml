@@ -17,7 +17,7 @@
         <refpurpose>toggles the data tips mode.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>datatipToggle(fig)
             datatipToggle()
         </synopsis>

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F.D
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -22,7 +22,7 @@
         <title>呼び出し手順</title>
         <synopsis>[SVM]=svplot(sl,[w])</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>パラメータ</title>
         <variablelist>
             <varlistentry>
@@ -41,7 +41,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>説明</title>
         <para>
             システム <literal>sl=(A,B,C,D)</literal>の伝達関数行列の特異値を計算します:
@@ -68,27 +68,28 @@ or
             <literal>i</literal>番目の周波数<literal>w(i)</literal>に関する
             <literal>G</literal> の特異値が含まれます.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 SVM = svplot(sl)
  ]]></programlisting>
         <para>
             は以下と等価です
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 SVM = svplot(sl,logspace(-3,3))  (連続系)
  ]]></programlisting>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 SVM = svplot(sl,logspace(-3,%pi)) (離散系)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-x=logspace(-3,3);
-y=svplot(ssrand(2,2,4),x);
-clf();plot2d1("oln",x',20*log(y')/log(10));
+        <programlisting role="example"><![CDATA[
+x = logspace(-3,3);
+y = svplot(ssrand(2,2,4),x);
+clf()
+plot2d("ln", x, 20*log(y')/log(10))
 xgrid(12)
-xtitle("Singular values plot","(Rd/sec)", "Db");
+xtitle("Singular values plot","(Rd/sec)", "Db")
  ]]></programlisting>
     </refsection>
 </refentry>

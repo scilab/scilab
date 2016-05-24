@@ -230,7 +230,7 @@ public :
         if (getRef() > 1)
         {
             // A types:: content in more than one Scilab variable
-            // must be cloned before to be modified.
+            // must be cloned before being modified.
             T* pClone = _pIT->clone()->template getAs<T>();
             T* pIT = (pClone->*f)(a...);
             if (pIT == NULL)

@@ -19,7 +19,7 @@
         <refpurpose>random pencil</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>F=randpencil(eps,infi,fin,eta)</synopsis>
     </refsynopsisdiv>
     <refsection>

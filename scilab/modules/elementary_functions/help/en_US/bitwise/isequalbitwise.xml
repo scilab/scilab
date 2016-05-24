@@ -19,7 +19,7 @@
         <refpurpose>bitwise comparison of variables</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t=isequalbitwise(a,b)
             t=isequalbitwise(a,b,..)
         </synopsis>

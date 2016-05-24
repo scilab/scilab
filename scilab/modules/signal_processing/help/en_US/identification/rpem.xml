@@ -5,7 +5,7 @@
         <refpurpose>Recursive Prediction-Error Minimization estimation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[w1,[v]]=rpem(w0,u0,y0,[lambda,[k,[c]]])</synopsis>
     </refsynopsisdiv>
     <refsection>

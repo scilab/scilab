@@ -20,7 +20,7 @@
         <refpurpose>Returns the number of significant digits in computed result.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             d = assert_computedigits ( computed , expected )
             d = assert_computedigits ( computed , expected , basis )

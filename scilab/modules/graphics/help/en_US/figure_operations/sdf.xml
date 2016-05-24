@@ -19,7 +19,7 @@
         <refpurpose>Set default figure. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sdf()
             f = gdf(); set(f,"default_values",1)
         </synopsis>

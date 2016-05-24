@@ -21,7 +21,7 @@
         <refpurpose>Compile Java code or file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             class = jcompile(className, code);
             class = jcompile(javaFiles);

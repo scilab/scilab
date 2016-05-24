@@ -19,7 +19,7 @@
         <refpurpose>3D surface plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>surf(Z,&lt;GlobalProperty&gt;)
             surf(Z,color,&lt;GlobalProperty&gt;)
             surf(X,Y,Z,&lt;color&gt;,&lt;GlobalProperty&gt;)

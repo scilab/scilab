@@ -20,7 +20,7 @@
         <refpurpose>returns the current language used by Scilab.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>getlanguage()</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>square root Kalman filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x1,p1]=srkf(y,x0,p0,f,h,q,r)</synopsis>
     </refsynopsisdiv>
     <refsection>

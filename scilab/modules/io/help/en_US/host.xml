@@ -19,7 +19,7 @@
         <refpurpose>Unix or DOS command execution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>stat=host(command-name)</synopsis>
     </refsynopsisdiv>
     <refsection>

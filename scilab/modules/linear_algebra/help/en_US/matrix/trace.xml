@@ -19,7 +19,7 @@
         <refpurpose>trace</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>trace(X)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -848,7 +848,7 @@ msgid ""
 msgstr "%s: El valor de l'opció 'PlotFcns' no és ni una funció ni una llista."
 
 #, c-format
-msgid "Calling sequence %s is obsolete."
+msgid "Syntax %s is obsolete."
 msgstr ""
 
 #, c-format

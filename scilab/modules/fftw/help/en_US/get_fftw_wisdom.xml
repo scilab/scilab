@@ -25,7 +25,7 @@
         <refpurpose>return fftw wisdom</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[txt]=get_fftw_wisdom()</synopsis>
     </refsynopsisdiv>
     <refsection>

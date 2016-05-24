@@ -8,7 +8,7 @@
         <title>Séquence d'appel</title>
         <synopsis>x=squarewave(t [,percent)</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
@@ -35,7 +35,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>squarewave(t)</literal> génère le vecteur des valeurs d'un
@@ -48,11 +48,11 @@
             le signal est positif.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
-t=(0:0.1:5*%pi)';
-plot2d1('onn',t,[2*sin(t),1.5*squarewave(t),squarewave(t,10)])
+        <programlisting role="example"><![CDATA[
+t = (0:0.1:5*%pi)';
+plot2d(t, [2*sin(t), 1.5*squarewave(t), squarewave(t,10)])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

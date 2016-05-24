@@ -22,9 +22,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>         householder         // demo</synopsis>
-        <synopsis> u     = householder(v [,w])</synopsis>
-        <synopsis>[u, H] = householder(v [,w])</synopsis>
+        <synopsis>
+            householder         // demo
+            u     = householder(v [,w])
+            [u, H] = householder(v [,w])
+        </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
         <title>引数</title>
@@ -108,7 +110,7 @@
         <para>
             If the related reflexion matrix <varname>H</varname> is computed, for any point A
             of column coordinates <literal>a</literal>, <literal>H*a</literal> are the coordinates of
-            the reflected image of A on P.
+            the reflected image of A (see the example below).
         </para>
         <note>
             If <varname>v</varname> or/and <varname>w</varname> are in row, they are priorly
@@ -150,7 +152,9 @@ clean(hm' - hm)         // must be zeros(3,3)
 clean(det(hm))          // must be -1
  ]]></programlisting>
         
-        <para>APPLICATION : Reflected image of an object</para>
+        <para>
+            <emphasis role="bold">Application:</emphasis> Reflected image of an object w.r. to a given plane
+        </para>
         <programlisting role="example"><![CDATA[
 // (OA) = [0 0 1] is reflected in O into (OB) = [ 1 1 0.3 ]:
 [n, H] = householder([0 0 1]', [ 1 1 0.3 ]');
@@ -227,5 +231,4 @@ drawnow
             </revision>
         </revhistory>
     </refsection>
-    
 </refentry>

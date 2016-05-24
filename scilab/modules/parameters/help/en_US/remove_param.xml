@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[param_list,err] = remove_param(list_name,param_name)</synopsis>
     </refsynopsisdiv>
     <refsection>

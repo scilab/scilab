@@ -20,7 +20,7 @@
         <refpurpose>cumulative distribution function gamma distribution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [P,Q]=cdfgam("PQ",X,Shape,Rate)
             [X]=cdfgam("X",Shape,Rate,P,Q)

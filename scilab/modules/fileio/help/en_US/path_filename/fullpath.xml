@@ -20,7 +20,7 @@
         <refpurpose>creates an full path name for the specified relative path name.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = fullpath(relative_path)</synopsis>
     </refsynopsisdiv>
     <refsection>

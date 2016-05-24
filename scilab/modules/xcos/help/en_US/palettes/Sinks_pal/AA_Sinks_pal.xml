@@ -121,11 +121,6 @@
             </inlinemediaobject>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="WFILE_f" fileref="../../../../../../modules/xcos/images/palettes/WFILE_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
                     <imagedata linkend="WRITEAU_f" fileref="../../../../../../modules/xcos/images/palettes/WRITEAU_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
@@ -261,11 +256,6 @@
             <listitem>
                 <para>
                     <link linkend="TRASH_f">TRASH_f — Trash block</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="WFILE_f">WFILE_f — Write to file</link>
                 </para>
             </listitem>
             <listitem>

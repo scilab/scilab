@@ -27,7 +27,7 @@
         <refpurpose>Get the current simulation phase</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[psim]=phase_simulation()</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_phase_simulation">

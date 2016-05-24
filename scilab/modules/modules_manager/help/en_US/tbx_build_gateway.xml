@@ -19,7 +19,7 @@
         <refpurpose>Build a gateway (toolbox compilation process)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_build_gateway(libname, names, files, [gateway_path [, libs [, ldflags [, cflags [, fflags [, cc [, makename [, ismex]]]]]]]])
         </synopsis>

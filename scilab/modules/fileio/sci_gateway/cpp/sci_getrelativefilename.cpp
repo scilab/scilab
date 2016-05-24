@@ -81,6 +81,8 @@ types::Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int 
         if (wcslen(wcsAbsDir) > PATH_MAX)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), "getrelativefilename", 1, PATH_MAX);
+            FREE(wcsAbsDir);
+            delete pStrOut;
             return types::Function::Error;
         }
 
@@ -88,6 +90,9 @@ types::Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int 
         if (wcslen(wcsAbsFile) > PATH_MAX)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), "getrelativefilename", 2, PATH_MAX);
+            FREE(wcsAbsFile);
+            FREE(wcsAbsDir);
+            delete pStrOut;
             return types::Function::Error;
         }
 

@@ -912,7 +912,7 @@ msgid ""
 msgstr "%s: Значение параметра 'PlotFcns' не является ни функцией, ни списком."
 
 #, c-format
-msgid "Calling sequence %s is obsolete."
+msgid "Syntax %s is obsolete."
 msgstr "Вызывающая последовательность %s устарела."
 
 #, c-format

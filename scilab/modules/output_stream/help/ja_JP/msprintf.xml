@@ -21,10 +21,11 @@
     </refnamediv>
     <refnamediv xml:id="sprintf">
         <refname>sprintf</refname>
+        <refpurpose>データを変換,整形し,文字列に書き込む （廃止）</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>str=msprintf(format,a1,...,an);</synopsis>
+        <synopsis>str = msprintf(format,a1,...,an);</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>

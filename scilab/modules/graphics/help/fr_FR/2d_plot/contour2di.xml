@@ -8,7 +8,7 @@
         <title>Séquence d'appel</title>
         <synopsis>[xc,yc]=contour2di(x,y,z,nz)</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
@@ -37,17 +37,17 @@
                                     Si <literal>nz</literal> est un entier, sa valeur définit le nombre de courbes
                                     de niveaux espacées régulièrement entre zmin et zmax :
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                                 <para>
                                     Noter que les niveaux <literal>zmin</literal> et <literal>zmax</literal> ne sont pas
                                     dessinés (génériquement ils sont réduits à des points) mais
                                     peuvent être ajoutés avec
-                                    
+
                                 </para>
-                                <programlisting role=""><![CDATA[ 
-[im,jm] = find(z == zmin);     // ou zmax 
+                                <programlisting role=""><![CDATA[
+[im,jm] = find(z == zmin);     // ou zmax
 plot2d(x(im)',y(jm)',-9,"000")
  ]]></programlisting>
                             </listitem>
@@ -72,7 +72,7 @@ plot2d(x(im)',y(jm)',-9,"000")
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>contour2di</literal> calcule les courbes de niveau (dans le plan) de la surface <literal>z=f(x,y)</literal>. Les valeurs de <literal>f(x,y)</literal> sont données par la matrice <literal>z</literal> aux points du plan définis par <literal>x</literal> et <literal>y</literal>.
@@ -85,9 +85,9 @@ plot2d(x(im)',y(jm)',-9,"000")
             La seconde courbe commence à <literal>xc(2+N1)</literal> et <literal>yc(2+N1)</literal> et ainsi de suite.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [xc,yc]=contour2di(1:10,1:10,rand(10,10),5);
 k=1;n=yc(k);c=1;
 while k+yc(k)<size(xc,'*')
@@ -106,9 +106,6 @@ end
             </member>
             <member>
                 <link linkend="fcontour">fcontour</link>
-            </member>
-            <member>
-                <link linkend="fcontour2d">fcontour2d</link>
             </member>
             <member>
                 <link linkend="contour2d">contour2d</link>

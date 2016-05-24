@@ -19,7 +19,7 @@
         <refpurpose>filters a data sequence using a digital filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y,zf] = filter(B, A, x [,zi])</synopsis>
     </refsynopsisdiv>
     <refsection>

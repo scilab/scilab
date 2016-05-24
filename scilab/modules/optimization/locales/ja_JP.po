@@ -933,7 +933,7 @@ msgid ""
 msgstr "%s:  'PlotFcns' オプションの値が関数でもリストでもありません."
 
 #, c-format
-msgid "Calling sequence %s is obsolete."
+msgid "Syntax %s is obsolete."
 msgstr "呼び出し手順 %s は廃止されています."
 
 #, c-format

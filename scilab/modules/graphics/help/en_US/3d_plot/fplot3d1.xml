@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>fplot3d1(xr,yr,f,[theta,alpha,leg,flag,ebox])
             fplot3d1(xr,yr,f,&lt;opt_args&gt;)
         </synopsis>

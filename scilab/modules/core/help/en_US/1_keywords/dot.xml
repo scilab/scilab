@@ -5,7 +5,7 @@
         <refpurpose>(.) symbol</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             123.33
             
@@ -42,9 +42,9 @@
                     </para>
                     <para>
                         <note>
-                            Note that when dot follows a number it is always a part
-                            of the number so <literal>2.*x</literal> is evaluated as <literal>2.0*x</literal> and <literal>2 .*x</literal> is evaluated
-                            as <literal>(2).*x</literal>.
+                            Note that when dot is used with an operation, it is not considered part of the number directly preceding the dot,
+                            therefore <literal>2.*x</literal> and <literal>2 .*x</literal> are evaluated
+                            as <literal>(2).*x</literal> and not as <literal>2.0*x</literal>.
                         </note>
                     </para>
                 </listitem>
@@ -89,6 +89,54 @@ endfunction
                             (whereami), when the line number is provided or displayed.
                         </note>
                     </para>
+                    <para>
+                        There are exceptions to this rule in a matrix environment to ease up
+                        readibility of scilab scripts. The following example shows some differences
+                        between the matrix and non matrix environment.
+                    </para>
+                    <programlisting role=""><![CDATA[
+// In the matrix environment .. is a continuation of the line
+// except on some cases where readibility is important
+
+// my_matrix == [1 2 3 -4 5 6]
+my_matrix = [ 1 2 3 -4 5 6] // the minus sign here is unary
+
+// my_matrix == [1 2 -1 5 6]
+my_matrix = [ 1 2 3 -... // minus separated by .. is always considered a binary operation
+4 5 6]
+                     ]]></programlisting>
+
+                    <para>
+                        An error is generated if the continuation mark is inside a language token, variable name, reserved word.
+                    </para>
+                    <programlisting role=""><![CDATA[
+// this is possible is Scilab
+for a_word = 1:10
+    disp("test " + string(a_word))
+end
+
+
+// This generate an error
+for a_...
+word = 1:10
+    disp("test " + string(a_word))
+end
+// Scilab cannot parse this line
+                    ]]></programlisting>
+                    <para>
+                        An error is generated if any word except a comment is found after the continuation mark.
+                    </para>
+
+                    <programlisting role=""><![CDATA[
+this_wont_work = 3 + ... 4 // Scilab cannot parse this
+
+this_wont_work_either = 3 + ... /* a multiline comment
+followed by some text */ 4
+
+this_works = 3 + ... /* a multiline comment
+followed by text and a newline */
+4
+                     ]]></programlisting>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -112,16 +160,16 @@ endfunction
 1.345
 
 //used as part of an operator
-x = [1 2 3];x.^2 .*x // a space is required between 2 and dot
+x = [1 2 3]; x .^2 .*x // a space is not required between 2 and dot
 
 // When writing rows of a matrix on different lines, ".." can be used but are not mandatory.
-N = [   ..
+N_row = [   ..
     63.    89.    3.   ..
     91.    56.    22.  ..
     15.    64.    40.  ..
     ]
-// It can be more simply entered as (or copied/pasted from/to console or script), without appending ".."
-N = [
+// Without the continuation mark, the matrix is read row by row:
+N_square = [
     63.    89.    3.
     91.    56.    22.
     15.    64.    40.

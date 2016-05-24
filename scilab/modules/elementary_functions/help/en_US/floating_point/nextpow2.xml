@@ -19,7 +19,7 @@
         <refpurpose>next higher power of 2.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t=nextpow2(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

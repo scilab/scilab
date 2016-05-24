@@ -5,7 +5,7 @@
         <refpurpose>observation update</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x1,y]=system(x0,f,g,h,q,r)</synopsis>
     </refsynopsisdiv>
     <refsection>

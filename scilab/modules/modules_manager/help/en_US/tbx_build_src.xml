@@ -19,7 +19,7 @@
         <refpurpose>Build sources (toolbox compilation process)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_build_src(names, files, flag, [src_path [, libs [, ldflags [, cflags [, fflags [, cc [, libname [, loadername [, makename]]]]]]]]])
         </synopsis>

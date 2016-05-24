@@ -19,7 +19,7 @@
         <refpurpose>Creates a new simplex object.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             newobj = optimsimplex_new([coords, [fun]])
             [newobj, data] = optimsimplex_new(coords, fun, data)
@@ -149,7 +149,7 @@
                         returns an empty simplex object.
                     </para>
                     <para>
-                        The following calling sequences are available.
+                        The following syntaxes are available.
                     </para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( )
@@ -167,7 +167,7 @@
                     <para>This function creates a new simplex object so that it is computed 
                         axis by axis, with the given length.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "axes" , x0 )
                         newobj = optimsimplex_new ( "axes" , x0 , fun )
@@ -185,7 +185,7 @@
                         from Pfeffer's method, i.e. a relative delta for non-zero values and an 
                         absolute delta for zero values.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "pfeffer" , x0 )
                         newobj = optimsimplex_new ( "pfeffer" , x0 , fun )
@@ -204,7 +204,7 @@
                         by taking the bounds into account with random scaling. The number of 
                         vertices in the simplex is arbitrary.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "randbounds", x0, fun, boundsmin, boundsmax )
                         [ newobj , data ] = optimsimplex_new ( "randbounds", x0, fun, boundsmin, boundsmax, nbpoints )
@@ -229,7 +229,7 @@
                         from Spendley's et al. method, i.e. a regular simplex made of 
                         <literal>nbve</literal> = <literal>n + 1</literal> vertices.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "spendley" , x0 )
                         newobj = optimsimplex_new ( "spendley" , x0 , fun )
@@ -248,7 +248,7 @@
                         "oriented" depending on the function value. The created simplex may be 
                         used, as Kelley suggest, for a restart of Nelder-Mead algorithm.
                     </para>
-                    <para>The following calling sequences are available.</para>
+                    <para>The following syntaxes are available.</para>
                     <programlisting role="no-scilab-exec">
                         newobj = optimsimplex_new ( "oriented" , simplex0 , fun )
                         [ newobj , data ] = optimsimplex_new ( "oriented" , simplex0 , fun, data )

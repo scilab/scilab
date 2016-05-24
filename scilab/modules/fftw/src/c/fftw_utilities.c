@@ -170,6 +170,7 @@ fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
         {
             if ((Sci_Plan->kind = (fftw_r2r_kind *) MALLOC(sizeof(fftw_r2r_kind) * (gdim->rank))) == NULL)
             {
+                FREE(Sci_Plan->gdim.dims);
                 *errflag = 1;
                 return (NULL);
             }
@@ -753,6 +754,8 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                         {
                             if ((r = check_1D_symmetry(Ar + j, NULL, gdim.dims[0].n, gdim.dims[0].is)) != 1 )
                             {
+                                FREE(dims1);
+                                FREE(incr1);
                                 return r;
                             }
                             j += gdim.howmany_dims[0].is;
@@ -776,6 +779,8 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                         {
                             if ((r = check_1D_symmetry(Ar + j, Ai + j, gdim.dims[0].n, gdim.dims[0].is)) != 1 )
                             {
+                                FREE(dims1);
+                                FREE(incr1);
                                 return r;
                             }
                             j += gdim.howmany_dims[0].is;
@@ -791,6 +796,7 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                     }
                 }
                 FREE(dims1);
+                FREE(incr1);
                 return 1;
             case 2:  /* multiple 2D fft */
                 if (Ai == NULL)
@@ -803,6 +809,8 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                             if ((r = check_2D_symmetry(Ar + j, NULL, gdim.dims[0].n, gdim.dims[0].is,
                                                        gdim.dims[1].n, gdim.dims[1].is)) != 1 )
                             {
+                                FREE(dims1);
+                                FREE(incr1);
                                 return r;
                             }
                             j += gdim.howmany_dims[0].is;
@@ -828,6 +836,8 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                             if ((r = check_2D_symmetry(Ar + j, Ai + j, gdim.dims[0].n, gdim.dims[0].is,
                                                        gdim.dims[1].n, gdim.dims[1].is)) != 1 )
                             {
+                                FREE(dims1);
+                                FREE(incr1);
                                 return r;
                             }
                             j += gdim.howmany_dims[0].is;
@@ -848,11 +858,15 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
             default: /*general N-D case*/
                 if ((dims = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)
                 {
+                    FREE(dims1);
+                    FREE(incr1);
                     return -1;
                 }
                 if ((incr = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)
                 {
                     FREE(dims);
+                    FREE(dims1);
+                    FREE(incr1);
                     return -1;
                 }
                 for (i = 0; i < ndims; i++)
@@ -876,8 +890,9 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                         if (r <= 0)
                         {
                             FREE(dims);
-                            FREE(incr);
                             FREE(dims1);
+                            FREE(incr);
+                            FREE(incr1);
                             return r;
                         }
                         j += gdim.howmany_dims[0].is;
@@ -892,8 +907,9 @@ int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim)
                     }
                 }
                 FREE(dims);
-                FREE(incr);
                 FREE(dims1);
+                FREE(incr);
+                FREE(incr1);
                 return 1;
         }
     }
@@ -1234,6 +1250,7 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                     }
                 }
                 FREE(dims1);
+                FREE(incr1);
                 return 0;
             case 2: /* multiple 2D fft */
                 if (Ai == NULL)
@@ -1272,16 +1289,20 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                     }
                 }
                 FREE(dims1);
+                FREE(incr1);
                 return 0;
             default:  /* multiple ND fft */
                 if ((dims = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)
                 {
+                    FREE(dims1);
+                    FREE(incr1);
                     return -1;
                 }
                 if ((incr = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)
                 {
                     FREE(dims);
                     FREE(dims1);
+                    FREE(incr1);
                     return -1;
                 }
                 for (i = 0; i < ndims; i++)
@@ -1303,8 +1324,9 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                     if (r < 0)
                     {
                         FREE(dims);
-                        FREE(incr);
                         FREE(dims1);
+                        FREE(incr);
+                        FREE(incr1);
                         return r;
                     }
                     j += gdim.howmany_dims[0].is;
@@ -1317,10 +1339,9 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                         }
                     }
                 }
-
                 FREE(dims);
-                FREE(incr);
                 FREE(dims1);
+                FREE(incr);
                 FREE(incr1);
         }
     }

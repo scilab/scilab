@@ -24,7 +24,7 @@
         <para>In the following, we analyse the various ways to call the optimget
             function.
         </para>
-        <para>The following calling sequence</para>
+        <para>The following syntax</para>
         <programlisting role="example"> 
             val = optimget(options , key)
         </programlisting>
@@ -39,7 +39,7 @@
             field "MaxFunEval". But the key "Tol" corresponds both to the "TolX" and
             "TolFun" fields and therefore will generate an error.
         </para>
-        <para>The following calling sequence</para>
+        <para>The following syntax</para>
         <programlisting role="example"> 
             val = optimget(options, key, value)
         </programlisting>

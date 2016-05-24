@@ -15,7 +15,9 @@
  */
 
 
+#ifdef _MSC_VER
 #pragma comment(lib,"../../../../../bin/libintl.lib")
+#endif
 
 #include <cstdio>
 #include <iostream>
@@ -34,8 +36,10 @@ extern "C"
 #include "version.h"
 #include "sci_malloc.h"
 #include "lasterror.h"
+#include "getpipeline.h"
 
     extern char *getCmdLine(void);
+
 #ifdef _MSC_VER
 #include "FilesAssociations.h"
 #include "PATH_MAX.h"
@@ -43,6 +47,7 @@ extern "C"
 #else
     extern jmp_buf ScilabJmpEnv;
 #endif
+#include "isatty.hxx"
 }
 
 #include "configvariable.hxx"
@@ -90,6 +95,7 @@ static void usage(void)
     std::cerr << "      --no-exec        : Only do Lexing/parsing do not execute instructions." << std::endl;
     std::cerr << "      --context-dump   : Display context status." << std::endl;
     std::cerr << "      --exec-verbose   : Display command before running it." << std::endl;
+    std::cerr << "      --timeout delay  : Kill the Scilab process after a delay." << std::endl;
 }
 
 /*
@@ -238,6 +244,47 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
         {
             _pSEI->iExecVerbose = 1;
         }
+        else if (!strcmp("--timeout", argv[i]))
+        {
+            i++;
+            if (argc > i)
+            {
+                char* timeout = argv[i];
+
+                char* str_end = NULL;
+                int iTimeoutDelay = strtol(timeout, &str_end, 0);
+
+                int modifier;
+                switch (*str_end)
+                {
+                    case 'd':
+                        modifier = 86400;
+                        break;
+                    case 'h':
+                        modifier = 3600;
+                        break;
+                    case 'm':
+                        modifier = 60;
+                        break;
+                    case 's':
+                    case '\0': // no modifiers
+                        modifier = 1;
+                        break;
+                    default:
+                        std::cerr << "Invalid timeout delay unit: s (for seconds, default), m (for minutes), h (for hours), d (for days) are supported" << std::endl;
+                        exit(EXIT_FAILURE);
+                        break;
+                }
+
+                _pSEI->iTimeoutDelay = iTimeoutDelay * modifier;
+            }
+            else
+            {
+                std::cerr << "Unspecified timeout delay" << std::endl;
+                exit(EXIT_FAILURE);
+            }
+
+        }
         else if (!strcmp("-keepconsole", argv[i]))
         {
             _pSEI->iKeepConsole = 1;
@@ -363,6 +410,18 @@ int main(int argc, char *argv[])
     setScilabInputMethod(&getCmdLine);
     setScilabOutputMethod(&TermPrintf);
 #endif // defined(WITHOUT_GUI)
+
+#ifdef _MSC_VER
+    /* if file descriptor returned is -2 stdin is not associated with an input stream */
+    /* example : echo plot3d | scilex -nw -e */
+    if (!isatty(_fileno(stdin)) && (_fileno(stdin) != -2))
+#else
+    if (!isatty(fileno(stdin)))
+#endif
+    {
+        // We are in a pipe
+        setScilabInputMethod(&getPipeLine);
+    }
 
     if (pSEI->iShowVersion == 1)
     {

@@ -42,6 +42,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     if (in.size() < 1 || in.size() > 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mget", 1, 3);
+        FREE(pstType);
         return types::Function::Error;
     }
 
@@ -49,6 +50,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A positive integer value expected.\n"), "mget", 1);
+        FREE(pstType);
         return types::Function::Error;
     }
 
@@ -56,6 +58,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     if ((pDoubleTest->get(0) != (int)pDoubleTest->get(0)) || (pDoubleTest->get(0) < 0))
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: A positive integer value expected.\n"), "mget", 1);
+        FREE(pstType);
         return types::Function::Error;
     }
 
@@ -67,6 +70,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
         if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "mget", 2);
+            FREE(pstType);
             return types::Function::Error;
         }
 
@@ -79,6 +83,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
         if (in[2]->isDouble() == false || in[2]->getAs<types::Double>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mget", 3);
+            FREE(pstType);
             return types::Function::Error;
         }
 

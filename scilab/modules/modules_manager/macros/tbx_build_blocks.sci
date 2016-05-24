@@ -13,7 +13,7 @@
 function tbx_build_blocks(module, names, macros_path)
     // Build a default block instance
     //
-    // Calling Sequence
+    // Syntax
     //   tbx_build_blocks(module, names)
     //
     // Parameters
@@ -61,7 +61,7 @@ function tbx_build_blocks(module, names, macros_path)
     mprintf(gettext("Building blocks...\n"));
 
     // load Xcos libraries when not already loaded.
-    if ~exists("scicos_diagram") then loadXcosLibs(); end
+    if ~exists("Sourceslib") then loadXcosLibs(); end
 
     // create directories
     if ~isdir(module + "/images") then
@@ -111,7 +111,7 @@ function tbx_build_blocks(module, names, macros_path)
         files = files(isfile(files));
         if files == [] then
             filename = gif_tlbx + "/" + names(i) + ".gif";
-            xcosPalGenerateIcon(filename);
+            xcosPalGenerateIcon(blk, filename);
         end
     end
 endfunction

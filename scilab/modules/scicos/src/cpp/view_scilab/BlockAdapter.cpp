@@ -82,9 +82,16 @@ struct model
 
                 for (const ScicosID id : children)
                 {
-                    auto o = controller.getObject(id);
-                    neededController.setObjectProperty(o->id(), o->kind(), PARENT_DIAGRAM, newDiag);
-                    neededController.referenceObject(o->id());
+                    if (id == ScicosID())
+                    {
+                        // Deleted object
+                    }
+                    else
+                    {
+                        auto o = controller.getObject(id);
+                        neededController.setObjectProperty(o->id(), o->kind(), PARENT_DIAGRAM, newDiag);
+                        neededController.referenceObject(o->id());
+                    }
                 }
                 subDiagram->setFrom(adaptor.getFrom());
                 subDiagram->setTo(adaptor.getTo());
@@ -103,26 +110,33 @@ struct model
                 std::vector<link_t> to;
                 for (const ScicosID id : children)
                 {
-                    auto o = controller.getObject(id);
-                    controller.referenceObject(o);
-
-                    switch (o->kind())
+                    if (id == ScicosID())
                     {
-                        case ANNOTATION :
-                            listObjects->append(new TextAdapter(controller, static_cast<org_scilab_modules_scicos::model::Annotation*>(o)));
-                            break;
-                        case BLOCK :
+                        // Deleted object
+                    }
+                    else
+                    {
+                        auto o = controller.getObject(id);
+                        controller.referenceObject(o);
+
+                        switch (o->kind())
                         {
-                            BlockAdapter* block = new BlockAdapter(controller, static_cast<org_scilab_modules_scicos::model::Block*>(o));
-                            listObjects->append(block);
-                            break;
+                            case ANNOTATION :
+                                listObjects->append(new TextAdapter(controller, static_cast<org_scilab_modules_scicos::model::Annotation*>(o)));
+                                break;
+                            case BLOCK :
+                            {
+                                BlockAdapter* block = new BlockAdapter(controller, static_cast<org_scilab_modules_scicos::model::Block*>(o));
+                                listObjects->append(block);
+                                break;
+                            }
+                            default : // LINK
+                                LinkAdapter* link = new LinkAdapter(controller, static_cast<org_scilab_modules_scicos::model::Link*>(o));
+                                from.push_back(link->getFrom());
+                                to.push_back(link->getTo());
+                                listObjects->append(link);
+                                break;
                         }
-                        default : // LINK
-                            LinkAdapter* link = new LinkAdapter(controller, static_cast<org_scilab_modules_scicos::model::Link*>(o));
-                            from.push_back(link->getFrom());
-                            to.push_back(link->getTo());
-                            listObjects->append(link);
-                            break;
                     }
                 }
                 const_cast<BlockAdapter&>(adaptor).setFrom(from);

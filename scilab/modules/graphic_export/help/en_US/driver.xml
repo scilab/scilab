@@ -20,7 +20,7 @@
         <refpurpose>select a graphics driver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             current_driver = driver()
             driver(driver_name)

@@ -19,7 +19,7 @@
         <refpurpose>add a title in the middle of a graphics window</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>titlepage(str)</synopsis>
     </refsynopsisdiv>
     <refsection>

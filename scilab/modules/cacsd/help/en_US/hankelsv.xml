@@ -19,7 +19,7 @@
         <refpurpose>Hankel singular values</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[nk2,W]=hankelsv(sl [,tol])
             [nk2]=hankelsv(sl [,tol])
         </synopsis>

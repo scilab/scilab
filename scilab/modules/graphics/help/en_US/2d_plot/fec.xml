@@ -19,7 +19,7 @@
         <refpurpose>pseudo-color plot of a function defined on a mesh</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>fec(x,y,triangles,func,&lt;opt_args&gt;)
             fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])
         </synopsis>

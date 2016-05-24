@@ -19,7 +19,7 @@
         <refpurpose>minimum</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[m [,k]]=min(A)
             [m [,k]]=min(A,'c')
             [m [,k]]=min(A,'r')

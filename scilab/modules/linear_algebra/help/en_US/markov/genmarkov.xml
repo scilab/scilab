@@ -19,7 +19,7 @@
         <refpurpose>generates random markov matrix with recurrent and transient classes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>M=genmarkov(rec,tr)
             M=genmarkov(rec,tr,flag)
         </synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>bar histogram</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>bar(y)
             bar(x,y)
             bar([h],x,y [,width [,color [,style]]])

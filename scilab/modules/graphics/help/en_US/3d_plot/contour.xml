@@ -19,7 +19,7 @@
         <refpurpose>level curves on a 3D surface</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev])
             contour(x,y,z,nz,&lt;opt_args&gt;)
         </synopsis>

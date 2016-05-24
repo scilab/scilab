@@ -233,6 +233,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
                 if (bOK == false)
                 {
                     Scierror(50, _("%s: Subroutine not found: %s\n"), "lsqrsolve", pst);
+                    FREE(pst);
                     return types::Function::Error;
                 }
 
@@ -373,31 +374,31 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
         Scierror(999, pstrMsg);
         FREE(pstrMsg);
         delete pDblX;
-        delete piPvt;
-        delete pDblQtf;
-        delete pdblWork1;
-        delete pdblWork2;
-        delete pdblWork3;
-        delete pdblWork4;
-        delete pdblJac;
+        delete[] piPvt;
+        delete[] pDblQtf;
+        delete[] pdblWork1;
+        delete[] pdblWork2;
+        delete[] pdblWork3;
+        delete[] pdblWork4;
+        delete[] pdblJac;
         if (iMode != 2)
         {
-            delete pdblDiag;
+            delete[] pdblDiag;
         }
 
         return types::Function::Error;
     }
 
-    delete piPvt;
-    delete pDblQtf;
-    delete pdblWork1;
-    delete pdblWork2;
-    delete pdblWork3;
-    delete pdblWork4;
-    delete pdblJac;
+    delete[] piPvt;
+    delete[] pDblQtf;
+    delete[] pdblWork1;
+    delete[] pdblWork2;
+    delete[] pdblWork3;
+    delete[] pdblWork4;
+    delete[] pdblJac;
     if (iMode != 2)
     {
-        delete pdblDiag;
+        delete[] pdblDiag;
     }
 
     /*** return output arguments ***/

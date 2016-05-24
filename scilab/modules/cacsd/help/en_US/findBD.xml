@@ -19,7 +19,7 @@
         <refpurpose>initial state and system matrices B and D of a discrete-time system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[[x0] [,B [,D]] [,V] [,rcnd]] = findBD(jobx0,comuse [,job],A [,B],C [,D],Y [,U,tol,printw,ldwork])</synopsis>
     </refsynopsisdiv>
     <refsection>

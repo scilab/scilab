@@ -13,7 +13,7 @@
 
 function x=cosm(a)
     //   cosm - computes the matrix cosine
-    //%CALLING SEQUENCE
+    //%SYNTAX
     //   x=cosm(a)
     //%PARAMETERS
     //   a   : square hermitian or diagonalizable matrix

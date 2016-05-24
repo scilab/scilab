@@ -19,7 +19,7 @@
         <refpurpose>element-wise exponential</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>exp(X)</synopsis>
     </refsynopsisdiv>
     <refsection>

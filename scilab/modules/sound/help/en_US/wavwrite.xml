@@ -19,7 +19,7 @@
         <refpurpose>writes .wav sound file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>wavwrite(y, wavfile)
             wavwrite(y, Fs, wavfile)
             wavwrite(y, Fs, nbits, wavfile)

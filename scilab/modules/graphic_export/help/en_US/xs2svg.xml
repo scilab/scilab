@@ -19,7 +19,7 @@
         <refpurpose>export graphics to SVG</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xs2svg(win_num, file_name [,orientation])
             xs2svg(fig, file_name [,orientation])

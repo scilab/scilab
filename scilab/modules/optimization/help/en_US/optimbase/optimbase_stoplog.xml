@@ -19,7 +19,7 @@
         <refpurpose>Prints the given stopping message.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimbase_stoplog(opt, msg)
         </synopsis>

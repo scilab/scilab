@@ -11,7 +11,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[IDO, RESID, V, IPARAM, IPNTR, WORKD, WORKL, INFO] = dsaupd(ID0, BMAT, N, WHICH, NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, INFO)</synopsis>
     </refsynopsisdiv>
     <refsection>

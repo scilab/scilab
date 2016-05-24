@@ -8,7 +8,7 @@
         <refpurpose>discrete 2-D convolution, using fft. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>C = convol2d(A,B)</synopsis>
     </refsynopsisdiv>
     <refsection>

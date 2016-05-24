@@ -47,25 +47,17 @@ void* get_anti_aliasing_property(void* _pvCtx, int iObjUID)
     {
         case 0:
             return sciReturnString("off");
-            break;
         case 1:
             return sciReturnString("2x");
-            break;
         case 2:
             return sciReturnString("4x");
-            break;
         case 3:
             return sciReturnString("8x");
-            break;
         case 4:
             return sciReturnString("16x");
-            break;
         default:
             Scierror(999, _("Wrong value for '%s' property.\n"), "anti_aliasing");
             return NULL;
-            break;
     }
-
-    return sciReturnString("off");
 }
 /*------------------------------------------------------------------------*/

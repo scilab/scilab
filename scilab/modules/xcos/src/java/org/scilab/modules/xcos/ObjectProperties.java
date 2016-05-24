@@ -22,7 +22,6 @@ public enum ObjectProperties {
   SIM_SCHEDULE,
   SIM_BLOCKTYPE,
   SIM_DEP_UT,
-  ANGLE,
   EXPRS,
   INPUTS,
   OUTPUTS,

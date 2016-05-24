@@ -17,8 +17,8 @@ function datatipMove(tip_handle,ax)
         error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"),"datatipMove",1))
     end
 
-    if type(tip_handle)<>9|size(tip_handle,"*")<>1|or(tip_handle.type<>"Compound") then
-        error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),"datatipMove",1,"datatip"))
+    if type(tip_handle)<>9|size(tip_handle,"*")<>1|or(tip_handle.type<>"Datatip") then
+        error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),"datatipMove",1,"Datatip"))
     end
 
     if argn(2)==1 then

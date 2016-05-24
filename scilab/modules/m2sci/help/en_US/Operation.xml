@@ -19,7 +19,7 @@
         <refpurpose>Create a tree representing an operation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>op=Operation(operator,operands,out)</synopsis>
     </refsynopsisdiv>
     <refsection>

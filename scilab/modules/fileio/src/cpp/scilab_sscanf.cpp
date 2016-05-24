@@ -167,6 +167,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                         }
                         else
                         {
+                            FREE(wcsData);
                             return -10;
                         }
                     }
@@ -242,6 +243,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                         }
                         else
                         {
+                            FREE(wcsData);
                             return -10;
                         }
                     }
@@ -278,6 +280,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                         if (wscToFind == NULL)
                         {
                             // MALLOC error
+                            FREE(wcsData);
                             return -10;
                         }
 
@@ -299,6 +302,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                             }
                             else
                             {
+                                FREE(wcsData);
                                 return -10;
                             }
                         }
@@ -355,6 +359,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                         }
                         else
                         {
+                            FREE(wcsData);
                             return -10;
                         }
                     }
@@ -410,6 +415,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                     }
                                     else
                                     {
+                                        FREE(wcsData);
                                         return -10;
                                     }
                                 }
@@ -437,6 +443,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                     }
                                     else
                                     {
+                                        FREE(wcsData);
                                         return -10;
                                     }
                                 }
@@ -565,6 +572,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                             }
                             else
                             {
+                                FREE(wcsData);
                                 return -10;
                             }
                         }
@@ -625,6 +633,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                 }
                                 else
                                 {
+                                    FREE(wcsData);
                                     return -10;
                                 }
                             }
@@ -646,6 +655,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                 }
                                 else
                                 {
+                                    FREE(wcsData);
                                     return -10;
                                 }
                             }
@@ -674,6 +684,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                         }
                         else
                         {
+                            FREE(wcsData);
                             return -10;
                         }
                     }
@@ -721,10 +732,11 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                 break;
                 default :
                     printf("format read : %c\n", _wcsFormat[i]);
+                    FREE(wcsData);
                     return -10;
             }
     }
-
+    FREE(wcsData);
     return iCountDataRead;
 }
 

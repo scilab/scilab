@@ -19,7 +19,7 @@
         <refpurpose>converts xml Scilab help files to HTML format</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xmltohtml(dirs [,titles [,dir_language [default_language]]]]])</synopsis>
     </refsynopsisdiv>
     <refsection>

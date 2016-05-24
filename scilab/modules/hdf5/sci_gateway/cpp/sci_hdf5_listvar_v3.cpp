@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRe
         return types::Function::Error;
     }
 
-    if (_iRetCount < 1 && _iRetCount > 4)
+    if (_iRetCount < 1 || _iRetCount > 4)
     {
         Scierror(999, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname.data(), 1, 4);
         return types::Function::Error;

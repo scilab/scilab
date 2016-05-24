@@ -122,8 +122,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                     return types::Function::Error;
                 }
 
-                types::Polynom* pPolyNumOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
-                types::Polynom* pPolyDenOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
+                types::Polynom* pPolyNumOut = new types::Polynom(wstrName, pNum->getDims(), pNum->getDimsArray());
+                types::Polynom* pPolyDenOut = new types::Polynom(wstrName, pNum->getDims(), pNum->getDimsArray());
 
                 iMaxDegrNum = pNum->getMaxRank();
                 iMaxDegrDen = pDen->getMaxRank();

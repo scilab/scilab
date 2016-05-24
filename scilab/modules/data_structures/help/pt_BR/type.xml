@@ -37,7 +37,7 @@
         <para> 5 : uma matriz esparsa;</para>
         <para> 6 : uma matriz de valores booleanos esparsa;</para>
         <para> 7 : uma matriz esparsa do Matlab.</para>
-        <para> 8 : uma matriz de inteiros armazenados em 1, 2 ou 4 bytes;</para>
+        <para> 8 : uma matriz de inteiros armazenados em 1, 2, 4 ou 8 bytes;</para>
         <para> 9 : uma matriz de manipuladores gráficos;</para>
         <para> 10 : uma matriz de strings;</para>
         <para> 11 : uma função não-compilada (código Scilab);</para>

@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>void freeAllocatedSingleString(char* _pstData)</synopsis>
         <synopsis xml:id="freeAllocatedSingleWideString">void freeAllocatedSingleWideString(wchar_t* _pwstData)</synopsis>
     </refsynopsisdiv>

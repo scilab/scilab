@@ -20,7 +20,7 @@
         <refpurpose>differential algebraic equation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -84,7 +84,7 @@
             time derivative of <literal>y</literal> at <literal>t0</literal> must also
             be given. The input <literal>res</literal> is an <link linkend="external">external</link> i.e. a
             function with specified syntax, or the name a Fortran subroutine or a C
-            function (character string) with specified calling sequence or a
+            function (character string) with specified syntax or a
             list.
         </para>
         <para>

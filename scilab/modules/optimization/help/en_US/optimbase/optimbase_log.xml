@@ -19,7 +19,7 @@
         <refpurpose>Prints the given message.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimbase_log(opt, msg)
         </synopsis>

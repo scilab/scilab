@@ -19,7 +19,7 @@
         <refpurpose>Read the data of an HDF5 attribute</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5readattr(obj [, location], name)
             h5readattr(filename, location, name)

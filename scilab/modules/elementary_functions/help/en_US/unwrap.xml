@@ -19,7 +19,7 @@
         <refpurpose>unwrap a Y(x) profile or a Z(x,y) surface. Unfold a Y(x) profile</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequences</title>
+        <title>Syntaxes</title>
         <synopsis>unwrap() // runs some examples
             [U, breakPoints] = unwrap(Y)
             [U, breakPoints] = unwrap(Y, z_jump)

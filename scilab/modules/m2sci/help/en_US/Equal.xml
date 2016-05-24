@@ -19,7 +19,7 @@
         <refpurpose>Create a tree representing an instruction</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>eq=Equal(lhslist,expression)</synopsis>
     </refsynopsisdiv>
     <refsection>

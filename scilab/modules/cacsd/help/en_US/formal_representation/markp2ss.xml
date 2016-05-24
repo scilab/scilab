@@ -19,7 +19,7 @@
         <refpurpose>Markov parameters to state-space</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[sl]=markp2ss(markpar,n,nout,nin)</synopsis>
     </refsynopsisdiv>
     <refsection>

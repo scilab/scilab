@@ -19,7 +19,7 @@
         <refpurpose>Estimates the initial state of a discrete-time system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>X0 = inistate(SYS,Y,U,TOL,PRINTW)
             X0 = inistate(A,B,C,Y,U);
             X0 = inistate(A,C,Y);

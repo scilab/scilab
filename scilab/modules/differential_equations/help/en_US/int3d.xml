@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[result,err]=int3d(X,Y,Z,f [,nf[,params]])</synopsis>
     </refsynopsisdiv>
     <refsection>

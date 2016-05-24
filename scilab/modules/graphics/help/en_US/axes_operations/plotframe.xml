@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>plotframe(rect,tics,[arg_opt1,arg_opt2,arg_opt3])
             plotframe(rect,&lt;opts_args&gt;)
         </synopsis>
@@ -118,7 +118,8 @@
         <title>Description</title>
         <para>
             <literal>plotframe</literal> is used with 2D plotting functions
-            <link linkend="plot2d">plot2d</link>, <link linkend="plot2d1">plot2d1</link>,... to set a graphics frame. It must be
+            <link linkend="plot2d">plot2d</link>, <link linkend="plot2d2">plot2d2</link>,... to set
+            a graphics frame. It must be
             used before <literal>plot2d</literal> which should be invoked with the
             "000" superposition mode.
         </para>
@@ -128,7 +129,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[-0.3:0.8:27.3]';
 y=rand(x);
 rect=[min(x),min(y),max(x),max(y)];

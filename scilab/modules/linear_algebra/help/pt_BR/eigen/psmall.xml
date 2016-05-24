@@ -19,7 +19,7 @@
         <refpurpose>projeção espectral</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Q,M]=psmall(A,thres,flag)</synopsis>
     </refsynopsisdiv>
     <refsection>

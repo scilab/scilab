@@ -19,7 +19,7 @@
         <refpurpose>Create a new XML Namespace</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             ns = xmlNs(elem, prefix, href)
         </synopsis>

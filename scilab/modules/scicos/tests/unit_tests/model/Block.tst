@@ -74,6 +74,16 @@ o = BIGSOM_f("set", o)
 o.graphics
 o.model
 
+// Test flip, theta and style
+o.graphics.flip = %f;
+o.graphics.style
+o.graphics.flip = %t;
+o.graphics.style
+o.graphics.theta = 90;
+o.graphics.style
+o.graphics.theta = 0;
+o.graphics.style
+
 // Try with another block containing event inputs
 o = CSCOPE("define")
 o.graphics

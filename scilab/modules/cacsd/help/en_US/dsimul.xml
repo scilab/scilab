@@ -19,7 +19,7 @@
         <refpurpose>state space discrete time simulation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=dsimul(sl,u)</synopsis>
     </refsynopsisdiv>
     <refsection>

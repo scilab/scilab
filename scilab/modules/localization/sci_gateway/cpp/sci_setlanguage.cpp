@@ -52,25 +52,16 @@ types::Function::ReturnValue sci_setlanguage(types::typed_list &in, int _piRetCo
     wchar_t *param = in[0]->getAs<types::String>()->get(0);
     const wchar_t *newlanguage = convertlanguagealias(param);
 
-    if ( !LanguageIsOK(param) && (newlanguage == NULL) )
+    if (!LanguageIsOK(param) && (newlanguage == NULL))
     {
         if (getWarningMode())
         {
-            if (newlanguage == NULL)
-            {
-                sciprint(_("%ls: Unsupported language '%ls'.\n"), L"setlanguage", param);
-            }
-            else
-            {
-                sciprint(_("%ls: Unsupported language '%ls'.\n"), L"setlanguage", newlanguage);
-            }
+            sciprint(_("%ls: Unsupported language '%ls'.\n"), L"setlanguage", param);
         }
 
         out.push_back(new types::Bool(FALSE));
         return types::Function::OK;
     }
-
-
 
     if (newlanguage)
     {

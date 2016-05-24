@@ -19,7 +19,7 @@
         <refpurpose>sparse matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sp=spones(A)</synopsis>
     </refsynopsisdiv>
     <refsection>

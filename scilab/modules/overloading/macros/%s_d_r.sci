@@ -10,10 +10,16 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function f=%s_d_r(n1,f2)
-    // n1./f2
-    //!
-
-    if size(n1,"*")==0 then f=[],return,end
-    f=rlist(n1.*f2("den"),ones(n1).*f2("num"),f2("dt"))
+function f = %s_d_r(n1, f2)
+    // n1 ./ f2
+    if size(n1,"*")==0 then
+        f = []
+    else
+       if isfield(f2, "dt")
+           r3 = f2.dt
+       else
+           r3 = []
+       end
+        f = rlist(n1.*f2("den"), ones(n1).*f2("num"), r3)
+    end
 endfunction

@@ -23,7 +23,7 @@
         <refpurpose>set  dates origin or waits until date</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>realtimeinit(time_unit)
             realtime(t)
         </synopsis>

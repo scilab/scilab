@@ -19,7 +19,7 @@
         <refpurpose>center</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s=center(x)
             s=center(x,'r') or s=center(x,1)
             s=center(x,'c') or s=center(x,2)

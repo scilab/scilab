@@ -44,7 +44,7 @@ class JGraphXHandler implements ScilabHandler {
                     long parentUID = saxHandler.allChildren.peek().getOrDefault(v, 0l);
                     if (parentUID != 0) {
                         v = atts.getValue("value");
-                        if (v != null) {
+                        if (v != null && saxHandler.validCIdentifier.matcher(v).matches()) {
                             Kind kind = saxHandler.controller.getKind(parentUID);
                             saxHandler.controller.setObjectProperty(parentUID, kind, ObjectProperties.LABEL, v);
                         }

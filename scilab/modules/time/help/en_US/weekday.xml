@@ -19,7 +19,7 @@
         <refpurpose>Return day of week</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[N,S] = weekday(D)
             [N,S] = weekday(D, form)
         </synopsis>

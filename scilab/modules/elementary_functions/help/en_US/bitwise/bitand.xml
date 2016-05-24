@@ -21,7 +21,7 @@
         <refpurpose>bitwise AND</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             z = bitand(x, y)            
         </synopsis>

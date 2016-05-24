@@ -19,7 +19,7 @@
         <refpurpose>多項式またｈ整数のべズー方程式</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[thegcd,U]=bezout(p1,p2)</synopsis>
     </refsynopsisdiv>
     <refsection>

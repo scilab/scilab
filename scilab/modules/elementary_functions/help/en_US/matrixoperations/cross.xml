@@ -19,7 +19,7 @@
         <refpurpose>vector cross product</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling sequence</title>
+        <title>Syntax</title>
         <synopsis>C = cross(A,B)</synopsis>
     </refsynopsisdiv>
     <refsection>

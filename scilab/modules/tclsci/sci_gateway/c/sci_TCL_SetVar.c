@@ -163,15 +163,16 @@ int sci_TCL_SetVar(char *fname, void* pvApiCtx)
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl1);
         if (sciErr.iErr)
         {
-            freeAllocatedSingleString(VarName);
             printError(&sciErr, 0);
+            freeAllocatedSingleString(VarName);
             return 1;
         }
 
         if (isVarComplex(pvApiCtx, piAddrl1))
         {
-            releaseTclInterp();
             Scierror(999, _("This function doesn't work with Complex.\n"));
+            freeAllocatedSingleString(VarName);
+            releaseTclInterp();
             return 0;
         }
 
@@ -179,17 +180,17 @@ int sci_TCL_SetVar(char *fname, void* pvApiCtx)
         sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &l1);
         if (sciErr.iErr)
         {
-            freeAllocatedSingleString(VarName);
             printError(&sciErr, 0);
             Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            freeAllocatedSingleString(VarName);
             return 1;
         }
 
         if ( (m1 == 0) && (n1 == 0) )
         {
+            Scierror(999, _("[] doesn't work with Tcl/Tk.\n"));
             freeAllocatedSingleString(VarName);
             releaseTclInterp();
-            Scierror(999, _("[] doesn't work with Tcl/Tk.\n"));
             return 0;
         }
 

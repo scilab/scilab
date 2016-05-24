@@ -19,7 +19,7 @@
         <refpurpose>one_dimension interpolation function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[yp]=interp1(x, y,xp [, method,[extrapolation]])</synopsis>
     </refsynopsisdiv>
     <refsection>

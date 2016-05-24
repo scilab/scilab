@@ -11,7 +11,7 @@
 // along with this program.
 
 function [num,den]=frfit(w,fresp,order,weight)
-    //Calling sequence:
+    //Syntax:
     //[num,den]=frfit(w,fresp,r,weight)
     //sys=frfit(w,fresp,r,weight)
     //

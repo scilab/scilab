@@ -19,7 +19,7 @@
         <refpurpose>Draws the Hall chart</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>hallchart([ modules [,args [,colors]]])</synopsis>
         
     </refsynopsisdiv>

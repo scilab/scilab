@@ -20,7 +20,7 @@
         <refpurpose>opens an Excel file for reading</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[fd,SST,Sheetnames,Sheetpos] = xls_open(file_path)</synopsis>
     </refsynopsisdiv>
     <refsection>

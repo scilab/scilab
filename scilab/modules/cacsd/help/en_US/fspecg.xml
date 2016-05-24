@@ -19,7 +19,7 @@
         <refpurpose>stable factorization of continuous time dynamical systems</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>gm=fspecg(g).</synopsis>
     </refsynopsisdiv>
     <refsection>

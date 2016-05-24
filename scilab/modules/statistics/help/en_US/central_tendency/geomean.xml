@@ -19,7 +19,7 @@
         <refpurpose>geometric mean</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>gm=geomean(x)
             gm=geomean(x,'r')(or, equivalently, gm=geomean(x,1))
             gm=geomean(x,'c')(or, equivalently, gm=geomean(x,2))

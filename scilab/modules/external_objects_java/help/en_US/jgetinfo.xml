@@ -21,7 +21,7 @@
         <refpurpose>Returns information about the Java virtual machine</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             jinfo = jgetinfo()
         </synopsis>

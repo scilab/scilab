@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>param_list = init_param(['param_name1',param_value1,...])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -58,7 +58,7 @@
             By convention, to use fixed-size steps, the program first computes a fitting <emphasis>h</emphasis> that approaches the simulation parameter <link linkend="Simulatemenu_Menu_entries">max step size</link>.
         </para>
         <para>
-            An important difference of <emphasis>implicit Runge-Kutta</emphasis> with the previous methods is that it computes up to the fourth derivative of <emphasis>y</emphasis>, while the others mainly use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
+            An important difference of <emphasis>implicit Runge-Kutta</emphasis> with the previous methods is that it computes up to the fourth derivative of <emphasis>y</emphasis>, while the others only use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
         </para>
         <para>
             Here, the next value is determined by the present value
@@ -70,22 +70,23 @@
                 <listitem>
                     <emphasis>k1</emphasis> is the increment based on the slope near the quarter of the interval, using
                     <emphasis>
-                        y<subscript>n</subscript>+ a11*h*k1,
+                        y<subscript>n</subscript>+ a11*h*k1
                     </emphasis>
                     ,
                 </listitem>
                 <listitem>
                     <emphasis>k2</emphasis> is the increment based on the slope near the midpoint of the interval, using
                     <emphasis>
-                        y<subscript>n</subscript> + a21*h*k1 + a22*h*k2,
+                        y<subscript>n</subscript> + a21*h*k1 + a22*h*k2
                     </emphasis>
                     ,
                 </listitem>
                 <listitem>
                     <emphasis>k3</emphasis> is the increment based on the slope near the third quarter of the interval, using
                     <emphasis>
-                        y<subscript>n</subscript> + a31*h*k1 + a32*h*k2 + a33*h*k3.
+                        y<subscript>n</subscript> + a31*h*k1 + a32*h*k2 + a33*h*k3
                     </emphasis>
+                    .
                 </listitem>
             </itemizedlist>
         </para>
@@ -275,6 +276,9 @@ Time for implicit Runge-Kutta:
             </member>
             <member>
                 <link linkend="DoPri">Dormand-Prince 4(5)</link>
+            </member>
+            <member>
+                <link linkend="CRANI">Crank-Nicolson 2(3)</link>
             </member>
             <member>
                 <link linkend="DDaskr">DDaskr</link>

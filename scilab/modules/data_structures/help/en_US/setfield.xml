@@ -19,7 +19,7 @@
         <refpurpose>list field insertion</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>a = setfield(i, x, l)</synopsis>
     </refsynopsisdiv>
     <refsection>

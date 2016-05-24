@@ -19,7 +19,7 @@
         <refpurpose>returns the name of a color</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>names=rgb2name(r,g,b)
             names=rgb2name(rgb)
         </synopsis>

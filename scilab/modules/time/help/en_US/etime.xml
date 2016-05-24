@@ -19,7 +19,7 @@
         <refpurpose>Elapsed time</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>e = etime(t2,t1)</synopsis>
     </refsynopsisdiv>
     <refsection>

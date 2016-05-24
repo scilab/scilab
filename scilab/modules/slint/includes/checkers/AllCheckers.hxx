@@ -51,10 +51,11 @@
 #include "checkers/NotNotChecker.hxx"
 #include "checkers/SpacesInArgsChecker.hxx"
 #include "checkers/GlobalKeywordChecker.hxx"
-#include "checkers/StatInCondChecker.hxx"
+#include "checkers/ExpInCondChecker.hxx"
 #include "checkers/CommentRatioChecker.hxx"
 #include "checkers/FunctionArgsOrderChecker.hxx"
 #include "checkers/FunctionTestReturnChecker.hxx"
 #include "checkers/ReturnsCountChecker.hxx"
+#include "checkers/NotEqualChecker.hxx"
 
 #endif // __SLINT_ALL_CHECKERS_HXX__

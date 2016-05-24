@@ -19,7 +19,7 @@
         <refpurpose>Sets all the coordinates.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimsimplex_setallx(opt, x)
         </synopsis>

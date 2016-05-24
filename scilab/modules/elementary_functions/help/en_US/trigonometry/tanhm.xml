@@ -19,7 +19,7 @@
         <refpurpose>matrix hyperbolic tangent</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = tanhm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

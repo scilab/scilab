@@ -19,7 +19,7 @@
         <refpurpose>Bode plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             bode(sl, [fmin, fmax] [,step] [,comments] )
             bode(sl, [fmin, fmax] [,step] [,comments] [,"rad"] )

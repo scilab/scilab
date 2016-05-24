@@ -20,7 +20,7 @@
         <refpurpose>Check that computed and expected are numerically close.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             flag = assert_checkalmostequal ( computed , expected )
             flag = assert_checkalmostequal ( computed , expected , reltol )

@@ -29,7 +29,7 @@
         <refpurpose>fast Fourier transform.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>X=fft(A [,sign] [,option])
             X=fft(A,sign,selection  [,option])
             X=fft(A,sign,dims,incr [,option] )

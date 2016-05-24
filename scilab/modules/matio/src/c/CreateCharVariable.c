@@ -47,10 +47,11 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
 
         for (K = 0; K < nbRow; K++)
         {
-            charData[K] =  (char*) MALLOC(sizeof(char*) * (matVariable->dims[1] + 1));
+            charData[K] =  (char*) MALLOC(sizeof(char) * (matVariable->dims[1] + 1));
             if (charData[K] == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), "CreateCharVariable");
+                freeArrayOfString(charData, K);
                 return FALSE;
             }
         }
@@ -73,6 +74,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    freeArrayOfString(charData, nbRow);
                     return 0;
                 }
             }
@@ -82,6 +84,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    freeArrayOfString(charData, nbRow);
                     return 0;
                 }
             }
@@ -100,6 +103,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    freeArrayOfString(tmp_char, 1);
                     return 0;
                 }
                 freeArrayOfString(tmp_char, 1);

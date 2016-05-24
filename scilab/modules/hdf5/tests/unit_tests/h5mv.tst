@@ -64,7 +64,8 @@ assert_checkerror("h5mv(12.0,a)",msgerr);
 msgerr = msprintf(gettext("Undefined variable: %s\n"), "d");
 assert_checkerror("h5mv(a,d)",msgerr);
 
-msgerr = msprintf(gettext("%s: Invalid H5Object.\n"), "h5mv");
+msgerr = msprintf(gettext("%s: %s\n"), "h5mv", gettext("Cannot copy object."));
+msgerr($+1) = gettext("HDF5 description") + ": " + "no destination name specified.";
 assert_checkerror("h5mv(a,c)",msgerr);
 
 msgerr = msprintf(gettext("%s: Invalid number of arguments: more than %d expected.\n"), "h5mv", 2);

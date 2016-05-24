@@ -19,7 +19,7 @@
         <refpurpose>Continuous time filter Riccati equation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Z,H]=gfare(Sl)</synopsis>
     </refsynopsisdiv>
     <refsection>

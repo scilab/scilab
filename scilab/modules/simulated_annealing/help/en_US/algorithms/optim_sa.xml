@@ -20,7 +20,7 @@
         <refpurpose>A Simulated Annealing optimization method</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             x_best = optim_sa(x0,f,ItExt,ItInt,T0,Log,temp_law,param_temp_law,neigh_func,param_neigh_func)
             [x_best,f_best] = optim_sa(..)
@@ -378,7 +378,7 @@ Log = %f;
             input argument of the <literal>quadp</literal> function. In order to 
             pass this parameter to the objective function, we define the objective 
             function as <literal>list(quadp,p)</literal>. In this case,
-            the solver makes so that the calling sequence includes a second argument.
+            the solver makes so that the syntax includes a second argument.
         </para>
         <programlisting role="example"><![CDATA[ 
   function f = quadp ( x , p )

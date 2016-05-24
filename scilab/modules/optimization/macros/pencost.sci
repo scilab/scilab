@@ -23,7 +23,7 @@ function [fpen,gpen,ind]=pencost(x,ind,fncts,ne,nc,cpen);
     //A penalized problem is defined through the scilab function fncts
     //which defines the constraints g_1,..,g_nc and the cost function f.
     //
-    //fncts = scilab external with calling sequence:
+    //fncts = scilab external with syntax:
     //[gisandf,theirgrads,indic]=fncts(x,indic)
     //which returns
     //     in row vector gisandf [g_1(x),...,g_nc(x),f(x)]

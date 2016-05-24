@@ -61,7 +61,7 @@ void fex(int* neq, double* t, double* y, double* ydot)
     //        y=ode([1;0;0],0,[0.4,4],list('fex',param))
     //        param can be retrieved in fex by:
     //        param(1)=y(neq+1) , param(2)=y(neq+2) etc
-    //        with this calling sequence y is a nc+nd+np vector
+    //        with this syntax y is a nc+nd+np vector
     //        where np=dimension of scilab variable param
 
     ydot[0] = -0.0400 * y[0] + 1e4 * y[1] * y[2];

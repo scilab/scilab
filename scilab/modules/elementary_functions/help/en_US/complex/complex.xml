@@ -19,7 +19,7 @@
         <refpurpose>Create a complex number.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             c=complex(a)
             c=complex(a,b)

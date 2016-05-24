@@ -17,7 +17,7 @@
         <refpurpose>Computes the orthogonal projection of a point to a polyline in the plane. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[d,ptp,ind,c] = orthProj(data,pt)</synopsis>
     </refsynopsisdiv>
     <refsection>

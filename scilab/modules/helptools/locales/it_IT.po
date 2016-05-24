@@ -153,7 +153,7 @@ msgstr " * Aggiungere alcuni commenti sul file XML"
 msgid "Add short description here."
 msgstr "Aggiungere qui una breve descrizione"
 
-msgid "Calling Sequence"
+msgid "Syntax"
 msgstr "Sequenza di chiamata"
 
 msgid "Arguments"

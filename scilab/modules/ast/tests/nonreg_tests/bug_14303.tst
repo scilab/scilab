@@ -32,7 +32,7 @@ disp(expm(A));
 format(25);
 disp(expm(A));
 
-A =  (rand(8,8) - 0.5) .* 10 .^ (100*rand(8,8));
+A =  matrix(linspace(-1E10,1E20,64), 8, 8);
 disp(A);
 format(10);
 disp(A);

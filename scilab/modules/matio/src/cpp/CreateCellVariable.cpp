@@ -51,6 +51,7 @@ int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
     {
         types::Cell* pCell = new types::Cell();
         out[rhs - 1] = pCell;
+        FREE(piDims);
         return TRUE;
     }
 

@@ -19,10 +19,10 @@
         <refpurpose>Show the characteristics of a module</refpurpose>
     </refnamediv>
     <!-- ===================================================================== -->
-    <!-- Calling Sequence -->
+    <!-- Syntax -->
     <!-- ===================================================================== -->
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             atomsShow(module)
         </synopsis>

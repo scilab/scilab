@@ -73,7 +73,7 @@ class PortHandler implements ScilabHandler {
         }
 
         String value = atts.getValue("value");
-        if (value != null) {
+        if (value != null &&  shared.validCIdentifier.matcher(value).matches()) {
             shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.LABEL, value);
         }
 
@@ -119,28 +119,35 @@ class PortHandler implements ScilabHandler {
         /*
          * Setup the properties
          */
-
         VectorOfInt datatype = new VectorOfInt();
         shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
 
         v = atts.getValue("dataType");
+        int intValue = BasicPort.DataType.REAL_MATRIX.asScilabValue();  // Magic default value, used in Scilab 5.x
         if (v != null) {
-            datatype.set(0, BasicPort.DataType.valueOf(v).ordinal());
+            intValue = BasicPort.DataType.valueOf(v).asScilabValue();
         }
+        datatype.set(2, intValue);
+        intValue = -2; // Magic default value, used in Scilab 5.x
         v = atts.getValue("dataColumns");
         if (v != null) {
-            datatype.set(1, Integer.valueOf(v));
+            intValue = Integer.parseInt(v);
         }
+        datatype.set(1, intValue);
+        intValue = -1; // Magic default value, used in Scilab 5.x
         v = atts.getValue("dataLines");
         if (v != null) {
-            datatype.set(2, Integer.valueOf(v));
+            intValue = Integer.parseInt(v);
         }
+        datatype.set(0, intValue);
 
         shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
 
         v = atts.getValue("initialState");
         if (v != null) {
             shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.FIRING, Double.valueOf(v));
+        } else {
+            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.FIRING, -1.0);
         }
 
         /*
@@ -152,7 +159,7 @@ class PortHandler implements ScilabHandler {
 
         v = atts.getValue("ordering");
         if (v != null) {
-            ordering = Integer.valueOf(v) - 1;
+            ordering = Integer.parseInt(v) - 1;
         }
 
         v = atts.getValue("parent");

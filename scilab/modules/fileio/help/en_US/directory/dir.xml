@@ -20,7 +20,7 @@
         <refpurpose>gets file list </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>dir path
             S=dir([path])
         </synopsis>

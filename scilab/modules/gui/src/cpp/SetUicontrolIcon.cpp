@@ -57,7 +57,7 @@ int SetUicontrolIcon(void* _pvCtx, int iObjUID, void* _pvData, int valueType, in
         }
         else
         {
-            free(iconPath);
+            delete[] iconPath;
         }
     }
 

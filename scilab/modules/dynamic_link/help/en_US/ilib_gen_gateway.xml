@@ -20,7 +20,7 @@
         <refpurpose>utility for ilib_build, generates a gateway file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ilib_gen_gateway(name,table)</synopsis>
     </refsynopsisdiv>
     <refsection>

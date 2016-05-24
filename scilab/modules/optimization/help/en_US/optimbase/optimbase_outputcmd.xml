@@ -19,7 +19,7 @@
         <refpurpose>Calls back user's output command.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             stop = optimbase_outputcmd(opt, state, data)
         </synopsis>
@@ -106,8 +106,8 @@
                 ]]>
         </programlisting>
         <para>
-            where the input arguments <literal>a1, a2, ...</literal> are automatically appended at 
-            the end of the calling sequence.
+            where the input arguments <literal>a1, a2, ...</literal> are automatically appended
+            as parameters to the call.
         </para>
     </refsection>
     <refsection>

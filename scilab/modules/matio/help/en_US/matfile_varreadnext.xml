@@ -19,7 +19,7 @@
         <refpurpose>Reads next variable in a Matlab binary MAT-file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[name[, value[, vartype]]] = matfile_varreadnext(fd)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>returns the type of a variable</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[i]=type(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -79,7 +79,7 @@
                 <term>8</term>
                 <listitem>
                     <para>
-                        a matrix of <link linkend="int8">integers</link> stored on 1 (<literal>int8</literal>), 2 (<literal>int16</literal>) or 4 (<literal>int32</literal>) bytes.
+                        a matrix of <link linkend="int8">integers</link> stored on 1 (<literal>int8</literal>), 2 (<literal>int16</literal>), 4 (<literal>int32</literal>), or 8 (<literal>int64</literal>) bytes.
                     </para>
                 </listitem>
             </varlistentry>
@@ -186,7 +186,7 @@
                 Please note that, for some variables, <function>type</function> will return <literal>tlist</literal>
                 or <literal>mlist</literal> due to the internal data structure. This is the case of
                 <emphasis role="italic">rational</emphasis> and <emphasis role="italic">state-space</emphasis> matrices,
- <emphasis role="italic">uitree</emphasis>, <emphasis role="italic">hypermat</emphasis> and <emphasis role="italic">struct</emphasis>. Please considering the use of
+                <emphasis role="italic">uitree</emphasis>, <emphasis role="italic">hypermat</emphasis> and <emphasis role="italic">struct</emphasis>. Please considering the use of
                 <link linkend="typeof">typeof</link> instead.
             </note>
         </para>

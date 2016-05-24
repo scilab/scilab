@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.JavaController;
@@ -94,6 +95,7 @@ public class XcosSAXHandler extends DefaultHandler {
     protected final ScilabList dictionary;
     protected final JavaController controller;
     protected final Map<String, HandledElement> elementMap;
+    protected final Pattern validCIdentifier;
 
     private final Map<HandledElementsCategory, ScilabHandler> handlers;
 
@@ -114,6 +116,8 @@ public class XcosSAXHandler extends DefaultHandler {
 
         this.controller = new JavaController();
         this.elementMap = HandledElement.getMap();
+
+        this.validCIdentifier = Pattern.compile("[a-zA-Z][a-zA-Z0-9_]+");
 
         // add all the known handler to the map
         EnumMap<HandledElementsCategory, ScilabHandler> localHandlers = new EnumMap<>(HandledElementsCategory.class);

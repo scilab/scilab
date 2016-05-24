@@ -16,9 +16,9 @@ function datatipSetOrientation(tip_handle,o)
         "datatipSetOrientation",2))
     end
     orientations=["automatic" "upper left" "upper right", "lower left","lower right"]
-    if type(tip_handle)<>9|size(tip_handle,"*")<>1|or(tip_handle.type<>"Compound") then
+    if type(tip_handle)<>9|size(tip_handle,"*")<>1|or(tip_handle.type<>"Datatip") then
         error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),...
-        "datatipSetOrientation",1,"datatip"))
+        "datatipSetOrientation",1,"Datatip"))
     end
 
     if o == "upper left" then

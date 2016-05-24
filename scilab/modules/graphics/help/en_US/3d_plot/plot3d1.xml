@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>plot3d1(x,y,z,[theta,alpha,leg,flag,ebox])
             plot3d1(xf,yf,zf,[theta,alpha,leg,flag,ebox])
             plot3d1(x,y,z,&lt;opts_args&gt;)

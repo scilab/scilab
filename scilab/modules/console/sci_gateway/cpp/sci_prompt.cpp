@@ -68,7 +68,17 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "prompt", 1);
             return types::Function::Error;
         }
-        SetTemporaryPrompt(wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0)));
+
+        char* pstrPrompt = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
+        if (strlen(pstrPrompt) > PROMPT_SIZE_MAX - 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A Single string of size %d expected.\n"), "prompt", 1, PROMPT_SIZE_MAX - 1);
+            FREE(pstrPrompt);
+            return types::Function::Error;
+        }
+
+        SetTemporaryPrompt(pstrPrompt);
+        FREE(pstrPrompt);
     }
 
     return types::Function::OK;

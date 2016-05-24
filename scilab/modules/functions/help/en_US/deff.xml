@@ -19,7 +19,7 @@
         <refpurpose>on-line definition of function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>deff('[s1, s2, ...] = newfunction(e1, e2, ...)',text)</synopsis>
     </refsynopsisdiv>
     <refsection>

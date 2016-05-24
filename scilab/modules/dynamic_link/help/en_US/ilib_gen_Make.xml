@@ -19,7 +19,7 @@
         <refpurpose>utility for ilib_build: produces a Makefile for building shared libraries</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Makename=ilib_gen_Make(name,files,libs,makename [,with_gateway,ldflags,cflags,fflags,cc])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>chirp z-transform algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[czx]=czt(x,m,w,phi,a,theta)</synopsis>
     </refsynopsisdiv>
     <refsection>

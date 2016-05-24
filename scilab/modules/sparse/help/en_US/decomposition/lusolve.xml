@@ -19,7 +19,7 @@
         <refpurpose>sparse linear system solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x=lusolve(hand,b)
             x=lusolve(A,b)
         </synopsis>

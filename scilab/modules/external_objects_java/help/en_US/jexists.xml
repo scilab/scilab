@@ -21,7 +21,7 @@
         <refpurpose>Test if a Scilab Java Object is valid on the Java side</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             bool = jexists(obj)
         </synopsis>

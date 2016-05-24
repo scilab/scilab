@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int getScalarBoolean(void* _pvCtx, int* _piAddress, int* _piBool)</synopsis>
         <synopsis>int getNamedScalarBoolean(void* _pvCtx, const char* _pstName, int* _piBool)</synopsis>
     </refsynopsisdiv>

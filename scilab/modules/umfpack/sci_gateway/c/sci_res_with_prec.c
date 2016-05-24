@@ -237,17 +237,17 @@ int sci_res_with_prec(char* fname, void* pvApiCtx)
         }
     }
 
-    if (isVarComplex(pvApiCtx, piAddr1) == 0)
+    if (pdblNI)
     {
         FREE(pdblNI);
     }
 
-    if (isVarComplex(pvApiCtx, piAddr2) == 0)
+    if (pdblXI)
     {
         FREE(pdblXI);
     }
 
-    if (isVarComplex(pvApiCtx, piAddr3) == 0)
+    if (pdblBI)
     {
         FREE(pdblBI);
     }

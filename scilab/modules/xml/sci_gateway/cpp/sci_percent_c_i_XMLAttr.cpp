@@ -105,6 +105,7 @@ int sci_percent_c_i_XMLAttr(char *fname, void* pvApiCtx)
             if (getAllocatedSingleString(pvApiCtx, nameaddr, &name) != 0)
             {
                 Scierror(999, _("%s: No more memory.\n"), fname);
+                freeAllocatedSingleString(prefix);
                 return 0;
             }
         }

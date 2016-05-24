@@ -19,7 +19,7 @@
         <refpurpose>draw a rectangle</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xrect(x,y,w,h)
             xrect(rect) // with rect =[x,y,w,h]
         </synopsis>

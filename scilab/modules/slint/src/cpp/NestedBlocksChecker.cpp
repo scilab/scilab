@@ -22,6 +22,20 @@ void NestedBlocksChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
 {
     if (max >= 0)
     {
+        if (e.isIfExp() && !stack.empty())
+        {
+            std::pair<unsigned int, unsigned int> pos;
+            if (context.getPosition(e.getLocation(), pos))
+            {
+                const wchar_t * kw = context.getCode() + pos.first;
+                if (*kw == L'e')
+                {
+                    // we are in a elseif
+                    stack.erase(std::prev(stack.end()));
+                }
+            }
+        }
+
         stack.emplace_back(&e);
         if (stack.size() == (1 + (unsigned int)max))
         {

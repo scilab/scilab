@@ -1,5 +1,5 @@
 // Modify this file to provide a description of your toolbox.
-// This file is  used by Atoms GUI in scilab, to show information about the toolbox.
+// This file is used by Atoms GUI in scilab, to show information about the toolbox.
 //
 // Note that it will NOT be used when publishing your toolbox on http://atoms.scilab.org;
 // the present file is only used if you distribute your toolbox yourself.
@@ -60,11 +60,14 @@ License: GPL 2.0
 // prefixed by =, >= ...
 ScilabVersion: >= 6.0
 
-// Unique identifiers of other toolbox(es) that must be installed in order
+// Other toolbox(es) that must be installed in order
 // this toolboxes to work. Atoms will automatically ensure that
 // the dependent toolboxes listed here are installed on the user's
 // Scilab installation.
-// If multiple values, put one per line (starting each line with a space)>
+// Each toolbox dependency must be in format:
+//    <operator> <toolbox name> <toolbox version|any>
+// where operator can be: ~, >, <, >=, <=
+// If multiple dependencies, put one per line (starting each line with a space)
 Depends: 
 
 // Creation date

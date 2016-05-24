@@ -19,7 +19,7 @@
         <refpurpose>hyperbolic tangent inverse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = atanh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

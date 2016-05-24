@@ -19,7 +19,7 @@
         <refpurpose>sorting by quick sort algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[B [,k]]=gsort(A)
             [B [,k]]=gsort(A,option)
             [B [,k]]=gsort(A,option,direction)

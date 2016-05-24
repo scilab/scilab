@@ -99,6 +99,4 @@ ELEMENTARY_FUNCTIONS_IMPEXP double dpythags(double _dblVal1, double _dblVal2)
     {
         return dblAbs1;
     }
-
-    return 0;
 }

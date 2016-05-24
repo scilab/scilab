@@ -19,7 +19,7 @@
         <refpurpose>objects comparison</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t=isequal(a,b)
             t=isequal(a,b,..)
         </synopsis>

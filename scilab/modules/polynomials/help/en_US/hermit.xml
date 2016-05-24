@@ -19,7 +19,7 @@
         <refpurpose>Hermite form</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Ar,U]=hermit(A)</synopsis>
     </refsynopsisdiv>
     <refsection>

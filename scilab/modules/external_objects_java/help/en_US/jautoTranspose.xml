@@ -21,7 +21,7 @@
         <refpurpose>Set the way to convert matrices</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             method = jautoTranspose()
             jautoTranspose(method)

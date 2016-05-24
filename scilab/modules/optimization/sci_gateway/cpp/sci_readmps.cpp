@@ -58,8 +58,6 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     char typrow[2];
 
     wchar_t* wcsFileName = NULL;
-    char* strErrorBuf = new char[bsiz];
-
     double big = NumericConstants::double_max;
 
     if (in.size() < 2 || in.size() > 3)
@@ -187,6 +185,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     pstrRwName[8 * iM] = '\0';
     char* pstrClName = new char[8 * iN + 1];
     pstrClName[8 * iN] = '\0';
+    char* strErrorBuf = new char[bsiz];
 
     int irobj       = 0;
     int* piStavar   = new int[iN];
@@ -215,8 +214,8 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
                 pDblBnds->get() + iN, pDblBnds->get(), pdblRelt,
                 bsiz, 8L, 8L, 8L, 8L, 8L);
 
-    delete piRow;
-    delete pdblRelt;
+    delete[] piRow;
+    delete[] pdblRelt;
 
     mlunit = -lunit;
     C2F(clunit)(&mlunit, NULL, piMode, 0);
@@ -282,7 +281,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pStr->set(i, pstrTemp);
     }
     pTL->append(pStr);
-    delete pstrRwName;
+    delete[] pstrRwName;
 
     pStr = new types::String(1, iN);
     for (int i = 0; i < iN; i++)
@@ -293,7 +292,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pStr->set(i, pstrTemp);
     }
     pTL->append(pStr);
-    delete pstrClName;
+    delete[] pstrClName;
 
     pDbl = new types::Double(iM, 1);
     pdbl = pDbl->get();
@@ -302,7 +301,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piRwstat[i];
     }
     pTL->append(pDbl);
-    delete piRwstat;
+    delete[] piRwstat;
 
     pDbl = new types::Double(iM, 2);
     pdbl = pDbl->get();
@@ -311,7 +310,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piRowcod[i];
     }
     pTL->append(pDbl);
-    delete piRowcod;
+    delete[] piRowcod;
 
     pDbl = new types::Double(iN, 2);
     pdbl = pDbl->get();
@@ -320,7 +319,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piColcod[i];
     }
     pTL->append(pDbl);
-    delete piColcod;
+    delete[] piColcod;
 
     pDbl = new types::Double(iNza, 1);
     pdbl = pDbl->get();
@@ -329,7 +328,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piRwnmbs[i];
     }
     pTL->append(pDbl);
-    delete piRwnmbs;
+    delete[] piRwnmbs;
 
     pDbl = new types::Double(1, iN + 1);
     pdbl = pDbl->get();
@@ -338,7 +337,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piClpnts[i];
     }
     pTL->append(pDbl);
-    delete piClpnts;
+    delete[] piClpnts;
 
     pTL->append(pDblCoef);
     pTL->append(pDblRhsb);
@@ -352,7 +351,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piStavar[i];
     }
     pTL->append(pDbl);
-    delete piStavar;
+    delete[] piStavar;
 
     out.push_back(pTL);
     return types::Function::OK;

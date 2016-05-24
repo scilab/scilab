@@ -138,7 +138,7 @@ msgstr " * Přidat nějaké komentáře o souboru XML"
 msgid "Add short description here."
 msgstr "Zadejte sem krátký popis."
 
-msgid "Calling Sequence"
+msgid "Syntax"
 msgstr "Sekvence volání"
 
 msgid "Arguments"

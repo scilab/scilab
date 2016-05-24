@@ -19,7 +19,7 @@
         <refpurpose>set filename for scilab history</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sethistoryfile(filename)
             sethistoryfile()
         </synopsis>

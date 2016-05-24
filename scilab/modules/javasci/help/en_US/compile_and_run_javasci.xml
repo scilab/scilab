@@ -33,23 +33,19 @@
                 </para>
             </listitem>
         </itemizedlist>
-        
         <para>To compile a Java application using Javasci v2, the path to the following libraries may have to be added in the classpath:</para>
         <itemizedlist>
             <listitem>
-                <literal>org.scilab.modules.javasci.jar</literal> (required for all Javasci applications) 
+                <literal>org.scilab.modules.javasci.jar</literal> (required for all Javasci applications)
             </listitem>
             <listitem>
-                <literal>org.scilab.modules.types.jar</literal> (if the application uses Javasci types) 
+                <literal>org.scilab.modules.types.jar</literal> (if the application uses Javasci types)
             </listitem>
         </itemizedlist>
-        
         <para>To compile the example code (the code is further in this page), the command line is:</para>
-        
         <para>
             <literal>javac -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample.java</literal>
         </para>
-        
         <para>To launch the Java application, the path to the libjavasci native library needs to be provided, either:</para>
         <itemizedlist>
             <listitem>
@@ -66,12 +62,11 @@
                         </para>
                     </listitem>
                 </itemizedlist>
-                
                 <para>And the application is run with the command line:</para>
                 <literal>java -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal>
             </listitem>
             <listitem>
-                <para>Or as argurment of java, in the command line:</para>
+                <para>Or as argument of java, in the command line:</para>
                 <para>
                     <literal>java -Djava.library.path=/path/to/libjavasci/:/path/to/scilab/lib/thirdparty/ -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal>
                 </para>
@@ -83,31 +78,26 @@
         <para>
             In this paragraph we suppose Scilab is installed in the directory <literal>C:\Program Files\scilab-XXXX</literal> (where XXXX is the version of Scilab, for example "5.4.0").
         </para>
-        
         <para>On windows, no specific environment variable needs to be defined.</para>
-        
         <para>To compile a Java application using Javasci v2, the path to the following libraries may have to be added in the classpath:</para>
         <itemizedlist>
             <listitem>
-                <literal>org.scilab.modules.javasci.jar</literal> (required for all Javasci applications) 
+                <literal>org.scilab.modules.javasci.jar</literal> (required for all Javasci applications)
             </listitem>
             <listitem>
-                <literal>org.scilab.modules.types.jar</literal> (if the application uses Javasci types) 
+                <literal>org.scilab.modules.types.jar</literal> (if the application uses Javasci types)
             </listitem>
         </itemizedlist>
-        
         <para>To compile the example code, the command line is:</para>
         <para>
             <literal>javac -cp "C:\Program Files\scilab-XXXX\modules\javasci\jar\org.scilab.modules.javasci.jar;C:\Program Files\scilab-XXXX\modules\types\jar\org.scilab.modules.types.jar";. BasicExample.java</literal>
         </para>
-        
         <para>For execution, the path to the native library libjavasci.dll and to its dependencies must be added in the PATH environment variable.
             All the needed libraries are in the "bin" folder, so the command line is:
         </para>
         <para>
             <literal>set PATH="C:\Program Files\scilab-XXXX\bin";%PATH%</literal>
         </para>
-        
         <para>To launch the Java application, the command line is quite the same as for Linux:</para>
         <para>
             <literal>java -cp "C:\Program Files\scilab-XXXX\modules\javasci\jar\org.scilab.modules.javasci.jar;C:\Program Files\scilab-XXXX\modules\types\jar\org.scilab.modules.types.jar";. BasicExample</literal>

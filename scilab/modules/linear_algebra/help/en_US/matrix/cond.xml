@@ -20,7 +20,7 @@
         <refpurpose>condition number</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             c = cond(X)
             c = cond(X, p)

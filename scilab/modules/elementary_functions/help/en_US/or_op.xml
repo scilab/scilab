@@ -19,7 +19,7 @@
         <refpurpose>logical OR operator</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>A|B</synopsis>
     </refsynopsisdiv>
     <refsection>

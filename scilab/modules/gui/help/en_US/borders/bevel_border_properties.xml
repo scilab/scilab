@@ -8,7 +8,7 @@
         <refpurpose>Description of the soft-bevel and bevel borders properties.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             bevelBorder = createBorder("bevel", type)
             bevelBorder = createBorder("bevel", type, hlouter, shadowouter)

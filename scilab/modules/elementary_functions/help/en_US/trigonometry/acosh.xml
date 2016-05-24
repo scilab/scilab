@@ -19,7 +19,7 @@
         <refpurpose>hyperbolic cosine inverse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[t] = acosh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

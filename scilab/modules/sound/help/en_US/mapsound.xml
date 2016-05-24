@@ -19,7 +19,7 @@
         <refpurpose>Plots a sound map</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mapsound (w,dt,fmin,fmax,simpl,rate)</synopsis>
     </refsynopsisdiv>
     <refsection>

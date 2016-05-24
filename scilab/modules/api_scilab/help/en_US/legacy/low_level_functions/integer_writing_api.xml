@@ -24,7 +24,7 @@
         <refsection>
             Create from existing data.
         </refsection>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <para>Input argument profile:</para>
         <para>Signed integer :</para>
         <synopsis>SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, const char* _pcData8)</synopsis>
@@ -109,7 +109,7 @@
         <refsection>
             Write directly in Scilab memory.
         </refsection>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <para>Input argument profile:</para>
         <para>Signed integer :</para>
         <synopsis>SciErr allocMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pcData8)</synopsis>

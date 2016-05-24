@@ -11,7 +11,7 @@
 // along with this program.
 function y=convol2d(h,x)
     //  convol2d - 2-D convolution
-    //%CALLING SEQUENCE
+    //%SYNTAX
     //  y=convol2d(h,x)
     //%PARAMETERS
     //  x,h       :input matrices

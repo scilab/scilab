@@ -19,7 +19,7 @@
         <refpurpose>Read the data of HDF5 dataset</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5read(obj [, name, [, start, count [, stride [, block]]]])
             h5read(filename, name [, start, count [, stride [, block]])

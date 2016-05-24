@@ -12,7 +12,7 @@
 
 function x=sinm(a)
     //   sinm - computes the matrix sine
-    //%CALLING SEQUENCE
+    //%SYNTAX
     //   x=sinm(a)
     //%PARAMETERS
     //   a   : square  matrix

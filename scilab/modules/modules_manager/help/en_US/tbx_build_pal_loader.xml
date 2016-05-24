@@ -19,7 +19,7 @@
         <refpurpose>Generate a loader_pal.sce script for loading Xcos palette module(toolbox compilation process)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_build_pal_loader(palette_name, block_names , module_path [, script_path])
         </synopsis>

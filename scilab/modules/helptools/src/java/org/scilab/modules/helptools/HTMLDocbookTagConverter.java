@@ -821,6 +821,12 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         } else if (parent.equals("refsection") && Pattern.matches("^[ \\t]*ex[ea]mpl[eo].*", contents.toLowerCase())) {
             hasExamples = true;
             return encloseContents("h3", clazz, contents);
+        } else if (parent.equals("refsect1")) {
+            return encloseContents("h3", clazz, contents);
+        } else if (parent.equals("refsect2")) {
+            return encloseContents("h4", clazz, contents);
+        } else if (parent.equals("refsect3")) {
+            return encloseContents("h5", clazz, contents);
         } else {
             return encloseContents("h3", clazz, contents);
         }
@@ -1035,6 +1041,54 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refsection", contents);
         } else {
             return encloseContents("div", "refsection", contents);
+        }
+    }
+
+    /**
+     * Handle a refsect1
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRefsect1(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refsect1", contents);
+        } else {
+            return encloseContents("div", "refsect1", contents);
+        }
+    }
+
+    /**
+     * Handle a refsect2
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRefsect2(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refsect2", contents);
+        } else {
+            return encloseContents("div", "refsect2", contents);
+        }
+    }
+
+    /**
+     * Handle a refsect3
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRefsect3(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refsect3", contents);
+        } else {
+            return encloseContents("div", "refsect3", contents);
         }
     }
 

@@ -19,7 +19,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             ok=datatipSetStruct(curve_handle,datatips_struct)
         </synopsis>

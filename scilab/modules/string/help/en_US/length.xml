@@ -19,7 +19,7 @@
         <refpurpose>length of object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>n = length(M)</synopsis>
     </refsynopsisdiv>
     <refsection>

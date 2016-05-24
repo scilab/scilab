@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>OK=TCL_ExistVar(varname [,interp])</synopsis>
     </refsynopsisdiv>
     <refsection>

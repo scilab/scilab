@@ -19,7 +19,7 @@
         <refpurpose>Create a dataset and write the data</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5dataset(obj, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
             h5dataset(filename, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  

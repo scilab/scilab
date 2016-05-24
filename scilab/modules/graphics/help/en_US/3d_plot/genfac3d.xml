@@ -19,7 +19,7 @@
         <refpurpose>Compute facets of a 3D surface</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[xx,yy,zz]=genfac3d(x,y,z,[mask])</synopsis>
     </refsynopsisdiv>
     <refsection>

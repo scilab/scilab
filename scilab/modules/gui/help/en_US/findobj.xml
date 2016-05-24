@@ -5,7 +5,7 @@
         <refpurpose>find an object with specified property</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h =  findobj(propertyName, propertyValue)
         </synopsis>

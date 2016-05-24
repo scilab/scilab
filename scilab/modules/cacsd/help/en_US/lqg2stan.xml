@@ -19,7 +19,7 @@
         <refpurpose>LQG to standard problem</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,r]=lqg2stan(P22,bigQ,bigR)</synopsis>
     </refsynopsisdiv>
     <refsection>

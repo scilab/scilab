@@ -19,7 +19,7 @@
         <refpurpose>logical AND operator</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>A&amp;B</synopsis>
     </refsynopsisdiv>
     <refsection>

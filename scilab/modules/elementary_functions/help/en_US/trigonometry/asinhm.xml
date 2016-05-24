@@ -19,7 +19,7 @@
         <refpurpose>matrix hyperbolic inverse sine</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t=asinhm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

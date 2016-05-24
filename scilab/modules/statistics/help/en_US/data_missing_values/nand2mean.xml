@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[dif]=nand2mean(sample1,sample2)
             [dif]=nand2mean(sample1,sample2,conf)
         </synopsis>

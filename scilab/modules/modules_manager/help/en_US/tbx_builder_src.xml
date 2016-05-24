@@ -19,7 +19,7 @@
         <refpurpose>Run builder_src.sce script if it exists (toolbox compilation process)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_builder_src(toolbox_path)
         </synopsis>

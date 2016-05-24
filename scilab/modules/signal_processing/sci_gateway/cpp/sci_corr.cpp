@@ -262,6 +262,8 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
                     if (pDblIn3->isComplex())
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "corr" , 4);
+                        delete[] wi;
+                        delete[] w;
                         return types::Function::Error;
                     }
 

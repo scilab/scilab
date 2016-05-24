@@ -19,7 +19,7 @@
         <refpurpose>delete a graphics window</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xdel([win_nums])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -54,7 +54,6 @@ int GraphicsModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"param3d1", &sci_param3d1, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"xstringb", &sci_xstringb, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"plot2d", &sci_plot2d, &GraphicsModule::LoadDeps, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"plot2d1", &sci_plot2d1_1, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"plot2d2", &sci_plot2d1_2, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"plot2d3", &sci_plot2d1_3, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"plot2d4", &sci_plot2d1_4, &GraphicsModule::LoadDeps, MODULE_NAME));

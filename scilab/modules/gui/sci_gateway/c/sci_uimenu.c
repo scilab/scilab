@@ -179,6 +179,7 @@ int sci_uimenu(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(propertyName);
             return 1;
         }
 
@@ -201,6 +202,7 @@ int sci_uimenu(char *fname, void *pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, iPropertyValuePositionIndex);
+                        freeAllocatedSingleString(propertyName);
                         return 1;
                     }
 
@@ -213,6 +215,7 @@ int sci_uimenu(char *fname, void *pvApiCtx)
                     if (getAllocatedSingleString(pvApiCtx, piAddrValue, &pstValue))
                     {
                         Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, iPropertyValuePositionIndex);
+                        freeAllocatedSingleString(propertyName);
                         return 1;
                     }
 
@@ -230,6 +233,7 @@ int sci_uimenu(char *fname, void *pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, iPropertyValuePositionIndex);
+                        freeAllocatedSingleString(propertyName);
                         return 1;
                     }
                     setStatus = callSetProperty(pvApiCtx, getObjectFromHandle(GraphicHandle), phValues, sci_handles, nbRow, nbCol, propertyName);
@@ -253,6 +257,7 @@ int sci_uimenu(char *fname, void *pvApiCtx)
         if (setStatus == SET_PROPERTY_ERROR)
         {
             Scierror(999, _("%s: Could not set property '%s'.\n"), fname, propertyName);
+            freeAllocatedSingleString(propertyName);
             return FALSE;
         }
 

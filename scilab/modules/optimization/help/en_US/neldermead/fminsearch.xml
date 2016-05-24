@@ -210,7 +210,7 @@
                 f = myfun ( x, a1, a2, ...)
             </screen>
             where the input arguments <literal>a1, a2, ...</literal>
-            are automatically appended at the end of the calling sequence.
+            are automatically appended as parameters to the call.
         </para>
     </refsection>
     <refsection>

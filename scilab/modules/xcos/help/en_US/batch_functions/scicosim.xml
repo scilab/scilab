@@ -27,7 +27,7 @@
         <refpurpose>xcos (batch) simulation function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[state,t] = scicosim(state,tcur,tf,sim,str,tol)</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_scicosim">

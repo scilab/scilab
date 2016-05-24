@@ -19,7 +19,7 @@
         <refpurpose>Jacobi's am function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[sn]=amell(u,k)</synopsis>
     </refsynopsisdiv>
     <refsection>

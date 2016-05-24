@@ -19,7 +19,7 @@
         <refpurpose>checks whether argument is an existing file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x = isfile(filenames)</synopsis>
     </refsynopsisdiv>
     <refsection>

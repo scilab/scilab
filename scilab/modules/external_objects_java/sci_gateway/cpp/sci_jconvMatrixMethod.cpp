@@ -79,12 +79,12 @@ int sci_jconvMatrixMethod(char * fname, void* pvApiCtx)
     }
     else
     {
-        delete type;
+        FREE(type);
         Scierror(999, "%s: Invalid string: \"rc\" or \"cr\" expected.", fname);
         return 0;
     }
 
-    delete type;
+    FREE(type);
 
     LhsVar(1) = 0;
     PutLhsVar();

@@ -19,7 +19,7 @@
         <refpurpose>pretty print for linear system</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ssprint(sl)
             ssprint(sl, out)
         </synopsis>

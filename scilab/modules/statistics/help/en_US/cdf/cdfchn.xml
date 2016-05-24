@@ -19,7 +19,7 @@
         <refpurpose>cumulative distribution function  non-central chi-square distribution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,Q]=cdfchn("PQ",X,Df,Pnonc)
             [X]=cdfchn("X",Df,Pnonc,P,Q);
             [Df]=cdfchn("Df",Pnonc,P,Q,X)

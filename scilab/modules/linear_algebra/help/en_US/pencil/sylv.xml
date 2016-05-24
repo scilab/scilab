@@ -19,7 +19,7 @@
         <refpurpose>Sylvester equation.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sylv(A, B, C, flag)</synopsis>
     </refsynopsisdiv>
     <refsection>

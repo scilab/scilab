@@ -40,6 +40,7 @@ class XMLConfig
 public:
 
     static void getOptions(const std::wstring & path, SLintOptions & options);
+    static void getOptions(types::String & str, SLintOptions & options);
 
 private:
 

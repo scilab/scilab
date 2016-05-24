@@ -19,7 +19,7 @@
         <refpurpose>cotangent</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[t] = cotg(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

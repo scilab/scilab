@@ -43,6 +43,7 @@ int SetUiobjectForegroundColor(void* _pvCtx, int iObjUID, void* _pvData, int val
         if (nbValues != 3) /* Wrong format string */
         {
             Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "ForegroundColor");
+            delete[] allColors;
             return SET_PROPERTY_ERROR;
         }
 
@@ -67,6 +68,10 @@ int SetUiobjectForegroundColor(void* _pvCtx, int iObjUID, void* _pvData, int val
     if (!checkColorRange(allColors[0], allColors[1], allColors[2]))
     {
         Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: Numbers between 0 and 1 expected.\n")), "ForegroundColor");
+        if (valueType == sci_strings)
+        {
+            delete[] allColors;
+        }
         return SET_PROPERTY_ERROR;
     }
 

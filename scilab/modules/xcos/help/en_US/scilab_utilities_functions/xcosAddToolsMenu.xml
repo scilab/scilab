@@ -19,7 +19,7 @@
         <refpurpose>Add a menu item into the Xcos "Tools" menu.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xcosAddToolsMenu(label, command)</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_xcosAddToolsMenu">

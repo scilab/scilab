@@ -37,6 +37,12 @@ function head_comments(name, %paths)
     for k=1:size(t.inputs)
         inputs=[inputs,expression2code(t.inputs(k))]
     end
+    if isempty(outputs) then
+        outputs = '';
+    end
+    if isempty(inputs) then
+        inputs = '';
+    end
     syntax = "function ["+strcat(outputs,",")+"] = "+name+"("+strcat(inputs,",")+")";
 
     comm = [];

@@ -8,7 +8,7 @@
 // <-- CLI SHELL MODE -->
 
 // This test is to show priority between == and <> operator
-// the disp are done on purpose to track calling sequence.
+// the disp are done on purpose to track the calls.
 
 function b=a(x)
   disp("Compute "+x)

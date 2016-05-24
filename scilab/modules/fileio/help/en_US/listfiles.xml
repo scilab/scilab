@@ -19,7 +19,7 @@
         <refpurpose>list of files</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>files = listfiles(paths [, flag, flagexpand])</synopsis>
     </refsynopsisdiv>
     <refsection>

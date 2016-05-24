@@ -19,7 +19,7 @@
         <refpurpose>editing a manual item</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>manedit(manitem)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -17,7 +17,6 @@ package org.scilab.modules.console;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.scilab.modules.completion.Completion;
 import org.scilab.modules.localization.Messages;
 
@@ -49,6 +48,7 @@ public class SciCompletionManager implements CompletionManager {
      * @return array list of matching items
      * @see com.artenum.rosetta.interfaces.core.CompletionManager#getCompletionItems()
      */
+    @Override
     public List<CompletionItem> getCompletionItems() {
         int compLevel = inputParsingManager.getCompletionLevel();
 
@@ -60,9 +60,18 @@ public class SciCompletionManager implements CompletionManager {
         String fileSearchedPattern = ((SciInputParsingManager) inputParsingManager).getFilePartLevel(compLevel);
 
         String[] scilabFilesDictionnary = Completion.searchFilesDictionary(fileSearchedPattern);
-        addItemsToDictionnary(Messages.gettext("File or Directory"), scilabFilesDictionnary);
+        //addItemsToDictionnary(Messages.gettext("File or Directory"), scilabFilesDictionnary);
 
-        if (scilabFilesDictionnary == null) {
+        if (scilabFilesDictionnary != null) {
+            ArrayList<String> files = new ArrayList<String>();
+            ArrayList<String> directories = new ArrayList<String>();
+            separateFilesDirectories(scilabFilesDictionnary, files, directories);
+            String[] filesDictionnary = files.toArray(new String[files.size()]);
+            String[] directoriesDictionnary = directories.toArray(new String[directories.size()]);
+
+            addItemsToDictionnary(Messages.gettext("File"), filesDictionnary);
+            addItemsToDictionnary(Messages.gettext("Directory"), directoriesDictionnary);
+        } else {
             // Get the completion part used to filter the dictionary
             String searchedPattern = inputParsingManager.getPartLevel(compLevel);
             String commandLine = inputParsingManager.getCommandLine();
@@ -94,6 +103,7 @@ public class SciCompletionManager implements CompletionManager {
      * @param inputParsingManager a parsing tool
      * @see com.artenum.rosetta.interfaces.core.CompletionManager#setInputParsingManager(com.artenum.rosetta.interfaces.core.InputParsingManager)
      */
+    @Override
     public void setInputParsingManager(InputParsingManager inputParsingManager) {
         this.inputParsingManager = inputParsingManager;
     }
@@ -103,6 +113,7 @@ public class SciCompletionManager implements CompletionManager {
      * @param  interpretor an interpreting tool
      * @see com.artenum.rosetta.interfaces.core.CompletionManager#setInputParsingManager(com.artenum.rosetta.interfaces.core.InputParsingManager)
      */
+    @Override
     public void setInterpretor(GenericInterpreter interpretor) {
         // No need for Scilab implementation
     }
@@ -118,7 +129,22 @@ public class SciCompletionManager implements CompletionManager {
                 dictionnary.add(new CompletionItemImpl(type, items[i] + " (" + type + ")", items[i], Messages.gettext("No help")));
             }
         }
-
     }
 
+    /**
+     * Separate files from directories
+     * @param scilabFilesDictionnary the input containing both
+     * @param filesDictionnary output: only the files
+     * @param directoriesDictionnary output: only the directories
+     */
+    public void separateFilesDirectories(String[] scilabFilesDictionnary, ArrayList<String> filesDictionnary, ArrayList<String> directoriesDictionnary) {
+        String fileSep = System.getProperty("file.separator");
+        for (String word : scilabFilesDictionnary) {
+            if (word.endsWith(fileSep)) {
+                directoriesDictionnary.add(new String(word));
+            } else {
+                filesDictionnary.add(new String(word));
+            }
+        }
+    }
 }

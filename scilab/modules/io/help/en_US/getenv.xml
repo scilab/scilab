@@ -19,7 +19,7 @@
         <refpurpose>get the value of an environment variable</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>env=getenv(str [, defaultReturn] )</synopsis>
     </refsynopsisdiv>
     <refsection>

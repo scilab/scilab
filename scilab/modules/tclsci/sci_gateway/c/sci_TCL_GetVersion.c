@@ -111,6 +111,7 @@ int sci_TCL_GetVersion(char *fname, void* pvApiCtx)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    freeAllocatedSingleString(Param);
                     return 1;
                 }
 

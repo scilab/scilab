@@ -19,10 +19,10 @@
         <refpurpose>Add one or several modules to autoload</refpurpose>
     </refnamediv>
     <!-- ===================================================================== -->
-    <!-- Calling Sequence -->
+    <!-- Syntax -->
     <!-- ===================================================================== -->
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             nbAdd = atomsAutoloadAdd(modules[,section])
         </synopsis>

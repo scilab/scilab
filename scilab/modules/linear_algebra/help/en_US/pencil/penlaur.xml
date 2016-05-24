@@ -19,7 +19,7 @@
         <refpurpose>Laurent coefficients of matrix pencil</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Si,Pi,Di,order]=penlaur(Fs)
             [Si,Pi,Di,order]=penlaur(E,A)
         </synopsis>

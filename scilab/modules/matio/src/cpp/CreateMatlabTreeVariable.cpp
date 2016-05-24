@@ -57,6 +57,11 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         }
     }
 
+    if (!piDims)
+    {
+        return types::Double::Empty();
+    }
+
     switch (matVariable->class_type)
     {
         case MAT_C_CELL: /* 1 */
@@ -130,6 +135,7 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
             strncat(pChar, (char*)matVariable->data, piDims[1]);
             types::String* pString = new types::String(pChar);
             pOut = pString;
+            FREE(pChar);
         }
         break;
         case MAT_C_SPARSE: /* 5 */
@@ -147,6 +153,8 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
                 if (colIndexes == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), "CreateMatlabTreeVariable");
+                    delete pSparse;
+                    FREE(piDims);
                     return NULL;
                 }
 
@@ -161,6 +169,9 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
             if (rowIndexes == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), "CreateMatlabTreeVariable");
+                delete pSparse;
+                FREE(colIndexes);
+                FREE(piDims);
                 return NULL;
             }
 
@@ -310,13 +321,9 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         case MAT_C_FUNCTION: /* 16 to be written */
         default:
             /* Empty matrix returned */
+            FREE(piDims);
             return types::Double::Empty();
     }
-
-    if (iRank != 0)
-    {
-        FREE(piDims);
-    }
-
+    FREE(piDims);
     return pOut;
 }

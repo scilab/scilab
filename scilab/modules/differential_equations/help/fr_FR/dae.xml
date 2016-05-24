@@ -485,7 +485,7 @@ x(t0) = x0 and xdot(t0) = xdot0
         </para>
         <programlisting role="example"><![CDATA[
 // Exemple avec du code Scilab
---------------------------------------------------
+//--------------------------------------------------
 function [r, ires] = chemres(t, y, yd)
     r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
     r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
@@ -514,7 +514,7 @@ y = dae([x0, xd0], 0, 4d10, chemres, chemjac); // Avec jacobien
         </para>
         <programlisting role="example"><![CDATA[
 // Exemple avec du code C (compilateur C requis)
---------------------------------------------------
+//--------------------------------------------------
 bOK = haveacompiler();
 if bOK <> %t
     [btn] = messagebox(["Vous avez besoin nd'un compilateur C pour cet exemple."; "Arrêt de l'exécution."], "Problème de Software", 'info');
@@ -612,7 +612,7 @@ cd(previous_dir);
         </para>
         <programlisting role="example"><![CDATA[
 // Exemple avec du code C (compilateur C requis)
---------------------------------------------------
+//--------------------------------------------------
 bOK = haveacompiler();
 if bOK <> %t
     [btn] = messagebox(["Vous avez besoin nd'un compilateur C pour cet exemple."; "Arrêt de l'exécution."], "Problème de Software", 'info');

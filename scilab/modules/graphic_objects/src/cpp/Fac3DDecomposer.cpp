@@ -17,6 +17,7 @@
 #include "ColorComputer.hxx"
 #include "Fac3DColorComputer.hxx"
 #include "Fac3DDecomposer.hxx"
+#include "Triangulator.hxx"
 
 extern "C"
 {
@@ -483,6 +484,7 @@ int Fac3DDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logM
     for (int i = 0; i < numGons; i++)
     {
         int isValid = 1;
+        Triangulator triangulator;
 
         for (int j = 0; j < numVerticesPerGon; j++)
         {
@@ -495,6 +497,7 @@ int Fac3DDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logM
                 isValid = 0;
                 break;
             }
+            triangulator.addPoint(xc, yc, zc);
         }
 
         if (isValid == 0 || colorComputer.isFacetColorValid(i) == 0)
@@ -503,15 +506,29 @@ int Fac3DDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logM
             continue;
         }
 
-        /* Performs a fan decomposition, vertices are ordered counter-clockwise. */
-        for (int j = 0; j < numVerticesPerGon - 2; j++)
+        triangulator.initialize();
+        triangulator.triangulate();
+        int numTriangles = triangulator.getNumberTriangles();
+
+        //Failed to triangulate, should not happen, unless the points are colinear
+        if (numTriangles < 1)
         {
-            buffer[bufferOffset] = vertexOffset;
-            buffer[bufferOffset + 1] = vertexOffset + j + 2;
-            buffer[bufferOffset + 2] = vertexOffset + j + 1;
+            vertexOffset += numVerticesPerGon;
+            continue;
+        }
+
+        int * indices = triangulator.getIndices();
+
+
+        for (int j = 0; j < numTriangles; j++)
+        {
+            buffer[bufferOffset] = vertexOffset + indices[3 * j];
+            buffer[bufferOffset + 1] = vertexOffset + indices[3 * j + 1];
+            buffer[bufferOffset + 2] = vertexOffset + indices[3 * j + 2];
 
             bufferOffset += 3;
         }
+        triangulator.clear();
 
         vertexOffset += numVerticesPerGon;
     }

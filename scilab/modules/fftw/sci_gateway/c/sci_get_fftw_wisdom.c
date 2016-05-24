@@ -27,7 +27,7 @@
 /*--------------------------------------------------------------------------*/
 /* Return text of fftw wisdom
 *
-* Scilab Calling sequence :
+* Scilab Syntax :
 *   -->tt=get_fftw_wisdom();
 *
 * Input : Nothing

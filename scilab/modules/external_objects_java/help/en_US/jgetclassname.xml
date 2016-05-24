@@ -21,7 +21,7 @@
         <refpurpose>Return the class name of the given object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             name = jgetclassname(obj)
         </synopsis>

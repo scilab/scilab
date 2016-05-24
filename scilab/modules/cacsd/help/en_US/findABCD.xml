@@ -19,7 +19,7 @@
         <refpurpose>discrete-time system subspace identification</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[SYS,K] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
             SYS = findABCD(S,N,L,R,METH)
             

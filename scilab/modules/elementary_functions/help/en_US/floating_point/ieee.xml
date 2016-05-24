@@ -5,7 +5,7 @@
         <refpurpose>set floating point exception mode</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mod=ieee()
             ieee(mod)
         </synopsis>

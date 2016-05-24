@@ -19,7 +19,7 @@
         <refpurpose>compare character strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = strcmp(string_one, string_two, ['i'])</synopsis>
     </refsynopsisdiv>
     <refsection>

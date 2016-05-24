@@ -1676,7 +1676,7 @@ bool ArrayOf<T>::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCou
         if (!_out)
         {
             std::wostringstream os;
-            os << _W("Invalid index.\n");
+            os << _W("Invalid index.") << std::endl;
             throw ast::InternalError(os.str(), 999, e.getLocation());
         }
         out.push_back(_out);

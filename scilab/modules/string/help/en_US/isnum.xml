@@ -24,7 +24,7 @@ xml:lang="en" xml:id="isnum">
         <refpurpose>tests if a string represents a number</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = isnum(str)</synopsis>
     </refsynopsisdiv>
     <refsection>

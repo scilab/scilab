@@ -19,7 +19,7 @@
         <refpurpose>Read a HTML tree from a string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             doc = htmlReadStr(string)
         </synopsis>

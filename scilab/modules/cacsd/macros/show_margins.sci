@@ -38,7 +38,7 @@ function show_margins(h,typ)
         sca(axp);
         xpoly([fmin;fmax],[-180;-180])
         e=gce();e.foreground=color("red");e.line_style=4;
-        if fr<>[] then
+        if fr<>[]&fr>0 then
             xpoly([fr;fr],[pmin;pmax])
             e=gce();e.foreground=color("red");e.line_style=4;
             sca(axg);
@@ -52,7 +52,7 @@ function show_margins(h,typ)
         sca(axg);
         xpoly([fmin;fmax],[0;0])
         e=gce();e.foreground=color("blue");e.line_style=4;
-        if fr<>[] then
+        if fr<>[]&fr>0 then
             xpoly([fr;fr],[gmin;gmax])
             e=gce();e.foreground=color("blue");e.line_style=4;
             sca(axp);

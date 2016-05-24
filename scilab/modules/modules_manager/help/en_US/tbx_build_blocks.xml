@@ -19,7 +19,7 @@
         <refpurpose>Compile blocks (toolbox compilation process)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_build_blocks(toolbox_name, block_names [, macros_path])
         </synopsis>

@@ -5,7 +5,7 @@
         <refpurpose>utility function used with taucs_chfact  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>taucs_chdel(C_ptr) or taucs_chdel()</synopsis>
     </refsynopsisdiv>
     <refsection>

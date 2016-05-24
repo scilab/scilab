@@ -369,17 +369,11 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
         }
         ret.port = static_cast<int>(std::distance(sourceBlockPorts.begin(), found) + 1);
 
-        bool isImplicit;
-        controller.getObjectProperty(endID, PORT, IMPLICIT, isImplicit);
-
-        if (isImplicit == false)
+        int kind;
+        controller.getObjectProperty(endID, PORT, PORT_KIND, kind);
+        if (kind == PORT_IN || kind == PORT_EIN)
         {
-            int kind;
-            controller.getObjectProperty(endID, PORT, PORT_KIND, kind);
-            if (kind == PORT_IN || kind == PORT_EIN)
-            {
-                ret.kind = End;
-            }
+            ret.kind = End;
         }
     }
     // Default case, the property was initialized at [].

@@ -127,7 +127,7 @@ void min(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
                     {
                         pDblIndex->set(i, piIndexes[i] + 1);
                     }
-                    delete piIndexes;
+                    delete[] piIndexes;
                 }
             }
         }

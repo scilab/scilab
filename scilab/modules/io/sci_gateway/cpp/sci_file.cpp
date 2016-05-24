@@ -483,7 +483,7 @@ types::Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCo
         {
             types::String* pS = new types::String(pstType);
             out.push_back(pS);
-            delete[] pstType;
+            FREE(pstType);
         }
     }
 
@@ -494,7 +494,7 @@ types::Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCo
         {
             types::String* pS = new types::String(pstName);
             out.push_back(pS);
-            delete[] pstName;
+            FREE(pstName);
         }
     }
 

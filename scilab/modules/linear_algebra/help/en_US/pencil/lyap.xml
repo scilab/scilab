@@ -19,7 +19,7 @@
         <refpurpose>Lyapunov equation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[X]=lyap(A,C,'c')
             [X]=lyap(A,C,'d')
         </synopsis>

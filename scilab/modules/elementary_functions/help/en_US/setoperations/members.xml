@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [nb [,loc]] = members(N, H)
             [nb [,loc]] = members(N, H, "last")
@@ -194,6 +194,9 @@ H = [ "Hello" "Bonjour" "Allo"
             </member>
             <member>
                 <link linkend="intersect">intersect</link>
+            </member>
+            <member>
+                <link linkend="grep">grep</link>
             </member>
             <member>
                 <link linkend="find">find</link>

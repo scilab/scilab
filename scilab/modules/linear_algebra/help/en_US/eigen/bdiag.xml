@@ -19,7 +19,7 @@
         <refpurpose>block diagonalization, generalized eigenvectors</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Ab [,X [,bs]]]=bdiag(A [,rmax])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -9,7 +9,7 @@
         <refpurpose>sum from C</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>a = c_sum(b,c)</synopsis>
     </refsynopsisdiv>
     <refsection>

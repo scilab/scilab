@@ -45,7 +45,7 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
         "pspect",3,"''re'',''tr'',''hm'',''hn'',''kr'',''ch''"));
     end
 
-    //Analyze calling sequence and construct window
+    //Analyze syntax and construct window
     if rhs==4 then,
         //pspect(sec_step,sec_leng,wtype,x)
         w=window(wtype,sec_leng);

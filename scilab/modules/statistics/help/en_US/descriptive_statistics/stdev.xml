@@ -23,16 +23,16 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             y = stdev(x)
             y = stdev(x, '*')
-            y = stdev(x, 'r')
-            y = stdev(x, 'c')
+            y = stdev(x, 'r'|1)
+            y = stdev(x, 'c'|2)
             y = stdev(x, orien, m)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -51,7 +51,9 @@
                 <term>orien</term>
                 <listitem>
                     <para>
-                        string scalar or positive integer, can be <literal>"*"</literal>, <literal>"r"</literal> (or <literal>1</literal>) or <literal>"c"</literal> (or <literal>2</literal>)
+                        <literal>"*"</literal> (default), <literal>"r"</literal> or 1,
+                        <literal>"c"</literal> or 2, or 0&lt;integer&lt;=ndims(x): direction along
+                        which calculations are performed.
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,7 +65,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             stdev computes the "sample" standard deviation, that
@@ -81,26 +83,39 @@
             entry of the row vector <literal>y</literal> the standard deviation of each column of <literal>x</literal>.
         </para>
         <para>
-            <literal>y=stdev(x,'c')</literal> (or, equivalently, <literal>y=stdev(x,2)</literal>) is the columnwise stdev. It returns in each
-            entry of the column vector <literal>y</literal> the standard deviation of each row of <literal>x</literal>.
+            <literal>y=stdev(x,'c')</literal> (or, equivalently, <literal>y=stdev(x,2)</literal>)
+            is the columnwise stdev. It returns in each
+            entry of the column vector <literal>y</literal> the standard deviation of each row of
+          <literal>x</literal>.
         </para>
         <para>
-            By extension, <literal>y=stdev(x,n)</literal> with <literal>n</literal> a positive integer returns the deviation
-            along the <literal>n</literal>-th dimension, and if <literal>n>ndims(x)</literal>, then <literal>stdev(x,n)</literal> returns <literal>zeros(x)</literal>.
+            By extension, <literal>y=stdev(x,n)</literal> with <literal>n</literal> a positive integer
+             returns the deviation along the <literal>n</literal>-th dimension.
         </para>
         <note>
-            If <varname>m</varname> is a scalar, then it is expanded to match the size of <code>mean(x)</code> along the <literal>n</literal>-th dimension.
+            If <varname>m</varname> is a scalar, then it is expanded to match the size of
+          <code>mean(x)</code> along the <literal>n</literal>-th dimension.
         </note>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 A = [1 2 10; 7 7.1 7.01];
 stdev(A)
 stdev(A, 'r')
 stdev(A, 'c')
-stdev(A, 'c', mean(A,'c'))
-stdev(A, 'c', 1)
+stdev(A,  2 )
+
+// Deviation from a known (a-priori, built-in) mean:
+A = grand(10, 10, "nor", 7.5, 3);
+stdev(A) / 3             // unknown mean => assessed from A before computing stdev
+stdev(A, '*', 7.5) / 3   // using the theoretical built-in mean
+
+// With an hypermatrix:
+A = grand(3, 5, 30, "nor", 4.1, 1.5);
+stdev(A) / 1.5
+sd = stdev(A, 3, 4.1) / 1.5
+mean(sd)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -123,13 +138,19 @@ stdev(A, 'c', 1)
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>History</title>
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revdescription>
                     Can now compute the mean squared deviation using the a priori mean defined by <varname>m</varname>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    stdev(x, orien>ndims(x)) no longer returns zeros(x) but yields an error.
                 </revdescription>
             </revision>
         </revhistory>

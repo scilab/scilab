@@ -19,7 +19,7 @@
         <refpurpose>matrix made of zeros</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=zeros()
             y=zeros(x)
             y=zeros(m1,m2,..)

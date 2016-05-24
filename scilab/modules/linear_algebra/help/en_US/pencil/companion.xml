@@ -19,7 +19,7 @@
         <refpurpose>companion matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>A=companion(p)</synopsis>
     </refsynopsisdiv>
     <refsection>

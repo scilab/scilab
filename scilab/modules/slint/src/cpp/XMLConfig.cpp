@@ -18,6 +18,9 @@
 #include "string.hxx"
 #include "config/XMLConfig.hxx"
 #include "SLintOptions.hxx"
+#include "config/cnes/ToolConfiguration.hxx"
+#include "config/cnes/AnalysisConfiguration.hxx"
+#include "config/cnes/CNESConfig.hxx"
 
 #define SLINT_INSERT_IN_MAP(name) callbacks.emplace(#name, &createFromXmlNode<name##Checker>)
 
@@ -25,6 +28,23 @@ namespace slint
 {
 
 std::unordered_map<std::string, XMLConfig::CBType> XMLConfig::callbacks = initCallbacks();
+
+void XMLConfig::getOptions(types::String & str, SLintOptions & options)
+{
+    const std::wstring customer(str.get(0));
+    if (customer == L"cnes")
+    {
+        const CNES::ToolConfiguration tc = CNES::ToolConfiguration::createFromXml(str.get(1));
+        const CNES::AnalysisConfiguration ac = CNES::AnalysisConfiguration::createFromXml(str.get(2));
+        const CNES::AnalysisConfigurationType & act = ac.getAnalysisConfiguration();
+        CNES::CNESConfig::getOptions(tc.getToolConfiguration(), act, options);
+        for (const CNES::ExcludedProjectFileType & epft : act.getExcludedProjectFile())
+        {
+            options.addExcludedFile(epft.getFilename());
+        }
+        options.setId(act.getId());
+    }
+}
 
 void XMLConfig::getOptions(const std::wstring & path, SLintOptions & options)
 {
@@ -125,9 +145,8 @@ SLintChecker * XMLConfig::createFromXmlNode<DecimalChecker>(xmlNode * node)
         XMLtools::getWString(node, "id", id);
         XMLtools::getWString(node, "character", character);
         XMLtools::getBool(node, "checkDot", checkDot);
-        wchar_t c = character.empty() ? L'\0' : character.at(0);
 
-        return new DecimalChecker(id, c, checkDot);
+        return new DecimalChecker(id, character, checkDot);
     }
 
     return nullptr;
@@ -254,7 +273,7 @@ SLintChecker * XMLConfig::createFromXmlNode<ReturnsCountChecker>(xmlNode * node)
 }
 
 template<>
-SLintChecker * XMLConfig::createFromXmlNode<StatInCondChecker>(xmlNode * node)
+SLintChecker * XMLConfig::createFromXmlNode<ExpInCondChecker>(xmlNode * node)
 {
     bool enable = true;
     XMLtools::getBool(node, "enable", enable);
@@ -266,7 +285,7 @@ SLintChecker * XMLConfig::createFromXmlNode<StatInCondChecker>(xmlNode * node)
         XMLtools::getWString(node, "id", id);
         XMLtools::getInt(node, "max", max);
 
-        return new StatInCondChecker(id, max);
+        return new ExpInCondChecker(id, max);
     }
 
     return nullptr;
@@ -390,6 +409,27 @@ SLintChecker * XMLConfig::createFromXmlNode<CommentRatioChecker>(xmlNode * node)
     return nullptr;
 }
 
+template<>
+SLintChecker * XMLConfig::createFromXmlNode<NotEqualChecker>(xmlNode * node)
+{
+    bool enable = true;
+    XMLtools::getBool(node, "enable", enable);
+    if (enable)
+    {
+        std::wstring id;
+        std::wstring op;
+
+        XMLtools::getWString(node, "id", id);
+        XMLtools::getWString(node, "operator", op);
+        if (!op.empty() && (op == L"<>" || op == L"~=" || op == L"@="))
+        {
+            return new NotEqualChecker(id, op);
+        }
+    }
+
+    return nullptr;
+}
+
 std::unordered_map<std::string, XMLConfig::CBType> XMLConfig::initCallbacks()
 {
     std::unordered_map<std::string, CBType> callbacks;
@@ -429,11 +469,12 @@ std::unordered_map<std::string, XMLConfig::CBType> XMLConfig::initCallbacks()
     SLINT_INSERT_IN_MAP(BracketedExp);
     SLINT_INSERT_IN_MAP(NotNot);
     SLINT_INSERT_IN_MAP(IllegalCalls);
-    SLINT_INSERT_IN_MAP(StatInCond);
+    SLINT_INSERT_IN_MAP(ExpInCond);
     SLINT_INSERT_IN_MAP(CommentRatio);
     SLINT_INSERT_IN_MAP(FunctionArgsOrder);
     SLINT_INSERT_IN_MAP(FunctionTestReturn);
     SLINT_INSERT_IN_MAP(ReturnsCount);
+    SLINT_INSERT_IN_MAP(NotEqual);
 
     return callbacks;
 }

@@ -31,7 +31,7 @@
             </listitem>
             <listitem>
                 <para>
-                    Calling sequence for <literal>format</literal> is different in Scilab and Matlab
+                    The syntax for <literal>format</literal> is different in Scilab and Matlab
                 </para>
             </listitem>
         </itemizedlist>

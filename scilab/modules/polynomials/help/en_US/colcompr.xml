@@ -19,7 +19,7 @@
         <refpurpose>column compression of polynomial matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Y,rk,ac]=colcompr(A);</synopsis>
     </refsynopsisdiv>
     <refsection>

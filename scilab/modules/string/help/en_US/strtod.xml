@@ -19,7 +19,7 @@
         <refpurpose>convert string to double</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             d =  strtod(str [,decimalseparator])
             [d, endstr] = strtod(str [,decimalseparator])

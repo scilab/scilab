@@ -19,7 +19,7 @@
         <refpurpose>Unmount a previously mounted file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h5umount(obj, location)
         </synopsis>

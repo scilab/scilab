@@ -5,7 +5,7 @@
         <refpurpose>interactive window choice (modal dialog)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[num]=x_choose(items,title [,button])</synopsis>
     </refsynopsisdiv>
     <refsection>

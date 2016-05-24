@@ -349,6 +349,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Link* o = static_cast<model::Link*>(baseObject);
         switch (p)
         {
+            case STYLE:
+                return o->setStyle(v);
             case LABEL:
                 return o->setLabel(v);
             case UID:
@@ -401,8 +403,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case GEOMETRY:
                 return o->setGeometry(v);
-            case ANGLE:
-                return o->setAngle(v);
             case EXPRS:
                 return o->setExprs(v);
             case STATE:

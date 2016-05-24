@@ -24,7 +24,7 @@
         <refpurpose>changes Scilab current directory</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>b = chdir(path)
             realpath = cd(path)
             cd path

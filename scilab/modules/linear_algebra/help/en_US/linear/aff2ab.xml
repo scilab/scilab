@@ -19,7 +19,7 @@
         <refpurpose>linear (affine) function to A,b conversion</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[A,b]=aff2ab(afunction,dimX,D [,flag])</synopsis>
     </refsynopsisdiv>
     <refsection>

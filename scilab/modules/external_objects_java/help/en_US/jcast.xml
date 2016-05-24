@@ -21,7 +21,7 @@
         <refpurpose>Cast a Java object into another one.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             jcast(javaObject, class)
         </synopsis>

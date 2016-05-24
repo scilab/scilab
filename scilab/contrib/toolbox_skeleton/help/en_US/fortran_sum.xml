@@ -8,7 +8,7 @@
         <refpurpose>sum from fortran</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>a = fortran_sum(b,c)</synopsis>
     </refsynopsisdiv>
     <refsection>

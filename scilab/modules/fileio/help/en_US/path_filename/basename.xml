@@ -20,7 +20,7 @@
         <refpurpose>strip directory and suffix from filenames</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>processedfiles = basename(files[,flag [,flagexpand]])</synopsis>
     </refsynopsisdiv>
     <refsection>

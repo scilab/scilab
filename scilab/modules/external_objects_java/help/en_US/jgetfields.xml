@@ -21,7 +21,7 @@
         <refpurpose>Get all the fields of a Java object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             fields = jgetfields(object)
         </synopsis>

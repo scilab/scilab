@@ -91,12 +91,10 @@ function [x, flag, resNorm, iter, resVec] = conjgrad(%A, %b, method, tol, maxIte
 
     [lhs, rhs] = argn(0);
 
-    if rhs < 2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"conjgrad",2,7));
+    if rhs < 2 | rhs >9 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"conjgrad",2,9));
     end
-    if rhs > 8 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"conjgrad",2,7));
-    end
+
     if exists("method", "local") == 0 then
         method = "bicgstab";
     end

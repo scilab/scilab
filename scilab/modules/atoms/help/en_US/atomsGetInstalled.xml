@@ -19,10 +19,10 @@
         <refpurpose>Get the list of installed external modules</refpurpose>
     </refnamediv>
     <!-- ===================================================================== -->
-    <!-- Calling Sequence -->
+    <!-- Syntax -->
     <!-- ===================================================================== -->
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             installed = atomsGetInstalled(section)
         </synopsis>

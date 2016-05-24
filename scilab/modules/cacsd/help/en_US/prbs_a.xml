@@ -19,7 +19,7 @@
         <refpurpose>pseudo random binary sequences generation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[u]=prbs_a(n,nc,[ids])</synopsis>
     </refsynopsisdiv>
     <refsection>

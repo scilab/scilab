@@ -166,6 +166,9 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     if (in[iPos]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "daskr", iPos + 1);
+        FREE(pdYdotData);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
@@ -174,6 +177,9 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     if (pDblT0->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "daskr", iPos + 1);
+        FREE(pdYdotData);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
@@ -182,6 +188,9 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     if (in[iPos]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "daskr", iPos + 1);
+        FREE(pdYdotData);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
@@ -190,6 +199,9 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     if (pDblT->isComplex())
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "daskr", iPos + 1);
+        FREE(pdYdotData);
+        FREE(pdYData);
+        FREE(YSize);
         return types::Function::Error;
     }
 
@@ -904,6 +916,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             FREE(YSize);
             FREE(iwork);
             FREE(rwork);
+            FREE(root);
             if (pDblAtol == NULL || pDblAtol->isScalar())
             {
                 FREE(atol);

@@ -19,7 +19,7 @@
         <refpurpose>returns the color id of a color</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>id=color(name)
             id=color(r,g,b)
         </synopsis>

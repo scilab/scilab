@@ -3,6 +3,7 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
+prot = funcprot();
 funcprot(0);
 
 my_demo_path = get_absolute_file_path("sphere.dem.sce");
@@ -11,6 +12,7 @@ exec(my_demo_path+"sphere.sci");
 exec(my_demo_path+"sphere_interface.sci");
 exesphere();
 
+funcprot(prot);
 clear my_demo_path;
 
 // clearglobal g_pente;

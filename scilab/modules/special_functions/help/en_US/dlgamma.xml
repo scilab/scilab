@@ -19,7 +19,7 @@
         <refpurpose>derivative of gammaln function, psi function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = dlgamma(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

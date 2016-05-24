@@ -5,7 +5,7 @@
         <refpurpose>kills global variables</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             clearglobal()
             clearglobal nam1 ... namn

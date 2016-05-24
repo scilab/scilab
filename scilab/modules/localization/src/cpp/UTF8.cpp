@@ -218,6 +218,7 @@ std::wstring UTF8::toWide(const std::string & str)
         iconv_close(cd);
         if (iSize == (size_t)(-1))
         {
+            delete[] pOutSave;
             return std::wstring();
         }
     }

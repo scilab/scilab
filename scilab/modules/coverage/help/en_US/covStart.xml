@@ -5,7 +5,7 @@
         <refpurpose>Instruments some macros to store runtime information on code coverage and execution time</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>covStart(paths)</synopsis>
         <synopsis>covStart(lib)</synopsis>
         <synopsis>covStart([path ; lib])</synopsis>

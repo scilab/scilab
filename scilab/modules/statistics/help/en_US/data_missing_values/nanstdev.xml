@@ -19,7 +19,7 @@
         <refpurpose>standard deviation (ignoring the NANs).  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s=nanstdev(x)
             s=nanstdev(x,'r') or m=nanstdev(x,1)
             s=nanstdev(x,'c') or m=nanstdev(x,2)

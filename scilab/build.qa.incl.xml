@@ -85,8 +85,6 @@
         <!-- Empty target to be override by other build.xml -->
     </target>
     
-    <taskdef classpathref="cobertura_classpath" resource="tasks.properties" />
-    
     <target name="instrument">
         <cobertura-instrument todir="${instrumented.classes.test.dir}" datafile="${report.test.dir}/${library.name}.ser">
             <fileset dir="${classes.dir}">

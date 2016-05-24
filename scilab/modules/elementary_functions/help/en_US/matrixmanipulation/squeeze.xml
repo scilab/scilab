@@ -19,7 +19,7 @@
         <refpurpose>removes singleton dimensions of a hypermatrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>hypOut = squeeze(hypIn)</synopsis>
     </refsynopsisdiv>
     <refsection>

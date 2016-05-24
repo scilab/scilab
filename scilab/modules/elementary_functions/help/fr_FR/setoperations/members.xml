@@ -196,6 +196,9 @@ H = [ "Hello" "Bonjour" "Allo"
                 <link linkend="intersect">intersect</link>
             </member>
             <member>
+                <link linkend="grep">grep</link>
+            </member>
+            <member>
                 <link linkend="find">find</link>
             </member>
             <member>

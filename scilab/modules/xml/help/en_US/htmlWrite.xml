@@ -19,7 +19,7 @@
         <refpurpose>Write a HTML document in a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             htmlWrite(doc [, filename] [, indent])
             htmlWrite(doc [, indent])

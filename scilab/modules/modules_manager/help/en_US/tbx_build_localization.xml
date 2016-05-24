@@ -19,7 +19,7 @@
         <refpurpose>Build localization "mo" file from "po" files (toolbox compilation process)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             tbx_build_localization(tbx_name, tbx_path)
         </synopsis>

@@ -64,7 +64,9 @@ public class Scilab {
 
     /**
      * Creator of the Scilab Javasci object. <BR>
-     * Scilab data path is autodetected and advanced features disabled
+     * <UL>
+     * <LI>Scilab data path is autodetected (SCI)
+     * <LI>advanced features are disabled (no Java nor TCL/TK features)
      */
     public Scilab() throws InitializationException {
         this(null, false);
@@ -72,7 +74,7 @@ public class Scilab {
 
     /**
      * Creator of the Scilab Javasci object with a specific Scilab path.<BR>
-     * Advanced features are disabled (faster)
+     * Advanced features are disabled (no Java nor TCL/TK features)
      * <BR>
      * Example:<BR>
      * <code>
@@ -737,7 +739,7 @@ public class Scilab {
                         err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
                         break;
                     case sci_uint64:
-                        //                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
+                    //                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
                     case sci_int64:
                         //                    err = Call_Scilab.putLong(varname, sciInteger.getData_());
                         break;

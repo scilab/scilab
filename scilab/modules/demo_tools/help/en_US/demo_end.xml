@@ -19,7 +19,7 @@
         <refpurpose>completes a demonstration </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>demo_end()</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>Sets the text displayed in the current window status bar.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xinfo(text)</synopsis>
     </refsynopsisdiv>
     <refsection>

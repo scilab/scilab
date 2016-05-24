@@ -19,7 +19,7 @@
         <refpurpose>rank</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[i]=rank(X)
             [i]=rank(X,tol)
         </synopsis>

@@ -16,16 +16,18 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="householder" xml:lang="pt">
     <refnamediv>
         <refname>householder</refname>
-        <refpurpose>matriz de reflex„o ortogonal de Householder</refpurpose>
+        <refpurpose>matriz de reflex√£o ortogonal de Householder</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq¸Íncia de Chamamento</title>
-        <synopsis>         householder         // demo</synopsis>
-        <synopsis> u     = householder(v [,w])</synopsis>
-        <synopsis>[u, H] = householder(v [,w])</synopsis>
+        <title>Seq√º√™ncia de Chamamento</title>
+        <synopsis>
+            householder         // demo
+            u     = householder(v [,w])
+            [u, H] = householder(v [,w])
+        </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
-        <title>Par‚metros</title>
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>v</term>
@@ -37,7 +39,7 @@
                 <term>w</term>
                 <listitem>
                     <para>vetor coluna de reais ou complexos com o mesmo tamanho que
-                        <varname>v</varname>. Valor padr„o È <literal>eye(v)</literal> ((Ox) axis)
+                        <varname>v</varname>. Valor padr√£o √© <literal>eye(v)</literal> ((Ox) axis)
                     </para>
                 </listitem>
             </varlistentry>
@@ -68,7 +70,7 @@
         </variablelist>
     </refsection>
     <refsection role="description">
-        <title>DescriÁ„o</title>
+        <title>Descri√ß√£o</title>
         <para>
             <literal>householder(..)</literal> computes the unit vector <varname>u</varname>
             lying in the <literal>(v,w)</literal> plane and orthogonal to the bisectrix of
@@ -105,7 +107,7 @@
         <para>
             If the related reflexion matrix <varname>H</varname> is computed, for any point A
             of column coordinates <literal>a</literal>, <literal>H*a</literal> are the coordinates of
-            the reflected image of A on P.
+            the reflected image of A (see the example below).
         </para>
         <note>
             If <varname>v</varname> or/and <varname>w</varname> are in row, they are priorly
@@ -147,7 +149,9 @@ clean(hm' - hm)         // must be zeros(3,3)
 clean(det(hm))          // must be -1
  ]]></programlisting>
         
-        <para>APPLICATION : Reflected image of an object</para>
+        <para>
+            <emphasis role="bold">Application:</emphasis> Reflected image of an object w.r. to a given plane
+        </para>
         <programlisting role="example"><![CDATA[
 // (OA) = [0 0 1] is reflected in O into (OB) = [ 1 1 0.3 ]:
 [n, H] = householder([0 0 1]', [ 1 1 0.3 ]');
@@ -199,7 +203,7 @@ drawnow
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>Ver TambÈm</title>
+        <title>Ver Tamb√©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="qr">qr</link>
@@ -210,7 +214,7 @@ drawnow
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>HistÛrico</title>
+        <title>Hist√≥rico</title>
         <revhistory>
             <revision>
                 <revnumber>6.0</revnumber>

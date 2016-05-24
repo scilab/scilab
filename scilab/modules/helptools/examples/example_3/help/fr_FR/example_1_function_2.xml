@@ -5,7 +5,7 @@
         <refpurpose>Description rapide de la fonction "example_1_function_2"</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>a = example_1_function_2(b,c)</synopsis>
     </refsynopsisdiv>
     <refsection>

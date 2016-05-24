@@ -24,7 +24,7 @@
         <refpurpose>justify character array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Tj = justify(T, opt)</synopsis>
     </refsynopsisdiv>
     <refsection>

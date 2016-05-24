@@ -19,7 +19,7 @@
         <refpurpose>Checks initial guess.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimbase_checkx0(opt)
         </synopsis>

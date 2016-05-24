@@ -59,12 +59,12 @@ public final class ArrowKeyListener implements KeyListener {
                 model.beginUpdate();
                 try {
                     for (Object cell : graph.getSelectionCells()) {
-                        // first increment
-                        graph.translateCell(cell, xIncrement, yIncrement);
-
-                        // then align
+                        // first snap
                         final mxGeometry geom = model.getGeometry(cell);
-                        model.setGeometry(cell, snap(graph, geom));
+                        snap(graph, geom);
+
+                        // then move and transaction
+                        graph.translateCell(cell, xIncrement, yIncrement);
                     }
                 } finally {
                     model.endUpdate();

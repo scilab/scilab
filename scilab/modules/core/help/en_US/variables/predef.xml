@@ -5,7 +5,7 @@
         <refpurpose>variable protection</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>n = predef()
             oldnew = predef(n)
             oldnew = predef('all')

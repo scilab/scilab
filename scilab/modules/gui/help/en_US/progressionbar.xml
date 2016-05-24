@@ -19,7 +19,7 @@
         <refpurpose>Draw a progression bar</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>winId=progressionbar(mes)
             progressionbar(winId[,mes])
         </synopsis>

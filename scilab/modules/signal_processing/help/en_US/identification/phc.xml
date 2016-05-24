@@ -5,7 +5,7 @@
         <refpurpose>Markovian representation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[H,F,G]=phc(hk,d,r)</synopsis>
     </refsynopsisdiv>
     <refsection>

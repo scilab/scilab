@@ -19,7 +19,7 @@
         <refpurpose>cumulative distribution function chi-square distribution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[P,Q]=cdfchi("PQ",X,Df)
             [X]=cdfchi("X",Df,P,Q);
             [Df]=cdfchi("Df",P,Q,X)

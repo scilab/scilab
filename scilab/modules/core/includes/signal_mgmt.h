@@ -15,10 +15,15 @@
 #ifndef __SIGNAL_MGMT_H__
 #define __SIGNAL_MGMT_H__
 
-
 /**
  * Initialize the signal management system
  */
 void base_error_init(void);
+
+/**
+ * Install a timeout on the process (watchdog behavior)
+ * @param timeoutDelay delay in seconds (0 will disable the timeout)
+ */
+void timeout_process_after(int timeoutDelay);
 
 #endif /* __SIGNAL_MGMT_H__ */

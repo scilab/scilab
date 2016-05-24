@@ -5,7 +5,7 @@
         <refpurpose>Logger utility for scicos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             log=scicos_log(log);
             log=scicos_log(log, msg);

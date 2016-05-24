@@ -19,7 +19,7 @@
         <refpurpose>A variable used to define polynomials.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>%z</synopsis>
     </refsynopsisdiv>
     <refsection>

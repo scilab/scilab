@@ -19,7 +19,7 @@
         <refpurpose>horizontal display of bar histogram</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>barh(y)
             barh(x,y)
             barh([h],x,y [,width [,color [,style]]])

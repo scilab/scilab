@@ -28,7 +28,7 @@
         <refpurpose>Transform a scilab variable into a vector of double</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>vec = var2vec(var)</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_var2vec">

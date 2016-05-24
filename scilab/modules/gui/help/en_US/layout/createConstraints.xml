@@ -5,7 +5,7 @@
         <refpurpose>Creates the layout constraints structure for a uicontrol.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             constraints = createConstraints(constraintsType, varargin)
         </synopsis>

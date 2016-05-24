@@ -42,7 +42,7 @@ class EXTERN_AST RunVisitor : public ConstVisitor
 public:
     RunVisitor()
     {
-        _excepted_result = -1;
+        _expected_result = -1;
         _resultVect.push_back(nullptr);
         _result = nullptr;
         m_bSingleResult = true;
@@ -98,12 +98,12 @@ public:
 public:
     int getExpectedSize(void)
     {
-        return _excepted_result;
+        return _expected_result;
     }
 
     void setExpectedSize(int _iSize)
     {
-        _excepted_result = _iSize;
+        _expected_result = _iSize;
     }
 
     int getResultSize(void)
@@ -302,7 +302,7 @@ protected:
     std::vector<types::InternalType*>    _resultVect;
     types::InternalType*    _result;
     bool m_bSingleResult;
-    int _excepted_result;
+    int _expected_result;
     symbol::Variable* m_pAns;
 };
 

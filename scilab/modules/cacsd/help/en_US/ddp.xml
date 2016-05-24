@@ -19,7 +19,7 @@
         <refpurpose>disturbance decoupling</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Closed,F,G]=ddp(Sys,zeroed,B1,D1)
             [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,alfa,beta)
         </synopsis>

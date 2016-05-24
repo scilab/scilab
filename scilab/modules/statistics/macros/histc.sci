@@ -46,7 +46,6 @@ function [cf, ind] = histc(n, data, normalization)
         data = iconvert(data, 0); // To pass to dsearch
     end
 
-    nd = length(data); // Number of data values
     if length(n) == 1 then  // The number of classes is provided
         if n < 1
             error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the interval %s.\n"),"histc",1,"[1, oo)"));
@@ -71,8 +70,10 @@ function [cf, ind] = histc(n, data, normalization)
 
     // Normalization
     if normalization == %t then
-        cw = cb(2:$)-cb(1:$-1); // Bin width
-        cf = cf./(nd*cw);
+        nd = size(data, "*"); // Number of data values
+        //cw = cb(2:$)-cb(1:$-1); // Bin width
+        //cf = cf./(nd*cw); // Normalization in bin heights
+        cf = cf./nd; // Heights normalization
     end
 
 endfunction

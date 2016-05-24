@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2015 - 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="twinkle">
+    <refnamediv>
+        <refname>twinkle</refname>
+        <refpurpose>fait clignoter un élément graphique pour le repérer visuellement</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>twinkle
+twinkle(n)
+twinkle(h)
+twinkle(h,n)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>identifiant de l'élément graphique à repérer. Par défaut, l'élément
+                      graphique actif d'identifiant <literal>gce()</literal> est considéré.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>nombre de clignotements. Par défaut, n=5</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <function>twinkle</function> fait clignoter <varname>n</varname> fois l'élément graphique
+            dont l'identifiant graphique <varname>h</varname> est spécifié.
+            Si <function>twinkle()</function> est appelé sans paramètre alors qu'aucune fenêtre
+            graphique n'existe, l'instruction est ignorée. Si l'identifiant graphique
+            <varname>h</varname> est invalide (l'élément graphique correspondant a été supprimé
+            entretemps), <function>twinkle(h..)</function> produit une erreur.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+clf
+plot()
+twinkle    // fait clignoter le dernier groupe de courbes dessinées dans l'exemple de plot()
+twinkle(3) // le fait clignoter seulement 3 fois
+
+clf
+x = linspace(-2*%pi,2*%pi,100)';
+plot2d(x,[sin(x),cos(x)]);
+e = gce();
+p1 = e.children(1);
+p2 = e.children(2);
+twinkle(p1)     // Courbe du cosinus
+twinkle(p2,10)  // Courbe du sinus, 10 fois
+twinkle(gca())  // Repère actif entier
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="graphics_entities">Eléments graphiques</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>twinkle() et twinkle(n) ajoutés.</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

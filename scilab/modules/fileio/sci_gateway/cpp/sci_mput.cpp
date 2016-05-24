@@ -44,6 +44,7 @@ types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, typ
     if (in.size() < 1 || in.size() > 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mput", 1, 3);
+        FREE(pstType);
         return types::Function::Error;
     }
 
@@ -51,6 +52,7 @@ types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, typ
     if ((in[0]->isDouble() == false) && (in[0]->isInt() == false))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mput", 1);
+        FREE(pstType);
         return types::Function::Error;
     }
 
@@ -62,6 +64,7 @@ types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, typ
         if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "mput", 2);
+            FREE(pstType);
             return types::Function::Error;
         }
 
@@ -75,6 +78,7 @@ types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, typ
         if (in[2]->isDouble() == false || in[2]->getAs<types::Double>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mput", 3);
+            FREE(pstType);
             return types::Function::Error;
         }
 
@@ -85,6 +89,7 @@ types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, typ
     {
         case 5: // stdin
             Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mput", iFile);
+            FREE(pstType);
             return types::Function::Error;
     }
 

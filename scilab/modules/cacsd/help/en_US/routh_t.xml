@@ -19,7 +19,7 @@
         <refpurpose>Routh's table</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [r [,num] ]=routh_t(p)
             [r [,num] ]=routh_t(h ,kp)

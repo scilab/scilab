@@ -30,7 +30,7 @@
         <refpurpose>Covariance matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             C = cov(x)
             C = cov(x, 0)

@@ -31,7 +31,6 @@ XCOS_IMPEXP int sci_xcosPalDelete(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosPalMove(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosPalEnable(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosPalDisable(char *fname, void *pvApiCtx);
-XCOS_IMPEXP int sci_xcosPalGenerateIcon(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosConfigureXmlFile(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosAddToolsMenu(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosUpdateBlock(char *fname, void *pvApiCtx);

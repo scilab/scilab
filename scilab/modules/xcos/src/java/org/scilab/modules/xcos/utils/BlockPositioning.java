@@ -24,7 +24,6 @@ import java.util.Map;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
-import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
@@ -34,6 +33,7 @@ import org.scilab.modules.xcos.port.Orientation;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.util.mxStyleUtils;
+import org.scilab.modules.graph.utils.StyleMap;
 
 /**
  * Helpers to place port on a block.
@@ -258,13 +258,14 @@ public final class BlockPositioning {
         };
 
         JavaController controller = new JavaController();
-        VectorOfDouble mvcAngle = new VectorOfDouble();
-        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+        String[] style = new String[1];
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);
+        StyleMap styleMap = new StyleMap(style[0]);
 
-        int flags = (int) mvcAngle.get(0);
-        final boolean mirrored = (flags & 0x0002) != 0;
-        final boolean flipped = (flags & 0x0001) != 0;
-        final int angle = (((int) Math.round(mvcAngle.get(1))) % 360 + 360) % 360;
+        final boolean mirrored = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
+        final boolean flipped = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
+        final double doubleRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0"));
+        final int angle = (((int) Math.round(doubleRotation)) % 360 + 360) % 360;
 
         List<BasicPort> working = ports;
 
@@ -370,13 +371,14 @@ public final class BlockPositioning {
      */
     public static void rotateAllPorts(final XcosDiagram diag, BasicBlock block) {
         JavaController controller = new JavaController();
-        VectorOfDouble mvcAngle = new VectorOfDouble();
-        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+        String[] style = new String[1];
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);
+        StyleMap styleMap = new StyleMap(style[0]);
 
-        final int mirrorAndFlip = (int) mvcAngle.get(0);
-        final boolean flipped = (mirrorAndFlip & 0x0001) != 0;
-        final boolean mirrored = (mirrorAndFlip & 0x0002) != 0;
-        final double angle = mvcAngle.get(1);
+        final boolean mirrored = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
+        final boolean flipped = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
+        final double doubleRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0"));
+        final int angle = (((int) Math.round(doubleRotation)) % 360 + 360) % 360;
 
         final int childrenCount = block.getChildCount();
         for (int i = 0; i < childrenCount; ++i) {
@@ -427,15 +429,15 @@ public final class BlockPositioning {
      */
     public static void toggleFlip(final XcosDiagram diag, BasicBlock block) {
         JavaController controller = new JavaController();
-        VectorOfDouble mvcAngle = new VectorOfDouble();
-        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.ANGLE, mvcAngle);
+        String[] style = new String[1];
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);
 
-        // retrieve then mask the value
-        int mirrorAndFlip = (int) mvcAngle.get(0);
-        mirrorAndFlip ^= 0x0001;
+        StyleMap styleMap = new StyleMap(style[0]);
+        final boolean invertedFlip = ! Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
 
-        mvcAngle.set(0, mirrorAndFlip);
-        controller.setObjectProperty(block.getUID(), block.getKind(), ObjectProperties.ANGLE, mvcAngle);
+        styleMap.put(XcosConstants.STYLE_FLIP, Boolean.toString(invertedFlip));
+
+        controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, styleMap.toString());
 
         updateBlockView(diag, block);
     }
@@ -448,15 +450,15 @@ public final class BlockPositioning {
      */
     public static void toggleMirror(final XcosDiagram diag, BasicBlock block) {
         JavaController controller = new JavaController();
-        VectorOfDouble mvcAngle = new VectorOfDouble();
-        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.ANGLE, mvcAngle);
+        String[] style = new String[1];
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);
 
-        // retrieve then mask the value
-        int mirrorAndFlip = (int) mvcAngle.get(0);
-        mirrorAndFlip ^= 0x0002;
+        StyleMap styleMap = new StyleMap(style[0]);
+        final boolean invertedFlip = ! Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
 
-        mvcAngle.set(0, mirrorAndFlip);
-        controller.setObjectProperty(block.getUID(), block.getKind(), ObjectProperties.ANGLE, mvcAngle);
+        styleMap.put(XcosConstants.STYLE_MIRROR, Boolean.toString(invertedFlip));
+
+        controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, styleMap.toString());
 
         updateBlockView(diag, block);
     }
@@ -469,46 +471,40 @@ public final class BlockPositioning {
      */
     public static void toggleAntiClockwiseRotation(final XcosDiagram diag, BasicBlock block) {
         JavaController controller = new JavaController();
+        String[] style = new String[1];
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);
 
-        VectorOfDouble mvcAngle = new VectorOfDouble();
-        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+        StyleMap styleMap = new StyleMap(style[0]);
+        styleMap.put(XcosConstants.STYLE_ROTATION, Double.toString(getNextAntiClockwiseAngle(styleMap)));
 
-        mvcAngle.set(1, getNextAntiClockwiseAngle(block));
-        controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+        controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, styleMap.toString());
         updateBlockView(diag, block);
     }
 
     /**
      * Get the next anti-clockwise rotation value
      *
-     * @param block
-     *            The block to work on
+     * @param styleMap
+     *            the data to parse
      * @return The angle value
      */
-    public static double getNextAntiClockwiseAngle(BasicBlock block) {
-        JavaController controller = new JavaController();
+    public static double getNextAntiClockwiseAngle(StyleMap styleMap) {
+        final double doubleRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0"));
 
-        VectorOfDouble mvcAngle = new VectorOfDouble();
-        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
-
-        double angle = (mvcAngle.get(1) - ROTATION_STEP + MAX_ROTATION) % MAX_ROTATION;
+        double angle = (doubleRotation - ROTATION_STEP + MAX_ROTATION) % MAX_ROTATION;
         return angle;
     }
 
     /**
      * Get the next clockwise rotation value
      *
-     * @param block
-     *            The block to work on
+     * @param styleMap
+     *            the data to parse
      * @return The angle value
      */
-    public static double getNextClockwiseAngle(BasicBlock block) {
-        JavaController controller = new JavaController();
-
-        VectorOfDouble mvcAngle = new VectorOfDouble();
-        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
-
-        double angle = (mvcAngle.get(1) + ROTATION_STEP) % MAX_ROTATION;
+    public static double getNextClockwiseAngle(StyleMap styleMap) {
+        final double doubleRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0"));
+        double angle = (doubleRotation + ROTATION_STEP) % MAX_ROTATION;
         return angle;
     }
 

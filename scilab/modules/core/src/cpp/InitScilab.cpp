@@ -41,6 +41,7 @@
 
 extern "C"
 {
+#include <locale.h>
 #include "machine.h"
 #include "InitializeLocalization.h"
 #include "elem_common.h"
@@ -77,6 +78,7 @@ extern "C"
 #include "InnosetupMutex.h"
 #include "MutexClosingScilab.h"
 #include "WinConsole.h"
+#include "SignalManagement.h"
 #else
 #include "signal_mgmt.h"
 #include "initConsoleMode.h"
@@ -133,6 +135,7 @@ ScilabEngineInfo* InitScilabEngineInfo()
     pSEI->isPrioritary = 0;         // by default all thread are non-prioritary
     pSEI->iStartConsoleThread = 1;  // used in call_scilab to avoid "prompt" thread execution
     pSEI->iForceQuit = 0;           // management of -quit argument
+    pSEI->iTimeoutDelay = 0;        // watchdog delay to avoid deadlocking tests
     pSEI->iCommandOrigin = NONE;
 
     pSEI->iCodeAction = -1; //default value, no code action ( used on windows by file associations -O -X -P arguments)
@@ -154,6 +157,12 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     _pSEI->iForceQuit = _pSEI->iForceQuit && (_pSEI->pstExec || _pSEI->pstFile);
     ConfigVariable::setForceQuit(_pSEI->iForceQuit == 1);
 
+    // setup timeout delay
+    if (_pSEI->iTimeoutDelay != 0)
+    {
+        timeout_process_after(_pSEI->iTimeoutDelay);
+    }
+
     /* This bug only occurs under Linux 32 bits
      * See: http://wiki.scilab.org/Scilab_precision
      */
@@ -173,6 +182,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     /* floating point exceptions */
     fpsetmask(0);
 #endif
+
+    // Make sure the default locale is applied at startup
+    setlocale(LC_NUMERIC, "C");
 
     ThreadManagement::initialize();
     NumericConstants::Initialize();
@@ -362,6 +374,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     //register console debugger as debugger
     debugger::DebuggerMagager::getInstance()->addDebugger(new debugger::ConsoleDebugger());
+
     return iMainRet;
 }
 

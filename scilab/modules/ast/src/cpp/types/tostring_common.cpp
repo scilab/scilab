@@ -242,10 +242,12 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         }
         else
         {
+            // PLUS_SIGN "+" is not written by default
             pSign = L"";
         }
     }
 
+    // Step 1: BLANK and SIGN in pwstSign
     os_swprintf(pwstSign, 32, L"%ls%ls", pBlank, pSign);
 
     if (ISNAN(_dblVal))
@@ -260,18 +262,37 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
     }
     else if (_pDF->bExp)
     {
+        // Prints the exponent part 1.543D+03 for example
         double dblAbs = fabs(_dblVal);
         double dblDec = 0;
         double dblEnt = 0;
         double dblTemp = 0;
 
+        // modf returns the fractional par in dblDec
+        // and stores the pointer to the integral part in dblEnt
         dblDec = std::modf(dblAbs, &dblEnt);
         if (dblEnt == 0)
         {
-            dblTemp = std::floor(std::log10(dblDec));
+            // The integral part in 0
+            // the number in between 0 and 1 in absolute value
+            // dblTemp stores the position of the significant digit
+            // floor(log10(0.01)) = -2
+            // floor(log10(0.00123)) = -3
+            // floor(log10(0.0015)) = -3
+            if (dblDec != 0)
+            {
+                dblTemp = std::floor(std::log10(dblDec));
+            }
+            else
+            {
+                dblTemp = 0;
+            }
         }
         else
         {
+            // dblTemp stores the number of digit of the integral part minus one
+            // log10(15) = 1.176
+            // log10(1530) = 3.185
             dblTemp = std::log10(dblEnt);
         }
 
@@ -280,11 +301,11 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
 
         if (_pDF->bPrintPoint)
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%#d.%%0%dldD%%+.02d", pwstSign, _pDF->iPrec);
+            os_swprintf(pwstFormat, 32, L"%ls%%#d.%%0%dlldD%%+.02d", pwstSign, _pDF->iPrec);
         }
         else
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%d%%0%dldD%%+.02d", pwstSign, _pDF->iPrec);
+            os_swprintf(pwstFormat, 32, L"%ls%%d%%0%dlldD%%+.02d", pwstSign, _pDF->iPrec);
         }
 
         if ((long long int)std::round(dblDec) != (long long int)dblDec)

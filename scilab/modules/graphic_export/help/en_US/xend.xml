@@ -19,7 +19,7 @@
         <refpurpose>close a graphics export session</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xend()</synopsis>
     </refsynopsisdiv>
     <refsection>

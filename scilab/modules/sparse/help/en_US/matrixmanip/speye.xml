@@ -19,7 +19,7 @@
         <refpurpose>sparse identity matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Isp=speye(nrows,ncols)
             Isp=speye(A)
         </synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>linear system projection</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[slp]=projsl(sl,Q,M)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>calculates largest eigenvalues and eigenvectors of matrices</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             d = eigs(A [,B [,k [,sigma [,opts]]]])
             [d, v] = eigs(A [,B [,k [,sigma [,opts]]]])

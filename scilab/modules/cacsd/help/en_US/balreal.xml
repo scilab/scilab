@@ -19,7 +19,7 @@
         <refpurpose>balanced realization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[slb [,U] ] = balreal(sl)</synopsis>
     </refsynopsisdiv>
     <refsection>

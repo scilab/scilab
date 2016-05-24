@@ -5,7 +5,7 @@
         <refpurpose>interactive button or menu definition</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>addmenu(button [,submenus] [,action])
             addmenu(gwin,button [,submenus] [,action])
         </synopsis>
@@ -124,7 +124,7 @@
                         <literal>proc_name</literal> designes a C or Fortran procedure, this
                         procedure may be interfaced in Fortran subroutine default/fbutn.f or
                         dynamically linked with scilab using the <literal>link</literal>
-                        function. The C calling sequence is: <literal>(char* button_name,
+                        function. The C syntax is: <literal>(char* button_name,
                             int* gwin,int *k)
                         </literal>
                     </para>
@@ -136,7 +136,7 @@
                     <para>
                         <literal>action</literal> argument is set to 2
                         <literal>proc_name</literal> designes a Scilab function. This
-                        function calling sequence should be:
+                        function syntax should be:
                     </para>
                     <para>
                         + <literal>proc_name(k)</literal>for a main window

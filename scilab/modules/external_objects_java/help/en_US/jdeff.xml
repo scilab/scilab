@@ -21,7 +21,7 @@
         <refpurpose>Map a static Java method onto a Scilab macro</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             jdeff(className, javaMethodName, scilabMacroName)
         </synopsis>

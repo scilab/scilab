@@ -19,7 +19,7 @@
         <refpurpose>Checks the cost function.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimbase_checkcostfun(opt)
         </synopsis>

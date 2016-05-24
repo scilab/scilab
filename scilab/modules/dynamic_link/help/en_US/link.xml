@@ -19,7 +19,7 @@
         <refpurpose>dynamic linker</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x = link(files [, sub-names,flag]);
             link(x , sub-names [, flag]);
             lstID = link("show")

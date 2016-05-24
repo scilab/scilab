@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>Sgrayplot(x,y,z,&lt;opt_args&gt;)
             Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])
         </synopsis>

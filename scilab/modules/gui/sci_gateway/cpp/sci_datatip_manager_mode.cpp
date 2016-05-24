@@ -113,6 +113,7 @@ int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    free(pstData);
                     return 1;
                 }
                 if (strcmp("on", pstData) == 0 || strcmp("T", pstData) == 0 || strcmp("1", pstData) == 0)
@@ -223,6 +224,7 @@ int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    free(pstData);
                     return 1;
                 }
                 if (strcmp("on", pstData) == 0 || strcmp("T", pstData) == 0 || strcmp("1", pstData) == 0)

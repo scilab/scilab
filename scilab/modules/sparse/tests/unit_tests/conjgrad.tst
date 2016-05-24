@@ -343,7 +343,7 @@ assert_checkequal ( iter , 10 );
 //-------------------------------------------------------
 // Error checks
 
-refMsg = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"conjgrad",2,7);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"conjgrad",2,9);
 assert_checkerror("conjgrad(A);", refMsg);
 
 refMsg = msprintf(_("%s: Wrong type for input argument #%d.\n"),"conjgrad",1);

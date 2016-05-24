@@ -19,7 +19,7 @@
         <refpurpose>state-space matrices</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[A,B,C,D]=abcd(sl)</synopsis>
     </refsynopsisdiv>
     <refsection>

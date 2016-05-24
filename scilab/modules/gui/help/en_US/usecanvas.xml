@@ -5,7 +5,7 @@
         <refpurpose>Get/Set the main component used for Scilab graphics.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [canvasused] = usecanvas([usecanvasfordisplay]);
         </synopsis>

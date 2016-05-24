@@ -19,7 +19,7 @@
         <refpurpose>Computes the values of the function at vertices points.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimsimplex_computefv(opt, fun)
             [opt, data] = optimsimplex_computefv(opt, fun, data)

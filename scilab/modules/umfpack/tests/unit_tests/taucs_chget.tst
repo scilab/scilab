@@ -20,7 +20,7 @@ taucs_chdel(Cp);
 
 // Example #2 a real example
 // first load a sparse matrix
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 // compute the factorization
 Cptr = taucs_chfact(A);
 // retrieve the factor at scilab level

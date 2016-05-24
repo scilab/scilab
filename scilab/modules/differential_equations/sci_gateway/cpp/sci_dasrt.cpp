@@ -681,6 +681,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
             FREE(YSize);
             FREE(iwork);
             FREE(rwork);
+            FREE(root);
             if (pDblAtol == NULL || pDblAtol->isScalar())
             {
                 FREE(atol);

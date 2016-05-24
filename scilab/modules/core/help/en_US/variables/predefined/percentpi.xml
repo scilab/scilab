@@ -19,7 +19,7 @@
         <refpurpose>ratio of circle's circumference to its diameter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>%pi</synopsis>
     </refsynopsisdiv>
     <refsection>

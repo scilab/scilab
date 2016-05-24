@@ -19,7 +19,7 @@
         <refpurpose>Returns the simplex gradient of the function.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             g = optimsimplex_gradientfv(opt, [fun, [method]])
             [g, data] = optimsimplex_gradientfv(opt, fun, method, data)

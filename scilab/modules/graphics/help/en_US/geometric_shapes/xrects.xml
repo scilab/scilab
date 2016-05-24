@@ -19,7 +19,7 @@
         <refpurpose>draw or fill a set of rectangles</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>xrects(rects,[fill])</synopsis>
     </refsynopsisdiv>
     <refsection>

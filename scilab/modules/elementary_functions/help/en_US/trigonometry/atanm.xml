@@ -19,7 +19,7 @@
         <refpurpose>square matrix tangent inverse</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[t]=atanm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

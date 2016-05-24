@@ -185,7 +185,7 @@ extern "C" {
         void *ida_eh_data;          /* dats pointer passed to ehfun                 */
         FILE *ida_errfp;            /* IDA error messages are sent to errfp         */
 
-        /* Flags to verify correct calling sequence */
+        /* Flags to verify correct syntax */
 
         booleantype ida_SetupDone;  /* set to FALSE by IDAMalloc and IDAReInit
                                  set to TRUE by IDACalcIC or IDASolve         */

@@ -91,12 +91,20 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
         {
             printError(&err, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            if (path)
+            {
+                freeAllocatedMatrixOfString(row, col, path);
+            }
             return 0;
         }
 
         if (!isXMLValid(addr, pvApiCtx))
         {
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLValid");
+            if (path)
+            {
+                freeAllocatedMatrixOfString(row, col, path);
+            }
             return 0;
         }
 
@@ -105,6 +113,10 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
         if (!validation)
         {
             Scierror(999, gettext("%s: XML validation file does not exist.\n"), fname);
+            if (path)
+            {
+                freeAllocatedMatrixOfString(row, col, path);
+            }
             return 0;
         }
     }

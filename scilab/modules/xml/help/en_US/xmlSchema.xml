@@ -19,7 +19,7 @@
         <refpurpose>Create a XML Schema object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             schema = xmlSchema(path)
         </synopsis>

@@ -239,6 +239,8 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
                 char* pstr = wide_string_to_UTF8(stFullPath.data());
                 Scierror(999, _("%s: Cannot open file ''%s''.\n"), "genlib", pstr);
                 FREE(pstr);
+                FREE(pstParsePath);
+                freeArrayOfWideString(pstPath, iNbFile);
                 pLib->killMe();
                 return types::Function::Error;
             }
@@ -462,6 +464,8 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     pWriter = xmlNewTextWriterFilename(pstFilename, 0);
     if (pWriter == NULL)
     {
+        FREE(pstFilename);
+        FREE(pstLibName);
         return NULL;
     }
 
@@ -474,6 +478,8 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     if (iLen < 0)
     {
         closeXMLFile(pWriter);
+        FREE(pstFilename);
+        FREE(pstLibName);
         return NULL;
     }
 
@@ -482,6 +488,8 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     if (iLen < 0)
     {
         closeXMLFile(pWriter);
+        FREE(pstFilename);
+        FREE(pstLibName);
         return NULL;
     }
 
@@ -490,6 +498,8 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     if (iLen < 0)
     {
         closeXMLFile(pWriter);
+        FREE(pstFilename);
+        FREE(pstLibName);
         return NULL;
     }
 

@@ -19,7 +19,7 @@
         <refpurpose>3D plot of a surface</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>plot3d(x,y,z,[theta,alpha,leg,flag,ebox])
             plot3d(x,y,z,&lt;opt_args&gt;)
             

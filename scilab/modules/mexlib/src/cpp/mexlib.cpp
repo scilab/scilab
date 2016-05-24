@@ -26,7 +26,7 @@
  *    -Assumes that sparse matrices have been converted into the Matlab
  *    format. Scilab sparse matrices are stored in the transposed Matlab
  *    format. If A is a sparse Scilab matrix, it should be converted
- *    by the command A=mtlb_sparse(A) in the calling sequence of the
+ *    by the command A=mtlb_sparse(A) in the syntax of the
  *    mex function.
  *    -Structs and Cells are Scilab mlists:
  *    Struct=mlist(["st","dims","field1",...,"fieldk"],
@@ -73,6 +73,7 @@
 
 extern "C"
 {
+#include "sci_malloc.h"
 #include "machine.h"
 #include "mex.h"
 #include "os_string.h"
@@ -97,6 +98,7 @@ static int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, con
     FREE(pwst);
 
     types::InternalType *value = context->get(*symbol);
+    delete symbol;
     types::Function *func = value->getAs<types::Function>();
     if (func == NULL)
     {
@@ -117,7 +119,6 @@ static int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, con
     {
         plhs[i] = (mxArray *) (out[i]);
     }
-
     return 0;
 }
 
@@ -630,6 +631,7 @@ char *mxArrayToString(const mxArray *ptr)
         int dest_length = strlen(dest);
         memcpy(str + index, dest, dest_length);
         index += dest_length;
+        FREE(dest);
     }
 
     str[index] = '\0';
@@ -1524,6 +1526,7 @@ int mxAddField(mxArray *ptr, const char *fieldname)
     types::Struct *pa = (types::Struct*)ptr;
     wchar_t *wfieldname = to_wide_string(fieldname);
     pa->addField(wfieldname);
+    FREE(wfieldname);
     return mxGetFieldNumber(ptr, fieldname);
 }
 
@@ -1695,8 +1698,10 @@ int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm
     }
     else
     {
+        FREE(dest);
         return 1;
     }
+    FREE(dest);
     return 0;
 }
 

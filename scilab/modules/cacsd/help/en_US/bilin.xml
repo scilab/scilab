@@ -19,7 +19,7 @@
         <refpurpose>general bilinear transform</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[sl1]=bilin(sl,v)</synopsis>
     </refsynopsisdiv>
     <refsection>

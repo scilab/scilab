@@ -73,6 +73,7 @@ matvar_t* GetCellMatVar(types::Cell* pCell, const char* name, int matfile_versio
     if (cellEntries == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "GetCellMatVar");
+        FREE(pszDims);
         return NULL;
     }
 

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -19,10 +19,10 @@
         <refpurpose>generates a square wave with period 2*%pi</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x=squarewave(t [,percent])</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -49,7 +49,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>squarewave(t)</literal> generates the vector of the values
@@ -62,11 +62,11 @@
             positive.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-t=(0:0.1:5*%pi)';
-plot2d1('onn',t,[2*sin(t),1.5*squarewave(t),squarewave(t,10)])
+        <programlisting role="example"><![CDATA[
+t = (0:0.1:5*%pi)';
+plot2d(t, [2*sin(t), 1.5*squarewave(t), squarewave(t,10)])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

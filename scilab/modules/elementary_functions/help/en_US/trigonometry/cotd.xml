@@ -19,7 +19,7 @@
         <refpurpose>element-wise cotangent function, argument in degree</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = cotd(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

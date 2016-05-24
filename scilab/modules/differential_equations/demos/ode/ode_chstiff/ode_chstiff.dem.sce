@@ -49,7 +49,7 @@ function demo_ode_chstiff()
 
         // Visualisation
         //write(%io(2),[rd(1);y(:,ny)]','(''t='',e10.3,'' y='',3(e10.3,'',''))');
-        plot2d1("oln",rd(1)',(diag([1 10000 1])*y(:,ny))',style=[-3,-3,-3]);
+        plot2d("ln", rd(1), (diag([1 10000 1])*y(:,ny))',style=[-3,-3,-3]);
 
         // Next root
         [y,rd,w,iw]=ode("root",[1;0;0],rd(1),t(k+1:nt),rtol,atol,chem,2,Surf,w,iw);

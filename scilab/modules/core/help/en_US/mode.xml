@@ -19,7 +19,7 @@
         <refpurpose>select a mode in an exec-file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mode(k)
             k = mode()
         </synopsis>

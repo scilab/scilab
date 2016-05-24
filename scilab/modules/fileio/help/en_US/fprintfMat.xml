@@ -20,7 +20,7 @@
         <refpurpose>writes a matrix in a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>fprintfMat(file, M [,format,text])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>Current date as date string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>dt=date()</synopsis>
     </refsynopsisdiv>
     <refsection>

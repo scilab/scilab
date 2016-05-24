@@ -5,7 +5,7 @@
         <refpurpose>Get the position(s) of a node </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>position = uiGetNodePosition(tree, node)</synopsis>
     </refsynopsisdiv>
     <refsection>

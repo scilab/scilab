@@ -19,7 +19,7 @@
         <refpurpose>Create a tree containing inference data</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>infer=Infer(varargin)</synopsis>
     </refsynopsisdiv>
     <refsection>

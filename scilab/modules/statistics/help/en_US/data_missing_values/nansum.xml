@@ -19,7 +19,7 @@
         <refpurpose>Sum of values ignoring NAN's</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>s = nansum(x,orient)</synopsis>
     </refsynopsisdiv>
     <refsection>

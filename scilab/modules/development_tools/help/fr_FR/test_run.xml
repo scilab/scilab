@@ -38,7 +38,7 @@
                 <term>module</term>
                 <listitem>
                     <para>
-                        Un tableau de chaînes de caractères ou <literal>[]</literal>. Nom des modules ou répertoires à tester, tous les modules internes de scilab si <literal>[]</literal>
+                        Un tableau de chaînes de caractères ou <literal>[]</literal> (ou <literal>"[]"</literal>). Nom des modules ou répertoires à tester, tous les modules internes de scilab si <literal>[]</literal>
                     </para>
                     <itemizedlist>
                         <listitem>
@@ -63,7 +63,7 @@
                 <term>test_name</term>
                 <listitem>
                     <para>
-                        Un tableau de chaînes de caractères ou <literal>[]</literal>. Le nom des tests à exécuter lors de cette passe de tests, tous les tests si <literal>[]</literal>
+                        Un tableau de chaînes de caractères ou <literal>[]</literal> (ou <literal>"[]"</literal>). Le nom des tests à exécuter lors de cette passe de tests, tous les tests si <literal>[]</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -71,7 +71,7 @@
                 <term>options</term>
                 <listitem>
                     <para>
-                        Un tableau de chaînes de caractères ou <literal>[]</literal>. Les options à utiliser pour la passe de test, les options par défaut si <literal>[]</literal>
+                        Un tableau de chaînes de caractères ou <literal>[]</literal> (ou <literal>"[]"</literal>). Les options à utiliser pour la passe de test, les options par défaut si <literal>[]</literal>
                     </para>
                     <variablelist>
                         <varlistentry>
@@ -380,11 +380,14 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // Lance tous les tests
+// Cela peut prendre du temps...
 // =============================================
 
-test_run();
-test_run([]);
-test_run([],[]);
+// test_run();
+// test_run([]);
+// test_run([],[]);
+// test_run("[]","[]");
+// test_run [] [];
 
 // Teste un ou plusieurs modules
 // =============================================
@@ -422,7 +425,7 @@ test_run('time',['datenum';'calendar'],'skip_tests');
 test_run('time','datenum','no_check_ref');
 
 // création d'un fichier .dia.ref
-test_run([],[],'create_ref');
+// test_run([],[],'create_ref');
 
 // liste des tests disponibles
 test_run([],[],'list');
@@ -441,6 +444,9 @@ test_run('boolean','bug_2799','no_check_error_output');
 
 // Combinaisons d'options
 test_run([],[],['no_check_ref','mode_nw']);
+
+// Console mode
+test_run time [] no_check_ref //tests time module with no_check_ref option
  ]]></programlisting>
         
         <programlisting role="example"><![CDATA[
@@ -462,6 +468,11 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
         <para>
             Les scripts de tests ne sont pas exécutés tels qu'écrit, un en-tête et un pied de page spécifiques sont rajoutés à chaque test.
             Le but est d'instrumenter le fichier de tests afin de rediriger les sorties dans un fichier de log spécique au test.
+        </para>
+        <para>
+            La durée d'exécution pour chaque test est fixé à 5 minutes. Pour
+            désactiver la terminaison du test après ce délai, utilisez le tag
+            <literal>LONG TIME EXECUTION</literal>.
         </para>
     </refsection>
     <refsection>
@@ -497,7 +508,12 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
             </revision>
             <revision>
                 <revnumber>6.0.0</revnumber>
-                <revdescription>mode profiling ajouté pour permettre l'analyse du profil d'exécution avec valgrind (Linux uniquement)</revdescription>
+                <revdescription>
+                    <para>mode profiling ajouté pour permettre l'analyse du profil d'exécution avec valgrind (Linux uniquement)</para>
+                    <para>
+                        durée d'exécution maximale d'un test sans <literal>LONG TIME EXECUTION</literal> configurée à 5 minutes.
+                    </para>
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>

@@ -8,7 +8,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             pal = xcosPalAddBlock(pal, block)
             pal = xcosPalAddBlock(pal, block, pal_block_img)

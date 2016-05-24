@@ -20,7 +20,7 @@
         <refpurpose>loads a Matlab V6 MAT-file (binary or ASCII) into Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>loadmatfile(format,filename[,var1[,var2[,...]]])
             loadmatfile(filename[,format[,var1[,var2[,...]]]])
             loadmatfile(filename[,var1[,var2,[,...[,format]]]])

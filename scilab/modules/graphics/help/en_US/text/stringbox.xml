@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>rect = stringbox( string, x, y, [angle, [fontStyle, [fontSize]]] )
             rect = stringbox( Handle )
         </synopsis>

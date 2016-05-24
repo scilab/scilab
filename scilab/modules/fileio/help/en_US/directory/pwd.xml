@@ -5,7 +5,7 @@
         <refpurpose>gets Scilab current directory</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>pwd
             x = pwd()
         </synopsis>

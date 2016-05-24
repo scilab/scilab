@@ -19,7 +19,7 @@
         <refpurpose>logarithmically spaced vector</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>logspace(d1,d2, [n])</synopsis>
     </refsynopsisdiv>
     <refsection>

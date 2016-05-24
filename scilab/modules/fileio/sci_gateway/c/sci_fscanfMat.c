@@ -166,6 +166,10 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
     else
     {
         results = fscanfMat(expandedFilename, Format, separator);
+        if (results && results->err != FSCANFMAT_NO_ERROR)
+        {
+            freeFscanfMatResult(results);
+        }
     }
 
     if (results == NULL)
@@ -270,10 +274,6 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
             return 0;
         }
     }
-
-    FREE(filename);
-    freeFscanfMatResult(results);
-    return 0;
 }
 /*--------------------------------------------------------------------------*/
 static void freeVar(char** filename, char** expandedFilename, char** Format, char** separator)

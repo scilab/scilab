@@ -19,7 +19,7 @@
         <refpurpose>QR decomposition</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Q,R]=qr(X [,"e"])
             [Q,R,E]=qr(X [,"e"])
             [Q,R,rk,E]=qr(X [,tol])

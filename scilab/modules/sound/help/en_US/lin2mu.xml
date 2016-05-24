@@ -19,7 +19,7 @@
         <refpurpose>linear signal to mu-law encoding</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mu=lin2mu(y)</synopsis>
     </refsynopsisdiv>
     <refsection>

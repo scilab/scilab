@@ -19,7 +19,7 @@
         <refpurpose>draw graph legend</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>hl=legend([h,] string1,string2, ... [,pos] [,boxed])
             hl=legend([h,] strings [,pos] [,boxed])
         </synopsis>

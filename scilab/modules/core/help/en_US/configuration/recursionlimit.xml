@@ -5,7 +5,7 @@
         <refpurpose>get or set recursion limit</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>limit = recursionlimit()
             old = recursionlimit(new)
             current = recursionlimit("current")

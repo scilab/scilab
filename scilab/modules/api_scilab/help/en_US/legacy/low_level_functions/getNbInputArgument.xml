@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int* nb_params = getNbInputArgument(void* _pvCtx)</synopsis>
         <synopsis>int nb_params = nbInputArgument(void* _pvCtx)</synopsis>
         <synopsis>int nb_params = Rhs</synopsis>

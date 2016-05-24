@@ -21,7 +21,7 @@
         <refpurpose>Allow to trace the internal functionality of JIMS to help the debugging.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             jenableTrace(filename)
         </synopsis>

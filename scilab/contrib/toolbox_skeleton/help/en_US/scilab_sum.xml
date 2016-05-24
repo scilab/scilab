@@ -10,7 +10,7 @@
         <refpurpose>sum from scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>a = scilab_sum(b,c)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>inverse of matrix pencil</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Bfs,Bis,chis]=glever(E,A [,s])</synopsis>
     </refsynopsisdiv>
     <refsection>

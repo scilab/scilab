@@ -19,7 +19,7 @@
         <refpurpose>function editing</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>edit(functionname[,linenumber])</synopsis>
     </refsynopsisdiv>
     <refsection>

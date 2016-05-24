@@ -5,7 +5,7 @@
         <refpurpose>interactive button or menu deletion</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>delmenu(button)
             delmenu(gwin,button)
         </synopsis>

@@ -147,23 +147,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="fcontour2d">fcontour2d</link>
-                </term>
-                <listitem>
-                    <para>
-                        Кривые уровней поверхности, определённой функцией, на
-                        двумерном графике.
-                    </para>
-                    <para>
-                        <emphasis role="bold">Пример:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fcontour2d();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="grayplot">grayplot</link>
                 </term>
                 <listitem>
@@ -1014,16 +997,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xclear">xclear</link>
-                </term>
-                <listitem>
-                    <para>
-                        Очистка графического окна
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="driver">driver</link>
                 </term>
                 <listitem>
@@ -1061,14 +1034,6 @@
                         Перерисовка текущего графического окна с новыми
                         пределами
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xpause">xpause</link>
-                </term>
-                <listitem>
-                    <para>Приостановка работы Scilab'а</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -1350,3 +1315,4 @@
         </variablelist>
     </refsection>
 </refentry>
+

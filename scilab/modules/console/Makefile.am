@@ -85,6 +85,7 @@ libsciconsole_minimal_la_SOURCES = \
     src/c/others/clrscr_nw.c \
     src/c/prompt.c \
     src/c/promptecho.c \
+    src/c/getpipeline.c \
     src/c/cmdLine/autoCompletionCli.c \
     src/c/cmdLine/charactersManagement.c \
     src/c/cmdLine/cliDisplayManagement.c \

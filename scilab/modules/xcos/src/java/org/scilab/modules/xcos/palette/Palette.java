@@ -58,7 +58,7 @@ import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxGraphView;
 import com.mxgraph.view.mxStylesheet;
-import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 
 /**
  * Utility class which is the entry point from Scilab for palette related
@@ -287,7 +287,7 @@ public final class Palette {
                 if (root instanceof PreLoaded) {
                     pal = (PreLoaded) root;
                 } else if (root instanceof Category) {
-                    LinkedList<Category> stash = new LinkedList<Category>();
+                    LinkedList<Category> stash = new LinkedList<>();
                     stash.add((Category) root);
 
                     pal = new PreLoaded();
@@ -320,7 +320,7 @@ public final class Palette {
     }
 
     private static List<PaletteBlock> list(Deque<Category> stash, PreLoaded pal) {
-        final ArrayList<PaletteBlock> blocks = new ArrayList<PaletteBlock>();
+        final ArrayList<PaletteBlock> blocks = new ArrayList<>();
         while (!stash.isEmpty()) {
             final Category c = stash.pop();
             for (PaletteNode n : c.getNode()) {
@@ -517,16 +517,7 @@ public final class Palette {
         JavaController controller = new JavaController();
         Kind kind = controller.getKind(uid);
 
-        String[] strUID = new String[] { "" };
-        controller.getObjectProperty(uid, kind, ObjectProperties.UID, strUID);
-
-        String[] label = new String[] { "" };
-        controller.getObjectProperty(uid, kind, ObjectProperties.LABEL, label);
-
-        String[] style = new String[] { "" };
-        controller.getObjectProperty(uid, kind, ObjectProperties.STYLE, style);
-
-        final BasicBlock block = new BasicBlock(new JavaController(), uid, kind, label[0], null, style[0], strUID[0]);
+        final BasicBlock block = XcosCellFactory.createBlock(controller, uid, kind);
         generateIcon(block, iconPath);
 
         if (LOG.isLoggable(Level.FINEST)) {
@@ -584,8 +575,5 @@ public final class Palette {
 
         final String extension = iconPath.substring(iconPath.lastIndexOf('.') + 1);
         ImageIO.write(image, extension, new File(iconPath));
-
-
-        controller.deleteObject(graph.getUID());
     }
 }

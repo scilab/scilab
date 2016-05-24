@@ -49,6 +49,7 @@ int SetUicontrolBackgroundColor(void* _pvCtx, int iObjUID, void* _pvData, int va
         {
             /* Wrong string format */
             Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "BackgroundColor");
+            delete[] allColors;
             return SET_PROPERTY_ERROR;
         }
 
@@ -75,6 +76,10 @@ int SetUicontrolBackgroundColor(void* _pvCtx, int iObjUID, void* _pvData, int va
     if (!checkColorRange(allColors[0], allColors[1], allColors[2]))
     {
         Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: Numbers between 0 and 1 expected.\n")), "BackgroundColor");
+        if (valueType == sci_strings)
+        {
+            delete[] allColors;
+        }
         return SET_PROPERTY_ERROR;
     }
 

@@ -99,7 +99,7 @@ int sci_x_mdialog(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        if (nbRow != 1 && nbCol != 1)
+        if (nbRowLineLabels != 1 && nbColLineLabels != 1)
         {
             freeAllocatedMatrixOfString(nbRowLineLabels, nbColLineLabels, lineLabelsAdr);
             Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 2);
@@ -165,7 +165,7 @@ int sci_x_mdialog(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (nbRow != 1 && nbCol != 1)
+            if (nbRowColumnLabels != 1 && nbColColumnLabels != 1)
             {
                 freeAllocatedMatrixOfString(nbRowColumnLabels, nbColColumnLabels, columnLabelsAdr);
                 Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
@@ -204,6 +204,7 @@ int sci_x_mdialog(char *fname, void* pvApiCtx)
             if ((nbRowDefaultValues != nbRowLineLabels * nbColLineLabels) || (nbColDefaultValues != nbRowColumnLabels * nbColColumnLabels))
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"), fname, 4, nbRowLineLabels * nbColLineLabels, nbRowColumnLabels * nbColColumnLabels);
+                freeArrayOfString(defaultValuesAdr, nbColDefaultValues * nbRowDefaultValues);
                 return FALSE;
             }
             setMessageBoxDefaultInput(messageBoxID, defaultValuesAdr, nbColDefaultValues * nbRowDefaultValues);

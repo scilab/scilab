@@ -10,7 +10,7 @@
         <refpurpose>Initialize the MPI environment</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = MPI_Init()</synopsis>
     </refsynopsisdiv>
     <refsection>

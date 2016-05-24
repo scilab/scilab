@@ -19,7 +19,7 @@
         <refpurpose>transform real to pixel coordinates</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x1, y1, rect] = xchange(x, y, dir)</synopsis>
     </refsynopsisdiv>
     <refsection>

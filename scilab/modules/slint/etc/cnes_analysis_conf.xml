@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<analysisConfiguration analysisConfigurationId="myfirstanalysis" analysisConfigurationName="" toolConfigurationId="" projectDevLevel="">
+    <analysisRule analysisRuleId="GlobalKeyword" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="Redefinition" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="Variables" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="FunctionName" analysisRuleActivation="false">
+        <analysisRuleParameter analysisRuleParameterName="pattern" analysisRuleTextValue="[a-z]*" />
+        <analysisRuleParameter analysisRuleParameterName="length" analysisRuleValueMin="-1" analysisRuleValueMax="-1" />
+    </analysisRule>
+    <analysisRule analysisRuleId="FunctionArgs" analysisRuleActivation="false" />
+    <analysisRule analysisRuleId="UselessArg" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="UselessRet" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="VariableName" analysisRuleActivation="false">
+        <analysisRuleParameter analysisRuleParameterName="pattern" analysisRuleTextValue="[a-zA-Z0-9]*" />
+        <analysisRuleParameter analysisRuleParameterName="length" analysisRuleValueMin="-1" analysisRuleValueMax="-1" />
+    </analysisRule>
+    <analysisRule analysisRuleId="SingleInstr" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="EmptyBlock" analysisRuleActivation="false" />
+    <analysisRule analysisRuleId="MopenMclose" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="McCabe" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="30" />
+    </analysisRule>
+    <analysisRule analysisRuleId="Decimal" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="character" analysisRuleTextValue="eE" />
+        <analysisRuleParameter analysisRuleParameterName="checkDot" analysisRuleNumericalValue="1" />
+    </analysisRule>
+    <analysisRule analysisRuleId="Printf" analysisRuleActivation="false" />
+    <analysisRule analysisRuleId="LineLength" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="80" />
+    </analysisRule>
+    <analysisRule analysisRuleId="LinesCount" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="200" />
+    </analysisRule>
+    <analysisRule analysisRuleId="Todo" analysisRuleActivation="false" />
+    <analysisRule analysisRuleId="NaN" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="EqEq" analysisRuleActivation="false" />
+    <analysisRule analysisRuleId="UselessOp" analysisRuleActivation="false" />
+    <analysisRule analysisRuleId="UnreachableCode" analysisRuleActivation="false" />
+    <analysisRule analysisRuleId="Deprecated" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="Select" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="default" analysisRuleNumericalValue="1" />
+        <analysisRuleParameter analysisRuleParameterName="homogeneity" analysisRuleNumericalValue="0" />
+        <analysisRuleParameter analysisRuleParameterName="empty" analysisRuleNumericalValue="1" />
+        <analysisRuleParameter analysisRuleParameterName="oneCase" analysisRuleNumericalValue="1" />
+    </analysisRule>
+    <analysisRule analysisRuleId="ImplicitList" analysisRuleActivation="false" />
+    <analysisRule analysisRuleId="OldNot" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="SpacesAroundOp" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="SpacesInArgs" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="BreaksInLoop" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="maxBreaks" analysisRuleNumericalValue="1" />
+        <analysisRuleParameter analysisRuleParameterName="maxContinues" analysisRuleNumericalValue="1" />
+    </analysisRule>
+    <analysisRule analysisRuleId="NestedBlocks" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="5" />
+    </analysisRule>
+    <analysisRule analysisRuleId="ExpInCond" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="5" />
+    </analysisRule>
+    <analysisRule analysisRuleId="Bracketed" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="NotNot" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="IllegalCalls" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="pause" />
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="abort" />
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="quit" />
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="exit" />
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="resume" />
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="stacksize" />
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="lib" />
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="disp" />
+    </analysisRule>
+    <analysisRule analysisRuleId="CommentRatio" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="ratioMin" analysisRuleNumericalValue="0.33" />
+    </analysisRule>
+    <analysisRule analysisRuleId="FunctionArgsOrder" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="FunctionTestReturn" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="mopen" analysisRuleNumericalValue="2" />
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="mclose" analysisRuleNumericalValue="1" />
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="meof" analysisRuleNumericalValue="1" />
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="fileinfo" analysisRuleNumericalValue="2" />
+        <analysisRuleParameter analysisRuleParameterName="keyword" analysisRuleTextValue="evstr" analysisRuleNumericalValue="2" />
+    </analysisRule>
+    <analysisRule analysisRuleId="SemicolonAtEOL" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="ReturnsCount" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="1" />
+    </analysisRule>
+    <analysisRule analysisRuleId="NotEqual" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="operator" analysisRuleTextValue="&lt;&gt;" />
+    </analysisRule>
+</analysisConfiguration>

@@ -19,7 +19,7 @@
         <refpurpose>split string into tokens</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = strtok(str, delimiters)</synopsis>
     </refsynopsisdiv>
     <refsection>

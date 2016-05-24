@@ -19,7 +19,7 @@
         <refpurpose>blue to yellow colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>cmap=parulacolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

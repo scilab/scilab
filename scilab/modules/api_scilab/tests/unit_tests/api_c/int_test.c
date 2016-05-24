@@ -17,7 +17,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "sci_malloc.h"
 
 const char fname[] = "int_test";
 
@@ -32,8 +31,6 @@ int sci_int_test(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt,
     int in2 = 0;
 
     int* out1 = NULL;
-
-    int* out2dims = NULL;
     int* out2 = NULL;
 
     int out3 = 0;
@@ -79,10 +76,7 @@ int sci_int_test(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt,
     }
 
     //out2 : 3d matrix of int
-    out2dims = (int*)MALLOC(3 * sizeof(int));
-    out2dims[0] = inr1;
-    out2dims[1] = inc1;
-    out2dims[2] = 2;
+    int out2dims[3] = {inr1, inc1, 2};
 
     out[1] = scilab_createInteger32Matrix(env, 3, out2dims);
     scilab_getInteger32Array(env, out[1], &out2);

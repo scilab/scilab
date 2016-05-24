@@ -11,7 +11,7 @@
 // along with this program.
 
 function [num,den]=mrfit(w,mod,r)
-    //Calling sequence:
+    //Syntax:
     //[num,den]=mrfit(w,mod,r)
     //sys = mrfit(w,mod,r)
     //

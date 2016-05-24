@@ -5,7 +5,7 @@
         <refpurpose>cubic spline interpolation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>d = splin(x, y [,spline_type [, der]])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -147,6 +147,7 @@ int sci_unsetmenu(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedSingleString(menuNameAdr);
                 return 1;
             }
 
@@ -156,6 +157,7 @@ int sci_unsetmenu(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
+                freeAllocatedSingleString(menuNameAdr);
                 return 1;
             }
 
@@ -163,6 +165,7 @@ int sci_unsetmenu(char *fname, void* pvApiCtx)
             if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 2);
+                freeAllocatedSingleString(menuNameAdr);
                 return FALSE;
             }
 
@@ -236,6 +239,7 @@ int sci_unsetmenu(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedSingleString(menuNameAdr);
                 return 1;
             }
 
@@ -245,18 +249,21 @@ int sci_unsetmenu(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
+                freeAllocatedSingleString(menuNameAdr);
                 return 1;
             }
 
             if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 3);
+                freeAllocatedSingleString(menuNameAdr);
                 return FALSE;
             }
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 3);
+            freeAllocatedSingleString(menuNameAdr);
             return FALSE;
         }
 
