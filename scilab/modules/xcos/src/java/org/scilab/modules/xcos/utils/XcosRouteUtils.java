@@ -17,7 +17,6 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.link.BasicLink;
@@ -40,6 +39,8 @@ public abstract class XcosRouteUtils {
      * The error which can be accepted as it is aligned strictly.
      */
     public final static double ALIGN_STRICT_ERROR = 2;
+
+    public final static double ALIGN_SPLITBLOCK_ERROR = 10;
 
     /**
      * The distance for a point away to the port.
@@ -162,14 +163,34 @@ public abstract class XcosRouteUtils {
      * @return <b>true</b> if there is at least one blocks in the line.
      */
     protected static boolean checkObstacle(double x1, double y1, double x2, double y2, Object[] allCells) {
+        return checkObstacle(x1, y1, x2, y2, allCells, false);
+    }
+
+    /**
+     * Check whether there are blocks between two points.
+     *
+     * @param x1
+     *            the x-coordinate of the first point of the line
+     * @param y1
+     *            the y-coordinate of the first point of the line
+     * @param x2
+     *            the x-coordinate of the second point of the line
+     * @param y2
+     *            the y-coordinate of the second point of the line
+     * @param allCells
+     * @param isStrict
+     *            if it is true, there won't be intersection.
+     * @return <b>true</b> if there is at least one obstacle in the line.
+     */
+    protected static boolean checkObstacle(double x1, double y1, double x2, double y2, Object[] allCells, boolean isStrict) {
         for (Object o : allCells) {
             if (o instanceof mxCell) {
                 mxCell c = (mxCell) o;
                 if (c instanceof BasicLink) {
                     BasicLink l = (BasicLink) c;
-                    if (checkLinesIntersection(x1, y1, x2, y2, l)) {
+                    if (checkLinesIntersection(x1, y1, x2, y2, l) && isStrict) {
                         // check intersection.
-                        // return true;
+                        return true;
                     }
                     if (checkLinesCoincide(x1, y1, x2, y2, l)) {
                         // check superimposition.
@@ -224,7 +245,7 @@ public abstract class XcosRouteUtils {
                         continue;
                     }
                     mxGeometry childGeo = new mxGeometry(child.getGeometry().getX(), child.getGeometry().getY(),
-                                                         child.getGeometry().getWidth(), child.getGeometry().getHeight());
+                            child.getGeometry().getWidth(), child.getGeometry().getHeight());
                     if (child.getGeometry().isRelative()) {
                         childGeo.setX(g.getWidth() * childGeo.getX());
                         childGeo.setY(g.getHeight() * childGeo.getY());
@@ -248,12 +269,31 @@ public abstract class XcosRouteUtils {
                 double blocky = g.getY() + iy;
                 double width = g.getWidth() + iw;
                 double height = g.getHeight() + ih;
-                if (x >= blockx && x <= (blockx + width) && y >= blocky && y < (blocky + height)) {
+                if (x >= blockx && x <= (blockx + width) && y >= blocky && y <= (blocky + height)) {
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    /**
+     * Check whether a point is in a geometry.
+     *
+     * @param x
+     *            the x-coordinate of the point
+     * @param y
+     *            the y-coordinate of the point
+     * @param geometry
+     * @return <b>true</b> if one point is in the geometry.
+     */
+    protected static boolean checkPointInGeometry(double x, double y, mxGeometry geometry) {
+        boolean flag = false;
+        flag = (x >= geometry.getX())
+                && (x <= geometry.getX() + geometry.getWidth())
+                && (y >= geometry.getY())
+                && (y <= geometry.getY() + geometry.getHeight());
+        return flag;
     }
 
     /**
@@ -315,9 +355,15 @@ public abstract class XcosRouteUtils {
             // if the edge is straight or vertical or horizontal style, there is
             // no way to check.
         } else {
-            listPoints.add(getLinkPortPosition(link, true));
+            if (getLinkPortPosition(link, true) != null) {
+                listPoints.add(getLinkPortPosition(link, true));
+            }
             listPoints.addAll(link.getGeometry().getPoints());
-            listPoints.add(getLinkPortPosition(link, false));
+            if (getLinkPortPosition(link, false) != null) {
+                listPoints.add(getLinkPortPosition(link, false));
+            }
+            // in Java 8:
+            // listPoints.removeIf(Objects::isNull);
             for (int i = 1; i < listPoints.size(); i++) {
                 mxPoint point3 = listPoints.get(i - 1);
                 mxPoint point4 = listPoints.get(i);
@@ -354,8 +400,7 @@ public abstract class XcosRouteUtils {
      *            the y-coordinate of the second point of the second line
      * @return <b>true</b> if two lines coincide.
      */
-    private static boolean linesCoincide(double x1, double y1, double x2, double y2, double x3, double y3,
-                                         double x4, double y4) {
+    private static boolean linesCoincide(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) {
         x1 = Math.round(x1);
         y1 = Math.round(y1);
         x2 = Math.round(x2);
@@ -406,8 +451,7 @@ public abstract class XcosRouteUtils {
      *            the y-coordinate of the second point of the second line
      * @return <b>true</b> if two lines coincide.
      */
-    private static boolean linesStrictlyCoincide(double x1, double y1, double x2, double y2, double x3, double y3,
-            double x4, double y4) {
+    private static boolean linesStrictlyCoincide(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) {
         // the first line is inside the second line.
         if (pointInLineSegment(x1, y1, x3, y3, x4, y4) && pointInLineSegment(x2, y2, x3, y3, x4, y4)) {
             return true;
@@ -428,17 +472,74 @@ public abstract class XcosRouteUtils {
     }
 
     /**
+     * Return the intersection of two lines as an mxPoint.
+     * If two lines are superposition, return the last point.
+     *
+     * @param x1
+     *            the x-coordinate of the first point of the first line
+     * @param y1
+     *            the y-coordinate of the first point of the first line
+     * @param x2
+     *            the x-coordinate of the second point of the first line
+     * @param y2
+     *            the y-coordinate of the second point of the first line
+     * @param x3
+     *            the x-coordinate of the first point of the second line
+     * @param y3
+     *            the y-coordinate of the first point of the second line
+     * @param x4
+     *            the x-coordinate of the second point of the second line
+     * @param y4
+     *            the y-coordinate of the second point of the second line
+     * @return the intersection between the two lines.
+     */
+    public static mxPoint getIntersection(double x1, double y1, double x2, double y2, double x3, double y3,
+            double x4, double y4) {
+        x1 = Math.round(x1);
+        y1 = Math.round(y1);
+        x2 = Math.round(x2);
+        y2 = Math.round(y2);
+        x3 = Math.round(x3);
+        y3 = Math.round(y3);
+        x4 = Math.round(x4);
+        y4 = Math.round(y4);
+        if (linesStrictlyCoincide(x1, y1, x2, y2, x3, y3, x4, y4)) {
+            if (pointInLineSegment(x2, y2, x3, y3, x4, y4)) {
+                return new mxPoint(x2, y2);
+            } else if (pointInLineSegment(x4, y4, x1, y1, x2, y2)) {
+                return new mxPoint(x4, y4);
+            }
+        }
+        return mxUtils.intersection(x1, y1, x2, y2, x3, y3, x4, y4);
+    }
+
+    /**
      * Check whether a point is in the Link.
      *
      * @param x
      *            the x-coordinate of the point
      * @param y
      *            the y-coordinate of the point
-     * @param link
+     * @param link the link
      * @return <b>true</b> if one point is in the Link.
      */
     private static boolean pointInLink(double x, double y, BasicLink link) {
         List<mxPoint> listPoints = link.getPoints(0, false);
+        return pointInLink(x, y, listPoints);
+    }
+
+    /**
+     * Check whether a point is in the Link (a list of Point).
+     *
+     * @param x
+     *            the x-coordinate of the point
+     * @param y
+     *            the y-coordinate of the point
+     * @param listPoints
+     *            the list of points in the link.
+     * @return <b>true</b> if one point is in the Link.
+     */
+    protected static boolean pointInLink(double x, double y, List<mxPoint> listPoints) {
         if (listPoints == null || listPoints.size() <= 1) {
         } else {
             for (int i = 1; i < listPoints.size(); i++) {
@@ -683,7 +784,7 @@ public abstract class XcosRouteUtils {
                     end_temp = list.get(i);
                     restart = true;
                 } else if ((Math.abs(end_temp - start_temp) > Math.abs(end - start))
-                           || (mid_temp < nMax && mid_temp > nMin) && (mid < nMin || mid > nMax)) {
+                        || (mid_temp < nMax && mid_temp > nMin) && (mid < nMin || mid > nMax)) {
                     // if the new one in between two points and the previous one
                     // is out of them, or if the new one is longer than the
                     // previous one,
@@ -699,7 +800,7 @@ public abstract class XcosRouteUtils {
         mid = (end + start) / 2;
         if ((mid_temp < nMin || mid_temp > nMax) && (mid < nMax && mid > nMin)) {
         } else if ((Math.abs(end_temp - start_temp) > Math.abs(end - start))
-                   || ((mid_temp < nMax && mid_temp > nMin) && (mid < nMin || mid > nMax))) {
+                || ((mid_temp < nMax && mid_temp > nMin) && (mid < nMin || mid > nMax))) {
             start = start_temp;
             end = end_temp;
         }
@@ -911,7 +1012,7 @@ public abstract class XcosRouteUtils {
     }
 
     /**
-     * Get the position of the source/target of a link. If dest is true, return source's position.
+     * Get the position of the source/target of a link.If dest is true, return source's position.
      * If dest is false, return target's position.
      *
      * @param link
@@ -953,6 +1054,97 @@ public abstract class XcosRouteUtils {
             point.setY(blockY + portY + portH / 2);
         }
         return point;
+    }
+
+    /**
+     * Check if two points are coincident.
+     *
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @param isSplitBlock
+     * @return
+     */
+    protected static boolean isPointCoincident(double x1, double y1, double x2, double y2, boolean isSplitBlock) {
+        double error = XcosRouteUtils.ALIGN_STRICT_ERROR;
+        if (isSplitBlock) {
+            error = XcosRouteUtils.ALIGN_SPLITBLOCK_ERROR;
+        }
+        if (Math.abs(y1 - y2) <= error && Math.abs(x1 - x2) <= error
+                && (Math.abs(y1 - y2) + Math.abs(x1 - x2)) < error * 2) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Check if two port are parallel.
+     *
+     * @param orientation1
+     * @param orientation2
+     * @return
+     */
+    protected static boolean isOrientationParallel(double x1, double y1, double x2, double y2, Orientation orientation1, Orientation orientation2) {
+        if (orientation1 == orientation2) {
+            return true;
+        }
+        double error = XcosRouteUtils.ALIGN_STRICT_ERROR;
+        if (Math.abs(y1 - y2) > error) {
+            // if they are not aligned horizontally,
+            if (orientation1 == Orientation.EAST && orientation2 == Orientation.WEST) {
+                return true;
+            }
+            if (orientation1 == Orientation.WEST && orientation2 == Orientation.EAST) {
+                return true;
+            }
+        }
+        if (Math.abs(x1 - x2) > error) {
+            // if they are not aligned vertically,
+            if (orientation1 == Orientation.SOUTH && orientation2 == Orientation.NORTH) {
+                return true;
+            }
+            if (orientation1 == Orientation.NORTH && orientation2 == Orientation.SOUTH) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check if two lines are parallel.
+     *
+     * @param x1
+     *            the x-coordinate of the first point of the first line
+     * @param y1
+     *            the y-coordinate of the first point of the first line
+     * @param x2
+     *            the x-coordinate of the second point of the first line
+     * @param y2
+     *            the y-coordinate of the second point of the first line
+     * @param x3
+     *            the x-coordinate of the first point of the second line
+     * @param y3
+     *            the y-coordinate of the first point of the second line
+     * @param x4
+     *            the x-coordinate of the second point of the second line
+     * @param y4
+     *            the y-coordinate of the second point of the second line
+     * @param includeCoincide
+     *            true if including coincide situation
+     * @return <b>true</b> if two lines are parallel.
+     */
+    protected static boolean isLineParallel(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, boolean includeCoincide) {
+        double i = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+        // two lines are parallel and not coincide.
+        if (i == 0) {
+            if (includeCoincide || (!pointInLineSegment(x1, y1, x3, y3, x4, y4)
+                    && !pointInLineSegment(x2, y2, x3, y3, x4, y4) && !pointInLineSegment(x3, y3, x1, y1, x2, y2)
+                    && !pointInLineSegment(x4, y4, x1, y1, x2, y2))) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -210,7 +210,6 @@ public final class XcosMessages {
     public static final String LINK_STYLE_STRAIGHT = Messages.gettext("Straight");
     public static final String LINK_STYLE_HORIZONTAL = Messages.gettext("Horizontal");
     public static final String LINK_STYLE_VERTICAL = Messages.gettext("Vertical");
-    public static final String LINK_STYLE_OPTIMAL = Messages.gettext("Optimal");
 
     public static final String DEBUG_LEVEL_LABEL = "<html>" + Messages.gettext("Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)") + "</html>";
     public static final String SET_DEBUG = Messages.gettext("Execution trace and Debug");
@@ -310,6 +309,12 @@ public final class XcosMessages {
     public static final String TOOLTIP_LINK_TRG_DATATYPE = Messages.gettext("Target datatype: ");
     public static final String TOOLTIP_LINK_LABEL = Messages.gettext("Label: ");
     public static final String TOOLTIP_LINK_STYLE = Messages.gettext("Style: ");
+
+    /* Automatic Layout */
+    public static final String LINK_STYLE_OPTIMAL = Messages.gettext("Optimal");
+    public static final String BLOCK_AUTO_POSITION = Messages.gettext("Auto-Position Block");
+    public static final String BLOCK_AUTO_POSITION_SPLIT_BLOCK = Messages.gettext("Split Block");
+    public static final String BLOCK_AUTO_POSITION_SPLIT_BLOCK_CONTEXTUAL = Messages.gettext("Auto-Position Split Block");
 
     // CSON: JavadocVariable
     // CSON: LineLength

@@ -93,6 +93,7 @@ import org.scilab.modules.xcos.actions.ViewGridAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
+import org.scilab.modules.xcos.block.actions.AutoPositionSplitBlockAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
@@ -145,6 +146,7 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
     private Menu simulate;
     private Menu format;
     private Menu alignMenu;
+    private Menu blockPosition;
     private Menu linkStyle;
     private Menu tools;
     private Menu help;
@@ -336,9 +338,9 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
             BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
         }
 
-        ClosingOperationsManager.addDependencyWithRoot((SwingScilabDockablePanel) tab);
-        ClosingOperationsManager.registerClosingOperation((SwingScilabDockablePanel) tab, new ClosingOperation(graph));
-        WindowsConfigurationManager.registerEndedRestoration((SwingScilabDockablePanel) tab, new EndedRestoration(graph));
+        ClosingOperationsManager.addDependencyWithRoot(tab);
+        ClosingOperationsManager.registerClosingOperation(tab, new ClosingOperation(graph));
+        WindowsConfigurationManager.registerEndedRestoration(tab, new EndedRestoration(graph));
     }
 
     /*
@@ -491,6 +493,12 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         format.add(EditFormatAction.createMenu(diagram));
         format.add(BorderColorAction.createMenu(diagram));
         format.add(FilledColorAction.createMenu(diagram));
+        format.addSeparator();
+
+        blockPosition = ScilabMenu.createMenu();
+        blockPosition.setText(XcosMessages.BLOCK_AUTO_POSITION);
+        blockPosition.add(AutoPositionSplitBlockAction.createMenu(diagram));
+        format.add(blockPosition);
         format.addSeparator();
 
         linkStyle = ScilabMenu.createMenu();

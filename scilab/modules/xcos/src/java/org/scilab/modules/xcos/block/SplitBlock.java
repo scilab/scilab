@@ -15,14 +15,19 @@
  */
 package org.scilab.modules.xcos.block;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.scilab.modules.xcos.port.BasicPort;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
+
+import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.block.actions.AutoPositionSplitBlockAction;
 
 /**
  * A SplitBlock is used on a junction between links.
@@ -39,6 +44,14 @@ public final class SplitBlock extends BasicBlock {
      */
     public SplitBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
         super(controller, uid, kind, value, new mxGeometry(geometry == null ? DEFAULT_POSITION_X : geometry.getX(), geometry == null ? DEFAULT_POSITION_Y : geometry.getY(), DEFAULT_SIZE, DEFAULT_SIZE), style, id);
+    }
+
+    /**
+     * Set the "BAP - Split Block" menu enabled.
+     */
+    @Override
+    protected void customizeMenu(Map<Class<? extends DefaultAction>, Menu> menuList) {
+        menuList.get(AutoPositionSplitBlockAction.class).setEnabled(true);
     }
 
     /**

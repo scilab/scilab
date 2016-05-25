@@ -677,6 +677,15 @@ msgstr "Couleur de remplissage"
 msgid "Text Color"
 msgstr "Couleur du texte"
 
+msgid "Auto-Position Block"
+msgstr "Auto-positionnement de bloc"
+
+msgid "Split Block"
+msgstr "Bloc Split"
+
+msgid "Auto-Position Split Block"
+msgstr "Auto-positionnement de bloc Split"
+
 msgid "Link Style"
 msgstr "Style de liens"
 
