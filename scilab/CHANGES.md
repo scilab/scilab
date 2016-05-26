@@ -205,6 +205,8 @@ or a 3-components vector to set the position in axes coordinates to draw the dat
 * The zero-pole-gain (zpk) representation added for linear dynamical systems.
 * It is now possible to add a title to the axes via the "Label -> Title" context menu entry
 * `getPreferencesValue` can now read a tag having multiple occurrences, and accepts the path to a preferences file instead of its XML handle.
+* atomsSetConfig does not update cache.
+* lqi function added to compute "linear quadratic integral compensator".
 
 
 Help pages:
@@ -342,6 +344,7 @@ Bug Fixes
 * [#2919](http://bugzilla.scilab.org/show_bug.cgi?id=2919): The `fchamp` example and demo were unclear and badly rendered
 * [#4327](http://bugzilla.scilab.org/show_bug.cgi?id=4327): Overloading did not support custom types names longer than 8 characters
 * [#5723](http://bugzilla.scilab.org/show_bug.cgi?id=5723): Cross-references were missing between axis_properties and axes_properties help pages
+* [#6307](http://bugzilla.scilab.org/show_bug.cgi?id=6307): Make easy version of lqr, lqe, lqg
 * [#7192](http://bugzilla.scilab.org/show_bug.cgi?id=7192): From S=[], S($+1,:) = some_row inserted it in row#2 after a parasitic row#1.
 * [#7649](http://bugzilla.scilab.org/show_bug.cgi?id=7649): `isempty` returned `%F` on `struct()`, `{}` or `list(,)` and was not shortcut
 * [#7696](http://bugzilla.scilab.org/show_bug.cgi?id=7696): The `parallel_run` help page was poorly formated

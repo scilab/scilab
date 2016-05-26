@@ -1,7 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA -
-//
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2000- 2016 INRIA -
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,8 +11,6 @@
 function [a,b1,b2,c1,c2,d11,d12,d21,d22]=smga(slp,r)
     //Matrix extractions (for use with h_inf,lft and other);
     // Utility function
-
-
     select typeof(slp)
     case "state-space" then
         p=r(2),r=r(1),
@@ -28,7 +24,7 @@ function [a,b1,b2,c1,c2,d11,d12,d21,d22]=smga(slp,r)
         d12=coeff(d(1:s1-r,s2-p+1:s2),0),
         d21=coeff(d(s1-r+1:s1,1:s2-p),0),
         d22=coeff(d(s1-r+1:s1,s2-p+1:s2),0)
-    case "rational" then
+    else
         [nl,nk]=size(slp);
         k1=1:nl-r(1);
         k2=nl-r(1)+1:nl;
