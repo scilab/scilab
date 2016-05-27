@@ -502,6 +502,7 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
     else
     {
         delete[] pDblSp;
+        delete[] pDbl;
         throw ast::InternalError(_W("Invalid exponent.\n"));
         return 1;
     }
@@ -523,6 +524,13 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
     delete[] Col;
     delete[] Row;
     delete[] iPositVal;
+    for (int i = 0; i < iSize; i++)
+    {
+        delete pDbl[i];
+        delete pDblSp[i];
+    }
+    delete pDbl;
+    delete pDblSp;
 
     pSpTemp->finalize();
     *_pOut = pSpTemp;

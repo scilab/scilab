@@ -652,6 +652,7 @@ Callable::ReturnValue DynamicFunction::Init()
         {
             char* pstLoadDepsName = wide_string_to_UTF8(m_wstLoadDepsName.c_str());
             m_pLoadDeps = (LOAD_DEPS)GetDynLibFuncPtr(hLib, pstLoadDepsName);
+            FREE(pstLoadDepsName);
         }
 
     }
