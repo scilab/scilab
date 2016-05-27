@@ -81,18 +81,21 @@ int set_tip_z_component_property(void* _pvCtx, int iObj, void* _pvData, int valu
  */
 int set_tip_display_components_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    if (valueType != sci_strings)
-    {
-        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "display_components");
-        return SET_PROPERTY_ERROR;
-    }
-    const char * value = (const char*)_pvData;
+    BOOL status = FALSE;
+    const char * value = (const char*) _pvData;
 
     int isXSet = 0;
     int isYSet = 0;
     int isZSet = 0;
     //check if the value is valid and throws properly error msg
     int i;
+
+    if (valueType != sci_strings)
+    {
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "display_components");
+        return SET_PROPERTY_ERROR;
+    }
+
     for (i = 0; i < 4; ++i)
     {
         if (value[i] == '\0')
@@ -149,7 +152,6 @@ int set_tip_display_components_property(void* _pvCtx, int iObj, void* _pvData, i
             }
         }
     }
-    BOOL status = FALSE;
 
     status = setGraphicObjectProperty(iObj, __GO_DATATIP_DISPLAY_COMPONENTS__, value, jni_string, 1);
     if (status == TRUE)
