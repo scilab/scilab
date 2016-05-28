@@ -613,6 +613,11 @@ void* scilabReadAndExecCommand(void* param)
     }
     while (ConfigVariable::getForceQuit() == false);
 
+    if(command)
+    {
+        FREE(command);
+    }
+
     return NULL;
 }
 
@@ -751,6 +756,7 @@ void* scilabReadAndStore(void* param)
                     {
                         sciprint(_("Debugger is on a breakpoint\n"));
                         sciprint(_("(c)ontinue or (a)bort current execution before execute a new command\n"));
+                        FREE(tmpCommand);
                         continue;
                     }
                 }
@@ -985,7 +991,9 @@ static int batchMain(ScilabEngineInfo* _pSEI)
 #ifdef DEBUG
     std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
-    return parser->getExitStatus();
+    int ret = parser->getExitStatus();
+    delete parser;
+    return ret;
 }
 
 /*

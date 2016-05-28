@@ -197,6 +197,10 @@ static BOOL AppendModules(char *xmlfilename)
                         {
                             /* we found the tag name */
                             const char *str = (const char*)attrib->children->content;
+                            if (name)
+                            {
+                                FREE(name);
+                            }
                             name = os_strdup(str);
                         }
                         else if (xmlStrEqual (attrib->name, (const xmlChar*) "activate"))

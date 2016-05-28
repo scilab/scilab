@@ -50,6 +50,8 @@ int sci_getdebuginfo(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        freeArrayOfString(outputDynamicList, m1);
+        freeArrayOfString(outputStaticList, m2);
         return 0;
     }
 
@@ -61,6 +63,8 @@ int sci_getdebuginfo(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeArrayOfString(outputDynamicList, m1);
+            freeArrayOfString(outputStaticList, m2);
             return 0;
         }
 

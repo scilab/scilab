@@ -82,7 +82,10 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
         if (bStringMode)
         {
             pstPath = wide_string_to_UTF8(wcsCurrentIn);
-            pstMD5 = to_wide_string(md5_str(pstPath));
+            char* pstMD5_ = md5_str(pstPath);
+            pstMD5 = to_wide_string(pstMD5_);
+            FREE(pstPath);
+            FREE(pstMD5_);
         }
         else
         {

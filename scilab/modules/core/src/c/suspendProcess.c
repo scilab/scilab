@@ -23,6 +23,7 @@
 #include "HistoryManager.h"
 #include "initConsoleMode.h"
 #include "suspendProcess.h"
+#include "sci_malloc.h"
 
 /*
  * Function called by signal when signum is caught.
@@ -89,6 +90,7 @@ void continueProcess(int signum)
         {
             printf("%s", currentLine);
             fflush(stdout);
+            FREE(currentLine);
         }
     }
 }
