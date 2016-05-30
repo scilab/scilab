@@ -613,11 +613,6 @@ void* scilabReadAndExecCommand(void* param)
     }
     while (ConfigVariable::getForceQuit() == false);
 
-    if(command)
-    {
-        FREE(command);
-    }
-
     return NULL;
 }
 
