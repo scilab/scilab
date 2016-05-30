@@ -429,6 +429,8 @@ In 6.0.0:
 
 * Bug #14297 fixed - Updated cumsum y=cumsum(x) description. It was just a copy-paste of the help page "sum"
 
+* Bug #14326 fixed - Corrected deletion of "elements" of a structure. (Now can delete)
+
 * Bug #14347 fixed - plot2d crashed with multiple entries (non regression test).
 
 * Bug #14359 fixed - Black Hole demo updated. Stop and Clear buttons did not have priority tag set. Callback_type property has been added and set to 10.
