@@ -99,8 +99,8 @@ Other feature changes
 
 * The graphics entity "Datatip" has its property "z_component = 'on|off'"
   changed to "display_components = 'xyz'", now it is possible to choose which
-  components to display and the order. Loading old *.scg files containing 
-  datatips with "z_component" property may not display the z component. 
+  components to display and the order. Loading old *.scg files containing
+  datatips with "z_component" property may not display the z component.
 
 Other feature additions
 =======================
@@ -304,6 +304,8 @@ Removed Functions
 * fcontour2d has been removed. Please use contour2d instead.
 
 * plot2d1 has been removed. Please use plot2d() instead.
+
+* lex_sort has been removed. Please use gsort(..,"lr") instead
 
 * Symbolic module functions have been removed:
   - addf

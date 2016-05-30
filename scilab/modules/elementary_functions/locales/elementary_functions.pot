@@ -911,21 +911,8 @@ msgstr ""
 
 #
 # File: modules/elementary_functions/macros/isempty.sci, line: 24
-# File: modules/elementary_functions/macros/lex_sort.sci, line: 43
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/lex_sort.sci, line: 30
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/lex_sort.sci, line: 40
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
