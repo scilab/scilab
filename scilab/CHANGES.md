@@ -138,6 +138,8 @@ Feature changes and additions
 * `strange([])` now returns %nan instead of [], as all other functions for statistical dispersion
 * `stdev(x, dir>ndims(x))` now yields an error instead of returning `zeros(x)`
 * `write`: Writing string or string matrix in a file does not add blank space before each value
+* The zoom rubber box now can start/finish from points lying outside the axes bounds.
+* The zoom rubber box now can select multiple and overlying axes at once. Changed behavior of scroll zoom, scrolling over overlying axes will zoom all of them together, using the CTRL key while scrolling will zoom all axes in the current figure.
 
 
 Help pages:
@@ -227,6 +229,8 @@ Bug Fixes
 
 ### In 6.0.0:
 
+* [Bug #11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959) fixed - Allow "Zoom Area" to be clicked out of axes
+* [Bug #12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110) fixed - Unable to zoom multiple axes at once
 * [Bug #13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597) fixed - `help format` claimed setting a number of digits instead of characters
 * [Bug #14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192) fixed - `g_margin` error-ed for double integrator.
 * [Bug #14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448) fixed - removed havewindow() was still documented

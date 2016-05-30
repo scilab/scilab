@@ -21,6 +21,7 @@ import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  * @author Pierre Lando
@@ -28,7 +29,7 @@ import java.awt.Point;
 public abstract class FigureInteraction {
 
     /** parent figure drawer */
-    private DrawerVisitor drawerVisitor;
+    protected DrawerVisitor drawerVisitor;
 
     /** Enable status */
     private boolean isEnable;
@@ -73,6 +74,55 @@ public abstract class FigureInteraction {
             }
         }
         return underlyingAxes;
+    }
+
+    protected Axes[] getAllUnderlyingAxes(Point point) {
+        ArrayList<Axes> underlyingAxes = new ArrayList<Axes>();
+        Dimension size = drawerVisitor.getCanvas().getDimension();
+        double x = point.getX() / size.getWidth();
+        double y = point.getY() / size.getHeight();
+        for (Integer childId : drawerVisitor.getFigure().getChildren()) {
+            GraphicObject child = GraphicController.getController().getObjectFromId(childId);
+            if (child instanceof Axes) {
+                if (child.getVisible()) {
+                    Double[] axesBounds = ((Axes) child).getAxesBounds();  // x y w h
+                    if ((x >= axesBounds[0]) && (x <= axesBounds[0] + axesBounds[2]) && (y >= axesBounds[1]) && (y <= axesBounds[1] + axesBounds[3])) {
+                        underlyingAxes.add((Axes) child);
+                    }
+                }
+            }
+        }
+        Axes [] ret;
+        if (underlyingAxes.size() > 0) {
+            ret = new Axes[underlyingAxes.size()];
+            ret = underlyingAxes.toArray(ret);
+        } else {
+            ret = new Axes[0];
+        }
+        return ret;
+    }
+
+    protected Axes[] getAllVisibleAxes(Point point) {
+        ArrayList<Axes> underlyingAxes = new ArrayList<Axes>();
+        Dimension size = drawerVisitor.getCanvas().getDimension();
+        double x = point.getX() / size.getWidth();
+        double y = point.getY() / size.getHeight();
+        for (Integer childId : drawerVisitor.getFigure().getChildren()) {
+            GraphicObject child = GraphicController.getController().getObjectFromId(childId);
+            if (child instanceof Axes) {
+                if (child.getVisible()) {
+                    underlyingAxes.add((Axes) child);
+                }
+            }
+        }
+        Axes [] ret;
+        if (underlyingAxes.size() > 0) {
+            ret = new Axes[underlyingAxes.size()];
+            ret = underlyingAxes.toArray(ret);
+        } else {
+            ret = new Axes[0];
+        }
+        return ret;
     }
 
     /**

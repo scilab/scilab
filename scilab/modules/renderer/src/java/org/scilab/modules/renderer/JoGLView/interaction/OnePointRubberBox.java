@@ -18,6 +18,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.interaction.util.PointAComputer;
 
@@ -37,18 +38,22 @@ public class OnePointRubberBox extends RubberBox implements PointRubberBox {
 
     public OnePointRubberBox(DrawerVisitor drawerVisitor, double initialRect[]) {
         super(drawerVisitor);
-        double[][] factors = axes.getScaleTranslateFactors();
-        firstPoint = new Vector3d(initialRect[0] * factors[0][0] + factors[1][0],
-                                  initialRect[1] * factors[0][1] + factors[1][1],
-                                  0);
-        secondPoint = firstPoint;
         status = Status.WAIT_POINT_B;
         setEnable(true);
+
+        AxesZoom axesZoom = new AxesZoom(drawerVisitor.getAxes());
+        double[][] factors = axesZoom.axes.getScaleTranslateFactors();
+        axesZoom.firstPoint = new Vector3d(initialRect[0] * factors[0][0] + factors[1][0],
+                                           initialRect[1] * factors[0][1] + factors[1][1],
+                                           0);
+        axesZoom.secondPoint = axesZoom.firstPoint;
+        axesZoomList.add(axesZoom);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         mouseButton = e.getButton();
+        lastPoint = e.getPoint();
         setPointB(e.getPoint());
         process();
         setEnable(false);
@@ -61,12 +66,12 @@ public class OnePointRubberBox extends RubberBox implements PointRubberBox {
      * @return true if the first point is valid.
      */
     protected boolean setPointB(Point point) {
-        axes = getUnderlyingAxes(point);
-        if (axes != null) {
-            PointAComputer pointComputer = new PointAComputer(axes, point);
+        AxesZoom axesZoom = getClosestAxesZoom(point);
+        if (axesZoom != null) {
+            PointAComputer pointComputer = new PointAComputer(axesZoom.axes, point);
             if (pointComputer.isValid()) {
-                pointBComputer = pointComputer;
-                secondPoint = pointComputer.getPosition();
+                axesZoom.pointBComputer = pointComputer;
+                axesZoom.secondPoint = pointComputer.getPosition();
                 return true;
             }
         }

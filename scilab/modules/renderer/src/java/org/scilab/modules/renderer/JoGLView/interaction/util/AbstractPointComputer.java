@@ -102,6 +102,24 @@ public abstract class AbstractPointComputer implements PointComputer {
     }
 
     /**
+     * Check if the given vector has valid components
+     * not NaN and not Inf.
+     *
+     * @param v the 3d vector
+     * @return true if all components are valid, false otherwise
+     */
+    protected final boolean isValid(Vector3d v) {
+        double[] data = v.getData();
+        for (int i = 0; i < AXIS_NUMBER; i++) {
+            if (Double.isNaN(data[i]) || Double.isInfinite(data[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    /**
      * Check if the given position feet axes bounds.
      * @param position the given position.
      * @return true if it feet.
