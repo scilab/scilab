@@ -92,6 +92,10 @@ char **completion(const char *somechars, int *sizeArrayReturned)
         ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
         freePointerDictionary(dictionary, sizedictionary);
     }
+    freePointerDictionary(completionvariables, sizecompletionvariables);
+    freePointerDictionary(completionmacros, sizecompletionmacros);
+    freePointerDictionary(completionhandlegraphicsproperties, sizecompletionhandlegraphicsproperties);
+    freePointerDictionary(completionfunctions, sizecompletionfunctions);
 
     return ListWords;
 }
@@ -281,6 +285,7 @@ char **completionOnVariablesWithoutMacros(const char *somechars, int *sizeArrayR
         ListWords = NULL;
         *sizeArrayReturned = 0;
     }
+    freePointerDictionary(dictionaryVariables, sizedictionaryVariables);
 
     return ListWords;
 }
@@ -373,6 +378,8 @@ char **completionOnHandleGraphicsProperties(const char *somechars, int *sizeArra
     {
         *sizeArrayReturned = 0;
     }
+    freePointerDictionary(HandleGraphicsSetPropertiesDictionary, sizeHandleGraphicsSetPropertiesDictionary);
+    freePointerDictionary(HandleGraphicsGetPropertiesDictionary, sizeHandleGraphicsGetPropertiesDictionary);
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
