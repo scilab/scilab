@@ -18,6 +18,9 @@ package org.scilab.modules.xcos.graph.model;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 
+/**
+ * Helper class to own a Scicos MVC object from the Java world.
+ */
 public class ScicosObjectOwner {
     final long uid;
     final Kind kind;
@@ -54,6 +57,7 @@ public class ScicosObjectOwner {
     @Override
     protected void finalize() throws Throwable {
         JavaController controller = new JavaController();
+
         controller.deleteObject(uid);
     }
 }

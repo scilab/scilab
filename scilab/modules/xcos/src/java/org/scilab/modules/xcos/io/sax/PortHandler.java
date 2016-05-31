@@ -173,7 +173,6 @@ class PortHandler implements ScilabHandler {
 
                 associatedPorts.resize(Math.max(associatedPorts.size(), ordering + 1));
                 associatedPorts.set(ordering, uid);
-                shared.controller.referenceObject(uid);
 
                 shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.SOURCE_BLOCK, parent);
                 shared.controller.setObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);
