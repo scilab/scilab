@@ -532,7 +532,6 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                 {
                     commonAll = getCommonPart(completionDictionaryFields, sizecompletionDictionaryFields);
                     displayCompletionDictionary(completionDictionaryFields, sizecompletionDictionaryFields, (char *)_("Scilab Fields"));
-                    freeArrayOfString(completionDictionaryFields, sizecompletionDictionaryFields);
                 }
                 else
                 {
@@ -562,8 +561,8 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                         {
                             commonAll = getCommonPart(commonsDictionary, sizecommonsDictionary);
                         }
-                        freeArrayOfString(commonsDictionary, sizecommonsDictionary);
                     }
+                    freeArrayOfString(commonsDictionary, sizecommonsDictionary);
 
                     displayCompletionDictionary(completionDictionaryFunctions, sizecompletionDictionaryFunctions, (char *)_("Scilab Function"));
                     displayCompletionDictionary(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords, (char *)_("Scilab Command"));
@@ -571,11 +570,6 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                     displayCompletionDictionary(completionDictionaryVariables, sizecompletionDictionaryVariables, (char *)_("Scilab Variable"));
                     displayCompletionDictionary(completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties,
                                                 (char *)_("Graphics handle field"));
-                    freeArrayOfString(completionDictionaryFunctions, sizecompletionDictionaryFunctions);
-                    freeArrayOfString(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords);
-                    freeArrayOfString(completionDictionaryMacros, sizecompletionDictionaryMacros);
-                    freeArrayOfString(completionDictionaryVariables, sizecompletionDictionaryVariables);
-                    freeArrayOfString(completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties);
                 }
 
                 printf("\n");
@@ -606,6 +600,12 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                 }
             }
         }
+        freeArrayOfString(completionDictionaryFields, sizecompletionDictionaryFields);
+        freeArrayOfString(completionDictionaryFunctions, sizecompletionDictionaryFunctions);
+        freeArrayOfString(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords);
+        freeArrayOfString(completionDictionaryMacros, sizecompletionDictionaryMacros);
+        freeArrayOfString(completionDictionaryVariables, sizecompletionDictionaryVariables);
+        freeArrayOfString(completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties);
     }
 }
 
