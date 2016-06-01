@@ -274,7 +274,11 @@ char **completionOnVariablesWithoutMacros(const char *somechars, int *sizeArrayR
         }
         else
         {
-            ListWords = dictionaryVariables;
+            ListWords = (char**)MALLOC(sizeof(char*) * (sizedictionaryVariables + 1));
+            for ( i = 0; i < sizedictionaryVariables; i++ )
+            {
+                ListWords[i] = os_strdup(dictionaryVariables[i]);
+            }
             *sizeArrayReturned = sizedictionaryVariables;
         }
 
