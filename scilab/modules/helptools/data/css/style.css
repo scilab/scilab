@@ -350,7 +350,7 @@ div#cadre_help
 }
 
 table.revhistory
-{ 
+{
   width:80%;
   border-color:#CCCCCC;
   border-style:solid;
@@ -359,6 +359,11 @@ table.revhistory
 }
 
 table.revhistory tr.title td
-{ 
+{
   background-color: #9999CC;
+}
+
+td.revnumber
+{
+  vertical-align: top;
 }

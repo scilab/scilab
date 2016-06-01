@@ -1521,12 +1521,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleTd(final Map<String, String> attributes, final String contents) throws SAXException {
-        String align = attributes.get("align");
+        String align   = attributes.get("align");
+        String valign  = attributes.get("valign");
         String bgcolor = attributes.get("bgcolor");
         String colspan = attributes.get("colspan");
         String rowspan = attributes.get("rowspan");
+        String style   = attributes.get("style");   /*  for style="white-space:nowrap" */
 
-        return encloseContents("td", new String[] {"align", align, "bgcolor", bgcolor, "colspan", colspan, "rowspan", rowspan}, contents);
+        return encloseContents("td", new String[] {"align", align, "valign", valign, "bgcolor", bgcolor, "colspan", colspan, "rowspan", rowspan, "style", style}, contents);
     }
 
     /**
@@ -1873,7 +1875,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleTh(final Map<String, String> attributes, final String contents) throws SAXException {
-        return encloseContents("th", contents);
+        String align = attributes.get("align");
+        String valign = attributes.get("valign");
+        String style   = attributes.get("style");   /*  for style="white-space:nowrap" */
+
+        return encloseContents("th", new String[] {"align", align, "valign", valign, "style", style}, contents);
     }
 
     /**

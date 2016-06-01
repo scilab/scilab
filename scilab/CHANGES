@@ -135,9 +135,9 @@ Other feature additions
   - fixed / improved:  members, part, ode, ode_optional_output, ode_roots, roots, printf, sprintf, iconvert, stdev, xlabel
   - rewriten: consolebox, double, isoview, householder
   - resorted: else, elseif, end, try, sciargs, global, halt, empty, power
+  - added: support to valign=".." and style="white-space:nowrap" attributes for <td> and <th> tags in help page tables
 
 * real(), imag(), conj() and isreal() now accept rational fractions
-
 
 Installation
 ============
