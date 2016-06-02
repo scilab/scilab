@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA
+ * Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -29,7 +29,10 @@
                 <term>sl</term>
                 <listitem>
                     <para>
-                        list ( <literal>syslin</literal>)
+                        A  linear dynamical system, in
+                        state space, transfer function or zpk
+                        representations, in continuous or discrete
+                        time.
                     </para>
                 </listitem>
             </varlistentry>
@@ -39,7 +42,7 @@
         <title>Description</title>
         <para>
             <code>plzr(sl)</code> produces a pole-zero plot of the linear system
-            <varname>sl</varname> (<literal>syslin</literal> list).
+            <varname>sl</varname>.
         </para>
     </refsection>
     <!--
@@ -73,6 +76,20 @@ plzr(h);
             <member>
                 <link linkend="syslin">syslin</link>
             </member>
+            <member>
+                <link linkend="zpk">zpk</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

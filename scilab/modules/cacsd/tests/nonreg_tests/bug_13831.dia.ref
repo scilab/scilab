@@ -13,6 +13,6 @@
 //
 // <-- Short Description -->
 // ss2ss does not transform initial state
-before = syslin('c',-1,1,1,0,1);
+before = syslin("c",-1,1,1,0,1);
 after = ss2ss(before, 2);
 assert_checkequal(after.x0, before.x0 / 2);

@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2010 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+*
+-->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en_US" xml:id="damp">
     <refnamediv>
         <refname>damp</refname>
@@ -19,7 +33,9 @@
                 <term>sys</term>
                 <listitem>
                     <para>
-                        A linear dynamical system (see <link linkend="syslin">syslin</link>).
+                        A linear dynamical system, in state space,
+                        transfer function or zpk representations, in
+                        continuous or discrete time.
                     </para>
                 </listitem>
             </varlistentry>
@@ -183,4 +199,16 @@
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
 </refentry>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA -
+ * Copyright (C) 2000 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -31,7 +31,11 @@
             <varlistentry>
                 <term>sys</term>
                 <listitem>
-                    <para>SISO linear system (syslin)</para>
+                    <para>
+                        A SISO linear dynamical system, in state space,
+                        transfer function or zpk representations, in
+                        continuous or discrete time.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -118,4 +122,16 @@ plot(real(Y),imag(Y),'+r')
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>Handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
 </refentry>

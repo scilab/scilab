@@ -200,7 +200,9 @@ or a 3-components vector to set the position in axes coordinates to draw the dat
 * The `grand` non-free `fsultra` generator was removed.
 * The original `rpoly` algorithm was removed in favor of a C++11 implementation
 * When the view property of Axes object is set at `2d`, the rotation becomes impossible.
+* The zero-pole-gain (zpk) representation added for linear dynamical systems.
 
+ 
 Help pages:
 -----------
 

@@ -28,12 +28,10 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>Linear system in state space or transfer representation
-                        (
-                        <literal>
-                            see <link linkend="syslin">syslin</link>
-                        </literal>
-                        )
+                    <para>
+                        A siso or simo linear dynamical system, in state
+                        space, transfer function or zpk representations,
+                        in continuous or discrete time.
                     </para>
                 </listitem>
             </varlistentry>
@@ -122,5 +120,16 @@ plot2d(real(rf)',imag(rf)')
                 <link linkend="logspace">logspace</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA
+ * Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -33,8 +33,10 @@
             <varlistentry>
                 <term>sl</term>
                 <listitem>
-                    <para>a continuous or discrete time SIMO linear dynamical
-                        system ( see: <link linkend="syslin">syslin</link>).
+                    <para>
+                        A siso or simo linear dynamical system, in state
+                        space, transfer function or zpk representations,
+                        in continuous or discrete time.
                     </para>
                 </listitem>
             </varlistentry>
@@ -79,17 +81,30 @@
     <refsection>
         <title>Description</title>
         <para>
-            Black's diagram (Nichols'chart) for a linear system ( see: <link linkend="syslin">syslin</link>). <literal>sl</literal> can be a continuous-time or
-            discrete-time SIMO system. In case of
-            multi-output the outputs are plotted with different colors.
+            Black's diagram (Nichols'chart) for a linear dynamical system .
         </para>
-        <para>The frequencies are given by the bounds
-            <literal>fmin</literal>,<literal>fmax</literal> (in Hz) or by a row-vector
-            (or a matrix for multi-output) <literal>frq</literal>.
+
+        <para>
+            <literal>sl</literal> can be a continuous-time or
+            discrete-time SIMO system given by its state space,
+            rational transfer function (see <link
+            linkend="syslin">syslin</link>) or <link
+            linkend="zpk">zpk</link> representation. In case of
+            multi-output the outputs are plotted with different
+            colors.
+        </para>
+
+        <para>
+            The frequencies are given by the bounds
+            <literal>fmin</literal>,<literal>fmax</literal> (in Hz) or
+            by a row-vector (or a matrix for multi-output)
+            <literal>frq</literal>.
         </para>
         <para>
-            <literal>step</literal> is the ( logarithmic ) discretization step.
-            (see <link linkend="calfrq">calfrq</link> for the choice of default value).
+            <literal>step</literal> is the ( logarithmic )
+            discretization step.  (see <link
+          linkend="calfrq">calfrq</link> for the choice of default
+            value).
         </para>
         <para>
             <literal>comments</literal> is a vector of character strings
@@ -179,5 +194,16 @@
                 <link linkend="datatips">datatips</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

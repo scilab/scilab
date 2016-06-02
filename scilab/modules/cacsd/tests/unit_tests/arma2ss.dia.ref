@@ -8,9 +8,9 @@
 //
 ny=1,nu=1,sig=0.01;
  ny  = 
-    1.
+   1.
  nu  = 
-    1.
+   1.
 ar=armac(1,[0,0.2],[0,1],ny,nu,sig);
 [S,Sn]=arma2ss(ar);
 A=[0,0.2;0,0];B=[0;1];C=[1,0];D=0;
@@ -26,7 +26,7 @@ assert_checkequal(Sn.D,D);
 //
 ny=1,nu=1;
  ny  = 
-    1.
+   1.
 ar=armac([1,-0.8,0.2],0.001,0,ny,nu,0);
 [S,Sn]=arma2ss(ar);
 A=[0.8,-0.2;1,0];B=[0.001;0];C=[1,0];D=0;

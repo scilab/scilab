@@ -27,46 +27,53 @@ function [] = bode_asymp(sl, w_min, w_max)
 
     rhs = argn(2);
 
-    if and(typeof(sl) <> ["state-space" "rational"]) then
-        msg = _("Wrong type for argument #%d: Rational or State-space matrix expected.\n");
-        error(msprintf(msg, 1))
-        return;
+    if and(typeof(sl) <> ["state-space" "rational" "zpk"]) then
+        args=["sl", "w_min", "w_max"]
+        ierr=execstr("%"+overloadname(sl)+"_bode_asymp("+strcat(args(1:rhs),",")+")","errcatch")
+        if ierr<>0 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),"bode_asymp",1))
+        end
+        return
     end
 
     typeSL = typeof(sl);
+    domain=sl.dt
+    var = "s";
+    if type(domain) == 1 then
+        var = "z";
+    elseif domain == "c" then
+        var = "s";
+    elseif domain == "d" then
+        var = "z";
+    end
+    if domain == [] then
+        var = "s";
+    end
+    s = poly(0, var);
+
 
     for elem=1:size(sl, "r") // Individually draw each asymptote of "sl" elements (row vector).
         if typeSL == "rational" then
             h = sl(elem, 1);
-        else
+            root_num = roots(h.num);
+            root_den = roots(h.den);
+        elseif typeSL == "state-space" then
             h = clean(ss2tf(sl(elem, 1)), 1e-8);
-            // Also removing all the coefficients smaller than < 1e-8
+            root_num=roots(h.num);
+            root_den=roots(h.den);
+        elseif typeSL == "zpk" then
+            h=sl(elem,1)
+            root_num=h.Z{1}
+            root_den=h.P{1}
+            h=zpk2tf(h)
         end
-
-        root_num = roots(h.num);
-        root_den = roots(h.den);
 
         if (find(root_num==0))
             disp("Problem class of system is negative")
         end
         rac_nul = find(root_den==0);
         alpha = length(rac_nul);
-        var = "s";
-        domain = h.dt;
-        if type(domain) == 1 then
-            var = "z";
-        elseif domain == "c" then
-            var = "s";
-        elseif domain == "d" then
-            var = "z";
-        end
-        if domain == [] then
-            var = "s";
-            if type(h.D) == 2 then
-                var = varn(h.D);
-            end
-        end
-        s = poly(0, var);
+
         msg = _("%s: Wrong value for input argument #%d: Evaluation failed.\n")
         try K = horner(h*s^alpha, 0); catch error(msprintf(msg, "bode_asymp")); end
 

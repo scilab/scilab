@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - Serge Steer - INRIA
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="tf2zp">
+    <refnamediv>
+        <refname>tf2zp</refname>
+        <refpurpose>SIMO transfer function to zero pole gain representation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[z,p,k]=tf2zp(S)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>
+                        a single input transfer function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>
+                        a matrix, the ith column contains the transmission zeros relative to the ith output.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        a column vector, the poles of the system
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>
+                        a row vector, the ith element contains the gain  relative to the ith output.
+                    </para>
+                </listitem>
+            </varlistentry>
+
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Converts a SIMO transfer function into zero pole gain representation.
+        </para>
+
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+H=syslin("d",[45.76+6*%z+2*%z^2;0.64*%z],[23.28+3.1*%z+%z^2;23.28+3.1*%z+%z^2])
+[z,p,k]=tf2zp(H)
+ ]]></programlisting>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ss2zp">ss2zp</link>
+            </member>
+            <member>
+                <link linkend="zp2tf">zp2tf</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>Function added.</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
+</refentry>

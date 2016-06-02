@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA -
+// Copyright (C) 1985 - 2016 - INRIA - Serge Steer
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -22,11 +22,20 @@ function [frq, bnds, splitf] = calfrq(h, fmin, fmax)
 
     // Check inputs
     // ------------
-    if and(typeof(h) <> ["state-space" "rational"])
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"), "calfrq", 1))
+    if and(typeof(h) <> ["state-space" "rational" "zpk"]) then
+        args=["h", "fmin", "fmax"]
+        ierr=execstr("%"+overloadname(h)+"_calfrq("+strcat(args(1:rhs),",")+")","errcatch")
+        if ierr<>0 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),"calfrq",1))
+        end
+        return
     end
+
+
     if typeof(h) == "state-space" then
         h = ss2tf(h)
+    elseif typeof(h) == "zpk" then
+        h=zpk2tf(h)
     end
 
     [m, n] = size(h.num)

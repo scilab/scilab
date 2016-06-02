@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 1984-2011 - INRIA - Serge STEER
+// Copyright (C) 1984 - 2011 - INRIA - Serge STEER
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -16,9 +16,15 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
     l10=log(10);
     [lhs,rhs]=argn(0)
     //discretization
-    if and(typeof(sys)<>[ "rational" "state-space" ]) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"repfreq",1))
+    if and(typeof(sys)<>[ "rational" "state-space" "zpk"]) then
+        args=["sys","fmin","fmax","pas"];
+        ierr=execstr("[frq,rep,splitf]=%"+overloadname(sys)+"_repfreq("+strcat(args(1:rhs),",")+")","errcatch")
+        if ierr<>0 then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"repfreq",1))
+        end
+        return
     end
+    if typeof(sys)=="zpk" then sys=zpk2tf(sys);end
     dom=sys.dt
     if dom==[]|dom==0 then error(96,1),end
     if dom=="d" then dom=1;end
@@ -98,13 +104,22 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
             rep=freq(n,d,exp(2*%pi*%i*dom*frq)),
         end;
     case "lss" then
-        [a,b,c,d,x0]=sys(2:6),
-        [mn,nn]=size(b)
+        [a,b,c,d]=abcd(sys)
+        [mn,nn]=size(d)
         if nn<>1 then error(95,1),end
+
         if dom=="c" then
-            rep=freq(a,b,c,d,2*%pi*%i*frq)
+            if a==[] then
+                rep=(d*2*%pi*%i)*frq
+            else
+                rep=freq(a,b,c,d,2*%pi*%i*frq)
+            end
         else
-            rep=freq(a,b,c,d,exp(2*%pi*%i*dom*frq))
+            if a==[] then
+                rep=d*exp(2*%pi*%i*dom*frq)
+            else
+                rep=freq(a,b,c,d,exp(2*%pi*%i*dom*frq))
+            end
         end;
     else error(97,1),
     end;

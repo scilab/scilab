@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA -
+ *  Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -37,7 +37,9 @@
                 <term>sl</term>
                 <listitem>
                     <para>
-                        list (linear system <literal>syslin</literal>)
+                        A linear dynamical system, in state space,
+                        transfer function or zpk representations, in
+                        discrete time.
                     </para>
                 </listitem>
             </varlistentry>
@@ -221,4 +223,16 @@ norm([yh1,yh2]-rh)
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
 </refentry>
