@@ -135,7 +135,8 @@ int getfreememory(void)
                 {
                     case 'g':
                     case 'G':
-                        free *= kooctet;
+                        free *= kooctet*kooctet;
+                        break;
                     case 'm':
                     case 'M':
                         free *= kooctet;
@@ -143,6 +144,7 @@ int getfreememory(void)
                     case 'o':
                     case 'O':
                         free /= kooctet;
+                        break;
                 }
                 return (int)free;
             }

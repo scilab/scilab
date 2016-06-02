@@ -128,6 +128,7 @@ public:
     {
         // Print an optional message, something like "Checking timer t";
         double t = elapsed_time();
+        std::streamsize ss = std::cout.precision();
         if (_msg.empty() == false)
         {
             std::wcerr << L"[" << _msg << L"]" << L" : ";
@@ -135,7 +136,9 @@ public:
         std::wcerr << L"Elapsed time ["
                    << std::setiosflags(std::ios::fixed)
                    << std::setprecision(3)
-                   << t << L"] milliseconds"
+                   << t
+                   << std::setprecision(ss)
+                   << L"] milliseconds"
                    << std::endl;
 
         if (_bRestart == true)
