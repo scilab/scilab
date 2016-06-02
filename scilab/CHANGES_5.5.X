@@ -28,6 +28,8 @@ Scilab Bug Fixes
 
 * Bug #13925 fixed - SciNotes used the wrong paired bracket highlight style.
 
+* Bug #14524 fixed - Numeric locales were not set to standard "C" by default at scilab startup
+
 
 
                      Changes between version 5.5.1 and 5.5.2

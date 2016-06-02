@@ -11,6 +11,7 @@
  */
 #include "InitScilab.h"
 #include "InitializeCore.h"
+#include "locale.h"
 #include "../../../console/includes/InitializeConsole.h"
 #include "../../../tclsci/includes/InitializeTclTk.h"
 #include "../../../localization/includes/InitializeLocalization.h"
@@ -48,6 +49,9 @@ int C2F(initscilab) (void)
         /* create needed data structure if not already created */
         loadGraphicModule();
     }
+
+    // set default (English) locale after JVM which may set its own locale
+    setlocale(LC_NUMERIC, "C");
 
     /* Initialize console: lines... */
     InitializeConsole();
