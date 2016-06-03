@@ -318,6 +318,8 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+                        freeArrayOfWideString(pStVarOne, m1 * n1);
+                        FREE(lenStVarOne);
                         return 0;
                     }
 
