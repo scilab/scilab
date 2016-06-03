@@ -60,17 +60,30 @@
     <refsection role="examples">
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-// compare o seguinte com plot2d
-x=[0:0.1:2*%pi]';
-plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
-// no novo modo de gráficos apenas
+x = [0:0.1:2*%pi]';
+plot2d3(x, [sin(x) sin(2*x) sin(3*x)])
+ ]]></programlisting>
+        <scilab:image>
+            x = [0:0.1:2*%pi]';
+            plot2d3(x, [sin(x) sin(2*x) sin(3*x)])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
 clf()
-plot2d(x,[sin(x) sin(2*x) sin(3*x)])
-e=gce();
+x = [0:0.1:2*%pi]';
+plot2d(x, [sin(x) sin(2*x) sin(3*x)])
+e = gce();
 e.children(1).polyline_style=3;
 e.children(2).polyline_style=3;
 e.children(3).polyline_style=3;
  ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+            e=gce();
+            e.children(1).polyline_style=3;
+            e.children(2).polyline_style=3;
+            e.children(3).polyline_style=3;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>

@@ -77,8 +77,8 @@ e = gce();
 e.children.polyline_style=4;
  ]]></programlisting>
         <scilab:image>
-            x=[0:0.1:2*%pi]';
-            plot2d4(x,[sin(x) sin(2*x) sin(3*x)])
+            x = [0:0.1:2*%pi]';
+            plot2d4(x, [sin(x) sin(2*x) sin(3*x)])
         </scilab:image>
     </refsection>
     <refsection role="see also">
