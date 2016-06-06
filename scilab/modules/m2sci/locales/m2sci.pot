@@ -15,10 +15,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-02-10 12:14+0100\n"
+"Revision-Date: 2016-06-08 22:22+0100\n"
 
 # File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 34
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 283
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 282
 msgid "Input file"
 msgstr ""
 
@@ -43,7 +43,22 @@ msgid "Select the directory for generated files"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 182
+# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 138
+msgid "Please specify an existing output directory."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 165
+msgid "Please specify an existing input file."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 174
+msgid "Please specify an existing input directory."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 194
 msgid "About_M2SCI_tools"
 msgstr ""
 
@@ -467,13 +482,13 @@ msgid "Conversion of M-tree..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/mtlbtree2sci.sci, line: 106
+# File: modules/m2sci/macros/kernel/mtlbtree2sci.sci, line: 114
 #, c-format
 msgid "%s line %s out of %s..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/mtlbtree2sci.sci, line: 122
+# File: modules/m2sci/macros/kernel/mtlbtree2sci.sci, line: 130
 msgid "Conversion of M-tree: Done"
 msgstr ""
 
@@ -574,149 +589,149 @@ msgid "type %d is not implemented."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 25
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 24
 msgid "Matlab to Scilab conversion tool"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 33
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 32
 msgid "File"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 34
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 33
 msgid "Close"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 36
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 35
 msgid "?"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 37
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 36
 msgid "Mfile2sci help page"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 38
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 37
 msgid "Translatepaths help page"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 39
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 38
 msgid "About M2SCI tools..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 52
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 51
 msgid "Convert"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 61
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 60
 msgid "Cancel"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 75
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 74
 msgid "Options"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 81
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 80
 msgid "Generate pretty printed code: "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 88
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 180
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 214
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 87
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 179
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 213
 msgid "Yes"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 100
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 192
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 226
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 99
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 191
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 225
 msgid "No"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 115
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 114
 msgid "Verbose mode: "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 122
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 121
 msgid "0"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 134
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 133
 msgid "1"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 146
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 145
 msgid "2"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 158
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 157
 msgid "3"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 173
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 172
 msgid "Only double values used: "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 207
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 206
 msgid "Recursive conversion: "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 246
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 245
 msgid "Output directory"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 250
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 289
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 249
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 288
 msgid "Directory name: "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 266
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 307
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 334
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 265
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 306
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 333
 msgid "Browse"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 317
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 316
 msgid "File name: "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 326
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 325
 msgid "<enter a file name>"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 349
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 348
 msgid "Conversion mode"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 353
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 352
 msgid "Convert a single file"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 365
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 364
 msgid "Convert a whole directory"
 msgstr ""
 

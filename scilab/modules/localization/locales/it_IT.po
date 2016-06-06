@@ -11,6 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2015-02-14 21:36+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -52,8 +53,10 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
+#
+# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 82
 #, c-format
-msgid "%ls: This feature is only used on Windows.\n"
+msgid "%ls: This feature is only supported on Windows.\n"
 msgstr ""
 
 #, c-format

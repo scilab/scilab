@@ -12,11 +12,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-09 16:54+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation-team-uk@lists.sourceforge.net>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: uk\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -820,3 +820,37 @@ msgstr "Посилання має бути вказано як рядки"
 #, c-format
 msgid "Invalid path: %s."
 msgstr "Некоректний шлях: %s."
+
+# File: modules/hdf5/demos/hdf5.dem.gateway.sce, line: 10
+msgid "HDF5"
+msgstr ""
+
+#
+# File: modules/hdf5/demos/hdf5.dem.gateway.sce, line: 12
+msgid "Ring resonator (HDF5 data source)"
+msgstr ""
+
+#
+# File: modules/hdf5/demos/resonator.dem.sce, line: 12
+msgid "Ring Resonator from a HDF5 file"
+msgstr ""
+
+#
+# File: modules/hdf5/demos/resonator.dem.sce, line: 26
+msgid "X position [a]"
+msgstr ""
+
+#
+# File: modules/hdf5/demos/resonator.dem.sce, line: 27
+msgid "Y position [a]"
+msgstr ""
+
+#
+# File: modules/hdf5/demos/resonator.dem.sce, line: 28
+msgid "Permittivity"
+msgstr ""
+
+#
+# File: modules/hdf5/demos/resonator.dem.sce, line: 32
+msgid "Ring Resonator"
+msgstr ""

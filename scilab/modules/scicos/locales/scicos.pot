@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-02-10 12:14+0100\n"
+"Revision-Date: 2016-06-08 22:22+0100\n"
 
 # File: modules/scicos/sci_gateway/cpp/sci_buildouttb.cpp, line: 72
 # File: modules/scicos/sci_gateway/cpp/sci_coserror.cpp, line: 61
@@ -875,12 +875,12 @@ msgstr ""
 
 #
 # File: modules/scicos/src/c/scicos.c, line: 585
-# File: modules/scicos/src/c/scicos.c, line: 4001
+# File: modules/scicos/src/c/scicos.c, line: 4006
 msgid "Undefined Function type\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 979
+# File: modules/scicos/src/c/scicos.c, line: 980
 #, c-format
 msgid ""
 "\n"
@@ -889,7 +889,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 988
+# File: modules/scicos/src/c/scicos.c, line: 989
 #, c-format
 msgid ""
 "\n"
@@ -898,7 +898,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 996
+# File: modules/scicos/src/c/scicos.c, line: 997
 #, c-format
 msgid ""
 "\n"
@@ -907,19 +907,19 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 1843
+# File: modules/scicos/src/c/scicos.c, line: 1848
 #, c-format
 msgid "****SUNDIALS.Cvode from: %f to %f hot= %d  \n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 1909
+# File: modules/scicos/src/c/scicos.c, line: 1914
 #, c-format
 msgid "****SUNDIALS.Cvode reached: %f\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 1918
+# File: modules/scicos/src/c/scicos.c, line: 1923
 #, c-format
 msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
@@ -927,60 +927,60 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 1961
-# File: modules/scicos/src/c/scicos.c, line: 3338
+# File: modules/scicos/src/c/scicos.c, line: 1966
+# File: modules/scicos/src/c/scicos.c, line: 3343
 #, c-format
 msgid "root found at t=: %f\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 2083
-# File: modules/scicos/src/c/scicos.c, line: 3506
+# File: modules/scicos/src/c/scicos.c, line: 2088
+# File: modules/scicos/src/c/scicos.c, line: 3511
 #, c-format
 msgid "Event: %d activated at t=%f\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 2088
+# File: modules/scicos/src/c/scicos.c, line: 2093
 #, c-format
 msgid "mode of block %d=%d, "
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 2091
+# File: modules/scicos/src/c/scicos.c, line: 2096
 msgid "**mod**\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 2097
-# File: modules/scicos/src/c/scicos.c, line: 3512
+# File: modules/scicos/src/c/scicos.c, line: 2102
+# File: modules/scicos/src/c/scicos.c, line: 3517
 msgid "End of activation\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 3139
+# File: modules/scicos/src/c/scicos.c, line: 3144
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 3143
+# File: modules/scicos/src/c/scicos.c, line: 3148
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 3226
+# File: modules/scicos/src/c/scicos.c, line: 3231
 #, c-format
 msgid "****daskr from: %f to %f hot= %d  \n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 3279
+# File: modules/scicos/src/c/scicos.c, line: 3284
 #, c-format
 msgid "****SUNDIALS.Ida reached: %f\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 3288
+# File: modules/scicos/src/c/scicos.c, line: 3293
 #, c-format
 msgid ""
 "**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
@@ -988,42 +988,42 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 3613
+# File: modules/scicos/src/c/scicos.c, line: 3618
 #, c-format
-msgid "block %d is called "
+msgid "block %d [%s] is called "
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 3614
+# File: modules/scicos/src/c/scicos.c, line: 3619
 #, c-format
 msgid "with flag %d "
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 3615
+# File: modules/scicos/src/c/scicos.c, line: 3620
 #, c-format
 msgid "at time %f \n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 3621
+# File: modules/scicos/src/c/scicos.c, line: 3626
 msgid "Entering the block \n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4039
+# File: modules/scicos/src/c/scicos.c, line: 4044
 #, c-format
 msgid "Leaving block %d \n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4096
+# File: modules/scicos/src/c/scicos.c, line: 4101
 msgid "Error in the Debug block \n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4126
-# File: modules/scicos/src/c/scicos.c, line: 4198
+# File: modules/scicos/src/c/scicos.c, line: 4131
+# File: modules/scicos/src/c/scicos.c, line: 4203
 #, c-format
 msgid ""
 "\n"
@@ -1031,8 +1031,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4161
-# File: modules/scicos/src/c/scicos.c, line: 4223
+# File: modules/scicos/src/c/scicos.c, line: 4166
+# File: modules/scicos/src/c/scicos.c, line: 4228
 #, c-format
 msgid ""
 "\n"
@@ -1040,8 +1040,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4332
-# File: modules/scicos/src/c/scicos.c, line: 4411
+# File: modules/scicos/src/c/scicos.c, line: 4337
+# File: modules/scicos/src/c/scicos.c, line: 4416
 #, c-format
 msgid ""
 "\n"
@@ -1049,7 +1049,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4377
+# File: modules/scicos/src/c/scicos.c, line: 4382
 #, c-format
 msgid ""
 "\n"
@@ -1057,14 +1057,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4418
+# File: modules/scicos/src/c/scicos.c, line: 4423
 msgid ""
 "\n"
 "Error: Problem in the evaluation of a root function"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4463
+# File: modules/scicos/src/c/scicos.c, line: 4468
 #, c-format
 msgid ""
 "\n"
@@ -1072,21 +1072,21 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4473
+# File: modules/scicos/src/c/scicos.c, line: 4478
 msgid ""
 "\n"
 "Error: The preconditioner evaluation function failed."
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4484
+# File: modules/scicos/src/c/scicos.c, line: 4489
 msgid ""
 "\n"
 "Error: Failed to factor the preconditioner."
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4507
+# File: modules/scicos/src/c/scicos.c, line: 4512
 #, c-format
 msgid ""
 "\n"
@@ -1094,7 +1094,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4546
+# File: modules/scicos/src/c/scicos.c, line: 4551
 #, c-format
 msgid ""
 "\n"
@@ -1102,35 +1102,35 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4547
+# File: modules/scicos/src/c/scicos.c, line: 4552
 msgid ""
 "\n"
 "         (already programmed) event. There may be an error in"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 4548
+# File: modules/scicos/src/c/scicos.c, line: 4553
 msgid ""
 "\n"
 "         your model. Please check your model\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 6536
+# File: modules/scicos/src/c/scicos.c, line: 6541
 msgid ""
 "\n"
 " error in Jacobian"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 6637
-# File: modules/scicos/src/c/scicos.c, line: 6763
+# File: modules/scicos/src/c/scicos.c, line: 6642
+# File: modules/scicos/src/c/scicos.c, line: 6768
 #, c-format
 msgid "Error: Cannot find file '%s'.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 6947
+# File: modules/scicos/src/c/scicos.c, line: 6952
 #, c-format
 msgid ""
 "\n"
@@ -1138,7 +1138,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 7083
+# File: modules/scicos/src/c/scicos.c, line: 7088
 #, c-format
 msgid ""
 "\n"
@@ -1146,7 +1146,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/c/scicos.c, line: 7084
+# File: modules/scicos/src/c/scicos.c, line: 7089
 msgid ""
 "\n"
 " The residual function returns NAN/Inf. \n"
@@ -1155,14 +1155,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/var2vec.cpp, line: 308
+# File: modules/scicos/src/cpp/var2vec.cpp, line: 312
 #, c-format
 msgid "%s: Wrong type for input argument #%d: unknown integer type.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/var2vec.cpp, line: 334
-# File: modules/scicos/src/cpp/var2vec.cpp, line: 341
+# File: modules/scicos/src/cpp/var2vec.cpp, line: 337
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Could not read its content.\n"
+msgstr ""
+
+#
+# File: modules/scicos/src/cpp/var2vec.cpp, line: 343
+# File: modules/scicos/src/cpp/var2vec.cpp, line: 350
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"
 msgstr ""
@@ -1244,9 +1250,8 @@ msgstr ""
 
 #
 # File: modules/scicos/src/cpp/view_scilab/DiagramAdapter.cpp, line: 479
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 83
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 127
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 217
+# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 85
+# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 129
 # File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 173
 # File: modules/scicos/src/cpp/view_scilab/TextAdapter.cpp, line: 127
 # File: modules/scicos/src/cpp/view_scilab/TextAdapter.cpp, line: 150
@@ -1256,12 +1261,10 @@ msgid "Wrong type for field %s.%s: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 90
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 134
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 180
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 224
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 864
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 984
+# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 92
+# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 136
+# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 292
+# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 412
 # File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 180
 # File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 326
 # File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 379
@@ -1270,15 +1273,9 @@ msgid "Wrong dimension for field %s.%s: %d-by-%d expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 173
-#, c-format
-msgid "Wrong type for field %s.%s: Boolean matrix expected.\n"
-msgstr ""
-
-#
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 857
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 1000
-# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 1009
+# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 285
+# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 428
+# File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 437
 #, c-format
 msgid "Wrong type for field %s.%s: string expected.\n"
 msgstr ""
@@ -1306,7 +1303,7 @@ msgstr ""
 # File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 156
 # File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 188
 # File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 198
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1232
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1236
 #, c-format
 msgid "Wrong dimension for field %s.%s : %d-by-%d expected.\n"
 msgstr ""
@@ -1334,10 +1331,10 @@ msgstr ""
 # File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 359
 # File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 415
 # File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 426
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1058
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1105
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1314
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1369
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1062
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1109
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1362
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1417
 #, c-format
 msgid "Wrong type for field %s.%s : Real matrix expected.\n"
 msgstr ""
@@ -1350,8 +1347,8 @@ msgstr ""
 
 #
 # File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 433
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1322
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1377
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1370
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1425
 #, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 expected.\n"
 msgstr ""
@@ -1388,45 +1385,51 @@ msgid "Wrong type for field %s.%s : Diagram expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1098
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1102
 #, c-format
 msgid "Wrong type for field %s.%s : List clear previous value.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1112
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1116
 #, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1121
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1331
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1386
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1125
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1379
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1434
 #, c-format
 msgid "Wrong value for field %s.%s : Integer values expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1166
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1265
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1431
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1170
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1307
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1479
 #, c-format
 msgid "Wrong type for field %s.%s : String expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1173
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1272
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1438
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1177
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1314
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1486
 #, c-format
 msgid "Wrong dimension for field %s.%s : String expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1225
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1229
 #, c-format
 msgid "Wrong type for field %s.%s : Boolean matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1326
+#, c-format
+msgid "Wrong value for field %s.%s : Valid C identifier expected.\n"
 msgstr ""
 
 #
@@ -1692,6 +1695,12 @@ msgstr ""
 #
 # File: modules/scicos/macros/scicos_auto/scicos_simulate.sci, line: 368
 msgid "End problem: "
+msgstr ""
+
+#
+# File: modules/scicos/macros/scicos_scicos/%graphics_e.sci, line: 25
+#, c-format
+msgid "%s: property %s obsolete, please use %s instead.\n"
 msgstr ""
 
 #

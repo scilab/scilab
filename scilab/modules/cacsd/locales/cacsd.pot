@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-02-10 12:14+0100\n"
+"Revision-Date: 2016-06-08 22:21+0100\n"
 
 # File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 34
 # File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 61
@@ -62,12 +62,12 @@ msgstr ""
 # File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 77
 # File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 116
 # File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 193
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 420
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 436
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 451
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 466
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 424
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 440
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 455
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 470
 # File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 85
-# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 139
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 143
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 71
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 89
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 107
@@ -78,7 +78,7 @@ msgstr ""
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 102
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 117
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 167
-# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 232
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 246
 # File: modules/cacsd/sci_gateway/cpp/sci_tzer.cpp, line: 67
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -86,7 +86,7 @@ msgstr ""
 
 #
 # File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 115
-# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 176
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 190
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
@@ -730,7 +730,7 @@ msgstr ""
 # File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 63
 # File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 115
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 138
-# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 193
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 197
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real polynom expected.\n"
 msgstr ""
@@ -859,11 +859,11 @@ msgstr ""
 #
 # File: modules/cacsd/sci_gateway/cpp/sci_ereduc.cpp, line: 65
 # File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 89
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 391
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 413
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 428
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 443
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 458
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 395
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 417
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 432
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 447
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 462
 # File: modules/cacsd/sci_gateway/cpp/sci_fstair.cpp, line: 79
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 63
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 81
@@ -874,7 +874,7 @@ msgstr ""
 # File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 91
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 78
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 94
-# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 224
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 234
 # File: modules/cacsd/sci_gateway/cpp/sci_tzer.cpp, line: 59
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
@@ -892,28 +892,28 @@ msgstr ""
 
 #
 # File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 182
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 256
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 258
 # File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 105
-# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 161
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 169
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 157
-# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 217
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 225
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 262
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 483
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 489
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 266
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 487
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 493
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 146
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 154
 # File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 111
 # File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 133
-# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 241
-# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 252
-# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 258
-# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 264
-# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 270
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 259
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 274
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 284
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 294
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 304
 # File: modules/cacsd/sci_gateway/cpp/sci_tzer.cpp, line: 84
 # File: modules/cacsd/sci_gateway/cpp/sci_tzer.cpp, line: 123
 #, c-format
@@ -921,19 +921,19 @@ msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 287
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 291
 #, c-format
 msgid "%s: Division by zero...\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 528
-# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 300
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 532
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 338
 msgid "Warning :\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 529
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 533
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %g\n"
 msgstr ""
@@ -957,8 +957,8 @@ msgid "%s: The algorithm has failed.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 121
-# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 145
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 123
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 151
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A same size as input argument %d "
@@ -966,7 +966,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 182
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 200
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
@@ -998,13 +998,13 @@ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 301
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 339
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %s\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 306
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 344
 msgid "Problem is singular.\n"
 msgstr ""
 
@@ -1027,7 +1027,7 @@ msgid "%s: ierr %d from qitz (eispack).\n"
 msgstr ""
 
 # File: modules/cacsd/demos/cacsd.dem.gateway.sce, line: 9
-msgid "CACSD"
+msgid "Control Systems - CACSD"
 msgstr ""
 
 #
@@ -1541,6 +1541,7 @@ msgstr ""
 # File: modules/cacsd/macros/invsyslin.sci, line: 16
 # File: modules/cacsd/macros/leqe.sci, line: 15
 # File: modules/cacsd/macros/leqr.sci, line: 26
+# File: modules/cacsd/macros/lqg2stan.sci, line: 33
 # File: modules/cacsd/macros/lqr.sci, line: 21
 # File: modules/cacsd/macros/nehari.sci, line: 27
 # File: modules/cacsd/macros/observer.sci, line: 50
@@ -1697,7 +1698,7 @@ msgstr ""
 
 #
 # File: modules/cacsd/macros/csim.sci, line: 55
-# File: modules/cacsd/macros/lqg2stan.sci, line: 43
+# File: modules/cacsd/macros/lqg2stan.sci, line: 53
 # File: modules/cacsd/macros/nehari.sci, line: 30
 # File: modules/cacsd/macros/obs_gram.sci, line: 32
 # File: modules/cacsd/macros/obs_gram.sci, line: 45
@@ -2304,6 +2305,29 @@ msgstr ""
 # File: modules/cacsd/macros/lqg.sci, line: 40
 #, c-format
 msgid "%s: %s is not zero! (set to zero)"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/lqg2stan.sci, line: 38
+# File: modules/cacsd/macros/lqg2stan.sci, line: 42
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/lqg2stan.sci, line: 46
+# File: modules/cacsd/macros/lqg2stan.sci, line: 49
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be symmetric.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/lqg2stan.sci, line: 58
+# File: modules/cacsd/macros/lqg2stan.sci, line: 63
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a symmetric non negative "
+"matrix.\n"
 msgstr ""
 
 #

@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:09+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
 "X-Poedit-Country: JAPAN\n"
-"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -281,14 +281,6 @@ msgstr ""
 "い.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr "%s: 引数 #%d の型が間違っています: 論理値行列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルを指定してくださ"
@@ -383,6 +375,10 @@ msgid ""
 msgstr ""
 "%s: Java例外が発生しました:\n"
 "%s"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
@@ -613,6 +609,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 論理値行列を指定してください.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -1111,6 +1111,12 @@ msgid "&File Browser"
 msgstr "ファイルブラウザ (&F)"
 
 #
+# File: modules/gui/src/gui_fake_xml.c, line: 121
+# File: modules/gui/src/gui_fake_xml.c, line: 169
+msgid "&News feed"
+msgstr ""
+
+#
 # File: scilab_fake_localization_file.c, line: 74
 msgid "Scilab &Help"
 msgstr "Scilab ヘルプ(&H)"
@@ -1420,9 +1426,6 @@ msgstr "横向き"
 msgid "Confirm"
 msgstr "確認"
 
-msgid "Cancel"
-msgstr "キャンセル"
-
 msgid "Orientation"
 msgstr "向き"
 
@@ -1716,16 +1719,6 @@ msgstr "ラベルテキストを設定"
 msgid "Set legend text"
 msgstr "凡例テキストを設定"
 
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 76
-msgid "Close"
-msgstr "閉じる"
-
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 73
-msgid "File"
-msgstr "ファイル"
-
 msgid "Quick GED"
 msgstr "クイックGED"
 
@@ -1933,9 +1926,6 @@ msgstr "隠れ軸"
 msgid "Style/Appearance"
 msgstr "スタイル/外観"
 
-msgid "Background Color"
-msgstr "背景色"
-
 msgid "Foreground Color"
 msgstr "前景色"
 
@@ -2047,7 +2037,8 @@ msgstr "マークの大きさ"
 msgid "Mark Style"
 msgstr "マークのスタイル"
 
-msgid "3 Components"
+#, fuzzy
+msgid "Components display"
 msgstr "3要素"
 
 msgid "Data Properties"
@@ -2106,9 +2097,6 @@ msgstr "Zラベル"
 
 msgid "Scaled"
 msgstr "サイズ変更"
-
-msgid "Title"
-msgstr "タイトル"
 
 msgid "Start Angle"
 msgstr "開始角度"
@@ -2308,12 +2296,6 @@ msgstr "Yシフト"
 msgid "Z Shift"
 msgstr "Zシフト"
 
-msgid "Yes"
-msgstr "はい"
-
-msgid "No"
-msgstr "いいえ"
-
 #
 # File: etc/main_menubar.xml, line: 11
 msgid "Save and execute"
@@ -2389,6 +2371,10 @@ msgstr "PNG画像ファイル"
 msgid "All RTF (Rich Text Format) files"
 msgstr "RTF (Rich Text Format)ファイル"
 
+#, fuzzy
+msgid "All HTML files"
+msgstr "全てのファイル"
+
 #, c-format
 msgid "All %s files"
 msgstr "全ての %s ファイル"
@@ -2423,6 +2409,387 @@ msgstr "%s: 'STANDARD'モードでのみ利用可能です.\n"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "エラー. シグナルを検知しました.\n"
+
+#, fuzzy
+msgid "Control Plot3d"
+msgstr "操作"
+
+#, fuzzy
+msgid "Control Panel"
+msgstr "操作"
+
+#, fuzzy
+msgid "Rotation angle"
+msgstr "回転角"
+
+#, fuzzy
+msgid "Colormap"
+msgstr "色"
+
+#, fuzzy
+msgid "Show / Hide"
+msgstr "ツールバーの表示/非表示(&T)"
+
+#
+# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 6
+msgid "messagebox"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 7
+msgid "x_choose"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 8
+msgid "x_dialog"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 9
+msgid "x_mdialog"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/messagebox.sce, line: 8
+msgid "Simple example of message"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/messagebox.sce, line: 11
+msgid "Button 1Button 2"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/messagebox.sce, line: 14
+msgid "Button 1 clicked."
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/messagebox.sce, line: 16
+msgid "Button 2 clicked"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/x_choose.sce, line: 10
+msgid ""
+"Message: Selection (double-click on an item --> returns the item number)"
+msgstr ""
+
+#, fuzzy
+msgid "Item selected: "
+msgstr "テキストが選択されていません"
+
+#
+# File: modules/gui/demos/dialogs/x_dialog.sce, line: 8
+msgid "Message: enter a value"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/x_dialog.sce, line: 10
+msgid "Value entered: "
+msgstr ""
+
+#, fuzzy
+msgid "Message"
+msgstr "情報メッセージ"
+
+#
+# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 10
+msgid "first row"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 13
+msgid "Values entered: "
+msgstr ""
+
+#, fuzzy
+msgid "row"
+msgstr "矢印"
+
+#
+# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 20
+msgid "col"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 22
+msgid "Matrix to edit"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 24
+msgid "Matrix entered: "
+msgstr ""
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 12
+msgid "GUI"
+msgstr ""
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 14
+msgid "Dialogs"
+msgstr ""
+
+#, fuzzy
+msgid "Uicontrols 1"
+msgstr "操作"
+
+#, fuzzy
+msgid "Uicontrols 2"
+msgstr "操作"
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 21
+msgid "Uicontrols with LaTeX/MathML"
+msgstr ""
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 24
+msgid "Show images with uicontrols "
+msgstr ""
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 27
+# File: modules/gui/demos/uicontrol_listbox_popupmenu.dem.sce, line: 18
+msgid "Listboxes and Popupmenus"
+msgstr ""
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 30
+msgid "Uicontrols rendering"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 13
+# File: modules/gui/demos/uicontrol.dem.sce, line: 93
+# File: modules/gui/demos/uicontrol.dem.sce, line: 193
+msgid "<Enter color name here>"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 14
+# File: modules/gui/demos/uicontrol.dem.sce, line: 23
+msgid "Error"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 14
+msgid "Please enter a color name first."
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 23
+msgid "Unknown color."
+msgstr ""
+
+#, fuzzy
+msgid "No color selected."
+msgstr "テキストが選択されていません"
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 38
+# File: modules/gui/demos/uicontrol.dem.sce, line: 49
+msgid "Color selection"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 42
+#, c-format
+msgid "Selected colors are: %s."
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 44
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 53
+#, c-format
+msgid "You clicked on menu '%s'."
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 56
+#, fuzzy
+msgid "Selected menu"
+msgstr "全て選択"
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 59
+msgid "checked"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 61
+msgid "unchecked"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 63
+#, c-format
+msgid "Menu '%s' is %s."
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 64
+msgid "Menu status"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 70
+msgid "Slider value: "
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 78
+#, c-format
+msgid "You selected '%s'."
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 79
+msgid "Popupmenu selection"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 100
+msgid "Do you really want to quit Scilab?"
+msgstr ""
+
+#, fuzzy
+msgid "Quit Scilab"
+msgstr "Scilabについて..."
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 108
+msgid "Uicontrols demo"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 69
+#, fuzzy
+msgid "Application"
+msgstr "アプリケーション(&A)"
+
+#, fuzzy
+msgid "Close figure"
+msgstr "図をクリア(&C)"
+
+#, fuzzy
+msgid "Scilab Graphics"
+msgstr "Scilabグラフィックエディタ - GED"
+
+#, fuzzy
+msgid "Launch plot3d"
+msgstr "SciNotesを起動"
+
+#, fuzzy
+msgid "Launch plot2d"
+msgstr "SciNotesを起動"
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 128
+msgid "Menu"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 129
+msgid "Sub-menu 1"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 130
+# File: modules/gui/demos/uicontrol.dem.sce, line: 133
+msgid "Sub-menu 2"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 131
+msgid "Sub-menu 2-1"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 132
+msgid "Sub-menu 2-2"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 140
+msgid "item1|item2|item3|item4"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 146
+msgid "Pop-up menu"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 157
+msgid "Slider demo"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 187
+msgid "Colors list edition"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 200
+msgid "Add color in listbox"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 206
+msgid "Delete color in listbox"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 210
+msgid "blue"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 210
+msgid "green"
+msgstr ""
+
+#, fuzzy
+msgid "red"
+msgstr "色付き"
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 210
+msgid "yellow"
+msgstr ""
+
+#, fuzzy
+msgid "Display selection"
+msgstr "関数名を表示"
+
+#, fuzzy
+msgid "Delete selection"
+msgstr "選択したオブジェクトを削除"
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 237
+msgid "Default"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 75
+#, fuzzy
+msgid "Quit demonstration"
+msgstr "Scilab デモ(&D)"
+
+#
+# File: modules/gui/demos/uicontrol_LaTeX.dem.sce, line: 16
+msgid "Uicontrols demo with LaTeX"
+msgstr ""
 
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
@@ -2658,3 +3025,28 @@ msgstr "%s: %s の型が間違っています: 実数を指定してください
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
+
+#~ msgid "Cancel"
+#~ msgstr "キャンセル"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 76
+#~ msgid "Close"
+#~ msgstr "閉じる"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 73
+#~ msgid "File"
+#~ msgstr "ファイル"
+
+#~ msgid "Background Color"
+#~ msgstr "背景色"
+
+#~ msgid "Title"
+#~ msgstr "タイトル"
+
+#~ msgid "Yes"
+#~ msgstr "はい"
+
+#~ msgid "No"
+#~ msgstr "いいえ"

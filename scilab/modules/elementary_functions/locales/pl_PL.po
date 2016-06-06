@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:03+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: pl\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -65,13 +65,13 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong value(s) for input argument #%d: A matrix of positive integer "
 "values expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
 msgstr ""
 
 #, c-format
@@ -580,16 +580,6 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano najwyżej %d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwana '%s'.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 
@@ -673,10 +663,13 @@ msgstr ""
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real expected.\n"
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Booleans, Integers, Decimals, Complexes, "
+"Polynomials, Rationals or Texts expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu nr %d: oczekiwano wartości typu real.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwana macierz  liczb "
+"rzeczywistych lub zespolonych.\n"
 
 #, c-format
 msgid ""
@@ -858,3 +851,16 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego: Niekompatybilny "
 "rozmiar.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano najwyżej %d.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwana '%s'.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ dla argumentu nr %d: oczekiwano wartości typu "
+#~ "real.\n"

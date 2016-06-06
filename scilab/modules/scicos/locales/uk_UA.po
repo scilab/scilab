@@ -12,11 +12,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-23 05:35+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: uk\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -636,8 +636,8 @@ msgstr ""
 "**** SUNDIALS.Ida: занадто багато роботи за час=%g (фіксований діапазон, "
 "змініть RTOL і ATOL)\n"
 
-#, c-format
-msgid "block %d is called "
+#, fuzzy, c-format
+msgid "block %d [%s] is called "
 msgstr "блок %d викликано "
 
 #, c-format
@@ -789,17 +789,35 @@ msgstr ""
 " Будь ласка, перевірте вашу модель:\n"
 " ймовірно, деякі з функцій було викликано з некоректними параметрами."
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s, %s or %s type.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: unknown integer type.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Could not read its content.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: не придатний до обробки тип.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип %s, %s, "
 "%s, %s, %s або %s.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %d (String) expected.\n"
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: Integer matrix cannot "
+"be empty.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати %d "
-"(рядок).\n"
+"%s: помилкове значення елемента №%d вхідного параметра №%d: невідомий тип.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: String matrix cannot "
+"be empty.\n"
+msgstr ""
+"%s: помилкове значення елемента №%d вхідного параметра №%d: невідомий тип.\n"
 
 #, c-format
 msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
@@ -847,10 +865,6 @@ msgid "Wrong dimension for field %s.%s: %d-by-%d expected.\n"
 msgstr "Помилкова розмірність поля %s.%s: мала бути матриця %d x %d.\n"
 
 #, c-format
-msgid "Wrong type for field %s.%s: Boolean matrix expected.\n"
-msgstr "Помилковий тип поля %s.%s: мала бути матриця з булевих значень.\n"
-
-#, c-format
 msgid "Wrong type for field %s.%s: string expected.\n"
 msgstr "Помилковий тип поля %s.%s: мав бути рядок.\n"
 
@@ -866,60 +880,84 @@ msgstr "Помилковий тип поля %s:мала бути матриця
 msgid "Wrong type for field %s: Real matrix expected.\n"
 msgstr "Помилковий тип поля %s: мала бути матриця з дійсних чисел.\n"
 
-#, c-format
-msgid "Wrong length for field %s.%s: %d expected.\n"
+#, fuzzy, c-format
+msgid "Wrong dimension for field %s.%s : %d-by-%d expected.\n"
+msgstr "Помилкова розмірність поля %s.%s: мала бути матриця %d x %d.\n"
+
+#, fuzzy, c-format
+msgid "Wrong length for field %s.%s : %d expected.\n"
 msgstr "Помилкова довжина поля %s.%s: мала бути %d.\n"
 
-#, c-format
-msgid "Wrong type for field %s.%s : string expected.\n"
-msgstr "Помилковий тип поля %s.%s: мав бути рядок.\n"
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : String matrix expected.\n"
+msgstr "Помилковий тип поля %s.%s: мала бути матриця з рядків.\n"
 
-#, c-format
-msgid "Wrong value for field %s.%s: Round number expected.\n"
+#, fuzzy, c-format
+msgid "Wrong value for field %s.%s : Round number expected.\n"
 msgstr "Помилкове значення поля %s.%s: мало бути округлене число.\n"
 
-#, c-format
-msgid "Wrong size for field %s.%s: %d-by-%d expected.\n"
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : Real matrix expected.\n"
+msgstr "Помилковий тип поля %s.%s: мала бути матриця з дійсними елементами.\n"
+
+#, fuzzy, c-format
+msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
 msgstr "Помилкова розмірність поля %s.%s: мала бути %d x %d.\n"
 
-#, c-format
-msgid "Wrong dimension for field %s.%s: m-by-1 expected.\n"
+#, fuzzy, c-format
+msgid "Wrong dimension for field %s.%s : m-by-1 expected.\n"
 msgstr "Помилкова розмірність поля %s.%s: мало бути m x 1.\n"
 
-#, c-format
-msgid "Wrong type for field %s.%s: List expected.\n"
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : List expected.\n"
 msgstr "Помилковий тип поля %s.%s: мав бути список.\n"
 
-#, c-format
-msgid "Wrong value for field %s.%s: %s (%s) has an invalid port number.\n"
+#, fuzzy, c-format
+msgid "Wrong value for field %s.%s : %s (%s) has an invalid port number.\n"
 msgstr ""
 "Помилкове значення поля %s.%s: %s (%s) містить некоректний номер порту.\n"
 
-#, c-format
-msgid "Wrong value for field %s.%s: %s (%s) has an invalid implicit port.\n"
+#, fuzzy, c-format
+msgid "Wrong value for field %s.%s : %s (%s) has an invalid implicit port.\n"
 msgstr ""
 "Помилкове значення поля %s.%s: %s (%s) містить некоректний неявний порт.\n"
 
-#, c-format
-msgid "Wrong value for field %s.%s: %s (%s) has an invalid explicit port.\n"
+#, fuzzy, c-format
+msgid "Wrong value for field %s.%s : %s (%s) has an invalid explicit port.\n"
 msgstr ""
 "Помилкове значення поля %s.%s: %s (%s) містить некоректний явний порт.\n"
 
-#, c-format
-msgid "Wrong type for field %s.%s: Diagram expected.\n"
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : Diagram expected.\n"
 msgstr "Помилковий тип поля %s.%s: мала бути діаграма.\n"
 
-#, c-format
-msgid "Wrong type for field %s.%s: List clear previous value.\n"
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : List clear previous value.\n"
 msgstr "Помилковий тип поля %s.%s: список спорожнює попереднє значення.\n"
 
-#, c-format
-msgid "Wrong dimension for field %s.%s: m-by-1 matrix expected.\n"
+#, fuzzy, c-format
+msgid "Wrong dimension for field %s.%s : m-by-1 matrix expected.\n"
 msgstr "Помилкова розмірність поля %s.%s: мала бути матриця m x 1.\n"
 
-#, c-format
-msgid "Wrong value for field %s.%s: Integer values expected.\n"
+#, fuzzy, c-format
+msgid "Wrong value for field %s.%s : Integer values expected.\n"
 msgstr "Помилкове значення поля %s.%s: мали бути цілі значення.\n"
+
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : String expected.\n"
+msgstr "Помилковий тип поля %s.%s: мав бути рядок.\n"
+
+#, fuzzy, c-format
+msgid "Wrong dimension for field %s.%s : String expected.\n"
+msgstr "Помилкова розмірність поля %s.%s: мав бути рядок.\n"
+
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : Boolean matrix expected.\n"
+msgstr "Помилковий тип поля %s.%s: мала бути матриця з булевих значень.\n"
+
+#, fuzzy, c-format
+msgid "Wrong value for field %s.%s : Valid C identifier expected.\n"
+msgstr "Помилкове значення поля %s.%s: мало бути округлене число.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: String expected.\n"
@@ -930,16 +968,20 @@ msgid "Wrong dimension for field %s.%s: String expected.\n"
 msgstr "Помилкова розмірність поля %s.%s: мав бути рядок.\n"
 
 #, c-format
-msgid "Wrong type for field %s.%s: Equation expected.\n"
-msgstr "Помилковий тип поля %s.%s: мало бути рівняння (Equation).\n"
-
-#, c-format
 msgid "Wrong type for field %s.%s: Real expected.\n"
 msgstr "Помилковий тип поля %s.%s: мало бути дійсне число (Real).\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: Real expected.\n"
 msgstr "Помилкова розмірність поля %s.%s: мало бути дійсне число (Real).\n"
+
+#, c-format
+msgid "Wrong dimension for field %s.%s: m-by-1 expected.\n"
+msgstr "Помилкова розмірність поля %s.%s: мало бути m x 1.\n"
+
+#, c-format
+msgid "Wrong type for field %s.%s : string expected.\n"
+msgstr "Помилковий тип поля %s.%s: мав бути рядок.\n"
 
 #, c-format
 msgid "Wrong type for field %s: Mlist expected.\n"
@@ -968,6 +1010,10 @@ msgstr "Помилкове значення поля %s.%s: мав бути ве
 #, c-format
 msgid "Wrong type for field %s.%s .\n"
 msgstr "Помилковий тип поля %s.%s.\n"
+
+#, c-format
+msgid "Wrong value for field %s.%s: Round number expected.\n"
+msgstr "Помилкове значення поля %s.%s: мало бути округлене число.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s: Must be in the interval [%d, %d].\n"
@@ -1093,6 +1139,12 @@ msgstr "Проблема імітації: "
 
 msgid "End problem: "
 msgstr "Проблема завершення: "
+
+#
+# File: modules/scicos/macros/scicos_scicos/%graphics_e.sci, line: 25
+#, c-format
+msgid "%s: property %s obsolete, please use %s instead.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
@@ -1464,3 +1516,11 @@ msgid ""
 msgstr ""
 "Відповідь, вказана для %s \n"
 " є помилковою: %s.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d: %d (String) expected.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати %d "
+#~ "(рядок).\n"
+
+#~ msgid "Wrong type for field %s.%s: Equation expected.\n"
+#~ msgstr "Помилковий тип поля %s.%s: мало бути рівняння (Equation).\n"

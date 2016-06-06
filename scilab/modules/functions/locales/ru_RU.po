@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-11-27 16:35+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -65,10 +65,6 @@ msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался вектор строк.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
@@ -97,14 +93,6 @@ msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Неверный тип входного параметра №%d.\n"
-
-#, c-format
-msgid "%s: obsolete op-code %d.\n"
-msgstr "%s: устаревший код операции %d.\n"
-
-#, c-format
 msgid "Checking: %s.\n"
 msgstr "Проверяется: %s.\n"
 
@@ -115,10 +103,6 @@ msgstr "%s: Проверьте: %s\n"
 #, c-format
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: Файл %s не существует.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -159,64 +143,6 @@ msgid "No comment available."
 msgstr "Комментарий недоступен."
 
 #, c-format
-msgid "%s: Wrong values for input argument: No profile data in the function\n"
-msgstr ""
-"%s: Неверные значения входного аргумента: функция не подготовлена к "
-"профилированию\n"
-
-msgid "Complexity"
-msgstr "Сложность"
-
-msgid "Tools"
-msgstr "Инструменты"
-
-msgid "Edit"
-msgstr "Правка"
-
-msgid "?"
-msgstr "Справка"
-
-msgid "Exit"
-msgstr "Выход"
-
-msgid "Click to get corresponding line, move with a-z."
-msgstr "Нажатие - получить соответствующую строку, a-z - перемещение."
-
-#, c-format
-msgid "line %s [%s call, %s sec] :: "
-msgstr "строка %s [%s вызов, %s с] :: "
-
-#, c-format
-msgid "line %s [%s calls, %s sec] :: "
-msgstr "строка %s [%s вызовов, %s с] :: "
-
-#, c-format
-msgid "%s: The function has not been built for profiling"
-msgstr "%s: Функция не подготовлена к профилированию"
-
-#, c-format
-msgid "No variable named: %s.\n"
-msgstr "Нет переменной с именем: %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось имя функции Scilab.\n"
-
-#, c-format
-msgid "%s is already noncompiled.\n"
-msgstr "%s уже не скомпилирован.\n"
-
-#, c-format
-msgid "%s is already compiled.\n"
-msgstr "%s уже скомпилирован.\n"
-
-#, c-format
-msgid "%s is already compiled for profiling.\n"
-msgstr "%s уже скомпилирован для профилирования.\n"
-
-#, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"
 msgstr "%s: Частная функция: невозможен прямой доступ к этой функции.\n"
 
@@ -231,3 +157,67 @@ msgstr "Используйте %s."
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Эта функция будет окончательно удалена в Scilab %s"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d.\n"
+
+#~ msgid "%s: obsolete op-code %d.\n"
+#~ msgstr "%s: устаревший код операции %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
+
+#~ msgid ""
+#~ "%s: Wrong values for input argument: No profile data in the function\n"
+#~ msgstr ""
+#~ "%s: Неверные значения входного аргумента: функция не подготовлена к "
+#~ "профилированию\n"
+
+#~ msgid "Complexity"
+#~ msgstr "Сложность"
+
+#~ msgid "Tools"
+#~ msgstr "Инструменты"
+
+#~ msgid "Edit"
+#~ msgstr "Правка"
+
+#~ msgid "?"
+#~ msgstr "Справка"
+
+#~ msgid "Exit"
+#~ msgstr "Выход"
+
+#~ msgid "Click to get corresponding line, move with a-z."
+#~ msgstr "Нажатие - получить соответствующую строку, a-z - перемещение."
+
+#~ msgid "line %s [%s call, %s sec] :: "
+#~ msgstr "строка %s [%s вызов, %s с] :: "
+
+#~ msgid "line %s [%s calls, %s sec] :: "
+#~ msgstr "строка %s [%s вызовов, %s с] :: "
+
+#~ msgid "%s: The function has not been built for profiling"
+#~ msgstr "%s: Функция не подготовлена к профилированию"
+
+#~ msgid "No variable named: %s.\n"
+#~ msgstr "Нет переменной с именем: %s.\n"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A Scilab function name is "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалось имя функции "
+#~ "Scilab.\n"
+
+#~ msgid "%s is already noncompiled.\n"
+#~ msgstr "%s уже не скомпилирован.\n"
+
+#~ msgid "%s is already compiled.\n"
+#~ msgstr "%s уже скомпилирован.\n"
+
+#~ msgid "%s is already compiled for profiling.\n"
+#~ msgstr "%s уже скомпилирован для профилирования.\n"

@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:09+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
 "X-Poedit-Country: Japan\n"
-"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -71,15 +71,15 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数値行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 0ｋと2^52の間としてください.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value(s) for input argument #%d: A matrix of positive integer "
 "values expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 正の整数値の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 0ｋと2^52の間としてください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
@@ -590,14 +590,6 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: 最大でも %d 個としてください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s'を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
@@ -696,11 +688,13 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 "%s:入力引数 #%d と #%d に互換性がありません: 同じ型を指定してください.\n"
 
-#
-# File: macros/ndgrid.sci, line: 45
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real expected.\n"
-msgstr "%s: 引数 #%d のための型が不正: 実を想定します。\n"
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Booleans, Integers, Decimals, Complexes, "
+"Polynomials, Rationals or Texts expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています:  整数, 実数, 複素数, 論理値, 多項式ま"
+"たは文字列を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -898,3 +892,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 大きさに互換性がありません.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#~ msgstr "%s: 入力引数の数が間違っています: 最大でも %d 個としてください.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+#~ msgstr "%s: 入力引数 #%d の値が間違っています: '%s'を指定してください.\n"
+
+#
+# File: macros/ndgrid.sci, line: 45
+#~ msgid "%s: Wrong type for argument #%d: Real expected.\n"
+#~ msgstr "%s: 引数 #%d のための型が不正: 実を想定します。\n"

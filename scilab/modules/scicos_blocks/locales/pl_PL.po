@@ -11,6 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2011-11-08 14:50+0000\n"
 "Last-Translator: Grzegorz Szostek <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -825,3 +826,9 @@ msgstr ""
 
 msgid "Same sizes expected."
 msgstr "Oczekiwano takich samych rozmiarów."
+
+#
+# File: modules/scicos_blocks/tests/unit_tests/scicos_unitary.sci, line: 96
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr ""

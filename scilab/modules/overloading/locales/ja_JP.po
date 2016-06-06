@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:01+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
 "X-Poedit-Country: Japan\n"
-"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -219,6 +219,13 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数の行列を指定してください.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: integer <= ndims(argument #%d) "
+"expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d 以上の整数を指定してください.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
 msgstr "%s: 入力引数 #%d の型は間違っています: 整数値を指定してください.\n"
@@ -249,6 +256,22 @@ msgstr "%s: 入力引数の大きさが間違っています.\n"
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s: 入力引数の大きさが間違っています.\n"
 
+#
+# File: modules/overloading/macros/%r_j_s.sci, line: 17
+msgid "Invalid exponent: expected real exponents."
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_j_s.sci, line: 25
+# File: modules/overloading/macros/%r_j_s.sci, line: 53
+msgid "Division by zero"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_j_s.sci, line: 59
+msgid "Invalid Exponent"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
@@ -267,6 +290,10 @@ msgstr "%s: ヌル値代入時,  コロン以下の添字を指定できるの�
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr "%s: 疎行列の挿入は実装されていません.\n"
+
+#, fuzzy, c-format
+msgid "%s: Concatenated arrays must have the same number of dimensions.\n"
+msgstr "%s: 入力および出力の行列の要素の数は同じとする必要があります.\n"
 
 #, c-format
 msgid "%s: Field names mismatch.\n"

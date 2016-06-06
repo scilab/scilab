@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-02-10 12:14+0100\n"
+"Revision-Date: 2016-06-08 22:22+0100\n"
 
 # File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 77
 #, c-format
@@ -36,131 +36,131 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 290
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 291
 #, c-format
 msgid "%s: Wrong method for input argument #%d: %s unknown.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 300
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 302
 #, c-format
 msgid "%s: Wrong position for input argument #%d : Must be in position %d.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 306
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 309
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 314
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 335
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 343
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 395
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 465
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 493
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 536
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 562
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 594
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 620
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 647
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 688
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 718
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 805
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 994
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1157
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1187
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1354
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1383
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1395
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1420
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1473
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1506
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1535
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1563
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 318
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 340
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 349
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 406
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 479
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 507
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 550
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 576
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 608
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 634
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 661
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 702
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 732
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 819
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1011
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1174
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1204
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1370
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1399
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1411
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1436
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1489
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1522
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1551
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1579
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 358
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 368
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 365
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 376
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 376
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 385
 #, c-format
 msgid "%s: Wrong size for input argument #%d : Only one string expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 384
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 394
 msgid "Missing vect for random permutation\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 421
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 426
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 433
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 439
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 472
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 486
 #, c-format
 msgid "%s: Wrong value for input argument #%d : At least %lf expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 501
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 515
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive integer expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 508
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 522
 #, c-format
 msgid "%s: Wrong value for input argument #%d : A value expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 543
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 627
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 557
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 641
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Positive no null value expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 570
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 655
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 584
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 669
 #, c-format
 msgid "%s: Wrong value for input argument #%d : value > 1.0 expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 577
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 601
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 669
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 726
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1001
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 591
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 615
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 683
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 740
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1018
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive value expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 662
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 695
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 676
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 709
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Positive non null value expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 743
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 757
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A matrix of size m x 1 expected.(m > "
@@ -168,7 +168,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 750
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 764
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Mean and Cov have "
@@ -176,7 +176,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 757
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 771
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A square symmetric positive definite "
@@ -184,19 +184,19 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 783
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 797
 #, c-format
 msgid "%s: setgmn return with state %d.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 812
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 826
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 830
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 844
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A square matrix or a row vector "
@@ -204,19 +204,19 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 837
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 851
 #, c-format
 msgid "%s: Wrong size for input argument #%d: No empty matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 847
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 861
 #, c-format
 msgid "%s: X0(%d) must be in the range [1,%d[.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 865
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 879
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: P(%d,%d) must be in the range [0 "
@@ -224,44 +224,44 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 875
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 890
 #, c-format
 msgid "%s: Sum of P(%d,1:%d)=%lf ~= 1.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 926
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 943
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 933
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 950
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 940
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 957
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 952
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 969
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: P(%d) must be in the range [0 1].\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 961
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 978
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Sum of P(i) > 1.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1132
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1149
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: Matrix (full or sparse) or Hypermatrix of "
@@ -269,14 +269,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1168
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1198
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1185
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1215
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1207
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1224
 #, c-format
 msgid ""
 "%s: Wrong value for input arguments #%d and #%d: Low and High must be "
@@ -284,7 +284,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1267
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1284
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
@@ -292,7 +292,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1341
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1357
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A scalar or a vector of size %d "
@@ -300,49 +300,49 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1408
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1424
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A vector of size %d x %d expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1434
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1546
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1450
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1562
 #, c-format
 msgid "%s: Wrong value for the last %d input argument(s).\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1445
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1461
 #, c-format
 msgid "%s: Wrong type for input argument #%d : One string expected.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1468
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1501
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1528
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1558
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1484
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1517
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1544
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1574
 #, c-format
 msgid "The %s option affects only the %s generator\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1479
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1495
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be between %d and %d.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1514
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1530
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Must be between %d, %d or %d.\n"
 msgstr ""
 
 #
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1571
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1587
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be > %d.\n"
 msgstr ""

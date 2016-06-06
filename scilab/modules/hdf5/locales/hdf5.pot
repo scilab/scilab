@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-02-10 12:14+0100\n"
+"Revision-Date: 2016-06-08 22:21+0100\n"
 
 # File: modules/hdf5/sci_gateway/cpp/sci_h5attr.cpp, line: 56
 # File: modules/hdf5/sci_gateway/cpp/sci_h5attr.cpp, line: 91
@@ -801,7 +801,7 @@ msgstr ""
 # File: modules/hdf5/src/cpp/H5AttributesList.cpp, line: 123
 # File: modules/hdf5/src/cpp/H5ExternalLink.cpp, line: 145
 # File: modules/hdf5/src/cpp/H5HardLink.cpp, line: 103
-# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 232
+# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 230
 # File: modules/hdf5/src/cpp/H5SoftLink.cpp, line: 118
 msgid "Filename"
 msgstr ""
@@ -995,9 +995,9 @@ msgstr ""
 # File: modules/hdf5/src/cpp/H5Object.cpp, line: 137
 # File: modules/hdf5/src/cpp/H5SoftLink.cpp, line: 65
 # File: modules/hdf5/src/cpp/H5SoftLink.cpp, line: 77
-# File: modules/hdf5/src/cpp/H5Type.cpp, line: 804
-# File: modules/hdf5/src/cpp/H5Type.cpp, line: 816
-# File: modules/hdf5/src/cpp/H5Type.cpp, line: 839
+# File: modules/hdf5/src/cpp/H5Type.cpp, line: 803
+# File: modules/hdf5/src/cpp/H5Type.cpp, line: 815
+# File: modules/hdf5/src/cpp/H5Type.cpp, line: 838
 msgid "Cannot create a string on the stack."
 msgstr ""
 
@@ -1179,8 +1179,8 @@ msgstr ""
 
 #
 # File: modules/hdf5/src/cpp/H5File.cpp, line: 375
-# File: modules/hdf5/src/cpp/H5Type.cpp, line: 827
-# File: modules/hdf5/src/cpp/H5Type.cpp, line: 850
+# File: modules/hdf5/src/cpp/H5Type.cpp, line: 826
+# File: modules/hdf5/src/cpp/H5Type.cpp, line: 849
 msgid "Cannot create an integer on the stack."
 msgstr ""
 
@@ -1269,58 +1269,58 @@ msgstr ""
 
 #
 # File: modules/hdf5/src/cpp/H5ListObject.hxx, line: 51
-# File: modules/hdf5/src/cpp/H5Object.hxx, line: 242
 # File: modules/hdf5/src/cpp/H5Object.hxx, line: 247
 # File: modules/hdf5/src/cpp/H5Object.hxx, line: 252
+# File: modules/hdf5/src/cpp/H5Object.hxx, line: 257
 msgid "Invalid operation"
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 60
+# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 58
 #, c-format
 msgid "Invalid index at position %d"
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 190
+# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 188
 msgid "Cannot get the number of objects."
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 233
+# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 231
 msgid "Parent group name"
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 234
+# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 232
 msgid "Parent group path"
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 235
+# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 233
 msgid "Elements type"
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 236
+# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 234
 msgid "Size"
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 263
+# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 267
 #, c-format
 msgid "Invalid index: %d."
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 291
+# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 295
 #, c-format
 msgid "Cannot get object at position %d."
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 303
-# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 309
+# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 307
+# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 313
 # File: modules/hdf5/src/cpp/H5Object.cpp, line: 282
 # File: modules/hdf5/src/cpp/H5Object.cpp, line: 292
 # File: modules/hdf5/src/cpp/H5Object.cpp, line: 325
@@ -1332,7 +1332,7 @@ msgid "Invalid name: %s."
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 317
+# File: modules/hdf5/src/cpp/H5NamedObjectsList.hxx, line: 321
 # File: modules/hdf5/src/cpp/H5Object.cpp, line: 307
 # File: modules/hdf5/src/cpp/H5Object.cpp, line: 366
 msgid "Invalid HDF5 object"
@@ -1372,13 +1372,13 @@ msgid "Unknown HDF5 object"
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5Object.hxx, line: 169
+# File: modules/hdf5/src/cpp/H5Object.hxx, line: 174
 msgid "Cannot retrieve numeric index."
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5Options.hxx, line: 62
-# File: modules/hdf5/src/cpp/H5Options.hxx, line: 75
+# File: modules/hdf5/src/cpp/H5Options.hxx, line: 63
+# File: modules/hdf5/src/cpp/H5Options.hxx, line: 76
 msgid "Invalid option: must be C or FORTRAN."
 msgstr ""
 
@@ -1404,8 +1404,9 @@ msgid "Invalid H5Type name: %s."
 msgstr ""
 
 #
+# File: modules/hdf5/src/cpp/H5Type.cpp, line: 728
 # File: modules/hdf5/src/cpp/H5Type.cpp, line: 730
-# File: modules/hdf5/src/cpp/H5Type.cpp, line: 1689
+# File: modules/hdf5/src/cpp/H5Type.cpp, line: 1688
 msgid "Unknown datatype"
 msgstr ""
 
