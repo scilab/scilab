@@ -83,6 +83,11 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
             }
             ScilabCommonsUtils.copyFile(homepage, new File(outName + "/ScilabHomePage.html"));
 
+            File changes = new File(SCI + "/modules/helptools/data/pages/CHANGES.html");
+            if (changes.isFile()) {
+                ScilabCommonsUtils.copyFile(changes, new File(outName + "/CHANGES.html"));
+            }
+
             File homepageImage = new File(SCI + "/modules/helptools/data/pages/ban-" + language + ".png");
             if (!homepageImage.isFile()) {
                 homepageImage = new File(SCI + "/modules/helptools/data/pages/ban-en_US.png");

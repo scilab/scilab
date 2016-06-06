@@ -31,18 +31,18 @@
     <br/>
 
     <div class="refsection">
-      <h3 class="title">Bienvenue dans Scilab 6.0.0 beta 1</h3>
+      <h3 class="title">Bienvenue dans Scilab 6.0.0 beta 2</h3>
       <p class="para">
         Scilab 6.0 est une nouvelle version majeure de Scilab, la
         plateforme open source de calcul numérique. Cette version
-        6.0.0 beta 1 est un aperçu pour tous utilisateurs, entreprises
+        6.0.0 beta 2 est un aperçu pour tous utilisateurs, entreprises
         comme communaut&eacute;.
 
       </p>
       <p class="para">
-        Comme toute beta, cette version n’est encore pas prête pour
-        être utilisée en production. Mais nous vous sugg&eacute;rons
-        de commencer &agrave; l'utiliser, en particulier si vous &ecirc;tes
+        Comme toute beta, cette version est un aperçu des modifications
+        qui seront présentes dans Scilab 6.0.0.
+        Si vous &ecirc;tes
         d&eacute;j&agrave; un utilisateur de Scilab : nous aider &agrave; la tester,
         rapporter des bugs, permettra &agrave; Scilab de continuer &agrave; &ecirc;tre
         libre et gratuit ! Si vous avez d&eacute;velopp&eacute; du
@@ -137,15 +137,12 @@
         </ul>
       </p>
       <p class="para">
-        <i>Nouveau dans Scilab 6.0.0 beta 1.</i> Xcos utilise maintenant
-        le nouveau coeur Scilab, et est cod&eacute; en code natif (au lieu
-        de java), ce qui fournit de biens meilleures performances, et
-        permet de manipuler des sch&eacute;mas bien plus grands. Xcos
-        peut charger et simuler des mod&egrave;les cr&eacute;&eacute;s
-        avec des versions ant&eacute;rieures de Xcos, mais les
-        mod&egrave;les sauv&eacute;s dans Xcos 6 ne peuvent pas
-        &ecirc;tre charg&eacute;s dans des versions ant&eacute;rieures.
-
+      Xcos - l'éditeur graphique de modélisation et de simulation de systèmes
+      dynamiques - utilise aussi le nouveau moteur de Scilab, et tourne désormais
+      sur du code natif. Ceci devrait améliorer de manière significative les performances
+      et permettre l'édition de schémas beacoup plus volumineux.
+      Xcos peut charger et lancer les simulations de modèles créés avec les versions
+      antérieures de Scilab.
       </p>
       <h2 class="title">Utilitaire de productivit&eacute; de code</h2>
       <p class="para">Plusieurs fonctionnalités additionnelles ont été
@@ -182,15 +179,15 @@
 
       <h2 class="title">Flux d'actualit&eacute;</h2>
       <p class="para">
-        <i>Nouveau dans Scilab 6.0.0 beta 1.</i> Une nouvelle
+        Une nouvelle
       fen&ecirc;tre est disponible dans l'environnement de Scilab: le
       &quot;flux d'actualit&eacute;&quot;. Il fournit des nouvelles,
       conseils, et des communications g&eacute;n&eacute;rales de la
-      communaut&eacute; et de Scilab Enterprises. Ce sont des
+      communaut&eacute; et de l'&Eacute;quipe Scilab. Ce sont des
       informations techniques et professionnelles, de l'aide pour des fonctionnalit&eacute;s
       sp&eacute;cifiques, des exemples d'usage... Il est possible que
-      nous incluions des informations commerciales de Scilab
-      Enterprises, mais seulement si elle peuvent &ecirc;tre
+      nous incluions des informations commerciales de &Eacute;quipe Scilab
+      mais seulement si elle peuvent &ecirc;tre
       directement utiles pour l'utilisateur. Nous y voyons un moyen
       d'engager une communication directe avec les
       utilisateurs.
@@ -198,48 +195,46 @@
 </p>
       <h2 class="title">Changement de licences</h2>
       <p class="para">
-        <i>Nouveau dans Scilab 6.0.0 beta 1.</i> Scilab est maintenant
+        Scilab est maintenant
         distribu&eacute; selon les termes de la GNU General Public
         License (GPL) v2.0, que vous pouvez trouver dans le fichier
         COPYING &agrave; la racine de la distribution. Dans ses
         versions pr&eacute;c&eacute;dentes, Scilab &eacute;tait
         distribu&eacute; selon les termes de la CeCILL v2.1, et
-        continue d'&ecirctre disponible selon ces termes, que vous
+        continue d'&ecirc;tre disponible selon ces termes, que vous
         pouvez trouver dans le m&ecirc;me fichier COPYING. Ce
         changement a &eacute;t&eacute; fait conformément &agrave;
         l'article 3.5.4 de la CeCILL v2.1.
-
-      </p>
-      <p class="para">
-        Dans cette beta, comme dans les alphas d&eacute;j&agrave;
-        distribu&eacute;es, la librairie Intel Math Kernel Library (MKL), et la
-        librairie FFTW optimis&eacute; sont inclus dans Scilab. Elles
-        sont sujettes &agrave une licence Intel (EULA). Nous passons
-        encore en revue le EULA Intel et sa compatibilit&eacute; avec
-        la GPL. Il est possible que la MKL soit distribu&eacute;
-        diff&eacute;remment dans la version finale.
-
-</p>
+        </p>
+        <p class="para">
+        Dans cette version, la bibliothèque Intel Math Kernel Library (MKL)
+        et la bibliothèque FFTW optimis&eacute;e sont incluses dans Scilab. Elles
+        sont sujettes &agrave; la licence Intel (EULA).
+        </p>
       <h2 class="title">Principales limitations</h2>
       <p class="para">
-        Xcos est finalement fonctionnel dans cette beta
-        1. N&eacute;anmoins, il y a quelques limitations connues dans la mise
-        &agrave; niveau de sch&eacute;mas cr&eacute;&eacute;s avec
-        des versions ant&eacute;rieures. En particulier, certains liens
-        ne sont pas import&eacute;s correctement. Si des liens
-        disparaissent lors de l'ouverture d'un sch&eacute;ma, il faut
-        les recr&eacute;er &agrave; la main. La simulation
-        fonctionnera alors correctement.
-      </p>
-      <p class="para">
-        N'h&eacute;sitez pas &agrave; reporter tout probl&egrave;me, bug ou
-        incompatibilit&eacute; sur le <a href="http://bugzilla.scilab.org/"
-        class="ulink">gestionnaire de bugs</a> : nous ferons tout
-        notre possible pour les r&eacute;soudre avant la version
-        finale de Scilab 6.0.0.
+      Cette version sera probablement la dernière version précédant la sortie de Scilab 6.0.0
+      et est distribuée pour faciliter le travail de migration des contributeurs de <i>toolboxes</i>.
+      L'API et l'ABI de Scilab sont stables et les <i>toolboxes</i> externes peuvent désormais être entièrement
+      migrées.
+      <ul>
+          <li><p>
+          Scilab 6 est encore en état de beta et peut contenir des bugs à ce jour inconnus (surtout concernant
+          des fuites mémoires).
+          N'hésitez pas à les <a href="https://bugzilla.scilab.org">remonter</a>.</p>
+          </li>
+          <li>
+          <p>
+          Les <i>toolboxes</i> de contributeurs sont en cours de portage. N'hésitez pas à soumettre des
+          modifications ou de nouvelles fonctionnalités pour une <i>toolbox</i> à la
+          <a href="dev@lists.scilab.org">liste de diffusion des développeurs</a>.</p>
+          </li>
+      </ul>
       </p>
       <h2 class="title">Limitations spécifiques aux systèmes d'exploitation</h2>
       <p class="para">
+      Toutes les fonctionnalités de Scilab sont présentes sur l'ensemble des systèmes d'exploitations
+      avec les exceptions notables suivantes :
       <ul>
         <li>La fonctionnalité TCL/TK, ainsi que les fonctionnalités qui en dépendent (ged, object_editor) ne sont pas disponibles sous MacOS.</li>
         <li>Certaines fonctions concernant Windows sont évidemment disponibles uniquement sous Windows (<a href="section_02d42947da4b16801e15b82ca80009fc.html">Windows tools</a>).</li>
@@ -249,34 +244,36 @@
 
       <h2 class="title">Changelog complet</h2>
       <p class="para">
-        Pour une liste complète des changements entre la version 5.5.2 et cette version, veuillez consulter le fichier CHANGES présent à la racine de l'installation de Scilab.
+        Pour une liste complète des changements entre la version 5.5.2 et cette version, veuillez consulter le fichier <a href="CHANGES.html">CHANGES</a>.
       </p>
     </div>
-
     <hr/>
     <br/>
 
     <div class="refsection">
       <h3 class="title">Documentation et aide</h3>
-      <p class="para">Cette aide est aussi consultable sur <a href="http://help.scilab.org">http://help.scilab.org</a>, avec des fonctionnalit&eacute;s avanc&eacute;es telles que les commentaires, les favoris, le moteur de recherche, etc.</p>
-      <p class="para">Si vous d&eacute;butez avec Scilab, vous pouvez consulter la liste des <a href="scilab_keywords.html">mots-cl&eacute;s Scilab</a>.</p>
-      <p class="para">Scilab Enterprises propose aussi des <a href="http://www.scilab.org/support/documentation/tutorials">documentations et tutoriels</a>.</p>
+      <p class="para">Si vous débutez avec Scilab, vous pouvez consulter le
+      <a href="https://www.scilab.org/en/content/download/849/7901/file/Scilab_beginners.pdf">tutoriel d'initiation à Scilab</a>
+      et le <a href="https://www.scilab.org/en/content/download/1107/10095/file/Xcos_beginners.pdf">tutoriel d'initiation à Xcos</a> fournis par l'&Eacute;quipe Scilab</p>
+      <p class="para">L'&Eacute;quipe Scilab propose aussi de la
+      <a href="http://www.scilab.org/support/documentation/tutorials">documentation
+      et des tutoriels</a>.</p>
       <br/>
     </div>
-
-
     <hr/>
     <br/>
 
     <div class="refsection">
       <h3 class="title">Autres ressources</h3>
-      <p class="para"><a href="http://www.scilab.org/" class="ulink">Portail Scilab</a> - Consulter le site Internet de Scilab</p>
+      <p class="para"><a href="http://www.scilab.org/" class="ulink">Portail Scilab</a> - Consulter le site Internet officiel de Scilab</p>
       <p class="para"><a href="http://wiki.scilab.org/" class="ulink">Wiki</a> - Consulter les nombreuses documentations, astuces, etc.</p>
       <p class="para"><a href="http://bugzilla.scilab.org/" class="ulink">Suivi de bugs</a> - D&eacute;poser des probl&egrave;mes et des souhaits sur Scilab</p>
       <p class="para"><a href="http://forge.scilab.org/" class="ulink">Forge</a> - Consulter et publier des modules Scilab</p>
       <p class="para"><a href="http://www.scilab.org/communities/developer_zone/tools/mailing_list" class="ulink">Listes de diffusion</a> - Communiquer et &eacute;changer avec la communaut&eacute;</p>
       <p class="para"><a href="http://atoms.scilab.org/" class="ulink">ATOMS</a> - Acc&eacute;der aux modules externes packag&eacute;s dans Scilab</p>
       <p class="para"><a href="http://fileexchange.scilab.org/" class="ulink">File Exchange</a> - Echanger vos scripts, r&eacute;sultats et fichiers.</p>
+      <p class="para"><a href="http://www.scilab.io/"
+      class="ulink">Scilab.io</a> - Cas d'utilisation, tutoriels et services professionnels.</p>
       <br/>
     </div>
   </body>
