@@ -222,6 +222,8 @@ Bug Fixes
 
 ### In 6.0.0:
 
+* [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - csim failed when the system has no state.
+
 * [Bug #14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587) fixed - Datatip textbox wrong clipping when loaded from *.scg file.
  
 
