@@ -279,6 +279,7 @@ char **completionOnVariablesWithoutMacros(const char *somechars, int *sizeArrayR
             {
                 ListWords[i] = os_strdup(dictionaryVariables[i]);
             }
+            ListWords[sizedictionaryVariables] = 0x0;
             *sizeArrayReturned = sizedictionaryVariables;
         }
 
