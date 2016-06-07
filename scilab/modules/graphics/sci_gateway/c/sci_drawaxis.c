@@ -314,9 +314,12 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
     }
 
     Objdrawaxis(dir, tics, x, &nx, y, &ny, val, sub_int, format, fontsize, textcolor, ticscolor, 'n', seg_flag, nb_tics_labels);
-    
+
     freeAllocatedSingleString(format);
-    freeAllocatedMatrixOfString(opts[8].iRows, opts[8].iCols, val);
+    if (val != NULL)
+    {
+        freeAllocatedMatrixOfString(opts[8].iRows, opts[8].iCols, val);
+    }
     createScalarHandle(pvApiCtx, iRhs + 1, getHandle(getCurrentObject()));
     AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
     ReturnArguments(pvApiCtx);
