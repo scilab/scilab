@@ -65,7 +65,7 @@ protected :
     XType* data;
 
 public :
-    VariableT() {};
+    VariableT(): data(nullptr) {};
     virtual ~VariableT() {};
 
     virtual void* getReturnVariable()
