@@ -62,17 +62,22 @@ int sci_sleep(char *fname, void* pvApiCtx)
         if (Rhs == 2)
         {
             sciErr = getVarAddressFromPosition(pvApiCtx, 2, &p2_in_address);
-            getAllocatedSingleString(pvApiCtx, p2_in_address, &opt);
+            if (getAllocatedSingleString(pvApiCtx, p2_in_address, &opt))
+            {
+                return 0;
+            }
 
             if (strcmp("s", opt) != 0)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: 's' expected.\n"), fname, 2);
+                freeAllocatedSingleString(opt);
                 return 0;
             }
             if (strcmp("s", opt) == 0)
             {
                 option = 1;
             }
+            freeAllocatedSingleString(opt);
         }
 
 

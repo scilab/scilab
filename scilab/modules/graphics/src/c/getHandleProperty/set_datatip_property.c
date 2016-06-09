@@ -56,25 +56,111 @@ int set_tip_orientation_property(void* _pvCtx, int iObj, void* _pvData, int valu
 }
 
 /**
- * Enable/disable the datatip Z component to be displayed.
+ * Old z_componet property, warns the user
  */
-int set_tip_3component_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_tip_z_component_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
+{
+    char * tip_display_components;
+    getGraphicObjectProperty(iObj, __GO_DATATIP_DISPLAY_COMPONENTS__, jni_string, (void **)&tip_display_components);
+
+    //Only warns if the property exists for the object.
+    if (tip_display_components == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_component");
+    }
+    else
+    {
+        Scierror(999, _("'%s' property is obsolete and will be removed, use '%s' instead.\n"), "z_component", "display_components");
+    }
+
+    return NULL;
+}
+
+/**
+ * Set which coordinate components should be displayed
+ */
+int set_tip_display_components_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    int use_z = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "z_component");
-    if (use_z == NOT_A_BOOLEAN_VALUE)
+    const char * value = (const char*) _pvData;
+
+    int isXSet = 0;
+    int isYSet = 0;
+    int isZSet = 0;
+    //check if the value is valid and throws properly error msg
+    int i;
+
+    if (valueType != sci_strings)
     {
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "display_components");
         return SET_PROPERTY_ERROR;
     }
-    status = setGraphicObjectProperty(iObj, __GO_DATATIP_3COMPONENT__, &use_z, jni_bool, 1);
 
+    for (i = 0; i < 4; ++i)
+    {
+        if (value[i] == '\0')
+        {
+            if (i == 0)
+            {
+                Scierror(999, _("Wrong value for '%s' property: Non-empty string expected.\n"), "display_components");
+                return SET_PROPERTY_ERROR;
+            }
+            else
+            {
+                break;
+            }
+        }
+        else
+        {
+            if (i == 3)
+            {
+                Scierror(999, _("Wrong value for '%s' property: String with length 3 or less expected.\n"), "display_components");
+                return SET_PROPERTY_ERROR;
+            }
+            switch (value[i])
+            {
+                case 'x':
+                case 'X':
+                    if (isXSet)
+                    {
+                        Scierror(999, _("Wrong value for '%s' property: String contains 'x' component more than once.\n"), "display_components");
+                        return SET_PROPERTY_ERROR;
+                    }
+                    isXSet++;
+                    break;
+                case 'y':
+                case 'Y':
+                    if (isYSet)
+                    {
+                        Scierror(999, _("Wrong value for '%s' property: String contains 'y' component more than once.\n"), "display_components");
+                        return SET_PROPERTY_ERROR;
+                    }
+                    isYSet++;
+                    break;
+                case 'z':
+                case 'Z':
+                    if (isZSet)
+                    {
+                        Scierror(999, _("Wrong value for '%s' property: String contains 'z' component more than once.\n"), "display_components");
+                        return SET_PROPERTY_ERROR;
+                    }
+                    isZSet++;
+                    break;
+                default:
+                    Scierror(999, _("Wrong value for '%s' property: String with 'x|y|z' expected.\n"), "display_components");
+                    return SET_PROPERTY_ERROR;
+            }
+        }
+    }
+
+    status = setGraphicObjectProperty(iObj, __GO_DATATIP_DISPLAY_COMPONENTS__, value, jni_string, 1);
     if (status == TRUE)
     {
         return SET_PROPERTY_SUCCEED;
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_component");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "display_components");
         return SET_PROPERTY_ERROR;
     }
 }

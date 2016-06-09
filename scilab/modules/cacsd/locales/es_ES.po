@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:08+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: es\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -513,6 +513,50 @@ msgstr ""
 msgid "%s: ierr %d from qitz (eispack).\n"
 msgstr ""
 
+# File: modules/cacsd/demos/cacsd.dem.gateway.sce, line: 9
+msgid "Control Systems - CACSD"
+msgstr ""
+
+#
+# File: modules/cacsd/demos/cacsd.dem.gateway.sce, line: 11
+msgid "LQG"
+msgstr ""
+
+#
+# File: modules/cacsd/demos/cacsd.dem.gateway.sce, line: 12
+msgid "Mixed-sensitivity"
+msgstr ""
+
+#
+# File: modules/cacsd/demos/cacsd.dem.gateway.sce, line: 13
+msgid "PID"
+msgstr ""
+
+#
+# File: modules/cacsd/demos/cacsd.dem.gateway.sce, line: 14
+msgid "Inverted pendulum"
+msgstr ""
+
+#
+# File: modules/cacsd/demos/cacsd.dem.gateway.sce, line: 15
+msgid "Flat systems"
+msgstr ""
+
+#
+# File: modules/cacsd/demos/cacsd.dem.gateway.sce, line: 16
+msgid "Tracking"
+msgstr ""
+
+#
+# File: modules/cacsd/demos/cacsd.dem.gateway.sce, line: 17
+msgid "Robust control"
+msgstr ""
+
+#
+# File: modules/cacsd/demos/tracking/track.dem.sce, line: 37
+msgid "Press Return to continue ... \n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
@@ -872,6 +916,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A SIMO expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Function expected"
+msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba una "
+"función de transferencia.\n"
 
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"
@@ -1271,6 +1321,25 @@ msgstr "G es pasa-todo"
 #, c-format
 msgid "%s: %s is not zero! (set to zero)"
 msgstr "%s: %s no es cero! (ajustada a cero)"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz "
+"vacía.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be symmetric.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Debe estar en [%d %d].\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a symmetric non negative "
+"matrix.\n"
+msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: Debe ser un escalar "
+"positivo.\n"
 
 #, c-format
 msgid ""

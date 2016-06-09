@@ -557,6 +557,15 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
             iResultat = RDivideDoubleByDouble(pDblSp[i], pDbl[i], &ppDblGet);
             if (iResultat != 0)
             {
+                for (int i = 0; i < iSize; ++i)
+                {
+                    delete pDbl[i];
+                    delete pDblSp[i];
+                }
+                delete[] pDbl;
+                delete[] pDblSp;
+                delete[] iPositVal;
+                delete pSpTemp;
                 delete ppDblGet;
                 return iResultat;
             }

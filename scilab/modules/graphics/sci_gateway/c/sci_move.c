@@ -75,6 +75,7 @@ int sci_move(char * fname, void *pvApiCtx)
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 3, "alone");
+            freeAllocatedSingleString(l3);
             return 1;
         }
 

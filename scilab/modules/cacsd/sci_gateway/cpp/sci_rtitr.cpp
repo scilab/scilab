@@ -165,12 +165,16 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
         if (pDblDen->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "rtitr", 2);
+            delete[] pdblNum;
+            delete[] piRankNum;
             return types::Function::Error;
         }
 
         if (pDblDen->getRows() != pDblDen->getCols())
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A square matrix expected.\n"), "rtitr", 2);
+            delete[] pdblNum;
+            delete[] piRankNum;
             return types::Function::Error;
         }
 
@@ -191,12 +195,16 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
         if (pPolyDen->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "rtitr", 2);
+            delete[] pdblNum;
+            delete[] piRankNum;
             return types::Function::Error;
         }
 
         if (pPolyDen->getRows() != pPolyDen->getCols())
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A square matrix expected.\n"), "rtitr", 2);
+            delete[] pdblNum;
+            delete[] piRankNum;
             return types::Function::Error;
         }
 
@@ -215,6 +223,8 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"), "rtitr", 2);
+        delete[] pdblNum;
+        delete[] piRankNum;
         return types::Function::Error;
     }
 
@@ -222,6 +232,10 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
     if (in[2]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "rtitr", 3);
+        delete[] pdblDen;
+        delete[] pdblNum;
+        delete[] piRankNum;
+        delete[] piRankDen;
         return types::Function::Error;
     }
 
@@ -230,6 +244,10 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
     if (pDblU->isComplex())
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "rtitr", 3);
+        delete[] pdblDen;
+        delete[] pdblNum;
+        delete[] piRankNum;
+        delete[] piRankDen;
         return types::Function::Error;
     }
 
@@ -239,6 +257,10 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
     if (iRowsDen != iRowsNum || iColsNum != iRowsU)
     {
         Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "rtitr");
+        delete[] pdblDen;
+        delete[] pdblNum;
+        delete[] piRankNum;
+        delete[] piRankDen;
         return types::Function::Error;
     }
 
@@ -250,24 +272,40 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
         if (pDblYp->getRows() != iRowsDen && pDblYp->getRows() != 0)
         {
             Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "rtitr");
+            delete[] pdblDen;
+            delete[] pdblNum;
+            delete[] piRankNum;
+            delete[] piRankDen;
             return types::Function::Error;
         }
 
         if (pDblYp->getCols() != iMaxRankDen)
         {
             Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "rtitr");
+            delete[] pdblDen;
+            delete[] pdblNum;
+            delete[] piRankNum;
+            delete[] piRankDen;
             return types::Function::Error;
         }
 
         if (pDblUp->getRows() != iColsNum && pDblUp->getRows() != 0)
         {
             Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "rtitr");
+            delete[] pdblDen;
+            delete[] pdblNum;
+            delete[] piRankNum;
+            delete[] piRankDen;
             return types::Function::Error;
         }
 
         if (pDblUp->getCols() != iMaxRankDen)
         {
             Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "rtitr");
+            delete[] pdblDen;
+            delete[] pdblNum;
+            delete[] piRankNum;
+            delete[] piRankDen;
             return types::Function::Error;
         }
     }

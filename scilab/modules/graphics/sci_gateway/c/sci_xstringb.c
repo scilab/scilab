@@ -128,6 +128,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     {
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
+        freeArrayOfString(Str, m3 * n3);
         return 0;
     }
 
@@ -135,6 +136,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -144,6 +146,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -151,6 +154,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     if (m4 != 1 || n4 != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 4);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -159,6 +163,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -168,6 +173,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -175,6 +181,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     if (m5 != 1 || n5 != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 5);
+        freeArrayOfString(Str, m3 * n3);
         return 1;
     }
 
@@ -186,6 +193,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
@@ -193,12 +201,14 @@ int sci_xstringb(char *fname, void *pvApiCtx)
         if (isScalar(pvApiCtx, piAddrl6) == 0)
         {
             Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 6);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
         if (getAllocatedSingleString(pvApiCtx, piAddrl6, &l6))
         {
             Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 6);
+            freeArrayOfString(Str, m3 * n3);
             return 1;
         }
 
@@ -210,6 +220,8 @@ int sci_xstringb(char *fname, void *pvApiCtx)
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 6, "fill");
+            freeAllocatedSingleString(l6);
+            freeArrayOfString(Str, m3 * n3);
             return 0;
         }
 

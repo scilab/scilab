@@ -79,6 +79,7 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
         //depend of kind of tlist
         if (strcmp(pstType, "NoLayoutConstraint") == 0)
         {
+            freeAllocatedMatrixOfString(iRows, iCols, pstField);
             return clearConstraints(iObjUID);
         }
         else if (strcmp(pstType, "BorderConstraint") == 0)
@@ -99,11 +100,13 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             sciErr = getListItemAddress(_pvCtx, piAddrList, 2, &piAddr2);
             if (sciErr.iErr)
             {
+                freeAllocatedMatrixOfString(iRows, iCols, pstField);
                 return SET_PROPERTY_ERROR;
             }
 
             if (getAllocatedSingleString(_pvCtx, piAddr2, &pstPos))
             {
+                freeAllocatedMatrixOfString(iRows, iCols, pstField);
                 return SET_PROPERTY_ERROR;
             }
 
@@ -132,18 +135,23 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             {
                 Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "constraints.position", "center, top, bottom, left, right");
                 freeAllocatedSingleString(pstPos);
+                freeAllocatedMatrixOfString(iRows, iCols, pstField);
                 return SET_PROPERTY_ERROR;
             }
+
+            freeAllocatedSingleString(pstPos);
 
             sciErr = getListItemAddress(_pvCtx, piAddrList, 3, &piAddr3);
             if (sciErr.iErr)
             {
+                freeAllocatedMatrixOfString(iRows, iCols, pstField);
                 return SET_PROPERTY_ERROR;
             }
 
             sciErr = getMatrixOfDouble(_pvCtx, piAddr3, &iRows3, &iCols3, &pdblPreferredSize);
             if (sciErr.iErr)
             {
+                freeAllocatedMatrixOfString(iRows, iCols, pstField);
                 return SET_PROPERTY_ERROR;
             }
 
@@ -151,12 +159,12 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             piPreferredSize[0] = (int)pdblPreferredSize[0];
             piPreferredSize[1] = (int)pdblPreferredSize[1];
 
-            freeAllocatedSingleString(pstPos);
             setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_POSITION__, &iPos, jni_int, 1);
             setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_PREFERREDSIZE__, piPreferredSize, jni_int_vector, 2);
         }
         else if (strcmp(pstType, "GridConstraints") == 0)
         {
+            freeAllocatedMatrixOfString(iRows, iCols, pstField);
             return clearConstraints(iObjUID);
         }
         else if (strcmp(pstType, "GridBagConstraints") == 0)
@@ -199,6 +207,7 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             double* pdblPreferredSize = NULL;
             int piPreferredSize[2];
 
+            freeAllocatedMatrixOfString(iRows, iCols, pstField);
             sciErr = getListItemAddress(_pvCtx, piAddrList, 2, &piAddr2);
             if (sciErr.iErr)
             {
@@ -365,8 +374,6 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             freeAllocatedMatrixOfString(iRows, iCols, pstField);
             return SET_PROPERTY_ERROR;
         }
-
-        freeAllocatedMatrixOfString(iRows, iCols, pstField);
     }
 
     return SET_PROPERTY_SUCCEED;

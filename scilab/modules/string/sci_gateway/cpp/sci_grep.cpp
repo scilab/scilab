@@ -331,6 +331,12 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
             save = os_strdup(Inputs_param_two[x]);
             answer = pcre_private(Inputs_param_one[y], save, &Output_Start, &Output_End, NULL, NULL);
 
+            if (save)
+            {
+                FREE(save);
+                save = NULL;
+            }
+
             if ( answer == PCRE_FINISHED_OK )
             {
                 results->values[results->currentLength] = y + 1;
@@ -341,12 +347,6 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
             {
                 pcre_error("grep", answer);
                 return GREP_ERROR;
-            }
-
-            if (save)
-            {
-                FREE(save);
-                save = NULL;
             }
         }
     }

@@ -2000,7 +2000,6 @@ isrow
 isscalar
 issquare
 isvector
-lex_sort
 linspace
 log10
 log2

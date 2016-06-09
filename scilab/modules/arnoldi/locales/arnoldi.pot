@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-02-10 12:14+0100\n"
+"Revision-Date: 2016-06-08 22:21+0100\n"
 
 # File: modules/arnoldi/sci_gateway/c/sci_dnaupd.c, line: 99
 # File: modules/arnoldi/sci_gateway/c/sci_dnaupd.c, line: 117
@@ -210,33 +210,33 @@ msgid "%s: internal error, info=%d.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 122
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 172
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 234
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 274
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 338
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 128
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 178
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 240
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 284
 # File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 358
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 382
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 406
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 438
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 458
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 557
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 591
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 602
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 614
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 380
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 410
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 440
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 478
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 502
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 619
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 660
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 672
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 686
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 260
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 269
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: k must be in the range 1 to N.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 304
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 318
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
@@ -245,33 +245,33 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 344
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 365
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 512
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 534
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 568
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 592
 #, c-format
 msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 519
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 541
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 576
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 601
 #, c-format
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 621
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 695
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 661
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 740
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
@@ -279,7 +279,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 684
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 763
 #, c-format
 msgid ""
 "%s: Error with input argument #%d: B is not positive definite. Try with "
@@ -287,20 +287,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 693
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 697
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 702
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 731
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 735
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 740
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 772
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 776
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 781
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 810
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 814
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 819
 #, c-format
 msgid "%s: Error with %s: info = %d \n"
 msgstr ""
 
 #
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 764
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 799
-# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 817
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 843
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 878
+# File: modules/arnoldi/sci_gateway/c/sci_eigs.c, line: 896
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""

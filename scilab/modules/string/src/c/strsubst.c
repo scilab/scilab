@@ -185,7 +185,7 @@ char *strsub_reg(const char* input_string, const char* string_to_search, const c
     wcreplacedString = (wchar_t*)MALLOC (sizeof(wchar_t) * (len + 1));
     if (wcreplacedString == NULL)
     {
-        FREE(replacement_string);
+        FREE(wcreplacement_string);
         FREE(wcinput_string);
         return NULL;
     }

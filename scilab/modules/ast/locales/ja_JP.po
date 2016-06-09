@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2015-08-17 11:20+0100\n"
 "PO-Revision-Date: 2015-11-11 15:03+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -44,6 +45,12 @@ msgstr ""
 msgid "Leave debugger.\n"
 msgstr ""
 
+#
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 156
+#, c-format
+msgid "Undefined variable: %s\n"
+msgstr ""
+
 msgid "inconsistent row/column dimensions\n"
 msgstr ""
 
@@ -72,13 +79,13 @@ msgstr ""
 msgid "%s: function is disabled in debug mode.\n"
 msgstr ""
 
-#, c-format
-msgid "%ls: Can not transpose multiple elements.\n"
+#
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 928
+msgid "With input arguments, return / resume expects output arguments.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgid "%ls: Can not transpose multiple elements.\n"
 msgstr ""
 
 #, c-format
@@ -94,7 +101,9 @@ msgstr ""
 msgid "Recursion limit reached (%d).\n"
 msgstr ""
 
-msgid "Unknow expression"
+#
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 558
+msgid "Unknown expression"
 msgstr ""
 
 msgid "Error in overload function: "
@@ -140,6 +149,49 @@ msgstr ""
 msgid "Inconsistent row/column dimensions.\n"
 msgstr ""
 
+#
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1142
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1207
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1250
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1291
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1306
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1320
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1334
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1348
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1587
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1600
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1613
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1626
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1754
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1768
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1782
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1796
+msgid ""
+"operation +: Warning adding a matrix with the empty matrix old behaviour.\n"
+msgstr ""
+
+#
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1145
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1210
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1253
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1294
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1309
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1323
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1337
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1351
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1590
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1603
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1616
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1629
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1757
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1771
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1785
+# File: modules/ast/src/cpp/operations/types_addition.cpp, line: 1799
+msgid ""
+"operation +: Warning adding a matrix with the empty matrix will give an "
+"empty matrix result.\n"
+msgstr ""
+
 msgid "variables don't have the same formal variable"
 msgstr ""
 
@@ -159,9 +211,6 @@ msgstr ""
 
 #, c-format
 msgid "Operator / : Error %d not yet managed.\n"
-msgstr ""
-
-msgid "Invalid exponent.\n"
 msgstr ""
 
 msgid "Warning : division by zero...\n"
@@ -189,8 +238,53 @@ msgstr ""
 msgid "Operator \\ : Error %d not yet managed.\n"
 msgstr ""
 
+#
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 66
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 137
+msgid "Invalid exponent: expected real exponents.\n"
+msgstr ""
+
+msgid "Invalid exponent.\n"
+msgstr ""
+
+#
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 904
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 991
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1038
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1085
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1100
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1114
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1502
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1515
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1528
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1541
+msgid ""
+"operation -: Warning adding a matrix with the empty matrix old behaviour.\n"
+msgstr ""
+
+#
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 907
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 994
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1041
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1088
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1103
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1117
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1505
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1518
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1531
+# File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 1544
+msgid ""
+"operation -: Warning adding a matrix with the empty matrix will give an "
+"empty matrix result.\n"
+msgstr ""
+
 #, c-format
 msgid "%ls: Cannot open file %ls.\n"
+msgstr ""
+
+#
+# File: modules/ast/src/cpp/parse/printerror.cpp, line: 71
+msgid "Error: "
 msgstr ""
 
 msgid "Your variables are:"
@@ -205,6 +299,11 @@ msgid " and   %10d variables out of %10d.\n"
 msgstr ""
 
 msgid "Your global variables are:"
+msgstr ""
+
+#, c-format
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
 msgstr ""
 
 msgid "in builtin "
@@ -274,7 +373,9 @@ msgstr ""
 msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 
-msgid "Wrong number of input arguments."
+#
+# File: modules/ast/src/cpp/types/macro.cpp, line: 238
+msgid "Wrong number of input arguments.\n"
 msgstr ""
 
 #, c-format
@@ -345,14 +446,47 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
 msgstr ""
 
-msgid ""
-"  Warning: Syntax vector ^ scalar is obsolete it will be removed in "
-"scilab-6.\n"
-"           Use vector .^ scalar instead.\n"
+#
+# File: modules/ast/macros/%r_p_s.sci, line: 18
+msgid "Invalid exponent: expected real exponents."
+msgstr ""
+
+#
+# File: modules/ast/macros/%r_p_s.sci, line: 27
+# File: modules/ast/macros/%r_p_s.sci, line: 51
+msgid "Division by zero"
+msgstr ""
+
+#
+# File: modules/ast/macros/%r_p_s.sci, line: 39
+#, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/ast/macros/%r_p_s.sci, line: 43
+msgid "Not implemented"
+msgstr ""
+
+#
+# File: modules/ast/macros/%r_p_s.sci, line: 68
+msgid "Invalid exponent"
+msgstr ""
+
+#
+# File: modules/ast/macros/%s_pow.sci, line: 29
+# File: modules/ast/macros/%s_pow.sci, line: 32
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
+msgstr ""
+
+#
+# File: modules/ast/macros/%s_pow.sci, line: 74
+msgid "Not implemented in scilab...\n"
 msgstr ""
 
 #, c-format

@@ -11,6 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 21:59+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -398,3 +399,12 @@ msgstr "%s: Não é um XML válido para raiz.\n"
 #, c-format
 msgid "%s: Field %s is not modifiable: %s\n"
 msgstr "%s: O campo %s não é modificável: %s\n"
+
+# File: modules/xml/demos/xml.dem.gateway.sce, line: 10
+msgid "XML"
+msgstr ""
+
+#
+# File: modules/xml/demos/xml.dem.gateway.sce, line: 12
+msgid "CML read"
+msgstr ""

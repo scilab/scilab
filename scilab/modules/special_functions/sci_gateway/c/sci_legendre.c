@@ -219,7 +219,6 @@ int sci_legendre(char *fname, void* pvApiCtx)
         iRet = getAllocatedSingleString(pvApiCtx, piAddr4, &lschar);
         if (iRet)
         {
-            freeAllocatedSingleString(lschar);
             return iRet;
         }
 
@@ -231,6 +230,7 @@ int sci_legendre(char *fname, void* pvApiCtx)
         {
             normalized = 0;
         }
+        freeAllocatedSingleString(lschar);
     }
     else
     {

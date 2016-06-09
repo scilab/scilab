@@ -31,6 +31,15 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
 import java.util.regex.Pattern;
 
+/**
+ * An Xcos cell is a JGraphX cell that store most of its information into the
+ * Scicos MVC.
+ *
+ * The reference to the Scicos MVC object is taken at construction time and
+ * released by the destructor. There is thus no need to manage parent /
+ * children, block / port or port / link association referencing as the JVM will
+ * GC the object if needed.
+ */
 public class XcosCell extends mxCell {
     private static final long serialVersionUID = 1L;
     private static Pattern validCIdentifier = Pattern.compile("[a-zA-Z][a-zA-Z0-9_]+");
@@ -39,8 +48,6 @@ public class XcosCell extends mxCell {
 
     /**
      * Construct an Xcos graphical object.
-     *
-     * This Java object owns the corresponding MVC object and thus will unrefererence it on GC.
      *
      * @param controller
      *            the shared controller
@@ -107,7 +114,7 @@ public class XcosCell extends mxCell {
                 if (validCIdentifier.matcher(String.valueOf(value)).matches()) {
                     controller.setObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, String.valueOf(value));
                 }
-                // no break on purpose
+            // no break on purpose
             case ANNOTATION:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));
                 break;
@@ -456,9 +463,6 @@ public class XcosCell extends mxCell {
                 default:
                     break;
             }
-
-            JavaController controller = new JavaController();
-            controller.referenceObject(c.getUID());
         }
 
         return inserted;
@@ -515,9 +519,6 @@ public class XcosCell extends mxCell {
                 default:
                     break;
             }
-
-            JavaController controller = new JavaController();
-            controller.deleteObject(c.getUID());
         }
         return removed;
     }
@@ -559,7 +560,6 @@ public class XcosCell extends mxCell {
         controller.getObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, children);
         children.remove(c.getUID());
         controller.setObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, children);
-
     }
 
     /*

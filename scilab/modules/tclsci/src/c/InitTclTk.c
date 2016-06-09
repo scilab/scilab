@@ -68,6 +68,7 @@ static void *DaemonOpenTCLsci(void* in)
     if (SciPath == NULL)
     {
         sciprint(_("The SCI environment variable is not set.\nTCL initialisation failed !\n"));
+        return (0);
     }
 
 
@@ -93,6 +94,7 @@ static void *DaemonOpenTCLsci(void* in)
     if (tmpfile2 == NULL)
     {
         sciprint(_("Unable to find Tcl initialisation scripts.\nCheck your SCI environment variable.\nTcl initialisation failed !"));
+        return (0);
     }
     else
     {
@@ -103,6 +105,7 @@ static void *DaemonOpenTCLsci(void* in)
     if (tmpdir == NULL)
     {
         sciprint(_("The SCI environment variable is not set.\nTcl initialisation failed !\n"));
+        return (0);
     }
     else
     {
@@ -115,6 +118,7 @@ static void *DaemonOpenTCLsci(void* in)
     if (tmpfile2 == NULL)
     {
         sciprint(_("Unable to find Tcl initialisation scripts.\nCheck your SCI environment variable.\nTcl initialisation failed !"));
+        return (0);
     }
     else
     {
@@ -136,6 +140,7 @@ static void *DaemonOpenTCLsci(void* in)
         if ( getTclInterp() == NULL )
         {
             Scierror(999, _("Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"));
+            return (0);
         }
         releaseTclInterp();
 
@@ -143,6 +148,7 @@ static void *DaemonOpenTCLsci(void* in)
         {
             releaseTclInterp();
             Scierror(999, _("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"), Tcl_GetStringResult(getTclInterp()));
+            return (0);
         }
         releaseTclInterp();
         if (getenv("SCI_DISABLE_TK") == NULL)
@@ -169,6 +175,7 @@ static void *DaemonOpenTCLsci(void* in)
         {
             releaseTclInterp();
             Scierror(999, _("Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: %s\n"), Tcl_GetStringResult(getTclInterp()));
+            return (0);
         }
 
         releaseTclInterp();
@@ -186,28 +193,20 @@ static void *DaemonOpenTCLsci(void* in)
         {
             releaseTclInterp();
             Scierror(999, _("Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"), TkScriptpathShort, Tcl_GetStringResult(getTclInterp()));
+            return (0);
         }
         releaseTclInterp();
     }
 
 
-    if (SciPath)
-    {
-        FREE(SciPath);
-        SciPath = NULL;
-    }
+    FREE(SciPath);
+    SciPath = NULL;
 
-    if (SciPathShort)
-    {
-        FREE(SciPathShort);
-        SciPathShort = NULL;
-    }
+    FREE(SciPathShort);
+    SciPathShort = NULL;
 
-    if (TkScriptpathShort)
-    {
-        FREE(TkScriptpathShort);
-        TkScriptpathShort = NULL;
-    }
+    FREE(TkScriptpathShort);
+    TkScriptpathShort = NULL;
 
     // This start a periodic and endless call to "update"
     // TCL command. This causes any TCL application to start

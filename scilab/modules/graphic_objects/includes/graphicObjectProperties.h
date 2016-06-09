@@ -3,14 +3,10 @@
  *  Copyright (C) 2010-2012 - DIGITEO - Bruno JOFRET
  *  Copyright (C) 2012-2014 - Scilab-Enterprises - Bruno JOFRET
  *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -357,7 +353,7 @@
 #define __GO_DATATIP__ 331
 #define __GO_DATATIP_DATA__ 332
 #define __GO_DATATIP_ORIENTATION__ 333
-#define __GO_DATATIP_3COMPONENT__ 334
+#define __GO_DATATIP_DISPLAY_COMPONENTS__ 334
 #define __GO_DATATIP_AUTOORIENTATION__ 335
 #define __GO_DATATIP_INTERP_MODE__ 336
 #define __GO_DATATIP_DISPLAY_FNC__ 337

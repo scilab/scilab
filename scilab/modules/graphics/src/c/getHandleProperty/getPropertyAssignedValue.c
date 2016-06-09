@@ -143,6 +143,7 @@ AssignedList * createAssignedList(void* _pvCtx, int _iRhs, int _iNbItem)
     /* check the size */
     if (iItem != newList->iNbItem)
     {
+        FREE(newList);
         return NULL;
     }
 

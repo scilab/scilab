@@ -54,6 +54,7 @@ int TCL_EvalScilabCmd(ClientData clientData, Tcl_Interp * theinterp, int objc, C
             pos = str.find('\n');
         }
 
+        FREE(pstCommand);
         pstCommand =  strdup(str.c_str());
 
         if (strncmp(pstCommand, "flush", 5) == 0)

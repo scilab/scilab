@@ -365,6 +365,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                         ostr << ostemp.str();
                         m_iRows2PrintState = iRows2;
                         m_iCols1PrintState = iLastCol;
+                        delete[] piSize;
                         return false;
                     }
 
@@ -442,6 +443,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 ostr << ostemp.str();
                 m_iRows2PrintState = iRows2;
                 m_iCols1PrintState = iLastCol;
+                delete[] piSize;
                 return false;
             }
 
@@ -504,6 +506,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             addColumnString(ostr, iLastCol + 1, getCols());
         }
         ostr << ostemp.str();
+        delete[] piSize;
     }
 
     return true;

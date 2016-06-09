@@ -242,6 +242,7 @@ pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Star
         }
         if (*p == 0)
         {
+            FREE(back_p);
             continue;
         }
         /* In-line pattern (the usual case). Get the delimiter and seek the end of
@@ -399,6 +400,11 @@ pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Star
                         {
                             FREE(buffer);
                             buffer = NULL;
+                        }
+                        if (back_p)
+                        {
+                            FREE(back_p);
+                            back_p = NULL;
                         }
                         if (offsets)
                         {

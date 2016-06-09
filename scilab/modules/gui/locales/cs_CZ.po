@@ -11,6 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 21:57+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -270,14 +271,6 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Byl očekáván boolean.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána grafická obslužná rutina.\n"
@@ -366,6 +359,10 @@ msgid ""
 msgstr ""
 "%s: Vyskytla se výjimka v Java:\n"
 "%s"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Byl očekáván boolean.\n"
 
 #, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
@@ -577,6 +574,10 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána řetězcová mat
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána řetězcová matice.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -984,6 +985,12 @@ msgstr "&Historie Příkazů"
 msgid "&File Browser"
 msgstr "&Průzkumník Souborů"
 
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 121
+# File: modules/gui/src/gui_fake_xml.c, line: 169
+msgid "&News feed"
+msgstr ""
+
 msgid "Scilab &Help"
 msgstr "&Nápověda Scilab"
 
@@ -1274,9 +1281,6 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
-msgid "Cancel"
-msgstr "Zrušit"
-
 msgid "Orientation"
 msgstr ""
 
@@ -1562,12 +1566,6 @@ msgstr ""
 msgid "Set legend text"
 msgstr ""
 
-msgid "Close"
-msgstr "Zavřít"
-
-msgid "File"
-msgstr "Soubor"
-
 msgid "Quick GED"
 msgstr ""
 
@@ -1774,9 +1772,6 @@ msgstr ""
 msgid "Style/Appearance"
 msgstr ""
 
-msgid "Background Color"
-msgstr ""
-
 msgid "Foreground Color"
 msgstr ""
 
@@ -1888,7 +1883,9 @@ msgstr ""
 msgid "Mark Style"
 msgstr ""
 
-msgid "3 Components"
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 154
+msgid "Components display"
 msgstr ""
 
 msgid "Data Properties"
@@ -1946,9 +1943,6 @@ msgid "Z Label"
 msgstr ""
 
 msgid "Scaled"
-msgstr ""
-
-msgid "Title"
 msgstr ""
 
 msgid "Start Angle"
@@ -2149,12 +2143,6 @@ msgstr ""
 msgid "Z Shift"
 msgstr ""
 
-msgid "Yes"
-msgstr "Ano"
-
-msgid "No"
-msgstr "Ne"
-
 msgid "Save and execute"
 msgstr "Uložit a spustit"
 
@@ -2228,6 +2216,10 @@ msgstr "Všechny soubory obrázku PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Všechny soubory RTF (Bohatý Textový Formát)"
 
+#, fuzzy
+msgid "All HTML files"
+msgstr "Všechny soubory"
+
 #, c-format
 msgid "All %s files"
 msgstr "Všechny soubory %s"
@@ -2260,6 +2252,384 @@ msgstr "%s: Dostupné pouze v režimu 'STANDARD'.\n"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Chyba. Byl zachycen signál.\n"
+
+#, fuzzy
+msgid "Control Plot3d"
+msgstr "&Ovládání"
+
+#, fuzzy
+msgid "Control Panel"
+msgstr "&Ovládání"
+
+#, fuzzy
+msgid "Rotation angle"
+msgstr "Otočit"
+
+#, fuzzy
+msgid "Colormap"
+msgstr "Barvy"
+
+#, fuzzy
+msgid "Show / Hide"
+msgstr "Zobrazit/Skrýt &Panel Nástrojů"
+
+#
+# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 6
+msgid "messagebox"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 7
+msgid "x_choose"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 8
+msgid "x_dialog"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 9
+msgid "x_mdialog"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/messagebox.sce, line: 8
+msgid "Simple example of message"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/messagebox.sce, line: 11
+msgid "Button 1Button 2"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/messagebox.sce, line: 14
+msgid "Button 1 clicked."
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/messagebox.sce, line: 16
+msgid "Button 2 clicked"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/x_choose.sce, line: 10
+msgid ""
+"Message: Selection (double-click on an item --> returns the item number)"
+msgstr ""
+
+#, fuzzy
+msgid "Item selected: "
+msgstr "Žádný text nevybrán"
+
+#
+# File: modules/gui/demos/dialogs/x_dialog.sce, line: 8
+msgid "Message: enter a value"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/x_dialog.sce, line: 10
+msgid "Value entered: "
+msgstr ""
+
+#, fuzzy
+msgid "Message"
+msgstr "Zpráva Scilab"
+
+#
+# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 10
+msgid "first row"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 13
+msgid "Values entered: "
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 18
+msgid "row"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 20
+msgid "col"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 22
+msgid "Matrix to edit"
+msgstr ""
+
+#
+# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 24
+msgid "Matrix entered: "
+msgstr ""
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 12
+msgid "GUI"
+msgstr ""
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 14
+msgid "Dialogs"
+msgstr ""
+
+#, fuzzy
+msgid "Uicontrols 1"
+msgstr "&Ovládání"
+
+#, fuzzy
+msgid "Uicontrols 2"
+msgstr "&Ovládání"
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 21
+msgid "Uicontrols with LaTeX/MathML"
+msgstr ""
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 24
+msgid "Show images with uicontrols "
+msgstr ""
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 27
+# File: modules/gui/demos/uicontrol_listbox_popupmenu.dem.sce, line: 18
+msgid "Listboxes and Popupmenus"
+msgstr ""
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 30
+msgid "Uicontrols rendering"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 13
+# File: modules/gui/demos/uicontrol.dem.sce, line: 93
+# File: modules/gui/demos/uicontrol.dem.sce, line: 193
+msgid "<Enter color name here>"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 14
+# File: modules/gui/demos/uicontrol.dem.sce, line: 23
+msgid "Error"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 14
+msgid "Please enter a color name first."
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 23
+msgid "Unknown color."
+msgstr ""
+
+#, fuzzy
+msgid "No color selected."
+msgstr "Žádný text nevybrán"
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 38
+# File: modules/gui/demos/uicontrol.dem.sce, line: 49
+msgid "Color selection"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 42
+#, c-format
+msgid "Selected colors are: %s."
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 44
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 53
+#, c-format
+msgid "You clicked on menu '%s'."
+msgstr ""
+
+#, fuzzy
+msgid "Selected menu"
+msgstr "Vybrat Vše"
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 59
+msgid "checked"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 61
+msgid "unchecked"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 63
+#, c-format
+msgid "Menu '%s' is %s."
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 64
+msgid "Menu status"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 70
+msgid "Slider value: "
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 78
+#, c-format
+msgid "You selected '%s'."
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 79
+msgid "Popupmenu selection"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 100
+msgid "Do you really want to quit Scilab?"
+msgstr ""
+
+#, fuzzy
+msgid "Quit Scilab"
+msgstr "O Scilab..."
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 108
+msgid "Uicontrols demo"
+msgstr ""
+
+#, fuzzy
+msgid "Application"
+msgstr "&Aplikace"
+
+#, fuzzy
+msgid "Close figure"
+msgstr "&Vyčistit obrazec"
+
+#, fuzzy
+msgid "Scilab Graphics"
+msgstr "&Scilab Enterprises"
+
+#, fuzzy
+msgid "Launch plot3d"
+msgstr "Spustit SciNotes"
+
+#, fuzzy
+msgid "Launch plot2d"
+msgstr "Spustit SciNotes"
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 128
+msgid "Menu"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 129
+msgid "Sub-menu 1"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 130
+# File: modules/gui/demos/uicontrol.dem.sce, line: 133
+msgid "Sub-menu 2"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 131
+msgid "Sub-menu 2-1"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 132
+msgid "Sub-menu 2-2"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 140
+msgid "item1|item2|item3|item4"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 146
+msgid "Pop-up menu"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 157
+msgid "Slider demo"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 187
+msgid "Colors list edition"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 200
+msgid "Add color in listbox"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 206
+msgid "Delete color in listbox"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 210
+msgid "blue"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 210
+msgid "green"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 210
+msgid "red"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 210
+msgid "yellow"
+msgstr ""
+
+#, fuzzy
+msgid "Display selection"
+msgstr "&Zobrazit současný adresář"
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 231
+msgid "Delete selection"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol.dem.sce, line: 237
+msgid "Default"
+msgstr ""
+
+#, fuzzy
+msgid "Quit demonstration"
+msgstr "Ukázky Scilab"
+
+#
+# File: modules/gui/demos/uicontrol_LaTeX.dem.sce, line: 16
+msgid "Uicontrols demo with LaTeX"
+msgstr ""
 
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
@@ -2485,3 +2855,18 @@ msgstr "%s: Špatný typ %s: Očekáváno reálné číslo.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Špatná velikost %s: Očekáváno reálné číslo.\n"
+
+#~ msgid "Cancel"
+#~ msgstr "Zrušit"
+
+#~ msgid "Close"
+#~ msgstr "Zavřít"
+
+#~ msgid "File"
+#~ msgstr "Soubor"
+
+#~ msgid "Yes"
+#~ msgstr "Ano"
+
+#~ msgid "No"
+#~ msgstr "Ne"

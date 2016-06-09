@@ -100,6 +100,7 @@ const char ** UnknownMlistFieldsGetter::getFieldsName(int * mlist, char ** field
             return FieldsManager::getFields(itemAddr, fieldPath, fieldPathLen, fieldsSize);
         }
     }
+    freeArrayOfString(pstData, rc);
 
     return 0;
 }

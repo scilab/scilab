@@ -115,11 +115,8 @@ int sci_TCL_GetVersion(char *fname, void* pvApiCtx)
                     return 1;
                 }
 
-                if (VERSIONMATRIX)
-                {
-                    FREE(VERSIONMATRIX);
-                    VERSIONMATRIX = NULL;
-                }
+                FREE(VERSIONMATRIX);
+                VERSIONMATRIX = NULL;
                 AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
                 ReturnArguments(pvApiCtx);
             }

@@ -51,6 +51,7 @@ BOOL getversionmodule(wchar_t* _pwstModule,
         len = (int)strlen(FORMATVERSIONFILENAME) + (int)strlen(SciPath) + (int)strlen(pstModule) + 1;
         filename_VERSION_module = (char*)MALLOC(sizeof(char) * len);
         sprintf(filename_VERSION_module, FORMATVERSIONFILENAME, SciPath, pstModule);
+        FREE(pstModule);
         if (SciPath)
         {
             FREE(SciPath);
@@ -91,6 +92,8 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                 if (doc == NULL)
                 {
                     fprintf(stderr, _("Error: Could not parse file %s\n"), filename_VERSION_module);
+                    FREE(encoding);
+                    encoding = NULL;
                     return FALSE;
                 }
 
@@ -131,6 +134,10 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                         {
                             /* we found <string> */
                             const char *str = (const char*)attrib->children->content;
+                            if (pwstSciVersionString)
+                            {
+                                FREE(pwstSciVersionString);
+                            }
                             pwstSciVersionString = to_wide_string(str);
                         }
 
@@ -151,6 +158,8 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                 else
                 {
                     fprintf(stderr, _("Error: Not a valid version file %s (should start with <MODULE_VERSION> and contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"), filename_VERSION_module);
+                    FREE(encoding);
+                    encoding = NULL;
                     return FALSE;
                 }
                 if (xpathObj)

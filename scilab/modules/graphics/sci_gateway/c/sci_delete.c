@@ -172,6 +172,7 @@ int sci_delete(char *fname, void* pvApiCtx)
                 {
                     int i = 0;
                     int iFigureNumber = sciGetNbFigure();
+                    freeAllocatedSingleString(l2);
 
                     if (iFigureNumber == 0)
                     {
@@ -209,6 +210,7 @@ int sci_delete(char *fname, void* pvApiCtx)
                 else
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 1, "all");
+                    freeAllocatedSingleString(l2);
                     return 0;
                 }
                 break;
@@ -217,6 +219,11 @@ int sci_delete(char *fname, void* pvApiCtx)
                 OverLoad(1);
                 return 0;
         }
+    }
+
+    if (l2)
+    {
+        freeAllocatedSingleString(l2);
     }
 
     for (i = 0; i < nb_handles; i++)
@@ -314,11 +321,6 @@ int sci_delete(char *fname, void* pvApiCtx)
     {
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
-    }
-
-    if (l2)
-    {
-        freeAllocatedSingleString(l2);
     }
 
     return 0;

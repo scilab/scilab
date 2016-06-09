@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:00+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: fr\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -238,6 +238,13 @@ msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle attendue.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: integer <= ndims(argument #%d) "
+"expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un entier >= %d attendu.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
 msgstr ""
@@ -273,6 +280,22 @@ msgstr "%s : Dimension erronée des arguments d'entrée.\n"
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s : Dimension erronée de l'argument ou des argument(s) d'entrée.\n"
 
+#
+# File: modules/overloading/macros/%r_j_s.sci, line: 17
+msgid "Invalid exponent: expected real exponents."
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_j_s.sci, line: 25
+# File: modules/overloading/macros/%r_j_s.sci, line: 53
+msgid "Division by zero"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_j_s.sci, line: 59
+msgid "Invalid Exponent"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
@@ -294,6 +317,12 @@ msgstr ""
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr ""
 "%s : Le cas de l'insertion dans une matrice creuse n'est pas implémenté.\n"
+
+#, fuzzy, c-format
+msgid "%s: Concatenated arrays must have the same number of dimensions.\n"
+msgstr ""
+"%s : Les matrices d'entrée et de sortie doivent avoir le même nombre "
+"d'éléments.\n"
 
 #, c-format
 msgid "%s: Field names mismatch.\n"

@@ -195,6 +195,10 @@ void startTclLoop()
             /* Update return value and result */
             if (Tcl_GetStringResult(LocalTCLinterp) && strlen(Tcl_GetStringResult(LocalTCLinterp)) != 0)
             {
+                if (TclInterpResult)
+                {
+                    FREE(TclInterpResult);
+                }
                 TclInterpResult = os_strdup(Tcl_GetStringResult(LocalTCLinterp));
             }
             else

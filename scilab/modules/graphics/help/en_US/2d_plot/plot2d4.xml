@@ -74,7 +74,8 @@ plot2d4(x,[sin(x) sin(2*x) sin(3*x)])
 
 subplot(2,1,2)
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
-gce().children.polyline_style=4;
+e = gce();
+e.children.polyline_style=4;
  ]]></programlisting>
         <scilab:image>
             x = [0:0.1:2*%pi]';

@@ -113,12 +113,16 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
         if (pPoly2->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "ldiv", 2);
+            delete[] pdblCoef1;
+            delete[] piRank1;
             return types::Function::Error;
         }
 
         if (pPoly2->getRows() != iRows || pPoly2->getCols() != iCols)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A same size as input argument %d expected.\n"), "ldiv", 2, 1);
+            delete[] pdblCoef1;
+            delete[] piRank1;
             return types::Function::Error;
         }
 
@@ -137,12 +141,16 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
         if (pDbl2->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "ldiv", 2);
+            delete[] pdblCoef1;
+            delete[] piRank1;
             return types::Function::Error;
         }
 
         if (pDbl2->getRows() != iRows || pDbl2->getCols() != iCols)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A same size as input argument %d expected.\n"), "ldiv", 2, 1);
+            delete[] pdblCoef1;
+            delete[] piRank1;
             return types::Function::Error;
         }
 
@@ -159,6 +167,8 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"), "ldiv", 2);
+        delete[] pdblCoef1;
+        delete[] piRank1;
         return types::Function::Error;
     }
 
@@ -166,6 +176,10 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
     if (in[2]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "ldiv", 3);
+        delete[] pdblCoef1;
+        delete[] pdblCoef2;
+        delete[] piRank1;
+        delete[] piRank2;
         return types::Function::Error;
     }
 
@@ -174,12 +188,20 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
     if (pDbl->isComplex())
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "ldiv", 3);
+        delete[] pdblCoef1;
+        delete[] pdblCoef2;
+        delete[] piRank1;
+        delete[] piRank2;
         return types::Function::Error;
     }
 
     if (pDbl->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), "ldiv", 3);
+        delete[] pdblCoef1;
+        delete[] pdblCoef2;
+        delete[] piRank1;
+        delete[] piRank2;
         return types::Function::Error;
     }
 

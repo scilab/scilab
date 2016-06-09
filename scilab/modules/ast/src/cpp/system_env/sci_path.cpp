@@ -144,6 +144,7 @@ char* getenvSCI()
 
         if (ierr == 1)
         {
+            delete[] SciPath;
             return NULL;
         }
     }

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:09+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: fr\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -220,10 +220,6 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un handle graphique attendu.\n"
@@ -233,6 +229,10 @@ msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur de %s ou de %s "
 "attendu.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -835,6 +835,12 @@ msgstr "Valeur erronée de la propriété '%s'.\n"
 msgid "%s: No more memory."
 msgstr "%s : Plus de mémoire disponible."
 
+#, fuzzy, c-format
+msgid "'%s' property is obsolete and will be removed, use '%s' instead.\n"
+msgstr ""
+"ATTENTION !!!\n"
+"Dans la propriété '%s' : '%s' est obsolète, utilisez '%s' à la place.\n"
+
 #, c-format
 msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
@@ -988,6 +994,42 @@ msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
 "Dimension erronée de la propriété '%s' : Doit être dans l'ensemble {%s}.\n"
 
+#, fuzzy, c-format
+msgid "Wrong value for '%s' property: Non-empty string expected.\n"
+msgstr ""
+"Type erroné de la propriété de '%s' : Une matrice de chaînes de caractères "
+"attendue.\n"
+
+#, fuzzy, c-format
+msgid "Wrong value for '%s' property: String with length 3 or less expected.\n"
+msgstr "Valeur erronée de la propriété '%s' : %s ou %s attendu.\n"
+
+#, fuzzy, c-format
+msgid ""
+"Wrong value for '%s' property: String contains 'x' component more than "
+"once.\n"
+msgstr ""
+"Valeur erronée de la propriété '%s' : 'directional' ou 'point' attendu.\n"
+
+#, fuzzy, c-format
+msgid ""
+"Wrong value for '%s' property: String contains 'y' component more than "
+"once.\n"
+msgstr ""
+"Valeur erronée de la propriété '%s' : 'directional' ou 'point' attendu.\n"
+
+#, fuzzy, c-format
+msgid ""
+"Wrong value for '%s' property: String contains 'z' component more than "
+"once.\n"
+msgstr ""
+"Valeur erronée de la propriété '%s' : 'directional' ou 'point' attendu.\n"
+
+#, fuzzy, c-format
+msgid "Wrong value for '%s' property: String with 'x|y|z' expected.\n"
+msgstr ""
+"Type erroné de la propriété '%s' : Une chaîne de caractères attendue.\n"
+
 msgid "Datatips property can not be modified directly.\n"
 msgstr "La propriété des datatips ne peut pas être modifiée directement.\n"
 
@@ -1115,6 +1157,10 @@ msgstr ""
 msgid "Parent property can not be modified directly.\n"
 msgstr "La propriété parent ne peut pas être modifiée directement.\n"
 
+#, fuzzy, c-format
+msgid "Wrong size for '%s' property: Row vector of size %d expected.\n"
+msgstr "Dimension erronée de la propriété '%s' : Un vecteur ligne attendu.\n"
+
 #, c-format
 msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
 msgstr "Dimension erronée de la propriété '%s' : %d ou %d éléments attendus.\n"
@@ -1231,12 +1277,278 @@ msgstr "Impossible de changer le %s de l'objet graphique : son type est %s.\n"
 msgid "%s: Wrong value: Vector is not monotonous.\n"
 msgstr "%s : Valeur erronée : Le vecteur n'est pas monotone.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
+# File: modules/graphics/demos/2d_3d_plots/contourf2.dem.sce, line: 43
+msgid "Press Return to continue ... \n"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/mandelbrot.dem.sce, line: 38
+# File: modules/graphics/demos/matplot/mandelbrot.dem.sce, line: 38
+msgid "Computing in progress..."
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/mandelbrot.dem.sce, line: 88
+# File: modules/graphics/demos/matplot/mandelbrot.dem.sce, line: 88
+msgid ""
+"Matplot1(..) displays a matrix\n"
+"(value => color#), with SCALED AXES\n"
+"(here is a part of the Mandelbrot set)"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/mandelbrot.dem.sce, line: 90
+# File: modules/graphics/demos/matplot/mandelbrot.dem.sce, line: 90
+msgid "Real part"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/mandelbrot.dem.sce, line: 91
+# File: modules/graphics/demos/matplot/mandelbrot.dem.sce, line: 91
+msgid "Imaginary part"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/plotyy.dem.sce, line: 39
+msgid "Graphics with 2 different Y-scales"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/plotyyy.dem.sce, line: 26
+msgid "Plot with 3 different Y scales at shared X"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/plotyyy.dem.sce, line: 27
+msgid "Common X axis"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/plotyyy.dem.sce, line: 27
+msgid "Scale #1"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 16
+msgid ""
+"Please press enter into the Scilab console to see more polarplot examples"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 18
+msgid "Press enter to go on..."
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 23
+msgid "polarplot(): Only quadrant(s) reached by data are displayed"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 32
+msgid "Still a single quadrant..."
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 55
+msgid "on 2 quadrants..."
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 85
+msgid "Data on the full circle ..."
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 94
+msgid "A partial viewport may be set with clipping"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 104
+msgid "Negative radii are supported:"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 113
+msgid "Big radii are supported..."
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 129
+msgid "even huge radii, with properly formatted labels..."
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 145
+msgid "... as well as very tiny radii"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 154
+msgid "Several curves may be plotted at the same time"
+msgstr ""
+
+#
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 42
+msgid "Customize your complex function"
+msgstr ""
+
+#
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 69
+msgid "Control panel"
+msgstr ""
+
+#
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 178
+msgid "Function definition"
+msgstr ""
+
+#
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 249
+msgid "Domain type"
+msgstr ""
+
+#
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 308
+msgid "Radius of the domain"
+msgstr ""
+
+#
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 365
+msgid "Cut on axes"
+msgstr ""
+
+#
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 468
+msgid "Function should contain z"
+msgstr ""
+
+#
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 478
+msgid "Wrong definition of f(z)"
+msgstr ""
+
+#
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 562
+# File: modules/graphics/demos/cmplxfunc/demo_custom.dem.sce, line: 567
+msgid "Radius should be real and finite"
+msgstr ""
+
+#
+# File: modules/graphics/demos/datatips/datatip1.sce, line: 19
+msgid "datatips on 2D curves"
+msgstr ""
+
+#
+# File: modules/graphics/demos/datatips/datatip2.sce, line: 19
+msgid "datatips on 3D curves"
+msgstr ""
+
+#
+# File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 15
+msgid "2D curves"
+msgstr ""
+
+#
+# File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 16
+msgid "3D curve"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 12
+msgid "Graphics"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 14
+msgid "2D and 3D plots"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 15
+msgid "Basic functions"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 16
+msgid "Animation"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 17
+msgid "Finite Elements"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 18
+msgid "Bezier curves and surfaces"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 19
+msgid "More surfaces"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 20
+msgid "Complex elementary functions"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 21
+msgid "bar histogram"
+msgstr ""
+
+#, fuzzy
+msgid "Datatips"
+msgstr "Style des datatips"
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 23
+msgid "LaTeX/MathML"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 24
+msgid "Lighting"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 25
+# File: modules/graphics/demos/misc/misc.dem.sce, line: 43
+msgid "Misc"
+msgstr ""
+
+#, fuzzy
+msgid "Colormap"
+msgstr "Numéro de la couleur"
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 27
+msgid "Matplot"
+msgstr ""
 
 msgid "Classical Matplot"
 msgstr "Matplot classique"
+
+msgid "Classical Matplot1"
+msgstr "Matplot1 classique"
+
+#
+# File: modules/graphics/demos/matplot/java_image.dem.sce, line: 14
+# File: modules/graphics/demos/matplot/matplot.dem.gateway.sce, line: 12
+msgid "Java Image"
+msgstr ""
+
+#
+# File: modules/graphics/demos/matplot/matplot.dem.gateway.sce, line: 11
+msgid "Mandelbrot"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid ""
@@ -1253,9 +1565,6 @@ msgstr "Pour les axes à l'échelle des données, veuillez utiliser Matplot1(..)
 
 msgid "Axes are scaled with M's indices"
 msgstr "Les axes sont gradués avec les indices de M."
-
-msgid "Classical Matplot1"
-msgstr "Matplot1 classique"
 
 #, c-format
 msgid ""
@@ -1753,6 +2062,11 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée : '%s', '%s', '%s', '%s', '%s', "
 "'%s', '%s' ou '%s' attendu.\n"
 
+#
+# File: modules/graphics/macros/ged.sci, line: 15
+msgid "The ged function is not available on MacOSX."
+msgstr ""
+
 msgid "Tcl/Tk interface not installed."
 msgstr "Interface Tcl/Tk non installée."
 
@@ -1881,6 +2195,26 @@ msgstr "Répartition Gaussienne exacte"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel attendu.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s)."
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Graphic handle or string expected.\n"
+msgstr ""
+"%s : Type erroné d'argument d'entrée n°%d : Un handle ou une chaîne de "
+"caractères attendu.\n"
+
+#
+# File: modules/graphics/macros/isoview.sci, line: 76
+msgid ""
+"isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from "
+"Scilab 6.1\n"
+"Please use replot([xmin xmax ymin ymax]) after isoview(..) instead.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
@@ -2136,13 +2470,9 @@ msgstr ""
 "%s : Dimension erronée des arguments d'entrée '%s' et '%s' : Mêmes "
 "dimensions attendues.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur attendu.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Positive integer expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s: file %s does not exist.\n"
@@ -2164,3 +2494,11 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a handle expected.\n"
 msgstr ""
+
+#~ msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+#~ msgstr ""
+#~ "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
+#~ msgstr ""
+#~ "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur attendu.\n"

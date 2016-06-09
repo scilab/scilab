@@ -2134,16 +2134,19 @@ SciErr readBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, in
 
     if (_piNbItemRow == NULL)
     {
+        freeAllocatedBooleanSparse(piNbItemRow, piColPos);
         return sciErr;
     }
     memcpy(_piNbItemRow, piNbItemRow, *_piRows * sizeof(int));
 
     if (_piColPos == NULL)
     {
+        freeAllocatedBooleanSparse(piNbItemRow, piColPos);
         return sciErr;
     }
     memcpy(_piColPos, piColPos, *_piNbItem * sizeof(int));
 
+    freeAllocatedBooleanSparse(piNbItemRow, piColPos);
     return sciErr;
 }
 

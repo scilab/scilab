@@ -73,7 +73,7 @@ struct Links
     static std::list<int> legends()
     {
         std::list<int> legs;
-        for (auto& i : paths)
+        for (auto & i : paths)
         {
             legs.push_back(i.first);
         }
@@ -406,7 +406,7 @@ struct DatatipHandle
         m.emplace_back("box_mode", std::vector<int>({SAVE_LOAD, __GO_DATATIP_BOX_MODE__, jni_bool}));
         m.emplace_back("label_mode", std::vector<int>({SAVE_LOAD, __GO_DATATIP_LABEL_MODE__, jni_bool}));
         m.emplace_back("orientation", std::vector<int>({SAVE_LOAD, __GO_DATATIP_ORIENTATION__, jni_int}));
-        m.emplace_back("z_component", std::vector<int>({SAVE_LOAD, __GO_DATATIP_3COMPONENT__, jni_bool}));
+        m.emplace_back("display_components", std::vector<int>({SAVE_LOAD, __GO_DATATIP_DISPLAY_COMPONENTS__, jni_string}));
         m.emplace_back("auto_orientation", std::vector<int>({SAVE_LOAD, __GO_DATATIP_AUTOORIENTATION__, jni_bool}));
         m.emplace_back("interp_mode", std::vector<int>({SAVE_LOAD, __GO_DATATIP_INTERP_MODE__, jni_bool}));
         m.emplace_back("display_function", std::vector<int>({SAVE_LOAD, __GO_DATATIP_DISPLAY_FNC__, jni_string}));

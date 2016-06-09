@@ -56,9 +56,9 @@ function demo_sparse_matrices()
     mode(-1)
 
     disp(_("Now, using umfpack to solve some linear systems:"));
-    disp(_("     b1 = rand(size(A1,1),1);    -> to create a rhs"));
-    disp(_("     x1 = umfpack(A1,""\"",b1);     -> to solve A1*x1 = b1"));
-    disp(_("     norm_res = norm(A1*x1-b1);  -> norm of the residual"));
+    disp("     b1 = rand(size(A1,1),1);    "+_("-> to create a rhs"));
+    disp("     x1 = umfpack(A1,''\'',b1);    "+_("-> to solve A1*x1 = b1"));
+    disp("     norm_res = norm(A1*x1-b1);  "+_("-> norm of the residual"));
     disp(_("this is done for the 4 matrices A1, A2, A3 and A4."));
     halt(_("\nPress Return to continue...\n"));
 

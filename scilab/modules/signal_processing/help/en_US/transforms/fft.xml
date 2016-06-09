@@ -26,7 +26,7 @@
     </refnamediv>
     <refnamediv xml:id="ifft">
         <refname>ifft</refname>
-        <refpurpose>fast Fourier transform.</refpurpose>
+        <refpurpose>Inverse fast Fourier transform.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>

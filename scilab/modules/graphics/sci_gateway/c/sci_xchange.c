@@ -75,6 +75,7 @@ int sci_xchange(char * fname, void *pvApiCtx)
         int* l2 = NULL;
         double* l3 = NULL;
         double* l4 = NULL;
+        freeAllocatedSingleString(l3Input);
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
         if (sciErr.iErr)
@@ -154,6 +155,7 @@ int sci_xchange(char * fname, void *pvApiCtx)
         double* l2 = NULL;
         int* l3 = NULL;
         int* l4 = NULL;
+        freeAllocatedSingleString(l3Input);
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
         if (sciErr.iErr)
@@ -233,8 +235,6 @@ int sci_xchange(char * fname, void *pvApiCtx)
     l5[1] = viewingRect[1];
     l5[2] = viewingRect[2];
     l5[3] = viewingRect[3];
-
-    freeAllocatedSingleString(l3Input);
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;

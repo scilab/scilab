@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("CACSD (Computer Aided Control Systems Design)",SCI+"/modules/cacsd/help/en_US",%T);
+add_help_chapter("Control Systems - CACSD",SCI+"/modules/cacsd/help/en_US",%T);
 

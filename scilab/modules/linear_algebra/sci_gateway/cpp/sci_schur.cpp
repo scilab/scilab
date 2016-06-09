@@ -224,12 +224,11 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if (pDbl[0]->getCols() == 0)
             {
-                types::Double* zero = new types::Double(0);
-
                 for (int i = 0; i < _iRetCount; i++)
                 {
                     if (i == 1 && !bIsComplexStr && !bIsRealStr)
                     {
+                        types::Double* zero = new types::Double(0);
                         out.push_back(zero);
                     }
                     else
@@ -245,8 +244,6 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if (pDbl[0]->getCols() == 0)
             {
-                types::Double* zero = new types::Double(0);
-
                 for (int i = 1; i < _iRetCount; i++)
                 {
                     out.push_back(types::Double::Empty());
@@ -254,6 +251,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
 
                 if (_iRetCount > 1)
                 {
+                    types::Double* zero = new types::Double(0);
                     out.push_back(zero);
                 }
                 else

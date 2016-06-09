@@ -42,6 +42,7 @@ types::Function::ReturnValue sci_sciargs(types::typed_list &in, int _iRetCount, 
     {
         // call_scilab
         out.push_back(new types::String(L""));
+        freeArrayOfWideString(pwstCmdLineArgs, iCount);
         return types::Function::OK;
     }
 

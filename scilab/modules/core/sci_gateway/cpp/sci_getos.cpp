@@ -34,12 +34,16 @@ types::Function::ReturnValue sci_getos(types::typed_list &in, int _iRetCount, ty
     if (in.size() != 0)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "getos", 0);
+        FREE(OperatingSystem);
+        OperatingSystem = NULL;
         return types::Function::Error;
     }
 
     if (_iRetCount != 2 && _iRetCount != 1 && _iRetCount != -1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "getos", 1, 2);
+        FREE(OperatingSystem);
+        OperatingSystem = NULL;
         return types::Function::Error;
     }
 

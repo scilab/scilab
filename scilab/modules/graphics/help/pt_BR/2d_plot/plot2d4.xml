@@ -60,6 +60,9 @@
     </refsection>
     <refsection role="examples">
         <title>Exemplos</title>
+        Demo: plot2d4();
+        <scilab:image>plot2d4();</scilab:image>
+        Exemplos:
         <programlisting role="example"><![CDATA[
 // compare o seguinte com plot2d + .polyline_style=4
 clf
@@ -69,8 +72,13 @@ plot2d4(x,[sin(x) sin(2*x) sin(3*x)])
 
 subplot(2,1,2)
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
-gce().children.polyline_style = 4;
+e = gce();
+e.children.polyline_style=4;
  ]]></programlisting>
+        <scilab:image>
+            x = [0:0.1:2*%pi]';
+            plot2d4(x, [sin(x) sin(2*x) sin(3*x)])
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>

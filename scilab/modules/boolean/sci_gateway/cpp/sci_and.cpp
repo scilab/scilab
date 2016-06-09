@@ -29,6 +29,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "vect_and.h"
+#include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
 /* SCILAB function : and */
@@ -99,11 +100,12 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
                 default:
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
+                    FREE(pStr);
                     return types::Function::Error;
                 }
             }
 
-            delete pStr;
+            FREE(pStr);
             if (len != 1)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);

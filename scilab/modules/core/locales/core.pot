@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-02-10 12:14+0100\n"
+"Revision-Date: 2016-06-08 22:21+0100\n"
 
 # File: modules/core/sci_gateway/c/sci_debug.c, line: 43
 #, c-format
@@ -38,8 +38,8 @@ msgstr ""
 
 #
 # File: modules/core/sci_gateway/c/sci_debug.c, line: 73
-# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 72
-# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 79
+# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 76
+# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 83
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -82,7 +82,7 @@ msgstr ""
 #
 # File: modules/core/sci_gateway/cpp/sci_abort.cpp, line: 39
 # File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 52
-# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 42
+# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 44
 # File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 52
 # File: modules/core/sci_gateway/cpp/sci_lasterror.cpp, line: 40
 # File: modules/core/sci_gateway/cpp/sci_recursionlimit.cpp, line: 35
@@ -199,16 +199,16 @@ msgstr ""
 
 #
 # File: modules/core/sci_gateway/cpp/sci_clearfun.cpp, line: 34
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 105
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 172
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 294
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 310
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 322
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 343
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 358
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 377
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 397
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 466
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 106
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 173
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 295
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 311
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 323
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 344
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 359
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 378
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 398
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 467
 # File: modules/core/sci_gateway/cpp/sci_funptr.cpp, line: 34
 # File: modules/core/sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp, line: 30
 # File: modules/core/sci_gateway/cpp/sci_inspectorGetFunctionList.cpp, line: 33
@@ -219,15 +219,6 @@ msgstr ""
 # File: modules/core/sci_gateway/cpp/sci_typename.cpp, line: 41
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/cpp/sci_clearfun.cpp, line: 48
-# File: modules/core/sci_gateway/cpp/sci_funptr.cpp, line: 48
-# File: modules/core/sci_gateway/cpp/sci_newfun.cpp, line: 75
-# File: modules/core/sci_gateway/cpp/sci_newfun.cpp, line: 97
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
@@ -245,173 +236,173 @@ msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 71
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 72
 #, c-format
 msgid "%s: Debugger can be activated only at console scope level\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 82
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 83
 #, c-format
 msgid "%s: Debugger is not running. Call \"%s\" without parameter first.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 91
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 92
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 125
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 192
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 226
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 260
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 412
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 126
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 193
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 227
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 261
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 413
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 150
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 203
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 237
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 271
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 424
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 151
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 204
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 238
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 272
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 425
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 209
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 243
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 277
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 431
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 210
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 244
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 278
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 432
 #, c-format
 msgid "%s: Unable to retrieve information about breakpoint %d.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 331
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 332
 #, c-format
 msgid "%ls"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 480
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 481
 msgid "callstack:"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 517
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 518
 msgid "debug commands : \n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 518
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 519
 msgid "show this help"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 519
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 520
 msgid "open debug documentation page"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 521
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 522
 msgid "stop debugging"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 522
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 523
 msgid "show callstack"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 524
 # File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 525
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 526
 msgid "execute cmd"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 527
 # File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 528
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 529
 msgid "display variable"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 530
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 531
 msgid "continue execution"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 531
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 532
 msgid "abort execution"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 532
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 533
 msgid "continue to next statement"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 533
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 534
 msgid "step into function"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 534
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 535
 msgid "step outside function"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 536
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 537
 msgid "add a breakpoint"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 537
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 538
 msgid "delete all breakpoints"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 538
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 539
 msgid "delete a specific breakpoint"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 539
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 540
 msgid "enable all breakpoints"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 540
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 541
 msgid "enable a specific breakpoint"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 541
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 542
 msgid "disable all breakpoints"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 542
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 543
 msgid "disable a specific breakpoint"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 543
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 544
 msgid "show all breakpoints"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 544
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 545
 msgid "show a specific breakpoint"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 546
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 547
 msgid "  for more details, show help page.\n"
 msgstr ""
 
@@ -542,8 +533,8 @@ msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 99
-# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 117
+# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 102
+# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 120
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
@@ -804,26 +795,26 @@ msgid "Error: Could not parse file %s.\n"
 msgstr ""
 
 #
-# File: modules/core/src/c/getmodules.c, line: 234
+# File: modules/core/src/c/getmodules.c, line: 238
 #, c-format
 msgid "%s module not found.\n"
 msgstr ""
 
 #
-# File: modules/core/src/c/getmodules.c, line: 260
+# File: modules/core/src/c/getmodules.c, line: 264
 #, c-format
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
 msgstr ""
 
 #
-# File: modules/core/src/c/loadversion.c, line: 93
+# File: modules/core/src/c/loadversion.c, line: 94
 #, c-format
 msgid "Error: Could not parse file %s\n"
 msgstr ""
 
 #
-# File: modules/core/src/c/loadversion.c, line: 153
+# File: modules/core/src/c/loadversion.c, line: 160
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
@@ -831,7 +822,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/core/src/c/loadversion.c, line: 168
+# File: modules/core/src/c/loadversion.c, line: 177
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
@@ -839,18 +830,16 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/core/src/c/signal_mgmt.c, line: 409
+# File: modules/core/src/c/signal_mgmt.c, line: 416
 #, c-format
 msgid ""
 "A fatal error has been detected by Scilab.\n"
-"Your instance will probably quit unexpectedly soon.\n"
-"If a graphic feature has been used, this might be caused by the system "
-"graphic drivers.\n"
-"Please try to update them and run this feature again.\n"
-"You can report a bug on %s with:\n"
-"* a sample code which reproduces the issue\n"
-"* the result of [a, b] = getdebuginfo()\n"
-"* the following information:\n"
+"Please check your user-defined functions (or external module ones) should "
+"they appear in the stack trace.\n"
+"Otherwise you can report a bug on %s with:\n"
+" * a sample code which reproduces the issue\n"
+" * the result of [a, b] = getdebuginfo()\n"
+" * the following information:\n"
 "%s %s\n"
 msgstr ""
 
@@ -888,12 +877,12 @@ msgid "Scilab Version Info."
 msgstr ""
 
 #
-# File: modules/core/src/cpp/InitScilab.cpp, line: 739
+# File: modules/core/src/cpp/InitScilab.cpp, line: 752
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
 #
-# File: modules/core/src/cpp/InitScilab.cpp, line: 740
+# File: modules/core/src/cpp/InitScilab.cpp, line: 753
 msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
@@ -932,7 +921,7 @@ msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr ""
 
 #
-# File: modules/core/src/cpp/runner.cpp, line: 106
+# File: modules/core/src/cpp/runner.cpp, line: 117
 #, c-format
 msgid "Recursion limit reached (%d).\n"
 msgstr ""
@@ -955,58 +944,58 @@ msgstr ""
 msgid "Scilab %s Console"
 msgstr ""
 
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 39
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 39
 msgid "Startup execution:"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 40
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 40
 #, c-format
 msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 56
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 56
 #, c-format
 msgid "Failed to execute %s:"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 132
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 132
 msgid "&File"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 133
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 133
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 134
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 134
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 135
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 135
 msgid "&Control"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 136
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 138
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 141
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 144
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 147
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 136
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 138
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 141
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 144
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 147
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 149
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 149
 msgid "&?"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/master-static-libc++/scilab/etc/scilab.start, line: 150
+# File: /home/davidcl/work/branches/master-review/scilab/etc/scilab.start, line: 150
 # File: modules/core/macros/toolboxes.sci, line: 69
 # File: modules/core/macros/toolboxes.sci, line: 70
 # File: modules/core/macros/toolboxes.sci, line: 76
@@ -1093,6 +1082,12 @@ msgstr ""
 # File: modules/core/macros/edit.sci, line: 44
 #, c-format
 msgid "%s: %s is an uneditable hard coded function.\n"
+msgstr ""
+
+#
+# File: modules/core/macros/halt.sci, line: 25
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
 #

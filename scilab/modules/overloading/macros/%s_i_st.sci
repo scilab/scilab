@@ -23,7 +23,7 @@ function out=%s_i_st(varargin)
         // st(i,:)=[] or st(:,j)=[] or st(i)=[] or st(:,j,:,:)=[]
         //remove the substruct
         out=varargin($);
-        dims=double(out.dims);
+        dims=size(out)
 
         // Make the dimensions and the indices fit
         Ndims=size(dims,"*")
@@ -78,11 +78,9 @@ function out=%s_i_st(varargin)
             for f=Fout
                 out(f)=list()
             end
-            out.dims=int32([0 0])
         else
             //replace st(:,j,:,:)=[] by st=st(:,cj,:,:) where cj is the
             //complement of j with respect to the associated dimension of st
-            out.dims=int32(dims)
             varargin(loc)=cj
             out=out(varargin(1:Ndims))
         end

@@ -113,6 +113,7 @@ int sci_TCL_SetVar(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(VarName);
             return 1;
         }
 
@@ -120,6 +121,7 @@ int sci_TCL_SetVar(char *fname, void* pvApiCtx)
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m1, &n1, &Str))
         {
             Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+            freeAllocatedSingleString(VarName);
             return 1;
         }
 

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="syslin" xml:lang="ja">
+    <refnamediv>
+        <refname>syslin</refname>
+        <refpurpose>線形システムを定義する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[sl]=syslin(dom,A,B,C [,D [,x0] ])
+            [sl]=syslin(dom,N,D)
+            [sl]=syslin(dom,H)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>dom</term>
+                <listitem>
+                    <para>
+                        文字列 (<literal>'c'</literal>,
+                        <literal>'d'</literal>), または <literal>[]</literal> または
+                        スカラー.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A,B,C,D</term>
+                <listitem>
+                    <para>状態空間表現の行列
+                        (<literal>D</literal> はオプションで,デフォルトでは
+                        ゼロ行列となります).
+                        プロパーでないシステムでは,<literal>D</literal>
+                        は多項式行列となります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0</term>
+                <listitem>
+                    <para>ベクトル (初期状態量; デフォルト値は
+                        <literal>0</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N, D</term>
+                <listitem>
+                    <para>多項式行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>有理関数または線形状態空間表現</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        tlist ("<literal>syslin</literal>" リスト) は
+                        線形システムを表します
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>syslin</literal> はリストとして線形システムを定義し,
+            データの整合性を確認します.
+        </para>
+        <para>
+            <literal>dom</literal> はシステムの時間領域を指定するもので,
+            以下の値を指定することができます:
+        </para>
+        <para>
+            連続時間システムの場合<literal>dom='c'</literal>,
+            離散時間システムの場合
+            <literal>dom='d'</literal> ,
+            サンプル時間 <literal>n</literal> (単位:秒)のサンプル値システム
+            の場合 <literal>n</literal>.
+        </para>
+        <para>
+            時間領域が未定義の場合 <literal>dom=[]</literal>
+        </para>
+        <para>状態空間表現:</para>
+        <programlisting role=""><![CDATA[
+sl=syslin(dom,A,B,C [,D [,x0] ])
+ ]]></programlisting>
+        <para>は次のシステムを定義します :</para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../mml/syslin_equation_1.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        <para>
+            <literal>syslin</literal> の出力は以下の形式のリストとなります:
+            <literal>sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom)</literal>
+            <literal>D</literal> は多項式行列(プロパーでないシステム)とすることが
+            できることに注意してください.
+        </para>
+        <para>伝達行列表現:</para>
+        <programlisting role=""><![CDATA[
+sl=syslin(dom,N,D)
+sl=syslin(dom,H)
+ ]]></programlisting>
+        <para>
+            <literal>syslin</literal> の出力は以下の形式のリストとなります :
+            <literal>sl=rlist(N,D,dom)</literal> または
+            <literal>sl=rlist(H(2),H(3),dom)</literal>.
+        </para>
+        <para>
+            <literal>syslin</literal> で定義された線形システムは
+            状態空間または伝達関数表現のどちらでも
+            通常の行列と同様に操作(結合, 展開, 転置, 乗算,など)することができます.
+        </para>
+        <para>状態空間制御関数の多くは,
+            4つの行列でシステムを定義する代わりに
+            <literal>syslin</literal>リストを入力とします.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=[0,1;0,0];B=[1;1];C=[1,1];
+S1=syslin('c',A,B,C)   //線形システムを定義
+S1("A")    //A行列を表示
+S1("X0"), S1("dt") // X0と時間領域を表示
+s=poly(0,'s');
+D=s;
+S2=syslin('c',A,B,C,D)
+H1=(1+2*s)/s^2, S1bis=syslin('c',H1)
+H2=(1+2*s+s^3)/s^2, S2bis=syslin('c',H2)
+S1+S2
+[S1,S2]
+ss2tf(S1)-S1bis
+S1bis+S2bis
+S1*S2bis
+size(S1)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>参考</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="lsslist">lsslist</link>
+            </member>
+            <member>
+                <link linkend="rlist">rlist</link>
+            </member>
+            <member>
+                <link linkend="ssrand">ssrand</link>
+            </member>
+            <member>
+                <link linkend="ss2tf">ss2tf</link>
+            </member>
+            <member>
+                <link linkend="tf2ss">tf2ss</link>
+            </member>
+            <member>
+                <link linkend="dscr">dscr</link>
+            </member>
+            <member>
+                <link linkend="abcd">abcd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

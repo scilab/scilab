@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2011-09-01 09:52+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: \n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -304,3 +304,127 @@ msgstr ""
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "Scilab 的 randlib 介面尚未安裝.\n"
+
+# File: modules/randlib/demos/binomial.dem.sce, line: 59
+msgid "Simulation of a binomial random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/binomial.dem.sce, line: 63
+# File: modules/randlib/demos/discrete.dem.sce, line: 47
+# File: modules/randlib/demos/discrete_uni.dem.sce, line: 39
+# File: modules/randlib/demos/exp.dem.sce, line: 41
+# File: modules/randlib/demos/geometric.dem.sce, line: 48
+# File: modules/randlib/demos/poisson.dem.sce, line: 51
+msgid "Simulation"
+msgstr ""
+
+#
+# File: modules/randlib/demos/binomial.dem.sce, line: 63
+# File: modules/randlib/demos/discrete.dem.sce, line: 47
+# File: modules/randlib/demos/discrete_uni.dem.sce, line: 39
+# File: modules/randlib/demos/exp.dem.sce, line: 41
+# File: modules/randlib/demos/geometric.dem.sce, line: 48
+# File: modules/randlib/demos/poisson.dem.sce, line: 51
+msgid "Theory"
+msgstr ""
+
+#
+# File: modules/randlib/demos/discrete.dem.sce, line: 43
+msgid "Simulation of a discrete random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/discrete_uni.dem.sce, line: 35
+msgid "Simulation of a discrete uniform random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/erlang.dem.sce, line: 40
+msgid "Simulation of a Erlang random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/exp.dem.sce, line: 32
+msgid "Simulation of an exponential random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/exp.dem.sce, line: 33
+msgid "Classes"
+msgstr ""
+
+#
+# File: modules/randlib/demos/geometric.dem.sce, line: 15
+msgid "p must be < 1"
+msgstr ""
+
+#
+# File: modules/randlib/demos/geometric.dem.sce, line: 44
+msgid "Simulation of a geometric random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/hypergeom.dem.sce, line: 31
+msgid "Simulation of a hyper geometric random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/poisson.dem.sce, line: 47
+msgid "Simulation of a Poisson random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/randlib.dem.gateway.sce, line: 10
+msgid "Random"
+msgstr ""
+
+#
+# File: modules/randlib/demos/randlib.dem.gateway.sce, line: 12
+msgid "binomial random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/randlib.dem.gateway.sce, line: 13
+msgid "discrete random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/randlib.dem.gateway.sce, line: 14
+msgid "discrete uniform random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/randlib.dem.gateway.sce, line: 15
+msgid "geometric random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/randlib.dem.gateway.sce, line: 16
+msgid "Poisson random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/randlib.dem.gateway.sce, line: 17
+msgid "Exponential random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/randlib.dem.gateway.sce, line: 18
+msgid "Weibull random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/randlib.dem.gateway.sce, line: 19
+msgid "Hyper geometric random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/randlib.dem.gateway.sce, line: 20
+msgid "Erlang random variable"
+msgstr ""
+
+#
+# File: modules/randlib/demos/weibull.dem.sce, line: 26
+msgid "Simulation of a Weibull random variable"
+msgstr ""

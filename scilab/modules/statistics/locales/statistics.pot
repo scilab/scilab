@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-02-10 12:14+0100\n"
+"Revision-Date: 2016-06-08 22:22+0100\n"
 
 #
 # File: modules/statistics/src/c/CdfBase.c, line: 129
@@ -132,7 +132,7 @@ msgstr ""
 # File: modules/statistics/macros/show_pca.sci, line: 27
 # File: modules/statistics/macros/stdev.sci, line: 39
 # File: modules/statistics/macros/stdevf.sci, line: 39
-# File: modules/statistics/macros/strange.sci, line: 27
+# File: modules/statistics/macros/strange.sci, line: 28
 # File: modules/statistics/macros/tabul.sci, line: 61
 # File: modules/statistics/macros/trimmean.sci, line: 77
 # File: modules/statistics/macros/variance.sci, line: 39
@@ -265,26 +265,26 @@ msgstr ""
 #
 # File: modules/statistics/macros/histc.sci, line: 36
 # File: modules/statistics/macros/histc.sci, line: 43
-# File: modules/statistics/macros/stdev.sci, line: 72
-# File: modules/statistics/macros/stdev.sci, line: 79
+# File: modules/statistics/macros/stdev.sci, line: 78
+# File: modules/statistics/macros/stdev.sci, line: 85
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/histc.sci, line: 52
+# File: modules/statistics/macros/histc.sci, line: 51
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/histc.sci, line: 54
+# File: modules/statistics/macros/histc.sci, line: 53
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/histc.sci, line: 66
+# File: modules/statistics/macros/histc.sci, line: 65
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in increasing "
@@ -528,23 +528,21 @@ msgid "Eigenvalues"
 msgstr ""
 
 #
-# File: modules/statistics/macros/stdev.sci, line: 55
+# File: modules/statistics/macros/stdev.sci, line: 56
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or a positive "
-"integer expected.\n"
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/stdev.sci, line: 83
-# File: modules/statistics/macros/stdev.sci, line: 91
-# File: modules/statistics/macros/stdev.sci, line: 100
+# File: modules/statistics/macros/stdev.sci, line: 89
+# File: modules/statistics/macros/stdev.sci, line: 97
+# File: modules/statistics/macros/stdev.sci, line: 106
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/statistics/macros/strange.sci, line: 36
+# File: modules/statistics/macros/strange.sci, line: 43
 #, c-format
 msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
