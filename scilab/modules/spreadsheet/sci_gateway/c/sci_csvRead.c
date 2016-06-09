@@ -373,6 +373,8 @@ int sci_csvRead(char *fname, void* pvApiCtx)
 
                                     freeCsvResult(result);
                                     freeVar(&filename, &separator, &decimal, &conversion, &iRange, &toreplace, nbElementsToReplace, &regexp);
+                                    freeComplexArray(ptrComplexArray);
+                                    ptrComplexArray = NULL;
                                     return 0;
                                 }
                             }
@@ -386,9 +388,9 @@ int sci_csvRead(char *fname, void* pvApiCtx)
                                 {
                                     sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrComplexArray->realPart);
                                 }
-                                freeComplexArray(ptrComplexArray);
-                                ptrComplexArray = NULL;
                             }
+                            freeComplexArray(ptrComplexArray);
+                            ptrComplexArray = NULL;
                         }
                         break;
 

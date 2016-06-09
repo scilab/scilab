@@ -100,6 +100,7 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* pvApiCtx, int _iVar, cons
         }
         if (strlen(returnedValue) == 0)
         {
+            FREE(returnedValue);
             returnedValue = os_strdup(defaultValue);
         }
     }
