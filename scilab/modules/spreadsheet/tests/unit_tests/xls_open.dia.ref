@@ -1,4 +1,5 @@
 //<-- CLI SHELL MODE -->
+//<-- ENGLISH IMPOSED -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO
@@ -27,3 +28,6 @@ for i = 1 : size(tab_ref, "*")
 end
 cd TMPDIR;
 removedir open_xls_tests;
+instr = "[fd, SST, Sheetnames, Sheetpos] = xls_open();";
+refMsg = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "xls_open", 1);
+assert_checkerror(instr, refMsg);
