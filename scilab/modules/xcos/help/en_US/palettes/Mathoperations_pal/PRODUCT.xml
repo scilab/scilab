@@ -98,8 +98,7 @@
     <refsection id="Description_PRODUCT">
         <title>Description</title>
         <para>
-            That bloc computes element-wise multiplication or division of its vector inputs. The number of inputs
-            and operation are specified with the <emphasis role="bold">Number of inputs or sign vector</emphasis> parameter.
+            That bloc computes element-wise multiplication or division of its vector inputs. The number of inputs and operation are specified with the <emphasis role="bold">Number of inputs or sign vector</emphasis> parameter.
         </para>
         <itemizedlist>
             <listitem>
@@ -120,7 +119,7 @@
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../images/gui/PRODUCT_gui.gif" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/gui/PRODUCT_gui.png" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>
@@ -132,8 +131,15 @@
                 <para>
                     <emphasis role="bold">Number of inputs or sign vector </emphasis>
                 </para>
-                <para> Enter the number of inputs.</para>
-                <para> Properties : Type 'vec' of size 1</para>
+                <para>Set the number of inputs and the associated operation.</para>
+                <para>Properties : Type 'vec' of size N</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Error on divide by zero (1: yes) (0:no)</emphasis>
+                </para>
+                <para>Halt the simulation on divide by zero.</para>
+                <para>Properties : Type 'vec' of size 1</para>
             </listitem>
         </itemizedlist>
     </refsection>

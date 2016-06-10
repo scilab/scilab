@@ -239,6 +239,9 @@ The memory usage on diagram edition is also slightly reduced.
 Scilab 5.5.2 is able to open the newly saved files, but the ports have to be repositioned manually.
 * Implicit fixed-size step ODE solver added: Crank-Nicolson 2(3). 
 Added to the CVode package, it also benefits from the CVode rootfinding feature.
+* Block modifications :
+  - `INVBLK`: add a divide by zero parameter to ignore the error
+  - `PRODUCT`: add a divide by zero parameter to ignore the error
 
 
 API modification
