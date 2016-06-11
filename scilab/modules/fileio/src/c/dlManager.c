@@ -284,6 +284,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         if (res != CURLE_OK)
         {
             Scierror(999, "Failed to set httpauth type to ANY [%s]\n", errorBuffer);
+            FREE(filename);
             return NULL;
         }
 
@@ -298,8 +299,8 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         res = curl_easy_setopt(curl, CURLOPT_USERPWD, userpass);
         if (res != CURLE_OK)
         {
-            FREE(filename);
             Scierror(999, _("Failed to set user:pwd [%s]\n"), errorBuffer);
+            FREE(filename);
             return NULL;
         }
 
@@ -320,20 +321,20 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
             res = curl_easy_setopt(curl, CURLOPT_PROXY, proxyHost);
             if (res != CURLE_OK)
             {
+                Scierror(999, _("Failed to set proxy host [%s]\n"), errorBuffer);
                 FREE(proxyHost);
                 FREE(proxyUserPwd);
                 FREE(filename);
-                Scierror(999, _("Failed to set proxy host [%s]\n"), errorBuffer);
                 return NULL;
             }
 
             res = curl_easy_setopt(curl, CURLOPT_PROXYPORT, proxyPort);
             if (res != CURLE_OK)
             {
+                Scierror(999, _("Failed to set proxy port [%s]\n"), errorBuffer);
                 FREE(proxyHost);
                 FREE(proxyUserPwd);
                 FREE(filename);
-                Scierror(999, _("Failed to set proxy port [%s]\n"), errorBuffer);
                 return NULL;
             }
             if (proxyUserPwd != NULL)
@@ -341,10 +342,10 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
                 res = curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, proxyUserPwd);
                 if (res != CURLE_OK)
                 {
+                    Scierror(999, _("Failed to set proxy user:password [%s]\n"), errorBuffer);
                     FREE(proxyHost);
                     FREE(proxyUserPwd);
                     FREE(filename);
-                    Scierror(999, _("Failed to set proxy user:password [%s]\n"), errorBuffer);
                     return NULL;
                 }
             }
@@ -357,8 +358,8 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     res = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
     if (res != CURLE_OK)
     {
-        FREE(filename);
         Scierror(999, _("Failed to set write function [%s]\n"), errorBuffer);
+        FREE(filename);
         return NULL;
     }
 
@@ -368,9 +369,9 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     res = curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
     if (res != CURLE_OK)
     {
+        Scierror(999, _("Failed to set write data [%s]\n"), errorBuffer);
         FREE(filename);
         free_string(&buffer);
-        Scierror(999, _("Failed to set write data [%s]\n"), errorBuffer);
         return NULL;
     }
 
@@ -378,26 +379,26 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     res = curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
     if (res != CURLE_OK)
     {
+        Scierror(999, _("Failed to set 'Follow Location' [%s]\n"), errorBuffer);
         FREE(filename);
         free_string(&buffer);
-        Scierror(999, _("Failed to set 'Follow Location' [%s]\n"), errorBuffer);
         return NULL;
     }
 
     res = curl_easy_perform(curl);
     if (res != 0)
     {
+        Scierror(999, _("Transfer did not complete successfully: %s\n"), errorBuffer);
         FREE(filename);
         free_string(&buffer);
-        Scierror(999, _("Transfer did not complete successfully: %s\n"), errorBuffer);
         return NULL;
     }
 
     wcfopen(file, (char*)filename, "wb");
     if (file == NULL)
     {
-        free_string(&buffer);
         Scierror(999, _("Failed opening '%s' for writing.\n"), filename);
+        free_string(&buffer);
         FREE(filename);
         return NULL;
     }
