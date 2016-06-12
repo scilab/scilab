@@ -51,6 +51,7 @@ int sci_xend(char * fname, void *pvApiCtx)
                 Scierror(999, _("%s: An error occurred: %s\n"), fname, ret);
                 return 0;
             }
+            delete[] ret;
         }
     }
 

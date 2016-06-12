@@ -68,6 +68,7 @@ int sci_xinit(char * fname, void *pvApiCtx)
     else
     {
         Scierror(999, _("%s: Invalid path: %s.\n"), fname, path);
+        freeAllocatedSingleString(path);
         return 0;
     }
 
