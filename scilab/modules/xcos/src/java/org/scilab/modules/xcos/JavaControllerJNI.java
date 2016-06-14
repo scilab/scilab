@@ -19,6 +19,7 @@ public class JavaControllerJNI {
   public final static native void View_director_connect(View obj, long cptr, boolean mem_own, boolean weak_global);
   public final static native void View_change_ownership(View obj, long cptr, boolean take_or_release);
   public final static native long Controller_look_for_view(String jarg1);
+  public final static native void Controller_end_simulation();
   public final static native long new_Controller();
   public final static native void delete_Controller(long jarg1);
   public final static native long Controller_createObject(long jarg1, Controller jarg1_, int jarg2);

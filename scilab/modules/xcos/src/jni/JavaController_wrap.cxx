@@ -668,6 +668,8 @@ namespace Swig {
 #include "View.hxx"
 #include "Controller.hxx"
 
+#include "scicos.h"
+
 
 #include <stdexcept>
 
@@ -1285,6 +1287,13 @@ SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controll
   *(org_scilab_modules_scicos::View **)&jresult = result; 
   
   return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1end_1simulation(JNIEnv *jenv, jclass jcls) {
+  (void)jenv;
+  (void)jcls;
+  org_scilab_modules_scicos::Controller::end_simulation();
 }
 
 

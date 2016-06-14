@@ -55,6 +55,10 @@
 
 #include "LoggerView.hxx"
 
+extern "C" {
+#include "scicos.h"
+}
+
 namespace org_scilab_modules_scicos
 {
 
@@ -151,6 +155,11 @@ View* Controller::look_for_view(const std::string& name)
     unlock(&m_instance.onViewsStructuralModification);
 
     return view;
+}
+
+void Controller::end_simulation()
+{
+    end_scicos_sim();
 }
 
 Controller::Controller()

@@ -44,6 +44,8 @@ public:
     static View* unregister_view(const std::string& name);
     static View* look_for_view(const std::string& name);
 
+    static void end_simulation();
+
     Controller();
     ~Controller();
 

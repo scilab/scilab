@@ -40,6 +40,10 @@ public class Controller {
     return (cPtr == 0) ? null : new View(cPtr, false);
   }
 
+  public static void end_simulation() {
+    JavaControllerJNI.Controller_end_simulation();
+  }
+
   public Controller() {
     this(JavaControllerJNI.new_Controller(), true);
   }

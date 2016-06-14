@@ -22,12 +22,12 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -90,7 +90,7 @@ public final class StopAction extends DefaultAction {
         }
 
         if (!GraphActionManager.getEnable(StartAction.class)) {
-            ScilabInterpreterManagement.requestScilabExec("haltscicos");
+            JavaController.end_simulation();
 
             graph.info(XcosMessages.EMPTY_INFO);
             GraphActionManager.setEnable(StartAction.class, true);

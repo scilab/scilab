@@ -17,7 +17,7 @@
 
 // Are scicos libs loaded ?
 function result = isScicosLibLoaded()
-	result = isdef('haltscicos');
+    result = isdef("scicosim");
 endfunction
 
 // Check that the simulation libraries are not loaded at startup

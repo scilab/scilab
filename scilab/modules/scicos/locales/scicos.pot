@@ -188,7 +188,6 @@ msgstr ""
 
 #
 # File: modules/scicos/sci_gateway/cpp/sci_curblock.cpp, line: 50
-# File: modules/scicos/sci_gateway/cpp/sci_haltscicos.cpp, line: 48
 # File: modules/scicos/sci_gateway/cpp/sci_phase_simulation.cpp, line: 57
 # File: modules/scicos/sci_gateway/cpp/sci_scicos_debug.cpp, line: 56
 # File: modules/scicos/sci_gateway/cpp/sci_scicos_debug_count.cpp, line: 55
