@@ -42,6 +42,7 @@ public :
     Callable(): InternalType()
     {
         m_iFirstLine = 0;
+        m_iLastLine = 0;
     }
     virtual             ~Callable() {}
 

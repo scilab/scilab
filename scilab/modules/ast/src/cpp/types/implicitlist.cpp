@@ -83,6 +83,9 @@ ImplicitList::ImplicitList()
     m_pDblStart = NULL;
     m_pDblStep  = NULL;
     m_pDblEnd   = NULL;
+    m_eStartType = ScilabNull;
+    m_eStepType = ScilabNull;
+    m_eEndType = ScilabNull;
 
 #ifndef NDEBUG
     Inspector::addItem(this);

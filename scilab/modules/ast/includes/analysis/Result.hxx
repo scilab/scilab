@@ -46,9 +46,9 @@ private:
 
 public:
 
-    Result() : type(), tempId(-1), functionId(0) { }
-    Result(const TIType & _type, const int _tempId = -1, const uint64_t _functionId = 0) : type(_type), tempId(_tempId), functionId(_functionId) { }
-    Result(TIType && _type, const int _tempId = -1, const uint64_t _functionId = 0) : type(_type), tempId(_tempId), functionId(_functionId) { }
+    Result() : type(), tempId(-1), functionId(0), fnname(DUNNO), constant(), range(), maxIndex() { }
+    Result(const TIType & _type, const int _tempId = -1, const uint64_t _functionId = 0) : type(_type), tempId(_tempId), functionId(_functionId), fnname(DUNNO), constant(), range(), maxIndex() { }
+    Result(TIType && _type, const int _tempId = -1, const uint64_t _functionId = 0) : type(_type), tempId(_tempId), functionId(_functionId), fnname(DUNNO), constant(), range(), maxIndex() { }
 
     inline bool istemp() const
     {

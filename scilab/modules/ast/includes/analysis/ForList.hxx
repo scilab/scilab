@@ -40,7 +40,7 @@ class ForList
 
 public:
 
-    ForList() : constant(false), read_in_loop(false) { }
+    ForList() : constant(false), read_in_loop(false), min(0), step(0), max(0), _int(false), _unsigned(false) { }
 
     ForList(const double m, const double s, const double M) : constant(true), read_in_loop(false), min(m), step(s), max(M)
     {
