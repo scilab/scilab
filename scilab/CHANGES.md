@@ -222,7 +222,8 @@ Bug Fixes
 
 ### In 6.0.0:
 
-
+* [Bug #14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587) fixed - Datatip textbox wrong clipping when loaded from *.scg file.
+ 
 
 ### In 6.0.0 beta-2 and earlier:
 
