@@ -1161,25 +1161,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="m_circle">m_circle</link>
-                </term>
-                <listitem>
-                    <para>
-                        Построение на комплексной плоскости контуров равного усиления y/(1+y)
-                        <warning>
-                            Эта функция устарела.
-                        </warning>
-                    </para>
-                    <para>
-                        <emphasis role="bold">Пример:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>m_circle();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="hallchart">hallchart</link>
                 </term>
                 <listitem>

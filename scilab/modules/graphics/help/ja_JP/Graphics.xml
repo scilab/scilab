@@ -1083,20 +1083,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="m_circle">m_circle</link>
-                </term>
-                <listitem>
-                    <para>M-サークル プロット</para>
-                    <para>
-                        <emphasis role="bold">例:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>m_circle();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="hallchart">hallchart</link>
                 </term>
                 <listitem>

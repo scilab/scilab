@@ -22,7 +22,7 @@
         <title>呼び出し手順</title>
         <synopsis>hallchart([ modules [,args [,colors]]])</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>パラメータ</title>
         <variablelist>
             <varlistentry>
@@ -45,7 +45,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>説明</title>
         <para>
             ホール図をプロット: <literal>real(y)</literal>, <literal>imag(y)</literal> 平面における
@@ -64,9 +64,6 @@
         </para>
         <para>
             <literal>[-90 -60 -45 -30 -15 15 30 45 60 90]</literal>
-        </para>
-        <para>
-            この関数は<link linkend="m_circle">m_circle</link> 関数の後継です
         </para>
     </refsection>
     <refsection>
@@ -105,7 +102,7 @@
             cj.children(1).thickness=3;
         </scilab:image>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>例</title>
         <programlisting role="example"><![CDATA[
     //ホール図

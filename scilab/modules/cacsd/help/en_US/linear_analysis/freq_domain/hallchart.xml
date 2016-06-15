@@ -21,9 +21,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>hallchart([ modules [,args [,colors]]])</synopsis>
-
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -46,7 +45,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para> plot the Hall'chart: iso-module and iso-argument contours of
             <literal>y/(1+y)</literal> in the <literal>real(y)</literal>, <literal>imag(y)</literal> plane
@@ -64,9 +63,6 @@
         </para>
         <para>
             <literal>[-90 -60 -45 -30 -15 15 30 45 60 90]</literal>
-        </para>
-        <para>
-            This function supersedes the <link linkend="m_circle">m_circle</link> function
         </para>
     </refsection>
     <refsection>
@@ -103,9 +99,8 @@
             cj=c(10+j);
             cj.children(1).thickness=3;
         </scilab:image>
-
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
     //Hall chart

@@ -1532,7 +1532,6 @@ lqg2stan
 lqg_ltr
 lqr
 lyap
-m_circle
 macglov
 markp2ss
 minreal

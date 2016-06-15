@@ -628,12 +628,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>m_circle</term>
-                <listitem>
-                    <para>esboço de um M-círculo</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>nicholschart</term>
                 <listitem>
                     <para>carta de Nichols</para>

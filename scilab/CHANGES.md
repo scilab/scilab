@@ -311,6 +311,7 @@ Removed Functions
 * `rafiter` was obsolete since Scilab 5.1 and is now removed.
 * `jconvMatrixMethod` was obsolete and is now removed. Please use `jautoTranspose` instead.
 * `fcontour` was obsolete since Scilab 4 and has been removed. Please use `contour` instead.
+* `m_circle` was obsolete since Scilab 5.2.0. It is removed. Please use `hallchart` instead.
 
 * Symbolic module functions have been removed: `addf`, `cmb_lin`, `ldivf`, `mulf`, `rdivf`, `solve`, `subf`, `trianfml`, `trisolve` and `block2exp`.
 * Functionnalities based on former Scilab stack have been removed:

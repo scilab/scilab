@@ -46,6 +46,9 @@ function []=fgrayplot(x,y,f,strf,rect,nax,void)
     if exists("nax","local")==1 then opts=[opts,"nax=nax"],end
     if exists("frameflag","local")==1 then opts=[opts,"frameflag=frameflag"],end
     if exists("axesflag","local")==1 then opts=[opts,"axesflag=axesflag"],end
+    if opts==[] then
+        opts = ""
+    end
 
     if type(f)==11 then comp(f),end;
     execstr("grayplot(x,y,feval(x,y,f),"+strcat(opts,",")+")")
