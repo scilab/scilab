@@ -206,6 +206,7 @@ Removed Functions
 * `plot2d1` has been removed. Please use `plot2d` instead.
 * `lex_sort` has been removed. Please use `gsort(..,"lr")` instead
 * `gspec` was obsolete already in Scilab 4 and is now removed. Please use `spec` instead.
+* `gschur` was obsolete already in Scilab 4 and is now removed. Please use `schur` instead.
 
 * Symbolic module functions have been removed: `addf`, `cmb_lin`, `ldivf`, `mulf`, `rdivf`, `solve`, `subf`, `trianfml`, `trisolve` and `block2exp`.
 * Functionnalities based on former Scilab stack have been removed:

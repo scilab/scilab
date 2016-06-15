@@ -1377,7 +1377,6 @@ fullrfk
 genmarkov
 givens
 glever
-gschur
 householder
 im_inv
 kernel

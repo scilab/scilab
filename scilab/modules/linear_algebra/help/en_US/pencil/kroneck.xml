@@ -143,7 +143,7 @@ numbeta
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="gschur">gschur</link>
+                <link linkend="schur">schur</link>
             </member>
             <member>
                 <link linkend="spec">spec</link>

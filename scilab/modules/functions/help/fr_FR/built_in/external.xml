@@ -4,7 +4,7 @@
         <refname>external</refname>
         <refpurpose>Objet Scilab, fonction externe ou routine  </refpurpose>
     </refnamediv>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             Fonction ou routine externe nécessitée par des commandes particulières.
@@ -75,9 +75,6 @@ optim(list(costfunc,a1,b1,c1),....
             </member>
             <member>
                 <link linkend="schur">schur</link>
-            </member>
-            <member>
-                <link linkend="gschur">gschur</link>
             </member>
         </simplelist>
     </refsection>
