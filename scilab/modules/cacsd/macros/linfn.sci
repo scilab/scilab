@@ -299,7 +299,7 @@ function [dist,frequ]=heval_test(e,f,TOL,option);
     // (nearly) infinite eigenvalues or eigenvalues of the form 0/0.
     //
     // The eigenvalues are computed via a generalized Schur decomposition
-    // of  f - lambda e . Let (a(i),b(i)) : i=1..nf be the output of gspec.
+    // of  f - lambda e . Let (a(i),b(i)) : i=1..nf be the output of spec(..).
     // Three cases must be distinguished:
     //    * both a(i) and b(i) are << 1 -> singularity of the pencil
     //    * b(i)<<1 and a(i) close to 1 -> infinite eigenvalue

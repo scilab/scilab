@@ -516,7 +516,6 @@ msgstr ""
 #
 # File: modules/linear_algebra/macros/gschur.sci, line: 24
 # File: modules/linear_algebra/macros/gschur.sci, line: 40
-# File: modules/linear_algebra/macros/gspec.sci, line: 16
 #, c-format
 msgid "%s: Obsolete function. Please replace '%s' by '%s'."
 msgstr ""

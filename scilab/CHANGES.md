@@ -189,7 +189,6 @@ Obsolete functions or features
 * `maxfiles` is now obsolete.
 * `isoview(xmin,xmax,ymin,ymax)` is deprecated. Please use `isoview("on"), replot(..)` instead.
 
-
 Removed Functions
 -----------------
 
@@ -203,6 +202,7 @@ Removed Functions
 * `fcontour2d` has been removed. Please use `contour2d` instead.
 * `plot2d1` has been removed. Please use `plot2d` instead.
 * `lex_sort` has been removed. Please use `gsort(..,"lr")` instead
+* `gspec` was obsolete already in Scilab 4 and is now removed. Please use `spec` instead.
 
 * Symbolic module functions have been removed: `addf`, `cmb_lin`, `ldivf`, `mulf`, `rdivf`, `solve`, `subf`, `trianfml`, `trisolve` and `block2exp`.
 * Functionnalities based on former Scilab stack have been removed:
