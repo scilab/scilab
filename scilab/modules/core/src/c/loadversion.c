@@ -51,11 +51,9 @@ BOOL getversionmodule(wchar_t* _pwstModule,
         len = (int)strlen(FORMATVERSIONFILENAME) + (int)strlen(SciPath) + (int)strlen(pstModule) + 1;
         filename_VERSION_module = (char*)MALLOC(sizeof(char) * len);
         sprintf(filename_VERSION_module, FORMATVERSIONFILENAME, SciPath, pstModule);
-        if (SciPath)
-        {
-            FREE(SciPath);
-            SciPath = NULL;
-        }
+        FREE(pstModule);
+        FREE(SciPath);
+        SciPath = NULL;
 
         if (FileExist(filename_VERSION_module))
         {
@@ -91,6 +89,8 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                 if (doc == NULL)
                 {
                     fprintf(stderr, _("Error: Could not parse file %s\n"), filename_VERSION_module);
+                    FREE(encoding);
+                    encoding = NULL;
                     return FALSE;
                 }
 
@@ -131,6 +131,10 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                         {
                             /* we found <string> */
                             const char *str = (const char*)attrib->children->content;
+                            if (pwstSciVersionString)
+                            {
+                                FREE(pwstSciVersionString);
+                            }
                             pwstSciVersionString = to_wide_string(str);
                         }
 
@@ -141,16 +145,22 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                     *sci_version_minor = version_minor;
                     *sci_version_maintenance = version_maintenance;
                     *sci_version_revision = version_revision;
-                    wcscpy(_pwstSciVersionString, pwstSciVersionString);
                     if (pwstSciVersionString)
                     {
+                        wcscpy(_pwstSciVersionString, pwstSciVersionString);
                         FREE(pwstSciVersionString);
                         pwstSciVersionString = NULL;
+                    }
+                    else
+                    {
+                        _pwstSciVersionString = NULL;
                     }
                 }
                 else
                 {
                     fprintf(stderr, _("Error: Not a valid version file %s (should start with <MODULE_VERSION> and contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"), filename_VERSION_module);
+                    FREE(encoding);
+                    encoding = NULL;
                     return FALSE;
                 }
                 if (xpathObj)
@@ -168,11 +178,8 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                 fprintf(stderr, _("Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' found\n"), filename_VERSION_module, encoding);
             }
 
-            if (encoding)
-            {
-                FREE(encoding);
-                encoding = NULL;
-            }
+            FREE(encoding);
+            encoding = NULL;
             bOK = TRUE;
         }
         else
@@ -185,12 +192,8 @@ BOOL getversionmodule(wchar_t* _pwstModule,
             wcscpy(_pwstSciVersionString, L"");
             bOK = TRUE;
         }
-
-        if (filename_VERSION_module)
-        {
-            FREE(filename_VERSION_module);
-            filename_VERSION_module = NULL;
-        }
+        FREE(filename_VERSION_module);
+        filename_VERSION_module = NULL;
     }
     return bOK;
 }

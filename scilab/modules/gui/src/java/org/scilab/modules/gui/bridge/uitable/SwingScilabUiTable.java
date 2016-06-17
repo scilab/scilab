@@ -430,6 +430,14 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
     }
 
     /**
+     * To enable or disable editing on table.
+     * @param status status value either True or False
+     */
+    public void setEnabled(boolean status){
+        uiTable.setEnabled(status);
+    }
+
+    /**
      * Get the UID
      * @return the UID
      */

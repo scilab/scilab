@@ -183,6 +183,7 @@ SciErr getHypermatOfDouble(void* _pvCtx, int* _piAddress, int **_dims, int *_ndi
     if (ret || entries == NULL || ((types::InternalType*)entries)->isDouble() == false)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_DOUBLE, _("%s: Unable to get argument #%d"), "getHypermatOfDouble", getRhsFromAddress(_pvCtx, _piAddress));
+        return sciErr;
     }
 
     types::Double* d = (types::Double*)entries;
@@ -201,6 +202,7 @@ SciErr getComplexHypermatOfDouble(void* _pvCtx, int* _piAddress, int **_dims, in
     if (ret || entries == NULL || ((types::InternalType*)entries)->isDouble() == false)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_DOUBLE, _("%s: Unable to get argument #%d"), "getHypermatOfDouble", getRhsFromAddress(_pvCtx, _piAddress));
+        return sciErr;
     }
 
     types::Double* d = (types::Double*)entries;

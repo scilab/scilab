@@ -110,7 +110,6 @@ int sci_Legend(char * fname, void *pvApiCtx)
     // Retrieve a matrix of string at position 2.
     if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m2, &n2, &Str))
     {
-        freeAllocatedMatrixOfString(m2, n2, Str);
         Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
@@ -121,25 +120,25 @@ int sci_Legend(char * fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedMatrixOfString(m2, n2, Str);
             return 1;
         }
 
         // Retrieve a matrix of double at position 3.
         if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
         {
-            freeAllocatedMatrixOfString(m2, n2, Str);
-            freeAllocatedSingleString(l2);
             Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
+            freeAllocatedMatrixOfString(m2, n2, Str);
             return 1;
         }
 
         location = propertyNameToLegendPlace((l2));
+        freeAllocatedSingleString(l2);
 
         if (location == SCI_LEGEND_POSITION_UNSPECIFIED)
         {
-            freeAllocatedMatrixOfString(m2, n2, Str);
-            freeAllocatedSingleString(l2);
             Scierror(999, _("%s: Wrong value for input argument #%d: Incorrect value.\n"), fname, 3);
+            freeAllocatedMatrixOfString(m2, n2, Str);
             return 1;
         }
     }
@@ -151,8 +150,8 @@ int sci_Legend(char * fname, void *pvApiCtx)
     tabofhandles = (int*)MALLOC(n * sizeof(int));
     if (tabofhandles == NULL)
     {
-        freeAllocatedMatrixOfString(m2, n2, Str);
         Scierror(999, _("%s: No more memory.\n"), fname);
+        freeAllocatedMatrixOfString(m2, n2, Str);
         return 1;
     }
 
@@ -166,9 +165,9 @@ int sci_Legend(char * fname, void *pvApiCtx)
 
         if (iObjUID == 0)
         {
+            Scierror(999, _("%s: The handle is no more valid.\n"), fname);
             freeAllocatedMatrixOfString(m2, n2, Str);
             FREE(tabofhandles);
-            Scierror(999, _("%s: The handle is no more valid.\n"), fname);
             return 1;
         }
 
@@ -188,8 +187,8 @@ int sci_Legend(char * fname, void *pvApiCtx)
 
         if (iObj != iSubwinUID)
         {
-            freeAllocatedMatrixOfString(m2, n2, Str);
             Scierror(999, _("%s: Objects must have the same axes.\n"), fname);
+            freeAllocatedMatrixOfString(m2, n2, Str);
             FREE(tabofhandles);
             return 1;
         }
@@ -198,9 +197,9 @@ int sci_Legend(char * fname, void *pvApiCtx)
 
         if (type != __GO_POLYLINE__)
         {
+            Scierror(999, _("%s: The %d th handle is not a polyline handle.\n"), fname, i + 1);
             freeAllocatedMatrixOfString(m2, n2, Str);
             FREE(tabofhandles);
-            Scierror(999, _("%s: The %d th handle is not a polyline handle.\n"), fname, i + 1);
             return 1;
         }
 

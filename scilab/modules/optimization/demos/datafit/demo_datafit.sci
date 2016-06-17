@@ -36,16 +36,19 @@ function demo_datafit()
     clf(my_handle, "reset");
     demo_viewCode(SCI + "/modules/optimization/demos/datafit/demo_datafit.sci");
     plot(X, Y, "+");
+    f = gcf();
     l=legend(_("Experimental data"),2);
     sleep(500);
     // solve the non linear data fitting
-    [p,err] = datafit(G,Z,[3;5;10])
-    // show the fitting curve
-    drawlater()
-    plot(X,FF(X), "r");
-    delete(l);
-    l = legend([_("Experimental data"); _("Fitting function")],2);
-    drawnow();
+    [p,err] = datafit(G,Z,[3;5;10]);
+    if is_handle_valid(f) then // If the window is still open after the sleep
+        // show the fitting curve
+        drawlater()
+        plot(X,FF(X), "r")
+        delete(l);
+        l = legend([_("Experimental data"); _("Fitting function")],2);
+        drawnow()
+    end
 
 endfunction
 

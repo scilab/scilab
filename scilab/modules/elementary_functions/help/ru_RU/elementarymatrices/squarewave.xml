@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -22,7 +22,7 @@
         <title>Последовательность вызова</title>
         <synopsis>x=squarewave(t [,percent])</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
@@ -49,23 +49,23 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Описание</title>
         <para>
-            <literal>squarewave(t)</literal> формирует вектор значений меандра с периодом 
-            <literal>2*%pi</literal> для каждого момента времени, данного в векторе 
+            <literal>squarewave(t)</literal> формирует вектор значений меандра с периодом
+            <literal>2*%pi</literal> для каждого момента времени, данного в векторе
             <literal>t</literal>.
         </para>
         <para>
-            <literal>squarewave(t,percent)</literal> формирует меандр такой, что 
+            <literal>squarewave(t,percent)</literal> формирует меандр такой, что
             <literal>percent</literal> является процентом от периода, в котором сигнал положителен.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
-t=(0:0.1:5*%pi)';
-plot2d1('onn',t,[2*sin(t),1.5*squarewave(t),squarewave(t,10)])
+        <programlisting role="example"><![CDATA[
+t = (0:0.1:5*%pi)';
+plot2d(t, [2*sin(t), 1.5*squarewave(t), squarewave(t,10)])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

@@ -104,6 +104,13 @@ int remez_buffered(int ngrid, int nc, int *iext, float *des, float *grid, float 
     buffer6 = (double *)MALLOC((nc + 2) * sizeof(double));
     if (buffer0 == NULL || buffer1 == NULL || buffer2 == NULL || buffer3 == NULL || buffer4 == NULL || buffer5 == NULL || buffer6 == NULL)
     {
+        FREE(buffer0);
+        FREE(buffer1);
+        FREE(buffer2);
+        FREE(buffer3);
+        FREE(buffer4);
+        FREE(buffer5);
+        FREE(buffer6);
         return 1;
     }
 

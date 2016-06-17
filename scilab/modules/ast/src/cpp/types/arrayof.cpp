@@ -772,6 +772,7 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         }
     }
 
+    delete[] pbFull;
 
     if (bTooMuchNotEntire == true)
     {
@@ -779,8 +780,6 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
-
-    delete[] pbFull;
 
     //find index to keep
     int iNotEntireSize = pArg[iNotEntire]->getAs<GenericType>()->getSize();

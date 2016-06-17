@@ -85,6 +85,7 @@ int sci_umfpack(char* fname, void* pvApiCtx)
     double* pdblXI = NULL;
 
     int iComplex = 0;
+    int freepdblBI = 0;
 
     int mA              = 0; // rows
     int nA              = 0; // cols
@@ -126,7 +127,10 @@ int sci_umfpack(char* fname, void* pvApiCtx)
         return 1;
     }
 
-    getAllocatedSingleString(pvApiCtx, piAddr2, &pStr);
+    if (getAllocatedSingleString(pvApiCtx, piAddr2, &pStr))
+    {
+        return 1;
+    }
 
     /* select Case 1 or 2 depending (of the first char of) the string ... */
     if (pStr[0] == '\\') // compare pStr[0] with '\'
@@ -250,8 +254,8 @@ int sci_umfpack(char* fname, void* pvApiCtx)
 
     if (sciErr.iErr)
     {
-        freeCcsSparse(A);
         printError(&sciErr, 0);
+        freeCcsSparse(A);
         return 1;
     }
 
@@ -269,6 +273,7 @@ int sci_umfpack(char* fname, void* pvApiCtx)
         int iSize = mb * nb * sizeof(double);
         pdblBI = (double*)MALLOC(iSize);
         memset(pdblBI, 0x00, iSize);
+        freepdblBI = 1;
     }
 
     /* Now calling umfpack routines */
@@ -283,8 +288,12 @@ int sci_umfpack(char* fname, void* pvApiCtx)
 
     if ( stat  != UMFPACK_OK )
     {
-        freeCcsSparse(A);
         Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("symbolic factorization"), UmfErrorMes(stat));
+        freeCcsSparse(A);
+        if (freepdblBI)
+        {
+            FREE(pdblBI);
+        }
         return 1;
     }
 
@@ -308,6 +317,7 @@ int sci_umfpack(char* fname, void* pvApiCtx)
 
     if ( stat  != UMFPACK_OK )
     {
+        Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("numeric factorization"), UmfErrorMes(stat));
         if (A.it == 1)
         {
             umfpack_zi_free_numeric(&Numeric);
@@ -317,10 +327,13 @@ int sci_umfpack(char* fname, void* pvApiCtx)
             umfpack_di_free_numeric(&Numeric);
         }
         freeCcsSparse(A);
-        Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("numeric factorization"), UmfErrorMes(stat));
+        if (freepdblBI)
+        {
+            FREE(pdblBI);
+        }
         return 1;
     }
-    
+ 
     /* allocate memory for umfpack_di_wsolve usage or umfpack_zi_wsolve usage*/
     Wi = (int*)MALLOC(mA * sizeof(int));
     W = (double*)MALLOC(mW * sizeof(double));
@@ -418,6 +431,10 @@ int sci_umfpack(char* fname, void* pvApiCtx)
     }
     FREE(W);
     FREE(Wi);
+    if (freepdblBI)
+    {
+        FREE(pdblBI);
+    }
     freeCcsSparse(A);
 
     AssignOutputVariable(pvApiCtx, 1) = 4;

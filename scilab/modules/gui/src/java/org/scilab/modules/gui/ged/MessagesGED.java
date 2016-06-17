@@ -151,7 +151,7 @@ public class MessagesGED {
     public static final String mark_style = Messages.gettext("Mark Style");
 
     //Data - Labels
-    public static final String _3_Components = Messages.gettext("3 Components");
+    public static final String display_components = Messages.gettext("Components display");
     public static final String data_properties = Messages.gettext("Data Properties");
     public static final String data_mapping = Messages.gettext("Data Mapping");
     public static final String direct = Messages.gettext("Direct");

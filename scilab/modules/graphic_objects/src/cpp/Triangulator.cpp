@@ -54,8 +54,11 @@ void Triangulator::fillPoints(void)
         //q autovector matrix
         //d diagonal matrix
         double m[3][3] = {{0., 0., 0.}, {0., 0., 0.}, {0., 0., 0.}};
-        double q[3][3];
-        double d[3][3];
+        //'q' and 'd' are not needed to be initialized
+        // since they are output paraments, but zero-initialize
+        // to follow coverity
+        double q[3][3] = {{0., 0., 0.}, {0., 0., 0.}, {0., 0., 0.}};
+        double d[3][3] = {{0., 0., 0.}, {0., 0., 0.}, {0., 0., 0.}};
         Vector3d middle(0., 0., 0.);
         Vector3d approxNormal(0., 0., 0.);
 
@@ -127,7 +130,7 @@ void Triangulator::fillPoints(void)
         s = normal.y < 0. ? s : -s;
 
         double rotx[3][3] = {{1., 0., 0.}, {0., c, s}, {0., -s, c}};
-        double composedRot[3][3];
+        double composedRot[3][3] = {{0., 0., 0.}, {0., 0., 0.}, {0., 0., 0.}};
         matrixMatrixMul(rotx, rotz, composedRot);
 
         xmin = ymin = zmin = std::numeric_limits<double>::max();

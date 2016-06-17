@@ -60,8 +60,8 @@ int sci_TCL_UpVar (char *fname, void* pvApiCtx)
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
         if (sciErr.iErr)
         {
-            freeAllocatedSingleString(sourceName);
             printError(&sciErr, 0);
+            freeAllocatedSingleString(sourceName);
             return 1;
         }
 
@@ -75,10 +75,10 @@ int sci_TCL_UpVar (char *fname, void* pvApiCtx)
 
         if (getTclInterp() == NULL)
         {
+            Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
             freeAllocatedSingleString(destName);
             freeAllocatedSingleString(sourceName);
             releaseTclInterp();
-            Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
             return 0;
         }
         releaseTclInterp();
@@ -92,17 +92,18 @@ int sci_TCL_UpVar (char *fname, void* pvApiCtx)
                 sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrl3);
                 if (sciErr.iErr)
                 {
-                    freeAllocatedSingleString(sourceName);
                     printError(&sciErr, 0);
+                    freeAllocatedSingleString(sourceName);
+                    freeAllocatedSingleString(destName);
                     return 1;
                 }
 
                 // Retrieve a matrix of double at position 3.
                 if (getAllocatedSingleString(pvApiCtx, piAddrl3, &l3))
                 {
+                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
                     freeAllocatedSingleString(destName);
                     freeAllocatedSingleString(sourceName);
-                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
                     return 1;
                 }
 
@@ -111,17 +112,17 @@ int sci_TCL_UpVar (char *fname, void* pvApiCtx)
                 releaseTclInterp();
                 if (TCLinterpreter == NULL)
                 {
+                    Scierror(999, _("%s: No such slave interpreter.\n"), fname);
                     freeAllocatedSingleString(destName);
                     freeAllocatedSingleString(sourceName);
-                    Scierror(999, _("%s: No such slave interpreter.\n"), fname);
                     return 0;
                 }
             }
             else
             {
+                Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
                 freeAllocatedSingleString(destName);
                 freeAllocatedSingleString(sourceName);
-                Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
                 return 0;
             }
         }

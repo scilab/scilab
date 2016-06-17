@@ -296,7 +296,7 @@ public class DatatipTextDrawer extends TextManager {
         final double[] first, second, third;
         Integer axes = datatip.getParentAxes();
 
-        if (datatip.isUsing3Component()) {
+        if (PolylineData.isZCoordSet(datatip.getParent()) != 0) {
             final double[] dataZ = (double[]) PolylineData.getDataZ(datatip.getParent());
             first = CallRenderer.getPixelFrom3dCoordinates(axes, new double[] {dataX[index - 1], dataY[index - 1], dataZ[index - 1]});
             second = CallRenderer.getPixelFrom3dCoordinates(axes, new double[] {dataX[index], dataY[index], dataZ[index]});

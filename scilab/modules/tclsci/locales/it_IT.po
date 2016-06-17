@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2013-11-30 12:37+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: it\n"
 
 #, c-format
 msgid "%s: Error main TCL interpreter not initialized.\n"
@@ -182,6 +182,30 @@ msgstr ""
 
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Il modulo Tcl/Tk di Scilab non è installato.\n"
+
+# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 10
+msgid "Tcl/Tk"
+msgstr ""
+
+#
+# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 12
+msgid "Color"
+msgstr ""
+
+#
+# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 13
+msgid "Puzzle"
+msgstr ""
+
+#
+# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 14
+msgid "Scroll"
+msgstr ""
+
+#
+# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 15
+msgid "Scale"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

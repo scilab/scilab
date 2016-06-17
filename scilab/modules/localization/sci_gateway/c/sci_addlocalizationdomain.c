@@ -70,18 +70,21 @@ int sci_addlocalizationdomain(char *fname, void* pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), "addlocalizationdomain", 2);
+        freeAllocatedSingleString(pstDomain);
         return 0;
     }
 
     if (isStringType(pvApiCtx, piAddr2) == 0 || isScalar(pvApiCtx, piAddr2) == 0)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), "addlocalizationdomain", 2);
+        freeAllocatedSingleString(pstDomain);
         return 0;
     }
 
     if (getAllocatedSingleString(pvApiCtx, piAddr2, &pstPath))
     {
         Scierror(999, _("%s: Memory allocation error.\n"), "addlocalizationdomain");
+        freeAllocatedSingleString(pstDomain);
         return 0;
     }
 

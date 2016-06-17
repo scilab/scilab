@@ -143,20 +143,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="fcontour2d">fcontour2d</link>
-                </term>
-                <listitem>
-                    <para>2次元プロット上に関数で定義された曲面の等高線をプロット</para>
-                    <para>
-                        <emphasis role="bold">例:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fcontour2d();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="grayplot">grayplot</link>
                 </term>
                 <listitem>
@@ -943,19 +929,6 @@
                 <listitem>
                     <para>グラフィックウインドウをクリアし,関連する
                         記録済みのグラフィックを消去します.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xclear">xclear</link>
-                </term>
-                <listitem>
-                    <para>
-                        グラフィックウインドウをクリア
-                        <warning>
-                            関数 <function>xclear</function> は廃止されました.
-                        </warning>
                     </para>
                 </listitem>
             </varlistentry>

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:10+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: \n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -60,10 +60,6 @@ msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
@@ -92,14 +88,6 @@ msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s：输入参数#%d的类型错误。\n"
-
-#, c-format
-msgid "%s: obsolete op-code %d.\n"
-msgstr "%s：弃用的操作码 %d。\n"
-
-#, c-format
 msgid "Checking: %s.\n"
 msgstr "检查中：%s。\n"
 
@@ -110,10 +98,6 @@ msgstr "%s：请检查：%s\n"
 #, c-format
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s：文件 %s 不存在。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -152,61 +136,6 @@ msgid "No comment available."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong values for input argument: No profile data in the function\n"
-msgstr "%s：输入参数的值错误：函数中无 profile 数据。\n"
-
-msgid "Complexity"
-msgstr "复杂度"
-
-msgid "Tools"
-msgstr "工具"
-
-msgid "Edit"
-msgstr "编辑"
-
-msgid "?"
-msgstr "?"
-
-msgid "Exit"
-msgstr "退出"
-
-msgid "Click to get corresponding line, move with a-z."
-msgstr "点击以得到相关行，使用 a-z 来移动。"
-
-#, c-format
-msgid "line %s [%s call, %s sec] :: "
-msgstr "行 %s [从 %s 调用, %s sec] :: "
-
-#, c-format
-msgid "line %s [%s calls, %s sec] :: "
-msgstr "行 %s [从 %s 调用, %s sec] :: "
-
-#, c-format
-msgid "%s: The function has not been built for profiling"
-msgstr "%s：该函数没有被为 profiling 生成。"
-
-#, c-format
-msgid "No variable named: %s.\n"
-msgstr "没有变量命名为：%s。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
-
-#, c-format
-msgid "%s is already noncompiled.\n"
-msgstr "%s已经未编译。\n"
-
-#, c-format
-msgid "%s is already compiled.\n"
-msgstr "%s已编译。\n"
-
-#, c-format
-msgid "%s is already compiled for profiling.\n"
-msgstr "%s已经为提取轮廓而编译。\n"
-
-#, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"
 msgstr "%s：私有函数：不能直接访问此函数。\n"
 
@@ -221,3 +150,57 @@ msgstr "请使用 %s 替代。"
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "该函数将被永久地从 Scilab %s 中移除。"
+
+#~ msgid "%s: Wrong type for input argument #%d.\n"
+#~ msgstr "%s：输入参数#%d的类型错误。\n"
+
+#~ msgid "%s: obsolete op-code %d.\n"
+#~ msgstr "%s：弃用的操作码 %d。\n"
+
+#~ msgid ""
+#~ "%s: Wrong values for input argument: No profile data in the function\n"
+#~ msgstr "%s：输入参数的值错误：函数中无 profile 数据。\n"
+
+#~ msgid "Complexity"
+#~ msgstr "复杂度"
+
+#~ msgid "Tools"
+#~ msgstr "工具"
+
+#~ msgid "Edit"
+#~ msgstr "编辑"
+
+#~ msgid "?"
+#~ msgstr "?"
+
+#~ msgid "Exit"
+#~ msgstr "退出"
+
+#~ msgid "Click to get corresponding line, move with a-z."
+#~ msgstr "点击以得到相关行，使用 a-z 来移动。"
+
+#~ msgid "line %s [%s call, %s sec] :: "
+#~ msgstr "行 %s [从 %s 调用, %s sec] :: "
+
+#~ msgid "line %s [%s calls, %s sec] :: "
+#~ msgstr "行 %s [从 %s 调用, %s sec] :: "
+
+#~ msgid "%s: The function has not been built for profiling"
+#~ msgstr "%s：该函数没有被为 profiling 生成。"
+
+#~ msgid "No variable named: %s.\n"
+#~ msgstr "没有变量命名为：%s。\n"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A Scilab function name is "
+#~ "expected.\n"
+#~ msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
+
+#~ msgid "%s is already noncompiled.\n"
+#~ msgstr "%s已经未编译。\n"
+
+#~ msgid "%s is already compiled.\n"
+#~ msgstr "%s已编译。\n"
+
+#~ msgid "%s is already compiled for profiling.\n"
+#~ msgstr "%s已经为提取轮廓而编译。\n"

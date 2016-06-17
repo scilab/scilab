@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -25,7 +25,7 @@
             plot2d4(x,y &lt;,opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -38,7 +38,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>plot2d4</literal> is the same as <literal>plot2d</literal> but curves are
@@ -60,28 +60,27 @@
             </note>
         </para>
     </refsection>
-    <refsection>
-        <title>Sample</title>
-        <scilab:image>plot2d4();</scilab:image>
-    </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// compare the following with plot2d1
-x=[0:0.1:2*%pi]';
+        Demo: plot2d4();
+        <scilab:image>plot2d4();</scilab:image>
+        Examples:
+        <programlisting role="example"><![CDATA[
+// compare the following with plot2d + .polyline_style=4
+clf
+subplot(2,1,1)
+x = [0:0.1:2*%pi]';
 plot2d4(x,[sin(x) sin(2*x) sin(3*x)])
-clf()
+
+subplot(2,1,2)
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
-e=gce();
-e.children(1).polyline_style=4;
-e.children(2).polyline_style=4;
-e.children(3).polyline_style=4;
+e = gce();
+e.children.polyline_style=4;
  ]]></programlisting>
         <scilab:image>
-            x=[0:0.1:2*%pi]';
-            plot2d4(x,[sin(x) sin(2*x) sin(3*x)])
+            x = [0:0.1:2*%pi]';
+            plot2d4(x, [sin(x) sin(2*x) sin(3*x)])
         </scilab:image>
-        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

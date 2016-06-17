@@ -228,7 +228,7 @@
             
             <literal>plotframe</literal> is used with 2D plotting functions
             
-            <link linkend="plot2d">plot2d</link>, <link linkend="plot2d1">plot2d1</link>,... to set a graphics frame. It must be
+            <link linkend="plot2d">plot2d</link>, <link linkend="plot2d2">plot2d2</link>,... to set a graphics frame. It must be
             
             used before <literal>plot2d</literal> which should be invoked with the
             

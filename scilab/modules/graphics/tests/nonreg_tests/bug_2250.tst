@@ -29,7 +29,7 @@ save(pathconvert(TMPDIR+"/bug_2250.scg",%f), "f");
 
 delete(f)
 
-load(pathconvert(TMPDIR+"/bug_2250.scg",%f))
+load(pathconvert(TMPDIR+"/bug_2250.scg",%f));
 
 figureloaded = gcf();
 

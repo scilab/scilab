@@ -13,5 +13,7 @@
 // <-- Short Description -->
 // The "isoview" macro created an unnecessary "plot" object.
 isoview(-1,-1,1,1);
+WARNING: isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from Scilab 6.1
+WARNING: Please use replot([xmin xmax ymin ymax]) after isoview(..) instead.
 a=gca();
 if a.children<>[] then bugmes();quit;end;

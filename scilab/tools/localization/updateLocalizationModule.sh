@@ -16,10 +16,15 @@
 
 # This script goes into a module and updates the localization file by checking
 # the _( and gettext( calls in the code
-# 
-# This script process all source files as "C" like language and perform extra 
+#
+# This script process all source files as "C" like language and perform extra
 # conversion of scilab code.
 #
+
+# exit on error
+set -e
+# trace execution (for debug)
+#set -x
 
 if test $# -ne 1; then
     echo "This script goes into a module and updates the localization file "
@@ -41,9 +46,9 @@ MODULES=$1
 # Process all the modules and build the list
 if test "$MODULES" = "process_all"; then
     echo ".. Process all the modules one by one"
-    MODULES=`find $SCI/modules/ -maxdepth 1 -type d -printf '%P\n' ! -name ".*" ! -name 'javasci'`
+    MODULES=$(find $SCI/modules/ -maxdepth 1 -type d ! -name ".*" -printf '%P\n' |sort)
 else
-    MODULES=`echo $MODULES|sed -e 's|./||'` # avoid to have ./module_name
+    MODULES=$(echo $MODULES|sed -e 's|./||') # avoid to have ./module_name
 fi
 
 XGETTEXT=/usr/bin/xgettext
@@ -62,7 +67,7 @@ function preprocess_xml() {
 #
     COMMON_SED='s/&amp;/\&/g'
 
-    FILES=$(ls $* 2>/dev/null)
+    FILES=$(ls $* 2>/dev/null || true)
     [ -z "$FILES" ] && return
     FAKE_C_FILE=$(printf "%s/src/%s_fake_xml.c" $PATHTOPROCESS $MODULE)
 
@@ -92,7 +97,7 @@ function generate_find_command() {
     while [ "$i" -lt "$NB_ELEMENT" ]; do
         ext=${EXT[$i]}
         FILESCMD="$FILESCMD -name '*.$ext'"
-        if test "$NB_ELEMENT" -ne `expr $i + 1`; then # because we don't want a trailing -o
+        if test "$NB_ELEMENT" -ne $(expr $i + 1); then # because we don't want a trailing -o
             FILESCMD="$FILESCMD -o "
         fi
         i=$((i + 1))
@@ -102,12 +107,13 @@ function generate_find_command() {
 }
 
 function process_src() {
-    PATHS=$(ls -d $* 2>/dev/null)
+    PATHS=$(ls -d $* 2>/dev/null || true)
     [ -z "$PATHS" ] && return
 
     generate_find_command EXTENSIONS
     [ -z "$FILESCMD" ] && return
-    FILES=`eval $FILESCMD|sort |tr "\n" " "`
+    FILES=$(eval $FILESCMD|sort |tr "\n" " ")
+    [ -z "$FILES" ] && return
 
     # It is Scilab code... xgettext does not how to process it
     XGETTEXT_OPTIONS="$XGETTEXT_OPTIONS --language=C"
@@ -118,18 +124,18 @@ function process_src() {
 }
 
 function process_scilab_code() {
-    PATHS=$(ls -d $* 2>/dev/null)
+    PATHS=$(ls -d $* 2>/dev/null || true)
     [ -z "$PATHS" ] && return
 
     generate_find_command EXTENSIONS_SCILAB
-    FILES=`eval $FILESCMD|sort |tr "\n" " "`
+    FILES=$(eval $FILESCMD|sort |tr "\n" " ")
 
     # It is Scilab code... xgettext does not how to process it
     XGETTEXT_OPTIONS="$XGETTEXT_OPTIONS --language=C"
 
     if test "$MODULE" = "core"; then
         # We want some strings from the ROOTDIR when it is the core module
-        FILES="$FILES `ls $SCI/etc/scilab.*`"
+        FILES="$FILES $(ls $SCI/etc/scilab.*)"
     fi
 
     echo "..... Scilab scripts in"
@@ -155,16 +161,20 @@ function process_scilab_code() {
 
 function merge_pot() {
 
+    now=$(date +'%Y-%m-%d %H:%M')$TIMEZONE
     if test  -z "$CreationDate"; then
         # File not existing before ... Set the current date a POT-Creation-Date
-        sed -e "s/MODULE/$MODULE/" -e "s/CREATION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
+        sed -e "s/MODULE/$MODULE/" -e "s/CREATION-DATE/$now/" -e "s/REVISION-DATE/$now/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
     else
-        sed -e "s/MODULE/$MODULE/" -e "s/CREATION-DATE/$CreationDate/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
+        sed -e "s/MODULE/$MODULE/" -e "s/CREATION-DATE/$CreationDate/" -e "s/REVISION-DATE/$now/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
     fi
 
     for f in $PATHTOPROCESS/$TARGETDIR/${MODULE}_{src,scilab}.pot; do
-        [ -f $f ] && msgcat $f >> $LOCALIZATION_FILE_US.tmp
-        [ $? -eq 0 ] && rm -f $f
+        if test -f $f; then
+            msgcat $f >> $LOCALIZATION_FILE_US.tmp
+            [ $? -eq 0 ] || exit 1
+            rm -f $f
+        fi
     done
     [ -f $LOCALIZATION_FILE_US.tmp ] && msguniq -u $LOCALIZATION_FILE_US.tmp >>$LOCALIZATION_FILE_US
     rm -f $LOCALIZATION_FILE_US.tmp
@@ -183,9 +193,13 @@ function merge_pot() {
 
 function upgrade_po() {
     # for all available languages, upgrade the po files
+    [ ! -f $1/${MODULE}.pot ] && return
+
     for f in $1/*.po; do
-        msguniq --use-first -o $f $f &>/dev/null ;
-        msgmerge -U  $1/${MODULE}.pot &>/dev/null ;
+        if test -f $f; then
+            msguniq --use-first -o $f $f &>/dev/null ;
+            msgmerge -U $f $1/${MODULE}.pot &>/dev/null ;
+        fi
     done
 }
 
@@ -206,9 +220,9 @@ for MODULE in $MODULES; do
     if test ! -d $PATHTOPROCESS/$TARGETDIR; then mkdir $PATHTOPROCESS/$TARGETDIR; fi
     if test -f $LOCALIZATION_FILE_US; then
         # Localization file already existing. Retrieve POT-Creation-Date
-        CreationDate=`grep POT-Creation-Date: $LOCALIZATION_FILE_US|sed -e 's|\"POT-Creation-Date: \(.*\)\\\n\"|\1|'`
+        CreationDate=`grep POT-Creation-Date: $LOCALIZATION_FILE_US |sed -e 's|\"POT-Creation-Date: \(.*\)\\\n\"|\1|'`
     fi
- 
+
     preprocess_xml $PATHTOPROCESS/etc/*.x*l $PATHTOPROCESS/etc/*.x*l
     process_scilab_code $PATHTOPROCESS/macros $PATHTOPROCESS/etc $PATHTOPROCESS/demos $PATHTOPROCESS/tests
     process_src $PATHTOPROCESS/sci_gateway $PATHTOPROCESS/src
@@ -217,5 +231,7 @@ for MODULE in $MODULES; do
     upgrade_po $PATHTOPROCESS/locales
 
 done # Browse modules
+
 cd - >/dev/null
+exit 0 # success
 

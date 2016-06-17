@@ -469,6 +469,7 @@ int InitAxesModel()
 
         if (stringVector[i] == NULL)
         {
+            destroyStringArray(stringVector, i);
             return -1;
         }
     }
@@ -494,6 +495,7 @@ int InitAxesModel()
 
         if (stringVector[i] == NULL)
         {
+            destroyStringArray(stringVector, defaultNumberTicks);
             return -1;
         }
     }

@@ -133,8 +133,10 @@ int sci_xpoly(char * fname, void *pvApiCtx)
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 3, "lines", "marks");
+            freeAllocatedSingleString(l3);
             return 0;
         }
+        freeAllocatedSingleString(l3);
     }
     else
     {
@@ -213,8 +215,6 @@ int sci_xpoly(char * fname, void *pvApiCtx)
     /* NG end */
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
-
-    freeAllocatedSingleString(l3);
 
     return 0;
 }

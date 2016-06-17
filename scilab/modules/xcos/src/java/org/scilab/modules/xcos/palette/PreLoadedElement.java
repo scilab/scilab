@@ -132,7 +132,9 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
                      */
                     final StringBuilder str = new StringBuilder();
                     str.append(ScilabInterpreterManagement.buildCall(ScilabDirectHandler.BLK + "=" + blockNames[i][j], "define"));
-                    str.append(ScilabInterpreterManagement.buildCall("xcosPalGenerateIcon", icons[i][j]));
+                    str.append("; ");
+                    str.append(ScilabInterpreterManagement.buildCall("xcosPalGenerateIcon", ScilabDirectHandler.BLK.toCharArray(), icons[i][j]));
+                    str.append("; ");
                     ScilabInterpreterManagement.putCommandInScilabQueue(str.toString());
                 }
                 iconPath.setPath(icons[i][j]);

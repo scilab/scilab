@@ -16,7 +16,7 @@
 
 package org.scilab.modules.graphic_objects.datatip;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_3COMPONENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DISPLAY_COMPONENTS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_AUTOORIENTATION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_BOX_MODE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DATA__;
@@ -45,8 +45,8 @@ public class Datatip extends Text {
     Boolean tipBoxMode;
     /** false = datatip label is hidden*/
     Boolean tipLabelMode;
-    /** false = display only (X, Y), true = display (X, Y, Z)*/
-    Boolean use3component;
+    /** selects which coordinates componet to diplay*/
+    String displayComponents;
     /** false = no interpolation between point segments*/
     Boolean interpMode;
     /** Displayed number format*/
@@ -61,7 +61,7 @@ public class Datatip extends Text {
     Double ratio;
 
 
-    enum DatatipObjectProperty { TIP_DATA, TIP_BOX_MODE, TIP_LABEL_MODE, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_3COMPONENT, TIP_INTERP_MODE, TIP_DISPLAY_FNC, TIP_INDEXES};
+    enum DatatipObjectProperty { TIP_DATA, TIP_BOX_MODE, TIP_LABEL_MODE, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_DISPLAY_COMPONENTS, TIP_INTERP_MODE, TIP_DISPLAY_FNC, TIP_INDEXES};
     enum TipOrientation { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT, RIGHT, TOP, BOTTOM;
 
                           /**
@@ -99,7 +99,7 @@ public class Datatip extends Text {
      */
     public Datatip() {
         super();
-        use3component = false;
+        displayComponents = "xy";
         autoOrientation = true;
         setOrientationAsEnum(TipOrientation.TOP_RIGHT);
         DecimalFormat fb = new DecimalFormat("#.####E00");
@@ -148,8 +148,8 @@ public class Datatip extends Text {
                 return DatatipObjectProperty.TIP_LABEL_MODE;
             case __GO_DATATIP_ORIENTATION__:
                 return DatatipObjectProperty.TIP_ORIENTATION;
-            case __GO_DATATIP_3COMPONENT__:
-                return DatatipObjectProperty.TIP_3COMPONENT;
+            case __GO_DATATIP_DISPLAY_COMPONENTS__:
+                return DatatipObjectProperty.TIP_DISPLAY_COMPONENTS;
             case __GO_DATATIP_AUTOORIENTATION__:
                 return DatatipObjectProperty.TIP_AUTOORIENTATION;
             case __GO_DATATIP_INTERP_MODE__:
@@ -177,8 +177,8 @@ public class Datatip extends Text {
                     return getTipLabelMode();
                 case TIP_ORIENTATION:
                     return getOrientation();
-                case TIP_3COMPONENT:
-                    return isUsing3Component();
+                case TIP_DISPLAY_COMPONENTS:
+                    return getDisplayComponents();
                 case TIP_AUTOORIENTATION:
                     return isAutoOrientationEnabled();
                 case TIP_INTERP_MODE:
@@ -207,8 +207,8 @@ public class Datatip extends Text {
                     return setTipLabelMode((Boolean) value);
                 case TIP_ORIENTATION:
                     return setOrientation((Integer) value);
-                case TIP_3COMPONENT:
-                    return setUse3Component((Boolean) value);
+                case TIP_DISPLAY_COMPONENTS:
+                    return setDisplayComponents((String) value);
                 case TIP_AUTOORIENTATION:
                     return setAutoOrientation((Boolean) value);
                 case TIP_INTERP_MODE:
@@ -224,51 +224,59 @@ public class Datatip extends Text {
     }
 
     /**
+     * Calculate the current tip data based on the given array
+     * @param data the data array
+     * @return the tip data
+     */
+    private double calcTipData(final double[] data) {
+        if (data.length < dataIndex + 2) {
+            if (data.length >= 1) {
+                return data[data.length - 1];
+            } else {
+                return 0.0;
+            }
+        }
+
+        //get pt0 and pt1 from polyline data
+        final double pt0 = data[dataIndex];
+        final double pt1 = data[dataIndex + 1];
+
+        return pt0 + (pt1 - pt0) * ratio;
+    }
+
+    /**
+     * Get the current tip data X
+     * @return the tip data X
+     */
+    public double getTipDataX() {
+        final double[] dataX = (double[]) PolylineData.getDataX(getParent());
+        return calcTipData(dataX);
+    }
+
+    /**
+     * Get the current tip data Y
+     * @return the tip data Y
+     */
+    public double getTipDataY() {
+        final double[] dataY = (double[]) PolylineData.getDataY(getParent());
+        return calcTipData(dataY);
+    }
+
+    /**
+     * Get the current tip data Z
+     * @return the tip data Z
+     */
+    public double getTipDataZ() {
+        final double[] dataZ = (double[]) PolylineData.getDataZ(getParent());
+        return calcTipData(dataZ);
+    }
+
+    /**
      * Get the current tip data
      * @return the tip data
      */
     public Double[] getTipData() {
-        final double[] dataX = (double[]) PolylineData.getDataX(getParent());
-        final double[] dataY = (double[]) PolylineData.getDataY(getParent());
-
-        if (use3component) {
-            final double[] dataZ = (double[]) PolylineData.getDataZ(getParent());
-
-            if (dataX.length < dataIndex + 2 || dataY.length < dataIndex + 2 || dataZ.length < dataIndex + 2) {
-                if (dataX.length >= 1 && dataY.length >= 1 && dataZ.length >= 1) {
-                    return new Double[] {dataX[dataX.length - 1], dataY[dataY.length - 1], dataZ[dataZ.length - 1]};
-                } else {
-                    return new Double[] {0., 0., 0.};
-                }
-            }
-
-            //get pt0 and pt1 from polyline data
-            final double[] pt0 = new double[] {dataX[dataIndex], dataY[dataIndex], dataZ[dataIndex]};
-            final double[] pt1 = new double[] {dataX[dataIndex + 1], dataY[dataIndex + 1], dataZ[dataIndex + 1]};
-
-            final double x = pt0[0] + (pt1[0] - pt0[0]) * ratio;
-            final double y = pt0[1] + (pt1[1] - pt0[1]) * ratio;
-            final double z = pt0[2] + (pt1[2] - pt0[2]) * ratio;
-
-            return new Double[] {x, y, z};
-        } else {
-            if (dataX.length < dataIndex + 2 || dataY.length < dataIndex + 2) {
-                if (dataX.length >= 1 && dataY.length >= 1) {
-                    return new Double[] {dataX[dataX.length - 1], dataY[dataY.length - 1], 0.};
-                } else {
-                    return new Double[] {0., 0., 0.};
-                }
-            }
-
-            //get pt0 and pt1 from polyline data
-            final double[] pt0 = new double[] {dataX[dataIndex], dataY[dataIndex]};
-            final double[] pt1 = new double[] {dataX[dataIndex + 1], dataY[dataIndex + 1]};
-
-            final double x = pt0[0] + (pt1[0] - pt0[0]) * ratio;
-            final double y = pt0[1] + (pt1[1] - pt0[1]) * ratio;
-
-            return new Double[] {x, y, 0.};
-        }
+        return new Double[] {getTipDataX(), getTipDataY(), getTipDataZ()};
     }
 
     /**
@@ -306,18 +314,56 @@ public class Datatip extends Text {
     }
 
     /**
-     * @return true if the datatip is displaying the Z component, false otherwise.
+     * Get which components should be displayed.
+     * @return the string containing the coordinates to display.
      */
-    public Boolean isUsing3Component() {
-        return use3component;
+    public String getDisplayComponents() {
+        return displayComponents;
     }
 
     /**
-     * If true set the Z component to be displayed.
-     * @param useZ True to enable display the Z component, false to disable.
+     * Checks if a given string is valid for the display components
+     * @return true if it is valid, false otherwise.
      */
-    public UpdateStatus setUse3Component(Boolean useZ) {
-        use3component = useZ;
+    private boolean isValidComponent(String value) {
+        if (value.length() < 1 || value.length() > 3) {
+            return false;
+        }
+
+        boolean isXSet = false;
+        boolean isYSet = false;
+        boolean isZSet = false;
+        for (int i = 0; i < value.length(); ++i) {
+            if (value.charAt(i) == 'x' && !isXSet) {
+                isXSet = true;
+                continue;
+            }
+            if (value.charAt(i) == 'y' && !isYSet) {
+                isYSet = true;
+                continue;
+            }
+            if (value.charAt(i) == 'z' && !isZSet) {
+                isZSet = true;
+                continue;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Set which components to display if @disp is valid.
+     * @param disp The string containing which components to display
+     */
+    public UpdateStatus setDisplayComponents(String disp) {
+        if (disp == null) {
+            return UpdateStatus.Fail;
+        }
+        disp = disp.toLowerCase();
+        if (!isValidComponent(disp)) {
+            return UpdateStatus.Fail;
+        }
+        displayComponents = disp;
         updateText();
         return UpdateStatus.Success;
     }
@@ -333,6 +379,24 @@ public class Datatip extends Text {
     }
 
     /**
+     * Get tip formated text for the given index
+     * @param index the component index
+     * @return the formated string
+     */
+    private String getComponentFormatedText(int index) {
+        switch (displayComponents.charAt(index)) {
+            case 'x':
+                return "X:" + tipTextFormat.format(getTipDataX());
+            case 'y':
+                return "Y:" + tipTextFormat.format(getTipDataY());
+            case 'z':
+                return "Z:" + tipTextFormat.format(getTipDataZ());
+            default:
+                return "";
+        }
+    }
+
+    /**
      * Update the text from the datatip base on current tipData value.
      */
     public void updateText() {
@@ -344,14 +408,13 @@ public class Datatip extends Text {
             //look in parent
             fnc = (String) GraphicController.getController().getProperty(getParent(), GraphicObjectProperties.__GO_DATATIP_DISPLAY_FNC__);
             if (fnc == null || fnc.equals("")) {
-                String[] textArray = new String[] {"X:", "Y:", "Z:"};
-                Double[] tipData = getTipData();
-                textArray[0] += tipTextFormat.format(tipData[0]);
-                textArray[1] += tipTextFormat.format(tipData[1]);
-                textArray[2] += tipTextFormat.format(tipData[2]);
-
+                int numCoords = displayComponents.length();
+                String[] textArray = new String[numCoords];
+                for (int i = 0; i < numCoords; ++i) {
+                    textArray[i] = getComponentFormatedText(i);
+                }
                 Integer[] dim = new Integer[2];
-                dim[0] = use3component ? 3 : 2;
+                dim[0] = numCoords;
                 dim[1] = 1;
                 setTextArrayDimensions(dim);
                 setTextStrings(textArray);

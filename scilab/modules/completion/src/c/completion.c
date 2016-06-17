@@ -92,6 +92,10 @@ char **completion(const char *somechars, int *sizeArrayReturned)
         ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
         freePointerDictionary(dictionary, sizedictionary);
     }
+    freePointerDictionary(completionvariables, sizecompletionvariables);
+    freePointerDictionary(completionmacros, sizecompletionmacros);
+    freePointerDictionary(completionhandlegraphicsproperties, sizecompletionhandlegraphicsproperties);
+    freePointerDictionary(completionfunctions, sizecompletionfunctions);
 
     return ListWords;
 }
@@ -270,7 +274,12 @@ char **completionOnVariablesWithoutMacros(const char *somechars, int *sizeArrayR
         }
         else
         {
-            ListWords = dictionaryVariables;
+            ListWords = (char**)MALLOC(sizeof(char*) * (sizedictionaryVariables + 1));
+            for ( i = 0; i < sizedictionaryVariables; i++ )
+            {
+                ListWords[i] = os_strdup(dictionaryVariables[i]);
+            }
+            ListWords[sizedictionaryVariables] = 0x0;
             *sizeArrayReturned = sizedictionaryVariables;
         }
 
@@ -281,6 +290,7 @@ char **completionOnVariablesWithoutMacros(const char *somechars, int *sizeArrayR
         ListWords = NULL;
         *sizeArrayReturned = 0;
     }
+    freePointerDictionary(dictionaryVariables, sizedictionaryVariables);
 
     return ListWords;
 }
@@ -373,6 +383,8 @@ char **completionOnHandleGraphicsProperties(const char *somechars, int *sizeArra
     {
         *sizeArrayReturned = 0;
     }
+    freePointerDictionary(HandleGraphicsSetPropertiesDictionary, sizeHandleGraphicsSetPropertiesDictionary);
+    freePointerDictionary(HandleGraphicsGetPropertiesDictionary, sizeHandleGraphicsGetPropertiesDictionary);
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/

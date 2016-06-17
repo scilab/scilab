@@ -18,6 +18,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\jni\getScilabVariable_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\jni\ScilabPolynomialToJava.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\jni\ScilabVariablesRefresh.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\GetScilabVariable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\includes\ScilabToJava.hxx">

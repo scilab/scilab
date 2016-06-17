@@ -265,6 +265,7 @@ static int CVStep(CVodeMem cv_mem);
 static int CVStepDoPri(CVodeMem cv_mem);
 static int CVStepExpRK(CVodeMem cv_mem);
 static int CVStepImpRK(CVodeMem cv_mem);
+static int CVStepCRANI(CVodeMem cv_mem);
 
 static int CVsldet(CVodeMem cv_mem);
 
@@ -354,7 +355,7 @@ void *CVodeCreate(int lmm, int iter)
 
     /* Test inputs */
 
-    if ((lmm != CV_ADAMS) && (lmm != CV_BDF) && (lmm != CV_DOPRI) && (lmm != CV_ExpRK) && (lmm != CV_ImpRK))   /* Integration mode: ADAMS, BDF or RK-based */
+    if ((lmm != CV_ADAMS) && (lmm != CV_BDF) && (lmm != CV_DOPRI) && (lmm != CV_ExpRK) && (lmm != CV_ImpRK) && (lmm != CV_CRANI))   /* Integration mode: ADAMS, BDF or RK-based */
     {
         CVProcessError(NULL, 0, "CVODE", "CVodeCreate", MSGCV_BAD_LMM);
         return(NULL);
@@ -387,6 +388,9 @@ void *CVodeCreate(int lmm, int iter)
 
     /* If implicit Runge-Kutta is selected, then maxord = 4 to use the 3 extra vectors allocated (zn[2, 3, 4]) */
     maxord = (lmm == CV_ImpRK) ? 4 : maxord;
+
+    /* If Crank-Nicolson is selected, then maxord = 3 to use the 2 extra vectors allocated (zn[2, 3]) */
+    maxord = (lmm == CV_CRANI) ? 3 : maxord;
 
     /* copy input parameters into cv_mem */
     cv_mem->cv_lmm  = lmm;
@@ -1493,7 +1497,7 @@ int CVode(void *cvode_mem, realtype tout, N_Vector yout,
             }
 
         }
-        if ((lmm == CV_DOPRI) || (lmm == CV_ExpRK) || (lmm == CV_ImpRK))
+        if ((lmm == CV_DOPRI) || (lmm == CV_ExpRK) || (lmm == CV_ImpRK) || (lmm == CV_CRANI))
         {
             mxstep = CVHinFixed(cv_mem, tout, tret);
         }
@@ -1599,6 +1603,9 @@ int CVode(void *cvode_mem, realtype tout, N_Vector yout,
                 break;
             case CV_ImpRK:
                 kflag = CVStepImpRK(cv_mem);
+                break;
+            case CV_CRANI:
+                kflag = CVStepCRANI(cv_mem);
                 break;
             default:
                 kflag = CVStep(cv_mem);
@@ -2737,6 +2744,78 @@ static int CVStepImpRK(CVodeMem cv_mem)
         {
             tn += h;                                 /* Increment tn                             */
             nst++;                                   /* Increment the solver calls               */
+            N_VScale (ONE, y, zn[0]);                /* Update Nordsziek array: - zn[0] = Yn+1   */
+            retval = f(tn, zn[0], zn[1], user_data); /*                         - zn[1] = Y'(tn) */
+            N_VScale (h, zn[1], zn[1]);              /* Scale zn[1] by h                         */
+            return (CV_SUCCESS);
+        }
+        else    /* Not converged yet, put y in tempv and reiterate */
+        {
+            N_VScale(ONE, y, tempv);
+            nb_iter++;
+        }
+    }
+    /* End of while: maxiter attained, we consider that the algorithm has diverged */
+    return (CONV_FAIL);
+}
+
+/*
+ * CVStepCRANI
+ *
+ * This routine performs one internal cvode step using the Crank-Nicolson method, from tn to tn + h.
+ * In order to temporarily store the results, we use zn[2, 3], tempv and ftemp, which will represent the Ki in turn.
+ */
+
+static int CVStepCRANI(CVodeMem cv_mem)
+{
+    int retval, nb_iter;
+    realtype difference;
+
+    /* Coefficients */
+    realtype a11, a12, b1, b2, c1;
+    a11 = 0.5;
+    a12 = 0.5;
+    b1  = 0.5;
+    b2  = 0.5;
+    c1  = 1;
+
+    difference = 0;  /* Difference between two computed solutions */
+    nb_iter    = 1;  /* Iterations counter                        */
+    maxcor     = 30; /* Set maximum number of iterations          */
+
+    /* Here, we use zn[2, 3] to represent the Runge-Kutta coefficients K1, K2.
+     * Set zn[1] = h*y'(tn) as the first guess for the K[i]. */
+    N_VScale (ONE, zn[1], zn[2]);
+    N_VScale (ONE, zn[1], zn[3]);
+
+    N_VLinearSum_Serial(ONE, zn[0], h * a11, zn[2], ftemp); /* ftemp = a11hK1 + Yn          */
+    N_VLinearSum_Serial(ONE, ftemp, h * a12, zn[3], ftemp); /* ftemp = a11hK1 + a12hK2 + Yn */
+
+    retval = f(tn + c1 * h, ftemp, zn[2], user_data); /* K1 = f(tn+c1h, Yn + a11hK1 + a12hK2) */
+    retval = f(tn, zn[0], zn[3], user_data);          /* K2 = f(tn, Yn)                       */
+
+    N_VLinearSum_Serial(b1, zn[2], b2, zn[3], ftemp); /* ftemp = b1K1 + b2K2            */
+    N_VLinearSum_Serial(ONE, zn[0], h, ftemp, tempv); /* y = Yn+1 = Yn + h(b1K1 + b2K2) */
+
+    while (nb_iter <= maxcor)    /* Same operations as above, but with K[i] updated and store result in y to compare with tempv */
+    {
+
+        N_VLinearSum_Serial(ONE, zn[0], h * a11, zn[2], ftemp); /* ftemp = a11hK1 + Yn          */
+        N_VLinearSum_Serial(ONE, ftemp, h * a12, zn[3], ftemp); /* ftemp = a11hK1 + a12hK2 + Yn */
+
+        retval = f(tn + c1 * h, ftemp, zn[2], user_data); /* K1 = f(tn+c1h, Yn + a11hK1 + a12hK2) */
+        retval = f(tn, zn[0], zn[3], user_data);          /* K2 = f(tn, Yn)                       */
+
+        N_VLinearSum_Serial(b1, zn[2], b2, zn[3], ftemp); /* ftemp = b1K1 + b2K2            */
+        N_VLinearSum_Serial(ONE, zn[0], h, ftemp, y);     /* y = Yn+1 = Yn + h(b1K1 + b2K2) */
+
+        /* Convergence test */
+        N_VLinearSum_Serial(ONE, tempv, -ONE, y, ftemp); /* ftemp = tempv-y       */
+        difference = N_VMaxNorm(ftemp);                  /* max = Max(ABS(ftemp)) */
+        if (difference < reltol)    /* Converged */
+        {
+            tn += h;                                 /* Increment tn                             */
+            nst++;                                   /* Increment solver calls (complete step)   */
             N_VScale (ONE, y, zn[0]);                /* Update Nordsziek array: - zn[0] = Yn+1   */
             retval = f(tn, zn[0], zn[1], user_data); /*                         - zn[1] = Y'(tn) */
             N_VScale (h, zn[1], zn[1]);              /* Scale zn[1] by h                         */

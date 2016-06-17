@@ -836,7 +836,7 @@ function status = test_single(_module, _testPath, _testName)
 
     SCI_ARGS = " -nb -quit "
     if ~_module.longtime then
-        SCI_ARGS = SCI_ARGS + "--timeout 5m "
+        SCI_ARGS = SCI_ARGS + "--timeout 15m "
     end
 
     // Build final command

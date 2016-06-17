@@ -152,8 +152,9 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
         itTypeOfData = checkformat(pstFormat);
         if (itTypeOfData == types::InternalType::ScilabNull)
         {
-            closeFile(in[0], iID);
             Scierror(999, _("Incorrect file or format.\n"));
+            closeFile(in[0], iID);
+            FREE(pstFormat);
             return types::Function::Error;
         }
     }
@@ -309,6 +310,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", 2);
                     closeFile(in[0], iID);
+                    FREE(pstFormat);
                     return types::Function::Error;
                 }
             }
@@ -423,17 +425,14 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
                 default:
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", 2);
+                    FREE(pstFormat);
                     return types::Function::Error;
                 }
             }
         }
     }
 
-    if (pstFormat)
-    {
-        FREE(pstFormat);
-    }
-
+    FREE(pstFormat);
     if (error != 0)
     {
         Scierror(999, _("Incorrect file or format.\n"));

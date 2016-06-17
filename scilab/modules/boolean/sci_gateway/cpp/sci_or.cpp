@@ -29,6 +29,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "vect_or.h"
+#include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
 /* SCILAB function : or */
@@ -95,11 +96,12 @@ types::Function::ReturnValue sci_or(types::typed_list &in, int _iRetCount, types
                 default:
                 {
                     Scierror(44, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
+                    FREE(pStr);
                     return types::Function::Error;
                 }
                 break;
             }
-            delete(pStr);
+            FREE(pStr);
             if (len != 1)
             {
                 Scierror(44, _("%s: Wrong value for input argument #%d.\n"), "or", 2);

@@ -136,8 +136,7 @@ box "Champ #N";
             Les champs de l'enregistrement doivent contenir des données de même type défini par le paramètre <emphasis role="bold">Output Format</emphasis>.
         </para>
         <para>
-            Chaque événement sur l'entrée d'activation du bloc écrit un enregistrement dans le fichier. Notez que contrairement à <link linkend="WFILE_f">WFILE_f</link>, les dates d'événement
-            ne sont pas enregistrées.
+            Chaque événement sur l'entrée d'activation du bloc écrit un enregistrement dans le fichier.
         </para>
     </refsection>
     
@@ -341,9 +340,6 @@ box "Champ #N";
             </listitem>
             <listitem>
                 <link linkend="RFILE_f">RFILE_f</link>
-            </listitem>
-            <listitem>
-                <link linkend="WFILE_f">WFILE_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

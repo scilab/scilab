@@ -86,11 +86,14 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>z_component: </term>
+                <term>display_components: </term>
                 <listitem>
                     <para>
-                        This field adds z position in the box. Its value should be <literal>"on" </literal>
-                        (z position written) or <literal>"off"</literal> (no z position written).
+                        This field controls which components are displayed. Its default value
+                        is <literal>"xy"</literal>for 2D views and <literal>"xyz"</literal> for 3D views.
+                        Possible values for this field are any combination of <literal>"x"</literal>, <literal>"y"</literal> and <literal>"z"</literal>.
+                        Some examples for this field are <literal>"zy"</literal>, <literal>"xzy"</literal>, <literal>"xz"</literal>, <literal>"y"</literal> and so on.
+                        PS: The components are drawn in the same order they are found in the string.
                     </para>
                 </listitem>
             </varlistentry>

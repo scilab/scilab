@@ -34,7 +34,7 @@ Source: etc\modules.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 Source: etc\logging.properties; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 ;
 ; root directory
-Source: CHANGES; DestDir: {app}; Components: {#COMPN_SCILAB}
+Source: CHANGES.md; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: COPYING; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: COPYING-BSD; DestDir: {app}; Components: {#COMPN_SCILAB}
 ; (don't include README, as it's only about Unix)

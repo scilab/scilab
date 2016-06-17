@@ -93,12 +93,14 @@ types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCoun
         if (_iRetCount != 1)
         {
             Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "completion", 1);
+            FREE(pcSomechars);
             return types::Function::Error;
         }
 
         if (in[1]->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "completion", 2);
+            FREE(pcSomechars);
             return types::Function::Error;
         }
 
@@ -107,6 +109,7 @@ types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCoun
         if (pStrDictionary->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "completion", 2);
+            FREE(pcSomechars);
             return types::Function::Error;
         }
 
@@ -139,6 +142,7 @@ types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCoun
         {
             Scierror(999, _("%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"),
                      "completion", "functions", "commands", "variables", "macros", "graphic_properties", "files");
+            FREE(pcSomechars);
             return types::Function::Error;
         }
     }

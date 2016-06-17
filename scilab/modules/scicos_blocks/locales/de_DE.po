@@ -11,6 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2012-11-29 17:29+0000\n"
 "Last-Translator: peter <peterslopp@googlemail.com>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -824,4 +825,10 @@ msgid "'Initial Value' and 'Final Value': incompatible sizes: %d and %d."
 msgstr ""
 
 msgid "Same sizes expected."
+msgstr ""
+
+#
+# File: modules/scicos_blocks/tests/unit_tests/scicos_unitary.sci, line: 96
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""

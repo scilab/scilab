@@ -74,7 +74,6 @@ TIType Checkers::check_____krontimes____(GVN & gvn, const TIType & in0, const TI
                 default :
                     return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::COMPLEX :
         {
@@ -103,7 +102,6 @@ TIType Checkers::check_____krontimes____(GVN & gvn, const TIType & in0, const TI
                 default :
                     return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::DOUBLE :
         {
@@ -196,7 +194,6 @@ TIType Checkers::check_____krontimes____(GVN & gvn, const TIType & in0, const TI
                 default :
                     return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::INT16 :
         {
@@ -281,7 +278,6 @@ TIType Checkers::check_____krontimes____(GVN & gvn, const TIType & in0, const TI
                 default :
                     return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::INT32 :
         {
@@ -366,7 +362,6 @@ TIType Checkers::check_____krontimes____(GVN & gvn, const TIType & in0, const TI
                 default :
                     return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::INT64 :
         {
@@ -451,7 +446,6 @@ TIType Checkers::check_____krontimes____(GVN & gvn, const TIType & in0, const TI
                 default :
                     return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::INT8 :
         {
@@ -536,7 +530,6 @@ TIType Checkers::check_____krontimes____(GVN & gvn, const TIType & in0, const TI
                 default :
                     return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::UINT16 :
         {
@@ -621,7 +614,6 @@ TIType Checkers::check_____krontimes____(GVN & gvn, const TIType & in0, const TI
                 default :
                     return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::UINT32 :
         {
@@ -706,7 +698,6 @@ TIType Checkers::check_____krontimes____(GVN & gvn, const TIType & in0, const TI
                 default :
                     return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::UINT64 :
         {
@@ -791,7 +782,6 @@ TIType Checkers::check_____krontimes____(GVN & gvn, const TIType & in0, const TI
                 default :
                     return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::UINT8 :
         {
@@ -876,7 +866,6 @@ TIType Checkers::check_____krontimes____(GVN & gvn, const TIType & in0, const TI
                 default :
                     return TIType(gvn);
             }
-            return TIType(gvn);
         }
         default :
             return TIType(gvn);

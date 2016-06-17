@@ -225,6 +225,7 @@ char* getenvSCIHOME(void)
 
         if (ierr == 1)
         {
+            delete[] SciHome;
             return NULL;
         }
     }

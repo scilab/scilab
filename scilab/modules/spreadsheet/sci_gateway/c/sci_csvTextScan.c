@@ -216,9 +216,6 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
                     complexArray *ptrComplexArray = stringsToComplexArray((const char**)result->pstrValues, result->m * result->n, decimal, TRUE, &ierr);
                     if (ptrComplexArray == NULL)
                     {
-                        freeCsvResult(result);
-                        freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
-
                         if (ierr == STRINGTOCOMPLEX_ERROR)
                         {
                             Scierror(999, _("%s: can not convert data.\n"), fname);
@@ -227,6 +224,8 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), fname);
                         }
+                        freeCsvResult(result);
+                        freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
                         return 0;
                     }
 
@@ -289,13 +288,12 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
                     }
                 }
 
-                freeCsvResult(result);
-                freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
-
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
                     Scierror(17, _("%s: Memory allocation error.\n"), fname);
+                    freeCsvResult(result);
+                    freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
                     return 0;
                 }
                 else
@@ -335,6 +333,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
     }
 
     freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
+    freeCsvResult(result);
     return 0;
 }
 // =============================================================================

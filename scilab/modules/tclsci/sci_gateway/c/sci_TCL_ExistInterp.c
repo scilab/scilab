@@ -50,6 +50,7 @@ int sci_TCL_ExistInterp(char *fname, void* pvApiCtx)
         if (!existsGlobalInterp())
         {
             Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
+            freeAllocatedSingleString(InterpName);
             return 1;
         }
 
@@ -58,6 +59,7 @@ int sci_TCL_ExistInterp(char *fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            freeAllocatedSingleString(InterpName);
             return 1;
         }
 

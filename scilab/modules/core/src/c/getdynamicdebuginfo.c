@@ -402,7 +402,7 @@ char **getDynamicDebugInfo(int *sizeArray, int* pvApiCtx)
 
 #endif
 
-
+    FREE(value);
     sciErr = getNamedVarType(pvApiCtx, "SCI", &iType);
     if ((sciErr.iErr == 0) && (iType == 10))
     {

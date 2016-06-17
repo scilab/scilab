@@ -123,7 +123,7 @@ void printAstTask(ast::Exp *tree, bool timed)
 
     if (tree)
     {
-        ast::PrintVisitor printMe = *new ast::PrintVisitor(std::wcout);
+        ast::PrintVisitor printMe (std::wcout);
         tree->accept(printMe);
     }
 
@@ -176,13 +176,11 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
     {
         exec = new ast::TimedVisitor();
     }
-
-    if (execVerbose)
+    else if (execVerbose)
     {
         exec = new ast::StepVisitor();
     }
-
-    if (!execVerbose && !ASTtimed)
+    else
     {
         //call analyzer visitor before exec visitor
         if (ConfigVariable::getAnalyzerOptions() == 1)

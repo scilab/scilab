@@ -62,6 +62,7 @@ int sci_TCL_GetVar(char *fname, void* pvApiCtx)
         if (!existsGlobalInterp())
         {
             Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
+            freeAllocatedSingleString(VarName);
             return 0;
         }
 
@@ -74,6 +75,7 @@ int sci_TCL_GetVar(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    freeAllocatedSingleString(VarName);
                     return 1;
                 }
 
@@ -81,6 +83,7 @@ int sci_TCL_GetVar(char *fname, void* pvApiCtx)
                 if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
                 {
                     Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                    freeAllocatedSingleString(VarName);
                     return 1;
                 }
 
@@ -89,12 +92,14 @@ int sci_TCL_GetVar(char *fname, void* pvApiCtx)
                 if (TCLinterpreter == NULL)
                 {
                     Scierror(999, _("%s: No such slave interpreter.\n"), fname);
+                    freeAllocatedSingleString(VarName);
                     return 0;
                 }
             }
             else
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+                freeAllocatedSingleString(VarName);
                 return 0;
             }
         }
@@ -125,6 +130,9 @@ int sci_TCL_GetVar(char *fname, void* pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                        freeArrayOfString(ReturnArrayString, nb_lines * nb_columns);
+                        freeArrayOfString(index_list, nb_lines * nb_columns);
+                        freeAllocatedSingleString(VarName);
                         return 1;
                     }
 
@@ -136,14 +144,16 @@ int sci_TCL_GetVar(char *fname, void* pvApiCtx)
                 }
                 else
                 {
-                    freeArrayOfString(index_list, nb_lines * nb_columns);
                     Scierror(999, _("%s: No more memory.\n"), fname);
+                    freeArrayOfString(index_list, nb_lines * nb_columns);
+                    freeAllocatedSingleString(VarName);
                     return 0;
                 }
             }
             else
             {
                 Scierror(999, _("%s: No more memory.\n"), fname);
+                freeAllocatedSingleString(VarName);
                 return 0;
             }
         }
@@ -158,6 +168,7 @@ int sci_TCL_GetVar(char *fname, void* pvApiCtx)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    freeAllocatedSingleString(VarName);
                     return 1;
                 }
 
@@ -171,16 +182,17 @@ int sci_TCL_GetVar(char *fname, void* pvApiCtx)
             }
             else
             {
-                releaseTclInterp();
                 Scierror(999, _("%s: Could not read Tcl Variable.\n"), "TCL_GetVar");
+                freeAllocatedSingleString(VarName);
+                releaseTclInterp();
                 return 0;
             }
         }
     }
     else
     {
-        releaseTclInterp();
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        releaseTclInterp();
         return 0;
     }
 

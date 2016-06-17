@@ -139,6 +139,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
             if (path[0] == '\0')
             {
                 Scierror(999, _("%s: Unable to get useful path from this handle.\n"), "get");
+                FREE(path);
                 return types::Function::Error;
             }
 

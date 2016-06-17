@@ -233,7 +233,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetfile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_uigetfont.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetfont.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_uimenu.c">

@@ -95,6 +95,7 @@ int sci_xclick(char *fname, void *pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            deleteJxclickString(menuCallback);
             return 1;
         }
 
@@ -111,6 +112,7 @@ int sci_xclick(char *fname, void *pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            deleteJxclickString(menuCallback);
             return 1;
         }
 
@@ -126,6 +128,7 @@ int sci_xclick(char *fname, void *pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            deleteJxclickString(menuCallback);
             return 1;
         }
 
@@ -141,6 +144,7 @@ int sci_xclick(char *fname, void *pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            deleteJxclickString(menuCallback);
             return 1;
         }
 
@@ -156,6 +160,7 @@ int sci_xclick(char *fname, void *pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            deleteJxclickString(menuCallback);
             return 1;
         }
 
@@ -172,8 +177,10 @@ int sci_xclick(char *fname, void *pvApiCtx)
         if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 5, istr * one, &strRep))
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            deleteJxclickString(menuCallback);
             return 1;
         }
+        freeAllocatedSingleString(strRep);
         strncpy(strRep, menuCallback, istr);
     }
 

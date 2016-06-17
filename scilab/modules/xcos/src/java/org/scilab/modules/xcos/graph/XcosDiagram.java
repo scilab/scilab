@@ -14,7 +14,6 @@
  * along with this program.
  *
  */
-
 package org.scilab.modules.xcos.graph;
 
 import org.scilab.modules.xcos.graph.model.XcosGraphModel;
@@ -113,7 +112,9 @@ import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import java.lang.reflect.Constructor;
+import java.rmi.server.UID;
 import java.util.Hashtable;
+import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
@@ -122,6 +123,7 @@ import org.scilab.modules.xcos.io.ScilabTypeCoder;
  * The base class for a diagram. This class contains jgraphx + Scicos data.
  */
 public class XcosDiagram extends ScilabGraph {
+
     private static final Logger LOG = Logger.getLogger(XcosDiagram.class.getName());
 
     private static final String MODIFIED = "modified";
@@ -137,10 +139,10 @@ public class XcosDiagram extends ScilabGraph {
     public static final String HASH_IDENTIFIER = "#identifier";
 
     /**
-     * Default geometry used while adding a label to a block (on the middle and below the bottom of the parent block)
+     * Default geometry used while adding a label to a block (on the middle and
+     * below the bottom of the parent block)
      */
     private static final mxGeometry DEFAULT_LABEL_GEOMETRY = new mxGeometry(0.5, 1.1, 0.0, 0.0);
-
 
     /**
      * Constructor
@@ -202,14 +204,11 @@ public class XcosDiagram extends ScilabGraph {
     /*
      * Static helpers
      */
-
     /**
      * Only return the instanceof klass
      *
-     * @param selection
-     *            the selection to filter out
-     * @param klass
-     *            the class selector
+     * @param selection the selection to filter out
+     * @param klass the class selector
      * @return the selection with only klass instance.
      */
     public static Object[] filterByClass(final Object[] selection, final Class<BasicBlock> klass) {
@@ -222,12 +221,14 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Fill the hierarchy from the first element up to the root diagram (included)
+     * Fill the hierarchy from the first element up to the root diagram
+     * (included)
      * <p>
      * Should be used as :
      * <pre>
      *  hierarchy = fillHierarchy(new ScicosObjectOwner(getUID(), getKind()))
      * </pre>
+     *
      * @param hierarchy the collection to fill
      * @return the filled collection (the root at the end)
      */
@@ -256,8 +257,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Sort the blocks per first integer parameter value
      *
-     * @param blocks
-     *            the block list
+     * @param blocks the block list
      * @return the sorted block list (same instance)
      */
     public List<? extends BasicBlock> iparSort(final List<? extends BasicBlock> blocks) {
@@ -294,10 +294,8 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * @param <T>
-     *            The type to work on
-     * @param klass
-     *            the class instance to work on
+     * @param <T> The type to work on
+     * @param klass the class instance to work on
      * @return list of typed block
      */
     @SuppressWarnings("unchecked")
@@ -319,10 +317,8 @@ public class XcosDiagram extends ScilabGraph {
 
     /**
      * @param <T>
-     * @param <T>
-     *            The type to work on
-     * @param klasses
-     *            the class instance list to work on
+     * @param <T> The type to work on
+     * @param klasses the class instance list to work on
      * @return list of typed block
      */
     private <T extends BasicBlock> List<T> getAllTypedBlock(Class<T>[] klasses) {
@@ -336,22 +332,21 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Fill the context with I/O port
      *
-     * @param context
-     *            the context to fill
+     * @param context the context to fill
      */
     @SuppressWarnings("unchecked")
     protected void fillContext(final Hashtable<Object, Object> context) {
         if (!context.containsKey(IN)) {
-            context.put(IN, iparSort(getAllTypedBlock(new Class[] { ExplicitInBlock.class, ImplicitInBlock.class })));
+            context.put(IN, iparSort(getAllTypedBlock(new Class[] {ExplicitInBlock.class, ImplicitInBlock.class})));
         }
         if (!context.containsKey(OUT)) {
-            context.put(OUT, iparSort(getAllTypedBlock(new Class[] { ExplicitOutBlock.class, ImplicitOutBlock.class })));
+            context.put(OUT, iparSort(getAllTypedBlock(new Class[] {ExplicitOutBlock.class, ImplicitOutBlock.class})));
         }
         if (!context.containsKey(EIN)) {
-            context.put(EIN, iparSort(getAllTypedBlock(new Class[] { EventInBlock.class })));
+            context.put(EIN, iparSort(getAllTypedBlock(new Class[] {EventInBlock.class})));
         }
         if (!context.containsKey(EOUT)) {
-            context.put(EOUT, iparSort(getAllTypedBlock(new Class[] { EventOutBlock.class })));
+            context.put(EOUT, iparSort(getAllTypedBlock(new Class[] {EventOutBlock.class})));
         }
     }
 
@@ -368,12 +363,11 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Validate I/O ports.
      *
-     * /!\ No model modification should be made in this method, this is only a validation method.
+     * /!\ No model modification should be made in this method, this is only a
+     * validation method.
      *
-     * @param cell
-     *            Cell that represents the cell to validate.
-     * @param context
-     *            Hashtable that represents the global validation state.
+     * @param cell Cell that represents the cell to validate.
+     * @param context Hashtable that represents the global validation state.
      */
     public String validateChildDiagram(final Object cell, final Hashtable<Object, Object> context) {
         String err = null;
@@ -381,7 +375,6 @@ public class XcosDiagram extends ScilabGraph {
         /*
          * Only validate I/O blocks
          */
-
         // get the key
         final String key;
         if (cell instanceof ExplicitInBlock || cell instanceof ImplicitInBlock) {
@@ -400,14 +393,12 @@ public class XcosDiagram extends ScilabGraph {
         /*
          * Prepare validation
          */
-
         // fill the context once
         fillContext(context);
 
         /*
          * Validate with ipar
          */
-
         // get the real index
         final List<? extends BasicBlock> blocks = (List<? extends BasicBlock>) context.get(key);
         final int realIndex = blocks.indexOf(block) + 1;
@@ -439,7 +430,6 @@ public class XcosDiagram extends ScilabGraph {
     /*
      * Static diagram listeners
      */
-
     /**
      * CellResizedTracker Called when mxEvents.CELLS_RESIZED is fired.
      */
@@ -466,11 +456,11 @@ public class XcosDiagram extends ScilabGraph {
         /**
          * Update the cell view
          *
-         * @param source
-         *            the source instance
-         * @param evt
-         *            the event data
-         * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
+         * @param source the source instance
+         * @param evt the event data
+         * @see
+         * com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
+         * com.mxgraph.util.mxEventObject)
          */
         @Override
         public void invoke(final Object source, final mxEventObject evt) {
@@ -494,6 +484,7 @@ public class XcosDiagram extends ScilabGraph {
      * Update the modified block on undo/redo
      */
     private static final class UndoUpdateTracker implements mxIEventListener {
+
         private static UndoUpdateTracker instance;
 
         /**
@@ -515,11 +506,11 @@ public class XcosDiagram extends ScilabGraph {
         /**
          * Update the block and style on undo
          *
-         * @param source
-         *            the source instance
-         * @param evt
-         *            the event data
-         * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
+         * @param source the source instance
+         * @param evt the event data
+         * @see
+         * com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
+         * com.mxgraph.util.mxEventObject)
          */
         @Override
         public void invoke(final Object source, final mxEventObject evt) {
@@ -583,6 +574,7 @@ public class XcosDiagram extends ScilabGraph {
      * Refresh each block on modification (update port position, etc...)
      */
     private static final class RefreshBlockTracker implements mxIEventListener {
+
         private static RefreshBlockTracker instance;
 
         /**
@@ -604,11 +596,11 @@ public class XcosDiagram extends ScilabGraph {
         /**
          * Refresh the block on port added
          *
-         * @param sender
-         *            the diagram
-         * @param evt
-         *            the event
-         * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
+         * @param sender the diagram
+         * @param evt the event
+         * @see
+         * com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
+         * com.mxgraph.util.mxEventObject)
          */
         @Override
         public void invoke(Object sender, mxEventObject evt) {
@@ -633,22 +625,20 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Hook method that creates the new edge for insertEdge. This implementation does not set the source and target of the edge, these are set when the edge is added to the model.
+     * Hook method that creates the new edge for insertEdge. This implementation
+     * does not set the source and target of the edge, these are set when the
+     * edge is added to the model.
      *
-     * @param parent
-     *            Cell that specifies the parent of the new edge.
-     * @param id
-     *            Optional string that defines the Id of the new edge.
-     * @param value
-     *            Object to be used as the user object.
-     * @param source
-     *            Cell that defines the source of the edge.
-     * @param target
-     *            Cell that defines the target of the edge.
-     * @param style
-     *            Optional string that defines the cell style.
+     * @param parent Cell that specifies the parent of the new edge.
+     * @param id Optional string that defines the Id of the new edge.
+     * @param value Object to be used as the user object.
+     * @param source Cell that defines the source of the edge.
+     * @param target Cell that defines the target of the edge.
+     * @param style Optional string that defines the cell style.
      * @return Returns the new edge to be inserted.
-     * @see com.mxgraph.view.mxGraph#createEdge(java.lang.Object, java.lang.String, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.String)
+     * @see com.mxgraph.view.mxGraph#createEdge(java.lang.Object,
+     * java.lang.String, java.lang.Object, java.lang.Object, java.lang.Object,
+     * java.lang.String)
      */
     @Override
     public Object createEdge(Object parent, String id, Object value, Object source, Object target, String style) {
@@ -680,11 +670,10 @@ public class XcosDiagram extends ScilabGraph {
 
             try {
                 Class<? extends BasicLink> klass = src.getClass();
-                Constructor<? extends BasicLink> cstr = klass.getConstructor(Long.TYPE);
-                link = cstr.newInstance(controller.createObject(Kind.LINK));
 
-                // allocate the associated geometry
-                link.setGeometry(new mxGeometry());
+                // call XXXXLink(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id)
+                Constructor<? extends BasicLink> cstr = klass.getConstructor(JavaController.class, Long.TYPE, Kind.class, Object.class, mxGeometry.class, String.class, String.class);
+                link = cstr.newInstance(controller, controller.createObject(Kind.LINK), src.getKind(), null, new mxGeometry(), src.getStyle(), new UID().toString());
             } catch (ReflectiveOperationException e) {
                 LOG.severe(e.toString());
             }
@@ -693,8 +682,7 @@ public class XcosDiagram extends ScilabGraph {
         }
 
         if (ret == null) {
-            ret = super.createEdge(parent, id, value, source, target, style);
-            LOG.warning("Creating a non typed edge");
+            LOG.warning("Unable to create an edge");
         }
 
         return ret;
@@ -703,18 +691,14 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Add an edge from a source to the target.
      *
-     * @param cell
-     *            the edge to add (may be null)
-     * @param parent
-     *            the parent of the source and the target
-     * @param source
-     *            the source cell
-     * @param target
-     *            the target cell
-     * @param index
-     *            the index of the edge
+     * @param cell the edge to add (may be null)
+     * @param parent the parent of the source and the target
+     * @param source the source cell
+     * @param target the target cell
+     * @param index the index of the edge
      * @return the added edge or null.
-     * @see com.mxgraph.view.mxGraph#addEdge(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Integer)
+     * @see com.mxgraph.view.mxGraph#addEdge(java.lang.Object, java.lang.Object,
+     * java.lang.Object, java.lang.Object, java.lang.Integer)
      */
     @Override
     public Object addCell(Object cell, Object parent, Integer index, Object source, Object target) {
@@ -780,7 +764,6 @@ public class XcosDiagram extends ScilabGraph {
         /*
          * Split management
          */
-
         // ExplicitLink -> ExplicitInputPort
         if (source instanceof ExplicitLink && target instanceof ExplicitInputPort && cell instanceof ExplicitLink) {
             SplitBlock split = addSplitEdge(((BasicLink) cell).getGeometry().getSourcePoint(), (BasicLink) source);
@@ -855,10 +838,8 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Add a split on a edge.
      *
-     * @param splitPoint
-     *            the split point (center of the split block)
-     * @param link
-     *            source link
+     * @param splitPoint the split point (center of the split block)
+     * @param link source link
      * @return split block
      */
     public SplitBlock addSplitEdge(final mxPoint splitPoint, final BasicLink link) {
@@ -904,7 +885,6 @@ public class XcosDiagram extends ScilabGraph {
             addCell(splitBlock);
 
             // Update old link
-
             // get breaking segment and related point
             mxPoint splitTr = new mxPoint(splitPoint.getX() - orig.getX(), splitPoint.getY() - orig.getY());
             final int pos = link.findNearestSegment(splitTr);
@@ -940,16 +920,13 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Connect two port together with the associated points.
      *
-     * This method perform the connection in two step in order to generate the right UndoableChangeEdits.
+     * This method perform the connection in two step in order to generate the
+     * right UndoableChangeEdits.
      *
-     * @param src
-     *            the source port
-     * @param trg
-     *            the target port
-     * @param points
-     *            the points
-     * @param orig
-     *            the origin point (may be (0,0))
+     * @param src the source port
+     * @param trg the target port
+     * @param points the points
+     * @param orig the origin point (may be (0,0))
      */
     public void connect(BasicPort src, BasicPort trg, List<mxPoint> points, mxPoint orig) {
         mxGeometry geometry;
@@ -983,7 +960,8 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Initialize component settings for a graph.
      *
-     * This method *must* be used to setup the component after any reassociation.
+     * This method *must* be used to setup the component after any
+     * reassociation.
      */
     public final void initComponent() {
         getAsComponent().setToolTips(true);
@@ -1128,6 +1106,7 @@ public class XcosDiagram extends ScilabGraph {
 
     /**
      * Translate the cell and align any split block
+     *
      * @param cell any object
      * @param dx the X delta
      * @param dy the Y delta
@@ -1147,15 +1126,12 @@ public class XcosDiagram extends ScilabGraph {
         super.translateCell(cell, dx, dy);
     }
 
-
-
     /**
-     * Removes the given cells from the graph including all connected edges if includeEdges is true. The change is carried out using cellsRemoved.
+     * Removes the given cells from the graph including all connected edges if
+     * includeEdges is true. The change is carried out using cellsRemoved.
      *
-     * @param cells
-     *            the cells to be removed
-     * @param includeEdges
-     *            true if the edges must be removed, false otherwise.
+     * @param cells the cells to be removed
+     * @param includeEdges true if the edges must be removed, false otherwise.
      * @return the deleted cells
      * @see com.mxgraph.view.mxGraph#removeCells(java.lang.Object[], boolean)
      */
@@ -1213,7 +1189,6 @@ public class XcosDiagram extends ScilabGraph {
                 /*
                  * Remove related connection or not and reconnect.
                  */
-
                 if (splitBlock.getIn().getEdgeCount() == 0 || splitBlock.getOut1().getEdgeCount() == 0 || splitBlock.getOut2().getEdgeCount() == 0) {
                     // corner case, all links will be removed
                     continue;
@@ -1291,17 +1266,14 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Add any terminal parent to the removed cells
      *
-     * @param terminal
-     *            the current terminal (instance of BasicPort)
-     * @param removedCells
-     *            the "to be removed" set
-     * @param loopCells
-     *            the "while loop" set
+     * @param terminal the current terminal (instance of BasicPort)
+     * @param removedCells the "to be removed" set
+     * @param loopCells the "while loop" set
      */
     private void addTerminalParent(mxICell terminal, Collection<Object> removedCells, Collection<Object> loopCells) {
-        assert(terminal == null || terminal instanceof BasicPort);
-        assert(removedCells != null);
-        assert(loopCells != null);
+        assert (terminal == null || terminal instanceof BasicPort);
+        assert (removedCells != null);
+        assert (loopCells != null);
 
         // getting terminal parent
         mxICell target = null;
@@ -1324,12 +1296,9 @@ public class XcosDiagram extends ScilabGraph {
      *
      * This method ensure that {source, target} are not child of removed blocks.
      *
-     * @param linkSource
-     *            the normal source link
-     * @param linkTerminal
-     *            the normal target link
-     * @param removedCells
-     *            the set of removed objects
+     * @param linkSource the normal source link
+     * @param linkTerminal the normal target link
+     * @param removedCells the set of removed objects
      * @return the {source, target} connection
      */
     private BasicPort[] findTerminals(final mxICell linkSource, final mxICell linkTerminal, final Set<Object> removedCells) {
@@ -1344,18 +1313,15 @@ public class XcosDiagram extends ScilabGraph {
             }
         }
 
-        return new BasicPort[] { src, tgt };
+        return new BasicPort[] {src, tgt};
     }
 
     /**
      * Get the direct points from inLink.getSource() to outLink.getTarget().
      *
-     * @param splitBlock
-     *            the current splitblock (added as a mid-point)
-     * @param inLink
-     *            the link before the split
-     * @param outLink
-     *            the link after the split
+     * @param splitBlock the current splitblock (added as a mid-point)
+     * @param inLink the link before the split
+     * @param outLink the link after the split
      * @return the points
      */
     private List<mxPoint> getDirectPoints(final SplitBlock splitBlock, final mxICell inLink, final mxICell outLink) {
@@ -1378,12 +1344,12 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Manage Group to be CellFoldable i.e with a (-) to reduce and a (+) to expand them. Labels (mxCell instance with value) should not have a visible foldable sign.
+     * Manage Group to be CellFoldable i.e with a (-) to reduce and a (+) to
+     * expand them. Labels (mxCell instance with value) should not have a
+     * visible foldable sign.
      *
-     * @param cell
-     *            the selected cell
-     * @param collapse
-     *            the collapse settings
+     * @param cell the selected cell
+     * @param collapse the collapse settings
      * @return always <code>false</code>
      * @see com.mxgraph.view.mxGraph#isCellFoldable(java.lang.Object, boolean)
      */
@@ -1395,8 +1361,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Not BasicBLock cell have a moveable label.
      *
-     * @param cell
-     *            the cell
+     * @param cell the cell
      * @return true if the corresponding label is moveable
      * @see com.mxgraph.view.mxGraph#isLabelMovable(java.lang.Object)
      */
@@ -1408,8 +1373,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Return true if selectable
      *
-     * @param cell
-     *            the cell
+     * @param cell the cell
      * @return status
      * @see com.mxgraph.view.mxGraph#isCellSelectable(java.lang.Object)
      */
@@ -1424,8 +1388,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Return true if movable
      *
-     * @param cell
-     *            the cell
+     * @param cell the cell
      * @return status
      * @see com.mxgraph.view.mxGraph#isCellMovable(java.lang.Object)
      */
@@ -1452,8 +1415,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Return true if resizable
      *
-     * @param cell
-     *            the cell
+     * @param cell the cell
      * @return status
      * @see com.mxgraph.view.mxGraph#isCellResizable(java.lang.Object)
      */
@@ -1468,8 +1430,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * A cell is deletable if it is not a locked block or an identifier cell
      *
-     * @param cell
-     *            the cell
+     * @param cell the cell
      * @return status
      * @see com.mxgraph.view.mxGraph#isCellDeletable(java.lang.Object)
      */
@@ -1491,8 +1452,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Return true if editable
      *
-     * @param cell
-     *            the cell
+     * @param cell the cell
      * @return status
      * @see com.mxgraph.view.mxGraph#isCellEditable(java.lang.Object)
      */
@@ -1504,8 +1464,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Return or create the identifier for the cell
      *
-     * @param cell
-     *            the cell to check
+     * @param cell the cell to check
      * @return the identifier cell
      */
     public mxCell getOrCreateCellIdentifier(final mxCell cell) {
@@ -1532,8 +1491,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Return the identifier for the cell
      *
-     * @param cell
-     *            the cell to check
+     * @param cell the cell to check
      * @return the identifier cell
      */
     public mxCell getCellIdentifier(final mxCell cell) {
@@ -1546,8 +1504,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Create a cell identifier for a specific cell
      *
-     * @param cell
-     *            the cell
+     * @param cell the cell
      * @return the cell identifier.
      */
     public mxCell createCellIdentifier(final mxCell cell) {
@@ -1566,9 +1523,9 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Get the label for the cell according to its style.
      *
-     * @param cell
-     *            the cell object
-     * @return a representative the string (block name) or a style specific style.
+     * @param cell the cell object
+     * @return a representative the string (block name) or a style specific
+     * style.
      * @see com.mxgraph.view.mxGraph#convertValueToString(java.lang.Object)
      */
     @Override
@@ -1586,21 +1543,10 @@ public class XcosDiagram extends ScilabGraph {
                     VectorOfDouble v = new VectorOfDouble();
                     controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, v);
 
-                    ScilabType var = new ScilabTypeCoder().vec2var(v);
-                    if (var instanceof ScilabString) {
-                        ScilabString str = (ScilabString) var;
-                        Object[] exprs = new String[str.getHeight() * str.getWidth()];
-                        for (int i = 0; i < str.getHeight() ; i++)
-                            for (int j = 0; j < str.getWidth() ; j++) {
-                                exprs[i + j * str.getHeight()] = str.getData()[i][j];
-                            }
-                        try {
-                            ret = String.format(displayedLabel, exprs);
-                        } catch (IllegalFormatException e) {
-                            LOG.severe(e.toString());
-                            ret = displayedLabel;
-                        }
-                    } else {
+                    try {
+                        ret = new ScilabTypeCoder().format(displayedLabel, v);
+                    } catch (IllegalFormatException e) {
+                        LOG.severe(e.toString());
                         ret = displayedLabel;
                     }
                 } else {
@@ -1626,8 +1572,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Return true if auto sized
      *
-     * @param cell
-     *            the cell
+     * @param cell the cell
      * @return status
      * @see com.mxgraph.view.mxGraph#isAutoSizeCell(java.lang.Object)
      */
@@ -1679,8 +1624,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Manage the visibility of the grid and the associated menu
      *
-     * @param status
-     *            new status
+     * @param status new status
      */
     public void setGridVisible(final boolean status) {
         setGridEnabled(status);
@@ -1696,8 +1640,7 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * @param fileName
-     *            diagram filename
+     * @param fileName diagram filename
      * @return save status
      */
     public boolean saveDiagramAs(final File fileName) {
@@ -1748,7 +1691,6 @@ public class XcosDiagram extends ScilabGraph {
         }
 
         /* Extension/format update */
-
         // using a String filename also works on a non-existing file
         final String filename = writeFile.getName();
 
@@ -1806,8 +1748,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Perform post loading initialization.
      *
-     * @param file
-     *            the loaded file
+     * @param file the loaded file
      */
     public void postLoad(final File file) {
         final String name = file.getName();
@@ -1834,12 +1775,10 @@ public class XcosDiagram extends ScilabGraph {
         }
     }
 
-
     /**
      * Set the title of the diagram
      *
-     * @param title
-     *            the title
+     * @param title the title
      * @see org.scilab.modules.graph.ScilabGraph#setTitle(java.lang.String)
      */
     @Override
@@ -1893,10 +1832,8 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Load a file with different method depending on it extension
      *
-     * @param controller
-     *            the used controller
-     * @param file
-     *            File to load (can be null)
+     * @param controller the used controller
+     * @param file File to load (can be null)
      */
     public void transformAndLoadFile(final JavaController controller, final String file) {
         final File f;
@@ -1997,8 +1934,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Returns the tooltip to be used for the given cell.
      *
-     * @param cell
-     *            block
+     * @param cell block
      * @return cell tooltip
      */
     @Override
@@ -2167,8 +2103,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Display the message in info bar.
      *
-     * @param message
-     *            Information
+     * @param message Information
      */
     public void info(final String message) {
         final XcosTab tab = XcosTab.get(this);
@@ -2181,20 +2116,18 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Display the message into an error popup
      *
-     * @param message
-     *            Error of the message
+     * @param message Error of the message
      */
     public void error(final String message) {
         JOptionPane.showMessageDialog(getAsComponent(), message, XcosMessages.XCOS, JOptionPane.ERROR_MESSAGE);
     }
 
     /**
-     * Find the block corresponding to the given uid and display a warning message.
+     * Find the block corresponding to the given uid and display a warning
+     * message.
      *
-     * @param uid
-     *            - A String as UID.
-     * @param message
-     *            - The message to display.
+     * @param uid - A String as UID.
+     * @param message - The message to display.
      */
     public void warnCellByUID(final String uid, final String message) {
         final Object cell = ((mxGraphModel) getModel()).getCell(uid);
@@ -2232,6 +2165,7 @@ public class XcosDiagram extends ScilabGraph {
      * Read the applicable context on this diagram.
      * <p>
      * This function retrieve the current diagram's context and all its parent
+     *
      * @return the full context
      */
     public String[] getContext() {
@@ -2254,11 +2188,11 @@ public class XcosDiagram extends ScilabGraph {
         return allContext.toArray(new String[allContext.size()]);
     }
 
-
     /**
      * Evaluate the current context
      *
-     * @return The resulting data. Keys are variable names and Values are evaluated values.
+     * @return The resulting data. Keys are variable names and Values are
+     * evaluated values.
      */
     public Map<String, String> evaluateContext() {
         Map<String, String> result = Collections.emptyMap();
@@ -2289,12 +2223,11 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Returns true if the given cell is a not a block nor a port.
      *
-     * @param cell
-     *            the drop target
-     * @param cells
-     *            the cells to be dropped
+     * @param cell the drop target
+     * @param cells the cells to be dropped
      * @return the drop status
-     * @see com.mxgraph.view.mxGraph#isValidDropTarget(java.lang.Object, java.lang.Object[])
+     * @see com.mxgraph.view.mxGraph#isValidDropTarget(java.lang.Object,
+     * java.lang.Object[])
      */
     @Override
     public boolean isValidDropTarget(final Object cell, final Object[] cells) {
@@ -2311,11 +2244,12 @@ public class XcosDiagram extends ScilabGraph {
     protected mxGraphSelectionModel createSelectionModel() {
         return new mxGraphSelectionModel(this) {
             /**
-             * When we only want to select a cell which is a port, select the parent block.
+             * When we only want to select a cell which is a port, select the
+             * parent block.
              *
-             * @param cell
-             *            the cell
-             * @see com.mxgraph.view.mxGraphSelectionModel#setCell(java.lang.Object)
+             * @param cell the cell
+             * @see
+             * com.mxgraph.view.mxGraphSelectionModel#setCell(java.lang.Object)
              */
             @Override
             public void setCell(final Object cell) {

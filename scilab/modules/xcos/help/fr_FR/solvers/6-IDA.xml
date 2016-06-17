@@ -179,6 +179,9 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
                 <link linkend="ImpRK">Runge-Kutta Implicite 4(5)</link>
             </member>
             <member>
+                <link linkend="CRANI">Crank-Nicolson 2(3)</link>
+            </member>
+            <member>
                 <link linkend="DDaskr">DDaskr</link>
             </member>
             <member>

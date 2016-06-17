@@ -33,7 +33,7 @@ function q=quart(x,orien)
 
     function y = vperctl(x,p)
         //inline function wich computes percentiles of a vector
-        k=isnan(x)
+        k=isnan(x);
         x(k)=[];
         n=size(x,"*")
         x=gsort(x,"g","i")
@@ -42,7 +42,10 @@ function q=quart(x,orien)
         y=interpln(data,p);
     endfunction
 
-    if x==[] then q=%nan, return, end
+    if x==[] | and(isnan(x)) then
+        q = %nan;
+        return;
+    end
     if rhs==1 then
         q=vperctl(x(:),[25 50 75])
         q=q(:)

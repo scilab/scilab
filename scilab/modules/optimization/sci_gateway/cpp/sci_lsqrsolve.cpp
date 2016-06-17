@@ -233,6 +233,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
                 if (bOK == false)
                 {
                     Scierror(50, _("%s: Subroutine not found: %s\n"), "lsqrsolve", pst);
+                    FREE(pst);
                     return types::Function::Error;
                 }
 

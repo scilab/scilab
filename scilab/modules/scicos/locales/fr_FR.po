@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2014-09-09 09:50+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: fr\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -553,8 +553,8 @@ msgstr ""
 "**** SUNDIALS.Ida : trop de travail à l'instant=%g (zone ferme, changer RTOL "
 "et ATOL)\n"
 
-#, c-format
-msgid "block %d is called "
+#, fuzzy, c-format
+msgid "block %d [%s] is called "
 msgstr "le bloc %d est appelé "
 
 #, c-format
@@ -708,13 +708,37 @@ msgstr ""
 " quelques fonctions pourraient être appelées avec des valeurs d'entrée "
 "illégales."
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s, %s or %s type.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: unknown integer type.\n"
 msgstr ""
+"%s : L'argument d'entrée numéro %d est de mauvais type : Une liste est "
+"attendu.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %d (String) expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Could not read its content.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"
 msgstr ""
+"%s : L'argument d'entrée numéro %d est de mauvais type : Une liste est "
+"attendu.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: Integer matrix cannot "
+"be empty.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice vide "
+"attendue.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: String matrix cannot "
+"be empty.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une table de chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
@@ -761,10 +785,6 @@ msgid "Wrong dimension for field %s.%s: %d-by-%d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for field %s.%s: Boolean matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid "Wrong type for field %s.%s: string expected.\n"
 msgstr ""
 
@@ -780,56 +800,115 @@ msgstr ""
 msgid "Wrong type for field %s: Real matrix expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Wrong dimension for field %s.%s : %d-by-%d expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice %d-by-%d "
+"attendue.\n"
+
+#, fuzzy, c-format
+msgid "Wrong length for field %s.%s : %d expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendu.\n"
+
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : String matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une table de chaîne de "
+"caractères attendue.\n"
+
+#, fuzzy, c-format
+msgid "Wrong value for field %s.%s : Round number expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendu.\n"
+
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : Real matrix expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice vide "
+"attendue.\n"
+
+#, fuzzy, c-format
+msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice %d-by-%d "
+"attendue.\n"
+
+#
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 433
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1370
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1425
 #, c-format
-msgid "Wrong length for field %s.%s: %d expected.\n"
+msgid "Wrong dimension for field %s.%s : m-by-1 expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : List expected.\n"
+msgstr ""
+"%s : L'argument d'entrée numéro %d est de mauvais type : Une liste est "
+"attendu.\n"
+
+#
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 786
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 832
 #, c-format
-msgid "Wrong type for field %s.%s : string expected.\n"
+msgid "Wrong value for field %s.%s : %s (%s) has an invalid port number.\n"
 msgstr ""
 
+#
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 848
 #, c-format
-msgid "Wrong value for field %s.%s: Round number expected.\n"
+msgid "Wrong value for field %s.%s : %s (%s) has an invalid implicit port.\n"
 msgstr ""
 
+#
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 858
 #, c-format
-msgid "Wrong size for field %s.%s: %d-by-%d expected.\n"
+msgid "Wrong value for field %s.%s : %s (%s) has an invalid explicit port.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : Diagram expected.\n"
+msgstr ""
+"%s : L'argument d'entrée numéro %d est de mauvais type : Un diagramme est "
+"attendu.\n"
+
+#
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1102
 #, c-format
-msgid "Wrong dimension for field %s.%s: m-by-1 expected.\n"
+msgid "Wrong type for field %s.%s : List clear previous value.\n"
 msgstr ""
 
-#, c-format
-msgid "Wrong type for field %s.%s: List expected.\n"
+#, fuzzy, c-format
+msgid "Wrong dimension for field %s.%s : m-by-1 matrix expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice %d-by-%d "
+"attendue.\n"
 
-#, c-format
-msgid "Wrong value for field %s.%s: %s (%s) has an invalid port number.\n"
+#, fuzzy, c-format
+msgid "Wrong value for field %s.%s : Integer values expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendu.\n"
+
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : String expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une table de chaîne de "
+"caractères attendue.\n"
 
-#, c-format
-msgid "Wrong value for field %s.%s: %s (%s) has an invalid implicit port.\n"
+#, fuzzy, c-format
+msgid "Wrong dimension for field %s.%s : String expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une table de chaîne de "
+"caractères attendue.\n"
 
-#, c-format
-msgid "Wrong value for field %s.%s: %s (%s) has an invalid explicit port.\n"
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : Boolean matrix expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice vide "
+"attendue.\n"
 
+#
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1326
 #, c-format
-msgid "Wrong type for field %s.%s: Diagram expected.\n"
-msgstr ""
-
-#, c-format
-msgid "Wrong type for field %s.%s: List clear previous value.\n"
-msgstr ""
-
-#, c-format
-msgid "Wrong dimension for field %s.%s: m-by-1 matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid "Wrong value for field %s.%s: Integer values expected.\n"
+msgid "Wrong value for field %s.%s : Valid C identifier expected.\n"
 msgstr ""
 
 #, c-format
@@ -841,15 +920,19 @@ msgid "Wrong dimension for field %s.%s: String expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for field %s.%s: Equation expected.\n"
-msgstr ""
-
-#, c-format
 msgid "Wrong type for field %s.%s: Real expected.\n"
 msgstr ""
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: Real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong dimension for field %s.%s: m-by-1 expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s : string expected.\n"
 msgstr ""
 
 #, c-format
@@ -878,6 +961,10 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for field %s.%s .\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s: Round number expected.\n"
 msgstr ""
 
 #, c-format
@@ -1001,6 +1088,12 @@ msgstr "Problème de simulation : "
 
 msgid "End problem: "
 msgstr "Sortie du problème : "
+
+#
+# File: modules/scicos/macros/scicos_scicos/%graphics_e.sci, line: 25
+#, c-format
+msgid "%s: property %s obsolete, please use %s instead.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"

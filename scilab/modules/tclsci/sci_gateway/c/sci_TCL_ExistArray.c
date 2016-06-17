@@ -60,8 +60,8 @@ int sci_TCL_ExistArray(char *fname, void* pvApiCtx)
 
         if (!existsGlobalInterp())
         {
-            freeAllocatedSingleString(VarName);
             Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
+            freeAllocatedSingleString(VarName);
             return 0;
         }
 
@@ -74,14 +74,15 @@ int sci_TCL_ExistArray(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    freeAllocatedSingleString(VarName);
                     return 1;
                 }
 
                 // Retrieve a matrix of double at position 2.
                 if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
                 {
-                    freeAllocatedSingleString(VarName);
                     Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                    freeAllocatedSingleString(VarName);
                     return 1;
                 }
 
@@ -89,15 +90,15 @@ int sci_TCL_ExistArray(char *fname, void* pvApiCtx)
                 freeAllocatedSingleString(l2);
                 if (TCLinterpreter == NULL)
                 {
-                    freeAllocatedSingleString(VarName);
                     Scierror(999, _("%s: No such slave interpreter.\n"), fname);
+                    freeAllocatedSingleString(VarName);
                     return 0;
                 }
             }
             else
             {
-                freeAllocatedSingleString(VarName);
                 Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+                freeAllocatedSingleString(VarName);
                 return 0;
             }
         }

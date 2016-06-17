@@ -207,7 +207,6 @@ public class XcosSAXHandler extends DefaultHandler {
         controller.getObjectProperty(parentUID, parentKind, ObjectProperties.CHILDREN, children);
 
         children.add(cell.getUID());
-        controller.referenceObject(cell.getUID());
 
         controller.setObjectProperty(parentUID, parentKind, ObjectProperties.CHILDREN, children);
     }

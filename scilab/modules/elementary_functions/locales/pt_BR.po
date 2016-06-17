@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:03+0000\n"
 "Last-Translator: Roberto Coelho de Berredo <rcberredo@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -73,18 +73,18 @@ msgstr ""
 "de valores inteiros.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: Deve estar entre 0 e "
-"2^52.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value(s) for input argument #%d: A matrix of positive integer "
 "values expected.\n"
 msgstr ""
 "%s: Valore(s) errado(s) para o argumento de entrada #%d: esperava-se uma "
 "matriz de valores inteiros positivos.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: Deve estar entre 0 e "
+"2^52.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
@@ -593,16 +593,6 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Tipo incorreto para o argumento de entrada #%d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr ""
-"%s: Quantidade incorreta de argumento de entrada: esperava-se no máximo %d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s'.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
@@ -689,9 +679,13 @@ msgstr ""
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real expected.\n"
-msgstr "%s: Tipo incorreto para o argumento #%d: esperava-se um número real.\n"
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Booleans, Integers, Decimals, Complexes, "
+"Polynomials, Rationals or Texts expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de números reais ou complexos\n"
 
 #, c-format
 msgid ""
@@ -879,3 +873,16 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Tamanho incorreto para os argumentos de entrada: tamanhos "
 "incompatíveis.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#~ msgstr ""
+#~ "%s: Quantidade incorreta de argumento de entrada: esperava-se no máximo "
+#~ "%d.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s'.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento #%d: esperava-se um número real.\n"

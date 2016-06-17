@@ -89,6 +89,8 @@ int iHessM(double * pData, int iCols, int complexArg, double* pH)
     {
         ret = 1; /* there should be an error cond enum for inner routines that should not depend on macro _ */
     }
+    FREE(pWork);
+    FREE(pTau);
     return ret;
 }
 

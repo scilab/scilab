@@ -41,6 +41,7 @@
 
 extern "C"
 {
+#include <locale.h>
 #include "machine.h"
 #include "InitializeLocalization.h"
 #include "elem_common.h"
@@ -181,6 +182,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     /* floating point exceptions */
     fpsetmask(0);
 #endif
+
+    // Make sure the default locale is applied at startup
+    setlocale(LC_NUMERIC, "C");
 
     ThreadManagement::initialize();
     NumericConstants::Initialize();
@@ -370,6 +374,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     //register console debugger as debugger
     debugger::DebuggerMagager::getInstance()->addDebugger(new debugger::ConsoleDebugger());
+
     return iMainRet;
 }
 
@@ -597,6 +602,7 @@ void* scilabReadAndExecCommand(void* param)
         {
             scilabWriteW(parser.getErrorMessage());
             ThreadManagement::UnlockParser();
+            FREE(command);
             continue;
         }
 
@@ -746,6 +752,7 @@ void* scilabReadAndStore(void* param)
                     {
                         sciprint(_("Debugger is on a breakpoint\n"));
                         sciprint(_("(c)ontinue or (a)bort current execution before execute a new command\n"));
+                        FREE(tmpCommand);
                         continue;
                     }
                 }
@@ -980,7 +987,10 @@ static int batchMain(ScilabEngineInfo* _pSEI)
 #ifdef DEBUG
     std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
-    return parser->getExitStatus();
+    int ret = parser->getExitStatus();
+    delete parser;
+    FREE(pwstFileName);
+    return ret;
 }
 
 /*

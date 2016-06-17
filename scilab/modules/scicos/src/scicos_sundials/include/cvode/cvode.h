@@ -80,6 +80,7 @@ extern "C" {
 #define CV_DOPRI 3
 #define CV_ExpRK 4
 #define CV_ImpRK 5
+#define CV_CRANI 6
 
     /* iter */
 #define CV_FUNCTIONAL 1

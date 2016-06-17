@@ -56,6 +56,7 @@
     
     <!-- Make install with prefix -->
     <path value="$SCILAB/../../lib/scilab/"/>
+    <path value="$SCILAB/../../lib/thirdparty/"/>
     
     <!-- Standard path -->
     <path value="/usr/lib/scilab/"/>

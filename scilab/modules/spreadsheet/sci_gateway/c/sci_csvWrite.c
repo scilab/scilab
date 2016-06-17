@@ -239,6 +239,7 @@ int sci_csvWrite(char *fname, void* pvApiCtx)
                                    separator,
                                    decimal,
                                    (const char**)pHeadersLines, nbHeadersLines);
+        freeAllocatedMatrixOfString(m1, n1, pStringValues);
     }
     else
     {

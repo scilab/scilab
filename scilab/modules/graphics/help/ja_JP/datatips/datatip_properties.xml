@@ -178,17 +178,15 @@
             
             <varlistentry>
                 
-                <term>z_component: </term>
+                <term>display_components: </term>
                 
                 <listitem>
                     
                     <para>
                         
-                        このフィールドは箱の中にz位置を追加します.
+                        このフィールドに指定できる値
                         
-                        この値は,<literal>"on" </literal>(z位置を書く)または
-                        
-                        <literal>"off"</literal> (z位置を書かない)とします.
+                        <literal>"xyz"</literal>.
                         
                     </para>
                     

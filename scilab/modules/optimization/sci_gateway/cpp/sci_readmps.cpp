@@ -58,8 +58,6 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     char typrow[2];
 
     wchar_t* wcsFileName = NULL;
-    char* strErrorBuf = new char[bsiz];
-
     double big = NumericConstants::double_max;
 
     if (in.size() < 2 || in.size() > 3)
@@ -187,6 +185,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     pstrRwName[8 * iM] = '\0';
     char* pstrClName = new char[8 * iN + 1];
     pstrClName[8 * iN] = '\0';
+    char* strErrorBuf = new char[bsiz];
 
     int irobj       = 0;
     int* piStavar   = new int[iN];

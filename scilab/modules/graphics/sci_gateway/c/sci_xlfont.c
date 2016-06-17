@@ -106,19 +106,19 @@ static int xlfont_one_rhs(char * fname, void* pvApiCtx)
         {
             int nbElements = 0;
             char **fontsname = getAvailableFontsName(&nbElements);
+            freeAllocatedSingleString(strl1);
 
             m1 = nbElements;
             n1 = 1;
 
             sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m1, n1, (const char * const*)fontsname);
+            freeArrayOfString(fontsname, nbElements);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 return 1;
             }
 
-            freeArrayOfString(fontsname, nbElements);
-            freeAllocatedSingleString(strl1);
             AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
             ReturnArguments(pvApiCtx);
             return 0;
@@ -136,6 +136,7 @@ static int xlfont_one_rhs(char * fname, void* pvApiCtx)
             if (isAvailableFontsName(strl1))
             {
                 int fontID = addFont(strl1);
+                freeAllocatedSingleString(strl1);
 
                 m1 = 1;
                 n1 = 1;
@@ -150,7 +151,6 @@ static int xlfont_one_rhs(char * fname, void* pvApiCtx)
 
                 l1[0] = fontID;
 
-                freeAllocatedSingleString(strl1);
                 AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
                 ReturnArguments(pvApiCtx);
                 return 0;
@@ -158,6 +158,7 @@ static int xlfont_one_rhs(char * fname, void* pvApiCtx)
             else if (FileExist(strl1))
             {
                 int fontID = addFontFromFilename(strl1);
+                freeAllocatedSingleString(strl1);
 
                 m1 = 1;
                 n1 = 1;
@@ -172,7 +173,6 @@ static int xlfont_one_rhs(char * fname, void* pvApiCtx)
 
                 l1[0] = fontID;
 
-                freeAllocatedSingleString(strl1);
                 AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
                 ReturnArguments(pvApiCtx);
                 return 0;
@@ -288,6 +288,7 @@ static int xlfont_n_rhs(char * fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedSingleString(strl1);
             return 1;
         }
 
@@ -297,6 +298,7 @@ static int xlfont_n_rhs(char * fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
+            freeAllocatedSingleString(strl1);
             return 1;
         }
 
@@ -307,6 +309,7 @@ static int xlfont_n_rhs(char * fname, void* pvApiCtx)
             if (fontIndex < 0)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: Non-negative int expected.\n"), fname, 2);
+                freeAllocatedSingleString(strl1);
                 return 0;
             }
 
@@ -321,6 +324,7 @@ static int xlfont_n_rhs(char * fname, void* pvApiCtx)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    freeAllocatedSingleString(strl1);
                     return 1;
                 }
 
@@ -340,6 +344,7 @@ static int xlfont_n_rhs(char * fname, void* pvApiCtx)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    freeAllocatedSingleString(strl1);
                     return 1;
                 }
 

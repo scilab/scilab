@@ -24,7 +24,7 @@
         <title>Seqüência de Chamamento</title>
         <synopsis>contourf(x,y,z,nz,[style,strf,leg,rect,nax])</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Parâmetrtos</title>
         <variablelist>
             <varlistentry>
@@ -54,7 +54,7 @@
                                     fornece o número de níveis igualmente espaçados de zmin a zmax
                                     como segue:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                                 <para>
@@ -62,8 +62,8 @@ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
                                     <literal>zmax</literal> não são desenhados (genericamente eles
                                     são reduzidos a pontos) mas podem ser adicionados através de
                                 </para>
-                                <programlisting role=""><![CDATA[ 
-[im,jm] = find(z == zmin);     // ou zmax 
+                                <programlisting role=""><![CDATA[
+[im,jm] = find(z == zmin);     // ou zmax
 plot2d(x(im)',y(jm)',-9,"000")
  ]]></programlisting>
                             </listitem>
@@ -94,7 +94,7 @@ plot2d(x(im)',y(jm)',-9,"000")
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Descrição</title>
         <para>
             <literal>contourf</literal> pinta a superfície entre duas curvas de
@@ -114,17 +114,17 @@ plot2d(x(im)',y(jm)',-9,"000")
             uma demonstração.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 contourf(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
 
 function z=peaks(x,y)
 x1=x(:).*.ones(1,size(y,'*'));
 y1=y(:)'.*.ones(size(x,'*'),1);
-z =  (3*(1-x1).^2).*exp(-(x1.^2) - (y1+1).^2) ... 
-   - 10*(x1/5 - x1.^3 - y1.^5).*exp(-x1.^2-y1.^2) ... 
-   - 1/3*exp(-(x1+1).^2 - y1.^2) 
+z =  (3*(1-x1).^2).*exp(-(x1.^2) - (y1+1).^2) ...
+   - 10*(x1/5 - x1.^3 - y1.^5).*exp(-x1.^2-y1.^2) ...
+   - 1/3*exp(-(x1+1).^2 - y1.^2)
 endfunction
 
 function z=peakit()
@@ -150,7 +150,7 @@ clf();
 contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
@@ -158,9 +158,6 @@ contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
             </member>
             <member>
                 <link linkend="fcontour">fcontour</link>
-            </member>
-            <member>
-                <link linkend="fcontour2d">fcontour2d</link>
             </member>
             <member>
                 <link linkend="contour2di">contour2di</link>

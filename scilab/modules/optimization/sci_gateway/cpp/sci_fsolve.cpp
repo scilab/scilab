@@ -193,6 +193,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
                 if (bOK == false)
                 {
                     Scierror(50, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
+                    FREE(pst);
                     return types::Function::Error;
                 }
 
@@ -216,22 +217,6 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
         }
-        else if (in[2]->isDouble() && in.size() == 3)
-        {
-            pDblTol = in[2]->getAs<types::Double>();
-            if (pDblTol->isScalar() == false)
-            {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "fsolve", 3);
-                return types::Function::Error;
-            }
-
-            dTol = pDblTol->get(0);
-        }
-        else
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar or a function expected.\n"), "fsolve", 3);
-            return types::Function::Error;
-        }
     }
 
     if (in.size() == 4)
@@ -249,7 +234,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar or a function expected.\n"), "fsolve", 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "fsolve", 4);
             return types::Function::Error;
         }
     }

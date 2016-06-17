@@ -1450,7 +1450,6 @@ smooth
 %i_p_i
 %i_p_s
 %i_plot2d
-%i_plot2d1
 %i_plot2d2
 %i_q_s
 %i_r_s
@@ -1742,7 +1741,6 @@ xs2emf
 %_param3d
 %_param3d1
 %_plot2d
-%_plot2d1
 %_plot2d2
 %_plot2d3
 %_plot2d4
@@ -1798,7 +1796,6 @@ fac3d
 fac3d1
 fchamp
 fcontour
-fcontour2d
 fgrayplot
 fplot2d
 fplot3d
@@ -1871,7 +1868,6 @@ titlepage
 twinkle
 whitecolormap
 wintercolormap
-xclear
 xgetech
 xinfo
 xlabel
@@ -2004,7 +2000,6 @@ isrow
 isscalar
 issquare
 isvector
-lex_sort
 linspace
 log10
 log2

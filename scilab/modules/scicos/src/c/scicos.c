@@ -113,6 +113,7 @@ enum Solver
     Dormand_Prince,
     Runge_Kutta,
     Implicit_Runge_Kutta,
+    Crank_Nicolson,
     IDA_BDF_Newton = 100,
     DDaskr_BDF_Newton = 101,
     DDaskr_BDF_GMRes = 102
@@ -880,6 +881,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
             case Dormand_Prince:
             case Runge_Kutta:
             case Implicit_Runge_Kutta:
+            case Crank_Nicolson:
                 cossim(t0);
                 break;
             case IDA_BDF_Newton:
@@ -1472,6 +1474,7 @@ static void cossim(double *told)
         case Dormand_Prince:
         case Runge_Kutta:
         case Implicit_Runge_Kutta:
+        case Crank_Nicolson:
             ODEFree = &CVodeFree;
             ODE = &CVode;
             ODEReInit = &CVodeReInit;
@@ -1566,6 +1569,9 @@ static void cossim(double *told)
                 break;
             case Implicit_Runge_Kutta:
                 ode_mem = CVodeCreate(CV_ImpRK, CV_FUNCTIONAL);
+                break;
+            case Crank_Nicolson:
+                ode_mem = CVodeCreate(CV_CRANI, CV_FUNCTIONAL);
                 break;
         }
 
@@ -3643,9 +3649,9 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     //sciprint("callf type=%d flag=%d\n",block->type,flagi);
     switch (block->type)
     {
-        /*******************/
-        /* function type 0 */
-        /*******************/
+            /*******************/
+            /* function type 0 */
+            /*******************/
         case 0 :
         {
             /* This is for compatibility */

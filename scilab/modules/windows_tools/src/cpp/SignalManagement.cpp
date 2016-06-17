@@ -18,10 +18,15 @@
 
 extern "C"
 {
-#include <SignalManagement.h>
+#include "SignalManagement.h"
 }
 
-static void kill_process_callback(TP_CALLBACK_INSTANCE*, void*, TP_TIMER*);
+static VOID CALLBACK kill_process_callback(PTP_CALLBACK_INSTANCE Instance, PVOID Context, PTP_TIMER Timer)
+{
+    std::cerr << "Watchdog timer expired: Scilab killed" << std::endl;
+	// use the System Error code: wait operation timed out
+    ExitProcess(258);
+}
 
 void timeout_process_after(int timeoutDelay)
 {
@@ -30,17 +35,11 @@ void timeout_process_after(int timeoutDelay)
     FILETIME FileDueTime;
     ULARGE_INTEGER ulDueTime;
 
-    // Set the timer to fire in the delay in seconds
-    ulDueTime.QuadPart = (ULONGLONG) - (timeoutDelay * 10 * 1000 * 1000);
+    // Set the timer to fire in the delay in seconds, relative to the current time
+	long long in_seconds = - 10 * 1000 * 1000;
+    ulDueTime.QuadPart = timeoutDelay * in_seconds;
     FileDueTime.dwHighDateTime = ulDueTime.HighPart;
     FileDueTime.dwLowDateTime  = ulDueTime.LowPart;
 
     SetThreadpoolTimer(timerid, &FileDueTime, 0, 0);
 }
-
-static void kill_process_callback(TP_CALLBACK_INSTANCE*, void*, TP_TIMER*)
-{
-    std::cerr << "Watchdog timer expired: Scilab killed" << std::endl;
-    ExitProcess(1);
-}
-

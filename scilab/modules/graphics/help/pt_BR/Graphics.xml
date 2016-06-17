@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -73,14 +73,6 @@
                 <term>contour2d</term>
                 <listitem>
                     <para>curvas de nível de uma superfície em um esboço 2d</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fcontour2d</term>
-                <listitem>
-                    <para>curvas de nível de uma superfície definida por uma função em
-                        um esboço 2d
-                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -541,12 +533,6 @@
     <refsection>
         <title>Primitivas gráficas</title>
         <variablelist>
-            <varlistentry>
-                <term>xclear</term>
-                <listitem>
-                    <para>limpa janela de gráficos</para>
-                </listitem>
-            </varlistentry>
             <varlistentry>
                 <term>driver</term>
                 <listitem>

@@ -93,6 +93,7 @@ char* computeHOME(void)
             }
             else
             {
+                delete[] pstUserProfile;
                 return NULL;
             }
         }

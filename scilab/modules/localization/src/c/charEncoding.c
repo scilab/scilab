@@ -218,6 +218,7 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
     iconv_close(cd_UTF16_to_UTF8);
     if (iSize == (size_t)(-1))
     {
+        FREE(pOutSave);
         return NULL;
     }
 

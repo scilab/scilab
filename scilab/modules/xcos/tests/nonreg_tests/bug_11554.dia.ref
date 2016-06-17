@@ -33,4 +33,3 @@ pal = xcosPal("My palette");
 pal = xcosPalAddBlock(pal, 'MY_BLOCK', pal_block_img, block_img);
 xcosPalAdd(pal);
 quit();
-exec('SCI/etc/scilab.quit',-1);quit;

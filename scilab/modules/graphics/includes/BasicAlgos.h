@@ -63,7 +63,7 @@ GRAPHICS_IMPEXP void intArrayCopy(int dest[], const int src[], int nbElement);
 /**
  * copy a char * array into an other
  */
-GRAPHICS_IMPEXP void stringArrayCopy(char * dest[], char * src[], int nbElement);
+GRAPHICS_IMPEXP BOOL stringArrayCopy(char * dest[], char * src[], int nbElement);
 
 /**
  * set each element of an array to a certain value

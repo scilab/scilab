@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-02-10 12:14+0100\n"
+"Revision-Date: 2016-06-08 22:21+0100\n"
 
 # File: modules/gui/sci_gateway/c/sci_ClipBoard.c, line: 71
 # File: modules/gui/sci_gateway/c/sci_ClipBoard.c, line: 128
@@ -24,45 +24,45 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_ClipBoard.c, line: 365
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 69
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 116
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 554
 # File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 69
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 94
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 132
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 182
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 218
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 95
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 138
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 191
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 230
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 88
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 141
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 76
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 122
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 142
-# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 224
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 420
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 466
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 494
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 509
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 606
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 618
+# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 227
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 431
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 480
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 513
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 530
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 633
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 646
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 92
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 119
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 185
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 67
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 166
-# File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 215
+# File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 217
 # File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 71
 # File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 116
 # File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 142
-# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 223
+# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 226
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 93
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 154
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 237
-# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 324
-# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 100
-# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 135
+# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 328
+# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 101
+# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 138
 # File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 60
-# File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 83
-# File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 121
+# File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 84
+# File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 123
 # File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 60
 # File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 83
-# File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 124
+# File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 125
 # File: modules/gui/sci_gateway/c/sci_x_dialog.c, line: 59
 # File: modules/gui/sci_gateway/c/sci_x_dialog.c, line: 92
 # File: modules/gui/sci_gateway/c/sci_x_mdialog.c, line: 66
@@ -73,6 +73,7 @@ msgstr ""
 # File: modules/gui/sci_gateway/cpp/sci_loadGui.cpp, line: 62
 # File: modules/gui/sci_gateway/cpp/sci_saveGui.cpp, line: 103
 # File: modules/gui/sci_gateway/cpp/sci_saveGui.cpp, line: 125
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 71
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
@@ -84,12 +85,12 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_ClipBoard.c, line: 394
 # File: modules/gui/sci_gateway/c/sci_getcallbackobject.c, line: 69
 # File: modules/gui/sci_gateway/c/sci_getcallbackobject.c, line: 78
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 293
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 308
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 168
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 220
 # File: modules/gui/sci_gateway/c/sci_uicontextmenu.c, line: 54
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 202
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 702
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 733
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 334
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 349
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 359
@@ -98,24 +99,16 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 405
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 413
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 421
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 246
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 258
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 271
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 284
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 301
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 313
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 325
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 337
-# File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 280
+# File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 285
 # File: modules/gui/sci_gateway/c/sci_uiwait.c, line: 93
-# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 392
-# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 171
-# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 189
-# File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 155
-# File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 158
+# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 398
+# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 178
+# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 196
+# File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 157
+# File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 159
 # File: modules/gui/sci_gateway/c/sci_x_dialog.c, line: 120
-# File: modules/gui/sci_gateway/c/sci_x_mdialog.c, line: 233
-# File: modules/gui/sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 62
+# File: modules/gui/sci_gateway/c/sci_x_mdialog.c, line: 234
+# File: modules/gui/sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 77
 # File: modules/gui/sci_gateway/cpp/sci_getlookandfeel.cpp, line: 58
 # File: modules/gui/sci_gateway/cpp/sci_printfigure.cpp, line: 90
 # File: modules/gui/sci_gateway/cpp/sci_printsetupbox.cpp, line: 53
@@ -123,9 +116,9 @@ msgstr ""
 # File: modules/gui/sci_gateway/cpp/sci_setlookandfeel.cpp, line: 112
 # File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 130
 # File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 173
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 360
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 392
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 446
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 352
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 384
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 438
 # File: modules/gui/sci_gateway/cpp/sci_uigetdir.cpp, line: 158
 # File: modules/gui/sci_gateway/cpp/sci_uigetdir.cpp, line: 184
 # File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 331
@@ -133,6 +126,14 @@ msgstr ""
 # File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 359
 # File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 378
 # File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 393
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 250
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 266
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 279
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 292
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 313
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 325
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 337
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 349
 # File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 250
 # File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 263
 # File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 278
@@ -149,14 +150,14 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 158
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 183
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 284
-# File: modules/gui/sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 87
+# File: modules/gui/sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 86
 # File: modules/gui/sci_gateway/cpp/sci_getlookandfeel.cpp, line: 81
 # File: modules/gui/sci_gateway/cpp/sci_setlookandfeel.cpp, line: 69
 # File: modules/gui/sci_gateway/cpp/sci_setlookandfeel.cpp, line: 122
 # File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 245
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 267
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 282
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 305
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 266
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 276
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 296
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -166,29 +167,29 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 90
 # File: modules/gui/sci_gateway/c/sci_exportUI.c, line: 90
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 101
-# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 159
-# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 195
-# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 249
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 324
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 592
+# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 160
+# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 198
+# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 253
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 326
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 618
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 70
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 144
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 214
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 245
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 276
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 103
-# File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 203
+# File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 204
 # File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 95
-# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 158
-# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 194
-# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 247
+# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 159
+# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 197
+# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 251
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 71
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 135
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 182
-# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 296
+# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 300
 # File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 71
 # File: modules/gui/sci_gateway/cpp/sci_printfigure.cpp, line: 63
 # File: modules/gui/sci_gateway/cpp/sci_raise_window.cpp, line: 52
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 107
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
@@ -197,23 +198,23 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_ClipBoard.c, line: 349
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 97
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 108
-# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 166
-# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 202
-# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 256
+# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 168
+# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 205
+# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 261
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 82
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 220
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 251
 # File: modules/gui/sci_gateway/c/sci_uigetcolor.c, line: 282
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 110
 # File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 102
-# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 165
-# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 201
-# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 253
+# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 167
+# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 204
+# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 258
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 77
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 141
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 188
-# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 302
+# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 306
 # File: modules/gui/sci_gateway/cpp/sci_printfigure.cpp, line: 70
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 114
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
@@ -253,13 +254,13 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 122
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 125
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 230
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 357
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 635
-# File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 232
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 363
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 664
+# File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 235
 # File: modules/gui/sci_gateway/c/sci_uiwait.c, line: 58
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 204
-# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 253
-# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 348
+# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 254
+# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 353
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
 msgstr ""
@@ -294,11 +295,11 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 146
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 182
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 213
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 446
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 481
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 469
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 503
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 159
-# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 140
-# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 166
+# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 141
+# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 167
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_display.cpp, line: 57
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 60
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 83
@@ -318,7 +319,7 @@ msgstr ""
 # File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 207
 # File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 230
 # File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 253
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 297
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 288
 # File: modules/gui/sci_gateway/cpp/sci_useeditor.cpp, line: 60
 # File: modules/gui/sci_gateway/cpp/sci_useeditor.cpp, line: 90
 #, c-format
@@ -334,46 +335,49 @@ msgstr ""
 
 #
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 188
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 233
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 262
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 452
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 520
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 234
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 240
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 268
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 275
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 381
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 475
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 542
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 223
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 249
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 279
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 292
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 302
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 387
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 397
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 407
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 417
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 224
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 255
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 290
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 303
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 313
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 410
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 420
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 430
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 440
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected."
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 313
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 330
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 324
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 343
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double vector expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 320
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 337
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 332
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 351
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 366
 #, c-format
 msgid "Wrong size for '%s' property: %d elements expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 369
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 378
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 390
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 400
 # File: modules/gui/src/cpp/SetUicontrolPosition.cpp, line: 46
 #, c-format
 msgid ""
@@ -387,29 +391,29 @@ msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 100
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 224
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 102
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 237
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 69
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 177
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 75
-# File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 128
-# File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 131
+# File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 130
+# File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 132
 # File: modules/gui/sci_gateway/cpp/sci_loadGui.cpp, line: 50
 # File: modules/gui/sci_gateway/cpp/sci_saveGui.cpp, line: 92
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 79
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 162
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 198
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 169
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 208
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: string or string vector expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 249
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 264
 # File: modules/gui/src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 83
 # File: modules/gui/src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 99
 msgid "Scilab Message"
@@ -462,7 +466,7 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 128
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 131
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 224
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 318
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 319
 # File: modules/gui/sci_gateway/c/sci_uiwait.c, line: 64
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -483,8 +487,8 @@ msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 175
-# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 174
+# File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 178
+# File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 177
 #, c-format
 msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
 msgstr ""
@@ -526,8 +530,8 @@ msgstr ""
 
 #
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 254
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 654
-# File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 255
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 684
+# File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 259
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
 msgstr ""
@@ -542,35 +546,35 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 332
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 366
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 378
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 335
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 373
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 386
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 350
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 355
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 446
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 456
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 486
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 503
 #, c-format
 msgid "%s: Wrong type for argument #%d: string or boolean expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 536
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 560
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr ""
@@ -605,26 +609,6 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 139
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 176
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr ""
-
-#
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 146
-# File: modules/gui/sci_gateway/c/sci_uigetfont.c, line: 183
-# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 87
-# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 102
-# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 197
-# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 212
-# File: modules/gui/sci_gateway/cpp/sci_saveGui.cpp, line: 119
-# File: modules/gui/sci_gateway/cpp/sci_useeditor.cpp, line: 96
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-
-#
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 80
 # File: modules/gui/sci_gateway/c/sci_uiwait.c, line: 83
 #, c-format
@@ -649,7 +633,7 @@ msgstr ""
 
 #
 # File: modules/gui/sci_gateway/c/sci_uiwait.c, line: 77
-# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 362
+# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 368
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 97
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 103
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 202
@@ -668,22 +652,22 @@ msgstr ""
 
 #
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 210
-# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 259
-# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 355
+# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 261
+# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 361
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 
 #
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 218
-# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 267
-# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 378
+# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 270
+# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 384
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 276
+# File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 280
 #, c-format
 msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
 msgstr ""
@@ -696,10 +680,10 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 107
-# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 150
+# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 109
+# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 155
 # File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 66
-# File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 89
+# File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 90
 # File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 66
 # File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 91
 # File: modules/gui/sci_gateway/c/sci_x_dialog.c, line: 65
@@ -712,12 +696,12 @@ msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 116
+# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 118
 msgid "Scilab Choices Request"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 142
+# File: modules/gui/sci_gateway/c/sci_x_choice.c, line: 145
 # File: modules/gui/sci_gateway/c/sci_x_mdialog.c, line: 105
 # File: modules/gui/sci_gateway/c/sci_x_mdialog.c, line: 146
 # File: modules/gui/sci_gateway/c/sci_x_mdialog.c, line: 171
@@ -726,8 +710,8 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 97
-# File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 99
+# File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 99
+# File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 100
 msgid "Scilab Choose Message"
 msgstr ""
 
@@ -757,7 +741,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_x_mdialog.c, line: 214
+# File: modules/gui/sci_gateway/c/sci_x_mdialog.c, line: 215
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
@@ -786,7 +770,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 253
+# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 87
+# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 102
+# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 198
+# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 213
+# File: modules/gui/sci_gateway/cpp/sci_saveGui.cpp, line: 119
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 150
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 187
+# File: modules/gui/sci_gateway/cpp/sci_useeditor.cpp, line: 96
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#
+# File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 255
 #, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
@@ -1034,8 +1031,8 @@ msgstr ""
 #
 # File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 106
 # File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 162
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 336
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 427
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 328
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 419
 #, c-format
 msgid ""
 "%s: An exception occurred: %s\n"
@@ -1050,22 +1047,22 @@ msgstr ""
 
 #
 # File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 146
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 386
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 378
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
 msgstr ""
 
 #
 # File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 178
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 461
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 453
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Positive integer expected.\n"
 msgstr ""
 
 #
 # File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 183
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 456
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 466
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 448
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 458
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
@@ -1078,19 +1075,19 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 370
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 362
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 440
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 432
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 451
+# File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 443
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
@@ -1107,6 +1104,13 @@ msgstr ""
 # File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 119
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 143
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 180
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
 #
@@ -1139,7 +1143,7 @@ msgstr ""
 # File: modules/gui/src/cpp/SetConsoleShowHiddenHandles.cpp, line: 48
 # File: modules/gui/src/cpp/SetConsoleShowHiddenHandles.cpp, line: 73
 # File: modules/gui/src/cpp/SetConsoleShowHiddenHandles.cpp, line: 98
-# File: modules/gui/src/cpp/SetUicontrolBackgroundColor.cpp, line: 105
+# File: modules/gui/src/cpp/SetUicontrolBackgroundColor.cpp, line: 110
 # File: modules/gui/src/cpp/SetUicontrolFontAngle.cpp, line: 61
 # File: modules/gui/src/cpp/SetUicontrolFontName.cpp, line: 48
 # File: modules/gui/src/cpp/SetUicontrolFontSize.cpp, line: 52
@@ -1152,8 +1156,8 @@ msgstr ""
 # File: modules/gui/src/cpp/SetUicontrolMax.cpp, line: 84
 # File: modules/gui/src/cpp/SetUicontrolMin.cpp, line: 40
 # File: modules/gui/src/cpp/SetUicontrolMin.cpp, line: 84
-# File: modules/gui/src/cpp/SetUicontrolPosition.cpp, line: 83
-# File: modules/gui/src/cpp/SetUicontrolPosition.cpp, line: 104
+# File: modules/gui/src/cpp/SetUicontrolPosition.cpp, line: 84
+# File: modules/gui/src/cpp/SetUicontrolPosition.cpp, line: 109
 # File: modules/gui/src/cpp/SetUicontrolRelief.cpp, line: 67
 # File: modules/gui/src/cpp/SetUicontrolSliderStep.cpp, line: 68
 # File: modules/gui/src/cpp/SetUicontrolString.cpp, line: 35
@@ -1175,7 +1179,7 @@ msgstr ""
 # File: modules/gui/src/cpp/SetUimenuChecked.cpp, line: 40
 # File: modules/gui/src/cpp/SetUimenuLabel.cpp, line: 47
 # File: modules/gui/src/cpp/SetUiobjectEnable.cpp, line: 43
-# File: modules/gui/src/cpp/SetUiobjectForegroundColor.cpp, line: 86
+# File: modules/gui/src/cpp/SetUiobjectForegroundColor.cpp, line: 91
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr ""
@@ -1221,9 +1225,9 @@ msgstr ""
 
 #
 # File: modules/gui/src/cpp/SetUicontrolBackgroundColor.cpp, line: 41
-# File: modules/gui/src/cpp/SetUicontrolBackgroundColor.cpp, line: 61
+# File: modules/gui/src/cpp/SetUicontrolBackgroundColor.cpp, line: 62
 # File: modules/gui/src/cpp/SetUiobjectForegroundColor.cpp, line: 36
-# File: modules/gui/src/cpp/SetUiobjectForegroundColor.cpp, line: 54
+# File: modules/gui/src/cpp/SetUiobjectForegroundColor.cpp, line: 55
 #, c-format
 msgid ""
 "Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
@@ -1240,8 +1244,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/src/cpp/SetUicontrolBackgroundColor.cpp, line: 71
-# File: modules/gui/src/cpp/SetUiobjectForegroundColor.cpp, line: 63
+# File: modules/gui/src/cpp/SetUicontrolBackgroundColor.cpp, line: 72
+# File: modules/gui/src/cpp/SetUiobjectForegroundColor.cpp, line: 64
 #, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
@@ -1249,8 +1253,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/src/cpp/SetUicontrolBackgroundColor.cpp, line: 77
-# File: modules/gui/src/cpp/SetUiobjectForegroundColor.cpp, line: 69
+# File: modules/gui/src/cpp/SetUicontrolBackgroundColor.cpp, line: 78
+# File: modules/gui/src/cpp/SetUiobjectForegroundColor.cpp, line: 70
 #, c-format
 msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
 msgstr ""
@@ -1354,14 +1358,14 @@ msgstr ""
 
 #
 # File: modules/gui/src/cpp/SetUicontrolPosition.cpp, line: 37
-# File: modules/gui/src/cpp/SetUicontrolPosition.cpp, line: 54
+# File: modules/gui/src/cpp/SetUicontrolPosition.cpp, line: 55
 #, c-format
 msgid ""
 "Wrong size for '%s' property: string or 1 x %d real row vector expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/src/cpp/SetUicontrolPosition.cpp, line: 63
+# File: modules/gui/src/cpp/SetUicontrolPosition.cpp, line: 64
 #, c-format
 msgid ""
 "Wrong type for '%s' property: string or 1 x %d real row vector expected.\n"
@@ -2048,7 +2052,7 @@ msgstr ""
 # File: modules/gui/src/gui_fake_xml.c, line: 204
 # File: modules/gui/src/gui_fake_xml.c, line: 216
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 102
-# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 596
+# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 605
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 299
 msgid "Copy"
 msgstr ""
@@ -2405,7 +2409,7 @@ msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 130
-# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 606
+# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 613
 msgid "Select All"
 msgstr ""
 
@@ -2416,13 +2420,13 @@ msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 147
-# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 627
+# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 631
 msgid "Help about a selected text"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 153
-# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 633
+# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 637
 msgid "Help about '"
 msgstr ""
 
@@ -2526,7 +2530,7 @@ msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 62
-# File: modules/gui/src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 83
+# File: modules/gui/src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 85
 msgid "All files"
 msgstr ""
 
@@ -2630,34 +2634,34 @@ msgid "Loading help browser..."
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 309
+# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 321
 msgid "Feature not available in this mode..."
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 526
-# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 545
-# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 617
+# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 542
+# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 559
+# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 623
 msgid "No text selected"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 532
+# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 547
 msgid "Execute into Scilab"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 552
+# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 565
 msgid "Edit in the Scilab Text Editor"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 574
+# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 585
 msgid "Back"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 589
+# File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 598
 msgid "Forward"
 msgstr ""
 
@@ -3480,7 +3484,7 @@ msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 154
-msgid "3 Components"
+msgid "Components display"
 msgstr ""
 
 #
@@ -4026,7 +4030,12 @@ msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 85
+# File: modules/gui/src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 83
+msgid "All HTML files"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 87
 #, c-format
 msgid "All %s files"
 msgstr ""

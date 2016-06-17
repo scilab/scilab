@@ -302,7 +302,7 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_uigetcolor.c" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetdir.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetfile.cpp" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_uigetfont.c" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetfont.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_uimenu.c" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_uiputfile.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_uiwait.c" />

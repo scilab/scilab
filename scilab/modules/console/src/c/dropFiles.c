@@ -99,8 +99,8 @@ BOOL LaunchFilebyExtension(char *File)
 
     if (FileExtension)
     {
-        FREE(CommandLine);
-        CommandLine = NULL;
+        FREE(FileExtension);
+        FileExtension = NULL;
     }
 
     return bOK;

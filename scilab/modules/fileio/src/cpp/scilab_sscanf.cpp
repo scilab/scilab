@@ -92,6 +92,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
 
                 if (_wcsFormat[i] != L'%')
                 {
+                    FREE(wcsData);
                     wcsData = NULL;
                     while (i < (int)wcslen(_wcsFormat) && _wcsFormat[i] != L'%')
                     {
@@ -196,6 +197,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
 
                         if (wcsTemp == NULL || wcsTemp[0] == L'\0')
                         {
+                            FREE(wcsData);
                             wcsData = NULL;
                         }
                         else
@@ -292,7 +294,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                         {
                             iPos = (int)wcsspn(wcsData, wscToFind);
                         }
-
+                        FREE(wscToFind);
                         if (iPos == 0)
                         {
                             // The string begins with a character which is not in wscToFind
@@ -409,6 +411,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                 {
                                     if (_iIterrator == 0 && !bStar && _iNiter == 1)
                                     {
+                                        FREE(wcsData);
                                         wcsData = NULL;
                                         _pITOut->push_back(types::Double::Empty());
                                         bStar = TRUE;
@@ -649,6 +652,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                             {
                                 if (_iIterrator == 0 && !bStar && _iNiter == 1)
                                 {
+                                    FREE(wcsData);
                                     wcsData = NULL;
                                     _pITOut->push_back(types::Double::Empty());
                                     bStar = TRUE;

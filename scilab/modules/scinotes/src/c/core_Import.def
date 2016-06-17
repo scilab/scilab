@@ -6,3 +6,8 @@ EXPORTS
 freeArrayOfWideString
 MyHeapAlloc
 MyHeapFree
+MyHeapRealloc
+getVariablesName
+getcommandkeywords
+getFunctionsName
+getMacrosName

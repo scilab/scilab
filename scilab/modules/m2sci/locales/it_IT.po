@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-02-14 21:37+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
-"Language: it\n"
 
 msgid "Input file"
 msgstr "File di ingresso"
@@ -31,6 +31,21 @@ msgstr "Selezionare il file da convertire"
 
 msgid "Select the directory for generated files"
 msgstr "Selezionare la directory per i file generati"
+
+#
+# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 138
+msgid "Please specify an existing output directory."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 165
+msgid "Please specify an existing input file."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 174
+msgid "Please specify an existing input directory."
+msgstr ""
 
 msgid "About_M2SCI_tools"
 msgstr "Riguardo_strumenti_M2SCI"

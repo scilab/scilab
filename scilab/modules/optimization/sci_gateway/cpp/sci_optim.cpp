@@ -487,6 +487,8 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             if (iSizeX0 > 46333)
             {
                 Scierror(999, _("Can not allocate %.2f MB memory.\n"), (double)(iWorkSize * sizeof(double)) / 1.e6);
+                delete[] pdblG;
+                delete[] pdblX0;
                 return types::Function::Error;
             }
             try
@@ -502,6 +504,8 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             catch (std::bad_alloc& /*ba*/)
             {
                 Scierror(999, _("Can not allocate %.2f MB memory.\n"), (double)(iWorkSize * sizeof(double)) / 1.e6);
+                delete[] pdblG;
+                delete[] pdblX0;
                 return types::Function::Error;
             }
         }

@@ -315,8 +315,7 @@ box "Champ #N";
     <refsection id="Example_RFILE_f">
         <title>Exemple</title>
         <para>
-            Cet exemple lit le fichier : <emphasis>"SCI/modules/xcos/examples/sources_pal/fr_FR/rfile_f.txt"</emphasis> qui contient un jeu de données généré par l'exemple de la page
-            d'aide de <link linkend="WFILE_f">WFILE_f</link>.
+            Cet exemple lit le fichier : <emphasis>"SCI/modules/xcos/examples/sources_pal/fr_FR/rfile_f.txt"</emphasis> qui contient un jeu de données généré.
         </para>
         <para>
             Il utilise sa sortie d'activation comme entrée de CSCOPE. Dans le fichier, le premier champ de l'enregistrement est le temps, les deux autres sont des données régulières.
@@ -358,9 +357,6 @@ box "Champ #N";
             </listitem>
             <listitem>
                 <link linkend="WRITEC_f">WRITEC_f</link>
-            </listitem>
-            <listitem>
-                <link linkend="WFILE_f">WFILE_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

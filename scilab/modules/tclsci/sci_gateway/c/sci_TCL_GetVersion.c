@@ -111,14 +111,12 @@ int sci_TCL_GetVersion(char *fname, void* pvApiCtx)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    freeAllocatedSingleString(Param);
                     return 1;
                 }
 
-                if (VERSIONMATRIX)
-                {
-                    FREE(VERSIONMATRIX);
-                    VERSIONMATRIX = NULL;
-                }
+                FREE(VERSIONMATRIX);
+                VERSIONMATRIX = NULL;
                 AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
                 ReturnArguments(pvApiCtx);
             }

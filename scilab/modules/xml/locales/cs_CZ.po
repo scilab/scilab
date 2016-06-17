@@ -11,6 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:01+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -372,3 +373,12 @@ msgstr "%s: Není platné xml pro kořen.\n"
 #, c-format
 msgid "%s: Field %s is not modifiable: %s\n"
 msgstr "%s: Pole %s nelze změnit: %s\n"
+
+# File: modules/xml/demos/xml.dem.gateway.sce, line: 10
+msgid "XML"
+msgstr ""
+
+#
+# File: modules/xml/demos/xml.dem.gateway.sce, line: 12
+msgid "CML read"
+msgstr ""

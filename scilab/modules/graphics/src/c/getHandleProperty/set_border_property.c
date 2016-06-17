@@ -521,6 +521,7 @@ int createEtchedBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
         sciErr = getListItemAddress(_pvCtx, _piAddrList, iPos + 1, &piAddr4);
         if (sciErr.iErr)
         {
+            freeAllocatedSingleString(pstHlOutColor);
             return SET_PROPERTY_ERROR;
         }
 
@@ -753,11 +754,15 @@ int createTitledBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
         sciErr = getListItemAddress(_pvCtx, piAddr6, 3, &piAddrFont);
         if (sciErr.iErr)
         {
+            freeAllocatedSingleString(pstTitle);
+            freeAllocatedSingleString(pstFontName);
             return SET_PROPERTY_ERROR;
         }
 
         if (getScalarDouble(_pvCtx, piAddrFont, &dblFontSize))
         {
+            freeAllocatedSingleString(pstTitle);
+            freeAllocatedSingleString(pstFontName);
             return SET_PROPERTY_ERROR;
         }
 
@@ -766,22 +771,32 @@ int createTitledBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
         sciErr = getListItemAddress(_pvCtx, piAddr6, 4, &piAddrFont);
         if (sciErr.iErr)
         {
+            freeAllocatedSingleString(pstTitle);
+            freeAllocatedSingleString(pstFontName);
             return SET_PROPERTY_ERROR;
         }
 
         if (getAllocatedSingleString(_pvCtx, piAddrFont, &pstFontAngle))
         {
+            freeAllocatedSingleString(pstTitle);
+            freeAllocatedSingleString(pstFontName);
             return SET_PROPERTY_ERROR;
         }
 
         sciErr = getListItemAddress(_pvCtx, piAddr6, 5, &piAddrFont);
         if (sciErr.iErr)
         {
+            freeAllocatedSingleString(pstTitle);
+            freeAllocatedSingleString(pstFontName);
+            freeAllocatedSingleString(pstFontAngle);
             return SET_PROPERTY_ERROR;
         }
 
         if (getAllocatedSingleString(_pvCtx, piAddrFont, &pstFontWeight))
         {
+            freeAllocatedSingleString(pstTitle);
+            freeAllocatedSingleString(pstFontName);
+            freeAllocatedSingleString(pstFontAngle);
             return SET_PROPERTY_ERROR;
         }
     }
@@ -792,11 +807,19 @@ int createTitledBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
         sciErr = getListItemAddress(_pvCtx, _piAddrList, 7, &piAddr7);
         if (sciErr.iErr)
         {
+            freeAllocatedSingleString(pstTitle);
+            freeAllocatedSingleString(pstFontName);
+            freeAllocatedSingleString(pstFontAngle);
+            freeAllocatedSingleString(pstFontWeight);
             return SET_PROPERTY_ERROR;
         }
 
         if (getAllocatedSingleString(_pvCtx, piAddr7, &pstColor))
         {
+            freeAllocatedSingleString(pstTitle);
+            freeAllocatedSingleString(pstFontName);
+            freeAllocatedSingleString(pstFontAngle);
+            freeAllocatedSingleString(pstFontWeight);
             return SET_PROPERTY_ERROR;
         }
     }
@@ -814,6 +837,10 @@ int createTitledBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
     if (iBorder == 0)
     {
         freeAllocatedSingleString(pstTitle);
+        freeAllocatedSingleString(pstFontName);
+        freeAllocatedSingleString(pstFontAngle);
+        freeAllocatedSingleString(pstFontWeight);
+        freeAllocatedSingleString(pstColor);
         return SET_PROPERTY_ERROR;
     }
 
@@ -856,6 +883,10 @@ int createTitledBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
         if (iChildBorder == 0)
         {
             freeAllocatedSingleString(pstTitle);
+            freeAllocatedSingleString(pstFontName);
+            freeAllocatedSingleString(pstFontAngle);
+            freeAllocatedSingleString(pstFontWeight);
+            freeAllocatedSingleString(pstColor);
             return SET_PROPERTY_ERROR;
         }
 

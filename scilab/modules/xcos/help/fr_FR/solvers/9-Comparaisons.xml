@@ -71,6 +71,7 @@
                 <member>Runge-Kutta 4(5)</member>
                 <member>Dormand-Prince 4(5)</member>
                 <member>Runge-Kutta Implicite 4(5)</member>
+                <member>Crank-Nicolson 2(3)</member>
             </simplelist>
         </para>
         <para>
@@ -93,6 +94,7 @@
                 <member>CVode</member>
                 <member>IDA</member>
                 <member>Runge-Kutta Implicite 4(5)</member>
+                <member>Crank-Nicolson 2(3)</member>
             </simplelist>
             <emphasis role="bold">Explicites</emphasis>:
             <simplelist>
@@ -145,7 +147,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            Dans le script suivant, on compare la différence de temps entre les solveurs en lançant l'exemple avec les huit solveurs tout à tour (<emphasis>IDA</emphasis> n'est pas adapté à ce genre de problème) :
+            Dans le script suivant, on compare la différence de temps entre les solveurs en lançant l'exemple avec différents solveurs tour à tour (<emphasis>IDA</emphasis> n'est pas adapté à ce genre de problème) :
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchSine.sce">
                 Ouverture du script
             </link>
@@ -176,6 +178,9 @@ Temps pour Runge-Kutta :
 
 Temps pour Runge-Kutta implicite :
  10.881
+
+Temps pour Crank-Nicolson :
+ 7.856
             ]]></screen>
         </para>
         <para>
@@ -212,6 +217,9 @@ Temps pour Runge-Kutta implicite :
                     <td align="center">
                         <emphasis>Runge-Kutta Implicite</emphasis>
                     </td>
+                    <td align="center">
+                        <emphasis>Crank-Nicolson</emphasis>
+                    </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -224,6 +232,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 1.3x </td>
                     <td align="center"> 0.75x </td>
                     <td align="center"> 1.08x </td>
+                    <td align="center"> .07x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -236,6 +245,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.4x </td>
                     <td align="center"> 0.25x </td>
                     <td align="center"> 0.35x </td>
+                    <td align="center"> 0.23x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -248,6 +258,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.4x </td>
                     <td align="center"> 0.25x </td>
                     <td align="center"> 0.4x </td>
+                    <td align="center"> 0.24x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -260,6 +271,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.75x </td>
                     <td align="center"> 0.45x </td>
                     <td align="center"> 0.6x </td>
+                    <td align="center"> 0.42x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -272,6 +284,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.8x </td>
                     <td align="center"> 0.5x </td>
                     <td align="center"> 0.7x </td>
+                    <td align="center"> 0.45x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -284,6 +297,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> </td>
                     <td align="center"> 0.6x </td>
                     <td align="center"> 0.8x </td>
+                    <td align="center"> 0.56x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -296,6 +310,20 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> </td>
                     <td align="center"> </td>
                     <td align="center"> 1.4x </td>
+                    <td align="center"> 0.95x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Runge-Kutta Implicite</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.67x </td>
                 </tr>
             </informaltable>
         </para>
@@ -317,7 +345,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            Dans le script suivant, on compare la différence de temps entre les solveurs en lançant l'exemple avec les huit solveurs tout à tour (<emphasis>IDA</emphasis> n'est pas adapté à ce genre de problème) :
+            Dans le script suivant, on compare la différence de temps entre les solveurs en lançant l'exemple avec les neuf solveurs tout à tour (<emphasis>IDA</emphasis> n'est pas adapté à ce genre de problème) :
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchBasic.sce">
                 Ouverture du script
             </link>
@@ -348,6 +376,9 @@ Temps pour Runge-Kutta :
 
 Temps pour Runge-Kutta implicite :
  5.612
+
+Temps pour Crank-Nicolson :
+ 3.345
             ]]></screen>
         </para>
         <para>
@@ -381,6 +412,9 @@ Temps pour Runge-Kutta implicite :
                     <td align="center">
                         <emphasis>Runge-Kutta Implicite</emphasis>
                     </td>
+                    <td align="center">
+                        <emphasis>Crank-Nicolson</emphasis>
+                    </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -393,6 +427,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.2x </td>
                     <td align="center"> 0.17x </td>
                     <td align="center"> 0.5x </td>
+                    <td align="center"> 0.33x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -405,6 +440,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.05x </td>
                     <td align="center"> 0.2x </td>
+                    <td align="center"> 0.12x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -417,6 +453,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.07x </td>
                     <td align="center"> 0.2x </td>
+                    <td align="center"> 0.13x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -429,6 +466,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.15x </td>
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.4x </td>
+                    <td align="center"> 0.22x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -441,6 +479,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.2x </td>
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.5x </td>
+                    <td align="center"> 0.28x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -453,6 +492,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> </td>
                     <td align="center"> 0.7x </td>
                     <td align="center"> 2.4x </td>
+                    <td align="center"> 1.42x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -465,6 +505,20 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> </td>
                     <td align="center"> </td>
                     <td align="center"> 3.4x </td>
+                    <td align="center"> 2x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Implicit Runge-Kutta</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.6x </td>
                 </tr>
             </informaltable>
         </para>
@@ -486,7 +540,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            Dans le script suivant, on compare la différence de temps entre les solveurs en lançant l'exemple avec les huit solveurs tout à tour (<emphasis>IDA</emphasis> n'est pas adapté à ce genre de problème) :
+            Dans le script suivant, on compare la différence de temps entre les solveurs en lançant l'exemple avec les neuf solveurs tout à tour (<emphasis>IDA</emphasis> n'est pas adapté à ce genre de problème) :
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchKalman.sce">
                 Ouverture du script
             </link>
@@ -517,6 +571,9 @@ Temps pour Runge-Kutta :
 
 Temps pour Runge-Kutta implicite :
  4
+
+Temps pour Crank-Nicolson :
+ 2.657
             ]]></screen>
         </para>
         <para>
@@ -550,6 +607,9 @@ Temps pour Runge-Kutta implicite :
                     <td align="center">
                         <emphasis>Runge-Kutta Implicite</emphasis>
                     </td>
+                    <td align="center">
+                        <emphasis>Crank-Nicolson</emphasis>
+                    </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -562,6 +622,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.4x </td>
+                    <td align="center"> 0.26x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -574,6 +635,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.06x </td>
                     <td align="center"> 0.05x </td>
                     <td align="center"> 0.2x </td>
+                    <td align="center"> 0.12x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -586,6 +648,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.08x </td>
                     <td align="center"> 0.06x </td>
                     <td align="center"> 0.25x </td>
+                    <td align="center"> 0.17x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -598,6 +661,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.07x </td>
                     <td align="center"> 0.3x </td>
+                    <td align="center"> 0.21x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -610,6 +674,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> 0.15x </td>
                     <td align="center"> 0.1x </td>
                     <td align="center"> 0.5x </td>
+                    <td align="center"> 0.3x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -622,6 +687,7 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> </td>
                     <td align="center"> 0.7x </td>
                     <td align="center"> 3.2x </td>
+                    <td align="center"> 2.1x </td>
                 </tr>
                 <tr>
                     <td align="center">
@@ -634,6 +700,20 @@ Temps pour Runge-Kutta implicite :
                     <td align="center"> </td>
                     <td align="center"> </td>
                     <td align="center"> 4.6x </td>
+                    <td align="center"> 3.1x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Implicit Runge-Kutta</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.66x </td>
                 </tr>
             </informaltable>
         </para>
@@ -805,6 +885,9 @@ Temps pour DDaskr - GMRes :
             </member>
             <member>
                 <link linkend="ImpRK">Runge-Kutta Implicite 4(5)</link>
+            </member>
+            <member>
+                <link linkend="CRANI">Crank-Nicolson 2(3)</link>
             </member>
             <member>
                 <link linkend="DDaskr">DDaskr</link>

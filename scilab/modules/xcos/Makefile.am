@@ -427,8 +427,6 @@ images/palettes/SAWTOOTH_f.png \
 images/palettes/SCALAR2VECTOR.png \
 images/palettes/scifunc_block_m.png \
 images/palettes/SELECT_m.png \
-images/palettes/SELF_SWITCH_off.png \
-images/palettes/SELF_SWITCH_on.png \
 images/palettes/SELF_SWITCH.png \
 images/palettes/SHIFT.png \
 images/palettes/Sigbuilder.png \
@@ -463,7 +461,6 @@ images/palettes/VirtualCLK0.png \
 images/palettes/VoltageSensor.png \
 images/palettes/VsourceAC.png \
 images/palettes/VVsourceAC.png \
-images/palettes/WFILE_f.png \
 images/palettes/WRITEAU_f.png \
 images/palettes/WRITEC_f.png \
 images/palettes/ZCROSS_f.png

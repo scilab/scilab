@@ -72,6 +72,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private View view;
     private List<String> saved = new Vector<String>();
     private FunctionScanner funScanner;
+    private ScilabLexer lexerBlockComment;
 
     private Set<String> functions = new HashSet<String>(INITFUNCTIONSNUMBER);
 
@@ -106,6 +107,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public ScilabDocument(boolean paned) {
         super(new GapContent(GAPBUFFERCAPACITY));
         contentModified = false;
+        lexerBlockComment = createLexer();
 
         if (paned) {
             setAsynchronousLoadPriority(2);
@@ -477,12 +479,12 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             }
         } else {
             Set<DefaultMutableTreeNode> set = new TreeSet<DefaultMutableTreeNode>(new Comparator<DefaultMutableTreeNode>() {
-                public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
-                    ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
-                    ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
-                    int n = l1.getFunctionName().compareTo(l2.getFunctionName());
-                    if (n != 0) {
-                        return n;
+                    public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                        ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
+                        ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
+                        int n = l1.getFunctionName().compareTo(l2.getFunctionName());
+                        if (n != 0) {
+                            return n;
                     }
                     return l1.getStartOffset() - l2.getStartOffset();
                 }
@@ -531,13 +533,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             }
         } else {
             Set<DefaultMutableTreeNode> set = new TreeSet<DefaultMutableTreeNode>(new Comparator<DefaultMutableTreeNode>() {
-                public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
-                    ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
-                    ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
-                    int n = l1.getAnchorName().compareTo(l2.getAnchorName());
-                    if (n != 0) {
-                        return n;
-                    }
+                    public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                        ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
+                        ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
+                        int n = l1.getAnchorName().compareTo(l2.getAnchorName());
+                        if (n != 0) {
+                            return n;
+                        }
                     return l1.getStartOffset() - l2.getStartOffset();
                 }
 
@@ -791,8 +793,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             int index = root.getElementIndex(ev.getOffset());
             ScilabLeafElement line = (ScilabLeafElement) root.getElement(index);
             boolean broken = line.isBroken();
-            if (pane != null && (line.resetType() == ScilabLeafElement.FUN || broken != line.isBroken()
-                                 || (index > 0 && ((ScilabLeafElement) root.getElement(index - 1)).isBroken()))) {
+
+            boolean brokenString = line.isBrokenString();
+            boolean blockComment = line.isBlockComment();
+            if (line.resetType() == ScilabLeafElement.FUN || brokenString != line.isBrokenString()
+                || blockComment != line.isBlockComment()
+                || broken != line.isBroken()
+                || (index > 0 && ((ScilabLeafElement) root.getElement(index - 1)).isBroken())) {
                 pane.repaint();
             }
         }
@@ -873,6 +880,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         private FunctionScanner.FunctionInfo info;
         private boolean broken;
         private boolean brokenString;
+        private boolean blockComment;
 
         private boolean anchor;
         private String anchorName;
@@ -913,6 +921,12 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             if ((type & BROKEN) == BROKEN) {
                 broken = true;
                 type -= BROKEN;
+            } else {
+                broken = false;
+            }
+
+            if (lexerBlockComment.isLineFinishedByBlockComment(getStartOffset(), getEndOffset())) {
+                broken = true;
             } else {
                 broken = false;
             }
@@ -1024,6 +1038,23 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public void setBrokenString(boolean b) {
             brokenString = b;
+            if (b) {
+                broken = true;
+            }
+        }
+
+        /**
+         * @return if this line is broken
+         */
+        public boolean isBlockComment() {
+            return blockComment;
+        }
+
+        /**
+         * @param b true if this line is broken in a string
+         */
+        public void setBlockComment(boolean b) {
+            blockComment = b;
             if (b) {
                 broken = true;
             }

@@ -30,8 +30,6 @@ AM_CXXFLAGS = $(SCI_CXXFLAGS)
 AM_FFLAGS   = $(SCI_FFLAGS)
 AM_LDFLAGS  = $(SCI_LDFLAGS)
 
-changelogs = CHANGES
-
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
 bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli \
@@ -184,11 +182,11 @@ $(top_builddir)/etc/logging.properties \
 $(top_builddir)/etc/librarypath.xml
 
 infofilesdir=$(pkgdatadir)/
-infofiles_DATA = $(top_srcdir)/CHANGES \
+infofiles_DATA = $(top_srcdir)/CHANGES.md \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-BSD \
-$(top_srcdir)/README \
+$(top_srcdir)/README.md \
 $(top_builddir)/Version.incl
 
 valgrinddir=$(pkgdatadir)/tools/profiling

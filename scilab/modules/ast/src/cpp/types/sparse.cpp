@@ -1443,14 +1443,14 @@ GenericType* Sparse::remove(typed_list* _pArgs)
         }
     }
 
+    delete[] pbFull;
+
     if (bTooMuchNotEntire == true)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
-
-    delete[] pbFull;
 
     //find index to keep
     int iNotEntireSize          = pArg[iNotEntire]->getAs<GenericType>()->getSize();
@@ -3344,14 +3344,14 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
         }
     }
 
+    delete[] pbFull;
+
     if (bTooMuchNotEntire == true)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
-
-    delete[] pbFull;
 
     //find index to keep
     int iNotEntireSize          = pArg[iNotEntire]->getAs<GenericType>()->getSize();

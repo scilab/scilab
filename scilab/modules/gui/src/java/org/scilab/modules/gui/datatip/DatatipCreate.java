@@ -169,7 +169,7 @@ public class DatatipCreate {
         controller.setProperty(polyline, GraphicObjectProperties.__GO_DATATIPS__, var);
 
         if (viewInfo == 1 && PolylineData.isZCoordSet(polyline) == 1) {
-            controller.setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_3COMPONENT__, true);
+            controller.setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_DISPLAY_COMPONENTS__, "xyz");
             controller.setProperty(newDatatip, GraphicObjectProperties.__GO_CLIP_STATE__, 0);
         }
 
