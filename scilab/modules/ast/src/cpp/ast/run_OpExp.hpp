@@ -334,6 +334,25 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
         if (pResult == NULL)
         {
             // We did not have any algorithm matching, so we try to call OverLoad
+            e.getRight().accept(*this);
+            pITR = getResult();
+            if (isSingleResult() == false)
+            {
+                clearResult();
+                std::wostringstream os;
+                os << _W("Incompatible output argument.\n");
+                //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
+                throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
+            }
+
+            if (pITR->getType() == types::InternalType::ScilabImplicitList)
+            {
+                types::ImplicitList* pIR = pITR->getAs<types::ImplicitList>();
+                if (pIR->isComputable())
+                {
+                    pITR = pIR->extractFullMatrix();
+                }
+            }
             pResult = callOverloadOpExp(e.getOper(), pITL, pITR);
         }
 
