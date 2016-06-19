@@ -19,7 +19,7 @@
         <refpurpose>проверка, является ли переменная вектором</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t=isvector(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

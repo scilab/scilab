@@ -5,7 +5,7 @@
         <refpurpose>установка режима исключения с плавающей запятой</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             mod=ieee()
             ieee(mod)

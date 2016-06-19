@@ -5,7 +5,7 @@
         <refpurpose>преобразование функции в дерево</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t=macr2tree(function_name)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>v = inttrap([x,] s)</synopsis>
     </refsynopsisdiv>
     <refsection>

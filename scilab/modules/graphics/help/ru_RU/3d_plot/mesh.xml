@@ -19,7 +19,7 @@
         <refpurpose>график трёхмерной сетки</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>mesh(Z)
             mesh(X,Y,Z)
             mesh(...,&lt;ГлобальноеСвойство&gt;)

@@ -20,7 +20,7 @@
         <refpurpose>отсекает директорию и расширение от имён файлов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>processedfiles = basename(files[,flag [,flagexpand]])</synopsis>
     </refsynopsisdiv>
     <refsection>

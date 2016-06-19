@@ -19,7 +19,7 @@
         <refpurpose>произведение элементов массива с накоплением</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=cumprod(x)</synopsis>
         <synopsis>y=cumprod(x,orientation)</synopsis>
         <synopsis>y=cumprod(x,outtype)</synopsis>

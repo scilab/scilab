@@ -19,7 +19,7 @@
         <refpurpose>возвращает знак вещественных или комплексных значений вектора </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>s = csgn(z)</synopsis>
     </refsynopsisdiv>
     <refsection>

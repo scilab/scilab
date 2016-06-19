@@ -19,7 +19,7 @@
         <refpurpose>инициализирует N-мерную матрицу</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>M = hypermat(dims [,v])</synopsis>
     </refsynopsisdiv>
     <refsection>

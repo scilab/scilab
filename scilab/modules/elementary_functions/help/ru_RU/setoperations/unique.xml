@@ -19,7 +19,7 @@
         <refpurpose>удалить все повторяющиеся компоненты из вектора или матрицы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             [N ,k] = unique(M)
             [N ,k] = unique(M ,orient)

@@ -19,7 +19,7 @@
         <refpurpose>возврат опыта fftw</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[txt]=get_fftw_wisdom()</synopsis>
     </refsynopsisdiv>
     <refsection>

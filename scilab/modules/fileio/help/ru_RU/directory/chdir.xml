@@ -27,7 +27,7 @@
         <refpurpose>меняет текущую директорию Scilab'а</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>b=chdir(path)
             realpath=cd(path)
             cd path

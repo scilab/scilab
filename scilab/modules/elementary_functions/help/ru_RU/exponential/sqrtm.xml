@@ -19,7 +19,7 @@
         <refpurpose>матричный квадратный корень</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=sqrtm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

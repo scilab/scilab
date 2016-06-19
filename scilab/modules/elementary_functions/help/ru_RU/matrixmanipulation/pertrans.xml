@@ -19,7 +19,7 @@
         <refpurpose>одновременные перестановка с транспонированием</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[Y]=pertrans(X)</synopsis>
     </refsynopsisdiv>
     <refsection>

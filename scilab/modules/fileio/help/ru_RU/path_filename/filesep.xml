@@ -20,7 +20,7 @@
         <refpurpose>возвращает разделитель директорий для текущей платформы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>s = filesep()</synopsis>
     </refsynopsisdiv>
     <refsection>

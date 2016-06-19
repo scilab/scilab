@@ -19,7 +19,7 @@
         <refpurpose>поэлементная функция косинус</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[y]=cos(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>ключевое слово для циклов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             for variable=expression 
             instruction;

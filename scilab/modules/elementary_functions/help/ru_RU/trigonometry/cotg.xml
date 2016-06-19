@@ -19,7 +19,7 @@
         <refpurpose>котангенс</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[t] = cotg(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

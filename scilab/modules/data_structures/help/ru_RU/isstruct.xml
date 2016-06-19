@@ -19,7 +19,7 @@
         <refpurpose>проверяет: является ли переменная массивом-структурой</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>bool = isstruct(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

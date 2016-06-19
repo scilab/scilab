@@ -5,7 +5,7 @@
         <refpurpose>Возвращает количество входных/выходных аргументов в вызове функции</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[lhs [,rhs] ]=argn()
             lhs=argn(1)
             rhs=argn(2)

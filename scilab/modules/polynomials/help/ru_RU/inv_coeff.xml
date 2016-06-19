@@ -5,7 +5,7 @@
         <refpurpose>построение матрицы полиномов по их коэффициентам</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
     </refsynopsisdiv>
     <refsection>

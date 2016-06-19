@@ -20,7 +20,7 @@
         <refpurpose>преобразование из восьмеричной системы счисления в десятичную</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>d=oct2dec(o)</synopsis>
     </refsynopsisdiv>
     <refsection>

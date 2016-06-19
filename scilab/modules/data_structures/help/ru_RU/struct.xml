@@ -19,7 +19,7 @@
         <refpurpose>создаёт структуру</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>st = struct(field1, value1, field2, value2, ...)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>произведение элементов массива</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=prod(x)
             y=prod(x,orientation)
             y=prod(x,outtype)

@@ -20,7 +20,7 @@
         <refpurpose>установка опций для dae (программа решения дифференциальных алгоритмических уравнений)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>daeoptions()</synopsis>
     </refsynopsisdiv>
     <refsection>

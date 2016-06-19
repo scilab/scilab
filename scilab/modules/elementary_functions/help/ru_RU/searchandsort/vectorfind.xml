@@ -21,7 +21,7 @@
         <refpurpose>ищет в строках или столбцах матриц совпадения с вектором</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>ind = vectorfind(m,v[,job])</synopsis>
     </refsynopsisdiv>
     <refsection>

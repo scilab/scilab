@@ -20,7 +20,7 @@
         <refpurpose>дифференциальное алгебраическое уравнение</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>res = strcmpi(string_one, string_two)</synopsis>
     </refsynopsisdiv>
     <refsection>

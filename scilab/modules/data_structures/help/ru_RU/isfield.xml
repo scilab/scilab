@@ -19,7 +19,7 @@
         <refpurpose>проверяет: существует ли поле с указанным именем в структуре</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>bool = isfield(s, fieldname)</synopsis>
     </refsynopsisdiv>
     <refsection>

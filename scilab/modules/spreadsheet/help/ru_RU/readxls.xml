@@ -28,7 +28,7 @@
     
     <refsynopsisdiv>
         
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         
         <synopsis>sheets = readxls(file_path)</synopsis>
         

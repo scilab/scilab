@@ -19,7 +19,7 @@
         <refpurpose>побитовое сравнение переменных</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t=isequalbitwise(a,b)
             t=isequalbitwise(a,b,..)
         </synopsis>

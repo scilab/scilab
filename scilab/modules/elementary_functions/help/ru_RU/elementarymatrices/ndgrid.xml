@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ndgrid" xml:lang="ru">
-
-<refnamediv>
     
-    <refname>ndgrid</refname>
-    
-    <refpurpose>строит матриц или N-мерные массивы путем репликации данных векторов
+    <refnamediv>
         
-    </refpurpose>
-    
-</refnamediv>
-
-<refsynopsisdiv>
-    
-    <title>Последовательность вызова</title>
-    
-    <synopsis>
+        <refname>ndgrid</refname>
         
-        X, Y] = ndgrid(x,y)
-        
-        [X, Y, Z] = ndgrid(x,y,z)
-        
-        [X, Y, Z, T] = ndgrid(x,y,z,t)
-        
-        [X1, X2, ..., Xm] = ndgrid(x1,x2,...,xm)
-        
-    </synopsis>
-    
-</refsynopsisdiv>
-
-<refsection role="arguments">
-    
-    <title>Аргументы</title>
-    
-    <variablelist>
-        
-        <varlistentry>
+        <refpurpose>строит матриц или N-мерные массивы путем репликации данных векторов
             
-            <term>x, y, z, ...</term>
+        </refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>Синтаксис</title>
+        
+        <synopsis>
             
-            <listitem>
+            X, Y] = ndgrid(x,y)
+            
+            [X, Y, Z] = ndgrid(x,y,z)
+            
+            [X, Y, Z, T] = ndgrid(x,y,z,t)
+            
+            [X1, X2, ..., Xm] = ndgrid(x1,x2,...,xm)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection role="arguments">
+        
+        <title>Аргументы</title>
+        
+        <variablelist>
+            
+            <varlistentry>
                 
-                <para>векторы любых типов данных. Они могут иметь различные типы данных.</para>
+                <term>x, y, z, ...</term>
                 
-            </listitem>
+                <listitem>
+                    
+                    <para>векторы любых типов данных. Они могут иметь различные типы данных.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>X, Y, Z, ...</term>
-            
+            <varlistentry>
+                
+                <term>X, Y, Z, ...</term>
+                
                 <listitem>
                     
                     <para>Matrices in case of 2 input arguments, or hypermatrices otherwise.
@@ -59,8 +59,8 @@
                         They all have the same sizes: size(x,"*") rows, size(y,"*") columns, 
                         
                         size(z,"*") layers, etc.
-                  </para>
-                  <para>
+                    </para>
+                    <para>
                         
                         They have the datatypes of respective input vectors:
                         
@@ -71,52 +71,52 @@
                     </para>
                     
                 </listitem>
+                
+            </varlistentry>
             
-        </varlistentry>
+        </variablelist>
         
-    </variablelist>
+    </refsection>
     
-</refsection>
-
-<refsection role="description">
-    
-    <title>Описание</title>
-    
-    <para>
-        The first application of <function>ndgrid</function> is to build
+    <refsection role="description">
         
-        a grid of nodes meshing the 2D or 3D or N-D space according to 2, 3,
+        <title>Описание</title>
         
-        or more sets
+        <para>
+            The first application of <function>ndgrid</function> is to build
+            
+            a grid of nodes meshing the 2D or 3D or N-D space according to 2, 3,
+            
+            or more sets
+            
+            <literal>x</literal>, <literal> y</literal>, etc.. of  
+            
+            "template" coordinates sampled along each direction/dimension of the
+            
+            space that you want to mesh.
+            
+        </para>
         
-        <literal>x</literal>, <literal> y</literal>, etc.. of  
+        <para>
+            Hence, the matrix or hypermatrix <literal>X</literal> is made
+            
+            by replicating the vector <literal>x</literal> as all its columns; 
+            
+            the matrix or hypermatrix <literal>Y</literal> is made
+            
+            by replicating the vector <literal>y</literal> as all its rows;
+            
+            <literal>Z</literal> is made of replicating the vector 
+            
+            <literal>z</literal> along all its local thicknesses (3rd dimension); 
+            
+            etc
+            
+        </para>
         
-        "template" coordinates sampled along each direction/dimension of the
-        
-        space that you want to mesh.
-        
-    </para>
-    
-    <para>
-        Hence, the matrix or hypermatrix <literal>X</literal> is made
-        
-        by replicating the vector <literal>x</literal> as all its columns; 
-        
-        the matrix or hypermatrix <literal>Y</literal> is made
-        
-        by replicating the vector <literal>y</literal> as all its rows;
-        
-        <literal>Z</literal> is made of replicating the vector 
-        
-        <literal>z</literal> along all its local thicknesses (3rd dimension); 
-        
-        etc
-        
-    </para>
-    
-    <screen>
-        
-        <![CDATA[--> [X, Y] = ndgrid([1 3 4], [0 2 4 6])
+        <screen>
+            
+            <![CDATA[--> [X, Y] = ndgrid([1 3 4], [0 2 4 6])
  X  = 
    1.   1.   1.   1.
    3.   3.   3.   3.
@@ -127,41 +127,41 @@
    0.   2.   4.   6.
    0.   2.   4.   6.
 ]]>
-    </screen>
-    
-    <para>
+        </screen>
         
-        This replication scheme can be generalized to any number of dimensions,
-        
-        as well to any type of uniform data. Let's for instance consider 2
-        
-        attributes:
-        
-        <orderedlist>
+        <para>
             
-            <listitem>The first is a number, to be chosen from the vector say
-                
-                <literal>n = [ 3 7 ]</literal>
-                
-            </listitem>
+            This replication scheme can be generalized to any number of dimensions,
             
-            <listitem>The second is a letter, to be chosen from the vector 
-                
-                say <literal>c = ["a" "e" "i" "o" "u" "y"]</literal>
-                
-            </listitem>
+            as well to any type of uniform data. Let's for instance consider 2
             
-        </orderedlist>
+            attributes:
+            
+            <orderedlist>
+                
+                <listitem>The first is a number, to be chosen from the vector say
+                    
+                    <literal>n = [ 3 7 ]</literal>
+                    
+                </listitem>
+                
+                <listitem>The second is a letter, to be chosen from the vector 
+                    
+                    say <literal>c = ["a" "e" "i" "o" "u" "y"]</literal>
+                    
+                </listitem>
+                
+            </orderedlist>
+            
+            Then we want to build the set of all {n,c} possible pairs. It will
+            
+            just be the 2D grid:
+            
+        </para>
         
-        Then we want to build the set of all {n,c} possible pairs. It will
-        
-        just be the 2D grid:
-        
-    </para>
-    
-    <screen>
-        
-        <![CDATA[--> [N, C] = ndgrid([3 7],["a" "e" "i" "o" "u" "y"])
+        <screen>
+            
+            <![CDATA[--> [N, C] = ndgrid([3 7],["a" "e" "i" "o" "u" "y"])
  C  = 
 !a  e  i  o  u  y  !
 !a  e  i  o  u  y  !
@@ -170,39 +170,39 @@
    3.   3.   3.   3.   3.   3.
    7.   7.   7.   7.   7.   7.
 ]]>
-    </screen>
-    
-    <para>Then, the object(i,j) will have the properties 
+        </screen>
         
-        <literal>{n(i) c(j)}</literal> that now can be addressed with
+        <para>Then, the object(i,j) will have the properties 
+            
+            <literal>{n(i) c(j)}</literal> that now can be addressed with
+            
+            <literal>{N(i,j) C(i,j)}</literal>.
+            
+            This kind of grid may be useful to initialize an array of structures.
+            
+        </para>
         
-        <literal>{N(i,j) C(i,j)}</literal>.
+        <para>
+            Following examples show how to use <varname>X, Y, Z</varname> in
+            
+            most frequent applications.
+            
+        </para>
         
-        This kind of grid may be useful to initialize an array of structures.
         
-    </para>
+    </refsection>
     
-    <para>
-        Following examples show how to use <varname>X, Y, Z</varname> in
+    <refsection role="examples">
         
-        most frequent applications.
+        <title>Примеры</title>
         
-    </para>
-     
-    
-</refsection>
-
-<refsection role="examples">
-    
-    <title>Примеры</title>
-    
-    
-    
-    <para>
-        <emphasis role="bold">Example #1:</emphasis> 
-    </para>
-    
-    <programlisting role="example"><![CDATA[  
+        
+        
+        <para>
+            <emphasis role="bold">Example #1:</emphasis> 
+        </para>
+        
+        <programlisting role="example"><![CDATA[  
 // создание простой двухмерной координатной сетки
 x = linspace(-10,2,40);
 y = linspace(-5,5,40);
@@ -213,30 +213,30 @@ Z = X - 3*X.*sin(X).*cos(Y-4) ;
 clf()
 plot3d(x,y,Z, flag=[color("green") 2 4], alpha=7, theta=60); show_window()
  ]]>    </programlisting>
-    
-    <scilab:image>
         
-        x = linspace(-10,2,40);
+        <scilab:image>
+            
+            x = linspace(-10,2,40);
+            
+            y = linspace(-5,5,40);
+            
+            [X,Y] = ndgrid(x,y);
+            
+            Z = X - 3*X.*sin(X).*cos(Y-4) ;
+            
+            clf()
+            
+            plot3d(x,y,Z, flag=[color("green") 2 4], alpha=7, theta=60); show_window()
+            
+        </scilab:image>
         
-        y = linspace(-5,5,40);
         
-        [X,Y] = ndgrid(x,y);
         
-        Z = X - 3*X.*sin(X).*cos(Y-4) ;
+        <para>
+            <emphasis role="bold">Example #2:</emphasis> 
+        </para>
         
-        clf()
-        
-        plot3d(x,y,Z, flag=[color("green") 2 4], alpha=7, theta=60); show_window()
-        
-    </scilab:image>
-    
-    
-    
-    <para>
-        <emphasis role="bold">Example #2:</emphasis> 
-    </para>
-    
-    <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[  
 // создание простой трёхмерной координатной сетки
 nx = 10; ny = 6; nz = 4;
 x = linspace(0,2,nx);
@@ -263,73 +263,73 @@ clf()
 plot3d(XF,YF,ZF, flag=[0 6 3], 66, 61, leg="X@Y@Z")
 xtitle("Трёхмерная сетка!"); show_window()
  ]]></programlisting>
-    
-    <scilab:image localized="true">
         
-        nx = 10; ny = 6; nz = 4;
+        <scilab:image localized="true">
+            
+            nx = 10; ny = 6; nz = 4;
+            
+            x = linspace(0,2,nx);
+            
+            y = linspace(0,1,ny);
+            
+            z = linspace(0,0.5,nz);
+            
+            [X,Y,Z] = ndgrid(x,y,z);
+            
+            
+            
+            XF=[]; YF=[]; ZF=[];
+            
+            
+            
+            for k=1:nz
+            
+            [xf,yf,zf] = nf3d(X(:,:,k), Y(:,:,k), Z(:,:,k));
+            
+            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+            
+            end
+            
+            
+            
+            for j=1:ny
+            
+            [xf,yf,zf] = nf3d(matrix(X(:,j,:),[nx,nz]),..
+            
+            matrix(Y(:,j,:),[nx,nz]),..
+            
+            matrix(Z(:,j,:),[nx,nz]));
+            
+            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+            
+            end
+            
+            
+            
+            clf()
+            
+            plot3d(XF,YF,ZF, flag=[0 6 3], 66, 61, leg="X@Y@Z")
+            
+            xtitle("Трёхмерная сетка!"); show_window()
+            
+            
+            
+        </scilab:image>
         
-        x = linspace(0,2,nx);
-        
-        y = linspace(0,1,ny);
-        
-        z = linspace(0,0.5,nz);
-        
-        [X,Y,Z] = ndgrid(x,y,z);
         
         
+        <para>
+            <emphasis role="bold">Example #3: Create a table of digrams:</emphasis> 
+        </para>
         
-        XF=[]; YF=[]; ZF=[];
-        
-        
-        
-        for k=1:nz
-        
-        [xf,yf,zf] = nf3d(X(:,:,k), Y(:,:,k), Z(:,:,k));
-        
-        XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
-        
-        end
-        
-        
-        
-        for j=1:ny
-        
-        [xf,yf,zf] = nf3d(matrix(X(:,j,:),[nx,nz]),..
-        
-        matrix(Y(:,j,:),[nx,nz]),..
-        
-        matrix(Z(:,j,:),[nx,nz]));
-        
-        XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
-        
-        end
-        
-        
-        
-        clf()
-        
-        plot3d(XF,YF,ZF, flag=[0 6 3], 66, 61, leg="X@Y@Z")
-        
-        xtitle("Трёхмерная сетка!"); show_window()
-        
-        
-        
-    </scilab:image>
-    
-    
-    
-    <para>
-        <emphasis role="bold">Example #3: Create a table of digrams:</emphasis> 
-    </para>
-    
-    <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[  
 [c1, c2] = ndgrid(["a" "b" "c"], ["a" "b" "c" "d" "e" "f" "g" "h"])
 c1+c2
  ]]>    </programlisting>
-    
-    <screen>
         
-        <![CDATA[--> [c1, c2] = ndgrid(["a" "b" "c"], ["a" "b" "c" "d" "e" "f" "g" "h"])
+        <screen>
+            
+            <![CDATA[--> [c1, c2] = ndgrid(["a" "b" "c"], ["a" "b" "c" "d" "e" "f" "g" "h"])
  c2  = 
 !a  b  c  d  e  f  g  h  !
 !a  b  c  d  e  f  g  h  !
@@ -346,71 +346,71 @@ c1+c2
 !ba  bb  bc  bd  be  bf  bg  bh  !
 !ca  cb  cc  cd  ce  cf  cg  ch  !
 ]]>
-    </screen>
-    
-    
-    
-</refsection>
-
-<refsection role="see also">
-    
-    <title>Смотрите также</title>
-    
-    <simplelist type="inline">
+        </screen>
         
-        <member>
-            
-            <link linkend="meshgrid">meshgrid</link>
-            
-        </member>
         
-        <member>
-            
-            <link linkend="kron">kron</link>
-            
-        </member>
         
-        <member>
-            
-            <link linkend="feval">feval</link>
-            
-        </member>
-        
-        <member>
-            
-            <link linkend="eval3d">eval3d</link>
-            
-        </member>
-        
-        <member>
-            
-            <link linkend="nf3d">nf3d</link>
-            
-        </member>
-        
-    </simplelist>
+    </refsection>
     
-</refsection>
-
-<refsection role="history">
-    
-    <title>История</title>
-    
-    <revhistory>
+    <refsection role="see also">
         
-        <revision>
+        <title>Смотрите также</title>
+        
+        <simplelist type="inline">
             
-            <revnumber>6.0</revnumber>
-            
-            <revdescription>Extension to all homogeneous datatypes ([], booleans, encoded integers, polynomials, rationals, strings). Revision of the help page.
+            <member>
                 
-            </revdescription>
+                <link linkend="meshgrid">meshgrid</link>
+                
+            </member>
             
-        </revision>
+            <member>
+                
+                <link linkend="kron">kron</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="feval">feval</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="eval3d">eval3d</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="nf3d">nf3d</link>
+                
+            </member>
+            
+        </simplelist>
         
-    </revhistory>
+    </refsection>
     
-</refsection>
-
+    <refsection role="history">
+        
+        <title>История</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>6.0</revnumber>
+                
+                <revdescription>Extension to all homogeneous datatypes ([], booleans, encoded integers, polynomials, rationals, strings). Revision of the help page.
+                    
+                </revdescription>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
 </refentry>
 

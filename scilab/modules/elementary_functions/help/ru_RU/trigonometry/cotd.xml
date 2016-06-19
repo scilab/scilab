@@ -19,7 +19,7 @@
         <refpurpose>поэлементный котангенс, аргумент в градусах</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=cotd(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

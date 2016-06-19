@@ -5,7 +5,7 @@
         <refpurpose>уничтожает переменные</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             clear a b c
             clear('a','b','c')

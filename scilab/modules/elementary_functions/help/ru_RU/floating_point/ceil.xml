@@ -20,7 +20,7 @@
         <refpurpose>округление вверх</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=ceil(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

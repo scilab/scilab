@@ -20,7 +20,7 @@
         <refpurpose>определённый интеграл</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -5,7 +5,7 @@
         <refpurpose>защита переменных</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>n = predef()
             oldnew = predef(n)
             oldnew = predef('all')

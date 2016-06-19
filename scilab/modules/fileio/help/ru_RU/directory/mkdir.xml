@@ -20,7 +20,7 @@
         <refpurpose>создаёт новую директорию</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             mkdir(dirname)
             mkdir(parentdir, dirname)

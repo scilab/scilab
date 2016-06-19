@@ -19,7 +19,7 @@
         <refpurpose>внесение поля списка</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>setfield(i, x, l)</synopsis>
     </refsynopsisdiv>
     <refsection>

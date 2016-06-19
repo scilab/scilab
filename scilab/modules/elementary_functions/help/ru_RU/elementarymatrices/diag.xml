@@ -19,7 +19,7 @@
         <refpurpose>включение или исключение диагонали</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[y]=diag(vm, [k])</synopsis>
     </refsynopsisdiv>
     <refsection>

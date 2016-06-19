@@ -19,7 +19,7 @@
         <refpurpose>преобразование линейных индексов в подындексы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             [i1,i2,..] =ind2sub(dims,I)
             Mi = ind2sub(dims,I)

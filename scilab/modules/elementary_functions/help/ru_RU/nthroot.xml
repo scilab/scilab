@@ -19,7 +19,7 @@
         <refpurpose>n-ный корень вещественных чисел</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=ntrhoot(x,n)</synopsis>
     </refsynopsisdiv>
     <refsection>

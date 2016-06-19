@@ -20,7 +20,7 @@
         <refpurpose>формирует полное имя файла из частей</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>f = fullfile(varargin)</synopsis>
     </refsynopsisdiv>
     <refsection>

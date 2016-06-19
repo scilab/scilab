@@ -19,7 +19,7 @@
         <refpurpose>преобразование в строку ASCII</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>a = ascii(txt)
             txt = ascii(a)
         </synopsis>

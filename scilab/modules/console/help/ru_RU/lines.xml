@@ -23,7 +23,7 @@
         <refpurpose>строки и столбцы, используемые для отображения</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>lines(nl)
             lines(nl, nc)
             lines(ncl)

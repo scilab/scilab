@@ -19,7 +19,7 @@
         <refpurpose>поиск соответствий строки в векторе строк</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>row = grep(haystack, needle )
             [row, which] = grep(haystack, needle )
             row = grep(haystack, needle, [flag])

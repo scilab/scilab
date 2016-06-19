@@ -19,7 +19,7 @@
         <refpurpose>Сброс опыта fftw</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>fftw_forget_wisdom()</synopsis>
     </refsynopsisdiv>
     <refsection>

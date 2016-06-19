@@ -20,7 +20,7 @@
         <refpurpose>проверяет достигнут ли конец файла</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>err = meof(fd)</synopsis>
     </refsynopsisdiv>
     <refsection>

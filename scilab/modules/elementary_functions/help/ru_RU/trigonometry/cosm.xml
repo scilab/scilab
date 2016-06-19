@@ -19,7 +19,7 @@
         <refpurpose>matrix cosine function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t = cosm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>матрица, составленная из единиц</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             y=ones(m1,m2,...)
             y=ones(x)

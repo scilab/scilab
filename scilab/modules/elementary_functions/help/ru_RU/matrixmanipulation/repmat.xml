@@ -19,12 +19,12 @@
         <refpurpose>Дублирование массива и его мозаичное размещение</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
-          B = repmat(A, siz)
-          B = repmat(A, m)
-          B = repmat(A, m, n,...)
-      </synopsis>
+            B = repmat(A, siz)
+            B = repmat(A, m)
+            B = repmat(A, m, n,...)
+        </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
         <title>Аргументы</title>

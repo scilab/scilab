@@ -5,7 +5,7 @@
         <refpurpose>(\) левое матричное деление.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>X=A\B</synopsis>
     </refsynopsisdiv>
     <refsection>

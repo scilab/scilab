@@ -19,7 +19,7 @@
         <refpurpose>возвращает оконный режим Scilab'а</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>havewindow()</synopsis>
     </refsynopsisdiv>
     <refsection>

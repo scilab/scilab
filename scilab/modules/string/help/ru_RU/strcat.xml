@@ -19,7 +19,7 @@
         <refpurpose>связывает символьные строки</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             txt = strcat(strings [,string_added])
             txt = strcat(strings [,string_added, ["flag"]])

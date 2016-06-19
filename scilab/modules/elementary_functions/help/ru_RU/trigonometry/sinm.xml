@@ -19,7 +19,7 @@
         <refpurpose>функция матричного синуса</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t = sinm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

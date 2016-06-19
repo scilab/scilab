@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[xc, yc] = contour2di(x, y, z, nz)</synopsis>
     </refsynopsisdiv>
     <refsection>

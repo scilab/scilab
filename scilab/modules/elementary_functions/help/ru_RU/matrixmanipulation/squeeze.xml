@@ -19,7 +19,7 @@
         <refpurpose>удаляет единичные размерности гиперматрицы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>hypOut = squeeze(hypIn)</synopsis>
     </refsynopsisdiv>
     <refsection>

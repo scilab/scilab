@@ -19,7 +19,7 @@
         <refpurpose>преобразование регистра</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[y] = convstr(str, [flag])</synopsis>
     </refsynopsisdiv>
     <refsection>

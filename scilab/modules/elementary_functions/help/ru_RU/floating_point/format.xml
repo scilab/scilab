@@ -5,7 +5,7 @@
         <refpurpose>формат числа распечатываемого и выводимого на экран</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             format([type],[long])
             v = format()

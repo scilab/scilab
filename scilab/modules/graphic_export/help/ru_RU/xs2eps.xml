@@ -19,7 +19,7 @@
         <refpurpose>экспорт графиков в EPS</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             xs2eps(win_num, file_name [,orientation])
             xs2eps(fig, file_name [,orientation])

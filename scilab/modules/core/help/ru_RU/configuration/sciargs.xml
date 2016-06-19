@@ -5,7 +5,7 @@
         <refpurpose>аргументы командной строки Scilab'а</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>args = sciargs()</synopsis>
     </refsynopsisdiv>
     <refsection>

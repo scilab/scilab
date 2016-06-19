@@ -19,7 +19,7 @@
         <refpurpose>длина объекта</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>n = length(M)</synopsis>
     </refsynopsisdiv>
     <refsection>

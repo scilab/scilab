@@ -5,7 +5,7 @@
         <refpurpose>определение параметров чисел с плавающей запятой</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>pr = number_properties(prop)</synopsis>
     </refsynopsisdiv>
     <refsection>

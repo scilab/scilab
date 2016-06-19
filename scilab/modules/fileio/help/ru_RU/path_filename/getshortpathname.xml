@@ -20,7 +20,7 @@
         <refpurpose>получает короткое имя (только для Windows)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>shortpath=getshortgpathname(longpath)
             [shortpath,bOK]=getshortpathname(longpath)
         </synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>возвращает лексемы символьной строки</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>T = tokens(str [,delimiter])</synopsis>
     </refsynopsisdiv>
     <refsection>

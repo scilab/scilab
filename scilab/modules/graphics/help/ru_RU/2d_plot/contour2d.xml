@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             contour2d(x, y, z, nz, [style, strf, leg, rect, nax])
             contour2d(x, y, z, nz, &lt;opt_args&gt;)

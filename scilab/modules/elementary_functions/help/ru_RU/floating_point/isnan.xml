@@ -20,7 +20,7 @@
         <refpurpose>проверка на нечисловые элементы ("Nan")</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>r=isnan(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

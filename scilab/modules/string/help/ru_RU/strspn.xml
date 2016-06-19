@@ -19,7 +19,7 @@
         <refpurpose>получение интервала набора символов в строке</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>res = strspn(str1, str2)</synopsis>
     </refsynopsisdiv>
     <refsection>

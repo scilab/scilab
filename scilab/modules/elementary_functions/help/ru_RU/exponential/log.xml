@@ -19,7 +19,7 @@
         <refpurpose>натуральный логарифм</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=log(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>kdf = tokenpos(str [,delimiter])</synopsis>
     </refsynopsisdiv>
     <refsection>

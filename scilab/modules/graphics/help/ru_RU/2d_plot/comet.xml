@@ -18,7 +18,7 @@
         <refpurpose>двумерный график с анимированной кометой</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>comet(y)</synopsis>
         <synopsis>comet(x, y)</synopsis>
         <synopsis>comet(x, fun)</synopsis>

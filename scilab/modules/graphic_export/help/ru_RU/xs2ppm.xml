@@ -19,7 +19,7 @@
         <refpurpose>экспорт графиков в PPM</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             xs2ppm(win_num, file_name)
             xs2ppm(fig, file_name)

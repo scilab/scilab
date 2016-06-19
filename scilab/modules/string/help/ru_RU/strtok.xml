@@ -19,7 +19,7 @@
         <refpurpose>разделение строки на лексемы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>res = strtok(str, delimiters)</synopsis>
     </refsynopsisdiv>
     <refsection>

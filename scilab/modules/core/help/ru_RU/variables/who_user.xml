@@ -5,7 +5,7 @@
         <refpurpose>список имён пользовательских переменных</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>who_user()</synopsis>
     </refsynopsisdiv>
     <refsection>

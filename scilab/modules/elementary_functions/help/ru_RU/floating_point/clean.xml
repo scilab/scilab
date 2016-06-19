@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>B=clean(A [,epsa [,epsr]])</synopsis>
     </refsynopsisdiv>
     <refsection>

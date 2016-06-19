@@ -19,7 +19,7 @@
         <refpurpose>Приближение рациональными числами с плавающей запятой</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[N,D]=rat(X [,tol])
             Y=rat(X [,tol])
         </synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>нижняя треугольная часть матрицы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>tril(x [,k])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -21,7 +21,7 @@
     </refnamediv>
     
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=cumsum(x)</synopsis>
         <synopsis>y=cumsum(x,orientation)</synopsis>
         <synopsis>y=cumsum(x,outtype)</synopsis>

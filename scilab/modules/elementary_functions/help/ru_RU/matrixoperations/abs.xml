@@ -19,7 +19,7 @@
         <refpurpose>абсолютное значение, амплитуда</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t=abs(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

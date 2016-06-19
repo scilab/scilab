@@ -19,7 +19,7 @@
         <refpurpose>интегрирование выражения квадратурами</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>x=integrate(expr,v,x0,x1 [,atol [,rtol]])</synopsis>
     </refsynopsisdiv>
     <refsection>

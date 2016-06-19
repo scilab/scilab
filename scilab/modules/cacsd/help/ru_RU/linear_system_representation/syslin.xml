@@ -19,7 +19,7 @@
         <refpurpose>определение линейной системы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[sl]=syslin(dom,A,B,C [,D [,x0] ])
             [sl]=syslin(dom,N,D)
             [sl]=syslin(dom,H)

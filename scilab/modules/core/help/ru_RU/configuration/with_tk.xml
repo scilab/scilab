@@ -5,7 +5,7 @@
         <refpurpose>проверка: собран ли Scilab с TCL/TK</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>r = with_tk()</synopsis>
     </refsynopsisdiv>
     <refsection>

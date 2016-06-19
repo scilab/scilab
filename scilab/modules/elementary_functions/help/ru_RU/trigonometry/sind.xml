@@ -19,7 +19,7 @@
         <refpurpose>функция синус, аргумент в градусах.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t=sind(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>перемещает файл или директорию</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>movefile(source, destination)
             [status, message] = movefile(source, destination)
         </synopsis>

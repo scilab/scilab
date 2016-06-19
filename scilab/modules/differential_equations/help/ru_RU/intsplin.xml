@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>v = intsplin([x,] s)</synopsis>
     </refsynopsisdiv>
     <refsection>

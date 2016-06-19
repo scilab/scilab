@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>perl('perlfile')
             perl('perlfile',arg1,arg2,...)
             result = perl(...)

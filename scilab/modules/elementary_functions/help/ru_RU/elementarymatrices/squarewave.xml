@@ -19,7 +19,7 @@
         <refpurpose>формирует меандр с периодом 2*%pi</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>x=squarewave(t [,percent])</synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">

@@ -19,11 +19,11 @@
         <refpurpose>используется для мерцания графического объекта</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>twinkle
-twinkle(n)
-twinkle(h)
-twinkle(h,n)
+            twinkle(n)
+            twinkle(h)
+            twinkle(h,n)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
@@ -33,7 +33,7 @@ twinkle(h,n)
                 <term>h</term>
                 <listitem>
                     <para>указатель на графический объект. By default, the current graphic entity
-                      handled with <literal>gce()</literal> is considered.
+                        handled with <literal>gce()</literal> is considered.
                     </para>
                 </listitem>
             </varlistentry>

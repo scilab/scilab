@@ -19,7 +19,7 @@
         <refpurpose>наименьшее общее кратное (НОК)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[pp, fact] = lcm(p)</synopsis>
     </refsynopsisdiv>
     <refsection>

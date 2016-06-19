@@ -19,7 +19,7 @@
         <refpurpose>Устанавливает опыт fftw</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>set_fftw_wisdom(txt)</synopsis>
     </refsynopsisdiv>
     <refsection>
