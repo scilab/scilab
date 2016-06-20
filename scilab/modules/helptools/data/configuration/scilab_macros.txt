@@ -1792,7 +1792,6 @@ eval3dp
 fac3d
 fac3d1
 fchamp
-fcontour
 fgrayplot
 fplot2d
 fplot3d

@@ -358,20 +358,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="fcontour">fcontour</link>
-                </term>
-                <listitem>
-                    <para>courbes de niveau sur une surface en 3D définie par une fonction</para>
-                    <para>
-                        <emphasis role="bold">Exemple:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fcontour();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="hist3d">hist3d</link>
                 </term>
                 <listitem>

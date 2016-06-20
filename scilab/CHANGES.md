@@ -210,12 +210,13 @@ Removed Functions
 * `xclear` has been removed. Please use `clf` instead.
 * `fcontour2d` has been removed. Please use `contour2d` instead.
 * `plot2d1` has been removed. Please use `plot2d` instead.
-* `lex_sort` has been removed. Please use `gsort(..,"lr")` instead
+* `lex_sort` has been removed. Please use `gsort(..,"lr")` instead.
 * `gspec` was obsolete already in Scilab 4 and is now removed. Please use `spec` instead.
 * `gschur` was obsolete already in Scilab 4 and is now removed. Please use `schur` instead.
 * `havewindow` has been removed. Please use `getscilabmode()=="STD"` instead
 * `rafiter` was obsolete since Scilab 5.1 and is now removed.
 * `jconvMatrixMethod` was obsolete and is now removed. Please use `jautoTranspose` instead.
+* `fcontour` was obsolete since Scilab 4 and has been removed. Please use `contour` instead.
 
 * Symbolic module functions have been removed: `addf`, `cmb_lin`, `ldivf`, `mulf`, `rdivf`, `solve`, `subf`, `trianfml`, `trisolve` and `block2exp`.
 * Functionnalities based on former Scilab stack have been removed:

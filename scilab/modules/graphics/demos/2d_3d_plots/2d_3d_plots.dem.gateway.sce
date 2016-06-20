@@ -20,7 +20,6 @@ subdemolist = [                                   ..
 "plot3d1"        , "plot3d1.dem.sce"         ; ..
 "fplot3d1"       , "fplot3d1.dem.sce"        ; ..
 "contour"        , "contour.dem.sce"         ; ..
-"fcontour"       , "fcontour.dem.sce"        ; ..
 "contourf"       , "contourf.dem.sce"        ; ..
 "contourf 2"     , "contourf2.dem.sce"       ; ..
 "champ"          , "champ.dem.sce"           ; ..
