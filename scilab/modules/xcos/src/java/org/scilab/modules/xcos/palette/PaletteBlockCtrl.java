@@ -74,7 +74,7 @@ public final class PaletteBlockCtrl {
 
         DragSource dragSource = DragSource.getDefaultDragSource();
         dragSource.createDefaultDragGestureRecognizer(this.getView(),
-                DnDConstants.ACTION_COPY, DRAG_LISTENER);
+                DnDConstants.ACTION_COPY_OR_MOVE, DRAG_LISTENER);
     }
 
     /**

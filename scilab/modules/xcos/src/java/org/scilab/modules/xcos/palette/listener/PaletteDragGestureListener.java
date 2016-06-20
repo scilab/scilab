@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.palette.listener;
 
 import java.awt.Point;
 import java.awt.datatransfer.Transferable;
+import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.InvalidDnDOperationException;
@@ -48,6 +49,11 @@ public final class PaletteDragGestureListener implements DragGestureListener {
 
         if (paletteCtrl == null) {
             return;
+        }
+
+        // ctrl is not down ? clear selections
+        if (e.getDragAction() != DnDConstants.ACTION_COPY) {
+            PaletteCtrl.clearSelections();
         }
         blockCtrl.setSelected(true);
 
