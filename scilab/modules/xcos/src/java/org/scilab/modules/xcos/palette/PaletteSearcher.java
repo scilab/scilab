@@ -44,6 +44,7 @@ public final class PaletteSearcher {
     public PaletteSearcher(PaletteSearchManager psm) {
         mgr = psm;
         parser = new QueryParser("helpPage", mgr.getAnalyzer());
+        parser.setAllowLeadingWildcard(true);
     }
 
     /**
@@ -56,16 +57,16 @@ public final class PaletteSearcher {
             IndexReader reader = DirectoryReader.open(mgr.getIndexWriter(), true);
             IndexSearcher searcher = new IndexSearcher(reader);
 
-            // escape special characters (only on the first character)
-            String escaped = QueryParser.escape(str.substring(0, 1));
-            escaped += str.substring(1);
+            // escape special characters -- except *
+            String escaped = QueryParser.escape(str);
+            escaped = escaped.replaceAll("\\\\\\*", "*");
 
             Query query = parser.parse(escaped);
             TopDocs results  = searcher.search(query, XcosConstants.MAX_HITS);
             ScoreDoc[] hits = results.scoreDocs;
 
-            if (hits.length == 0 && !str.endsWith("*")) {
-                escaped += "*";
+            if (hits.length == 0 && !str.contains("*")) {
+                escaped = "*" + escaped + "*";
                 query = parser.parse(escaped);
                 results  = searcher.search(query, XcosConstants.MAX_HITS);
                 hits = results.scoreDocs;
