@@ -122,18 +122,22 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
             char* pstFile = wide_string_to_UTF8(filename_IN);
             Scierror(999, _("The file %s does not exist.\n"), pstFile);
             FREE(pstFile);
+            FREE(filename_IN);
+            filename_IN = NULL;
             return types::Function::Error;
         }
+    }
+    else
+    {
+        Scierror(999, _("%s: Cannot read file name.\n"), "xls_open");
+        return types::Function::Error;
     }
 
     TMPDIR = getTMPDIRW();
     wcscpy(TMP, TMPDIR);
 
-    if (TMPDIR)
-    {
-        FREE(TMPDIR);
-        TMPDIR = NULL;
-    }
+    FREE(TMPDIR);
+    TMPDIR = NULL;
 
     wcscat(TMP, sep);
     wcscat(TMP, xls_basename(filename_IN));
@@ -164,13 +168,8 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
             Scierror(999, _("%s: Cannot open file %s.\n"), "xls_open", pstFile);
         }
 
-        if (filename_IN)
-        {
-            FREE(filename_IN);
-            filename_IN = NULL;
-            FREE(pstFile);
-        }
-
+        FREE(filename_IN);
+        filename_IN = NULL;
         FREE(pstFile);
         return types::Function::Error;
     }
@@ -201,11 +200,8 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    if (filename_IN)
-    {
-        FREE(filename_IN);
-        filename_IN = NULL;
-    }
+    FREE(filename_IN);
+    filename_IN = NULL;
 
     xls_open(&iErr, &iId, &sst , &ns, &Sheetnames, &Abspos, &nsheets);
 

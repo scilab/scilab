@@ -22,11 +22,11 @@
 // rep  =
 
 if getos()=="Windows"
-    [rep,stat,stderr]=unix_g("fc "+SCI+"/CHANGES "+SCI+"/COPYING");
+    [rep,stat,stderr]=unix_g("fc "+SCI+"/CHANGES.md "+SCI+"/COPYING");
 
 else
 
-    [rep,stat,stderr]=unix_g("diff "+SCI+"/CHANGES "+SCI+"/COPYING");
+    [rep,stat,stderr]=unix_g("diff "+SCI+"/CHANGES.md "+SCI+"/COPYING");
 
 end
 

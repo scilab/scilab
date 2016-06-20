@@ -35,8 +35,10 @@ void ScilabToJava::sendAllListenedVariables()
     while (*vars)
     {
         sendVariable(std::string(*vars), true, refreshId);
+        delete[] *vars;
         vars++;
     }
+    delete[] vars;
 }
 
 bool ScilabToJava::sendVariableAsReference(const std::string & name, int handlerId)
@@ -130,7 +132,7 @@ bool ScilabToJava::sendVariable(const std::string & name, std::vector<int> & ind
     int rc;
     int * nbCoeffs = 0;
     char varName[5];
-    int varNameLen;
+    int varNameLen = 0;
 
     // Lists
     char listtype = 0;

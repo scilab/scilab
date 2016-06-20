@@ -686,7 +686,7 @@ types::Cell* ConfigVariable::getAllThreads(void)
     types::Cell *pcResult = new types::Cell(iSize, 1);
     std::list<types::ThreadId *>::iterator it;
 
-    for (auto thread : ConfigVariable::m_threadList)
+    for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it)
     {
         pcResult->set(i++, *it);
     }

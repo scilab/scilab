@@ -425,7 +425,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
         try
         {
-            Ret = Overload::call(L"%" + stType + L"_e", in, 1, out, this);
+            Ret = Overload::call(L"%" + stType + L"_e", in, 1, out, true);
         }
         catch (const InternalError& ie)
         {
@@ -435,7 +435,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
                 //tlist/mlist name are truncated to 8 first character
                 if (stType.size() > 8)
                 {
-                    Ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, this);
+                    Ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, true);
                 }
                 else
                 {
@@ -448,7 +448,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
                 // TList or Mlist
                 if (pValue->isList())
                 {
-                    Ret = Overload::call(L"%l_e", in, 1, out, this);
+                    Ret = Overload::call(L"%l_e", in, 1, out, true);
                 }
                 else
                 {
@@ -1303,7 +1303,7 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
         pValue->IncreaseRef();
         in.push_back(pValue);
 
-        types::Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_5", in, 1, out, this);
+        types::Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_5", in, 1, out, true);
 
         if (Ret != types::Callable::OK)
         {
@@ -1369,11 +1369,11 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
         types::Callable::ReturnValue Ret;
         if (bConjug)
         {
-            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_t", in, 1, out, this);
+            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_t", in, 1, out, true);
         }
         else
         {
-            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_0", in, 1, out, this);
+            Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_0", in, 1, out, true);
         }
 
         if (Ret != types::Callable::OK)
@@ -1860,51 +1860,38 @@ void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
         return;
     }
 
-    if (ad && xd && yd)
+    // If we get here we are certain that ad, xd & yd have been set
+    if (ac == 1 &&
+            ar == 1 &&
+            xr == yr &&
+            xc == yc)
     {
-        if (ac == 1 &&
-                ar == 1 &&
-                xr == yr &&
-                xc == yc)
-        {
-            //go !
-            int one = 1;
-            int size = xc * xr;
-            //Double* od = (Double*)yd->clone();
-            C2F(daxpy)(&size, ad->get(), xd->get(), &one, yd->get(), &one);
-            //setResult(od);
-            //yd->killMe();
-            xd->killMe();
-            ad->killMe();
-            CoverageInstance::stopChrono((void*)&e);
-            return;
-        }
-        else if (ac == xr && ar == yr && xc == yc)
-        {
-            char n = 'n';
-            double one = 1;
-            C2F(dgemm)(&n, &n, &ar, &xc, &ac, &one, ad->get(), &ar, xd->get(), &ac, &one, yd->get(), &ar);
-            xd->killMe();
-            ad->killMe();
-            CoverageInstance::stopChrono((void*)&e);
-            return;
-        }
-    }
-
-    if (yd)
-    {
-        yd->killMe();
-    }
-
-    if (xd)
-    {
+        //go !
+        int one = 1;
+        int size = xc * xr;
+        //Double* od = (Double*)yd->clone();
+        C2F(daxpy)(&size, ad->get(), xd->get(), &one, yd->get(), &one);
+        //setResult(od);
+        //yd->killMe();
         xd->killMe();
+        ad->killMe();
+        CoverageInstance::stopChrono((void*)&e);
+        return;
+    }
+    else if (ac == xr && ar == yr && xc == yc)
+    {
+        char n = 'n';
+        double one = 1;
+        C2F(dgemm)(&n, &n, &ar, &xc, &ac, &one, ad->get(), &ar, xd->get(), &ac, &one, yd->get(), &ar);
+        xd->killMe();
+        ad->killMe();
+        CoverageInstance::stopChrono((void*)&e);
+        return;
     }
 
-    if (ad)
-    {
-        ad->killMe();
-    }
+    yd->killMe();
+    xd->killMe();
+    ad->killMe();
 
     try
     {

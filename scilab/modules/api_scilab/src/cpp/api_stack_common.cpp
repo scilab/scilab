@@ -586,7 +586,7 @@ SciErr getNamedVarType(void *_pvCtx, const char *_pstName, int *_piType)
 /*--------------------------------------------------------------------------*/
 int isVarComplex(void *_pvCtx, int *_piAddress)
 {
-    SciErr sciErr;
+    SciErr sciErr = sciErrInit();
     int iType = 0;
     int iComplex = 0;
 

@@ -108,7 +108,16 @@ types::Function::ReturnValue sci_fieldnames(types::typed_list &in, int _iRetCoun
         }
     }
 
-    types::String *pAllFields = pIT->getAs<types::String>();
+    types::String *pAllFields;
+    if (pIT)
+    {
+        pAllFields = pIT->getAs<types::String>();
+    }
+    else
+    {
+        Scierror(999, _("Could not retrieve sub-type.\n"));
+        return types::Function::Error;
+    }
     wchar_t **pwcsAllStrings =  pAllFields->get();
     // shift to forget first value corresponding to type.
     //    ++pwcsAllStrings;

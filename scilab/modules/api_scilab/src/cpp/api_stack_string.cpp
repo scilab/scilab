@@ -159,9 +159,7 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
 /*--------------------------------------------------------------------------*/
 SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* const* _pstStrings)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
 
     // check variable name
     if (checkNamedVarFormat(_pvCtx, _pstName) == 0)
@@ -803,12 +801,12 @@ int allocSingleString(void* _pvCtx, int _iVar, int _iLen, const char** _pstStrin
     char* pstStrings = new char[_iLen];
 
     memset(pstStrings, ' ', _iLen);
-    _pstStrings[0] = pstStrings;
     if (_pstStrings == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "allocSingleString");
         return sciErr.iErr;
     }
+    _pstStrings[0] = pstStrings;
 
     pStr = new types::String(pstStrings);
 

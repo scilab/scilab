@@ -170,11 +170,8 @@ static BOOL AppendModules(char *xmlfilename)
             if (doc == NULL)
             {
                 printf(_("Error: Could not parse file %s.\n"), xmlfilename);
-                if (encoding)
-                {
-                    FREE(encoding);
-                    encoding = NULL;
-                }
+                FREE(encoding);
+                encoding = NULL;
                 return bOK;
             }
 
@@ -263,11 +260,8 @@ static BOOL AppendModules(char *xmlfilename)
         {
             printf(_("Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"), xmlfilename, "utf-8", encoding);
         }
-        if (encoding)
-        {
-            FREE(encoding);
-            encoding = NULL;
-        }
+        FREE(encoding);
+        encoding = NULL;
     }
     return bOK;
 }

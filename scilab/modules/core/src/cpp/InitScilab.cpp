@@ -602,6 +602,7 @@ void* scilabReadAndExecCommand(void* param)
         {
             scilabWriteW(parser.getErrorMessage());
             ThreadManagement::UnlockParser();
+            FREE(command);
             continue;
         }
 
@@ -988,6 +989,7 @@ static int batchMain(ScilabEngineInfo* _pSEI)
 #endif
     int ret = parser->getExitStatus();
     delete parser;
+    FREE(pwstFileName);
     return ret;
 }
 

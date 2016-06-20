@@ -113,6 +113,7 @@ import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import java.lang.reflect.Constructor;
+import java.rmi.server.UID;
 import java.util.Hashtable;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
@@ -670,11 +671,10 @@ public class XcosDiagram extends ScilabGraph {
 
             try {
                 Class<? extends BasicLink> klass = src.getClass();
-                Constructor<? extends BasicLink> cstr = klass.getConstructor(Long.TYPE);
-                link = cstr.newInstance(controller.createObject(Kind.LINK));
 
-                // allocate the associated geometry
-                link.setGeometry(new mxGeometry());
+                // call XXXXLink(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id)
+                Constructor<? extends BasicLink> cstr = klass.getConstructor(JavaController.class, Long.TYPE, Kind.class, Object.class, mxGeometry.class, String.class, String.class);
+                link = cstr.newInstance(controller, controller.createObject(Kind.LINK), src.getKind(), null, new mxGeometry(), src.getStyle(), new UID().toString());
             } catch (ReflectiveOperationException e) {
                 LOG.severe(e.toString());
             }
@@ -683,8 +683,7 @@ public class XcosDiagram extends ScilabGraph {
         }
 
         if (ret == null) {
-            ret = super.createEdge(parent, id, value, source, target, style);
-            LOG.warning("Creating a non typed edge");
+            LOG.warning("Unable to create an edge");
         }
 
         return ret;
