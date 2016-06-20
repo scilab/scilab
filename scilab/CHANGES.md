@@ -207,6 +207,7 @@ Removed Functions
 * `lex_sort` has been removed. Please use `gsort(..,"lr")` instead
 * `gspec` was obsolete already in Scilab 4 and is now removed. Please use `spec` instead.
 * `gschur` was obsolete already in Scilab 4 and is now removed. Please use `schur` instead.
+* `havewindow` has been removed. Please use `getscilabmode()=="STD"` instead
 
 * Symbolic module functions have been removed: `addf`, `cmb_lin`, `ldivf`, `mulf`, `rdivf`, `solve`, `subf`, `trianfml`, `trisolve` and `block2exp`.
 * Functionnalities based on former Scilab stack have been removed:
@@ -228,9 +229,10 @@ Bug Fixes
 
 * [Bug #13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597) fixed - `help format` claimed setting a number of digits instead of characters
 * [Bug #14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192) fixed - `g_margin` error-ed for double integrator.
+* [Bug #14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448) fixed - removed havewindow() was still documented
 * [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - `csim` failed when the system has no state.
 * [Bug #14586](http://bugzilla.scilab.org/show_bug.cgi?id=14586) fixed - Xcos simulation stop button did not work.
-* [Bug #14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587) fixed - Datatip textbox wrong clipping when loaded from *.scg file.
+* [Bug #14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587) fixed - Datatip textbox wrong clipping when loaded from `*.scg` file.
 
 ### In 6.0.0 beta-2 and earlier:
 

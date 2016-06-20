@@ -105,6 +105,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"xget", L"get");
     map.emplace(L"isoview", L"");
     map.emplace(L"xclear", L"");
+    map.emplace(L"havewindow", L"getscilabmode");
     map.emplace(L"datatipSetStruct", L"");
     map.emplace(L"datatipGetStruct", L"");
     map.emplace(L"fcontour2d", L"contour2d");
