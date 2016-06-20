@@ -197,6 +197,15 @@ macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-
 	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -quit -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
 	$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -quit -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
 
+strip-debug:
+	find $(top_builddir) -name '*.so.?.?.?' | while read file ; \
+	do \
+	    if [ ! -f $$file.debug ]; then \
+	        objcopy --only-keep-debug $$file $$file.debug; \
+	        objcopy --strip-debug $$file; \
+	        objcopy --add-gnu-debuglink=$$file.debug $$file; \
+	    fi \
+	done;
 
 check-jvm-dep:
 # Check that scilab-cli does not have a dependency on libjvm
@@ -540,7 +549,7 @@ pkgconfigdir = $(libdir)/pkgconfig
 # Files to install in Pkgconfig directory
 pkgconfig_DATA = scilab.pc
 
-.PHONY: macros localization doc
+.PHONY: macros localization doc strip-debug
 
 .NOTPARALLEL: macros doc
 
