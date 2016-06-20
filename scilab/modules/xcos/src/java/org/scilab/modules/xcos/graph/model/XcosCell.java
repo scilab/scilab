@@ -29,6 +29,7 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
+import java.rmi.server.UID;
 import java.util.regex.Pattern;
 
 /**
@@ -138,6 +139,10 @@ public class XcosCell extends mxCell {
     }
 
     public final void setId(JavaController controller, String id) {
+        if (id == null || id.isEmpty()) {
+            id = new UID().toString();
+        }
+
         super.setId(id);
         setMVCId(controller, id);
     }

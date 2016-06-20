@@ -16,6 +16,7 @@
 package org.scilab.modules.xcos.utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Vector;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -30,12 +31,16 @@ import java.util.stream.Stream;
 public class Stack<E> {
     private ArrayList<E> stack = new ArrayList<>();
 
-    public void pop() {
-        stack.remove(stack.size() - 1);
+    public E pop() {
+        return stack.remove(stack.size() - 1);
     }
 
     public void push(E e) {
         stack.add(e);
+    }
+
+    public void addAll(Collection<E> c) {
+        stack.addAll(c);
     }
 
     public E peek() {
