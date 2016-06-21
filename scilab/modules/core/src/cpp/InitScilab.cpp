@@ -1026,7 +1026,7 @@ static void checkForLinkerErrors(void)
 {
 #ifndef _MSC_VER
     /*
-       Depending on the linking order, sometime, libs are not loaded the right way.
+       Depending on the linking order, sometimes, libs are not loaded the right way.
        This can cause painful debugging tasks for packager or developer, we are
        doing the check to help them.
     */

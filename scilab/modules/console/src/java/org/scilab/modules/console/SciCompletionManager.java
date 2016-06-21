@@ -110,11 +110,11 @@ public class SciCompletionManager implements CompletionManager {
 
     /**
      * Associate an interpreting tool to this completion manager
-     * @param  interpretor an interpreting tool
+     * @param  interpreter an interpreting tool
      * @see com.artenum.rosetta.interfaces.core.CompletionManager#setInputParsingManager(com.artenum.rosetta.interfaces.core.InputParsingManager)
      */
     @Override
-    public void setInterpretor(GenericInterpreter interpretor) {
+    public void setInterpretor(GenericInterpreter interpreter) {
         // No need for Scilab implementation
     }
 

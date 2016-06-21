@@ -14,6 +14,7 @@ This changelog is most likely incomplete, as an enormous amount of code has chan
 [1]: http://mailinglists.scilab.org
 [2]: http://bugzilla.scilab.org
 
+
 Main new features
 -----------------
 
@@ -26,6 +27,7 @@ In summary, the main new features are:
 * New code productivity features: full-featured debugger, profiler / coverage tool, and "lint"-like commands.
 * Newsfeed, providing a continuous feed of news, tips, and general communication from the community and from Scilab Enterprises.
 * Licensing change: Scilab is now released under the terms of the GNU General Public License (GPL) v2.0 (but continues to be available under the terms of the CeCILL v2.1).
+
 
 Installation
 ------------
@@ -146,7 +148,7 @@ Help pages:
 
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`
-* rewriten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`, `brackets`
+* rewritten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`, `brackets`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
   - CACSD and Signal Processing help pages have been sorted up.
