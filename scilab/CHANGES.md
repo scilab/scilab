@@ -145,7 +145,7 @@ Help pages:
 
 * CACSD and Signal Processing help pages have been sorted up.
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`, `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`
-* rewriten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`.
+* rewriten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`.
 * resorted: `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
 * added: support to `valign=".."` and `style="white-space:nowrap"` attributes for `<td>` and `<th>` tags
 
@@ -205,7 +205,7 @@ Removed Functions
 * `lex_sort` has been removed. Please use `gsort(..,"lr")` instead
 
 * Symbolic module functions have been removed: `addf`, `cmb_lin`, `ldivf`, `mulf`, `rdivf`, `solve`, `subf`, `trianfml`, `trisolve` and `block2exp`.
-* Functionnalities based on former Scilab stack have been removed: 
+* Functionnalities based on former Scilab stack have been removed:
   - `comp`, `errcatch`, `iserror`, `fun2string`, `getvariablesonstack`, `gstacksize`, `macr2lst`, `stacksize`, `code2str` and `str2code`.
   - `-mem` launching option (used to set `stacksize` at startup).
 
@@ -222,10 +222,9 @@ Bug Fixes
 
 ### In 6.0.0:
 
+* [Bug #13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597) fixed - `help format` claimed setting a number of digits instead of characters
 * [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - csim failed when the system has no state.
-
 * [Bug #14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587) fixed - Datatip textbox wrong clipping when loaded from *.scg file.
- 
 
 ### In 6.0.0 beta-2 and earlier:
 
