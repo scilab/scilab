@@ -229,7 +229,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
         }
 
         /**
-         * Set the filter to apply to the dictionnary
+         * Set the filter to apply to the dictionary
          * @param filterToSet the filter to set
          */
         public void setFilter(String filterToSet) {

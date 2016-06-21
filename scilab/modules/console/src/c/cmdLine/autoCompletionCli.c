@@ -52,7 +52,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                                   char *lineBeforeCaret, char *lineAfterCaret, char *filePattern, char *defaultPattern,
                                   char **wk_buf, unsigned int *cursor, unsigned int *cursor_max);
 static int CopyLineAtPrompt(char **wk_buf, char *line, unsigned int *cursor, unsigned int *cursor_max);
-static void separateFilesDirectories(char** dictionnary, int size, char*** files, int* sizeFiles, char*** directories, int* sizeDirectories);
+static void separateFilesDirectories(char** dictionary, int size, char*** files, int* sizeFiles, char*** directories, int* sizeDirectories);
 
 static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern, char **wk_buf, unsigned int *cursor,
                                 unsigned int *cursor_max);
