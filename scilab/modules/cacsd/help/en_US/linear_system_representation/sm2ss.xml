@@ -46,7 +46,7 @@
         <para>
             Utility function: converts the system matrix:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 Sm = [-sI + A   B;
      [    C     D]
  ]]></programlisting>
@@ -57,6 +57,9 @@ Sm = [-sI + A   B;
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="systmat">systmat</link>
+            </member>
             <member>
                 <link linkend="ss2des">ss2des</link>
             </member>

@@ -58,6 +58,12 @@ Sm = [-sI + A   B;
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="systmat">systmat</link>
+            </member>
+            <member>
+                <link linkend="sm2des">sm2des</link>
+            </member>
+            <member>
                 <link linkend="ss2des">ss2des</link>
             </member>
         </simplelist>
