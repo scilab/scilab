@@ -694,7 +694,7 @@ void Sparse::whoAmI() SPARSE_CONST
     std::cout << "types::Sparse";
 }
 
-Sparse* Sparse::clone(void) const
+Sparse* Sparse::clone(void)
 {
     return new Sparse(*this);
 }
@@ -714,7 +714,7 @@ bool Sparse::zero_set()
 }
 
 // TODO: handle precision and line length
-bool Sparse::toString(std::wostringstream& ostr) const
+bool Sparse::toString(std::wostringstream& ostr)
 {
     int iPrecision = ConfigVariable::getFormatSize();
     std::wstring res;
@@ -2909,7 +2909,7 @@ SparseBool::~SparseBool()
 #endif
 }
 
-bool SparseBool::toString(std::wostringstream& ostr) const
+bool SparseBool::toString(std::wostringstream& ostr)
 {
     ostr << ::toString(*matrixBool, 0);
     return true;
@@ -2920,7 +2920,7 @@ void SparseBool::whoAmI() SPARSE_CONST
     std::cout << "types::SparseBool";
 }
 
-SparseBool* SparseBool::clone(void) const
+SparseBool* SparseBool::clone(void)
 {
     return new SparseBool(*this);
 }

@@ -99,7 +99,7 @@ public:
     {
         return ARRAYLISTVAR;
     }
-    inline bool isArrayListVar()
+    inline bool isArrayListVar() const
     {
         return true;
     }

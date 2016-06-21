@@ -143,16 +143,8 @@ struct EXTERN_AST Sparse : GenericType
     */
     void whoAmI() SPARSE_CONST;
     bool isExtract() const;
-    Sparse* clone(void) const;
-    Sparse* clone(void)
-    {
-        return const_cast<Sparse const*>(this)->clone();
-    }
-    bool toString(std::wostringstream& ostr) const;
-    bool toString(std::wostringstream& ostr)
-    {
-        return const_cast<Sparse const*>(this)->toString(ostr);
-    }
+    Sparse* clone(void);
+    bool toString(std::wostringstream& ostr);
 
     /* post condition: dimensions are at least _iNewRows, _iNewCols
        preserving existing data.
@@ -517,18 +509,10 @@ struct EXTERN_AST SparseBool : GenericType
     }
     void finalize();
 
-    bool toString(std::wostringstream& ostr) const;
-    bool toString(std::wostringstream& ostr)
-    {
-        return const_cast<SparseBool const*>(this)->toString(ostr);
-    }
+    bool toString(std::wostringstream& ostr);
 
     /* Config management and GenericType methods overrides */
-    SparseBool* clone(void) const;
-    SparseBool* clone(void)
-    {
-        return const_cast<SparseBool const*>(this)->clone();
-    }
+    SparseBool* clone(void);
 
     SparseBool* resize(int _iNewRows, int _iNewCols);
     SparseBool* reshape(int* _piNewDims, int _iNewDims);
