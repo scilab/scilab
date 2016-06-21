@@ -14,44 +14,41 @@
  *
  */
 
-package org.scilab.modules.xcos.block.listener;
+package org.scilab.modules.xcos.block.custom;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.input.InputPort;
 
 import com.mxgraph.model.mxICell;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfDouble;
+import org.scilab.modules.xcos.VectorOfInt;
 
 /**
- * Change the port label on ipar change.
- *
- * This listener must be installed on "integerParameters" property.
+ * Change the port label accordingly to the ipar values.
  */
-@SuppressWarnings(value = { "serial" })
-public class ProdPortLabelingListener implements PropertyChangeListener,
-    Serializable {
+public class ProdPortLabeler {
 
     private static final String NOT_PRINTED_LABEL = "\u00d7";
-    private static ProdPortLabelingListener instance;
+    private static ProdPortLabeler instance;
 
     /**
      * Default constructor
      */
-    public ProdPortLabelingListener() {
+    public ProdPortLabeler() {
     }
 
     /**
      * @return the shared instance
      */
-    public static ProdPortLabelingListener getInstance() {
+    public static ProdPortLabeler getInstance() {
         if (instance == null) {
-            instance = new ProdPortLabelingListener();
+            instance = new ProdPortLabeler();
         }
         return instance;
     }
@@ -60,15 +57,9 @@ public class ProdPortLabelingListener implements PropertyChangeListener,
      * Change the label of the port according to the integer parameters
      * property.
      *
-     * @param evt
-     *            the event
-     * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+     * @param source the source of the block
      */
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        final BasicBlock source = (BasicBlock) evt.getSource();
-        final ScilabDouble data = (ScilabDouble) evt.getNewValue();
-
+    public void updateLabel(final BasicBlock source) {
         /**
          * Get the input port children
          */
@@ -84,19 +75,21 @@ public class ProdPortLabelingListener implements PropertyChangeListener,
         /**
          * Set the ports labels
          */
-        // FIXME
-        //        for (InputPort port : ports) {
-        //            final double gain;
-        //
-        //            if (data.isEmpty()
-        //                    || data.getRealPart().length < port.getOrdering()) {
-        //                gain = 1;
-        //            } else {
-        //                gain = data.getRealPart()[port.getOrdering() - 1][0];
-        //            }
-        //
-        //            port.setValue(getLabel(gain));
-        //        }
+        JavaController controller = new JavaController();
+        VectorOfInt ipar = new VectorOfInt(ports.size());
+        controller.getObjectProperty(source.getUID(), Kind.BLOCK, ObjectProperties.IPAR, ipar);
+
+        for (int i = 0; i < ports.size(); i++) {
+            final int gain;
+
+            if (ipar.size() < i) {
+                gain = 1;
+            } else {
+                gain = ipar.get(i);
+            }
+
+            ports.get(i).setValue(getLabel(gain));
+        }
 
         /**
          * Check if all the values are equal to the default one.

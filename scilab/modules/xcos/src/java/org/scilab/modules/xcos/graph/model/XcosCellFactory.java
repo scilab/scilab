@@ -56,7 +56,7 @@ import com.mxgraph.util.mxPoint;
 import java.lang.reflect.Constructor;
 import java.util.EnumMap;
 import org.scilab.modules.xcos.block.SplitBlock;
-import org.scilab.modules.xcos.block.positionning.RoundBlock;
+import org.scilab.modules.xcos.block.custom.RoundBlock;
 ;
 
 /**

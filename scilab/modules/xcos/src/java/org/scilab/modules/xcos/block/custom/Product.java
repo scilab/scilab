@@ -14,26 +14,25 @@
  *
  */
 
-package org.scilab.modules.xcos.block.positionning;
+package org.scilab.modules.xcos.block.custom;
 
 import com.mxgraph.model.mxGeometry;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.listener.SumPortLabelingListener;
+import org.scilab.modules.xcos.block.custom.ProdPortLabeler;
 
 /**
- * Implement the SUMMATION function.
- *
- * This class just install a {@link SumPortLabelingListener} on each instance.
+ * Implement the PRODUCT_f block.
  */
-@SuppressWarnings(value = { "serial" })
-public class Summation extends BasicBlock {
+public class Product extends BasicBlock {
 
-    /**
-     * Default constructor
-     */
-    public Summation(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+    public Product(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
         super(controller, uid, kind, value, geometry, style, id);
+    }
+
+    @Override
+    public void updateBlockView() {
+        ProdPortLabeler.getInstance().updateLabel(this);
     }
 }

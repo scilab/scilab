@@ -14,25 +14,25 @@
  *
  */
 
-package org.scilab.modules.xcos.block.positionning;
+package org.scilab.modules.xcos.block.custom;
 
 import com.mxgraph.model.mxGeometry;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
-import org.scilab.modules.xcos.port.output.OutputPort;
 
 import com.mxgraph.model.mxICell;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 
 /**
- * The VoltageSensor block has only one specificity : it's port position.
+ * The Ground block has only one specificity : it's port position.
  */
 @SuppressWarnings(value = { "serial" })
-public class VoltageSensorBlock extends BasicBlock {
+public class GroundBlock extends BasicBlock {
 
     /** Default constructor */
-    public VoltageSensorBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+    public GroundBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
         super(controller, uid, kind, value, geometry, style, id);
     }
 
@@ -42,20 +42,14 @@ public class VoltageSensorBlock extends BasicBlock {
      * @param child
      *            the port to add.
      * @param index
-     *            the port index
-     * @return the newly inserted cell
+     *            the index of the add
+     * @return the inserted cell
      */
     @Override
     public mxICell insert(mxICell child, int index) {
-        if (child instanceof OutputPort) {
-            final OutputPort port = (OutputPort) child;
-
-            // Only orientate the first output port
-            if (index == 0) {
-                port.setOrientation(Orientation.SOUTH);
-            }
+        if (child instanceof BasicPort) {
+            ((BasicPort) child).setOrientation(Orientation.NORTH);
         }
-
         return super.insert(child, index);
     }
 }

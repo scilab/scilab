@@ -233,6 +233,7 @@ Bug Fixes
 * [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - `csim` failed when the system has no state.
 * [Bug #14586](http://bugzilla.scilab.org/show_bug.cgi?id=14586) fixed - Xcos simulation stop button did not work.
 * [Bug #14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587) fixed - Datatip textbox wrong clipping when loaded from `*.scg` file.
+* [Bug #14593](http://bugzilla.scilab.org/show_bug.cgi?id=14593) fixed - Signs are no more drawn in BIGSOM and PRODUCT components.
 
 ### In 6.0.0 beta-2 and earlier:
 

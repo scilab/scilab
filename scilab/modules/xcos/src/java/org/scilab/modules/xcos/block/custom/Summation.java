@@ -14,25 +14,28 @@
  *
  */
 
-package org.scilab.modules.xcos.block.positionning;
+package org.scilab.modules.xcos.block.custom;
 
 import com.mxgraph.model.mxGeometry;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.listener.SumPortLabelingListener;
+import org.scilab.modules.xcos.block.custom.SumPortLabeler;
 
 /**
- * Implement the BIGSOM_f function.
- *
- * This class just install a {@link SumPortLabelingListener} on each instance.
+ * Implement the SUMMATION function.
  */
-@SuppressWarnings(value = { "serial" })
-public class BigSom extends BasicBlock {
+public class Summation extends BasicBlock {
+
     /**
      * Default constructor
      */
-    public BigSom(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+    public Summation(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
         super(controller, uid, kind, value, geometry, style, id);
+    }
+
+    @Override
+    public void updateBlockView() {
+        SumPortLabeler.getInstance().updateLabel(this);
     }
 }

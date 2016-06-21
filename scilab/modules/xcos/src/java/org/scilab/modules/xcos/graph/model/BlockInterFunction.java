@@ -25,12 +25,12 @@ import org.scilab.modules.xcos.block.io.ExplicitInBlock;
 import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
-import org.scilab.modules.xcos.block.positionning.BigSom;
-import org.scilab.modules.xcos.block.positionning.GroundBlock;
-import org.scilab.modules.xcos.block.positionning.Product;
-import org.scilab.modules.xcos.block.positionning.RoundBlock;
-import org.scilab.modules.xcos.block.positionning.Summation;
-import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
+import org.scilab.modules.xcos.block.custom.BigSom;
+import org.scilab.modules.xcos.block.custom.GroundBlock;
+import org.scilab.modules.xcos.block.custom.Product;
+import org.scilab.modules.xcos.block.custom.RoundBlock;
+import org.scilab.modules.xcos.block.custom.Summation;
+import org.scilab.modules.xcos.block.custom.VoltageSensorBlock;
 
 /**
  * List the specific block interface function name. <BR>

@@ -14,7 +14,7 @@
  *
  */
 
-package org.scilab.modules.xcos.block.positionning;
+package org.scilab.modules.xcos.block.custom;
 
 import com.mxgraph.model.mxGeometry;
 import org.scilab.modules.xcos.block.BasicBlock;
