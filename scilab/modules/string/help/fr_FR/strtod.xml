@@ -16,13 +16,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:id="strtod" xml:lang="en">
+          xmlns:scilab="http://www.scilab.org" xml:id="strtod" xml:lang="fr">
     <refnamediv>
         <refname>strtod</refname>
-        <refpurpose>parse and convert literal numbers STRings TO Decimal numbers</refpurpose>
+        <refpurpose>convertit chaque nombre décimal littéral (texte) en sa valeur numérique</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Syntaxe</title>
         <synopsis>
             d =  strtod(str [,decimalseparator])
             [d, tails] = strtod(str [,decimalseparator])
@@ -35,7 +35,7 @@
                 <term>str</term>
                 <listitem>
                     <para>
-                        single component, vector, or matrix of text (strings).
+                        texte unique, ou vecteur ou matrice de textes.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,7 +43,7 @@
                 <term>decimalseparator</term>
                 <listitem>
                     <para>
-                        the decimal separator chosen: "." (by default) or ",".
+                        caractère "." (par défaut) ou "," : séparateur décimal reconnu
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,7 +51,7 @@
                 <term>d</term>
                 <listitem>
                     <para>
-                        scalar, vector, or matrix of decimal numbers.
+                        scalaire, vecteur ou matrice de nombres décimaux.
                     </para>
                 </listitem>
             </varlistentry>
@@ -59,9 +59,11 @@
                 <term>tails</term>
                 <listitem>
                     <para>
-                        a string or matrix of strings: remaining parts of
-                        <varname>str</varname> after the numerical heads
-                        (if any).
+                        matrice texte de taille identique à celle de
+                        <varname>str</varname> : <literal>tails(i)</literal> est
+                        la fin (éventuelle) de <literal>str(i)</literal> non prise
+                        en compte pour établir <literal>d(i)</literal>, ou "" par
+                        défaut.
                     </para>
                 </listitem>
             </varlistentry>
@@ -70,44 +72,47 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            <code>[d, tails] = strtod(str)</code> parses each string of
-            <varname>str</varname> and tries to interpret its content as a decimal
-            number:
+            <code>[d, tails] = strtod(str)</code> interprète chaque élément de
+            <varname>str</varname> et tente de reconnaître un nombre décimal :
             <itemizedlist>
-                <listitem>If it succeeds, at least for the heading part of
-                    <varname>str(i)</varname>, the corresponding decimal number
-                    is returned in <varname>d(i)</varname>. If any, the
-                    trailing part of <varname>str(i)</varname> is ignored and
-                    returned in <varname>tails(i)</varname>; otherwise,
-                    <varname>tails(i)</varname> returns "".
+                <listitem>Si elle y parvient, au moins pour la partie initiale de
+                    <varname>str(i)</varname>, la valeur numérique décimale
+                    correspondante est enregistrée dans <varname>d(i)</varname>.
+                    Si d'autres caractères suivent la partie initiale interprétée
+                    de <varname>str(i)</varname>, ils sont alors ignorés et
+                    sont indiqués dans <varname>tails(i)</varname> ; sinon,
+                    <varname>tails(i)</varname> retourne "".
                 </listitem>
-                <listitem>Otherwise, <varname>d(i)</varname> returns
-                    <literal>%nan</literal>, and <varname>tails(i)</varname> is
-                    the whole <varname>str(i)</varname>.
+                <listitem>
+                    Si aucun nombre décimal n'est reconnu, <varname>d(i)</varname>
+                    retourne <literal>%nan</literal>, et <varname>tails(i)</varname>
+                    retourne <varname>str(i)</varname>.
                 </listitem>
             </itemizedlist>
         </para>
         <warning>
             <itemizedlist>
                 <listitem>
-                    Complex numbers: <function>strtod(..)</function> parses
-                    and returns only their real part, provided that it is writen
-                    before their imaginary part.
+                    Nombres complexes : <function>strtod(..)</function> reconnaît
+                    et retourne uniquement leur partie réelle (pour peu qu'elle
+                    soit écrite avant la partie imaginaire). Les symboles "i" ou
+                    "j" ne sont pas reconnus.
                 </listitem>
                 <listitem>
-                    <function>strtod(..)</function> does not acknowledge any
-                    thousands separator, neither " ", nor "," nor any other one.
+                    <function>strtod(..)</function> ne reconnaît aucun séparateur
+                    de milliers ou de millièmes, ni " ", ni "," ni aucun autre.
                 </listitem>
                 <listitem>
-                    <function>strtod(..)</function> parses strings only against
-                    decimal numbers. It does not interpret hexadecimal, octal
-                    or other radix strings.
+                    Seuls les nombres représentés en base 10 sont recherchés par
+                    <function>strtod(..)</function>. Les nombres représentés
+                    en binaire, octal, hexadécimal ou autre base de numération
+                    ne sont pas reconnus.
                 </listitem>
                 <listitem>
-                    <function>strtod(..)</function> does not interpret any
-                    name of Scilab predefined or user-defined variables or special
-                    strings for <literal>%inf</literal> or <literal>%nan</literal>.
-                    Hence we have:
+                    <function>strtod(..)</function> ne reconnaît le nom d'aucune
+                    variable numérique prédéfinie de Scilab ou de l'utilisateur,
+                    ni aucune représentation de <literal>%inf</literal>.
+                    Ainsi aurons-nous :
                     <programlisting role="example"><![CDATA[
 s = ["-0.034" "- 0.034"  "+1234.5678" "1234 5678"
      "-.764"  "+.432"    "12,231.7"   "-5.458,871"
@@ -118,7 +123,7 @@ s = ["-0.034" "- 0.034"  "+1234.5678" "1234 5678"
      ]
 strtod(s)
 ]]>             </programlisting>
-                <screen><![CDATA[  s  =
+                    <screen><![CDATA[  s  =
 !-0.034  - 0.034   +1234.5678  1234 5678   !
 !-.764   +.432     12,231.7    -5.458,871  !
 !1e43    -3.5d-12  -1.2+i      i+1.2       !
@@ -137,35 +142,35 @@ strtod(s)
 ]]></screen>
                 </listitem>
                 <listitem>
-                    <function>strtod(..)</function> does not interpret
-                    escape sequences <literal>"\n"</literal>, <literal>"\t"</literal>,
-                    etc.
+                    <function>strtod(..)</function> n'interprète aucun caractère
+                    spécial protégé tel que <literal>"\n"</literal> ou
+                    <literal>"\t"</literal>, etc.
                 </listitem>
                 <listitem>
-                    This function is based on the strtod C function which
-                    causes different behaviors on Windows and Linux. In fact, on
-                    Windows, it is possible to use "d" or "D" for exponents,
-                    but it is not possible to use hexadecimal numbers.
+                    Cette fonction est basée sur sa version existante en langage C,
+                    laquelle se comporte différemment sous Windows et sous Linux :
+                    Sous Windows, les caractères "d" ou "D" peuvent indifféremment
+                    être utilisés pour les exposants.
                 </listitem>
             </itemizedlist>
         </warning>
     </refsection>
-
+    
     <refsection role="examples">
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 s = ["123.556 abc " ".543"      "#58B" "0x73 " "%inf"
      "-1.47e-71"    "67,432.57" " 23,5" "-,57" "Inf" ]
 [num, trail] = strtod(s);
 num, "/"+trail+"/"
 
-// With "," as decimal separator:
+// Avec "," comme séparateur décimal :
 [num, trail] = strtod(s, ",");
 num, "/"+trail+"/"
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="evstr">evstr</link>
@@ -188,20 +193,20 @@ num, "/"+trail+"/"
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>History</title>
+        <title>Historique</title>
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
-                    Option decimalseparator introduced (SEP 97).
+                    Introduction de l'option "decimalseparator" (SEP 97).
                 </revremark>
             </revision>
             <revision>
                 <revnumber>5.4.1</revnumber>
                 <revremark>
-                    If <varname>str</varname> does not contain any numerical value,
-                    <varname>d</varname> now returns <literal>Nan</literal>
-                    instead of <literal>0</literal>.
+                    Si <varname>str(i)</varname> ne représente aucune valeur numérique,
+                    <varname>d(i)</varname> vaut désormais <literal>Nan</literal>
+                    au lieu de <literal>0</literal>.
                 </revremark>
             </revision>
         </revhistory>
