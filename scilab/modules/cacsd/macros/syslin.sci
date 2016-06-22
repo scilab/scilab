@@ -107,8 +107,8 @@ function [sl]=syslin(domain,a,b,c,d,x0)
             end
             [mx,nx]=size(x0);
             if mx<>na|nx<>min(na,1) then
-                error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
-                "number of elements of #%d must match the column dimension of #%d\n"),"syslin",6,1,6,1));
+                msg = _("%s: Incompatible input arguments #%d and #%d: number of elements of #%d must match the column dimension of #%d\n")
+                error(msprintf(msg,"syslin",6,1,6,1));
             end
         end
         if rhs<5  then

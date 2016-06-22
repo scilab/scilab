@@ -242,11 +242,13 @@ Bug Fixes
 * [Bug #14367](http://bugzilla.scilab.org/show_bug.cgi?id=14367) fixed - `edit_curv` failed opening due to a `[]+1` operation.
 * [Bug #14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448) fixed - removed havewindow() was still documented
 * [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - `csim` failed when the system has no state.
+* [Bug #14582](http://bugzilla.scilab.org/14582) fixed   - `gettext`or it alias `_()` were sometimes applied to broken literal strings
 * [Bug #14586](http://bugzilla.scilab.org/show_bug.cgi?id=14586) fixed - Xcos simulation stop button did not work.
 * [Bug #14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587) fixed - Datatip textbox wrong clipping when loaded from `*.scg` file.
 * [Bug #14590](http://bugzilla.scilab.org/show_bug.cgi?id=14590) fixed - Help pages in pt_BR directories had a wrong xml:lang="en" tag.
 * [Bug #14593](http://bugzilla.scilab.org/show_bug.cgi?id=14593) fixed - Signs are no more drawn in BIGSOM and PRODUCT components.
 * [Bug #14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - Matrix of strings concatenation with single quote led to a parser error.
+
 
 ### In 6.0.0 beta-2 and earlier:
 
