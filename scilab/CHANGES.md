@@ -228,7 +228,7 @@ Bug Fixes
 ---------
 
 ### In 6.0.0:
-
+* [Bug #9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912) fixed   - In case of missing translated help page, the default en_US was sometimes ignored
 
 * [Bug #11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959) fixed - Allow "Zoom Area" to be clicked out of axes
 * [Bug #12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110) fixed - Unable to zoom multiple axes at once
