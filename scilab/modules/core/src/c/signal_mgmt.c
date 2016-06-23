@@ -88,17 +88,9 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
 
     /* This list comes from OpenMPI sources */
 #ifdef HAVE_STRSIGNAL
-    /* On segfault, avoid calling strsignal which may allocate some memory (through gettext) */
     {
         char* str;
-        if (signum == 11)
-        {
-            str = "Segmentation fault";
-        }
-        else
-        {
-            str = strsignal(signum);
-        }
+        str = strsignal(signum);
         ret = snprintf(tmp, size, HOSTFORMAT "Signal: %s (%d)\n", stacktrace_hostname, getpid(), str, signum);
     }
 #else
@@ -489,6 +481,11 @@ void base_error_init(void)
             fprintf(stderr, "Could not set handler for signal %d\n", signals[j]);
         }
     }
+
+#ifdef HAVE_STRSIGNAL
+    // initialize the glibc internal string representation.
+    strsignal(SIGABRT);
+#endif
 }
 
 static void* watchdog_thread(void* arg)
