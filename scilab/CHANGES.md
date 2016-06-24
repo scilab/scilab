@@ -145,8 +145,11 @@ Help pages:
 
 * CACSD and Signal Processing help pages have been sorted up.
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`, `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`
-* rewriten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`.
+* rewriten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`
 * resorted: `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
+* translations added:
+  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`
+  - (ru): homepage
 * added: support to `valign=".."` and `style="white-space:nowrap"` attributes for `<td>` and `<th>` tags
 
 
@@ -224,10 +227,9 @@ Bug Fixes
 
 * [Bug #13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597) fixed - `help format` claimed setting a number of digits instead of characters
 * [Bug #14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192) fixed - `g_margin` error-ed for double integrator.
-* [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - csim failed when the system has no state.
+* [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - `csim` failed when the system has no state.
 * [Bug #14586](http://bugzilla.scilab.org/show_bug.cgi?id=14586) fixed - Xcos simulation stop button did not work.
 * [Bug #14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587) fixed - Datatip textbox wrong clipping when loaded from *.scg file.
-* [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - csim failed when the system has no state.
 
 ### In 6.0.0 beta-2 and earlier:
 

@@ -76,8 +76,9 @@
                           <listitem><literal>v(1)</literal> is the formatting mode:
                             0 for <literal>'e'</literal> and 1 for <literal>'v'</literal>
                           </listitem>
-                          <listitem><literal>v(2)</literal> is the width: Number of characters used
-                            to output each number.
+                          <listitem>
+                            <literal>v(2)</literal> is the width:
+                            Number of characters used to output each number.
                           </listitem>
                          </itemizedlist>
                      </para>
@@ -87,9 +88,11 @@
     </refsection>
     <refsection role="description">
         <title>Description</title>
-            <note>For complex numbers, each real and imaginary decimal part is output according to
-             format(..). The total width of a complex number is therefore roughly twice greater (+ 1
-              character for "i" symbol).
+            <note>
+            For complex numbers, each real and imaginary decimal part is
+            output according to <literal>format(..)</literal>. The total width
+            of a complex number is therefore roughly twice greater (+ 1 character
+            for "i" symbol).
             </note>
             <note>Encoded integers are never output according to the "e"xponential mode, even when
                 this formatting is the default mode set for decimal numbers. For them, the decimal
@@ -114,7 +117,7 @@
         <programlisting role="example"><![CDATA[
 // format() is not taken into account for encoded integers
 // -------------------------------------------------------
-format("e",6)
+format("e",8)
 int32(2.^grand(3,5,"uin",0,30))
 
 // format() impacts console's output, disp(), string(), sci2exp(),...
@@ -139,7 +142,7 @@ format("v",10)
 %pi*1e-217, s = string(%pi*1e-217)
 length(s) // the missing char is the implicit "+" sign
 
-// This is usefull to get aligned and fully informative display of matrices
+// This is useful to get aligned and fully informative display of matrices
 [ -1.234 %pi*1e-10 %nan ; %e*1e137 -%inf 54312]
 
 // Since Scilab 6.0, unrelevant digits displayed with wide format() are set to 0:
@@ -176,6 +179,9 @@ format("v",10) // reset
             </member>
             <member>
                 <link linkend="print">print</link>
+            </member>
+            <member>
+                <link linkend="clean">clean</link>
             </member>
             <member>
                 <link linkend="printf_conversion">C-like format</link>
