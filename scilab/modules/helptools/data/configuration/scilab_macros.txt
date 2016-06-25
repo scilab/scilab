@@ -146,7 +146,6 @@ ReadHBSparse
 ana_style
 cond2sp
 condestsp
-rafiter
 replace_Ix_by_Fx
 scisptdemo
 test_on_columns

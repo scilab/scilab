@@ -179,8 +179,6 @@ function demo_sparse_matrices()
     x2 = taucs_chsolve(Cp2,b2);
     t2_chol = toc();
     norm_res_chol_2 = norm(A2*x2-b2);
-    [x2r, r2] = rafiter(A2, Cp2, b2, x2);
-    norm_res_chol_2r = norm(r2);
     K2_norm2 = cond2sp(A2, Cp2);
     taucs_chdel(Cp2);
     mode(-1)
