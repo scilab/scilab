@@ -772,7 +772,7 @@ static wchar_t* replaceAndCountLines(const wchar_t* _pwstInput, int* _piLines, i
 
     // do not count '\n' if it's at the end of string
     // it will be manage by piNewLine
-    if (pwstFirstOutput[iPos - 1] == '\n')
+    if (iPos > 0 && pwstFirstOutput[iPos - 1] == '\n')
     {
         (*_piLines)--;
         (*_piNewLine) = 1;
