@@ -394,9 +394,9 @@ private:
             T ** xx = new T*[c];
             int i;
             xx[0] = x;
-            for (i = 1; i < c; xx[i] = xx[i++ - 1] + r)
+            for (i = 1; i < c; i++)
             {
-                ;
+                xx[i] = xx[i - 1] + r;
             }
             i = ScilabJavaObject::wrap(vm, xx, c, r);
             delete[] xx;
