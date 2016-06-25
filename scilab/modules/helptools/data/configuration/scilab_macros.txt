@@ -1496,7 +1496,6 @@ dscr
 dsimul
 dt_ility
 dtsi
-entropy
 epred
 equil
 equil1
