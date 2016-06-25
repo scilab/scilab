@@ -239,6 +239,7 @@ Bug Fixes
 ### In 6.0.0:
 * [Bug #2919](http://bugzilla.scilab.org/show_bug.cgi?id=2919) fixed - The `fchamp` example and demo were unclear and badly rendered
 * [Bug #5723](http://bugzilla.scilab.org/show_bug.cgi?id=5723) fixed   - Cross-references were missing between axis_properties and axes_properties help pages
+* [Bug #7649](http://bugzilla.scilab.org/show_bug.cgi?id=7649) fixed - `isempty` returned `%F` on `struct()`, `{}` or `list(,)` and was not shortcut
 * [Bug #7696](http://bugzilla.scilab.org/show_bug.cgi?id=7696) fixed   - The `parallel_run` help page was poorly formated
 * [Bug #9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912) fixed   - In case of missing translated help page, the default en_US was sometimes ignored
 * [Bug #9153](http://bugzilla.scilab.org/9153) fixed                   - The `isqualbitwise` help page was inaccurate and badly located
