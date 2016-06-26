@@ -19,12 +19,14 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>comet(y)</synopsis>
-        <synopsis>comet(x, y)</synopsis>
-        <synopsis>comet(x, fun)</synopsis>
-        <synopsis>comet(x, y, p)</synopsis>
-        <synopsis>comet(x, fun, p)</synopsis>
-        <synopsis>comet(...,"colors",c)</synopsis>
+        <synopsis>
+           comet(y)
+           comet(x, y)
+           comet(x, fun)
+           comet(x, y, p)
+           comet(x, fun, p)
+           comet(...,"colors",c)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>

@@ -128,6 +128,7 @@ plot2d()
 // [If you are a MacOS user, select the menu "Edit=> Clear figure" instead]
 mprintf("During this 30s sleep, click on the figure\n  then on its menu ""Edit => Figure properties""")
 // The graphical editor will be actually called only at wake-up
+sleep(30, "s")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

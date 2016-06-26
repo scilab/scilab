@@ -9,12 +9,14 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>comet3d(z)</synopsis>
-        <synopsis>comet3d(x,y,z)</synopsis>
-        <synopsis>comet3d(x,y,fun)</synopsis>
-        <synopsis>comet3d(x,y,z,p)</synopsis>
-        <synopsis>comet3d(x,y,fun,p)</synopsis>
-        <synopsis>comet3d(...,"colors",c)</synopsis>
+        <synopsis>
+           comet3d(z)
+           comet3d(x, y, z)
+           comet3d(x, y, fun)
+           comet3d(x, y, z, p)
+           comet3d(x, y, fun, p)
+           comet3d(...,"colors", c)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
