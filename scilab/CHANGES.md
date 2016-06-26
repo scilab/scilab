@@ -332,6 +332,7 @@ Bug Fixes
 * [#13990](http://bugzilla.scilab.org/show_bug.cgi?id=13990): `warning` with localization enabled some memory corruption
 * [#14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192): `g_margin` error-ed for double integrator.
 * [#14367](http://bugzilla.scilab.org/show_bug.cgi?id=14367): `edit_curv` failed opening due to a `[]+1` operation.
+* [#14395](http://bugzilla.scilab.org/show_bug.cgi?id=14395): `dir` displayed a []+".." warning when no subdirectory exists.
 * [#14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448): removed havewindow() was still documented
 * [#14513](http://bugzilla.scilab.org/show_bug.cgi?id=14513): `isqual` comparing two built-in functions yielded an error.
 * [#14527](http://bugzilla.scilab.org/show_bug.cgi?id=14527): Calling pathconvert function without parameters crashed Scilab.

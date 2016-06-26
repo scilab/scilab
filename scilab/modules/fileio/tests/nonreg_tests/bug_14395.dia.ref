@@ -1,0 +1,30 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 14395 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=14395
+//
+// <-- Short Description -->
+//    %dir_p on a directory with no subdir yielded a warning operation +
+is_created = createdir("TMPDIR/test_dir");
+if ( is_created ) then
+    fd = mopen("TMPDIR/test_dir/testfile.txt", "w");
+    mputl("this is a test", fd);
+end
+warning_mode = warning("query");
+warning("stop");
+ierr = 0;
+try
+    res = dir("TMPDIR/test_dir"); // no sub_dir
+    disp(res);
+catch
+    ierr = 1;
+end
+testfile.txt 
+assert_checkequal(ierr, 0);
+warning(warning_mode);
