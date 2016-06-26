@@ -145,14 +145,15 @@ Feature changes and additions
 Help pages:
 -----------
 
-* CACSD and Signal Processing help pages have been sorted up.
-* `See also` is used instead of `See Also`.
-* added: support to `valign=".."` and `style="white-space:nowrap"` attributes for `<td>` and `<th>` tags
-* fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`, `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`
-* rewriten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`, `setlanguage`, `sleep`
-* resorted: `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
-* translations added or rewriten:
-  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`
+* fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`,
+  `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`
+* rewriten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`
+* reorganized:
+  - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
+  - CACSD and Signal Processing help pages have been sorted up.
+  - Colormaps and GUI/Menus subsections created
+* translations added:
+  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`
   - (ru): homepage
 
 
