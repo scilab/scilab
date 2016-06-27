@@ -109,6 +109,16 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         if (in[2]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 3);
+            if (in[0]->isSparse())
+            {
+                delete pSparseOut;
+                delete[] pdReal;
+                delete[] pRows;
+                if (pdImg)
+                {
+                    delete[] pdImg;
+                }
+            }
             return types::Function::Error;
         }
 
@@ -117,6 +127,16 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 3);
+            if (in[0]->isSparse())
+            {
+                delete pSparseOut;
+                delete[] pdReal;
+                delete[] pRows;
+                if (pdImg)
+                {
+                    delete[] pdImg;
+                }
+            }
             return types::Function::Error;
         }
 
@@ -128,6 +148,16 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         if (in[1]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 2);
+            if (in[0]->isSparse())
+            {
+                delete pSparseOut;
+                delete[] pdReal;
+                delete[] pRows;
+                if (pdImg)
+                {
+                    delete[] pdImg;
+                }
+            }
             return types::Function::Error;
         }
 
@@ -136,6 +166,16 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 2);
+            if (in[0]->isSparse())
+            {
+                delete pSparseOut;
+                delete[] pdReal;
+                delete[] pRows;
+                if (pdImg)
+                {
+                    delete[] pdImg;
+                }
+            }
             return types::Function::Error;
         }
 

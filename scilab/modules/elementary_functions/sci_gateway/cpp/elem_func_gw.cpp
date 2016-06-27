@@ -159,16 +159,16 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
         {
             if (in[i]->isArrayOf() == false)
             {
-                delete[] * _piDims;
                 Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), _pstName.c_str(), i + 1);
+                delete[] * _piDims;
                 return false;
             }
 
             types::GenericType* pGTIn = in[i]->getAs<types::GenericType>();
             if (pGTIn->isScalar() == false || pGTIn->isComplex())
             {
-                delete[] * _piDims;
                 Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName.c_str(), i + 1);
+                delete[] * _piDims;
                 return false;
             }
 
@@ -179,8 +179,8 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
                     double dValue = in[i]->getAs<types::Double>()->get(0);
                     if (dValue >= INT_MAX)
                     {
-                        delete[] * _piDims;
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
+                        delete[] * _piDims;
                         return false;
                     }
                     (*_piDims)[i] = static_cast<int>(dValue);
@@ -209,8 +209,8 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
                     long long llValue = in[i]->getAs<types::Int64>()->get(0);
                     if (llValue >= INT_MAX)
                     {
-                        delete[] * _piDims;
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
+                        delete[] * _piDims;
                         return false;
                     }
                     (*_piDims)[i] = static_cast<int>(llValue);
@@ -221,8 +221,8 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
                     unsigned long long ullValue = in[i]->getAs<types::UInt64>()->get(0);
                     if (ullValue >= INT_MAX)
                     {
-                        delete[] * _piDims;
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
+                        delete[] * _piDims;
                         return false;
                     }
                     (*_piDims)[i] = static_cast<int>(ullValue);
@@ -230,6 +230,7 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
                 }
                 default:
                     Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName.c_str(), i + 1);
+                    delete[] * _piDims;
                     return false;
             }
         }
