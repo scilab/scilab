@@ -311,7 +311,10 @@ int CheckKindArray(fftw_r2r_kind *kind1, fftw_r2r_kind *kind2, int rank)
     {
         return (1);
     }
-
+    if ((kind1 == NULL) || (kind2 == NULL))
+    {
+        return (0);
+    }
     for (i = 0; i < rank; i++)
     {
         if (kind1[i]  != kind2[i])
