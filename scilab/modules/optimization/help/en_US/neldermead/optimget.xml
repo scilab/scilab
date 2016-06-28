@@ -8,7 +8,7 @@
         <refpurpose>Queries an optimization data structure.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             val = optimget ( options , key )
             val = optimget ( options , key , value )

@@ -19,14 +19,14 @@
         <refpurpose>cria matrizes ou arrays 3-D</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[X, Y] = meshgrid(x)
             [X, Y] = meshgrid(x,y)
             [X, Y, Z] = meshgrid(x,y,z)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x, y, z</term>
@@ -45,42 +45,26 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>...</para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x = -1:0.1:1;
-y = -1:0.1:1;
-
-[X,Y] = meshgrid(x,y);
-
-for i=1:size(X,1)
-  for j=1:size(X,2)
-    Z(i,j) = sinc(2*%pi*X(i,j)*Y(i,j));
-  end
-end
-
-surf(X,Y,Z)
- ]]></programlisting>
+[X, Y] = meshgrid(x);
+Z = sinc(2*%pi * X.*Y);
+surf(X, Y, Z)
+     ]]></programlisting>
         <scilab:image>
-            x = -1:0.1:1;
-            y = -1:0.1:1;
-            
-            [X,Y] = meshgrid(x,y);
-            
-            for i=1:size(X,1)
-            for j=1:size(X,2)
-            Z(i,j) = sinc(2*%pi*X(i,j)*Y(i,j));
-            end
-            end
-            
-            surf(X,Y,Z)
+          x = -1:0.1:1;
+          [X,Y] = meshgrid(x);
+          Z = sinc(2*%pi*X.*Y);
+          surf(X, Y, Z)
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ndgrid">ndgrid</link>

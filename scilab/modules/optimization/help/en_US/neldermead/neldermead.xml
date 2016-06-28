@@ -22,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             newobj = neldermead_new ()
             this = neldermead_destroy (this)

@@ -22,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             newobj = nmplot_new ()
             this = nmplot_destroy (this)

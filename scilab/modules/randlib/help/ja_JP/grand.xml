@@ -20,20 +20,60 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>Y=grand(m, n, dist_type [,p1,...,pk])
-            Y=grand(X, dist_type [,p1,...,pk])
-            Y=grand(n, dist_type [,p1,...,pk])
-            S=grand(action [,q1,....,ql])
+        <synopsis>
+            Y = grand(m, n, "bet", A, B)
+            Y = grand(m, n, "bin", N, p)
+            Y = grand(m, n, "nbn", N, p)
+            Y = grand(m, n, "chi", Df)
+            Y = grand(m, n, "nch", Df, Xnon)
+            Y = grand(m, n, "exp", Av)
+            Y = grand(m, n, "f", Dfn, Dfd)
+            Y = grand(m, n, "nf", Dfn, Dfd, Xnon)
+            Y = grand(m, n, "gam", shape, rate)
+            Y = grand(m, n, "nor", Av, Sd)
+            Y = grand(m, n, "geom", p)
+            Y = grand(m, n, "poi", mu)
+            Y = grand(m, n, "def")
+            Y = grand(m, n, "unf", Low, High)
+            Y = grand(m, n, "uin", Low, High)
+            Y = grand(m, n, "lgi")
+
+            Y = grand(m, n, o,..,"..",...)
+            Y = grand(X, ...)
+        </synopsis>
+
+        <synopsis>
+            Y = grand(n, "mn", Mean, Cov)
+            Y = grand(n, "markov", P, x0)
+            Y = grand(n, "mul", nb, P)
+            Y = grand(n, "prm", vect)
+        </synopsis>
+
+        <synopsis>
+            S = grand("getgen")
+                grand("setgen", gen)
+
+            S = grand("getsd")
+                grand("setsd", S)
+
+            grand("setcgn", G)
+            S = grand("getcgn")
+
+            S = grand("phr2sd", phrase)
+
+            grand("initgn", I)
+            grand("setall", s1, s2, s3, s4)
+            grand("advnst", K)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
         <variablelist>
             <varlistentry>
-                <term>m, n</term>
+                <term>m, n, o</term>
                 <listitem>
                     <para>
-                        整数, 出力行列 <literal>Y</literal>の大きさ
+                        integers, size of the wanted matrix / hypermatrix <varname>Y</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -41,21 +81,7 @@
                 <term>X</term>
                 <listitem>
                     <para>
-                        次元(つまり<literal>mx n</literal>) のみ使用される行列 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>dist_type</term>
-                <listitem>
-                    <para>生成する変量の分布の種類('bin', 'nor', 'poi', ...)を指定する文字列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>p1, ..., pk</term>
-                <listitem>
-                    <para>
-                        分布<literal>dist_type</literal>を完全に定義するために必要なパラメータ (実数または整数)
+                      次元(つまり<literal>mx n</literal>) のみ使用される行列
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,26 +89,8 @@
                 <term>Y</term>
                 <listitem>
                     <para>
-                        <literal>mx n</literal> ランダム出力行列
+                        depending on the input, a matrix or hypermatrix, with random entries.
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>action</term>
-                <listitem>
-                    <para>
-                        基底生成器に指定する処理を記述する文字列
-                        (カレントの基底生成器を変更するには'setgen',
-                        カレントの基底生成器の名前を取得するには 'getgen',
-                        カレントの基底生成器の状態(シード)を取得するには
-                        'getsd',など...)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>q1, ..., ql</term>
-                <listitem>
-                    <para>処理を定義するためにひるようなパラメータ (通常は1つの文字列)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

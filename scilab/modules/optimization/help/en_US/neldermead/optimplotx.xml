@@ -8,7 +8,7 @@
         <refpurpose>Plot the value of the parameters of an optimization algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             optimplotx ( x , optimValues , state )
         </synopsis>

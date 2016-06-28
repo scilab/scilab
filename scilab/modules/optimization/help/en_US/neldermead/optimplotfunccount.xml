@@ -8,7 +8,7 @@
         <refpurpose>Plot the number of function evaluations of an optimization algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             optimplotfunccount ( x , optimValues , state )
         </synopsis>

@@ -8,7 +8,7 @@
         <refpurpose>Plot the function value of an optimization algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             optimplotfval ( x , optimValues , state )
         </synopsis>

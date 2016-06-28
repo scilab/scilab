@@ -93,45 +93,15 @@
         
         <programlisting role="example"><![CDATA[ 
 x = -1:0.1:1;
-y = -1:0.1:1;
-
-[X,Y] = meshgrid(x,y);
-
-for i=1:size(X,1)
-  for j=1:size(X,2)
-    Z(i,j) = sinc(2*%pi*X(i,j)*Y(i,j));
-  end
-end
-
-surf(X,Y,Z)
- ]]></programlisting>
-        
+[X, Y] = meshgrid(x);
+Z = sinc(2*%pi * X.*Y);
+surf(X, Y, Z)
+     ]]></programlisting>
         <scilab:image>
-            
-            x = -1:0.1:1;
-            
-            y = -1:0.1:1;
-            
-            
-            
-            [X,Y] = meshgrid(x,y);
-            
-            
-            
-            for i=1:size(X,1)
-            
-            for j=1:size(X,2)
-            
-            Z(i,j) = sinc(2*%pi*X(i,j)*Y(i,j));
-            
-            end
-            
-            end
-            
-            
-            
-            surf(X,Y,Z)
-            
+          x = -1:0.1:1;
+          [X,Y] = meshgrid(x);
+          Z = sinc(2*%pi*X.*Y);
+          surf(X, Y, Z)
         </scilab:image>
         
     </refsection>

@@ -22,8 +22,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>str = dec2base(d, base)</synopsis>
-        <synopsis>str = dec2base(d, base, n)</synopsis>
+        <synopsis>
+            str = dec2base(d, base)
+            str = dec2base(d, base, n)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>

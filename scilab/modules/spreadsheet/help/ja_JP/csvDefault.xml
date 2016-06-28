@@ -17,9 +17,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>allvalues = csvDefault() </synopsis>
-        <synopsis>value = csvDefault(field) </synopsis>
-        <synopsis>bRes = csvDefault(field, value) </synopsis>
+        <synopsis>
+          allvalues = csvDefault()
+          value = csvDefault(field)
+          bRes = csvDefault(field, value)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -27,7 +29,7 @@
             <varlistentry>
                 <term>allvalues</term>
                 <listitem>
-                    <para>6行2列の文字列行列で, 全フィールドの値です. 
+                    <para>6行2列の文字列行列で, 全フィールドの値です.
                         最初の列には利用可能なフィールドが含まれ,
                         2番目の列には現在の値が含まれます.
                     </para>

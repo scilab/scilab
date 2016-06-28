@@ -8,7 +8,7 @@
         <refpurpose>Configures and returns an optimization data structure.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             options = optimset ()
             options = optimset ( funname )

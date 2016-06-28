@@ -39,30 +39,32 @@
             Y = grand(m, n, "unf", Low, High)
             Y = grand(m, n, "uin", Low, High)
             Y = grand(m, n, "lgi")
-            
+
             Y = grand(m, n, o,..,"..",...)
-            Y = grand(X,...)
-            
+            Y = grand(X, ...)
+        </synopsis>
+
+        <synopsis>
             Y = grand(n, "mn", Mean, Cov)
             Y = grand(n, "markov", P, x0)
             Y = grand(n, "mul", nb, P)
             Y = grand(n, "prm", vect)
-            
+        </synopsis>
+
+        <synopsis>
             S = grand("getgen")
-            grand("setgen", gen)
-            
-            S = grand("phr2sd", phrase)
-            
+                grand("setgen", gen)
+
             S = grand("getsd")
-            grand("setsd", S)
-            
+                grand("setsd", S)
+
             grand("setcgn", G)
             S = grand("getcgn")
-            
+
+            S = grand("phr2sd", phrase)
+
             grand("initgn", I)
-            
             grand("setall", s1, s2, s3, s4)
-            
             grand("advnst", K)
         </synopsis>
     </refsynopsisdiv>
