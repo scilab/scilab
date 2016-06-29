@@ -35,7 +35,7 @@ function atomsDisp(str)
         if ATOMSVERBOSE then
             mprintf("%s",strcat(str,ascii(10)));
         end
-    elseif strcmpi(atomsGetConfig("Verbose"),"True") == 0
+    elseif strcmp(atomsGetConfig("Verbose"),"True", "i") == 0
         mprintf("%s",strcat(str,ascii(10)));
     end
 

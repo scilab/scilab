@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -17,7 +17,7 @@
     <refnamediv>
         <refname>strcmpi</refname>
         <refpurpose>
-            compare character strings (case independent)
+            compare character strings (case independent). <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -62,10 +62,13 @@
             is equal to <varname>string_two</varname> (case independently),
             <literal>1</literal> if <varname>string_one</varname> is greater than <varname>string_two</varname> and <literal>-1</literal> else.
         </para>
+        <warning>
+            This function is obsolete. Please use <link linkend="strcmp">strcmp(s1,s1,"i")</link> instead.
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 TXT1 = ['scilab','SciLab';'Strcmp','STRcmp'];
 TXT2 = ['ScIlAb','sciLab';'sTrCmP','StrCMP'];
 strcmpi(TXT1,TXT2)
@@ -82,5 +85,16 @@ strcmpi(TXT1,'scilab')
                 <link linkend="strcmp">strcmp</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    Function tagged as obsolete. Will be removed from Scilab 6.1
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

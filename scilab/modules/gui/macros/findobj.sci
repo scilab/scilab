@@ -23,7 +23,7 @@ function h =  findobj(propertyName, propertyValue)
         if h <> [] then
             return;
         end
-    elseif strcmpi(propertyName, "tag") == 0 then
+    elseif strcmp(propertyName, "tag", "i") == 0 then
         h = get(propertyValue);
         if h <> [] then
             return;

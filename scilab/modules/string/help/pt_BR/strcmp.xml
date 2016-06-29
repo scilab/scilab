@@ -19,11 +19,11 @@
         <refpurpose>compara strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq¸Íncia de Chamamento</title>
+        <title>Seq√º√™ncia de Chamamento</title>
         <synopsis>res = strcmp(string_one,string_two,[,'i'])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Par‚metros</title>
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>string_one</term>
@@ -40,8 +40,8 @@
             <varlistentry>
                 <term>'i'</term>
                 <listitem>
-                    <para>par‚metro para realizaÁ„o de stricmp (caso independente), o
-                        valor padr„o È 's'
+                    <para>par√¢metro para realiza√ß√£o de stricmp caso independente, o
+                        valor padr√£o √© 's'
                     </para>
                 </listitem>
             </varlistentry>
@@ -54,16 +54,16 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>DescriÁ„o</title>
+        <title>Descri√ß√£o</title>
         <para>
             <literal>res = strcmp(string_one,string_two)</literal> retorna um
-            valor inteiro indicando a relaÁ„o entre os strings.
+            valor inteiro indicando a rela√ß√£o entre os strings.
         </para>
-        <para>Um valor maior que zero indica que o primeiro caractere n„o
+        <para>Um valor maior que zero indica que o primeiro caractere n√£o
             correspondente possui valor maior em <literal>string_one</literal> que em
             <literal>string_two</literal>
         </para>
-        <para>Um valor abaixo de zero indica o contr·rio.</para>
+        <para>Um valor abaixo de zero indica o contr√°rio.</para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -77,13 +77,13 @@ strcmp(TXT1,TXT2,'i')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver TambÈm</title>
+        <title>Ver Tamb√©m</title>
         <simplelist type="inline">
             <member>
-                <link linkend="strcat">strcat</link>
+                <link linkend="convstr">convstr</link>
             </member>
             <member>
-                <link linkend="strcmpi">strcmpi</link>
+                <link linkend="comparison">comparison</link>
             </member>
         </simplelist>
     </refsection>

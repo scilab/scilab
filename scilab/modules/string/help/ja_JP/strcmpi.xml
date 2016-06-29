@@ -21,7 +21,8 @@
         
         <refname>strcmpi</refname>
         
-        <refpurpose>文字列を比較 (大文字小文字を区別)</refpurpose>
+        <refpurpose>文字列を比較 (大文字小文字を区別) <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
         
     </refnamediv>
     
@@ -111,6 +112,9 @@
             
         </para>
         
+        <warning>
+            This function is obsolete. Please use <link linkend="strcmp">strcmp(s1,s1,"i")</link> instead.
+        </warning>
     </refsection>
     
     <refsection>
@@ -148,5 +152,16 @@ strcmpi(TXT1,'scilab')
         
     </refsection>
     
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    Function tagged as obsolete. Will be removed from Scilab 6.1
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
 

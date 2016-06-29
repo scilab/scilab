@@ -27,7 +27,6 @@ In summary, the main new features are:
 * Newsfeed, providing a continuous feed of news, tips, and general communication from the community and from Scilab Enterprises.
 * Licensing change: Scilab is now released under the terms of the GNU General Public License (GPL) v2.0 (but continues to be available under the terms of the CeCILL v2.1).
 
-
 Installation
 ------------
 
@@ -196,6 +195,8 @@ Obsolete functions or features
 * `maxfiles` is now obsolete.
 * `isoview(xmin,xmax,ymin,ymax)` is deprecated. Please use `isoview("on"), replot(..)` instead.
 * `eval3d` will be removed from Scilab 6.1. Please use `ndgrid` instead.
+* `strcmpi` is deprecated. Please use `strcmp(..,"i")`instead.
+
 
 Removed Functions
 -----------------

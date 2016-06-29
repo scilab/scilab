@@ -120,7 +120,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"numdiff", L"numderivative");
     map.emplace(L"derivative", L"numderivative");
     map.emplace(L"mvvacov", L"cov");
-
+    map.emplace(L"strcmpi", L"strcmp");
     return map;
 }
 
