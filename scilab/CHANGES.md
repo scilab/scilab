@@ -272,6 +272,7 @@ Bug Fixes
 * [Bug #14590](http://bugzilla.scilab.org/show_bug.cgi?id=14590) fixed - Help pages in pt_BR directories had a wrong xml:lang="en" tag.
 * [Bug #14593](http://bugzilla.scilab.org/show_bug.cgi?id=14593) fixed - Signs are no more drawn in BIGSOM and PRODUCT components.
 * [Bug #14602](http://bugzilla.scilab.org/show_bug.cgi?id=14602) fixed - WRITEC_f block didn't work for x86 machines.
+* [Bug #14632](http://bugzilla.scilab.org/show_bug.cgi?id=14632) fixed - Zooming moves drawn axis offscreen
 * [Bug #14640](http://bugzilla.scilab.org/show_bug.cgi?id=14640) fixed - `median(int8([10 60 80 100]))` returned -58 instead of 70 due to overflow when interpolating (60+80)>128
 * [Bug #14648](http://bugzilla.scilab.org/show_bug.cgi?id=14648) fixed - `isinf` returned `%F` for complex numbers with both real and imag infinite parts.
 * [Bug #14649](http://bugzilla.scilab.org/show_bug.cgi?id=14649) fixed - isnan(complex(%inf, %inf)) returned %F while the phase is NaN.
