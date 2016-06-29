@@ -64,7 +64,7 @@ See Also:	README		for a brief description
    4/ add routine to set/get the state
 
 */
-#include <math.h>             /* to use floor    */
+#include <math.h>               /* to use floor    */
 #include "others_generators.h"
 #include "sciprint.h"
 #include "localization.h"
@@ -108,7 +108,7 @@ be tested before z is assigned a value.
 */
 #define SWB(c,x,y,z) c = (y<0) ? (((z=x-y-c) < 0) || (x>=0)) : (((z=x-y-c) < 0) && (x>=0));
 
-static void advance_state_swb(void)
+static int advance_state_swb(void)
 {
     int i;
     /*
@@ -124,7 +124,7 @@ static void advance_state_swb(void)
     {
         SWB(swb_flag, swb_state[i  - N2], swb_state[i], swb_state[i]);
     }
-    swb_index = 0;
+    return swb_index = 0;
 }
 
 /* set_state_fsultra_simple initializes the state from 2 integers
@@ -166,14 +166,14 @@ int set_state_fsultra_simple(double s1, double s2)
         }
         swb_index = 0;
         swb_flag = 0;
-        advance_state_swb();  /* pour retrouver la même séquence que ds scilab V3.0 */
+        swb_index = advance_state_swb();  /* pour retrouver la mÃªme sÃ©quence que ds scilab V3.0 */
         is_init = 1;
-        return 1;
+        return swb_index;
     }
     else
     {
         sciprint(_("\nBad seed for fsultra, must be integers in [0, 2^32-1]\n"));
-        return 0;
+        return -1;
     }
 }
 
@@ -242,11 +242,15 @@ unsigned long int fsultra(void)
     {
         if ( ! is_init )
         {
-            set_state_fsultra_simple(DEFAULT_SEED1, DEFAULT_SEED2);
+            swb_index = set_state_fsultra_simple(DEFAULT_SEED1, DEFAULT_SEED2);
+            if (swb_index < 0)
+            {
+                return 0;
+            }
         }
         else
         {
-            advance_state_swb();
+            swb_index = advance_state_swb();
         }
     }
     return (swb_state[swb_index++] ^ (cong_state = cong_state * 69069));
