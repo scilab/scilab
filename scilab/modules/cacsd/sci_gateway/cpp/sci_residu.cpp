@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
 
                 pdblInR[i]  = new double*[iSize];
                 double* pdbl = pDblIn[i]->get();
-                for (int j = 0; j < iSize; i++)
+                for (int j = 0; j < iSize; j++)
                 {
                     pdblInR[i][j] = pdbl + j;
                 }
@@ -87,7 +87,7 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
                 {
                     pdblInI[i]  = new double*[iSize];
                     double* pdbl = pDblIn[i]->get();
-                    for (int j = 0; j < iSize; i++)
+                    for (int j = 0; j < iSize; j++)
                     {
                         pdblInI[i][j] = pdbl + j;
                     }
