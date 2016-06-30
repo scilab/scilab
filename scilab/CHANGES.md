@@ -245,6 +245,7 @@ Bug Fixes
 * [Bug #9153](http://bugzilla.scilab.org/9153) fixed                   - The `isqualbitwise` help page was inaccurate and badly located
 * [Bug #11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959) fixed - Allow "Zoom Area" to be clicked out of axes
 * [Bug #12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110) fixed - Unable to zoom multiple axes at once
+* [Bug #13583](http://bugzilla.scilab.org/show_bug.cgi?id=13583) fixed - `getd` loading a script including a `clear` instruction yielded an error
 * [Bug #13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597) fixed - `help format` claimed setting a number of digits instead of characters
 * [Bug #13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757) fixed - The toolbox menu dit not load properly ATOMS modules not autoloaded.
 * [Bug #13990](http://bugzilla.scilab.org/show_bug.cgi?id=13990) fixed - `warning` with localization enabled some memory corruption
