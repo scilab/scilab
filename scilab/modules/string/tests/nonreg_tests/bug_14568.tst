@@ -1,0 +1,21 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2016 - Scilab Enterprises
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 14568 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/14568
+//
+// <-- Short Description -->
+// strtod() fails in some locale conditions
+
+// No way to set locale for the current test => run another test with a modified locale
+
+setenv("LC_ALL", "fr_FR.UTF-8");
+
+status = test_run("string", "bug_14568_test", ["no_check_error_output", "no_check_ref", "short_summary"]);
+
+assert_checktrue(status);

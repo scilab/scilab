@@ -183,9 +183,6 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     fpsetmask(0);
 #endif
 
-    // Make sure the default locale is applied at startup
-    setlocale(LC_NUMERIC, "C");
-
     ThreadManagement::initialize();
     NumericConstants::Initialize();
     checkForLinkerErrors();
@@ -261,6 +258,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         //update %gui to true
         Add_Boolean_Constant(L"%gui", true);
     }
+
+    // Make sure the default locale is applied at startup
+    std::setlocale(LC_NUMERIC, "C");
 
     /* Standard mode -> init Java Console */
     if (_pSEI->iConsoleMode == 0)
