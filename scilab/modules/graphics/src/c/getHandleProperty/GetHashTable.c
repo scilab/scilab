@@ -226,6 +226,7 @@ static getHashTableCouple propertyGetTable[] =
     {"box_mode", get_tip_box_mode_property},
     {"label_mode", get_tip_label_mode_property},
     {"display_function", get_tip_disp_function_property},
+    {"detached_position", get_tip_detached_property},
     {"ambient_color", get_ambient_color_property},
     {"diffuse_color", get_diffuse_color_property},
     {"specular_color", get_specular_color_property},

@@ -171,6 +171,7 @@ GRAPHICS_IMPEXP void* get_tip_interp_mode_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_tip_box_mode_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_tip_label_mode_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_tip_disp_function_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_tip_detached_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_ambient_color_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_diffuse_color_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_specular_color_property(void* _pvCtx, int iObjUID);

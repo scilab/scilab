@@ -419,6 +419,9 @@ struct DatatipHandle
         m.emplace_back("mark_size_unit", std::vector<int>({SAVE_LOAD, __GO_MARK_SIZE_UNIT__, jni_int}));
         m.emplace_back("mark_foreground", std::vector<int>({SAVE_LOAD, __GO_MARK_FOREGROUND__, jni_int}));
         m.emplace_back("mark_background", std::vector<int>({SAVE_LOAD, __GO_MARK_BACKGROUND__, jni_int}));
+        m.emplace_back("detached_position", std::vector<int>({SAVE_LOAD, __GO_DATATIP_DETACHED_POSITION__, jni_double_vector, -1, -3}));
+        m.emplace_back("detached_mode", std::vector<int>({SAVE_LOAD, __GO_DATATIP_DETACHED_MODE__, jni_bool}));
+        m.emplace_back("line_style", std::vector<int>({SAVE_LOAD, __GO_LINE_STYLE__, jni_int}));
 
         //@ don't care
 

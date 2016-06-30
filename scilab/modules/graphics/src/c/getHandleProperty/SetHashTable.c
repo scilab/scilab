@@ -225,6 +225,7 @@ static setHashTableCouple propertySetTable[] =
     {"box_mode", set_tip_box_mode_property},
     {"label_mode", set_tip_label_mode_property},
     {"display_function", set_tip_disp_function_property},
+    {"detached_position", set_tip_detached_property},
     {"ambient_color", set_ambient_color_property},
     {"diffuse_color", set_diffuse_color_property},
     {"specular_color", set_specular_color_property},

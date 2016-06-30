@@ -285,3 +285,37 @@ int set_tip_disp_function_property(void* _pvCtx, int iObj, void* _pvData, int va
         return SET_PROPERTY_ERROR;
     }
 }
+
+int set_tip_detached_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
+{
+    BOOL status = FALSE;
+    int isDetached = nbRow * nbCol != 0;
+    double* detached_position = NULL;
+    if (valueType != sci_matrix)
+    {
+        Scierror(999, _("Wrong type for '%s' property: Matrix expected.\n"), "detached_position");
+        return SET_PROPERTY_ERROR;
+    }
+
+
+    if (nbRow * nbCol != 3 && isDetached)
+    {
+        Scierror(999, _("Wrong size for '%s' property: Matrix with length 3 or [] expected.\n"), "detached_position");
+        return SET_PROPERTY_ERROR;
+    }
+    status = setGraphicObjectProperty(iObj, __GO_DATATIP_DETACHED_MODE__, &isDetached, jni_bool, 1);
+    if (isDetached)
+    {
+        status = setGraphicObjectProperty(iObj, __GO_DATATIP_DETACHED_POSITION__, _pvData, jni_double_vector, 3);
+    }
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "detached_position");
+        return SET_PROPERTY_ERROR;
+    }
+}

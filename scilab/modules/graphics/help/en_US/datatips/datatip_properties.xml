@@ -130,6 +130,16 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>detached_position: </term>
+                <listitem>
+                    <para>
+                        This field sets the position to draw the datatip text box. When its value  is <literal>[]</literal>
+                        the datatip text box is drawn attached to its anchor point in the polyline, if its value is a 3-components
+                        vector <literal>[x y z]</literal>, the text box is drawn in the given position.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>font_foreground: </term>
                 <listitem>
                     <para>
@@ -151,6 +161,22 @@
             <varlistentry>
                 <term>background: </term>
                 <listitem>
+                    <para>See 
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>line_style: </term>
+                <listitem>
+                    <para>
+                        This field contains the <literal>line_style</literal> used in the line linking
+                        the datatip anchor point to its text box when <literal>detached_position</literal>
+                        is set.
+                    </para>
                     <para>See 
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>

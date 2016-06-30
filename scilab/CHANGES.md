@@ -149,6 +149,7 @@ Feature changes and additions
    - `bitxor` is now vectorized and fast.
 * The zoom rubber box now can start/finish from points lying outside the axes bounds.
 * The zoom rubber box now can select multiple and overlying axes at once. Changed behavior of scroll zoom, scrolling over overlying axes will zoom all of them together, using the CTRL key while scrolling will zoom all axes in the current figure.
+* The graphics entity "Datatip" has a new property `detached_position` which accepts `[]` or a 3-components vector to set the position in axes coordinates to draw the datatip text box.
 
 
 Help pages:

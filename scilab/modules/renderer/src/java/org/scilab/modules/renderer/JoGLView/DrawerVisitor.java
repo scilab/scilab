@@ -186,7 +186,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.legendDrawer = new LegendDrawer(this);
         this.fecDrawer = new FecDrawer(this);
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
-        this.datatipTextDrawer = new DatatipTextDrawer(canvas.getTextureManager());
+        this.datatipTextDrawer = new DatatipTextDrawer(canvas);
 
         visitorMap.put(figure.getIdentifier(), this);
     }
