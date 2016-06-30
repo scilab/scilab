@@ -52,7 +52,7 @@ w=sqrtm(x);norm(w*w-x,1)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="expm">expm</link>

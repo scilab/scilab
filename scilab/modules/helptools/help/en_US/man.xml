@@ -162,8 +162,8 @@ end
     Add here scilab instructions and comments
     ]]&gt;&lt;/programlisting&gt;
   &lt;/refsection&gt;
-  &lt;refsection&gt;
-    &lt;title&gt;See Also&lt;/title&gt;
+  &lt;refsection role="see-also"&gt;
+    &lt;title&gt;See also&lt;/title&gt;
     &lt;simplelist type="inline"&gt;
       &lt;member&gt;
         &lt;link linkend="add a reference name" &gt;add a reference&lt;/link&gt;
@@ -180,13 +180,13 @@ end
       &lt;member&gt;add another author name and it's reference&lt;/member&gt;
     &lt;/simplelist&gt;
   &lt;/refsection&gt;
-  &lt;refsection&gt;
+  &lt;refsection role="bibliography"&gt;
     &lt;title&gt;Bibliography&lt;/title&gt;
     &lt;para&gt;
       Add here the function bibliography
     &lt;/para&gt;
   &lt;/refsection&gt;
-  &lt;refsection&gt;
+  &lt;refsection role="history"&gt;
     &lt;title&gt;History&lt;/title&gt;
     &lt;revhistory&gt;
       &lt;revision&gt;
@@ -688,7 +688,7 @@ end
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="apropos">apropos</link>

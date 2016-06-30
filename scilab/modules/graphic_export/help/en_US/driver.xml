@@ -171,7 +171,7 @@ driver(previous_driver); // Bring back the previous behavior of Scilab
         </synopsis>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xinit">xinit</link>

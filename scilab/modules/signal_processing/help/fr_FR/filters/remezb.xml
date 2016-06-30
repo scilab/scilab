@@ -149,7 +149,7 @@ plot(.5*(0:255)/256,frmag(hn,256));
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="eqfir">eqfir</link>

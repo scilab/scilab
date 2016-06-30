@@ -116,7 +116,7 @@ plot3d1(t,t,sin(t)'*cos(t));  // color_map alterado (de volta ao padrão com 32 c
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

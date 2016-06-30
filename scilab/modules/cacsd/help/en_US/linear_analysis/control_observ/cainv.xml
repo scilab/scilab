@@ -170,7 +170,7 @@ X'*(A+J*C)*X = [0,0,A33,*,*,*]   X'*(B+J*D) = [*]
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="abinv">abinv</link>

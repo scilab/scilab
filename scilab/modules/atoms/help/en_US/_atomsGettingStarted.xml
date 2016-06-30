@@ -105,7 +105,7 @@ the package NISP (2.1) is currently loaded, It will removed at next Scilab resta
         </para>
     </refsection>
     <refsection>
-        <title>See Also</title>
+        <title>See also</title>
         <para>
             More information on the autoload
             system :

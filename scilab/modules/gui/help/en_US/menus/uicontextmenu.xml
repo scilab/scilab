@@ -28,7 +28,7 @@ hItem3 = uimenu("Label", "Item3", "Parent", hMenu, "Callback", "disp(""Item3 cli
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uicontrol">uicontrol</link>

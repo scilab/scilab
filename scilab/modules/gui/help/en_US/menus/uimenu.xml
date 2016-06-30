@@ -85,7 +85,7 @@ mm2=uimenu(mmathml,'label', '<mrow><msup><mn>a</mn><mi>2</mi></msup><mo>+</mo><m
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uimenu_properties">uimenu properties</link>

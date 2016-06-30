@@ -113,7 +113,7 @@ s1 = optimsimplex_destroy(s1);
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimsimplex_computefv">optimsimplex_computefv</link>

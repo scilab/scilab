@@ -98,7 +98,7 @@ atomsDepTreeShow("toolbox_6")
     <!-- See also -->
     <!-- ===================================================================== -->
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="atomsShow">atomsShow</link>

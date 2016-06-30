@@ -205,7 +205,7 @@ int sci_mysci_typesrhs(char * fname, void* pvApiCtx)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="api_common">getType</link>

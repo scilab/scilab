@@ -67,7 +67,7 @@ sl2=horner(sl,(2/0.2)*(z-1)/(z+1))   //Compare sl2 and sl1
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="horner">horner</link>

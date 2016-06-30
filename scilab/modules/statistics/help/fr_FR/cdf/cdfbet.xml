@@ -106,7 +106,7 @@ plot2d2("gnn",[0:10]',p,5,"111","Repartition",[0,0,10,1])
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cdfbin">cdfbin</link>

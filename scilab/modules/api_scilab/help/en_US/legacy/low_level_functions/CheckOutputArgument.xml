@@ -96,7 +96,7 @@ int sci_mychecklhs(char * fname)
 [A,B,C,D] = mychecklhs(); // ERROR, 4 output arguments]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="CheckInputArgument">CheckInputArgument</link>

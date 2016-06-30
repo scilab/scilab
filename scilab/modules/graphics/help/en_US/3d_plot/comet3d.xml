@@ -148,7 +148,7 @@ clf();comet3d(cos(t),sin(t),traj)
     ]]></programlisting>
     </refsection>
     <refsection>
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="comet">comet</link>

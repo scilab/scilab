@@ -77,7 +77,7 @@ ind2sub([2,3,2],1:12)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sub2ind">sub2ind</link>

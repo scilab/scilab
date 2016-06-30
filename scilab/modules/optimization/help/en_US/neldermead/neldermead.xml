@@ -2800,7 +2800,7 @@ nm = neldermead_destroy(nm);
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimbase_new">optimbase_new</link>

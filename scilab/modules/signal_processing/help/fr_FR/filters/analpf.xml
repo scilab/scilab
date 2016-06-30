@@ -201,7 +201,7 @@ title("Analog filters of order 7")
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="repfreq">repfreq</link>

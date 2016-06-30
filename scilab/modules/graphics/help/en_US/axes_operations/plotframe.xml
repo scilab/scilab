@@ -148,7 +148,7 @@ plot2d(x,y,5,"000")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot2d">plot2d</link>

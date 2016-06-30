@@ -65,7 +65,7 @@ real(residu(b*btild,z*a,atild)-2.9488038) //Complex case
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="pfss">pfss</link>

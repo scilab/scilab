@@ -144,7 +144,7 @@ unix_x("set");       // Results are displayed in a messagebox. Nothing in consol
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="host">host</link>

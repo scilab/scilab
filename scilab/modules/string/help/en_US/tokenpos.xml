@@ -75,7 +75,7 @@ first = part(str, kdf(1,1):kdf(1,2))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strindex">strindex</link>

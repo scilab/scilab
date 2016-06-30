@@ -71,7 +71,7 @@ isfield(s, ["b" "t" ""])  // =>  F  T  T  (anonymous fields can be detected)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="struct">struct</link>

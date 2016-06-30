@@ -60,7 +60,7 @@ covStop();                             // remove any instrumentation
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="covStop">covStop</link>

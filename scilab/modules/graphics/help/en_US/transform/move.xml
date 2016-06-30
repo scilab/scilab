@@ -84,7 +84,7 @@ move(p,t);
         
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="get">get</link>

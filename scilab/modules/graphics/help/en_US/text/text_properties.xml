@@ -314,7 +314,7 @@ t.text=["SCILAB","can write LaTeX :","$\frac{abc}{xyz}$";"or","MathML :",mathml]
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

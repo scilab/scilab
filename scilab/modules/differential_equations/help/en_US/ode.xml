@@ -558,7 +558,7 @@ y = ode(y0,t0,t,'myode');
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="odeoptions">odeoptions</link>

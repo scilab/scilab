@@ -64,7 +64,7 @@ f42 = get_figure_handle(42);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

@@ -188,7 +188,7 @@ xcos(scs_m);
  ]]></programlisting>
     </refsection>
     <refsection id="SeeAlso_xcos">
-        <title role="see also">See Also</title>
+        <title role="see also">See also</title>
         <itemizedlist>
             <listitem>
                 <link linkend="scicosim">scicosim</link>

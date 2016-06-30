@@ -227,7 +227,7 @@ xtitle("with frameflag=4")
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="square">square</link>

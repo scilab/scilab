@@ -127,7 +127,7 @@ for(j = 0 ; j < rowB_ ; j++)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="call_scilab">Call_Scilab</link>

@@ -176,7 +176,7 @@ xtitle("Least square fit to identify ode parameters")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optim">optim</link>

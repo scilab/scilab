@@ -509,7 +509,7 @@ d = eigs(fn, 10, [], k, 4, opts)
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="spec">spec</link>

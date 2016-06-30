@@ -458,7 +458,7 @@ T0 = compute_initial_temp(x0, quad , 0.7, 100, saparams);
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="compute_initial_temp">

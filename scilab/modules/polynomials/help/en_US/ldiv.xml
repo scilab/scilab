@@ -64,7 +64,7 @@ x3=ldiv(numer(wtfbis),denom(wtfbis),5)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="arl2">arl2</link>

@@ -51,7 +51,7 @@ demo_file_choice('SCI/demos/simulation/','no');
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="demo_function_choice">demo_function_choice</link>

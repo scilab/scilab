@@ -104,7 +104,7 @@ dirs=dirname(['SCI/etc/scilab.start', 'SCI/etc/scilab.quit'])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="basename">basename</link>

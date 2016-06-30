@@ -113,7 +113,7 @@ xstring(0.1,0.6,"a") //big alpha
         
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="titlepage">titlepage</link>

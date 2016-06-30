@@ -576,7 +576,7 @@ res= parallel_run([nb,nb],'rand_macro',nb,init_param('nb_workers', 2,'prologue',
         
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="typeof">typeof</link>

@@ -91,7 +91,7 @@ h=(1+2*%s)/poly(1:4,'s','c')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="coeff">coeff</link>

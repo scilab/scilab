@@ -75,7 +75,7 @@ intc(1+%i, 4-%i, f)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="intg">intg</link>

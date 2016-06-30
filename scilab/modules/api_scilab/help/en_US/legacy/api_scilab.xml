@@ -133,7 +133,7 @@
         </revhistory>
     </refsection>
     <refsection>
-        <title>See Also - API_Scilab</title>
+        <title>See also - API_Scilab</title>
         <simplelist type="inline">
             <member>
                 <link linkend="boolean_reading_API">boolean reading API</link>,
@@ -213,7 +213,7 @@
         </simplelist>
     </refsection>
     <refsection>
-        <title>See Also - API_Scilab list management</title>
+        <title>See also - API_Scilab list management</title>
         <simplelist type="inline">
             <member>
                 <link linkend="list_boolean_reading_API">list boolean reading API</link>
@@ -275,7 +275,7 @@
         </simplelist>
     </refsection>
     <refsection>
-        <title>See Also - call_scilab</title>
+        <title>See also - call_scilab</title>
         <simplelist type="inline">
             <member>
                 <link linkend="call_scilab">Call_Scilab</link>

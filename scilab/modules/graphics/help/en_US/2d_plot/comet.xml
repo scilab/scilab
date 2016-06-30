@@ -172,7 +172,7 @@ comet(linspace(-2,4,500), (%s-3)/(%s^3+2*%s^2+1))
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="color">color</link>
