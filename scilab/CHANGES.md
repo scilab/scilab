@@ -148,13 +148,13 @@ Help pages:
 
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`
-* rewritten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`, `brackets`
+* rewritten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
   - CACSD and Signal Processing help pages have been sorted up.
   - Colormaps and GUI/Menus subsections created
 * translations added:
-  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`
+  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`
   - (ru): homepage
 
 
@@ -256,8 +256,8 @@ Bug Fixes
 * [Bug #14590](http://bugzilla.scilab.org/show_bug.cgi?id=14590) fixed - Help pages in pt_BR directories had a wrong xml:lang="en" tag.
 * [Bug #14593](http://bugzilla.scilab.org/show_bug.cgi?id=14593) fixed - Signs are no more drawn in BIGSOM and PRODUCT components.
 * [Bug #14602](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - WRITEC_f block didn't work for x86 machines.
+* [Bug #14648](http://bugzilla.scilab.org/show_bug.cgi?id=14648) fixed - `isinf` returned `%F` for complex numbers with both real and imag infinite parts.
 * [Bug #14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - Matrix of strings concatenation with single quote led to a parser error.
-
 
 ### In 6.0.0 beta-2 and earlier:
 
