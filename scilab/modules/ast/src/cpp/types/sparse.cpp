@@ -1107,7 +1107,7 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
     //now you are sure to be able to insert values
     if (bNeedToResize)
     {
-        if (resize(iNewRows, iNewCols) == false)
+        if (resize(iNewRows, iNewCols) == NULL)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
@@ -1278,7 +1278,7 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
     //now you are sure to be able to insert values
     if (bNeedToResize)
     {
-        if (resize(iNewRows, iNewCols) == false)
+        if (resize(iNewRows, iNewCols) == NULL)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
@@ -2191,7 +2191,7 @@ int* Sparse::getColPos(int* _piColPos)
         mycopy_n(matrixReal->innerIndexPtr(), nonZeros(), _piColPos);
     }
 
-    for (int i = 0; i < nonZeros(); i++)
+    for (size_t i = 0; i < nonZeros(); i++)
     {
         _piColPos[i]++;
     }
@@ -2243,7 +2243,7 @@ template<typename S> struct GetReal: std::unary_function<typename S::InnerIterat
     }
 };
 template<> struct GetReal< Eigen::SparseMatrix<std::complex<double >, Eigen::RowMajor > >
-    : std::unary_function<Sparse::CplxSparse_t::InnerIterator, double>
+        : std::unary_function<Sparse::CplxSparse_t::InnerIterator, double>
 {
     double operator()( Sparse::CplxSparse_t::InnerIterator it) const
     {
@@ -3072,7 +3072,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
     //now you are sure to be able to insert values
     if (bNeedToResize)
     {
-        if (resize(iNewRows, iNewCols) == false)
+        if (resize(iNewRows, iNewCols) == NULL)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
@@ -3223,7 +3223,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
     //now you are sure to be able to insert values
     if (bNeedToResize)
     {
-        if (resize(iNewRows, iNewCols) == false)
+        if (resize(iNewRows, iNewCols) == NULL)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
@@ -3914,7 +3914,7 @@ int* SparseBool::getNbItemByRow(int* _piNbItemByRows)
 int* SparseBool::getColPos(int* _piColPos)
 {
     mycopy_n(matrixBool->innerIndexPtr(), nbTrue(), _piColPos);
-    for (int i = 0; i < nbTrue(); i++)
+    for (size_t i = 0; i < nbTrue(); i++)
     {
         _piColPos[i]++;
     }
