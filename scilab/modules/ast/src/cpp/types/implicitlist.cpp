@@ -756,7 +756,6 @@ std::wstring printDouble(types::Double* _pD)
     DoubleFormat df;
     getDoubleFormat(_pD->get(0), &df);
     df.bPrintPoint = false;
-    df.bPaddSign = true;
     df.bPaddSign = false;
     df.bPrintBlank = false;
     addDoubleValue(&ostr, _pD->get(0), &df);
