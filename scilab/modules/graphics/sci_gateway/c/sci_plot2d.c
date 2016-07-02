@@ -98,7 +98,10 @@ int sci_plot2d(char* fname, void *pvApiCtx)
     if (checkInputArgumentType(pvApiCtx, 1, sci_strings))
     {
         /* logflags */
-        GetLogflags(pvApiCtx, fname, 1, opts, &logFlags);
+        if (get_logflags_arg(pvApiCtx, fname, 1, opts, &logFlags) == 0)
+        {
+            return 0;
+        }
         iskip = 1;
     }
 
@@ -339,15 +342,33 @@ int sci_plot2d(char* fname, void *pvApiCtx)
         return 0;
     }
 
-    sciGetStyle(pvApiCtx, fname, 3 + iskip, n1, opts, &style);
-    GetStrf(pvApiCtx, fname, 4 + iskip, opts, &strf);
-    GetLegend(pvApiCtx, fname, 5 + iskip, opts, &legend);
-    GetRect(pvApiCtx, fname, 6 + iskip, opts, &rect);
-    GetNax(pvApiCtx, 7 + iskip, opts, &nax, &flagNax);
+    if (get_style_arg(pvApiCtx, fname, 3 + iskip, n1, opts, &style) == 0)
+    {
+        return 0;
+    }
+    if (get_strf_arg(pvApiCtx, fname, 4 + iskip, opts, &strf) == 0)
+    {
+        return 0;
+    }
+    if (get_legend_arg(pvApiCtx, fname, 5 + iskip, opts, &legend) == 0)
+    {
+        return 0;
+    }
+    if (get_rect_arg(pvApiCtx, fname, 6 + iskip, opts, &rect) == 0)
+    {
+        return 0;
+    }
+    if (get_nax_arg(pvApiCtx, 7 + iskip, opts, &nax, &flagNax)==0)
+    {
+        return 0;
+    }
 
     if (iskip == 0)
     {
-        GetLogflags(pvApiCtx, fname, 8, opts, &logFlags);
+        if (get_logflags_arg(pvApiCtx, fname, 8, opts, &logFlags) == 0)
+        {
+            return 0;
+        }
     }
 
     freeStrf = !isDefStrf(strf);
@@ -377,7 +398,10 @@ int sci_plot2d(char* fname, void *pvApiCtx)
             strfl[0] = '1';
         }
 
-        GetOptionalIntArg(pvApiCtx, fname, 9, "frameflag", &frame, 1, opts);
+        if (get_optional_int_arg(pvApiCtx, fname, 9, "frameflag", &frame, 1, opts) == 0)
+        {
+            return 0;
+        }
         if (frame != &frame_def)
         {
             if (*frame >= 0 && *frame <= 8)
@@ -395,7 +419,10 @@ int sci_plot2d(char* fname, void *pvApiCtx)
             }
         }
 
-        GetOptionalIntArg(pvApiCtx, fname, 9, "axesflag", &axes, 1, opts);
+        if (get_optional_int_arg(pvApiCtx, fname, 9, "axesflag", &axes, 1, opts) == 0)
+        {
+            return 0;
+        }
         if (axes != &axes_def)
         {
             if ((*axes >= 0 && *axes <= 5) || *axes == 9)

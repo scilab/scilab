@@ -322,11 +322,26 @@ int sci_plot3d(char * fname, void *pvApiCtx)
 
     iflag_def[1] = 8;
 
-    GetOptionalDoubleArg(pvApiCtx, fname, 4, "theta", &theta, 1, opts);
-    GetOptionalDoubleArg(pvApiCtx, fname, 5, "alpha", &alpha, 1, opts);
-    GetLabels(pvApiCtx, fname, 6, opts, &legend);
-    GetOptionalIntArg(pvApiCtx, fname, 7, "flag", &iflag, 3, opts);
-    GetOptionalDoubleArg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts);
+    if (get_optional_double_arg(pvApiCtx, fname, 4, "theta", &theta, 1, opts) == 0)
+    {
+        return 0;
+    }
+    if (get_optional_double_arg(pvApiCtx, fname, 5, "alpha", &alpha, 1, opts) == 0)
+    {
+        return 0;
+    }
+    if (get_labels_arg(pvApiCtx, fname, 6, opts, &legend) == 0)
+    {
+        return 0;
+    }
+    if (get_optional_int_arg(pvApiCtx, fname, 7, "flag", &iflag, 3, opts) == 0)
+    {
+        return 0;
+    }
+    if (get_optional_double_arg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts) == 0)
+    {
+        return 0;
+    }
 
 
     getOrCreateDefaultSubwin();

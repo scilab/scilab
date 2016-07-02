@@ -190,9 +190,18 @@ int sci_champ_G(char *fname,
         return 0;
     }
 
-    GetOptionalDoubleArg(pvApiCtx, fname, 5, "arfact", &arfact, 1, opts);
-    GetRect(pvApiCtx, fname, 6, opts, &rect);
-    GetStrf(pvApiCtx, fname, 7, opts, &strf);
+    if (get_optional_double_arg(pvApiCtx, fname, 5, "arfact", &arfact, 1, opts) == 0)
+    {
+        return 0;
+    }
+    if (get_rect_arg(pvApiCtx, fname, 6, opts, &rect) == 0)
+    {
+        return 0;
+    }
+    if (get_strf_arg(pvApiCtx, fname, 7, opts, &strf) == 0)
+    {
+        return 0;
+    }
 
     getOrCreateDefaultSubwin();
 

@@ -181,14 +181,38 @@ int sci_fec(char *fname, void *pvApiCtx)
         return 0;
     }
 
-    GetStrf(pvApiCtx, fname, 5, opts, &strf);
-    GetLegend(pvApiCtx, fname, 6, opts, &legend);
-    GetRect(pvApiCtx, fname, 7, opts, &rect);
-    GetNax(pvApiCtx, 8, opts, &nax, &flagNax);
-    GetZminmax(pvApiCtx, fname, 9, opts, &zminmax);
-    GetColminmax(pvApiCtx, fname, 10, opts, &colminmax);
-    GetColOut(pvApiCtx, fname, 11, opts, &colOut);
-    GetWithMesh(pvApiCtx, fname, 12, opts, &withMesh);
+    if (get_strf_arg(pvApiCtx, fname, 5, opts, &strf) == 0)
+    {
+        return 0;
+    }
+    if (get_legend_arg(pvApiCtx, fname, 6, opts, &legend) == 0)
+    {
+        return 0;
+    }
+    if (get_rect_arg(pvApiCtx, fname, 7, opts, &rect) == 0)
+    {
+        return 0;
+    }
+    if (get_nax_arg(pvApiCtx, 8, opts, &nax, &flagNax)==0)
+    {
+        return 0;
+    }
+    if (get_zminmax_arg(pvApiCtx, fname, 9, opts, &zminmax) == 0)
+    {
+        return 0;
+    }
+    if (get_colminmax_arg(pvApiCtx, fname, 10, opts, &colminmax)==0)
+    {
+        return 0;
+    }
+    if (get_colout_arg(pvApiCtx, fname, 11, opts, &colOut)==0)
+    {
+        return 0;
+    }
+    if (get_with_mesh_arg(pvApiCtx, fname, 12, opts, &withMesh)==0)
+    {
+        return 0;
+    }
 
     getOrCreateDefaultSubwin();
 
