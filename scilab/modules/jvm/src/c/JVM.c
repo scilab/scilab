@@ -200,20 +200,14 @@ BOOL startJVM(char *SCI_PATH)
 #else
                 fprintf(stderr, _("\nImpossible to read %s.\n"), jvm_options_filename);
 #endif
-                if (jvm_options_filename)
-                {
-                    FREE(jvm_options_filename);
-                    jvm_options_filename = NULL;
-                }
+                FREE(jvm_options_filename);
+                jvm_options_filename = NULL;
                 exit(1);
             }
             else
             {
-                if (jvm_options_filename)
-                {
-                    FREE(jvm_options_filename);
-                    jvm_options_filename = NULL;
-                }
+                FREE(jvm_options_filename);
+                jvm_options_filename = NULL;
 
                 HadAlreadyJavaVm = FALSE;
 

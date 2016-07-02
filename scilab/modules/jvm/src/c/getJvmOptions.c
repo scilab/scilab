@@ -65,11 +65,8 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
             if (doc == NULL)
             {
                 fprintf(stderr, _("Error: Could not parse file %s.\n"), filename_xml_conf);
-                if (encoding)
-                {
-                    FREE(encoding);
-                    encoding = NULL;
-                }
+                FREE(encoding);
+                encoding = NULL;
                 *size_JavaVMOption = 0;
                 return NULL;
             }
@@ -87,7 +84,6 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
             {
                 /* the Xpath has been understood and there are node */
                 int i;
-                char heapSizeUsed = 0;
                 char *heapSize = getJavaHeapSize();
 
                 for (i = 0; i < xpathObj->nodesetval->nodeNr; i++)
@@ -104,8 +100,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                             const char *str = (const char*)attrib->children->content;
                             if (strstr(str, "-Xmx") == str && heapSize)
                             {
-                                jvm_option_string = heapSize;
-                                heapSizeUsed = 1;
+                                jvm_option_string = os_strdup(heapSize);
                             }
                             else
                             {
@@ -128,7 +123,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                         }
 
                         option_string_sci_path = strsub(option_string_path_separator, "$SCILAB", SCI_PATH);
-                        if (option_string_sci_path)
+                        if (option_string_path_separator)
                         {
                             FREE(option_string_path_separator);
                         }
@@ -140,10 +135,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
 
                 }
 
-                if (!heapSizeUsed)
-                {
-                    FREE(heapSize);
-                }
+                FREE(heapSize);
             }
 
             if (xpathObj)
@@ -175,11 +167,8 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
 #undef HEADLESS
             }
 
-            if (encoding)
-            {
-                FREE(encoding);
-                encoding = NULL;
-            }
+            FREE(encoding);
+            encoding = NULL;
 
             *size_JavaVMOption = indice;
             return jvm_options;
@@ -188,11 +177,8 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
         {
             fprintf(stderr, _("Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' found.\n"), filename_xml_conf, "utf-8", encoding);
         }
-        if (encoding)
-        {
-            FREE(encoding);
-            encoding = NULL;
-        }
+        FREE(encoding);
+        encoding = NULL;
     }
     return NULL;
 }

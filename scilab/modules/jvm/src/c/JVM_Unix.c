@@ -65,11 +65,8 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
     if (LoadFunctionsJVM(JVMLibFullName) == NULL)
     {
         /* 2. search in LD_LIBRARY_PATH */
-        if (JVMLibFullName)
-        {
-            FREE(JVMLibFullName);
-            JVMLibFullName = NULL;
-        };
+        FREE(JVMLibFullName);
+        JVMLibFullName = NULL;
 
         JVMLibFullName = (char *)MALLOC((strlen(LIBJAVANAME) + strlen(SHARED_LIB_EXT) + 1) * sizeof(char));
         sprintf(JVMLibFullName, "%s%s", LIBJAVANAME, SHARED_LIB_EXT);
@@ -84,11 +81,8 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
         bOK = TRUE;
     }
 
-    if (JVMLibFullName)
-    {
-        FREE(JVMLibFullName);
-        JVMLibFullName = NULL;
-    };
+    FREE(JVMLibFullName);
+    JVMLibFullName = NULL;
 
     return bOK;
 
@@ -122,16 +116,14 @@ static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
         if (res != JNI_OK)
         {
             fprintf(stderr, "\nJNI_GetCreatedJavaVMs failed to detect any started Java VM.\n");
+            FREE(JVMLibFullName);
             return NULL;
         }
 
         if (jvm_count == 1)
         {
-            if (JVMLibFullName)
-            {
-                FREE(JVMLibFullName);
-                JVMLibFullName = NULL;
-            }
+            FREE(JVMLibFullName);
+            JVMLibFullName = NULL;
             return jvm;
         }
         else
@@ -139,11 +131,8 @@ static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
             jvm = NULL;
         }
     }
-    if (JVMLibFullName)
-    {
-        FREE(JVMLibFullName);
-        JVMLibFullName = NULL;
-    }
+    FREE(JVMLibFullName);
+    JVMLibFullName = NULL;
     return jvm;
 }
 
@@ -166,15 +155,13 @@ static JavaVM *SearchCreatedJavaVMPath(void)
         if (res != JNI_OK)
         {
             fprintf(stderr, "\nJNI_GetCreatedJavaVMs failed to detect any started Java VM.\n");
+            FREE(JVMLibFullName);
             return NULL;
         }
         if (jvm_count == 1)     /* We could update this to behave differently when two (or more) JVMs are already started */
         {
-            if (JVMLibFullName)
-            {
-                FREE(JVMLibFullName);
-                JVMLibFullName = NULL;
-            };
+            FREE(JVMLibFullName);
+            JVMLibFullName = NULL;
             return jvm;
         }
         else
@@ -182,11 +169,8 @@ static JavaVM *SearchCreatedJavaVMPath(void)
             jvm = NULL;
         }
     }
-    if (JVMLibFullName)
-    {
-        FREE(JVMLibFullName);
-        JVMLibFullName = NULL;
-    };
+    FREE(JVMLibFullName);
+    JVMLibFullName = NULL;
     return jvm;
 }
 

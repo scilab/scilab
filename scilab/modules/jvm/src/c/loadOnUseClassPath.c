@@ -61,17 +61,11 @@ BOOL loadOnUseClassPath(char const* tag)
         if (doc == NULL)
         {
             fprintf(stderr, _("Error: could not parse file %s\n"), classpathfile);
-            if (XPath)
-            {
-                FREE(XPath);
-                XPath = NULL;
-            }
+            FREE(XPath);
+            XPath = NULL;
 
-            if (classpathfile)
-            {
-                FREE(classpathfile);
-                classpathfile = NULL;
-            }
+            FREE(classpathfile);
+            classpathfile = NULL;
 
             FREE(sciPath);
             return bOK;
@@ -131,11 +125,8 @@ BOOL loadOnUseClassPath(char const* tag)
         {
             xmlXPathFreeContext(xpathCtxt);
         }
-        if (XPath)
-        {
-            FREE(XPath);
-            XPath = NULL;
-        }
+        FREE(XPath);
+        XPath = NULL;
 
     }
     else
@@ -143,16 +134,10 @@ BOOL loadOnUseClassPath(char const* tag)
         fprintf(stderr, _("Warning: could not find classpath declaration file %s.\n"), classpathfile);
     }
 
-    if (classpathfile)
-    {
-        FREE(classpathfile);
-        classpathfile = NULL;
-    }
-    if (sciPath)
-    {
-        FREE(sciPath);
-        sciPath = NULL;
-    }
+    FREE(classpathfile);
+    classpathfile = NULL;
+    FREE(sciPath);
+    sciPath = NULL;
 
     return FALSE;
 }
