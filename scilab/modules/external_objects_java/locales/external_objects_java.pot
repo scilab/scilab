@@ -17,33 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: 2016-06-08 22:21+0100\n"
 
-# File: modules/external_objects_java/sci_gateway/cpp/sci_jconvMatrixMethod.cpp, line: 38
-#, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr ""
-
-#
-# File: modules/external_objects_java/sci_gateway/cpp/sci_jconvMatrixMethod.cpp, line: 38
-# File: modules/external_objects_java/sci_gateway/cpp/sci_jconvMatrixMethod.cpp, line: 39
-# File: modules/external_objects_java/sci_gateway/cpp/sci_jconvMatrixMethod.cpp, line: 40
-msgid "Warning"
-msgstr ""
-
-#
-# File: modules/external_objects_java/sci_gateway/cpp/sci_jconvMatrixMethod.cpp, line: 39
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr ""
-
-#
-# File: modules/external_objects_java/sci_gateway/cpp/sci_jconvMatrixMethod.cpp, line: 40
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#
 # File: modules/external_objects_java/sci_gateway/cpp/sci_jcreatejar.cpp, line: 42
 # File: modules/external_objects_java/sci_gateway/cpp/sci_jcreatejar.cpp, line: 99
 # File: modules/external_objects_java/sci_gateway/cpp/sci_jcreatejar.cpp, line: 116

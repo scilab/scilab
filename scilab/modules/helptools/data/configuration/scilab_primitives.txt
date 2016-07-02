@@ -618,7 +618,6 @@ javaclasspath
 javalibrarypath
 jcast
 jcompile
-jconvMatrixMethod
 jcreatejar
 jdeff
 jdisableTrace
