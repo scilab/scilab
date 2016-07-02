@@ -109,13 +109,7 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
     w="menus(3)(";rpar=")"
     Data=w(ones(menu_d))+string(1:size(menu_d,"*"))+rpar(ones(menu_d))
 
-    wins = winsid();
-    if ~isempty(wins) then
-        curwin = max(winsid())+1;
-    else
-        curwin = 1;
-    end
-    scf(curwin);
+    curwin = scf().figure_id
 
     // Disable the menus and toolbars
     toolbar(curwin,"off");
