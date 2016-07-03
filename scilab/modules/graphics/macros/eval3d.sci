@@ -18,6 +18,7 @@ function [z]=eval3d(fun,x,y)
     //  feval(x,y,fun)
     //Si y n'est pas fourni il est suppose identique a x
     //!
+    warnobsolete("ndgrid", "6.1")
     [lhs,rhs]=argn(0)
     if rhs==3 then
         nx=prod(size(x));ny=prod(size(y))

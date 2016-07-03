@@ -202,9 +202,6 @@ c1+c2
                 <link linkend="feval">feval</link>
             </member>
             <member>
-                <link linkend="eval3d">eval3d</link>
-            </member>
-            <member>
                 <link linkend="nf3d">nf3d</link>
             </member>
         </simplelist>

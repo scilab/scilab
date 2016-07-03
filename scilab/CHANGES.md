@@ -194,6 +194,7 @@ Obsolete functions or features
 
 * `maxfiles` is now obsolete.
 * `isoview(xmin,xmax,ymin,ymax)` is deprecated. Please use `isoview("on"), replot(..)` instead.
+* `eval3d` will be removed from Scilab 6.1. Please use `ndgrid` instead.
 
 Removed Functions
 -----------------

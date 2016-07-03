@@ -828,7 +828,6 @@ ell1mag_1.png=640c2b3e2643588f62860bcd7add7ef5
 eqfir_1.png=ccaf8d9b3be54b01b15910cd2935ed94
 erfinv_1.png=a9c079e2216ea843f529d8fa1af6a38d
 errbar_1.png=f0db95118951d4c04c3bde7c93e2fa2e
-eval3d_1.png=c3bafa99c9b71a2faa45239efed7e09b
 eval3dp_1.png=2e80dc6ec334a5caf5b2c918e68bad3
 eval_cshep2d_1.png=5af907b540319286ce844b966cf742e6
 evans_en_US_1.png=41e97afd94ab96301b1c5d1661b56f63
