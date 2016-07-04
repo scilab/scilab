@@ -380,6 +380,14 @@ void fillOrFunction()
     scilab_fill_or(ScalarUInt64, Int64, int_S_M, UInt64, Int64, UInt64);
     scilab_fill_or(ScalarUInt64, UInt64, int_S_M, UInt64, UInt64, UInt64);
 
+    scilab_fill_or(ScalarUInt64, ScalarInt8, int_S_S, UInt64, Int8, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarUInt8, int_S_S, UInt64, UInt8, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarInt16, int_S_S, UInt64, Int16, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarUInt16, int_S_S, UInt64, UInt16, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarInt32, int_S_S, UInt64, Int32, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarUInt32, int_S_S, UInt64, UInt32, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarInt64, int_S_S, UInt64, Int64, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarUInt64, int_S_S, UInt64, UInt64, UInt64);
 
     //boolean sparse
     scilab_fill_or(SparseBool, SparseBool, M_M, SparseBool, SparseBool, SparseBool);

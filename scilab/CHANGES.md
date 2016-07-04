@@ -139,6 +139,14 @@ Feature changes and additions
 * `strange([])` now returns `%nan` instead of `[]`, as all other functions for statistical dispersion
 * `stdev(x, dir>ndims(x))` now yields an error instead of returning `zeros(x)`
 * `write`: Writing string or string matrix in a file does not add blank space before each value
+* `bitor`, `bitxor` and `bitand` are upgraded:
+   - positive signed encoded integers are now accepted.
+   - inputs with new `int64` or `uint64` encodings are now accepted.
+   - operands with mixed types or/and inttypes are now accepted.
+   - distributive input scalars as in `bit###(scalar, array)` or `bit###(array, scalar)` are now accepted.
+   - results with decimal-encoded integers > 2^32 are now correct.
+   - decimal-encoded integers > 2^52 are now supported up to the biggest 1.80D+308.
+   - `bitxor` is now vectorized and fast.
 * The zoom rubber box now can start/finish from points lying outside the axes bounds.
 * The zoom rubber box now can select multiple and overlying axes at once. Changed behavior of scroll zoom, scrolling over overlying axes will zoom all of them together, using the CTRL key while scrolling will zoom all axes in the current figure.
 
@@ -148,7 +156,7 @@ Help pages:
 
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`
-* rewritten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`
+* rewritten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `bitor`, `bitxor`, `bitand`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
   - CACSD and Signal Processing help pages have been sorted up.
@@ -262,6 +270,7 @@ Bug Fixes
 * [Bug #14640](http://bugzilla.scilab.org/show_bug.cgi?id=14640) fixed - `median(int8([10 60 80 100]))` returned -58 instead of 70 due to overflow when interpolating (60+80)>128
 * [Bug #14648](http://bugzilla.scilab.org/show_bug.cgi?id=14648) fixed - `isinf` returned `%F` for complex numbers with both real and imag infinite parts.
 * [Bug #14649](http://bugzilla.scilab.org/show_bug.cgi?id=14649) fixed - isnan(complex(%inf, %inf)) returned %F while the phase is NaN.
+* [Bug #14654](http://bugzilla.scilab.org/show_bug.cgi?id=14654) fixed - `bitor`, `bitxor` and `bitand` did not accept positive inputs of type `int8`, `int16`, `int32`, `int64` or `uint64`
 * [Bug #14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - Matrix of strings concatenation with single quote led to a parser error.
 * [Bug #14681](http://bugzilla.scilab.org/show_bug.cgi?id=14681) fixed - Short-circuited AND operation was not possible with double matrices in if and while clauses
 * [Bug #14690](http://bugzilla.scilab.org/show_bug.cgi?id=14690) fixed - The user's startup files set in the working directory were not executed. When `SCIHOME` is not the working directory, `SCIHOME\scilab.ini` was executed twice.
