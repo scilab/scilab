@@ -1757,7 +1757,11 @@ GenericType* Sparse::extract(typed_list* _pArgs)
                     {
                         delete pOut;
                         pOut = NULL;
-                        break;
+                        delete[] piMaxDim;
+                        delete[] piCountDim;
+                        //free pArg content
+                        cleanIndexesArguments(_pArgs, &pArg);
+                        return NULL;
                     }
                     if (isComplex())
                     {
@@ -3754,7 +3758,11 @@ GenericType* SparseBool::extract(typed_list* _pArgs)
                     {
                         delete pOut;
                         pOut = NULL;
-                        break;
+                        delete[] piMaxDim;
+                        delete[] piCountDim;
+                        //free pArg content
+                        cleanIndexesArguments(_pArgs, &pArg);
+                        return NULL;
                     }
                     bool bValue = get((int)pIdxRow[iRow] - 1, (int)pIdxCol[iCol] - 1);
                     if (bValue)
