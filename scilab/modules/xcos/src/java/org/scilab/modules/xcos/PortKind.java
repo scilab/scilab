@@ -9,10 +9,10 @@
 package org.scilab.modules.xcos;
 
 public enum PortKind {
-  PORT_UNDEF,
-  PORT_IN,
-  PORT_OUT,
-  PORT_EIN,
-  PORT_EOUT;
+    PORT_UNDEF,
+    PORT_IN,
+    PORT_OUT,
+    PORT_EIN,
+    PORT_EOUT;
 }
 

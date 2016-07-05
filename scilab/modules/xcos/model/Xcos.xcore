@@ -1,0 +1,176 @@
+package org.scilab.modules.xcos
+
+/* Encoded Scilab values */
+class Binary
+{
+	/* RFC 2045 Base64 encoded double[] values (space separated) */
+	String base64
+}
+
+/* A point is a position on the diagram */
+class Point
+{
+	/* X coordinate */
+	double x
+	/* Y coordinate */
+	double y
+}
+
+/* Rectangular coordinates of the object */
+class Geometry
+{
+	/* X coordinate */
+	double x
+	/* Y coordinate */
+	double y
+	/* Height of the object */
+	double height
+	/* Width of the object */
+	double width
+}
+
+/* The kind of a port */
+enum PortKind
+{
+	in, out, ein, eout
+}
+
+/* Shared definition for both a Diagram and a SuperBlock (eg. a Block) */
+abstract class Layer
+{
+	/* Scilab scripts added at current layer */
+	String[] context
+	/* contained objects */
+	contains BaseObject[] child opposite parent
+}
+
+/* Shared definition for an object contained in a Layer */
+abstract class BaseObject {
+	/* Unique IDentifier : usually on the universally unique identifier (UUID) form */
+	id String uid
+	
+	/* The diagram (to ease in memory representation) */
+	refers Diagram[1..1] parentDiagram
+	/* parent Layer to navigate back */
+	container Layer[1..1] parent opposite child
+}
+
+/* A diagram is the top-level object of a model. It contains simulation parameters and the hierarchical data-flow and event-flow graphs. */
+class Diagram extends Layer
+{
+	/* title of a diagram */
+	String title
+	/* Latest saved path */
+	String path
+	
+	/* Simulation settings */
+	contains SimulationConfig properties
+	/* Simulation debug level */
+	int debugLevel
+	
+	/* Version of the diagram */
+	String version
+}
+
+/* Simulation settings */
+class SimulationConfig
+{
+	/* Simulation final time (starting at 0) */
+	double finalTime
+	double absoluteTolerance
+	double relativeTolerance
+	double timeTolerance
+	double deltaT
+	double realtimeScale
+	double solver
+	double deltaH
+}
+
+/*  */
+class Block extends BaseObject, Layer
+{	
+	contains Geometry geometry
+	String description
+	String label
+	String style
+	
+	String interfaceFunction
+	String[] expression
+	contains Binary exprs
+	
+	int[] nzcross
+	int[] nmode
+	contains Binary equations
+	
+	String functionName
+	int functionAPI
+	boolean dependsOnU
+	boolean dependsOnT
+	char blocktype
+	
+	contains Port[] in
+	contains Port[] out
+	contains Port[] ein
+	contains Port[] eout
+	
+	double[] rpar
+	int[] ipar
+	contains Binary opar
+	
+	double[] state
+	double[] dstate
+	contains Binary odstate
+}
+
+class Port
+{	
+	id String uid
+	
+	int[] datatype
+	double firing
+	
+	refers Block sourceBlock
+	PortKind kind
+	boolean implicit
+	refers Link connectedSignal
+	
+	String style
+	String label
+}
+
+class Link extends BaseObject
+{	
+	refers Port sourcePort
+	refers Port destinationPort
+	
+	contains Geometry geometry
+	contains Point[] controlPoint
+	
+	String style
+	String label
+	double lineWidth
+	double lineHeight
+	int color
+}
+
+class Annotation extends BaseObject
+{
+	contains Geometry geometry
+	String description
+	String font
+	String fontSize
+	String style
+}
+
+/****************************************************************************************
+ * An executable representation can be exported only if the diagram has been "compiled" *
+ ****************************************************************************************/
+ 
+/*
+ * 
+ */
+class CompiledRepresentation
+{
+	
+}
+

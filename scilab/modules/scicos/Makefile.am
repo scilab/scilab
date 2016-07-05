@@ -21,6 +21,9 @@ src/cpp/il_state.cpp \
 src/cpp/il_sim.cpp \
 src/cpp/var2vec.cpp \
 src/cpp/vec2var.cpp \
+src/cpp/XMIResource.cpp \
+src/cpp/XMIResource_load.cpp \
+src/cpp/XMIResource_save.cpp \
 src/cpp/Controller.cpp \
 src/cpp/controller_helpers.cpp \
 src/cpp/LoggerView.cpp \
@@ -95,7 +98,8 @@ sci_gateway/cpp/sci_validvar.cpp \
 sci_gateway/cpp/sci_var2vec.cpp \
 sci_gateway/cpp/sci_vec2var.cpp \
 sci_gateway/cpp/sci_callblk.cpp \
-sci_gateway/cpp/sci_model2blk.cpp
+sci_gateway/cpp/sci_model2blk.cpp \
+sci_gateway/cpp/sci_scicosDiagramToScilab.cpp
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_ftree2.c \
@@ -149,11 +153,13 @@ libsciscicos_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/threads/includes/ \
 			-I$(top_srcdir)/modules/console/includes/ \
 			-I$(top_srcdir)/modules/differential_equations/includes/ \
+			$(XML_FLAGS) \
 			$(AM_CPPFLAGS)
 else
 libsciscicos_algo_la_CPPFLAGS= -I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/scicos/includes/ \
+			$(XML_FLAGS) \
 			$(AM_CPPFLAGS)
 endif
 libsciscicos_cli_la_CPPFLAGS = $(libsciscicos_algo_la_CPPFLAGS)
@@ -169,7 +175,9 @@ libsciscicos_cli_la_SOURCES =
 libsciscicos_la_SOURCES =
 endif
 
-libsciscicos_algo_la_LIBADD =
+libsciscicos_algo_la_LIBADD =  \
+		$(RT_LIB) \
+		$(LIBXML_LIBS)
 libsciscicos_cli_la_LIBADD = libsciscicos-algo.la
 libsciscicos_la_LIBADD = libsciscicos-algo.la
 if XCOS
@@ -180,11 +188,6 @@ libsciscicos_la_LIBADD += libscisundials.la \
     $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
 endif
 endif
-
-libsciscicos_algo_la_LIBADD += $(RT_LIB)
-libsciscicos_cli_la_LIBADD += $(RT_LIB)
-libsciscicos_la_LIBADD += $(RT_LIB)
-
 
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)

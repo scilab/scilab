@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -29,12 +29,16 @@ namespace model
 class BaseObject
 {
 public:
-    BaseObject(kind_t k) :
+    explicit BaseObject(kind_t k) :
         m_kind(k)
         // Not initializing m_id on purpose: the ID is given by the model constructor
     {
     }
     BaseObject(const BaseObject& b) :
+        m_id(b.m_id), m_kind(b.m_kind)
+    {
+    }
+    BaseObject(BaseObject&& b) :
         m_id(b.m_id), m_kind(b.m_kind)
     {
     }
@@ -45,6 +49,12 @@ public:
 
     ~BaseObject() = default;
 
+    inline BaseObject& operator=(BaseObject&& o)
+    {
+        m_id = o.m_id;
+        m_kind = o.m_kind;
+        return *this;
+    }
     inline bool operator<(BaseObject o) const
     {
         return m_id < o.m_id;
@@ -77,7 +87,7 @@ private:
     /**
      * Kind of the Object
      */
-    const kind_t m_kind;
+    kind_t m_kind;
 };
 
 /** @defgroup utilities Shared utility classes

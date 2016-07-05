@@ -255,6 +255,7 @@ public final class XcosMessages {
     public static final String FILE_COS = FILE_COSF;
     public static final String FILE_XCOS = Messages.gettext("Xcos file");
     public static final String FILE_ZCOS = Messages.gettext("Xcos (zip) file");
+    public static final String FILE_XMI = Messages.gettext("XMI (Eclipse EMF) file");
     public static final String FILE_SOD = Messages.gettext("Scilab Open Data file");
 
     /* Superblock mask editor */

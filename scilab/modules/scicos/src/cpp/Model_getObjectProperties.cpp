@@ -26,8 +26,54 @@
 #include "model/Link.hxx"
 #include "model/Port.hxx"
 
+extern "C" {
+#include "sci_types.h"
+}
+
 namespace org_scilab_modules_scicos
 {
+
+/* helper function to decode simple string EXPRS */
+static std::vector<std::string> decode_string_vector(const std::vector<double>& v)
+{
+    std::vector<std::string> ret;
+    std::vector<double>::const_iterator it = v.begin();
+
+    int strHeader = *it++;
+    if (strHeader != sci_strings)
+    {
+        return ret;
+    }
+    unsigned int iDims = *it++;
+
+    // manage multi-dimensionnal arrays (will be serialized as a vector)
+    unsigned int iElements = 1;
+    for (unsigned int i = 0; i < iDims; ++i)
+    {
+        iElements *= static_cast<unsigned int>(*it++);
+    }
+
+    // retrieve the length of each encoded string, stored as a stack
+    std::vector<unsigned int> stringsLength;
+    stringsLength.reserve(iElements + 1);
+    stringsLength.push_back(0);
+    for (unsigned int i = 0; i < iElements; ++i)
+    {
+        stringsLength.push_back(*it++);
+    }
+
+    // Retrieving the pointers (already UTF-8 encoded char*) and store them as strings
+    ret.reserve(iElements);
+    const double* strData = &(*it);
+    for (unsigned int i = 0; i < iElements; ++i)
+    {
+        // push the data
+        ret.push_back((char*) (strData + stringsLength[i]));
+    }
+
+    return ret;
+}
+
 
 bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v)  const
 {
@@ -656,6 +702,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case DIAGRAM_CONTEXT:
                 o->getContext(v);
                 return true;
+            case EXPRS:
+            {
+                std::vector<double> data;
+                o->getExprs(data);
+
+                v = decode_string_vector(data);
+                return true;
+            }
             default:
                 break;
         }

@@ -880,17 +880,14 @@ public final class Xcos {
             throw new IllegalArgumentException("not handled filetype");
         }
 
-        switch (filetype) {
-            case XCOS:
-            case ZCOS:
-                if (export) {
-                    filetype.save(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
-                } else {
-                    filetype.load(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
-                }
-                break;
-            case COSF:
-                throw new IllegalArgumentException("not handled filetype");
+        if (XcosFileType.getAvailableSaveFormats().contains(filetype)) {
+            if (export) {
+                filetype.save(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
+            } else {
+                filetype.load(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
+            }
+        } else {
+            throw new IllegalArgumentException("not handled filetype");
         }
     }
 
