@@ -26,11 +26,11 @@ A = [1,0,0,0,0,0,0,0;
 0,-7,0,56,0,-112,0,64]
 //display is ok
 
-disp(expm(A));
+disp(nearfloat("succ", expm(A)));
 // now display is ok
 
 format(25);
-disp(expm(A));
+disp(nearfloat("succ", expm(A)));
 
 A =  matrix(linspace(-1E10,1E20,64), 8, 8);
 disp(A);
