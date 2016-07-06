@@ -637,3 +637,5 @@ assert_checktrue(execstr(str_cmd, "errcatch") <> 0);
 exec(SCI + "/modules/ast/tests/nonreg_tests/bug_14374.tst");
 // Bug 7646: matrix transpose extraction
 exec(SCI + "/modules/ast/tests/nonreg_tests/bug_7646.tst");
+// Bug 14662: matrix concatenation with simple quote and space led to a parser error
+exec(SCI + "/modules/ast/tests/nonreg_tests/bug_14662.tst");
