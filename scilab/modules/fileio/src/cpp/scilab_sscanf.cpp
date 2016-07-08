@@ -438,15 +438,15 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                                 iSingleData = wcstoul(wcsData, &wcsData, base);
                                 if ((iSingleData == 0) && (temp == wcsData[0]))
                                 {
+                                    FREE(wcsData);
+                                    wcsData = NULL;
                                     if (_iIterrator == 0 && !bStar && _iNiter == 1)
                                     {
-                                        wcsData = NULL;
                                         _pITOut->push_back(types::Double::Empty());
                                         bStar = TRUE;
                                     }
                                     else
                                     {
-                                        FREE(wcsData);
                                         return -10;
                                     }
                                 }

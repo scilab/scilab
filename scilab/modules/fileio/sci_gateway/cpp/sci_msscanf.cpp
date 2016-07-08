@@ -106,22 +106,14 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
             switch (err)
             {
                 case DO_XXPRINTF_MISMATCH:
-                    if (iNiter >= 0)
-                    {
-                        Free_Scan(rowcount, ncol, type_s, &data);
-                        Scierror(999, _("%s: Data mismatch.\n"), "msscanf");
-                        return types::Function::Error;
-                    }
-                    break;
+                    Free_Scan(rowcount, ncol, type_s, &data);
+                    Scierror(999, _("%s: Data mismatch.\n"), "msscanf");
+                    return types::Function::Error;
 
                 case DO_XXPRINTF_MEM_LACK:
                     Free_Scan(rowcount, ncol, type_s, &data);
                     Scierror(999, _("%s: No more memory.\n"), "msscanf");
                     return types::Function::Error;
-            }
-            if (err == DO_XXPRINTF_MISMATCH)
-            {
-                break;
             }
         }
     }

@@ -154,13 +154,15 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
         for (i = 0; i < NB_DEFAULT_SUPPORTED_SEPARATORS; i++)
         {
+            if (results)
+            {
+                freeFscanfMatResult(results);
+            }
             results = fscanfMat(expandedFilename, Format, supportedSeparators[i]);
             if (results && results->err == FSCANFMAT_NO_ERROR)
             {
                 break;
             }
-
-            freeFscanfMatResult(results);
         }
     }
     else
@@ -169,6 +171,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
         if (results && results->err != FSCANFMAT_NO_ERROR)
         {
             freeFscanfMatResult(results);
+            results = NULL;
         }
     }
 

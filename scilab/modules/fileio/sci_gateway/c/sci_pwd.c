@@ -53,15 +53,14 @@ int sci_pwd(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            FREE(path);
+            path = NULL;
             return 0;
         }
 
         LhsVar(1) = Rhs + 1;
-        if (path)
-        {
-            FREE(path);
-            path = NULL;
-        }
+        FREE(path);
+        path = NULL;
         PutLhsVar();
     }
 

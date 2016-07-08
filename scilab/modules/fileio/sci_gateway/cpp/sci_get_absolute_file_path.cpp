@@ -79,14 +79,9 @@ types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, i
 
     freeArrayOfWideString(wcsFilesOpened, FileManager::getOpenedCount());
 
-    if (wcsTemp == NULL)
-    {
-        char* pstFile = wide_string_to_UTF8(wcsFileName);
-        Scierror(999, _("%s: The file %s is not opened in scilab.\n"), "get_absolute_file_path", pstFile);
-        FREE(pstFile);
-        return types::Function::Error;
-    }
-
-    return types::Function::OK;
+    char* pstFile = wide_string_to_UTF8(wcsFileName);
+    Scierror(999, _("%s: The file %s is not opened in scilab.\n"), "get_absolute_file_path", pstFile);
+    FREE(pstFile);
+    return types::Function::Error;
 }
 /*--------------------------------------------------------------------------*/
