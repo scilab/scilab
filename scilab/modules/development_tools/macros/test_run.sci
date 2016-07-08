@@ -736,7 +736,11 @@ function status = test_single(_module, _testPath, _testName)
     "       bugmes()" ;
     "   end" ;
     "   quit;" ;
-    "endfunction" ;
+    "endfunction"];
+    if ~interactive then
+        head($+1) = "function []=messagebox(msg, msg_title, info), disp(''messagebox: '' + msg);endfunction";
+    end
+    head = [ head ;
     "predef(''all'');";
     "tmpdirToPrint = msprintf(''TMPDIR1=''''%s'''';//\n'',TMPDIR);"
     ];
