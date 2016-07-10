@@ -401,9 +401,10 @@ SciErr getDoubleInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
                     addErrorMessage(&_SciErr, 999, _("%s: wrong value for parameter %s: value %f\n"), "getDoubleInPList", _pstLabel, *_pdblValue);
                     return _SciErr;
                 }
-
                 va_end(vl);
                 break;
+            default:
+                va_end(vl);
         }
     }
 
