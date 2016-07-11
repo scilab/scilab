@@ -294,6 +294,7 @@ Bug Fixes
 * [Bug #14649](http://bugzilla.scilab.org/show_bug.cgi?id=14649) fixed - `isnan(complex(%inf, %inf))` returned `%F` while the phase is `NaN`.
 * [Bug #14654](http://bugzilla.scilab.org/show_bug.cgi?id=14654) fixed - `bitor`, `bitxor` and `bitand` did not accept positive inputs of type `int8`, `int16`, `int32`, `int64` or `uint64`
 * [Bug #14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - Matrix of strings concatenation with single quote led to a parser error.
+* [Bug #14667](http://bugzilla.scilab.org/show_bug.cgi?id=14667) fixed - Multi line string without final quote generated a non terminal parser state.
 * [Bug #14681](http://bugzilla.scilab.org/show_bug.cgi?id=14681) fixed - Short-circuited AND operation was not possible with double matrices in if and while clauses
 * [Bug #14690](http://bugzilla.scilab.org/show_bug.cgi?id=14690) fixed - The user's startup files set in the working directory were not executed. When `SCIHOME` is not the working directory, `SCIHOME\scilab.ini` was executed twice.
 * [Bug #14694](http://bugzilla.scilab.org/show_bug.cgi?id=14694) fixed - The list of named colors was misaligned and poorly rendered in `help color_list`

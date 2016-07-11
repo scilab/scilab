@@ -1206,17 +1206,12 @@ assign			"="
     return scan_throw(FLEX_ERROR);
   }
 
-  {next}{newline}           {
-      yylloc.last_line += 1;
-      yylloc.last_column = 1;
-      /* Do nothing... Just skip */
-  }
-
   {newline}					{
     pstBuffer.clear();
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     BEGIN(INITIAL);
+    ParserSingleInstance::popControlStatus();
     yyerror("Unexpected end of line in a string.");
     return scan_throw(FLEX_ERROR);
   }
@@ -1282,16 +1277,11 @@ assign			"="
     return scan_throw(FLEX_ERROR);
   }
 
-  {next}{newline}           {
-      yylloc.last_line += 1;
-      yylloc.last_column = 1;
-      /* Do nothing... Just skip */
-  }
-
   {newline} {
     pstBuffer.clear();
     yylloc.last_line += 1;
     yylloc.last_column = 1;
+    ParserSingleInstance::popControlStatus();
     BEGIN(INITIAL);
     yyerror("Unexpected end of line in a string.");
     return scan_throw(FLEX_ERROR);

@@ -747,3 +747,6 @@ exec(SCI + "/modules/ast/tests/nonreg_tests/bug_7646.tst");
 
 // Bug 14662: matrix concatenation with simple quote and space led to a parser error
 exec(SCI + "/modules/ast/tests/nonreg_tests/bug_14662.tst");
+
+// Bug 14667: multi line string in matrix generated a non terminal parser state
+exec(SCI + "/modules/ast/tests/nonreg_tests/bug_14667.tst");
