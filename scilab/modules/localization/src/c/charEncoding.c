@@ -202,12 +202,14 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
     size_t iLeftIn = 0;
     size_t iLeftOut = 0;
     char* pOut = NULL;
-    iconv_t cd_UTF16_to_UTF8 = iconv_open("UTF-8", "WCHAR_T");
+    iconv_t cd_UTF16_to_UTF8;
 
     if (_wide == NULL)
     {
         return NULL;
     }
+
+    cd_UTF16_to_UTF8 = iconv_open("UTF-8", "WCHAR_T");
 
     pSaveIn = (wchar_t*)_wide;
     iLeftIn = wcslen(_wide) * sizeof(wchar_t);
