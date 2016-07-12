@@ -252,6 +252,7 @@ Bug Fixes
 * [Bug #14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587) fixed - Datatip textbox wrong clipping when loaded from `*.scg` file.
 * [Bug #14590](http://bugzilla.scilab.org/show_bug.cgi?id=14590) fixed - Help pages in pt_BR directories had a wrong xml:lang="en" tag.
 * [Bug #14593](http://bugzilla.scilab.org/show_bug.cgi?id=14593) fixed - Signs are no more drawn in BIGSOM and PRODUCT components.
+* [Bug #14602](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - WRITEC_f block didn't work for x86 machines.
 * [Bug #14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - Matrix of strings concatenation with single quote led to a parser error.
 
 

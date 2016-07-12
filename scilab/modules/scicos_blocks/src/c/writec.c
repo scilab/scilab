@@ -56,7 +56,7 @@ ipar[7:6+lfil] = character codes for file name
 
     --ipar;
     --z;
-    fd = (FILE *)(long)z[2];
+    fd = (FILE *)(long long)z[2];
     buffer = (z + 3);
     ierr = 0;
     /*
@@ -113,7 +113,7 @@ ipar[7:6+lfil] = character codes for file name
             *flag = -3;
             return;
         }
-        z[2] = (long)fd;
+        z[2] = (long long)fd;
         z[1] = 1.0;
     }
     else if (*flag == 5)
