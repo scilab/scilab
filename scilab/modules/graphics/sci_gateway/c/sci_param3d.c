@@ -26,6 +26,7 @@
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "DefaultCommandArg.h"
 /*------------------------------------------------------------------------*/
 int sci_param3d(char * fname, void *pvApiCtx)
 {
@@ -51,6 +52,7 @@ int sci_param3d(char * fname, void *pvApiCtx)
     };
 
     char * labels = NULL;
+    BOOL freeLabels = FALSE;
 
     int* piAddr1 = NULL;
     int* piAddr2 = NULL;
@@ -163,11 +165,15 @@ int sci_param3d(char * fname, void *pvApiCtx)
     {
         return 0;
     }
-
+    freeLabels = !isDefLegend(labels);
     iflag_def[1] = 8;
     ifl = &(iflag_def[1]);
     if (get_optional_int_arg(pvApiCtx, fname, 7, "flag", &ifl, 2, opts) == 0)
     {
+        if (freeLabels)
+        {
+            freeAllocatedSingleString(labels);
+        }
         return 0;
     }
     iflag[0] = iflag_def[0];
@@ -175,6 +181,10 @@ int sci_param3d(char * fname, void *pvApiCtx)
     iflag[2] = ifl[1];
     if (get_optional_double_arg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts) == 0)
     {
+        if (freeLabels)
+        {
+            freeAllocatedSingleString(labels);
+        }
         return 0;
     }
 
@@ -190,6 +200,10 @@ int sci_param3d(char * fname, void *pvApiCtx)
 
 
     /* NG end */
+    if (freeLabels)
+    {
+        freeAllocatedSingleString(labels);
+    }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
     return 0;

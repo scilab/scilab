@@ -30,6 +30,7 @@
 #include "sciCall.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "DefaultCommandArg.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_plot3d(char * fname, void *pvApiCtx)
@@ -70,6 +71,7 @@ int sci_plot3d(char * fname, void *pvApiCtx)
     double* l2  = NULL;
     double* l3  = NULL;
     double* l3n = NULL;
+    BOOL freeLegend = FALSE;
 
     /*
     ** This overload the function to call demo script
@@ -334,12 +336,21 @@ int sci_plot3d(char * fname, void *pvApiCtx)
     {
         return 0;
     }
+    freeLegend = !isDefLegend(legend);
     if (get_optional_int_arg(pvApiCtx, fname, 7, "flag", &iflag, 3, opts) == 0)
     {
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
         return 0;
     }
     if (get_optional_double_arg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts) == 0)
     {
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
         return 0;
     }
 
@@ -365,6 +376,10 @@ int sci_plot3d(char * fname, void *pvApiCtx)
         FREE(l2);
     }
 
+    if (freeLegend)
+    {
+        freeAllocatedSingleString(legend);
+    }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
     return 0;

@@ -74,12 +74,14 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
     };
 
     int    * style    = NULL ;
-    double* rect     = NULL ;
+    double* rect      = NULL ;
     int    * nax      = NULL ;
     BOOL     flagNax  = FALSE;
     char   * strf     = NULL ;
     char strfl[4];
+    BOOL freeStrf     = FALSE;
     char   * legend   = NULL ;
+    BOOL freeLegend   = FALSE;
     char   * logFlags = NULL ;
 
     if (nbInputArgument(pvApiCtx) <= 0)
@@ -318,18 +320,44 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
     }
     if (get_strf_arg(pvApiCtx, fname, 4 + iskip, opts, &strf) == 0)
     {
+        FREE(style);
         return 0;
     }
+    freeStrf = isDefStrf(strf);
     if (get_legend_arg(pvApiCtx, fname, 5 + iskip, opts, &legend) == 0)
     {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        FREE(style);
         return 0;
     }
+    freeLegend = isDefLegend(legend);
     if (get_rect_arg(pvApiCtx, fname, 6 + iskip, opts, &rect) == 0)
     {
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        FREE(style);
         return 0;
     }
     if (get_nax_arg(pvApiCtx, 7 + iskip, opts, &nax, &flagNax)==0)
     {
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        FREE(style);
         return 0;
     }
 
@@ -337,6 +365,15 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
     {
         if (get_logflags_arg(pvApiCtx, fname, 8, opts, &logFlags) == 0)
         {
+            if (freeLegend)
+            {
+                freeAllocatedSingleString(legend);
+            }
+            if (freeStrf)
+            {
+                freeAllocatedSingleString(strf);
+            }
+            FREE(style);
             return 0;
         }
     }
@@ -356,6 +393,11 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
         }
         if (get_optional_int_arg(pvApiCtx, fname, 9, "frameflag", &frame, 1, opts) == 0)
         {
+            if (freeLegend)
+            {
+                freeAllocatedSingleString(legend);
+            }
+            FREE(style);
             return 0;
         }
         if (frame != &frame_def)
@@ -364,6 +406,11 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
         }
         if (get_optional_int_arg(pvApiCtx, fname, 9, "axesflag", &axes, 1, opts) == 0)
         {
+            if (freeLegend)
+            {
+                freeAllocatedSingleString(legend);
+            }
+            FREE(style);
             return 0;
         }
         if (axes != &axes_def)
@@ -381,6 +428,14 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
 
     // Allocated by sciGetStyle (get_style_arg function in GetCommandArg.c)
     FREE(style);
+    if (freeStrf)
+    {
+        freeAllocatedSingleString(strf);
+    }
+    if (freeLegend)
+    {
+        freeAllocatedSingleString(legend);
+    }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

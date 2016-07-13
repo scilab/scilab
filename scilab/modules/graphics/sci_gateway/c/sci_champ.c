@@ -56,6 +56,7 @@ int sci_champ_G(char *fname,
     };
 
     char   * strf = NULL;
+    BOOL freeStrf = FALSE;
     char strfl[4];
     double* rect = NULL;
 
@@ -202,6 +203,7 @@ int sci_champ_G(char *fname,
     {
         return 0;
     }
+    freeStrf = !isDefStrf(strf);
 
     getOrCreateDefaultSubwin();
 
@@ -216,6 +218,10 @@ int sci_champ_G(char *fname,
     }
 
     (*func)((l1), (l2), (l3), (l4), &m3, &n3, strf, rect, arfact, 4L);
+    if (freeStrf)
+    {
+        freeAllocatedSingleString(strf);
+    }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
     return 0;

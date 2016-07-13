@@ -50,6 +50,7 @@ int sci_grayplot(char *fname, void *pvApiCtx)
     };
 
     char   * strf    = NULL ;
+    BOOL freeStrf = FALSE;
     char strfl[4];
     double* rect    = NULL ;
     int    * nax     = NULL ;
@@ -174,16 +175,29 @@ int sci_grayplot(char *fname, void *pvApiCtx)
     {
         return 0;
     }
+    freeStrf = !isDefStrf(strf);
     if (get_rect_arg(pvApiCtx, fname, 5, opts, &rect) == 0)
     {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
         return 0;
     }
     if (get_nax_arg(pvApiCtx, 6, opts, &nax, &flagNax)==0)
     {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
         return 0;
     }
     if (get_logflags_arg(pvApiCtx, fname, 7, opts, &logFlags) == 0)
     {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
         return 0;
     }
 
@@ -219,6 +233,10 @@ int sci_grayplot(char *fname, void *pvApiCtx)
 
     Objgrayplot ((l1), (l2), (l3), &m3, &n3, strf, rect, nax, flagNax, logFlags);
 
+    if (freeStrf)
+    {
+        freeAllocatedSingleString(strf);
+    }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
     return 0;
