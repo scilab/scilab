@@ -1234,8 +1234,7 @@ StringMatrix * computeDefaultTicsLabels(int iObjUID)
 
     /* create a vector of strings */
     ticsLabels = newMatrix(1, nbTics);
-
-    if (curLabelBuffer == NULL)
+    if (ticsLabels == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "computeDefaultTicsLabels");
         return NULL;

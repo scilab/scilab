@@ -267,12 +267,6 @@ int sci_param3d1(char *fname, void *pvApiCtx)
         return 0;
     }
 
-    if (m1 == 1 && n1 > 1)
-    {
-        m1 = n1;
-        n1 = 1;
-    }
-
     getOrCreateDefaultSubwin();
 
     /* NG beg */
