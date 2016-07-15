@@ -57,7 +57,11 @@ int sci_color(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        getAllocatedSingleString(pvApiCtx, piAddr, &pstColor);
+        if (getAllocatedSingleString(pvApiCtx, piAddr, &pstColor))
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, 1);
+            return 1;
+        }
         name2rgb(pstColor, pdblColor);
         freeAllocatedSingleString(pstColor);
         if (pdblColor[0] == -1 || pdblColor[1] == -1 || pdblColor[2] == -1)
