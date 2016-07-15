@@ -354,11 +354,8 @@ BOOL HistoryManager::appendLine(char* _pstLine)
             m_iSavedLines = 0;
         }
 
-        if (pstCleanedLine)
-        {
-            FREE(pstCleanedLine);
-            pstCleanedLine = NULL;
-        }
+        FREE(pstCleanedLine);
+        pstCleanedLine = NULL;
     }
 
     return bOK;
