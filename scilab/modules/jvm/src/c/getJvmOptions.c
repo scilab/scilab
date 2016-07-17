@@ -116,12 +116,6 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                         char *option_string_sci_path = NULL;
 
                         option_string_path_separator = strsub(jvm_option_string, "$PATH_SEPARATOR", PATH_SEPARATOR);
-
-                        if (jvm_option_string)
-                        {
-                            FREE(jvm_option_string);
-                        }
-
                         option_string_sci_path = strsub(option_string_path_separator, "$SCILAB", SCI_PATH);
                         if (option_string_path_separator)
                         {
@@ -132,7 +126,11 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                         jvm_options[indice].optionString = option_string_sci_path;
                         indice++;
                     }
-
+                    if (jvm_option_string)
+                    {
+                        FREE(jvm_option_string);
+                        jvm_option_string = NULL;
+                    }
                 }
 
                 FREE(heapSize);

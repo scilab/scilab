@@ -68,7 +68,10 @@ JavaVM *getScilabJavaVM(void)
         if (!hasJvmSymbolsLoaded())
         {
             /* We load symbols of the current jvm already used */
-            LoadFunctionsJVM(NULL);
+            if (!LoadFunctionsJVM(NULL))
+            {
+                return NULL;
+            }
         }
 
         SciJNI_GetCreatedJavaVMs(vmBuf, 1, &size);
