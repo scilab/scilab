@@ -749,6 +749,7 @@ static bool import_integer(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
         }
         break;
         default:
+            FREE(piDims);
             return false;
     }
 
@@ -1483,6 +1484,8 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     }
 
     types::Struct* pStruct = new types::Struct(piDims[1], piDimsArray);
+    delete[] piDims;
+    delete[] piDimsArray;
 
     wchar_t* pwstName = NULL;
     for (int i = 0; i < (-2 + iItems); ++i)
@@ -1717,6 +1720,8 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     }
 
     types::Cell* pCell = new types::Cell(piDims[1], piDimsArray);
+    delete[] piDims;
+    delete[] piDimsArray;
     types::List* pList = new types::List();
     pList->set(0, types::Double::Empty());
 

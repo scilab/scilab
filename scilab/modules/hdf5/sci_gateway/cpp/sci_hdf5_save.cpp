@@ -518,6 +518,7 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
             if (ret)
             {
                 delete fields;
+                FREE(cfield);
                 return -1;
             }
         }
