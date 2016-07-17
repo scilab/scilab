@@ -143,14 +143,6 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
                 return 1;
             }
         }
-        else
-        {
-            if (type != sci_matrix)
-            {
-                Scierror(77, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), fname, pos + 1);
-                return 1;
-            }
-        }
 
         bool alloc = false;
         switch (param_type[0])
