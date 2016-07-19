@@ -456,5 +456,6 @@ Bug Fixes
 * [Bug #14495](http://bugzilla.scilab.org/show_bug.cgi?id=14495) fixed - `consolebox` help page shew wrong syntaxes and was poor.
 * [Bug #14499](http://bugzilla.scilab.org/show_bug.cgi?id=14499) fixed - `getd` did not update already defined functions
 * [Bug #14500](http://bugzilla.scilab.org/show_bug.cgi?id=14500) fixed - Operator `.^` was broken for sparse matrices.
+* [Bug #14517](http://bugzilla.scilab.org/show_bug.cgi?id=14517) fixed - The second argument of part function accepted an index of 0 without exiting in error.
 * [Bug #14524](http://bugzilla.scilab.org/show_bug.cgi?id=14524) fixed - Numeric locales were not set to standard "C" by default at scilab startup
 * [Bug #14540](http://bugzilla.scilab.org/show_bug.cgi?id=14540) fixed - Datatips did not clip outside axes bounds
