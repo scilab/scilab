@@ -108,7 +108,7 @@ H=time_id(3,u,rep)    //with u as input and too high order required
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="imrep2ss">imrep2ss</link>

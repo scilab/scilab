@@ -20,7 +20,7 @@
         <refpurpose>получение контрольной суммы md5</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             res=getmd5(filename)
             res=getmd5(ParamString,'string')

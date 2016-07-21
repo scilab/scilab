@@ -12,10 +12,8 @@ function demo_sparse_matrices()
     format(15);
     cd "SCI/modules/umfpack/demos/"
 
-    disp(_("To load a sparse matrix stored in the Harwell-"+..
-    "Boeing format in Scilab, you may use the function ReadHBSparse."));
-    disp(_("4 matrices will be loaded for the demo: they come"+..
-    " from the University of Florida Sparse Matrix Collection:"));
+    disp(_("To load a sparse matrix stored in the Harwell-Boeing format in Scilab, you may use the function ReadHBSparse."));
+    disp(_("4 matrices will be loaded for the demo: they come from the University of Florida Sparse Matrix Collection:"));
     printf("     www.cise.ufl.edu/research/sparse/matrices\n"+..
     "     http://math.nist.gov/MatrixMarket/matrices.html");
     disp(_("    maintained by Tim Davis, author of UMFPACK"));
@@ -27,8 +25,7 @@ function demo_sparse_matrices()
     [A4,descr4,ref4,mtype4] = ReadHBSparse("young1c.csa");
     mode(-1)
 
-    disp(_("To see the pattern of non zeros elements, "+..
-    "you may use the function PlotSparse."));
+    disp(_("To see the pattern of non zeros elements, you may use the function PlotSparse."));
     disp(_("Here we will display the 4 matrices"));
     halt(_("\nPress Return to continue...\n"));
 
@@ -85,34 +82,27 @@ function demo_sparse_matrices()
     mode(-1)
 
     disp(_("A1 ("+descr1+"): order = "+ string(n1) + " nnz = " + string(nnz(A1))));
-    printf(_("     norm of the residual = "+string(norm_res1)+"\n"+..
-    "     computing time       = "+string(t1)+"\n"));
-    disp(_("A2 ("+descr2+"): order = "+ string(n2) + " nnz = " + string(nnz(A2))));
-    printf(_("     norm of the residual = "+string(norm_res2)+"\n"+..
-    "     computing time       = "+string(t2)+"\n"));
-    disp(_("A3 ("+descr3+"): order = "+ string(n3) + " nnz = " + string(nnz(A3))));
-    printf(_("     norm of the residual = "+string(norm_res3)+"\n"+..
-    "     computing time       = "+string(t3)+"\n"));
+    msgNorm = _("     norm of the residual = ")
+    msgCT   = _("     computing time       = ")
+    printf(msgNorm + string(norm_res1) + "\n" + msgCT+string(t1)+"\n")
+    disp(_("A2 ("+descr2+"): order = "+ string(n2) + " nnz = " + string(nnz(A2))))
+    printf(msgNorm + string(norm_res2) + "\n" + msgCT + string(t2) + "\n")
+    disp(_("A3 ("+descr3+"): order = "+ string(n3) + " nnz = " + string(nnz(A3))))
+    printf(msgNorm + string(norm_res3) + "\n" + msgCT + string(t3)+"\n")
     disp(_("A4 ("+descr4+"): order = "+ string(n4) + " nnz = " + string(nnz(A4))));
-    printf(_("     norm of the residual = "+string(norm_res4)+"\n"+..
-    "     computing time       = "+string(t4)+"\n\n"));
+    printf(msgNorm + string(norm_res4)+"\n" + msgCT + string(t4)+"\n\n")
 
     disp(_("Now we will see how to use the lu factors:"));
     disp(_("  1/ lu factors of a sparse matrix A are obtained through:"));
-    printf(_("     lup = umf_lufact(A)\n"+..
-    "     lup is a pointer to the lu factors (the memory is outside scilab space)\n"));
+    printf(_("     lup = umf_lufact(A)\n     lup is a pointer to the lu factors (the memory is outside scilab space)\n"))
     disp(_("  2/ for solving a linear system A*x = b, use:"));
-    printf(_("     x = umf_lusolve(lup,b)\n"+..
-    "     or  x = umf_lusolve(lup,b,""Ax=b"",A)  to add an iterative refinement step\n"));
+    printf(_("     x = umf_lusolve(lup,b)\n     or  x = umf_lusolve(lup,b,""Ax=b"",A)  to add an iterative refinement step\n"))
     disp(_("  3/ to solve A''*x=b you may use:"));
-    printf(_("     x = umf_lusolve(lup,b,""Ax''''=b"")\n"+..
-    "     or  x = umf_lusolve(lup,b,""Ax''''=b"",A)  to add an iterative refinement step\n"));
+    printf(_("     x = umf_lusolve(lup,b,""Ax''''=b"")\n     or  x = umf_lusolve(lup,b,""Ax''''=b"",A)  to add an iterative refinement step\n"))
     disp(_("  4/ you may also compute the 1-norm condition number quicky with:"));
-    printf(_("     K1 = condestsp(A,lup)\n"+..
-    "     K1 = condestsp(A) also works but in this case the lu factors are re-computed inside\n"));
+    printf(_("     K1 = condestsp(A,lup)\n     K1 = condestsp(A) also works but in this case the lu factors are re-computed inside\n"))
     disp(_("  5/ if you don''t need the lu factors anymore, it is recommended to free them with:"));
-    printf(_("     umf_ludel(lup)\n"+..
-    "     if you have lost your pointer you may use umf_ludel() which frees all the current umf lu factors\n"));
+    printf(_("     umf_ludel(lup)\n     if you have lost your pointer you may use umf_ludel() which frees all the current umf lu factors\n"))
     halt(_("\nPress Return to continue...\n"));
 
     mode(1)
@@ -149,30 +139,30 @@ function demo_sparse_matrices()
     umf_ludel(lup4);
     mode(-1)
 
-    disp(_("A1 ("+descr1+"): order = "+ string(n1) + " nnz = " + string(nnz(A1))));
-    printf(_("     K1 = " + string(K1)+"\n"+..
-    "     norm of the residual    = "+string(norm_res1)+"\n"+..
-    "     same but with refinment = "+string(norm_res1r)+"\n"));
-    disp(_("A2 ("+descr2+"): order = "+ string(n2) + " nnz = " + string(nnz(A2))));
-    printf(_("     K2 = " + string(K2)+"\n"+..
-    "     norm of the residual    = "+string(norm_res2)+"\n"+..
-    "     same but with refinment = "+string(norm_res2r)+"\n"));
-    disp(_("A3 ("+descr3+"): order = "+ string(n3) + " nnz = " + string(nnz(A3))));
-    printf(_("     K3 = " + string(K3)+"\n"+..
-    "     norm of the residual    = "+string(norm_res3)+"\n"+..
-    "     same but with refinment = "+string(norm_res3r)+"\n"));
-    disp(_("A4 ("+descr4+"): order = "+ string(n4) + " nnz = " + string(nnz(A4))));
-    printf(_("     K4 = " + string(K4)+"\n"+..
-    "     norm of the residual     = "+string(norm_res4)+"\n"+..
-    "     same but with refinement = "+string(norm_res4r)+"\n\n"));
+    disp("A1 ("+descr1+"): order = "+ string(n1) + " nnz = " + string(nnz(A1)))
+    printf("     K1 = " + string(K1)+"\n" + ..
+         _("     norm of the residual    = ") + string(norm_res1) + "\n" + ..
+         _("     same but with refinment = ") + string(norm_res1r) + "\n")
+    disp("A2 ("+descr2+"): order = "+ string(n2) + " nnz = " + string(nnz(A2)))
+    printf("     K2 = " + string(K2)+"\n"+..
+         _("     norm of the residual    = ") + string(norm_res2) + "\n" + ..
+         _("     same but with refinment = ") + string(norm_res2r) + "\n")
+    disp("A3 ("+descr3+"): order = "+ string(n3) + " nnz = " + string(nnz(A3)))
+    printf("     K3 = " + string(K3)+"\n"+..
+         _("     norm of the residual    = ") + string(norm_res3) + "\n" + ..
+         _("     same but with refinment = ") + string(norm_res3r) + "\n")
+    disp("A4 ("+descr4+"): order = "+ string(n4) + " nnz = " + string(nnz(A4)))
+    printf("     K4 = " + string(K4) + "\n" + ..
+         _("     norm of the residual     = ") + string(norm_res4) + "\n" + ..
+         _("     same but with refinement = ") + string(norm_res4r) + "\n\n")
 
     clear A1 A3 A4 x1 x3 x4 b1 b3 b4
 
     disp(_("Now we will see how to use the taucs snmf stuff on the matrix A2."));
     disp(_("This is useful and recommended when your matrix is symmetric positive definite (s.p.d.)."));
     disp(_("  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"));
-    printf(_("     Cp = taucs_chfact(A)\n"+..
-    "     Cp is a pointer to the Cholesky fact. (the memory is outside scilab space)\n"));
+    printf("     Cp = taucs_chfact(A)\n" + ..
+         _("     Cp is a pointer to the Cholesky fact. (the memory is outside scilab space)\n"));
     disp(_("  2/ for solving a linear system A*x = b then use:"));
     printf(_("     x = taucs_chsolve(Cp,b)\n"));
     disp(_("  3/ for the same thing with one refinement step, use:"));
@@ -189,23 +179,21 @@ function demo_sparse_matrices()
     x2 = taucs_chsolve(Cp2,b2);
     t2_chol = toc();
     norm_res_chol_2 = norm(A2*x2-b2);
-    [x2r, r2] = rafiter(A2, Cp2, b2, x2);
-    norm_res_chol_2r = norm(r2);
     K2_norm2 = cond2sp(A2, Cp2);
     taucs_chdel(Cp2);
     mode(-1)
 
     disp(_("A2 ("+descr2+"): order = "+ string(n2) + " nnz = " + string(nnz(A2))));
-    printf(_("     K2 (1-norm) = " + string(K2)+"\n"+..
-    "     K2 (2-norm) = " + string(K2_norm2)+"\n"));
+    printf("     K2 (1-norm) = " + string(K2) + "\n" + ..
+           "     K2 (2-norm) = " + string(K2_norm2) + "\n" )
     disp(_(" with umfpack:"));
-    printf(_("     norm of the residual      = "+string(norm_res2)+"\n"+..
-    "     same but with refinment   = "+string(norm_res2r)+"\n"+..
-    "     computing time            = "+string(t2)+"\n"));
-    disp(_(" with the taucs snmf Cholesky solver:"));
-    printf(_("     norm of the residual      = "+string(norm_res_chol_2)+"\n"+..
-    "     same but with refinment   = "+string(norm_res_chol_2r)+"\n"+..
-    "     computing time            = "+string(t2_chol)+"\n"));
+    printf(_("     norm of the residual = ") + string(norm_res2) + "\n" + ..
+           _("     same but with refinment = ") + string(norm_res2r) + "\n" + ..
+           _("     computing time       = ") + string(t2) + "\n")
+    disp(_(" with the taucs snmf Cholesky solver:"))
+    printf(_("     norm of the residual = ") + string(norm_res_chol_2) + "\n" + ..
+           _("     same but with refinment = ") + string(norm_res_chol_2r) + "\n" + ..
+           _("     computing time       = ") + string(t2_chol) + "\n")
 
     if num == max(winsid()) then
         xdel(num);

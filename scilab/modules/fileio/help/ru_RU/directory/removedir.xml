@@ -20,7 +20,7 @@
         <refpurpose>удаляет директорию</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             removedir(dirname)
             [status] = removedir(dirname)

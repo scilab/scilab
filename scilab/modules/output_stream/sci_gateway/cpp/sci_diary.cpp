@@ -297,12 +297,9 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
             {
                 if (diaryClose(wcFilenames[0]))
                 {
-                    if (wcFilenames)
-                    {
-                        Scierror(999, _("%s: error can not close diary.\n"), fname);
-                        freeArrayOfWideString(wcFilenames, sizewcFilenames);
-                        return 0;
-                    }
+                    Scierror(999, _("%s: error can not close diary.\n"), fname);
+                    freeArrayOfWideString(wcFilenames, sizewcFilenames);
+                    return 0;
                 }
                 LhsVar(1) = 0;
             }
@@ -813,6 +810,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
                 {
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     *ierror = 1;
+                    FREE(lenStVarOne);
                 }
                 else
                 {
@@ -828,6 +826,8 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
                                 FREE(wcFilenames[i]);
                             }
                             FREE(wcFilenames);
+                            FREE(lenStVarOne);
+                            return NULL;
                         }
                     }
 

@@ -106,6 +106,14 @@ types::Function::ReturnValue sci_cshep2d(types::typed_list &in, int _iRetCount, 
     if (ier != 0)
     {
         Scierror(999, _("%s: Duplicate nodes or all nodes colinears (ier = %d).\n"), "cshep2d", ier);
+        delete pTListCoef;
+        delete pStr;
+        delete pInt32Cell;
+        delete pInt32Next;
+        delete pDblGrid;
+        delete pDblRMax;
+        delete pDblRW;
+        delete pDblA;
         return types::Function::Error;
     }
 

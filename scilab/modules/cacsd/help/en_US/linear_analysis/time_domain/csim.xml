@@ -204,7 +204,7 @@ clf();plot2d([t',t'],[(csim(timefun,t,w))',0*t'])
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="syslin">syslin</link>

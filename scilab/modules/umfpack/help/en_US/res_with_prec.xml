@@ -69,10 +69,10 @@ norm(res_with_prec(A, x0, b))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="rafiter">rafiter</link>
+                <link linkend="taucs_chsolve">taucs_chsolve</link>
             </member>
         </simplelist>
     </refsection>

@@ -22,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>res = fullpath(relative_path)</synopsis>
     </refsynopsisdiv>
     <refsection>

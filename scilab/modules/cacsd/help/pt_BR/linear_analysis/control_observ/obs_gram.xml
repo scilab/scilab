@@ -85,7 +85,7 @@ norm(lyap(A,-C'*C,'d')-Go,1)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ctr_gram">ctr_gram</link>

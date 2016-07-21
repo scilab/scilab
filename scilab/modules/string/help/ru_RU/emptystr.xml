@@ -19,7 +19,7 @@
         <refpurpose>формирование строки нулевой длины</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>s = emptystr()
             s = emptystr(a)
             s = emptystr(m, n)

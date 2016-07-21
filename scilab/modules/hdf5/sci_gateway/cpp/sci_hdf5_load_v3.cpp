@@ -615,6 +615,7 @@ static types::InternalType* import_struct(int dataset)
         {
             closeList6(dataset);
             freeStringMatrix(dfield, fields.data());
+            FREE(field);
             delete str;
             return nullptr;
         }
@@ -628,6 +629,7 @@ static types::InternalType* import_struct(int dataset)
         if (ret < 0)
         {
             freeStringMatrix(dfield, fields.data());
+            FREE(field);
             delete str;
             return nullptr;
         }
@@ -640,6 +642,7 @@ static types::InternalType* import_struct(int dataset)
             if (data < 0)
             {
                 freeStringMatrix(dfield, fields.data());
+                FREE(field);
                 delete str;
                 return nullptr;
             }
@@ -648,6 +651,7 @@ static types::InternalType* import_struct(int dataset)
             if (val == nullptr)
             {
                 freeStringMatrix(dfield, fields.data());
+                FREE(field);
                 delete str;
                 return nullptr;
             }

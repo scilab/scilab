@@ -207,7 +207,7 @@ a.parent.color_map=hotcolormap(64);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

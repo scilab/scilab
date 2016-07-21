@@ -19,7 +19,7 @@
     <refnamediv>
         <refname>test_run</refname>
         <refpurpose>
-            Launches unit tests and non-regression test in a module or directory. The test run checks first that test scripts does not generate an error, then that the test diary (<literal>dia</literal> files) is the same as the reference diary (<literal>dia.ref</literal> files).
+            runs unit tests and non-regression tests of a module or in a directory
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -63,7 +63,9 @@
                 <term>test_name</term>
                 <listitem>
                     <para>
-                        A string array or <literal>[]</literal> (or equivalently <literal>"[]"</literal>). The names of the tests to execute during this run. If <literal>[]</literal> executes all tests found.
+                        A string array or <literal>[]</literal> or <literal>"[]"</literal>:
+                        The names of the tests to execute during this run. If <varname>test_name</varname>
+                        is <literal>[]</literal>, all tests found in the module or in the directory are executed.
                     </para>
                 </listitem>
             </varlistentry>
@@ -179,7 +181,8 @@
                         Note that the usage of this option enables <literal>show_diff</literal> and <literal>show_error</literal>.
                     </para>
                     <para>
-                        If the file pointed by <varname>exportToFile</varname> already exists, the new result will be added to the existing file.
+                        If the file pointed by <varname>exportToFile</varname> already exists,
+                        the new results are appended to the existing file.
                     </para>
                 </listitem>
             </varlistentry>
@@ -198,16 +201,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            Search for .tst files in the unit test and non-regression test library
-            execute them, and display a report about success of failures.
-            The .tst files are searched in directories SCI+"/modules/*/tests/unit_tests"
-            and SCI+"/modules/*/tests/nonreg_tests".
+            Search for .tst files in the unit test and non-regression test library,
+            execute them, and display a report about success or failures.
+            The .tst files are searched in directories ~/tests/unit_tests"
+            and ~/tests/nonreg_tests" where "~" is the root directory of targeted modules.
         </para>
         <para>
             First <literal>test_run</literal> checks that a test does not produce an error.
         </para>
         <para>
-            Then <literal>test_run</literal> checks that the output and commands of a script are identical to the reference file. Whenever a test is executed, a <literal>.dia</literal> file is generated which contains
+            Then <literal>test_run</literal> checks that the output and commands of a script are
+            identical to the reference file. Whenever a test is executed, a <literal>.dia</literal>
+            file is generated which contains
             the full list of commands executed along with messages that appear in the
             console output. When the script is done, the <literal>.dia</literal> file is compared with
             the <literal>.dia.ref</literal> file which is expected to be in the same directory

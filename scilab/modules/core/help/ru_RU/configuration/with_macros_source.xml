@@ -5,7 +5,7 @@
         <refpurpose>проверка: установлены ли исходники макросов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>r = with_macros_source()</synopsis>
     </refsynopsisdiv>
     <refsection>

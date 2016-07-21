@@ -17,6 +17,7 @@
 #include <algorithm>
 #include <sstream>
 #include <math.h>
+#include <iomanip>
 #include "symbol.hxx"
 #include "cell.hxx"
 #include "double.hxx"
@@ -407,7 +408,7 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
         delete[] piSizeLen;
         delete[] piTypeLen;
     }
-    ostr << std::endl;
+    ostr << std::endl << std::resetiosflags(std::ios::adjustfield);
     return true;
 }
 

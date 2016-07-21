@@ -190,7 +190,7 @@ c1+c2
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="meshgrid">meshgrid</link>
@@ -200,9 +200,6 @@ c1+c2
             </member>
             <member>
                 <link linkend="feval">feval</link>
-            </member>
-            <member>
-                <link linkend="eval3d">eval3d</link>
             </member>
             <member>
                 <link linkend="nf3d">nf3d</link>

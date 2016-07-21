@@ -19,7 +19,7 @@
         <refpurpose>проверяет: является ли переменная cell-массивом</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>bool = iscell(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

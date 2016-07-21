@@ -133,7 +133,7 @@ replot([-1 %nan 1.5 %nan], [ax1 ax2])
       ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="zoom_rect">zoom_rect</link>

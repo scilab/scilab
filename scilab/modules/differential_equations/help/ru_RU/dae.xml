@@ -22,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             y=dae(initial,t0,t,res)
             [y [,hd]]=dae(initial,t0,t [,rtol, [atol]],res [,jac] [,hd])

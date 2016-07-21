@@ -217,7 +217,7 @@ For Loop (as reference) ...........................      33.20 ms [ 1000000 x]
             ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="test_run">test_run</link>

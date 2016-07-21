@@ -51,7 +51,10 @@ int sci_removeModulePreferences(char * fname, void *pvApiCtx)
         {
             Scierror(999, gettext("%s: Wrong type for input argument #%i: string expected.\n"), fname, 1);
         }
-        getAllocatedSingleString(pvApiCtx, addr, &tbxName);
+        if (getAllocatedSingleString(pvApiCtx, addr, &tbxName))
+        {
+            return 0;
+        }
     }
 
     try

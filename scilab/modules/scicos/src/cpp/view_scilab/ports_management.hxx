@@ -327,15 +327,15 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
                     return false;
                 }
 
-                std::wstring E = L"E";
-                std::wstring I = L"I";
+                std::wstring Explicit = L"E";
+                std::wstring Implicit = L"I";
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
-                    if (current->get(i) == I)
+                    if (current->get(i) == Implicit)
                     {
                         controller.setObjectProperty(*it, PORT, p, true);
                     }
-                    else if (current->get(i) == E)
+                    else if (current->get(i) == Explicit)
                     {
                         controller.setObjectProperty(*it, PORT, p, false);
                     }

@@ -79,7 +79,7 @@ x_neigh = neigh_func_fsa(x_current,10,[])
     </refsection>
     
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optim_sa"> optim_sa </link>

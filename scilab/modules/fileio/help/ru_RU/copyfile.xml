@@ -23,7 +23,7 @@
         <refpurpose>копирование файла</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             copyfile(source, destination)
             [status, message] = copyfile(source, destination)

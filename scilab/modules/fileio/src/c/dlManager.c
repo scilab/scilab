@@ -140,7 +140,7 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
         }
         else
         {
-            *proxyUserPwd = (char *)MALLOC((ulen + 1 + plen + 1) * sizeof(char *));
+            *proxyUserPwd = (char *)MALLOC((ulen + 1 + plen + 1) * sizeof(char));
             sprintf(*proxyUserPwd, "%s:%s", values[3]/*user*/, values[4]/*password*/);
             (*proxyUserPwd)[ulen + 1 + plen] = '\0';
             FREE(values[3]);

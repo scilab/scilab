@@ -19,7 +19,7 @@
         <refpurpose>вектор с равномерными интервалами между элементами</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[v]=linspace(x1,x2 [,n])</synopsis>
     </refsynopsisdiv>
     <refsection>

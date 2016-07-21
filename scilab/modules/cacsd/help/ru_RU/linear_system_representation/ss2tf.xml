@@ -86,7 +86,7 @@ h=clean(ss2tf(sl))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="tf2ss">tf2ss</link>

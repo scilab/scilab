@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[x1, y1, rect] = xchange(x, y, dir)</synopsis>
     </refsynopsisdiv>
     <refsection>

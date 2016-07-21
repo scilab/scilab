@@ -193,12 +193,12 @@ void startTclLoop()
                 evaluateTclFile();
             }
             /* Update return value and result */
+            if (TclInterpResult)
+            {
+                FREE(TclInterpResult);
+            }
             if (Tcl_GetStringResult(LocalTCLinterp) && strlen(Tcl_GetStringResult(LocalTCLinterp)) != 0)
             {
-                if (TclInterpResult)
-                {
-                    FREE(TclInterpResult);
-                }
                 TclInterpResult = os_strdup(Tcl_GetStringResult(LocalTCLinterp));
             }
             else

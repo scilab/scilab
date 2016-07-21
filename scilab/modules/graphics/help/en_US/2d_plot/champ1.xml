@@ -137,7 +137,7 @@ champ1(x,y,fx',fy'); //here we have transposed fx and fy
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="champ">champ</link>

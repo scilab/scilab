@@ -48,7 +48,7 @@ cosm(A)-0.5*(expm(%i*A)+expm(-%i*A))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cos">cos</link>

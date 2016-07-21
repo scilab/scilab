@@ -76,7 +76,7 @@ prompt(">>"); // Create a new prompt just for the next command
     </refsection>
     
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="pause">pause</link>

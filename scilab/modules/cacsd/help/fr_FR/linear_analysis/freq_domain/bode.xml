@@ -199,7 +199,7 @@ clf(); bode(sys, f_min, f_max, "rad"); // Converts Hz to rad/s
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="bode_asymp">bode_asymp</link>

@@ -20,7 +20,7 @@
         <refpurpose>преобразование в строку</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             string(x)
             [out, in, text] = string(x)

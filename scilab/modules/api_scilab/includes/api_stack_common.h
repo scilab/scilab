@@ -480,6 +480,16 @@ int increaseValRef(void* _pvCtx, int* _piAddress);
  */
 int decreaseValRef(void* _pvCtx, int* _piAddress);
 
+/**
+ * Initialize SciErr
+ */
+SciErr sciErrInit();
+
+/**
+ * Clean & reset a SciErr
+ */
+void sciErrClean(SciErr* _psciErr);
+
 #ifdef __cplusplus
 }
 #endif

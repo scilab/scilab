@@ -68,7 +68,7 @@ P=[ P11 P12;
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="lqg">lqg</link>

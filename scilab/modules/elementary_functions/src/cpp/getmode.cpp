@@ -64,18 +64,20 @@ int getMode(types::typed_list &in, int _iProcess, int _iRef)
             Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", _iProcess + 1, 1, 1);
             iMode = -2;
         }
-
-        iMode = static_cast<int>(pD->getReal()[0]);
-        if (pD->getReal()[0] != static_cast<double>(iMode))
+        else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "size", 2);
-            iMode = -2;
-        }
+            iMode = static_cast<int>(pD->getReal()[0]);
+            if (pD->getReal()[0] != static_cast<double>(iMode))
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "size", 2);
+                iMode = -2;
+            }
 
-        if (iMode <= 0)
-        {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "size", 2);
-            iMode = -2;
+            if (iMode <= 0)
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "size", 2);
+                iMode = -2;
+            }
         }
     }
     else

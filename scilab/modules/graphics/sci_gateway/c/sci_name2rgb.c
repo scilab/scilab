@@ -51,7 +51,11 @@ int sci_name2rgb(char *fname, void* pvApiCtx)
 
     if (isScalar(pvApiCtx, piAddr) == TRUE)
     {
-        getAllocatedSingleString(pvApiCtx, piAddr, &pstColor);
+        if (getAllocatedSingleString(pvApiCtx, piAddr, &pstColor))
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, 1);
+            return 1;
+        }
         name2rgb(pstColor, color);
         freeAllocatedSingleString(pstColor);
 
@@ -66,7 +70,11 @@ int sci_name2rgb(char *fname, void* pvApiCtx)
     }
     else
     {
-        getAllocatedMatrixOfString(pvApiCtx, piAddr, &nRows, &nCols, &pstColorMatrix);
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddr, &nRows, &nCols, &pstColorMatrix))
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of string expected.\n"), fname, 1);
+            return 1;
+        }
         nRowsCols = nRows * nCols;
         pColor = (double*)MALLOC(3 * nRowsCols * sizeof(double));
         for (i = 0; i < nRowsCols; ++i)

@@ -80,7 +80,7 @@ surf(X,Y,Z)
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ndgrid">ndgrid</link>

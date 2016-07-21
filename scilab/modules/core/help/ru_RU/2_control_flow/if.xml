@@ -5,7 +5,7 @@
         <refpurpose>ключевое слово для условного выполнения</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             if expr1 then
             statements 1

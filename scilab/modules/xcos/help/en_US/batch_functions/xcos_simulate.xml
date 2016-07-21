@@ -258,7 +258,7 @@ xcos_simulate(scs_m, 4);
         </para>
     </refsection>
     <refsection id="SeeAlso_xcos_simulate">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="scicos_diagram">scs_m structure</link>

@@ -19,7 +19,7 @@
         <refpurpose>поэлементная функция косинус, аргумент в градусах</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y = cosd(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

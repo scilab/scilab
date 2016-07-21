@@ -157,7 +157,7 @@ ylabel(axes_handle, "sin(t)", "fontsize", 6, "color", "red");
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="label_properties">label_properties</link>

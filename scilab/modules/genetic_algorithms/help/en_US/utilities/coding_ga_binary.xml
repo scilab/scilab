@@ -105,7 +105,7 @@ pop_in_2 = coding_ga_binary(pop_out,'decode',[])
 ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optim_ga"> optim_ga </link>

@@ -19,7 +19,7 @@
         <refpurpose>вероятности по биномиальному распределению</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>pr=binomial(p,n)</synopsis>
     </refsynopsisdiv>
     <refsection>

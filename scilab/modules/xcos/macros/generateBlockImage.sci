@@ -99,11 +99,11 @@ function status = generateBlockImage(block, path, filename, imageType, withPort)
 
     // draw settings
     // note that the gh_axes variable have to be known on the "plot" call
+    isoview("on")
     gh_axes.fractional_font = "off";
     gh_axes.arc_drawing_method = "lines";
     o_size = size(gh_axes.children);
     gh_axes.data_bounds = [orig(1), orig(2); sz(1), orig(2)+sz(2)];
-    gh_axes.isoview = "on";
     gh_axes.margins = 0.01 * ones(1, 4);
     gh_axes.box ="off";
     handle.axes_size = [max(20, 20 * sz(1)), max(20, 20 * sz(2))];

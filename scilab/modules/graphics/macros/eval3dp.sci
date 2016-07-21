@@ -10,7 +10,7 @@
 // along with this program.
 
 function [x,y,z]=eval3dp(fun,p1,p2)
-    // eval3d - retourne une representation par facettes d'une fonction z=f(u,v)
+    // eval3dp - retourne une representation par facettes d'une fonction z=f(u,v)
     //%Syntaxe
     //  [x,y,z]=eval3dp(fun,p1,p2)
     //%Parametres
@@ -37,7 +37,7 @@ function [x,y,z]=eval3dp(fun,p1,p2)
     //  [x,y,z]=eval3dp(scp,0:0.3:2*%pi,-%pi:0.3:%pi);
     //  fac3d(x,y,z,35,45,'x@y@z')
     //%Voir aussi
-    // plot3d eval3d fac3d
+    // plot3d fac3d
     //!
 
     [lhs,rhs]=argn(0)

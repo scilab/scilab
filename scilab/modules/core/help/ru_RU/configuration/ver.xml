@@ -19,7 +19,7 @@
         <refpurpose>информация о версии Scilab'а</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>r = ver()</synopsis>
     </refsynopsisdiv>
     <refsection>

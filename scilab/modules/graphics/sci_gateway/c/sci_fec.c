@@ -58,6 +58,8 @@ int sci_fec(char *fname, void *pvApiCtx)
     int* colOut     = NULL;
     BOOL flagNax    = FALSE;
     BOOL withMesh   = FALSE;
+    BOOL freeLegend = FALSE;
+    BOOL freeStrf = FALSE;
 
     int* piAddr1 = NULL;
     int* piAddr2 = NULL;
@@ -181,14 +183,92 @@ int sci_fec(char *fname, void *pvApiCtx)
         return 0;
     }
 
-    GetStrf(pvApiCtx, fname, 5, opts, &strf);
-    GetLegend(pvApiCtx, fname, 6, opts, &legend);
-    GetRect(pvApiCtx, fname, 7, opts, &rect);
-    GetNax(pvApiCtx, 8, opts, &nax, &flagNax);
-    GetZminmax(pvApiCtx, fname, 9, opts, &zminmax);
-    GetColminmax(pvApiCtx, fname, 10, opts, &colminmax);
-    GetColOut(pvApiCtx, fname, 11, opts, &colOut);
-    GetWithMesh(pvApiCtx, fname, 12, opts, &withMesh);
+    if (get_strf_arg(pvApiCtx, fname, 5, opts, &strf) == 0)
+    {
+        return 0;
+    }
+    freeStrf = !isDefStrf(strf);
+    if (get_legend_arg(pvApiCtx, fname, 6, opts, &legend) == 0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        return 0;
+    }
+    freeLegend = !isDefLegend(legend);
+    if (get_rect_arg(pvApiCtx, fname, 7, opts, &rect) == 0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        return 0;
+    }
+    if (get_nax_arg(pvApiCtx, 8, opts, &nax, &flagNax)==0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        return 0;
+    }
+    if (get_zminmax_arg(pvApiCtx, fname, 9, opts, &zminmax) == 0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        return 0;
+    }
+    if (get_colminmax_arg(pvApiCtx, fname, 10, opts, &colminmax)==0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        return 0;
+    }
+    if (get_colout_arg(pvApiCtx, fname, 11, opts, &colOut)==0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        return 0;
+    }
+    if (get_with_mesh_arg(pvApiCtx, fname, 12, opts, &withMesh)==0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        return 0;
+    }
 
     getOrCreateDefaultSubwin();
 
@@ -210,6 +290,14 @@ int sci_fec(char *fname, void *pvApiCtx)
 
     Objfec ((l1), (l2), (l3), (l4), &mn1, &m3, &n3, strf, legend, rect, nax, zminmax, colminmax, colOut, withMesh, flagNax);
 
+    if (freeStrf)
+    {
+        freeAllocatedSingleString(strf);
+    }
+    if (freeLegend)
+    {
+        freeAllocatedSingleString(legend);
+    }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
 

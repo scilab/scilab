@@ -80,9 +80,9 @@ int ScilabGateway::import(char * fname, const int envId, void * pvApiCtx)
     else
     {
         className = (char**)MALLOC(sizeof(char *) * nbArgs);
-        for (int i = 1; i <= nbArgs; i++)
+        for (int i = 0; i < nbArgs; i++)
         {
-            err = getVarAddressFromPosition(pvApiCtx, i, &addr);
+            err = getVarAddressFromPosition(pvApiCtx, i + 1, &addr);
             if (err.iErr)
             {
                 freeAllocatedMatrixOfString(1, i, className);
@@ -92,10 +92,10 @@ int ScilabGateway::import(char * fname, const int envId, void * pvApiCtx)
             if (!isStringType(pvApiCtx, addr))
             {
                 freeAllocatedMatrixOfString(1, i, className);
-                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Wrong type for input argument #%d: A String expected."), i);
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Wrong type for input argument #%d: A String expected."), i + 1);
             }
 
-            if (getAllocatedSingleString(pvApiCtx, addr, &(className[i - 1])))
+            if (getAllocatedSingleString(pvApiCtx, addr, &(className[i])))
             {
                 freeAllocatedMatrixOfString(1, i, className);
                 throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));

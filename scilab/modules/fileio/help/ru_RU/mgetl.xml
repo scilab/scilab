@@ -20,7 +20,7 @@
         <refpurpose>считывает строки из текстового файла</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>txt = mgetl(file_desc [,m])</synopsis>
     </refsynopsisdiv>
     <refsection>

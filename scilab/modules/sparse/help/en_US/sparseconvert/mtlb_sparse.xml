@@ -66,7 +66,7 @@ Y, full(Y), [ij,v,mn]=spget(Y)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="full">full</link>

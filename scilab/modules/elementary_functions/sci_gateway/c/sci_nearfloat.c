@@ -105,6 +105,7 @@ int sci_nearfloat(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        free(piLen);
         return 0;
     }
 
@@ -118,6 +119,12 @@ int sci_nearfloat(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        free(piLen);
+        for (i = 0 ; i < iRows1 * iCols1 ; i++)
+        {
+            free(pstData[i]);
+        }
+        free(pstData);
         return 0;
     }
 
@@ -125,6 +132,12 @@ int sci_nearfloat(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        free(piLen);
+        for (i = 0 ; i < iRows1 * iCols1 ; i++)
+        {
+            free(pstData[i]);
+        }
+        free(pstData);
         return 0;
     }
 
@@ -139,6 +152,12 @@ int sci_nearfloat(char *fname, void* pvApiCtx)
     else
     {
         SciError(999);
+        free(piLen);
+        for (i = 0 ; i < iRows1 * iCols1 ; i++)
+        {
+            free(pstData[i]);
+        }
+        free(pstData);
         return 0;
     }
 
@@ -146,6 +165,12 @@ int sci_nearfloat(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        free(piLen);
+        for (i = 0 ; i < iRows1 * iCols1 ; i++)
+        {
+            free(pstData[i]);
+        }
+        free(pstData);
         return 0;
     }
 

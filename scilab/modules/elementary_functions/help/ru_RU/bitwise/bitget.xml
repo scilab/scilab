@@ -20,7 +20,7 @@
         <refpurpose>бит в определённой позиции</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             y = bitget(x, pos)
             

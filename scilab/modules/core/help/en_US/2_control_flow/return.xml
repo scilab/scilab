@@ -72,7 +72,7 @@ assert_checkequal(b,43)
     </refsection>
     
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="abort">abort</link>

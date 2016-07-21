@@ -20,7 +20,7 @@
         <refpurpose>возвращает смещение текущего байта относительно начала файла</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>mtell([fd])</synopsis>
     </refsynopsisdiv>
     <refsection>

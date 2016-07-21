@@ -20,7 +20,7 @@
         <refpurpose>получение текста, переведённого на язык текущей локали и определённого региона использования</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>msg=dgettext(domain, myString)</synopsis>
     </refsynopsisdiv>
     <refsection>

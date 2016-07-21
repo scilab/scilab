@@ -19,7 +19,7 @@
         <refpurpose>разница и дискретная производная</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             y=diff(x)
             y=diff(x [,n [,dim]])

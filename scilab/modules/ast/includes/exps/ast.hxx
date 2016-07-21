@@ -36,7 +36,7 @@ class Ast
 public:
     /** \brief Construct an Ast node.
     ** \param location scanner position informations */
-    Ast (const Location& location) : decorator(), coverId(0), _location (location)
+    Ast (const Location& location) : decorator(), coverId(0), _location (location), m_dblElapsedTime(0)
     {
         nodeNumber = globalNodeNumber++;
     }

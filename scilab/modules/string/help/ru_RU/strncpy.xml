@@ -19,7 +19,7 @@
         <refpurpose>копирование символов из строк</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>res = strncpy(str1, num)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -20,7 +20,7 @@
         <refpurpose>показывает файлы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             files = ls [path]
             files = ls( [path] )

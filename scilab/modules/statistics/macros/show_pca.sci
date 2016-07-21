@@ -63,9 +63,8 @@ function show_pca(lambda,facpr,N)
     t = linspace(0,2*%pi,1000);
     plot(cos(t),sin(t),"r-")
     // Set isoview and grid
-    h = gca()
-    h.grid=[31 31]
-    h.isoview="on"
+    isoview()
+    gca().grid = [31 31]
 
     // Plot the ratio of each eigenvalue over the sum.
     subplot(122)

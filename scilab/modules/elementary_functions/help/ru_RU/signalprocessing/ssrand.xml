@@ -19,7 +19,7 @@
         <refpurpose>генератор случайной системы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             sl=ssrand(nout,nin,nstate)
             [sl,U]=ssrand(nout,nin,nstate,flag)

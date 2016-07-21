@@ -20,7 +20,7 @@
         <refpurpose>открывает файл в Scilab'е</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[fd, err] = mopen(file [, mode, swap ])</synopsis>
     </refsynopsisdiv>
     <refsection>

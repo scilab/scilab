@@ -881,7 +881,7 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/ast/includes/ast/ \
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
 
-# Link against valgrind library as on some systems (eg. Fedora) it should be 
+# Link against valgrind library as on some systems (eg. Fedora) it should be
 # link on the final binary
 COMMON_LIBS = $(LTLIBINTL) $(VALGRIND_LIBS)
 scilab_bin_SOURCES = modules/startup/src/cpp/scilab.cpp \
@@ -2142,6 +2142,16 @@ macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-
 	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -quit -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
 	$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -quit -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
 
+strip-debug:
+	find $(top_builddir) -name '*.so.?.?.?' | while read file ; \
+	do \
+	    if [ ! -f $$file.debug ]; then \
+	        objcopy --only-keep-debug $$file $$file.debug; \
+	        objcopy --strip-debug $$file; \
+	        objcopy --add-gnu-debuglink=$$file.debug $$file; \
+	    fi \
+	done;
+
 check-jvm-dep:
 # Check that scilab-cli does not have a dependency on libjvm
 @IS_MACOSX_FALSE@	@ldd .libs/scilab-cli-bin|grep libjvm > /dev/null; \
@@ -2206,8 +2216,8 @@ doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@		for l in $(ALL_LINGUAS_DOC); do \
 @BUILD_HELP_TRUE@			echo "-- Building documentation ($$l) --"; \
 @BUILD_HELP_TRUE@			COMMAND="try xmltojar([],[],'$$l');catch disp(lasterror()); exit(-1);end;exit(0);"; \
-@BUILD_HELP_TRUE@			echo "LANG=$$l.UTF-8 LC_ALL=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
-@BUILD_HELP_TRUE@			LANG=$$l.UTF-8 LC_ALL=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
+@BUILD_HELP_TRUE@			echo "LANG=$$l.UTF-8 LC_ALL=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
+@BUILD_HELP_TRUE@			LANG=$$l.UTF-8 LC_ALL=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 @BUILD_HELP_TRUE@		done; \
 @BUILD_HELP_TRUE@	else \
 @BUILD_HELP_TRUE@		echo "Cannot find Scilab-adv-cli binary"; \
@@ -2422,7 +2432,7 @@ install-data-local:
 @EXTERNAL_SCIRENDERER_FALSE@@GUI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)
 @EXTERNAL_SCIRENDERER_FALSE@@GUI_TRUE@	$(INSTALL_DATA) $(top_builddir)/$(PATHTOSCIRENDERER)/$(SCIRENDERERJAR) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)/
 
-.PHONY: macros localization doc
+.PHONY: macros localization doc strip-debug
 
 .NOTPARALLEL: macros doc
 

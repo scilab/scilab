@@ -20,7 +20,7 @@
         <refpurpose>устанавливает текущую позицию в двоичном файле</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>mseek(n [,fd, flag])</synopsis>
     </refsynopsisdiv>
     <refsection>

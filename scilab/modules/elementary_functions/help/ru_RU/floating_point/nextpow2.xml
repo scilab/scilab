@@ -19,7 +19,7 @@
         <refpurpose>степень двойки, дающая равное или большее число</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t=nextpow2(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

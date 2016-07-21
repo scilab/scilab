@@ -100,7 +100,7 @@ pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xfpolys">xfpolys</link>

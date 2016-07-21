@@ -19,7 +19,7 @@
         <refpurpose>квадратная матрица экспоненциальной функции</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>expm(X)</synopsis>
     </refsynopsisdiv>
     <refsection>

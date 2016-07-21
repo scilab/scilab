@@ -20,7 +20,7 @@
         <refpurpose>записывает строки в текстовый файл</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>r = mputl(txt, file_desc)</synopsis>
     </refsynopsisdiv>
     <refsection>

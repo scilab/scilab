@@ -19,7 +19,7 @@
         <refpurpose>возвращает элементы вектора, которые не принадлежат другому вектору</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>v=setdiff(a,b)
             [v,ka]=setdiff(a,b)
         </synopsis>

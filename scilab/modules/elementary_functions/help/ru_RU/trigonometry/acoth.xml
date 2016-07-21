@@ -8,7 +8,7 @@
         <refpurpose>поэлементный гиперболический арккотангенс.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y = acoth(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -81,7 +81,7 @@ x_neigh = neigh_func_csa(x_current,10,[])
     </refsection>
     
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="neigh_func_default"> neigh_func_default

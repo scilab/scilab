@@ -5,7 +5,7 @@
         <refpurpose>сообщение об ошибке</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             error(message)
             error(message, n)

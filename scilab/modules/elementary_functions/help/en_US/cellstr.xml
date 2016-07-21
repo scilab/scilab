@@ -78,7 +78,7 @@ cellstr(["abc","def",'gh';"i","j","klm"])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cell">cell</link>

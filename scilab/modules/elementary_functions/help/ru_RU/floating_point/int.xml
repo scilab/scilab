@@ -20,7 +20,7 @@
         <refpurpose>округление в направлении нуля</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=int(X)</synopsis>
     </refsynopsisdiv>
     <refsection>

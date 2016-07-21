@@ -5,7 +5,7 @@
         <refpurpose>добавление имени в таблицу функций</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>newfun(function_name, function_ptr)</synopsis>
     </refsynopsisdiv>
     <refsection>

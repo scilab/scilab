@@ -19,7 +19,7 @@
         <refpurpose>количество элементов list, tlist, mlist</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>n=lstsize(l)</synopsis>
     </refsynopsisdiv>
     <refsection>

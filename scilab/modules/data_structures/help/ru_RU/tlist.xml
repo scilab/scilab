@@ -19,7 +19,7 @@
         <refpurpose>объект Scilab'а и определение типизированного списка</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>tlist(typ, a1, ..., an)</synopsis>
     </refsynopsisdiv>
     <refsection>

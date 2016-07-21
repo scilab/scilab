@@ -20,7 +20,7 @@
         <refpurpose>множественное выполнение</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             [z]=feval(x,y,f)
             [z]=feval(x,f)

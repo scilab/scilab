@@ -29,6 +29,8 @@
 #include "utilities.hxx"
 #include "View.hxx"
 #include "Controller.hxx"
+
+#include "scicos.h"
 %}
 
 %include <enums.swg>

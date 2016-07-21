@@ -91,11 +91,8 @@ BOOL InitializeJVM(void)
         }
     }
 
-    if (sciPath)
-    {
-        FREE(sciPath);
-        sciPath = NULL;
-    }
+    FREE(sciPath);
+    sciPath = NULL;
 
     if (!bOK)
     {
@@ -110,11 +107,8 @@ static void DoLoadClasspathInEtc(char *sciPath)
     char *classpathfile = (char*)MALLOC(sizeof(char) * (strlen(sciPath) + strlen(XMLCLASSPATH) + 1));
     sprintf(classpathfile, XMLCLASSPATH, sciPath);
     LoadClasspath(classpathfile);
-    if (classpathfile)
-    {
-        FREE(classpathfile);
-        classpathfile = NULL;
-    }
+    FREE(classpathfile);
+    classpathfile = NULL;
 }
 /*--------------------------------------------------------------------------*/
 static void DoLoadLibrarypathInEtc(char *sciPath)
@@ -122,11 +116,8 @@ static void DoLoadLibrarypathInEtc(char *sciPath)
     char *librarypathfile = (char*)MALLOC(sizeof(char) * (strlen(sciPath) + strlen(XMLLIBRARYPATH) + 1));
     sprintf(librarypathfile, XMLLIBRARYPATH, sciPath);
     LoadLibrarypath(librarypathfile);
-    if (librarypathfile)
-    {
-        FREE(librarypathfile);
-        librarypathfile = NULL;
-    }
+    FREE(librarypathfile);
+    librarypathfile = NULL;
 }
 /*--------------------------------------------------------------------------*/
 BOOL ExecuteInitialHooks(void)

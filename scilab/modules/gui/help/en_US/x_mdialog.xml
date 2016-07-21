@@ -108,7 +108,7 @@ rep = x_mdialog('Enter a boolean matrix', labelsv, labelsh, default_input_matrix
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="editvar">editvar</link>

@@ -136,7 +136,7 @@ intg(0,1,f)    //OK since real solution!
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="amell">amell</link>

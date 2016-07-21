@@ -19,7 +19,7 @@
         <refpurpose>возвращает перевёрнутую строку</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>res = strrev(str1)</synopsis>
     </refsynopsisdiv>
     <refsection>

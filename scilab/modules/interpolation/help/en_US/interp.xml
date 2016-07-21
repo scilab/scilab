@@ -210,7 +210,7 @@ xtitle(" different way to evaluate a spline outside its domain")
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="splin">splin</link>

@@ -2694,3 +2694,11 @@ msgstr ""
 # File: modules/cacsd/macros/zgrid.sci, line: 98
 msgid "Imaginary Axis"
 msgstr ""
+
+#
+# File: modules/cacsd/macros/systmat.sci, line: 30
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: state space or a descriptor "
+"representation expected.\n"
+msgstr ""

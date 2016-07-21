@@ -19,6 +19,7 @@ function %_Matplot()
     M = pmodulo((0:(ny-1))'*ones(1:nx) + ones(ny,1)*(0:nx-1),ceil(max(nx,ny)/3));
 
     Matplot(M)
+    isoview()
 
     f = gcf();
     my_plot_desc  = _("Classical Matplot");
@@ -27,7 +28,6 @@ function %_Matplot()
 
     a = gca();
     a.tight_limits = "on";
-    a.isoview = "on";
     a.title.font_size = 2;
     Tlab = _("Matplot(M)  with  size(M)=>(%d,%d)\nThe color''s number of pixel(i,j)\n  = rounded value of M(i,j)");
     Xlab = _("For data-scaled axes, please use Matplot1(..)");

@@ -19,7 +19,7 @@
         <refpurpose>максимум</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[m [,k]]=max(A)
             [m [,k]]=max(A,'c')
             [m [,k]]=max(A,'r')

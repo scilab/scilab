@@ -9,7 +9,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y = asec(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

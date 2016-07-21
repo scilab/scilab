@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>txt = tree2code(tree, prettyprint)</synopsis>
     </refsynopsisdiv>
     <refsection>

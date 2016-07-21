@@ -19,7 +19,7 @@
         <refpurpose>функция редактирования</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>edit(functionname[,linenumber])</synopsis>
     </refsynopsisdiv>
     <refsection>

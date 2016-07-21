@@ -19,7 +19,7 @@
         <refpurpose>рисование набора стрелок</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>xarrows(nx, ny, [arsize, color])</synopsis>
     </refsynopsisdiv>
     <refsection>

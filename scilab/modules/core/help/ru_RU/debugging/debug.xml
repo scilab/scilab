@@ -5,7 +5,7 @@
         <refpurpose>уровень отладки</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             debug(level_int)
             level_int = debug()

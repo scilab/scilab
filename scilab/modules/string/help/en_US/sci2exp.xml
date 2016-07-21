@@ -137,7 +137,7 @@ d=sci2exp(b)
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="prettyprint">prettyprint</link>

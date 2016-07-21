@@ -34,7 +34,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             [n, v_1,..., v_m] = mfscanf([niter,]fd, format)
             L = mfscanf([niter,] fd,format)

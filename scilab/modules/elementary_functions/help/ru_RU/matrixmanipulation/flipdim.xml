@@ -19,7 +19,7 @@
         <refpurpose>зеркальное отражение компонентов x по заданному измерению</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=flipdim(x,dim)</synopsis>
     </refsynopsisdiv>
     <refsection>

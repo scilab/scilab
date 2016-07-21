@@ -19,7 +19,7 @@
         <refpurpose>преобразование пучка матриц в E, A</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[E,A]=pen2ea(Fs)</synopsis>
     </refsynopsisdiv>
     <refsection>

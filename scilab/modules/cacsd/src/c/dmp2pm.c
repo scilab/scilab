@@ -28,7 +28,7 @@ double* dmp2pm(double** _pdblMP, int _iSizeMP, int* _piRanks, int _iMaxRank)
     pdblPM = (double*)malloc(iSizePM * sizeof(double));
     memset(pdblPM, 0x00, iSizePM * sizeof(double));
 
-    if (_piRanks == NULL && _iMaxRank == 0)
+    if (_piRanks == NULL || _iMaxRank == 0)
     {
         // shortcut in case where pdblMP come from a types::Double
         // a matrix of double considered as a polynomial of degree zero

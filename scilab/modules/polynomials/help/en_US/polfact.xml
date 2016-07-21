@@ -75,7 +75,7 @@ polfact(x^7-1)
     </refsection>
     
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="lcm">lcm</link>

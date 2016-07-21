@@ -45,12 +45,12 @@ class EXTERN_AST ConstantVisitor : public ast::Visitor, public Chrono
 
 public:
 
-    ConstantVisitor(AnalysisVisitor & _parent) : _result(false), parent(&_parent), lhs(1), evalSymbols(true)
+    ConstantVisitor(AnalysisVisitor & _parent) : _result(false), parent(&_parent), exec(), lhs(1), evalSymbols(true)
     {
         start_chrono();
     }
 
-    ConstantVisitor(const bool _evalSymbols = true) : _result(false), parent(nullptr), evalSymbols(_evalSymbols)
+    ConstantVisitor(const bool _evalSymbols = true) : _result(false), parent(nullptr), exec(), lhs(1), evalSymbols(_evalSymbols)
     {
         start_chrono();
     }

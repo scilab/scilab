@@ -20,7 +20,7 @@
         <refpurpose>преобразование из двоичной системы счисления в десятичную</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=bin2dec(str)</synopsis>
     </refsynopsisdiv>
     <refsection>

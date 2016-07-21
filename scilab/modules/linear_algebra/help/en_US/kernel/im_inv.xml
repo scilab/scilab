@@ -91,7 +91,7 @@ svd([A*X(:,1:dim),B])   //vectors A*X(:,1:dim) belong to range(B)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="rowcomp">rowcomp</link>

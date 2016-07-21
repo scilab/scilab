@@ -5,7 +5,7 @@
         <refpurpose>изменение вектора или матрицы в матрицу иных размеров</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             y=matrix(v,n,m)
             y=matrix(v,[sizes])

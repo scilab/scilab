@@ -5,7 +5,7 @@
         <refpurpose>операторы сравнения, отношения</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             a==b
             a~=b или a&lt;&gt;b

@@ -565,7 +565,6 @@ h5rm
 h5umount
 h5write
 h5writeattr
-havewindow
 helpbrowser
 hess
 hinf
@@ -619,7 +618,6 @@ javaclasspath
 javalibrarypath
 jcast
 jcompile
-jconvMatrixMethod
 jcreatejar
 jdeff
 jdisableTrace

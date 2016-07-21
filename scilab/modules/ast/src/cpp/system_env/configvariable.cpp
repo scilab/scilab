@@ -15,7 +15,7 @@
 
 #include <vector>
 #include <list>
-
+#include <iomanip>
 #include "context.hxx"
 #include "configvariable.hxx"
 #include "macrofile.hxx"
@@ -1426,7 +1426,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
         ostr << std::endl;
     }
 
-    ostr << std::endl;
+    ostr << std::endl << std::resetiosflags(std::ios::adjustfield);
 }
 
 void ConfigVariable::fillWhereError(int _iErrorLine)

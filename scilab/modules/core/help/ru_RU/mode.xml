@@ -19,7 +19,7 @@
         <refpurpose>выбор режима отображения информации во время исполнения файла</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>mode(k)
             k = mode()
         </synopsis>

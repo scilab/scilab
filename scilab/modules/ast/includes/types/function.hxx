@@ -53,7 +53,11 @@ public :
     typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out);
     typedef ReturnValue (*GW_FUNC_OPT)(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out);
 
-    Function() : Callable() {};
+    Function() : Callable() 
+    {
+        m_pFunc = nullptr;
+        m_pLoadDeps = nullptr;
+    };
     Function(const std::wstring& _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
     ~Function();
 

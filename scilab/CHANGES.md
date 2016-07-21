@@ -27,7 +27,6 @@ In summary, the main new features are:
 * Newsfeed, providing a continuous feed of news, tips, and general communication from the community and from Scilab Enterprises.
 * Licensing change: Scilab is now released under the terms of the GNU General Public License (GPL) v2.0 (but continues to be available under the terms of the CeCILL v2.1).
 
-
 Installation
 ------------
 
@@ -138,16 +137,23 @@ Feature changes and additions
 * `strange([])` now returns %nan instead of [], as all other functions for statistical dispersion
 * `stdev(x, dir>ndims(x))` now yields an error instead of returning `zeros(x)`
 * `write`: Writing string or string matrix in a file does not add blank space before each value
+* The zoom rubber box now can start/finish from points lying outside the axes bounds.
+* The zoom rubber box now can select multiple and overlying axes at once. Changed behavior of scroll zoom, scrolling over overlying axes will zoom all of them together, using the CTRL key while scrolling will zoom all axes in the current figure.
 
 
 Help pages:
 -----------
 
-* CACSD and Signal Processing help pages have been sorted up.
-* fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`, `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`
-* rewriten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`.
-* resorted: `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
-* added: support to `valign=".."` and `style="white-space:nowrap"` attributes for `<td>` and `<th>` tags
+* fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`,
+  `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`
+* rewriten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`
+* reorganized:
+  - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
+  - CACSD and Signal Processing help pages have been sorted up.
+  - Colormaps and GUI/Menus subsections created
+* translations added:
+  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`
+  - (ru): homepage
 
 
 Data Structures
@@ -188,6 +194,8 @@ Obsolete functions or features
 
 * `maxfiles` is now obsolete.
 * `isoview(xmin,xmax,ymin,ymax)` is deprecated. Please use `isoview("on"), replot(..)` instead.
+* `eval3d` will be removed from Scilab 6.1. Please use `ndgrid` instead.
+* `strcmpi` is deprecated. Please use `strcmp(..,"i")`instead.
 
 
 Removed Functions
@@ -202,10 +210,16 @@ Removed Functions
 * `xclear` has been removed. Please use `clf` instead.
 * `fcontour2d` has been removed. Please use `contour2d` instead.
 * `plot2d1` has been removed. Please use `plot2d` instead.
-* `lex_sort` has been removed. Please use `gsort(..,"lr")` instead
+* `lex_sort` has been removed. Please use `gsort(..,"lr")` instead.
+* `gspec` was obsolete already in Scilab 4 and is now removed. Please use `spec` instead.
+* `gschur` was obsolete already in Scilab 4 and is now removed. Please use `schur` instead.
+* `havewindow` has been removed. Please use `getscilabmode()=="STD"` instead
+* `rafiter` was obsolete since Scilab 5.1 and is now removed.
+* `jconvMatrixMethod` was obsolete and is now removed. Please use `jautoTranspose` instead.
+* `fcontour` was obsolete since Scilab 4 and has been removed. Please use `contour` instead.
 
 * Symbolic module functions have been removed: `addf`, `cmb_lin`, `ldivf`, `mulf`, `rdivf`, `solve`, `subf`, `trianfml`, `trisolve` and `block2exp`.
-* Functionnalities based on former Scilab stack have been removed: 
+* Functionnalities based on former Scilab stack have been removed:
   - `comp`, `errcatch`, `iserror`, `fun2string`, `getvariablesonstack`, `gstacksize`, `macr2lst`, `stacksize`, `code2str` and `str2code`.
   - `-mem` launching option (used to set `stacksize` at startup).
 
@@ -221,7 +235,26 @@ Bug Fixes
 ---------
 
 ### In 6.0.0:
-
+* [Bug #5723](http://bugzilla.scilab.org/show_bug.cgi?id=5723) fixed   - Cross-references were missing between axis_properties and axes_properties help pages
+* [Bug #7696](http://bugzilla.scilab.org/show_bug.cgi?id=7696) fixed - The `parallel_run` help page was poorly formated
+* [Bug #9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912) fixed   - In case of missing translated help page, the default en_US was sometimes ignored
+* [Bug #9153](http://bugzilla.scilab.org/9153) fixed   - The `isqualbitwise` help page was inaccurate and badly located
+* [Bug #11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959) fixed - Allow "Zoom Area" to be clicked out of axes
+* [Bug #12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110) fixed - Unable to zoom multiple axes at once
+* [Bug #13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597) fixed - `help format` claimed setting a number of digits instead of characters
+* [Bug #13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757) fixed - The toolbox menu dit not load properly ATOMS modules not autoloaded.
+* [Bug #13990](http://bugzilla.scilab.org/show_bug.cgi?id=13990) fixed - `warning` with localization enabled some memory corruption
+* [Bug #14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192) fixed - `g_margin` error-ed for double integrator.
+* [Bug #14367](http://bugzilla.scilab.org/show_bug.cgi?id=14367) fixed - `edit_curv` failed opening due to a `[]+1` operation.
+* [Bug #14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448) fixed - removed havewindow() was still documented
+* [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - `csim` failed when the system has no state.
+* [Bug #14582](http://bugzilla.scilab.org/14582) fixed   - `gettext`or it alias `_()` were sometimes applied to broken literal strings
+* [Bug #14586](http://bugzilla.scilab.org/show_bug.cgi?id=14586) fixed - Xcos simulation stop button did not work.
+* [Bug #14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587) fixed - Datatip textbox wrong clipping when loaded from `*.scg` file.
+* [Bug #14590](http://bugzilla.scilab.org/show_bug.cgi?id=14590) fixed - Help pages in pt_BR directories had a wrong xml:lang="en" tag.
+* [Bug #14593](http://bugzilla.scilab.org/show_bug.cgi?id=14593) fixed - Signs are no more drawn in BIGSOM and PRODUCT components.
+* [Bug #14602](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - WRITEC_f block didn't work for x86 machines.
+* [Bug #14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - Matrix of strings concatenation with single quote led to a parser error.
 
 
 ### In 6.0.0 beta-2 and earlier:

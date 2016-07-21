@@ -20,7 +20,7 @@
         <refpurpose>возвращает язык, используемый Scilab'ом по умолчанию</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>getdefaultlanguage()</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -87,11 +87,9 @@ BOOL LoadClasspath(char *xmlfilename)
             if (ClassPathxmlDocPtr == NULL)
             {
                 fprintf(stderr, _("Error: could not parse file %s\n"), xmlfilename);
-                if (encoding)
-                {
-                    FREE(encoding);
-                    encoding = NULL;
-                }
+                FREE(encoding);
+                encoding = NULL;
+                FREE(XPath);
                 return bOK;
             }
 
@@ -193,21 +191,15 @@ BOOL LoadClasspath(char *xmlfilename)
             {
                 xmlXPathFreeContext(xpathCtxt);
             }
-            if (XPath)
-            {
-                FREE(XPath);
-                XPath = NULL;
-            }
+            FREE(XPath);
+            XPath = NULL;
         }
         else
         {
             fprintf(stderr, _("Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' found\n"), xmlfilename, encoding);
         }
-        if (encoding)
-        {
-            FREE(encoding);
-            encoding = NULL;
-        }
+        FREE(encoding);
+        encoding = NULL;
     }
     else
     {

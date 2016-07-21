@@ -87,7 +87,7 @@ plot2d(Samples',attenuation*ones(Samples)',[5],"000")
 ]]>     </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cheb1mag">cheb1mag</link>

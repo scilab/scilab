@@ -19,7 +19,7 @@
         <refpurpose>обнаружение подстроки</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>res = strstr(haystack, needle)</synopsis>
     </refsynopsisdiv>
     <refsection>

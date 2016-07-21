@@ -21,8 +21,8 @@ function gammatest (N)
     clf(my_handle,"reset");
 
     plot2d(cos(2*%pi*x),sin(2*%pi*x));
+    isoview()
     ax     = gca();
-    ax.isoview = "on";
     title("Bezier curve approximating a circle","fontsize",3);
     icol=2;
 

@@ -83,6 +83,9 @@ ImplicitList::ImplicitList()
     m_pDblStart = NULL;
     m_pDblStep  = NULL;
     m_pDblEnd   = NULL;
+    m_eStartType = ScilabNull;
+    m_eStepType = ScilabNull;
+    m_eEndType = ScilabNull;
 
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -753,7 +756,6 @@ std::wstring printDouble(types::Double* _pD)
     DoubleFormat df;
     getDoubleFormat(_pD->get(0), &df);
     df.bPrintPoint = false;
-    df.bPaddSign = true;
     df.bPaddSign = false;
     df.bPrintBlank = false;
     addDoubleValue(&ostr, _pD->get(0), &df);

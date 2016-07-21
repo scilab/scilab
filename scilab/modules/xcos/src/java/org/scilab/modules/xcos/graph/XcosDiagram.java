@@ -1954,6 +1954,7 @@ public class XcosDiagram extends ScilabGraph {
         JavaController controller = new JavaController();
         String[] strValue = {""};
         VectorOfDouble vecValue = new VectorOfDouble();
+        VectorOfInt vecInteger = new VectorOfInt();
 
         StringBuilder result = new StringBuilder();
         result.append(ScilabGraphConstants.HTML_BEGIN);
@@ -1985,9 +1986,9 @@ public class XcosDiagram extends ScilabGraph {
         appendReduced(result, ScilabTypeCoder.toString(vecValue))
         .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
 
-        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.IPAR, vecValue);
+        controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.IPAR, vecInteger);
         result.append(XcosMessages.TOOLTIP_BLOCK_IPAR).append(ScilabGraphConstants.HTML_BEGIN_CODE);
-        appendReduced(result, ScilabTypeCoder.toString(vecValue))
+        appendReduced(result, ScilabTypeCoder.toString(vecInteger))
         .append(ScilabGraphConstants.HTML_END_CODE).append(ScilabGraphConstants.HTML_NEWLINE);
 
         controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.OPAR, vecValue);

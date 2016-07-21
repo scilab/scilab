@@ -20,7 +20,7 @@
         <refpurpose>удаляет директорию</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             rmdir(dirname)
             rmdir(dirname,'s')

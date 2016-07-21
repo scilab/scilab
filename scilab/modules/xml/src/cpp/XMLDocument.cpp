@@ -109,7 +109,7 @@ XMLDocument::XMLDocument(char *uri, char *version): XMLObject()
 
     if (expandedPath)
     {
-        newUri = (char *)xmlMalloc(sizeof(char *) * (strlen(expandedPath) + 1));
+        newUri = (char *)xmlMalloc(sizeof(char) * (strlen(expandedPath) + 1));
         memcpy(newUri, expandedPath, sizeof(char) * (strlen(expandedPath) + 1));
         document->URL = (xmlChar *) newUri;
         FREE(expandedPath);
@@ -307,7 +307,7 @@ void XMLDocument::setDocumentURL(const std::string & url) const
     if (expandedPath)
     {
         xmlFree((void *)document->URL);
-        newURL = (char *)xmlMalloc(sizeof(char *) * (strlen(expandedPath) + 1));
+        newURL = (char *)xmlMalloc(sizeof(char) * (strlen(expandedPath) + 1));
         memcpy(newURL, expandedPath, sizeof(char) * (strlen(expandedPath) + 1));
         document->URL = (xmlChar *) newURL;
         FREE(expandedPath);

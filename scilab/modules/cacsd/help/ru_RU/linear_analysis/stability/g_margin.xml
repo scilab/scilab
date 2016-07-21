@@ -113,7 +113,7 @@ show_margins(h)
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="p_margin">p_margin</link>

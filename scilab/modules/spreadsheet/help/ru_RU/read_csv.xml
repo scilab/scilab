@@ -27,7 +27,7 @@
     
     <refsynopsisdiv>
         
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         
         <synopsis>M = read_csv(fname [,sep])</synopsis>
         

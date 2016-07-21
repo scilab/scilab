@@ -20,7 +20,7 @@
         <refpurpose>преобразует форматированный ввод в стандартном устройстве ввода</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[v_1, ..., v_n] = scanf(format);</synopsis>
     </refsynopsisdiv>
     <refsection>

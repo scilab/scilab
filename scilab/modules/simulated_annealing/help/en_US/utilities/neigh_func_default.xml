@@ -99,7 +99,7 @@ mprintf('value of the objective function = %f\n', f_opt);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optim_sa"> optim_sa </link>

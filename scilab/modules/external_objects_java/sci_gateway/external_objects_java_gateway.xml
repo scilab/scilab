@@ -43,7 +43,6 @@
     <gateway name="sci_jautoUnwrap"          function="jautoUnwrap"          type="0" />
     <gateway name="sci_jautoTranspose"       function="jautoTranspose"       type="0" />
     <gateway name="sci_jinvoke"              function="jinvoke"              type="0" />
-    <gateway name="sci_jconvMatrixMethod"    function="jconvMatrixMethod"    type="0" />
     <gateway name="sci_jgetinfo"             function="jgetinfo"             type="0" />
     <gateway name="sci_jinvoke_db"           function="jinvoke_db"           type="0" />
     <gateway name="sci_jcreatejar"           function="jcreatejar"           type="0" />

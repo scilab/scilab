@@ -302,6 +302,7 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
         if (Str3[0] == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
+            FREE(Str3);
             return 1;
         }
     }
@@ -322,7 +323,7 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
                     Str3 = (char **)MALLOC(sizeof(char *) * j);
                 }
 
-                if ( Str3 == NULL)
+                if (Str3 == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
                     return 1;
@@ -331,12 +332,18 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
                 Str3[j - 1] = os_strdup(Str[i]);
                 if (Str3[j - 1] == NULL)
                 {
-                    freeArrayOfString(Str3, j);
                     Scierror(999, _("%s: No more memory.\n"), fname);
+                    freeArrayOfString(Str3, j);
                     return 1;
                 }
             }
         }
+    }
+
+    if (Str3 == NULL)
+    {
+        Scierror(999, _("%s: Failed to generate the planner name.\n"), fname);
+        return 1;
     }
 
     /* Create the string matrix as return of the function */

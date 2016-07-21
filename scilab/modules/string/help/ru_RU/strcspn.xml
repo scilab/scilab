@@ -19,7 +19,7 @@
         <refpurpose>получение интервала до символа в строке</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>res = strcspn(string_one, string_two)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -21,7 +21,7 @@
         <refpurpose>побитовое И</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis> z = bitand(x, y) </synopsis>
     </refsynopsisdiv>
     <refsection>

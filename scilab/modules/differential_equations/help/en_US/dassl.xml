@@ -402,7 +402,7 @@ y4=dassl([y0,yd0],0,t,'chemres','chemjac');
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ode">ode</link>

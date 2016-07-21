@@ -20,7 +20,7 @@
         <refpurpose>получает имя директории из имён файлов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>dirs = dirname(files[, flag [,flagexpand]])</synopsis>
     </refsynopsisdiv>
     <refsection>

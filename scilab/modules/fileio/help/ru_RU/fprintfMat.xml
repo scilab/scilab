@@ -20,7 +20,7 @@
         <refpurpose>записывает матрицу в файл</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>fprintfMat(file, M [,format, text])</synopsis>
     </refsynopsisdiv>
     <refsection>

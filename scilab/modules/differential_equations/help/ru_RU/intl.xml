@@ -19,7 +19,7 @@
         <refpurpose>интеграл Коши</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[y]=intl(a,b,z0,r,f)</synopsis>
     </refsynopsisdiv>
     <refsection>

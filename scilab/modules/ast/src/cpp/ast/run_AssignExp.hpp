@@ -550,8 +550,6 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
         CoverageInstance::stopChrono((void*)&e);
         throw error;
     }
-
-    CoverageInstance::stopChrono((void*)&e);
 }
 
 } /* namespace ast */

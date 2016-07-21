@@ -19,7 +19,7 @@
         <refpurpose>проверка на бесконечные элементы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>r=isinf(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

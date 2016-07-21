@@ -106,7 +106,7 @@ ged(6,0) // Then click on a curve and try moving it
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="object_editor">object editor</link>

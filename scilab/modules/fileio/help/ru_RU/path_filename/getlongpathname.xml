@@ -20,7 +20,7 @@
         <refpurpose>получает длинное имя пути (только для Windows)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>longpath = getlongpathname(shortpath)
             [longpath, bOK] = getlongpathname(shortpath)
         </synopsis>

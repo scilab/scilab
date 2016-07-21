@@ -119,7 +119,7 @@
             
             例えば, 3x4のint8行列は,
             
-            <link linkend="jconvMatrixMethod">jconvMatrixMethod</link>
+            <link linkend="jautoTranspose">jautoTranspose</link>
             
             コマンドにより変更可能な変換法により,
             
@@ -164,7 +164,7 @@
             
             <member>
                 
-                <link linkend="jconvMatrixMethod">jconvMatrixMethod</link>
+                <link linkend="jautoTranspose">jautoTranspose</link>
                 
             </member>
             

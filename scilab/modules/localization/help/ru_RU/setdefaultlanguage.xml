@@ -19,7 +19,7 @@
         <refpurpose>устанавливает и сохраняет значение внутреннего языка LANGUAGE</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>setdefaultlanguage(language)</synopsis>
     </refsynopsisdiv>
     <refsection>

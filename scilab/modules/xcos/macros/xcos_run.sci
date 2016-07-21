@@ -19,12 +19,6 @@
 //
 function xcos_run(xcosFile)
 
-    // Check that the Scicos libs are loaded
-    if isdef("haltscicos") <> %t then
-        error(msprintf(gettext("The Scicos libraries are not loaded")));
-        return;
-    end
-
     // import the file
     result = importXcosDiagram(xcosFile);
     if result <> %t then

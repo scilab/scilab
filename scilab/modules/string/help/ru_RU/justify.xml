@@ -24,7 +24,7 @@
         <refpurpose>выравнивание массива символов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>Tj = justify(T, opt)</synopsis>
     </refsynopsisdiv>
     <refsection>

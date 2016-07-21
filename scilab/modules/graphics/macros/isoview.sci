@@ -20,7 +20,6 @@ function isoview(varargin)
     //isoview(xmin, xmax, ymin, ymax)  // OBSOLETE
 
     rhs = argn(2)
-    rhs0 = rhs
     if rhs==3 | rhs>4 then
         msg = _("%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n")
         error(msprintf(msg, "isoview"));

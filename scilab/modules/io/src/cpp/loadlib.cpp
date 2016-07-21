@@ -206,18 +206,30 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
                 {
                     /* we found the tag name */
                     const char *str = (const char*)attrib->children->content;
+                    if (pstName)
+                    {
+                        FREE(pstName);
+                    }
                     pstName = to_wide_string(str);
                 }
                 else if (xmlStrEqual(attrib->name, (const xmlChar*)"file"))
                 {
                     /* we found the tag activate */
                     const char *str = (const char*)attrib->children->content;
+                    if (pstFileName)
+                    {
+                        FREE(pstFileName);
+                    }
                     pstFileName = to_wide_string(str);
                 }
                 else if (xmlStrEqual(attrib->name, (const xmlChar*)"md5"))
                 {
                     /* we found the tag activate */
                     const char *str = (const char*)attrib->children->content;
+                    if (pstMd5)
+                    {
+                        FREE(pstMd5);
+                    }
                     pstMd5 = to_wide_string(str);
                 }
                 attrib = attrib->next;

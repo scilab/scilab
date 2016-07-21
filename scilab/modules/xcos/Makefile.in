@@ -673,6 +673,8 @@ libscixcos_la_CPPFLAGS = \
     -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
     -I$(top_srcdir)/modules/scicos/includes/ \
+    -I$(top_srcdir)/modules/scicos_blocks/includes/ \
+    -I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/ast/includes/ast/ \
@@ -690,7 +692,6 @@ libscixcos_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/commons/src/jni/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
-    -I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     $(JAVA_JNI_INCLUDE) \
     $(AM_CPPFLAGS)

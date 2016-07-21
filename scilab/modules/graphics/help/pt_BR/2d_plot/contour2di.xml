@@ -13,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="contour2di" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="contour2di" xml:lang="pt">
     <refnamediv>
         <refname>contour2di</refname>
         <refpurpose>Computa curvas de nível em um esboço 2d</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>[xc,yc]=contour2di(x,y,z,nz)</synopsis>
+        <synopsis>[xc, yc] = contour2di(x,y,z,nz)</synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
         <title>Parâmetros</title>
@@ -111,13 +114,13 @@ plot2d(x(im)',y(jm)',-9,"000")
     <refsection role="examples">
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-[xc,yc]=contour2di(1:10,1:10,rand(10,10),5);
-k=1;n=yc(k);c=1;
+[xc,yc] = contour2di(1:10,1:10,rand(10,10),5);
+k=1; n=yc(k); c=1;
 while k+yc(k)<size(xc,'*')
-  n=yc(k);
+  n = yc(k);
   plot2d(xc(k+(1:n)),yc(k+(1:n)),c)
-  c=c+1;
-  k=k+n+1;
+  c = c+1;
+  k = k+n+1;
 end
  ]]></programlisting>
     </refsection>
@@ -126,9 +129,6 @@ end
         <simplelist type="inline">
             <member>
                 <link linkend="contour">contour</link>
-            </member>
-            <member>
-                <link linkend="fcontour">fcontour</link>
             </member>
             <member>
                 <link linkend="contour2d">contour2d</link>

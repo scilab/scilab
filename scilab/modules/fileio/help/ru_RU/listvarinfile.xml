@@ -5,7 +5,7 @@
         <refpurpose>список переменных в файле сохранённых данных</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>listvarinfile(filename)
             [names, typs, dims, vols] = listvarinfile(filename)
         </synopsis>

@@ -5,7 +5,7 @@
         <refpurpose>возвращает тип переменной</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[i]=type(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

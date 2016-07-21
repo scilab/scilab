@@ -20,7 +20,7 @@
         <refpurpose>определённый двумерный интеграл методом квадратуры и кубатуры</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[I,err]=int2d(X,Y,f [,params])</synopsis>
     </refsynopsisdiv>
     <refsection>

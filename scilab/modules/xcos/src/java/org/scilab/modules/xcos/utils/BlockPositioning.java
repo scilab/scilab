@@ -410,6 +410,7 @@ public final class BlockPositioning {
         }
 
         diag.getModel().beginUpdate();
+        block.updateBlockView();
         updatePortsPosition(diag, block);
         rotateAllPorts(diag, block);
         diag.getModel().endUpdate();

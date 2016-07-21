@@ -529,8 +529,8 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
         delete pDbl[i];
         delete pDblSp[i];
     }
-    delete pDbl;
-    delete pDblSp;
+    delete[] pDbl;
+    delete[] pDblSp;
 
     pSpTemp->finalize();
     *_pOut = pSpTemp;

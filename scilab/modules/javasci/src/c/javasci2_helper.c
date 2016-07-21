@@ -534,6 +534,7 @@ char **getString(char *variableName, int *nbRow, int *nbCol)
     {
         printError(&sciErr, 0);
     }
+    free(piLen);
 
     return pstData;
 

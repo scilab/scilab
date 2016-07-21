@@ -5,7 +5,7 @@
         <refpurpose>определение глобальной переменной</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             global('nam1',...,'namn')
             global nam1 ... namn

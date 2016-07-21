@@ -742,6 +742,7 @@ int createTitledBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
         sciErr = getListItemAddress(_pvCtx, piAddr6, 2, &piAddrFont);
         if (sciErr.iErr)
         {
+            freeAllocatedSingleString(pstTitle);
             return SET_PROPERTY_ERROR;
         }
 

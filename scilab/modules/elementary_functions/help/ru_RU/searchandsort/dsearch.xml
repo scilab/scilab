@@ -22,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             [ind, occ, info] = dsearch(X, s )
             [ind, occ, info] = dsearch(X, s , ch )

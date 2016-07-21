@@ -20,7 +20,7 @@
         <refpurpose>побитовое ИСКЛЮЧАЮЩЕЕ ИЛИ</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             z = bitxor(x, y)
             

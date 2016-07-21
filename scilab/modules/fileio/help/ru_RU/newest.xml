@@ -19,7 +19,7 @@
         <refpurpose>возвращает самый новый файл из набора файлов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             k = newest(paths)
             k = newest(path1, path2, ..., pathn)

@@ -64,11 +64,8 @@ BOOL InitializeLocalization(void)
     {
         /* source tree and classic build */
         previousPathLocales = os_strdup(pathLocales);
-        if (pathLocales)
-        {
-            FREE(pathLocales);
-            pathLocales = NULL;
-        }
+        FREE(pathLocales);
+        pathLocales = NULL;
 
         pathLocales = (char *)MALLOC(sizeof(char) * (strlen(SCIpath) + strlen("/..") + strlen(PATHLOCALIZATIONFILE) + 1));
         strcpy(pathLocales, SCIpath);
@@ -103,16 +100,10 @@ BOOL InitializeLocalization(void)
                 FREE(previousPathLocales);
                 previousPathLocales = NULL;
             }
-            if (pathLocales)
-            {
-                FREE(pathLocales);
-                pathLocales = NULL;
-            }
-            if (SCIpath)
-            {
-                FREE(SCIpath);
-                SCIpath = NULL;
-            }
+            FREE(pathLocales);
+            pathLocales = NULL;
+            FREE(SCIpath);
+            SCIpath = NULL;
             return FALSE;
         }
         if (previousPathLocales)
@@ -122,16 +113,10 @@ BOOL InitializeLocalization(void)
         }
     }
 
-    if (SCIpath)
-    {
-        FREE(SCIpath);
-        SCIpath = NULL;
-    }
-    if (pathLocales)
-    {
-        FREE(pathLocales);
-        pathLocales = NULL;
-    }
+    FREE(SCIpath);
+    SCIpath = NULL;
+    FREE(pathLocales);
+    pathLocales = NULL;
 
     /* set domain for future gettext() calls */
     ret = textdomain(NAMELOCALIZATIONDOMAIN);

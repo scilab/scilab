@@ -20,7 +20,7 @@
         <refpurpose>выбирает графический драйвер</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             current_driver = driver()
             driver(driver_name)

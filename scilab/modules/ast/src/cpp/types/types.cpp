@@ -61,14 +61,11 @@ bool GenericType::isScalar() //2 dims and each dim == 1
 
 bool GenericType::isIdentity(void)
 {
-    if (m_piDims)
+    for (int i = 0; i < getDims(); i++)
     {
-        for (int i = 0; i < getDims(); i++)
+        if (m_piDims[i] != -1)
         {
-            if (m_piDims[i] != -1)
-            {
-                return false;
-            }
+            return false;
         }
     }
 

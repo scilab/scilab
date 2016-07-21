@@ -76,7 +76,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
 
             mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
             mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.io");
-            mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.positionning");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.custom");
 
 
             Map<Class <? extends BasicBlock>, List<BlockInterFunction>> customBlocks = EnumSet.allOf(BlockInterFunction.class).stream()

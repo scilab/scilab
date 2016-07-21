@@ -110,7 +110,7 @@ my_chinese_pdf        = xmltopdf(my_chinese_help_dir,my_chinese_help_title,'zh_T
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="help">help</link>

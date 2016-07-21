@@ -63,7 +63,7 @@ s=poly(0,'s');[1/s,2/s]
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="parentheses">parentheses</link>

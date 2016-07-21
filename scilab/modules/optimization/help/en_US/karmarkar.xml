@@ -678,8 +678,7 @@ xstar = [-2;1;3];
         </para>
         <programlisting role="example"><![CDATA[ 
 function stop = myoutputfunction ( xopt , optimValues , state )
-    localmsg = gettext("Iter#%3.0f: %s (%s), "+..
-        "f=%10.3e, x=[%s], gap=%10.3e\n")
+    localmsg = gettext("Iter#%3.0f: %s (%s), f=%10.3e, x=[%s], gap=%10.3e\n")
     xstr = strcat(msprintf("%10.3e\n",xopt)'," ")
     mprintf(localmsg,optimValues.iteration,state,optimValues.procedure,..
         optimValues.fval,xstr,optimValues.dualgap)

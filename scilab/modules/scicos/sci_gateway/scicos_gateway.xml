@@ -41,7 +41,6 @@
     <gateway type="1" name="sci_end_scicosim" function="end_scicosim"/>
     <gateway type="1" name="sci_getblocklabel" function="getblocklabel"/>
     <gateway type="1" name="sci_getscicosvars" function="getscicosvars"/>
-    <gateway type="1" name="sci_haltscicos" function="sci_haltscicos"/>
     <gateway type="1" name="sci_phase_simulation" function="phase_simulation"/>
     <gateway type="1" name="sci_pointer_xproperty" function="pointer_xproperty"/>
     <gateway type="1" name="sci_scicos_debug" function="scicos_debug"/>

@@ -22,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=ode("discrete",y0,k0,kvect,f)</synopsis>
     </refsynopsisdiv>
     <refsection>

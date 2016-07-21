@@ -157,7 +157,7 @@ plot2d(frq, abs([repf;rep2])')
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="imrep2ss">imrep2ss</link>

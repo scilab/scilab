@@ -61,7 +61,7 @@ ar=armac(a,b,d,2,1,sig)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="arma">arma</link>

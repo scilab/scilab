@@ -19,7 +19,7 @@
         <refpurpose>конкатенация нескольких массивов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=cat(dims,A1,A2,...,An)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -142,16 +142,10 @@ static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *Source
 
     fchmod (dfd, st.st_mode & 0777);
     close (sfd);
-    if (pStrDest)
-    {
-        FREE(pStrDest);
-        pStrDest = NULL;
-    }
-    if (pStrSrc)
-    {
-        FREE(pStrSrc);
-        pStrSrc = NULL;
-    }
+    FREE(pStrDest);
+    pStrDest = NULL;
+    FREE(pStrSrc);
+    pStrSrc = NULL;
     return 0;
 
 err:
@@ -165,16 +159,10 @@ err:
         unlink (pStrDest);
     }
 
-    if (pStrDest)
-    {
-        FREE(pStrDest);
-        pStrDest = NULL;
-    }
-    if (pStrSrc)
-    {
-        FREE(pStrSrc);
-        pStrSrc = NULL;
-    }
+    FREE(pStrDest);
+    pStrDest = NULL;
+    FREE(pStrSrc);
+    pStrSrc = NULL;
     return status;
 }
 /*--------------------------------------------------------------------------*/

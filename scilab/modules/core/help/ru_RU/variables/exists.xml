@@ -5,7 +5,7 @@
         <refpurpose>проверяет существование переменной</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>ve = exists(name [,where])</synopsis>
     </refsynopsisdiv>
     <refsection>

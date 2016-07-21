@@ -20,7 +20,7 @@
         <refpurpose>проверяет индикатор ошибок доступа к файлу</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             err = merror([fd])      
             [err, msg] = merror([fd])

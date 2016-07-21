@@ -174,7 +174,7 @@ s2=gsort(imag(s2));s2=s2(1:d*n/2);//just the positive ones !
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="phc">phc</link>

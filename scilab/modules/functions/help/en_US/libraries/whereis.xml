@@ -25,7 +25,7 @@ whereis("plot") // Should return graphicslib
     </refsection>
     
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="lib">lib</link>

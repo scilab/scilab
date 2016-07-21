@@ -19,7 +19,7 @@
         <refpurpose>создание новой матрицы иного размера</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>resMat = resize_matrix(mat,nbRow,nbCol,[typeOfMat])</synopsis>
     </refsynopsisdiv>
     <refsection>

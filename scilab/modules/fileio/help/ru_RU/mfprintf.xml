@@ -20,7 +20,7 @@
         <refpurpose>преобразует, форматирует и записывает данные в файл</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>mfprintf(fd, format, a1, ..., an);</synopsis>
     </refsynopsisdiv>
     <refsection>

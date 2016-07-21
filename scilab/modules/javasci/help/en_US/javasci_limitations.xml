@@ -35,7 +35,7 @@
         </itemizedlist>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).

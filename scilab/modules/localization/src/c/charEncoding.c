@@ -66,23 +66,26 @@ wchar_t *to_wide_string(const char *_UTFStr)
 {
     int nwide = 0;
     wchar_t *_buf = NULL;
-    DWORD dwFlags = 0;
-    UINT codePage = CP_ACP;
+    UINT codePage = CP_UTF8;
 
     if (_UTFStr == NULL)
     {
         return NULL;
     }
 
-    if (IsValidUTF8(_UTFStr))
-    {
-        codePage = CP_UTF8;
-    }
-
-    nwide = MultiByteToWideChar(codePage, dwFlags, _UTFStr, -1, NULL, 0);
+    nwide = MultiByteToWideChar(codePage, MB_ERR_INVALID_CHARS, _UTFStr, -1, NULL, 0);
     if (nwide == 0)
     {
-        return NULL;
+        if (GetLastError() == ERROR_NO_UNICODE_TRANSLATION)
+        {
+            codePage = CP_ACP;
+            nwide = MultiByteToWideChar(codePage, 0, _UTFStr, -1, NULL, 0);
+        }
+
+        if (nwide == 0)
+        {
+            return NULL;
+        }
     }
 
     _buf = (wchar_t *)MALLOC(nwide * sizeof(wchar_t));
@@ -91,7 +94,7 @@ wchar_t *to_wide_string(const char *_UTFStr)
         return NULL;
     }
 
-    if (MultiByteToWideChar(codePage, dwFlags, _UTFStr, -1, _buf, nwide) == 0)
+    if (MultiByteToWideChar(codePage, 0, _UTFStr, -1, _buf, nwide) == 0)
     {
         FREE(_buf);
         _buf = NULL;
@@ -199,12 +202,14 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
     size_t iLeftIn = 0;
     size_t iLeftOut = 0;
     char* pOut = NULL;
-    iconv_t cd_UTF16_to_UTF8 = iconv_open("UTF-8", "WCHAR_T");
+    iconv_t cd_UTF16_to_UTF8;
 
     if (_wide == NULL)
     {
         return NULL;
     }
+
+    cd_UTF16_to_UTF8 = iconv_open("UTF-8", "WCHAR_T");
 
     pSaveIn = (wchar_t*)_wide;
     iLeftIn = wcslen(_wide) * sizeof(wchar_t);

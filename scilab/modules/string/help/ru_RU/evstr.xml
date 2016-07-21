@@ -18,7 +18,7 @@
         <refpurpose>вычисление выражений</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             H = evstr(Z)
             [H, ierr] = evstr(Z)

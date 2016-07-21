@@ -19,7 +19,7 @@
         <refpurpose>проверка, имеет ли переменная вещественные или комплексные элементы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             t = isreal(x)
             t = isreal(x, eps)
@@ -32,7 +32,8 @@
                 <term>x</term>
                 <listitem>
                     <para>Matrix of real or complex numbers (full or sparse storage).
-                    Matrix of polynomials or rationals, with real or complex coefficients.</para>
+                        Matrix of polynomials or rationals, with real or complex coefficients.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

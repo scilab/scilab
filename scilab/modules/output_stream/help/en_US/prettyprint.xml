@@ -121,7 +121,7 @@ xstring(0.2,0.2,prettyprint(G*s-1)); // Show a polynomial through a LaTeX repres
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>

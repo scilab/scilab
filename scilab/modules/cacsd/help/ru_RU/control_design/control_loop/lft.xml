@@ -125,7 +125,7 @@ lft(W,[1,1],K); ss2tf(lft(tf2ss(W),[1,1],tf2ss(K)))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sensi">sensi</link>

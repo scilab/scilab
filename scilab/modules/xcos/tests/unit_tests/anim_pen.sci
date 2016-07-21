@@ -11,11 +11,10 @@ function [blocks] = anim_pen(blocks,flag)
     //** INIT
     if flag==4 then
         H = scf(win)
-        clf(H)
-
+        clf
+        isoview(H, "on")
         Axe = H.children
         Axe.data_bounds=rpar(4:7)
-        Axe.isoview="on"
         S=[cos(phi),-sin(phi);sin(phi),cos(phi)]
         XY=S*[rpar(4),rpar(5);-csiz/2,-csiz/2]
 

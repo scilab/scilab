@@ -19,7 +19,7 @@
         <refpurpose>преобразование cell-массива в матрицу</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>x=cell2mat(c)</synopsis>
     </refsynopsisdiv>
     <refsection>

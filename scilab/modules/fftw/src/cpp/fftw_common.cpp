@@ -337,6 +337,7 @@ types::Function::ReturnValue common_3args(std::string& name, types::typed_list &
         Scierror(999, _("%s: Wrong type for input argument #%d.\n"), name.data(), 3);
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
+        return types::Function::Error;
     }
 
     getVarAsDims(in[2], rank, Sel);
@@ -573,6 +574,7 @@ types::Function::ReturnValue common_4args(std::string& name, types::typed_list &
         Scierror(999, _("%s: Wrong type for input argument #%d.\n"), name.data(), 3);
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
+        return types::Function::Error;
     }
 
     getVarAsDims(in[2], ndims, Dim1);
@@ -613,6 +615,7 @@ types::Function::ReturnValue common_4args(std::string& name, types::typed_list &
         FREE(Dim1);
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
+        return types::Function::Error;
     }
 
     getVarAsDims(in[3], nincr, Incr);

@@ -19,7 +19,7 @@
         <refpurpose>минимум</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[m [,k]]=min(A)
             [m [,k]]=min(A,'c')
             [m [,k]]=min(A,'r')

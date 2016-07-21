@@ -114,6 +114,7 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
             }
 #endif
             isSTDErr = TRUE;
+            break;
         case 6:
             isSTD = TRUE;
             break;
@@ -124,7 +125,7 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
             isSTD = FALSE;
             types::File* pFile = FileManager::getFile(iFile);
             // file opened with fortran open function
-            if (pFile->getFileType() == 1)
+            if (!pFile || pFile->getFileType() == 1)
             {
                 Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfprintf", iFile);
                 return types::Function::Error;

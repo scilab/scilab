@@ -19,7 +19,7 @@
         <refpurpose>проверяет: является ли переменная cell-массивом строковых значений</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>bool = iscellstr(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

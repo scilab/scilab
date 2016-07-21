@@ -19,7 +19,7 @@
         <refpurpose>делит числа с плавающей запятой на показатель по основанию 2 и мантиссу</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[f,e]=frexp(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

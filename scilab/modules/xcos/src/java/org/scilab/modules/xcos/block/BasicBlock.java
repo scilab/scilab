@@ -149,6 +149,12 @@ public class BasicBlock extends XcosCell implements Serializable {
     private boolean locked;
 
     /**
+     * Hook used to implement specifix behavior after any parameter update and before re-layouting the block
+     */
+    public void updateBlockView() {
+    }
+
+    /**
      * Represent a simulation function type compatible with Scilab/Scicos function type descriptors.
      */
     public static enum SimulationFunctionType {

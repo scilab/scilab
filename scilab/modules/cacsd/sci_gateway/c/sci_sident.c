@@ -460,7 +460,7 @@ int sci_sident(char *fname, void* pvApiCtx)
     {
         iLIWORK = Max(iLIWORK, iM * iNPL);
     }
-    else
+    else // not handled yet
     {
         iLIWORK = Max(iLIWORK, Max(iLNOBR, iM * iNPL));
     }

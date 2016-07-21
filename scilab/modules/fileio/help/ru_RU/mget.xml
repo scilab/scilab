@@ -30,7 +30,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             x = mget([n, type, fd])
             x = mgeti([n, type, fd])

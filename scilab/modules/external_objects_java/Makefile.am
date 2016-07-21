@@ -73,7 +73,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/cpp/sci_jwrapinfloat.cpp \
     sci_gateway/cpp/sci_jsetfield.cpp \
     sci_gateway/cpp/sci_jautoTranspose.cpp \
-    sci_gateway/cpp/sci_jconvMatrixMethod.cpp \
     sci_gateway/cpp/sci_jgetinfo.cpp \
     sci_gateway/cpp/sci_jinvoke_db.cpp
 

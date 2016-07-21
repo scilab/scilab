@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>pathname = get_absolute_file_path(filename)</synopsis>
     </refsynopsisdiv>
     <refsection>

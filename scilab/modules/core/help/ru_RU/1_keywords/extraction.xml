@@ -5,7 +5,7 @@
         <refpurpose>выделение элемента матрицы или списка</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             x(i)
             x(i,j)

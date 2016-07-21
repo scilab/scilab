@@ -20,7 +20,7 @@
         <refpurpose>программа решения дискретно-непрерывных  ОДУ</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>yt=odedc(y0,nd,stdel,t0,t,f)</synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">

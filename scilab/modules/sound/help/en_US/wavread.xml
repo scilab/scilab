@@ -116,7 +116,7 @@ y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5]) //the first five samples
         
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="auread">auread</link>

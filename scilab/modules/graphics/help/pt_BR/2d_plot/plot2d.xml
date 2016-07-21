@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,7 +13,7 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot2d" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot2d" xml:lang="pt">
     <refnamediv>
         <refname>plot2d</refname>
         <refpurpose>esboço 2d</refpurpose>
@@ -24,7 +24,7 @@
             plot2d([x],y,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
@@ -120,7 +120,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Descrição</title>
         <para>
             <literal>plot2d</literal> esboça um conjunto de curvas 2d. Se você
@@ -462,7 +462,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Mais Informações</title>
         <para>Por padrão, esboços sucessivos são superpostos. para limpar o esboço
             anterior use
@@ -497,7 +497,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 // inicialização de x
@@ -539,8 +539,8 @@ a=gca(); // manipulador da entidade Axes
 a.x_location = "middle";
 a.y_location = "middle";
 // algumas operações sobre entidades criadas por plot2d ...
+isoview()
 a=gca();
-a.isoview='on';
 a.children // lista dos galhos dos eixos
 // há um Compound formado por duas poligonais e uma legenda
 poly1= a.children(1).children(1); //armazena um manipulador de poligonal em poly1
@@ -550,7 +550,7 @@ poly1.clip_state='off'; // controle de recorte
 leg = a.children(2); // armazena manipulador de legenda em leg
 leg.font_style = 9;
 leg.line_mode = "on";
-a.isoview='off';
+isoview("off")
  ]]></programlisting>
     </refsection>
     <refsection>

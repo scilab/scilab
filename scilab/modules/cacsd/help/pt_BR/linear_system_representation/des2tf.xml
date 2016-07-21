@@ -86,7 +86,7 @@ Descrip2=tf2des(G,"withD");Tf2=des2tf(Descrip2)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="glever">glever</link>

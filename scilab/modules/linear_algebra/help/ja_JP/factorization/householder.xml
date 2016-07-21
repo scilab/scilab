@@ -106,7 +106,7 @@
                 </listitem>
             </itemizedlist>
         </para>
-        
+
         <para>
             If the related reflexion matrix <varname>H</varname> is computed, for any point A
             of column coordinates <literal>a</literal>, <literal>H*a</literal> are the coordinates of
@@ -151,7 +151,6 @@ clean(inv(hm) - hm)     // must be zeros(3,3)
 clean(hm' - hm)         // must be zeros(3,3)
 clean(det(hm))          // must be -1
  ]]></programlisting>
-        
         <para>
             <emphasis role="bold">Application:</emphasis> Reflected image of an object w.r. to a given plane
         </para>
@@ -184,28 +183,28 @@ deff("z = mirror(x,y,n)","z = -n(1)/n(3)*x - n(2)/n(3)*y")
 Zm = mirror(X,Y,n);
 
 // Plotting:
-clf
-drawlater
+clf()
+isoview()
+drawlater()
 f = gcf();
 f.color_map = [ 0.8 0.8 0.8 ; jetcolormap(100)];
 surf(Xe,Ye,Ze)
 surf(X,Y,Zm)
 surf(Xr,Yr,Zr)
 a = gca();
-a.isoview = "on";
 a.rotation_angles = [74 123];
 a.children.color_flag = 0;
 a.children.color_mode = 0;
 a.children(1).foreground = color("red");
 a.children(2).foreground = 1;
 a.children(3).foreground = color("green");
-drawnow
+drawnow()
  ]]></programlisting>
         <scilab:image>
             householder();
         </scilab:image>
     </refsection>
-    
+
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
@@ -216,7 +215,6 @@ drawnow
                 <link linkend="givens">givens</link>
             </member>
         </simplelist>
-        
     </refsection>
     <refsection role="history">
         <title>履歴</title>

@@ -5,7 +5,7 @@
         <refpurpose>Закрывает Scilab или уменьшает уровень паузы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>quit</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -266,7 +266,7 @@ mclose(fd_rb)
     <refsection>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="file">file</link>

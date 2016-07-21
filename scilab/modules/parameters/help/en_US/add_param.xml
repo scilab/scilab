@@ -69,7 +69,7 @@ mylist = add_param(mylist,'minbound',[0 0 0]);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="init_param">init_param</link>

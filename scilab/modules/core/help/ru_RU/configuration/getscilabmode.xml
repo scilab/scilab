@@ -5,7 +5,7 @@
         <refpurpose>возвращает режим работы Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>m = getscilabmode()</synopsis>
     </refsynopsisdiv>
     <refsection>

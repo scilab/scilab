@@ -376,22 +376,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="fcontour">fcontour</link>
-                </term>
-                <listitem>
-                    <para>
-                        Кривые уровней на трёхмерной поверхности, определённой функцией
-                    </para>
-                    <para>
-                        <emphasis role="bold">Пример:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fcontour();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="hist3d">hist3d</link>
                 </term>
                 <listitem>
